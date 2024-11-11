@@ -1,0 +1,15 @@
+- type: entity
+  name: Беженец ОПЗ
+  parent: MobHuman
+  id: MobHumanBejenec
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Беженец
+    description: Ты убегаешь, беги!
+  - type: Loadout
+    prototypes: [Bejenec]
+  - type: RandomHumanoidAppearance

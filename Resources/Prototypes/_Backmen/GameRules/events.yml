@@ -1,0 +1,231 @@
+- type: entityTable
+  id: PsiBackmenEventsTable
+  table: !type:AllSelector
+    children:
+    - id: GlimmerWispSpawn
+    - id: NoosphericZap
+    - id: NoosphericFry
+    - id: PsionicCatGotYourTongue
+    - id: MassMindSwap
+    - id: GlimmerWispSpawn
+    - id: FreeProberEarly
+    - id: FreeProber
+    - id: GlimmerRandomSentience
+    - id: GlimmerRevenantSpawn
+
+
+- type: entityTable
+  id: BasicBackmenEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: PsiBackmenEventsTable
+    - id: EvilTwinSpawn
+    - id: FugitiveSpawn
+    - id: NoosphericStorm
+    - id: BluespaceGoat
+    - id: SpiderSpiderVampireSpawn
+    - id: DiseaseOutbreak
+
+- type: entityTable
+  id: NormalBackmenEventsTable
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: BasicBackmenEventsTable
+    - id: EvilTwinSpawn
+    - id: BlobSpawn
+    - id: SpiderSpiderVampireSpawn
+
+
+- type: entityTable
+  id: CalmBackmenEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: BasicBackmenEventsTable
+
+- type: entity
+  id: EvilTwinSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 10
+    earliestStart: 15
+    minimumPlayers: 5
+  - type: EvilTwinRule
+
+- type: entity
+  id: FugitiveSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StationEvent
+      weight: 2
+      earliestStart: 20
+      minimumPlayers: 15
+    - type: FugitiveRule
+
+- type: entity
+  id: WageScheduler
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: WageSchedulerRule
+
+## Regular station events
+- type: entity
+  id: NoosphericStorm
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StationEvent
+      startAnnouncement: station-event-noospheric-storm-announcement
+      weight: 5
+      earliestStart: 15
+    - type: NoosphericStormRule
+
+- type: entity
+  id: BluespaceGoat
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 5
+    earliestStart: 30
+    duration: 35
+  - type: BluespaceGoatRule
+
+# Base glimmer event
+- type: entity
+  id: BaseGlimmerEvent
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: StationEvent
+      # Favor glimmer events just a little more than regular events.
+      weight: 12
+    - type: GlimmerEvent
+
+## Glimmer events
+- type: entity
+  id: NoosphericZap
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+    - type: NoosphericZapRule
+
+- type: entity
+  id: NoosphericFry
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 900
+    - type: NoosphericFryRule
+
+
+- type: entity
+  id: PsionicCatGotYourTongue
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 200
+      maximumGlimmer: 500
+      glimmerBurnLower: 18
+      glimmerBurnUpper: 40
+    - type: PsionicCatGotYourTongueRule
+
+- type: entity
+  id: MassMindSwap
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 400
+      glimmerBurnLower: 20
+      glimmerBurnUpper: 70
+    - type: MassMindSwapRule
+
+- type: entity
+  id: GlimmerWispSpawn
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 1000
+      report: glimmer-event-report-signatures
+    - type: GlimmerWispRule
+
+- type: entity
+  id: FreeProberEarly
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GlimmerEvent
+    minimumGlimmer: 0
+    maximumGlimmer: 100
+    report: glimmer-event-report-signatures
+  - type: FreeProberRule
+    propExtra: 1
+    afterGlimmerExtra: 0
+
+- type: entity
+  id: FreeProber
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 1000
+      report: glimmer-event-report-signatures
+    - type: FreeProberRule
+
+## converted upstream events
+- type: entity
+  id: GlimmerRandomSentience
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 600
+      report: glimmer-event-report-signatures
+    - type: GlimmerRandomSentienceRule
+
+- type: entity
+  id: GlimmerRevenantSpawn
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 500
+      maximumGlimmer: 900
+      report: glimmer-event-report-signatures
+    - type: GlimmerRevenantRule
+
+- type: entity
+  id: SpiderSpiderVampireSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StationEvent
+      startAnnouncement: station-event-vent-creatures-start-announcement
+      startAudio:
+        path: /Audio/Announcements/attention.ogg
+      earliestStart: 20
+      minimumPlayers: 15
+      weight: 2
+      duration: 60
+    - type: VentCrittersRule
+      entries:
+        - id: MobGiantSpiderVampireAngry
+          prob: 0.02
+        - id: MobGiantSpiderVampireBoss
+          prob: 0.001

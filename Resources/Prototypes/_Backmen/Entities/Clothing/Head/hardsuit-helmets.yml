@@ -1,0 +1,281 @@
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitBerserk
+  name: Шлем берсерка
+  description: Хоть в нем ничего не видно, но лучшему мазиле это и не надо!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOrden
+  name: Helmet of the space suit of the elite special squad of the Red Order.
+  description: An indispensable part of the suit, it has small scratches.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
+  - type: PointLight
+    color:  red
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.1
+        Shock: 0.1
+        Cold: 0.2
+        Radiation: 0.2
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOrdinaryOrden
+  name: Helmet of the space suit of the Red Order.
+  description: An indispensable part of the suit, it has small scratches.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
+  - type: PointLight
+    color:  White
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.2
+        Radiation: 0.5
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+
+# carporate hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitCentcomCarporate
+  name: Шлем скафандра ЦК (Корпорат)
+  description: Специальный космический шлем Корпорат сделаный для различных ситуация с хорошим фанариком лоялиста НаноТрайзен.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    color: blue
+    radius: 7
+    energy: 3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRd
+  id: ClothingHeadHelmetHardsuitMystagogue
+  name: шлем защитного костюма мистагогов
+  description: Легкий шлем скафандра, оснащенный первой в галактике системой псионического прохождения.
+  components:
+    - type: Psionic
+    - type: TinfoilHat
+      passthrough: true
+      destroyOnFry: false
+    - type: ClothingGrantPsionicPower
+      power: MetapsionicPower
+    - type: GuideHelp
+      guides:
+        - Psionics
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitUEG
+  name: Шлем скафандра охраны ОПЗ
+  description: Этот шлем был нагло скопирован с шлема лидера ОБР NanoTrasen
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    color: green
+    radius: 5
+    energy: 3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitERTTay39
+  name: helmet ERT leader hardsuit
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+  - type: PointLight
+    color: cyan
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitERTMedicTay39
+  name: helmet ERT medic hardsuit
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
+  - type: PointLight
+    color: cyan
+
+#UEG
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitSpecialForce
+  name: special force hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/specialforce.rsi
+  - type: Clothing
+    equippedPrefix: off
+    sprite: Backmen/Clothing/Head/Hardsuits/specialforce.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRTULeader
+  id: ClothingHeadHelmetHardsuitRTU
+  name: RTU hardsuit helmet
+  description: A rescue troop unit helmet designed specifically for combat in space and the harsh far-off worlds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRTULeader
+  id: ClothingHeadHelmetHardsuitRTUMedick
+  name: RTU hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRTULeader
+  id: ClothingHeadHelmetHardsuitRTUEnginegr
+  name: RTU hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitRTULeader
+  name: RTU hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+  - type: Clothing
+    equippedPrefix: off
+    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitSecurityEgov
+  name: marine hardsuit helmet
+  description: A marine helmet designed specifically for combat in space and the harsh far-off worlds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/marinehardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/marinehardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitERTOperativeAlpha1
+  id: ClothingHeadHelmetHardsuitBlueShield
+  name: шлем скафандра Синего Щита
+  description: Модифицированный шлем скафандра разведчиков ОПЗ, специализирован для ведения разведки на дальних расстояниях, оснащен устройством ночного видиния.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
+
+#Chrono
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitChronoLegionnaire
+  name: chrono legionnaire hardsuit helmet
+  description: An advanced and stylish helmet right from the future. Or from the past?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/chronolegionnaire.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/chronolegionnaire.rsi
+  - type: PointLight
+    color: "#3385ff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+# Changeling
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ChangelingClothingHeadHelmetHardsuit
+  name: organic space helmet
+  description: A spaceworthy biomass of pressure and temperature resistant tissue.
+  suffix: Unremoveable
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: Backmen/Changeling/ling_spacesuit_helmet.rsi
+  - type: Clothing
+    sprite: Backmen/Changeling/ling_spacesuit_helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.225
+    lowPressureMultiplier: 1000
+  - type: Unremoveable

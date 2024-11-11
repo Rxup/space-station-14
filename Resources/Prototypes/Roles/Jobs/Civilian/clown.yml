@@ -25,6 +25,10 @@
     - type: SleepEmitSound
       snore: /Audio/Voice/Misc/silly_snore.ogg
       interval: 10
+    # start-backmen: mood
+    - type: MoodModifyTrait # Happi
+      moodId: TraitSanguine
+    # end-backmen: mood
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
   #start-backmen: currency
@@ -42,3 +46,7 @@
     pocket2: ClownRecorder
     id: ClownPDA
     ears: ClothingHeadsetService
+  storage:
+    back:
+    - RubberStampClown
+    - CrayonRainbow

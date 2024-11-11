@@ -10,6 +10,7 @@
     ClothingOuterWinterMime: 1
     ClothingOuterWinterMusician: 1
     ClothingMaskJoy: 2
+    ClothingUniformJumpsuitNull: 1
     ClothingHeadHatCardborg: 2
     ClothingOuterCardborg: 2
     ClothingHeadHatSombrero: 2
@@ -29,6 +30,8 @@
     ClothingHeadHatShrineMaidenWig: 2
     ClothingOuterSuitShrineMaiden: 2
     Gohei: 2
+    ClothingOuterSuitWitchRobes: 2
+    ClothingHeadHatWitch1: 2
     ClothingHeadHatRedRacoon: 2
     ClothingOuterRedRacoon: 2
     ClothingHeadPaperSack: 2
@@ -47,14 +50,15 @@
     ClothingHeadHatGladiator: 1
     ClothingUniformJumpsuitGladiator: 1
     ClothingHeadHatStetson: 2 # backmen
-    ClothingHeadHatCowboyBrown: 1
-    ClothingHeadHatCowboyBlack: 1
-    ClothingHeadHatCowboyWhite: 1
-    ClothingHeadHatCowboyGrey: 1
-    ClothingShoesBootsCowboyBrown: 1
-    ClothingShoesBootsCowboyBlack: 1
-    ClothingShoesBootsCowboyWhite: 1
-    ClothingMaskNeckGaiterRed: 2
+    ClothingHeadHatCowboyBrown: 1 
+    ClothingHeadHatCowboyBlack: 1 
+    ClothingHeadHatCowboyWhite: 1 
+    ClothingHeadHatCowboyGrey: 1 
+    ClothingShoesBootsCowboyBrown: 1 
+    ClothingShoesBootsCowboyBlack: 1  
+    ClothingShoesBootsCowboyWhite: 1  
+    ClothingNeckBellCollar: 2
+    ClothingOuterUnathiRobe: 1
   emaggedInventory:
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1

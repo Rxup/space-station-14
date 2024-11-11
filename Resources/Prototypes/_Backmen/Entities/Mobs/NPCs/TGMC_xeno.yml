@@ -1,0 +1,2047 @@
+# BASE #
+
+- type: entity
+  abstract: true
+  name: ксено
+  id: KsenosXenoBase
+  parent: MobXeno
+  description: Угроза любой органической форме жизни
+  suffix: KsenosXeno
+  components:
+  - type: LagCompensation
+  - type: Input
+    context: "human"
+  - type: MovedByPressure
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/Xenos/burrower.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+    noRot: true
+    netsync: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SolutionContainerManager
+  - type: AtmosExposed
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      300: Dead
+  - type: Internals
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Xenolian
+  - type: Body
+    prototype: Animal
+  - type: Actions
+  - type: DoAfter
+  - type: Polymorphable
+  - type: Buckle
+  - type: Insulated
+  - type: Hands
+    showInHands: true
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4
+  - type: Stamina
+    critThreshold: 500
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 4
+    color: "purple"
+  - type: Puller
+    needsHands: false
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Hivemind
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Hivemind
+  - type: LizardAccent
+  - type: Speech
+    speechSounds: Xeno
+  - type: Eye
+    drawFov: false
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
+  - type: Access
+    tags:
+    - Xeno
+
+- type: accessLevel
+  id: Xeno
+  name: Xeno
+
+- type: damageModifierSet
+  id: Xenolian
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.5
+    Piercing: 0.7
+    Heat: 1.8
+    Shock: 1.8
+    Poison: 0.0
+    Radiation: 0.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: damageModifierSet
+  id: XenolianStrong
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.3
+    Piercing: 0.4
+    Heat: 1.8
+    Shock: 1.8
+    Poison: 0.0
+    Radiation: 0.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: nameIdentifierGroup
+  id: Xeno
+  prefix: X
+  minValue: 333
+  maxValue: 999
+
+- type: speechSounds
+  id: Xeno
+  saySound:
+    path: /Audio/Animals/cat_hiss.ogg
+  askSound:
+    path: /Audio/Animals/snake_hiss.ogg
+  exclaimSound:
+    path: /Audio/Animals/snake_hiss.ogg
+
+# CLASSES #
+
+# WORM #
+
+- type: entity
+  name: Грудолом
+  id: KsenosXenoLarva
+  description: Молодой ксеноморф.
+  parent: KsenosXenoBase
+  components:
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: larva
+      sprite: Backmen/test/base/rsi/Textures/Mob/xeno/worm.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      10: Dead
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Грудолом
+    description: Молодой ксеноморф
+    rules: "Эволюционируй в полноценного ксеноморфа."
+    raffle:
+      settings: default
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      5: 0.8
+  - type: NameIdentifier
+    group: Xeno
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 10
+  - type: Puller
+    needsHands: true
+  - type: Polymorphable
+    innatePolymorphs: [ LarvaToDrone, LarvaToRunner, DroneToSpitter, RunnerToWarrior]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+
+# QUEEN #
+
+- type: entity
+  name: Королева
+  parent: KsenosXenoBase
+  id: KsenosXenoQueen
+  description: Королева улья.
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Королева улья
+    description: Командуй ульем ксеноморфов.
+    rules: "Командуй ульем, защищай свою кладку яиц. Способности: Размах хвостом (стан на лкм или вокруг на пкм) Липкие корни, Строительство стен ксено (на G), Лечебные феромоны, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Xeno5hand
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoQueenStun
+      - id: WeaponXenoQueenClaw
+      - id: XenoRCD
+      - id: WeaponXenoHealingSpit
+      - id: PinpointerXeno
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GibBehavior { }
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/queen.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Dead
+  - type: Stamina
+    critThreshold: 1500
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.8
+    baseSprintSpeed : 4.5
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: XenolianStrong
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      500: 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Spider
+    webPrototype: XenoWeed
+    webAction: XenoWeedsAction
+  - type: PointLight
+    radius: 9
+  - type: NameIdentifier
+    group: Xeno
+  - type: EggLayer
+    hungerUsage: 0
+    eggLayCooldownMin: 150
+    eggLayCooldownMax: 150
+    eggSpawn:
+    - id: XenoEgg
+    eggLayAction: XenoLayEgg
+
+- type: entity
+  id: XenoLayEgg
+  name: Отложить яйцо ксеноморфа
+  description: Пригодится в любом гнезде.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: { sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi, state: icon }
+    useDelay: 150
+    event: !type:EggLayInstantActionEvent
+
+# PRAETORIAN #
+
+- type: entity
+  name: Преторианец
+  parent: KsenosXenoBase
+  id: KsenosXenoPraetorian
+  description: Защитник королевы.
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Преторианец
+    description: Защищай королеву и улей с помощью своих способностей.
+    rules: "Координируй улей. Защищай и лечи королеву. Способности: Липкие корни, Лечебные феромоны, Кислотный плевок, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Xeno4hand
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoQueenClaw
+      - id: WeaponXenoSpit
+      - id: WeaponXenoHealingSpit
+      - id: PinpointerXeno
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/praetorian.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 800
+      behaviors:
+      - !type:GibBehavior { }
+  - type: Stamina
+    critThreshold: 1000
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.8
+    baseSprintSpeed : 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      300: 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Spider
+    webPrototype: XenoWeed
+    webAction: XenoWeedsAction
+  - type: PointLight
+    radius: 9
+  - type: NameIdentifier
+    group: Xeno
+
+# WARRIOR #
+
+- type: entity
+  name: Воин
+  id: KsenosXeno
+  description: Боец улья.
+  parent: KsenosXenoBase
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/warrior.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: XenolianStrong
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.8
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Воин
+    description: Защитник улья
+    rules: "Защищай королеву и гнездо. Способность: Широкий удар (ПКМ), Сбивающий удар."
+    raffle:
+      settings: default
+  - type: NameIdentifier
+    group: Xeno
+  - type: Body
+    prototype: Xeno2hand
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoRavagerClaw
+      - id: PinpointerXeno
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4.5
+
+# DRONE #
+
+- type: entity
+  name: Трутень
+  id: KsenosXenoDrone
+  description: Строитель улья и лекарь.
+  parent: KsenosXenoBase
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Трутень
+    description: Сделай из улья крепость. Лечи.
+    rules: "Укрепляй улей для защиты королевы, Лечи ксеноморфов. Способности: Липкие корни, Строительство стен ксено (на G), Лечение, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Xeno4hand
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoClaw
+      - id: XenoHealing
+      #- id: WeaponXenoHealingSpit # temporary fix because doesnt work
+      - id: XenoRCD
+      - id: PinpointerXeno
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/drone.rsi
+    offset: 0,0.2
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Stamina
+    critThreshold: 200
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Spider
+    webPrototype: XenoWeed
+    webAction: XenoWeedsAction
+  - type: NameIdentifier
+    group: Xeno
+
+# SPITTER #
+
+- type: entity
+  name: Часовой
+  description: Ксеноморф плюющийся кислотой.
+  parent: KsenosXenoBase
+  id: KsenosXenoSpitter
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Часовой
+    description: Жги десантников кислотой.
+    rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Xeno4hand
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoSpit
+      - id: WeaponXenoSpitUltra
+      - id: WeaponXenoClaw
+      - id: PinpointerXeno
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/sentinel.rsi
+    offset: 0,0.3
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: PointLight
+    color: "#33FF33"
+  - type: NameIdentifier
+    group: Xeno
+
+# Real SPITTER #
+
+- type: entity
+  name: Плевальщик
+  description: Ксеноморф плюющийся кислотой.
+  parent: KsenosXenoBase
+  id: KsenosXenoRealSpitter
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Плевальщик
+    description: Жги десантников кислотой.
+    rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Xeno5hand
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoSpit4
+      - id: WeaponXenoSpitUltraSuper
+      - id: WeaponXenoSpitGas
+      - id: WeaponXenoClaw
+      - id: PinpointerXeno
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/spitter.rsi
+    offset: 0,0.3
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: PointLight
+    color: "#33FF33"
+  - type: NameIdentifier
+    group: Xeno
+
+# SCOUT # - Баганая хуета
+
+- type: entity
+  name: Бегун
+  parent: KsenosXenoBase
+  id: KsenosXenoRunner
+  description: Быстрый ксеноморф.
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Разведчик
+    description: Делайте любимую тактику всех любителей dark souls, тыкнули и убежали.
+    rules: "Слушай королеву, проводи разведку и устраивай засады. Способности: Быстрый как понос"
+    raffle:
+      settings: default
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/runner.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      140: Dead
+  - type: Stamina
+    critThreshold: 250
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 7.0
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.8
+  - type: NameIdentifier
+    group: Xeno
+  - type: Body
+    prototype: Xeno3hand
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoClaw
+      - id: WeaponXenoStun
+      - id: PinpointerXeno
+  - type: Polymorphable
+    innatePolymorphs: [ RunnerToHunter, RunnerToWarrior ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+# Hunter #
+
+- type: entity
+  name: Охотник
+  parent: KsenosXenoBase
+  id: KsenosXenoHunter
+  description: Ксеноморф - невидимка.
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Охотник
+    description: Устраивай засады на космодесант.
+    rules: "Слушай королеву, проводи разведку и устраивай засады. Способности: Невидимость"
+    raffle:
+      settings: default
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/hunter.rsi
+    offset: 0, 0.6
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Stamina
+    critThreshold: 250
+  - type: PsionicInvisibilityPower
+    actionPsionicInvisibility: ActionHunterInvisibility
+    stunSecond: 0
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 5.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: NameIdentifier
+    group: Xeno
+  - type: Body
+    prototype: Xeno2hand
+  - type: StealthOnMove
+    passiveVisibilityRate: -2
+    movementVisibilityRate: 0.1
+  - type: Stealth
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoClaw
+      - id: PinpointerXeno
+
+- type: entity
+  id: ActionHunterInvisibility
+  name: action-name-psionic-invisibility
+  description: action-description-psionic-invisibility
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      useDelay: 30
+      icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+      event: !type:PsionicInvisibilityPowerActionEvent
+
+# RAVAGER #
+
+- type: entity
+  name: Крушитель
+  parent: KsenosXenoBase
+  id: KsenosXenoRavager
+  description: Почти неостановимая сила, сноящая всё на своём пути.
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Крушитель
+    description: Круши всё на своём пути.
+    rules: "Используй свою прочность и разрушительную силу, слушай приказы королевы. Способности: Широкий удар (ПКМ), защитный гребень."
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Xeno3hand
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: XenolianStrong
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoRavagerClaw
+      - id: WeaponXenoQueenStun
+      - id: PinpointerXeno
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/ravager.rsi
+    offset: 0,0.5
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GibBehavior { }
+  - type: Stamina
+    critThreshold: 2000
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      700: 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: PointLight
+    radius: 9
+    color: "#ff3333"
+  - type: Puller
+    needsHands: true
+  - type: NameIdentifier
+    group: Xeno
+  - type: Polymorphable
+    innatePolymorphs: []
+
+- type: entity
+  name: Король Улья
+  parent: KsenosXenoRavager
+  id: KsenosXenoKing
+  description: Неостановимая сила, сноящая всё на своём пути.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/xeno/king.rsi
+    offset: 0,0.5
+    scale: 1.3, 1.3
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: Body
+    prototype: Xeno4hand
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: XenolianStrong
+  - type: InnateTool
+    tools:
+      - id: WeaponXenoRavagerClaw
+      - id: WeaponXenoQueenStun
+      - id: XenoShield
+      - id: PinpointerXeno
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1400
+      behaviors:
+      - !type:GibBehavior { }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.85
+        density: 2500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+      params:
+        volume: 10
+  - type: PointLight
+    enabled: true
+    radius: 15
+    color: "#ff3333"
+  - type: Polymorphable
+    innatePolymorphs: []
+
+# BODY PRESETS #
+
+- type: body
+  id: Xeno1hand
+  name: "xeno"
+  root: torso
+  slots:
+    torso:
+      part: TorsoReptilian
+      connections:
+      - hand 1
+    hand 1:
+      part: XenoArm
+
+- type: body
+  id: Xeno2hand
+  name: "xeno"
+  root: torso
+  slots:
+    torso:
+      part: TorsoReptilian
+      connections:
+      - hand 1
+      - hand 2
+    hand 1:
+      part: XenoArm
+    hand 2:
+      part: XenoArm
+
+- type: body
+  id: Xeno3hand
+  name: "xeno"
+  root: torso
+  slots:
+    torso:
+      part: TorsoReptilian
+      connections:
+      - hand 1
+      - hand 2
+      - hand 3
+    hand 1:
+      part: XenoArm
+    hand 2:
+      part: XenoArm
+    hand 3:
+      part: XenoArm
+
+- type: body
+  id: Xeno4hand
+  name: "xeno"
+  root: torso
+  slots:
+    torso:
+      part: TorsoReptilian
+      connections:
+      - hand 1
+      - hand 2
+      - hand 3
+      - hand 4
+    hand 1:
+      part: XenoArm
+    hand 2:
+      part: XenoArm
+    hand 3:
+      part: XenoArm
+    hand 4:
+      part: XenoArm
+
+- type: body
+  id: Xeno5hand
+  name: "xeno"
+  root: torso
+  slots:
+    torso:
+      part: TorsoReptilian
+      connections:
+      - hand 1
+      - hand 2
+      - hand 3
+      - hand 4
+      - hand 5
+    hand 1:
+      part: XenoArm
+    hand 2:
+      part: XenoArm
+    hand 3:
+      part: XenoArm
+    hand 4:
+      part: XenoArm
+    hand 5:
+      part: XenoArm
+
+- type: entity
+  id: XenoArm
+  name: "кость ксено"
+  parent: PartSilicon
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Mobs/Silicon/drone.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: Mobs/Silicon/drone.rsi
+    state: "l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+# WEAPONS #
+
+- type: entity
+  name: когти ксено
+  parent: BaseItem
+  description: Острые.
+  id: WeaponXenoClaw
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/xeno_claw.rsi
+    layers:
+    - state: icon
+  - type: MeleeWeapon
+    attackRate: 1
+    angle: 30
+    range: 1.5
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      groups:
+        Brute: 15
+  - type: StaminaDamageOnHit
+    damage: 5
+
+- type: entity
+  name: королевские когти
+  parent: WeaponXenoClaw
+  id: WeaponXenoQueenClaw
+  description: Королевски острые.
+  components:
+  - type: Sprite
+    scale: 1.5, 1.5
+  - type: MeleeWeapon
+    attackRate: 1
+    angle: 45
+    range: 1.5
+    damage:
+      groups:
+        Brute: 18
+  - type: StaminaDamageOnHit
+    damage: 25
+
+- type: entity
+  name: огромные когти
+  parent: WeaponXenoClaw
+  id: WeaponXenoRavagerClaw
+  description: Гигантски острые.
+  components:
+  - type: Sprite
+    scale: 1.8, 1.8
+  - type: MeleeWeapon
+    attackRate: 0.8
+    angle: 90
+    range: 2.5
+    damage:
+      groups:
+        Brute: 21
+      types:
+        Structural: 25
+  - type: StaminaDamageOnHit
+    damage: 13
+
+- type: entity
+  name: сбивающий удар
+  parent: BaseItem
+  description: Сильный удар, способный сбить с ног любого морпеха.
+  id: WeaponXenoStun
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/stamina.rsi
+    layers:
+    - state: stamina5
+    scale: 0.8, 0.8
+  - type: MeleeWeapon
+    attackRate: 0.4
+    angle: 30
+    range: 1.5
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      groups:
+        Brute: 10
+  - type: StaminaDamageOnHit
+    damage: 200
+
+- type: entity
+  name: размах хвостом
+  parent: BaseItem
+  description: Размах с огромной дальностью и радиусом, способный сбить с ног любого морпеха.
+  id: WeaponXenoQueenStun
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/stamina.rsi
+    layers:
+    - state: stamina5
+    scale: 0.8, 0.8
+  - type: MeleeWeapon
+    attackRate: 0.2
+    angle: 350
+    range: 5
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 10
+    soundSwing:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: StaminaDamageOnHit
+    damage: 1000
+
+# ACID SPIT #
+
+- type: entity
+  parent: WeaponXenoSpit
+  id: WeaponXenoSpit4
+  name: супер плевок ксено
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: XenoSpitBullet4
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: плевок ксено
+  parent: BaseItem
+  id: WeaponXenoSpit
+  description: Концентрированная токсичность
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: declone
+  - type: Item
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundEmpty:
+      path: /Audio/Animals/snake_hiss.ogg
+    projectileSpeed: 8
+  - type: BasicEntityAmmoProvider
+    proto: XenoSpitBullet
+    capacity: 1
+    count: 1
+  - type: AmmoCounter
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound: /Audio/Animals/cat_hiss.ogg
+
+- type: entity
+  id: XenoSpitBullet4
+  parent: XenoSpitBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: XenoSpitBullet
+    #count: 4
+    #spread: 12
+
+- type: entity
+  id: XenoSpitBullet
+  name: плевок ксено
+  parent: BulletDisablerPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    enabled: true
+    color: Green
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 10
+        Poison: 19
+        Structural: 25
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  parent: WeaponXenoSpitUltra
+  id: WeaponXenoSpitUltraSuper
+  name: супер разъедающий плевок ксено
+  components:
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundEmpty:
+      path: /Audio/Animals/snake_hiss.ogg
+    projectileSpeed: 8
+  - type: BasicEntityAmmoProvider
+    proto: FireXenoSpitBullet
+    capacity: 5
+    count: 5
+
+- type: entity
+  name: разъедающий плевок ксено
+  parent: BaseItem
+  id: WeaponXenoSpitUltra
+  description: Концентрированная токсичность
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: declone
+  - type: Item
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundEmpty:
+      path: /Audio/Animals/snake_hiss.ogg
+    projectileSpeed: 8
+  - type: BasicEntityAmmoProvider
+    proto: FireXenoSpitBullet
+    capacity: 1
+    count: 1
+  - type: AmmoCounter
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound: /Audio/Animals/cat_hiss.ogg
+
+- type: entity
+  parent: WeaponXenoSpitUltra
+  id: WeaponXenoSpitGas
+  name: газовый плевок ксено
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: GasXenoSpitBullet
+
+- type: entity
+  id: GasXenoSpitBullet
+  name: газовый плевок ксено
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 10
+
+- type: entity
+  id: XenoGas
+  name: smoke
+  parent: Smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      solutionArea:
+        maxVol: 600
+        canReact: false
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 400
+        - ReagentId: THC
+          Quantity: 200
+
+- type: entity
+  id: FireXenoSpitBullet
+  name: плевок ксено
+  parent: FoodInjectableBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: DeleteOnTrigger
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 1
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          XenoPoisonPull:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: PointLight
+    enabled: true
+    color: "#FF8080"
+    radius: 5.0
+    energy: 4.0
+  - type: Tag
+    tags:
+    - NoSpinOnThrow
+    - FireThrowerBall
+  - type: TimedDespawn
+    lifetime: 5
+  - type: LandAtCursor
+  - type: ThrowingAngle
+    angle: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Heat: 8
+        Poison: 5
+
+- type: entity
+  name: кислотная лужеца
+  description: Очень горько!
+  id: XenoPoisonPull
+  components:
+  - type: Physics
+  - type: Sprite
+    layers:
+    - sprite: Backmen/test/base/rsi/Textures/Effects/acid.rsi
+      state: acid
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: TimedDespawn
+    lifetime: 15
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Poison: 10
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+  - type: Transform
+    anchored: true
+  - type: DamageContacts
+    damage:
+      types:
+        Heat: 5
+        Poison: 15
+    ignoreWhitelist:
+      tags:
+      - NoSpinOnThrow
+      components:
+      - IgnoreSpiderWeb
+
+# HEALING SPIT #
+
+- type: entity
+  name: лечащие феромоны
+  parent: BaseItem
+  id: WeaponXenoHealingSpit
+  description: Феромоны с целебным эффектом.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: magicm
+  - type: Item
+  - type: Gun
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Animals/cat_hiss.ogg
+    soundEmpty:
+      path: /Audio/Animals/snake_hiss.ogg
+    projectileSpeed: 3
+  - type: BasicEntityAmmoProvider
+    proto: XenoSpitHealingBullet
+    capacity: 10
+    count: 10
+  - type: AmmoCounter
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+    rechargeSound: /Audio/Animals/cat_hiss.ogg
+
+
+- type: entity
+  id: XenoSpitHealingBullet
+  name: феромоны ксено
+  parent: BulletDisablerPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: magicm
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    enabled: true
+    color: Purple
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      groups:
+        Brute: -10
+        Burn: -10
+        Airloss: -10
+        Toxin: -10
+    ignoreResistances: true
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+  - type: TimedDespawn
+    lifetime: 1
+
+
+- type: entity
+  name: восстановление
+  description: Лечение ксеноморфов.
+  parent: BaseHealingItem
+  id: XenoHealing
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi
+    state: ano09
+    scale: 0.5, 0.5
+  - type: Item
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      groups:
+        Brute: -20
+        Burn: -20
+        Airloss: -30
+    bloodlossModifier: -20
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: Stack
+    stackType: XenoHealingStack
+    count: 9999
+
+- type: stack
+  id: XenoHealingStack
+  name: слизь ксено
+  icon: { sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi, state: ano09 }
+  spawn: XenoHealing
+  maxCount: 9999
+
+# ABILITIES #
+
+- type: entity
+  id: XenoWeedsAction
+  name: Корни
+  description: Взращивает липкие корни
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi/full.png
+    event: !type:SpiderWebActionEvent
+    useDelay: 1
+
+- type: entity
+  id: XenoWeed
+  name: липкая трава
+  description: Мерзость. Лучше срубить.
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: PlacementReplacement
+      key: weeds
+    - type: IconSmooth
+      key: weeds
+      base: weed
+    - type: Sprite
+      sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
+      drawdepth: FloorTiles
+      netsync: false
+    - type: Icon
+      sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
+      state: full
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 5
+      coldDamage: {}
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 1
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+
+- type: entity
+  name: защитный гребень
+  parent: BaseItem
+  id: XenoShield
+  description: Можно поднять для большего эффекта.
+  suffix: KsenosXeno
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Melee/shields.rsi
+      state: ratvarian-icon
+      netsync: false
+    - type: Item
+    - type: Blocking
+      activeBlockFraction: 0.7
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.8
+          Heat: 0.8
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+    - type: Damageable
+      damageContainer: Shield
+
+# CONSTRUCTION #
+
+- type: entity
+  id: XenoWall
+  parent: BaseWall
+  name: "стена ксено"
+  suffix: KsenosXeno
+  description: На вид мерзкое и непрочное.
+  components:
+  - type: IconSmooth
+    key: xenowalls
+    base: weed
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Structures/xeno/wall.rsi
+  - type: Icon
+    sprite: Backmen/test/base/rsi/Textures/Structures/xeno/wall.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: XenoSlimeModifier
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 130
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Occluder
+  - type: Airtight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Temperature
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Flammable
+    fireSpread: true #If you walk into incredibly dense, flaming vines, you can expect to burn.
+    damage:
+      types:
+        Heat: 3
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: 1
+
+- type: entity
+  id: XenoDoor
+  name: resin door
+  parent: BaseMaterialDoor
+  description: Its a door? Idk, but its like a huge... Yes this is door.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Structures/xeno/xenodoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: true
+    clickOpen: true
+    canCrush: false
+    canPry: false
+    closeTimeOne: 0.4
+    closeTimeTwo: 0.4
+    openTimeOne: 0.4
+    openTimeTwo: 0.4
+    openSound:
+      path: /Audio/Backmen/Effects/Xeno/alien_resin_move1.ogg
+    closeSound:
+      path: /Audio/Backmen/Effects/Xeno/alien_resin_move2.ogg
+  - type: AccessReader
+    access: [ [ "Xeno" ] ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: XenoSlimeModifier
+  - type: IconSmooth
+    key: xenowalls
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Temperature
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Flammable
+    fireSpread: true #If you walk into incredibly dense, flaming vines, you can expect to burn.
+    damage:
+      types:
+        Heat: 3
+
+- type: damageModifierSet
+  id: XenoSlimeModifier
+  coefficients:
+    Blunt: 0.2
+    Slash: 2
+    Piercing: 0.2
+    Shock: 1
+
+- type: entity
+  id: XenoRCD
+  parent: RCD
+  name: ксено слизь
+  description: С помощью своих выделений производит монструозные пещеры для защиты своего улья. Да, все именно так как вы поняли.
+  suffix: AutoRecharge
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
+    layers:
+      - state: b_checker_piece
+  - type: LimitedCharges
+    maxCharges: 50
+    charges: 50
+  - type: AutoRecharge
+    rechargeDuration: 5
+  - type: RCD
+    availablePrototypes:
+    - XenoWall
+    - XenoDoor
+    successSound: /Audio/Backmen/Effects/Xeno/alien_resin_build2.ogg
+
+- type: rcd
+  id: XenoDoor
+  category: Airlocks
+  sprite: /Textures/Interface/Radial/RCD/airlock.png
+  mode: ConstructObject
+  prototype: XenoDoor
+  cost: 8
+  delay: 3
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: XenoWall
+  category: WallsAndFlooring
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  mode: ConstructObject
+  prototype: XenoWall
+  cost: 4
+  delay: 1
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: entity
+  id: XenoEgg
+  parent: BaseStructure
+  name: яйцо ксеноморфа
+  suffix: KsenosXeno
+  description: На вид мерзкое.
+  save: false
+  components:
+  - type: LanguageSpeaker
+    currentLanguage: Xeno
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+    - TauCetiBasic
+  - type: ContainerContainer
+  - type: ActionsContainer
+  - type: Actions
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi
+    layers:
+      - state: icon
+    noRot: true
+    netsync: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 1350
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  #- type: PointLight
+  #  enabled: true
+  #  radius: 3
+  #  softness: 5
+  #  color: "#FF33FF"
+  #  autoRot: true
+  #- type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: false
+    allowSpeech: false
+    makeSentient: true
+    name: Яйцо ксеноморфа
+    description: Готово вылупиться
+    rules: "Вырасти в полноценного защитника улья."
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: KsenosXenoLarva
+
+
+# LOCATOR #
+
+- type: entity
+  id: PinpointerXeno
+  name: чутьё королевы
+  description: "Ксеноморфы всегда знают как найти королеву."
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    component: EggLayer
+  - type: Transform
+    noRot: True
+  - type: Sprite
+    netsync: false
+    noRot: True
+    sprite: Objects/Devices/pinpointer.rsi
+    layers:
+    - state: pinpointer
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: ""
+      right:
+      - state: ""
+  - type: Appearance
+
+# EVOLUTION #
+
+- type: entity
+  id: ActionToLarva
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+    itemIconStyle: NoItem
+
+- type: polymorph
+  id: EggToLarva
+  configuration:
+    entity: KsenosXenoLarva
+    forced: true
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: LarvaToDrone
+  configuration:
+    entity: KsenosXenoDrone
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: LarvaToRunner
+  configuration:
+    entity: KsenosXenoRunner
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: DroneToSpitter
+  configuration:
+    entity: KsenosXenoSpitter
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: RunnerToWarrior
+  configuration:
+    entity: KsenosXeno
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: RunnerToHunter
+  configuration:
+    entity: KsenosXenoHunter
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+# ABILITIES #
+
+- type: polymorph
+  id: RavagerRage
+  configuration:
+    entity: KsenosXenoKing
+    forced: true
+    transferDamage: true
+    revertOnCrit: true
+    revertOnDeath: true
+    allowRepeatedMorphs: true
+    duration: 30
+
+# ADMIN EVOLUTION (KOSTILYI) #
+
+- type: polymorph
+  id: LarvaPunish
+  configuration:
+    entity: KsenosXenoLarva
+    forced: true
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
+    cooldown: 30
+
+- type: polymorph
+  id: Larva
+  configuration:
+    entity: KsenosXenoLarva
+    forced: true
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Drone
+  configuration:
+    entity: KsenosXenoDrone
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Runner
+  configuration:
+    entity: KsenosXenoRunner
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Spitter
+  configuration:
+    entity: KsenosXenoSpitter
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Warrior
+  configuration:
+    entity: KsenosXeno
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Praetorian
+  configuration:
+    entity: KsenosXenoPraetorian
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Ravager
+  configuration:
+    entity: KsenosXenoRavager
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30
+
+- type: polymorph
+  id: Queen
+  configuration:
+    entity: KsenosXenoQueen
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+    cooldown: 30

@@ -1,47 +1,46 @@
-- type: entity
-  id: CrateFunPlushie
-  parent: CrateGenericSteel
-  name: plushie crate
-  description: A buncha soft plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
-  components:
-  - type: StorageFill
-    contents:
-      - id: PlushieBee
-      - id: PlushieNar
+- type: entityTable
+  id: AllPlushiesTable
+  table: !type:GroupSelector
+    children:
+    - id: PlushieBee
+    - id: PlushieNar
+      weight: 0.5
+    - id: PlushieRatvar
+      weight: 0.5
+    - id: PlushieNuke
+    - id: PlushieSlime
+    - id: PlushieSnake
+    - !type:GroupSelector
+      children:
+      - id: PlushieLizard
+        weight: 9
+      - id: PlushieSpaceLizard
+        weight: 1
+    - !type:GroupSelector
+      children:
       - id: PlushieCarp
-      - id: PlushieNuke
-      - id: PlushieSlime
-      - id: PlushieSnake
-      - id: PlushieLizard
-      - id: PlushieSpaceLizard
-      - id: PlushieVox
-      - id: PlushieRouny
-      - id: PlushieRatvar
+      - id: PlushieHolocarp
+        weight: 0.25
+      - id: PlushieMagicarp
+        weight: 0.25
+      - id: PlushieRainbowCarp
+        weight: 0.15
+    - id: PlushieVox
+    - id: PlushieRouny
+    - !type:GroupSelector
+      children:
       - id: PlushieSharkBlue
-        orGroup: PlushieShark
       - id: PlushieSharkGrey
-        orGroup: PlushieShark
-      - id: PlushieAtmosian
-      - id: PlushieDiona
-      - id: PlushieXeno
-      - id: PlushieHampter
-      - id: PlushieMoth
-      - id: RubberPig
-      - id: PlushieArachind
-      - id: PlushiePenguin
+      - id: PlushieSharkPink
+    - id: PlushieAtmosian
+    - id: PlushieDiona
+    - id: PlushieXeno
+    - id: PlushieHampter
+    - id: PlushieMoth
+    - id: PlushieArachind
+    - id: PlushiePenguin
 
-- type: entity
-  id: CrateFunLizardPlushieBulk
-  parent: CrateGenericSteel
-  name: bulk lizard plushie crate
-  description: A buncha soft lizard plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
-  components:
-  - type: StorageFill
-    contents:
-      - id: PlushieLizard
-        amount: 3
-      - id: PlushieSpaceLizard
-        amount: 2
+# Removed crates with toys because EE toys
 
 - type: entity
   id: CrateFunInstrumentsVariety
@@ -308,6 +307,7 @@
       - id: BeachBall
       - id: RubberPig
       - id: ClothingShoesSkates
+      - id: RubberChicken
 
 - type: entity
   id: CrateFunBikeHornImplants

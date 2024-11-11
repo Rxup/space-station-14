@@ -1,0 +1,62 @@
+﻿- type: entity
+  parent: CombatKnife
+  id: AntiPsychicKnife
+  name: Анти-психический нож
+  suffix: Псионика
+  description: Специальный нож, предназначенный для убийства псиоников(НЕТ,ОН НЕ НАНОСИТ БОЛЬШЕ УРОНА ПСИОНИКАМ).
+  components:
+    - type: MeleeWeapon
+      attackRate: 1.5
+      damage:
+        types:
+          Slash: 10
+          Holy: 3
+    - type: StaminaDamageOnHit
+      damage: 0
+    - type: AntiPsionicWeapon
+      modifiers:
+        coefficients:
+          Blunt: 1.2
+          Slash: 1.2
+          Piercing: 1.2
+          Holy: 1.2
+    - type: Sprite
+      sprite: Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
+      state: icon
+    - type: Item
+      sprite: Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
+    - type: Tag
+      tags:
+        - ForensicBeltEquip
+        - HighRiskItem
+
+- type: entity
+  name: тактический нож
+  parent: CombatKnife
+  id: CombatKnifeSpetsnaz
+  description: Нож для оперативников специальных операций, острый!
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+  - type: Tag
+    tags:
+    - Knife
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/combat_knife.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - neck
+  - type: Item
+    sprite: Objects/Weapons/Melee/combat_knife.rsi
+    size: Small
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Prying

@@ -44,13 +44,13 @@ public sealed class SeeingStaticSystem : EntitySystem
 
     private void OnInit(EntityUid uid, SeeingStaticComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnShutdown(EntityUid uid, SeeingStaticComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
         {
             _overlay.MixAmount = 0;
             _overlayMan.RemoveOverlay(_overlay);

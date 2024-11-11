@@ -1,7 +1,7 @@
 using Content.Server.Antag.Mimic;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -31,6 +31,9 @@ public sealed class MobReplacementRuleSystem : GameRuleSystem<MobReplacementRule
         {
             var coordinates = entity.Coordinates;
             Del(entity.Entity);
+
+            if (!coordinates.IsValid(EntityManager))
+                continue;
 
             Spawn(component.Proto, coordinates);
         }

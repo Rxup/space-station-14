@@ -1,0 +1,139 @@
+﻿- type: ghostTheme
+  id: tier1
+  name: sponsor-win-manager-ghost-tier1
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_red.rsi
+      color: "#fff8"
+      layers:
+      - state: animated-red
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier2
+  name: sponsor-win-manager-ghost-tier2
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
+      color: "#fff8"
+      layers:
+      - state: animated-lava
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier01
+  name: sponsor-win-manager-ghost-tier01
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_orange
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier02
+  name: sponsor-win-manager-ghost-tier02
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_white
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier03
+  name: sponsor-win-manager-ghost-tier03
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_ash
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier04
+  name: sponsor-win-manager-ghost-tier04
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_ice
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier05
+  name: sponsor-win-manager-ghost-tier05
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_superwhite
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier06
+  name: sponsor-win-manager-ghost-tier06
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_star
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier07
+  name: sponsor-win-manager-ghost-tier07
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_faceless
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier08
+  name: sponsor-win-manager-ghost-tier08
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      color: "#fff8"
+      layers:
+      - state: animated_kaiju
+        shader: unshaded

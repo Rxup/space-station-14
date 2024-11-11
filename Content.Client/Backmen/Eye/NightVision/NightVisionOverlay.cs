@@ -17,7 +17,7 @@ namespace Content.Client.GG.Eye.NightVision
         public override bool RequestScreenTexture => true;
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         private readonly ShaderInstance _greyscaleShader;
-	    private readonly Color _nightvisionColor = Color.Green;
+	    public Color NightvisionColor = Color.Green;
 
         private NightVisionComponent _nightvisionComponent = default!;
 
@@ -26,17 +26,17 @@ namespace Content.Client.GG.Eye.NightVision
             IoCManager.InjectDependencies(this);
             _greyscaleShader = _prototypeManager.Index<ShaderPrototype>("GreyscaleFullscreen").InstanceUnique();
 
-            _nightvisionColor = color;
+            NightvisionColor = color;
         }
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            if (!_entityManager.TryGetComponent(_playerManager.LocalPlayer?.ControlledEntity, out EyeComponent? eyeComp))
+            if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out EyeComponent? eyeComp))
                 return false;
 
             if (args.Viewport.Eye != eyeComp.Eye)
                 return false;
 
-            var playerEntity = _playerManager.LocalPlayer?.ControlledEntity;
+            var playerEntity = _playerManager.LocalSession?.AttachedEntity;
 
             if (playerEntity == null)
                 return false;
@@ -79,7 +79,7 @@ namespace Content.Client.GG.Eye.NightVision
             var worldHandle = args.WorldHandle;
             var viewport = args.WorldBounds;
             worldHandle.UseShader(_greyscaleShader);
-            worldHandle.DrawRect(viewport, _nightvisionColor);
+            worldHandle.DrawRect(viewport, NightvisionColor);
             worldHandle.UseShader(null);
         }
     }

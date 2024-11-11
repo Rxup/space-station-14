@@ -1,0 +1,15 @@
+- type: vendingMachineInventory
+  id: SecDrobeInventoryNanoTrasenSecurity
+  startingInventory:
+    ClothingUniformJumpsuitERTSecurity: 10
+    ClothingHeadHelmetSwat: 10
+    ClothingPounchMTF: 20
+    ClothingBeltSecurityFilled: 10
+    ClothingOuterArmorBasic: 10
+    ClothingOuterArmorBulletproof: 10
+    ClothingEyesGlassesSecurity: 10
+    ClothingEyesHudSecurity: 10
+    ClothingHandsGlovesCombat: 10
+    ClothingShoesBootsNedoSpetsnaz: 10
+    CombatKnifeSpetsnaz: 10
+    FlashlightSeclite: 10

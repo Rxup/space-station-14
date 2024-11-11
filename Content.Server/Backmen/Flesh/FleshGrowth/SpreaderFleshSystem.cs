@@ -9,6 +9,9 @@ using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
+using Content.Shared.Destructible.Thresholds;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Flesh.FleshGrowth;
 
@@ -16,7 +19,7 @@ namespace Content.Server.Backmen.Flesh.FleshGrowth;
 public sealed class SpreaderFleshSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
     /// <summary>
@@ -50,11 +53,12 @@ public sealed class SpreaderFleshSystem : EntitySystem
         if (!EntityManager.TryGetComponent<TransformComponent>(blocker, out var transform))
             return; // how did we get here?
 
-        if (!_mapManager.TryGetGrid(transform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
             return;
 
         var spreaderQuery = GetEntityQuery<FleshGrowth.SpreaderFleshComponent>();
-        var tile = grid.TileIndicesFor(transform.Coordinates);
+
+        var tile = _mapSystem.TileIndicesFor(transform.GridUid.Value, grid,transform.Coordinates);
 
         for (var i = 0; i < Atmospherics.Directions; i++)
         {
@@ -62,8 +66,11 @@ public sealed class SpreaderFleshSystem : EntitySystem
             if (!comp.AirBlockedDirection.IsFlagSet(direction))
                 continue;
 
-            var directionEnumerator =
-                grid.GetAnchoredEntitiesEnumerator(SharedMapSystem.GetDirection(tile, direction.ToDirection()));
+            var directionEnumerator = _mapSystem.GetAnchoredEntitiesEnumerator(
+                transform.GridUid.Value,
+                grid,
+                SharedMapSystem.GetDirection(tile, direction.ToDirection())
+                );
 
             while (directionEnumerator.MoveNext(out var ent))
             {
@@ -105,7 +112,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
         if (spreader.Enabled == false)
             return false;
 
-        if (!_mapManager.TryGetGrid(transform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
             return false;
 
         var didGrow = false;
@@ -114,9 +121,10 @@ public sealed class SpreaderFleshSystem : EntitySystem
         {
             var direction = (DirectionFlag) (1 << i);
             var coords = transform.Coordinates.Offset(direction.AsDir().ToVec());
-            if (grid.GetTileRef(coords).Tile.IsEmpty || _robustRandom.Prob(1 - spreader.Chance))
+            if (_mapSystem.GetTileRef(transform.GridUid.Value, grid, coords).Tile.IsEmpty || _robustRandom.Prob(1 - spreader.Chance))
                 continue;
-            var ents = grid.GetLocal(coords);
+
+            var ents =  _mapSystem.GetLocal(transform.GridUid.Value, grid, coords);
 
             var entityUids = ents as EntityUid[] ?? ents.ToArray();
             if (entityUids.Any(x => IsTileBlockedFrom(x, direction)))
@@ -169,7 +177,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
                     };
                     damageThreshold.AddBehavior(new SpawnEntitiesBehavior
                     {
-                        Spawn = new Dictionary<string, MinMax> { { entityStrucrureId, new MinMax{Min = 1, Max = 1} } },
+                        Spawn = new Dictionary<EntProtoId, MinMax> { { entityStrucrureId, new MinMax{Min = 1, Max = 1} } },
                         Offset = 0f
                     });
                     damageThreshold.AddBehavior(new DoActsBehavior

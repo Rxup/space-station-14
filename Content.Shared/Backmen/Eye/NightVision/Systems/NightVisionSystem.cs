@@ -2,6 +2,8 @@ using Content.Shared.Backmen.Eye.NightVision.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using JetBrains.Annotations;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Eye.NightVision.Systems;
@@ -9,12 +11,15 @@ namespace Content.Shared.Backmen.Eye.NightVision.Systems;
 public sealed class NightVisionSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NightVisionComponent, ComponentStartup>(OnComponentStartup);
+        if(_net.IsServer)
+            SubscribeLocalEvent<NightVisionComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<NightVisionComponent, NVInstantActionEvent>(OnActionToggle);
     }
 
@@ -33,6 +38,12 @@ public sealed class NightVisionSystem : EntitySystem
         var changeEv = new NightVisionnessChangedEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
         Dirty(uid, component);
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1));
+        if (component is { IsNightVision: true, PlaySoundOn: true })
+        {
+            if(_net.IsServer)
+                _audioSystem.PlayPvs(component.OnOffSound, uid);
+        }
     }
 
     [PublicAPI]

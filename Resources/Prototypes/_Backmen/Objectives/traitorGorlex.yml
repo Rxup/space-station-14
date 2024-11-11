@@ -1,0 +1,93 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseTraitorObjectiveGorlex
+  components:
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - TraitorRole
+  - type: Objective
+    issuer: issuer-Gorlex-Marauders
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      tags:
+      - Cybersan
+      - MI13
+      - Donk
+      - Interdyne
+      - Waffle
+  - type: Tag
+    tags:
+    - Gorlex
+  - type: ObjectiveLimit
+    limit: 1
+
+- type: Tag
+  id: Gorlex
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveGorlex, BaseLivingObjective]
+  id: HijackShuttleObjectiveGorlex
+  name: Завладейте эвакуационным шаттлом
+  description: Улетите на шаттле эвакуации свободным и без лояльного экипажа Nanotrasen на борту. Используйте ЛЮБЫЕ доступные вам методы. Агенты Синдиката, враги Nanotrasen и заложники в наручниках могут оставаться на шаттле живыми. Игнорируйте помощь от кого-либо, кроме агента поддержки.
+  components:
+  - type: Objective
+    difficulty: 5 #Hijacker don't help anyone else
+    icon:
+      sprite: Objects/Tools/emag.rsi
+      state: icon
+  - type: HijackShuttleCondition
+
+# steal
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveGorlex, BaseStealObjective]
+  id: NukeDiskStealObjectiveGorlex
+  components:
+  - type: Objective
+    # high difficulty since the hardest item both to steal, and to not get caught down the road,
+    # since anyone with a pinpointer can track you down and kill you
+    # it's close to being a stealth loneop
+    difficulty: 4
+    icon:
+      sprite: Objects/Misc/nukedisk.rsi
+      state: icon
+  - type: NotCommandRequirement
+  - type: StealCondition
+    stealGroup: NukeDisk
+    owner: objective-condition-steal-station
+
+# kill
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveGorlex, BaseKillObjective]
+  id: KillRandomPersonObjectiveGorlex
+  description: Убить...
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveGorlex, BaseKillObjective]
+  id: KillRandomHeadObjectiveGorlex
+  description: Он должен умереть...
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-head-title
+  - type: PickRandomHead
+  - type: KillPersonCondition
+    requireDead: true

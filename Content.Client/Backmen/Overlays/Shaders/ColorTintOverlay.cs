@@ -1,7 +1,9 @@
+using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Vector3 = Robust.Shared.Maths.Vector3;
 
 namespace Content.Client.Backmen.Overlays.Shaders;
 
@@ -41,7 +43,7 @@ public sealed class ColorTintOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         if (ScreenTexture == null ||
-            _player.LocalPlayer?.ControlledEntity is not { Valid: true } player ||
+            _player.LocalSession?.AttachedEntity is not { Valid: true } player ||
             Comp != null && !_entity.HasComponent(player, Comp.GetType()))
             return;
 
@@ -53,7 +55,7 @@ public sealed class ColorTintOverlay : Overlay
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
-        worldHandle.SetTransform(Matrix3.Identity);
+        worldHandle.SetTransform(Matrix3x2.Identity);
         worldHandle.UseShader(_shader);
         worldHandle.DrawRect(viewport, Color.White);
         worldHandle.UseShader(null);

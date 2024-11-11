@@ -5,6 +5,7 @@ using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Content.Shared.Database;
 using Robust.Shared.Prototypes;
+using static System.Int32;
 
 namespace Content.Server.Backmen.Administration.Commands;
 
@@ -12,35 +13,46 @@ namespace Content.Server.Backmen.Administration.Commands;
 public sealed class CallSpecForcesCommand : IConsoleCommand
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly EntityManager EntityManager = default!;
+    [Dependency] private readonly EntityManager _entManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+
     public string Command => "callspecforces";
-
     public string Description => "Вызов команды спецсил";
-
     public string Help => "callspecforces";
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if(args.Length != 1)
+        var specForceSystem = _entManager.System<SpecForcesSystem>();
+
+        if (!_prototypes.TryIndex<SpecForceTeamPrototype>(args[0], out _))
         {
-            shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
+            shell.WriteLine($"Спецсилы с ID {args[0]} не существует.");
             return;
         }
-        var specsys = EntityManager.System<SpecForcesSystem>();
-        if(!specsys.CallOps(args[0],shell.Player != null ? shell.Player.Name : "An administrator")){
-            shell.WriteLine($"Подождите еще {specsys.DelayTime} перед запуском следующих!");
-        }
 
-        _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme, $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} SpecForcesSystem call {args[0]}");
+        switch (args.Length)
+        {
+            case 1:
+                if(!specForceSystem.CallOps(args[0],shell.Player != null ? shell.Player.Name : "An administrator"))
+                    shell.WriteLine($"Подождите еще {specForceSystem.DelayTime} перед запуском следующих!");
+                _adminLogger.Add(
+                    LogType.AdminMessage,
+                    LogImpact.Extreme,
+                    $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} called SpecForceTeam {args[0]}.");
+                break;
+            default:
+                shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
+                break;
+        }
     }
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
+        // Index all SpecForceTeams prototypes and write them down in completion result.
         return args.Length switch
         {
             1 => CompletionResult.FromHintOptions(
-                CompletionHelper.PrototypeIDs<SpecForceTeamPrototype>
-                    (true, _prototypes), "Тип вызова"),
+                CompletionHelper.PrototypeIDs<SpecForceTeamPrototype>(true, _prototypes),
+                "Тип вызова"),
             _ => CompletionResult.Empty
         };
     }

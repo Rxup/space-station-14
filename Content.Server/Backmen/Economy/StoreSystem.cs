@@ -6,6 +6,7 @@ using Content.Server.Store.Components;
 using Content.Server.VendingMachines;
 using Content.Shared.Backmen.Store;
 using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.VendingMachines;
 
 namespace Content.Server.Store.Systems;
@@ -34,7 +35,7 @@ public sealed partial class StoreSystem
             _audio.PlayPvs(vendComponent.SoundVend, uid);
         }
     }
-    private bool HandleBankTransaction(EntityUid uid, StoreComponent component, StoreBuyListingMessage msg, ListingData listing)
+    private bool HandleBankTransaction(EntityUid uid, StoreComponent component, StoreBuyListingMessage msg, ListingDataWithCostModifiers listing)
     {
         if (!TryComp<BuyStoreBankComponent>(uid, out var storeBank))
         {

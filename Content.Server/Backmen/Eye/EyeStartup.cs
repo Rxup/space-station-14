@@ -29,9 +29,6 @@ public sealed class EyeStartup : EntitySystem
 
     private void OnEyeInit(EyeMapInit ev)
     {
-        if (HasComp<GhostComponent>(ev.Target))
-            _eye.SetVisibilityMask(ev.Target, ev.Target.Comp.VisibilityMask | (int) VisibilityFlags.AIEye, ev.Target.Comp);
-
         _shadowkinPowerSystem.SetVisibility(ev.Target, HasComp<GhostComponent>(ev.Target));
     }
 

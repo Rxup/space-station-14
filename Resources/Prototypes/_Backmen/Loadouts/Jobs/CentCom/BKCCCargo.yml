@@ -1,0 +1,57 @@
+﻿- type: startingGear
+  id: CCCargo
+  equipment:
+    id: CCCargoPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: AppraisalTool
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatCargosoft
+
+
+# Jumpsuit
+- type: loadout
+  id: BKCCCargoJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargo
+
+- type: loadout
+  id: BKCCCargoJumpskirtCargo
+  equipment:
+    innerClothingSkirt: ClothingUniformJumpskirtCargo
+
+# Neck
+- type: loadout
+  id: BKCCCargoCloak
+  equipment:
+    neck: ClothingNeckCloakCap
+
+
+- type: loadout
+  id: BKCCCargoCloakFormal
+  equipment:
+    neck: ClothingNeckCloakCapFormal
+
+
+- type: loadout
+  id: BKCCCargoMantle
+  equipment:
+    neck: ClothingNeckMantleCap
+
+
+# Back
+- type: loadout
+  id: BKCCCargoBackpack
+  equipment:
+    back: ClothingBackpack
+
+
+- type: loadout
+  id: BKCCCargoSatchel
+  equipment:
+    satchel: ClothingBackpackSatchel
+
+
+- type: loadout
+  id: BKCCCargoDuffel
+  equipment:
+    duffelbag: ClothingBackpackDuffel

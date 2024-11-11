@@ -31,7 +31,7 @@
       shuttleTime: 600
     yellow:
       announcement: alert-level-yellow-announcement
-      sound: /Audio/Misc/notice1.ogg
+      sound: /Audio/Backmen/Misc/yellow_code2.ogg #Backmen-Edit
       color: Yellow
       emergencyLightColor: Goldenrod
       forceEnableEmergencyLights: true
@@ -50,7 +50,7 @@
       announcement: alert-level-gamma-announcement
       selectable: false
       sound:
-        path: /Audio/Misc/siren.ogg
+        path: /Audio/Corvax/Misc/siren.ogg # Corvax: Return of the old siren sound
         params:
           volume: -4
       disableSelection: true

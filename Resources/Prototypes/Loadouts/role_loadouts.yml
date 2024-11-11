@@ -2,6 +2,9 @@
 - type: roleLoadout
   id: JobCaptain
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - CaptainHead
   - CaptainNeck
   - CaptainJumpsuit
@@ -9,272 +12,422 @@
   - CaptainOuterClothing
   - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - HoPHead
   - HoPNeck
   - HoPJumpsuit
   - HoPBackpack
   - HoPOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - Inventory # Corvax-Loadouts
+
+# Silicons
+- type: roleLoadout
+  id: JobStationAi
+  nameDataset: names_ai
 
 # Civilian
 - type: roleLoadout
   id: JobPassenger
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - PassengerJumpsuit
   - CommonBackpack
+  - PassengerNeck
   - PassengerFace
   - PassengerGloves
   - PassengerOuterClothing
   - PassengerShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBartender
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - BartenderHead
   - BartenderJumpsuit
   - CommonBackpack
   - BartenderOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobServiceWorker
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - BartenderJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobChef
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ChefHead
   - ChefMask
   - ChefJumpsuit
   - CommonBackpack
   - ChefOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobLibrarian
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - LibrarianJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobLawyer
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - LawyerNeck
   - LawyerJumpsuit
-  - LawyerBackpack
+  - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Inventory # Corvax-Loadouts
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobChaplain
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ChaplainHead
   - ChaplainMask
   - ChaplainNeck
   - ChaplainJumpsuit
-  - ChaplainBackpack
+  - CommonBackpack
   - ChaplainOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobJanitor
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - JanitorHead
   - JanitorJumpsuit
   - JanitorGloves
   - CommonBackpack
   - JanitorOuterClothing
   - Glasses
+  - Survival
   - Trinkets
   - Medals #backmen
+  - JanitorPlunger
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBotanist
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - BotanistHead
   - BotanistJumpsuit
   - BotanistBackpack
   - BotanistOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobClown
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ClownHead
   - ClownJumpsuit
   - ClownBackpack
   - ClownOuterClothing
   - ClownShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - SurvivalClown
+  - Trinkets
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobMime
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - MimeHead
   - MimeMask
   - MimeJumpsuit
   - MimeBackpack
   - MimeOuterClothing
+  - MimeBelt
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - SurvivalMime
+  - Trinkets
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobMusician
   groups:
-  - MusicianBackpack
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
+  - MusicianJumpsuit
+  - CommonBackpack
   - MusicianOuterClothing
   - Glasses
+  - Survival
   - Trinkets
   - Medals #backmen
+  - Instruments
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 # Cargo
 - type: roleLoadout
   id: JobQuartermaster
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - QuartermasterHead
   - QuartermasterNeck
   - QuartermasterJumpsuit
-  - QuartermasterBackpack
+  - CargoTechnicianBackpack
   - QuartermasterOuterClothing
   - QuartermasterShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobCargoTechnician
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
   - CargoTechnicianShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobSalvageSpecialist
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 # Engineering
 - type: roleLoadout
   id: JobChiefEngineer
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
-  - ChiefEngineerBackpack
+  - ChiefEngineerBackpack # Corvax-Loadouts
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
-  - Trinkets
   - Medals #backmen
+  - SurvivalExtended
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
-  - Trinkets
   - Medals #backmen
+  - Trinkets
+  - SurvivalExtended
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobStationEngineer
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - StationEngineerHead
   - StationEngineerJumpsuit
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
   - StationEngineerID
-  - Trinkets
   - Medals #backmen
+  - Trinkets
+  - SurvivalExtended
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
-  - Trinkets
   - Medals #backmen
+  - SurvivalExtended
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 # Science
 - type: roleLoadout
   id: JobResearchDirector
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ResearchDirectorHead
   - ResearchDirectorNeck
   - ResearchDirectorJumpsuit
-  - ResearchDirectorBackpack
+  - ScientistBackpack
   - ResearchDirectorOuterClothing
   - ScientistGloves
   - ResearchDirectorShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobScientist
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ScientistHead
   - ScientistNeck
   - ScientistJumpsuit
@@ -284,24 +437,35 @@
   - ScientistShoes
   - ScientistPDA
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobResearchAssistant
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ResearchAssistantJumpsuit
   - ScientistBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 # Security
 - type: roleLoadout
   id: JobHeadOfSecurity
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - HeadofSecurityHead
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
@@ -311,13 +475,19 @@
   - SecurityShoes
   - SecurityOfficerPocket #Backmen
   - SecurityOfficerPocket2 #Backmen
-  - Trinkets
   - Medals #backmen
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityStar
+  - GroupSpeciesBreathToolSecurity
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobWarden
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - WardenHead
   - WardenJumpsuit
   - SecurityBackpack
@@ -326,13 +496,19 @@
   - SecurityShoes
   - SecurityPocket #Backmen
   - SecurityPocket2 #Backmen
-  - Trinkets
   - Medals #backmen
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityStar
+  - GroupSpeciesBreathToolSecurity
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobSecurityOfficer
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
@@ -342,52 +518,78 @@
   - SecurityBelt
   - SecurityPocket #Backmen
   - SecurityPocket2 #Backmen
-  - Trinkets
   - Medals #backmen
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityStar
+  - GroupSpeciesBreathToolSecurity
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobDetective
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - DetectiveHead
   - DetectiveNeck
   - DetectiveJumpsuit
-  - DetectiveBackpack
+  - SecurityBackpack
   - DetectiveOuterClothing
   - SecurityShoes
-  - Trinkets
+  - DetectiveRevolver
   - Medals #backmen
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityStar
+  - GroupSpeciesBreathToolSecurity
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - SecurityCadetJumpsuit
   - SecurityBackpack
-  - Trinkets
   - Medals #backmen
+  - SurvivalSecurity
+  - Trinkets
+  - GroupSpeciesBreathToolSecurity
   - Inventory # Corvax-Loadouts
 
 # Medical
 - type: roleLoadout
   id: JobChiefMedicalOfficer
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ChiefMedicalOfficerHead
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
   - MedicalGloves
-  - ChiefMedicalOfficerBackpack
+  - MedicalBackpack
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobMedicalDoctor
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -397,84 +599,194 @@
   - MedicalShoes
   - MedicalDoctorPDA
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobMedicalIntern
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - MedicalInternJumpsuit
   - MedicalBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobChemist
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - MedicalMask
   - ChemistJumpsuit
   - MedicalGloves
   - ChemistBackpack
   - ChemistOuterClothing
   - MedicalShoes
-  - Trinkets
   - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobParamedic
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
   - MedicalGloves
-  - ParamedicBackpack
+  - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
 
 # Wildcards
 - type: roleLoadout
   id: JobZookeeper
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobReporter
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - ReporterJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - PsychologistBackpack # Corvax-MRP
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - PsychologistJumpsuit #backmen
+  - GroupTankHarness
+  - PsychologistJumpsuit
+  - MedicalBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBoxer
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
   - BoxerJumpsuit
   - BoxerGloves
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
+
+# These loadouts are used for non-crew spawns, like off-station antags and event mobs
+# They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
+
+- type: roleLoadout
+  id: RoleSurvivalVoxSupport
+  groups:
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalStandard
+  groups:
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalClown
+  groups:
+  - SurvivalClown
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalExtended
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalMedical
+  groups:
+  - SurvivalMedical
+  - GroupSpeciesBreathToolMedical
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalSecurity
+  groups:
+  - SurvivalSecurity
+  - GroupSpeciesBreathToolSecurity
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalSyndicate
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalNukie
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: RoleSurvivalEVA
+  groups:
+  - GroupEVATank
+  - SurvivalExtended

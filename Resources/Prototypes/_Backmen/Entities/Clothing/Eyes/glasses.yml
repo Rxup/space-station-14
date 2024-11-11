@@ -1,0 +1,54 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesMonocle
+  name: Монокль аристократа.
+  description: Монокль является признаком высокого происхождения и интелекта.
+  components:
+  - type: Sprite
+    sprite:  Backmen/Clothing/Eyes/Glasses/monocle.rsi
+  - type: Clothing
+    sprite:  Backmen/Clothing/Eyes/Glasses/monocle.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesWelding
+  name: Welding glasses
+  description: That's a welding goggles. It is a small item. Protects the eyes from welders.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/weldglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/weldglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: ClothingEyesGlassesBlueShield
+  name: очки Синего Щита
+  description: Улучшенный солнце защитные очки с охранной системой HUD.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: ClothingEyeslensesBlueShield
+  name: линзы Синего Щита
+  description: Новейшие линзы с исскуственным интелектом, способным вычеслять яркость окружения и затемнять линзы, так же с внедремной системой HUD охраны.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Eyes/Glasses/blueeyes.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Eyes/Glasses/blueeyes.rsi

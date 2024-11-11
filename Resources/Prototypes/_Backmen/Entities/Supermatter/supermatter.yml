@@ -1,0 +1,70 @@
+﻿- type: entity
+  parent: BaseFlatpack
+  id: SupermatterFlatpack
+  name: Supermatter flatpack
+  description: A flatpack used for constructing an supermatter engine reactor.
+  components:
+  - type: Sprite
+    layers:
+    - state: supermatter
+  - type: Flatpack
+    entity: supermatter
+  - type: StaticPrice
+    price: 500
+  - type: CargoSellBlacklist
+
+
+- type: entity
+  id: supermatter
+  name: Supermatter
+  description: A strangely translucent and iridescent crystal.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BkmSupermatter
+  - type: RadiationSource
+  - type: AmbientSound
+    range: 5
+    volume: 0
+    sound:
+      path: /Audio/Backmen/Supermatter/calm.ogg
+  - type: Physics
+  - type: Speech
+    speechSounds: Pai
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Backmen/Supermatter/supermatter.rsi
+    state: supermatter
+  - type: Icon
+    sprite: Backmen/Supermatter/supermatter.rsi
+    state: supermatter
+  - type: PointLight
+    enabled: true
+    radius: 10
+    energy: 5
+    color: "#ffe000"
+  - type: Explosive
+    explosionType: Supermatter
+    maxIntensity: 25000
+    intensitySlope: 5
+    totalIntensity: 25000
+  - type: GuideHelp
+    guides:
+    - Supermatter
+    - Power

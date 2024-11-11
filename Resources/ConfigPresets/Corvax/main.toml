@@ -6,11 +6,14 @@ maxplayers = 190
 soft_max_players = 105
 map_rotation = true
 
+[server]
+rules_file = "CorvaxLRPRuleset"
+
 [game.panic_bunker]
 enabled = true
 show_reason = true
 min_account_age = 0
-min_overall_hours = 0
+min_overall_minutes = 0
 deny_vpn = true
 enable_without_admins = true
 disable_with_admins = true

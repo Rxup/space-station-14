@@ -1,7 +1,6 @@
 # This should probably use the same prefix system as the mobster accent.
 # For the record, these do not work right now - even when uncommented.
 
-
 # accent-italian-prefix-1 = Ravioli, ravioli, give me the formuoli!
 # accent-italian-prefix-2 = Mamma-mia!
 # accent-italian-prefix-3 = Mamma-mia! That's a spicy meat-ball!
@@ -93,9 +92,9 @@ accent-italian-words-42 = почему
 accent-italian-words-replace-42 = perché
 accent-italian-words-43 = вино
 accent-italian-words-replace-43 = vino
-accent-italian-words-44 = пассажир
+accent-italian-words-44 = ассистент
 accent-italian-words-replace-44 = goombah
-accent-italian-words-45 = пассажиры
+accent-italian-words-45 = ассистенты
 accent-italian-words-replace-45 = goombahs
 accent-italian-words-46 = я
 accent-italian-words-replace-46 = sono

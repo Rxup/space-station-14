@@ -6,7 +6,7 @@
     MouseFilter="Stop"
     HorizontalExpand="True"
     VerticalExpand="True"
-    MinSize="465 225">
+    MinSize="265 125">
     <PanelContainer Name="ChatWindowPanel" Access="Public" HorizontalExpand="True" VerticalExpand="True"
                     StyleClasses="StyleNano.StyleClassChatPanel">
         <BoxContainer Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True" VerticalExpand="True">

@@ -1,0 +1,190 @@
+# Harpy
+- type: emote
+  id: Ring
+  category: Vocal
+  name: chat-emote-name-ring
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-ring"]
+  chatTriggers:
+    - ring.
+    - rings.
+    - rings!
+    - ringing.
+    - ringed.
+
+- type: emote
+  id: Pew
+  category: Vocal
+  name: chat-emote-name-pew
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-pew"]
+  chatTriggers:
+    - pew.
+    - pews.
+    - pew!
+
+- type: emote
+  id: Bang
+  category: Vocal
+  name: chat-emote-name-bang
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-bang"]
+  chatTriggers:
+    - bangs.
+    - bang.
+    - bang!
+    - banging.
+    - banged.
+
+- type: emote
+  id: Rev
+  category: Vocal
+  name: chat-emote-name-rev
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-rev"]
+  chatTriggers:
+    - revs.
+    - rev.
+    - rev!
+    - revving
+    - revved
+
+- type: emote
+  id: Caw
+  category: Vocal
+  name: chat-emote-name-caw
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-caw"]
+  chatTriggers:
+    - caws.
+    - caw.
+    - caw!
+    - cawing
+    - cawed
+
+# vocal emotes
+- type: emote
+  id: Hiss
+  category: Vocal
+  name: chat-emote-name-hiss
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-hiss"]
+  chatTriggers:
+    - хис
+    - хисс
+    - хис!
+    - хиссс!
+
+- type: emote
+  id: Mews
+  category: Vocal
+  name: chat-emote-name-mews
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-meow"]
+  chatTriggers:
+    - mew
+    - mew.
+    - mew!
+    - mews
+    - mews.
+    - mews!
+    - мя
+    - мя.
+    - мя!
+
+- type: emote
+  id: Mew
+  category: Vocal
+  name: chat-emote-name-mew
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-mew"]
+  chatTriggers:
+    - мяв
+    - мяв!
+    - мяв
+    - мявкнул
+
+- type: emote
+  id: Meows
+  category: Vocal
+  name: chat-emote-name-meows
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-meows"]
+  chatTriggers:
+    - Meows
+    - Meows.
+    - Meows!
+    - Meow
+    - Meow.
+    - Meow!
+    - мяу
+    - мяу.
+    - мяу!
+    - мяукает
+    - мяукает.
+    - мяукает!
+
+- type: emote
+  id: Purrs
+  category: Vocal
+  name: chat-emote-name-purrs
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-purrs"]
+  chatTriggers:
+    - мурчит
+    - мурчит.
+    - мурчит!
+    - Purrs
+    - Purrs.
+    - Purrs!
+

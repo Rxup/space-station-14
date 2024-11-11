@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: SoldierDeath
+  files:
+  - /Audio/Corvax/Effects/Footsteps/combine/die1.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die2.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die3.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die4.ogg

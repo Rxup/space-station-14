@@ -1,0 +1,52 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: пустая орудийная система меха
+  parent: BaseItem
+  id: BaseItemGavna9000
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_weapon_bay
+  - type: MechEquipment
+  - type: UIFragment
+
+#- type: entity
+#  name: Навесной огнетушитель
+#  parent: BaseItem
+#  id: WeaponFireExtinguisher9000
+#  description: Навесной огнетушитель, эффективный в борьбе со слизнями. Пускает быстрые, контролируемые струи воды.
+#  components:
+#  - type: Sprite
+#    netsync: false
+#    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#    state: mecha_exting
+#  - type: Item
+#    size: HeavyMachineGun
+#  - type: SolutionContainerManager
+#    solutions:
+#      spray:
+#        maxVol: 10000
+#        reagents:
+#        - ReagentId: Water
+#          Quantity: 10000
+#  - type: RefillableSolution
+#    solution: spray
+#  - type: DrainableSolution
+#    solution: spray
+#  - type: Spray
+#    spraySound:
+#      path: /Audio/Effects/extinguish.ogg
+#    sprayedPrototype: ExtinguisherSpray
+#    sprayDistance: 50
+#    vaporAmount: 7
+#    vaporSpread: 90
+#    sprayVelocity: 2.0
+    #sprayTimeAlive: 9.75
+#    transferAmount: 20
+    #impulse: 100.0
+#  - type: FireExtinguisher
+#    hasSafety: false
+#  - type: Appearance
+#  - type: MechEquipment
+#  - type: UIFragment

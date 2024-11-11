@@ -1,7 +1,0 @@
-﻿- type: entity
-  parent: BagOfSummoningGarbage
-  id: TrashBagHolding
-  name: trash bag of holding
-  description: A bluespace-infused trashbag with an extremely high capacity.
-#  components:
-#    - type: OfHolding

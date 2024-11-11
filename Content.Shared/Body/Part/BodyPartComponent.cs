@@ -1,14 +1,20 @@
-﻿using Content.Shared.Body.Components;
+using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Content.Shared.Humanoid;
 
 namespace Content.Shared.Body.Part;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedBodySystem))]
-public sealed partial class BodyPartComponent : Component
+public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 {
     // Need to set this on container changes as it may be several transform parents up the hierarchy.
     /// <summary>
@@ -16,6 +22,12 @@ public sealed partial class BodyPartComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? Body;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? OriginalBody;
+
+    [DataField, AutoNetworkedField]
+    public BodyPartSlot? ParentSlot;
 
     [DataField, AutoNetworkedField]
     public BodyPartType PartType = BodyPartType.Other;
@@ -28,8 +40,21 @@ public sealed partial class BodyPartComponent : Component
     [DataField("vital"), AutoNetworkedField]
     public bool IsVital;
 
+    /// <summary>
+    /// Amount of damage to deal when the part gets removed.
+    /// Only works if IsVital is true.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 VitalDamage = 100;
+
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
+
+    [DataField]
+    public string ToolName { get; set; } = "A body part";
+
+    [DataField, AutoNetworkedField]
+    public bool? Used { get; set; } = null;
 
     /// <summary>
     /// Child body parts attached to this body part.
@@ -42,6 +67,100 @@ public sealed partial class BodyPartComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, OrganSlot> Organs = new();
+
+    /// <summary>
+    /// How much health the body part has until it pops out.
+    /// </summary>
+    [ViewVariables]
+    public float TotalDamage => Damage.GetTotal().Float();
+
+    /// <summary>
+    /// The DamageSpecifier that contains all types of damage that the BodyPart can take.
+    /// TODO: Rework this with DamageableComponent
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public DamageSpecifier Damage = new()
+    {
+        DamageDict = new Dictionary<string, FixedPoint2>
+        {
+            { "Blunt", 0 },
+            { "Slash", 0 },
+            { "Piercing", 0 },
+            { "Heat", 0 },
+            { "Cold", 0 },
+            { "Shock", 0 },
+            { "Caustic", 0 },
+        }
+    };
+
+    [DataField, AutoNetworkedField]
+    public float MinIntegrity = 0;
+
+    /// <summary>
+    /// The total damage that has to be dealt to a body part
+    /// to make possible severing it.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float SeverIntegrity = 100;
+
+    /// <summary>
+    /// On what TargetIntegrity we should re-enable the part.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
+    {
+        { TargetIntegrity.CriticallyWounded, 80 },
+        { TargetIntegrity.HeavilyWounded, 65 },
+        { TargetIntegrity.ModeratelyWounded, 48 },
+        { TargetIntegrity.SomewhatWounded, 32 },
+        { TargetIntegrity.LightlyWounded, 17 },
+        { TargetIntegrity.Healthy, 6 },
+    };
+
+    /// <summary>
+    /// Whether this body part is enabled or not.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
+
+    /// <summary>
+    /// How long it takes to run another self heal tick on the body part.
+    /// </summary>
+    [DataField("healingTime")]
+    public float HealingTime = 30;
+
+    /// <summary>
+    /// How long it has been since the last self heal tick on the body part.
+    /// </summary>
+    public float HealingTimer = 0;
+
+    /// <summary>
+    /// How much health to heal on the body part per tick.
+    /// </summary>
+    [DataField("selfHealingAmount")]
+    public float SelfHealingAmount = 5;
+
+    [DataField]
+    public string ContainerName { get; set; } = "part_slot";
+
+    [DataField, AutoNetworkedField]
+    public ItemSlot ItemInsertionSlot = new();
+
+
+    /// <summary>
+    ///     Current species. Dictates things like body part sprites.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string Species { get; set; } = "";
+
+    /// <summary>
+    ///     Do not make a stupid joke do not make a stupid joke do not make a stupid joke.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Sex Sex { get; set; } = Sex.Male;
 
     /// <summary>
     /// These are only for VV/Debug do not use these for gameplay/systems

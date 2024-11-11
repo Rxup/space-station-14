@@ -21,7 +21,7 @@ GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
 DISCORD_SPLIT_LIMIT = 2000
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
-CHANGELOG_FILES = ["Resources/Changelog/Changelog.yml", "Resources/Changelog/ChangelogSyndie.yml"] # Corvax-MultiChangelog
+CHANGELOG_FILES = ["Resources/Changelog/Changelog.yml", "Resources/Changelog/ChangelogSyndie.yml", "Resources/Changelog/ChangelogBkm.yml"] # Corvax-MultiChangelog
 
 TYPES_TO_EMOJI = {
     "Fix":    "🐛",
@@ -160,7 +160,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                     message = resp.json()['data']
                 # Corvax-Localization-End
                 if url and url.strip():
-                    group_content.write(f"{emoji} [-]({url}) {message}\n")
+                    group_content.write(f"{emoji} - {message} [PR]({url}) \n")
                 else:
                     group_content.write(f"{emoji} - {message}\n")
         group_content.write(f"\n") # Corvax: Better formatting

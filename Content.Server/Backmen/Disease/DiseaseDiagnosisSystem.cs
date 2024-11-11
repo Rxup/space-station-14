@@ -2,9 +2,7 @@
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Server;
 using Content.Server.Nutrition.Components;
-using Content.Server.Paper;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Disease;
@@ -15,6 +13,8 @@ using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Paper;
+using Content.Shared.Power;
 using Content.Shared.Tools.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -343,7 +343,7 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
         }
         _metaData.SetEntityName(printed,reportTitle);
 
-        _paperSystem.SetContent(printed, contents.ToMarkup(), paper);
+        _paperSystem.SetContent((printed,EnsureComp<PaperComponent>(printed)), contents.ToMarkup());
     }
 
     [ValidatePrototypeId<EntityPrototype>]

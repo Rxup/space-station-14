@@ -104,6 +104,36 @@
 		///</summary>
 		Adminchat = 1 << 17,
 
+        ///<summary>
+        /// Permits the visibility of Pii in game and on SS14 Admin
+        ///</summary>
+        Pii = 1 << 18,
+
+        /// <summary>
+        ///     Lets you take moderator actions on the game server.
+        /// </summary>
+        Moderator = 1 << 19,
+
+        /// <summary>
+        ///     Lets you check currently online admins.
+        /// </summary>
+        AdminWho = 1 << 20,
+
+        /// <summary>
+        ///     Lets you set the color of your OOC name.
+        /// </summary>
+        NameColor = 1 << 21,
+
+        /// <summary>
+        ///     Whitelist commands
+        /// </summary>
+        WhiteList = 1 << 29, //Backmen:perms-upd
+
+        /// <summary>
+        ///     PlayTime commands
+        /// </summary>
+        PlayTime = 1 << 30, //Backmen:perms-upd
+
         /// <summary>
         ///     Dangerous host permissions like scsi.
         /// </summary>

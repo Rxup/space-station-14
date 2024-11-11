@@ -1,0 +1,30 @@
+﻿- type: entity
+  id: ActionBPLAMEDActionBrutepack
+  name: Brutepack-action-name
+  description: Brutepack-action-description
+  components:
+    - type: InstantAction
+      useDelay: 300
+      icon: Objects/Specific/Medical/medical.rsi/brutepack.png
+      event: !type:brutepackCraftActionEvent
+
+- type: entity
+  id: ActionBPLAMEDActionOintment
+  name: Ointment-action-name
+  description: Ointment-action-description
+  components:
+    - type: InstantAction
+      useDelay: 300
+      icon: Objects/Specific/Medical/medical.rsi/ointment.png
+      event: !type:ointmentCraftActionEvent
+
+- type: entity
+  id: ActionBPLAMEDActionBloodpack
+  name: Bloodpack-action-name
+  description: Bloodpack-action-description
+  components:
+    - type: InstantAction
+      useDelay: 300
+      icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
+      event: !type:bloodpackCraftActionEvent
+

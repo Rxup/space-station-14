@@ -15,6 +15,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
     private ISawmill _sawmill = default!;
 
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -55,6 +56,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         return powerType;
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string ShadowkinPower = "ShadowkinPower";
+
     /// <summary>
     ///    Sets the alert level of a shadowkin.
     /// </summary>
@@ -65,7 +69,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     {
         if (!enabled || powerLevel == null)
         {
-            _alerts.ClearAlert(uid, AlertType.ShadowkinPower);
+            _alerts.ClearAlert(uid, ShadowkinPower);
             return;
         }
 
@@ -82,7 +86,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         var power = Math.Clamp(Math.Round(component.PowerLevel / 35), 0, 7);
 
         // Set the alert level
-        _alerts.ShowAlert(uid, AlertType.ShadowkinPower, (short) power);
+        _alerts.ShowAlert(uid, ShadowkinPower, (short) power);
     }
 
 
@@ -226,51 +230,21 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         _shadowkinBlackeyeSystem.SetBlackEye(uid, true);
     }
 
-
-    /// <summary>
-    ///     Tries to add a power multiplier.
-    /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="multiplier">The multiplier to add.</param>
-    /// <param name="time">The time in seconds to wait before removing the multiplier.</param>
-    public bool TryAddMultiplier(EntityUid uid, float multiplier, float? time = null)
+    public void RefreshPowerModifiers(EntityUid uid, ShadowkinComponent? plr = null)
     {
-        if (!HasComp<ShadowkinComponent>(uid) ||
-            float.IsNaN(multiplier))
-            return false;
-
-        AddMultiplier(uid, multiplier, time);
-
-        return true;
-    }
-
-    /// <summary>
-    ///     Adds a power multiplier.
-    /// </summary>
-    /// <param name="uid">The entity uid.</param>
-    /// <param name="multiplier">The multiplier to add.</param>
-    /// <param name="time">The time in seconds to wait before removing the multiplier.</param>
-    public void AddMultiplier(EntityUid uid, float multiplier, float? time = null)
-    {
-        // Get shadowkin component
-        if (!TryComp<ShadowkinComponent>(uid, out var component))
-        {
-            _sawmill.Error("Tried to add multiplier to entity without shadowkin component.");
+        if (!Resolve(uid, ref plr, false))
             return;
-        }
 
-        // Add the multiplier
-        component.PowerLevelGainMultiplier += multiplier;
+        if (_timing.ApplyingState)
+            return;
 
-        // Remove the multiplier after a certain amount of time
-        if (time != null)
-        {
-            Timer.Spawn((int)time * 1000, () =>
-            {
-                if(!uid.IsValid())
-                    return;
-                component.PowerLevelGainMultiplier -= multiplier;
-            });
-        }
+        var ev = new RefreshShadowkinPowerModifiersEvent();
+        RaiseLocalEvent(uid, ev);
+
+        if (MathHelper.CloseTo(ev.Modifier, plr.PowerLevelGainMultiplier))
+            return;
+
+        plr.PowerLevelGainMultiplier = ev.Modifier;
+        Dirty(uid, plr);
     }
 }

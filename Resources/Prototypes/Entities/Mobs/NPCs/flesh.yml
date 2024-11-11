@@ -13,6 +13,11 @@
         true
       NavSmash: !type:Bool
         true
+  - type: NPCImprintingOnSpawnBehaviour
+    spawnFriendsSearchRadius: 10
+    whitelist:
+      components:
+      - Anomaly # Friendly to inner anomaly host
   - type: NpcFactionMember
     factions:
     - Flesh
@@ -52,8 +57,17 @@
     damage:
       types:
         Slash: 6
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Flesh
+    - SpaceMob
+    understands:
+    - Flesh
+    - SpaceMob
 
 - type: entity
   parent: BaseMobFlesh
@@ -250,8 +264,17 @@
     damage:
       types:
         Slash: 6
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Flesh
+    - SpaceMob
+    understands:
+    - Flesh
+    - SpaceMob
   - type: SalvageMobRestrictions
 
 - type: entity

@@ -1,16 +1,22 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
+using Content.Shared.Tag;
+using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
-public sealed class SharedPsionicAbilitiesSystem : EntitySystem
+public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -18,6 +24,12 @@ public sealed class SharedPsionicAbilitiesSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
+
+    private EntityQuery<PsionicallyInvisibleComponent> _psionicallyInvisibleQuery;
+    private EntityQuery<PsionicInsulationComponent> _psionicInsulationQuery;
+
 
     public override void Initialize()
     {
@@ -25,8 +37,88 @@ public sealed class SharedPsionicAbilitiesSystem : EntitySystem
         SubscribeLocalEvent<PsionicsDisabledComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicsDisabledComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<PsionicComponent, PsionicPowerUsedEvent>(OnPowerUsed);
-
         SubscribeLocalEvent<PsionicComponent, MobStateChangedEvent>(OnMobStateChanged);
+
+        SubscribeLocalEvent<PsiActionComponent, ValidateActionEntityTargetEvent>(OnTryPowerEntityTarget);
+        SubscribeLocalEvent<PsiActionComponent, ValidateActionWorldTargetEvent>(OnTryPowerWorldTarget);
+        SubscribeLocalEvent<PsiActionComponent, ActionAttemptEvent>(OnTryUsePower);
+
+        _psionicallyInvisibleQuery = GetEntityQuery<PsionicallyInvisibleComponent>();
+        _psionicInsulationQuery = GetEntityQuery<PsionicInsulationComponent>();
+    }
+
+    private void OnTryUsePower(Entity<PsiActionComponent> ent, ref ActionAttemptEvent args)
+    {
+        if (_psionicallyInvisibleQuery.HasComp(args.User))
+        {
+            _popups.PopupCursor(Loc.GetString("cant-use-in-invisible"), PopupType.SmallCaution);
+            args.Cancelled = true;
+            return;
+        }
+
+        if (_psionicInsulationQuery.HasComp(args.User))
+        {
+            _popups.PopupCursor(Loc.GetString("cant-use-in-insulation"), PopupType.SmallCaution);
+            args.Cancelled = true;
+            return;
+        }
+
+    }
+
+    private void OnTryPowerWorldTarget(Entity<PsiActionComponent> ent, ref ValidateActionWorldTargetEvent args)
+    {
+        if (!CanUsePsionicAbilities(args.User, args.Target))
+            args.Cancelled = true;
+    }
+
+    private void OnTryPowerEntityTarget(Entity<PsiActionComponent> ent, ref ValidateActionEntityTargetEvent args)
+    {
+        if (!CanUsePsionicAbilities(args.User, args.Target))
+            args.Cancelled = true;
+    }
+
+    public bool CanUsePsionicAbilities(EntityUid performer, EntityUid target, bool popup = true)
+    {
+        if (_psionicallyInvisibleQuery.HasComp(performer))
+        {
+            if(popup)
+                _popups.PopupCursor(Loc.GetString("cant-use-in-invisible"), performer, PopupType.SmallCaution);
+            return false;
+        }
+
+        if (_psionicInsulationQuery.HasComp(target) || _psionicInsulationQuery.HasComp(performer))
+        {
+            if(popup)
+                _popups.PopupCursor(Loc.GetString("cant-use-in-insulation"), performer, PopupType.SmallCaution);
+            return false;
+        }
+
+
+        if(!_interaction.InRangeUnobstructed(performer, target, 0, CollisionGroup.WallLayer, popup:true))
+            return false;
+
+
+        return true;
+    }
+    public bool CanUsePsionicAbilities(EntityUid performer, EntityCoordinates target, bool popup = true)
+    {
+        if (_psionicallyInvisibleQuery.HasComp(performer))
+        {
+            if(popup)
+                _popups.PopupCursor(Loc.GetString("cant-use-in-invisible"),performer);
+            return false;
+        }
+
+        if (_psionicInsulationQuery.HasComp(performer))
+            return false;
+
+        if(!_interaction.InRangeUnobstructed(performer, target, 0,
+               CollisionGroup.TeleportLayer,
+               predicate: (ent) => _tagSystem.HasTag(ent, "Structure"),
+               popup:true))
+            return false;
+
+        return true;
     }
 
     private void OnPowerUsed(EntityUid uid, PsionicComponent component, PsionicPowerUsedEvent args)
@@ -34,9 +126,9 @@ public sealed class SharedPsionicAbilitiesSystem : EntitySystem
 
         foreach (var entity in _lookup.GetEntitiesInRange<MetapsionicPowerComponent>(Transform(uid).Coordinates, 10f))
         {
-            if (entity.Owner == uid || TryComp<PsionicInsulationComponent>(entity, out var insul) && !insul.Passthrough)
+            if (entity.Owner == uid || _psionicInsulationQuery.TryComp(entity, out var insul) && !insul.Passthrough)
                 continue;
-            
+
             _popups.PopupEntity(Loc.GetString("metapsionic-pulse-power", ("power", args.Power)), entity, entity, PopupType.LargeCaution);
             args.Handled = true;
             return;
@@ -75,7 +167,7 @@ public sealed class SharedPsionicAbilitiesSystem : EntitySystem
 
     private bool IsEligibleForPsionics(EntityUid uid)
     {
-        return !HasComp<PsionicInsulationComponent>(uid)
+        return !_psionicInsulationQuery.HasComp(uid)
                && (!TryComp<MobStateComponent>(uid, out var mobstate) || mobstate.CurrentState == MobState.Alive);
     }
 

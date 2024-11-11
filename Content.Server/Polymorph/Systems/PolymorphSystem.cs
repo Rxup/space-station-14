@@ -209,7 +209,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         var childXform = Transform(child);
         _transform.SetLocalRotation(child, targetTransformComp.LocalRotation, childXform);
 
-        if (_container.TryGetContainingContainer(uid, out var cont))
+        if (_container.TryGetContainingContainer((uid, targetTransformComp, null), out var cont))
             _container.Insert(child, cont);
 
         //Transfers all damage from the original to the new one
@@ -363,7 +363,11 @@ public sealed partial class PolymorphSystem : EntitySystem
         // start-backmen: action fix
         if (_actions.TryGetActionData(actionId, out var actionComponent))
         {
-            actionComponent.UseDelay = polyProto.Configuration.Cooldown;
+            if (polyProto.Configuration.Cooldown != TimeSpan.Zero)
+            {
+                actionComponent.UseDelay = polyProto.Configuration.Cooldown;
+                _actions.SetCooldown(actionId, polyProto.Configuration.Cooldown);
+            }
         }
         // end-backmen: action fix
 

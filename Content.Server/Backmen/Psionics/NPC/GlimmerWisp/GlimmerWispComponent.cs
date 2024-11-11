@@ -1,3 +1,5 @@
+using Content.Shared.DoAfter;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 
@@ -24,4 +26,8 @@ public sealed partial class GlimmerWispComponent : Component
 
     public Entity<AudioComponent>? DrainStingStream;
     public EntityUid? DrainTarget;
+
+    [DataField("whitelist")]
+    public EntityWhitelist? Whitelist { get; set; }
+    public DoAfterId? DoAfter { get; set; }
 }

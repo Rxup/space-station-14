@@ -1,8 +1,12 @@
 ﻿using Content.Shared.DoAfter;
+using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Throwing;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -25,6 +29,19 @@ public abstract class SharedPseudoItemSystem : EntitySystem
         SubscribeLocalEvent<PseudoItemComponent, ContainerGettingRemovedAttemptEvent>(OnRemovedAttempt);
 
         StorageQuery = GetEntityQuery<StorageComponent>();
+
+
+        SubscribeLocalEvent<PseudoItemComponent, UseAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<PseudoItemComponent, ThrowAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<PseudoItemComponent, DropAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<PseudoItemComponent, AttackAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<PseudoItemComponent, PickupAttemptEvent>(OnAttempt);
+    }
+
+    private void OnAttempt(EntityUid uid, PseudoItemComponent component, CancellableEntityEventArgs args)
+    {
+        if (component.Active)
+            args.Cancel();
     }
 
     private void OnRemovedAttempt(EntityUid uid, PseudoItemComponent component, ContainerGettingRemovedAttemptEvent args)

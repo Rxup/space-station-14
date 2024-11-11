@@ -1,0 +1,564 @@
+﻿- type: entity
+  parent: IDCardStandard
+  id: PrisonerIDCard
+  name: prisoner ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: orange
+    - type: PresetIdCard
+      job: Prisoner
+
+- type: entity
+  parent: IDCardStandard
+  id: RoboticistIDCard
+  name: Roboticist ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idroboticist
+    - type: PresetIdCard
+      job: Roboticist
+
+- type: entity
+  parent: IDCardStandard
+  id: UnaffiliatedIDCard
+  name: unaffiliated ID card
+  description: A card displaying a name and other identifying details.
+  # maybe make this not abstract when this is more developed
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: unaffiliated
+    - type: Clothing
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+
+- type: entity
+  parent: UnaffiliatedIDCard
+  id: ExplorerIDCard
+  name: explorer ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: unaffiliated
+        - state: idexplorer
+    - type: PresetIdCard
+      job: Explorer
+
+- type: entity
+  parent: UnaffiliatedIDCard
+  id: StudentIDCard
+  name: student ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: unaffiliated
+        - state: idstudent
+    - type: PresetIdCard
+      job: Student
+
+- type: entity
+  parent: UnaffiliatedIDCard
+  id: FreelancerIDCard
+  name: freelancer ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: unaffiliated
+        - state: idfreelancer
+    - type: PresetIdCard
+      job: Freelancer
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardMOG
+  name: ID карта МОГ
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/id_cards.rsi
+    layers:
+    - state: black
+    - state: idcardmog
+  - type: Item
+    heldPrefix: black
+  - type: IdCard
+    jobTitle: job-title-mobile_group_employee
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IdCardIOG
+  name: ID карта ИОГ
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/id_cards.rsi
+    layers:
+    - state: black
+    - state: idcardiog
+  - type: Item
+    heldPrefix: black
+  - type: IdCard
+    jobTitle: job-title-research_group_employee
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IdCardRO
+  name: ID карта RO
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/id_cards.rsi
+    layers:
+    - state: black
+    - state: idcardro
+  - type: Item
+    heldPrefix: black
+  - type: IdCard
+    jobTitle: job-title-red_order_agent
+
+- type: entity
+  parent: IDCardStandard
+  id: DeliveryIDCard
+  name: ID карта доставщика
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - state: iddelivery
+    - type: PresetIdCard
+      job: Deliveryman
+
+- type: entity
+  parent: IDCardStandard
+  id: UEGrepIDCard
+  name: ID карта представителя ОПЗ
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - state: idueg
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+    - type: IdCard
+      jobTitle: job-title-opz_representative
+
+- type: entity
+  parent: IDCardStandard
+  id: UEGoffIDCard
+  name: ID карта офицера ОПЗ
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - state: iduegofficer
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+    - type: IdCard
+      jobTitle: job-title-opz_officer
+
+- type: entity
+  name: ID карта Броне-Пехотного Оперативника Спецвойск
+  id: DedSquadronGavnaIDCardMarauder
+  parent: DedSquadronGavnaIDCard
+  components:
+  - type: IdCard
+    jobTitle: job-title-omicron_3
+    fullName: Броне-Пехотный Автономный-Бот Спецвойск
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaIDCard
+  id: OBRGavnaIDCard2
+  name: ID карта пехотинца ОБР
+  components:
+  - type: IdCard
+    jobTitle: job-title-epsilon_11
+    fullName: Пехотинец
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaMedicIDCard
+  id: OBRGavnaMedicIDCard2
+  name: ID карта медика ОБР
+  components:
+  - type: IdCard
+    jobTitle: job-title-epsilon_11
+    fullName: Медик отделения
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaEngineerIDCard
+  id: OBRGavnaEngineerIDCard2
+  name: ID карта инженера ОБР
+  components:
+  - type: IdCard
+    jobTitle: job-title-epsilon_11
+    fullName: Инженер отделения
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaJunitorIDCard
+  id: OBRGavnaJunitorIDCard2
+  name: ID карта уборщика ОБР
+  components:
+  - type: IdCard
+    jobTitle: job-title-epsilon_11
+    fullName: Уборщик отделения
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaLeaderIDCard2
+  name: ID карта командира ОБР
+  components:
+  - type: IdCard
+    jobTitle: job-title-epsilon_11
+    fullName: Командир отделения
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaLeaderIDCardAlpha1
+  name: ID карта командира ОБР Alpha 1
+  components:
+  - type: IdCard
+    jobTitle: job-title-alpha_1
+    fullName: Командир отделения
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+  - type: Item
+    heldPrefix: black
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaOperativeIDCardAlpha1
+  name: ID карта оперативника ОБР Alpha 1
+  components:
+  - type: IdCard
+    jobTitle: job-title-alpha_1
+    fullName: Оперативник отделения
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idseniorofficer
+  - type: Item
+    heldPrefix: black
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaLeaderIDCardTay39
+  name: ID карта лидера ОБР Tay 39
+  components:
+  - type: IdCard
+    jobTitle: job-title-tay_39
+    fullName: Лидер отделения
+  - type: Sprite
+    layers:
+    - state: ert_medic
+    - state: idchiefmedicalofficer
+  - type: Item
+    heldPrefix: blue
+
+- type: entity
+  parent: OBRGavnaMedicIDCard
+  id: OBRGavnaMedicIDCardTay39
+  categories: [ HideSpawnMenu ]
+  name: ID карта медика ОБР
+  components:
+  - type: IdCard
+    jobTitle: job-title-tay_39
+    fullName: Медик отделения
+    jobIcon: JobIconNanotrasenMed
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: OBRGavnaIDCard
+  id: OBRGavnaIDCardTay39
+  name: ID карта лидера ОБР Tay 39
+  components:
+  - type: IdCard
+    jobTitle: job-title-tay_39
+
+- type: entity
+  parent: CentcomIDCard
+  id: DedSquadronGavnaIDCard
+  name: ID карта оперативника специальных операций
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: job-title-omega_0
+    fullName: Оперативник СпецВойск
+    jobIcon: JobIconDeathSquadron
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFLeader
+    - CentCom
+
+- type: entity
+  parent: CentcomIDCard
+  id: DedSquadronLeaderGavnaIDCard
+  name: ID карта Коммандера Специальных Операций
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: job-title-omega_0
+    fullName: Коммандер СпецВойск
+    jobIcon: JobIconDeathSquadron
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFLeader
+    - CentCom
+
+- type: entity
+  parent: CentcomIDCard
+  id: IDSFO
+  name: ID Офицера СП
+  description: Карта, необходимая для доступа в различные области станции.
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - state: idintern-cadet
+    - state: idcentcom
+  - type: Item
+    heldPrefix: gold
+  - type: IdCard
+    jobTitle: job-title-special_operations_officer
+    jobIcon: JobIconNanotrasenOSO
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFLeader
+    - CentCom
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: CentcomIDCardDeathsquad
+  id: CentcomBaseIDCard
+  name: ID карта
+  components:
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IdCardRXBZZLeader
+  name: ID card leader CBURN
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idgeneticist
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: job-title-sierra_6
+    fullName: Командир РХБЗЗ
+    jobIcon: JobIconNanotrasen
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFLeader
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IdCardRXBZZ
+  name: ID карта Оперативника РХБЗЗ
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idgeneticist
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: job-title-sierra_6
+    fullName: Оперативник РХБЗЗ
+    jobIcon: JobIconNanotrasen
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFSrg
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: CentcomIDCard
+  id: OBRGavnaIDCard
+  name: ID карта пехотинца ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_security
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: job-title-theta_9
+    fullName: Пехотинец
+    jobIcon: JobIconNanotrasenSec
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFPvtSecurity
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: OBRGavnaIDCard
+  id: OBRGavnaMedicIDCard
+  name: ID карта медика ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_medic
+  - type: IdCard
+    jobTitle: job-title-theta_9
+    fullName: Медик отделения
+    jobIcon: JobIconNanotrasenMed
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFCplMedic
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: OBRGavnaIDCard
+  id: OBRGavnaEngineerIDCard
+  name: ID карта инженера ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_engineer
+  - type: IdCard
+    jobTitle: job-title-theta_9
+    fullName: Инженер отделения
+    jobIcon: JobIconNanotrasenEngi
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFCplEngineer
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: OBRGavnaIDCard
+  id: OBRGavnaJunitorIDCard
+  name: ID карта уборщика ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_janitor
+  - type: IdCard
+    jobTitle: job-title-theta_9
+    fullName: Уборщик отделения
+    jobIcon: JobIconNanotrasenjanitor
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFPvtJunitor
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: CentcomIDCard
+  id: OBRGavnaLeaderIDCard
+  name: ID карта командира ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idcaptain
+    - state: idcentcom
+  - type: Item
+    heldPrefix: silver
+  - type: IdCard
+    jobTitle: job-title-theta_9
+    fullName: Командир отделения
+    jobIcon: JobIconNanotrasen
+  - type: Access
+    groups:
+    - AllAccess
+    - MTFLeader
+    tags:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: ChronoGavnaIDCard
+  name: Id карта Chrono Legionnaire
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: job-title-chrono_legionnaire
+    fullName: Legionnaire
+    jobIcon: JobIconDeathSquadron
+  - type: Access
+    groups:
+    - MTFLeader
+    - AllAccess
+    - CentCom
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldIDCard
+  name: Blue Shield ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - sprite: Backmen/Objects/Misc/id_cards.rsi
+          state: idblueshield
+    - type: PresetIdCard
+      job: BlueShield

@@ -1,0 +1,75 @@
+﻿# Inventory
+#Дрель
+- type: loadout
+  id: PowerDrillBkm
+  storage:
+    back:
+    - PowerDrill
+
+#Анти-пси
+- type: loadout
+  id: TinfoilBkmLoadout
+  equipment:
+    head: ClothingHeadTinfoil
+
+- type: loadout
+  id: AntiPsychicKnifeBkm
+  storage:
+    back:
+    - AntiPsychicKnife
+
+#БДСМ
+- type: loadout
+  id: ClothingUniformJumpsuitGachiBkm
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGachi
+
+#Стартовый капитал
+- type: loadout
+  id: SpaceCash5000Bkm
+  storage:
+    back:
+    - SpaceCash500
+
+#Человечина
+- type: loadout
+  id: ClothingOuterHardsuitLingBkm
+  equipment:
+    outerClothing: ClothingOuterHardsuitLing
+
+#  ClothingMaskBreath
+#  ClothingJokermask
+#  ClothingWolfMask
+#  ClothingDallasMask
+
+#Кокнус 2024, что-то связанное с ркн
+- type: loadout
+  id: PresentRandomKonkursBkm
+  storage:
+    back:
+    - PresentRandom
+
+- type: loadout
+  id: PneumaticCannonXM1014KonkursBkm
+  storage:
+    back:
+    - WeaponImprovisedPneumaticCannonXM1014
+
+- type: loadout
+  id: ScarfSyndieKonkursBkm
+  storage:
+    back:
+    - ClothingNeckScarfStripedSyndieRed
+
+- type: loadout
+  id: BizarreKonkursBkm
+  storage:
+    back:
+    - ClothingOuterCoatBizarre
+
+- type: loadout
+  id: BizarreHatKonkursBkm
+  storage:
+    back:
+    - ClothingHeadHatBizarreSoft
+

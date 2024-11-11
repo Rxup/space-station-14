@@ -1,0 +1,5 @@
+﻿- type: stack
+  id: Bluespace
+  name: bluespace
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }
+  spawn: MaterialBluespace

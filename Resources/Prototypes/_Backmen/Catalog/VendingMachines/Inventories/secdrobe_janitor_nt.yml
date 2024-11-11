@@ -1,0 +1,16 @@
+- type: vendingMachineInventory
+  id: SecDrobeInventoryNanoTrasenJanitor
+  startingInventory:
+    ClothingUniformJumpskirtJanimaidmini: 5
+    ClothingUniformJumpsuitERTJanitor: 5
+    ClothingUniformJumpskirtJanimaid: 5
+    ClothingHeadHelmetSwat: 5
+    ClothingPounchMTF: 10
+    ClothingBeltJanitorFilled: 5
+    ClothingOuterArmorBasic: 5
+    ClothingOuterArmorBulletproof: 5
+    ClothingEyesGlassesSecurity: 5
+    ClothingHandsGlovesCombat: 5
+    ClothingShoesBootsNedoSpetsnaz: 5
+    CombatKnifeSpetsnaz: 5
+    FlashlightSeclite: 5

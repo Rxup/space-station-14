@@ -6,11 +6,14 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
+using Content.Shared.NameIdentifier;
 using Content.Shared.PDA;
 using Content.Shared.StationRecords;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Content.Shared.GameTicking;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Roles;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -24,7 +27,6 @@ public sealed class AccessReaderSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedGameTicker _gameTicker = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCardSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedStationRecordsSystem _recordsSystem = default!;
 
@@ -153,7 +155,12 @@ public sealed class AccessReaderSystem : EntitySystem
             return IsAllowedInternal(access, stationKeys, reader);
 
         if (!_containerSystem.TryGetContainer(target, reader.ContainerAccessProvider, out var container))
-            return Paused(target); // when mapping, containers with electronics arent spawned
+            return false;
+
+        // If entity is paused then always allow it at this point.
+        // Door electronics is kind of a mess but yeah, it should only be an unpaused ent interacting with it
+        if (Paused(target))
+            return true;
 
         foreach (var entity in container.ContainedEntities)
         {
@@ -311,15 +318,140 @@ public sealed class AccessReaderSystem : EntitySystem
         }
     }
 
-    public void SetAccesses(EntityUid uid, AccessReaderComponent component, List<ProtoId<AccessLevelPrototype>> accesses)
+    // start-backmen: tools
+    #region BkmTools
+
+    #region group
+
+    public void SetAccessByGroup(Entity<AccessReaderComponent> ent, ProtoId<AccessGroupPrototype> group)
     {
-        component.AccessLists.Clear();
+        if (_prototype.TryIndex(group, out var proto))
+        {
+            SetAccesses(ent, proto.Tags);
+        }
+    }
+
+    public void RemoveAccessByGroup(Entity<AccessReaderComponent> ent, ProtoId<AccessGroupPrototype> group)
+    {
+        if (_prototype.TryIndex(group, out var proto))
+        {
+            RemoveAccesses(ent, proto.Tags);
+        }
+    }
+
+    public void AddAccessByGroup(Entity<AccessReaderComponent> ent, ProtoId<AccessGroupPrototype> group)
+    {
+        if (_prototype.TryIndex(group, out var proto))
+        {
+            AddAccesses(ent, proto.Tags);
+        }
+    }
+
+    #endregion
+
+    #region job
+
+    public void SetAccessByJob(Entity<AccessReaderComponent> ent, JobPrototype job)
+    {
+        SetAccesses(ent, job.Access);
+        foreach (var groupProto in job.AccessGroups)
+        {
+            SetAccessByGroup(ent, groupProto);
+        }
+    }
+
+    public void RemoveAccessByJob(Entity<AccessReaderComponent> ent, JobPrototype job)
+    {
+        RemoveAccesses(ent, job.Access);
+        foreach (var groupProto in job.AccessGroups)
+        {
+            RemoveAccessByGroup(ent, groupProto);
+        }
+    }
+
+    public void AddAccessByJob(Entity<AccessReaderComponent> ent, JobPrototype job)
+    {
+        AddAccesses(ent, job.Access);
+        foreach (var groupProto in job.AccessGroups)
+        {
+            AddAccessByGroup(ent, groupProto);
+        }
+    }
+
+    #endregion
+
+    #region Base
+
+    public void SetAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
+    {
+        ent.Comp.AccessLists.Clear();
+        ent.Comp.AccessLists.Add([access]);
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void ClearAccesses(Entity<AccessReaderComponent> ent)
+    {
+        ent.Comp.AccessLists.Clear();
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void RemoveAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
+    {
+        foreach (var set in ent.Comp.AccessLists.Where(x => x.Contains(access)))
+        {
+            set.Remove(access);
+        }
+
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void AddAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
+    {
+        ent.Comp.AccessLists.Add([access]);
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void AddAccesses(Entity<AccessReaderComponent> ent, IEnumerable<ProtoId<AccessLevelPrototype>> access)
+    {
+        ent.Comp.AccessLists.Add(access.ToHashSet());
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void RemoveAccesses(Entity<AccessReaderComponent> ent, IEnumerable<ProtoId<AccessLevelPrototype>> accesses)
+    {
+
+        foreach (var set in ent.Comp.AccessLists)
+        {
+            set.RemoveWhere(accesses.Contains);
+        }
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void SetAccesses(Entity<AccessReaderComponent> ent, IEnumerable<ProtoId<AccessLevelPrototype>> accesses)
+    {
+        ent.Comp.AccessLists.Clear();
         foreach (var access in accesses)
         {
-            component.AccessLists.Add(new HashSet<ProtoId<AccessLevelPrototype>>(){access});
+            ent.Comp.AccessLists.Add([access]);
         }
-        Dirty(uid, component);
-        RaiseLocalEvent(uid, new AccessReaderConfigurationChangedEvent());
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    #endregion
+
+    #endregion
+    // end-backmen: tools
+
+    public void SetAccesses(EntityUid uid, AccessReaderComponent component, IEnumerable<ProtoId<AccessLevelPrototype>> accesses)
+    {
+        SetAccesses((uid, component), accesses);
     }
 
     public bool FindAccessItemsInventory(EntityUid uid, out HashSet<EntityUid> items)
@@ -380,26 +512,43 @@ public sealed class AccessReaderSystem : EntitySystem
     }
 
     /// <summary>
-    /// Logs an access
+    /// Logs an access for a specific entity.
     /// </summary>
     /// <param name="ent">The reader to log the access on</param>
     /// <param name="accessor">The accessor to log</param>
-    private void LogAccess(Entity<AccessReaderComponent> ent, EntityUid accessor)
+    public void LogAccess(Entity<AccessReaderComponent> ent, EntityUid accessor)
     {
-        if (IsPaused(ent))
+        if (IsPaused(ent) || ent.Comp.LoggingDisabled)
+            return;
+
+        string? name = null;
+        if (TryComp<NameIdentifierComponent>(accessor, out var nameIdentifier))
+            name = nameIdentifier.FullIdentifier;
+
+        // TODO pass the ID card on IsAllowed() instead of using this expensive method
+        // Set name if the accessor has a card and that card has a name and allows itself to be recorded
+        var getIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(ent, accessor, true);
+        RaiseLocalEvent(getIdentityShortInfoEvent);
+        if (getIdentityShortInfoEvent.Title != null)
+        {
+            name = getIdentityShortInfoEvent.Title;
+        }
+
+        LogAccess(ent, name ?? Loc.GetString("access-reader-unknown-id"));
+    }
+
+    /// <summary>
+    /// Logs an access with a predetermined name
+    /// </summary>
+    /// <param name="ent">The reader to log the access on</param>
+    /// <param name="name">The name to log as</param>
+    public void LogAccess(Entity<AccessReaderComponent> ent, string name)
+    {
+        if (IsPaused(ent) || ent.Comp.LoggingDisabled)
             return;
 
         if (ent.Comp.AccessLog.Count >= ent.Comp.AccessLogLimit)
             ent.Comp.AccessLog.Dequeue();
-
-        string? name = null;
-        // TODO pass the ID card on IsAllowed() instead of using this expensive method
-        // Set name if the accessor has a card and that card has a name and allows itself to be recorded
-        if (_idCardSystem.TryFindIdCard(accessor, out var idCard)
-            && idCard.Comp is { BypassLogging: false, FullName: not null })
-            name = idCard.Comp.FullName;
-
-        name ??= Loc.GetString("access-reader-unknown-id");
 
         var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
         ent.Comp.AccessLog.Enqueue(new AccessRecord(stationTime, name));

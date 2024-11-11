@@ -1,31 +1,93 @@
+# General goals
 - type: stationGoal
-  id: StationGoalShuttle
-  text: station-goal-shuttle
-
-- type: stationGoal
-  id: StationGoalSingularity
+  id: Singularity
   text: station-goal-singularity
 
 - type: stationGoal
-  id: StationGoalSolarPanels
+  id: SolarPanels
   text: station-goal-solar-panels
 
 - type: stationGoal
-  id: StationGoalArtifacts
+  id: Artifacts
   text: station-goal-artifacts
 
 - type: stationGoal
-  id: StationGoalBank
+  id: Bank
   text: station-goal-bank
 
 - type: stationGoal
-  id: StationGoalZoo
+  id: Zoo
   text: station-goal-zoo
 
 - type: stationGoal
-  id: StationGoalMiningOutpost
+  id: MiningOutpost
   text: station-goal-mining-outpost
 
 - type: stationGoal
-  id: StationGoalTesla
+  id: Tesla
   text: station-goal-tesla
+
+- type: stationGoal
+  id: SecurityTraining
+  text: station-goal-security
+
+- type: stationGoal
+  id: ShuttleMed
+  text: station-goal-shuttle-med
+
+- type: stationGoal
+  id: ShuttleSec
+  text: station-goal-shuttle-sec
+
+- type: stationGoal
+  id: ShuttleRnd
+  text: station-goal-shuttle-rnd
+
+- type: stationGoal
+  id: ShuttleSrv
+  text: station-goal-shuttle-srv
+
+- type: stationGoal
+  id: ShuttleEmergency
+  text: station-goal-shuttle-emergency
+
+- type: stationGoal
+  id: Theatre
+  text: station-goal-theatre
+
+- type: stationGoal
+  id: CellAI
+  text: station-goal-ai
+
+- type: stationGoal
+  id: Botany
+  text: station-goal-botany
+
+- type: stationGoal
+  id: Bunker
+  text: station-goal-bunker
+
+# Special goals
+- type: stationGoal
+  id: FrameRepair
+  text: station-goal-frame-repair
+
+- type: stationGoal
+  id: XenobiologyRepair
+  text: station-goal-delta-xeno-repair
+
+- type: stationGoal
+  id: VirusologyAmbusol
+  text: station-goal-delta-ambusol
+  spawns:
+  - PillRomerol
+  - PillRomerol
+  - PillRomerol
+
+- type: stationGoal
+  id: SectorSecurity
+  text: station-goal-split-secure
+
+- type: stationGoal
+  id: AstraRepair
+  text: station-goal-astra-repair

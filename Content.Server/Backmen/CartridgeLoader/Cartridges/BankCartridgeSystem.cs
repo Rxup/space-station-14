@@ -113,12 +113,12 @@ public sealed class BankCartridgeSystem : EntitySystem
                 {
                     case > 0:
                     {
-                        changeAmount = $"+{change}";
+                        changeAmount = $"+{Math.Abs(change)}";
                         break;
                     }
                     case < 0:
                     {
-                        changeAmount = $"-{change}";
+                        changeAmount = $"-{Math.Abs(change)}";
                         break;
                     }
                 }

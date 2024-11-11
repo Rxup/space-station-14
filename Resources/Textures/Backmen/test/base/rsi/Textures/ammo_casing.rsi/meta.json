@@ -9,10 +9,10 @@
     "copyright": "Created by discord:𝘽𝙚𝙡𝙖𝙮#7441",
     "states": [
         {
-            "name": "ammo_35_combat"
+            "name": "ammo_45_combat"
         },
         {
-            "name": "ammo_35_combat-spent"
+            "name": "ammo_45_combat-spent"
         }
     ]
 }

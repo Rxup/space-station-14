@@ -1,33 +1,57 @@
 using Content.Shared.Damage;
+using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent]
+[RegisterComponent,NetworkedComponent,AutoGenerateComponentState]
 public sealed partial class BlobCoreComponent : Component
 {
-    [DataField("antagBlobPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string AntagBlobPrototypeId = "Blob";
+    #region Live Data
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("attackRate")]
-    public float AttackRate = 0.8f;
+    [ViewVariables]
+    public EntityUid? Observer = default!;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("returnResourceOnRemove")]
-    public float ReturnResourceOnRemove = 0.3f;
+    [ViewVariables]
+    public HashSet<EntityUid> BlobTiles = [];
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("canSplit")]
+    [ViewVariables]
+    public List<EntityUid> Actions = [];
+
+    [ViewVariables]
+    public TimeSpan NextAction = TimeSpan.Zero;
+
+    [ViewVariables]
+    public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
+
+    #endregion
+
+    #region Balance
+
+    [DataField]
+    public FixedPoint2 CoreBlobTotalHealth = 400;
+
+    [DataField]
+    public float AttackRate = 0.3f;
+
+    [DataField]
+    public float GrowRate = 0.1f;
+
+    [DataField]
     public bool CanSplit = true;
 
-    [DataField("attackSound")]
-    public SoundSpecifier AttackSound = new SoundPathSpecifier("/Audio/Animals/Blob/blobattack.ogg");
+    #endregion
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public Dictionary<BlobChemType, DamageSpecifier> ChemDamageDict { get; set; } = new()
+    #region Damage Specifiers
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public BlobChemDamage ChemDamageDict { get; set; } = new()
     {
         {
             BlobChemType.BlazingOil, new DamageSpecifier()
@@ -83,8 +107,12 @@ public sealed partial class BlobCoreComponent : Component
         },
     };
 
-    [ViewVariables(VVAccess.ReadOnly)]
-    public readonly Dictionary<BlobChemType, Color> ChemСolors = new()
+    #endregion
+
+    #region Blob Chems
+
+    [ViewVariables]
+    public readonly BlobChemColors ChemСolors = new()
     {
         {BlobChemType.ReactiveSpines, Color.FromHex("#637b19")},
         {BlobChemType.BlazingOil, Color.FromHex("#937000")},
@@ -93,119 +121,99 @@ public sealed partial class BlobCoreComponent : Component
         {BlobChemType.ElectromagneticWeb, Color.FromHex("#0d7777")},
     };
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("blobExplosive")]
-    public string BlobExplosive = "Blob";
-
-    [ViewVariables(VVAccess.ReadOnly), DataField("defaultChem")]
+    [DataField]
     public BlobChemType DefaultChem = BlobChemType.ReactiveSpines;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("currentChem")]
-    public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
+    #endregion
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("factoryRadiusLimit")]
-    public float FactoryRadiusLimit = 6f;
+    #region Blob Costs
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("resourceRadiusLimit")]
-    public float ResourceRadiusLimit = 3f;
+    [DataField]
+    public int ResourceBlobsTotal;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("nodeRadiusLimit")]
-    public float NodeRadiusLimit = 4f;
+    [DataField]
+    public FixedPoint2 AttackCost = 4;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("attackCost")]
-    public FixedPoint2 AttackCost = 2;
+    [DataField]
+    public BlobTileCosts BlobTileCosts = new()
+    {
+        {BlobTileType.Core, 0},
+        {BlobTileType.Invalid, 0},
+        {BlobTileType.Resource, 60},
+        {BlobTileType.Factory, 80},
+        {BlobTileType.Node, 50},
+        {BlobTileType.Reflective, 15},
+        {BlobTileType.Strong, 15},
+        {BlobTileType.Normal, 6},
+        /*
+        {BlobTileType.Storage, 50},
+        {BlobTileType.Turret, 75},*/
+    };
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobCost")]
-    public FixedPoint2 FactoryBlobCost = 60;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobCost")]
-    public FixedPoint2 NormalBlobCost = 4;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobCost")]
-    public FixedPoint2 ResourceBlobCost = 40;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobCost")]
-    public FixedPoint2 NodeBlobCost = 50;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("blobbernautCost")]
+    [DataField]
     public FixedPoint2 BlobbernautCost = 60;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("strongBlobCost")]
-    public FixedPoint2 StrongBlobCost = 15;
+    [DataField]
+    public FixedPoint2 SplitCoreCost = 400;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobCost")]
-    public FixedPoint2 ReflectiveBlobCost = 15;
+    [DataField]
+    public FixedPoint2 SwapCoreCost = 200;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("splitCoreCost")]
-    public FixedPoint2 SplitCoreCost = 100;
+    [DataField]
+    public FixedPoint2 SwapChemCost = 70;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("swapCoreCost")]
-    public FixedPoint2 SwapCoreCost = 80;
+    #endregion
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("swapChemCost")]
-    public FixedPoint2 SwapChemCost = 40;
+    #region Blob Ranges
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobTile")]
-    public string ReflectiveBlobTile = "ReflectiveBlobTile";
+    [DataField]
+    public float NodeRadiusLimit = 5f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("strongBlobTile")]
-    public string StrongBlobTile = "StrongBlobTile";
+    [DataField]
+    public float TilesRadiusLimit = 9f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobTile")]
-    public string NormalBlobTile = "NormalBlobTile";
+    #endregion
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobTile")]
-    public string FactoryBlobTile = "FactoryBlobTile";
+    #region Prototypes
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobTile")]
-    public string ResourceBlobTile = "ResourceBlobTile";
+    [DataField]
+    public BlobTileProto TilePrototypes = new()
+    {
+        {BlobTileType.Resource, "ResourceBlobTile"},
+        {BlobTileType.Factory, "FactoryBlobTile"},
+        {BlobTileType.Node, "NodeBlobTile"},
+        {BlobTileType.Reflective, "ReflectiveBlobTile"},
+        {BlobTileType.Strong, "StrongBlobTile"},
+        {BlobTileType.Normal, "NormalBlobTile"},
+        {BlobTileType.Invalid, "NormalBlobTile"}, // wtf
+        //{BlobTileType.Storage, "StorageBlobTile"},
+        //{BlobTileType.Turret, "TurretBlobTile"},
+        {BlobTileType.Core, "CoreBlobTile"},
+    };
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobTile")]
-    public string NodeBlobTile = "NodeBlobTile";
+    [DataField(required: true)]
+    public List<ProtoId<EntityPrototype>> ActionPrototypes = [];
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("coreBlobTile")]
-    public string CoreBlobTile = "CoreBlobTileGhostRole";
+    [DataField]
+    public ProtoId<ExplosionPrototype> BlobExplosive = "Blob";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("coreBlobTotalHealth")]
-    public FixedPoint2 CoreBlobTotalHealth = 400;
+    [DataField]
+    public EntProtoId<BlobObserverComponent> ObserverBlobPrototype = "MobObserverBlob";
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("ghostPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ObserverBlobPrototype = "MobObserverBlob";
+    [DataField]
+    public EntProtoId MindRoleBlobPrototypeId = "MindRoleBlob";
 
-    [DataField("greetSoundNotification")]
+    #endregion
+
+    #region Sounds
+
+    [DataField]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Effects/clang.ogg");
 
-    [ViewVariables(VVAccess.ReadOnly)]
-    public EntityUid? Observer = default!;
+    [DataField]
+    public SoundSpecifier AttackSound = new SoundPathSpecifier("/Audio/Animals/Blob/blobattack.ogg");
 
-    [ViewVariables(VVAccess.ReadOnly)]
-    public HashSet<EntityUid> BlobTiles = new();
-
-    public TimeSpan NextAction = TimeSpan.Zero;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 Points = 0;
-
-    [DataField("actionHelpBlob")]
-    public EntityUid? ActionHelpBlob = null;
-    [DataField("actionSwapBlobChem")]
-    public EntityUid? ActionSwapBlobChem = null;
-    [DataField("actionTeleportBlobToCore")]
-    public EntityUid? ActionTeleportBlobToCore = null;
-    [DataField("actionTeleportBlobToNode")]
-    public EntityUid? ActionTeleportBlobToNode = null;
-    [DataField("actionCreateBlobFactory")]
-    public EntityUid? ActionCreateBlobFactory = null;
-    [DataField("actionCreateBlobResource")]
-    public EntityUid? ActionCreateBlobResource = null;
-    [DataField("actionCreateBlobNode")]
-    public EntityUid? ActionCreateBlobNode = null;
-    [DataField("actionCreateBlobbernaut")]
-    public EntityUid? ActionCreateBlobbernaut = null;
-    [DataField("actionSplitBlobCore")]
-    public EntityUid? ActionSplitBlobCore = null;
-    [DataField("actionSwapBlobCore")]
-    public EntityUid? ActionSwapBlobCore = null;
+    #endregion
 }
 
 [Serializable, NetSerializable]

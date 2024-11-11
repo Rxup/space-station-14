@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy;
@@ -13,8 +11,10 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Stacks;
 using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -42,13 +42,22 @@ namespace Content.Server.Backmen.Economy.ATM;
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<AtmComponent, PowerChangedEvent>(OnPowerChanged);
+
+            // update
             //SubscribeLocalEvent<AtmComponent, ComponentStartup>((Entity<AtmComponent> uid, ref ComponentStartup _) => UpdateComponentUserInterface(uid));
             SubscribeLocalEvent<AtmComponent, EntInsertedIntoContainerMessage>((Entity<AtmComponent> uid, ref EntInsertedIntoContainerMessage arg) => UpdateComponentUserInterface(uid));
             SubscribeLocalEvent<AtmComponent, EntRemovedFromContainerMessage>((Entity<AtmComponent> uid, ref EntRemovedFromContainerMessage _) => UpdateComponentUserInterface(uid));
-            SubscribeLocalEvent<AtmComponent, ATMRequestWithdrawMessage>(OnRequestWithdraw);
-            SubscribeLocalEvent<AtmCurrencyComponent,AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
+
+            // change state
+            SubscribeLocalEvent<AtmComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<AtmComponent, AfterActivatableUIOpenEvent>(OnInteract);
+
+            Subs.BuiEvents<AtmComponent>(ATMUiKey.Key,
+                subs =>
+                {
+                    subs.Event<ATMRequestWithdrawMessage>(OnRequestWithdraw);
+                });
+            SubscribeLocalEvent<AtmCurrencyComponent, AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
         }
 
         private void OnInteract(Entity<AtmComponent> uid, ref AfterActivatableUIOpenEvent args)
@@ -140,7 +149,9 @@ namespace Content.Server.Backmen.Economy.ATM;
             if(_prototypeManager.TryIndex(bankAccount.CurrencyType, out CurrencyPrototype? p))
                 currencySymbol = Loc.GetString(p.CurrencySymbol);
 
-            _uiSystem.SetUiState(ui.Owner, ui.UiKey, new AtmBoundUserInterfaceBalanceState(
+            _uiSystem.SetUiState(ui.Owner,
+                ui.UiKey,
+                new AtmBoundUserInterfaceBalanceState(
                 bankAccount.Balance,
                 currencySymbol
             ));
@@ -178,7 +189,9 @@ namespace Content.Server.Backmen.Economy.ATM;
                 idCardEntityName = MetaData(idCardEntityUid).EntityName;
             }
 
-            _uiSystem.SetUiState(uid.Owner, ATMUiKey.Key, new AtmBoundUserInterfaceState(
+            _uiSystem.SetUiState(uid.Owner,
+                ATMUiKey.Key,
+                new AtmBoundUserInterfaceState(
                 uid.Comp.IdCardSlot.HasItem,
                 idCardFullName,
                 idCardEntityName,
@@ -197,22 +210,32 @@ namespace Content.Server.Backmen.Economy.ATM;
                 Deny(uid);
                 return;
             }
+
             if (!TryGetBankAccountNumberFromStoredIdCard(uid, out var bankAccountNumber))
             {
                 Deny(uid);
                 return;
             }
+
+            if (string.IsNullOrWhiteSpace(msg.AccountPin) || bankAccountNumber.Value.Comp.AccountPin != msg.AccountPin)
+            {
+                Deny(uid);
+                return;
+            }
+
             if (uid.Comp.CurrencyWhitelist.Count == 0)
             {
                 Deny(uid);
                 return;
             }
+
             var currency = uid.Comp.CurrencyWhitelist.First();
             if (!_proto.TryIndex<CurrencyPrototype>(currency, out var proto))
             {
                 Deny(uid);
                 return;
             }
+
             if (proto.Cash == null || !proto.CanWithdraw)
             {
                 Deny(uid);
@@ -239,6 +262,7 @@ namespace Content.Server.Backmen.Economy.ATM;
                 _hands.PickupOrDrop(buyer, ents.First());
                 amountRemaining -= value * amountToSpawn;
             }
+
             Apply(uid);
             _audioSystem.PlayPvs(uid.Comp.SoundWithdrawCurrency, uid, AudioParams.Default.WithVolume(-2f));
             UpdateComponentUserInterface(uid, msg.Actor);

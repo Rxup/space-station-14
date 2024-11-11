@@ -1,0 +1,38 @@
+- type: dataset
+  id: SyndicateNamesSuperNormal
+  values:
+  - Альфа
+  - Браво
+  - Чарли
+  - Дельта
+  - Эхо
+  - Фокстрот
+  - Гольф
+  - Хоутел
+  - Индиа
+  - Джулиет
+  - Кило
+  - Лима
+  - Майк
+  - Новэмбэр
+  - Оскар
+  - Папа
+  - Квебек
+  - Ромео
+  - Сьера
+  - Танго
+  - Юниформ
+  - Виктор
+  - Виски
+  - Иксрей
+  - Зулу
+
+- type: dataset
+  id: SyndicateZvanieSuperNormal
+  values:
+  - Оператор
+
+- type: dataset
+  id: SyndicateZvanieSuperNormalAgent
+  values:
+  - Агент

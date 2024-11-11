@@ -1,17 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Storage;
+using Content.Shared.Random;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Inventory;
-
 public partial class InventorySystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IViewVariablesManager _vvm = default!;
-
+    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+    [Dependency] private readonly ISerializationManager _serializationManager = default!;
     private void InitializeSlots()
     {
         SubscribeLocalEvent<InventoryComponent, ComponentInit>(OnInit);
@@ -30,7 +32,7 @@ public partial class InventorySystem : EntitySystem
     /// <summary>
     /// Tries to find an entity in the specified slot with the specified component.
     /// </summary>
-    public bool TryGetInventoryEntity<T>(Entity<InventoryComponent?> entity, out EntityUid targetUid)
+    public bool TryGetInventoryEntity<T>(Entity<InventoryComponent?> entity, out Entity<T?> target)
         where T : IComponent, IClothingSlots
     {
         if (TryGetContainerSlotEnumerator(entity.Owner, out var containerSlotEnumerator))
@@ -43,12 +45,12 @@ public partial class InventorySystem : EntitySystem
                 if ((((IClothingSlots) required).Slots & slot.SlotFlags) == 0x0)
                     continue;
 
-                targetUid = item;
+                target = (item, required);
                 return true;
             }
         }
 
-        targetUid = EntityUid.Invalid;
+        target = EntityUid.Invalid;
         return false;
     }
 
@@ -57,7 +59,8 @@ public partial class InventorySystem : EntitySystem
         if (!_prototypeManager.TryIndex(component.TemplateId, out InventoryTemplatePrototype? invTemplate))
             return;
 
-        component.Slots = invTemplate.Slots;
+        _serializationManager.CopyTo(invTemplate.Slots, ref component.Slots, notNullableOverride: true);
+
         component.Containers = new ContainerSlot[component.Slots.Length];
         for (var i = 0; i < component.Containers.Length; i++)
         {
@@ -75,7 +78,7 @@ public partial class InventorySystem : EntitySystem
 
         if (TryGetSlotEntity(uid, ev.Slot, out var entityUid) && TryComp<StorageComponent>(entityUid, out var storageComponent))
         {
-            _storageSystem.OpenStorageUI(entityUid.Value, uid, storageComponent);
+            _storageSystem.OpenStorageUI(entityUid.Value, uid, storageComponent, false);
         }
     }
 
@@ -115,7 +118,7 @@ public partial class InventorySystem : EntitySystem
 
         foreach (var slotDef in inventory.Slots)
         {
-            if (!slotDef.Name.Equals(slot))
+            if (!slotDef.Name.Equals(slot) || slotDef.Disabled)
                 continue;
             slotDefinition = slotDef;
             return true;
@@ -170,6 +173,39 @@ public partial class InventorySystem : EntitySystem
         }
     }
 
+    public void SetSlotStatus(EntityUid uid, string slotName, bool isDisabled, InventoryComponent? inventory = null)
+    {
+        if (!Resolve(uid, ref inventory))
+            return;
+
+        foreach (var slot in inventory.Slots)
+        {
+            if (slot.Name != slotName)
+                continue;
+
+
+            if (!TryGetSlotContainer(uid, slotName, out var container, out _, inventory))
+                break;
+
+            if (isDisabled)
+            {
+                if (container.ContainedEntity is { } entityUid && TryComp(entityUid, out TransformComponent? transform) && _gameTiming.IsFirstTimePredicted)
+                {
+                    _transform.AttachToGridOrMap(entityUid, transform);
+                    _randomHelper.RandomOffset(entityUid, 0.5f);
+                }
+                _containerSystem.ShutdownContainer(container);
+            }
+            else
+                _containerSystem.EnsureContainer<ContainerSlot>(uid, slotName);
+
+            slot.Disabled = isDisabled;
+            break;
+        }
+
+        Dirty(uid, inventory);
+    }
+
     /// <summary>
     /// Enumerator for iterating over an inventory's slot containers. Also has methods that skip empty containers.
     /// It should be safe to add or remove items while enumerating.
@@ -203,7 +239,7 @@ public partial class InventorySystem : EntitySystem
                 var i = _nextIdx++;
                 var slot = _slots[i];
 
-                if ((slot.SlotFlags & _flags) == 0)
+                if ((slot.SlotFlags & _flags) == 0 || slot.Disabled)
                     continue;
 
                 container = _containers[i];
@@ -221,7 +257,7 @@ public partial class InventorySystem : EntitySystem
                 var i = _nextIdx++;
                 var slot = _slots[i];
 
-                if ((slot.SlotFlags & _flags) == 0)
+                if ((slot.SlotFlags & _flags) == 0 || slot.Disabled)
                     continue;
 
                 var container = _containers[i];

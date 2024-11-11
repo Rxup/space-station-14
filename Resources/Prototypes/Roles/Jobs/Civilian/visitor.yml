@@ -7,5 +7,13 @@
   icon: JobIconVisitor
   setPreference: false
   overrideConsoleVisibility: true
-#  access: # Corvax-MRP
-#  - Maintenance
+  #start-backmen: currency
+  minBankBalance: 400
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 10
+  #end-backmen: currency
+  access:
+  - Maintenance
+  extendedAccess:
+  - External

@@ -34,8 +34,9 @@ namespace Content.Server.Objectives.Commands
             }
 
             shell.WriteLine($"Objectives for player {player.UserId}:");
-            var objectivesGr = mind.AllObjectives
-                .Select(x=> (Entity<ObjectiveComponent?>)(x,_entities.GetComponentOrNull<ObjectiveComponent>(x))).GroupBy(x=>x.Comp?.Issuer ?? "") //backmen: locale
+            var objectivesGr = mind.Objectives.ToList()
+                .Select(x=> (Entity<ObjectiveComponent?>)(x,_entities.GetComponentOrNull<ObjectiveComponent>(x)))
+                .GroupBy(x=>x.Comp?.LocIssuer ?? "") //backmen: locale
                 .ToList();
             if (objectivesGr.Count == 0)
             {
@@ -47,7 +48,7 @@ namespace Content.Server.Objectives.Commands
             foreach (var objective in objectivesGr)
             {
                 var objectives = objective.ToList();
-                shell.WriteMarkup(Loc.GetString($"objective-issuer-{objective.Key}")+":");
+                shell.WriteMarkup(objective.Key+":");
                 for (var i = 0; i < objectives.Count; i++)
                 {
                     var info = objectivesSystem.GetInfo(objectives[i], mindId, mind);

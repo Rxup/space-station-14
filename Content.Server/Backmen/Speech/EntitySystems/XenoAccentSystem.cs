@@ -26,29 +26,29 @@ public sealed class XenoAccentSystem : EntitySystem
 
             if (_random.NextDouble() >= 0.5)
             {
-                accentedMessage.Append("HI");
+                accentedMessage.Append("ХИ");
                 if (word.Length > 1)
                 {
                     foreach (var _ in word)
                     {
-                        accentedMessage.Append('S');
+                        accentedMessage.Append('С');
                     }
 
                     if (_random.NextDouble() >= 0.3)
-                        accentedMessage.Append('s');
+                        accentedMessage.Append('с');
                 }
                 else
-                    accentedMessage.Append('S');
+                    accentedMessage.Append('С');
             }
             else
             {
-                accentedMessage.Append("HI");
+                accentedMessage.Append("ХИ");
                 foreach (var _ in word)
                 {
                     if (_random.NextDouble() >= 0.8)
-                        accentedMessage.Append('H');
+                        accentedMessage.Append('Х');
                     else
-                        accentedMessage.Append('S');
+                        accentedMessage.Append('С');
                 }
 
             }

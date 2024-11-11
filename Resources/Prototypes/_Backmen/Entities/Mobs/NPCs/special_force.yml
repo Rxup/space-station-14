@@ -1,0 +1,90 @@
+- type: entity
+  name: Spestnaz
+  suffix: Vova
+  parent: MobHumanCombine
+  description: Жалкая кучка спецназа.
+  id: MobHumanSpecialReAgent
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Оперативник спец войск
+    description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
+    rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    raffle:
+      settings: short
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+    job: DeathSquad
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [SpecialForceGearFull]
+  - type: RandomMetadata
+    nameSegments:
+    - NameSpetsOperative
+    - NameSpets
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+  - type: AntagImmune
+
+- type: entity
+  name: SpestnazCommander
+  suffix: Vova
+  parent: MobHumanSpecialReAgent
+  description: Жалкая кучка спецназа.
+  id: MobHumanSpecialReAgentCOM
+  components:
+  - type: GhostRole
+    name: коммандер спец войск
+    description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
+    rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    raffle:
+      settings: short
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+    job: DeathSquad
+  - type: Loadout
+    prototypes: [SpecialForceGearCommanderFull]
+  - type: RandomMetadata
+    nameSegments:
+    - NameSpetsCommander
+    - NameSpets
+
+- type: entity
+  name: SpestnazHeavyWeaponGuy
+  suffix: Vova
+  parent: MobHumanSpecialReAgent
+  description: Жалкая кучка спецназа.
+  id: MobHumanSpecialReAgentHeavy
+  components:
+  - type: GhostRole
+    name: опустошитель спец войск
+    description: Боец тяжелого вооружения отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
+    rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    job: DeathSquad
+  - type: Loadout
+    prototypes: [SpecialForceGearSpecialistFull]

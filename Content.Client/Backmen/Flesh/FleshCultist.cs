@@ -1,40 +1,28 @@
 ﻿using Content.Shared.Antag;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Ghost;
+using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Flesh;
 
 public sealed class FleshCultistSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<FleshCultistComponent, CanDisplayStatusIconsEvent>(OnCanShowCultIcon);
+        SubscribeLocalEvent<FleshCultistComponent, GetStatusIconsEvent>(OnShowCultIcon);
     }
 
-    private void OnCanShowCultIcon<T>(EntityUid uid, T comp, ref CanDisplayStatusIconsEvent args) where T : IAntagStatusIconComponent
+    [ValidatePrototypeId<FactionIconPrototype>]
+    private const string FleshcultistFaction = "FleshcultistFaction";
+
+    private void OnShowCultIcon(Entity<FleshCultistComponent> ent, ref GetStatusIconsEvent args)
     {
-        args.Cancelled = !CanDisplayIcon(args.User, comp.IconVisibleToGhost);
-    }
-
-    [ValidatePrototypeId<TagPrototype>]
-    private const string TagFlesh = "Flesh";
-
-    /// <summary>
-    /// The criteria that determine whether a client should see Rev/Head rev icons.
-    /// </summary>
-    private bool CanDisplayIcon(EntityUid? uid, bool visibleToGhost)
-    {
-        if (HasComp<FleshCultistComponent>(uid))
-            return true;
-
-        if (visibleToGhost && HasComp<GhostComponent>(uid))
-            return true;
-
-        return uid.HasValue && _tag.HasTag(uid.Value, TagFlesh);
+        args.StatusIcons.Add(_prototype.Index<FactionIconPrototype>(FleshcultistFaction));
     }
 }

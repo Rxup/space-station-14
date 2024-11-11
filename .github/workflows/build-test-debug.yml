@@ -41,6 +41,10 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+#    - name: skip locale check
+#      run: |
+#        sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
+
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
 

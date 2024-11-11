@@ -21,6 +21,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using static Content.Client.Inventory.ClientInventorySystem;
 
@@ -132,12 +133,14 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
         if (clientInv == null)
         {
             _inventoryHotbar?.ClearButtons();
+            if (_inventoryButton != null)
+                _inventoryButton.Visible = false;
+
             return;
         }
-
         foreach (var (_, data) in clientInv.SlotData)
         {
-            if (!data.ShowInWindow || !_slotGroups.TryGetValue(data.SlotGroup, out var container))
+            if (!data.ShowInWindow || data.SlotDef.Disabled || !_slotGroups.TryGetValue(data.SlotGroup, out var container))
                 continue;
 
             if (!container.TryGetButton(data.SlotName, out var button))
@@ -210,7 +213,6 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
         {
             if (!data.ShowInWindow)
                 continue;
-
             if (!_strippingWindow!.InventoryButtons.TryGetButton(data.SlotName, out var button))
             {
                 button = CreateSlotButton(data);
@@ -396,6 +398,9 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
         foreach (var slotData in clientInv.SlotData.Values)
         {
             AddSlot(slotData);
+
+            if (_inventoryButton != null)
+                _inventoryButton.Visible = true;
         }
 
         UpdateInventoryHotbar(_playerInventory);
@@ -403,12 +408,17 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
 
     private void UnloadSlots()
     {
+        if (_inventoryButton != null)
+            _inventoryButton.Visible = false;
+
         _playerUid = null;
         _playerInventory = null;
         foreach (var slotGroup in _slotGroups.Values)
         {
             slotGroup.ClearButtons();
         }
+
+        UpdateInventoryHotbar(null);
     }
 
     private void SpriteUpdated(SlotSpriteUpdate update)

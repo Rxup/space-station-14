@@ -1,0 +1,163 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRIGSpecialForce
+  name: EarthGov special force RIG
+  description: It's a very robust RIG.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/specialforce.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitSpecialForce
+    slot: outerClothing
+    requiredSlot:
+    - back
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,5
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+
+- type: entity
+  parent: ClothingBackpackRIGRTULeader
+  id: ClothingBackpackRIGRTUGrunt
+  name: EarthGov RTU grunt RIG
+  description: It's a very robust backpack.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitRTU
+
+- type: entity
+  parent: ClothingBackpackRIGRTULeader
+  id: ClothingBackpackRIGRTUMedick
+  name: EarthGov RTU medic RIG
+  description: It's a very robust backpack.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitRTUMedick
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
+
+- type: entity
+  parent: ClothingBackpackRIGRTULeader
+  id: ClothingBackpackRIGRTUEngineer
+  name: EarthGov RTU engineer RIG
+  description: It's a very robust backpack.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitRTUEnginegr
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRIGRTULeader
+  name: EarthGov RTU leader RIG
+  description: It's a very robust backpack.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,5
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/RTUL.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitRTULeader
+    slot: outerClothing
+    requiredSlot:
+    - back
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRIGSpecialits
+  name: EarthGov Specialist RIG
+  description: It's a very robust RIG.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/specialforce.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,5
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRIGChronoLegionnaire
+  name: chrono legionnaire RIG
+  description: An advanced and stylish RIG right from the future.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,15,5
+  - type: ClothingGrant
+    component:
+    - type: PsionicInvisibilityPower
+      actionPsionicInvisibility: ActionToggleSuitInvisiblePower
+      stunSecond: 0
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
+
+- type: entity
+  id: ActionToggleSuitInvisiblePower
+  name: Включить маскировку
+  description: Включает маскировку в местности, вас не видно от слова совсем.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
+      state: icon
+    useDelay: 2
+    event: !type:PsionicInvisibilityPowerActionEvent

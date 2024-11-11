@@ -10,6 +10,12 @@
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce
+  #start-backmen: currency
+  minBankBalance: 250
+  maxBankBalance: 350
+  wageDepartment: Engineering
+  wage: 50
+  #end-backmen: currency
   access:
   - Maintenance
   - Engineering
@@ -23,3 +29,6 @@
     id: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
+  #storage:
+    #back:
+    #- Stuff

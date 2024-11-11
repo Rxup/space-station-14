@@ -1,0 +1,15 @@
+- type: entity
+  parent: AirlockCommand
+  id: AirlockBlueShield
+  suffix: Blue Shield
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Doors/Airlocks/Airlock/blueshield.rsi
+
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockBlueShieldGlass
+  suffix: Blue Shield
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Doors/Airlocks/Glass/blueshield.rsi

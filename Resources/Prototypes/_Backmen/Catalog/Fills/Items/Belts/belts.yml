@@ -1,0 +1,401 @@
+- type: entity
+  id: ClothingBeltKatanaSheathFilled
+  parent: ClothingBeltKatanaSheath
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Wakizashi
+      - id: Katana
+
+- type: entity
+  id: ClothingBeltSheathFilledOrd
+  parent: ClothingBeltOrden
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: OrdenSabre
+
+- type: entity
+  id: ClothingBeltSheathFilledRapier
+  parent: ClothingBeltRapier
+  suffix: Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: Rapier
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFBattleEngineerFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: MagazineShotgun
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFEngineerFilled
+  components:
+    - type: Storage
+      maxItemSize: Normal
+      grid:
+      - 0,0,3,3
+    - type: StorageFill
+      contents:
+        - id: SheetSteel
+          amount: 2
+        - id: SheetRGlass
+        - id: MagazinePistol
+          amount: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFSecurityFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineRifle
+          amount: 3
+        - id: MagazinePistol
+          amount: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFBattleFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: BattleSpaceMedipen
+          amount: 2
+        - id: MagazineRifle
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFMedicalFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: EpinephrineChemistryBottle
+          amount: 2
+        - id: OmnizineChemistryBottle
+          amount: 3
+        - id: SyringeBluespace
+        - id: HandheldHealthAnalyzer
+        - id: MagazinePistol
+          amount: 2
+
+- type: entity
+  parent: Medkit
+  id: MedkitBattleSpaceMedipen
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleSpaceMedipen
+          amount: 8
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltBandolier
+  id: ClothingBeltBandolierRXBZZ
+  components:
+    - type: Storage
+      grid:
+      - 0,0,5,4
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: StorageFill
+      contents:
+        - id: ShellShotgunIncendiary
+          amount: 10
+        - id: ShellShotgun
+          amount: 20
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+          showEnts: False
+          occludes: True
+          ents: [ ]
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: [ ]
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingFlamer
+  components:
+    - type: Storage
+      maxItemSize: Normal
+      grid:
+        - 0,0,5,2
+    - type: StorageFill
+      contents:
+        - id: MedkitAdvancedRXBZZ
+        - id: WeaponDisabler
+        - id: WeaponLauncherM81
+        - id: GrenadeFrag
+          amount: 2
+        - id: GrenadeBlast
+          amount: 2
+
+- type: entity
+  parent: ClothingMedicalPounch
+  id: ClothingMedicalPounchRXBZZFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: RegenerativeMesh
+          amount: 2
+        - id: MedicatedSuture
+          amount: 2
+        - id: BattleMedipen
+          amount: 2
+        - id: HandheldHealthAnalyzer
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePulseRifle
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZEnergyFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: EnergyMag
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZBigEnergyFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: BigEnergyMag
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZSRFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineAntiMaterielRifleSR
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZPPFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistolSubMachineGun
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZRifleFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineRifle
+          amount: 6
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingRXBZZGrenadeFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeFrag
+          amount: 4
+        - id: GrenadeBlast
+          amount: 4
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingPistolFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistolHighCapacity
+          amount: 8
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingDivetFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistol345
+          amount: 8
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZSpecialistFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 2
+        - id: DrinkMREFlask
+        - id: GrenadeFrag
+          amount: 2
+        - id: GrenadeBlast
+          amount: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltAmmo
+  id: ClothingBeltERTWebbingLeaderTay39Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePulseShotgun
+          amount: 2
+        - id: MagazinePulseSubMachinePistol
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltMedicalMarine
+  id: ClothingBeltMedicalTay39Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: OmnizineChemistryBottle
+          amount: 4
+        - id: EpinephrineChemistryBottle
+          amount: 4
+        - id: EphedrineChemistryBottle
+          amount: 4
+        - id: Hypospray
+        - id: EmergencyMedipen
+          amount: 2
+        - id: CombatMedipen
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltMedicalMarine
+  id: ClothingBeltMedicalMarineRxbzz
+  components:
+    - type: StorageFill
+      contents:
+        - id: CombatMedipen
+          amount: 6
+        - id: EmergencyMedipen
+          amount: 2
+        - id: MedicatedSuture
+          amount: 3
+        - id: RegenerativeMesh
+          amount: 3
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltAmmo
+  id: ClothingBeltERTWebbingSecurityTay39Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePulseSubMachinePistol
+          amount: 6
+
+- type: entity
+  parent: ClothingBeltShellShotgun
+  id: ClothingBeltShellShotgunFill
+  suffix: Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: ShellShotgun
+          amount: 30
+        - id: ShellShotgunMagnum12
+          amount: 12
+
+- type: entity
+  name: пояс охраны спецсил
+  description: Может вмещать различное снаряжение службы безопасности, такое как наручники и вспышки.
+  parent: ClothingBeltSecurity
+  id: ClothingBeltSecuritySuper
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Storage
+      grid:
+      - 0,0,5,4
+    - type: StorageFill
+      contents:
+        - id: WeaponDisablerSuper
+        - id: StunbatonSuper
+        - id: GrenadeFlashBang
+        - id: GrenadeFlashBang
+        - id: Handcuffs
+        - id: Handcuffs
+
+- type: entity
+  name: пояс охраны спецсил
+  description: Может вмещать различное снаряжение службы безопасности, такое как наручники и вспышки.
+  parent: ClothingBeltSecurity
+  id: ClothingBeltSecurityCentComSecurity
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: StorageFill
+      contents:
+        - id: WeaponDominatorNT
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: GrenadeFlashBang
+        - id: Handcuffs
+        - id: Handcuffs
+
+- type: entity
+  parent: ClothingBeltGeneralG6
+  id: ClothingBeltGeneralG6FilledSpetsnaz
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: PaperManualCodes
+        - id: SpeedLoaderMagnumAP
+          amount: 4
+        - id: PinpointerNuclear

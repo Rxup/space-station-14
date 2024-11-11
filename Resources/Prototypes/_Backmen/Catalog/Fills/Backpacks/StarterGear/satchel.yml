@@ -1,0 +1,8 @@
+﻿- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelDrone
+  components:
+  - type: Tag
+    tags:
+    - InnateDontDelete

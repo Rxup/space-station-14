@@ -18,7 +18,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.5
+        factor: 1.0
         conditions:
           - !type:OrganType
             type: Human
@@ -54,7 +54,7 @@
             type: Vampiric
             shouldHave: false
           reagent: UncookedAnimalProteins
-          amount: 0.5
+          amount: 0.1
         - !type:AdjustReagent
           conditions:
           - !type:OrganType
@@ -153,7 +153,7 @@
       # Delicious!
       effects:
       - !type:SatiateHunger
-        factor: 1.5
+        factor: 1
         conditions:
           - !type:OrganType
             type: Vampiric
@@ -305,6 +305,8 @@
             Toxin: -2
           types:
             Bloodloss: -5
+      - !type:ModifyBleedAmount
+        amount: -1.5
   # Just in case you REALLY want to water your plants
   plantMetabolism:
   - !type:PlantAdjustWater
@@ -349,6 +351,14 @@
     collection: FootstepBlood
     params:
       volume: 6
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ChemMiasmaPoolSource
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
 
 - type: reagent
   id: GreyMatter
@@ -370,3 +380,5 @@
         damage:
           types:
             Cellular: 2
+
+

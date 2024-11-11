@@ -1,0 +1,15 @@
+﻿
+- type: trait
+  id: OwOAccent
+  name: OwOAccent-name
+  description: OwOAccent-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  whitelist:
+    components:
+    - Felinid
+  components:
+  - type: OwOAccent

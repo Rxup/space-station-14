@@ -25,7 +25,7 @@ public sealed class ShadowkinDarken : EntitySystem
             _entity.TryGetComponent<ShadowkinDarkSwappedComponent>(args.Target, out _))
             return;
 
-        args.Cancel();
+        args.Cancelled = true;
         if (_gameTiming.InPrediction)
             return;
 

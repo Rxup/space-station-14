@@ -1,0 +1,10 @@
+﻿- type: entity
+  id: OrganFelinidStomach
+  parent: OrganReptilianStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 20.0

@@ -1,0 +1,73 @@
+- type: startingGear
+  id: SurvivalGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAerostatic
+    back: WeaponShotgunDoubleBarreled
+    shoes: ClothingShoesBootsWork
+    outerClothing: ClothingOuterWinterCoatBomber
+    pocket1: TorchSuper
+    pocket2: SurvivalKnife
+
+- type: startingGear
+  id: CargoTechGearSurvival
+  equipment:
+    head: ClothingHeadHatCargosoft
+    jumpsuit: ClothingUniformJumpsuitCargo
+    shoes: ClothingShoesColorBlack
+    id: CargoIDCard
+    pocket1: SurvivalKnife
+    pocket2: FlashlightLantern
+#  innerClothingSkirt: ClothingUniformJumpskirtCargo
+
+- type: startingGear
+  id: DoctorGearSurvival
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    shoes: ClothingShoesColorWhite
+    outerClothing: ClothingOuterCoatLab
+    id: MedicalIDCard
+    belt: ClothingBeltMedicalFilled
+    pocket1: FlashlightLantern
+    pocket2: ScalpelCool
+  #innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
+
+- type: startingGear
+  id: SecurityOfficerGearSurvival
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+    shoes: ClothingShoesBootsJack
+    outerClothing: ClothingOuterVestArmorSec
+    id: SecurityIDCard
+    belt: ClothingBeltSecurityFilled
+    pocket1: FlashlightSeclite
+    pocket2: CombatKnife
+
+- type: startingGear
+  id: CaptainGearSurvival
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptain
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatCaptain
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCaptain
+    outerClothing: ClothingOuterArmorCaptainCarapace
+    belt: ClothingBeltSheathFilled
+    id: CaptainIDCard
+
+- type: startingGear
+  id: StationEngineerGearSurvival
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    shoes: ClothingShoesBootsWork
+    outerClothing: ClothingOuterVestHazard
+    id: EngineeringIDCard
+    eyes: ClothingEyesGlassesMeson
+    belt: ClothingBeltUtilityFilled
+
+- type: startingGear
+  id: ChaplainGearSurvival
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    shoes: ClothingShoesColorBlack
+    outerClothing: ClothingOuterHoodieChaplain

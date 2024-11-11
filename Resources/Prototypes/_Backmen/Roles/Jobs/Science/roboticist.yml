@@ -1,0 +1,35 @@
+- type: job
+  id: Roboticist
+  name: job-name-roboticist
+  description: job-description-roboticist
+  playTimeTracker: JobRoboticist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 36000 #10 hrs
+  startingGear: RoboticistGear
+  icon: "JobIconRoboticist"
+  supervisors: job-supervisors-rd
+  access:
+  - Research
+  - Maintenance
+  #start-backmen: currency
+  minBankBalance: 150
+  maxBankBalance: 250
+  wageDepartment: Science
+  wage: 50
+  #end-backmen: currency
+
+- type: startingGear
+  id: RoboticistGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRoboticist
+    back: ClothingBackpackScience
+    shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesGlassesWelding
+    outerClothing: ClothingOuterCoatRnd
+    id: RoboticistPDA
+    ears: ClothingHeadsetScience
+  #innerClothingSkirt: ClothingUniformJumpskirtRoboticist
+  #satchel: ClothingBackpackSatchelScienceFilled
+  #duffelbag: ClothingBackpackDuffelScienceFilled

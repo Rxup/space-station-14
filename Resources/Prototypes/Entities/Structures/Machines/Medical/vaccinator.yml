@@ -40,4 +40,4 @@
   - type: MaterialStorage
     materialWhiteList:
     - Biomass
-
+  - type: RequireProjectileTarget

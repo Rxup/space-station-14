@@ -1,0 +1,494 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEGMC
+  name: Раздатчик формы
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCDrobeInventoryMarine
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["EarthGov"]]
+
+- type: vendingMachineInventory
+  id: EGMCDrobeInventoryMarine
+  startingInventory:
+    ClothingUniformJumpsuitEgov: 10
+    ClothingHeadHelmetRiot: 10
+    ClothingHeadHatEgovCap: 20
+    ClothingMaskTacticalGas: 20
+    ClothingBeltShellShotgunFill: 20
+    ClothingBeltPistolHolster: 20
+    ClothingBeltMedicalMarine: 20
+    ClothingBeltGeneralG6: 20
+    ClothingBeltAmmo: 20
+    ClothingShellPounch: 40
+    ClothingPistolPounch: 40
+    ClothingMedicalPounch: 40
+    ClothingAmmoPounch: 40
+    ClothingPounchMTF: 40
+    ClothingHeadHelmetEGov: 10
+    ClothingOuterNavyVest: 10
+    ClothingOuterArmorBasic: 10
+    ClothingOuterArmorBulletproof: 10
+    ClothingHandsGlovesCombat: 10
+    ClothingShoesBootsCombatFilled: 10
+    FlashlightSeclite: 10
+    ClothingBackpackMilitarySatchel: 10
+    ClothingMilitaryBackpack: 10
+    ClothingHeadsetEarthGov: 10
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineWeaponEGMC
+  name: Раздатчик вооружения
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Armory.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCWeaponInventoryMarine
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: AmmoVendAds
+  - type: AccessReader
+    access: [["EarthGov"]]
+
+- type: vendingMachineInventory
+  id: EGMCWeaponInventoryMarine
+  startingInventory:
+    WeaponPistolACP14: 10
+    WeaponPistolG22: 10
+    MagazinePistol: 20
+    WeaponRifleAR18: 10
+    WeaponRifleFamas: 10
+    WeaponRifleG36: 10
+    WeaponRifleM16A4: 10
+    MagazineRifle: 40
+    WeaponSubMachineGunMP5: 10
+    WeaponSubMachineGunMP7: 10
+    WeaponSubMachineGunVectorSpecial: 10
+    MagazinePistolSubMachineGun: 30
+    WeaponSubMachineGunP90: 10
+    MagazinePistolTopSubMachineGun: 20
+    WeaponEarthGovXRay: 5
+    WeaponEarthGovLaserSniper: 5
+    WeaponEarthGovLaserCarbine: 10
+    WeaponEarthGovLaserRifle: 10
+    WeaponEarthGovLaserPistol: 10
+    WeaponRifleSR127: 5
+    MagazineAntiMaterielRifleSR: 10
+    WeaponPistolDEagle: 5
+    MagazineMagnumPistol: 10
+    WeaponShotgun39: 10
+    WeaponShotgun12: 10
+    WeaponShotgunPaladin12: 10
+    BoxLethalshot: 60
+    WeaponRifleBR64: 10
+    MagazineHeavyRifleBR64: 20
+    WeaponRevolverMateba: 10
+    SpeedLoaderMagnum: 20
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMedicalEGMC
+  name: НаноМед
+  description: Это медицинский раздатчик препаратов. Только натуральные химикаты!
+  suffix: EGMC
+  components:
+  - type: VendingMachine
+    pack: NanoMedPlusInventoryEGMC
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+  - type: Advertise
+    pack: NanoMedAds
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/MarineMed.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["EarthGov"]]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#9dc5c9"
+
+- type: vendingMachineInventory
+  id: NanoMedPlusInventoryEGMC
+  startingInventory:
+    Brutepack: 40
+    Ointment: 40
+    BruteAutoInjector: 20
+    BurnAutoInjector: 20
+    AntiPoisonMedipen: 20
+    PillCanisterBicaridine: 10
+    PillCanisterDermaline: 10
+    PillCanisterDylovene: 10
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMedicalHyperEGMC
+  name: НаноМед Гипер
+  description: Это медицинский раздатчик препаратов. Только натуральные химикаты!
+  suffix: EGMC
+  components:
+  - type: VendingMachine
+    pack: NanoMedPlusInventoryEGMCMedic
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+  - type: Advertise
+    pack: NanoMedAds
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Medick.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["EarthGovMedic"]]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#9dc5c9"
+
+- type: vendingMachineInventory
+  id: NanoMedPlusInventoryEGMCMedic
+  startingInventory:
+    HandheldHealthAnalyzer: 20
+    RegenerativeMesh: 40
+    MedicatedSuture: 40
+    MedkitCombatFilled: 20
+    MedkitAdvancedFilled: 20
+    EpinephrineChemistryBottle: 20
+    OmnizineChemistryBottle: 20
+    EphedrineChemistryBottle: 20
+    Hypospray: 2
+    PillCanisterBicaridine: 20
+    PillCanisterDermaline: 20
+    PillCanisterDylovene: 20
+    PillCanisterDexalin: 20
+    BattleMedipen: 10
+    BoxBodyBag: 10
+    CheapRollerBed: 10
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEGMCOfficer
+  name: Раздатчик офицерской формы
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCDrobeInventoryMarineOfficer
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["EarthGovCommand"]]
+
+- type: vendingMachineInventory
+  id: EGMCDrobeInventoryMarineOfficer
+  startingInventory:
+    ClothingUniformJumpsuitEgov: 2
+    ClothingUniformEGovShtab: 2
+    ClothingHeadHatEgovCap: 2
+    ClothingMaskTacticalGas: 2
+    ClothingBeltShellShotgunFill: 2
+    ClothingBeltPistolHolster: 2
+    ClothingBeltMedicalMarine: 2
+    ClothingBeltGeneralG6: 2
+    ClothingBeltAmmo: 2
+    ClothingShellPounch: 4
+    ClothingPistolPounch: 4
+    ClothingMedicalPounch: 4
+    ClothingAmmoPounch: 4
+    ClothingPounchMTF: 4
+    ClothingHeadHatEgovShtabCap: 2
+    ClothingHeadHatMarineBeret: 2
+    ClothingHeadHatBeretCentcomNaval: 2
+    ClothingHeadHatERTLeaderBeret: 2
+    ClothingHeadHatBeretMerc: 2
+    ClothingOuterNavyVest: 2
+    ClothingOuterArmorBasic: 2
+    ClothingOuterArmorBulletproof: 2
+    ClothingHandsGlovesCombat: 2
+    ClothingShoesBootsCombatFilled: 2
+    ClothingShoesBootsLaceup: 2
+    FlashlightSeclite: 2
+    ClothingBackpackMilitarySatchel: 2
+    ClothingHeadsetEarthGov: 2
+    ClothingEyesHudSecurity: 2
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEGMCMedic
+  name: Раздатчик медицинской формы
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCDrobeInventoryMarineMedic
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["EarthGovMedic"]]
+
+- type: vendingMachineInventory
+  id: EGMCDrobeInventoryMarineMedic
+  startingInventory:
+    ClothingUniformJumpsuitEgov: 2
+    ClothingHeadHatEgovCap: 2
+    ClothingMaskTacticalGas: 2
+    ClothingBeltShellShotgunFill: 2
+    ClothingBeltPistolHolster: 2
+    ClothingBeltMedicalMarine: 2
+    ClothingBeltGeneralG6: 2
+    ClothingBeltAmmo: 2
+    ClothingShellPounch: 4
+    ClothingPistolPounch: 4
+    ClothingMedicalPounch: 4
+    ClothingAmmoPounch: 4
+    ClothingPounchMTF: 4
+    ClothingHeadHatBeretBrigmedic: 2
+    ClothingHeadHatBeretSecurityMedic: 2
+    ClothingOuterVestArmorMedSec: 2
+    ClothingHandsGlovesCombat: 2
+    ClothingShoesBootsCombatFilled: 2
+    ClothingShoesColorWhite: 2
+    ClothingHandsGlovesNitrile: 2
+    ClothingEyesHudMedical: 2
+    ClothingBeltMedicalEMTFilled: 2
+    FlashlightSeclite: 2
+    ClothingBackpackDuffelMilitary: 2
+    ClothingHeadsetEarthGov: 2
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEGMCSpecialits
+  name: Раздатчик формы специалиста
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCDrobeInventoryMarineSpecialits
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["EarthGovSpecialits"]]
+
+- type: vendingMachineInventory
+  id: EGMCDrobeInventoryMarineSpecialits
+  startingInventory:
+    ClothingUniformEGovSpecial: 2
+    ClothingHeadHelmetRiot: 2
+    ClothingHeadHatEgovCap: 2
+    ClothingMaskTacticalGas: 2
+    ClothingBeltShellShotgunFill: 2
+    ClothingBeltPistolHolster: 2
+    ClothingBeltMedicalMarine: 2
+    ClothingBeltGeneralG6: 2
+    ClothingBeltAmmo: 2
+    ClothingShellPounch: 4
+    ClothingPistolPounch: 4
+    ClothingMedicalPounch: 4
+    ClothingAmmoPounch: 4
+    ClothingPounchMTF: 4
+    ClothingHeadHatMarineBeret: 2
+    ClothingHeadHelmetXenonauten: 2
+    ClothingOuterNavyVest: 2
+    ClothingOuterXenonautenLight: 2
+    ClothingOuterXenonautenMedium: 2
+    ClothingOuterXenonautenHeavy: 2
+    ClothingHandsGlovesCombat: 2
+    ClothingShoesBootsCombatFilled: 2
+    FlashlightSeclite: 2
+    ClothingBackpackRIGSpecialits: 2
+    ClothingHeadsetEarthGov: 2
+    ClothingEyesHudSecurity: 2
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineWeaponEGMCSpecialits
+  name: Раздатчик вооружения специалиста
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Smartgunner.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCWeaponInventoryMarineSpecialits
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: AmmoVendAds
+  - type: AccessReader
+    access: [["EarthGovSpecialits"]]
+
+- type: vendingMachineInventory
+  id: EGMCWeaponInventoryMarineSpecialits
+  startingInventory:
+    WeaponPistolVP78: 2
+    MagazinePistolHighCapacity: 20
+    WeaponSubMachineGunUzi: 2
+    MagazinePistolBoxSubMachineGun: 20
+    WeaponPistolDivet2: 2
+    WeaponPistolDivet: 2
+    MagazinePistol345: 40
+    WeaponEarthGovLaserMG: 5
+    WeaponPistolDEagle: 5
+    MagazineMagnumPistol: 20
+    WeaponShotgunZauer: 2
+    MagazineShotgun: 20
+    WeaponShotgun39: 10
+    WeaponShotgun12: 10
+    BoxLethalshot: 40
+    WeaponRevolverMateba: 10
+    SpeedLoaderMagnum: 20
+    WeaponLightMachineGunMG60: 1
+    MagazineLightMachineGunDrum: 10
+    WeaponRifleM41: 1
+    MagazineHeavyRifleV41: 10
+    FirethrowerGun: 1
+    FuelTankFirethrower: 10
+    MagazineBoxRifle: 20
+    WeaponMinigun100: 1
+    PowerpackRifle: 1
+    MagazineBoxLightRifle: 20
+    MagazineBoxPistol: 20
+    MagazineBoxMagnum: 20
+    MagazineBoxCaselessRifle: 20
+    MagazineBoxCaselessRifleBig: 20
+    MagazineBoxLightRifleBig: 20
+    MagazineBoxRifleBig: 20
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineOfficerWeaponEGMC
+  name: офицерский раздатчик вооружения
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/Leader.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: EGMCWeaponInventoryMarineOfficer
+    offState: off
+    brokenState: broken
+    normalState: normal
+    ejectState: eject
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: AmmoVendAds
+  - type: AccessReader
+    access: [["EarthGovCommand"]]
+
+- type: vendingMachineInventory
+  id: EGMCWeaponInventoryMarineOfficer
+  startingInventory:
+    WeaponPistolDivet2: 5
+    WeaponPistolDivet: 5
+    MagazinePistol345: 40
+    WeaponRevolverMateba: 5
+    SpeedLoaderMagnum: 20
+    WeaponPistolDEagle: 5
+    MagazineMagnumPistol: 20
+    WeaponSniperGarand: 5
+    SpeedLoaderLightRifle: 20
+    WeaponRifleSTG44: 5
+    MagazineLightRifle: 20
+    WeaponRifleDragunov: 5
+    MagazineRifleLightSniper: 20
+    WeaponSubMachineGunPPSH41: 5
+    MagazinePistolDrumSubMachineGun: 20
+    WeaponSubMachineGunMP38: 5
+    MagazinePistolBoxSubMachineGun: 20
+    ClothingBeltSheathFilled: 5

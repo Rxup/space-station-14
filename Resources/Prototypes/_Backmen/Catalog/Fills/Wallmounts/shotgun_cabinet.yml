@@ -1,0 +1,14 @@
+- type: entity
+  parent: ShotGunCabinet
+  id: ShotGunCabinetFilledBackmen
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+      - WeaponShotgunPaladin12
+
+- type: entity
+  parent: [ShotGunCabinetFilledBackmen, ShotGunCabinetOpen]
+  id: ShotGunCabinetFilledOpenBackmen
+  suffix: Filled, Open

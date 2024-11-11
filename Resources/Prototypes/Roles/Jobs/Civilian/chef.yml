@@ -31,3 +31,6 @@
     id: ChefPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltChefFilled
+  #storage:
+    #back:
+    #- Stuff

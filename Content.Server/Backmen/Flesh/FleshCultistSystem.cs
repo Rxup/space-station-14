@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
+using Content.Server.Backmen.Language;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
@@ -24,6 +25,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning;
 using Content.Shared.Fluids.Components;
@@ -37,6 +39,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
+using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -74,12 +77,17 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
+    [ValidatePrototypeId<LanguagePrototype>]
+    private const string FleshLang = "Flesh";
 
     public override void Initialize()
     {
         base.Initialize();
 
+
+        SubscribeLocalEvent<FleshCultistComponent, DetermineEntityLanguagesEvent>(OnGetLanguage);
         SubscribeLocalEvent<FleshCultistComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistShopActionEvent>(OnShop);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistInsulatedImmunityMutationEvent>(OnInsulatedImmunityMutation);
@@ -94,6 +102,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistComponent, CloningEvent>(OnCultistCloning);
 
         InitializeAbilities();
+    }
+
+    private void OnGetLanguage(Entity<FleshCultistComponent> ent, ref DetermineEntityLanguagesEvent args)
+    {
+        args.UnderstoodLanguages.Add(FleshLang);
+        args.SpokenLanguages.Add(FleshLang);
     }
 
     private void OnCultistCloning(EntityUid uid, FleshCultistComponent component, ref CloningEvent args)
@@ -221,6 +235,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _action.AddAction(uid, ref component.FleshCultistShop, FleshCultistShop);
         _action.AddAction(uid, ref component.FleshCultistDevour, FleshCultistDevour);
         _action.AddAction(uid, ref component.FleshCultistAbsorbBloodPool, FleshCultistAbsorbBloodPool);
+
+        _language.UpdateEntityLanguages(uid);
     }
 
     private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component,
@@ -258,6 +274,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.ToggleUi(uid, uid, store);
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string MutationPoint = "MutationPoint";
+
     private void ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -268,7 +287,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (TryComp<StoreComponent>(uid, out var store))
             _store.UpdateUserInterface(uid, uid, store);
 
-        _alerts.ShowAlert(uid, AlertType.MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
+        _alerts.ShowAlert(uid, MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
     }
 
     private void OnDevourAction(EntityUid uid, FleshCultistComponent component, FleshCultistDevourActionEvent args)

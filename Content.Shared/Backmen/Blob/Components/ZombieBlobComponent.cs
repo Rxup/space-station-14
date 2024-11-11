@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Backmen.Blob.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class ZombieBlobComponent : Component, IAntagStatusIconComponent
+public sealed partial class ZombieBlobComponent : Component
 {
     public List<string> OldFactions = new();
 
@@ -24,6 +24,6 @@ public sealed partial class ZombieBlobComponent : Component, IAntagStatusIconCom
     [DataField("greetSoundNotification")]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/zombie_start.ogg");
 
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "BlobFaction";
-    public bool IconVisibleToGhost { get; set; } = true;
+    [DataField, AutoNetworkedField]
+    public bool CanShoot = false;
 }

@@ -1,3 +1,5 @@
+ent-ReinforcementRadio = радио подкрепления Синдиката
+    .desc = Призовите на помощь агента Синдиката сомнительного качества, мгновенно! Предоставляется только базовое снаряжение.
 # Corvax-HiddenDesc-Start
 ent-ReinforcementRadioSyndicate = старое радио
     .suffix = радио подкрепления Cиндиката
@@ -10,6 +12,8 @@ ent-ReinforcementRadioSyndicateAncestor = телепорт подкреплен�
 ent-ReinforcementRadioSyndicateAncestorNukeops = { ent-ReinforcementRadioSyndicateAncestor }
     .suffix = Ядерные оперативники
     .desc = { ent-ReinforcementRadioSyndicateAncestor.desc }
+ent-ReinforcementRadioSyndicateSyndiCat = телепорт подкрепления Синдикота
+    .desc = Призывает на помощь верного дрессированного кота с микробомбой.
 ent-ReinforcementRadioSyndicateCyborgAssault = { ent-ReinforcementRadioSyndicate }
     .suffix = радио подкрепления штурмового киборга Синдиката
     .desc = Призовите хорошо вооружённого штурмового киборга, немедленно!

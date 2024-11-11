@@ -24,4 +24,6 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
-
+  #storage:
+    #back:
+    #- Stuff

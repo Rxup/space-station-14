@@ -29,6 +29,7 @@ action-name-telegnosis = Телегноз
 action-description-telegnosis = Создайте телегностическую проекцию, чтобы удаленно наблюдать за происходящим.
 action-name-psionic-regeneration = Псионическая регенерация
 action-description-psionic-regeneration = Доведите свой естественный метаболизм до предела, чтобы усилить способность вашего организма к регенерации.
+glimmer-change-notification = Уровень сияния изменился с { $last } до { $now } ( { $delta } )
 glimmer-report = Текущий уровень сияния: { $level }Ψ.
 glimmer-event-report-generic = Ноосферический разряд не обнаружен. Уровень сияния снизился на { $decrease } до { $level }Ψ.
 glimmer-event-report-signatures = Проявились новые псионические сигнатуры. Уровень сияния снизился на { $decrease } до { $level }Ψ.
@@ -51,3 +52,4 @@ action-name-rf-sensitivity = Переключение чувствительно
 action-desc-rf-sensitivity = Включайте и выключайте свою способность интерпретировать радиоволны.
 
 cant-use-in-invisible = невозможно использовать из невидимости
+cant-use-in-insulation = невозможно использовать во время псионической изоляции

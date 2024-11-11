@@ -5,6 +5,16 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Canilunzt
+    understands:
+    - TauCetiBasic
+    - Canilunzt
+    - Dog
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Hunger # on 1.5x more
@@ -34,6 +44,13 @@
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
+  - type: Speech
+    allowedEmotes: ['Howl', 'Growl']
+  - type: Vocal
+    sounds:
+      Male: MaleVulpkanin
+      Female: FemaleVulpkanin
+      Unsexed: MaleVulpkanin
   - type: GrowlingAccent
   - type: MeleeWeapon
     animation: WeaponArcClaw
@@ -42,7 +59,6 @@
     damage:
       types:
         Slash: 5
-  - type: LightweightDrunk
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulpkanin
@@ -53,13 +69,14 @@
     damageRecovery:
       types:
         Asphyxiation: -2.0
+  - type: Wagging
 
 - type: entity
   save: false
   name: Urist McHands
   parent: MobHumanDummy
   id: MobVulpkaninDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy vulpkanin meant to be used in character setup.
   components:
   - type: HumanoidAppearance

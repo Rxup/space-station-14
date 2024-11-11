@@ -11,11 +11,14 @@
       damageRecovery:
         types:
           Asphyxiation: -1.0
+    - type: FootPrints
+      leftBarePrint: "footprint-left-bare-diona"
+      rightBarePrint: "footprint-right-bare-diona"
 
 # Reformed Diona
 - type: entity
   parent: MobDiona
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MobDionaReformed
   name: Reformed Diona
   components:

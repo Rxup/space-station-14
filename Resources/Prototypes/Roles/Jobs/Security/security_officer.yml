@@ -33,3 +33,6 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetSecurity
+  storage:
+    back:
+    - Flash

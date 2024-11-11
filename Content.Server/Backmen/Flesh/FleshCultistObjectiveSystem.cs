@@ -1,9 +1,8 @@
 ﻿using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Objectives;
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking.Components;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Player;
 
@@ -33,12 +32,11 @@ public sealed class FleshCultistObjectiveSystem : EntitySystem
             return;
         }
 
-        var isLeader = component.PrototypeId == "FleshCultistLeader";
 
         var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var cult, out var _))
         {
-            if (isLeader)
+            if (component.IsLeader)
             {
                 GreetCultistLeader(session, cult.CultistsNames);
                 continue;

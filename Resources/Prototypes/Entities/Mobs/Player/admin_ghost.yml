@@ -1,8 +1,8 @@
 - type: entity
-  parent: MobObserver
+  parent: [MobObserverBase, InventoryBase]
   id: AdminObserver
   name: admin observer
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ContentEye
     maxZoom: 8.916104, 8.916104
@@ -12,12 +12,14 @@
     - CanPilot
     - BypassInteractionRangeChecks
     - BypassDropChecks
+    - NoConsoleSound
   - type: Input
     context: "aghost"
   - type: Ghost
     canInteract: true
   - type: GhostHearing
   - type: Hands
+  - type: ComplexInteraction
   - type: Puller
   - type: CombatMode
   - type: Physics
@@ -27,13 +29,7 @@
     prototype: Aghost
   - type: Access
     groups:
-    - AllAccess
-    - CentCom
-    - MTFLeader
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
-    - CentralCommand
+    - AdminAllAccess
   - type: UserInterface
     interfaces:
       enum.SolarControlConsoleUiKey.Key:
@@ -70,12 +66,14 @@
   - type: RadarConsole
     followEntity: true
   - type: CargoOrderConsole
+  - type: BankClient
   - type: CrewMonitoringConsole
   - type: GeneralStationRecordConsole
     canDeleteEntries: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
+    transmitFrequencyId: ShuttleTimer
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
@@ -85,19 +83,22 @@
   - type: Stripping
   - type: SolutionScanner
   - type: IgnoreUIRange
-  - type: ShowRevIcons
-  - type: ShowZombieIcons
+  - type: ShowAntagIcons
   - type: Inventory
     templateId: aghost
-  - type: InventorySlots
   - type: Loadout
     prototypes: [ MobAghostGear ]
+  - type: BypassInteractionChecks
+  - type: BkmSupermatterImmune
+  # Corvax-Start
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 30
+  # Corvax-End
 
 - type: entity
   id: ActionAGhostShowSolar
   name: Solar Control Interface
-  description: View a solar control interface.
-  noSpawn: true
+  description: View a Solar Control Interface.
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
@@ -109,34 +110,31 @@
 - type: entity
   id: ActionAGhostShowCommunications
   name: Communications Interface
-  description: View a communications interface.
-  noSpawn: true
+  description: View a Communications Interface.
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
     iconOn: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -4
     event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
 
 - type: entity
   id: ActionAGhostShowRadar
   name: Mass Scanner Interface
-  description: View a mass scanner interface.
-  noSpawn: true
+  description: View a Mass Scanner Interface.
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
     iconOn: Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -6
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
 
 - type: entity
   id: ActionAGhostShowCargo
   name: Cargo Ordering Interface
-  description: View a cargo ordering interface.
-  noSpawn: true
+  description: View a Cargo Ordering Interface.
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/cargo.png # Corvax-Resprite
@@ -148,25 +146,23 @@
 - type: entity
   id: ActionAGhostShowCrewMonitoring
   name: Crew Monitoring Interface
-  description: View a crew monitoring interface.
-  noSpawn: true
+  description: View a Crew Monitoring Interface.
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
     iconOn: Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -8
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
 
 - type: entity
   id: ActionAGhostShowStationRecords
   name: Station Records Interface
-  description: View a station records Interface
-  noSpawn: true
+  description: View a Station Records Interface.
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/records.png # Corvax-Resprite
     iconOn: Corvax/Interface/AdminActions/records.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -7
     event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }

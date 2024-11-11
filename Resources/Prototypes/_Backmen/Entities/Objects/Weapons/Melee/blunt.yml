@@ -1,0 +1,33 @@
+- type: entity
+  name: shinai
+  parent: BaseItem
+  id: Shinai
+  description: A bamboo sword, commonly used in kendo. Made some time after the realization that wooden swords hurt a lot.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/shinai.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.25
+    range: 1.75
+    bluntStaminaDamageFactor: 2.0
+    damage:
+      types:
+        Blunt: 4
+    soundHit:
+      collection: GlassBreak
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Item
+    size: Huge
+    sprite: Backmen/Objects/Weapons/Melee/shinai.rsi
+  - type: DisarmMalus
+
+- type: entity
+  name: дубинка-шокер спецсил
+  parent: Stunbaton
+  id: StunbatonSuper
+  description: Электрошоковая дубинка для обездвиживания людей. Слишком усердное причинение вреда с помощью этого предмета считается дурным тоном.
+  components:
+    - type: Stunbaton
+      energyPerUse: 10

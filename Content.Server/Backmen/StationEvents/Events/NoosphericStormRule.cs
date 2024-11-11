@@ -1,12 +1,11 @@
 ﻿using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
-using Content.Server.GameTicking.Components;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Random;
 

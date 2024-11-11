@@ -1,0 +1,210 @@
+﻿# ruined hospital
+
+- type: entitySpawnEntry
+  id: RuinedHospitalWalls
+  #tile: Plating
+  #prob: 0.05
+  entries:
+  - id: RandomPainting
+    prob: 1
+    orGroup: content
+  - id: DefibrillatorCabinetFilled
+    prob: 0.2
+    orGroup: content
+  - id: ExtinguisherCabinetFilled
+    prob: 0.2
+    orGroup: content
+  - id: IntercomCommon
+    prob: 0.1
+    orGroup: content
+
+- type: entitySpawnEntry
+  id: RuinedHospitalDoor
+  entries:
+  - id: AirlockGlass
+
+- type: dungeonConfig
+  id: RuinedHospital
+  data:
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallSolidRust
+      Walls: WallDrywall
+    spawnGroups:
+      CornerClutter: BaseClutter
+      Entrance: RuinedHospitalDoor
+      EntranceFlank: BaseWindow
+      Junction: BaseAirlock
+      Window: BaseWindow
+      WallMounts: RuinedHospitalWalls
+    tiles:
+      FallbackTile: Plating
+    whitelists:
+      Rooms:
+        tags:
+        - RuinedHospital
+  layers:
+  - !type:PrototypeDunGen
+    proto: NyanoCompound
+
+  #- !type:MiddleConnectionPostGen
+  #  count: 1
+  #  tile: FloorWhitePlastic
+  #  entities:
+  #    - CableApcExtension
+  #    - AirlockGlass
+
+  #- !type:EntrancePostGen
+  #  count: 2
+  #  tile: FloorWhitePlastic
+  #  entities:
+  #    - AirlockGlass
+
+  #- !type:WallMountPostGen
+  #  tile: Plating
+  #  prob: 0.05
+  #  spawns:
+  #    - id: RandomPainting
+  #      prob: 1
+  #      orGroup: content
+  #    - id: DefibrillatorCabinetFilled
+  #      prob: 0.2
+  #      orGroup: content
+  #    - id: ExtinguisherCabinetFilled
+  #      prob: 0.2
+  #      orGroup: content
+  #    - id: IntercomCommon
+  #      prob: 0.1
+  #      orGroup: content
+
+  #- !type:BoundaryWallPostGen
+  #  tile: Plating
+  #  wall: WallDrywall
+  #  cornerWall: WallDrywall
+
+# ruined dwellings
+
+- type: entitySpawnEntry
+  id: RuinedDwellingsDoor
+  entries:
+  - id: CableApcExtension
+  - id: WoodDoor
+
+- type: entitySpawnEntry
+  id: RuinedDwellingsEntranceFlank
+  entries:
+  - id: CableApcExtension
+  - id: WallPaper
+
+- type: dungeonConfig
+  id: RuinedDwellings
+  data:
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallSolidRust
+      Walls: WallDrywall
+    spawnGroups:
+      Window: BaseWindow
+      Entrance: RuinedDwellingsDoor
+      CornerClutter: BaseClutter
+      Junction: BaseAirlock
+      EntranceFlank: RuinedDwellingsEntranceFlank
+    tiles:
+      FallbackTile: FloorWood
+    whitelists:
+      Rooms:
+        tags:
+        - RuinedDwelling
+  layers:
+  - !type:PrototypeDunGen
+    proto: NyanoStack
+
+#  - !type:MiddleConnectionPostGen
+#    count: 1
+#    tile: FloorWood
+#    entities:
+#      - CableApcExtension
+#      - WoodDoor
+#
+#  - !type:EntrancePostGen
+#    count: 2
+#    tile: FloorWood
+#    entities:
+#      - WoodDoor
+#
+#  - !type:ExternalWindowPostGen
+#    tile: FloorWood
+#    entities:
+#      - Window
+#
+#  - !type:WallMountPostGen
+#    tile: Plating
+#    prob: 0.05
+#    spawns:
+#      - id: RandomPainting
+#        prob: 1
+#        orGroup: content
+
+  #- !type:BoundaryWallPostGen
+  #  tile: Plating
+  #  wall: WallDrywall
+  #  cornerWall: WallDrywall
+
+# ruined shops
+
+- type: dungeonConfig
+  id: RuinedShop
+  data:
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallDrywall
+      Walls: WallDrywall
+    spawnGroups:
+      Window: BaseWindow
+      WallMounts: ScienceLabsWalls
+      CornerClutter: BaseClutter
+      EntranceFlank: BaseWindow
+      Entrance: ShopWoodDoor
+    tiles:
+      FallbackTile: Plating
+    whitelists:
+      Rooms:
+        tags:
+        - RuinedShop
+  layers:
+  - !type:PrototypeDunGen
+    proto: NyanoSolo9
+
+- type: entitySpawnEntry
+  id: ShopWoodDoor
+  entries:
+  - id: WoodDoor
+
+- type: entitySpawnEntry
+  id: ShopWall
+  entries:
+  - id: WallDrywall
+
+#  postGeneration:
+#    - !type:EntrancePostGen
+#      count: 1
+#      tile: FloorAsphalt
+#      entities:
+#        - WoodDoor
+#
+#    - !type:ExternalWindowPostGen
+#      tile: FloorWood
+#      entities:
+#        - Window
+#
+#    - !type:WallMountPostGen
+#      tile: Plating
+#      prob: 0.05
+#      spawns:
+#        - id: RandomPosterAny
+#          orGroup: content
+#
+#    - !type:BoundaryWallPostGen
+#      tile: Plating
+#      wall: WallDrywall
+#      cornerWall: WallDrywall

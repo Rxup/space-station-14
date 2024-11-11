@@ -1,0 +1,21 @@
+- type: entity
+  id: SpiderWebArachneClassicAction
+  name: spider-web-action-name
+  description: spider-web-action-description
+  components:
+    - type: InstantAction
+      useDelay: 180
+      icon: Interface/Actions/web.png
+      event: !type:SpiderWebActionEvent
+
+- type: entity
+  id: ActionSpiderVampireEgg
+  name: name-Spider-Vampire-Egg
+  description: description-Spider-Vampire-Egg
+  components:
+    - type: InstantAction
+      icon: { sprite: Backmen/Objects/Misc/eggspider.rsi, state: icon }
+      priority: -10
+      event: !type:SpiderVampireEggActionEvent
+      charges: 1
+      useDelay: 30

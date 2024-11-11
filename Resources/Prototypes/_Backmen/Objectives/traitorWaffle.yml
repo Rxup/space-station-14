@@ -1,0 +1,81 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseTraitorObjectiveWaffle
+  components:
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - TraitorRole
+  - type: Objective
+    issuer: issuer-Waffle-Corporation
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      tags:
+      - Cybersan
+      - MI13
+      - Donk
+      - Interdyne
+      - Gorlex
+  - type: Tag
+    tags:
+    - Waffle
+
+- type: Tag
+  id: Waffle
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseTraitorObjectiveWaffle
+  id: DieObjectiveWaffle
+  name: Умрите смертью храбрых
+  description: Умри с честью и достоинством.
+  components:
+  - type: Objective
+    difficulty: 0.5
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - EscapeShuttleCondition
+      - StealCondition
+      tags:
+      - Cybersan
+      - MI13
+      - Donk
+      - Interdyne
+  - type: DieCondition
+
+# kill
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
+  id: KillRandomPersonObjectiveWaffle
+  description: Он видел то чего не следует, нужно чтоб он больше не увидел белого света.
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
+  id: KillRandomHeadObjectiveWaffle
+  description: Этот глава явно что-то знает, нельзя допустить чтоб он выжил.
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-head-title
+  - type: PickRandomHead
+  - type: KillPersonCondition
+    requireDead: true

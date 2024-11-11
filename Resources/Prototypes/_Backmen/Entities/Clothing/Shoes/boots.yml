@@ -1,0 +1,109 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsIHScombat
+  name: Боевая обувь IHS
+  description: Удобная обувь наемников IHS, защищает от взрывов
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
+  - type: FootstepModifier # Corvax-Sounds
+    footstepSoundCollection:
+      collection: FootstepBoots
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBootsSpetsnaz
+  name: обувь спецназа
+  suffix: noslip
+  description: Обувь спецназа Nanotrasen, для боевых операций или боевых действий. Борьба - всё, борьба - всегда.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+  - type: NoSlip
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -2
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBootsNedoSpetsnaz
+  name: боевая обувь
+  description: Обувь спецназа Nanotrasen, для боевых операций или боевых действий. Борьба - всё, борьба - всегда.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -2
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ChronoLegionnaireBoots
+  name: advanced chrono boots
+  description: Minimalist shoes with magnetic soles, allowing the wearer to move at an impressive speed and not worry about clowns with banana peels.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/chrono.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/chrono.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.5
+#    enabled: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -999
+  - type: NoSlip
+  
+- type: entity  
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsBerrci
+  name: Шнурованные берцы
+  description: Удобная обувь с шнурками.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/berrci.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/berrci.rsi
+  - type: FootstepModifier # Corvax-Sounds
+    footstepSoundCollection:
+      collection: FootstepBoots
+
+- type: entity
+  parent: ClothingShoesBootsSpetsnaz
+  id: ClothingShoesBootsCentcom
+  name: подкованные сапоги Центком
+  description: Специальная обувь служащих Центрального командования.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
+  - type: NoSlip

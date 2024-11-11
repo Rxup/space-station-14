@@ -2,32 +2,30 @@
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Ghost;
+using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Vampiric;
 
 public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 {
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+
+    private StatusIconPrototype _statusIconPrototype = default!;
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BkmVampireComponent, CanDisplayStatusIconsEvent>(OnCanShowVampireIcon);
+        _statusIconPrototype = _prototype.Index<FactionIconPrototype>(VampireFaction);
+        SubscribeLocalEvent<BkmVampireComponent, GetStatusIconsEvent>(OnShowVampireIcon);
     }
 
-    private void OnCanShowVampireIcon<T>(EntityUid uid, T comp, ref CanDisplayStatusIconsEvent args) where T : IAntagStatusIconComponent
-    {
-        args.Cancelled = !CanDisplayIcon(args.User, comp.IconVisibleToGhost);
-    }
+    [ValidatePrototypeId<FactionIconPrototype>]
+    private const string VampireFaction = "VampireFaction";
 
-    /// <summary>
-    /// The criteria that determine whether a client should see Rev/Head rev icons.
-    /// </summary>
-    private bool CanDisplayIcon(EntityUid? uid, bool visibleToGhost)
+    private void OnShowVampireIcon(Entity<BkmVampireComponent> ent, ref GetStatusIconsEvent args)
     {
-        if (visibleToGhost && HasComp<GhostComponent>(uid))
-            return true;
-
-        return HasComp<BkmVampireComponent>(uid);
+        args.StatusIcons.Add(_statusIconPrototype);
     }
 }

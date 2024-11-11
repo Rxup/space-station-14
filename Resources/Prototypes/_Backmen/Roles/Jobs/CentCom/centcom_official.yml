@@ -1,0 +1,109 @@
+- type: job
+  id: BKCCOfficial
+  name: job-name-centcomoffBK
+  description: job-description-centcomoffBK
+  playTimeTracker: JobCentralCommandOfficial
+  setPreference: true
+  startingGear: CentComCorvax
+  icon: JobIconNT
+  supervisors: job-supervisors-hoh
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  whitelisted: true
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 1
+  access:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+    - CCOfficer
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
+        - type: Psionic
+        - type: DispelPower
+        - type: AntagImmune
+  minBankBalance: 400
+  maxBankBalance: 600
+  wageDepartment: CentCom
+  wage: 75
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNT
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: NT
+
+
+
+- type: startingGear
+  id: CentComOfficialEVAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    shoes: ClothingShoesBootsLaceup
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCentcomNaval
+    outerClothing: ClothingOuterHardsuitCentcomCarporate
+    suitstorage: OxygenTankFilled
+    id: CentcomPDABackmen
+    ears: ClothingHeadsetAltCentCom
+    pocket1: CyberPen
+    pocket2: BoxFolderSecretBlack
+  #innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
+
+- type: entity
+  parent: BasePDA
+  id: CentcomPDABackmen
+  name: CentCom PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComOfficialCorvax
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComOfficialCorvax
+  name: ID карта ПЦК
+  components:
+    - type: Sprite
+      layers:
+      - state: silver
+      - state: idiaa
+      - state: idcentcom
+    - type: Item
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: BKCCOfficial
+    - type: Access
+      tags:
+        - CCCargo
+        - CCSecurity
+        - CentralCommand
+        - CCOfficer
+      groups:
+        - AllAccess

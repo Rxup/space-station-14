@@ -1,0 +1,787 @@
+﻿- type: entity
+  parent: VendingMachineDiscount
+  id: BackmenVendingMachineDiscount
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - DiscountDansInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachine
+  id: BackmenVendingLootBox
+  name: ЛутБоксы
+  suffix: backmen
+  description: Испытайте удачу и откройте свой лутбокс!
+  components:
+    - type: VendingMachine
+      pack: BoozeOMatInventory
+      dispenseOnHitChance: 0.00001
+      dispenseOnHitThreshold: 5000
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+    - type: Advertise
+      pack: AmmoVendAds
+    - type: Speech
+    - type: Sprite
+      sprite: Backmen/Structures/Machines/VendingMachines/lootbox.rsi
+      layers:
+        - state: "off"
+          map: ["enum.VendingMachineVisualLayers.Base"]
+        - state: "off"
+          map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+          shader: unshaded
+        - state: panel
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#6148c7"
+    - type: Store
+      categories:
+        - VendingLootboxInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - VendingLootboxInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineCigs
+  id: BackmenVendingMachineCigs
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - CigaretteMachineInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - CigaretteMachineInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineCola
+  id: BackmenVendingMachineCola
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - RobustSoftdrinksInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineColaBlack
+  id: BackmenVendingMachineColaBlack
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - RobustSoftdrinksInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSoda
+  id: BackmenVendingMachineSoda
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - RobustSoftdrinksInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineDonut
+  id: BackmenVendingMachineDonut
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - DonutInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineChang
+  id: BackmenVendingMachineChang
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - ChangInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineCoffee
+  id: BackmenVendingMachineCoffee
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - HotDrinksMachineInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - HotDrinksMachineInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSovietSoda
+  id: BackmenVendingMachineSovietSoda
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - BodaInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSnack
+  id: BackmenVendingMachineSnack
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - GetmoreChocolateCorpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSnackOrange
+  id: BackmenVendingMachineSnackOrange
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - GetmoreChocolateCorpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSnackGreen
+  id: BackmenVendingMachineSnackGreen
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - GetmoreChocolateCorpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSnackBlue
+  id: BackmenVendingMachineSnackBlue
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - GetmoreChocolateCorpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSnackTeal
+  id: BackmenVendingMachineSnackTeal
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - GetmoreChocolateCorpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineSpaceUp
+  id: BackmenVendingMachineSpaceUp
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - SpaceUpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineColaRed
+  id: BackmenVendingMachineColaRed
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - ColaRedInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineShamblersJuice
+  id: BackmenVendingMachineShamblersJuice
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - ShamblersJuiceInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachinePwrGame
+  id: BackmenVendingMachinePwrGame
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - PwrGameInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineDrGibb
+  id: BackmenVendingMachineDrGibb
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - DrGibbInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineStarkist
+  id: BackmenVendingMachineStarkist
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - StarkistInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - DrinkVendInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineHappyHonk
+  id: BackmenVendingMachineHappyHonk
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - HappyHonkInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+      emagCategories:
+        - HappyHonkInventoryEmag
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineBoxingDrobe
+  suffix: backmen
+  components:
+  - type: VendingMachine
+    pack: VendingLootboxInventory
+    dispenseOnHitChance: 0.01
+    dispenseOnHitThreshold: 50
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/boxingdrobe.rsi
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal-unshaded
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Store
+    categories:
+      - BoxingDrobeInventory
+    currencyWhitelist:
+      - SpaceCash
+    balance:
+      SpaceCash: 0
+  - type: BuyStoreBank
+    emagCategories:
+      - BoxingDrobeInventoryEmag
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+    singleUser: true
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineMedical
+  id: VendingMachineMedicalNanoTrasen
+  name: НаноМед Гипер
+  description: Это медицинский раздатчик препаратов. Только натуральные химикаты!
+  suffix: МТФ
+  components:
+  - type: VendingMachine
+    pack: NanoMedPlusInventoryNanoTrasen
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+  - type: AccessReader
+    access: [["MTFM"]]
+
+- type: entity
+  parent: VendingMachineSec
+  id: VendingMachineMTFLeader
+  name: МТФТех Командный
+  description: Торговый автомат с экпипировкой Мобильно Оперативной Группы. На табличке написано "ТОЛЬКО ДЛЯ СОТРУДНИКОВ ДЕПАРТАМЕНТА СПЕЦИАЛЬНЫХ ОПЕРАЦИЙ".
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryNanoTrasenLeader
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["MTFL"]]
+
+- type: entity
+  parent: VendingMachineSec
+  id: VendingMachineMTFSecurity
+  name: МТФТех
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryNanoTrasenSecurity
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["MTFS"]]
+
+- type: entity
+  parent: VendingMachineSec
+  id: VendingMachineMTFMedical
+  name: МТФТех Медицинский
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryNanoTrasenMedical
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["MTFM"]]
+
+- type: entity
+  parent: VendingMachineSec
+  id: VendingMachineMTFEngineer
+  name: МТФТех Инженерный
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryNanoTrasenEngineer
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["MTFE"]]
+
+- type: entity
+  parent: VendingMachineSec
+  id: VendingMachineMTFJanitor
+  name: МТФТех Уборочный
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryNanoTrasenJanitor
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: AccessReader
+    access: [["MTFJ"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineAmmoMTF
+  name: станция вооружения МТФ
+  description: Большая станция выдачи вооружения мобильно оперативной группы, выглядит патриотично.
+  components:
+  - type: VendingMachine
+    pack: AmmoVendAdsNanoTrasen
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: AmmoVendAds
+  - type: Speech
+  - type: AccessReader
+    access: [["MTF"]]
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/ammo.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMREDispancer
+  name: Раздатчик ИРП
+  description: Для тех случаев, когда еда нужна срочно. Лучший ассортимент еды!
+  components:
+  - type: VendingMachine
+    pack: MREDispenserInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: MegaSeedAds
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/seeds.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#326e3f"
+
+- type: entity # backmen
+  parent: VendingMachine
+  id: VendingMachineBackmen
+  name: Торгомат ViF
+  suffix: backmen
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/backmen.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: backmenDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal
+    denyState: deny-unshaded
+
+- type: vendingMachineInventory
+  id: backmenDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitVergil: 1 # backmen
+    ClothingUniformJumpsuitPants: 2 # backmen
+    ClothingOuterCoatBlackdmc: 1 # backmen
+    ClothingOuterCoatBluedmc: 1 # backmen
+    ClothingOuterCoatDesertdmc: 1 # backmen
+    ClothingOuterCoatGolddmc: 1 # backmen
+    ClothingOuterCoatPurpledmc: 1 # backmen
+    ClothingOuterCoatReddmc: 1 # backmen
+    ClothingOuterCoatSnowdmc: 1 # backmen
+    ClothingUniformJumpsuitJeester: 1 # backmen
+    ClothingHeadJeester: 1 # backmen
+    ClothingHeadHelmetGreenMilee: 2 # backmen
+    ClothingHeadHatBeretVet: 2 # backmen
+    ClothingNeckCloakPoncho: 2 # backmen
+    ClothingNeckCloakGreenMantie: 2 # backmen
+    ClothingUniformJumpsuitCamo: 3 # backmen
+    ClothingUniformJumpsuitCamoB: 3 # backmen
+    ClothingUniformJumpsuitSuitSssp: 3 # backmen
+    ClothingShoesBootsBerrci: 3 # backmen
+    ClothingUniformJumpsuitUnder: 2 # backmen
+    ClothingUniformJumpsuitCloth: 2 # backmen
+    ClothingOuterCoatNT: 2 # backmen
+    ClothingOuterCoatBlackViF: 2 # backmen
+    ClothingOuterCoatJacket: 2 # backmen
+    ClothingNeckCloakSanabi: 1 # backmen
+    #TGMCwhite
+    ClothingUniformJumpsuitTGMCwhite: 2 # backmen
+    ClothingHandsGlovesTGMCwhite: 2 # backmen
+    ClothingMaskTGMCwhite: 2 # backmen
+    ClothingHeadHelmetTGMCwhite: 2 # backmen
+    ClothingHeadHelmetTGMCwhiteMed: 2 # backmen
+    ClothingNeckCloakTGMCwhite: 2 # backmen
+    ClothingBeltTGMCwhite: 2 # backmen

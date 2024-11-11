@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from Shiptest-ss13 at commit https://github.com/shiptest-ss13/Shiptest/blob/e9fc9dd2e8d81f887f6a9187cc7da67c9e70c8f2/icons/obj/projectiles.dmi",
+  "copyright": "Taken from Shiptest-ss13 at commit https://github.com/shiptest-ss13/Shiptest/blob/e9fc9dd2e8d81f887f6a9187cc7da67c9e70c8f2/icons/obj/projectiles.dmi, state purple_soul taken from tgstation at https://github.com/tgstation/tgstation/blob/c2dfddc90801be77116db61782404e6c52465cb8/icons/obj/stack_objects.dmi and got purple",
   "size": {
     "x": 32,
     "y": 32
@@ -9,6 +9,9 @@
   "states": [
     {
       "name": "blood"
+    },
+    {
+      "name": "purple_soul"
     }
   ]
 }

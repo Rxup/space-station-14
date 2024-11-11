@@ -12,6 +12,6 @@ public sealed class NoNormalInteractionSystem : EntitySystem
 
     private void OnInteractionAttempt(EntityUid uid, NoNormalInteractionComponent component, InteractionAttemptEvent args)
     {
-        args.Cancel();
+        args.Cancelled = true;
     }
 }

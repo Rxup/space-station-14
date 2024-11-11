@@ -1,2 +1,2 @@
-ent-ClothingNeckTieCentCom = Галстук ЦК
-    .desc = { "Зелёный галстук ходячей бюрократии." }
+ent-ClothingNeckTieCentCom = галстук Центком
+    .desc = Зеленый галстук ходячей бюрократии.

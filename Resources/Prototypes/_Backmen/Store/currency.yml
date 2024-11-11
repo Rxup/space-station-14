@@ -1,0 +1,13 @@
+﻿- type: currency
+  id: SpaceCash
+  displayName: store-currency-display-spacecash
+  cash:
+    1: SpaceCash
+  canWithdraw: true
+  currencySymbol: store-currency-spacecredits-currency-symbol
+
+- type: currency
+  id: EvolutionPoint
+  displayName: store-currency-display-evolutionpoints
+  canWithdraw: false
+

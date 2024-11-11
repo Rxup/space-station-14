@@ -1,0 +1,184 @@
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCSH
+  name: Encryption Key CSH
+  components:
+  - type: EncryptionKey
+    channels:
+    - CSH
+    defaultChannel: CSH
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/encryption_keysCSH.rsi
+    layers:
+    - state: crypt_CSH
+    - state: CSH_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyFleet
+  name: Encryption Key Fleet
+  components:
+  - type: EncryptionKey
+    channels:
+    - Fleet
+    defaultChannel: Fleet
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/encryption_keysFleet.rsi
+    layers:
+    - state: crypt_green
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyUEG
+  name: Ключ шифрования ОПЗ
+  components:
+  - type: EncryptionKey
+    channels:
+    - UEG
+    defaultChannel: UEG
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/encryption_keysUEG.rsi
+    layers:
+    - state: crypt_ueg
+    - state: ueg_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyEarthGov
+  name: ключ шифрования EarthGov
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - UEG
+    defaultChannel: UEG
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: com_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComOfficer
+  name: ключ шифрования Центрального Офицера
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentCom
+    - CentComDeath
+    - CentComOBR
+    defaultChannel: CentCom
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyRebel
+  name: ключ шифрования Повстанцев
+  components:
+  - type: EncryptionKey
+    channels:
+    - Rebels
+    defaultChannel: Rebels
+  - type: Sprite
+    layers:
+    - state: crypt_rusted
+    - state: synd_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComOBRSR6
+  name: ключ шифрования ОБР СР6
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentComOBR
+    - CentComOBRSR6
+    defaultChannel: CentComOBR
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: com_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComOBRTHT9
+  name: ключ шифрования ОБР ЗТ9
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentComOBR
+    defaultChannel: CentComOBR
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: com_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComOBREPS11
+  name: ключ шифрования ОБР ЭПС11
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentComOBR
+    - CentComOBREPS11
+    defaultChannel: CentComOBR
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: com_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComOBR
+  name: ключ шифрования офицера ОБР
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentComOBRSR6
+    - CentComOBREPS11
+    - CentComOBR
+    defaultChannel: CentCom
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: com_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComDeath
+  name: ключ шифрования Эскадрона Смерти
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentComDeath
+    defaultChannel: CentCom
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: pirate_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCentComOperative
+  name: ключ шифрования Центрального Оператора
+  description: An encryption key used by captain's bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CentCom
+    defaultChannel: CentCom
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: nano_label

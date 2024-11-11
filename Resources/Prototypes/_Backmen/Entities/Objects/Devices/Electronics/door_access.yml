@@ -1,0 +1,131 @@
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCCargo
+  suffix: CentCom, Cargo, Locked
+  components:
+  - type: AccessReader
+    access: [["CCCargo"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCSecurity
+  suffix: CentCom, Security, Locked
+  components:
+  - type: AccessReader
+    access: [["CCSecurity"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCentCom
+  suffix: CentCom, Locked
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCOfficer
+  suffix: CentCom, Officer Locked
+  components:
+  - type: AccessReader
+    access: [["CCOfficer"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCAdmiral
+  suffix: CentCom, Admiral Locked
+  components:
+  - type: AccessReader
+    access: [["CCAdmiral"]]
+
+#ERT
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTFCommand
+  suffix: MTF, Command, Locked
+  components:
+  - type: AccessReader
+    access: [["MTFL"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTFCpls
+  suffix: MTF, Cpls, Locked
+  components:
+  - type: AccessReader
+    access: [["MTFE"], ["MTFM"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTFMedic
+  suffix: MTF, Medic, Locked
+  components:
+  - type: AccessReader
+    access: [["MTFM"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTFEngineer
+  suffix: MTF, Engineer, Locked
+  components:
+  - type: AccessReader
+    access: [["MTFE"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTFSecurity
+  suffix: MTF, Security, Locked
+  components:
+  - type: AccessReader
+    access: [["MTFS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTFJanitor
+  suffix: MTF, Janitor, Locked
+  components:
+  - type: AccessReader
+    access: [["MTFJ"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMTF
+  suffix: MTF, Locked
+  components:
+  - type: AccessReader
+    access: [["MTF"]]
+
+#----UEG
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEG
+  suffix: EarthGov, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGov"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEGMedic
+  suffix: EarthGov Medic, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGovMedic"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEGSpecialits
+  suffix: EarthGov Specialits, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGovSpecialits"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEGCommand
+  suffix: EarthGovCommand, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGovCommand"]]

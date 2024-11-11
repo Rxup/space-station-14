@@ -1,29 +1,23 @@
 - type: gameMapPool
   id: CorvaxDefaultMapPool
   maps:
+  # Highpop
   - CorvaxDelta
   - CorvaxAvrite
-  - CorvaxSilly
-  - CorvaxOutpost
   - CorvaxAstra
-  - CorvaxGelta
-  - CorvaxMaus
-  - CorvaxIshimura
-  - CorvaxPaper
   - CorvaxPilgrim
-  - CorvaxSplit
-  - CorvaxTerra
-  - Atlas
-  - Bagel
+  #- CorvaxGlacier
   - Box
-  - Cluster
-  - Core
-  - Fland
+  # Midpop
+  - CorvaxPaper
+  - CorvaxPearl
+  - CorvaxAwesome
+  - Bagel
   - Marathon
-  - Meta
-  - Omega
-  - Origin
-  - Saltern
-  - Train
+  #- Train
+  # Lowpop
+  - CorvaxSilly
+  - CorvaxMaus
+  - CorvaxTushkan
   - Packed
-  - Reach
+  - Omega

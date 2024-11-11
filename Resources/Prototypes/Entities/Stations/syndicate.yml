@@ -12,6 +12,6 @@
   - BaseStation
   - BaseStationSyndicate
   - BaseStationRecords # backmen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform

@@ -1,9 +1,11 @@
 using Content.Server.Body.Components;
-using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Server.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
+using Content.Shared.Gibbing.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -17,9 +19,10 @@ namespace Content.Server.Body.Systems;
 
 public sealed class BodySystem : SharedBodySystem
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
@@ -34,7 +37,7 @@ public sealed class BodySystem : SharedBodySystem
     private void OnRelayMoveInput(Entity<BodyComponent> ent, ref MoveInputEvent args)
     {
         // If they haven't actually moved then ignore it.
-        if ((args.Component.HeldMoveButtons &
+        if ((args.Entity.Comp.HeldMoveButtons &
              (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
         {
             return;
@@ -43,7 +46,7 @@ public sealed class BodySystem : SharedBodySystem
         if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind))
         {
             mind.TimeOfDeath ??= _gameTiming.RealTime;
-            _ticker.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
+            _ghostSystem.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
         }
     }
 
@@ -95,6 +98,7 @@ public sealed class BodySystem : SharedBodySystem
         var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
         _humanoidSystem.SetLayersVisibility(
             bodyEnt, layers, visible: false, permanent: true, humanoid);
+        _appearance.SetData(bodyEnt, layer, true);
     }
 
     public override HashSet<EntityUid> GibBody(
@@ -105,8 +109,9 @@ public sealed class BodySystem : SharedBodySystem
         Vector2? splatDirection = null,
         float splatModifier = 1,
         Angle splatCone = default,
-        SoundSpecifier? gibSoundOverride = null
-    )
+        SoundSpecifier? gibSoundOverride = null,
+        GibType gib = GibType.Gib,
+        GibContentsOption contents = GibContentsOption.Drop)
     {
         if (!Resolve(bodyId, ref body, logMissing: false)
             || TerminatingOrDeleted(bodyId)
@@ -120,7 +125,8 @@ public sealed class BodySystem : SharedBodySystem
             return new HashSet<EntityUid>();
 
         var gibs = base.GibBody(bodyId, gibOrgans, body, launchGibs: launchGibs,
-            splatDirection: splatDirection, splatModifier: splatModifier, splatCone:splatCone);
+            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone,
+            gib: gib, contents: contents);
 
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(bodyId, ref ev);
@@ -129,4 +135,60 @@ public sealed class BodySystem : SharedBodySystem
 
         return gibs;
     }
+
+    public override HashSet<EntityUid> GibPart(
+        EntityUid partId,
+        BodyPartComponent? part = null,
+        bool launchGibs = true,
+        Vector2? splatDirection = null,
+        float splatModifier = 1,
+        Angle splatCone = default,
+        SoundSpecifier? gibSoundOverride = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false)
+            || TerminatingOrDeleted(partId)
+            || EntityManager.IsQueuedForDeletion(partId))
+        {
+            return new HashSet<EntityUid>();
+        }
+
+        var xform = Transform(partId);
+        if (xform.MapUid is null)
+            return new HashSet<EntityUid>();
+
+        var gibs = base.GibPart(partId, part, launchGibs: launchGibs,
+            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone);
+
+        var ev = new BeingGibbedEvent(gibs);
+        RaiseLocalEvent(partId, ref ev);
+
+        QueueDel(partId);
+
+        return gibs;
+    }
+
+    // start-backmen: surgery
+    /*protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
+    {
+        return;
+    }*/
+
+    protected override void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component)
+    {
+        return;
+    }
+
+    protected override void RemovePartMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance)
+    {
+        foreach (var (visualLayer, markingList) in partAppearance.Markings)
+        {
+            foreach (var marking in markingList)
+            {
+                _humanoidSystem.RemoveMarking(target, marking.MarkingId, sync: false, humanoid: bodyAppearance);
+            }
+        }
+
+        Dirty(target, bodyAppearance);
+    }
+    // end-backmen: surgery
 }

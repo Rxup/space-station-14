@@ -1,0 +1,23 @@
+# Used by Blob.
+# TODO: Replace this with much better languages. Yes, robots can have languages.
+- type: language
+  id: Blob
+  speech:
+    fontId: Monospace
+    color: "#800080"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - бял
+    - бларм
+    - блар
+    - блор
+    - лам
+    - мал
+    - блум
+    - лар
+    - рол
+    - боал
+    - баол

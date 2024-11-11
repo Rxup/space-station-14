@@ -4,6 +4,21 @@
   - LawyerNeck
   - LawyerJumpsuit
   - CommonBackpack
+  - Survival
   - Trinkets
   - Medals #backmen
+  - GroupSpeciesBreathTool
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobPilot
+  groups:
+  - SecurityJumpsuit
+  - SecurityBackpack
+  - SecurityOuterClothing
+  - SecurityBelt
+  - SecurityShoes
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts

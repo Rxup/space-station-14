@@ -1,0 +1,322 @@
+- type: gamePreset
+  id: Shipwrecked
+  alias:
+    - schiffbruch
+  name: shipwrecked-title
+  description: shipwrecked-description
+  minPlayers: 1
+  maxPlayers: 40
+  showInVote: true
+  isMiniGame: true
+  supportedMaps: ShipwreckedPool
+  rules:
+    - Shipwrecked
+
+- type: gamePreset
+  id: Vampires
+  alias:
+  - vamp
+  - bloodsucker
+  name: vampires-title
+  description: vampires-description
+  showInVote: true
+  rules:
+  - VampiresGameRule
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - SubGamemodesRule
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: Blob
+  alias:
+  - blab
+  name: blob-title
+  description: blob-description
+  showInVote: false
+  rules:
+  - BlobGameMode
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - SubGamemodesRule
+  - CalmMeteorSwarmScheduler
+
+- type: gamePreset
+  id: FleshCult
+  alias:
+  - fleshcult
+  - fs
+  name: flesh-cult-title
+  description: flesh-cult-description
+  showInVote: false
+  rules:
+  - FleshCult
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - SubGamemodesRule
+  - CalmMeteorSwarmScheduler
+
+- type: gamePreset
+  id: FleshCultAndTraitor
+  alias:
+  - madness
+  - fleshcultandtraitor
+  name: flesh-cult-and-traitor-title
+  showInVote: false
+  description: flesh-cult-and-traitor-description
+  rules:
+  - FleshCult
+  - Traitor
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: NukeopsFleshCult
+  alias:
+    - nukeops
+    - fleshcult
+  name: nukeops-fleshcult-title
+  description: nukeops-fleshcult-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - FleshCult
+    - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: RevolutionaryTraitor
+  alias:
+    - rev
+    - revs
+    - revolutionaries
+    - syndinukies
+  name: rev-traitor-title
+  description: rev-traitor-description
+  showInVote: false
+  rules:
+    - Revolutionary
+    - BasicStationEventScheduler
+    - Traitor
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: RevolutionaryNukeops
+  alias:
+    - nukeops
+    - rev
+    - revs
+    - revolutionaries
+  name: rev-nukeops-title
+  description: rev-nukeops-description
+  showInVote: false
+  rules:
+    - Revolutionary
+    - BasicStationEventScheduler
+    - Nukeops
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: ZombieTraitor
+  alias:
+  - zombie
+  - zombies
+  - Zombies
+  - zz14
+  - zomber
+  - syndinukies
+  name: zombie-traitor-title
+  description: zombie-traitor-description
+  showInVote: false
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - Traitor
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: ZombieNukeops
+  alias:
+  - zombie
+  - zombies
+  - Zombies
+  - zz14
+  - zomber
+  - nukeops
+  name: zombie-nukeops-title
+  description: zombie-nukeops-description
+  showInVote: false
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - Nukeops
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: NukeopsFleshCultTraitor
+  alias:
+    - nukeops
+    - fleshcult
+    - syndinukies
+  name: nukeops-fleshcult-traitor-title
+  description: nukeops-fleshcult-traitor-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - FleshCult
+    - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
+    - Traitor
+    - BasicRoundstartVariation
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: SurvivalNukeops
+  alias:
+    - survival
+    - nukeops
+  name: survival-nukeops-title
+  showInVote: false
+  minPlayers: 40
+  description: survival-nukeops-description
+  rules:
+    - RampingStationEventScheduler
+    - WageScheduler #backmen: currency
+    - Nukeops
+    - BasicRoundstartVariation
+    - MeteorSwarmScheduler
+
+
+- type: gamePreset
+  id: Changeling
+  alias:
+  - ling
+  - lings
+  - changeling
+  name: changeling-gamemode-title
+  description: changeling-gamemode-description
+  showInVote: false
+  rules:
+  - WageScheduler #backmen: currency
+  - Changeling
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: Traitorling
+  alias:
+  - lingtraitor
+  - traitorling
+  name: secret-title
+  description: secret-description
+  showInVote: false
+  rules:
+  - WageScheduler #backmen: currency
+  - Changeling
+  - Traitor
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: ExtendedThief
+  alias:
+  - vor
+  - thiefs
+  - thief
+  name: thief-extended-gamemode-title
+  description: thief-extended-gamemode-description
+  showInVote: false
+  rules:
+  - ExtendedThief
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: Criminal
+  alias:
+  - criminal
+  - opg
+  name: criminal-gamemode-title
+  description: thief-extended-gamemode-description
+  showInVote: false
+  rules:
+  - Revolutionary
+  - ExtendedThief
+  - Traitor
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: SuperKessler
+  alias:
+  - supermeteor
+  - bombit
+  - superkessler
+  - superkesler
+  name: super-kessler-gamemode-title
+  description: super-kessler-gamemode-description
+  showInVote: false
+  rules:
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  # Oh my god.
+  - KesslerSyndromeScheduler
+  - KesslerSyndromeScheduler
+  - KesslerSyndromeScheduler
+  - MeteorSwarmMildScheduler
+  - MeteorSwarmScheduler
+  - RampingStationEventScheduler
+#  - SpaceTrafficControlEventScheduler
+#  - SpaceTrafficControlFriendlyEventScheduler
+
+- type: gamePreset
+  id: Calm
+  name: calm-title
+  showInVote: true
+  description: calm-description
+  rules:
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - CalmMeteorSwarmScheduler
+  - BasicRoundstartVariation
+
+
+- type: gamePreset
+  id: BabelTower
+  name: babelTower-title
+  description: babelTower-description
+  minPlayers: 5
+  showInVote: true
+  rules:
+    - BabelTower
+    - CalmStationEventScheduler
+    - WageScheduler
+    - CalmMeteorSwarmScheduler
+    - BasicRoundstartVariation
+#    - SpaceTrafficControlEventScheduler
+#    - SpaceTrafficControlFriendlyEventScheduler
+    - ExtendedThief

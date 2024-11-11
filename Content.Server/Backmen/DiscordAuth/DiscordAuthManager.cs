@@ -22,9 +22,12 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
 
     private ISawmill _sawmill = default!;
     private readonly HttpClient _httpClient = new();
-    private bool _isEnabled = false;
+    public bool IsEnabled { get; private set; } = false;
     private string _apiUrl = string.Empty;
     private string _apiKey = string.Empty;
+    public bool IsOpt { get; private set; } = false;
+
+    private Dictionary<NetUserId, bool> _isLoggedIn = new();
 
     /// <summary>
     ///     Raised when player passed verification or if feature disabled
@@ -35,23 +38,34 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
     {
         _sawmill = Logger.GetSawmill("discord_auth");
 
-        _cfg.OnValueChanged(CCVars.DiscordAuthEnabled, v => _isEnabled = v, true);
+        _cfg.OnValueChanged(CCVars.DiscordAuthEnabled, v => IsEnabled = v, true);
         _cfg.OnValueChanged(CCVars.DiscordAuthApiUrl, v => _apiUrl = v, true);
         _cfg.OnValueChanged(CCVars.DiscordAuthApiKey, v => _apiKey = v, true);
+        _cfg.OnValueChanged(CCVars.DiscordAuthIsOptional, v => IsOpt = v, true);
 
         _netMgr.RegisterNetMessage<MsgDiscordAuthRequired>();
         _netMgr.RegisterNetMessage<MsgDiscordAuthCheck>(OnAuthCheck);
+        _netMgr.RegisterNetMessage<MsgDiscordAuthByPass>(OnByPass);
 
         _playerMgr.PlayerStatusChanged += OnPlayerStatusChanged;
+    }
+
+    private void OnByPass(MsgDiscordAuthByPass message)
+    {
+        if (!IsEnabled || !IsOpt)
+            return;
+
+        var session = _playerMgr.GetSessionById(message.MsgChannel.UserId);
+        PlayerVerified?.Invoke(this, session);
     }
 
     private async void OnAuthCheck(MsgDiscordAuthCheck message)
     {
         var isVerified = await IsVerified(message.MsgChannel.UserId);
+
         if (isVerified)
         {
             var session = _playerMgr.GetSessionById(message.MsgChannel.UserId);
-
             PlayerVerified?.Invoke(this, session);
         }
     }
@@ -61,8 +75,9 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         if (e.NewStatus != SessionStatus.Connected)
             return;
 
-        if (!_isEnabled)
+        if (!IsEnabled)
         {
+            _isLoggedIn[e.Session.UserId] = true;
             PlayerVerified?.Invoke(this, e.Session);
             return;
         }
@@ -70,6 +85,9 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         if (e.NewStatus == SessionStatus.Connected)
         {
             var isVerified = await IsVerified(e.Session.UserId);
+
+            _isLoggedIn[e.Session.UserId] = isVerified;
+
             if (isVerified)
             {
                 PlayerVerified?.Invoke(this, e.Session);
@@ -112,6 +130,11 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
 
         var data = await response.Content.ReadFromJsonAsync<DiscordAuthInfoResponse>(cancellationToken: cancel);
         return data!.IsLinked;
+    }
+
+    public bool IsCached(ICommonSession user)
+    {
+        return _isLoggedIn.TryGetValue(user.UserId, out var isLoggedIn) && isLoggedIn;
     }
 
     [UsedImplicitly]

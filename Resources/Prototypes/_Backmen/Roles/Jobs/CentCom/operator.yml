@@ -1,0 +1,85 @@
+- type: job
+  id: BKCCOperator
+  name: job-name-centcomoper
+  description: job-description-centcomoper
+  playTimeTracker: JobCentralCommandOperator
+  setPreference: true
+  startingGear: OperatorGavna
+  icon: JobIconNanotrasen
+  supervisors: job-supervisors-hoh
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  whitelisted: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 7200
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 14400
+    - !type:DepartmentTimeRequirement
+      department: Silicons
+      time: 6000
+  access:
+    - CCCargo
+    - CCSecurity
+    - CentralCommand
+    - CCOfficer
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
+        - type: Psionic
+        - type: DispelPower
+        - type: AntagImmune
+  minBankBalance: 400
+  maxBankBalance: 600
+  wageDepartment: CentCom
+  wage: 75
+
+
+
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCOperatorPDA
+  name: Centcom Operator PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOperator
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComGavnaOperator
+  name: ID карта оператора ЦК
+  components:
+    - type: PresetIdCard
+      job: BKCCOperator
+    - type: Access
+      tags:
+        - CCCargo
+        - CCSecurity
+        - CentralCommand
+        - CCOfficer
+      groups:
+        - AllAccess

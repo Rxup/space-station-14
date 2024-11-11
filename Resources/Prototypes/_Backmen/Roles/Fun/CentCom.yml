@@ -1,0 +1,25 @@
+- type: job
+  id: SpecialOperationsOfficer
+  name: job-name-sfo
+  description: job-description-sfo
+  playTimeTracker: JobSpecialOperationsOfficer
+  setPreference: false
+  startingGear: SFOForma
+  icon: "JobIconNanotrasenOSO"
+  supervisors: job-supervisors-dso
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  - MTFLeader
+  - CentCom
+
+- type: startingGear
+  id: SFOForma
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    shoes: ClothingShoesCentcomBlack
+    head: ClothingHeadCapCentcomBlack
+    neck: ClothingNeckCloakCentcomBlack
+    eye: ClothingEyesGlassesSunglasses
+    id: IDSFO
+    ears: ClothingHeadsetCentComCCAlt

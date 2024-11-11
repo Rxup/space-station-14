@@ -8,8 +8,9 @@
     sprite: Corvax/Back/Backpacks/military.rsi
   - type: Storage
     grid:
-    - 0,0,6,3 # TODO: Change this
-    maxItemSize: Huge
+    - 0,0,8,4
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
 
 - type: entity
   parent: ClothingBackpack
@@ -21,8 +22,10 @@
     sprite: Corvax/Back/Backpacks/deathsquad-backpack.rsi
   - type: Storage
     grid:
-    - 0,0,6,3 # TODO: Change this
+    - 0,0,13,7
     maxItemSize: Huge
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   parent: ClothingBackpack
@@ -32,3 +35,12 @@
   components:
   - type: Sprite
     sprite: Corvax/Back/Backpacks/ce.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackWarden
+  name: warden backpack
+  description: It's a very robust blue backpack.
+  components:
+  - type: Sprite
+    sprite: Corvax/Back/Backpacks/warden.rsi

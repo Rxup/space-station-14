@@ -1,0 +1,257 @@
+- type: entity
+  id: ArmySetLoadouts
+  name: army duffel bag with equipment
+  description: Here is the equipment you took with you from the base. It remains to remember which ones exactly.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Back/Duffels/military.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - ShotgunSet
+    - EG-CSet
+    - EG-SSet
+    - XMLGSet
+    - SR127Set
+    - MP5Set
+    - G36Set
+  - type: ActivatableUI
+    key: enum.ThiefBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ThiefBackpackUIKey.Key:
+        type: ThiefBackpackBoundUserInterface
+
+- type: entity
+  id: ArmySetLoadoutsSpecialist
+  parent: ArmySetLoadouts
+  components:
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 1
+    possibleSets:
+    - MinigunSet
+    - FlamethrowerSet
+    - MG60Set
+    - RocketLauncherSet
+    - M41Set
+
+- type: entity
+  id: ArmySetLoadoutsSpecialistSecondary
+  parent: ArmySetLoadouts
+  components:
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 1
+    possibleSets:
+    - M81Set
+    - VP78Set
+    - DivetSet
+
+#blueshield
+
+- type: entity
+  id: BlueShieldSetLoadouts
+  parent: ArmySetLoadouts
+  components:
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 1
+    possibleSets:
+    - UTAPMk1Set
+    - ShotgunGuardian17Set
+
+#backpack sets
+
+- type: thiefBackpackSet
+  id: ShotgunSet
+  name: army-duffel-category-shotgun-name
+  description: army-duffel-category-shotgun-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/bigsuper.rsi
+    state: icon
+  content:
+  - WeaponShotgun39Tactical
+  - BoxLethalshot
+  - BoxLethalshot
+  - BoxShotgunIncendiary
+  - BoxShotgunIncendiary
+
+- type: thiefBackpackSet
+  id: XMLGSet
+  name: army-duffel-category-xmlg-name
+  description: army-duffel-category-xmlg-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/big.rsi
+    state: icon
+  content:
+  - WeaponPulseRifleXMLG
+  - ClothingPounchRXBZZFilled
+
+- type: thiefBackpackSet
+  id: EG-CSet
+  name: army-duffel-category-EG-C-name
+  description: army-duffel-category-EG-C-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
+    state: base
+  content:
+  - WeaponLaserCarabinCell
+  - ClothingPounchRXBZZEnergyFilled
+
+- type: thiefBackpackSet
+  id: EG-SSet
+  name: army-duffel-category-EG-S-name
+  description: army-duffel-category-EG-S-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
+    state: base
+  content:
+  - WeaponEarthGovLaserSniperCell
+  - ClothingPounchRXBZZBigEnergyFilled
+
+- type: thiefBackpackSet
+  id: SR127Set
+  name: army-duffel-category-sr127-name
+  description: army-duffel-category-sr127-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
+    state: base
+  content:
+  - WeaponRifleSR127
+  - ClothingPounchRXBZZSRFilled
+
+- type: thiefBackpackSet
+  id: MP5Set
+  name: army-duffel-category-mp5-name
+  description: army-duffel-category-mp5-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/bigsuper.rsi
+    state: icon
+  content:
+  - WeaponSubMachineGunMP5Tactical
+  - ClothingPounchRXBZZPPFilled
+
+- type: thiefBackpackSet
+  id: G36Set
+  name: army-duffel-category-g36-name
+  description: army-duffel-category-g36-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/bigsuper.rsi
+    state: icon
+  content:
+  - WeaponRifleG36Tactical
+  - ClothingPounchRXBZZRifleFilled
+
+- type: thiefBackpackSet
+  id: MinigunSet
+  name: army-duffel-category-minigun-name
+  description: army-duffel-category-minigun-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
+    state: icon
+  content:
+  - WeaponMinigun100
+  - PowerpackRifle
+
+- type: thiefBackpackSet
+  id: FlamethrowerSet
+  name: army-duffel-category-flamethrower-name
+  description: army-duffel-category-flamethrower-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi
+    state: base
+  content:
+  - WeaponflamethrowerSG
+  - PowerpackFlame
+
+- type: thiefBackpackSet
+  id: MG60Set
+  name: army-duffel-category-mg60-name
+  description: army-duffel-category-mg60-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/t42/big.rsi
+    state: icon
+  content:
+  - WeaponLightMachineGunMG60
+  - ClothingBackpackDuffelMachingunFilled
+
+- type: thiefBackpackSet
+  id: M41Set
+  name: army-duffel-category-m41-name
+  description: army-duffel-category-m41-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/v41/big.rsi
+    state: icon
+  content:
+  - WeaponRifleM41
+  - ClothingBackpackDuffelMachingunM41Filled
+
+- type: thiefBackpackSet
+  id: RocketLauncherSet
+  name: army-duffel-category-rocketlauncher-name
+  description: army-duffel-category-rocketlauncher-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/rpg/big.rsi
+    state: icon
+  content:
+  - WeaponLauncherRL5
+  - ClothingBackpackDuffelRockets
+
+- type: thiefBackpackSet
+  id: M81Set
+  name: army-duffel-category-m81-name
+  description: army-duffel-category-m81-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi
+    state: base
+  content:
+  - WeaponLauncherM81
+  - ClothingBeltMilitaryWebbingRXBZZGrenadeFilled
+
+- type: thiefBackpackSet
+  id: VP78Set
+  name: army-duffel-category-vp78-name
+  description: army-duffel-category-vp78-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/vp78/big.rsi
+    state: icon
+  content:
+  - WeaponPistolVP78
+  - ClothingBeltMilitaryWebbingPistolFilled
+
+- type: thiefBackpackSet
+  id: DivetSet
+  name: army-duffel-category-divet-name
+  description: army-duffel-category-divet-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+    state: icon
+  content:
+  - WeaponPistolDivet
+  - ClothingBeltMilitaryWebbingDivetFilled
+
+- type: thiefBackpackSet
+  id: UTAPMk1Set
+  name: duffel-category-utapmk1-name
+  description: duffel-category-utapmk1-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/big.rsi
+    state: icon
+  content:
+  - WeaponRifleUTAPM1
+  - MagazineRifle
+  - MagazineRifle
+  - MagazineRifle
+
+- type: thiefBackpackSet
+  id: ShotgunGuardian17Set
+  name: duffel-category-Guardian-name
+  description: duffel-category-Guardian-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/guard-17/big.rsi
+    state: icon
+  content:
+  - WeaponShotgunGuardian
+  - BoxLethalshot
+  - BoxLethalshot

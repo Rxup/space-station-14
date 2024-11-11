@@ -2,8 +2,10 @@
   id: Marathon
   mapName: 'Marathon Station'
   mapPath: /Maps/marathon.yml
-  minPlayers: 35
-  maxPlayers: 70
+  # Corvax-start
+  minPlayers: 20
+  maxPlayers: 50
+  # Corvax-end
   stations:
     Marathon:
       stationProto: StandardNanotrasenStation
@@ -16,8 +18,6 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_rod.yml
         - type: StationJobs
-          overflowJobs:
-            - Passenger
           availableJobs:
             #service
             Captain: [ 1, 1 ]
@@ -46,7 +46,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 3, 3 ]
-            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -65,8 +64,10 @@
             Musician: [ 1, 1 ]
             #backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            BKBPLATech: [ 0, 3 ] # backmen-BPLA-Silicons
-            BKBPLAMED: [ 0, 3 ] # backmen-BPLAMED-Silicons
+            #BKBPLATech: [ 0, 3 ] # backmen-BPLA-Silicons
+            #BKBPLAMED: [ 0, 3 ] # backmen-BPLAMED-Silicons
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 3 ]
-            SAI: [ 1, 1 ] # backmen-SAI
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]

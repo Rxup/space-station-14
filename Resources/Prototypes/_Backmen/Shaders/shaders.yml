@@ -1,0 +1,19 @@
+﻿- type: shader
+  id: ColorTint
+  kind: source
+  path: "/Textures/Backmen/Shaders/color_tint.swsl"
+
+- type: shader
+  id: Ethereal
+  kind: source
+  path: "/Textures/Backmen/Shaders/ethereal.swsl"
+
+- type: shader
+  id: SeeingStatic
+  kind: source
+  path: "/Textures/Backmen/Shaders/seeing_static.swsl"
+
+- type: shader
+  id: ShockWave
+  kind: source
+  path: "/Textures/Backmen/Shaders/shock_wave.swsl"

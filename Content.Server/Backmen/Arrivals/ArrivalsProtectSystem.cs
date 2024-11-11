@@ -90,7 +90,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
         {
             _apcSystem.ApcToggleBreaker(uid,apcComponent);
         }
-        apcComponent.HasAccess = false;
+        // apcComponent.HasAccess = false;
     }
 
     private void OnBuildAttemptEvent(BuildAttemptEvent ev)
@@ -101,7 +101,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
             return;
         }
 
-        if (HasComp<ArrivalsProtectGridComponent>(grid.Value))
+        if (ArrivalsProtectGridQuery.HasComp(grid.Value))
         {
             ev.Cancel();
         }

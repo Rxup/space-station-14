@@ -10,21 +10,29 @@ public sealed class BlobResourceSystem : EntitySystem
 {
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    private EntityQuery<BlobTileComponent> _blobTile;
+    private EntityQuery<BlobCoreComponent> _blobCore;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobResourceComponent, BlobTileGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobNodePulseEvent>(OnPulsed);
+
+        _blobTile = GetEntityQuery<BlobTileComponent>();
+        _blobCore = GetEntityQuery<BlobCoreComponent>();
     }
 
-    private void OnPulsed(EntityUid uid, BlobResourceComponent component, BlobTileGetPulseEvent args)
+    private void OnPulsed<T>(EntityUid uid, BlobResourceComponent component, T args)
     {
-        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
+        if (!_blobTile.TryComp(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
-        if (!TryComp<BlobCoreComponent>(blobTileComponent.Core, out var blobCoreComponent) ||
+
+        if (!_blobCore.TryComp(blobTileComponent.Core, out var blobCoreComponent) ||
             blobCoreComponent.Observer == null)
             return;
+
         _popup.PopupEntity(Loc.GetString("blob-get-resource", ("point", component.PointsPerPulsed)),
             uid,
             blobCoreComponent.Observer.Value,
@@ -37,6 +45,12 @@ public sealed class BlobResourceSystem : EntitySystem
             points += 1;
         }
 
-        _blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points);
+        if (_blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points))
+        {
+            _popup.PopupClient(Loc.GetString("blob-get-resource", ("point", points)),
+                uid,
+                blobCoreComponent.Observer.Value,
+                PopupType.LargeGreen);
+        }
     }
 }

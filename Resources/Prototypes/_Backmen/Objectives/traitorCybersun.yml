@@ -1,0 +1,143 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseTraitorObjectiveCybersan
+  components:
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - TraitorRole
+  - type: Objective
+    issuer: issuer-Cybersun-Industries
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      tags:
+      - Waffle
+      - MI13
+      - Donk
+      - Interdyne
+      - Gorlex
+  - type: Tag
+    tags:
+    - Cybersan
+
+- type: Tag
+  id: Cybersan
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveCybersan, BaseLivingObjective]
+  id: EscapeShuttleObjectiveCybersan
+  name: Улететь на Центком живым и свободным.
+  description: Мы спрятали под горшком на центкоме поддельные документы для того чтоб вы ушли спокойно, ожидайте нас на месте выдачи задания для получения награды.
+  components:
+  - type: Objective
+    difficulty: 1.3
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+- type: entity
+  abstract: true
+  parent: [BaseTraitorObjectiveCybersan, BaseStealObjective]
+  id: BaseTraitorStealObjectiveCybersan
+  components:
+  - type: StealCondition
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 2.75
+  - type: ObjectiveLimit
+    limit: 2
+
+# steal
+
+## cmo
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjectiveCybersan
+  id: BaseCMOStealObjectiveCybersan
+  components:
+  - type: NotJobRequirement
+    job: ChiefMedicalOfficer
+  - type: StealCondition
+    owner: job-name-cmo
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseCMOStealObjectiveCybersan
+  id: CMOHyposprayStealObjectiveCybersan
+  components:
+  - type: StealCondition
+    stealGroup: Hypospray
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseCMOStealObjectiveCybersan
+  id: CMOCrewMonitorStealObjectiveCybersan
+  components:
+  - type: StealCondition
+    stealGroup: HandheldCrewMonitor
+
+## rd
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjectiveCybersan
+  id: BaseRDStealObjectiveCybersan
+  components:
+  - type: NotJobRequirement
+    job: ResearchDirector
+  - type: StealCondition
+    owner: job-name-rd
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseRDStealObjectiveCybersan
+  id: RDHardsuitStealObjectiveCybersan
+  components:
+  - type: StealCondition
+    stealGroup: ClothingOuterHardsuitRd
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseRDStealObjectiveCybersan
+  id: HandTeleporterStealObjectiveCybersan
+  components:
+  - type: StealCondition
+    stealGroup: HandTeleporter
+
+## ce
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseTraitorStealObjectiveCybersan
+  id: MagbootsStealObjectiveCybersan
+  components:
+  - type: NotJobRequirement
+    job: ChiefEngineer
+  - type: StealCondition
+    stealGroup: ClothingShoesBootsMagAdv
+    owner: job-name-ce
+
+## cap
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjectiveCybersan
+  id: BaseCaptainObjectiveCybersan
+  components:
+  - type: Objective
+    difficulty: 3.5
+  - type: NotJobRequirement
+    job: Captain
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseCaptainObjectiveCybersan
+  id: CaptainGunStealObjectiveCybersan
+  components:
+  - type: StealCondition
+    stealGroup: WeaponAntiqueLaser
+    owner: job-name-captain

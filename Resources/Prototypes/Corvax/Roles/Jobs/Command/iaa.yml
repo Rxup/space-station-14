@@ -1,6 +1,7 @@
 - type: job
   id: IAA
   name: job-name-iaa
+  description: job-description-iaa
   playTimeTracker: JobIAA
   requirements:
   - !type:DepartmentTimeRequirement
@@ -9,6 +10,8 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000
+  - !type:AgeRequirement
+    requiredAge: 21
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom
@@ -37,5 +40,9 @@
     id: IAAPDA
     eyes: ClothingEyesGlassesSunglasses
     ears: ClothingHeadsetIAA
+    pocket2: BookSpaceLaw
   inhand:
     - BriefcaseIAAFilled
+  storage:
+    back:
+    - BoxSurvival
