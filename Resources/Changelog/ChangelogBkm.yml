@@ -274,3 +274,13 @@
   id: 18
   time: '2024-11-10T15:55:13.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/912
+- author: PuroSlavKing
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D \u0441\u043F\u0440\
+      \u0430\u0439\u0442 \u0430\u043D\u0442\u0438-\u043F\u0441\u0438\u0445\u0438\u0447\
+      \u0435\u0441\u043A\u043E\u0433\u043E \u043D\u043E\u0436\u0430 \u0432 \u0441\u0443\
+      \u043C\u043A\u0435."
+    type: Fix
+  id: 19
+  time: '2024-11-12T07:16:27.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/914
