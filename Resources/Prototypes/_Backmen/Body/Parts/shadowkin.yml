@@ -10,7 +10,7 @@
   - type: Icon
     sprite: Backmen/Mobs/Species/shadowkin.rsi
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: OrganicPart # Shitmed
   - type: Gibbable
   - type: SurgeryTool
   - type: BodyPart
@@ -52,7 +52,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-
 
 - type: entity
   id: TorsoShadowkin
@@ -205,4 +204,3 @@
     partType: Foot
     symmetry: Right
     toolName: "a right foot"
-

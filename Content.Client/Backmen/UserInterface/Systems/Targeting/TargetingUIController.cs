@@ -32,13 +32,13 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
 
     public void OnStateEntered(GameplayState state)
     {
-        if (TargetingControl != null)
-        {
-            TargetingControl.SetVisible(_targetingComponent != null);
+        if (TargetingControl == null)
+            return;
 
-            if (_targetingComponent != null)
-                TargetingControl.SetColors(_targetingComponent.Target);
-        }
+        TargetingControl.SetTargetDollVisible(_targetingComponent != null);
+
+        if (_targetingComponent != null)
+            TargetingControl.SetBodyPartsVisible(_targetingComponent.Target);
     }
 
     public void AddTargetingControl(TargetingComponent component)
@@ -47,10 +47,10 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
 
         if (TargetingControl != null)
         {
-            TargetingControl.SetVisible(_targetingComponent != null);
+            TargetingControl.SetTargetDollVisible(_targetingComponent != null);
 
             if (_targetingComponent != null)
-                TargetingControl.SetColors(_targetingComponent.Target);
+                TargetingControl.SetBodyPartsVisible(_targetingComponent.Target);
         }
 
     }
@@ -58,7 +58,7 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
     public void RemoveTargetingControl()
     {
         if (TargetingControl != null)
-            TargetingControl.SetVisible(false);
+            TargetingControl.SetTargetDollVisible(false);
 
         _targetingComponent = null;
     }
@@ -66,8 +66,8 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
     public void CycleTarget(TargetBodyPart bodyPart)
     {
         if (_playerManager.LocalEntity is not { } user
-        || _entManager.GetComponent<TargetingComponent>(user) is not { } targetingComponent
-        || TargetingControl == null)
+            || _entManager.GetComponent<TargetingComponent>(user) is not { } targetingComponent
+            || TargetingControl == null)
             return;
 
         var player = _entManager.GetNetEntity(user);
@@ -75,9 +75,7 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
         {
             var msg = new TargetChangeEvent(player, bodyPart);
             _net.SendSystemNetworkMessage(msg);
-            TargetingControl?.SetColors(bodyPart);
+            TargetingControl?.SetBodyPartsVisible(bodyPart);
         }
     }
-
-
 }

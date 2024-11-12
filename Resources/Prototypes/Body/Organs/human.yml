@@ -123,6 +123,7 @@
   components:
   - type: Sprite
     state: ears
+  - type: Ears # backmen: surgery
 
 - type: entity
   id: OrganHumanLungs

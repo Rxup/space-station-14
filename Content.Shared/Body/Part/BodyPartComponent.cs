@@ -1,14 +1,12 @@
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
-using Content.Shared.Humanoid;
 
 namespace Content.Shared.Body.Part;
 
@@ -69,56 +67,10 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public Dictionary<string, OrganSlot> Organs = new();
 
     /// <summary>
-    /// How much health the body part has until it pops out.
+    /// What's the max health this body part can have?
     /// </summary>
-    [ViewVariables]
-    public float TotalDamage => Damage.GetTotal().Float();
-
-    /// <summary>
-    /// The DamageSpecifier that contains all types of damage that the BodyPart can take.
-    /// TODO: Rework this with DamageableComponent
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public DamageSpecifier Damage = new()
-    {
-        DamageDict = new Dictionary<string, FixedPoint2>
-        {
-            { "Blunt", 0 },
-            { "Slash", 0 },
-            { "Piercing", 0 },
-            { "Heat", 0 },
-            { "Cold", 0 },
-            { "Shock", 0 },
-            { "Caustic", 0 },
-        }
-    };
-
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float MinIntegrity = 0;
-
-    /// <summary>
-    /// The total damage that has to be dealt to a body part
-    /// to make possible severing it.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float SeverIntegrity = 100;
-
-    /// <summary>
-    /// On what TargetIntegrity we should re-enable the part.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
-
-    [DataField, AutoNetworkedField]
-    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
-    {
-        { TargetIntegrity.CriticallyWounded, 80 },
-        { TargetIntegrity.HeavilyWounded, 65 },
-        { TargetIntegrity.ModeratelyWounded, 48 },
-        { TargetIntegrity.SomewhatWounded, 32 },
-        { TargetIntegrity.LightlyWounded, 17 },
-        { TargetIntegrity.Healthy, 6 },
-    };
 
     /// <summary>
     /// Whether this body part is enabled or not.
@@ -157,10 +109,28 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public string Species { get; set; } = "";
 
     /// <summary>
-    ///     Do not make a stupid joke do not make a stupid joke do not make a stupid joke.
+    /// The total damage that has to be dealt to a body part
+    /// to make possible severing it.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Sex Sex { get; set; } = Sex.Male;
+    public float SeverIntegrity = 90;
+
+    /// <summary>
+    /// On what TargetIntegrity we should re-enable the part.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
+    {
+        { TargetIntegrity.CriticallyWounded, 90 },
+        { TargetIntegrity.HeavilyWounded, 75 },
+        { TargetIntegrity.ModeratelyWounded, 60 },
+        { TargetIntegrity.SomewhatWounded, 40},
+        { TargetIntegrity.LightlyWounded, 20 },
+        { TargetIntegrity.Healthy, 10 },
+    };
 
     /// <summary>
     /// These are only for VV/Debug do not use these for gameplay/systems
