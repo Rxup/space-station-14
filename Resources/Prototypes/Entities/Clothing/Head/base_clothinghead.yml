@@ -132,6 +132,8 @@
     - Snout
     - HeadTop
     - HeadSide
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2
 
 - type: entity
   abstract: true
@@ -177,6 +179,8 @@
     - Snout
     - HeadTop
     - HeadSide
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2
 
 - type: entity
   abstract: true
@@ -229,6 +233,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2
 
 - type: entity
   abstract: true

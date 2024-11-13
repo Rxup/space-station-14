@@ -116,7 +116,7 @@
     sprintModifier: 0.6
   - type: HeldSpeedModifier
   - type: Item
-    size: Ginormous
+    size: Huge
   - type: Armor
     modifiers:
       coefficients:
@@ -146,6 +146,8 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.4
 
 - type: entity
   abstract: true
@@ -174,6 +176,8 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.3
 
 - type: entity
   parent: ClothingOuterBase

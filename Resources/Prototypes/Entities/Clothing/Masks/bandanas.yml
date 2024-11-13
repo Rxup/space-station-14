@@ -34,6 +34,8 @@
     slots:
     - Snout
     hideOnToggle: true
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskBandanaBase
