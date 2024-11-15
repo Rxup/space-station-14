@@ -41,6 +41,8 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
+      enum.StorageUiKey.Key: # ADT edit
+        type: StorageBoundUserInterface
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75
@@ -83,6 +85,8 @@
       mech-pilot-slot: !type:ContainerSlot
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
+      storagebase: !type:Container #ADT edit
+        ents: []
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -123,6 +127,19 @@
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
+    # ADT start
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Shock: 0.9
+        Structural: 0.7
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentIndustrial
+    # ADT end
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
@@ -139,6 +156,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
+  - type: Storage #ADT edit
+    grid:
+    - 0,0,9,2
+    clickInsert: false 
 
 - type: entity
   id: MechRipleyBattery
@@ -177,6 +198,12 @@
     pilotWhitelist:
       components:
       - HumanoidAppearance
+    # ADT Start
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentClown
+    # ADT End
 
 - type: entity
   parent: MechHonker

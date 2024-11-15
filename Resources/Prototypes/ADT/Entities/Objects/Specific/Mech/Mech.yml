@@ -1,0 +1,748 @@
+
+#gygax
+
+- type: entity
+  id: ADTMechGygax
+  parent: BaseMech
+  name: gygax
+  description: Fast and light armored combat mech.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: gygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/mechstep.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.5
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.4
+    maxintegrity: 200
+    baseState: gygax
+    openState: gygax-open
+    brokenState: gygax-broken
+    mechToPilotDamageMultiplier: 0.85
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 60
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.6
+  - type: MechOverload
+    damage:
+      types:
+        Blunt: 2
+  - type: AccessReader
+    access: [ ["Command"], ["Research"], ["Security"],["CentralCommand"] ]
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechGygaxBattery
+  parent: ADTMechGygax
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#clarke
+
+- type: entity
+  id: ADTMechClarke
+  parent: BaseMech
+  name: clarke
+  description: Fast and light armored mech for space miners.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: clarke
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+        Shock: 0.9
+        Structural: 0.5
+    maxintegrity: 200
+    baseState: clarke
+    openState: clarke-open
+    brokenState: clarke-broken
+    mechToPilotDamageMultiplier: 0
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentIndustrial
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 15 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 5.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Storage
+    grid:
+    - 0,0,9,4
+    clickInsert: false
+
+- type: entity
+  id: ADTMechClarkeBattery
+  parent: ADTMechClarke
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#durand
+
+- type: entity
+  id: ADTMechDurand
+  parent: BaseMech
+  name: Durand
+  description: Slow and heavy armored combat mech.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: durand
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.25
+        Heat: 0.25
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.3
+    maxintegrity: 400
+    baseState: durand
+    openState: durand-open
+    brokenState: durand-broken
+    mechToPilotDamageMultiplier: 0.95
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 50 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 100
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 3.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: AccessReader
+    access: [ ["Command"], ["Research"], ["Security"],["CentralCommand"] ]
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechDurandBattery
+  parent: ADTMechDurand
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#odyssey
+
+- type: entity
+  id: ADTMechOdysseus
+  parent: BaseMech
+  name: Odysseus
+  description: With this mech you can save a lot of life. Or take it.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: odysseus
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Shock: 0.9
+        Structural: 0.75
+        Heat: 0.7
+    maxintegrity: 120
+    baseState: odysseus
+    openState: odysseus-open
+    brokenState: odysseus-broken
+    mechToPilotDamageMultiplier: 0.5
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentMed
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 15 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 4.2
+
+- type: entity
+  id: ADTMechOdysseusBattery
+  parent: ADTMechOdysseus
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#phazon
+
+- type: entity
+  id: ADTMechPhazon
+  parent: BaseMech
+  name: phazon
+  description: Most advanced mech.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: phazon
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.2
+    maxintegrity: 200
+    baseState: phazon
+    openState: phazon-open
+    brokenState: phazon-broken
+    mechToPilotDamageMultiplier: 0.85
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 60
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 6.0
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: AccessReader
+    access: [ ["Command"], ["Research"], ["Security"],["CentralCommand"] ]
+  - type: MechPhaze
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechPhazonBattery
+  parent: ADTMechPhazon
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#ripley mkII
+
+- type: entity
+  id: ADTMechRipleyMk2
+  parent: BaseMech
+  name: Ripley Mk2 APLU
+  description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: ripleymkii
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.7
+        Shock: 0.9
+        Structural: 0.75
+        Heat: 0.1
+    maxintegrity: 200
+    baseState: ripleymkii
+    openState: ripleymkii-open
+    brokenState: ripleymkii-broken
+    mechToPilotDamageMultiplier: 0.85
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentIndustrial
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 25 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 3.0
+  - type: Construction
+    graph: ADTRipleyMkII
+    node: ripley_mkii
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Storage
+    grid:
+    - 0,0,9,2
+    clickInsert: false
+
+- type: entity
+  id: ADTMechRipleyMk2Battery
+  parent: ADTMechRipleyMk2
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#Мехи ОБР
+
+- type: entity
+  id: ADTMechMarauder
+  parent: ADTMechDurand
+  name: Marauder
+  description: Heavy armored combat mech for ERT.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: marauder
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.25
+        Heat: 0.25
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.25
+    maxintegrity: 400
+    baseState: marauder
+    openState: marauder-open
+    brokenState: marauder-broken
+    mechToPilotDamageMultiplier: 0.95
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    maxEquipmentAmount: 5
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 50 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 100
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 3.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: AccessReader
+    access: [ ["CentralCommand"] ]
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechMarauderBattery
+  parent: ADTMechMarauder
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+- type: entity
+  id: ADTMechSeraph
+  parent: ADTMechDurand
+  name: Seraph
+  description: Heavy armored combat mech for ERT.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: seraph
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.25
+    maxintegrity: 400
+    baseState: seraph
+    openState: seraph-open
+    brokenState: seraph-broken
+    mechToPilotDamageMultiplier: 0.95
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+    maxEquipmentAmount: 8
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechSeraphBattery
+  parent: ADTMechSeraph
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+#Мехи Синдиката
+
+- type: entity
+  id: ADTMechDarkGygax
+  parent: ADTMechGygax
+  name: dark gygax
+  description: Fast and light armored combat mech.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: darkgygax
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.5
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.4
+    maxintegrity: 300
+    baseState: darkgygax
+    openState: darkgygax-open
+    brokenState: darkgygax-broken
+    mechToPilotDamageMultiplier: 0.85
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechDarkGygaxBattery
+  parent: ADTMechDarkGygax
+  suffix: Battery, filled
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+- type: entity
+  id: ADTMechMauler
+  parent: ADTMechDurand
+  name: Mauler
+  description: Heavy armored combat mech for ERT.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: mauler
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.25
+        Heat: 0.25
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.25
+    maxintegrity: 400
+    baseState: mauler
+    openState: mauler-open
+    brokenState: mauler-broken
+    mechToPilotDamageMultiplier: 0.95
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+    maxEquipmentAmount: 5
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 50 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 100
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 3.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: Storage
+    grid:
+    - 0,0,6,3
+    clickInsert: false
+
+- type: entity
+  id: ADTMechMaulerBattery
+  parent: ADTMechMauler
+  suffix: Battery, filled
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.25
+        Heat: 0.25
+        Radiation: 0
+        Caustic: 0.1
+        Structural: 0.25
+    maxintegrity: 400
+    baseState: mauler
+    openState: mauler-open
+    brokenState: mauler-broken
+    mechToPilotDamageMultiplier: 0.95
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+    maxEquipmentAmount: 5
+
+# paddy
+- type: entity
+  id: ADTMechpaddy
+  parent: BaseMech
+  name: Paddy APLU
+  description: The APLU Paddy is a Security variant of Ripley Mk1. Designed for mass detainment it has a special compartment which can hold up to 4 people, to load them into the compartment you must arm it with a Hydraulic Claw which can catch people and handcuff them. Handcuffing them can be disabled so you can use the mech for transporting squad of Security Officers.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: paddy
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/ADT/Mecha/mechstep.ogg
+  - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.8
+        Shock: 0.8
+        Structural: 0.75
+        Heat: 0.7
+    maxintegrity: 250
+    baseState: paddy
+    openState: paddy-open
+    brokenState: paddy-broken
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 40 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Structural: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 4.2
+
+- type: entity
+  id: ADTMechpaddyBattery
+  parent: ADTMechpaddy
+  suffix: Battery, filled
+  components:
+  - type: Mech
+    startingEquipment: ["MechEquipmentPuddyGrabber", "ADTMechGunPeacemakerDisabler"]
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.8
+        Shock: 0.8
+        Structural: 0.75
+        Heat: 0.7
+    maxintegrity: 250
+    baseState: paddy
+    openState: paddy-open
+    brokenState: paddy-broken
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - ADTMechEquipmentGeneral
+      - ADTMechEquipmentSec
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh

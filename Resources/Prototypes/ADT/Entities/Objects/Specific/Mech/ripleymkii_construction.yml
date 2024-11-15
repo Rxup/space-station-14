@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseRipleyPartItem
+  id: ADTRipleyMk2ModificationKit
+  name: ripley mk II modification kit
+  description: The kit to modification Ripley APLU to mk II.
+  components:
+  - type: Sprite
+    sprite: ADT/Objects/Specific/Mech/modification_kits.rsi
+    state: ripley_mkii
+  - type: Tag
+    tags:
+    - ADTRipleyMk2ModificationKit

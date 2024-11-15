@@ -322,6 +322,77 @@
     - MechParts
     - MechEquipment
     - BackmenShitmedModules # backmen
+    # ADT mech start
+    - ADTGygaxHarness
+    - ADTGygaxLArm
+    - ADTGygaxRArm
+    - ADTGygaxLLeg
+    - ADTGygaxRLeg
+    - ADTGygaxArmorPlates
+    - ADTGygaxHead
+    - ADTOdysseusHarness
+    - ADTOdysseusLArm
+    - ADTOdysseusRArm
+    - ADTOdysseusLLeg
+    - ADTOdysseusRLeg
+    - ADTOdysseusHead
+    - ADTMechGunMedigun
+    - ADTClarkeHarness
+    - ADTClarkeLArm
+    - ADTClarkeRArm
+    - ADTClarkeLTread
+    - ADTClarkeRTread
+    - ADTClarkeHead
+    - ADTDurandHarness
+    - ADTDurandLArm
+    - ADTDurandRArm
+    - ADTDurandLLeg
+    - ADTDurandRLeg
+    - ADTDurandHead
+    - ADTDurandArmorPlates
+    - ADTPhazonHarness
+    - ADTPhazonLArm
+    - ADTPhazonRArm
+    - ADTPhazonLLeg
+    - ADTPhazonRLeg
+    - ADTPhazonHead
+    - ADTPhazonArmorPlates
+    - MechEquipmentDiamondDrill
+    - MechEquipmentDrill
+    - MechEquipmentArmorMelee
+    - MechEquipmentArmorRange
+    - ADTMechWeaponCutter
+    - MechEquipmentHumanSleeper
+    - MechEquipmentHumanGrabber
+    - ADTGygaxCentralElectronics
+    - ADTGygaxPeripheralsElectronics
+    - ADTOdysseusCentralElectronics
+    - ADTOdysseusPeripheralsElectronics
+    - ADTClarkeCentralElectronics
+    - ADTClarkePeripheralsElectronics
+    - ADTDurandCentralElectronics
+    - ADTDurandPeripheralsElectronics
+    - ADTPhazonCentralElectronics
+    - ADTPhazonPeripheralsElectronics
+    - ADTPhazonWeaponControlElectronics
+    - ADTMechGunImmolatorLaser
+    - ADTMechGunPeacemakerDisabler
+    - ADTMechGunSolarisLaserCannon
+    - ADTMechGunTeslaCannon
+    - ADTMechGunScattershot
+    - ADTMechGunUltraAC2
+    - ADTMechGunFNX99Hades
+    - ADTMechGunMHAR21
+    - ADTMechGunSGL6
+    - ADTMechGunBRM6
+    - ADTMechGunSRM8
+    - ADTBoxAmmoAC2Ultra
+    - ADTBoxAmmoScattershot
+    - ADTBoxAmmoHades
+    - ADTBoxAmmoSniper
+    - ADTBoxAmmoGranade
+    - ADTBoxPlasmaBox
+    # ADT mech end
   - type: MaterialStorage
     whitelist:
       tags:

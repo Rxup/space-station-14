@@ -1,0 +1,335 @@
+- type: Tag
+  id: ADTMothFriendlyFood
+
+- type: Tag
+  id: Patch
+
+- type: Tag
+  id: Defibrillator
+
+- type: Tag
+  id: ADTLasgunRevolverCell
+
+- type: Tag
+  id: PhantomEctoplasm
+
+- type: Tag
+  id: PhantomEctoplasmBattery
+
+- type: Tag
+  id: PhantomEctoplasmPistolBattery
+
+- type: Tag
+  id: PhantomFreedom
+
+- type: Tag
+  id: IgnoreBalanceChecks
+
+- type: Tag
+  id: SpaceCash
+
+- type: Tag
+  id: PlushieSharkBlack
+
+- type: Tag
+  id: ADTSteelSheet
+
+- type: Tag
+  id: ADTCartridgeBibis
+
+- type: Tag
+  id: ADTMagazineRifleBibis
+
+- type: Tag
+  id: ADTBorgUse
+
+- type: Tag
+  id: ADTBorgModuleSecurity
+
+- type: Tag
+  id: ADTBorgSecurityHead
+
+- type: Tag
+  id: ADTBorgSecurityLArm
+
+- type: Tag
+  id: ADTBorgSecurityLLeg
+
+- type: Tag
+  id: ADTBorgSecurityRArm
+
+- type: Tag
+  id: ADTBorgSecurityRLeg
+
+- type: Tag
+  id: ADTBorgSecurityTorso
+
+- type: Tag
+  id: ADTBorgKerfusNTTorso
+
+- type: Tag
+  id: ADTBorgKerfusNTHead
+
+- type: Tag
+  id: ADTTelescopicBaton
+
+- type: Tag
+  id: Eyes
+
+- type: Tag
+  id: GasMask
+
+- type: Tag
+  id: Heart
+
+- type: Tag
+  id: Kidneys
+
+- type: Tag
+  id: Liver
+
+- type: Tag
+  id: Lungs
+
+- type: Tag
+  id: Mask
+
+- type: Tag
+  id: Organ
+
+- type: Tag
+  id: Stomach
+
+- type: Tag
+  id: Stunbaton
+
+- type: Tag
+  id: Table
+
+- type: Tag
+  id: Tongue
+
+- type: Tag
+  id: Poppy
+
+- type: Tag
+  id: ADTCardPlay
+
+- type: Tag
+  id: ADTCard
+
+- type: Tag
+  id: ADTSyrelBattleAxe
+
+- type: Tag
+  id: VehicleKey
+
+- type: Tag
+  id: JanicartKeys
+
+#mech_gygax
+
+- type: Tag
+  id: ADTGygaxCentralControlModule
+
+- type: Tag
+  id: ADTGygaxPeripheralsControlModule
+
+- type: Tag
+  id: ADTGygaxLArm
+
+- type: Tag
+  id: ADTGygaxLLeg
+
+- type: Tag
+  id: ADTGygaxRLeg
+
+- type: Tag
+  id: ADTGygaxRArm
+
+- type: Tag
+  id: ADTGygaxArmor
+
+- type: Tag
+  id: ADTGygaxHead
+
+#mech_clarke
+
+- type: Tag
+  id: ADTClarkeCentralControlModule
+
+- type: Tag
+  id: ADTClarkePeripheralsControlModule
+
+- type: Tag
+  id: ADTClarkeLArm
+
+- type: Tag
+  id: ADTClarkeRArm
+
+- type: Tag
+  id: ADTClarkeLTread
+
+- type: Tag
+  id: ADTClarkeRTread
+
+- type: Tag
+  id: ADTClarkeHead
+
+#mech_durand
+
+- type: Tag
+  id: ADTDurandCentralControlModule
+
+- type: Tag
+  id: ADTDurandPeripheralsControlModule
+
+- type: Tag
+  id: ADTDurandLArm
+
+- type: Tag
+  id: ADTDurandLLeg
+
+- type: Tag
+  id: ADTDurandRLeg
+
+- type: Tag
+  id: ADTDurandRArm
+
+- type: Tag
+  id: ADTDurandArmor
+
+- type: Tag
+  id: ADTDurandHead
+
+#odysseus
+
+- type: Tag
+  id: ADTOdysseusCentralControlModule
+
+- type: Tag
+  id: ADTOdysseusPeripheralsControlModule
+
+- type: Tag
+  id: ADTOdysseusLArm
+
+- type: Tag
+  id: ADTOdysseusLLeg
+
+- type: Tag
+  id: ADTOdysseusRLeg
+
+- type: Tag
+  id: ADTOdysseusRArm
+
+- type: Tag
+  id: ADTOdysseusArmor
+
+- type: Tag
+  id: ADTOdysseusHead
+
+#phazon
+
+- type: Tag
+  id: ADTPhazonCentralControlModule
+
+- type: Tag
+  id: ADTPhazonPeripheralsControlModule
+
+- type: Tag
+  id: ADTPhazonWeaponControlModule
+
+- type: Tag
+  id: ADTPhazonLArm
+
+- type: Tag
+  id: ADTPhazonLLeg
+
+- type: Tag
+  id: ADTPhazonRLeg
+
+- type: Tag
+  id: ADTPhazonRArm
+
+- type: Tag
+  id: ADTPhazonArmor
+
+- type: Tag
+  id: ADTPhazonHead
+
+#ripley_mk2
+
+- type: Tag
+  id: ADTRipleyMk2ModificationKit
+
+#mech general
+- type: Tag
+  id: ADTMechEquipmentGeneral
+
+- type: Tag
+  id: ADTMechEquipmentMed
+
+- type: Tag
+  id: ADTMechEquipmentService
+
+- type: Tag
+  id: ADTMechEquipmentIndustrial
+
+- type: Tag
+  id: ADTMechEquipmentSec
+
+- type: Tag
+  id: ADTMechEquipmentClown
+
+- type: Tag
+  id: ADTBadge
+
+- type: Tag
+  id: ADTMagazineRifleExtended
+
+- type: Tag
+  id: ADTMagazineHristov
+
+- type: Tag
+  id: ADTMagazineRifleAR12
+
+- type: Tag
+  id: ChangelingBlacklist
+
+- type: Tag
+  id: MaskBlocker
+
+- type: Tag
+  id: GlassesBlocker
+
+- type: Tag
+  id: ADTMobileDefibrillator
+
+- type: Tag
+  id: ADTPatch
+
+- type: Tag
+  id: ADTUnderwearB
+
+- type: Tag
+  id: ADTUnderwearT
+
+- type: Tag
+  id: ADTSocks
+
+- type: Tag
+  id: ADTMedipen
+
+- type: Tag
+  id: ADTBluespaceAnomalyCore
+
+- type: Tag
+  id: ADTHardsuitSalvage
+- type: Tag
+  id: ADTSiliconStealthWhitelist
+
+- type: Tag
+  id: ADTCandies
+
+- type: Tag
+  id: ADTBeerCan

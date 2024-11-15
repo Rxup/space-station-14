@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Created by git: Ratyyy \u0434\u043B\u044F \u0412\u0440\u0435\u043C\u044F \u041F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0439 MRP",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "mechlink"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+
+- type: entity
+  name: плазменный резак
+  parent: BaseItem
+  id: ADTMechWeaponCutter
+  description: Отсекай им конечности.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_plasmacutter
+  - type: Item
+    size: Large
+  - type: AmmoCounter
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+    fireRate: 1
+    projectileSpeed: 40
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: BallisticMechAmmoProvider
+    proto: BulletCutter
+    shots: 40
+    capacity: 40
+    #reloadCost: 100
+    reloadTime: 5
+    ammoType: plasma
+  - type: UIFragment
+    ui: !type:MechGunUi
+  - type: Appearance
+  - type: MechEquipment
+  - type: MechGun
+  - type: Tag
+    tags:
+      - ADTMechEquipmentSec
+      - ADTMechEquipmentIndustrial
+
+- type: entity
+  id: BulletCutter
+  name: cutter bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: adtomnilaser
+      shader: unshaded
+  - type: GatheringProjectile
+    amount: 30
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Heat: 30
+  - type: TimedDespawn
+    lifetime: 0.2
+
+# - type: entity
+#   name: бананомёт
+#   parent: BaseItem
+#   id: WeaponMechClowneBanana
+#   description: БАМ!
+#   components:
+#   - type: Sprite
+#     netsync: false
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_bananamrtr
+#   - type: Item
+#     size: Large
+#   - type: AmmoCounter
+#   - type: Gun
+#     soundGunshot:
+#       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+#     fireRate: 1
+#     projectileSpeed: 40
+#     selectedMode: FullAuto
+#     availableModes:
+#       - FullAuto
+#   - type: BallisticMechAmmoProvider
+#     proto: FoodPieBananaCream
+#     shots: 12
+#     capacity: 12
+#     reloadCost: 100
+#   - type: Appearance
+#   - type: MechEquipment
+#   - type: UIFragment
+#   - type: ContainerContainer
+#     containers:
+#       ballistic-ammo: !type:Container
+#         ents: []
+#   - type: MechGun
+#   - type: Tag
+#     tags:
+#       - ADTMechEquipmentClown
+
+- type: entity
+  name: противоударная броня меха
+  parent: BaseMechEquipment
+  id: MechEquipmentArmorMelee
+  description: Стань прочнее!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_abooster_ccw
+  - type: MechArmor
+    modifiers:
+      coefficients:
+        Blunt: 0.01
+        Slash: 0.01
+        Piercing: 0.3
+        Heat: 0.3
+  - type: MechEquipment
+    canBeUsed: false
+  - type: MechMagazine
+    magazinetype: lightrifle
+
+- type: entity
+  name: противопульная броня меха
+  parent: BaseMechEquipment
+  id: MechEquipmentArmorRange
+  description: Стань прочнее!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_abooster_proj
+  - type: MechArmor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.01
+        Heat: 0.01
+  - type: MechEquipment
+    canBeUsed: false
+
+# - type: entity
+#   name: гравитационная катапульта
+#   parent: BaseMechEquipment
+#   id: MechEquipmentGravipult
+#   description: Запустите себя в полёт!
+#   components:
+#   - type: Sprite
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_teleport
+#   - type: MechCatapult
+#   - type: Tag
+#     tags:
+#       - ADTMechEquipmentGeneral
+
+- type: entity
+  name: навесной слипер
+  parent: MechEquipmentGrabber
+  id: MechEquipmentHumanSleeper
+  description: Забирает человека, замедляет метаболизм, оставляет его в безопасности.
+  components:
+  - type: Sprite
+    sprite: Structures/cryostorage.rsi
+    state: sleeper_0
+  - type: MechGrabber
+    grabMobs: true
+    maxContents: 4
+    slowMetabolism: true
+  - type: Tag
+    tags:
+      - ADTMechEquipmentMed
+
+- type: entity
+  name: навесной переносчик
+  parent: MechEquipmentGrabber
+  id: MechEquipmentHumanGrabber
+  description: You are my friend now :3
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_humanstealer
+  - type: MechGrabber
+    grabMobs: true
+    maxContents: 4
+  - type: Tag
+    tags:
+      - ADTMechEquipmentMed
+
+- type: entity
+  name: medigun
+  parent: ADTBaseMechGunBattery
+  id: ADTMechGunMedigun
+  description: medigun
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_medigun
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: HitscanMechAmmoProvider
+    proto: ADTHealMechGun
+    fireCost: 12
+  - type: Tag
+    tags:
+      - ADTMechEquipmentMed
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
+  - type: MechGun
+
+- type: entity
+  name: бур
+  parent: BaseMechEquipment
+  id: MechEquipmentDrill
+  description: Просверлит всё! Стены, двери, руду, столы ковры, ваших врагов!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_drill
+  - type: MechDrill
+    damage:
+      types:
+        Structural: 70
+        Slash: 30
+        Piercing: 30
+  - type: Tag
+    tags:
+      - ADTMechEquipmentIndustrial
+
+- type: entity
+  name: алмазный бур
+  parent: BaseMechEquipment
+  id: MechEquipmentDiamondDrill
+  description: Сильно просверлит всё! Стены, двери, руду, столы ковры, ваших врагов!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_diamond_drill
+  - type: MechDrill
+    damage:
+      types:
+        Structural: 80
+        Slash: 40
+        Piercing: 30
+    drillSpeedMultilire: 80
+  - type: Tag
+    tags:
+      - ADTMechEquipmentIndustrial
+
+- type: entity
+  name: навесной переносчик
+  parent: MechEquipmentGrabber
+  id: MechEquipmentPuddyGrabber
+  description: You are my friend now :3
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: paddy_claw
+  - type: MechGrabber
+    grabMobs: true
+    maxContents: 2
+    baseResistTime: 15
+  - type: Tag
+    tags:
+      - ADTMechEquipmentSec

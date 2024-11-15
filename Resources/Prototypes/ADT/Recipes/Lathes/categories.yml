@@ -1,0 +1,27 @@
+- type: latheCategory
+  id: Atmos
+  name: lathe-category-atmos
+
+- type: latheCategory
+  id: Disposals
+  name: lathe-category-disposals
+
+- type: latheCategory
+  id: ADTMechGygax
+  name: lathe-category-mechs-gygax
+
+- type: latheCategory
+  id: ADTMechOdysseus
+  name: lathe-category-mechs-odysseus
+
+- type: latheCategory
+  id: ADTMechClarke
+  name: lathe-category-mechs-clarke
+
+- type: latheCategory
+  id: ADTMechDurand
+  name: lathe-category-mechs-durand
+
+- type: latheCategory
+  id: ADTMechPhazon
+  name: lathe-category-mechs-phazon

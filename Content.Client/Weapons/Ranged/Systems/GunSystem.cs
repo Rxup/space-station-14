@@ -6,6 +6,7 @@ using Content.Client.Weapons.Ranged.Components;
 using Content.Shared.Backmen.Camera.Components;
 using Content.Shared.Camera;
 using Content.Shared.CombatMode;
+using Content.Shared.Mech.Components;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
@@ -245,6 +246,16 @@ public sealed partial class GunSystem : SharedGunSystem
                     {
                         SetCartridgeSpent(ent!.Value, cartridge, true);
                         MuzzleFlash(gunUid, cartridge, worldAngle, user);
+                        if (TryComp<MechComponent>(user, out var cmech))    // ADT Mechs
+                        {
+                            Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, cmech.PilotSlot.ContainedEntity);
+                            Recoil(cmech.PilotSlot.ContainedEntity, direction, gun.CameraRecoilScalarModified);
+                        }
+                        else
+                        {
+                            Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                            Recoil(user, direction, gun.CameraRecoilScalarModified);
+                        }
                         Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                         Recoil(user, direction, gun.CameraRecoilScalarModified, gunUid); // backmen: KickMagnitudeMax
                         // TODO: Can't predict entity deletions.

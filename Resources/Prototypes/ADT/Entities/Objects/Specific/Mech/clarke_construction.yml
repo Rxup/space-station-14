@@ -1,0 +1,142 @@
+- type: entity
+  id: ADTBaseClarkePart
+  parent: BaseMechPart
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Items
+    noRot: false
+    sprite: ADT/Objects/Specific/Mech/clarke_construction.rsi
+
+- type: entity
+  id: ADTBaseClarkePartItem
+  parent: ADTBaseClarkePart
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+
+- type: entity
+  parent: ADTBaseClarkePart
+  id: ADTClarkeHarness
+  name: clarke harness
+  description: The core of the Clarke mech.
+  components:
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      clarke_l_arm+o:
+        whitelist:
+          tags:
+          - ADTClarkeLArm
+      clarke_r_arm+o:
+        whitelist:
+          tags:
+          - ADTClarkeRArm
+      clarke_l_tread+o:
+        whitelist:
+          tags:
+          - ADTClarkeLTread
+      clarke_r_tread+o:
+        whitelist:
+          tags:
+          - ADTClarkeRTread
+      clarke_head+o:
+        whitelist:
+          tags:
+          - ADTClarkeHead
+    sprite: ADT/Objects/Specific/Mech/clarke_construction.rsi
+  - type: ContainerContainer
+    containers:
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: ADTClarkeChassis
+    requiredParts:
+      ADTClarkeLArm: false
+      ADTClarkeRArm: false
+      ADTClarkeLTread: false
+      ADTClarkeRTread: false
+      ADTClarkeHead: false
+  - type: Sprite
+    state: clarke_harness+o
+    noRot: true
+
+- type: entity
+  parent: ADTBaseClarkePartItem
+  id: ADTClarkeLArm
+  name: clarke left arm
+  description: The left arm of the clarke. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: clarke_l_arm
+  - type: Tag
+    tags:
+    - ADTClarkeLArm
+
+- type: entity
+  parent: ADTBaseClarkePartItem
+  id: ADTClarkeLTread
+  name: clarke left tread
+  description: The left tread of the clarke. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: clarke_l_tread
+  - type: Tag
+    tags:
+    - ADTClarkeLTread
+
+- type: entity
+  parent: ADTBaseClarkePartItem
+  id: ADTClarkeRTread
+  name: clarke right tread
+  description: The right tread of the clarke. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: clarke_r_tread
+  - type: Tag
+    tags:
+    - ADTClarkeRTread
+
+- type: entity
+  parent: ADTBaseClarkePartItem
+  id: ADTClarkeRArm
+  name: clarke right arm
+  description: The right arm of the clarke. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: clarke_r_arm
+  - type: Tag
+    tags:
+    - ADTClarkeRArm
+
+- type: entity
+  parent: ADTBaseClarkePartItem
+  id: ADTClarkeHead
+  name: clarke head
+  description: clarke head
+  components:
+  - type: Sprite
+    state: clarke_head
+  - type: Tag
+    tags:
+    - ADTClarkeHead
+
+- type: entity
+  id: ADTClarkeChassis
+  parent: ADTBaseClarkePart
+  name: clarke chassis
+  description: An in-progress construction of the clarke mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: clarke
+  - type: Sprite
+    noRot: true
+    state: clarke_chassis
+  - type: Construction
+    graph: ADTClarke
+    node: start
+    defaultTarget: clarke

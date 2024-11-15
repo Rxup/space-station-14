@@ -171,6 +171,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - ADTHardsuitSalvage  # ADT tweak
 
 #Goliath Hardsuit
 - type: entity

@@ -1,0 +1,154 @@
+- type: entity
+  id: ADTBaseOdysseusPart
+  parent: BaseMechPart
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Items
+    noRot: false
+    sprite: ADT/Objects/Specific/Mech/odysseus_construction.rsi
+
+- type: entity
+  id: ADTBaseOdysseusPartItem
+  parent: ADTBaseOdysseusPart
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+
+- type: entity
+  parent: ADTBaseOdysseusPart
+  id: ADTOdysseusHarness
+  name: odysseus harness
+  description: The core of the Odysseus mech.
+  components:
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      odysseus_l_arm+o:
+        whitelist:
+          tags:
+          - ADTOdysseusLArm
+      odysseus_r_arm+o:
+        whitelist:
+          tags:
+          - ADTOdysseusRArm
+      odysseus_l_leg+o:
+        whitelist:
+          tags:
+          - ADTOdysseusLLeg
+      odysseus_r_leg+o:
+        whitelist:
+          tags:
+          - ADTOdysseusRLeg
+      odysseus_head+o:
+        whitelist:
+          tags:
+          - ADTOdysseusHead
+    sprite: ADT/Objects/Specific/Mech/odysseus_construction.rsi
+  - type: ContainerContainer
+    containers:
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: ADTOdysseusChassis
+    requiredParts:
+      ADTOdysseusLArm: false
+      ADTOdysseusRArm: false
+      ADTOdysseusLLeg: false
+      ADTOdysseusRLeg: false
+      ADTOdysseusHead: false
+  - type: Sprite
+    state: odysseus_torso+o
+    noRot: true
+
+- type: entity
+  parent: ADTBaseOdysseusPartItem
+  id: ADTOdysseusLArm
+  name: odysseus left arm
+  description: The left arm of the odysseus. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: odysseus_l_arm
+  - type: Tag
+    tags:
+    - ADTOdysseusLArm
+
+- type: entity
+  parent: ADTBaseOdysseusPartItem
+  id: ADTOdysseusLLeg
+  name: odysseus left leg
+  description: The left leg of the odysseus. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: odysseus_l_leg
+  - type: Tag
+    tags:
+    - ADTOdysseusLLeg
+
+- type: entity
+  parent: ADTBaseOdysseusPartItem
+  id: ADTOdysseusRLeg
+  name: odysseus right leg
+  description: The right leg of the odysseus. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: odysseus_r_leg
+  - type: Tag
+    tags:
+    - ADTOdysseusRLeg
+
+- type: entity
+  parent: ADTBaseOdysseusPartItem
+  id: ADTOdysseusRArm
+  name: odysseus right arm
+  description: The right arm of the odysseus. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: odysseus_r_arm
+  - type: Tag
+    tags:
+    - ADTOdysseusRArm
+
+- type: entity
+  parent: ADTBaseOdysseusPartItem
+  id: ADTOdysseusArmorPlates
+  name: odysseus armor plates
+  description: odysseus armor plates
+  components:
+  - type: Sprite
+    state: odysseus_armor
+  - type: Tag
+    tags:
+    - ADTOdysseusArmor
+
+- type: entity
+  parent: ADTBaseOdysseusPartItem
+  id: ADTOdysseusHead
+  name: odysseus head
+  description: odysseus head
+  components:
+  - type: Sprite
+    state: odysseus_head
+  - type: Tag
+    tags:
+    - ADTOdysseusHead
+
+- type: entity
+  id: ADTOdysseusChassis
+  parent: ADTBaseOdysseusPart
+  name: odysseus chassis
+  description: An in-progress construction of the odysseus mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: odysseus
+  - type: Sprite
+    noRot: true
+    state: odysseus0
+  - type: Construction
+    graph: ADTOdysseus
+    node: start
+    defaultTarget: odysseus

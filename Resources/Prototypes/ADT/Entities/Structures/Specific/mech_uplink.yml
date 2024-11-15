@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseStructure
+  id: UplinkMech
+  name: syndicate SSMRS
+  description: Specical Mech Recall Station, AKA "gou bai da fakn maular".
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: ADT/Structures/Specific/mechlink.rsi
+    layers:
+    - state: mechlink
+    drawdepth: SmallMobs
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - ADTUplinkMechMechs
+    - ADTUplinkMechWeapon
+    - ADTUplinkMechEquipment
+    balance:
+      Telecrystal: 0
+    #storeCordsSpawn: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.8
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer

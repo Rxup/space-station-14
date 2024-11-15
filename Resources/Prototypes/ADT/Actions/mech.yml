@@ -1,0 +1,96 @@
+# - type: entity
+#   id: ActionMechCycleEquipment
+#   name: Cycle
+#   description: Cycles currently selected equipment
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: InstantAction
+#     itemIconStyle: NoItem
+#     icon:
+#       sprite: Interface/Actions/actions_mecha.rsi
+#       state: mech_cycle_equip_on
+#     event: !type:MechToggleEquipmentEvent
+#     useDelay: 0.5
+
+# - type: entity
+#   id: ActionMechOpenUI
+#   name: Control Panel
+#   description: Opens the control panel for the mech
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: InstantAction
+#     itemIconStyle: NoItem
+#     icon:
+#       sprite: Interface/Actions/actions_mecha.rsi
+#       state: mech_view_stats
+#     event: !type:MechOpenUiEvent
+#     useDelay: 1
+
+# - type: entity
+#   id: ActionMechEject
+#   name: Eject
+#   description: Ejects the pilot from the mech
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: InstantAction
+#     itemIconStyle: NoItem
+#     icon:
+#       sprite: Interface/Actions/actions_mecha.rsi
+#       state: mech_eject
+#     event: !type:MechEjectPilotEvent
+
+- type: entity
+  id: ActionMechInhale
+  name: Toggle tightness
+  description: "*задыхается*"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_internals_on
+    event: !type:MechInhaleEvent
+    useDelay: 2
+
+- type: entity
+  id: ActionMechTurnLights
+  name: Turn lights
+  description: Мои глазаааа!!!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_lights_on
+    event: !type:MechTurnLightsEvent
+    useDelay: 2
+
+- type: entity
+  id: ActionMechOverload
+  name: Toggle overload
+  description: Deja vu I've just been in this place before Higher on the street And I know it's my time to go
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_overload_on
+    event: !type:MechOverloadEvent
+    useDelay: 2
+
+- type: entity
+  id: ActionMechPhaze
+  name: Toggle phaze
+  description: is this a noclip??? No, this is phaze
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_phasing_on
+    event: !type:MechPhazeEvent
+    useDelay: 2

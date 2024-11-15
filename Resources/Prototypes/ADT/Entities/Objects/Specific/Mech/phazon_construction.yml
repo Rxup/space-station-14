@@ -1,0 +1,154 @@
+- type: entity
+  id: ADTBasePhazonPart
+  parent: BaseMechPart
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Items
+    noRot: false
+    sprite: ADT/Objects/Specific/Mech/phazon_construction.rsi
+
+- type: entity
+  id: ADTBasePhazonPartItem
+  parent: ADTBasePhazonPart
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+
+- type: entity
+  parent: ADTBasePhazonPart
+  id: ADTPhazonHarness
+  name: phazon harness
+  description: The core of the Phazon mech.
+  components:
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      phazon_l_arm+o:
+        whitelist:
+          tags:
+          - ADTPhazonLArm
+      phazon_r_arm+o:
+        whitelist:
+          tags:
+          - ADTPhazonRArm
+      phazon_l_leg+o:
+        whitelist:
+          tags:
+          - ADTPhazonLLeg
+      phazon_r_leg+o:
+        whitelist:
+          tags:
+          - ADTPhazonRLeg
+      phazon_head+o:
+        whitelist:
+          tags:
+          - ADTPhazonHead
+    sprite: ADT/Objects/Specific/Mech/phazon_construction.rsi
+  - type: ContainerContainer
+    containers:
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: ADTPhazonChassis
+    requiredParts:
+      ADTPhazonLArm: false
+      ADTPhazonRArm: false
+      ADTPhazonLLeg: false
+      ADTPhazonRLeg: false
+      ADTPhazonHead: false
+  - type: Sprite
+    state: phazon_harness+o
+    noRot: true
+
+- type: entity
+  parent: ADTBasePhazonPartItem
+  id: ADTPhazonLArm
+  name: phazon left arm
+  description: The left arm of the phazon. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: phazon_l_arm
+  - type: Tag
+    tags:
+    - ADTPhazonLArm
+
+- type: entity
+  parent: ADTBasePhazonPartItem
+  id: ADTPhazonLLeg
+  name: phazon left leg
+  description: The left leg of the phazon. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: phazon_l_leg
+  - type: Tag
+    tags:
+    - ADTPhazonLLeg
+
+- type: entity
+  parent: ADTBasePhazonPartItem
+  id: ADTPhazonRLeg
+  name: phazon right leg
+  description: The right leg of the phazon. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: phazon_r_leg
+  - type: Tag
+    tags:
+    - ADTPhazonRLeg
+
+- type: entity
+  parent: ADTBasePhazonPartItem
+  id: ADTPhazonRArm
+  name: phazon right arm
+  description: The right arm of the phazon. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: phazon_r_arm
+  - type: Tag
+    tags:
+    - ADTPhazonRArm
+
+- type: entity
+  parent: ADTBasePhazonPartItem
+  id: ADTPhazonArmorPlates
+  name: phazon armor plates
+  description: phazon armor plates
+  components:
+  - type: Sprite
+    state: phazon_armor
+  - type: Tag
+    tags:
+    - ADTPhazonArmor
+
+- type: entity
+  parent: ADTBasePhazonPartItem
+  id: ADTPhazonHead
+  name: phazon head
+  description: phazon head
+  components:
+  - type: Sprite
+    state: phazon_head
+  - type: Tag
+    tags:
+    - ADTPhazonHead
+
+- type: entity
+  id: ADTPhazonChassis
+  parent: ADTBasePhazonPart
+  name: phazon chassis
+  description: An in-progress construction of the phazon mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: phazon
+  - type: Sprite
+    noRot: true
+    state: phazon0
+  - type: Construction
+    graph: ADTPhazon
+    node: start
+    defaultTarget: phazon

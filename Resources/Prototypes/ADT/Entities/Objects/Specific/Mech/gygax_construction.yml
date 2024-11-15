@@ -1,0 +1,154 @@
+- type: entity
+  id: ADTBaseGygaxPart
+  parent: BaseMechPart
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Items
+    noRot: false
+    sprite: ADT/Objects/Specific/Mech/gygax_construction.rsi
+
+- type: entity
+  id: ADTBaseGygaxPartItem
+  parent: ADTBaseGygaxPart
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+
+- type: entity
+  parent: ADTBaseGygaxPart
+  id: ADTGygaxHarness
+  name: gygax harness
+  description: The core of the Gygax mech.
+  components:
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      gygax_l_arm+o:
+        whitelist:
+          tags:
+          - ADTGygaxLArm
+      gygax_r_arm+o:
+        whitelist:
+          tags:
+          - ADTGygaxRArm
+      gygax_l_leg+o:
+        whitelist:
+          tags:
+          - ADTGygaxLLeg
+      gygax_r_leg+o:
+        whitelist:
+          tags:
+          - ADTGygaxRLeg
+      gygax_head+o:
+        whitelist:
+          tags:
+          - ADTGygaxHead
+    sprite: ADT/Objects/Specific/Mech/gygax_construction.rsi
+  - type: ContainerContainer
+    containers:
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: ADTGygaxChassis
+    requiredParts:
+      ADTGygaxLArm: false
+      ADTGygaxRArm: false
+      ADTGygaxLLeg: false
+      ADTGygaxRLeg: false
+      ADTGygaxHead: false
+  - type: Sprite
+    state: gygax_harness+o
+    noRot: true
+
+- type: entity
+  parent: ADTBaseGygaxPartItem
+  id: ADTGygaxLArm
+  name: gygax left arm
+  description: The left arm of the gygax. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: gygax_l_arm
+  - type: Tag
+    tags:
+    - ADTGygaxLArm
+
+- type: entity
+  parent: ADTBaseGygaxPartItem
+  id: ADTGygaxLLeg
+  name: gygax left leg
+  description: The left leg of the gygax. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: gygax_l_leg
+  - type: Tag
+    tags:
+    - ADTGygaxLLeg
+
+- type: entity
+  parent: ADTBaseGygaxPartItem
+  id: ADTGygaxRLeg
+  name: gygax right leg
+  description: The right leg of the gygax. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: gygax_r_leg
+  - type: Tag
+    tags:
+    - ADTGygaxRLeg
+
+- type: entity
+  parent: ADTBaseGygaxPartItem
+  id: ADTGygaxRArm
+  name: gygax right arm
+  description: The right arm of the gygax. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: gygax_r_arm
+  - type: Tag
+    tags:
+    - ADTGygaxRArm
+
+- type: entity
+  parent: ADTBaseGygaxPartItem
+  id: ADTGygaxArmorPlates
+  name: gygax armor plates
+  description: gygax armor plates
+  components:
+  - type: Sprite
+    state: gygax_armor
+  - type: Tag
+    tags:
+    - ADTGygaxArmor
+
+- type: entity
+  parent: ADTBaseGygaxPartItem
+  id: ADTGygaxHead
+  name: gygax head
+  description: gygax head
+  components:
+  - type: Sprite
+    state: gygax_head
+  - type: Tag
+    tags:
+    - ADTGygaxHead
+
+- type: entity
+  id: ADTGygaxChassis
+  parent: ADTBaseGygaxPart
+  name: gygax chassis
+  description: An in-progress construction of the gygax mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: gygax
+  - type: Sprite
+    noRot: true
+    state: gygax0
+  - type: Construction
+    graph: ADTGygax
+    node: start
+    defaultTarget: gygax

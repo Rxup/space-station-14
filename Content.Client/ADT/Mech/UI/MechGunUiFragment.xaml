@@ -1,0 +1,14 @@
+﻿<equipment:MechGunUiFragment
+    xmlns:equipment="clr-namespace:Content.Client.ADT.Mech.UI"
+    xmlns="https://spacestation14.io" Margin="1 0 2 0" HorizontalExpand="True" VerticalExpand="True">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <Label Name="ShotsCount" HorizontalAlignment="Left" StyleClasses="LabelSubText" Margin="5"></Label>
+        <Button Name="ReloadButton" HorizontalExpand="True"
+                Margin="5"
+                Text="{Loc 'mech-reload-button'}"
+                HorizontalAlignment="Right"/>
+        <Label Name="SpaceLabel" HorizontalAlignment="Right" StyleClasses="LabelSubText"></Label>
+    </BoxContainer>
+</equipment:MechGunUiFragment>

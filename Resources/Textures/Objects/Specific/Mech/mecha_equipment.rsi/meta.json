@@ -150,6 +150,13 @@
     },
     {
       "name": "mecha_kineticgun"
+    },
+    {
+      "name": "mecha_humanstealer"
+    },
+    {
+      "name": "paddy_claw"
     }
+
   ]
 }

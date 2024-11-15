@@ -1,0 +1,154 @@
+- type: entity
+  id: ADTBaseDurandPart
+  parent: BaseMechPart
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Items
+    noRot: false
+    sprite: ADT/Objects/Specific/Mech/durand_construction.rsi
+
+- type: entity
+  id: ADTBaseDurandPartItem
+  parent: ADTBaseDurandPart
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+
+- type: entity
+  parent: ADTBaseDurandPart
+  id: ADTDurandHarness
+  name: durand harness
+  description: The core of the Durand mech.
+  components:
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      durand_l_arm+o:
+        whitelist:
+          tags:
+          - ADTDurandLArm
+      durand_r_arm+o:
+        whitelist:
+          tags:
+          - ADTDurandRArm
+      durand_l_leg+o:
+        whitelist:
+          tags:
+          - ADTDurandLLeg
+      durand_r_leg+o:
+        whitelist:
+          tags:
+          - ADTDurandRLeg
+      durand_head+o:
+        whitelist:
+          tags:
+          - ADTDurandHead
+    sprite: ADT/Objects/Specific/Mech/durand_construction.rsi
+  - type: ContainerContainer
+    containers:
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: ADTDurandChassis
+    requiredParts:
+      ADTDurandLArm: false
+      ADTDurandRArm: false
+      ADTDurandLLeg: false
+      ADTDurandRLeg: false
+      ADTDurandHead: false
+  - type: Sprite
+    state: durand_harness+o
+    noRot: true
+
+- type: entity
+  parent: ADTBaseDurandPartItem
+  id: ADTDurandLArm
+  name: durand left arm
+  description: The left arm of the durand. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: durand_l_arm
+  - type: Tag
+    tags:
+    - ADTDurandLArm
+
+- type: entity
+  parent: ADTBaseDurandPartItem
+  id: ADTDurandLLeg
+  name: durand left leg
+  description: The left leg of the durand. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: durand_l_leg
+  - type: Tag
+    tags:
+    - ADTDurandLLeg
+
+- type: entity
+  parent: ADTBaseDurandPartItem
+  id: ADTDurandRLeg
+  name: durand right leg
+  description: The right leg of the durand. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: durand_r_leg
+  - type: Tag
+    tags:
+    - ADTDurandRLeg
+
+- type: entity
+  parent: ADTBaseDurandPartItem
+  id: ADTDurandRArm
+  name: durand right arm
+  description: The right arm of the durand. It belongs on the chassis of the mech.
+  components:
+  - type: Sprite
+    state: durand_r_arm
+  - type: Tag
+    tags:
+    - ADTDurandRArm
+
+- type: entity
+  parent: ADTBaseDurandPartItem
+  id: ADTDurandArmorPlates
+  name: durand armor plates
+  description: durand armor plates
+  components:
+  - type: Sprite
+    state: durand_armor
+  - type: Tag
+    tags:
+    - ADTDurandArmor
+
+- type: entity
+  parent: ADTBaseDurandPartItem
+  id: ADTDurandHead
+  name: durand head
+  description: durand head
+  components:
+  - type: Sprite
+    state: durand_head
+  - type: Tag
+    tags:
+    - ADTDurandHead
+
+- type: entity
+  id: ADTDurandChassis
+  parent: ADTBaseDurandPart
+  name: durand chassis
+  description: An in-progress construction of the durand mech.
+  components:
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: durand
+  - type: Sprite
+    noRot: true
+    state: durand0
+  - type: Construction
+    graph: ADTDurand
+    node: start
+    defaultTarget: durand

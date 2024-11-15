@@ -1,0 +1,88 @@
+- type: entity
+  parent: BaseItem
+  id: ADTBoxAmmoAC2Ultra
+  name: ammo box AC-2 "ultra"
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/Mech/ultra_box.rsi
+    state: icon
+  - type: MechMagazine
+    magazinetype: lightrifle
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: ADTBoxAmmoScattershot
+  name: ammo box LBX AC 10 "Scattershot"
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/Mech/shotgun_box.rsi
+    state: icon
+  - type: MechMagazine
+    magazinetype: shotgun
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: ADTBoxAmmoHades
+  name: ammo box FNX-99 "Hades"
+  components:
+  - type: Sprite
+    sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/Mech/hades_box.rsi
+    state: icon
+  - type: MechMagazine
+    magazinetype: lightrifleincendiary
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: ADTBoxAmmoSniper
+  name: ammo box mHAR-21 "Ma Deuce"
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/Mech/sniper_box.rsi
+    state: icon
+  - type: MechMagazine
+    magazinetype: sniper
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: ADTBoxAmmoGranade
+  name: universal granade box
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/Mech/granade_box.rsi
+    state: icon
+  - type: MechMagazine
+    magazinetype: granade
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: ADTBoxPlasmaBox
+  name: plasma ammo box
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/Mech/plasma_box.rsi
+    state: icon
+  - type: MechMagazine
+    magazinetype: plasma
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container

@@ -1,0 +1,209 @@
+# #technologies
+# - type: technology
+#   id: ADTMechTechnologyCarrier
+#   name: Навесные переноски
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_humanstealer
+#   discipline: Biochemical
+#   tier: 1
+#   cost: 1000
+#   recipeUnlocks:
+#   - MechEquipmentHumanGrabber
+
+# - type: technology
+#   id: ADTMechTechnologySyringegun
+#   name: Навесные шприцеметы
+#   icon:
+#     sprite: Objects/Weapons/Guns/SMGs/dnasyringegun.rsi
+#     state: icon
+#   discipline: Biochemical
+#   tier: 2
+#   cost: 1000
+#   recipeUnlocks:
+#   - DnaSyringeGun
+
+# - type: technology
+#   id: ADTMechTechnologySleeper
+#   name: Навесные слиперы
+#   icon:
+#     sprite: Structures/cryostorage.rsi
+#     state: sleeper_0
+#   discipline: Biochemical
+#   tier: 2
+#   cost: 3000
+#   recipeUnlocks:
+#   - MechEquipmentHumanSleeper
+
+# - type: technology
+#   id: ADTMechTechnologyMedigun
+#   name: Заживляющие лазеры
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_medigun
+#   discipline: Biochemical
+#   tier: 2
+#   cost: 3000
+#   recipeUnlocks:
+#   - ADTMechGunMedigun
+
+# - type: technology
+#   id: ADTMechTechnologyCutters
+#   name: Плазменные резаки
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_plasmacutter
+#   discipline: Industrial
+#   tier: 2
+#   cost: 3000
+#   recipeUnlocks:
+#   - ADTMechWeaponCutter
+
+# - type: technology
+#   id: ADTMechTechnologyDrill
+#   name: Тяжёлые буры
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_drill
+#   discipline: Industrial
+#   tier: 1
+#   cost: 1000
+#   recipeUnlocks:
+#   - MechEquipmentDrill
+
+# - type: technology
+#   id: ADTMechTechnologyDrillDiamond
+#   name: Алмызные буры
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_diamond_drill
+#   discipline: Industrial
+#   tier: 2
+#   cost: 2000
+#   recipeUnlocks:
+#   - MechEquipmentDiamondDrill
+
+# - type: technology
+#   id: ADTMechTechnologyArmor
+#   name: Бронирование мехов
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_abooster_proj
+#   discipline: Industrial
+#   tier: 2
+#   cost: 3000
+#   recipeUnlocks:
+#   - MechEquipmentArmorMelee
+#   - MechEquipmentArmorRange
+
+# - type: technology
+#   id: ADTMechTechnologyCatapult
+#   name: Гравитационные катапульты
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_teleport
+#   discipline: Industrial
+#   tier: 2
+#   cost: 1000
+#   recipeUnlocks:
+#   - MechEquipmentGravipult
+
+
+#recipes
+
+# - type: latheRecipe
+#   id: DnaSyringeGun
+#   result: DnaSyringeGun
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 350
+#     Plastic: 350
+#     Glass: 200
+#     Plasma: 100
+#     Silver: 100
+
+# - type: latheRecipe
+#   id: MechEquipmentHumanGrabber
+#   result: MechEquipmentHumanGrabber
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 450
+#     Plastic: 550
+#     Glass: 200
+#     Silver: 100
+
+# - type: latheRecipe
+#   id: MechEquipmentHumanSleeper
+#   result: MechEquipmentHumanSleeper
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 750
+#     Plastic: 750
+#     Glass: 300
+#     Silver: 300
+
+# - type: latheRecipe
+#   id: ADTMechWeaponCutter
+#   result: ADTMechWeaponCutter
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 1050
+#     Plastic: 150
+#     Glass: 300
+#     Silver: 300
+#     Plasma: 600
+
+# - type: latheRecipe
+#   id: MechEquipmentArmorRange
+#   result: MechEquipmentArmorRange
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 2050
+#     Plastic: 150
+#     Glass: 300
+
+# - type: latheRecipe
+#   id: MechEquipmentArmorMelee
+#   result: MechEquipmentArmorMelee
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 2050
+#     Plastic: 150
+#     Glass: 300
+
+# - type: latheRecipe
+#   id: MechEquipmentDrill
+#   result: MechEquipmentDrill
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 2050
+#     Plastic: 150
+#     Glass: 300
+
+# - type: latheRecipe
+#   id: MechEquipmentDiamondDrill
+#   result: MechEquipmentDiamondDrill
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 2050
+#     Plastic: 150
+#     Glass: 300
+#     Diamond: 500
+
+# - type: latheRecipe
+#   id: MechEquipmentGravipult
+#   result: MechEquipmentGravipult
+#   category: Mech
+#   completetime: 7
+#   materials:
+#     Steel: 650
+#     Plastic: 150
+#     Glass: 300

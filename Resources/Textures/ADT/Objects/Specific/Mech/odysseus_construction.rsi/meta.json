@@ -1,0 +1,127 @@
+{
+  "copyright" : "Taken from https://github.com/tgstation/tgstation at at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a",
+  "license" : "CC-BY-SA-3.0",
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "odysseus_armor"
+    },
+    {
+      "name": "odysseus_torso+o"
+    },
+    {
+      "name": "odysseus_torso"
+    },
+    {
+      "name": "odysseus_head+o"
+    },
+    {
+      "name": "odysseus_head"
+    },
+    {
+      "name": "odysseus_l_arm+o"
+    },
+    {
+      "name": "odysseus_l_arm"
+    },
+    {
+      "name": "odysseus_l_leg+o"
+    },
+    {
+      "name": "odysseus_l_leg"
+    },
+    {
+      "name": "odysseus_r_arm+o"
+    },
+    {
+      "name": "odysseus_r_arm"
+    },
+    {
+      "name": "odysseus_r_leg+o"
+    },
+    {
+      "name": "odysseus_r_leg"
+    },
+    {
+      "name": "odysseus0"
+    },
+    {
+      "name": "odysseus1"
+    },
+    {
+      "name": "odysseus2"
+    },
+    {
+      "name": "odysseus3"
+    },
+    {
+      "name": "odysseus4"
+    },
+    {
+      "name": "odysseus5"
+    },
+    {
+      "name": "odysseus6"
+    },
+    {
+      "name": "odysseus7"
+    },
+    {
+      "name": "odysseus8"
+    },
+    {
+      "name": "odysseus9"
+    },
+    {
+      "name": "odysseus10"
+    },
+    {
+      "name": "odysseus11"
+    },
+    {
+      "name": "odysseus12"
+    },
+    {
+      "name": "odysseus13"
+    },
+    {
+      "name": "odysseus14"
+    },
+    {
+      "name": "odysseus15"
+    },
+    {
+      "name": "odysseus16"
+    },
+    {
+      "name": "odysseus17"
+    },
+    {
+      "name": "odysseus18"
+    },
+    {
+        "name": "odysseus19",
+        "delays": [
+            [
+                0.5,
+                0.1,
+                0.2,
+                0.2
+            ]
+        ]
+    },
+    {
+      "name": "odysseus20"
+    },
+    {
+      "name": "odysseus21"
+    },
+    {
+      "name": "odysseus22"
+    }
+  ]
+}

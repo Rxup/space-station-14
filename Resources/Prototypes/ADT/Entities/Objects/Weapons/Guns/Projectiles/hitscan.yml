@@ -1,0 +1,27 @@
+
+- type: hitscan
+  id: ADTHealMechGun
+  damage:
+    types:
+      Blunt: -2
+      Slash: -2
+      Piercing: -2
+      Heat: -2
+      #Radiation: -2
+      Caustic: -2
+      #Bloodloss: -2
+      #Asphyxiation: -2
+      #Cellular: -2
+      Cold: -2
+      Shock: -2
+      #Poison: -2
+  bloodlossModifier: -2
+  muzzleFlash:
+    sprite: ADT/Objects/Weapons/Guns/Projectiles/medigun_projectiles.rsi
+    state: muzzle_heal
+  travelFlash:
+    sprite: ADT/Objects/Weapons/Guns/Projectiles/medigun_projectiles.rsi
+    state: beam_heal
+  impactFlash:
+    sprite: ADT/Objects/Weapons/Guns/Projectiles/medigun_projectiles.rsi
+    state: impact_heal

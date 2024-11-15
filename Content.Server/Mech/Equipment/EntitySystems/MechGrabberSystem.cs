@@ -16,6 +16,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Content.Server.Body.Systems;
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
 
@@ -42,6 +43,8 @@ public sealed class MechGrabberSystem : EntitySystem
 
         SubscribeLocalEvent<MechGrabberComponent, UserActivateInWorldEvent>(OnInteract);
         SubscribeLocalEvent<MechGrabberComponent, GrabberDoAfterEvent>(OnMechGrab);
+
+        SubscribeLocalEvent<MechGrabberComponent, EntityTerminatingEvent>(OnTerminating);   // ADT Mech
     }
 
     private void OnGrabberMessage(EntityUid uid, MechGrabberComponent component, MechEquipmentUiMessageRelayEvent args)
@@ -83,7 +86,13 @@ public sealed class MechGrabberSystem : EntitySystem
         var xform = Transform(toRemove);
         _transform.AttachToGridOrMap(toRemove, xform);
         var (mechPos, mechRot) = _transform.GetWorldPositionRotation(mechxform);
-
+        // ADT Mech start
+        if (component.SlowMetabolism)
+        {
+            var metabolicEvent = new ApplyMetabolicMultiplierEvent(toRemove, 0.4f, true);
+            RaiseLocalEvent(toRemove, ref metabolicEvent);
+        }
+        // ADT Mech end
         var offset = mechPos + mechRot.RotateVec(component.DepositOffset);
         _transform.SetWorldPositionRotation(toRemove, offset, Angle.Zero);
         _mech.UpdateUserInterface(mech);
@@ -132,12 +141,19 @@ public sealed class MechGrabberSystem : EntitySystem
         if (args.Target == args.User || component.DoAfter != null)
             return;
 
-        if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
-            HasComp<WallMountComponent>(target) ||
-            HasComp<MobStateComponent>(target))
-        {
+        // ADT Mech start
+        if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static)
             return;
-        }
+
+        if (HasComp<WallMountComponent>(target))
+            return;
+
+        if (HasComp<MobStateComponent>(target) && !component.GrabMobs)
+            return;
+
+        if (HasComp<MechComponent>(target))
+            return;
+        // ADT Mech end
 
         if (Transform(target).Anchored)
             return;
@@ -183,8 +199,22 @@ public sealed class MechGrabberSystem : EntitySystem
             return;
 
         _container.Insert(args.Args.Target.Value, component.ItemContainer);
+        // ADT Mech start
+        if (component.SlowMetabolism && args.Target.HasValue)
+        {
+            var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Target.Value, 0.4f, false);
+            RaiseLocalEvent(args.Target.Value, ref metabolicEvent);
+        }
+        // ADT Mech end
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
 
         args.Handled = true;
     }
+
+    // ADT Mech start
+    private void OnTerminating(EntityUid uid, MechGrabberComponent comp, ref EntityTerminatingEvent args)   // ADT
+    {
+        _container.EmptyContainer(comp.ItemContainer, true);
+    }
+    // ADT Mech end
 }

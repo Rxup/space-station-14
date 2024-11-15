@@ -1,0 +1,32 @@
+- type: constructionGraph
+  id: ADTRipleyMkII
+  start: start
+  graph:
+  - node: start
+    entity: MechRipley
+    edges:
+    - to: ripley_mkii
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+      - tool: Prying
+        doAfter: 1
+
+      - tag: ADTRipleyMk2ModificationKit
+        name: ripley mk2 modification kit
+        icon:
+          sprite: "ADT/Objects/Specific/Mech/modification_kits.rsi"
+          state: "ripley_mkii"
+
+      - tool: Prying
+        doAfter: 1
+
+      - tool: Welding
+        doAfter: 1
+
+      - tool: Anchoring
+        doAfter: 1
+
+  - node: ripley_mkii
+    entity: ADTMechRipleyMk2

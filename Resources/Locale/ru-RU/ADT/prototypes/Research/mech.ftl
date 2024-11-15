@@ -1,0 +1,21 @@
+research-technology-mech-fabricator = Производство продвинутых мехов
+research-technology-mech-gygax = Гайгэкс
+research-technology-mech-odysseus = Одиссей
+research-technology-mech-clarke = Кларк
+research-technology-mech-durand = Дюранд
+research-technology-mech-phazon = Фазон
+research-technology-mech-ripleymk2 = Рипли MKII
+
+research-technology-mech-carrier = Навесные переноски
+research-technology-mech-syringegun = Навесные шприцеметы
+research-technology-mech-sleeper = Навесные слиперы
+research-technology-mech-medigun = Заживляющие лазеры
+research-technology-mech-cutters = Плазменные резаки
+research-technology-mech-drill = Тяжёлые буры
+research-technology-mech-diamond-drill = Алмазные буры
+research-technology-mech-armor = Бронирование мехов
+research-technology-mech-catapult = Гравитационные катапульты
+research-technology-mech-energy-gun-small = Легкое энергооружие меха
+research-technology-mech-energy-gun-heavy = Тяжелое энергооружие меха
+research-technology-mech-gun-small = Легкое оружие меха
+research-technology-mech-gun-heavy = Тяжелое оружие меха

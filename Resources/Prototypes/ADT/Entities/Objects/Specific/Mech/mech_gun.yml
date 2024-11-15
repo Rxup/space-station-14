@@ -1,0 +1,405 @@
+#Базовые пушки
+
+- type: entity
+  name: ADTBaseMechGun
+  parent: BaseItem
+  id: ADTBaseMechGun
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_scatter
+  - type: Item
+    size: Ginormous
+  - type: HeldSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: Gun
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: AmmoCounter
+  # - type: BallisticAmmoProvider
+  #   whitelist:
+  #     tags:
+  #     - ShellShotgun
+  #   capacity: 7
+  #   proto: ShellShotgun
+  #   soundInsert:
+  #     path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  # - type: ContainerContainer
+  #   containers:
+  #     ballistic-ammo: !type:Container
+  #       ents: []
+  - type: StaticPrice
+    price: 500
+  - type: UseDelay
+    delay: 1
+  - type: MultiHandedItem
+  - type: MechGun
+  - type: MechEquipment
+  - type: Tag
+    tags:
+      - ADTMechEquipmentSec
+
+- type: entity
+  name: ADTBaseMechGunBattery
+  parent: BaseItem
+  id: ADTBaseMechGunBattery
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_laser
+  - type: Item
+    size: Ginormous
+  - type: HeldSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  # - type: Battery
+  #   maxCharge: 1000
+  #   startingCharge: 1000
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: MultiHandedItem
+  - type: MechGun
+  - type: MechEquipment
+  - type: Tag
+    tags:
+      - ADTMechEquipmentSec
+
+#Энергопушки
+
+- type: entity
+  name: CH-PS "Immolator" Laser
+  parent: ADTBaseMechGunBattery
+  id: ADTMechGunImmolatorLaser
+  description: CH-PS "Immolator" Laser
+  components:
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 4
+  - type: HitscanMechAmmoProvider
+    proto: RedLaser
+    fireCost: 15
+  # - type: Battery
+  #   maxCharge: 30
+  #   startingCharge: 30
+
+- type: entity
+  name: CH-LC "Solaris" Laser Cannon
+  parent: ADTBaseMechGunBattery
+  id: ADTMechGunSolarisLaserCannon
+  description: CH-LC "Solaris" Laser Cannon
+  components:
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 2.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanMechAmmoProvider
+    proto: RedHeavyLaser
+    fireCost: 30
+  # - type: Battery
+  #   maxCharge: 60
+  #   startingCharge: 60
+
+- type: entity
+  name: eZ-13 mk2 Heavy pulse rifle
+  parent: ADTBaseMechGunBattery
+  id: ADTMechGunHeavyPulseRifle
+  description: eZ-13 mk2 Heavy pulse rifle
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_pulse
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 4.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanMechAmmoProvider
+    proto: Pulse
+    fireCost: 100
+  # - type: Battery
+  #   maxCharge: 200
+  #   startingCharge: 200
+
+- type: entity
+  name: disabler "Peacemaker"
+  parent: ADTBaseMechGunBattery
+  id: ADTMechGunPeacemakerDisabler
+  description: Disabler "Peacemaker"
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_disabler
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: BatteryMechAmmoProvider
+    proto: BulletDisabler
+    fireCost: 30
+
+- type: entity
+  name: MKI Tesla Cannon
+  parent: ADTBaseMechGunBattery
+  id: ADTMechGunTeslaCannon
+  description: MKI Tesla Cannon
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_ion
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 1
+    projectileSpeed: 10
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+  - type: BatteryMechAmmoProvider
+    proto: TeslaGunBullet
+    fireCost: 100
+#Огнестрельное
+
+- type: entity
+  name: LBX AC 10 "Scattershot"
+  parent: ADTBaseMechGun
+  id: ADTMechGunScattershot
+  description: LBX AC 10 "Scattershot"
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_scatter
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    proto: ShellShotgun
+    shots: 12
+    capacity: 12
+    ammoType: shotgun
+  - type: UIFragment
+    ui: !type:MechGunUi
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  name: Ultra AC 2
+  parent: ADTBaseMechGun
+  id: ADTMechGunUltraAC2
+  description: Ultra AC 2
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_uac2
+  - type: Gun
+    fireRate: 9
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    shots: 30
+    capacity: 30
+    proto: BulletPistol
+    reloadTime: 5
+  - type: UIFragment
+    ui: !type:MechGunUi
+
+- type: entity
+  name: FNX-99 "Hades" Carbine
+  parent: ADTBaseMechGun
+  id: ADTMechGunFNX99Hades
+  description: FNX-99 "Hades" Carbine
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_carbine
+  - type: Gun
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    proto: BulletPistolIncendiary
+    shots: 45
+    capacity: 45
+    ammoType: lightrifleincendiary
+    reloadTime: 5
+  - type: UIFragment
+    ui: !type:MechGunUi
+
+- type: entity
+  name: mHAR-21 "Ma Deuce" Heavy Antimaterial Rifle
+  parent: ADTBaseMechGun
+  id: ADTMechGunMHAR21
+  description: mH21 "Ma Deuce" Heavy Antimaterial RifleAR-
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_carbine
+  - type: Gun
+    fireRate: 1.5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    proto: BulletAntiMateriel
+    shots: 7
+    capacity: 7
+    ammoType: sniper
+  - type: UIFragment
+    ui: !type:MechGunUi
+
+- type: entity
+  name: SGL-6 Grenade Launcher
+  parent: ADTBaseMechGun
+  id: ADTMechGunSGL6
+  description: SGL-6 Grenade Launcher
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_grenadelnchr
+  - type: Gun
+    fireRate: 1.5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    proto: GrenadeFlash
+    shots: 3
+    capacity: 3
+    ammoType: granade
+    reloadTime: 5
+  - type: UIFragment
+    ui: !type:MechGunUi
+
+- type: entity
+  name: SRM-8 Missile Rack
+  parent: ADTBaseMechGun
+  id: ADTMechGunSRM8
+  description: SRM-8 Missile Rack
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    proto: BulletRocket
+    shots: 2
+    capacity: 2
+    ammoType: granade
+    reloadTime: 5
+  - type: UIFragment
+    ui: !type:MechGunUi
+
+- type: entity
+  name: BRM-6 Missile Rack
+  parent: ADTBaseMechGun
+  id: ADTMechGunBRM6
+  description: BRM-6 Missile Rack
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack_six
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticMechAmmoProvider
+    proto: GrenadeBaton
+    shots: 3
+    capacity: 3
+    ammoType: granade
+    reloadTime: 5
+  - type: UIFragment
+    ui: !type:MechGunUi
+
+# #Медиган
+
+# - type: entity
+#   name: medigun
+#   parent: ADTBaseMechGunBattery
+#   id: ADTMechGunMedigun
+#   description: medigun
+#   components:
+#   - type: Sprite
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_medigun
+#   - type: Gun
+#     selectedMode: FullAuto
+#     availableModes:
+#     - FullAuto
+#     fireRate: 5
+#     soundGunshot:
+#       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+#   - type: HitscanBatteryAmmoProvider
+#     proto: ADTHealMechGun
+#     fireCost: 5
+#   - type: Battery
+#     maxCharge: 5000
+#     startingCharge: 5000

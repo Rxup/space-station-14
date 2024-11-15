@@ -1,0 +1,185 @@
+# Gygax
+
+- type: entity
+  id: ADTGygaxCentralElectronics
+  parent: BaseElectronics
+  name: gygax central control module
+  description: The electrical control center for the gygax mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - ADTGygaxCentralControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: ADTGygaxPeripheralsElectronics
+  parent: BaseElectronics
+  name: gygax peripherals control module
+  description: The electrical peripherals control for the gygax mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: id_mod
+    - type: Tag
+      tags:
+      - ADTGygaxPeripheralsControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+#Clarke
+
+- type: entity
+  id: ADTClarkeCentralElectronics
+  parent: BaseElectronics
+  name: clarke central control module
+  description: The electrical control center for the clarke mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - ADTClarkeCentralControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: ADTClarkePeripheralsElectronics
+  parent: BaseElectronics
+  name: clarke peripherals control module
+  description: The electrical peripherals control for the clarke mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: id_mod
+    - type: Tag
+      tags:
+      - ADTClarkePeripheralsControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+# Durand
+
+- type: entity
+  id: ADTDurandCentralElectronics
+  parent: BaseElectronics
+  name: durand central control module
+  description: The electrical control center for the durand mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - ADTDurandCentralControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: ADTDurandPeripheralsElectronics
+  parent: BaseElectronics
+  name: durand peripherals control module
+  description: The electrical peripherals control for the durand mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: id_mod
+    - type: Tag
+      tags:
+      - ADTDurandPeripheralsControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+# Odysseus
+
+- type: entity
+  id: ADTOdysseusCentralElectronics
+  parent: BaseElectronics
+  name: odysseus central control module
+  description: The electrical control center for the odysseus mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - ADTOdysseusCentralControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: ADTOdysseusPeripheralsElectronics
+  parent: BaseElectronics
+  name: odysseus peripherals control module
+  description: The electrical peripherals control for the odysseus mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: id_mod
+    - type: Tag
+      tags:
+      - ADTOdysseusPeripheralsControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+# Phazon
+
+- type: entity
+  id: ADTPhazonCentralElectronics
+  parent: BaseElectronics
+  name: phazon central control module
+  description: The electrical control center for the phazon mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - ADTPhazonCentralControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: ADTPhazonWeaponControlElectronics
+  parent: BaseElectronics
+  name: phazon weapon control and targeting module
+  description: The weapon control center for the phazon mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - ADTPhazonWeaponControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: ADTPhazonPeripheralsElectronics
+  parent: BaseElectronics
+  name: phazon peripherals control module
+  description: The electrical peripherals control for the phazon mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: id_mod
+    - type: Tag
+      tags:
+      - ADTPhazonPeripheralsControlModule
+    - type: GuideHelp
+      guides:
+      - Robotics

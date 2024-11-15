@@ -1,0 +1,123 @@
+- type: storeCategory
+  id: ADTUplinkMechMechs
+  name: экзоскелеты
+  priority: 1
+
+- type: storeCategory
+  id: ADTUplinkMechWeapon
+  name: вооружение
+  priority: 2
+
+- type: storeCategory
+  id: ADTUplinkMechEquipment
+  name: снаряжение
+  priority: 3
+
+- type: storePreset
+  id: ADTStorePresetUplinkMech
+  storeName: UplinkMech
+  categories:
+  - ADTUplinkMechMechs
+  - ADTUplinkMechWeapon
+  - ADTUplinkMechEquipment
+  currencyWhitelist:
+  - Telecrystal
+
+# listings:
+
+- type: listing
+  id: UplinkMechGygax
+  name: Гигакс
+  description: Быстрый и манёвренный экзоскелет, обладает перегрузкой ножных сервоприводов, создан для быстрого выполнения целей.
+  productEntity: ADTMechDarkGygaxBattery
+  cost:
+    Telecrystal: 60
+  categories:
+  - ADTUplinkMechMechs
+
+- type: listing
+  id: UplinkMechMauler
+  name: Маулер
+  description: Тяжёлый бронированный экзоскелет, обладающий 5-ю слотами
+  productEntity: ADTMechMaulerBattery
+  cost:
+    Telecrystal: 70
+  categories:
+  - ADTUplinkMechMechs
+
+#weapons
+
+- type: listing
+  id: UplinkMechTeslaCannon
+  name: пушка теслы
+  description: Стреляет шариками энергии
+  productEntity: ADTMechGunTeslaCannon
+  cost:
+    Telecrystal: 10
+  categories:
+  - ADTUplinkMechWeapon
+
+- type: listing
+  id: UplinkMechScattershot
+  name: LBX AC 10 Залп
+  description: Тяжёлый навесной дробовик, стреляющий, очевидно дробью.
+  productEntity: ADTMechGunScattershot
+  cost:
+    Telecrystal: 48
+  categories:
+  - ADTUplinkMechWeapon
+
+- type: listing
+  id: UplinkMechUltraAC2
+  name: AC-2 Ультра
+  description: Тяжёлый навесной пулемёт, основа всех основ.
+  productEntity: ADTMechGunUltraAC2
+  cost:
+    Telecrystal: 42
+  categories:
+  - ADTUplinkMechWeapon
+
+- type: listing
+  id: UplinkMechGunMHAR21
+  name: mHAR-21 "Ma Deuce"
+  description: Поиграть захотелось? Поиграем.
+  productEntity: ADTMechGunMHAR21
+  cost:
+    Telecrystal: 30
+  categories:
+  - ADTUplinkMechWeapon
+
+
+- type: listing
+  id: UplinkMechGunSRM8
+  name: SRM-8
+  description: Навесной ракетомёт для борьбы с группами врагов.
+  productEntity: ADTMechGunSRM8
+  cost:
+    Telecrystal: 34
+  categories:
+  - ADTUplinkMechWeapon
+
+#equipment
+
+- type: listing
+  id: UplinkMechArmorMelee
+  name: противоударная броня меха
+  description: Частично защищает меха от ударов ближним оружием.
+  productEntity: MechEquipmentArmorMelee
+  cost:
+    Telecrystal: 10
+  categories:
+  - ADTUplinkMechEquipment
+
+#equipment
+
+- type: listing
+  id: UplinkMechArmorRange
+  name: противопульная броня меха
+  description: Частично защищает меха от выстрелов.
+  productEntity: MechEquipmentArmorRange
+  cost:
+    Telecrystal: 15
+  categories:
+  - ADTUplinkMechEquipment
