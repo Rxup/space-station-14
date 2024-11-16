@@ -14,7 +14,6 @@
     endSound:
       path: /Audio/Medical/Surgery/organ2.ogg
   # end-backmen: surgery
-  - type: Gibbable
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
@@ -24,13 +23,21 @@
   - type: Tag
     tags:
       - Trash
-  # start-backmen: surgery
+
+# start-backmen: surgery
+- type: entity
+  id: BasePartDestructible
+  parent: BasePart
+  name: "body part"
+  abstract: true
+  components:
+  - type: Gibbable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 50
+        damage: 70
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
@@ -45,7 +52,7 @@
         damage: 200
       behaviors:
       - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
+        spawnInContainer: false
         spawn:
           Ash:
             min: 1
@@ -75,7 +82,7 @@
 - type: entity
   id: BaseHead
   name: "head"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -91,7 +98,7 @@
 - type: entity
   id: BaseLeftArm
   name: "left arm"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -102,7 +109,7 @@
 - type: entity
   id: BaseRightArm
   name: "right arm"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -113,7 +120,7 @@
 - type: entity
   id: BaseLeftHand
   name: "left hand"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -124,7 +131,7 @@
 - type: entity
   id: BaseRightHand
   name: "right hand"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -135,7 +142,7 @@
 - type: entity
   id: BaseLeftLeg
   name: "left leg"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -147,7 +154,7 @@
 - type: entity
   id: BaseRightLeg
   name: "right leg"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -159,7 +166,7 @@
 - type: entity
   id: BaseLeftFoot
   name: "left foot"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart
@@ -170,7 +177,7 @@
 - type: entity
   id: BaseRightFoot
   name: "right foot"
-  parent: BasePart
+  parent: BasePartDestructible # backmen: surgery
   abstract: true
   components:
   - type: BodyPart

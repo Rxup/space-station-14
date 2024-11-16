@@ -1,4 +1,3 @@
-# TODO BODY: Part damage
 - type: entity
   id: PartSkeleton
   parent: BaseItem
@@ -6,7 +5,7 @@
   abstract: true
   components:
   - type: Damageable
-    damageContainer: OrganicPart # Shitmed
+    damageContainer: OrganicPart # backmen: surgery
   - type: BodyPart
   - type: ContainerContainer
     containers:
@@ -14,16 +13,24 @@
         ents: []
   - type: StaticPrice
     price: 20
-  - type: Gibbable
   - type: Tag
     tags:
       - Trash
+
+# start-backmen: surgery
+- type: entity
+  id: PartSkeletonDestructible
+  parent: PartSkeleton
+  name: "body part"
+  abstract: true
+  components:
+  - type: Gibbable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 50
+        damage: 70
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
@@ -47,6 +54,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
+# end-backmen: surgery
 
 - type: entity
   id: TorsoSkeleton
@@ -66,7 +74,7 @@
   id: HeadSkeleton
   name: "skull"
   description: Alas poor Yorick...
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -104,7 +112,7 @@
 - type: entity
   id: LeftArmSkeleton
   name: "left skeleton arm"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -119,7 +127,7 @@
 - type: entity
   id: RightArmSkeleton
   name: "right skeleton arm"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -134,7 +142,7 @@
 - type: entity
   id: LeftHandSkeleton
   name: "left skeleton hand"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -149,7 +157,7 @@
 - type: entity
   id: RightHandSkeleton
   name: "right skeleton hand"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -164,7 +172,7 @@
 - type: entity
   id: LeftLegSkeleton
   name: "left skeleton leg"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -180,7 +188,7 @@
 - type: entity
   id: RightLegSkeleton
   name: "right skeleton leg"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -196,7 +204,7 @@
 - type: entity
   id: LeftFootSkeleton
   name: "left skeleton foot"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -211,7 +219,7 @@
 - type: entity
   id: RightFootSkeleton
   name: "right skeleton foot"
-  parent: PartSkeleton
+  parent: PartSkeletonDestructible # backmen: surgery
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi

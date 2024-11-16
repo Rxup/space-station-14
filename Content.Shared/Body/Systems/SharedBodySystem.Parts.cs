@@ -170,7 +170,6 @@ public partial class SharedBodySystem
 
     protected virtual void DropPart(Entity<BodyPartComponent> partEnt)
     {
-        ChangeSlotState(partEnt, true);
         // I don't know if this can cause issues, since any part that's being detached HAS to have a Body.
         // though I really just want the compiler to shut the fuck up.
         var body = partEnt.Comp.Body.GetValueOrDefault();
@@ -289,6 +288,7 @@ public partial class SharedBodySystem
 
         // I hate having to hardcode these checks so much.
         if (partEnt.Comp.PartType == BodyPartType.Leg)
+        {
             AddLeg(partEnt, (partEnt.Comp.Body.Value, body));
             RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodRemoveEffectEvent("SurgeryNoLeg"));
         }
@@ -323,6 +323,7 @@ public partial class SharedBodySystem
             return;
 
         if (partEnt.Comp.PartType == BodyPartType.Leg)
+        {
             RemoveLeg(partEnt, (partEnt.Comp.Body.Value, body));
             RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodEffectEvent("SurgeryNoLeg"));
         }

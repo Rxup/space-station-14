@@ -397,7 +397,7 @@ public partial class SharedBodySystem
 
         if (HasComp<InventoryComponent>(partId))
         {
-            foreach (var item in _inventory.GetHandOrInventoryEntities((partId, null, inventory)))
+            foreach (var item in _inventory.GetHandOrInventoryEntities((partId)))
             {
                 SharedTransform.AttachToGridOrMap(item);
                 gibs.Add(item);

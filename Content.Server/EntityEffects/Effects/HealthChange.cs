@@ -3,7 +3,6 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Localizations;
-using Content.Shared.Targeting; // Shitmed
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using System.Linq;

@@ -17,7 +17,7 @@
   description: "Should you really have this?"
   components:
   - type: Sprite
-    sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
+    sprite: Backmen/Mobs/Customization/felinid_tails.rsi
     state: basic_tail_tip
   - type: MarkingContainer
     marking: FelinidTailBasic

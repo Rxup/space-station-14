@@ -10,8 +10,7 @@
   - type: Icon
     sprite: Backmen/Mobs/Species/shadowkin.rsi
   - type: Damageable
-    damageContainer: OrganicPart # Shitmed
-  - type: Gibbable
+    damageContainer: OrganicPart # backmen: surgery
   - type: SurgeryTool
   - type: BodyPart
   - type: ContainerContainer
@@ -23,12 +22,21 @@
   - type: Tag
     tags:
       - Trash
+
+# start-backmen: surgery
+- type: entity
+  id: PartShadowkinDestructible
+  parent: PartShadowkin
+  name: "body part"
+  abstract: true
+  components:
+  - type: Gibbable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 50
+        damage: 70
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
@@ -52,11 +60,12 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
+# end-backmen: surgery
 
 - type: entity
   id: TorsoShadowkin
   name: "Shadowkin torso"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "torso_m"
@@ -73,7 +82,7 @@
 - type: entity
   id: HeadShadowkin
   name: "Shadowkin head"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "head_m"
@@ -94,7 +103,7 @@
 - type: entity
   id: LeftArmShadowkin
   name: "left Shadowkin arm"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "l_arm"
@@ -108,7 +117,7 @@
 - type: entity
   id: RightArmShadowkin
   name: "right Shadowkin arm"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "r_arm"
@@ -122,7 +131,7 @@
 - type: entity
   id: LeftHandShadowkin
   name: "left Shadowkin hand"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "l_hand"
@@ -136,7 +145,7 @@
 - type: entity
   id: RightHandShadowkin
   name: "right Shadowkin hand"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "r_hand"
@@ -150,7 +159,7 @@
 - type: entity
   id: LeftLegShadowkin
   name: "left Shadowkin leg"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "l_leg"
@@ -165,7 +174,7 @@
 - type: entity
   id: RightLegShadowkin
   name: "right Shadowkin leg"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "r_leg"
@@ -180,7 +189,7 @@
 - type: entity
   id: LeftFootShadowkin
   name: "left Shadowkin foot"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "l_foot"
@@ -194,7 +203,7 @@
 - type: entity
   id: RightFootShadowkin
   name: "right Shadowkin foot"
-  parent: PartShadowkin
+  parent: PartShadowkinDestructible # backmen: surgery
   components:
   - type: Sprite
     state: "r_foot"
