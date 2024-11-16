@@ -122,10 +122,8 @@ public partial class SharedBodySystem
             //RemovePartMarkings(uid, component, bodyAppearance);
     }
 
-    private void HandleState(EntityUid uid, BodyPartAppearanceComponent component, ref AfterAutoHandleStateEvent args)
-    {
+    private void HandleState(EntityUid uid, BodyPartAppearanceComponent component, ref AfterAutoHandleStateEvent args) =>
         ApplyPartMarkings(uid, component);
-    }
 
     private void OnPartAttachedToBody(EntityUid uid, BodyComponent component, ref BodyPartAttachedEvent args)
     {
@@ -161,13 +159,12 @@ public partial class SharedBodySystem
             _humanoid.SetBaseLayerColor(target, component.Type, component.Color, true, bodyAppearance);
 
         _humanoid.SetLayerVisibility(target, component.Type, true, true, bodyAppearance);
+        
         foreach (var (visualLayer, markingList) in component.Markings)
         {
             _humanoid.SetLayerVisibility(target, visualLayer, true, true, bodyAppearance);
             foreach (var marking in markingList)
-            {
                 _humanoid.AddMarking(target, marking.MarkingId, marking.MarkingColors, false, true, bodyAppearance);
-            }
         }
 
         Dirty(target, bodyAppearance);

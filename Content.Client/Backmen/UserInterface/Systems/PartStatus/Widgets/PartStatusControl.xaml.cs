@@ -43,8 +43,6 @@ public sealed partial class PartStatusControl : UIWidget
         }
     }
 
-    public void SetVisible(bool visible)
-    {
-        this.Visible = visible;
-    }
+    public void SetVisible(bool visible) => this.Visible = visible;
+
 }

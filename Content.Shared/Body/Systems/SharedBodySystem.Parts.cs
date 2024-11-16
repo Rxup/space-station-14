@@ -50,9 +50,7 @@ public partial class SharedBodySystem
     private void OnBodyPartRemove(Entity<BodyPartComponent> ent, ref ComponentRemove args)
     {
         if (ent.Comp.PartType == BodyPartType.Torso)
-        {
             _slots.RemoveItemSlot(ent, ent.Comp.ItemInsertionSlot);
-        }
     }
     private void OnBodyPartInserted(Entity<BodyPartComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
@@ -195,35 +193,9 @@ public partial class SharedBodySystem
 
     }
 
-
-    /// <summary>
-    /// This function handles disabling or enabling equipment slots when an entity is
-    /// missing all of a given part type, or they get one added to them.
-    /// It is called right before dropping a part, or right after adding one.
-    /// </summary>
-    public void ChangeSlotState(Entity<BodyPartComponent> partEnt, bool disable)
-    {
-        if (partEnt.Comp.Body is not null)
-            Log.Debug($"Attempting to change slot state to {disable} for {partEnt.Comp.PartType}. Number of parts: {GetBodyPartCount(partEnt.Comp.Body.Value, partEnt.Comp.PartType)}");
-        if (partEnt.Comp.Body is not null
-            && GetBodyPartCount(partEnt.Comp.Body.Value, partEnt.Comp.PartType) == 1
-            && TryGetPartSlotContainerName(partEnt.Comp.PartType, out var containerNames))
-        {
-            Log.Debug($"Found container names {containerNames}, with a number of {containerNames.Count}");
-            foreach (var containerName in containerNames)
-            {
-                Log.Debug($"Setting slot state to {disable} for {containerName}");
-                _inventorySystem.SetSlotStatus(partEnt.Comp.Body.Value, containerName, disable);
-                var ev = new RefreshInventorySlotsEvent(containerName);
-                RaiseLocalEvent(partEnt.Comp.Body.Value, ev);
-            }
-        }
-    }
-
-    private void OnAmputateAttempt(Entity<BodyPartComponent> partEnt, ref AmputateAttemptEvent args)
-    {
+    private void OnAmputateAttempt(Entity<BodyPartComponent> partEnt, ref AmputateAttemptEvent args) =>
         DropPart(partEnt);
-    }
+
     private void AddLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)
     {
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
@@ -317,7 +289,6 @@ public partial class SharedBodySystem
 
         // I hate having to hardcode these checks so much.
         if (partEnt.Comp.PartType == BodyPartType.Leg)
-        {
             AddLeg(partEnt, (partEnt.Comp.Body.Value, body));
             RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodRemoveEffectEvent("SurgeryNoLeg"));
         }
@@ -352,7 +323,6 @@ public partial class SharedBodySystem
             return;
 
         if (partEnt.Comp.PartType == BodyPartType.Leg)
-        {
             RemoveLeg(partEnt, (partEnt.Comp.Body.Value, body));
             RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodEffectEvent("SurgeryNoLeg"));
         }

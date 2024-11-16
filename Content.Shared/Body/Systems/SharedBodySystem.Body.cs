@@ -394,7 +394,8 @@ public partial class SharedBodySystem
                 playAudio: true, launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
                 launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
 
-        if (TryComp<InventoryComponent>(partId, out var inventory))
+
+        if (HasComp<InventoryComponent>(partId))
         {
             foreach (var item in _inventory.GetHandOrInventoryEntities((partId, null, inventory)))
             {
@@ -409,13 +410,10 @@ public partial class SharedBodySystem
 
     private void OnProfileLoadFinished(EntityUid uid, BodyComponent component, ProfileLoadFinishedEvent args)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var appearance)
+        if (!HasComp<HumanoidAppearanceComponent>(uid)
             || TerminatingOrDeleted(uid))
-            return;
 
         foreach (var part in GetBodyChildren(uid, component))
-        {
             EnsureComp<BodyPartAppearanceComponent>(part.Id);
-        }
     }
 }
