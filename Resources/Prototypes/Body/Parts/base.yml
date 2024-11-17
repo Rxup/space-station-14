@@ -23,21 +23,14 @@
   - type: Tag
     tags:
       - Trash
-
-# start-backmen: surgery
-- type: entity
-  id: BasePartDestructible
-  parent: BasePart
-  name: "body part"
-  abstract: true
-  components:
+  # start-backmen: surgery
   - type: Gibbable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 70
+        damage: 75
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
@@ -52,7 +45,7 @@
         damage: 200
       behaviors:
       - !type:SpawnEntitiesBehavior
-        spawnInContainer: false
+        spawnInContainer: true
         spawn:
           Ash:
             min: 1

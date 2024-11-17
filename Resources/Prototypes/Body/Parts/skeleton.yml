@@ -16,21 +16,14 @@
   - type: Tag
     tags:
       - Trash
-
-# start-backmen: surgery
-- type: entity
-  id: PartSkeletonDestructible
-  parent: PartSkeleton
-  name: "body part"
-  abstract: true
-  components:
+  # start-backmen: surgery
   - type: Gibbable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 70
+        damage: 75
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
@@ -54,7 +47,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
-# end-backmen: surgery
+  # end-backmen: surgery
 
 - type: entity
   id: TorsoSkeleton
