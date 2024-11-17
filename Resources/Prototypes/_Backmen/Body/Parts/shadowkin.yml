@@ -58,7 +58,7 @@
 - type: entity
   id: TorsoShadowkin
   name: "Shadowkin torso"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "torso_m"
@@ -75,7 +75,7 @@
 - type: entity
   id: HeadShadowkin
   name: "Shadowkin head"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "head_m"
@@ -96,7 +96,7 @@
 - type: entity
   id: LeftArmShadowkin
   name: "left Shadowkin arm"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "l_arm"
@@ -110,7 +110,7 @@
 - type: entity
   id: RightArmShadowkin
   name: "right Shadowkin arm"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "r_arm"
@@ -124,7 +124,7 @@
 - type: entity
   id: LeftHandShadowkin
   name: "left Shadowkin hand"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "l_hand"
@@ -138,7 +138,7 @@
 - type: entity
   id: RightHandShadowkin
   name: "right Shadowkin hand"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "r_hand"
@@ -152,7 +152,7 @@
 - type: entity
   id: LeftLegShadowkin
   name: "left Shadowkin leg"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "l_leg"
@@ -167,7 +167,7 @@
 - type: entity
   id: RightLegShadowkin
   name: "right Shadowkin leg"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "r_leg"
@@ -182,7 +182,7 @@
 - type: entity
   id: LeftFootShadowkin
   name: "left Shadowkin foot"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "l_foot"
@@ -196,7 +196,7 @@
 - type: entity
   id: RightFootShadowkin
   name: "right Shadowkin foot"
-  parent: PartShadowkinDestructible # backmen: surgery
+  parent: PartShadowkin
   components:
   - type: Sprite
     state: "r_foot"

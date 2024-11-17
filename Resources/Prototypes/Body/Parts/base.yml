@@ -75,7 +75,7 @@
 - type: entity
   id: BaseHead
   name: "head"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -91,7 +91,7 @@
 - type: entity
   id: BaseLeftArm
   name: "left arm"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -102,7 +102,7 @@
 - type: entity
   id: BaseRightArm
   name: "right arm"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -113,7 +113,7 @@
 - type: entity
   id: BaseLeftHand
   name: "left hand"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -124,7 +124,7 @@
 - type: entity
   id: BaseRightHand
   name: "right hand"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -135,7 +135,7 @@
 - type: entity
   id: BaseLeftLeg
   name: "left leg"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -147,7 +147,7 @@
 - type: entity
   id: BaseRightLeg
   name: "right leg"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -159,7 +159,7 @@
 - type: entity
   id: BaseLeftFoot
   name: "left foot"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
@@ -170,7 +170,7 @@
 - type: entity
   id: BaseRightFoot
   name: "right foot"
-  parent: BasePartDestructible # backmen: surgery
+  parent: BasePart
   abstract: true
   components:
   - type: BodyPart
