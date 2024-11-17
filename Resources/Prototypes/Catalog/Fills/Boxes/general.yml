@@ -5,9 +5,9 @@
   description: A cardboard box for storing things.
   components:
   - type: Item
-    size: Large
+    size: Normal
     shape:
-    - 0,0,2,2
+    - 0,0,1,1
   - type: Storage
     maxItemSize: Small
     grid:

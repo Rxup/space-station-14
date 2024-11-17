@@ -16,6 +16,8 @@
     modifiers:
       coefficients:
         Caustic: 0.5
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.4
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -67,6 +69,13 @@
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
+  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.70
+        Heat: 0.80
 
 - type: entity
   parent: ClothingOuterBioGeneral

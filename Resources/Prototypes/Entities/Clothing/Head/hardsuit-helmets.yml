@@ -694,6 +694,8 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.4
 
 #Deathsquad Hardsuit
 - type: entity
@@ -723,6 +725,8 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 1
 
 #MISC. HARDSUITS
 #Clown Hardsuit
