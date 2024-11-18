@@ -35,7 +35,7 @@ public sealed class AccessWeaponBlockerSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnFactionWeaponBlockerHandleState(EntityUid uid, AccessWeaponBlockerComponent component, ref ComponentHandleState args)
+    private void OnAccessWeaponBlockerHandleState(EntityUid uid, AccessWeaponBlockerComponent component, ref ComponentHandleState args)
     {
         if (args.Current is not AccessWeaponBlockerComponentState state)
             return;
