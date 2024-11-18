@@ -394,6 +394,7 @@ public partial class SharedBodySystem
             if (IsPartRoot(bodyEnt, partId, part: part) || !part.CanSever)
                 return gibs;
 
+            ChangeSlotState((partId, part), true);
             RemovePartChildren((partId, part), bodyEnt);
 
             // We have to iterate though every organ to drop it when part is being destroyed

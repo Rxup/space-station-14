@@ -36,9 +36,9 @@
     heldPrefix: brain
   - type: Sprite
     state: brain
-  - type: Brain
-  - type: Organ
-    slotId: brain
+  - type: Organ # Shitmed
+    slotId: Brain
+  - type: Brain # Shitmed
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -65,8 +65,13 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
-  - type: Eyes
-  
+  - type: Organ # Shitmed
+    slotId: eyes
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Eyes
 
 - type: entity
   id: OrganDionaStomach
@@ -87,6 +92,8 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: Organ # Shitmed
+    slotId: stomach
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
@@ -111,10 +118,12 @@
   description: "A spongy mess of slimy, leaf-like structures. Capable of breathing both carbon dioxide and oxygen."
   components:
   - type: Sprite
-    sprite: Mobs/Species/Human/organs.rsi
-    layers:
-      - state: lung-l
-      - state: lung-r
+    state: lungs
+  - type: Organ # Shitmed
+    slotId: lungs
+  - type: Item
+    size: Small
+    heldPrefix: lungs
   - type: Lung
   - type: Organ
     slotId: lungs

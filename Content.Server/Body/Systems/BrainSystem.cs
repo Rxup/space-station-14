@@ -11,6 +11,11 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Pointing;
 
+// Shitmed Change
+using Content.Shared._Shitmed.Body.Organ;
+using Content.Server._Shitmed.DelayedDeath;
+using Content.Shared.Body.Systems;
+
 namespace Content.Server.Body.Systems
 {
     public sealed class BrainSystem : EntitySystem
@@ -37,6 +42,7 @@ namespace Content.Server.Body.Systems
             {
                 // Prevents revival, should kill the user within a given timespan too.
                 EnsureComp<DebrainedComponent>(args.OldBody);
+                EnsureComp<DelayedDeathComponent>(args.OldBody);
                 HandleMind(uid, args.OldBody);
             }
         }
@@ -49,7 +55,9 @@ namespace Content.Server.Body.Systems
             if (!CheckOtherBrains(args.Body))
             {
                 RemComp<DebrainedComponent>(args.Body);
-                HandleMind(args.Body, uid, brain);
+                if (_bodySystem.TryGetBodyOrganEntityComps<HeartComponent>(args.Body, out var _))
+                    RemComp<DelayedDeathComponent>(args.Body);
+                HandleMind(args.Body, uid);
             }
         }
 

@@ -147,6 +147,8 @@
     damage:
       types:
         Slash: 12
+  - type: Scalpel # Shitmed
+    speed: 1.25
 
 - type: entity
   name: laser scalpel
@@ -161,6 +163,9 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     storedRotation: 90
     heldPrefix: laser
+  - type: Scalpel # Shitmed
+    speed: 1.5
+  # TODO: prevent bleeding from incisions
 
 # Retractor
 
@@ -207,7 +212,8 @@
     endSound:
       path: /Audio/Medical/Surgery/hemostat1.ogg
   - type: Hemostat
-  # end-backmen: surgery
+  - type: Tweezers # Shitmed
+  - type: Tending # Shitmed
 
 # Bone setter
 - type: entity
@@ -294,8 +300,8 @@
     qualities:
       - Sawing
     speedModifier: 0.5
-  - type: BoneSaw
-  # end-backmen: surgery
+  - type: BoneSaw # Shitmed
+    speed: 0.5
 
 - type: entity
   name: circular saw
@@ -320,11 +326,8 @@
     qualities:
       - Sawing
     speedModifier: 1.5
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/Medical/Surgery/saw.ogg
-  - type: BoneSaw
-  # end-backmen: surgery
+  - type: BoneSaw # Shitmed
+    speed: 1.5
 
 - type: entity
   name: advanced circular saw

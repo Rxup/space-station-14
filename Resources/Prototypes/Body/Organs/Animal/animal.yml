@@ -126,6 +126,12 @@
     groups:
     - id: Alcohol
       rateModifier: 0.1
+  - type: Liver # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Liver
   - type: Item
     size: Small
     heldPrefix: liver
@@ -139,8 +145,7 @@
   - type: Sprite
     state: heart-on
   - type: Organ
-    slotId: heart
-  - type: Heart
+    slotId: heart # Shitmed
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
@@ -148,6 +153,12 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: Heart # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Heart
   - type: Item
     size: Small
     heldPrefix: heart
@@ -163,7 +174,7 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
-    slotId: kidneys
+    slotId: kidneys # Shitmed
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Animal ]
