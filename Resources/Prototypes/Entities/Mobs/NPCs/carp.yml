@@ -99,6 +99,13 @@
     - type: NightVision
       isToggle: true
       color: "#808080"
+    - type: Body # GoobStation: Special carp organs
+      prototype: Carp
+    - type: SurgeryTarget # GoobStation
+    - type: UserInterface # GoobStation
+      interfaces:
+        enum.SurgeryUIKey.Key:
+          type: SurgeryBui
 
 - type: entity
   parent: BaseMobCarp

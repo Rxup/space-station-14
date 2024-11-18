@@ -52,6 +52,7 @@ public partial class SharedBodySystem
         if (ent.Comp.PartType == BodyPartType.Torso)
             _slots.RemoveItemSlot(ent, ent.Comp.ItemInsertionSlot);
     }
+    
     private void OnBodyPartInserted(Entity<BodyPartComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         // Body part inserted into another body part.
