@@ -47,7 +47,7 @@ public sealed class AccessWeaponBlockerSystem : EntitySystem
     }
     private void OnGetState(EntityUid uid, AccessWeaponBlockerComponent component, ref ComponentGetState args)
     {
-        args.State = new AccessWeaponBlockerComponentState()
+        args.State = new FactionWeaponBlockerComponentState()
         {
             CanUse = component.CanUse,
             AlertText = component.AlertText
