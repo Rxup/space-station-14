@@ -16,7 +16,7 @@ public sealed class AccessWeaponBlockerSystem : EntitySystem
         SubscribeLocalEvent<AccessWeaponBlockerComponent, AttemptMeleeEvent>(OnMeleeAttempt);
         SubscribeLocalEvent<AccessWeaponBlockerComponent, UseAttemptEvent>(OnUseAttempt);
         SubscribeLocalEvent<AccessWeaponBlockerComponent, InteractionAttemptEvent>(OnInteractAttempt);
-        SubscribeLocalEvent<AccessWeaponBlockerComponent, ComponentHandleState>(OnFactionWeaponBlockerHandleState);
+        SubscribeLocalEvent<AccessWeaponBlockerComponent, ComponentHandleState>(OnAccessWeaponBlockerHandleState);
     }
 
     private void OnUseAttempt(EntityUid uid, AccessWeaponBlockerComponent component, ref UseAttemptEvent args)
