@@ -478,6 +478,7 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - BackmenMedfabStatic # backmen
+    - AdvancedBodybagsStatic # Backmen
     dynamicPacks:
     - Chemistry
     - BackmenMedfab # backmen
