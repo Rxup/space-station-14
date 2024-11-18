@@ -10,6 +10,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
@@ -627,7 +628,21 @@ public abstract partial class SharedSurgerySystem
             BreakOnHandChange = true,
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        if (_doAfter.TryStartDoAfter(doAfter))
+        {
+            var userName = Identity.Entity(user, EntityManager);
+            var targetName = Identity.Entity(ent.Owner, EntityManager);
+
+            var locName = $"surgery-popup-procedure-{args.Surgery}-step-{args.Step}";
+            var locResult = Loc.GetString(locName,
+                ("user", userName), ("target", targetName), ("part", part));
+
+            if (locResult == locName)
+                locResult = Loc.GetString($"surgery-popup-step-{args.Step}",
+                    ("user", userName), ("target", targetName), ("part", part));
+
+            _popup.PopupEntity(locResult, user);
+        }
     }
 
     private (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, Entity<SurgeryComponent?> surgery, List<EntityUid> requirements)
