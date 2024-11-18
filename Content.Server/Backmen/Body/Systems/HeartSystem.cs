@@ -2,9 +2,11 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
-using Content.Server.DelayedDeath;
+using Content.Server.Backmen.DelayedDeath;
 using Content.Server.Body.Components;
-namespace Content.Server.Body.Systems;
+using Content.Shared.Backmen.Surgery.Body.Organs;
+
+namespace Content.Server.Backmen.Body.Systems;
 
 public sealed class HeartSystem : EntitySystem
 {
@@ -31,7 +33,7 @@ public sealed class HeartSystem : EntitySystem
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.Body))
             return;
 
-        if (_bodySystem.TryGetBodyOrganComponents<BrainComponent>(args.Body, out var _))
+        if (_bodySystem.TryGetBodyOrganEntityComps<BrainComponent>(args.Body, out var _))
             RemComp<DelayedDeathComponent>(args.Body);
     }
     // Shitmed-End

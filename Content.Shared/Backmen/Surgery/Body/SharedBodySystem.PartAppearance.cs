@@ -35,9 +35,10 @@ public partial class SharedBodySystem
             || TerminatingOrDeleted(part.OriginalBody.Value)
             || !TryComp(part.OriginalBody.Value, out HumanoidAppearanceComponent? bodyAppearance))
         {
-            component.ID = part.BaseLayerId;
+            //component.ID = part.BaseLayerId;
             component.Type = relevantLayer;
             return;
+        }
 
         var customLayers = bodyAppearance.CustomBaseLayers;
         var spriteLayers = bodyAppearance.BaseLayers;

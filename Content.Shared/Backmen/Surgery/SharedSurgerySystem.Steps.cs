@@ -23,6 +23,7 @@ using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Medical.Surgery;
 
 namespace Content.Shared.Backmen.Surgery;
 

@@ -586,6 +586,8 @@
     interfaces:
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui # backmen: surgery
   - type: InventorySlots
   - type: Inventory
     speciesId: hamster
@@ -616,13 +618,7 @@
           32:
             sprite: Mobs/Animals/mothroach/displacement.rsi
             state: neck
-  # start-backmen: surgery
-  - type: SurgeryTarget
-  - type: UserInterface
-    interfaces:
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
-  # end-backmen: surgery
+  - type: SurgeryTarget # backmen: surgery
 
 # Note that the mallard duck is actually a male drake mallard, with the brown duck being the female variant of the same species, however ss14 lacks sex specific textures
 # The white duck is more akin to a pekin or call duck.
@@ -1879,10 +1875,6 @@
       Burger: RatBurger
       Skewer: RatSkewer
   # start-backmen: surgery
-  - type: StepTriggerImmune
-    whitelist:
-      types:
-      - Landmine
   - type: SurgeryTarget
   - type: UserInterface
     interfaces:

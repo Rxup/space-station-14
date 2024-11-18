@@ -5,7 +5,8 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
-using Content.Server.DelayedDeath;
+using Content.Server.Backmen.DelayedDeath;
+using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Pointing;
@@ -43,7 +44,7 @@ namespace Content.Server.Body.Systems
                 return;
 
             RemComp<DebrainedComponent>(args.Body);
-            if (_bodySystem.TryGetBodyOrganComponents<HeartComponent>(args.Body, out var _))
+            if (_bodySystem.TryGetBodyOrganEntityComps<HeartComponent>(args.Body, out var _))
                 RemComp<DelayedDeathComponent>(args.Body);
             HandleMind(args.Body, uid);
         }

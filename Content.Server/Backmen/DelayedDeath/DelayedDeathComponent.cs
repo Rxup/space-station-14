@@ -1,4 +1,4 @@
-namespace Content.Server.DelayedDeath;
+namespace Content.Server.Backmen.DelayedDeath;
 
 [RegisterComponent]
 public sealed partial class DelayedDeathComponent : Component

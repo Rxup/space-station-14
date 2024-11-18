@@ -392,14 +392,20 @@ public partial class SharedBodySystem
             if (IsPartRoot(bodyEnt, partId, part: part))
                 return gibs;
 
-            ChangeSlotState((partId, part), true);
-
             RemovePartChildren((partId, part), bodyEnt);
 
-        _gibbingSystem.TryGibEntityWithRef(partId, partId, GibType.Gib, GibContentsOption.Drop, ref gibs,
-                playAudio: true, launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
-
+            _gibbingSystem.TryGibEntityWithRef(partId,
+                partId,
+                GibType.Gib,
+                GibContentsOption.Drop,
+                ref gibs,
+                playAudio: true,
+                launchGibs: true,
+                launchDirection: splatDirection,
+                launchImpulse: GibletLaunchImpulse * splatModifier,
+                launchImpulseVariance: GibletLaunchImpulseVariance,
+                launchCone: splatCone);
+        }
 
         if (HasComp<InventoryComponent>(partId))
         {
@@ -418,8 +424,11 @@ public partial class SharedBodySystem
     {
         if (!HasComp<HumanoidAppearanceComponent>(uid)
             || TerminatingOrDeleted(uid))
+            return;
 
         foreach (var part in GetBodyChildren(uid, component))
+        {
             EnsureComp<BodyPartAppearanceComponent>(part.Id);
+        }
     }
 }

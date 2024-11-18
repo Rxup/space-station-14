@@ -20,6 +20,7 @@ using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Medical.Surgery;
 
 namespace Content.Server.Backmen.Surgery;
 

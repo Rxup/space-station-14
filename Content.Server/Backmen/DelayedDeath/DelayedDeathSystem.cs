@@ -5,7 +5,8 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
-namespace Content.Server.DelayedDeath;
+
+namespace Content.Server.Backmen.DelayedDeath;
 
 public partial class DelayedDeathSystem : EntitySystem
 {
