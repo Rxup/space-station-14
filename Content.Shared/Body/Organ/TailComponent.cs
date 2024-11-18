@@ -3,4 +3,4 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Body.Organ;
 
 [RegisterComponent]
-public sealed partial class LiverComponent : Component;
+public sealed partial class TailComponent : Component;
