@@ -8,42 +8,42 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganShadowkinBrain
+        eyes: OrganShadowkinEyes
     torso:
       part: TorsoShadowkin
-      organs: # placeholders
-        heart: OrganHumanHeart
-        lungs: OrganHumanLungs
-        stomach: OrganHumanStomach
-        liver:  OrganHumanLiver
-        kidneys: OrganHumanKidneys
       connections:
       - right_arm
       - left_arm
       - right_leg
       - left_leg
-    right_arm:
+      - head
+      organs:
+        heart: OrganShadowkinHeart
+        stomach: OrganShadowkinStomach
+        liver:  OrganShadowkinLiver
+        kidneys: OrganShadowkinKidneys
+    right arm:
       part: RightArmShadowkin
       connections:
       - right_hand
-    left_arm:
+    left arm:
       part: LeftArmShadowkin
       connections:
       - left_hand
-    right_hand:
+    right hand:
       part: RightHandShadowkin
-    left_hand:
+    left hand:
       part: LeftHandShadowkin
-    right_leg:
+    right leg:
       part: RightLegShadowkin
       connections:
       - right_foot
-    left_leg:
+    left leg:
       part: LeftLegShadowkin
       connections:
       - left_foot
-    right_foot:
+    right foot:
       part: RightFootShadowkin
-    left_foot:
+    left foot:
       part: LeftFootShadowkin

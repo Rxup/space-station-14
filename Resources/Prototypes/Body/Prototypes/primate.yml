@@ -3,12 +3,20 @@
   name: "primate"
   root: torso
   slots:
+    head: # Put pun pun into a humans body
+      part: HeadAnimal
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
     torso:
       part: TorsoAnimal
       connections:
       - hands 1
       - hands 2
       - legs
+      - head
       organs:
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach

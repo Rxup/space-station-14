@@ -388,6 +388,12 @@ public partial class SharedBodySystem
             return gibs;
 
         if (part.Body is { } bodyEnt)
+        {
+            if (IsPartRoot(bodyEnt, partId, part: part))
+                return gibs;
+
+            ChangeSlotState((partId, part), true);
+
             RemovePartChildren((partId, part), bodyEnt);
 
         _gibbingSystem.TryGibEntityWithRef(partId, partId, GibType.Gib, GibContentsOption.Drop, ref gibs,
