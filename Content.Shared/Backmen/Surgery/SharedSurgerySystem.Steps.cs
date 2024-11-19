@@ -10,6 +10,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
@@ -22,6 +23,7 @@ using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Medical.Surgery;
 
 namespace Content.Shared.Backmen.Surgery;
 
@@ -420,6 +422,12 @@ public abstract partial class SharedSurgerySystem
                 && _body.InsertOrgan(args.Part, tool, insertedOrgan.SlotId, partComp, insertedOrgan))
             {
                 EnsureComp<OrganReattachedComponent>(tool);
+                if (_body.TrySetOrganUsed(tool, true, insertedOrgan)
+                    && insertedOrgan.OriginalBody != args.Body)
+                {
+                    var ev = new SurgeryStepDamageChangeEvent(args.User, args.Body, args.Part, ent);
+                    RaiseLocalEvent(ent, ref ev);
+                }
                 break;
             }
         }
@@ -621,7 +629,21 @@ public abstract partial class SharedSurgerySystem
             BreakOnHandChange = true,
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        if (_doAfter.TryStartDoAfter(doAfter))
+        {
+            var userName = Identity.Entity(user, EntityManager);
+            var targetName = Identity.Entity(ent.Owner, EntityManager);
+
+            var locName = $"surgery-popup-procedure-{args.Surgery}-step-{args.Step}";
+            var locResult = Loc.GetString(locName,
+                ("user", userName), ("target", targetName), ("part", part));
+
+            if (locResult == locName)
+                locResult = Loc.GetString($"surgery-popup-step-{args.Step}",
+                    ("user", userName), ("target", targetName), ("part", part));
+
+            _popup.PopupEntity(locResult, user);
+        }
     }
 
     private (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, Entity<SurgeryComponent?> surgery, List<EntityUid> requirements)

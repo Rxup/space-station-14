@@ -19,7 +19,7 @@
     species: Shadowkin
   - type: Hunger
   - type: Icon
-    sprite: Backmen/Mobs/Species/shadowkin.rsi
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
     state: full
   - type: Body
     prototype: Shadowkin
