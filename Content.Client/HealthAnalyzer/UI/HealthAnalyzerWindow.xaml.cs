@@ -37,7 +37,7 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
 
-        // Start-Shitmed
+        // Start-backmen: surgery
         public event Action<TargetBodyPart?, EntityUid>? OnBodyPartSelected;
         private EntityUid _spriteViewEntity;
 
@@ -47,7 +47,7 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly Dictionary<TargetBodyPart, TextureButton> _bodyPartControls;
         private EntityUid? _target;
 
-        // End-Shitmed
+        // End-backmen: surgery
 
         public HealthAnalyzerWindow()
         {
@@ -58,7 +58,7 @@ namespace Content.Client.HealthAnalyzer.UI
             _spriteSystem = _entityManager.System<SpriteSystem>();
             _prototypes = dependencies.Resolve<IPrototypeManager>();
             _cache = dependencies.Resolve<IResourceCache>();
-            // Start-Shitmed
+            // Start-backmen: surgery
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
                 { TargetBodyPart.Head, HeadButton },
@@ -80,7 +80,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 bodyPartButton.Value.OnPressed += _ => SetActiveBodyPart(bodyPartButton.Key, bodyPartButton.Value);
             }
             ReturnButton.OnPressed += _ => ResetBodyPart();
-            // End-Shitmed
+            // End-backmen: surgery
         }
 
         public void SetActiveBodyPart(TargetBodyPart part, TextureButton button)
@@ -108,7 +108,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
         public void Populate(HealthAnalyzerScannedUserMessage msg)
         {
-            // Start-Shitmed
+            // Start-backmen: surgery
             _target = _entityManager.GetEntity(msg.TargetEntity);
             EntityUid? part = msg.Part != null ? _entityManager.GetEntity(msg.Part.Value) : null;
             var isPart = part != null;
@@ -222,7 +222,7 @@ namespace Content.Client.HealthAnalyzer.UI
             IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
 
             DrawDiagnosticGroups(damageSortedGroups, damagePerType);
-            // End-Shitmed
+            // End-backmen: surgery
         }
 
         private static string GetStatus(MobState mobState)
@@ -324,7 +324,7 @@ namespace Content.Client.HealthAnalyzer.UI
             return rootContainer;
         }
 
-        // Start-Shitmed
+        // Start-backmen: surgery
         /// <summary>
         /// Sets up the Body Doll using Alert Entity to use in Health Analyzer.
         /// </summary>
@@ -358,6 +358,6 @@ namespace Content.Client.HealthAnalyzer.UI
             }
             return _spriteViewEntity;
         }
-        // End-Shitmed
+        // End-backmen: surgery
     }
 }

@@ -6,10 +6,10 @@ using Content.Server.Temperature.Components;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Chemistry.EntitySystems;
-// Shitmed Start
+// backmen: surgery Start
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-// Shitmed End
+// backmen: surgery End
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -49,12 +49,12 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         SubscribeLocalEvent<HealthAnalyzerComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
         SubscribeLocalEvent<HealthAnalyzerComponent, ItemToggledEvent>(OnToggled);
         SubscribeLocalEvent<HealthAnalyzerComponent, DroppedEvent>(OnDropped);
-        // Start-Shitmed
+        // Start-backmen: surgery
         Subs.BuiEvents<HealthAnalyzerComponent>(HealthAnalyzerUiKey.Key, subs =>
         {
             subs.Event<HealthAnalyzerPartMessage>(OnHealthAnalyzerPartSelected);
         });
-        // End-Shitmed
+        // End-backmen: surgery
     }
 
     public override void Update(float frameTime)
@@ -75,7 +75,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                 continue;
             }
 
-            // Shitmed Change Start
+            // backmen: surgery Change Start
             if (component.CurrentBodyPart != null
                 && (Deleted(component.CurrentBodyPart)
                 || TryComp(component.CurrentBodyPart, out BodyPartComponent? bodyPartComponent)
@@ -84,7 +84,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                 BeginAnalyzingEntity((uid, component), patient, null);
                 continue;
             }
-            // Shitmed Change End
+            // backmen: surgery Change End
 
             component.NextUpdate = _timing.CurTime + component.UpdateInterval;
 
