@@ -97,7 +97,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                 continue;
             }
 
-            UpdateScannedUser(uid, patient, true);
+            UpdateScannedUser(uid, patient, true, component.CurrentBodyPart);
         }
     }
 
@@ -113,8 +113,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
         var doAfterCancelled = !_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, uid.Comp.ScanDelay, new HealthAnalyzerDoAfterEvent(), uid, target: args.Target, used: uid)
         {
-            NeedHand = true,
             BreakOnMove = true,
+            NeedHand = true
         });
 
         if (args.Target == args.User || doAfterCancelled || uid.Comp.Silent)
@@ -203,7 +203,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         UpdateScannedUser(healthAnalyzer, target, false);
     }
 
-    // Start-Shitmed
+    // Start-backmen: surgery
     /// <summary>
     /// Handle the selection of a body part on the health analyzer
     /// </summary>
@@ -225,7 +225,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                 BeginAnalyzingEntity(healthAnalyzer, owner.Value, part.FirstOrDefault().Id);
         }
     }
-// End-Shitmed
+// End-backmen: surgery
 
     /// <summary>
     /// Send an update for the target to the healthAnalyzer
@@ -261,11 +261,11 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             unrevivable = true;
         */
 
-        // Start-Shitmed
+        // Start-backmen: surgery
         Dictionary<TargetBodyPart, TargetIntegrity>? body = null;
         if (HasComp<TargetingComponent>(target))
             body = _bodySystem.GetBodyPartStatus(target);
-        // End-Shitmed
+        // End-backmen: surgery
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
@@ -274,8 +274,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             scanMode,
             bleeding,
             unrevivable,
-            body, // Shitmed
-            part != null ? GetNetEntity(part) : null // Shitmed
+            body, // backmen: surgery
+            part != null ? GetNetEntity(part) : null // backmen: surgery
         ));
     }
 }
