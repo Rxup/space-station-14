@@ -273,7 +273,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
                     var damageString = Loc.GetString(
                         "health-analyzer-window-damage-type-text",
-                        ("damageType", Loc.GetString("health-analyzer-window-damage-type-" + type)),
+                        ("damageType", _prototypes.Index<DamageTypePrototype>(type).LocalizedName),
                         ("amount", typeAmount)
                     );
 
