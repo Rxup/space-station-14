@@ -1581,22 +1581,6 @@
       path: /Audio/Animals/lizard_happy.ogg
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
-  - type: RandomSprite
-    getAllGroups: true
-    available:
-    - enum.DamageStateVisualLayers.Base:
-        kobold: KoboldColors
-    - horns:
-        horns_curled: KoboldHornColors
-        horns_ram: KoboldHornColors
-        horns_short: KoboldHornColors
-        horns_myrsore: KoboldHornColors
-        horns_bighorn: KoboldHornColors
-        horns_argali: KoboldHornColors
-        horns_ayrshire: KoboldHornColors
-        horns_floppy_kobold_ears: Inherit
-        horns_double: Inherit
-        horns_kobold_ears: Inherit
   - type: MobThresholds
     thresholds:
       0: Alive
