@@ -15,6 +15,7 @@ using Content.Shared.Gibbing.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -139,7 +140,7 @@ public partial class SharedBodySystem
 
     private void OnStandAttempt(Entity<BodyComponent> ent, ref StandAttemptEvent args)
     {
-        if (ent.Comp.LegEntities.Count == 0)
+        if (!HasComp<BorgChassisComponent>(ent) && ent.Comp.LegEntities.Count == 0)
             args.Cancel();
     }
 
