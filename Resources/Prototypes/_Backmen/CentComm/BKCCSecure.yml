@@ -27,8 +27,8 @@
     sprite: Markers/jobs.rsi
     layers:
     - state: green
-    - sprite: Mobs/Security/security.rsi
-      state: officer
+    - sprite: Markers/jobs.rsi
+      state: ertsecurity
 
 - type: entity
   name: Охраник ЦК
