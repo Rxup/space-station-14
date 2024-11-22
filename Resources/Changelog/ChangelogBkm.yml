@@ -424,3 +424,14 @@
   id: 25
   time: '2024-11-21T10:14:18.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/925
+- author: trest100
+  changes:
+  - message: "\u0413\u043E\u043B\u0435\u043C\u044B \u043C\u043E\u0433\u0443\u0442\
+      \ \u043B\u0435\u0436\u0430\u0442\u044C!"
+    type: Fix
+  - message: "\u0411\u043E\u0440\u0433\u0438 \u0443\u043C\u0435\u044E\u0442 \u0432\
+      \u0441\u0442\u0430\u0432\u0430\u0442\u044C!"
+    type: Fix
+  id: 26
+  time: '2024-11-22T10:25:04.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/906
