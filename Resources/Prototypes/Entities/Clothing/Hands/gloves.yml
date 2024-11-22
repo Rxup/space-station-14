@@ -156,6 +156,8 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2
 ####
 - type: entity
   parent: ClothingHandsButcherable

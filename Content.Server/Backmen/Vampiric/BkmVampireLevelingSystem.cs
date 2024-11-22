@@ -23,8 +23,10 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -54,6 +56,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     [Dependency] private readonly BloodSuckerSystem _bloodSucker = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -195,6 +198,12 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
     public void InitShop(Entity<BkmVampireComponent> ent)
     {
+        var ui = EnsureComp<UserInterfaceComponent>(ent);
+        if (!_ui.HasUi(ent, StoreUiKey.Key, ui))
+        {
+            // у пользователя нет ui магазин!
+            return;
+        }
         _actions.AddAction(ent, VmpShop);
         var store = EnsureComp<StoreComponent>(ent);
         store.RefundAllowed = false;

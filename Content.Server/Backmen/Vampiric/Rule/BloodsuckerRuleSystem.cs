@@ -6,6 +6,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
+using Content.Shared.Roles;
 
 namespace Content.Server.Backmen.Vampiric.Rule;
 
@@ -13,6 +14,7 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
 {
     [Dependency] private readonly BloodSuckerSystem _bloodSuckerSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
 
     public override void Initialize()
     {
@@ -42,9 +44,9 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
             foreach (var player in vampRule.Elders)
             {
                 skip.Add(player.Value);
-                var role = CompOrNull<VampireRoleComponent>(player.Value);
-                var count = role?.Converted ?? 0;
-                var blood = role?.Drink ?? 0;
+                _roleSystem.MindHasRole<VampireRoleComponent>(player.Value, out var role);
+                var count = role?.Comp2.Converted ?? 0;
+                var blood = role?.Comp2.Drink ?? 0;
                 var countGoal = 0;
                 var bloodGoal = 0f;
 
@@ -81,21 +83,24 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
 
         var isAddLine = true;
 
-        var q = EntityQueryEnumerator<MindComponent,VampireRoleComponent>();
-        while (q.MoveNext(out var mindId,out var mind, out var role))
+        var q = EntityQueryEnumerator<MindComponent>();
+        while (q.MoveNext(out var mindId,out var mind))
         {
             if (skip.Contains(mindId))
             {
                 continue;
             }
 
+            if(!_roleSystem.MindHasRole<VampireRoleComponent>(mindId, out var role))
+                continue;
+
             if (isAddLine)
             {
                 ev.AddLine(Loc.GetString("vampire-bitten"));
                 isAddLine = false;
             }
-            var count = role?.Converted ?? 0;
-            var blood = role?.Drink ?? 0;
+            var count = role?.Comp2.Converted ?? 0;
+            var blood = role?.Comp2.Drink ?? 0;
             var countGoal = 0;
             var bloodGoal = 0f;
 

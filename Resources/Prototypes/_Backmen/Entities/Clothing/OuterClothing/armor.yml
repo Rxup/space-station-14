@@ -64,6 +64,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.60
   - type: GroupExamine
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.4
 
 - type: entity
   parent: [ClothingOuterBase, AllowSuitStorageClothing]

@@ -15,6 +15,13 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     public EntityUid? Body;
 
     /// <summary>
+    ///     Relevant body this organ originally belonged to.
+    ///     ///     FOR WHATEVER FUCKING REASON AUTONETWORKING THIS CRASHES GIBTEST AAAAAAAAAAAAAAA
+    /// </summary>
+    [DataField]
+    public EntityUid? OriginalBody;
+
+    /// <summary>
     /// Shitcodey solution to not being able to know what name corresponds to each organ's slot ID
     /// without referencing the prototype or hardcoding.
     /// </summary>
@@ -29,5 +36,5 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     ///  If true, the organ will not heal an entity when transplanted into them.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool? Used { get; set; } = false;
+    public bool? Used { get; set; }
 }

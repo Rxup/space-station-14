@@ -20,10 +20,15 @@ public sealed partial class PartStatusControl : UIWidget
         {
             { TargetBodyPart.Head, DollHead },
             { TargetBodyPart.Torso, DollTorso },
+            { TargetBodyPart.Groin, DollGroin },
             { TargetBodyPart.LeftArm, DollLeftArm },
+            { TargetBodyPart.LeftHand, DollLeftHand },
             { TargetBodyPart.RightArm, DollRightArm },
+            { TargetBodyPart.RightHand, DollRightHand },
             { TargetBodyPart.LeftLeg, DollLeftLeg },
-            { TargetBodyPart.RightLeg, DollRightLeg }
+            { TargetBodyPart.LeftFoot, DollLeftFoot },
+            { TargetBodyPart.RightLeg, DollRightLeg },
+            { TargetBodyPart.RightFoot, DollRightFoot }
         };
     }
 
@@ -38,8 +43,6 @@ public sealed partial class PartStatusControl : UIWidget
         }
     }
 
-    public void SetVisible(bool visible)
-    {
-        this.Visible = visible;
-    }
+    public void SetVisible(bool visible) => this.Visible = visible;
+
 }

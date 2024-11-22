@@ -12,6 +12,8 @@ using Content.Shared.DoAfter;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
@@ -32,6 +34,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
@@ -58,7 +61,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryWoundedConditionComponent, SurgeryValidEvent>(OnWoundedValid);
         SubscribeLocalEvent<SurgeryPartRemovedConditionComponent, SurgeryValidEvent>(OnPartRemovedConditionValid);
         SubscribeLocalEvent<SurgeryPartPresentConditionComponent, SurgeryValidEvent>(OnPartPresentConditionValid);
-
+        SubscribeLocalEvent<SurgeryMarkingConditionComponent, SurgeryValidEvent>(OnMarkingPresentValid);
         //SubscribeLocalEvent<SurgeryRemoveLarvaComponent, SurgeryCompletedEvent>(OnRemoveLarva);
 
         InitializeSteps();
@@ -74,18 +77,18 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (args.Cancelled ||
-            args.Handled ||
-            args.Target is not { } target ||
-            !IsSurgeryValid(ent, target, args.Surgery, args.Step, args.User, out var surgery, out var part, out var step) ||
-            !PreviousStepsComplete(ent, part, surgery, args.Step) ||
-            !CanPerformStep(args.User, ent, part, step, false))
+        if (args.Cancelled
+            || args.Handled
+            || args.Target is not { } target
+            || !IsSurgeryValid(ent, target, args.Surgery, args.Step, args.User, out var surgery, out var part, out var step)
+            || !PreviousStepsComplete(ent, part, surgery, args.Step)
+            || !CanPerformStep(args.User, ent, part, step, false))
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             return;
         }
 
-        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step);
+        args.Repeat = (HasComp<SurgeryRepeatableStepComponent>(step) && !IsStepComplete(ent, part, args.Step, surgery));
         var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User), surgery);
         RaiseLocalEvent(step, ref ev);
         RefreshUI(ent);
@@ -106,9 +109,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     private void OnWoundedValid(Entity<SurgeryWoundedConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!TryComp(args.Body, out DamageableComponent? damageable)
-            || !TryComp(args.Part, out BodyPartComponent? bodyPart)
+            || !TryComp(args.Part, out DamageableComponent? partDamageable)
             || damageable.TotalDamage <= 0
-            && bodyPart.TotalDamage <= bodyPart.MinIntegrity
+            && partDamageable.TotalDamage <= 0
             && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;
     }
@@ -151,13 +154,12 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         foreach (var reg in ent.Comp.Organ.Values)
         {
             if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
-                && organs != null
                 && organs.Count > 0)
             {
                 if (ent.Comp.Inverse
                     && (!ent.Comp.Reattaching
                     || ent.Comp.Reattaching
-                    && !HasComp<OrganReattachedComponent>(args.Part)))
+                    && !organs.Any(organ => HasComp<OrganReattachedComponent>(organ.Id))))
                     args.Cancelled = true;
             }
             else if (!ent.Comp.Inverse)
@@ -167,9 +169,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnPartRemovedConditionValid(Entity<SurgeryPartRemovedConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!TryComp<BodyPartComponent>(args.Part, out _)
-            || _body.GetBodyChildrenOfType(args.Body, ent.Comp.Part, symmetry: ent.Comp.Symmetry).Any()
-            && !HasComp<BodyPartReattachedComponent>(args.Part))
+        if (!_body.CanAttachToSlot(args.Part, ent.Comp.Connection))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var results = _body.GetBodyChildrenOfType(args.Body, ent.Comp.Part, symmetry: ent.Comp.Symmetry);
+        if (results is not { } || !results.Any())
+            return;
+
+        if (!results.Any(part => HasComp<BodyPartReattachedComponent>(part.Id)))
             args.Cancelled = true;
     }
 
@@ -177,6 +187,18 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (args.Part == EntityUid.Invalid
             || !HasComp<BodyPartComponent>(args.Part))
+            args.Cancelled = true;
+    }
+
+    private void OnMarkingPresentValid(Entity<SurgeryMarkingConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        var markingCategory = MarkingCategoriesConversion.FromHumanoidVisualLayers(ent.Comp.MarkingCategory);
+
+        var hasMarking = TryComp(args.Body, out HumanoidAppearanceComponent? bodyAppearance)
+            && bodyAppearance.MarkingSet.Markings.TryGetValue(markingCategory, out var markingList)
+            && markingList.Any(marking => marking.MarkingId.Contains(ent.Comp.MatchString));
+
+        if ((!ent.Comp.Inverse && hasMarking) || (ent.Comp.Inverse && !hasMarking))
             args.Cancelled = true;
     }
 

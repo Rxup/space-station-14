@@ -16,4 +16,3 @@
   - type: Handcuff
     cuffedRSI: Backmen/Objects/Misc/purplecuff.rsi
     bodyIconState: body-overlay
-    breakoutTime: 5

@@ -127,3 +127,5 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.4
