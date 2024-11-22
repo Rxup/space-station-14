@@ -603,7 +603,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
     {
-                var user = args.Actor;
+        var user = args.Actor;
         if (GetEntity(args.Entity) is not { Valid: true } body ||
             GetEntity(args.Part) is not { Valid: true } targetPart ||
             !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, user, out var surgery, out var part, out var step))

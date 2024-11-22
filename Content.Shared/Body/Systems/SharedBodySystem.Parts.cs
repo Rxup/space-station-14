@@ -18,19 +18,11 @@ using Content.Shared.Backmen.Mood;
 
 // Shitmed Change Start
 using Content.Shared._Shitmed.Body.Events;
-using Content.Shared._Shitmed.Body.Part;
 using Content.Shared._Shitmed.BodyEffects;
-using Content.Shared._Shitmed.Targeting.Events;
-using Content.Shared.Humanoid;
-using Content.Shared.Inventory;
-using Content.Shared.Random;
-
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
 

@@ -1,8 +1,8 @@
-using Content.Server._Shitmed.DelayedDeath;
-using Content.Shared._Shitmed.Body.Organ;
+using Content.Server.Backmen.DelayedDeath;
 using Content.Shared.Body.Systems;
-using Content.Shared.Mind;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Surgery.Body;
+using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Speech;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
