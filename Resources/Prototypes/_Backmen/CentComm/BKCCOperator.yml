@@ -38,7 +38,7 @@
   name: Оператор ЦК
   suffix: Директор Событий
   parent: MobHumanCombine
-  description: Офисный клерк.
+  description: Офисный клерк
   id: MobHumanCMBKCCOperator
   components:
   - type: Icon

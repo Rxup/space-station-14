@@ -6,6 +6,7 @@ using Content.Server.Ghost.Roles.Events;
 using Content.Shared.Ghost.Roles.Raffles;
 using Content.Server.Ghost.Roles.UI;
 using Content.Server.Mind.Commands;
+using Content.Server.Players.JobWhitelist;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -54,6 +55,8 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
+    [Dependency] private readonly JobWhitelistManager _wlRole = default!; // backmen: whitelist
+    [Dependency] private readonly Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _discordAuthManager = default!; // backmen: whitelist
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -578,6 +581,27 @@ public sealed class GhostRoleSystem : EntitySystem
                 ? _timing.CurTime.Add(raffle.Countdown)
                 : TimeSpan.MinValue;
 
+            // start-backmen: whitelist
+            var whitelistRequired = false;
+            var discordRequired = false;
+            if (_prototype.TryIndex(role.JobProto, out var job) && player != null)
+            {
+                if (role.WhitelistRequired)
+                {
+                    whitelistRequired = true;
+                }
+                else if (!_wlRole.IsAllowed(player, job))
+                {
+                    whitelistRequired = true;
+                }
+
+                if (_discordAuthManager.IsEnabled && job.DiscordRequired)
+                {
+                    discordRequired = true;
+                }
+            }
+            // end-backmen: whitelist
+
             roles.Add(new GhostRoleInfo
             {
                 Identifier = id,
@@ -588,7 +612,8 @@ public sealed class GhostRoleSystem : EntitySystem
                 Kind = kind,
                 RafflePlayerCount = rafflePlayerCount,
                 RaffleEndTime = raffleEndTime,
-                WhitelistRequired = role.WhitelistRequired // backmen: whitelist
+                WhitelistRequired = whitelistRequired, // backmen: whitelist
+                DiscordRequired = discordRequired, // backmen: whitelist
             });
         }
 
