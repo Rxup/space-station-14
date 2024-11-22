@@ -1318,7 +1318,7 @@
     - TauCetiBasic
     - Monkey
   - type: HumanoidAppearance
-    species: Monkey
+    species: Monkey # backmen: species
   - type: DiseaseCarrier
   - type: CombatMode
   - type: SurgeryTarget

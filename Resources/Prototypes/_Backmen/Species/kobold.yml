@@ -5,11 +5,9 @@
   prototype: MobKobold
   sprites: MobKoboldSprites
   dollPrototype: MobKoboldDummy
-  skinColoration: HumanToned
+  skinColoration: Hues
+  defaultSkinTone: "#9a7c5a"
   markingLimits: MobKoboldMarkingLimits
-#  sexes:
-#  - Male # no female sprites for now...
-#  - Female
 
 - type: speciesBaseSprites
   id: MobKoboldSprites
@@ -19,7 +17,7 @@
     Chest: MobKoboldTorso
     Tail: MobKoboldTail
     Eyes: MobKoboldEyes
-    HeadTop: MobKoboldAnyMarking
+    HeadTop: MobKoboldHorns
     LArm: MobKoboldLArm
     RArm: MobKoboldRArm
     LHand: MobKoboldLHand
@@ -35,6 +33,13 @@
 - type: humanoidBaseSprite
   id: MobKoboldMarkingMatchSkin
   markingsMatchSkin: true
+
+- type: humanoidBaseSprite
+  id: MobKoboldHorns
+  matchSkin: false
+  baseSprite:
+    sprite: Mobs/Customization/reptilian_parts.rsi
+    state: horns_short
 
 - type: humanoidBaseSprite
   id: MobKoboldHead

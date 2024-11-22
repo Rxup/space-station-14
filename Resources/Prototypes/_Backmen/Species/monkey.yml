@@ -5,11 +5,9 @@
   prototype: MobMonkey
   sprites: MobMonkeySprites
   dollPrototype: MobMonkeyDummy
-  skinColoration: HumanToned
+  skinColoration: Hues
+  defaultSkinTone: "#ffffff"
   markingLimits: MobMonkeyMarkingLimits
-#  sexes:
-#  - Male # no female sprites for now...
-#  - Female
 
 - type: speciesBaseSprites
   id: MobMonkeySprites
