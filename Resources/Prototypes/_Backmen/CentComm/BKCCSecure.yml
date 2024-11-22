@@ -1,0 +1,56 @@
+﻿- type: entity
+  id: SpawnPointCMBKCCSecOfficer
+  name: Охраник ЦК
+  suffix: Спавнер, Директор Событий
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Охраник ЦК
+    description: кек
+    rules: кек
+    raffle:
+      settings: short
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 108000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 3600
+    job: BKCCSecOfficer
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanCMBKCCSecOfficer
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon
+
+- type: entity
+  name: Охраник ЦК
+  suffix: Директор Событий
+  parent: MobHumanCombine
+  description: кек
+  id: MobHumanCMBKCCSecOfficer
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+    - CentralCommand
+  - type: Loadout
+    prototypes: [CentComPrivateOfficerGear]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: AntagImmune
