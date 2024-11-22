@@ -74,7 +74,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             respirator.NextUpdate += respirator.UpdateInterval;
 
-            if (_mobState.IsDead(uid) || HasComp<BreathingImmunityComponent>(uid)) // backmen: surgery
+            if (_mobState.IsDead(uid))
                 continue;
 
             UpdateSaturation(uid, -(float) respirator.UpdateInterval.TotalSeconds, respirator);
@@ -104,7 +104,6 @@ public sealed class RespiratorSystem : EntitySystem
                 }
                 continue;
             }
-            else
             // end-backmen: blob zombie
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {

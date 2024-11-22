@@ -5,7 +5,7 @@
   components:
   - type: StatusEffectOrgan
     refresh:
-      BreathingImmunity: BreathingImmunity
+      BreathingImmunity: RespiratorImmunity
 
 - type: entity
   parent: OrganAnimalHeart
