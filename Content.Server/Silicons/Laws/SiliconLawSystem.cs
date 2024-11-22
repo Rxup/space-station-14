@@ -269,6 +269,25 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         return laws;
     }
 
+    //backmen-start
+    public void SetLaws(EntityUid uid, SiliconLawsetPrototype prototype)
+    {
+        if (_prototype.TryIndex<SiliconLawsetPrototype>(prototype, out var lawSet))
+        {
+            var laws = lawSet.Laws
+                .Select(x => _prototype.Index<SiliconLawPrototype>(x))
+                .Select(x => new SiliconLaw()
+                {
+                    Order = x.Order,
+                    LawString = x.LawString,
+                    LawIdentifierOverride = x.LawIdentifierOverride,
+                })
+                .ToList();
+            SetLaws(laws, uid);
+        }
+    }
+    //backmen-end
+
     /// <summary>
     /// Set the laws of a silicon entity while notifying the player.
     /// </summary>
@@ -296,33 +315,6 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         while (query.MoveNext(out var update))
         {
             SetLaws(lawset, update, provider.LawUploadSound);
-        }
-    }
-}
-
-[ToolshedCommand, AdminCommand(AdminFlags.Admin)]
-public sealed class LawsCommand : ToolshedCommand
-{
-    private SiliconLawSystem? _law;
-
-    [CommandImplementation("list")]
-    public IEnumerable<EntityUid> List()
-    {
-        var query = EntityManager.EntityQueryEnumerator<SiliconLawBoundComponent>();
-        while (query.MoveNext(out var uid, out _))
-        {
-            yield return uid;
-        }
-    }
-
-    [CommandImplementation("get")]
-    public IEnumerable<string> Get([PipedArgument] EntityUid lawbound)
-    {
-        _law ??= GetSys<SiliconLawSystem>();
-
-        foreach (var law in _law.GetLaws(lawbound).Laws)
-        {
-            yield return $"law {law.LawIdentifierOverride ?? law.Order.ToString()}: {Loc.GetString(law.LawString)}";
         }
     }
 }
