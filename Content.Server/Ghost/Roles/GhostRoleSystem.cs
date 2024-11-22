@@ -586,7 +586,7 @@ public sealed class GhostRoleSystem : EntitySystem
             var discordRequired = false;
             if (_prototype.TryIndex(role.JobProto, out var job) && player != null)
             {
-                if (role.WhitelistRequired)
+                if (role.WhitelistRequired && !_roleWhitelist.IsInWhitelist(player))
                 {
                     whitelistRequired = true;
                 }
@@ -595,7 +595,7 @@ public sealed class GhostRoleSystem : EntitySystem
                     whitelistRequired = true;
                 }
 
-                if (_discordAuthManager.IsEnabled && job.DiscordRequired)
+                if (_discordAuthManager.IsEnabled && job.DiscordRequired && !_discordAuthManager.IsCached(player))
                 {
                     discordRequired = true;
                 }
