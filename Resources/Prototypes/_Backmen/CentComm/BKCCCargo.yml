@@ -41,6 +41,7 @@
   suffix: Директор Событий
   parent: MobHumanCombine
   id: MobHumanCMBKCCCargo
+  description: ""
   components:
   - type: Icon
     sprite: Markers/jobs.rsi
@@ -55,7 +56,7 @@
     factions:
     - CentralCommand
   - type: Loadout
-    prototypes: [CCCargo]
+    prototypes: [CCCargoFull]
   - type: RandomHumanoidAppearance
     randomizeName: true
   - type: AntagImmune

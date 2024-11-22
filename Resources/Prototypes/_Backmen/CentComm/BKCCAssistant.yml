@@ -36,9 +36,10 @@
 
 - type: entity
   name: Ассистент ЦК
-  suffix: Спавнер, Директор Событий
+  suffix: Директор Событий
   parent: MobHumanCombine
   id: MobHumanCMBKCCAssistant
+  description: ""
   components:
   - type: Icon
     sprite: Markers/jobs.rsi
