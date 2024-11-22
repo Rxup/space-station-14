@@ -84,12 +84,12 @@ public sealed class KillPersonConditionSystem : EntitySystem
     }
 
     // start-backmen: centcom
-    private void FilterCentCom(List<EntityUid> minds)
+    private void FilterCentCom(HashSet<Entity<MindComponent>> minds)
     {
         var centcom = _prototype.Index(_ccDep);
         foreach (var mindId in minds.ToArray())
         {
-            if (!_roleSystem.MindHasRole<JobRoleComponent>(mindId, out var job) || job.Value.Comp1.JobPrototype == null)
+            if (!_roleSystem.MindHasRole<JobRoleComponent>(mindId.Owner, out var job) || job.Value.Comp1.JobPrototype == null)
             {
                 continue;
             }

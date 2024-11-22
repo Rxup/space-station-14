@@ -61,9 +61,6 @@
       - id: PresentRandomCash
         prob: 0.20
         orGroup: present
-      - id: PresentRandomAsh
-        prob: 0.05
-        orGroup: present
     receivedPopup: christmas-tree-got-gift
     deniedPopup: christmas-tree-no-gift
     requiredHoliday: FestiveSeason
