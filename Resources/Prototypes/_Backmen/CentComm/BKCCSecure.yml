@@ -9,8 +9,8 @@
     allowSpeech: true
     makeSentient: true
     name: Охраник ЦК
-    description: кек
-    rules: кек
+    description: A Central Command Security Officer responsible for maintaining order and security.
+    rules: Follow Central Command protocols. Protect CC personnel and assets. Maintain professional conduct at all times.
     raffle:
       settings: short
     requirements:
@@ -27,19 +27,19 @@
     sprite: Markers/jobs.rsi
     layers:
     - state: green
-    - sprite: Mobs/Animals/regalrat.rsi
-      state: icon
+    - sprite: Mobs/Security/security.rsi
+      state: officer
 
 - type: entity
   name: Охраник ЦК
   suffix: Директор Событий
   parent: MobHumanCombine
-  description: кек
+  description: A highly trained Central Command Security Officer equipped with specialized gear and implants.
   id: MobHumanCMBKCCSecOfficer
   components:
   - type: Icon
     sprite: Markers/jobs.rsi
-    state: ai
+    state: security_officer
   - type: AutoImplant
     implants:
     - MindShieldImplant

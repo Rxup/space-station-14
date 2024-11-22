@@ -48,54 +48,32 @@ public sealed class CentCommSpawnSystem : EntitySystem
         }
     }
 
+    private void SpawnEntity(EntityUid station, string protoId)
+    {
+        var point = FindSpawnPoint(station);
+        if (point == null)
+        {
+            Log.Warning($"Can't find spawn point for {station}");
+            return;
+        }
+        Spawn(protoId, point.Value);
+    }
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string WorkerProto = "SpawnPointCMBKCCAssistant";
-    private void AddWorker(EntityUid station)
-    {
-        var point = FindSpawnPoint(station);
-        if (point == null)
-        {
-            Log.Warning($"Can't find spawn point for {station}");
-            return;
-        }
-        Spawn(WorkerProto, point.Value);
-    }
+    private void AddWorker(EntityUid station) => SpawnEntity(station, WorkerProto);
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string OperatorProto = "SpawnPointCMBKCCOperator";
-    private void AddOperator(EntityUid station)
-    {
-        var point = FindSpawnPoint(station);
-        if (point == null)
-        {
-            Log.Warning($"Can't find spawn point for {station}");
-            return;
-        }
-        Spawn(OperatorProto, point.Value);
-    }
+    private void AddOperator(EntityUid station) => SpawnEntity(station, OperatorProto);
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string SecurityProto = "SpawnPointCMBKCCSecOfficer";
-    private void AddSecurity(EntityUid station)
-    {
-        var point = FindSpawnPoint(station);
-        if (point == null)
-        {
-            Log.Warning($"Can't find spawn point for {station}");
-            return;
-        }
-        Spawn(SecurityProto, point.Value);
-    }
+    private void AddSecurity(EntityUid station) => SpawnEntity(station, SecurityProto);
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string CargoProto = "SpawnPointCMBKCCCargo";
-    private void AddCargo(EntityUid station)
-    {
-        var point = FindSpawnPoint(station);
-        if (point == null)
-        {
-            Log.Warning($"Can't find spawn point for {station}");
-            return;
-        }
-        Spawn(CargoProto, point.Value);
-    }
+    private void AddCargo(EntityUid station) => SpawnEntity(station, CargoProto);
 
     private EntityCoordinates? FindSpawnPoint(EntityUid station)
     {

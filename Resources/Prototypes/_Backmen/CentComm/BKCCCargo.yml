@@ -9,8 +9,11 @@
     allowSpeech: true
     makeSentient: true
     name: Карго ЦК
-    description: кек
-    rules: кек
+    description: A Central Command Cargo Officer responsible for managing cargo operations.
+    rules: |
+      - Maintain Central Command cargo protocols
+      - Coordinate with station cargo department
+      - Follow Central Command chain of command
     raffle:
       settings: short
     requirements:
