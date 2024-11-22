@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Server.Backmen.Arrivals.CentComm;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
@@ -32,14 +33,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Arrivals;
-
-public sealed class FtlCentComAnnounce : EntityEventArgs
-{
-    public Entity<ShuttleComponent> Source { get; set; }
-}
 
 public sealed class CentcommSystem : EntitySystem
 {
@@ -58,6 +55,7 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public EntityUid CentComGrid { get; private set; } = EntityUid.Invalid;
     public MapId CentComMap { get; private set; } = MapId.Nullspace;
@@ -82,6 +80,40 @@ public sealed class CentcommSystem : EntitySystem
 
         _stationCentComMapPool = _prototypeManager.Index<WeightedRandomPrototype>(StationCentComMapPool);
     }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var curTime = _gameTiming.CurTime;
+
+        var q = EntityQueryEnumerator<StationCentCommDirectorComponent, StationSpawningComponent>();
+        while (q.MoveNext(out var stationUid, out var centcomDirector, out var stationSpawning))
+        {
+            if (!(centcomDirector.EventSchedule.Count > 0 && curTime >= centcomDirector.NextEventTick))
+            {
+                continue;
+            }
+
+            // Pop the event.
+            var curEvent = centcomDirector.EventSchedule[0];
+            centcomDirector.EventSchedule.RemoveAt(0);
+
+            // Add the next event's offset to the ticker.
+            if (centcomDirector.EventSchedule.Count > 0)
+                centcomDirector.NextEventTick = curTime + centcomDirector.EventSchedule[0].timeOffset;
+
+            Log.Info($"Running event: {curEvent}");
+
+            var ev = new CentCommEvent(stationUid, curEvent.eventId);
+            RaiseLocalEvent(stationUid, ev, true);
+            if (!ev.Handled)
+            {
+                Log.Warning($"Running event: {curEvent} is not handled");
+            }
+        }
+    }
+
 
     private void OnLoadingMaps(LoadingMapsEvent ev)
     {

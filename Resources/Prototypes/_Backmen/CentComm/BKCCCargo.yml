@@ -1,0 +1,61 @@
+﻿- type: entity
+  id: SpawnPointCMBKCCCargo
+  name: Карго ЦК
+  suffix: Спавнер, Директор Событий
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Карго ЦК
+    description: A Central Command Cargo Officer responsible for managing cargo operations.
+    rules: |
+      - Maintain Central Command cargo protocols
+      - Coordinate with station cargo department
+      - Follow Central Command chain of command
+    raffle:
+      settings: short
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 126000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 21600
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 43200
+    job: BKCCCargo
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanCMBKCCCargo
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon
+
+- type: entity
+  name: Карго ЦК
+  suffix: Директор Событий
+  parent: MobHumanCombine
+  id: MobHumanCMBKCCCargo
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+    - CentralCommand
+  - type: Loadout
+    prototypes: [CCCargo]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: AntagImmune
