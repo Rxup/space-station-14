@@ -125,7 +125,7 @@ public sealed partial class GptCommands : EntitySystem
                     {
                         @type = "string",
                         description =
-                            "имя персанажа о котором спрашивают или мой текущий персонаж, например имя персонажа"
+                            "имя рп персанажа о котором спрашивают или мой текущий рп персонаж, например Ф И О или Ф И"
                     }
                 },
                 required = new[] { "character" }

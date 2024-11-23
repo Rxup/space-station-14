@@ -24,26 +24,30 @@ public sealed class GptUserInfo
     private void Init(IPlayerManager playerManager, IConfigurationManager cfg)
     {
         Lock.EnterWriteLock();
+        try
+        {
+            var serverName = cfg.GetCVar(CCVars.GameHostName);
+            var userInfo = playerManager.GetPlayerData(_userId);
+            var discord = cfg.GetCVar(CCVars.InfoLinksDiscord);
 
-        var serverName = cfg.GetCVar(CCVars.GameHostName);
-        var userInfo = playerManager.GetPlayerData(_userId);
-        var discord = cfg.GetCVar(CCVars.InfoLinksDiscord);
-
-        Messages.Add(
-            new GptMessageChat(
-                GptUserDirection.system,
-                $"Ты администратор по игре рп Space Station 14!\n" +
-                $"К пользователю нужно обращаться по его рп имени персонажа!" +
-                $"На сервере {serverName}, ты в диалоге с {userInfo.UserName}, " +
-                $"твоя задача помочь пользователю, если не можешь скажи дождаться ответа от администоров сервера.\n" +
-                $"Это рп игра, нужно чтобы пользоваться придерживался роли!\n" +
-                $"Ты не можешь писать пользователю подождать когда нет администраторов онлайн!\n" +
-                $"Ты должен стараться по логам понять что пользователю нужно по его логам." +
-                $"Ссылка на дискорд для пользователя: {discord}\n"
-            )
-        );
-
-        Lock.ExitWriteLock();
+            Messages.Add(
+                new GptMessageChat(
+                    GptUserDirection.system,
+                    $"Ты администратор по игре рп Space Station 14!\n" +
+                    $"К пользователю нужно обращаться по его рп имени персонажа!" +
+                    $"На сервере {serverName}, ты в диалоге с {userInfo.UserName}, " +
+                    $"твоя задача помочь пользователю, если не можешь скажи дождаться ответа от администоров сервера.\n" +
+                    $"Это рп игра, нужно чтобы пользоваться придерживался роли!\n" +
+                    $"Ты не можешь писать пользователю подождать когда нет администраторов онлайн!\n" +
+                    $"Ты должен стараться по логам понять что пользователю нужно по его логам." +
+                    $"Ссылка на дискорд для пользователя: {discord}\n"
+                )
+            );
+        }
+        finally
+        {
+            Lock.ExitWriteLock();
+        }
     }
 
     public void Add(GptMessage msg)

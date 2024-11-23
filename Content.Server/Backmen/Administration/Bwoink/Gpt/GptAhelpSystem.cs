@@ -86,7 +86,7 @@ public sealed class GptAhelpSystem : EntitySystem
 
     public void DoAutoReplay(ICommonSession user)
     {
-        _console.ExecuteCommand($"ahelp_gpt {user.Name}");
+        _console.ExecuteCommand($"ahelp_gpt \"{user.Name.Replace("\"", "\\\"")}\"");
     }
 
     #region GigaChat
@@ -215,7 +215,7 @@ public sealed class GptAhelpSystem : EntitySystem
         }
 
         var bwoinkText = $"[color=lightblue]{BotName}[/color]: " +
-                         $"АДМИН {shell.Player?.Name ?? "Console"} " +
+                         $"АДМИН {FormattedMessage.EscapeText(shell.Player?.Name ?? "Console")} " +
                          $"{(HasAutoReplay(userId) ? "[color=green]включил[/color]" : "[color=red]выключил[/color]")} " +
                          $"авто ответ";
 
