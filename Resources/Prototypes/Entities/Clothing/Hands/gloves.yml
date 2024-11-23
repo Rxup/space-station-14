@@ -232,6 +232,7 @@
     stealthy: true
   - type: ToggleClothing
     action: ActionToggleNinjaGloves
+    disableOnUnequip: true
   - type: NinjaGloves
     abilities:
     - components:
@@ -260,8 +261,8 @@
     entries:
     - label: corvax-hidden-desc-ThievingGloves-thief
       whitelistMind:
-        components:
-          - ThiefRole
+        mindRoles:
+        - ThiefRole
 # Corvax-HiddenDesc-End
 
 - type: entity
@@ -382,13 +383,13 @@
     entries:
     - label: corvax-hidden-desc-ThievingGloves-syndicate
       whitelistMind:
-        components:
-          - TraitorRole
-          - NukeOperative
+        mindRoles:
+        - TraitorRole
+        - NukeopsRole
     - label: corvax-hidden-desc-ThievingGloves-thief
       whitelistMind:
-        components:
-          - ThiefRole
+        mindRoles:
+        - ThiefRole
 # Corvax-HiddenDesc-End
 
 - type: entity
