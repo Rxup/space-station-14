@@ -22,7 +22,6 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
