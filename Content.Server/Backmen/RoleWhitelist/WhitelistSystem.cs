@@ -5,6 +5,7 @@ using Content.Server.Traits;
 using Content.Shared.Backmen;
 using Content.Shared.Backmen.WL;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.GameTicking;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Species.Components;
 using JetBrains.Annotations;
