@@ -90,6 +90,7 @@ public sealed partial class MoodComponent : Component
     {
         { "HealthHeavyDamage", 0.8f },
         { "HealthSevereDamage", 0.5f },
+        { "HealthOkayDamage", 0.35f },
         { "HealthLightDamage", 0.1f },
         { "HealthNoDamage", 0.05f }
     };

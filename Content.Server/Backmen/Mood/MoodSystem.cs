@@ -241,7 +241,26 @@ public sealed class MoodSystem : EntitySystem
             comp.CategorisedEffects.Remove(category);
         }
 
+        ReplaceMood(uid, prototypeId);
         RefreshMood(uid, comp);
+    }
+
+    /// <summary>
+    ///     Some moods specifically create a moodlet upon expiration. This is normally used for "Addiction" type moodlets,
+    ///     such as a positive moodlet from an addictive substance that becomes a negative moodlet when a timer ends.
+    /// </summary>
+    /// <remarks>
+    ///     Moodlets that use this should probably also share a category with each other, but this isn't necessarily required.
+    ///     Only if you intend that "Re-using the drug" should also remove the negative moodlet.
+    /// </remarks>
+    private void ReplaceMood(EntityUid uid, string prototypeId)
+    {
+        if (!_prototypeManager.TryIndex<MoodEffectPrototype>(prototypeId, out var proto)
+            || proto.MoodletOnEnd is null)
+            return;
+
+        var ev = new MoodEffectEvent(proto.MoodletOnEnd);
+        EntityManager.EventBus.RaiseLocalEvent(uid, ev);
     }
 
     private void OnMobStateChanged(EntityUid uid, MoodComponent component, MobStateChangedEvent args)
