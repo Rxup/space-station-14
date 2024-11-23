@@ -652,3 +652,9 @@ TorsoBorgJanitor: TorsoBorg
 PresentRandomAsh: PresentRandomCoal
 # 2024-11-19
 CrateCrewMonitoringBoards: CrateCrewMonitoring
+
+# 2024-11-23 backmen
+# Computer that by idea let's you call cargo shuttle is replaced
+# with console that let's you buy any shuttle.
+ComputerCargoShuttle: ComputerShipyard
+CargoShuttleComputerCircuitboard: ShipyardComputerCircuitboard
