@@ -33,6 +33,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Standing;
 
@@ -53,6 +54,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
@@ -195,15 +197,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        if (_net.IsServer)
-        {
-            RaiseNetworkEvent(new ChangeLayingDownEvent(), Filter.Pvs(session.AttachedEntity.Value));
-        }
-        else
-        {
-            RaisePredictiveEvent(new ChangeLayingDownEvent());
-        }
+        if (!_timing.IsFirstTimePredicted)
+            return;
 
+        RaisePredictiveEvent(new ChangeLayingDownEvent());
     }
 
     public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -339,6 +336,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
 
         standingState.CurrentState = StandingState.GettingUp;
+        Dirty(uid, standingState);
         return true;
     }
 
