@@ -1,0 +1,59 @@
+﻿- type: entity
+  id: SpawnPointCMBKCCAssistant
+  name: Ассистент ЦК
+  suffix: Спавнер, Директор Событий
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Ассистент ЦК
+    description: Разнорабочий призванный для поддержки экипажа ЦК и для поддержки самой станции цк в текущем секторе.
+    rules: Вы обязаны выполнять поручения экипажа станции цк, опеспечивать станцию цк в рабочем состоянии, также запрещено покидать станцию цк!
+    raffle:
+      settings: short
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 108000
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 108000
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 108000
+    job: BKCCAssistant
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanCMBKCCAssistant
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon
+
+
+- type: entity
+  name: Ассистент ЦК
+  suffix: Спавнер, Директор Событий
+  parent: MobHumanCombine
+  id: MobHumanCMBKCCAssistant
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+    - CentralCommand
+  - type: Loadout
+    prototypes: [CentComInternGear]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: AntagImmune

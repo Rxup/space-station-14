@@ -16,6 +16,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -83,7 +84,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         if(!TryComp<BodyComponent>(ent, out var body))
             return;
 
-        if (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0)
+        if (!HasComp<BorgChassisComponent>(ent) && (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0))
             args.Cancel(); // no legs bro
     }
 
@@ -322,7 +323,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
                 obj.Value,
                 uid,
                 PopupType.MediumCaution);
-            _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, evade: true, targetPart: TargetBodyPart.Head);
+            _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, canEvade: true, targetPart: TargetBodyPart.Head);
             _stun.TryStun(uid, TimeSpan.FromSeconds(2), true);
             _audioSystem.PlayPredicted(_bonkSound, uid, obj.Value);
             return false;

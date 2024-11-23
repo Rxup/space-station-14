@@ -69,13 +69,14 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    #requirement: SurgeryOpenIncision
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryPartRemovedCondition
+    connection: head
     part: Head
 
 - type: entity
@@ -92,6 +93,7 @@
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryPartRemovedCondition
+    connection: left arm
     part: Arm
     symmetry: Left
 
@@ -109,6 +111,7 @@
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryPartRemovedCondition
+    connection: right arm
     part: Arm
     symmetry: Right
 
@@ -126,6 +129,7 @@
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryPartRemovedCondition
+    connection: left leg
     part: Leg
     symmetry: Left
 
@@ -143,6 +147,7 @@
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryPartRemovedCondition
+    connection: right leg
     part: Leg
     symmetry: Right
 
@@ -161,6 +166,7 @@
     part: Arm
     symmetry: Left
   - type: SurgeryPartRemovedCondition
+    connection: left hand
     part: Hand
     symmetry: Left
 
@@ -179,6 +185,7 @@
     part: Arm
     symmetry: Right
   - type: SurgeryPartRemovedCondition
+    connection: right hand
     part: Hand
     symmetry: Right
 
@@ -197,6 +204,7 @@
     part: Leg
     symmetry: Left
   - type: SurgeryPartRemovedCondition
+    connection: left foot
     part: Foot
     symmetry: Left
 
@@ -215,8 +223,65 @@
     part: Leg
     symmetry: Right
   - type: SurgeryPartRemovedCondition
+    connection: right foot
     part: Foot
     symmetry: Right
+
+# Surgery for animals - They have a single legs/hands entity.
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAttachLegs
+  name: Attach Legs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Torso
+  - type: SurgeryPartRemovedCondition
+    connection: legs
+    part: Leg
+    symmetry: None
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAttachHands
+  name: Attach Hands
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Torso
+  - type: SurgeryPartRemovedCondition
+    connection: hands
+    part: Hand
+    symmetry: Left # shitcode i guess because of ui icons
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAttachFeet
+  name: Attach Feet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Torso
+  - type: SurgeryPartRemovedCondition
+    connection: feet
+    part: Foot
+    symmetry: None
 
 #- type: entity
 #  parent: SurgeryBase
@@ -308,7 +373,7 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepInsertOrgan
-    - SurgeryStepSealWounds
+    - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
     part: Head
   - type: SurgeryOrganCondition
@@ -347,7 +412,7 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepInsertHeart
-    - SurgeryStepSealWounds
+    - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryOrganCondition
@@ -385,7 +450,7 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepInsertLiver
-    - SurgeryStepSealWounds
+    - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryOrganCondition
@@ -423,12 +488,50 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepInsertLungs
-    - SurgeryStepSealWounds
+    - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
     part: Torso
   - type: SurgeryOrganCondition
     organ:
     - type: Lung
+    inverse: true
+    reattaching: true
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveStomach
+  name: Remove Stomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepRemoveOrgan
+  - type: SurgeryPartCondition
+    part: Torso
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Stomach
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryInsertStomach
+  name: Insert Stomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepInsertStomach
+    - SurgeryStepSealOrganWound
+  - type: SurgeryPartCondition
+    part: Torso
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Stomach
     inverse: true
     reattaching: true
 
@@ -461,7 +564,7 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepInsertEyes
-    - SurgeryStepSealWounds
+    - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
     part: Head
   - type: SurgeryOrganCondition
@@ -469,3 +572,71 @@
     - type: Eyes
     inverse: true
     reattaching: true
+
+# Fluff/Joke Surgeries
+
+#- type: entity
+#  parent: SurgeryBase
+#  id: SurgeryAddFelinidEars
+#  name: Add cat ears
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: Surgery
+#    #requirement: SurgeryOpenIncision
+#    steps:
+#    - SurgeryStepAddFelinidEars
+#  - type: SurgeryPartCondition
+#    part: Head
+#  - type: SurgeryMarkingCondition
+#    markingCategory: HeadTop
+#    matchString: FelinidEars
+#    inverse: true
+
+#- type: entity
+#  parent: SurgeryBase
+#  id: SurgeryRemoveFelinidEars
+#  name: Remove cat ears
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: Surgery
+#    requirement: SurgeryOpenIncision
+#    steps:
+#    - SurgeryStepRemoveFelinidEars
+#  - type: SurgeryPartCondition
+#    part: Head
+#  - type: SurgeryMarkingCondition
+#    markingCategory: HeadTop
+#    matchString: FelinidEars
+
+#- type: entity
+#  parent: SurgeryBase
+#  id: SurgeryAddFelinidTail
+#  name: Add cat tail
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: Surgery
+#    requirement: SurgeryOpenIncision
+#    steps:
+#    - SurgeryStepAddFelinidTail
+#  - type: SurgeryPartCondition
+#    part: Torso
+#  - type: SurgeryMarkingCondition
+#    markingCategory: Tail
+#    matchString: FelinidTail
+#    inverse: true
+
+#- type: entity
+#  parent: SurgeryBase
+#  id: SurgeryRemoveFelinidTail
+#  name: Remove cat tail
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: Surgery
+#    requirement: SurgeryOpenIncision
+#    steps:
+#    - SurgeryStepRemoveFelinidTail
+#  - type: SurgeryPartCondition
+#    part: Torso
+#  - type: SurgeryMarkingCondition
+#    markingCategory: Tail
+#    matchString: FelinidTail

@@ -1,6 +1,5 @@
 namespace Content.Shared.Backmen.Targeting;
 
-
 /// <summary>
 /// Represents and enum of possible target parts.
 /// </summary>
@@ -9,16 +8,23 @@ namespace Content.Shared.Backmen.Targeting;
 /// method in SharedTargetingSystem GetValidParts.
 /// </remarks>
 [Flags]
-public enum TargetBodyPart : byte
+public enum TargetBodyPart : ushort
 {
     Head = 1,
     Torso = 1 << 1,
-    LeftArm = 1 << 2,
-    RightArm = 1 << 3,
-    LeftLeg = 1 << 4,
-    RightLeg = 1 << 5,
+    Groin = 1 << 2,
+    LeftArm = 1 << 3,
+    LeftHand = 1 << 4,
+    RightArm = 1 << 5,
+    RightHand = 1 << 6,
+    LeftLeg = 1 << 7,
+    LeftFoot = 1 << 8,
+    RightLeg = 1 << 9,
+    RightFoot = 1 << 10,
 
+    Hands = LeftHand | RightHand,
     Arms = LeftArm | RightArm,
     Legs = LeftLeg | RightLeg,
-    All = Head | Torso | LeftArm | RightArm | LeftLeg | RightLeg,
+    Feet = LeftFoot | RightFoot,
+    All = Head | Torso | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
 }

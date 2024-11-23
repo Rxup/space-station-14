@@ -37,3 +37,6 @@ command-description-changeaccessreader-rmGroupAccessReader = Очистить г
 command-description-changeaccessreader-setJobAccessReader = Установить доступ в соответствии с JobPrototype
 command-description-changeaccessreader-addJobAccessReader = Добавить доступ в соответствии с JobPrototype
 command-description-changeaccessreader-rmJobAccessReader = Удалить доступы в соответствии с JobPrototype
+
+command-description-laws-set = Установить законы по прототипу
+command-description-laws-override = Изменить закон по индексу, новый закон пишется строкой

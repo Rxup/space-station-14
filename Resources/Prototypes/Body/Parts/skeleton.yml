@@ -1,4 +1,3 @@
-# TODO BODY: Part damage
 - type: entity
   id: PartSkeleton
   parent: BaseItem
@@ -6,7 +5,7 @@
   abstract: true
   components:
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: OrganicPart # backmen: surgery
   - type: BodyPart
   - type: ContainerContainer
     containers:
@@ -14,16 +13,17 @@
         ents: []
   - type: StaticPrice
     price: 20
-  - type: Gibbable
   - type: Tag
     tags:
       - Trash
+  # start-backmen: surgery
+  - type: Gibbable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 50
+        damage: 75
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
@@ -47,6 +47,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
+  # end-backmen: surgery
 
 - type: entity
   id: TorsoSkeleton

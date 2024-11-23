@@ -87,48 +87,12 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0)
             _bloodstreamSystem.TryModifyBloodLevel(entity.Owner, healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage, true, origin: args.Args.User, partMultiplier: 0f); // No parts healing now!
+        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage, true, origin: args.User, canSever: false);
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;
 
         var total = healed?.GetTotal() ?? FixedPoint2.Zero;
-
-        // start-backmen: surgery
-        // Try to heal some body part.
-        if (total == 0 && ArePartsDamaged(entity))
-        {
-            var partHealing = healing.Damage;
-
-            var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
-            var damagedParts = new List<(Entity<BodyPartComponent>, FixedPoint2)>();
-            foreach (var part in parts)
-            {
-                // Get all body parts that are damaged with *partHealing* types of damage.
-                var possibleHealing = part.Component.Damage;
-                possibleHealing.ExclusiveAdd(partHealing);
-                possibleHealing.ClampMin(part.Component.MinIntegrity);
-
-                // Remove all other types of damage that can't be healed right now,
-                // so we can prioritize the target part correctly.
-                foreach (var (damage, value) in possibleHealing.DamageDict)
-                {
-                    if (!partHealing.DamageDict.ContainsKey(damage))
-                        possibleHealing.DamageDict.Remove(damage);
-                }
-
-                if (possibleHealing.GetTotal() == FixedPoint2.Zero)
-                    continue;
-
-                damagedParts.Add((part, possibleHealing.GetTotal()));
-            }
-
-            // Fetch the most damaged body part
-            var mostDamaged = damagedParts.MaxBy(x => x.Item2).Item1;
-            var targetPart = _bodySystem.GetTargetBodyPart(mostDamaged);
-            _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage, false, targetPart, out _);
-        }
-        // end-backmen: surgery
 
         // Re-verify that we can heal the damage.
 
@@ -157,8 +121,8 @@ public sealed class HealingSystem : EntitySystem
 
         _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
 
-        // Logic to determine the whether or not to repeat the healing action
-        args.Repeat = HasDamage(entity.Comp, healing) && !dontRepeat || ArePartsDamaged(entity);
+        // Logic to determine whether or not to repeat the healing action
+        args.Repeat = HasDamage(entity.Comp, healing) && !dontRepeat || IsPartDamaged(args.User, entity);
         if (!args.Repeat && !dontRepeat)
             _popupSystem.PopupEntity(Loc.GetString("medical-item-finished-using", ("item", args.Used)), entity.Owner, args.User);
         args.Handled = true;
@@ -179,16 +143,17 @@ public sealed class HealingSystem : EntitySystem
         return false;
     }
 
-    private bool ArePartsDamaged(EntityUid target)
+    private bool IsPartDamaged(EntityUid user, EntityUid target)
     {
-        if (!TryComp<BodyComponent>(target, out var body))
+        if (!TryComp(user, out TargetingComponent? targeting))
             return false;
 
-        foreach (var part in _bodySystem.GetBodyChildren(target, body))
-        {
-            if (part.Component.TotalDamage > part.Component.MinIntegrity)
+        var (targetType, targetSymmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
+        foreach (var part in _bodySystem.GetBodyChildrenOfType(target, targetType, symmetry: targetSymmetry))
+            if (TryComp<DamageableComponent>(part.Id, out var damageable)
+                && damageable.TotalDamage > part.Component.MinIntegrity)
                 return true;
-        }
+
         return false;
     }
 
@@ -230,7 +195,7 @@ public sealed class HealingSystem : EntitySystem
 
         var anythingToDo =
             HasDamage(targetDamage, component) ||
-            ArePartsDamaged(target) ||
+            IsPartDamaged(user, target) ||
             component.ModifyBloodLevel > 0 // Special case if healing item can restore lost blood...
                 && TryComp<BloodstreamComponent>(target, out var bloodstream)
                 && _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.Ghost;
 using Content.Server.Humanoid;
@@ -32,7 +33,18 @@ public sealed class BodySystem : SharedBodySystem
 
         SubscribeLocalEvent<BodyComponent, MoveInputEvent>(OnRelayMoveInput);
         SubscribeLocalEvent<BodyComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+        SubscribeLocalEvent<BodyPartComponent, AttemptEntityGibEvent>(OnGibTorsoAttempt); // backmen: surgery
     }
+
+    // start-backmen: surgery
+    private void OnGibTorsoAttempt(Entity<BodyPartComponent> ent, ref AttemptEntityGibEvent args)
+    {
+        if (ent.Comp.PartType == BodyPartType.Torso)
+        {
+            args.GibType = GibType.Skip;
+        }
+    }
+    // end-backmen: surgery
 
     private void OnRelayMoveInput(Entity<BodyComponent> ent, ref MoveInputEvent args)
     {
@@ -73,9 +85,8 @@ public sealed class BodySystem : SharedBodySystem
             var layer = partEnt.Comp.ToHumanoidLayers();
             if (layer != null)
             {
-                var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
                 _humanoidSystem.SetLayersVisibility(
-                    bodyEnt, layers, visible: true, permanent: true, humanoid);
+                    bodyEnt, new[] { layer.Value }, visible: true, permanent: true, humanoid);
             }
         }
     }
@@ -96,6 +107,7 @@ public sealed class BodySystem : SharedBodySystem
             return;
 
         var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
+
         _humanoidSystem.SetLayersVisibility(
             bodyEnt, layers, visible: false, permanent: true, humanoid);
         _appearance.SetData(bodyEnt, layer, true);
@@ -148,12 +160,9 @@ public sealed class BodySystem : SharedBodySystem
         if (!Resolve(partId, ref part, logMissing: false)
             || TerminatingOrDeleted(partId)
             || EntityManager.IsQueuedForDeletion(partId))
-        {
             return new HashSet<EntityUid>();
-        }
 
-        var xform = Transform(partId);
-        if (xform.MapUid is null)
+        if (Transform(partId).MapUid is null)
             return new HashSet<EntityUid>();
 
         var gibs = base.GibPart(partId, part, launchGibs: launchGibs,
@@ -162,31 +171,22 @@ public sealed class BodySystem : SharedBodySystem
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(partId, ref ev);
 
-        QueueDel(partId);
+        if (gibs.Any())
+            QueueDel(partId);
 
         return gibs;
     }
-
-    // start-backmen: surgery
-    /*protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
-    {
-        return;
-    }*/
 
     protected override void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component)
     {
         return;
     }
 
-    protected override void RemovePartMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance)
+    protected override void RemoveBodyMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance)
     {
         foreach (var (visualLayer, markingList) in partAppearance.Markings)
-        {
             foreach (var marking in markingList)
-            {
                 _humanoidSystem.RemoveMarking(target, marking.MarkingId, sync: false, humanoid: bodyAppearance);
-            }
-        }
 
         Dirty(target, bodyAppearance);
     }
