@@ -496,3 +496,14 @@
   id: 30
   time: '2024-11-23T08:39:42.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/932
+- author: Rxup
+  changes:
+  - message: "\u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F SpectralTiredness\
+      \ (\u0431\u043E\u043B\u0435\u0437\u043D\u044C \u0441\u043D\u0430 \u0440\u0435\
+      \u0432\u0435\u043D\u0430\u043D\u0442\u0430 Blight) \u0441 3\u0441\u0435\u043A\
+      \ \u0434\u043E 6\u0441\u0435\u043A \u0443\u0441\u044B\u043F\u043B\u0435\u043D\
+      \u0438\u0435"
+    type: Tweak
+  id: 31
+  time: '2024-11-23T12:56:01.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/935
