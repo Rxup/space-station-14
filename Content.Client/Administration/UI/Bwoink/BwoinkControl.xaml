@@ -11,7 +11,11 @@
                     <Control HorizontalExpand="True" MinWidth="5" />
                     <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
                     <Control HorizontalExpand="True" />
-                    <Button Visible="False" Name="GptChat" Text="{Loc 'admin-player-actions-gpt'}" StyleClasses="OpenRight" /> <!-- backmen: gpt -->
+
+                    <Button Visible="False" Name="GptChat" Text="{Loc 'admin-player-actions-gpt'}" StyleClasses="OpenRight"></Button> <!-- backmen: gpt -->
+                    <CheckButton Visible="False" Name="GptChatToggle" Text="{Loc 'admin-player-actions-gpt-auto'}" StyleClasses="OpenRight"></CheckButton> <!-- backmen: gpt -->
+
+                    <Control HorizontalExpand="True" />
                     <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenBoth" />
                     <Button Visible="False" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" />
                     <Button Visible="False" Name="Kick" Text="{Loc 'admin-player-actions-kick'}" StyleClasses="OpenBoth" />

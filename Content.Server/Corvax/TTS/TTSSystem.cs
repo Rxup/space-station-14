@@ -8,6 +8,7 @@ using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Radio;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -35,10 +36,20 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke); // TTS-Announce SS220
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+        SubscribeLocalEvent<TTSComponent, MapInitEvent>(OnTtsInitialized);
         SubscribeLocalEvent<TTSComponent, EntitySpokeLanguageEvent>(OnEntitySpoke);
 
         RegisterRateLimits();
     }
+
+    private void OnTtsInitialized(Entity<TTSComponent> ent, ref MapInitEvent args)
+    {
+        if (ent.Comp.VoicePrototypeId == null && _prototypeManager.TryGetRandom<TTSVoicePrototype>(_robustRandom, out var newTtsVoice))
+        {
+            ent.Comp.VoicePrototypeId = newTtsVoice.ID;
+        }
+    }
+
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
     {

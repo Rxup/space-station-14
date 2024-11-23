@@ -33,7 +33,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
         _sawmill = _logMan.GetSawmill("rules");
         _netManager.RegisterNetMessage<RulesAcceptedMessage>();
         _netManager.RegisterNetMessage<SendRulesInformationMessage>(OnRulesInformationMessage);
-
+#if DEBUG
         _consoleHost.RegisterCommand("fuckrules",
             "",
             "",
@@ -41,6 +41,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
         {
             OnAcceptPressed();
         });
+#endif
     }
 
     private void OnRulesInformationMessage(SendRulesInformationMessage message)
