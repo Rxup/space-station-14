@@ -104,7 +104,6 @@ public sealed class RespiratorSystem : EntitySystem
                 }
                 continue;
             }
-            else
             // end-backmen: blob zombie
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
