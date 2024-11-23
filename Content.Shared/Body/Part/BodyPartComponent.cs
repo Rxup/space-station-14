@@ -113,7 +113,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// to make possible severing it.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float SeverIntegrity = 90;
+    public float SeverIntegrity = 80;
 
     /// <summary>
     /// On what TargetIntegrity we should re-enable the part.
@@ -145,7 +145,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 
             foreach (var slotId in Children.Keys)
             {
-                temp.Add((ContainerSlot) containerSystem.GetContainer(Owner, SharedBodySystem.PartSlotContainerIdPrefix+slotId));
+                temp.Add((ContainerSlot)containerSystem.GetContainer(Owner, SharedBodySystem.PartSlotContainerIdPrefix + slotId));
             }
 
             return temp;
@@ -162,7 +162,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 
             foreach (var slotId in Organs.Keys)
             {
-                temp.Add((ContainerSlot) containerSystem.GetContainer(Owner, SharedBodySystem.OrganSlotContainerIdPrefix+slotId));
+                temp.Add((ContainerSlot)containerSystem.GetContainer(Owner, SharedBodySystem.OrganSlotContainerIdPrefix + slotId));
             }
 
             return temp;
