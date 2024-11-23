@@ -27,6 +27,9 @@ public sealed class CCVars
     public static readonly CVarDef<string>
         GptApiGigaToken = CVarDef.Create("gpt.giga_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
+    public static readonly CVarDef<bool>
+        GptApiNoAdminAuto = CVarDef.Create("gpt.no_admin_auto", false, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
     /*
      * Queue
      */

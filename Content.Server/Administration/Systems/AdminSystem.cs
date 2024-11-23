@@ -54,6 +54,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly Backmen.Administration.Bwoink.Gpt.GptAhelpSystem _gpt = default!;
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -256,9 +257,18 @@ public sealed class AdminSystem : EntitySystem
         {
             overallPlaytime = playTime;
         }
-
-        return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime
+        return new PlayerInfo(
+            name,
+            entityName,
+            identityName,
+            startingRole,
+            antag,
+            GetNetEntity(session?.AttachedEntity),
+            data.UserId,
+            connected,
+            _roundActivePlayers.Contains(data.UserId),
+            overallPlaytime,
+            _gpt.HasAutoReplay(data.UserId) // backmen: gpt
             );
     }
 

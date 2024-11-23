@@ -44,6 +44,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IAfkManager _afkManager = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
+        [Dependency] private readonly GptAhelpSystem _gpt = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -738,6 +739,8 @@ namespace Content.Server.Administration.Systems
                 }
             }
 
+            var nonAfkAdmins = GetNonAfkAdmins();
+
             var sendsWebhook = _webhookUrl != string.Empty;
             if (sendsWebhook)
             {
@@ -752,7 +755,7 @@ namespace Content.Server.Administration.Systems
                     str = str[..(DescriptionMax - _maxAdditionalChars - unameLength)];
                 }
 
-                var nonAfkAdmins = GetNonAfkAdmins();
+
                 var messageParams = new AHelpMessageParams(
                     senderSession.Name,
                     str,
@@ -765,7 +768,12 @@ namespace Content.Server.Administration.Systems
                 _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(messageParams));
             }
 
-            EntityManager.SystemOrNull<GptAhelpSystem>()?.AddUserMessage(message.UserId, personalChannel, escapedText); // backmen: gpt
+            // start-backmen: gpt
+            _gpt.AddUserMessage(message.UserId, personalChannel, escapedText);
+
+            if(personalChannel && ((nonAfkAdmins.Count == 0 && _gpt.EnabledNoAdminAutoResponse) || _gpt.HasAutoReplay(senderSession.UserId)))
+                _gpt.DoAutoReplay(senderSession);
+            // end-backmen: gpt
 
             if (admins.Count != 0 || sendsWebhook)
                 return;
