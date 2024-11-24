@@ -23,24 +23,24 @@ public sealed class AccessWeaponBlockerSystem : EntitySystem
     }
 
 
-    private void OnGotEquippedHand(Entity<AccessWeaponBlockerComponent> accessBlocker, ref GotEquippedHandEvent args)
+    private void OnGotEquippedHand(EntityUid uid, AccessWeaponBlockerComponent component, ref GotEquippedHandEvent args)
     {
         if (!_inventorySystem.TryGetSlotEntity(args.User, "id", out var slotCardUid))
             return;
         var accessEntity = TryComp<PdaComponent>(slotCardUid, out var pda) && pda.ContainedId is { } pdaSlot
             ? pdaSlot
             : slotCardUid.Value;
-        accessBlocker.Comp.CanUse = IsAnyAccess(accessEntity, accessBlocker);
-        Dirty(accessBlocker);
+        component.CanUse = IsAnyAccess(accessEntity, component);
+        Dirty(uid, component);
     }
 
-    private bool IsAnyAccess(EntityUid accessEntity, Entity<AccessWeaponBlockerComponent> accessBlocker)
+    private bool IsAnyAccess(EntityUid accessEntity, AccessWeaponBlockerComponent component)
     {
         if (!TryComp<AccessComponent>(accessEntity, out var access))
             return false;
         foreach (var accessTag in access.Tags)
         {
-            if (accessBlocker.Comp.Access.Contains(accessTag))
+            if (component.Access.Contains(accessTag))
                 return true;
         }
         return false;
