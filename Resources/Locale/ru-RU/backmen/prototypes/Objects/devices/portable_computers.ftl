@@ -1,5 +1,5 @@
 ent-HandHeldCameras = ручной монитор камер
-    .desc = Возможность незаметного слежения в любом месте и в любое время, прямо в вашем кармане.
+    .desc = Портативное устройство для удаленного мониторинга камер безопасности станции.
 ent-HandHeldCamerasEmpty = { ent-HandHeldCameras }
     .desc = { ent-HandHeldCameras.desc }
     .suffix = Пустой
