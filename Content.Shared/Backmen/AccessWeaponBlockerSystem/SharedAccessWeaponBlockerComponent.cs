@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Backmen.AccessWeaponBlockerSystem;;
+namespace Content.Shared.Backmen.AccessWeaponBlockerSystem;
 
 [NetworkedComponent]
 public abstract partial class SharedAccessWeaponBlockerComponent : Component

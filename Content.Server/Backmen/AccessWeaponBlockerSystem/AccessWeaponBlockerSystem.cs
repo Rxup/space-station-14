@@ -1,6 +1,6 @@
 using Content.Shared.Hands;
 using Content.Shared.Access.Components;
-using Content.Shared.Backmen.AccessGunBlockerSystem;
+using Content.Shared.Backmen.AccessWeaponBlockerSystem;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
