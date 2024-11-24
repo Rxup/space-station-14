@@ -144,7 +144,7 @@ public sealed partial class GptCommands : EntitySystem
         });
 
         ev.History.Messages.Add(
-            new GptMessageFunction("get_current_logs", new { round = _gameTicker.RoundId, logs = admLogs })
+            new GptMessageFunction("get_current_logs", new { round = _gameTicker.RoundId, logs = admLogs.Select(x=>(x.Id,x.Date,x.Message)).ToArray() })
         );
         ev.Handled = true;
     }
