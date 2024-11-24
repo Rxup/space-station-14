@@ -1,4 +1,5 @@
 admin-player-actions-gpt = GptChat
+admin-player-actions-gpt-auto = Auto
 admin-player-actions-reason = Причина
 admin-player-actions-bans = Бан-лист
 admin-player-actions-notes = Заметки

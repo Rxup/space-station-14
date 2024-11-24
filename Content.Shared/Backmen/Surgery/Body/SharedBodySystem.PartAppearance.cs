@@ -28,11 +28,17 @@ public partial class SharedBodySystem
     private void OnPartAppearanceStartup(EntityUid uid, BodyPartAppearanceComponent component, ComponentStartup args)
     {
         if (!TryComp(uid, out BodyPartComponent? part)
-            || part.OriginalBody == null
-            || TerminatingOrDeleted(part.OriginalBody.Value)
-            || !TryComp(part.OriginalBody.Value, out HumanoidAppearanceComponent? bodyAppearance)
             || part.ToHumanoidLayers() is not { } relevantLayer)
             return;
+
+        if (part.OriginalBody == null
+            || TerminatingOrDeleted(part.OriginalBody.Value)
+            || !TryComp(part.OriginalBody.Value, out HumanoidAppearanceComponent? bodyAppearance))
+        {
+            //component.ID = part.BaseLayerId;
+            component.Type = relevantLayer;
+            return;
+        }
 
         var customLayers = bodyAppearance.CustomBaseLayers;
         var spriteLayers = bodyAppearance.BaseLayers;
@@ -159,7 +165,7 @@ public partial class SharedBodySystem
             _humanoid.SetBaseLayerColor(target, component.Type, component.Color, true, bodyAppearance);
 
         _humanoid.SetLayerVisibility(target, component.Type, true, true, bodyAppearance);
-        
+
         foreach (var (visualLayer, markingList) in component.Markings)
         {
             _humanoid.SetLayerVisibility(target, visualLayer, true, true, bodyAppearance);

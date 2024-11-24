@@ -12,6 +12,7 @@ mood-effect-ThirstParched = МНЕ НУЖНА ВОДА!
 
 mood-effect-HealthNoDamage = Я не чувствую никакой боли.
 mood-effect-HealthLightDamage = Небольшая царапина, мне не так уж и больно.
+mood-effect-HealthOkayDamage = Я чувствую неслабую боль.
 mood-effect-HealthSevereDamage = Я не могу стерпеть эту боль!
 mood-effect-HealthHeavyDamage = Агония захватывает мою душу!
 
@@ -66,3 +67,32 @@ mood-effect-SurgeryNoHand = Я не чувствую своей руки!
 mood-effect-SurgeryNoTorso = Я не чувствую своего тела!
 
 mood-effect-SurgeryPain = В моём теле проводят операцию, я чувствую сильнейшую боль!
+
+reagent-effect-guidebook-add-moodlet =
+    Изменяет настроение на {$amount} единиц { $timeout ->
+        [0] indefinitely
+        *[other] на {$timeout} секунд, вызывает зависимость
+    }
+
+# Addictions
+mood-effect-LotoTranscendence =
+    Я ВИЖУ ВСЁ СУЩЕЕ, КОТОРОЕ ВСЕГДА БЫЛО И ВСЕГДА БУДЕТ. ВСЁ МИРОЗДАНИЕ ОТКРЫЛОСЬ МОЕМУ РАЗУМУ!
+    Я ДОЛЖЕН ЗНАТЬ ЭТО. Я ДОЛЖЕН ХРАНИТЬ ВСЁ ЭТО. ВСЁ. ВЕЧНО!
+mood-effect-LotoEnthrallment =
+    Оно ушло от меня... Сердце всего сущего пропало из моей души, оставляя неописуемую пустоту внутри.
+    Чувствую словно вот-вот иссушусь если не выпью из чаши знаний снова.
+
+mood-effect-NicotineBenefit =
+    Чувствую себя будто стоял всю жизнь и только что присел.
+mood-effect-NicotineWithdrawal =
+    Стоило бы немного покурить.
+
+mood-effect-SpaceDrugsBenefit =
+    Я так... Расслаблен...
+mood-effect-SpaceDrugsWithdrawal =
+    Я снова хочу расплыться в удовольствии и окунуться в Космический Мираж!
+
+mood-effect-HappinessBenefit =
+    ВУХУУУУУУ СЧААААСТЬЕЕЕЕЕЕЕЕ
+mood-effect-HappinessWithdrawal =
+    После приступа истерики мне так грустно...

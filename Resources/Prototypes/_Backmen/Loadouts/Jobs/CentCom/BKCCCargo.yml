@@ -7,6 +7,18 @@
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatCargosoft
 
+- type: startingGear
+  id: CCCargoFull
+  equipment:
+    id: CCCargoPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: AppraisalTool
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatCargosoft
+    jumpsuit: ClothingUniformJumpsuitCargo
+    neck: ClothingNeckCloakCap
+    back: ClothingBackpack
+
 
 # Jumpsuit
 - type: loadout

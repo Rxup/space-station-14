@@ -6,9 +6,9 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Mobs/Species/shadowkin.rsi
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Icon
-    sprite: Backmen/Mobs/Species/shadowkin.rsi
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Damageable
     damageContainer: OrganicPart # backmen: surgery
   - type: SurgeryTool

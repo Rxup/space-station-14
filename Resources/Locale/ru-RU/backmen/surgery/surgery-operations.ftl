@@ -43,6 +43,7 @@ ent-SurgeryAttachLeftHand = Прикрепить левую ладонь
 ent-SurgeryAttachRightHand = Прикрепить правую ладонь
 ent-SurgeryAttachLeftFoot = Прикрепить левую стопу
 ent-SurgeryAttachRightFoot = Прикрепить правую стопу
+ent-SurgeryAttachTail = Прикрепить хвост
 
 ent-SurgeryTendWoundsBrute = Восстановить механические повреждения
 ent-SurgeryTendWoundsBurn = Восстановить термические повреждения

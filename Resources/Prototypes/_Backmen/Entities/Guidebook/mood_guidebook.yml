@@ -1,0 +1,89 @@
+- type: entity
+  id: GuidebookMoodPerfect
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood9
+
+- type: entity
+  id: GuidebookMoodExceptional
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood8
+
+- type: entity
+  id: GuidebookMoodGreat
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood7
+
+- type: entity
+  id: GuidebookMoodGood
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood6
+
+- type: entity
+  id: GuidebookMoodNeutral
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood5
+
+- type: entity
+  id: GuidebookMoodMeh
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood4
+
+- type: entity
+  id: GuidebookMoodBad
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood3
+
+- type: entity
+  id: GuidebookMoodTerrible
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood2
+
+- type: entity
+  id: GuidebookMoodHorrible
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood1
+
+- type: entity
+  id: GuidebookMoodDead
+  name: Mood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Alerts/mood.rsi
+    state: mood_happiness_bad

@@ -52,6 +52,7 @@ public partial class SharedBodySystem
         if (ent.Comp.PartType == BodyPartType.Torso)
             _slots.RemoveItemSlot(ent, ent.Comp.ItemInsertionSlot);
     }
+    
     private void OnBodyPartInserted(Entity<BodyPartComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         // Body part inserted into another body part.
@@ -280,7 +281,6 @@ public partial class SharedBodySystem
         else
             DisablePart(partEnt);
     }
-
     private void EnablePart(Entity<BodyPartComponent> partEnt)
     {
         if (!TryComp(partEnt.Comp.Body, out BodyComponent? body))
@@ -568,6 +568,18 @@ public partial class SharedBodySystem
             && Resolve(partId, ref part)
             && CanAttachToRoot(bodyId, partId, body, part)
             && Containers.Insert(partId, body.RootContainer);
+    }
+
+    /// <summary>
+    ///     Returns true if this parentId supports attaching a new part to the specified slot.
+    /// </summary>
+    public bool CanAttachToSlot(
+        EntityUid parentId,
+        string slotId,
+        BodyPartComponent? parentPart = null)
+    {
+        return Resolve(parentId, ref parentPart, logMissing: false)
+               && parentPart.Children.ContainsKey(slotId);
     }
 
     #endregion

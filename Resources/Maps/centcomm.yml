@@ -2728,7 +2728,6 @@ entities:
     - type: GasTileOverlay
     - type: SpreaderGrid
     - type: GridPathfinding
-    - type: ProtectedGrid
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 1455

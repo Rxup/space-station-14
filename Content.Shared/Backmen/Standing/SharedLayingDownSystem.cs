@@ -16,6 +16,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -32,6 +33,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Standing;
 
@@ -52,6 +54,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
@@ -83,7 +86,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         if(!TryComp<BodyComponent>(ent, out var body))
             return;
 
-        if (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0)
+        if (!HasComp<BorgChassisComponent>(ent) && (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0))
             args.Cancel(); // no legs bro
     }
 
@@ -194,15 +197,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        if (_net.IsServer)
-        {
-            RaiseNetworkEvent(new ChangeLayingDownEvent(), Filter.Pvs(session.AttachedEntity.Value));
-        }
-        else
-        {
-            RaisePredictiveEvent(new ChangeLayingDownEvent());
-        }
+        if (!_timing.IsFirstTimePredicted)
+            return;
 
+        RaisePredictiveEvent(new ChangeLayingDownEvent());
     }
 
     public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -338,6 +336,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
 
         standingState.CurrentState = StandingState.GettingUp;
+        Dirty(uid, standingState);
         return true;
     }
 

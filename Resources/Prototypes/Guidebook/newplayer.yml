@@ -12,6 +12,8 @@
   text: "/ServerInfo/Guidebook/NewPlayer/Controls/Controls.xml"
   children:
   - Radio
+  - SpecialActions # backmen: laying-down & surgery
+  - Mood # backmen: mood
 
 - type: guideEntry
   id: Radio

@@ -12,6 +12,7 @@
   requireAdminNotify: true
   joinNotifyCrew: true
   whitelisted: true
+  discordRequired: true
   requirements:
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant

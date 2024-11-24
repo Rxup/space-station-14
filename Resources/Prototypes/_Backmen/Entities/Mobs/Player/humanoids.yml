@@ -29,12 +29,6 @@
     - type: RandomMetadata
       nameSegments: [clown_basefun]
     - type: Clumsy
-      clumsyDamage:
-        types:
-          Blunt: 5
-          Piercing: 4
-        groups:
-          Burn: 3
     - type: TriggerOnMobstateChange
       mobState:
       - Dead

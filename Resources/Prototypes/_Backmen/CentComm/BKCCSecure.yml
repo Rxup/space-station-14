@@ -1,0 +1,56 @@
+﻿- type: entity
+  id: SpawnPointCMBKCCSecOfficer
+  name: Охраник ЦК
+  suffix: Спавнер, Директор Событий
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Охраник ЦК
+    description: A Central Command Security Officer responsible for maintaining order and security.
+    rules: Follow Central Command protocols. Protect CC personnel and assets. Maintain professional conduct at all times.
+    raffle:
+      settings: short
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 108000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 3600
+    job: BKCCSecOfficer
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanCMBKCCSecOfficer
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertsecurity
+
+- type: entity
+  name: Охраник ЦК
+  suffix: Директор Событий
+  parent: MobHumanCombine
+  description: A highly trained Central Command Security Officer equipped with specialized gear and implants.
+  id: MobHumanCMBKCCSecOfficer
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: security_officer
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+    - CentralCommand
+  - type: Loadout
+    prototypes: [CentComPrivateOfficerGear]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: AntagImmune

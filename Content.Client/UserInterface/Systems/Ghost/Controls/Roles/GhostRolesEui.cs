@@ -3,6 +3,7 @@ using Content.Client.Eui;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
+using Content.Shared.Players.JobWhitelist;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
@@ -94,7 +95,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             // TODO: role.Requirements value doesn't work at all as an equality key, this must be fixed
             // Grouping roles
             var groupedRoles = ghostState.GhostRoles.GroupBy(
-                role => (role.Name, role.Description, role.Requirements, role.WhitelistRequired)); //backmen: whitelist
+                role => (role.Name, role.Description, role.Requirements, role.WhitelistRequired, role.DiscordRequired)); //backmen: whitelist
 
             //start-backmen: whitelist
             var cfg = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>();
@@ -109,14 +110,15 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 FormattedMessage? reason;
 
                 //start-backmen: whitelist
-                if (
-                    group.Key.WhitelistRequired &&
-                    cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-                    !requirementsManager.IsWhitelisted()
-                    )
+                if (group.Key.WhitelistRequired)
                 {
                     hasAccess = false;
                     reason = FormattedMessage.FromMarkupOrThrow(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                }
+                else if (group.Key.DiscordRequired)
+                {
+                    hasAccess = false;
+                    reason = FormattedMessage.FromMarkupOrThrow(Loc.GetString("playtime-deny-reason-discord"));
                 }
                 else
                 //end-backmen: whitelist
