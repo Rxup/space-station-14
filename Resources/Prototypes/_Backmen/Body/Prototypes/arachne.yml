@@ -13,8 +13,8 @@
     torso:
       part: TorsoHuman
       organs:
-        heart: OrganHumanHeart
-        lungs: OrganHumanLungs
+        heart: OrganSpaceAnimalHeart
+        lungs: OrganSpaceAnimalLungs
         stomach: OrganVampiricHumanoidStomach
         liver:  OrganHumanLiver
         kidneys: OrganHumanKidneys
