@@ -1,5 +1,5 @@
 using Content.Shared.Access;
-using Content.Shared.Backmen.AccessGunBlockerSystem;
+using Content.Shared.Backmen.AccessWeaponBlockerSystem;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Server.Backmen.AccessWeaponBlockerSystem;
