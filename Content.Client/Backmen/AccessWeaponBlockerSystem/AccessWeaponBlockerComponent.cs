@@ -1,4 +1,4 @@
-using Content.Shared.Backmen.AccessGunBlockerSystem;
+using Content.Shared.Backmen.AccessWeaponBlockerSystem;
 
 namespace Content.Client.Backmen.AccessWeaponBlockerSystem;
 
