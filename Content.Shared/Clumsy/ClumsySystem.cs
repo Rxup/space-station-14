@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Hypospray.Events;
 using Content.Shared.Climbing.Components;
@@ -137,7 +138,7 @@ public sealed class ClumsySystem : EntitySystem
         {
             stunTime = bonkComp.BonkTime;
             if (bonkComp.BonkDamage != null)
-                _damageable.TryChangeDamage(target, bonkComp.BonkDamage, true);
+                _damageable.TryChangeDamage(target, bonkComp.BonkDamage, true, targetPart: TargetBodyPart.Head);
         }
 
         _stun.TryParalyze(target, stunTime, true);
