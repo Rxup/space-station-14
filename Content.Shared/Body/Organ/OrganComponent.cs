@@ -2,7 +2,6 @@ using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Body.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._Shitmed.Medical.Surgery.Tools;
 
 namespace Content.Shared.Body.Organ;
 

@@ -2,7 +2,7 @@ using Content.Shared.Body.Part;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Shitmed.Medical.Surgery.Conditions;
+namespace Content.Shared.Backmen.Surgery.Conditions;
 
 // Quite the redundant name eh?
 [RegisterComponent, NetworkedComponent]

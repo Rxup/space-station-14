@@ -1,14 +1,14 @@
-using Content.Shared._Shitmed.Body.Events;
 using Content.Shared.Body.Part;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Body.Events;
 
-namespace Content.Shared._Shitmed.BodyEffects;
+namespace Content.Shared.Backmen.Surgery.Body.Organs;
+
 public partial class BodyPartEffectSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     public override void Initialize()

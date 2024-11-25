@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
@@ -7,11 +8,6 @@ using Content.Shared.Damage;
 using Robust.Shared.Containers;
 
 // Shitmed Change
-
-using Content.Shared.Damage;
-using Content.Shared._Shitmed.BodyEffects;
-using Content.Shared._Shitmed.Body.Events;
-using Content.Shared._Shitmed.Body.Organ;
 
 namespace Content.Shared.Body.Systems;
 

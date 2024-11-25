@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Shitmed.BodyEffects.Subsystems;
+namespace Content.Shared.Backmen.Surgery.Body.Subsystems;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GenerateChildPartComponent : Component

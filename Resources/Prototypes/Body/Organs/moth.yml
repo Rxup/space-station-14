@@ -3,7 +3,6 @@
   name: moth stomach
   parent: [OrganAnimalStomach, OrganHumanStomach]
   categories: [ HideSpawnMenu ]
-  name: moth stomach # Shitmed
   components:
   - type: Stomach
     specialDigestible:

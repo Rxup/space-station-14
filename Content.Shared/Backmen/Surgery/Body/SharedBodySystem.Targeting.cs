@@ -15,6 +15,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;

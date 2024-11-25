@@ -4,17 +4,11 @@ using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Events;
-using Content.Shared.Body.Organ;
 using Content.Server.Backmen.DelayedDeath;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Pointing;
-
-// Shitmed Change
-using Content.Shared._Shitmed.Body.Organ;
-using Content.Server._Shitmed.DelayedDeath;
-using Content.Shared.Body.Systems;
 
 namespace Content.Server.Body.Systems
 {

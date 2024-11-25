@@ -5,6 +5,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Smoking;
 using Content.Shared.Smoking.Components; // Shitmed Change
+using Content.Shared.Smoking.Systems;
 using Content.Shared.Smoking.Systems; // Shitmed Change
 using Content.Shared.Temperature;
 using Robust.Server.GameObjects;
@@ -98,6 +99,9 @@ namespace Content.Server.Light.EntitySystems
         // Shitmed Change Start
         public override bool SetState(Entity<MatchstickComponent> ent, SmokableState value)
         {
+            var uid = ent.Owner;
+            var component = ent.Comp;
+
             component.CurrentState = value;
             if (_lights.TryGetLight(uid, out var pointLightComponent))
             {

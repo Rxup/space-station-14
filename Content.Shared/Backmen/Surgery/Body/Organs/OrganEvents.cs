@@ -1,5 +1,5 @@
 using Content.Shared.Body.Organ;
-namespace Content.Shared._Shitmed.Body.Organ;
+namespace Content.Shared.Backmen.Surgery.Body.Organs;
 
 public readonly record struct OrganComponentsModifyEvent(EntityUid Body, bool Add);
 

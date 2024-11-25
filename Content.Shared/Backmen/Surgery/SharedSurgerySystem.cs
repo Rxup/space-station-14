@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Conditions;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Body.Systems;
@@ -140,7 +141,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (ent.Comp.Inverse ? present : !present)
             args.Cancelled = true;
     }
-    
+
     private void OnPartConditionValid(Entity<SurgeryPartConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!TryComp<BodyPartComponent>(args.Part, out var part))

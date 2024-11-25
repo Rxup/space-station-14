@@ -126,7 +126,6 @@
     groups:
     - id: Alcohol
       rateModifier: 0.1
-  - type: Liver # Shitmed
   - type: Tag # goob edit
     tags:
     - Meat

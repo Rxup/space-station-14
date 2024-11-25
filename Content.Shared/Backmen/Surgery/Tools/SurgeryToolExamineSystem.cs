@@ -1,11 +1,10 @@
-using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Shitmed.Medical.Surgery.Tools;
+namespace Content.Shared.Backmen.Surgery.Tools;
 
 /// <summary>
 ///     Examining a surgical or ghetto tool shows everything it can be used for.

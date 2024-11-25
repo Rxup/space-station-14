@@ -1,6 +1,5 @@
 // We keep this clone of the other system since I don't know yet if I'll need organ specific functions in the future.
 // will delete or refactor as time goes on.
-using Content.Shared._Shitmed.Body.Organ;
 using Content.Shared.Body.Organ;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
@@ -9,7 +8,7 @@ using System.Linq;
 using Robust.Shared.Network;
 
 
-namespace Content.Shared._Shitmed.BodyEffects;
+namespace Content.Shared.Backmen.Surgery.Body.Organs;
 public partial class OrganEffectSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _compFactory = default!;

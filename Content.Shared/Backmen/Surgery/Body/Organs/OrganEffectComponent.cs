@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._Shitmed.BodyEffects;
+namespace Content.Shared.Backmen.Surgery.Body.Organs;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentPause]

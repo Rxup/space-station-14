@@ -5,7 +5,6 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -17,6 +16,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Steps;
@@ -24,6 +24,7 @@ using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Medical.Surgery;
+using AmputateAttemptEvent = Content.Shared.Body.Events.AmputateAttemptEvent;
 
 namespace Content.Shared.Backmen.Surgery;
 
@@ -72,7 +73,7 @@ public abstract partial class SharedSurgerySystem
         {
             foreach (var reg in ent.Comp.Tool.Values)
             {
-                if (!AnyHaveComp(args.Tools, reg.Component, out var tool))
+                if (!AnyHaveComp(args.Tools, reg.Component, out var tool, out _))
                     return;
 
                 if (_net.IsServer &&
@@ -218,21 +219,21 @@ public abstract partial class SharedSurgerySystem
 
         if (ent.Comp.Tool != null)
         {
-            args.ValidTools ??= new HashSet<EntityUid>();
+            args.ValidTools ??= new Dictionary<EntityUid, float>();
 
             foreach (var reg in ent.Comp.Tool.Values)
             {
-                if (!AnyHaveComp(args.Tools, reg.Component, out var withComp))
+                if (!AnyHaveComp(args.Tools, reg.Component, out var tool, out var speed))
                 {
                     args.Invalid = StepInvalidReason.MissingTool;
 
-                    if (reg.Component is ISurgeryToolComponent tool)
-                        args.Popup = $"You need {tool.ToolName} to perform this step!";
+                    if (reg.Component is ISurgeryToolComponent required)
+                        args.Popup = $"You need {required.ToolName} to perform this step!";
 
                     return;
                 }
 
-                args.ValidTools.Add(withComp);
+                args.ValidTools[tool] = speed;
             }
         }
     }
@@ -752,7 +753,7 @@ public abstract partial class SharedSurgerySystem
 
     public bool CanPerformStep(EntityUid user, EntityUid body, EntityUid part,
         EntityUid step, bool doPopup, out string? popup, out StepInvalidReason reason,
-        out HashSet<EntityUid>? validTools)
+        out Dictionary<EntityUid, float>? validTools)
     {
         var type = BodyPartType.Other;
         if (TryComp(part, out BodyPartComponent? partComp))
@@ -806,18 +807,20 @@ public abstract partial class SharedSurgerySystem
         return !ev.Cancelled;
     }
 
-    private bool AnyHaveComp(List<EntityUid> tools, IComponent component, out EntityUid withComp)
+    private bool AnyHaveComp(List<EntityUid> tools, IComponent component, out EntityUid withComp, out float speed)
     {
         foreach (var tool in tools)
         {
-            if (HasComp(tool, component.GetType()))
+            if (EntityManager.TryGetComponent(tool, component.GetType(), out var found) && found is ISurgeryToolComponent toolComp)
             {
                 withComp = tool;
+                speed = toolComp.Speed;
                 return true;
             }
         }
 
-        withComp = default;
+        withComp = EntityUid.Invalid;
+        speed = 1f;
         return false;
     }
 }
