@@ -261,9 +261,13 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.TargetHead);
             AddButton(ContentKeyFunctions.TargetTorso);
             AddButton(ContentKeyFunctions.TargetLeftArm);
+            AddButton(ContentKeyFunctions.TargetLeftHand);
             AddButton(ContentKeyFunctions.TargetRightArm);
+            AddButton(ContentKeyFunctions.TargetRightHand);
             AddButton(ContentKeyFunctions.TargetLeftLeg);
+            AddButton(ContentKeyFunctions.TargetLeftFoot);
             AddButton(ContentKeyFunctions.TargetRightLeg);
+            AddButton(ContentKeyFunctions.TargetRightFoot);
 
             AddHeader("ui-options-header-misc");
             AddButton(ContentKeyFunctions.TakeScreenshot);
@@ -272,6 +276,11 @@ namespace Content.Client.Options.UI.Tabs
 
             AddHeader("ui-options-header-hotbar");
             foreach (var boundKey in ContentKeyFunctions.GetHotbarBoundKeys())
+            {
+                AddButton(boundKey);
+            }
+
+            foreach (var boundKey in ContentKeyFunctions.GetLoadoutBoundKeys())
             {
                 AddButton(boundKey);
             }

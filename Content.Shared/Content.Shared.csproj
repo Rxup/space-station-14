@@ -25,6 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Power\Components\" />
+    <Folder Include="_Shitmed\BodyEffects\" />
+    <Folder Include="_Shitmed\Body\" />
+    <Folder Include="_Shitmed\Cybernetics\" />
+    <Folder Include="_Shitmed\Surgery\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Backmen\Supermatter\Components\BkmSupermatterComponent.calculation.cs">

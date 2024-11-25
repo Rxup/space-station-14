@@ -1,6 +1,8 @@
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Body.Systems;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Content.Shared._Shitmed.Medical.Surgery.Tools;
 
 namespace Content.Shared.Body.Organ;
 
@@ -26,15 +28,42 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     /// without referencing the prototype or hardcoding.
     /// </summary>
 
-    [DataField]
+    [DataField, AlwaysPushInheritance]
     public string SlotId = "";
 
-    [DataField]
+    [DataField, AlwaysPushInheritance]
     public string ToolName { get; set; } = "An organ";
+
+    [DataField, AlwaysPushInheritance]
+    public float Speed { get; set; } = 1f;
 
     /// <summary>
     ///  If true, the organ will not heal an entity when transplanted into them.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool? Used { get; set; }
+
+    /// <summary>
+    ///     When attached, the organ will ensure these components on the entity, and delete them on removal.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry? OnAdd;
+
+    /// <summary>
+    ///     When removed, the organ will ensure these components on the entity, and add them on removal.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry? OnRemove;
+
+    /// <summary>
+    ///     Is this organ working or not?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
+
+    /// <summary>
+    ///     Can this organ be enabled or disabled? Used mostly for prop, damaged or useless organs.
+    /// </summary>
+    [DataField]
+    public bool CanEnable = true;
 }

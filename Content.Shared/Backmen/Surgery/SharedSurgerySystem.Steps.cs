@@ -103,6 +103,17 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
+        if (ent.Comp.BodyAdd != null)
+        {
+            foreach (var reg in ent.Comp.BodyAdd.Values)
+            {
+                var compType = reg.Component.GetType();
+                if (HasComp(args.Body, compType))
+                    continue;
+                AddComp(args.Body, _compFactory.GetComponent(compType));
+            }
+        }
+
         if (ent.Comp.BodyRemove != null)
         {
             foreach (var reg in ent.Comp.BodyRemove.Values)
@@ -143,6 +154,18 @@ public abstract partial class SharedSurgerySystem
             foreach (var reg in ent.Comp.Remove.Values)
             {
                 if (HasComp(args.Part, reg.Component.GetType()))
+                {
+                    args.Cancelled = true;
+                    return;
+                }
+            }
+        }
+
+        if (ent.Comp.BodyAdd != null)
+        {
+            foreach (var reg in ent.Comp.BodyAdd.Values)
+            {
+                if (!HasComp(args.Body, reg.Component.GetType()))
                 {
                     args.Cancelled = true;
                     return;
@@ -252,12 +275,9 @@ public abstract partial class SharedSurgerySystem
             bonus *= 0.2;
 
         var adjustedDamage = new DamageSpecifier(ent.Comp.Damage);
-        var bonusPerType = bonus / group.Length;
 
         foreach (var type in group)
-        {
-            adjustedDamage.DamageDict[type] -= bonusPerType;
-        }
+            adjustedDamage.DamageDict[type] -= bonus;
 
         var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 0.5f);
         RaiseLocalEvent(args.Body, ref ev);
@@ -583,7 +603,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
     {
-        var user = args.Actor;
+                var user = args.Actor;
         if (GetEntity(args.Entity) is not { Valid: true } body ||
             GetEntity(args.Part) is not { Valid: true } targetPart ||
             !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, user, out var surgery, out var part, out var step))
@@ -598,14 +618,29 @@ public abstract partial class SharedSurgerySystem
         if (!CanPerformStep(user, body, part, step, true, out _, out _, out var validTools))
             return;
 
-        if (_net.IsServer && validTools?.Count > 0)
+        var speed = 1f;
+        var usedEv = new SurgeryToolUsedEvent(user, body);
+        // We need to check for nullability because of surgeries that dont require a tool, like Cavity Implants
+        if (validTools?.Count > 0)
         {
-            foreach (var tool in validTools)
+            foreach (var (tool, toolSpeed) in validTools)
             {
-                if (TryComp(tool, out SurgeryToolComponent? toolComp) &&
-                    toolComp.EndSound != null)
+                RaiseLocalEvent(tool, ref usedEv);
+                if (usedEv.Cancelled)
+                    return;
+
+                speed *= toolSpeed;
+            }
+
+            if (_net.IsServer)
+            {
+                foreach (var tool in validTools.Keys)
                 {
-                    _audio.PlayEntity(toolComp.StartSound, user, tool);
+                    if (TryComp(tool, out SurgeryToolComponent? toolComp) &&
+                        toolComp.EndSound != null)
+                    {
+                        _audio.PlayEntity(toolComp.StartSound, user, tool);
+                    }
                 }
             }
         }
@@ -614,8 +649,8 @@ public abstract partial class SharedSurgerySystem
             _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body, xform).Position);
 
         var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step);
-        // TODO: Make this serialized on a per surgery step basis, and also add penalties based on ghetto tools.
-        var duration = 2f;
+        // TODO: Move 2 seconds to a field of SurgeryStepComponent
+        var duration = 2f / speed;
         if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod)
             && surgerySpeedMod is not null)
             duration = duration / surgerySpeedMod.SpeedModifier;
@@ -646,6 +681,18 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
+    private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, float toolSpeed)
+    {
+        if (!TryComp(surgeryStep, out SurgeryStepComponent? stepComp))
+            return 2f; // Shouldnt really happen but just a failsafe.
+
+        var speed = toolSpeed;
+
+        if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod))
+            speed *= surgerySpeedMod.SpeedModifier;
+
+        return stepComp.Duration / speed;
+    }
     private (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, Entity<SurgeryComponent?> surgery, List<EntityUid> requirements)
     {
         if (!Resolve(surgery, ref surgery.Comp))
