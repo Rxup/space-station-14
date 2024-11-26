@@ -15,6 +15,7 @@ using Content.Shared.Gibbing.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Events;
 using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
@@ -142,7 +143,6 @@ public partial class SharedBodySystem
         var rootPartUid = SpawnInContainerOrDrop(protoRoot.Part, bodyEntity, BodyRootContainerId);
         var rootPart = Comp<BodyPartComponent>(rootPartUid);
         rootPart.Body = bodyEntity;
-        rootPart.OriginalBody = bodyEntity;
         Dirty(rootPartUid, rootPart);
         // Setup the rest of the body entities.
         SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);
@@ -463,11 +463,6 @@ public partial class SharedBodySystem
 
         foreach (var part in GetBodyChildren(uid, component))
             EnsureComp<BodyPartAppearanceComponent>(part.Id);
-    }
-    private void OnStandAttempt(Entity<BodyComponent> ent, ref StandAttemptEvent args)
-    {
-        if (ent.Comp.LegEntities.Count == 0)
-            args.Cancel();
     }
 
     private void OnBeingEquippedAttempt(Entity<BodyComponent> ent, ref IsEquippingAttemptEvent args)

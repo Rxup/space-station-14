@@ -1144,19 +1144,5 @@ public partial class SharedBodySystem
         return false;
     }
 
-    public int GetBodyPartCount(EntityUid bodyId, BodyPartType partType, BodyComponent? body = null)
-    {
-        if (!Resolve(bodyId, ref body, logMissing: false))
-            return 0;
-
-        int count = 0;
-        foreach (var part in GetBodyChildren(bodyId, body))
-        {
-            if (part.Component.PartType == partType)
-                count++;
-        }
-        return count;
-    }
-
     #endregion
 }

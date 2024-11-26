@@ -102,30 +102,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
             targetPart: _body.GetTargetBodyPart(partComp));
     }
 
-    private void AttemptStartSurgery(Entity<SurgeryToolComponent> ent, EntityUid user, EntityUid target)
-    {
-        var user = args.User;
-        if (args.Handled
-            || !args.CanReach
-            || args.Target == null
-            || !HasComp<SurgeryTargetComponent>(args.Target)
-            || !TryComp<SurgeryTargetComponent>(args.User, out var surgery)
-            || !surgery.CanOperate
-            || !IsLyingDown(args.Target.Value, args.User))
-        {
-            return;
-
-        if (user == args.Target && !_config.GetCVar(Shared.Backmen.CCVar.CCVars.CanOperateOnSelf))
-        {
-            _popup.PopupEntity(Loc.GetString("surgery-error-self-surgery"), user, user);
-            return;
-        }
-
-        args.Handled = true;
-        _ui.OpenUi(args.Target.Value, SurgeryUIKey.Key, user);
-        RefreshUI(args.Target.Value);
-    }
-
     private void OnUtilityVerb(Entity<SurgeryToolComponent> ent, ref GetVerbsEvent<UtilityVerb> args)
     {
         if (!args.CanInteract
