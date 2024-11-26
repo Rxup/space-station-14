@@ -1,4 +1,3 @@
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage.ForceSay;

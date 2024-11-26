@@ -1,4 +1,3 @@
-using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Database;
 using Content.Shared.Mobs.Components;
 
