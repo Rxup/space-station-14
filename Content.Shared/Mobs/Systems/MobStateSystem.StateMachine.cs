@@ -111,6 +111,11 @@ public partial class MobStateSystem
         component.CurrentState = newState;
         OnEnterState(target, component, newState);
 
+        // Backmen: Laying system
+        if (_net.IsClient && (oldState == MobState.Dead || oldState == MobState.Critical))
+            return;
+        // Backme: Laying system
+
         var ev = new MobStateChangedEvent(target, component, oldState, newState, origin);
         OnStateChanged(target, component, oldState, newState);
         RaiseLocalEvent(target, ev, true);
