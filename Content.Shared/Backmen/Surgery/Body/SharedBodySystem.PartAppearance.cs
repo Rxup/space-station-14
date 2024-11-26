@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -8,7 +7,9 @@ using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.Surgery.Body.Events;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
+
 public partial class SharedBodySystem
 {
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
@@ -73,8 +74,7 @@ public partial class SharedBodySystem
         {
             var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
             if (bodyAppearance.MarkingSet.Markings.TryGetValue(category, out var markingList))
-                markingsByLayer[layer] =
-                    markingList.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList();
+                markingsByLayer[layer] = markingList.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList();
         }
 
         component.Markings = markingsByLayer;
