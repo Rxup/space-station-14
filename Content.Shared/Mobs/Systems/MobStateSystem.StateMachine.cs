@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Surgery.Body;
+using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Database;
 using Content.Shared.Mobs.Components;
 
@@ -107,14 +107,14 @@ public partial class MobStateSystem
         if (oldState == MobState.Dead && HasComp<DebrainedComponent>(target))
             return;
 
-        OnExitState(target, component, oldState);
-        component.CurrentState = newState;
-        OnEnterState(target, component, newState);
-
         // Backmen: Laying system
         if (_net.IsClient && (oldState == MobState.Dead || oldState == MobState.Critical))
             return;
         // Backme: Laying system
+
+        OnExitState(target, component, oldState);
+        component.CurrentState = newState;
+        OnEnterState(target, component, newState);
 
         var ev = new MobStateChangedEvent(target, component, oldState, newState, origin);
         OnStateChanged(target, component, oldState, newState);
