@@ -107,11 +107,6 @@ public partial class MobStateSystem
         if (oldState == MobState.Dead && HasComp<DebrainedComponent>(target))
             return;
 
-        // Backmen: Laying system
-        if (_net.IsClient && (oldState == MobState.Dead || oldState == MobState.Critical))
-            return;
-        // Backme: Laying system
-
         OnExitState(target, component, oldState);
         component.CurrentState = newState;
         OnEnterState(target, component, newState);
