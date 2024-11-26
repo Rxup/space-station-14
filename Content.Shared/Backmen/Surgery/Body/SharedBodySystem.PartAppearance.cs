@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -7,10 +8,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.Surgery.Body.Events;
 
-
-// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
-
 public partial class SharedBodySystem
 {
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
@@ -30,13 +28,14 @@ public partial class SharedBodySystem
     {
         if (!TryComp(uid, out BodyPartComponent? part)
             || part.ToHumanoidLayers() is not { } relevantLayer)
+
             return;
 
         if (part.OriginalBody == null
             || TerminatingOrDeleted(part.OriginalBody.Value)
             || !TryComp(part.OriginalBody.Value, out HumanoidAppearanceComponent? bodyAppearance))
         {
-            //component.ID = part.BaseLayerId;
+            component.ID = part.BaseLayerId;
             component.Type = relevantLayer;
             return;
         }
@@ -147,10 +146,17 @@ public partial class SharedBodySystem
     private void OnPartDroppedFromBody(EntityUid uid, BodyComponent component, ref BodyPartRemovedEvent args)
     {
         if (TerminatingOrDeleted(uid)
-            || !TryComp(args.Part, out BodyPartAppearanceComponent? appearance))
+            || TerminatingOrDeleted(args.Part)
+            || !TryComp(uid, out HumanoidAppearanceComponent? bodyAppearance))
             return;
 
-        RemoveAppearance(uid, appearance, args.Part);
+        // We check for this conditional here since some entities may not have a profile... If they dont
+        // have one, and their part is gibbed, the markings will not be removed or applied properly.
+        if (!HasComp<BodyPartAppearanceComponent>(args.Part))
+            EnsureComp<BodyPartAppearanceComponent>(args.Part);
+
+        if (TryComp<BodyPartAppearanceComponent>(args.Part, out var partAppearance))
+            RemoveAppearance(uid, partAppearance, args.Part);
     }
 
     protected void UpdateAppearance(EntityUid target,
@@ -160,10 +166,7 @@ public partial class SharedBodySystem
             return;
 
         if (component.EyeColor != null)
-        {
             bodyAppearance.EyeColor = component.EyeColor.Value;
-            _humanoid.SetLayerVisibility(target, HumanoidVisualLayers.Eyes, true, true, bodyAppearance);
-        }
 
         if (component.Color != null)
             _humanoid.SetBaseLayerColor(target, component.Type, component.Color, true, bodyAppearance);
@@ -174,9 +177,7 @@ public partial class SharedBodySystem
         {
             _humanoid.SetLayerVisibility(target, visualLayer, true, true, bodyAppearance);
             foreach (var marking in markingList)
-            {
-                _humanoid.AddMarking(target, marking.MarkingId, marking.MarkingColors, true, true, bodyAppearance);
-            }
+                _humanoid.AddMarking(target, marking.MarkingId, marking.MarkingColors, false, true, bodyAppearance);
         }
 
         Dirty(target, bodyAppearance);
