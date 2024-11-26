@@ -1,0 +1,68 @@
+# Drugs should be paired up in Trios of "Bonus, Penalty, Category"
+
+# Lotophagoi Oil
+- type: moodEffect
+  id: LotoTranscendence
+  moodChange: 30
+  timeout: 900 #15 minutes
+  moodletOnEnd: LotoEnthrallment
+  category: "LotophagoiAddiction"
+
+- type: moodEffect
+  id: LotoEnthrallment
+  moodChange: -30
+  timeout: 3600 #1 hour
+  category: "LotophagoiAddiction"
+
+- type: moodCategory
+  id: LotophagoiAddiction
+
+# Nicotine
+- type: moodEffect
+  id: NicotineBenefit
+  moodChange: 5
+  timeout: 600 #10 minutes
+  moodletOnEnd: NicotineWithdrawal
+  category: "NicotineAddiction"
+
+- type: moodEffect
+  id: NicotineWithdrawal
+  moodChange: -7 #No timeout
+  category: "NicotineAddiction"
+
+- type: moodCategory
+  id: NicotineAddiction
+
+# Space  drugs
+- type: moodEffect
+  id: SpaceDrugsBenefit
+  moodChange: 15
+  timeout: 480 #6 minutes
+  moodletOnEnd: SpaceDrugsWithdrawal
+  category: "SpaceDrugsAddiction"
+
+- type: moodEffect
+  id: SpaceDrugsWithdrawal
+  moodChange: -20
+  category: "SpaceDrugsAddiction"
+  timeout: 1200 #20 minutes
+
+- type: moodCategory
+  id: SpaceDrugsAddiction
+
+# Happiness
+- type: moodEffect
+  id: HappinessBenefit
+  moodChange: 20
+  timeout: 300 #5 minutes
+  moodletOnEnd: HappinessWithdrawal
+  category: "HappinessAddiction"
+
+- type: moodEffect
+  id: HappinessWithdrawal
+  moodChange: -20
+  category: "HappinessAddiction"
+  timeout: 600 #10 minutes
+
+- type: moodCategory
+  id: HappinessAddiction

@@ -4,10 +4,8 @@ namespace Content.Client.Backmen.Surgery;
 
 public sealed class SurgerySystem : SharedSurgerySystem
 {
-    public event Action? OnRefresh;
-
-    public override void Update(float frameTime)
+    public override void Initialize()
     {
-        OnRefresh?.Invoke();
+        base.Initialize();
     }
 }

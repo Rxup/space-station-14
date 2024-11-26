@@ -1,4 +1,5 @@
-﻿using Content.Shared.Database;
+﻿using Content.Shared.Backmen.Surgery.Body;
+using Content.Shared.Database;
 using Content.Shared.Mobs.Components;
 
 namespace Content.Shared.Mobs.Systems;
@@ -101,6 +102,9 @@ public partial class MobStateSystem
         var oldState = component.CurrentState;
         //make sure we are allowed to enter the new state
         if (oldState == newState || !component.AllowedStates.Contains(newState))
+            return;
+
+        if (oldState == MobState.Dead && HasComp<DebrainedComponent>(target))
             return;
 
         OnExitState(target, component, oldState);

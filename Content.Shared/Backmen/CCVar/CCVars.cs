@@ -27,6 +27,9 @@ public sealed class CCVars
     public static readonly CVarDef<string>
         GptApiGigaToken = CVarDef.Create("gpt.giga_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
+    public static readonly CVarDef<bool>
+        GptApiNoAdminAuto = CVarDef.Create("gpt.no_admin_auto", false, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
     /*
      * Queue
      */
@@ -249,10 +252,26 @@ public sealed class CCVars
 
         #endregion
 
-        #region Surgery
+    #region Surgery
 
-        public static readonly CVarDef<bool> CanOperateOnSelf =
-            CVarDef.Create("surgery.can_operate_on_self", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> CanOperateOnSelf =
+        CVarDef.Create("surgery.can_operate_on_self", false, CVar.SERVERONLY);
 
-        #endregion
+    #endregion
+
+    #region Mood System
+
+    public static readonly CVarDef<bool> MoodEnabled =
+        CVarDef.Create("mood.enabled", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodIncreasesSpeed =
+        CVarDef.Create("mood.increases_speed", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodDecreasesSpeed =
+        CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodModifiesThresholds =
+        CVarDef.Create("mood.modify_thresholds", false, CVar.SERVER);
+
+    #endregion
 }

@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
+using Content.Server.Administration.Systems;
 using Content.Server.Backmen.Administration.Bwoink.Gpt.Models;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
@@ -14,6 +15,7 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt;
@@ -25,6 +27,7 @@ public sealed class GptAhelpSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly AdminSystem _adminSystem = default!;
     private readonly HttpClient _httpClient = new(
         /*
         new SocketsHttpHandler()
@@ -48,6 +51,8 @@ public sealed class GptAhelpSystem : EntitySystem
 
     private const string BotName = "GptChat";
 
+    public bool EnabledNoAdminAutoResponse { get; private set; } = false;
+
     private List<object> _gptFunctions = new();
     public override void Initialize()
     {
@@ -58,8 +63,30 @@ public sealed class GptAhelpSystem : EntitySystem
         _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptApiToken, GptTokenCVarChanged, true);
         _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptModel, GptModelCVarChanged, true);
         _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptApiGigaToken, GptGigaTokenCVarChanged, true);
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptApiNoAdminAuto, v => { EnabledNoAdminAutoResponse = v; }, true);
 
         _console.RegisterCommand("ahelp_gpt", GptCommand, GptCommandCompletion);
+        _console.RegisterCommand("ahelp_gpt_toggle", GptToggleCommand, GptToggleCommandCompletion);
+    }
+
+    private HashSet<NetUserId> _autoReplayUsers = new();
+
+    public bool HasAutoReplay(NetUserId userId) => _autoReplayUsers.Contains(userId);
+    public void AddAutoReplayUser(ICommonSession user)
+    {
+        _autoReplayUsers.Add(user.UserId);
+        _adminSystem.UpdatePlayerList(user);
+    }
+
+    public void RemAutoReplayUser(ICommonSession user)
+    {
+        _autoReplayUsers.Remove(user.UserId);
+        _adminSystem.UpdatePlayerList(user);
+    }
+
+    public void DoAutoReplay(ICommonSession user)
+    {
+        _console.ExecuteCommand($"ahelp_gpt \"{user.Name.Replace("\"", "\\\"")}\"");
     }
 
     #region GigaChat
@@ -131,11 +158,13 @@ public sealed class GptAhelpSystem : EntitySystem
         }
     }
 
-    private async Task<(GptResponseApi? responseApi, string? err)> SendApiRequest(GptUserInfo history)
+    private async Task<(GptResponseApi? responseApi, string? err)> SendApiRequest(GptUserInfo history, NetUserId userId)
     {
         var payload = new GptApiPacket(_apiModel, history.GetMessagesForApi(), _gptFunctions,0.8f);
+        var postData = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+        postData.Headers.Add("X-Session-ID", userId.ToString());
         var request = await _httpClient.PostAsync($"{_apiUrl + (_apiUrl.EndsWith("/")?"":"/")}chat/completions",
-            new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+            postData);
 
         var response = await request.Content.ReadAsStringAsync();
 
@@ -150,6 +179,63 @@ public sealed class GptAhelpSystem : EntitySystem
         var info = JsonSerializer.Deserialize<GptResponseApi>(response);
 
         return (info, null);
+    }
+
+    [AdminCommand(AdminFlags.Fun)]
+    private async void GptToggleCommand(IConsoleShell shell, string argstr, string[] args)
+    {
+        if (!_enabled)
+        {
+            shell.WriteError("disabled!");
+            return;
+        }
+
+        if (args.Length != 1)
+        {
+            shell.WriteError(Loc.GetString("shell-need-exactly-one-argument"));
+            return;
+        }
+
+        if (!_playerManager.TryGetSessionByUsername(args[0], out var player))
+        {
+            shell.WriteError(Loc.GetString("parse-session-fail", ("username", args[0])));
+            return;
+        }
+
+        var userId = player.UserId;
+        if (HasAutoReplay(userId))
+        {
+            RemAutoReplayUser(player);
+            shell.WriteLine("Убран!");
+        }
+        else
+        {
+            AddAutoReplayUser(player);
+            shell.WriteLine("Добавлен!");
+        }
+
+        var bwoinkText = $"[color=lightblue]{BotName}[/color]: " +
+                         $"АДМИН {FormattedMessage.EscapeText(shell.Player?.Name ?? "Console")} " +
+                         $"{(HasAutoReplay(userId) ? "[color=green]включил[/color]" : "[color=red]выключил[/color]")} " +
+                         $"авто ответ";
+
+        var msg = new SharedBwoinkSystem.BwoinkTextMessage(userId, SharedBwoinkSystem.SystemUserId, bwoinkText);
+
+        var admins = GetTargetAdmins();
+
+        // Notify all admins
+        foreach (var channel in admins)
+        {
+            RaiseNetworkEvent(msg, channel);
+        }
+    }
+
+    private CompletionResult GptToggleCommandCompletion(IConsoleShell shell, string[] args)
+    {
+        if (args.Length != 1)
+            return CompletionResult.Empty;
+
+        return CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "Пользователь");
     }
 
     [AdminCommand(AdminFlags.Adminhelp)]
@@ -213,7 +299,7 @@ public sealed class GptAhelpSystem : EntitySystem
 
     private async Task ProcessRequest(IConsoleShell shell, NetUserId userId, GptUserInfo history)
     {
-        var (info, err) = await SendApiRequest(history);
+        var (info, err) = await SendApiRequest(history, userId);
         if (!string.IsNullOrEmpty(err))
         {
             shell.WriteError(err);
@@ -266,9 +352,25 @@ public sealed class GptAhelpSystem : EntitySystem
         var ev = new EventGptFunctionCall(shell,userId,history,msg);
         RaiseLocalEvent(ev);
 
-        if (!ev.Handled)
+        if (ev is { Handled: false, HandlerTask: null })
         {
             history.Add(new GptMessageFunction(fnName));
+        }
+        else if (ev.HandlerTask != null)
+        {
+            try
+            {
+                await ev.HandlerTask;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                history.Add(new GptMessageFunction(fnName));
+            }
+            if (!ev.Handled)
+            {
+                history.Add(new GptMessageFunction(fnName));
+            }
         }
 
         await ProcessRequest(shell, userId, history);
@@ -370,7 +472,7 @@ public sealed class GptAhelpSystem : EntitySystem
             return;
         }
 
-        _history.TryAdd(messageUserId, new GptUserInfo());
+        _history.TryAdd(messageUserId, new GptUserInfo(messageUserId, _playerManager, _cfg));
 
         _history[messageUserId].Add(new GptMessageChat(personalChannel ? GptUserDirection.user : GptUserDirection.assistant, escapedText));
     }
@@ -378,6 +480,7 @@ public sealed class GptAhelpSystem : EntitySystem
 
 public sealed class EventGptFunctionCall : HandledEntityEventArgs
 {
+    public Task? HandlerTask { get; set; }
     public IConsoleShell Shell { get; }
     public NetUserId UserId { get; }
     public GptUserInfo History { get; }

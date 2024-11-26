@@ -40,3 +40,5 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2

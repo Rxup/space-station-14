@@ -30,11 +30,13 @@ public sealed class TargetingSystem : SharedTargetingSystem
 
         if (args.NewMobState == MobState.Dead)
         {
-            foreach (TargetBodyPart part in Enum.GetValues(typeof(TargetBodyPart)))
+            foreach (var part in GetValidParts())
             {
                 component.BodyStatus[part] = TargetIntegrity.Dead;
                 changed = true;
             }
+            // I love groin shitcode.
+            component.BodyStatus[TargetBodyPart.Groin] = TargetIntegrity.Dead;
         }
         else if (args.OldMobState == MobState.Dead && (args.NewMobState == MobState.Alive || args.NewMobState == MobState.Critical))
         {

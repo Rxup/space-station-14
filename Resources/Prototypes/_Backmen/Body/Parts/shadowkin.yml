@@ -6,16 +6,54 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Mobs/Species/shadowkin.rsi
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Icon
-    sprite: Backmen/Mobs/Species/shadowkin.rsi
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: OrganicPart # backmen: surgery
+  - type: SurgeryTool
   - type: BodyPart
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
         ents: []
+  - type: StaticPrice #DynamicPrice
+    price: 100
+  - type: Tag
+    tags:
+      - Trash
+  # start-backmen: surgery
+  - type: Gibbable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 75
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 100
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  # end-backmen: surgery
 
 - type: entity
   id: TorsoShadowkin
@@ -28,6 +66,11 @@
     state: "torso_m"
   - type: BodyPart
     partType: Torso
+    toolName: "a torso"
+    containerName: "torso_slot"
+  - type: ContainerContainer
+    containers:
+      torso_slot: !type:ContainerSlot {}
 
 - type: entity
   id: HeadShadowkin
@@ -40,6 +83,8 @@
     state: "head_m"
   - type: BodyPart
     partType: Head
+    toolName: "a head"
+    vital: true
   - type: Input
     context: "ghost"
   - type: MovementSpeedModifier
@@ -60,6 +105,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Left
+    toolName: "a left arm"
 
 - type: entity
   id: RightArmShadowkin
@@ -73,6 +119,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Right
+    toolName: "a right arm"
 
 - type: entity
   id: LeftHandShadowkin
@@ -86,6 +133,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Left
+    toolName: "a left hand"
 
 - type: entity
   id: RightHandShadowkin
@@ -99,6 +147,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Right
+    toolName: "a right hand"
 
 - type: entity
   id: LeftLegShadowkin
@@ -112,6 +161,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Left
+    toolName: "a left leg"
   - type: MovementBodyPart
 
 - type: entity
@@ -126,6 +176,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
+    toolName: "a right leg"
   - type: MovementBodyPart
 
 - type: entity
@@ -140,6 +191,7 @@
   - type: BodyPart
     partType: Foot
     symmetry: Left
+    toolName: "a left foot"
 
 - type: entity
   id: RightFootShadowkin
@@ -153,3 +205,4 @@
   - type: BodyPart
     partType: Foot
     symmetry: Right
+    toolName: "a right foot"

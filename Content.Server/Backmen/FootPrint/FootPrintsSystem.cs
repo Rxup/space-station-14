@@ -6,6 +6,7 @@ using Content.Shared.Backmen.FootPrint;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Gravity;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -20,6 +21,7 @@ public sealed class FootPrintsSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
@@ -46,11 +48,17 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private void OnMove(EntityUid uid, FootPrintsComponent comp, ref MoveEvent args)
     {
+        // Less resource expensive checks first
         if (comp.PrintsColor.A <= 0f)
             return;
 
-        if (!_transformQuery.TryComp(uid, out var transform) ||
-            !_mobThresholdQuery.TryComp(uid, out var mobThreshHolds) ||
+        if (!_transformQuery.TryComp(uid, out var transform))
+            return;
+
+        if (_gravity.IsWeightless(uid, xform: transform))
+            return;
+
+        if (!_mobThresholdQuery.TryComp(uid, out var mobThreshHolds) ||
             !_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
             return;
 
@@ -64,7 +72,7 @@ public sealed class FootPrintsSystem : EntitySystem
         comp.RightStep = !comp.RightStep;
 
         var entity = Spawn(comp.StepProtoId, CalcCoords(gridUid, comp, transform, dragging));
-        var footPrintComponent = Comp<FootPrintComponent>(entity); // There's NO way there's no footprint commponent in a FOOTPRINT
+        var footPrintComponent = Comp<FootPrintComponent>(entity); // There's NO way there's no footprint component in a FOOTPRINT
 
         footPrintComponent.PrintOwner = uid;
         Dirty(entity, footPrintComponent);

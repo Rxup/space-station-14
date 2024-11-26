@@ -1,4 +1,21 @@
 # ГОЛОВА
+marking-LizardHeadGuilmon= Ящер, гилмон
+marking-LizardHeadGuilmon-guilmon = Основная часть
+
+marking-LizardShoutEasternDragon= Ящер, восточный дракон
+marking-LizardShoutEasternDragon-cobra_hood_with_ears = Внешняя часть
+marking-LizardShoutEasternDragon-cobra_hood_with_ears_overlay = Внутреняя часть
+
+marking-LizardShoutEasternDragonUsiki= Ящер, восточный дракон (Усики)
+marking-LizardShoutEasternDragonUsiki-eastern_dragon = Внешняя часть
+marking-LizardShoutEasternDragonUsiki-eastern_dragon_overlay = Внутреняя часть
+marking-LizardShoutEasternDragonUsiki-eastern_dragon_usiki = Усики
+
+marking-LizardShoutNoodle= Ящер, крокодил
+marking-LizardShoutNoodle-noodle = Основная часть
+marking-LizardShoutNoodle-noodle_overlay_1 = Внешняя часть
+marking-LizardShoutNoodle-noodle_overlay_2 = Внутреняя часть
+
 marking-LizardHeadCobraHood = Ящер, воротник с ушами (Кобра)
 marking-LizardHeadCobraHood-cobra_hood_with_ears = Внешняя часть
 marking-LizardHeadCobraHood-cobra_hood_with_ears_overlay = Внутреняя часть
@@ -41,3 +58,19 @@ marking-WesternDragonTail-tail_westerndragon_overlay = Нижняя часть
 
 marking-KangarooTail = Ящер, хвост кенгуру
 marking-KangarooTail-tail_kangaroo = Верняя часть
+
+# ШИПЫ
+marking-LizardChestSpinesAquaticWithoutTail = Ящер, грудь, шипы на спине (Водный, без хвоста)
+marking-LizardChestSpinesAquaticWithoutTail-spines_aquatic = Шипы
+
+marking-LizardChestSpinesLongWithoutTail = Ящер, грудь, шипы на спине (Длинные, без хвоста)
+marking-LizardChestSpinesLongWithoutTail-spines_long = Шипы
+
+marking-LizardChestSpinesLongMembraneWithoutTail = Ящер, грудь, шипы на спине (Длинные, Мембрана, без хвоста)
+marking-LizardChestSpinesLongMembraneWithoutTail-spines_longmembrane = Шипы
+
+marking-LizardChestSpinesShortWithoutTail = Ящер, грудь, шипы на спине (Короткие, без хвоста)
+marking-LizardChestSpinesShortWithoutTail-spines_short = Шипы
+
+marking-LizardChestSpinesShortMembraneWithoutTail = Ящер, грудь, шипы на спине (Короткие, Мембрана, без хвоста)
+marking-LizardChestSpinesShortMembraneWithoutTail-spines_short = Шипы

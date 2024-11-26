@@ -1,0 +1,18 @@
+- type: entity
+  id: Purplecuffs
+  parent: Handcuffs
+  name: мягкие наручники
+  description: Чтоб не наврядить ваши кисти, лучше использовать более мягкие штуки.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/purplecuff.rsi
+    state: cuff
+  - type: Item
+    inhandVisuals:
+      left:
+        - state: inhand-left
+      right:
+        - state: inhand-right
+  - type: Handcuff
+    cuffedRSI: Backmen/Objects/Misc/purplecuff.rsi
+    bodyIconState: body-overlay

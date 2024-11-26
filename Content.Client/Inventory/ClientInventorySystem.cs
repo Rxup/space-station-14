@@ -184,9 +184,11 @@ namespace Content.Client.Inventory
 
         public void OnRefreshInventorySlots(EntityUid owner, InventorySlotsComponent component, RefreshInventorySlotsEvent args)
         {
-            if (component.SlotData.TryGetValue(args.SlotName, out var slotData)
-                && _playerManager.LocalEntity == owner)
-                OnSlotRemoved?.Invoke(slotData);
+            if (!component.SlotData.TryGetValue(args.SlotName, out var slotData)
+                || _playerManager.LocalEntity != owner)
+                return;
+
+            OnSlotRemoved?.Invoke(slotData);
         }
 
         public bool TryAddSlotDef(EntityUid owner, InventorySlotsComponent component, SlotDefinition newSlotDef)
@@ -243,10 +245,23 @@ namespace Content.Client.Inventory
             EntityManager.RaisePredictiveEvent(new InteractInventorySlotEvent(GetNetEntity(item.Value), altInteract: true));
         }
 
+        protected override void UpdateInventoryTemplate(Entity<InventoryComponent> ent)
+        {
+            base.UpdateInventoryTemplate(ent);
+
+            if (TryComp(ent, out InventorySlotsComponent? inventorySlots))
+            {
+                foreach (var slot in ent.Comp.Slots)
+                {
+                    if (inventorySlots.SlotData.TryGetValue(slot.Name, out var slotData))
+                        slotData.SlotDef = slot;
+                }
+            }
+        }
+
         public sealed class SlotData
         {
-            [ViewVariables]
-            public readonly SlotDefinition SlotDef;
+            public SlotDefinition SlotDef;
             public EntityUid? HeldEntity => Container?.ContainedEntity;
             public bool Blocked;
             public bool Highlighted;
