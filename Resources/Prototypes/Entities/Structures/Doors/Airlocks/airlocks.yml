@@ -147,6 +147,8 @@
   id: AirlockCentralCommand
   suffix: Central Command
   components:
+  - type: AccessReader
+    access: [ [ "CentralCommand" ] ]
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/centcomm.rsi
 
