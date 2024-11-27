@@ -50,21 +50,21 @@
   name: hand of cards
   components:
   - type: CardHand
-- type: Item
-  sprite: _CorvaxNext/Objects/Misc/cards.rsi
-  state: singlecard_down_black
-  size: Small
-- type: Item
-  sprite: _CorvaxNext/Objects/Misc/cards.rsi
-  state: singlecard_down_black
-  size: Small
-- type: Item
-  sprite: _CorvaxNext/Objects/Misc/cards.rsi
-  state: singlecard_down_black
-  size: Small
-- type: Sprite
-  sprite: _CorvaxNext/Objects/Misc/cards.rsi
-  state: singlecard_down_black
+  - type: Item
+    sprite: _CorvaxNext/Objects/Misc/cards.rsi
+    state: singlecard_down_black
+    size: Small
+  - type: Item
+    sprite: _CorvaxNext/Objects/Misc/cards.rsi
+    state: singlecard_down_black
+    size: Small
+  - type: Item
+    sprite: _CorvaxNext/Objects/Misc/cards.rsi
+    state: singlecard_down_black
+    size: Small
+  - type: Sprite
+    sprite: _CorvaxNext/Objects/Misc/cards.rsi
+    state: singlecard_down_black
     interfaces:
       enum.CardUiKey.Key:
         type: CardHandMenuBoundUserInterface
