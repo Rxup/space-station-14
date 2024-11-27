@@ -5,8 +5,6 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand" ] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCentCom ]
@@ -27,8 +25,6 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Armory, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand", "CCOfficer", "CCSecurity"] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCCArmory ]
@@ -49,8 +45,6 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Officer, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand", "CCOfficer"] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCCOfficer ]
@@ -75,7 +69,7 @@
       access: [ [ "CentralCommand", "CCAdmiral"] ]
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsCCOfficer ]
+        board: [ DoorElectronicsCCAdmiral ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -94,8 +88,6 @@
   name: Шлюз ЦК
   suffix: CentCom, Cargo, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand", "CCCargo"] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCCCargo ]
@@ -106,8 +98,6 @@
   name: Шлюз ЦК
   suffix: CentCom, Security, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand", "CCSecurity"] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCCSecurity ]
@@ -120,8 +110,6 @@
   name: Шлюз ЦК
   suffix: CentCom, Engineering, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand" ] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCentCom ]
@@ -132,8 +120,6 @@
   name: Шлюз ЦК
   suffix: CentCom, Medical, Locked
   components:
-    - type: AccessReader
-      access: [ [ "CentralCommand" ] ]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCentCom ]
@@ -162,8 +148,6 @@
   id: WindoorCCOfficerLocked
   suffix: CentCom Officer, Locked
   components:
-  - type: AccessReader
-    access: [ [ "CentralCommand", "CCOfficer"] ]
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCCOfficer ]
@@ -175,8 +159,6 @@
   name: CentCom Hatch
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCentCom ]
@@ -209,8 +191,6 @@
   name: Double Glass Airlock
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsCentCom ]
