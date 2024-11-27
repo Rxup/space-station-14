@@ -23,7 +23,7 @@ public sealed partial class GameMapPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField]
-    public float MaxRandomOffset = 1000f;
+    public float MaxRandomOffset = 256f; // backmen: ftl
 
     [DataField]
     public bool RandomRotation = true;

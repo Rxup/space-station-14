@@ -43,6 +43,7 @@ auto_call_extension_time = 70
 emergency_dock_time = 280
 emergency_authorize_time = 30
 emergency_early_launch_allowed = true
+cooldown = 60
 #arrivals_planet = false
 
 [salvage]
