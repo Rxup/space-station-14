@@ -290,8 +290,6 @@
   id: AirlockCentralCommandLocked
   suffix: Central Command, Locked
   components:
-  - type: AccessReader
-    access: [ [ "CentralCommand" ] ]
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCentralCommand ]
@@ -676,8 +674,6 @@
   id: AirlockCentralCommandGlassLocked
   suffix: Central Command, Locked
   components:
-  - type: AccessReader
-    access: [ [ "CentralCommand" ] ]
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCentralCommand ]
@@ -1231,8 +1227,6 @@
   id: HighSecCentralCommandLocked
   suffix: Central Command, Locked
   components:
-  - type: AccessReader
-    access: [ [ "CentralCommand" ] ]
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCentralCommand ]
