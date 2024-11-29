@@ -43,7 +43,7 @@
 
 - type: moodEffect
   id: TraitFortitude
-  moodChange: -6
+  moodChange: -10
 
 - type: moodEffect
   id: Dead
