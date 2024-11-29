@@ -21,6 +21,7 @@ using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Medical.Surgery;
+using Content.Shared.Verbs;
 
 namespace Content.Server.Backmen.Surgery;
 
@@ -42,7 +43,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SurgeryToolComponent, AfterInteractEvent>(OnToolAfterInteract);
+        SubscribeLocalEvent<SurgeryToolComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryStepDamageEvent>(OnSurgeryStepDamage);
         // You might be wondering "why aren't we using StepEvent for these two?" reason being that StepEvent fires off regardless of success on the previous functions
         // so this would heal entities even if you had a used or incorrect organ.
@@ -101,7 +102,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             targetPart: _body.GetTargetBodyPart(partComp));
     }
 
-    private void OnToolAfterInteract(Entity<SurgeryToolComponent> ent, ref AfterInteractEvent args)
+    private void AttemptStartSurgery(Entity<SurgeryToolComponent> ent, EntityUid user, EntityUid target)
     {
         var user = args.User;
         if (args.Handled
@@ -113,7 +114,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
             || !IsLyingDown(args.Target.Value, args.User))
         {
             return;
-        }
 
         if (user == args.Target && !_config.GetCVar(Shared.Backmen.CCVar.CCVars.CanOperateOnSelf))
         {
@@ -123,8 +123,29 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         args.Handled = true;
         _ui.OpenUi(args.Target.Value, SurgeryUIKey.Key, user);
-        Log.Debug("UI opened");
         RefreshUI(args.Target.Value);
+    }
+
+    private void OnUtilityVerb(Entity<SurgeryToolComponent> ent, ref GetVerbsEvent<UtilityVerb> args)
+    {
+        if (!args.CanInteract
+            || !args.CanAccess
+            || !HasComp<SurgeryTargetComponent>(args.Target))
+            return;
+
+        var user = args.User;
+        var target = args.Target;
+
+        var verb = new UtilityVerb()
+        {
+            Act = () => AttemptStartSurgery(ent, user, target),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Specific/Medical/Surgery/scalpel.rsi/"), "scalpel"),
+            Text = Loc.GetString("surgery-verb-text"),
+            Message = Loc.GetString("surgery-verb-message"),
+            DoContactInteraction = true
+        };
+
+        args.Verbs.Add(verb);
     }
 
     private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args) =>
