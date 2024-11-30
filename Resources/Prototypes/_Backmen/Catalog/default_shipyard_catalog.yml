@@ -38,7 +38,7 @@
   id: Prospecter
   name: NT-7 Prospecter
   description: A small mining vessel designed to assist salvage operations.
-  price: 19000
+  price: 15000
   category: Small
   group: Civilian
   shuttlePath: /Maps/Backmen/ForSale/prospecter.yml
