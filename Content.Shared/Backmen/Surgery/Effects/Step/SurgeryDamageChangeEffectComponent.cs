@@ -10,7 +10,7 @@ public sealed partial class SurgeryDamageChangeEffectComponent : Component
     public DamageSpecifier Damage = default!;
 
     [DataField]
-    public float SleepModifier = 0.5f;
+    public float SleepModifier = 1.5f;
 
     [DataField]
     public bool IsConsumable;
