@@ -15,6 +15,7 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;

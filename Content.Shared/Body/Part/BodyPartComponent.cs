@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Body.Part;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBodySystem))]
+//[Access(typeof(SharedBodySystem))]
 public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 {
     // Need to set this on container changes as it may be several transform parents up the hierarchy.
@@ -36,7 +36,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public string ToolName { get; set; } = "A body part";
 
     [DataField, AlwaysPushInheritance]
-    public string SlotId = "";
+    public string SlotId { get; set; } = "";
 
     [DataField, AutoNetworkedField]
     public bool? Used { get; set; } = null;
@@ -153,7 +153,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public bool IsVital;
 
     [DataField, AutoNetworkedField]
-    public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
+    public BodyPartSymmetry Symmetry { get; set; } = BodyPartSymmetry.None;
 
     /// <summary>
     ///     When attached, the part will ensure these components on the entity, and delete them on removal.
