@@ -264,14 +264,14 @@ public sealed class BlobCoreSystem : EntitySystem
         switch (newChem)
         {
             case BlobChemType.ExplosiveLattice:
-                _damageable.SetDamageModifierSetId(uid, "ExplosiveLatticeBlob");
+                //_damageable.SetDamageModifierSetId(uid, "ExplosiveLatticeBlob");
                 _explosionSystem.SetExplosionResistance(uid, 0f, EnsureComp<ExplosionResistanceComponent>(uid));
                 break;
             case BlobChemType.ElectromagneticWeb:
-                _damageable.SetDamageModifierSetId(uid, "ElectromagneticWebBlob");
+                //_damageable.SetDamageModifierSetId(uid, "ElectromagneticWebBlob");
                 break;
             default:
-                _damageable.SetDamageModifierSetId(uid, "BaseBlob");
+                //_damageable.SetDamageModifierSetId(uid, "BaseBlob");
                 break;
         }
     }

@@ -77,10 +77,10 @@
 - type: damageModifierSet
   id: BaseBlob # ReactiveSpines
   coefficients:
-    Blunt: 0.25
-    Slash: 0.25
-    Piercing: 0.25
-    Heat: 2.00
+    Blunt: 0.30
+    Slash: 0.40
+    Piercing: 0.40
+    Heat: 3.00
 
 - type: damageModifierSet
   id: ElectromagneticWebBlob # Explosive Lattice
@@ -101,20 +101,28 @@
     Shock: 1.50
 
 - type: damageModifierSet
-  id: BlobMob # Blob mobs
+  id: BlobMob
   coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.5
-    Heat: 1.5
+    Blunt: 0.50
+    Slash: 0.50
+    Piercing: 0.50
+    Heat: 1.50
 
 - type: damageModifierSet
-  id: BlobReflective # If it reflects lasers, then it must be fragile?
+  id: BlobStrong # Strong against melee and weak against lasers.
   coefficients:
-    Blunt: 0.9
-    Slash: 0.9
-    Piercing: 0.9
-    Heat: 1.5
+    Blunt: 0.20
+    Slash: 0.20
+    Piercing: 0.20
+    Heat: 2.00
+
+- type: damageModifierSet
+  id: BlobReflective # Defence against lasers, but weak against melee damage.
+  coefficients:
+    Blunt: 1.00 # Weak for melee damages
+    Slash: 1.10
+    Piercing: 1.00
+    Heat: 1.10 # Good against heat
 
 - type: damageModifierSet
   id: HardLightBarrier

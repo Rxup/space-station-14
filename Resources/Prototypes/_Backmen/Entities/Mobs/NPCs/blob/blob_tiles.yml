@@ -46,7 +46,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 25
+          damage: 40
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
@@ -107,7 +107,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 250
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -197,7 +197,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 120
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -235,7 +235,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 90
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -275,7 +275,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 150
+            damage: 100
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -315,7 +315,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 100
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -344,11 +344,14 @@
   - type: BlobUpgradeableTile
     transformTo: Reflective
     locale: blob-verb-upgrade-to-reflective
+  - type: Damageable
+    damageContainer: Blob
+    damageModifierSet: BlobStrong
   - type: Destructible
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 150
+          damage: 100
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
@@ -372,6 +375,9 @@
     - type: Airtight
     - type: BlobTile
       blobTileType: Reflective
+    - type: Damageable
+      damageContainer: Blob
+      damageModifierSet: BlobReflective
     - type: Destructible
       thresholds:
         - trigger:
@@ -381,8 +387,8 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Reflect
-      reflectProb: 0.6
-      spread: 20
+      reflectProb: 0.5
+      spread: 40
       reflects:
         - Energy
     - type: Sprite
