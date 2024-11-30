@@ -17,3 +17,42 @@
         - !type:ReagentThreshold
           reagent: BloodSuckerToxin
           min: 10
+
+# Xeno maid liquid real
+- type: reagent
+  id: SlermQueenPlus
+  name: reagent-name-slerm
+  group: Toxins
+  desc: reagent-desc-slerm
+  physicalDesc: reagent-physical-desc-bubbling
+  flavor: bitter
+  color: "#b428c9"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+# start-backmen: Disease
+      - !type:ChemCauseDisease
+        conditions:
+        - !type:ReagentThreshold
+          reagent: SlermQueenPlus
+          min: 1
+        causeChance: 0.3
+        disease: XenoMaidVirus
+# end-backmen: Disease
+  metabolisms:
+    Poison:
+      metabolismRate: 1
+      effects:
+# start-backmen: Disease
+      - !type:ChemCauseDisease
+        conditions:
+        - !type:ReagentThreshold
+          reagent: SlermQueenPlus
+          min: 5
+        causeChance: 0.3
+        disease: XenoMaidVirus
+# end-backmen: Disease
