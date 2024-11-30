@@ -11,7 +11,7 @@ public sealed partial class UPComponent : Component
     public string componentName;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float upgradeValue;
+    public string upgradeValue;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string ProtoWhitelist;
