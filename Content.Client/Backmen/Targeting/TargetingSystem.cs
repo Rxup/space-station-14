@@ -31,12 +31,20 @@ public sealed class TargetingSystem : SharedTargetingSystem
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Torso)))
         .Bind(ContentKeyFunctions.TargetLeftArm,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.LeftArm)))
+        .Bind(ContentKeyFunctions.TargetLeftHand,
+            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.LeftHand)))
         .Bind(ContentKeyFunctions.TargetRightArm,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.RightArm)))
+        .Bind(ContentKeyFunctions.TargetRightHand,
+            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.RightHand)))
         .Bind(ContentKeyFunctions.TargetLeftLeg,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.LeftLeg)))
+        .Bind(ContentKeyFunctions.TargetLeftFoot,
+            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.LeftFoot)))
         .Bind(ContentKeyFunctions.TargetRightLeg,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.RightLeg)))
+        .Bind(ContentKeyFunctions.TargetRightFoot,
+            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.RightFoot)))
         .Register<SharedTargetingSystem>();
     }
 
@@ -54,28 +62,28 @@ public sealed class TargetingSystem : SharedTargetingSystem
 
     private void OnTargetingStartup(EntityUid uid, TargetingComponent component, ComponentStartup args)
     {
-        if (_playerManager.LocalEntity == uid)
-        {
-            TargetingStartup?.Invoke(component);
-            PartStatusStartup?.Invoke(component);
-        }
+        if (_playerManager.LocalEntity != uid)
+            return;
+
+        TargetingStartup?.Invoke(component);
+        PartStatusStartup?.Invoke(component);
     }
 
     private void OnTargetingShutdown(EntityUid uid, TargetingComponent component, ComponentShutdown args)
     {
-        if (_playerManager.LocalEntity == uid)
-        {
-            TargetingShutdown?.Invoke();
-            PartStatusShutdown?.Invoke();
-        }
+        if (_playerManager.LocalEntity != uid)
+            return;
+
+        TargetingShutdown?.Invoke();
+        PartStatusShutdown?.Invoke();
     }
 
     private void OnTargetIntegrityChange(TargetIntegrityChangeEvent args)
     {
         if (!TryGetEntity(args.Uid, out var uid)
-        || !_playerManager.LocalEntity.Equals(uid)
-        || !TryComp(uid, out TargetingComponent? component)
-        || !args.RefreshUi)
+            || !_playerManager.LocalEntity.Equals(uid)
+            || !TryComp(uid, out TargetingComponent? component)
+            || !args.RefreshUi)
             return;
 
         PartStatusUpdate?.Invoke(component);

@@ -34,6 +34,8 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key: # backmen: surgery
+        type: SurgeryBui 
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5

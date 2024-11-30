@@ -14,6 +14,7 @@ using Content.Server.Temperature.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;

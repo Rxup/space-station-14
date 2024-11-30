@@ -21,6 +21,7 @@ using Robust.Shared.Random;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Soul;
 
@@ -49,8 +50,8 @@ public sealed class GolemSystem : SharedGolemSystem
         SubscribeLocalEvent<SoulCrystalComponent, MindRemovedMessage>(OnRemMind);
         SubscribeLocalEvent<SoulCrystalComponent, MapInitEvent>(OnSoulInit);
 
-        SubscribeLocalEvent<SoulCrystalComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
-        SubscribeLocalEvent<SoulCrystalComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
+        SubscribeLocalEvent<SoulCrystalComponent, EntGotInsertedIntoContainerMessage>(OnEntInserted);
+        SubscribeLocalEvent<SoulCrystalComponent, EntGotRemovedFromContainerMessage>(OnEntRemoved);
 
         SubscribeLocalEvent<SoulCrystalComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<GolemComponent, DispelledEvent>(OnDispelled);
@@ -98,17 +99,17 @@ public sealed class GolemSystem : SharedGolemSystem
         args.Handled = true;
     }
 
-    private void OnEntInserted(EntityUid uid, SoulCrystalComponent component, EntInsertedIntoContainerMessage args)
+    private void OnEntInserted(EntityUid uid, SoulCrystalComponent component, EntGotInsertedIntoContainerMessage args)
     {
-        if(!TryComp<GolemComponent>(args.Entity, out var golemComponent))
+        if(args.Container.ID != CrystalSlot)
             return;
 
         RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
     }
 
-    private void OnEntRemoved(EntityUid uid, SoulCrystalComponent component, EntRemovedFromContainerMessage args)
+    private void OnEntRemoved(EntityUid uid, SoulCrystalComponent component, EntGotRemovedFromContainerMessage args)
     {
-        if(!TryComp<GolemComponent>(args.Entity, out var golemComponent))
+        if(args.Container.ID != CrystalSlot)
             return;
 
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
@@ -146,30 +147,35 @@ public sealed class GolemSystem : SharedGolemSystem
         _userInterfaceSystem.SetUiState(args.Target.Value, GolemUiKey.Key, state);
     }
 
-    private void OnDispelled(EntityUid uid, GolemComponent component, DispelledEvent args)
+    public bool EjectSoul(Entity<GolemComponent> ent)
     {
-        _slotsSystem.SetLock(uid, CrystalSlot, false);
-        _slotsSystem.TryEject(uid, CrystalSlot, null, out var item);
-        _slotsSystem.SetLock(uid, CrystalSlot, true);
+        _slotsSystem.SetLock(ent, CrystalSlot, false);
+        _slotsSystem.TryEject(ent, CrystalSlot, null, out var item);
+        _slotsSystem.SetLock(ent, CrystalSlot, true);
 
-        if (item == null)
-            return;
-
-        args.Handled = true;
+        if (item is not {Valid: true} soul)
+            return false;
 
         var direction = new Vector2(_robustRandom.Next(-30, 30), _robustRandom.Next(-30, 30));
-        _throwing.TryThrow(item.Value, direction, _robustRandom.Next(1, 10));
+        _throwing.TryThrow(soul, direction, _robustRandom.Next(1, 10));
 
-        if (TryComp<AppearanceComponent>(uid, out var appearance))
-            _appearance.SetData(uid, ToggleVisuals.Toggled, false, appearance);
+        if (TryComp<AppearanceComponent>(ent, out var appearance))
+            _appearance.SetData(ent, ToggleVisuals.Toggled, false, appearance);
 
-        if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-            return;
+        _metaDataSystem.SetEntityName(ent, Loc.GetString("golem-base-name"));
+        _metaDataSystem.SetEntityDescription(ent, Loc.GetString("golem-base-desc"));
+        DirtyEntity(ent);
 
-        _metaDataSystem.SetEntityName(uid, Loc.GetString("golem-base-name"));
-        _metaDataSystem.SetEntityDescription(uid, Loc.GetString("golem-base-desc"));
-        _mindSystem.TransferTo(mindId, item);
-        DirtyEntity(uid);
+        if (!_mindSystem.TryGetMind(ent, out var mindId, out var mind))
+            return true;
+        _mindSystem.TransferTo(mindId, soul);
+
+        return true;
+    }
+
+    private void OnDispelled(EntityUid uid, GolemComponent component, DispelledEvent args)
+    {
+        args.Handled = EjectSoul((uid, component));
     }
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -181,8 +187,7 @@ public sealed class GolemSystem : SharedGolemSystem
             return;
 
         QueueDel(uid);
-        var ev = new DispelledEvent();
-        RaiseLocalEvent(uid, ev, false);
+        EjectSoul((uid, component));
 
         Spawn(Ash, Transform(uid).Coordinates);
         _audioSystem.PlayPvs(component.DeathSound, uid);

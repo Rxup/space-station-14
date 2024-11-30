@@ -5,6 +5,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Body.Systems;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Backmen.Targeting;
@@ -22,7 +23,8 @@ namespace Content.Shared.Damage
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly INetManager _netMan = default!;
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly SharedBodySystem _body = default!;
+
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<MindContainerComponent> _mindContainerQuery;
@@ -99,26 +101,11 @@ namespace Content.Shared.Damage
         ///     The damage changed event is used by other systems, such as damage thresholds.
         /// </remarks>
         public void DamageChanged(EntityUid uid, DamageableComponent component, DamageSpecifier? damageDelta = null,
-            bool interruptsDoAfters = true, EntityUid? origin = null, bool canSever = true, float partMultiplier = 1.00f)
+            bool interruptsDoAfters = true, EntityUid? origin = null, bool? canSever = null)
+
         {
-            TargetBodyPart? targetPart = null;
             component.Damage.GetDamagePerGroup(_prototypeManager, component.DamagePerGroup);
             component.TotalDamage = component.Damage.GetTotal();
-            // If our target has a TargetingComponent, that means they will take limb damage
-            // And if their attacker also has one, then we use that part.
-            if (TryComp<TargetingComponent>(uid, out var target))
-            {
-                if (origin.HasValue && TryComp<TargetingComponent>(origin.Value, out var targeter))
-                {
-                    targetPart = targeter.Target;
-                }
-                else
-                {
-                    targetPart = GetRandomBodyPart(uid, target);
-                }
-            }
-
-
             Dirty(uid, component);
 
             if (_appearanceQuery.TryGetComponent(uid, out var appearance) && damageDelta != null)
@@ -126,7 +113,7 @@ namespace Content.Shared.Damage
                 var data = new DamageVisualizerGroupData(component.DamagePerGroup.Keys.ToList());
                 _appearance.SetData(uid, DamageVisualizerKeys.DamageUpdateGroups, data, appearance);
             }
-            RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin, targetPart, canSever, partMultiplier));
+            RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin, canSever ?? true));
         }
 
         /// <summary>
@@ -143,7 +130,7 @@ namespace Content.Shared.Damage
         /// </returns>
         public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
             bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null,
-            bool? canSever = true, float? partMultiplier = 1.00f)
+            bool? canSever = true, bool? canEvade = false, float? partMultiplier = 1.00f, TargetBodyPart? targetPart = null)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -156,11 +143,20 @@ namespace Content.Shared.Damage
                 return damage;
             }
 
-            var before = new BeforeDamageChangedEvent(damage, origin);
+            var before = new BeforeDamageChangedEvent(damage, origin, targetPart); // Shitmed Change
             RaiseLocalEvent(uid.Value, ref before);
 
             if (before.Cancelled)
                 return null;
+
+            // Shitmed Change Start
+            var partDamage = new TryChangePartDamageEvent(damage, origin, targetPart, canSever ?? true, canEvade ?? false, partMultiplier ?? 1.00f);
+            RaiseLocalEvent(uid.Value, ref partDamage);
+
+            if (partDamage.Evaded || partDamage.Cancelled)
+                return null;
+
+            // Shitmed Change End
 
             // Apply resistances
             if (!ignoreResistances)
@@ -170,9 +166,10 @@ namespace Content.Shared.Damage
                 {
                     // TODO DAMAGE PERFORMANCE
                     // use a local private field instead of creating a new dictionary here..
+                    // TODO: We need to add a check to see if the given armor covers the targeted part (if any) to modify or not.
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
-                var ev = new DamageModifyEvent(damage, origin);
+                var ev = new DamageModifyEvent(damage, origin, targetPart);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
 
@@ -204,7 +201,7 @@ namespace Content.Shared.Damage
             }
 
             if (delta.DamageDict.Count > 0)
-                DamageChanged(uid.Value, damageable, delta, interruptsDoAfters, origin, canSever ?? true, partMultiplier ?? 1.00f);
+                DamageChanged(uid.Value, damageable, delta, interruptsDoAfters, origin, canSever);
 
             return delta;
         }
@@ -231,6 +228,19 @@ namespace Content.Shared.Damage
             // Setting damage does not count as 'dealing' damage, even if it is set to a larger value, so we pass an
             // empty damage delta.
             DamageChanged(uid, component, new DamageSpecifier());
+
+            // Shitmed Change Start
+            if (HasComp<TargetingComponent>(uid))
+            {
+                foreach (var (part, _) in _body.GetBodyChildren(uid))
+                {
+                    if (!TryComp(part, out DamageableComponent? damageComp))
+                        continue;
+
+                    SetAllDamage(part, damageComp, newValue);
+                }
+            }
+            // Shitmed Change End
         }
 
         public void SetDamageModifierSetId(EntityUid uid, string damageModifierSetId, DamageableComponent? comp = null)
@@ -298,31 +308,31 @@ namespace Content.Shared.Damage
                 DamageChanged(uid, component, delta);
             }
         }
-
-        public TargetBodyPart? GetRandomBodyPart(EntityUid uid, TargetingComponent? target = null)
-        {
-            if (!Resolve(uid, ref target))
-                return null;
-
-            var totalWeight = target.TargetOdds.Values.Sum();
-            var randomValue = _random.NextFloat() * totalWeight;
-
-            foreach (var (part, weight) in target.TargetOdds)
-            {
-                if (randomValue <= weight)
-                    return part;
-                randomValue -= weight;
-            }
-
-            return TargetBodyPart.Torso; // Default to torso if something goes wrong
-        }
     }
 
     /// <summary>
     ///     Raised before damage is done, so stuff can cancel it if necessary.
     /// </summary>
     [ByRefEvent]
-    public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid? Origin = null, bool Cancelled = false);
+    public record struct BeforeDamageChangedEvent(
+        DamageSpecifier Damage,
+        EntityUid? Origin = null,
+        TargetBodyPart? TargetPart = null, // Shitmed Change
+        bool Cancelled = false);
+
+    /// <summary>
+    ///     Shitmed Change: Raised on parts before damage is done so we can cancel the damage if they evade.
+    /// </summary>
+    [ByRefEvent]
+    public record struct TryChangePartDamageEvent(
+        DamageSpecifier Damage,
+        EntityUid? Origin = null,
+        TargetBodyPart? TargetPart = null,
+        bool CanSever = true,
+        bool CanEvade = false,
+        float PartMultiplier = 1.00f,
+        bool Evaded = false,
+        bool Cancelled = false);
 
     /// <summary>
     ///     Raised on an entity when damage is about to be dealt,
@@ -335,16 +345,17 @@ namespace Content.Shared.Damage
     {
         // Whenever locational damage is a thing, this should just check only that bit of armour.
         public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
+        public readonly TargetBodyPart? TargetPart;
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, TargetBodyPart? targetPart = null)
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
+            TargetPart = targetPart;
         }
     }
 
@@ -367,14 +378,9 @@ namespace Content.Shared.Damage
         public readonly DamageSpecifier? DamageDelta;
 
         /// <summary>
-        ///     Was any of the change dealing damage?
+        ///     Was any of the damage change dealing damage, or was it all healing?
         /// </summary>
         public readonly bool DamageIncreased;
-
-        /// <summary>
-        ///     Was any of the change healing?
-        /// </summary>
-        public readonly bool DamageDecreased;
 
         /// <summary>
         ///     Does this event interrupt DoAfters?
@@ -389,29 +395,17 @@ namespace Content.Shared.Damage
         public readonly EntityUid? Origin;
 
         /// <summary>
-        ///     How much do we multiply this damage by for part damage?
-        /// </summary>
-        public readonly float PartMultiplier;
-
-        /// <summary>
         ///     Can this damage event sever parts?
         /// </summary>
         public readonly bool CanSever;
 
-        /// <summary>
-        ///     What part of this entity is going to take damage?
-        /// </summary>
-        public readonly TargetBodyPart? TargetPart;
-
-        public DamageChangedEvent(DamageableComponent damageable, DamageSpecifier? damageDelta, bool interruptsDoAfters,
-            EntityUid? origin, TargetBodyPart? targetPart = null, bool canSever = true, float partMultiplier = 1.00f)
+        public DamageChangedEvent(DamageableComponent damageable, DamageSpecifier? damageDelta, bool interruptsDoAfters, EntityUid? origin, bool canSever = true)
         {
             Damageable = damageable;
             DamageDelta = damageDelta;
             Origin = origin;
-            TargetPart = targetPart;
             CanSever = canSever;
-            PartMultiplier = partMultiplier;
+
             if (DamageDelta == null)
                 return;
 
@@ -420,11 +414,6 @@ namespace Content.Shared.Damage
                 if (damageChange > 0)
                 {
                     DamageIncreased = true;
-                    break;
-                }
-                else if (damageChange < 0)
-                {
-                    DamageDecreased = true;
                     break;
                 }
             }

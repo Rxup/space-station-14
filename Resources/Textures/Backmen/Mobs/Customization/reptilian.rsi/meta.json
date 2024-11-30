@@ -12,7 +12,15 @@
             "directions": 4
         },
         {
+            "name": "spines_aquatic_alt",
+            "directions": 4
+        },
+        {
             "name": "spines_long",
+            "directions": 4
+        },
+        {
+            "name": "spines_long_alt",
             "directions": 4
         },
         {
@@ -20,14 +28,25 @@
             "directions": 4
         },
         {
+            "name": "spines_longmembrane_alt",
+            "directions": 4
+        },
+        {
             "name": "spines_short",
+            "directions": 4
+        },
+        {
+            "name": "spines_short_alt",
             "directions": 4
         },
         {
             "name": "spines_shortmeme",
             "directions": 4
         },
-
+        {
+            "name": "spines_shortmembrane_alt",
+            "directions": 4
+        },
         {
             "name": "spineswag_aqua",
             "directions": 4,

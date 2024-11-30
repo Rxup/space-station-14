@@ -39,6 +39,8 @@
     heldPrefix: stomach
   - type: Stomach
     updateInterval: 1.5
+  - type: Organ
+    slotId: stomach
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -62,6 +64,8 @@
       - state: lung-l
       - state: lung-r
   - type: Lung
+  - type: Organ
+    slotId: lungs
   - type: Metabolizer
     updateInterval: 1.5
     removeEmpty: true
@@ -94,9 +98,9 @@
   components:
   - type: Sprite
     state: heart-on
-  - type: Item
-    size: Small
-    heldPrefix: heart
+  - type: Heart
+  - type: Organ
+    slotId: heart
   - type: Metabolizer
     updateInterval: 1.5
     maxReagents: 2
@@ -105,6 +109,11 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Heart
 
 - type: entity
   id: OrganArachnidLiver
@@ -118,6 +127,9 @@
     heldPrefix: liver
   - type: Sprite
     state: liver
+  - type: Liver
+  - type: Organ
+    slotId: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     updateInterval: 1.5
     maxReagents: 1
@@ -125,6 +137,11 @@
     groups:
     - id: Alcohol
       rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Liver
 
 - type: entity
   id: OrganArachnidKidneys
@@ -157,6 +174,14 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: Organ # Shitmed
+    slotId: eyes
+  - type: Eyes # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Eyes
   - type: Item
     size: Small
     heldPrefix: eyeballs

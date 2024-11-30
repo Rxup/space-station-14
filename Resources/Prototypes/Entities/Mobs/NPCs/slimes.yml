@@ -120,6 +120,13 @@
     understands:
     - Slime
     - TauCetiBasic
+  # start-backmen: surgery
+  - type: SurgeryTarget
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  # end-backmen: surgery
 
 - type: entity
   name: basic slime

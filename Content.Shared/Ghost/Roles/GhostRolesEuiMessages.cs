@@ -12,6 +12,7 @@ namespace Content.Shared.Ghost.Roles
         public string Description { get; set; }
         public string Rules { get; set; }
         public bool WhitelistRequired { get; set; } // backmen: Whitelist
+        public bool DiscordRequired { get; set; } // backmen: Whitelist
 
         // TODO ROLE TIMERS
         // Actually make use of / enforce this requirement?

@@ -101,7 +101,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
             return;
         }
 
-        if (HasComp<ArrivalsProtectGridComponent>(grid.Value))
+        if (ArrivalsProtectGridQuery.HasComp(grid.Value))
         {
             ev.Cancel();
         }

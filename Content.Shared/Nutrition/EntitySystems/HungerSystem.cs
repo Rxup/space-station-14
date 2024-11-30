@@ -10,6 +10,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Backmen.Mood;
+using Robust.Shared.Network;
+using Robust.Shared.Configuration;
+using Content.Shared.Backmen.CCVar;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -23,6 +27,8 @@ public sealed class HungerSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string HungerIconOverfedId = "HungerIconOverfed";
@@ -33,17 +39,9 @@ public sealed class HungerSystem : EntitySystem
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string HungerIconStarvingId = "HungerIconStarving";
 
-    private SatiationIconPrototype? _hungerIconOverfed;
-    private SatiationIconPrototype? _hungerIconPeckish;
-    private SatiationIconPrototype? _hungerIconStarving;
-
     public override void Initialize()
     {
         base.Initialize();
-
-        DebugTools.Assert(_prototype.TryIndex(HungerIconOverfedId, out _hungerIconOverfed) &&
-                          _prototype.TryIndex(HungerIconPeckishId, out _hungerIconPeckish) &&
-                          _prototype.TryIndex(HungerIconStarvingId, out _hungerIconStarving));
 
         SubscribeLocalEvent<HungerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HungerComponent, ComponentShutdown>(OnShutdown);
@@ -66,10 +64,9 @@ public sealed class HungerSystem : EntitySystem
 
     private void OnRefreshMovespeed(EntityUid uid, HungerComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.CurrentThreshold > HungerThreshold.Starving)
-            return;
-
-        if (_jetpack.IsUserFlying(uid))
+        if (_config.GetCVar(CCVars.MoodEnabled)
+            || component.CurrentThreshold > HungerThreshold.Starving
+            || _jetpack.IsUserFlying(uid))
             return;
 
         args.ModifySpeed(component.StarvingSlowdownModifier, component.StarvingSlowdownModifier);
@@ -133,7 +130,13 @@ public sealed class HungerSystem : EntitySystem
 
         if (GetMovementThreshold(component.CurrentThreshold) != GetMovementThreshold(component.LastThreshold))
         {
-            _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
+            if (!_config.GetCVar(CCVars.MoodEnabled))
+                _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
+            else if (_net.IsServer)
+            {
+                var ev = new MoodEffectEvent("Hunger" + component.CurrentThreshold); // backmen: mood
+                RaiseLocalEvent(uid, ev);
+            }
         }
 
         if (component.HungerThresholdAlerts.TryGetValue(component.CurrentThreshold, out var alertId))
@@ -221,13 +224,13 @@ public sealed class HungerSystem : EntitySystem
         switch (component.CurrentThreshold)
         {
             case HungerThreshold.Overfed:
-                prototype = _hungerIconOverfed;
+                _prototype.TryIndex(HungerIconOverfedId, out prototype);
                 break;
             case HungerThreshold.Peckish:
-                prototype = _hungerIconPeckish;
+                _prototype.TryIndex(HungerIconPeckishId, out prototype);
                 break;
             case HungerThreshold.Starving:
-                prototype = _hungerIconStarving;
+                _prototype.TryIndex(HungerIconStarvingId, out prototype);
                 break;
             default:
                 prototype = null;

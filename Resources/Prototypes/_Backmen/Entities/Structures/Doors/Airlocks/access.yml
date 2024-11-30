@@ -27,7 +27,7 @@
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsCCSecurity ]
+        board: [ DoorElectronicsCCArmory ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -65,9 +65,11 @@
   name: Бронированная дверь каюты Адмирала ЦК
   suffix: CentCom, Admiral, Locked
   components:
+    - type: AccessReader
+      access: [ [ "CentralCommand", "CCAdmiral"] ]
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsCCOfficer ]
+        board: [ DoorElectronicsCCAdmiral ]
     - type: PaintableAirlock
       group: Glass
       department: null

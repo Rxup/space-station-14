@@ -8,18 +8,21 @@
 
 #Анти-пси
 - type: loadout
+  id: TinfoilBkmLoadout
+  equipment:
+    head: ClothingHeadTinfoil
+
+- type: loadout
   id: AntiPsychicKnifeBkm
   storage:
     back:
     - AntiPsychicKnife
-  equipment:
-    head: ClothingHeadTinfoil
 
 #БДСМ
 - type: loadout
   id: ClothingUniformJumpsuitGachiBkm
   equipment:
-    innerclothing: ClothingUniformJumpsuitGachi
+    jumpsuit: ClothingUniformJumpsuitGachi
 
 #Стартовый капитал
 - type: loadout
@@ -62,6 +65,11 @@
   id: BizarreKonkursBkm
   storage:
     back:
-    - ClothingHeadHatBizarreSoft
     - ClothingOuterCoatBizarre
+
+- type: loadout
+  id: BizarreHatKonkursBkm
+  storage:
+    back:
+    - ClothingHeadHatBizarreSoft
 

@@ -54,6 +54,7 @@ using Content.Shared.Damage;
 using Content.Shared.Dataset;
 using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
@@ -147,6 +148,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedPinpointerSystem _pinpointerSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedSalvageSystem _salvageSystem = default!;
 
     public override void Initialize()
     {
@@ -342,8 +344,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 */
-    [ValidatePrototypeId<DatasetPrototype>]
-    private const string PlanetNames = "names_borer";
+    [ValidatePrototypeId<LocalizedDatasetPrototype>]
+    private const string PlanetNames = "NamesBorer";
 
     private const int MaxPreloadOffset  = 200;
 
@@ -427,7 +429,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         // planetName
-        var planetName = SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>(PlanetNames), seed);
+        var planetName = _salvageSystem.GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>(PlanetNames), seed);
         _metadata.SetEntityName(planetMapUid, planetName);
 
         // Позиция карта (точка начала)

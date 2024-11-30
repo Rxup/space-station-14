@@ -34,7 +34,7 @@ appeal="https://backmen.ru/discord"
 
 [shuttle]
 arrivals = true
-#arrivals_map = "/Maps/Misc/kosmoport.yml"
+arrivals_map = "/Maps/Misc/kosmoport.yml"
 #arrivals_map = "/Maps/Backmen/Etc/terminal.yml"
 #arrivals_map = "/Maps/Misc/terminal.yml"
 arrivals_returns = true
@@ -43,7 +43,7 @@ auto_call_extension_time = 70
 emergency_dock_time = 280
 emergency_authorize_time = 30
 emergency_early_launch_allowed = true
-#arrivals_planet = false
+arrivals_planet = false
 
 [salvage]
 expedition_cooldown = 300
@@ -77,7 +77,7 @@ linsleeptol = 0.001
 restart_delay = 120
 
 [worldgen]
-enabled = true
+enabled = false
 
 [ahelp]
 admin_prefix = true

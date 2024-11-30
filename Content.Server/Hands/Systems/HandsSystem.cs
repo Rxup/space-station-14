@@ -5,6 +5,7 @@ using Content.Server.Stunnable;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Events;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
@@ -140,10 +141,8 @@ namespace Content.Server.Hands.Systems
             RemoveHand(uid, args.Slot);
         }
 
-        private void HandleBodyPartEnabled(EntityUid uid, HandsComponent component, ref BodyPartEnabledEvent args)
-        {
+        private void HandleBodyPartEnabled(EntityUid uid, HandsComponent component, ref BodyPartEnabledEvent args) =>
             TryAddHand(uid, component, args.Part, SharedBodySystem.GetPartSlotContainerId(args.Part.Comp.ParentSlot?.Id ?? string.Empty));
-        }
 
         private void HandleBodyPartDisabled(EntityUid uid, HandsComponent component, ref BodyPartDisabledEvent args)
         {

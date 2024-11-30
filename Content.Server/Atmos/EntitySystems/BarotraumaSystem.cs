@@ -8,6 +8,7 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Backmen.Mood;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
@@ -243,7 +244,7 @@ namespace Content.Server.Atmos.EntitySystems
                         barotrauma.TakingDamage = true;
                         _adminLogger.Add(LogType.Barotrauma, $"{ToPrettyString(uid):entity} started taking low pressure damage");
                     }
-
+                    RaiseLocalEvent(uid, new MoodEffectEvent("MobLowPressure")); // backmen: mood
                     _alertsSystem.ShowAlert(uid, barotrauma.LowPressureAlert, 2);
                 }
                 else if (pressure >= Atmospherics.HazardHighPressure)
@@ -252,6 +253,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
                     _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * damageScale, true, false, canSever: false); // backmen
+                    RaiseLocalEvent(uid, new MoodEffectEvent("MobHighPressure")); // backmen: mood
 
                     if (!barotrauma.TakingDamage)
                     {

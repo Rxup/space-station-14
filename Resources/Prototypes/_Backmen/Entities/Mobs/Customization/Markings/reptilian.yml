@@ -1,4 +1,13 @@
 - type: marking
+  id: LizardHeadGuilmon
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: guilmon
+
+- type: marking
   id: LizardHeadCobraHood
   bodyPart: HeadSide
   markingCategory: HeadSide
@@ -10,15 +19,63 @@
     state: cobra_hood_with_ears_overlay
 
 - type: marking
+  id: LizardShoutEasternDragon
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: eastern_dragon
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: eastern_dragon_overlay
+
+- type: marking
+  id: LizardShoutEasternDragonUsiki
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: eastern_dragon
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: eastern_dragon_overlay
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: eastern_dragon_usiki
+
+- type: marking
+  id: LizardShoutNoodle
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: noodle
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: noodle_overlay_1
+  - sprite: Backmen/Mobs/Customization/snouts.rsi
+    state: noodle_overlay_2
+
+- type: marking
   id: SnakeLargeTail
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
-      state: tail_snakelarge
+      state: snake_large
     - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
-      state: tail_snakelarge_overlay
+      state: snake_large_overlay
+
+- type: marking
+  id: SnakeLargeTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
+      state: snake_large_wagging
+    - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
+      state: snake_large_wagging_overlay
 
 - type: marking
   id: WesternDragonTail
@@ -27,9 +84,9 @@
   speciesRestriction: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
-      state: tail_westerndragon
+      state: western_dragon
     - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
-      state: tail_westerndragon_overlay
+      state: western_dragon_overlay
 
 - type: marking
   id: KangarooTail
@@ -38,4 +95,49 @@
   speciesRestriction: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/reptilian_64x32.rsi
-      state: tail_kangaroo
+      state: kangaroo
+
+- type: marking
+  id: LizardChestSpinesAquaticWithoutTail
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/reptilian.rsi
+    state: spines_aquatic_alt
+
+- type: marking
+  id: LizardChestSpinesLongWithoutTail
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/reptilian.rsi
+    state: spines_long_alt
+
+- type: marking
+  id: LizardChestSpinesLongMembraneWithoutTail
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/reptilian.rsi
+    state: spines_longmembrane_alt
+
+- type: marking
+  id: LizardChestSpinesShortWithoutTail
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/reptilian.rsi
+    state: spines_short_alt
+
+- type: marking
+  id: LizardChestSpinesShortMembraneWithoutTail
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Backmen/Mobs/Customization/reptilian.rsi
+    state: spines_shortmembrane_alt

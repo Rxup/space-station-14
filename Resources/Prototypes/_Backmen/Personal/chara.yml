@@ -34,7 +34,6 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
-    clumsyFailChance: 0
   - type: StaticPrice
     price: 500
   - type: Tag

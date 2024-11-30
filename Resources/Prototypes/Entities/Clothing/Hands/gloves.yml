@@ -156,6 +156,8 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2
 ####
 - type: entity
   parent: ClothingHandsButcherable
@@ -230,6 +232,7 @@
     stealthy: true
   - type: ToggleClothing
     action: ActionToggleNinjaGloves
+    disableOnUnequip: true
   - type: NinjaGloves
     abilities:
     - components:
@@ -258,8 +261,8 @@
     entries:
     - label: corvax-hidden-desc-ThievingGloves-thief
       whitelistMind:
-        components:
-          - ThiefRole
+        mindRoles:
+        - ThiefRole
 # Corvax-HiddenDesc-End
 
 - type: entity
@@ -380,13 +383,13 @@
     entries:
     - label: corvax-hidden-desc-ThievingGloves-syndicate
       whitelistMind:
-        components:
-          - TraitorRole
-          - NukeOperative
+        mindRoles:
+        - TraitorRole
+        - NukeopsRole
     - label: corvax-hidden-desc-ThievingGloves-thief
       whitelistMind:
-        components:
-          - ThiefRole
+        mindRoles:
+        - ThiefRole
 # Corvax-HiddenDesc-End
 
 - type: entity

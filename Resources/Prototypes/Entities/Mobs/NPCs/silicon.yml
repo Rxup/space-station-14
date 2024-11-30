@@ -316,6 +316,15 @@
   name: medibot
   description: No substitute for a doctor, but better than nothing.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: Medibot
     treatments:
       Alive:

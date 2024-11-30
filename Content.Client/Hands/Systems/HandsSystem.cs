@@ -4,6 +4,7 @@ using Content.Client.DisplacementMap;
 using Content.Client.Examine;
 using Content.Client.Strip;
 using Content.Client.Verbs.UI;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -52,6 +53,7 @@ namespace Content.Client.Hands.Systems
             SubscribeLocalEvent<HandsComponent, ComponentHandleState>(HandleComponentState);
             SubscribeLocalEvent<HandsComponent, VisualsChangedEvent>(OnVisualsChanged);
             SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
+            SubscribeLocalEvent<HandsComponent, BodyPartDisabledEvent>(HandleBodyPartDisabled);
 
             OnHandSetActive += OnHandActivated;
         }
@@ -244,29 +246,32 @@ namespace Content.Client.Hands.Systems
         #endregion
 
         #region visuals
-        private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args)
+
+        private void HideLayers(EntityUid uid, HandsComponent component, Entity<BodyPartComponent> part, SpriteComponent? sprite = null)
         {
-            if (args.Part.Comp.PartType != BodyPartType.Hand || !TryComp(uid, out SpriteComponent? sprite))
+            if (part.Comp.PartType != BodyPartType.Hand || !Resolve(uid, ref sprite, logMissing: false))
                 return;
 
-            var location = args.Part.Comp.Symmetry switch
+            var location = part.Comp.Symmetry switch
             {
                 BodyPartSymmetry.None => HandLocation.Middle,
                 BodyPartSymmetry.Left => HandLocation.Left,
                 BodyPartSymmetry.Right => HandLocation.Right,
-                _ => throw new ArgumentOutOfRangeException(nameof(args.Part.Comp.Symmetry))
+                _ => throw new ArgumentOutOfRangeException(nameof(part.Comp.Symmetry))
             };
 
             if (component.RevealedLayers.TryGetValue(location, out var revealedLayers))
             {
                 foreach (var key in revealedLayers)
-                {
                     sprite.RemoveLayer(key);
-                }
 
                 revealedLayers.Clear();
             }
         }
+
+        private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args) => HideLayers(uid, component, args.Part);
+
+        private void HandleBodyPartDisabled(EntityUid uid, HandsComponent component, ref BodyPartDisabledEvent args) => HideLayers(uid, component, args.Part);
 
         protected override void HandleEntityInserted(EntityUid uid, HandsComponent hands, EntInsertedIntoContainerMessage args)
         {

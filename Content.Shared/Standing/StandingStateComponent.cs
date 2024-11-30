@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Standing;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class StandingStateComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
@@ -11,7 +11,7 @@ public sealed partial class StandingStateComponent : Component
     public SoundSpecifier DownSound { get; private set; } = new SoundCollectionSpecifier("BodyFall");
 
     // BACKMEN EDIT START
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public StandingState CurrentState { get; set; } = StandingState.Standing;
     // BACKMEN EDIT END
 
