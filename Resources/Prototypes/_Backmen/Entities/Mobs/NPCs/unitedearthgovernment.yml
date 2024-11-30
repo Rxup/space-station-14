@@ -1,0 +1,219 @@
+- type: entity
+  name: начальник депо
+  id: MobUEGKosmoportCaptain
+  parent: MobBaseNpc
+  suffix: suppa ОПЗ
+  description: Глава местного депо, одет в стандартную командную форму транспортных сил ОПЗ.
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardCompound
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: MindShield
+    mindShieldStatusIcon: EarthMember
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: officer
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+
+- type: entity
+  name: сотрудник депо
+  id: MobUEGKosmoportService
+  parent: MobBaseNpc
+  suffix: suppa ОПЗ
+  description: Сотрудница депо ОПЗ, ведет отчетную деятельность и руководит местными силами охраны.
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardCompound
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: MindShield
+    mindShieldStatusIcon: EarthMember
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: woman
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+
+- type: entity
+  name: пилот
+  id: MobUEGPilot
+  parent: MobBaseNpc
+  suffix: suppa ОПЗ Пилот
+  description: Пилот, управляет почти всеми видами космического транспорта, в данный момент отдыхает, смотря на шлюз.
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardCompound
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: MindShield
+    mindShieldStatusIcon: EarthMember
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: pilot
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+
+- type: entity
+  name: Полицеский
+  id: MobPoliceUEG
+  parent: MobBaseNpc
+  suffix: suppa ОПЗ Полиция
+  description: Мужчина, одет в полевую форму полиции, на нашивке виднеется символ МВД и надпись "Транспортная Дивизия МВД".
+  components:
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/egloves.ogg
+    damage:
+        types:
+          Blunt: 3
+  - type: StaminaDamageOnHit
+    damage: 10
+    sound: /Audio/Weapons/egloves.ogg
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: MindShield
+    mindShieldStatusIcon: MVDMember
+  - type: Damageable
+    damageModifierSet: NPCLightArmor
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: police
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+    - state: on-inhand-right
+      sprite: Objects/Weapons/Melee/stunbaton.rsi
+
+- type: entity
+  id: MobGuardPoliceUEG
+  parent: MobPoliceUEG
+  suffix: suppa Guard ОПЗ Полиция
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardCompound
+
+- type: entity
+  name: Полицеский
+  id: MobPoliceUEGPistol
+  parent: MobBaseNpc
+  suffix: suppa ОПЗ Полиция Pistol
+  description: Мужчина, одет в полевую форму полиции и вооружен табельным g22, на нашивке виднеется символ МВД и надпись "Транспортная Дивизия МВД".
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 12
+    count: 12
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns64/Pistols/beretta_shot.ogg
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: MindShield
+    mindShieldStatusIcon: MVDMember
+  - type: Damageable
+    damageModifierSet: NPCLightArmor
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: police
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+    - state: inhand-right
+      sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
+
+- type: entity
+  id: MobGuardPoliceUEGPistol
+  parent: MobPoliceUEGPistol
+  suffix: suppa Guard ОПЗ Полиция Pistol
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardRangedCompound
+
+- type: entity
+  name: Спецназ
+  id: MobPoliceUEGShotgun
+  parent: MobBaseNpc
+  suffix: suppa ОПЗ Полиция Дробовик
+  description: Мужчина одетый в полевую форму полиции и в снаряжении спецназа, на нашивке виднеется символ МВД и надпись "Транспортная Дивизия МВД".
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: MindShield
+    mindShieldStatusIcon: MVDMember
+  - type: Damageable
+    damageModifierSet: NPCArmor
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+    capacity: 500
+    cycleable: false
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Shotguns/sh39.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: heavy
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+    - state: wielded-inhand-left
+      sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
+
+- type: entity
+  id: MobGuardPoliceUEGShotgun
+  parent: MobPoliceUEGShotgun
+  suffix: suppa Guard ОПЗ Полиция Дробовик
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardRangedCompound
+
+- type: securityIcon
+  id: EarthMember
+  priority: 2
+  locationPreference: Left
+  layer: Mod
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: Earth
+
+- type: securityIcon
+  id: MVDMember
+  priority: 2
+  locationPreference: Left
+  layer: Mod
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: mvd
