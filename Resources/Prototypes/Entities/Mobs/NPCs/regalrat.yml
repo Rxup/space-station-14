@@ -314,6 +314,9 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  - type: Food
+  - type: Item
+    size: Tiny # Delta V - Make them edible and pickable.
 
 - type: weightedRandomEntity
   id: RatKingLoot

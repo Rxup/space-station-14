@@ -7,6 +7,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Body.Part;
 
@@ -27,8 +28,121 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public BodyPartSlot? ParentSlot;
 
+    /// <summary>
+    ///     Shitmed Change: Amount of damage to deal when the part gets removed.
+    ///     Only works if IsVital is true.
+    /// </summary>
     [DataField, AutoNetworkedField]
+    public FixedPoint2 VitalDamage = 100;
+
+    [DataField, AlwaysPushInheritance]
+    public string ToolName { get; set; } = "A body part";
+
+    [DataField, AutoNetworkedField]
+    public bool? Used { get; set; } = null;
+
+    [DataField, AlwaysPushInheritance]
+    public float Speed { get; set; } = 1f;
+
+    /// <summary>
+    /// Shitmed Change: What's the max health this body part can have?
+    /// </summary>
+    [DataField]
+    public float MinIntegrity;
+
+    /// <summary>
+    /// Whether this body part can be severed or not
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CanSever = true;
+
+    /// <summary>
+    ///     Shitmed Change: Whether this body part is enabled or not.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
+
+    /// <summary>
+    ///     Shitmed Change: Whether this body part can be enabled or not. Used for non-functional prosthetics.
+    /// </summary>
+    [DataField]
+    public bool CanEnable = true;
+
+    /// <summary>
+    /// Whether this body part can attach children or not.
+    /// </summary>
+    [DataField]
+    public bool CanAttachChildren = true;
+
+    /// <summary>
+    ///     Shitmed Change: How long it takes to run another self heal tick on the body part.
+    /// </summary>
+    [DataField]
+    public float HealingTime = 30;
+
+    /// <summary>
+    ///     Shitmed Change: How long it has been since the last self heal tick on the body part.
+    /// </summary>
+    public float HealingTimer;
+
+    /// <summary>
+    ///     Shitmed Change: How much health to heal on the body part per tick.
+    /// </summary>
+    [DataField]
+    public float SelfHealingAmount = 5;
+
+    /// <summary>
+    ///     Shitmed Change: The name of the container for this body part. Used in insertion surgeries.
+    /// </summary>
+    [DataField]
+    public string ContainerName { get; set; } = "part_slot";
+
+    /// <summary>
+    ///     Shitmed Change: The slot for item insertion.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ItemSlot ItemInsertionSlot = new();
+
+
+    /// <summary>
+    ///     Shitmed Change: Current species. Dictates things like body part sprites.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string Species { get; set; } = "";
+
+    /// <summary>
+    ///     Shitmed Change: The total damage that has to be dealt to a body part
+    ///     to make possible severing it.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float SeverIntegrity = 90;
+
+    /// <summary>
+    ///     Shitmed Change: The ID of the base layer for this body part.
+    /// </summary>
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
+    public string? BaseLayerId;
+
+    /// <summary>
+    ///     Shitmed Change: On what TargetIntegrity we should re-enable the part.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
+    {
+        { TargetIntegrity.CriticallyWounded, 75 },
+        { TargetIntegrity.HeavilyWounded, 60 },
+        { TargetIntegrity.ModeratelyWounded, 50 },
+        { TargetIntegrity.SomewhatWounded, 35 },
+        { TargetIntegrity.LightlyWounded, 20 },
+        { TargetIntegrity.Healthy, 10 },
+    };
+
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public BodyPartType PartType = BodyPartType.Other;
+
 
     // TODO BODY Replace with a simulation of organs
     /// <summary>
@@ -38,21 +152,22 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField("vital"), AutoNetworkedField]
     public bool IsVital;
 
-    /// <summary>
-    /// Amount of damage to deal when the part gets removed.
-    /// Only works if IsVital is true.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public FixedPoint2 VitalDamage = 100;
-
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
 
-    [DataField]
-    public string ToolName { get; set; } = "A body part";
+    /// <summary>
+    ///     When attached, the part will ensure these components on the entity, and delete them on removal.
+    /// </summary>
+    [DataField, AlwaysPushInheritance]
+    public ComponentRegistry? OnAdd;
 
-    [DataField, AutoNetworkedField]
-    public bool? Used { get; set; } = null;
+    /// <summary>
+    ///     When removed, the part will ensure these components on the entity, and add them on removal.
+    /// </summary>
+    [DataField, AlwaysPushInheritance]
+    public ComponentRegistry? OnRemove;
+
+    // Shitmed Change End
 
     /// <summary>
     /// Child body parts attached to this body part.
@@ -65,72 +180,6 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, OrganSlot> Organs = new();
-
-    /// <summary>
-    /// What's the max health this body part can have?
-    /// </summary>
-    [DataField]
-    public float MinIntegrity;
-
-    /// <summary>
-    /// Whether this body part is enabled or not.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool Enabled = true;
-
-    /// <summary>
-    /// How long it takes to run another self heal tick on the body part.
-    /// </summary>
-    [DataField]
-    public float HealingTime = 6;
-
-    /// <summary>
-    /// How long it has been since the last self heal tick on the body part.
-    /// </summary>
-    public float HealingTimer;
-
-    /// <summary>
-    /// How much health to heal on the body part per tick.
-    /// </summary>
-    [DataField]
-    public float SelfHealingAmount = 0.1f;
-
-    [DataField]
-    public string ContainerName { get; set; } = "part_slot";
-
-    [DataField, AutoNetworkedField]
-    public ItemSlot ItemInsertionSlot = new();
-
-
-    /// <summary>
-    ///     Current species. Dictates things like body part sprites.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public string Species { get; set; } = "";
-
-    /// <summary>
-    /// The total damage that has to be dealt to a body part
-    /// to make possible severing it.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float SeverIntegrity = 80;
-
-    /// <summary>
-    /// On what TargetIntegrity we should re-enable the part.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
-
-    [DataField, AutoNetworkedField]
-    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
-    {
-        { TargetIntegrity.CriticallyWounded, 70 },
-        { TargetIntegrity.HeavilyWounded, 60 },
-        { TargetIntegrity.ModeratelyWounded, 45 },
-        { TargetIntegrity.SomewhatWounded, 30},
-        { TargetIntegrity.LightlyWounded, 15 },
-        { TargetIntegrity.Healthy, 10 },
-    };
 
     /// <summary>
     /// These are only for VV/Debug do not use these for gameplay/systems

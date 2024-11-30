@@ -129,3 +129,140 @@
   - type: ConditionalSpawner
     prototypes:
     - MobGuardERTUnitSecurity
+
+#-----United Earth Government Transport Division
+
+- type: entity
+  name: Spawner Officer
+  id: SpawnMobUEGKosmoportCaptain
+  suffix: UEG
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: officer
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobUEGKosmoportCaptain
+
+- type: entity
+  name: Spawner Service Port
+  id: SpawnMobUEGKosmoportService
+  suffix: UEG
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: woman
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobUEGKosmoportService
+
+- type: entity
+  name: Spawner Pilot
+  id: SpawnMobUEGPilot
+  suffix: UEG
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: pilot
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobUEGPilot
+
+- type: entity
+  name: Spawner Police
+  id: SpawnMobPoliceUEG
+  suffix: UEG Police
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: police
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobPoliceUEG
+
+- type: entity
+  name: Spawner Police Guard
+  id: SpawnMobGuardPoliceUEG
+  suffix: UEG Guard Police
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: police
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardPoliceUEG
+
+- type: entity
+  name: Spawner Police
+  id: SpawnMobPoliceUEGPistol
+  suffix: UEG Police Pistol
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: police
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobPoliceUEGPistol
+
+- type: entity
+  name: Spawner Police
+  id: SpawnMobGuardPoliceUEGPistol
+  suffix: UEG Guard Police Pistol
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: police
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardPoliceUEGPistol
+
+- type: entity
+  name: Spawner Police SWAT
+  id: SpawnMobPoliceUEGShotgun
+  suffix: UEG Police SWAT
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: heavy
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobPoliceUEGShotgun
+
+- type: entity
+  name: Spawner Police SWAT
+  id: SpawnMobGuardPoliceUEGShotgun
+  suffix: UEG Guard Police SWAT
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: heavy
+      sprite: Backmen/Mobs/Npc/UEG.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardPoliceUEGShotgun
