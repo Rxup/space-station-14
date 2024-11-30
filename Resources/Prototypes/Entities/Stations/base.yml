@@ -71,11 +71,6 @@
           - /Maps/Ruins/syndicate_dropship.yml
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml
-        # Corvax-start
-        mining: !type:GridSpawnGroup
-          paths:
-          - /Maps/Shuttles/corvax_mining.yml
-        # Corvax-Mapping-End
 
 - type: entity
   id: BaseStationCentcomm
