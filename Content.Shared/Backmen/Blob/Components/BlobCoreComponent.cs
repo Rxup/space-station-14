@@ -182,7 +182,7 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Normal, "NormalBlobTile"},
         {BlobTileType.Invalid, "NormalBlobTile"}, // wtf
         {BlobTileType.Storage, "StorageBlobTile"},
-        {BlobTileType.Turret, "TurretBlobTile"},
+        //{BlobTileType.Turret, "TurretBlobTile"},
         {BlobTileType.Core, "CoreBlobTile"},
     };
 
