@@ -95,6 +95,7 @@
       soundDeath: "/Audio/Animals/Flesh/flesh_worm_dead.ogg"
       deathMobSpawnId: "MobFleshWorm"
       deathMobSpawnCount: 1
+    - type: VentCrawler
     - type: Sprite
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       layers:
@@ -419,6 +420,7 @@
       soundDeath: "/Audio/Animals/Flesh/flesh_worm_dead.ogg"
       deathMobSpawnId: "MobFleshWorm"
       deathMobSpawnCount: 0
+    - type: VentCrawler
     - type: Sprite
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       layers:
@@ -502,6 +504,7 @@
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: worm
+    - type: VentCrawler
     - type: DamageStateVisuals
       states:
         Alive:

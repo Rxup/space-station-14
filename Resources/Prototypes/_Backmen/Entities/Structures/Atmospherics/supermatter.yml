@@ -28,6 +28,12 @@
   components:     
   - type: GasVentPump
     pressureLockoutOverride: true # Even if pressure is low we always fill the gas.
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
 
 - type: entity
   parent: [AirSensorSupermatterBase, GasVentScrubber]

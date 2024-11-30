@@ -31,6 +31,7 @@
     groups:
       Flammable: [Touch]
       Extinguish: [Touch]
+  - type: VentCrawler
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -388,6 +389,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: purple_snake
+  - type: VentCrawler
   - type: DamageStateVisuals
     states:
       Alive:

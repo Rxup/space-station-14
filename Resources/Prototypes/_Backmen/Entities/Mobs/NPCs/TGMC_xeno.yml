@@ -18,6 +18,7 @@
         Blunt: 5
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
+  - type: VentCrawler
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/burrower.rsi

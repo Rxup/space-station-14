@@ -27,3 +27,4 @@
   - type: InventorySlots
   - type: Body
     prototype: BodyHaisenberg
+  - type: VentCrawler

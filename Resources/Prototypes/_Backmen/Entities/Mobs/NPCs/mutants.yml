@@ -104,6 +104,7 @@
         layer:
         - SmallMobLayer
   - type: Appearance
+  - type: VentCrawler
   - type: DamageStateVisuals
     states:
       Alive:

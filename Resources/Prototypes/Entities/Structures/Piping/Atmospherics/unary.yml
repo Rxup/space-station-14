@@ -28,6 +28,15 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: Weldable
+      time: 3
+    - type: VentCrawTube
+      containerId: VentCrawTube
+      connected: true
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
     - type: DeviceNetwork
@@ -67,7 +76,6 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
-    - type: Weldable
 
 - type: entity
   parent: GasUnaryBase
@@ -101,6 +109,15 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: Weldable
+      time: 3
+    - type: VentCrawTube
+      containerId: VentCrawTube
+      connected: true
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
     - type: DeviceNetwork
@@ -140,7 +157,6 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
-    - type: Weldable
 
 - type: entity
   parent: GasUnaryBase
@@ -180,6 +196,15 @@
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
       - enum.LightLayers.Unshaded
+    - type: VentCrawTube
+      containerId: VentCrawTube
+      connected: true
+    - type: VentCrawJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
