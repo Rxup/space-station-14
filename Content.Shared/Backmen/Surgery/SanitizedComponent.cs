@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Shitmed.Medical.Surgery;
+namespace Content.Shared.Backmen.Surgery;
 
 /// <summary>
 ///     Prevents the entity from causing toxin damage to entities it does surgery on.

@@ -25,18 +25,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 
-// Shitmed Change
-/*using Content.Shared._Shitmed.Body.Events;
-using Content.Shared._Shitmed.Body.Part;
-using Content.Shared._Shitmed.Humanoid.Events;
-using Content.Shared._Shitmed.Targeting;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Rejuvenate;
-using Content.Shared.Standing;*/
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Body.Systems;

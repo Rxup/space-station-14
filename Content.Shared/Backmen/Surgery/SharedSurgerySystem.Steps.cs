@@ -15,7 +15,7 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
@@ -24,7 +24,6 @@ using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Medical.Surgery;
 using AmputateAttemptEvent = Content.Shared.Body.Events.AmputateAttemptEvent;
 
 namespace Content.Shared.Backmen.Surgery;
