@@ -13,6 +13,8 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Shipyard:
         type: ShipyardConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: ShipyardComputerCircuitboard
   - type: StationAiWhitelist

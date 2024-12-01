@@ -746,6 +746,7 @@
 - type: entity
   id: ComputerCargoShuttle
   parent: BaseComputerAiAccess
+  categories: [ HideSpawnMenu ] # backmen: salvage
   name: cargo shuttle computer
   description: Used to order the shuttle.
   components:
