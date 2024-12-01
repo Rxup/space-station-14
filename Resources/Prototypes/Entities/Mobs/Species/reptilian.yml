@@ -77,6 +77,19 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+    # Corvax-Digitigrade-Start
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: jumpsuit
+      shoes: # DM only for colored shoes!
+        sizeMaps:
+          32:
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: shoes
+    # Corvax-Digitigrade-End
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages
@@ -107,5 +120,18 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+    # Corvax-Digitigrade-Start
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: jumpsuit
+      shoes: # DM only for colored shoes!
+        sizeMaps:
+          32:
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: shoes
+    # Corvax-Digitigrade-End
 
 #Weh
