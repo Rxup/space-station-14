@@ -208,7 +208,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.SaveItemLocation);
             AddButton(ContentKeyFunctions.ToggleStanding); // backmen: Laying System
             AddButton(ContentKeyFunctions.LookUp); // BACKMEN EDIT
-            AddButton(ContentKeyFunctions.OfferItem); // Ataraxia
             AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(BackmenCCvars.CCVars.HoldLookUp), HandleHoldLookUp); // WD EDIT
 
             AddHeader("ui-options-header-interaction-adv");
