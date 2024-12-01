@@ -10,4 +10,4 @@
       map: ["base"]
   - type: TimedDespawn
     lifetime: 30
-
+  - type: HolidayVisuals
