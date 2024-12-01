@@ -152,7 +152,7 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Strong, 15},
         {BlobTileType.Normal, 6},
         {BlobTileType.Storage, 50},
-        {BlobTileType.Turret, 75},
+        //{BlobTileType.Turret, 75},
     };
 
     [DataField]
