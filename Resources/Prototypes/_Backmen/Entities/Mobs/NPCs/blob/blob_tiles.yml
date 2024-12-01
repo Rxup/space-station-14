@@ -137,7 +137,7 @@
       strong: 15
       normal: 6
       storage: 50
-      turret: 75
+      #turret: 75
     actionPrototypes:
       - ActionSwapBlobChem
       - ActionTeleportBlobToCore
