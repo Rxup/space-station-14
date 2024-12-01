@@ -249,7 +249,6 @@
   components:
   - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
-  - type: OfferItem # Ataraxia
   - type: Targeting # backmen: surgery
   - type: Barotrauma
     damage:

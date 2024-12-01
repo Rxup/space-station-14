@@ -132,6 +132,7 @@
   - type: BloodSucker
     webRequired: true
   - type: Arachne
+  - type: Cocooner
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
