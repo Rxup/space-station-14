@@ -10,6 +10,7 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Corvax.CCCVars;
@@ -51,7 +52,7 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
-        private readonly IClientSponsorsManager _clientSponsorsManager;
+        private readonly ISharedSponsorsManager _clientSponsorsManager;
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -117,7 +118,7 @@ namespace Content.Client.Lobby.UI
             IResourceManager resManager,
             JobRequirementsManager requirements,
             MarkingManager markings,
-            IClientSponsorsManager clientSponsorsManager)
+            ISharedSponsorsManager clientSponsorsManager)
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -595,7 +596,7 @@ namespace Content.Client.Lobby.UI
                         continue;
 
                     //backmen-start: sponsor traits
-                    if (selector.Trait.SponsorOnly && !_clientSponsorsManager.Prototypes.Contains(selector.Trait.ID))
+                    if (selector.Trait.SponsorOnly && !_clientSponsorsManager.GetClientPrototypes().Contains(selector.Trait.ID))
                     {
                         selector.Checkbox.Label.FontColorOverride = Color.Gray;
                         selector.Checkbox.Disabled = true;
