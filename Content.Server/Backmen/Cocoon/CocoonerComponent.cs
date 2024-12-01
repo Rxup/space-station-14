@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server.Backmen.Cocoon;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class CocoonerComponent : Component
 {
     [DataField("cocoonDelay")]
