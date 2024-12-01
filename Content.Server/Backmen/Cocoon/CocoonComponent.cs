@@ -1,4 +1,4 @@
-namespace Content.Server.Backmen.Arachne;
+namespace Content.Server.Backmen.Cocoon;
 
 [RegisterComponent]
 public sealed partial class CocoonComponent : Component

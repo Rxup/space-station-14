@@ -1,0 +1,13 @@
+
+- type: trait
+  id: Giant
+  name: Giant-name
+  description: Giant-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  components:
+  - type: TraitGiant
+    scale: 1,1

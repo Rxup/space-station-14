@@ -9,6 +9,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Corvax.Interfaces.Client;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Corvax.CCCVars;
@@ -50,6 +51,7 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        private readonly IClientSponsorsManager _clientSponsorsManager;
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -114,7 +116,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            IClientSponsorsManager clientSponsorsManager)
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -124,6 +127,7 @@ namespace Content.Client.Lobby.UI
             _playerManager = playerManager;
             _prototypeManager = prototypeManager;
             _markingManager = markings;
+            _clientSponsorsManager = clientSponsorsManager;
             _preferencesManager = preferencesManager;
             _resManager = resManager;
             _requirements = requirements;
@@ -589,6 +593,15 @@ namespace Content.Client.Lobby.UI
                 {
                     if (selector == null)
                         continue;
+
+                    //backmen-start: sponsor traits
+                    if (selector.Trait.SponsorOnly && !_clientSponsorsManager.Prototypes.Contains(selector.Trait.ID))
+                    {
+                        selector.Checkbox.Label.FontColorOverride = Color.Gray;
+                        selector.Checkbox.Disabled = true;
+                        selector.Checkbox.Pressed = false;
+                    }
+                    //backmen-end: sponsor traits
 
                     if (category is { MaxTraitPoints: >= 0 } &&
                         selector.Cost + selectionCount > category.MaxTraitPoints)
