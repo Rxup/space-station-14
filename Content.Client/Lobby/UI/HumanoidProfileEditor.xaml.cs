@@ -601,6 +601,7 @@ namespace Content.Client.Lobby.UI
                         selector.Checkbox.Label.FontColorOverride = Color.Gray;
                         selector.Checkbox.Disabled = true;
                         selector.Checkbox.Pressed = false;
+                        selector.Checkbox.Label.Text += $" ({Loc.GetString("sponsor-only")})";
                     }
                     //backmen-end: sponsor traits
 

@@ -8,6 +8,7 @@
     - BSSDrone #backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
+  sponsorOnly: true
   components:
   - type: TraitGiant
     scale: 1.1
@@ -21,6 +22,7 @@
     - BSSDrone #backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
+  sponsorOnly: true
   components:
   - type: TraitGiant
     scale: 1.2
@@ -34,6 +36,7 @@
     - BSSDrone #backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
+  sponsorOnly: true
   components:
   - type: TraitGiant
     scale: 1.3
