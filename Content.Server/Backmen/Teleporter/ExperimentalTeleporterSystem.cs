@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Body.Systems;
-using Content.Server.Backmen.Standing;
+using Content.Server.Standing;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Interaction.Events;
@@ -25,7 +25,7 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly LayingDownSystem _layingDown = default!;
+    [Dependency] private readonly SharedLayingDownSystem _layingDown = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
