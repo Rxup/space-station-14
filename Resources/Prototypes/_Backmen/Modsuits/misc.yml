@@ -14,21 +14,6 @@
           - NukeOpsUplink
 
 - type: listing
-  id: ModsuitOperativeCMDSealed
-  name: uplink-modsuitoperativecmd-name
-  description: uplink-modsuitoperativecmd-desc
-  productEntity: ClothingControlModsuitPMCSealed
-  cost:
-    Telecrystal: 30
-  categories:
-    - UplinkWearables
-  conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
   id: ModsuitNukeOperativeSealed
   name: uplink-modsuitoperative-name
   description: uplink-modsuitoperative-desc
