@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetModsuitCEBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   abstract: true
   name: salvage modsuit helmet
   description: Special hardsuit helmet, made for the captain of the station.
@@ -26,16 +26,6 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: IdentityBlocker
-  # - type: QualityOfItem
-  #   qualityWeights:
-  #     0: 0
-  #     1: 0
-  #     2: 0
-  #     3: 80
-  #     4: 20
-  #     5: 0
-  #     6: 0
-  # ЭТО РАЗКОММЕНТИТь!!!
 
 - type: entity
   parent: ClothingHeadHelmetModsuitCEBase

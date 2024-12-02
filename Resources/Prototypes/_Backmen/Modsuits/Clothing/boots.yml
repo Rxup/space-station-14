@@ -1,7 +1,7 @@
  - type: entity
    parent: ClothingShoesBase
    id: ClothingBootsModsuitCESealed
-   noSpawn: true
+   categories: [ HideSpawnMenu ]
    name: salvage modsuit helmet
    description: Special hardsuit helmet, made for the captain of the station.
    components:

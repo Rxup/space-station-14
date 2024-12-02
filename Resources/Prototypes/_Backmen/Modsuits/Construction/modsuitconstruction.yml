@@ -228,7 +228,7 @@
     state: cmo-plating
   - type: Tag
     tags:
-    - PlatingCMOModsuit
+    - PlatingParamedicModsuit
 
 - type: entity
   parent: BaseItem
