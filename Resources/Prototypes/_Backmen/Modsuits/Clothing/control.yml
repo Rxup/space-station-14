@@ -1,0 +1,527 @@
+- type: entity #Commented value in armor = overall defence
+  parent: ClothingBackpack
+  id: ClothingControlModsuitBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Modsuits/advanced.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Back/Modsuits/advanced.rsi
+    equipSound: /Audio/Backmen/Modsuits/ballin.ogg
+    unequipSound: /Audio/Backmen/Modsuits/ballout.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Shock: 0.7
+        Caustic: 0.7
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCESealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,3
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: UnpoweredFlashlight
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+  # - type: QualityOfItem
+  #   qualityWeights:
+  #     0: 0
+  #     1: 0
+  #     2: 0
+  #     3: 80
+  #     4: 20
+  #     5: 0
+  #     6: 0
+  #  СВЕРХУ ЭТО РАЗКОММЕНТИТь!!!
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitCESealed
+  name: Продвинутый Р.И.Г.
+  description: Усовершенствованная версия классического костюма Nakamura Engineering, сияющая белым, нержавеющим и огнестойким лаком.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/advanced.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/advanced.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCESealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitAdvanced
+    node: modsuitadvanced
+  - type: StaticPrice
+    price: 67000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitEngineerSealed
+  name: Инженерный Р.И.Г.
+  description: Инженерный костюм с высокой термостойкостью и устойчивостью к ударам тока. Классика Nakamura Engineering.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/engineer.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/engineer.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitEngineerSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitEngineer
+    node: modsuitengineer
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitAtmosphericsSealed
+  name: Атмосферный Р.И.Г.
+  description: Атмосферостойкий костюм от Nakamura Engineering, обеспечивающий наивысшую термостойкость по сравнению с инженерным костюмом.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/atmospheric.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/atmospheric.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitAtmosphericsSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitAtmospheric
+    node: modsuitatmospheric
+  - type: StaticPrice
+    price: 5500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitRNDSealed
+  name: Исследовательский Р.И.Г.
+  description: Частный военный костюм EOD от Aussec Armory, предназначенный для исследования взрывных устройств. Громоздкий.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/rnd.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/rnd.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitRNDSealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    grid:
+    - 0,0,9,6
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitRND
+    node: modsuitrnd
+  - type: StaticPrice
+    price: 6500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitMedicalSealed
+  name: Медицинский Р.И.Г.
+  description: Легкий костюм от DeForest Medical Corporation, упрощает передвижение.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/medical.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/medical.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitMedicalSealed
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitMedical
+    node: modsuitmedical
+  - type: StaticPrice
+    price: 4000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitParamedicSealed
+  name: Спасательный Р.И.Г.
+  description: Усовершенствованная версия медицинского костюма DeForest Medical Corporation, разработанная для быстрого спасения тел из самых опасных сред.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/cmo.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/cmo.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitParamedicSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitRescue
+    node: modsuitrescue
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitCivillianSealed
+  name: Гражданский Р.И.Г.
+  description: Костюм гражданского класса от Nakamura Engineering не предлагает ничего, кроме немного более быстрого передвижения чем другие костюмы.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/civillian.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/civillian.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCivillianSealed
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitCivillian
+    node: modsuitcivillian
+  - type: StaticPrice
+    price: 2900
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitMagnateSealed
+  name: Роскошный Р.И.Г.
+  description: Необычный, очень защищенный костюм для капитанов Nanotrasen. Высокая защита от ударов тока, огня и кислоты, при этом обладая большой емкостью и высокой скоростью.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/magnate.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/magnate.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitMagnateSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitMagnate
+    node: modsuitmagnates
+  - type: StaticPrice
+    price: 35000 # magnate = роскошный
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitSecuritySealed
+  name: Охранный Р.И.Г.
+  description: Защитный костюм Apadyne Technologies, обеспечивающий защиту от ударов и пуль за счет вместимости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/security.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/security.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitSecuritySealed
+  - type: Storage
+    grid:
+    - 0,0,6,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitSecurity
+    node: modsuitsecurity
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitHOSSealed
+  name: Гвардейский Р.И.Г.
+  description: Усовершенствованный защитный костюм Apadyne Technologies, обеспечивающий большую скорость и защиту от огня, чем стандартная модель безопасности.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/hos.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/hos.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitHOSSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitHOS
+    node: modsuithos
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitSalvageSealed
+  name: Утилизаторский Р.И.Г.
+  description: Стандартный Р.И.Г, необходимый утилизаторам в борьбе с местной фауной. Произведено "Накамура Инжениринг".
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/salvage.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/salvage.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitSalvageSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitSalvage
+    node: modsuitsalvage
+  - type: StaticPrice
+    price: 4500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitMinerSealed
+  name: Шахтёрский Р.И.Г.
+  description: Мощный шахтерский костюм Nanotrasen, используемый на планете Лаваленд. Редкость на космических станциях.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/miner.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/miner.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitMinerSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 9000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitOperativeSealed
+  name: Кроваво-красный Р.И.Г.
+  description: Р.И.Г., разработанный Мародёрами, предлагающий броню, признанную незаконной в болльшей части обозримого космоса.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/nukeops.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/nukeops.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitOperativeSealed
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Tag
+    tags:
+      - WhitelistChameleon
+  - type: StaticPrice
+    price: 50000
+
+- type: entity
+  parent: ClothingControlModsuitOperativeSealed
+  id: ClothingControlModsuitHonkOperativeSealed #same as nukeops
+  name: Кроваво-красный-забавный Р.И.Г.
+  description: Упоси вас господь, если вы найдёте этот Р.И.Г. на станции. Только смешным и одновременно опасным персонам разрешено надеть его.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/nukeopsclown.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/nukeopsclown.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitHonkOperativeSealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    grid:
+    - 0,0,8,4
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 65000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitOperativeCMDSealed #20 tc dead squad almost
+  name: Кроваво-красно-серый Р.И.Г.
+  description: Р.И.Г., являющейся чуть улучшенным экземпляром обычного кроваво-красного Р.И.Г.а.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/nukeopscmd.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/nukeopscmd.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitOperativeCMDSealed
+  - type: Storage
+    grid:
+    - 0,0,9,6
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 150000
+
+- type: entity
+  parent: ClothingControlModsuitOperativeSealed #same as oper, only GM-s can spawn
+  id: ClothingControlModsuitCCSealed
+  name: Корпоративный Р.И.Г.
+  description: Продвинутый Р.И.Г, выдающийся особо отличившимся офицерам Nanotrasen.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/corporate.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/corporate.rsi
+    equipSound: /Audio/Items/Modsuits/ballin.ogg
+    unequipSound: /Audio/Items/Modsuits/ballout.ogg
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCCSealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 80000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitApocryphalSealed
+  name: Апокрифический Р.И.Г.
+  description: Р.И.Г. печально известного отряда. Способен выдержать почти прямой удар БСА. Само то, что бы пережить апокалипсис или устроить его.
+  components:
+  - type: Sprite
+    sprite: Backmen/Modsuits/Clothing/Back/apocryphal.rsi
+  - type: Clothing
+    sprite: Backmen/Modsuits/Clothing/Back/apocryphal.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitApocryphalSealed
+  - type: Storage
+    grid:
+    - 0,0,9,6
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 150000

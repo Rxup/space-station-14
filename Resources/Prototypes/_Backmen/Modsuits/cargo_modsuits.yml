@@ -1,0 +1,27 @@
+- type: entity
+  id: CrateModsuitsBasic
+  parent: CrateEngineeringSecure
+  components:
+  - type: StorageFill
+    contents:
+      - id: CoreModsuitConstructing
+      - id: CoreModsuitConstructing
+      - id: CoreModsuitConstructing
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2500 #no tiding only teamwork
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: cargoProduct
+  id: CargoModsuitsBasic
+  icon:
+    sprite: Backmen/Modsuits/constructing_modsuit.rsi
+    state: mod-core
+  product: CrateModsuitsBasic
+  cost: 1500
+  category: Инженерное дело
+  group: market
