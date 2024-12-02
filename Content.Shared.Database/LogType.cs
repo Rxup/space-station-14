@@ -122,4 +122,8 @@ public enum LogType
     Psionics = 121,
 
 
+    /// <summary>
+    /// A ghost warped to an entity through the ghost warp menu.
+    /// </summary>
+    GhostWarp = 95,
 }

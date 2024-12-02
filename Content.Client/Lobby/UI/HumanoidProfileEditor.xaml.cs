@@ -9,6 +9,8 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Corvax.CCCVars;
@@ -50,6 +52,7 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        private readonly ISharedSponsorsManager _clientSponsorsManager;
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -114,7 +117,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            ISharedSponsorsManager clientSponsorsManager)
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -124,6 +128,7 @@ namespace Content.Client.Lobby.UI
             _playerManager = playerManager;
             _prototypeManager = prototypeManager;
             _markingManager = markings;
+            _clientSponsorsManager = clientSponsorsManager;
             _preferencesManager = preferencesManager;
             _resManager = resManager;
             _requirements = requirements;
@@ -589,6 +594,16 @@ namespace Content.Client.Lobby.UI
                 {
                     if (selector == null)
                         continue;
+
+                    //backmen-start: sponsor traits
+                    if (selector.Trait.SponsorOnly && !_clientSponsorsManager.GetClientPrototypes().Contains(selector.Trait.ID))
+                    {
+                        selector.Checkbox.Label.FontColorOverride = Color.Gray;
+                        selector.Checkbox.Disabled = true;
+                        selector.Checkbox.Pressed = false;
+                        selector.Checkbox.Label.Text += $" ({Loc.GetString("sponsor-only")})";
+                    }
+                    //backmen-end: sponsor traits
 
                     if (category is { MaxTraitPoints: >= 0 } &&
                         selector.Cost + selectionCount > category.MaxTraitPoints)

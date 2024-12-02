@@ -3617,8 +3617,6 @@ entities:
     - type: AccessReader
       access:
       - - CCCargo
-    - type: GridFill
-      addComponents: []
   - uid: 116
     components:
     - type: Transform
@@ -4234,6 +4232,20 @@ entities:
     components:
     - type: Transform
       pos: -10.652057,6.7775984
+      parent: 2
+- proto: AtmosDeviceFanDirectional
+  entities:
+  - uid: 7058
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -16.5,27.5
+      parent: 2
+  - uid: 7059
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -16.5,25.5
       parent: 2
 - proto: AtmosDeviceFanTiny
   entities:
@@ -28121,7 +28133,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
-- proto: GunSafeSubMachineGunVector
+- proto: GunSafeSubMachineGunDrozd
   entities:
   - uid: 4390
     components:
