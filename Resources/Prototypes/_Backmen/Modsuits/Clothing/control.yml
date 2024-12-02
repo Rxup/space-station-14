@@ -88,9 +88,6 @@
     radius: 12
     softness: 20
     autoRot: true
-  - type: Construction
-    graph: ModsuitAdvanced
-    node: modsuitadvanced
   - type: StaticPrice
     price: 67000
 
@@ -199,9 +196,6 @@
     radius: 12
     softness: 20
     autoRot: true
-  - type: Construction
-    graph: ModsuitMedical
-    node: modsuitmedical
   - type: StaticPrice
     price: 4000
 
@@ -280,9 +274,6 @@
     radius: 12
     softness: 20
     autoRot: true
-  - type: Construction
-    graph: ModsuitMagnate
-    node: modsuitmagnates
   - type: StaticPrice
     price: 35000 # magnate = роскошный
 
@@ -336,9 +327,6 @@
     radius: 12
     softness: 20
     autoRot: true
-  - type: Construction
-    graph: ModsuitHOS
-    node: modsuithos
   - type: StaticPrice
     price: 10000
 
