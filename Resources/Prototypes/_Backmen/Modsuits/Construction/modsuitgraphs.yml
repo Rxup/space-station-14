@@ -242,29 +242,6 @@
       entity: ClothingControlModsuitAtmosphericsSealed
 
 - type: constructionGraph
-  id: ModsuitAdvanced
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: modsuitadvanced
-          steps:
-            - tag: PlatingCEModsuit
-              name: покрытие продвинутого РИГ-а
-              icon:
-                sprite: Backmen/Modsuits/plating.rsi
-                state: ce-plating
-              doAfter: 2
-            - tag: ModsuitControlEnd
-              name: собранный каркас РИГ-а
-              icon:
-                sprite: Backmen/Modsuits/constructing_modsuit.rsi
-                state: CORE-equip8
-              doAfter: 2
-    - node: modsuitadvanced
-      entity: ClothingControlModsuitCESealed
-
-- type: constructionGraph
   id: ModsuitRescue
   start: start
   graph:
@@ -286,49 +263,3 @@
               doAfter: 2
     - node: modsuitrescue
       entity: ClothingControlModsuitParamedicSealed
-
-- type: constructionGraph
-  id: ModsuitMagnate
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: modsuitmagnate
-          steps:
-            - tag: PlatingMagnateModsuit
-              name: покрытие РИГ-а капитана
-              icon:
-                sprite: Backmen/Modsuits/plating.rsi
-                state: magnate-plating
-              doAfter: 2
-            - tag: ModsuitControlEnd
-              name: собранный каркас РИГ-а
-              icon:
-                sprite: Backmen/Modsuits/constructing_modsuit.rsi
-                state: CORE-equip8
-              doAfter: 2
-    - node: modsuitmagnate
-      entity: ClothingControlModsuitMagnateSealed
-
-- type: constructionGraph
-  id: ModsuitHOS
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: modsuithos
-          steps:
-            - tag: PlatingHOSModsuit
-              name: покрытие РИГ-а главы службы безопасности
-              icon:
-                sprite: Backmen/Modsuits/plating.rsi
-                state: security-plating
-              doAfter: 2
-            - tag: ModsuitControlSafeguard
-              name: собранный каркас РИГ-а
-              icon:
-                sprite: Backmen/Modsuits/constructing_modsuit.rsi
-                state: CORE-equip8
-              doAfter: 2
-    - node: modsuithos
-      entity: ClothingControlModsuitHOSSealed
