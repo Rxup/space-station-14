@@ -1,2 +1,3 @@
-﻿uplink-ebow-name = Small energy crossbow
-uplink-ebow-desc = A fairly quiet weapon that automatically reloads and stuns. It goes well with other types of weapons.
+﻿uplink-betrayal-knife-name = Experimental syndicate teleporter
+uplink-betrayal-knife-desc = Syndicate teleporter, when used, moves 3-8 meters forward. In case of teleportation into a wall, uses emergency teleportation. Has 4 charge.
+

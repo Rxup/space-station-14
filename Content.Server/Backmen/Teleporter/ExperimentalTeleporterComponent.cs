@@ -24,5 +24,5 @@ public sealed partial class ExperimentalTeleporterComponent : Component
     public string? TeleportOutEffect = "ExperimentalTeleporterOutEffect";
 
     [DataField]
-    public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Backman/Object/Devices/experimentalsyndicateteleport.ogg");
+    public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Backmen/Object/Devices/experimentalsyndicateteleport.ogg");
 }
