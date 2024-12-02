@@ -10470,7 +10470,7 @@ entities:
       pos: 11.5,-16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -32314.648
+      secondsUntilStateChange: -32566.799
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13875,6 +13875,18 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: Biogenerator
+  entities:
+  - uid: 19044
+    components:
+    - type: Transform
+      pos: 11.5,10.5
+      parent: 1
+  - uid: 19045
+    components:
+    - type: Transform
+      pos: -32.5,42.5
+      parent: 1
 - proto: BiomassReclaimer
   entities:
   - uid: 3053
@@ -60517,7 +60529,7 @@ entities:
       pos: 31.5,35.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -48740.926
+      secondsUntilStateChange: -48993.08
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 1086.7989152
@@ -91911,7 +91923,7 @@ entities:
       content: >+
         [bold]КАК ЗАПУСТИТЬ ДВИГАТЕЛЬ СУПЕРМАТЕРИИ:[/bold]
 
-        1. Настройте Дистро в атмосферном отсеке.
+        1. Включите подачу азота в Атмосферном отсеке, от газодобытчика до насоса в почти самом низу атмоса.
 
         2. Включите все фильтры, насосы и охладители в этой комнате. [bold]Объёмный насос включите в последнюю очередь![/bold]
 
@@ -91921,7 +91933,7 @@ entities:
 
         5. Включите все коллекторы радиации, заправьте пустые коллекторы.
 
-        6. Включите эммитеры и закройте ставни.
+        6. [bold]Только теперь включите эммитеры[/bold] и закройте ставни.
 
 
         [bold]ЧТО ДЕЛАТЬ ПРИ ПЕРЕГРУЗКЕ СУПЕРМАТЕРИИ:[/bold]
