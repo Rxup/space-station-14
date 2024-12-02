@@ -1,3 +1,4 @@
+using Content.Shared.Ghost;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Body.Systems;
