@@ -2451,6 +2451,7 @@
         state: tarantula
   - type: Physics
   - type: Arachne
+  - type: Cocooner
   - type: Puller
     needsHands: false
   - type: BloodSucker

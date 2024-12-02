@@ -622,8 +622,9 @@ namespace Content.Shared.Preferences
                 .ToList();
 
             var traits = TraitPreferences
-                         .Where(prototypeManager.HasIndex)
-                         .ToList();
+                .Where(x => prototypeManager.TryIndex(x, out var trait)
+                            && (!trait.SponsorOnly || sponsorPrototypes.Contains(x.Id))) //backmen: sponsor traits
+                .ToList();
 
             Name = name;
             FlavorText = flavortext;
