@@ -24,24 +24,13 @@
      slot: head
      requiredSlot: feet
    - type: Magboots
-     toggleAction: ActionToggleMagbootsModsuitAdvanced
    - type: ClothingSpeedModifier
      walkModifier: 0.9
      sprintModifier: 0.9
-     enabled: false
    - type: NoSlip
    - type: Tag
      tags:
      - WhitelistChameleon
-
- - type: entity
-   id: ActionToggleMagbootsModsuitAdvanced
-   parent: ActionToggleMagboots
-   noSpawn: true
-   components:
-   - type: InstantAction
-     icon: { sprite: Backmen/Modsuits/Clothing/Shoes/advanced.rsi, state: icon }
-     iconOn: Backmen/Modsuits/Clothing/Shoes/advanced.rsi/icon-on.png
 
  - type: entity
    parent: ClothingShoesBase

@@ -485,8 +485,8 @@
     sprite: Backmen/Modsuits/Clothing/Back/corporate.rsi
   - type: Clothing
     sprite: Backmen/Modsuits/Clothing/Back/corporate.rsi
-    equipSound: /Audio/Items/Modsuits/ballin.ogg
-    unequipSound: /Audio/Items/Modsuits/ballout.ogg
+    equipSound: /Audio/Backmen/Modsuits/ballin.ogg
+    unequipSound: /Audio/Backmen/Modsuits/ballout.ogg
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitCCSealed
     requiredSlot: back

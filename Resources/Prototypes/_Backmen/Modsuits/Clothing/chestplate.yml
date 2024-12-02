@@ -69,7 +69,8 @@
     slot: gloves
   - type: Insulated
   - type: TemperatureProtection
-    coefficient: 0.00000001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
 
 - type: entity
   parent: ClothingOuterChestplateModsuitSealedBase

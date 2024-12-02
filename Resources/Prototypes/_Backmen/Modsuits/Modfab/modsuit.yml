@@ -136,7 +136,6 @@
     requirements:
       MatterBin: 1
       Manipulator: 1
-    materialRequirements:
       Glass: 2
   - type: GuideHelp
     guides:
