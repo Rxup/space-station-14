@@ -82,7 +82,7 @@
     delay: 1.3
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 4
+    fireRate: 3
     cameraRecoilScalar: 2
   - type: ItemSlots
     slots:
