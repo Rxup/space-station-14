@@ -24,7 +24,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
-
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Body.Systems;
