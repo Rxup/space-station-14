@@ -21,17 +21,6 @@
   objectType: Item
 
 - type: construction
-  name: Медицинский Р.И.Г
-  id: ModsuitMedical
-  graph: ModsuitMedical
-  startNode: start
-  targetNode: modsuitmedical
-  category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Backmen/Modsuits/Clothing/Back/medical.rsi, state: icon }
-  objectType: Item
-
-- type: construction
   name: Научный Р.И.Г
   id: ModsuitRND
   graph: ModsuitRND
@@ -76,17 +65,6 @@
   objectType: Item
 
 - type: construction
-  name: Продвинутый Р.И.Г
-  id: ModsuitAdvanced
-  graph: ModsuitAdvanced
-  startNode: start
-  targetNode: modsuitadvanced
-  category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Backmen/Modsuits/Clothing/Back/advanced.rsi, state: icon }
-  objectType: Item
-
-- type: construction
   name: Спасательный Р.И.Г
   id: ModsuitRescue
   graph: ModsuitRescue
@@ -95,26 +73,4 @@
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
   icon: { sprite: Backmen/Modsuits/Clothing/Back/cmo.rsi, state: icon }
-  objectType: Item
-
-- type: construction
-  name: Роскошный Р.И.Г
-  id: ModsuitMagnate
-  graph: ModsuitMagnate
-  startNode: start
-  targetNode: modsuitmagnate
-  category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Backmen/Modsuits/Clothing/Back/magnate.rsi, state: icon }
-  objectType: Item
-
-- type: construction
-  name: Гвардейский Р.И.Г
-  id: ModsuitHOS
-  graph: ModsuitHOS
-  startNode: start
-  targetNode: modsuithos
-  category: construction-category-clothing
-  description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Backmen/Modsuits/Clothing/Back/hos.rsi, state: icon }
   objectType: Item

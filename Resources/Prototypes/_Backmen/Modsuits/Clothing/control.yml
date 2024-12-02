@@ -55,16 +55,6 @@
         minValue: 0.1
         maxValue: 2.0
         isLooped: true
-  # - type: QualityOfItem
-  #   qualityWeights:
-  #     0: 0
-  #     1: 0
-  #     2: 0
-  #     3: 80
-  #     4: 20
-  #     5: 0
-  #     6: 0
-  #  СВЕРХУ ЭТО РАЗКОММЕНТИТь!!!
 
 - type: entity
   parent: ClothingControlModsuitBase
@@ -221,9 +211,6 @@
     radius: 12
     softness: 20
     autoRot: true
-  - type: Construction
-    graph: ModsuitRescue
-    node: modsuitrescue
   - type: StaticPrice
     price: 8000
 
