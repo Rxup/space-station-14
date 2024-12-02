@@ -73,7 +73,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledAKSU
   cost:
-    Telecrystal: 17
+    Telecrystal: 15
   categories:
   - UplinkBundles
 
@@ -95,7 +95,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledStG44
   cost:
-    Telecrystal: 17
+    Telecrystal: 18
   categories:
   - UplinkBundles
 
@@ -117,7 +117,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledVector
   cost:
-    Telecrystal: 17
+    Telecrystal: 18
   categories:
   - UplinkBundles
 
@@ -240,7 +240,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/gl-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledGL79
   cost:
-    Telecrystal: 25
+    Telecrystal: 55
   categories:
   - UplinkBundles
 
@@ -253,9 +253,9 @@
     contents:
     - id: WeaponLauncherGL70
     - id: GrenadeFrag
-      amount: 2
+      amount: 6
     - id: GrenadeBlast
-      amount: 4
+      amount: 6
 
 #- type: listing
 #  id: UplinkGrenadeLauncherM81Bundle
@@ -538,9 +538,6 @@
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
   productEntity: EnergyDomeGeneratorPersonalSyndie
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4
   cost:
     Telecrystal: 6
   categories:
