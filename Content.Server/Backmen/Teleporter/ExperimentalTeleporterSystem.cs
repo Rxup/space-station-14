@@ -55,7 +55,8 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
         Teleport(args.User, uid, component, coords, oldCoords);
 
         if (!TryCheckWall(coords)
-            || EmergencyTeleportation(args.User, uid, component, xform, oldCoords, newOffset))
+            || EmergencyTeleportation(args.User, uid, component, xform, oldCoords, newOffset)
+            || HasComp<GhostComponent>(args.User))
             return;
 
         _bodySystem.GibBody(args.User, true, splatModifier: 3F);
