@@ -6,6 +6,8 @@ using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Station;
+using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -40,6 +42,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
+    [Dependency] private readonly ISharedSponsorsManager _clientSponsorsManager = default!;
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
@@ -273,7 +276,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _prototypeManager,
             _resourceCache,
             _requirements,
-            _markings);
+            _markings,
+            _clientSponsorsManager);
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 

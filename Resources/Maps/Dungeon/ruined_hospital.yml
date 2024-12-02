@@ -22,7 +22,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: LoadedMap
     - type: MapGrid
       chunks:
@@ -1239,8 +1242,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: GridTree
-    - type: MovedGrids
     - type: Fixtures
       fixtures: {}
 - proto: APCBasic
@@ -1303,6 +1304,18 @@ entities:
     components:
     - type: Transform
       pos: 19.5,9.5
+      parent: 1
+- proto: BookRandomStory
+  entities:
+  - uid: 138
+    components:
+    - type: Transform
+      pos: 17.5,3.5
+      parent: 1
+  - uid: 460
+    components:
+    - type: Transform
+      pos: 19.5,10.5
       parent: 1
 - proto: Bookshelf
   entities:
@@ -4290,22 +4303,24 @@ entities:
     - type: Transform
       pos: 17.5,4.5
       parent: 1
-- proto: GeneratorBasic
+- proto: GeneratorBasic15kW
   entities:
-  - uid: 651
-    components:
-    - type: Transform
-      pos: 32.5,2.5
-      parent: 1
   - uid: 822
     components:
     - type: Transform
-      pos: 32.5,3.5
+      pos: 32.5,4.5
       parent: 1
   - uid: 823
     components:
     - type: Transform
-      pos: 32.5,4.5
+      pos: 32.5,2.5
+      parent: 1
+- proto: GeneratorRTG
+  entities:
+  - uid: 651
+    components:
+    - type: Transform
+      pos: 32.5,3.5
       parent: 1
 - proto: HospitalCurtains
   entities:
@@ -4861,18 +4876,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 27.5,2.5
-      parent: 1
-- proto: BookRandomStory
-  entities:
-  - uid: 138
-    components:
-    - type: Transform
-      pos: 17.5,3.5
-      parent: 1
-  - uid: 460
-    components:
-    - type: Transform
-      pos: 19.5,10.5
       parent: 1
 - proto: RandomDrinkGlass
   entities:

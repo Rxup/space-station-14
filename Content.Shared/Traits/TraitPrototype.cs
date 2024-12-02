@@ -20,6 +20,12 @@ public sealed partial class TraitPrototype : IPrototype
     public LocId Name { get; private set; } = string.Empty;
 
     /// <summary>
+    /// Is sponsorOnly
+    /// </summary>
+    [DataField]
+    public bool SponsorOnly { get; private set; } = false;
+
+    /// <summary>
     /// The description of this trait.
     /// </summary>
     [DataField]
