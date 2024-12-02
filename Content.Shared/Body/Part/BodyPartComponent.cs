@@ -78,7 +78,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     ///     Shitmed Change: How long it takes to run another self heal tick on the body part.
     /// </summary>
     [DataField]
-    public float HealingTime = 30;
+    public float HealingTime = 10;
 
     /// <summary>
     ///     Shitmed Change: How long it has been since the last self heal tick on the body part.
@@ -89,7 +89,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     ///     Shitmed Change: How much health to heal on the body part per tick.
     /// </summary>
     [DataField]
-    public float SelfHealingAmount = 5;
+    public float SelfHealingAmount = 0.15f;
 
     /// <summary>
     ///     Shitmed Change: The name of the container for this body part. Used in insertion surgeries.
