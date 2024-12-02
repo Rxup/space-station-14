@@ -356,6 +356,18 @@ public abstract class SharedLayingDownSystem : EntitySystem
         _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState: standingState);
         return true;
     }
+
+    // WWDP
+    public void LieDownInRange(EntityUid uid, EntityCoordinates coords, float range = 0.4f)
+    {
+        var ents = new HashSet<Entity<LayingDownComponent>>();
+        _lookup.GetEntitiesInRange(coords, range, ents);
+
+        foreach (var ent in ents.Where(ent => ent.Owner != uid))
+        {
+            TryLieDown(ent, behavior: DropHeldItemsBehavior.DropIfStanding);
+        }
+    }
 }
 
 [Serializable, NetSerializable]
