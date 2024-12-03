@@ -220,6 +220,7 @@
       - id: XenoRCD
       - id: WeaponXenoHealingSpit
       - id: PinpointerXeno
+  - type: XenoAcidSpiller
   - type: Destructible
     thresholds:
     - trigger:
