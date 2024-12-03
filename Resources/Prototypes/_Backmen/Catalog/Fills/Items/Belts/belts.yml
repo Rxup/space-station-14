@@ -360,7 +360,7 @@
       - 0,0,5,4
     - type: StorageFill
       contents:
-        - id: WeaponDisablerSuper
+        - id: WeaponDominatorNT
         - id: StunbatonSuper
         - id: GrenadeFlashBang
         - id: GrenadeFlashBang

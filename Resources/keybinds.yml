@@ -605,9 +605,6 @@ binds:
 - function: ToggleStanding
   type: State
   key: V
-- function: OfferItem
-  type: State
-  key: F
 # Targeting
 - function: TargetHead
   type: State

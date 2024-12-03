@@ -88,8 +88,8 @@ namespace Content.Client.Access.UI
                 button.Disabled = !interfaceEnabled;
                 if (interfaceEnabled)
                 {
-                    button.Pressed = state.TargetAccessReaderIdAccessList?.Contains(accessName) ?? false;
-                    button.Disabled = (!state.AllowedModifyAccessList?.Contains(accessName)) ?? true;
+                    button.Pressed = state.TargetAccessReaderIdAccessList?.Select(x => x.Id).Contains(accessName) ?? false;
+                    button.Disabled = (!state.AllowedModifyAccessList?.Select(x => x.Id).Contains(accessName)) ?? true;
                 }
             }
         }

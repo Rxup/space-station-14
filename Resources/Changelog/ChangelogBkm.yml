@@ -738,3 +738,36 @@
   id: 46
   time: '2024-11-30T11:00:53.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/934
+- author: Rouden
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435 \u0434\u043E\
+      \ \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0439 \u0432\u0435\u0440\u0441\
+      \u0438\u0438 Upstream 30.11.2024."
+    type: Tweak
+  id: 47
+  time: '2024-12-01T03:47:58.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/964
+- author: KayzelW
+  changes:
+  - message: "\u0423\u0431\u0440\u0430\u043D\u0430 \u0441\u0438\u0441\u0442\u0435\u043C\
+      \u0430 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u043F\u0440\u0435\u0434\
+      \u043C\u0435\u0442\u043E\u0432 (\u043D\u0430\u0433\u043D\u0443\u043B\u0438 \u0441\
+      \u0435\u0440\u0432\u0435\u0440)"
+    type: Remove
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0430 \u0441\u0438\u0441\u0442\
+      \u0435\u043C\u0430 \u043A\u043E\u043A\u043E\u043D\u043E\u0432 (\u043F\u043E\u0440\
+      \u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0430 \u0441 EE)"
+    type: Tweak
+  id: 48
+  time: '2024-12-01T17:32:04.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/968
+- author: no_mad
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D \u0431\u0430\u043B\u0430\u043D\
+      \u0441 \u043D\u0435\u043A\u043E\u0442\u043E\u0440\u043E\u0433\u043E \u0432\u043E\
+      \u043E\u0440\u0443\u0436\u0435\u043D\u0438\u044F \u0438 \u043E\u0442\u0440\u044F\
+      \u0434\u0430 \u0410\u043B\u044C\u0444\u0430 1."
+    type: Tweak
+  id: 49
+  time: '2024-12-02T11:24:28.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/972
