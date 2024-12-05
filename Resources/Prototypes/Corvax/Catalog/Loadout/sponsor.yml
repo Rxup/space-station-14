@@ -1,36 +1,4 @@
-﻿# OopsieDoopsie
-- type: bkmloadout
-  id: ClothingOuterAtmosianBomberJacketLoadout
-  entity: ClothingOuterAtmosianBomberJacket
-  sponsorOnly: true
-
-- type: bkmloadout
-  id: ClothingMaskGasAtmosianLoadout
-  entity: ClothingMaskGasAtmosian
-  sponsorOnly: true
-
-- type: bkmloadout
-  id: ClothingCloakAtmosianLoadout
-  entity: ClothingCloakAtmosian
-  sponsorOnly: true
-
-# Fezory
-- type: bkmloadout
-  id: ClothingMaskSkullLoadout
-  entity: ClothingMaskSkull
-  sponsorOnly: true
-
-- type: bkmloadout
-  id: ClothingCloakGamerLoadout
-  entity: ClothingCloakGamer
-  sponsorOnly: true
-
-- type: bkmloadout
-  id: ClothingUniformJumpsuitSkeletonLoadout
-  entity: ClothingUniformJumpsuitSkeleton
-  sponsorOnly: true
-
-# NEKISH
+﻿# NEKISH
 - type: bkmloadout
   id: OldHoSJumpsuitLoadout
   entity: ClothingUniformJumpsuitHoSOld
@@ -79,12 +47,6 @@
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-# ken41k
-- type: bkmloadout
-  id: DivineWatchLoadout
-  entity: ClothingHandsWatchDivine
-  sponsorOnly: true
-
 # jesuisunfou
 - type: bkmloadout
   id: OldUSSPGlovesLoadout
@@ -115,9 +77,3 @@
   entity: ClothingShoesUSSPBlack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity, IAA]
-
-# ondapapers
-- type: bkmloadout
-  id: FancyCrownLoadout
-  entity: ClothingHeadHatFancyCrown
-  sponsorOnly: true
