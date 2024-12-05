@@ -1,5 +1,4 @@
-﻿using Content.Server.Atmos;
-using Content.Server.Atmos.Components;
+﻿using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Body.Components;
 using Content.Server.Body.Components;
@@ -8,10 +7,8 @@ using Content.Server.Chat.Managers;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Mind;
 using Content.Server.NPC;
-using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
-using Content.Server.Roles;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Atmos;
@@ -35,7 +32,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Blob;
+namespace Content.Server.Backmen.Blob.Systems;
 
 public sealed class ZombieBlobSystem : SharedZombieBlobSystem
 {

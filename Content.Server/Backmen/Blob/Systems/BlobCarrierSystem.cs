@@ -14,7 +14,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Blob;
+namespace Content.Server.Backmen.Blob.Systems;
 
 public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
 {
