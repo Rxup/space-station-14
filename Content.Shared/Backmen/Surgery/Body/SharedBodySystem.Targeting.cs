@@ -140,7 +140,7 @@ public partial class SharedBodySystem
             else if (args.Origin.HasValue && _queryTargeting.TryComp(args.Origin.Value, out var targeter))
             {
                 targetPart = targeter.Target;
-                // If the target is Torso then have a 33% chance to hit another part
+                // If the target is Torso then have a 33% chance to also hit another part
                 if (targetPart.Value == TargetBodyPart.Torso)
                 {
                     var additionalPart = GetRandomPartSpread(_random, 10);
@@ -259,12 +259,10 @@ public partial class SharedBodySystem
     /// <summary>
     /// Gets the random body part rolling a number between 1 and 9, and returns
     /// Torso if the result is 9 or more. The higher torsoWeight is, the higher chance to return it.
-    /// By default, the chance to return Torso is 50%.
     /// </summary>
     private static TargetBodyPart GetRandomPartSpread(IRobustRandom random, ushort torsoWeight = 9)
     {
         const int targetPartsAmount = 9;
-        // 5 = amount of target parts except Torso
         return random.Next(1, targetPartsAmount + torsoWeight) switch
         {
             1 => TargetBodyPart.Head,
