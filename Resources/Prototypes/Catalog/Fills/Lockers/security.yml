@@ -156,6 +156,7 @@
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
       - id: HandLabeler
+      - id: BoxTapeRecorder
 
 - type: entity
   id: ClosetBombFilled
