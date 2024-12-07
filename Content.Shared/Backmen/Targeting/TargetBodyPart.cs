@@ -22,9 +22,20 @@ public enum TargetBodyPart : ushort
     RightLeg = 1 << 9,
     RightFoot = 1 << 10,
 
+    LeftFullArm = LeftArm | LeftHand,
+    LeftFullLeg = LeftLeg | LeftFoot,
+    RightFullArm = RightArm | RightHand,
+    RightFullLeg = RightLeg | RightFoot,
+
     Hands = LeftHand | RightHand,
     Arms = LeftArm | RightArm,
     Legs = LeftLeg | RightLeg,
     Feet = LeftFoot | RightFoot,
+
+    FullArms = Arms | Hands,
+    FullLegs = Feet | Legs,
+
+    BodyMiddle = Torso | Groin | FullArms,
+
     All = Head | Torso | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
 }

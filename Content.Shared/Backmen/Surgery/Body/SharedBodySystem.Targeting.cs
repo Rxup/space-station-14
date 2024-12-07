@@ -19,6 +19,7 @@ using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Content.Shared.Inventory;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
@@ -140,7 +141,7 @@ public partial class SharedBodySystem
             else if (args.Origin.HasValue && _queryTargeting.TryComp(args.Origin.Value, out var targeter))
             {
                 targetPart = targeter.Target;
-                // If the target is Torso then have a 33% chance to hit another part
+                // If the target is Torso then have a 33% chance to also hit another part
                 if (targetPart.Value == TargetBodyPart.Torso)
                 {
                     var additionalPart = GetRandomPartSpread(_random, 10);
@@ -181,23 +182,20 @@ public partial class SharedBodySystem
         if (args.TargetPart != null)
         {
             var (targetType, _) = ConvertTargetBodyPart(args.TargetPart.Value);
-            args.Damage = args.Damage * GetPartDamageModifier(targetType);
+            args.Damage *= GetPartDamageModifier(targetType);
         }
     }
 
     private void OnPartDamageModify(Entity<BodyPartComponent> partEnt, ref DamageModifyEvent args)
     {
         if (partEnt.Comp.Body != null
-            && TryComp(partEnt.Comp.Body.Value, out DamageableComponent? damageable)
-            && damageable.DamageModifierSetId != null
-            && _prototypeManager.TryIndex<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
-            // TODO: We need to add a check to see if the given armor covers this part to cancel or not.
-            args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modifierSet);
+            && TryComp(partEnt.Comp.Body.Value, out InventoryComponent? inventory))
+            _inventory.RelayEvent((partEnt.Comp.Body.Value, inventory), ref args);
 
         if (_prototypeManager.TryIndex<DamageModifierSetPrototype>("PartDamage", out var partModifierSet))
             args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, partModifierSet);
 
-        args.Damage = args.Damage * GetPartDamageModifier(partEnt.Comp.PartType);
+        args.Damage *= GetPartDamageModifier(partEnt.Comp.PartType);
     }
 
     private bool TryChangePartDamage(EntityUid entity,
@@ -259,12 +257,10 @@ public partial class SharedBodySystem
     /// <summary>
     /// Gets the random body part rolling a number between 1 and 9, and returns
     /// Torso if the result is 9 or more. The higher torsoWeight is, the higher chance to return it.
-    /// By default, the chance to return Torso is 50%.
     /// </summary>
     private static TargetBodyPart GetRandomPartSpread(IRobustRandom random, ushort torsoWeight = 9)
     {
         const int targetPartsAmount = 9;
-        // 5 = amount of target parts except Torso
         return random.Next(1, targetPartsAmount + torsoWeight) switch
         {
             1 => TargetBodyPart.Head,
@@ -300,7 +296,7 @@ public partial class SharedBodySystem
 
     /// This should be called after body part damage was changed.
     /// </summary>
-    protected void CheckBodyPart(
+    public void CheckBodyPart(
         Entity<BodyPartComponent> partEnt,
         TargetBodyPart? targetPart,
         bool severed,

@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
@@ -542,7 +543,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         {
             door.CurrentlyCrushing.Add(entity);
             if (door.CrushDamage != null)
-                _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid);
+                _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid, targetPart: TargetBodyPart.BodyMiddle); // backmen: surgery
 
             _stunSystem.TryParalyze(entity, stunTime, true);
         }
