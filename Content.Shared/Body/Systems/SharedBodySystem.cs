@@ -1,5 +1,5 @@
-using Content.Shared.Body.Part; // Shitmed Change
 using Content.Shared.Damage;
+using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Robust.Shared.Containers;
@@ -25,11 +25,12 @@ public abstract partial class SharedBodySystem : EntitySystem
     public const string BodyRootContainerId = "body_root_part";
 
     /// <summary>
-    /// Container ID prefix for any body organs.
+    /// Container ID prefix for anybody organs.
     /// </summary>
     public const string OrganSlotContainerIdPrefix = "body_organ_slot_";
 
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
     [Dependency] protected readonly DamageableSystem Damageable = default!;
     [Dependency] protected readonly MovementSpeedModifierSystem Movement = default!;
@@ -65,7 +66,7 @@ public abstract partial class SharedBodySystem : EntitySystem
     }
 
     /// <summary>
-    /// Gets the container Id for the specified slotId.
+    /// Gets the container ID for the specified slotId.
     /// </summary>
     public static string GetPartSlotContainerId(string slotId)
     {
@@ -73,7 +74,7 @@ public abstract partial class SharedBodySystem : EntitySystem
     }
 
     /// <summary>
-    /// Gets the container Id for the specified slotId.
+    /// Gets the container ID for the specified slotId.
     /// </summary>
     public static string GetOrganContainerId(string slotId)
     {

@@ -396,7 +396,6 @@ public partial class SharedBodySystem
                 return gibs;
 
             DropSlotContents((partId, part));
-            RemovePartChildren((partId, part), bodyEnt);
             foreach (var organ in GetPartOrgans(partId, part))
             {
                 _gibbingSystem.TryGibEntityWithRef(bodyEnt, organ.Id, GibType.Drop, GibContentsOption.Skip,
@@ -434,7 +433,6 @@ public partial class SharedBodySystem
                 return false;
 
             DropSlotContents((partId, part));
-            RemovePartChildren((partId, part), bodyEnt);
             QueueDel(partId);
             return true;
         }

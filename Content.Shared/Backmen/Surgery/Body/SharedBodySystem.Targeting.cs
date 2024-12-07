@@ -32,7 +32,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    private readonly string[] _severingDamageTypes = { "Slash", "Pierce", "Blunt" };
+    private readonly string[] _severingDamageTypes = ["Slash", "Pierce", "Blunt"];
 
     private const double IntegrityJobTime = 0.005;
     private readonly JobQueue _integrityJobQueue = new(IntegrityJobTime);
@@ -72,9 +72,9 @@ public partial class SharedBodySystem
 
     public DamageSpecifier GetHealingSpecifier(BodyPartComponent part)
     {
-        var damage = new DamageSpecifier()
+        var damage = new DamageSpecifier
         {
-            DamageDict = new Dictionary<string, FixedPoint2>()
+            DamageDict = new Dictionary<string, FixedPoint2>
             {
                 { "Blunt", -part.SelfHealingAmount },
                 { "Slash", -part.SelfHealingAmount },
@@ -83,7 +83,7 @@ public partial class SharedBodySystem
                 { "Cold", -part.SelfHealingAmount },
                 { "Shock", -part.SelfHealingAmount },
                 { "Caustic", -part.SelfHealingAmount * 0.1}, // not much caustic healing
-            }
+            },
         };
 
         return damage;
@@ -391,7 +391,7 @@ public partial class SharedBodySystem
             (BodyPartType.Leg, BodyPartSymmetry.Right) => TargetBodyPart.RightLeg,
             (BodyPartType.Foot, BodyPartSymmetry.Left) => TargetBodyPart.LeftFoot,
             (BodyPartType.Foot, BodyPartSymmetry.Right) => TargetBodyPart.RightFoot,
-            _ => null
+            _ => null,
         };
     }
 
@@ -471,7 +471,7 @@ public partial class SharedBodySystem
             BodyPartType.Leg => 0.20f,   // 20% chance to evade
             BodyPartType.Foot => 0.20f, // 20% chance to evade
             BodyPartType.Torso => 0f, // 0% chance to evade
-            _ => 0f
+            _ => 0f,
         };
     }
 
