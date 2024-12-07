@@ -280,7 +280,7 @@
     cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
-    fireRate: 5
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/mp38.ogg
   - type: ItemSlots
@@ -440,18 +440,18 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
   - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
+    cameraRecoilScalar: -4.2
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
     angleIncrease: -3
   - type: Gun
     angleDecay: 40
-    angleIncrease: 8
+    angleIncrease: 7
     cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
-    fireRate: 9
+    fireRate: 7
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/p90.ogg
   - type: ItemSlots

@@ -188,7 +188,7 @@
     damageCoefficient: 0.8
 
 - type: entity
-  parent: ClothingOuterHardsuitSyndieCommander
+  parent: ClothingOuterHardsuitSyndie
   id: ClothingOuterHardsuitERTOperativeAlpha1
   name: ERT alpha hardsuit
   description: A protective hardsuit worn by the leader of an emergency response team.
@@ -224,6 +224,8 @@
         Piercing: 0.9
         Heat: 0.9
   - type: PNV
+  - type: TinfoilHat
+    destroyOnFry: false
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieElite

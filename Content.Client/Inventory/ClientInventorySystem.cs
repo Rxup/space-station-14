@@ -40,7 +40,6 @@ namespace Content.Client.Inventory
 
             SubscribeLocalEvent<InventorySlotsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
             SubscribeLocalEvent<InventorySlotsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
-            SubscribeLocalEvent<InventorySlotsComponent, RefreshInventorySlotsEvent>(OnRefreshInventorySlots);
             SubscribeLocalEvent<InventoryComponent, ComponentShutdown>(OnShutdown);
 
             SubscribeLocalEvent<InventorySlotsComponent, DidEquipEvent>((_, comp, args) =>
@@ -180,15 +179,6 @@ namespace Content.Client.Inventory
                 new SlotData(component.SlotData[slotName], newHighlight, newBlocked);
             if (owner == _playerManager.LocalEntity)
                 EntitySlotUpdate?.Invoke(newData);
-        }
-
-        public void OnRefreshInventorySlots(EntityUid owner, InventorySlotsComponent component, RefreshInventorySlotsEvent args)
-        {
-            if (!component.SlotData.TryGetValue(args.SlotName, out var slotData)
-                || _playerManager.LocalEntity != owner)
-                return;
-
-            OnSlotRemoved?.Invoke(slotData);
         }
 
         public bool TryAddSlotDef(EntityUid owner, InventorySlotsComponent component, SlotDefinition newSlotDef)
