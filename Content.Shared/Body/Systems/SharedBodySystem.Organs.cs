@@ -72,7 +72,8 @@ public partial class SharedBodySystem
             RaiseLocalEvent(organEnt, ref removedInBodyEv);
         }
 
-        if (TryComp(parentPartUid, out DamageableComponent? damageable)
+        if (parentPartUid is { Valid: true }
+            && TryComp(parentPartUid, out DamageableComponent? damageable)
             && damageable.TotalDamage > 200)
             TrySetOrganUsed(organEnt, true, organEnt.Comp);
 

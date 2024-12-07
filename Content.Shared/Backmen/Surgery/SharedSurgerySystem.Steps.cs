@@ -15,6 +15,7 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
@@ -23,7 +24,6 @@ using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Medical.Surgery;
 using AmputateAttemptEvent = Content.Shared.Body.Events.AmputateAttemptEvent;
 
 namespace Content.Shared.Backmen.Surgery;
@@ -127,11 +127,14 @@ public abstract partial class SharedSurgerySystem
             RaiseLocalEvent(args.Body, new MoodEffectEvent("SurgeryPain"));
 
         if (!_inventory.TryGetSlotEntity(args.User, "gloves", out var _)
-        || !_inventory.TryGetSlotEntity(args.User, "mask", out var _))
+            || !_inventory.TryGetSlotEntity(args.User, "mask", out var _))
         {
-            var sepsis = new DamageSpecifier(_prototypes.Index<DamageTypePrototype>("Poison"), 5);
-            var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, sepsis, 0.5f);
-            RaiseLocalEvent(args.Body, ref ev);
+            if (!HasComp<SanitizedComponent>(args.User))
+            {
+                var sepsis = new DamageSpecifier(_prototypes.Index<DamageTypePrototype>("Poison"), 5);
+                var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, sepsis, 0.5f);
+                RaiseLocalEvent(args.Body, ref ev);
+            }
         }
     }
 
