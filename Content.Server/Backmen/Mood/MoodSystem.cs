@@ -336,7 +336,6 @@ public sealed class MoodSystem : EntitySystem
             && _mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, mobThresholdsComponent))
             component.CritThresholdBeforeModify = critThreshold.Value;
 
-        EnsureComp<NetMoodComponent>(uid);
         RefreshMood(uid, component);
     }
 
@@ -369,12 +368,8 @@ public sealed class MoodSystem : EntitySystem
 
         component.CurrentMoodLevel = newMoodLevel;
 
-        if (TryComp<NetMoodComponent>(uid, out var mood))
-        {
-            mood.CurrentMoodLevel = component.CurrentMoodLevel;
-            mood.NeutralMoodThreshold = component.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
-        }
-
+        component.NeutralMoodThreshold = component.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
+        Dirty(uid, component);
         UpdateCurrentThreshold(uid, component);
     }
 
