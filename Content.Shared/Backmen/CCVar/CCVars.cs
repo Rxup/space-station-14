@@ -31,6 +31,15 @@ public sealed class CCVars
         GptApiNoAdminAuto = CVarDef.Create("gpt.no_admin_auto", false, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /*
+     * VPN Guard
+     */
+    public static readonly CVarDef<bool>
+        VpnGuardEnabled = CVarDef.Create("vpnguard.enabled", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string>
+        VpnGuardToken = CVarDef.Create("vpnguard.token", "", CVar.SERVERONLY);
+
+    /*
      * Queue
      */
 
