@@ -1,0 +1,33 @@
+- type: entity
+  id: ActionXenoSpitMaidAcid
+  name: Spit slerm
+  description: Spit the violet acid on your enemies.
+  components:
+    - type: WorldTargetAction
+      icon: Interface/Actions/fleshAcidSpit.png
+      #itemIconStyle: NoItem
+      event: !type:XenoAcidSpitActionEvent
+      checkCanAccess: true
+      useDelay: 60
+      range: 32
+      repeat: true
+      priority: -20
+
+- type: entity
+  id: BulletSplashMaidAcid
+  name: maid acid spit
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/flesh_toxic.rsi
+      layers:
+        - state: flesh_toxic
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 5
+    - type: SplashOnTrigger
+      splashReagents:
+        - ReagentId: SlermQueenPlus
+          Quantity: 30
