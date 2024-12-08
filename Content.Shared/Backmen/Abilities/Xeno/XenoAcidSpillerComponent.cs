@@ -1,13 +1,13 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Abilities.Xeno.Abilities;
+namespace Content.Shared.Backmen.Abilities.Xeno;
 
 [RegisterComponent]
 public sealed partial class XenoAcidSpillerComponent : Component
 {
     [DataField]
-    public string AcidSpitActionId = "ActionXenoSpitMaidAcid";
+    public EntProtoId AcidSpitActionId = "ActionXenoSpitMaidAcid";
 
     [DataField]
     public EntityUid? AcidSpitAction;

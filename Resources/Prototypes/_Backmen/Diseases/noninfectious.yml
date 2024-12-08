@@ -145,7 +145,7 @@
 
 - type: disease
   id: XenoMaidVirus
-  name: disease-proto-xeno-maid
+  name: disease-proto-xeno-slerm
   cureResist: 1
   infectious: false
   stages:
@@ -203,8 +203,16 @@
     stages:
     - 2
   - !type:DiseasePolymorph
-    probability: 0.070
+    probability: 0.07
     polymorphId: XenoMaidMorph # >w<
+    polymorphMessage: disease-xeno-polymorph
+    polymorphSound:
+      path: /Audio/Animals/cat_meow.ogg
+    stages:
+    - 2
+  - !type:DiseasePolymorph
+    probability: 0.001
+    polymorphId: XenoQueenMorph # >w<
     polymorphMessage: disease-xeno-polymorph
     polymorphSound:
       path: /Audio/Animals/cat_meow.ogg
@@ -214,4 +222,4 @@
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Diphenylmethylamine # the hardest-to-get med known to mankind... good luck
-    min: 1
+    min: 5

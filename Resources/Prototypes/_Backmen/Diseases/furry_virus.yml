@@ -7,11 +7,18 @@
 #    fake: true
 #    disease: FurryVirus
 
+
 - type: emote
   id: BCatMeow
   name: chat-emote-name-BCatMeow
   category: Vocal
   chatMessages: ["chat-emote-msg-BCatMeow"]
+
+- type: disease
+  parent: FurryVirus
+  id: FurryVirusPlus
+  cures: []
+
 - type: disease
   id: FurryVirus
   name: disease-proto-furry-virus

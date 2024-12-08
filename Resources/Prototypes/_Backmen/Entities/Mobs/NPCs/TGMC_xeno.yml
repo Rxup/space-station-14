@@ -221,6 +221,17 @@
       - id: WeaponXenoHealingSpit
       - id: PinpointerXeno
   - type: XenoAcidSpiller
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: SlermQueenPlus
+          Quantity: 30
+  - type: Udder
+    reagentId: SlermQueenPlus
+    quantityPerUpdate: 25
+    growthDelay: 30
   - type: Destructible
     thresholds:
     - trigger:
