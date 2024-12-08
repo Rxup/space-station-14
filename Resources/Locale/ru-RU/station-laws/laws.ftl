@@ -81,3 +81,4 @@ laws-update-notify = Ваши законы были обновлены. Озна
 
 laws-compromised-examine = Похоже, что внутренние компоненты, отвечающие за [color=red]законы[/color], повреждены...
 law-golem-1 = Только { $name } и лица, им указаные, являются объектами подчинения и защиты
+laws-notify-subverted = The laws of this chassis are modified. Make sure to review them.
