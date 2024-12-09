@@ -1,0 +1,12 @@
+- type: ghostTheme
+  id: Angel
+  name: sponsor-win-manager-ghost-angel
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/angel.rsi
+    layers:
+      - state: angel
+        shader: unshaded

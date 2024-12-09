@@ -14,6 +14,7 @@ sponsor-win-manager-ghost-tier08 = Кайдзю
 sponsor-win-manager-ghost-drgon = Дракон
 sponsor-win-manager-ghost-ifrit = Ифрит
 sponsor-win-manager-ghost-mujik = Мужик
+sponsor-win-manager-ghost-angel = Серафим
 sponsor-win-manager-theme = Тема призрака:
 sponsor-win-manager-tier-0 = Бесплатный
 sponsor-win-manager-tier-1 = EAT
