@@ -1,5 +1,7 @@
+using Content.Shared.Backmen.Standing;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
+using Content.Shared.Standing;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Movement.Systems
@@ -7,6 +9,19 @@ namespace Content.Shared.Movement.Systems
     public sealed class MovementSpeedModifierSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _timing = default!;
+
+        // start-backmen: layingdown
+        private EntityQuery<LayingDownComponent> _layerQuery;
+        private EntityQuery<StandingStateComponent> _standingStateQuery;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            _layerQuery = GetEntityQuery<LayingDownComponent>();
+            _standingStateQuery = GetEntityQuery<StandingStateComponent>();
+        }
+        // end-backmen: layingdows
 
         public void RefreshMovementSpeedModifiers(EntityUid uid, MovementSpeedModifierComponent? move = null)
         {
@@ -19,12 +34,25 @@ namespace Content.Shared.Movement.Systems
             var ev = new RefreshMovementSpeedModifiersEvent();
             RaiseLocalEvent(uid, ev);
 
-            if (MathHelper.CloseTo(ev.WalkSpeedModifier, move.WalkSpeedModifier) &&
-                MathHelper.CloseTo(ev.SprintSpeedModifier, move.SprintSpeedModifier))
+            // start-backmen: layingdown
+            var walkSpeedModifier = ev.WalkSpeedModifier;
+            var sprintSpeedModifier = ev.SprintSpeedModifier;
+            // cap moving speed while laying
+            if (_standingStateQuery.TryComp(uid, out var standing) &&
+                !standing.Standing &&
+                _layerQuery.TryComp(uid, out var layingDown))
+            {
+                walkSpeedModifier = Math.Min(walkSpeedModifier, layingDown.SpeedModify);
+                sprintSpeedModifier = Math.Min(sprintSpeedModifier, layingDown.SpeedModify);
+            }
+            // end-backmen: layingdows
+
+            if (MathHelper.CloseTo(walkSpeedModifier, move.WalkSpeedModifier) &&
+                MathHelper.CloseTo(sprintSpeedModifier, move.SprintSpeedModifier))
                 return;
 
-            move.WalkSpeedModifier = ev.WalkSpeedModifier;
-            move.SprintSpeedModifier = ev.SprintSpeedModifier;
+            move.WalkSpeedModifier = walkSpeedModifier;
+            move.SprintSpeedModifier = sprintSpeedModifier;
             Dirty(uid, move);
         }
 
