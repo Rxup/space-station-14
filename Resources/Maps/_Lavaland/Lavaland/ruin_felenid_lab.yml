@@ -227,13 +227,6 @@ entities:
     - type: Transform
       pos: 16.5,1.5
       parent: 2
-- proto: FelinidCube
-  entities:
-  - uid: 127
-    components:
-    - type: Transform
-      pos: 17.708708,-0.6216812
-      parent: 2
 - proto: FenceMetalCorner
   entities:
   - uid: 9

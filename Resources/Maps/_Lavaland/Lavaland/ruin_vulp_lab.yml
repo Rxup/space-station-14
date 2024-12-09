@@ -1487,24 +1487,6 @@ entities:
     - type: Transform
       pos: -4.5,10.5
       parent: 2
-- proto: SyringeCognizine
-  entities:
-  - uid: 180
-    components:
-    - type: Transform
-      pos: 7.665951,12.525502
-      parent: 2
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
-  - uid: 181
-    components:
-    - type: Transform
-      pos: 7.415951,12.650502
-      parent: 2
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
 - proto: TableReinforced
   entities:
   - uid: 182
@@ -1574,26 +1556,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,12.5
-      parent: 2
-- proto: VulpkaninCube
-  entities:
-  - uid: 194
-    components:
-    - type: Transform
-      pos: 3.3710387,9.388218
-      parent: 2
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
-  - uid: 195
-    components:
-    - type: Transform
-      pos: 3.501422,9.591343
-      parent: 2
-  - uid: 196
-    components:
-    - type: Transform
-      pos: 3.626422,9.388218
       parent: 2
 - proto: WallReinforced
   entities:

@@ -427,13 +427,6 @@ entities:
       linearDamping: 0
       canCollide: False
     - type: InsideEntityStorage
-- proto: DrinkPremiumVodkaBottleFull
-  entities:
-  - uid: 79
-    components:
-    - type: Transform
-      pos: 10.525723,4.703827
-      parent: 2
 - proto: DrinkWaterBottleFull
   entities:
   - uid: 73
@@ -578,13 +571,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,15.5
-      parent: 2
-- proto: portableChemicalMixer
-  entities:
-  - uid: 43
-    components:
-    - type: Transform
-      pos: 7.3070126,7.531024
       parent: 2
 - proto: PortableGeneratorPacman
   entities:

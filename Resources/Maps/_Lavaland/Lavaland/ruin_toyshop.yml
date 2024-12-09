@@ -1529,16 +1529,6 @@ entities:
     - type: Physics
       angularDamping: 0
       linearDamping: 0
-- proto: FoamThrongler
-  entities:
-  - uid: 213
-    components:
-    - type: Transform
-      pos: 5.067518,15.111041
-      parent: 2
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
 - proto: FoodPieBananaCream
   entities:
   - uid: 553
@@ -2021,13 +2011,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5587192,16.23759
-      parent: 2
-- proto: SoapHomemadeBanana
-  entities:
-  - uid: 561
-    components:
-    - type: Transform
-      pos: 2.590444,11.404713
       parent: 2
 - proto: SpaceVillainArcade
   entities:

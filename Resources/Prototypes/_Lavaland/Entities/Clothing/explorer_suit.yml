@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing, ClothingOuterStorageToggleableBase ]
   id: LavalandEquipmentExplorerSuit
   suffix: Lava
   name: explorer suit
@@ -20,12 +20,8 @@
         Caustic: 0.50
   - type: ExplosionResistance
     damageCoefficient: 0.50
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:Container {}
   - type: ToggleableClothing
     clothingPrototype: LavalandEquipmentExplorerHood
-    slot: head
 
 - type: entity
   parent: ClothingHeadBase
