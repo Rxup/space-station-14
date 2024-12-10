@@ -177,3 +177,13 @@
   id: OutpostArm
   mapPath: /Maps/Salvage/outpost-arm.yml
   sizeString: salvage-map-wreck-size-large
+
+- type: salvageMap
+  id: MiniSpaceStation
+  mapPath: /Maps/Backmen/Salvage/MSS.yml
+  sizeString: salvage-map-wreck-size-large
+
+- type: salvageMap
+  id: BigStorage
+  mapPath: /Maps/Backmen/Salvage/ultra-storage.yml
+  sizeString: salvage-map-wreck-size-large
