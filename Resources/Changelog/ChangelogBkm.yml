@@ -856,3 +856,19 @@
   id: 54
   time: '2024-12-11T02:55:18.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/978
+- author: nomad0260
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0430 \u0441\u043F\u043E\u043D\
+      \u0441\u043E\u0440\u043A\u0430\u044F \u0432\u044B\u0434\u0430\u0447\u0430 \u043F\
+      \u043E\u0434 \u043B\u043E\u0434\u0430\u0443\u0442."
+    type: Tweak
+  id: 55
+  time: '2024-12-13T08:35:14.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/975
+- author: Trest100
+  changes:
+  - message: Fonarik
+    type: Tweak
+  id: 56
+  time: '2024-12-13T08:36:39.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/977
