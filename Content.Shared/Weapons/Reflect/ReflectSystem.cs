@@ -39,6 +39,7 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!; // WD EDIT
 
     public override void Initialize()
     {
@@ -131,6 +132,14 @@ public sealed class ReflectSystem : EntitySystem
 
         if (Resolve(projectile, ref projectileComp, false))
         {
+            // WD EDIT START
+            if (reflect.DamageOnReflectModifier != 0)
+            {
+                _damageable.TryChangeDamage(reflector, projectileComp.Damage * reflect.DamageOnReflectModifier,
+                    projectileComp.IgnoreResistances, origin: projectileComp.Shooter);
+            }
+            // WD EDIT END
+
             _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)} from {ToPrettyString(projectileComp.Weapon)} shot by {projectileComp.Shooter}");
 
             projectileComp.Shooter = user;
@@ -187,6 +196,11 @@ public sealed class ReflectSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("reflect-shot"), user);
             _audio.PlayPvs(reflect.SoundOnReflect, user, AudioHelpers.WithVariation(0.05f, _random));
         }
+
+        // WD EDIT START
+        if (reflect.DamageOnReflectModifier != 0 && damage != null)
+            _damageable.TryChangeDamage(reflector, damage * reflect.DamageOnReflectModifier, origin: shooter);
+        // WD EDIT END
 
         var spread = _random.NextAngle(-reflect.Spread / 2, reflect.Spread / 2);
         newDirection = -spread.RotateVec(direction);
