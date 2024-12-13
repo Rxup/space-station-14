@@ -1,10 +1,11 @@
 using System.Numerics;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.FootPrint;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class FootPrintsComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly), DataField("path")]
@@ -36,7 +37,7 @@ public sealed partial class FootPrintsComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly), DataField("protoId")]
     public EntProtoId<FootPrintComponent> StepProtoId = "Footstep";
-    
+
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public Vector2 OffsetPrint = new(0.1f, 0f);
 

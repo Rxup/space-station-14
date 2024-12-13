@@ -21,9 +21,9 @@
 # Xeno maid liquid real
 - type: reagent
   id: SlermQueenPlus
-  name: reagent-name-slerm
+  name: reagent-name-slerm-queen
   group: Toxins
-  desc: reagent-desc-slerm
+  desc: reagent-desc-slerm-queen
   physicalDesc: reagent-physical-desc-bubbling
   flavor: bitter
   color: "#b428c9"
@@ -55,4 +55,73 @@
           min: 5
         causeChance: 0.3
         disease: XenoMaidVirus
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:ChemAddMoodlet
+        moodPrototype: SpaceDrugsBenefit
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Slerm
+          min: 6
 # end-backmen: Disease
+
+- type: reagent
+  id: Slerm
+  name: reagent-name-slerm
+  group: Narcotics
+  desc: reagent-desc-slerm
+  physicalDesc: reagent-physical-desc-bubbling
+  flavor: soda
+  color: "#b428c9"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:ChemAddMoodlet
+        moodPrototype: SpaceDrugsBenefit
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Slerm
+          min: 6
+# end-backmen: Disease
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkSlermGlass
+  suffix: Slerm
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Slerm
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/gsodaglass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkSlermPlusGlass
+  suffix: Slerm Plus
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: SlermQueenPlus
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/gsodaglass.rsi
+    state: icon

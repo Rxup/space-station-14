@@ -9,3 +9,15 @@
   - !type:OverallPlaytimeRequirement
     time: 54000 # 15h # Corvax-RoleTime
   discordRequired: true # backmen: antag
+
+- type: antag
+  id: XenoAgent
+  name: roles-antag-XenoAgent-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-XenoAgent-objective
+  guides: [  ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 540000 # 150h
+  discordRequired: true # backmen: antag

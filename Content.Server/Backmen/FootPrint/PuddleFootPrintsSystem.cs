@@ -12,19 +12,28 @@ public sealed class PuddleFootPrintsSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
+    private EntityQuery<PuddleComponent> _puddleQuery;
+    private EntityQuery<FootPrintsComponent> _footPrintsQuery;
+    private EntityQuery<SolutionContainerManagerComponent> _solutionContainerManageQuery;
 
-   public override void Initialize()
+    public override void Initialize()
    {
        base.Initialize();
        SubscribeLocalEvent<PuddleFootPrintsComponent, EndCollideEvent>(OnStepTrigger);
+
+       _appearanceQuery = GetEntityQuery<AppearanceComponent>();
+       _puddleQuery = GetEntityQuery<PuddleComponent>();
+       _footPrintsQuery = GetEntityQuery<FootPrintsComponent>();
+       _solutionContainerManageQuery = GetEntityQuery<SolutionContainerManagerComponent>();
    }
 
     private void OnStepTrigger(EntityUid uid, PuddleFootPrintsComponent comp, ref EndCollideEvent args)
     {
-        if (!TryComp<AppearanceComponent>(uid, out var appearance) ||
-            !TryComp<PuddleComponent>(uid, out var puddle) ||
-            !TryComp<FootPrintsComponent>(args.OtherEntity, out var tripper) ||
-            !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager))
+        if (!_appearanceQuery.TryComp(uid, out var appearance) ||
+            !_puddleQuery.TryComp(uid, out var puddle) ||
+            !_footPrintsQuery.TryComp(args.OtherEntity, out var tripper) ||
+            !_solutionContainerManageQuery.TryComp(uid, out var solutionManager))
         {
             return;
         }
