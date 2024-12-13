@@ -1,0 +1,31 @@
+- type: entity
+  parent: WeaponImprovisedPneumaticCannon
+  id: WeaponImprovisedPneumaticCannonXM1014
+  name: XM1014
+  description: Бу! Испугался? Не бойся, я друг, я тебя не обижу. Иди сюда, иди ко мне, посмотри мне в глаза, видишь меня? Я тоже вижу тебя, давай смотреть друг на друга до тех пор пока наши глаза не устанут, ты не хочешь? Почему? Что-то не так?
+  suffix: Пневморужье
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/big.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Wieldable
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatBizarre
+  name: пальто хулигана
+  description: Поистине невероятное пальто.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/bizzare.rsi

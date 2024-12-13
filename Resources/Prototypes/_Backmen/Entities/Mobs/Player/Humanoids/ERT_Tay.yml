@@ -1,0 +1,77 @@
+- type: entity
+  name:  Tay - 39 командир ОБР
+  parent: MobHumanERTLeaderEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTLeaderTay39
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР командир
+    description: Командир отряда Tay - 39, особо ничем не отличается от рядовых оперативников, но имеет красные рукава, показывая его кровожданость, ну или любовь к женщинам, тут пока он сам не определился.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+    job: ERTLeader
+  - type: Loadout
+    prototypes: [ERTLeaderTay39Gear]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSGTs
+    - names_last_male
+
+- type: entity
+  name:  Tay - 39 медик ОБР
+  parent: MobHumanERTMedicalEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTMedicTay39
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР медик
+    description: Медик отряда Tay - 39, учился на то чтоб лечить живых существ, странно что он забыл в ОБР НТ.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
+    job: ERTMedical
+  - type: Loadout
+    prototypes: [ERTMedicTay39Gear]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCPLs
+    - names_last_male
+
+- type: entity
+  name: Tay - 39 оперативник ОБР
+  parent: MobHumanERTSecurityEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTSecurityTay39
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР оперативник
+    description: Оперативник отряда Tay - 39, студент мед. училища которому нужна практика, но его не так поняли в регистрационном столе и послали в качестве "мед брата" в силы ОБР НТ.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+    job: ERTSecurity
+  - type: Loadout
+    prototypes: [ERTSecurityTay39Gear]
+

@@ -5,9 +5,9 @@
   description: A cardboard box for storing things.
   components:
   - type: Item
-    size: Large
+    size: Normal
     shape:
-    - 0,0,2,2
+    - 0,0,1,1
   - type: Storage
     maxItemSize: Small
     grid:
@@ -83,6 +83,26 @@
         amount: 6
       - id: LightBulb
         amount: 6
+
+- type: entity
+  name: holiday lighttube box
+  parent: BoxLightbulb
+  id: BoxLighttubeHoliday
+  components:
+  - type: StorageFill
+    contents:
+      - id: LightTubeCrystalRed # Its alternating on purpose for the light replacer.
+      - id: LightTubeCrystalGreen
+      - id: LightTubeCrystalRed
+      - id: LightTubeCrystalGreen
+      - id: LightTubeCrystalRed
+      - id: LightTubeCrystalGreen
+      - id: LightTubeCrystalRed
+      - id: LightTubeCrystalGreen
+      - id: LightTubeCrystalRed
+      - id: LightTubeCrystalGreen
+      - id: LightTubeCrystalRed
+      - id: LightTubeCrystalGreen
 
 - type: entity
   name: PDA box

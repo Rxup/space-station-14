@@ -1,7 +1,7 @@
 - type: language
   id: Garpy
   speech:
-    fontId: Cambria
+    #fontId: Cambria
     color: "#008ecc"
   obfuscation:
     !type:SyllableObfuscation

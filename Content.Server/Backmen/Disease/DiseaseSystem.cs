@@ -106,9 +106,12 @@ public sealed class DiseaseSystem : EntitySystem
         }
         _cureQueue.Clear();
 
-        var q = EntityQueryEnumerator<DiseasedComponent, DiseaseCarrierComponent, MobStateComponent>();
-        while (q.MoveNext(out var owner, out _, out var carrierComp, out var mobState))
+        var q = EntityQueryEnumerator<DiseasedComponent, DiseaseCarrierComponent, MobStateComponent, MetaDataComponent>();
+        while (q.MoveNext(out var owner, out _, out var carrierComp, out var mobState, out var metaDataComponent))
         {
+            if(Paused(owner, metaDataComponent))
+                continue;
+
             if (carrierComp.Diseases.Count == 0)
             {
                 continue;
@@ -129,7 +132,8 @@ public sealed class DiseaseSystem : EntitySystem
                 System = this,
                 Owner = (owner, carrierComp, mobState),
                 FrameTime = frameTime
-            }, carrierComp.Diseases.Count);
+            },
+                carrierComp.Diseases.Count);
         }
     }
 

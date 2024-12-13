@@ -59,6 +59,13 @@ public sealed partial class PathfindingSystem
             var isAccess = (end.Data.Flags & PathfindingBreadcrumbFlag.Access) != 0x0;
             var isClimb = (end.Data.Flags & PathfindingBreadcrumbFlag.Climb) != 0x0;
 
+            // start-backmen: blob
+            if ((end.Data.Flags & PathfindingBreadcrumbFlag.Blob) != 0x0 && (request.Flags & PathFlags.Blob) != 0x0)
+            {
+                modifier += 0f;
+            }
+            else
+            // end-backmen: blob
             // TODO: Handling power + door prying
             // Door we should be able to open
             if (isDoor && !isAccess && (request.Flags & PathFlags.Interact) != 0x0)

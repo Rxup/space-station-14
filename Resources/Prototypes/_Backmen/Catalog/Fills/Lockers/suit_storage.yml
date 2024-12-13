@@ -29,7 +29,6 @@
   components:
   - type: StorageFill
     contents:
-        - id: ClothingEyesGlassesBlueShield
         - id: ClothingHeadHatBeretBlueShield
         - id: ClothingHeadHatBlueShieldCap
         - id: ClothingNeckMantleBlueShield
@@ -39,4 +38,3 @@
         - id: ClothingOuterNavyVest
         - id: ClothingOuterXenonautenLight
         - id: ClothingOuterCoatArmorBlueShield
-        - id: ClothingOuterHardsuitBlueShield

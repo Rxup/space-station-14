@@ -21,7 +21,7 @@ job-name-hop = глава персонала
 job-name-captain = капитан
 job-name-serviceworker = сервисный работник
 job-name-centcomoff = представитель Центком
-job-name-cburn = агент карантинной службы Центком
+job-name-cburn = оперативник карантинной службы ВС ОПЗ
 job-name-deathsquad = агент Центком
 job-name-reporter = репортёр
 job-name-musician = музыкант
@@ -60,6 +60,10 @@ job-name-syndicate = синдикат
 job-name-unknown = неизвестно
 job-name-virologist = вирусолог
 job-name-zombie = зомби
+# Job titles
+job-title-visitor = посетитель
+job-title-cluwne = клувень
+job-title-universal = универсальная
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
 JobBartender = бармен

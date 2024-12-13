@@ -29,12 +29,6 @@
     - type: RandomMetadata
       nameSegments: [clown_basefun]
     - type: Clumsy
-      clumsyDamage:
-        types:
-          Blunt: 5
-          Piercing: 4
-        groups:
-          Burn: 3
     - type: TriggerOnMobstateChange
       mobState:
       - Dead
@@ -199,8 +193,10 @@
       stunSecond: 0
     - type: PsionicRegenerationPower
     - type: PyrokinesisPower
+      fireStacks: 2
     - type: TelegnosisPower
     - type: NightVision
       isToggle: true
       color: "#808080"
       playSoundOn: false
+#    - type: PsychokinesisPower #too overpower

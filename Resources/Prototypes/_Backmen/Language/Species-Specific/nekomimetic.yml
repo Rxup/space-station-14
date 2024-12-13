@@ -4,7 +4,7 @@
   id: Nekomimetic
   speech:
     color: "#df57aaee"
-    fontId: BryndanWriteBook
+    #fontId: BryndanWriteBook
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

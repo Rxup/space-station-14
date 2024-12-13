@@ -15,8 +15,7 @@ public sealed class StandingStateSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!; // WD EDIT
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!; // WD EDIT
+    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!; // BACKMEN EDIT
 
     // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
     private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
@@ -26,10 +25,13 @@ public sealed class StandingStateSystem : EntitySystem
         if (!Resolve(uid, ref standingState, false))
             return false;
 
-        return standingState.CurrentState is StandingState.Lying or StandingState.GettingUp;
+        return !standingState.Standing;
     }
 
-    public bool Down(EntityUid uid, bool playSound = true, bool dropHeldItems = true,
+    public bool Down(EntityUid uid,
+        bool playSound = true,
+        bool dropHeldItems = true,
+        bool force = false,
         StandingStateComponent? standingState = null,
         AppearanceComponent? appearance = null,
         HandsComponent? hands = null)
@@ -41,7 +43,7 @@ public sealed class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, ref hands, false);
 
-        if (standingState.CurrentState is StandingState.Lying or StandingState.GettingUp)
+        if (!standingState.Standing)
             return true;
 
         // This is just to avoid most callers doing this manually saving boilerplate
@@ -53,14 +55,17 @@ public sealed class StandingStateSystem : EntitySystem
             RaiseLocalEvent(uid, new DropHandItemsEvent(), false);
         }
 
-        if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle)) // WD EDIT
-            return false;
+        //if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle)) // WD EDIT
+        //    return false;
 
-        var msg = new DownAttemptEvent();
-        RaiseLocalEvent(uid, msg, false);
+        if (!force)
+        {
+            var msg = new DownAttemptEvent();
+            RaiseLocalEvent(uid, msg, false);
 
-        if (msg.Cancelled)
-            return false;
+            if (msg.Cancelled)
+                return false;
+        }
 
         standingState.CurrentState = StandingState.Lying;
         Dirty(uid, standingState);
@@ -92,7 +97,7 @@ public sealed class StandingStateSystem : EntitySystem
             _audio.PlayPredicted(standingState.DownSound, uid, null);
         }
 
-        _movement.RefreshMovementSpeedModifiers(uid); // WD EDIT
+        _movement.RefreshMovementSpeedModifiers(uid); // BACKMEN EDIT
         return true;
     }
 
@@ -108,11 +113,11 @@ public sealed class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, false);
 
-        if (standingState.CurrentState is StandingState.Standing)
+        if (standingState.Standing)
             return true;
 
-        if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle)) // WD EDIT
-            return false;
+        //if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle)) // WD EDIT
+        //    return false;
 
         if (!force)
         {
@@ -138,7 +143,7 @@ public sealed class StandingStateSystem : EntitySystem
             }
         }
         standingState.ChangedFixtures.Clear();
-        _movement.RefreshMovementSpeedModifiers(uid); // WD EDIT
+        _movement.RefreshMovementSpeedModifiers(uid); // BACKMEN EDIT
 
         return true;
     }

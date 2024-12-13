@@ -27,7 +27,7 @@
     equipSound: /Audio/Backmen/Weapons/Melee/bogomol/on.ogg
     unequipSound: /Audio/Backmen/Weapons/Melee/bogomol/off.ogg
   - type: MeleeWeapon
-    attackRate: 2
+    attackRate: 3
     damage:
       types:
         Piercing: 10

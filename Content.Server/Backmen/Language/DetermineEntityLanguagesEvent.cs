@@ -10,6 +10,8 @@ namespace Content.Server.Backmen.Language;
 [ByRefEvent]
 public record struct DetermineEntityLanguagesEvent
 {
+    public EntityUid EntityUid { get; init; }
+
     /// <summary>
     ///     The list of all languages the entity may speak.
     ///     By default, contains the languages this entity speaks intrinsically.

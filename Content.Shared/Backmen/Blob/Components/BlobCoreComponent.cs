@@ -201,7 +201,7 @@ public sealed partial class BlobCoreComponent : Component
     public EntProtoId<BlobObserverComponent> ObserverBlobPrototype = "MobObserverBlob";
 
     [DataField]
-    public ProtoId<AntagPrototype> AntagBlobPrototypeId = "Blob";
+    public EntProtoId MindRoleBlobPrototypeId = "MindRoleBlob";
 
     #endregion
 

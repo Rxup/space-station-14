@@ -1,6 +1,8 @@
 using Content.Shared.Administration.Logs;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
+using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
@@ -58,8 +60,23 @@ public sealed class DamageOnInteractSystem : EntitySystem
                 totalDamage = DamageSpecifier.ApplyModifierSet(totalDamage, protectiveEntity.Comp.DamageProtection);
             }
         }
+        // start-backmen: surgery
 
-        totalDamage = _damageableSystem.TryChangeDamage(args.User, totalDamage,  origin: args.Target);
+        TargetBodyPart? targetPart = null;
+        var hands = CompOrNull<HandsComponent>(args.User);
+        if (hands is { ActiveHand: not null })
+        {
+            targetPart = hands.ActiveHand.Location switch
+            {
+                HandLocation.Left => TargetBodyPart.LeftFullArm,
+                HandLocation.Right => TargetBodyPart.RightFullArm,
+                _ => null
+            };
+        }
+
+        // end-backmen: surgery
+
+        totalDamage = _damageableSystem.TryChangeDamage(args.User, totalDamage,  origin: args.Target, targetPart: targetPart);
 
         if (totalDamage != null && totalDamage.AnyPositive())
         {

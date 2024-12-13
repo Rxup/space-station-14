@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Objectives.Components;
+using Content.Server.Revolutionary.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
@@ -21,7 +22,6 @@ public sealed class KillPersonConditionSystem : EntitySystem
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
@@ -62,7 +62,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return;
 
         // no other humans to kill
-        var allHumans = _mind.GetAliveHumansExcept(args.MindId);
+        var allHumans = _mind.GetAliveHumans(args.MindId);
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
@@ -84,17 +84,17 @@ public sealed class KillPersonConditionSystem : EntitySystem
     }
 
     // start-backmen: centcom
-    private void FilterCentCom(List<EntityUid> minds)
+    private void FilterCentCom(HashSet<Entity<MindComponent>> minds)
     {
         var centcom = _prototype.Index(_ccDep);
         foreach (var mindId in minds.ToArray())
         {
-            if (!TryComp<JobComponent>(mindId, out var job) || job.Prototype == null)
+            if (!_roleSystem.MindHasRole<JobRoleComponent>(mindId.Owner, out var job) || job.Value.Comp1.JobPrototype == null)
             {
                 continue;
             }
 
-            if (!centcom.Roles.Contains(job.Prototype.Value))
+            if (!centcom.Roles.Contains(job.Value.Comp1.JobPrototype.Value))
             {
                 continue;
             }
@@ -118,7 +118,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return;
 
         // no other humans to kill
-        var allHumans = _mind.GetAliveHumansExcept(args.MindId);
+        var allHumans = _mind.GetAliveHumans(args.MindId);
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
@@ -135,12 +135,11 @@ public sealed class KillPersonConditionSystem : EntitySystem
         }
         // end-backmen: centcom
 
-        var allHeads = new List<EntityUid>();
-        foreach (var mind in allHumans)
+        var allHeads = new HashSet<Entity<MindComponent>>();
+        foreach (var person in allHumans)
         {
-            // RequireAdminNotify used as a cheap way to check for command department
-            if (_job.MindTryGetJob(mind, out _, out var prototype) && prototype.RequireAdminNotify)
-                allHeads.Add(mind);
+            if (TryComp<MindComponent>(person, out var mind) && mind.OwnedEntity is { } ent && HasComp<CommandStaffComponent>(ent))
+                allHeads.Add(person);
         }
 
         if (allHeads.Count == 0)

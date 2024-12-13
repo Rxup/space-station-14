@@ -53,4 +53,8 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+    [DataField]
+    public bool DiscordRequired { get; private set; } // backmen: antag
+
 }

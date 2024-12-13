@@ -140,6 +140,7 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/tiny.rsi
   - type: Gun
+    fireRate: 3
     angleDecay: 15
     angleIncrease: 10
     cameraRecoilScalar: 2

@@ -27,6 +27,7 @@ using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Backmen.Mood;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -180,9 +181,15 @@ namespace Content.Shared.Cuffs
             _actionBlocker.UpdateCanMove(uid);
 
             if (component.CanStillInteract)
+            {
                 _alerts.ClearAlert(uid, component.CuffedAlert);
+                RaiseLocalEvent(uid, new MoodRemoveEffectEvent("Handcuffed")); // backmen: mood
+            }
             else
+            {
                 _alerts.ShowAlert(uid, component.CuffedAlert);
+                RaiseLocalEvent(uid, new MoodEffectEvent("Handcuffed")); // backmen: mood
+            }
 
             var ev = new CuffedStateChangeEvent();
             RaiseLocalEvent(uid, ref ev);
@@ -459,6 +466,12 @@ namespace Content.Shared.Cuffs
                 return false;
 
             if (!_interaction.InRangeUnobstructed(handcuff, target))
+                return false;
+
+            // if the amount of hands the target has is equal to or less than the amount of hands that are cuffed
+            // don't apply the new set of cuffs
+            // (how would you even end up with more cuffed hands than actual hands? either way accounting for it)
+            if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
                 return false;
 
             // Success!

@@ -10,8 +10,10 @@ using Robust.Shared.Random;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Players;
 using Content.Shared.Station.Components;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
@@ -64,12 +66,11 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
         {
             var coords = _random.Pick(validLocations);
             Sawmill.Info($"Creating carrier blob at {coords}");
-            var carrier = Spawn(_random.Pick(component.CarrierBlobProtos), coords);
-            EnsureComp<BlobCarrierComponent>(carrier);
+            Spawn(_random.Pick(component.CarrierBlobProtos), coords);
         }
 
         // start blob rule incase it isn't, for the sweet greentext
-        GameTicker.StartGameRule("Blob");
+        GameTicker.StartGameRule("BlobRule");
     }
 
     // Because GameRule spawns just a GhostRoleSpawner, we can't just remove components
@@ -83,5 +84,7 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
         // Blob doesn't spawn when blob carrier was eaten.
         RemComp<FoodComponent>(carrier);
         RemComp<FelinidFoodComponent>(carrier);
+
+
     }
 }

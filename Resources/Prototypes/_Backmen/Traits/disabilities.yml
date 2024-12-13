@@ -1,0 +1,12 @@
+- type: trait
+  id: Monolingual
+  name: trait-monolingual-name
+  description: trait-monolingual-desc
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: BSSDrone
+    - StationAI # backmen: Station AI
+    - BorgChassis
+  components:
+    - type: Monolingual

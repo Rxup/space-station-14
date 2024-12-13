@@ -11,6 +11,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using System.Text;
 using Content.Server.Backmen.GameTicking.Rules.Components;
+using Content.Server.Backmen.Roles;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.Backmen.Changeling.Components;
 using Content.Shared.Mind.Components;
@@ -41,6 +42,16 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRule
 
         SubscribeLocalEvent<ChangelingRuleComponent, AfterAntagEntitySelectedEvent>(OnSelectAntag);
         SubscribeLocalEvent<ChangelingRuleComponent, ObjectivesTextPrependEvent>(OnTextPrepend);
+        SubscribeLocalEvent<ChangelingRoleComponent, GetBriefingEvent>(OnGetBriefing);
+    }
+
+    private void OnGetBriefing(Entity<ChangelingRoleComponent> ent, ref GetBriefingEvent args)
+    {
+        if (TerminatingOrDeleted(args.Mind.Comp.OwnedEntity)) return;
+
+        var briefingShort = Loc.GetString("changeling-role-greeting-short", ("name", MetaData(args.Mind.Comp.OwnedEntity!.Value).EntityName ?? "Unknown"));
+        args.Append(briefingShort);
+
     }
 
     private void OnSelectAntag(EntityUid uid, ChangelingRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
@@ -60,7 +71,6 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRule
             var briefingShort = Loc.GetString("changeling-role-greeting-short", ("name", metaData?.EntityName ?? "Unknown"));
 
             _antag.SendBriefing(target, briefing, Color.Yellow, BriefingSound);
-            _role.MindAddRole(mindId, new RoleBriefingComponent { Briefing = briefingShort }, mind, true);
         }
         // hivemind stuff
         _npcFaction.RemoveFaction(target, NanotrasenFactionId, false);

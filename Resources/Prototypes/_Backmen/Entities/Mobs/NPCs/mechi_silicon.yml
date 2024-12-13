@@ -334,7 +334,7 @@
   parent: DedSquadronGavnaIDCard
   components:
   - type: IdCard
-    jobTitle: Omicron - 3
+    jobTitle: job-title-omicron_3
     fullName: Броне-Пехотный Автономный-Бот Коммандер Спецвойск
 
 - type: entity

@@ -248,9 +248,13 @@ public sealed class ShadowkinSystem : EntitySystem
 
             target = coords.Offset(offset);
 
-            if (_interaction.InRangeUnobstructed(uid, target.Value, 0,
-                    CollisionGroup.MobMask | CollisionGroup.MobLayer))
+            if (!_interaction.InRangeUnobstructed(uid,
+                    target.Value,
+                    0,
+                    CollisionGroup.WallLayer))
+            {
                 break;
+            }
 
             target = null;
         }

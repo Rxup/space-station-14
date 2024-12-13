@@ -87,9 +87,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_curled_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_curled_r
 
 - type: marking
@@ -98,9 +98,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_ram_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_ram_r
 
 - type: marking
@@ -109,9 +109,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_short_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_short_r
 
 - type: marking
@@ -120,9 +120,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_simple_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_simple_r
 
 - type: marking
@@ -131,9 +131,9 @@
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_double_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_double_r
 
 - type: marking
@@ -272,51 +272,51 @@
   id: LizardHornsArgali
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_argali_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_argali_r
 
 - type: marking
   id: LizardHornsAyrshire
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_ayrshire_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_ayrshire_r
 
 - type: marking
   id: LizardHornsMyrsore
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_myrsore_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_myrsore_r
 
 - type: marking
   id: LizardHornsBighorn
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_bighorn_l
-  - sprite: _Ataraxia/Mobs/Customization/reptilian_parts.rsi # Ataraxia
+  - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_bighorn_r
 
 - type: marking
   id: LizardHornsDemonic
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_demonic
@@ -325,7 +325,7 @@
   id: LizardHornsKoboldEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_kobold_ears
@@ -334,7 +334,7 @@
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Kobold] # backmen: species
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_floppy_kobold_ears

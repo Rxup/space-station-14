@@ -85,7 +85,7 @@
   - type: Item
     heldPrefix: black
   - type: IdCard
-    jobTitle: Сотрудник Мобильной Группы
+    jobTitle: job-title-mobile_group_employee
 
 - type: entity
   parent: CentcomIDCardDeathsquad
@@ -100,7 +100,7 @@
   - type: Item
     heldPrefix: black
   - type: IdCard
-    jobTitle: Сотрудник Исследовательской Группы
+    jobTitle: job-title-research_group_employee
 
 - type: entity
   parent: CentcomIDCardDeathsquad
@@ -115,7 +115,7 @@
   - type: Item
     heldPrefix: black
   - type: IdCard
-    jobTitle: Агент Красного Ордена
+    jobTitle: job-title-red_order_agent
 
 - type: entity
   parent: IDCardStandard
@@ -145,7 +145,7 @@
         - AllAccess
         - CentCom
     - type: IdCard
-      jobTitle: Представитель ОПЗ
+      jobTitle: job-title-opz_representative
 
 - type: entity
   parent: IDCardStandard
@@ -162,7 +162,7 @@
         - AllAccess
         - CentCom
     - type: IdCard
-      jobTitle: Офицер ОПЗ
+      jobTitle: job-title-opz_officer
 
 - type: entity
   name: ID карта Броне-Пехотного Оперативника Спецвойск
@@ -170,7 +170,7 @@
   parent: DedSquadronGavnaIDCard
   components:
   - type: IdCard
-    jobTitle: Omicron - 3
+    jobTitle: job-title-omicron_3
     fullName: Броне-Пехотный Автономный-Бот Спецвойск
 
 - type: entity
@@ -180,7 +180,7 @@
   name: ID карта пехотинца ОБР
   components:
   - type: IdCard
-    jobTitle: Epsilon-11
+    jobTitle: job-title-epsilon_11
     fullName: Пехотинец
 
 - type: entity
@@ -190,7 +190,7 @@
   name: ID карта медика ОБР
   components:
   - type: IdCard
-    jobTitle: Epsilon-11
+    jobTitle: job-title-epsilon_11
     fullName: Медик отделения
 
 - type: entity
@@ -200,7 +200,7 @@
   name: ID карта инженера ОБР
   components:
   - type: IdCard
-    jobTitle: Epsilon-11
+    jobTitle: job-title-epsilon_11
     fullName: Инженер отделения
 
 - type: entity
@@ -210,7 +210,7 @@
   name: ID карта уборщика ОБР
   components:
   - type: IdCard
-    jobTitle: Epsilon-11
+    jobTitle: job-title-epsilon_11
     fullName: Уборщик отделения
 
 - type: entity
@@ -220,7 +220,7 @@
   name: ID карта командира ОБР
   components:
   - type: IdCard
-    jobTitle: Epsilon-11
+    jobTitle: job-title-epsilon_11
     fullName: Командир отделения
 
 - type: entity
@@ -230,7 +230,7 @@
   name: ID карта командира ОБР Alpha 1
   components:
   - type: IdCard
-    jobTitle: Alpha-1
+    jobTitle: job-title-alpha_1
     fullName: Командир отделения
   - type: Sprite
     layers:
@@ -246,7 +246,7 @@
   name: ID карта оперативника ОБР Alpha 1
   components:
   - type: IdCard
-    jobTitle: Alpha-1
+    jobTitle: job-title-alpha_1
     fullName: Оперативник отделения
   - type: Sprite
     layers:
@@ -262,7 +262,7 @@
   name: ID карта лидера ОБР Tay 39
   components:
   - type: IdCard
-    jobTitle: Tay-39
+    jobTitle: job-title-tay_39
     fullName: Лидер отделения
   - type: Sprite
     layers:
@@ -278,7 +278,7 @@
   name: ID карта медика ОБР
   components:
   - type: IdCard
-    jobTitle: Tay-39
+    jobTitle: job-title-tay_39
     fullName: Медик отделения
     jobIcon: JobIconNanotrasenMed
 
@@ -289,7 +289,7 @@
   name: ID карта лидера ОБР Tay 39
   components:
   - type: IdCard
-    jobTitle: Tay-39
+    jobTitle: job-title-tay_39
 
 - type: entity
   parent: CentcomIDCard
@@ -304,7 +304,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Omega-0
+    jobTitle: job-title-omega_0
     fullName: Оперативник СпецВойск
     jobIcon: JobIconDeathSquadron
   - type: Access
@@ -326,7 +326,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Omega-0
+    jobTitle: job-title-omega_0
     fullName: Коммандер СпецВойск
     jobIcon: JobIconDeathSquadron
   - type: Access
@@ -349,7 +349,7 @@
   - type: Item
     heldPrefix: gold
   - type: IdCard
-    jobTitle: Офицер Специальный Операций
+    jobTitle: job-title-special_operations_officer
     jobIcon: JobIconNanotrasenOSO
   - type: Access
     groups:
@@ -380,7 +380,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Sierra - 6
+    jobTitle: job-title-sierra_6
     fullName: Командир РХБЗЗ
     jobIcon: JobIconNanotrasen
   - type: Access
@@ -405,7 +405,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Sierra - 6
+    jobTitle: job-title-sierra_6
     fullName: Оперативник РХБЗЗ
     jobIcon: JobIconNanotrasen
   - type: Access
@@ -428,7 +428,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Theta-9
+    jobTitle: job-title-theta_9
     fullName: Пехотинец
     jobIcon: JobIconNanotrasenSec
   - type: Access
@@ -449,7 +449,7 @@
     layers:
     - state: ert_medic
   - type: IdCard
-    jobTitle: Theta-9
+    jobTitle: job-title-theta_9
     fullName: Медик отделения
     jobIcon: JobIconNanotrasenMed
   - type: Access
@@ -470,7 +470,7 @@
     layers:
     - state: ert_engineer
   - type: IdCard
-    jobTitle: Theta-9
+    jobTitle: job-title-theta_9
     fullName: Инженер отделения
     jobIcon: JobIconNanotrasenEngi
   - type: Access
@@ -491,7 +491,7 @@
     layers:
     - state: ert_janitor
   - type: IdCard
-    jobTitle: Theta-9
+    jobTitle: job-title-theta_9
     fullName: Уборщик отделения
     jobIcon: JobIconNanotrasenjanitor
   - type: Access
@@ -516,7 +516,7 @@
   - type: Item
     heldPrefix: silver
   - type: IdCard
-    jobTitle: Theta-9
+    jobTitle: job-title-theta_9
     fullName: Командир отделения
     jobIcon: JobIconNanotrasen
   - type: Access
@@ -541,7 +541,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Chrono Legionnaire
+    jobTitle: job-title-chrono_legionnaire
     fullName: Legionnaire
     jobIcon: JobIconDeathSquadron
   - type: Access

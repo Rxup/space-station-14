@@ -100,6 +100,7 @@
         layer:
         - MobLayer
   - type: FloorOcclusion
+  - type: Mood
   - type: RangedDamageSound
     soundGroups:
       Brute:
@@ -196,6 +197,8 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key: # backmen: surgery
+        type: SurgeryBui
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -222,6 +225,16 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+  - type: Immersive # backmen: immersive
+  - type: Targeting # backmen: surgery
+  - type: SurgeryTarget # backmen: surgery
 
 - type: entity
   save: false
@@ -236,7 +249,7 @@
   components:
   - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
-  - type: OfferItem # Ataraxia
+  - type: Targeting # backmen: surgery
   - type: Barotrauma
     damage:
       types:
@@ -293,6 +306,13 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
 
 - type: entity
   save: false
@@ -358,10 +378,4 @@
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too
         type: HumanoidMarkingModifierBoundUserInterface
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
+

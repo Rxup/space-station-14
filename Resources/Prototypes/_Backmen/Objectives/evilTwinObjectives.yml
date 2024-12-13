@@ -8,7 +8,7 @@
       difficulty: 1
     - type: RoleRequirement
       roles:
-        components:
+        mindRoles:
           - EvilTwinRole
 
 - type: entity
@@ -16,7 +16,7 @@
   parent: [BaseEvilTwinObjective, BaseKillObjective]
   id: KillObjectiveEvilTwin
   name: Убить оригинал и заменить!
-  description: Вы долджны скрытно заменить оригинал, и избавится от трупа так чтобы не было подозрений на вас!
+  description: Вы должны скрытно заменить оригинал, и избавится от трупа так чтобы не было подозрений на вас!
   components:
     - type: Objective
       unique: true

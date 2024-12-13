@@ -19,7 +19,7 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: false
+  showInVote: true
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler
@@ -37,6 +37,20 @@
   showInVote: false
   rules:
   - BlobGameMode
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - SubGamemodesRule
+  - CalmMeteorSwarmScheduler
+
+- type: gamePreset
+  id: XenoAgent
+  alias: []
+  name: xeno-agent-title
+  description: xeno-agent-description
+  showInVote: false
+  rules:
+  - XenoAgentGameMode
   - CalmStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
@@ -290,8 +304,8 @@
   - MeteorSwarmMildScheduler
   - MeteorSwarmScheduler
   - RampingStationEventScheduler
-  - SpaceTrafficControlEventScheduler
-  - SpaceTrafficControlFriendlyEventScheduler
+#  - SpaceTrafficControlEventScheduler
+#  - SpaceTrafficControlFriendlyEventScheduler
 
 - type: gamePreset
   id: Calm
@@ -317,6 +331,6 @@
     - WageScheduler
     - CalmMeteorSwarmScheduler
     - BasicRoundstartVariation
-    - SpaceTrafficControlEventScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
+#    - SpaceTrafficControlEventScheduler
+#    - SpaceTrafficControlFriendlyEventScheduler
     - ExtendedThief

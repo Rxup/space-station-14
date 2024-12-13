@@ -86,6 +86,9 @@
   id: PowerpackRifle
 
 - type: Tag
+  id: PowerpackEnergy
+
+- type: Tag
   id: MagazineMagnumPistol
 
 - type: Tag
@@ -129,3 +132,21 @@
 
 - type: Tag
   id: BulletMagnum345
+
+- type: Tag
+  id: PrizeTicket
+
+- type: Tag
+  id: IgnoreMelee
+
+- type: Tag
+  id: Organ
+
+- type: Tag
+  id: Liver
+
+- type: Tag
+  id: Heart
+
+- type: Tag
+  id: Eyes

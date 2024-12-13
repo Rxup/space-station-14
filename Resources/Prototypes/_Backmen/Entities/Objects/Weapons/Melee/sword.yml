@@ -40,7 +40,6 @@
     - state: icon
     - state: base_on
       visible: false
-      shader: unshaded
       map: ["enum.ToggleVisuals.Layer"]
   - type: GenericVisualizer
     visuals:
@@ -88,6 +87,9 @@
     - Belt
   - type: ToggleableLightVisuals
     spriteLayer: on
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT-on
     inhandVisuals:
       left:
       - state: inhand-left-on

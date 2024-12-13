@@ -1,4 +1,4 @@
-<!-- White Dream Lobby -->
+<!-- BackMen and Ataraxia Lobby -->
 <lobbyUi:LobbyGui
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,8 +8,8 @@
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
-    xmlns:animatedBackground="clr-namespace:Content.Client._White.UI.AnimatedBackground"
-    xmlns:buttons="clr-namespace:Content.Client._White.UI.Buttons">
+    xmlns:animatedBackground="clr-namespace:Content.Client.Backmen.UI.AnimatedBackground"
+    xmlns:buttons="clr-namespace:Content.Client.Backmen.UI.Buttons">
     <!-- Background -->
     <animatedBackground:AnimatedBackgroundControl Access="Public" Name="Background" VerticalExpand="True" HorizontalExpand="True"
                                                   Stretch="KeepAspectCovered" />

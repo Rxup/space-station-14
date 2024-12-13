@@ -30,45 +30,69 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackSpecialForce
-    shoes: ClothingShoesBootsSpetsnaz
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasDeathSquadV2_1
     neck: CombatKnifeSpetsnaz
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesVision
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
     head: ClothingHeadHatBeretMobileTaskForce
     id: DedSquadronLeaderGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
-    belt: WeaponRevolverMateba
+    belt: WeaponRevolverMatebaNew
     pocket1: EnergySwordDedSad
     pocket2: WeaponPulsePistol
+  storage:
+    back:
+    - RadioMTFHandheld
 
 - type: startingGear
   id: SpecialForceGearFull
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackSpecialForce
-    shoes: ClothingShoesBootsSpetsnaz
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasDeathSquadV2_1
     neck: CombatKnifeSpetsnaz
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesVision
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
-    belt: WeaponRevolverMateba
+    belt: WeaponRevolverMatebaNew
     pocket1: EnergySwordDedSad
     pocket2: WeaponPulsePistol
+  storage:
+    back:
+    - RadioMTFHandheld
+
+- type: startingGear
+  id: SpecialForceGearSpecialistFull
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: PowerpackEnergyPulse
+    shoes: ClothingShoesBootsMagSpecialForce
+    mask: ClothingMaskGasDeathSquadV2_1
+    neck: CombatKnifeSpetsnaz
+    eyes: ClothingEyesVision
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    suitstorage: WeaponMinigunPulse
+    id: DedSquadronGavnaIDCard
+    ears: ClothingHeadsetCentComCCAltDeath
+    belt: ClothingBeltGeneralG6FilledSpetsnaz
+    pocket1: EnergySwordDedSad
+    pocket2: WeaponRevolverMatebaNew
 
 - type: startingGear
   id: SpecialForceAgentGearFull
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
-    back: ClothingBackpackSpecialForce
+    back: ClothingShoesBootsMagSpecialForce
     shoes: ClothingShoesChameleonNoSlips
     mask: ClothingMaskGasDeathSquadV2_1
     neck: CombatKnifeSpetsnaz
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesVision
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
     id: DedSquadronGavnaIDCard

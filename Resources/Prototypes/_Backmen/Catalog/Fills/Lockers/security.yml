@@ -1,0 +1,69 @@
+- type: entity
+  parent: [GunSafe, BaseRestrictedContraband]
+  id: GunSafeRifleAR18
+  name: ar rifle safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAR18
+      amount: 2
+    - id: MagazineRifle
+      amount: 4
+
+- type: entity
+  parent: [GunSafe, BaseRestrictedContraband]
+  id: GunSafeSubMachineGunVector
+  name: Vector safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunVectorSpecial
+      amount: 2
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+
+- type: entity
+  parent: [GunSafe, BaseRestrictedContraband]
+  id: GunSafeShotgunShotgun39
+  name: XM1014 safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgun39
+      amount: 2
+    - id: MagazineShotgun
+      amount: 4
+
+- type: entity
+  parent: [GunSafe, BaseRestrictedContraband]
+  id: GunSafeShotgunTrenchgun
+  name: trenchgun safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotguntrenchgun4034
+      amount: 2
+    - id: MagazineShotgun
+      amount: 4
+
+- type: entity
+  parent: [GunSafe, BaseRestrictedContraband]
+  id: GunSafeSubMachineGunMP5
+  name: mp5 safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP5
+      amount: 2
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeLaserCarbineUEG
+  name: laser safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponEarthGovLaserRifle
+      amount: 3

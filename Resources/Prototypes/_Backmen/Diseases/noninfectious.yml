@@ -28,7 +28,7 @@
     probability: 0.03
     key: ForcedSleep
     component: ForcedSleeping
-    time: 3
+    time: 6
     type: Add
   - !type:DiseaseSnough
     probability: 0.025
@@ -127,7 +127,7 @@
     - 2
   # possible xeno polymorph
   - !type:DiseasePolymorph
-    probability: 0.050
+    probability: 0.030
     polymorphId: XenoDroneMorph
     polymorphMessage: disease-xeno-polymorph
     polymorphSound:
@@ -144,18 +144,18 @@
     - 2
 
 - type: disease
-  id: XenoDroneVirus
-  name: disease-proto-xenodrone
-  cureResist: 0.5
+  id: XenoMaidVirus
+  name: disease-proto-xeno-slerm
+  cureResist: 1
   infectious: false
   stages:
   - 0
   - 120
-  - 300
+  - 600
   effects:
   # compulsion pop ups
   - !type:DiseasePopUp
-    probability: 0.020
+    probability: 0.015
     type: Pvs
     message: disease-seizures-compulsion
     visualType: Medium
@@ -164,7 +164,7 @@
     - 1
     - 2
   - !type:DiseasePopUp
-    probability: 0.035
+    probability: 0.03
     message: disease-blood-compulsion
     visualType: Medium
     stages:
@@ -172,24 +172,24 @@
     - 1
     - 2
   - !type:DiseasePopUp
-    probability: 0.07
+    probability: 0.05
     message: disease-eaten-inside
     visualType: Medium
   # Seizures
   - !type:DiseaseAdjustReagent
-    probability: 0.03
+    probability: 0.025
     reagent:
       ReagentId: Licoxide
     amount: 0.5
   # accent chance when speaking
   - !type:DiseaseGenericStatusEffect
-    probability: 0.3
+    probability: 0.1
     key: Stutter
     component: XenoAccent
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
-    probability: 0.75
+    probability: 0.4
     key: Stutter
     component: XenoAccent
     stages:
@@ -199,15 +199,27 @@
     probability: 0.025
     damage:
       types:
-        Genetic: 1
+        Genetic: 0.1
     stages:
     - 2
-  # possible xeno polymorph
   - !type:DiseasePolymorph
-    probability: 0.050
-    polymorphId: XenoDroneMorph
+    probability: 0.07
+    polymorphId: XenoMaidMorph # >w<
     polymorphMessage: disease-xeno-polymorph
     polymorphSound:
-      path: /Audio/Animals/space_dragon_roar.ogg
+      path: /Audio/Animals/cat_meow.ogg
     stages:
     - 2
+  - !type:DiseasePolymorph
+    probability: 0.001
+    polymorphId: XenoQueenMorph # >w<
+    polymorphMessage: disease-xeno-polymorph
+    polymorphSound:
+      path: /Audio/Animals/cat_meow.ogg
+    stages:
+    - 2
+  cures:
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Diphenylmethylamine # the hardest-to-get med known to mankind... good luck
+    min: 5

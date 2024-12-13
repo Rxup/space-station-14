@@ -1,0 +1,141 @@
+- type: latheRecipe
+  id: BoneGel
+  result: BoneGel
+  completetime: 2
+  materials:
+    Plastic: 200
+    Plasma: 200
+
+- type: latheRecipe
+  id: MedicalCyberneticEyes
+  result: MedicalCyberneticEyes
+  category: Robotics
+  completetime: 5
+  materials:
+    Steel: 1000
+    Glass: 500
+    Plastic: 500
+    Gold: 300
+    Silver: 300
+
+- type: latheRecipe
+  id: EnergyScalpel
+  result: EnergyScalpel
+  completetime: 2
+  materials:
+    Steel: 600
+    Glass: 150
+    Gold: 150
+
+- type: latheRecipe
+  id: AdvancedRetractor
+  result: AdvancedRetractor
+  completetime: 2
+  materials:
+    Steel: 600
+    Glass: 150
+    Silver: 150
+
+- type: latheRecipe
+  id: EnergyCautery
+  result: EnergyCautery
+  completetime: 2
+  materials:
+    Steel: 600
+    Glass: 150
+    Plasma: 150
+
+- type: latheRecipe
+  id: OmnimedTool
+  result: OmnimedTool
+  completetime: 2
+  materials:
+    Steel: 1200
+    Glass: 300
+    Gold: 300
+    Silver: 300
+    Plasma: 300
+
+- type: latheRecipe
+  id: SynthHeart
+  result: BioSynthHeart
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthLungs
+  result: BioSynthLungs
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthLiver
+  result: BioSynthLiver
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthEyes
+  result: BioSynthEyes
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthLeftArm
+  result: BioSynthLeftArm
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthLeftHand
+  result: BioSynthLeftHand
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthRightArm
+  result: BioSynthRightArm
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthRightHand
+  result: BioSynthRightHand
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthLeftLeg
+  result: BioSynthLeftLeg
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthRightLeg
+  result: BioSynthRightLeg
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthLeftFoot
+  result: BioSynthLeftFoot
+  completetime: 30
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: SynthRightFoot
+  result: BioSynthRightFoot
+  completetime: 30
+  materials:
+    Biomass: 10

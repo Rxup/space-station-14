@@ -20,6 +20,7 @@ using Content.Server.Construction;
 using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
@@ -90,7 +91,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
         {
             _apcSystem.ApcToggleBreaker(uid,apcComponent);
         }
-        apcComponent.HasAccess = false;
+        // apcComponent.HasAccess = false;
     }
 
     private void OnBuildAttemptEvent(BuildAttemptEvent ev)
@@ -101,7 +102,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
             return;
         }
 
-        if (HasComp<ArrivalsProtectGridComponent>(grid.Value))
+        if (ArrivalsProtectGridQuery.HasComp(grid.Value))
         {
             ev.Cancel();
         }

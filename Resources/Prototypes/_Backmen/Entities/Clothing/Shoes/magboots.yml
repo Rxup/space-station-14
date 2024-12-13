@@ -16,3 +16,39 @@
         enum.ToggleVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -2
+
+- type: entity
+  parent: [ClothingShoesBootsMagSyndie, BaseToggleClothing]
+  id: ClothingShoesBootsMagSpecialForce
+  name: магнитные сапоги спецназа
+  description: Магнитные сапоги спец войск НаноТрейзен, дорогой и более продвинутый вариант продвинутых магниток, имеет встроенный джетпак.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/magboots-specialforce.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/magboots-specialforce.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  - type: Magboots
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -2
+
+- type: entity
+  parent: [ClothingShoesBootsMagBase]
+  id: ClothingShoesBootsMagERT
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -2

@@ -7,7 +7,8 @@
     - id: CargoBountyComputerCircuitboard
     - id: CargoRequestComputerCircuitboard
     - id: CargoSaleComputerCircuitboard
-    - id: CargoShuttleComputerCircuitboard
+    #- id: CargoShuttleComputerCircuitboard # backmen: salvage
+    - id: ShipyardComputerCircuitboard
     - id: CargoShuttleConsoleCircuitboard
     - id: SalvageMagnetMachineCircuitboard
     - id: CigPackGreen
@@ -241,6 +242,7 @@
     - id: ClothingHeadCage # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackMetempsychoticMachine # backmen
+    - id: MedicalBiofabMachineBoard # backmen
     - id: MedTekCartridge
 
 # Hardsuit table, used for suit storage as well
@@ -283,6 +285,7 @@
   id: LockerFillResearchDirectorNoHardsuit
   table: !type:AllSelector
     children:
+    - id: Intellicard
     - id: BoxEncryptionKeyScience
     - id: CircuitImprinterMachineCircuitboard
     - id: ClothingBeltUtilityFilled

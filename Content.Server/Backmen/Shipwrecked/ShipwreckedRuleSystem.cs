@@ -54,6 +54,7 @@ using Content.Shared.Damage;
 using Content.Shared.Dataset;
 using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
@@ -64,6 +65,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Paper;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
@@ -146,6 +148,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedPinpointerSystem _pinpointerSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedSalvageSystem _salvageSystem = default!;
 
     public override void Initialize()
     {
@@ -341,8 +344,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 */
-    [ValidatePrototypeId<DatasetPrototype>]
-    private const string PlanetNames = "names_borer";
+    [ValidatePrototypeId<LocalizedDatasetPrototype>]
+    private const string PlanetNames = "NamesBorer";
 
     private const int MaxPreloadOffset  = 200;
 
@@ -426,7 +429,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         // planetName
-        var planetName = SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>(PlanetNames), seed);
+        var planetName = _salvageSystem.GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>(PlanetNames), seed);
         _metadata.SetEntityName(planetMapUid, planetName);
 
         // Позиция карта (точка начала)
@@ -696,23 +699,17 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var jobProtoId = _random.Pick(component.AvailableJobPrototypes);
 
-        if (!_prototypeManager.TryIndex(jobProtoId, out var jobPrototype))
-            throw new ArgumentException($"Invalid JobPrototype: {jobProtoId}");
-
         var mindId = _mindSystem.CreateMind(player.UserId, profile.Name);
 
-        var job = new JobComponent
-        {
-            Prototype = jobProtoId
-        };
-        _roleSystem.MindAddRole(mindId, job);
+        _roleSystem.MindAddJobRole(mindId, jobPrototype:jobProtoId);
+        _roleSystem.MindHasRole<JobRoleComponent>(mindId!, out var job);
 
-        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, job, profile, station: null);
+        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, job!.Value.Comp1.JobPrototype, profile, station: null);
         var mobName = MetaData(mob).EntityName;
 
         manifest.AppendLine(Loc.GetString("passenger-manifest-passenger-line",
                 ("name", mobName),
-                ("details", jobPrototype.LocalizedName)));
+                ("details", job.Value.Comp1.JobPrototype!.Value.Id)));
 
         // SpawnPlayerMob requires a PDA to setup the ID details,
         // and PDAs are a bit too posh for our rugged travellers.
@@ -720,8 +717,19 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             TryComp<IdCardComponent>(idUid, out var idCardComponent))
         {
             _cardSystem.TryChangeFullName(idUid.Value, mobName, idCardComponent);
-            _cardSystem.TryChangeJobTitle(idUid.Value, jobPrototype.LocalizedName, idCardComponent);
+            _cardSystem.TryChangeJobTitle(idUid.Value, job.Value.Comp1.JobPrototype, idCardComponent);
         }
+
+        var hunger = EnsureComp<HungerComponent>(mob);
+        hunger.StarvationDamage = new()
+        {
+            DamageDict = new()
+            {
+                { "Cold", 0.5f },
+                { "Bloodloss", 0.5f }
+            },
+        };
+        Dirty(mob, hunger);
 
         EnsureComp<ZombieImmuneComponent>(mob);
 

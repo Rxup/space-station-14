@@ -21,6 +21,14 @@
   wageDepartment: Medical
   wage: 25
   #end-backmen: currency
+  special:
+  - !type:AddComponentSpecial
+    components:
+    #start-backmen: surgery
+    #- type: CPRTraining
+    - type: SurgerySpeedModifier
+      SpeedModifier: 1.5
+    #end-backmen: surgery
 
 - type: startingGear
   id: MedicalInternGear

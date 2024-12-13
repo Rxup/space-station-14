@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: ArtilleryComander
+  values:
+    prefix: artillery-comander-
+    count: 4

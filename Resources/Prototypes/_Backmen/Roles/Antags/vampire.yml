@@ -4,3 +4,10 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-bloodsucker-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 # 5h
+  discordRequired: true # backmen: antag

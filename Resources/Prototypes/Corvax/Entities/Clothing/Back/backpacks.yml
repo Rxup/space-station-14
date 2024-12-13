@@ -9,6 +9,8 @@
   - type: Storage
     grid:
     - 0,0,8,4
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
 
 - type: entity
   parent: ClothingBackpack
@@ -22,6 +24,8 @@
     grid:
     - 0,0,13,7
     maxItemSize: Huge
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   parent: ClothingBackpack
@@ -40,4 +44,3 @@
   components:
   - type: Sprite
     sprite: Corvax/Back/Backpacks/warden.rsi
-    

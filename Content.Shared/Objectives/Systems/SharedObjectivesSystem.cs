@@ -60,7 +60,7 @@ public abstract class SharedObjectivesSystem : EntitySystem
         if (!_protoMan.HasIndex<EntityPrototype>(proto))
             return null;
 
-        var uid = Spawn(proto);
+         var uid = Spawn(proto);
         if (!TryComp<ObjectiveComponent>(uid, out var comp))
         {
             Del(uid);

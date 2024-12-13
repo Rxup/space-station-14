@@ -90,6 +90,27 @@ public abstract class SharedFlatpackSystem : EntitySystem
             return;
         }
 
+        // start-backmen: protection system
+        var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, coords);
+        if (xform.GridUid is { } gridUid)
+        {
+            RaiseLocalEvent(gridUid, ref ev);
+            if (ev.Cancelled)
+            {
+                if (_net.IsServer)
+                    _popup.PopupEntity(Loc.GetString("flatpack-unpack-grid-error"), uid, args.User);
+                return;
+            }
+            RaiseLocalEvent(args.User, ref ev);
+            if (ev.Cancelled)
+            {
+                if (_net.IsServer)
+                    _popup.PopupEntity(Loc.GetString("flatpack-unpack-user-error"), uid, args.User);
+                return;
+            }
+        }
+        // end-backmen: protection system
+
         if (_net.IsServer)
         {
             var spawn = Spawn(comp.Entity, _map.GridTileToLocal(grid, gridComp, buildPos));

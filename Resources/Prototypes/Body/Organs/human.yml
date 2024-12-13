@@ -43,6 +43,7 @@
   - type: Sprite
     state: brain
   - type: Organ
+    slotId: brain # backmen: surgery
   - type: Input
     context: "ghost"
   - type: Brain
@@ -71,17 +72,28 @@
     entries:
       Burger: Brain
       Taco: Brain
-  
+  - type: Item
+    size: Small
+    heldPrefix: brain
+
 - type: entity
   id: OrganHumanEyes
   parent: BaseHumanOrgan
   name: eyes
   description: "I see you!"
   components:
+  # start-backmen: surgery
+  - type: Organ
+    slotId: eyes
+  - type: Eyes
+  # end-backmen: surgery
   - type: Sprite
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
 
 - type: entity
   id: OrganHumanTongue
@@ -111,6 +123,7 @@
   components:
   - type: Sprite
     state: ears
+  - type: Ears # backmen: surgery
 
 - type: entity
   id: OrganHumanLungs
@@ -122,7 +135,12 @@
     layers:
       - state: lung-l
       - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
   - type: Lung
+  - type: Organ # backmen: surgery
+    slotId: lungs
   - type: Metabolizer
     removeEmpty: true
     solutionOnBody: false
@@ -152,6 +170,11 @@
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
+  # start-backmen: surgery
+  - type: Heart
+  - type: Organ
+    slotId: heart
+  # end-backmen: surgery
   - type: Sprite
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
@@ -164,6 +187,9 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
 
 - type: entity
   id: OrganHumanStomach
@@ -173,6 +199,9 @@
   components:
   - type: Sprite
     state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -183,6 +212,8 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
+  - type: Organ # backmen: surgery
+    slotId: stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
   # to intestines instead.
@@ -200,8 +231,16 @@
   name: liver
   description: "Pairing suggestion: chianti and fava beans."
   components:
+  # start-backmen: surgery
+  - type: Liver
+  - type: Organ
+    slotId: liver
+  # end-backmen: surgery
   - type: Sprite
     state: liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Human]
@@ -215,10 +254,15 @@
   name: kidneys
   description: "Filters toxins from the bloodstream."
   components:
+  - type: Organ # Shitmed
+    slotId: kidneys
   - type: Sprite
     layers:
       - state: kidney-l
       - state: kidney-r
+  - type: Item
+    size: Small
+    heldPrefix: kidneys
   # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
   - type: Metabolizer
     maxReagents: 5

@@ -78,18 +78,32 @@ public sealed class RadioSystem : EntitySystem
     }
 
 // start-backmen: language
-    private string WrapRadioMessage(EntityUid source, RadioChannelPrototype channel, string name, string message, LanguagePrototype? language)
+    private string WrapRadioMessage(EntityUid source, SpeechVerbPrototype speech, RadioChannelPrototype channel, string name, string message, LanguagePrototype? language)
     {
-        var speech = _chat.GetSpeechVerb(source, message);
-        var languageColor = channel.Color;
         if (language?.SpeechOverride.Color is { } colorOverride)
-            languageColor = Color.InterpolateBetween(languageColor, colorOverride, colorOverride.A);
+        {
+            var color = Color.InterpolateBetween(channel.Color, colorOverride, colorOverride.A);
+            message = Loc.GetString(
+                "chat-radio-wrap-language-color",
+                ("message", message),
+                ("color", channel.Color),
+                ("languageColor", color));
+        }
+
+        if (
+            language?.SpeechOverride?.FontId != null ||
+            language?.SpeechOverride?.FontSize != null
+        )
+        {
+            message = Loc.GetString("chat-manager-wrap-language-font",
+                ("message", message),
+                ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
+                ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize)
+            );
+        }
 
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
-            ("languageColor", languageColor),
-            ("fontType", language?.SpeechOverride.FontId ?? speech.FontId),
-            ("fontSize", language?.SpeechOverride.FontSize ?? speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
@@ -124,7 +138,7 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
-        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language); // backmen: language
+        var wrappedMessage = WrapRadioMessage(messageSource, speech, channel, name, content, language); // backmen: language
 
         // most radios are relayed to chat, so lets parse the chat message beforehand
         var chat = new ChatMessage(
@@ -140,7 +154,7 @@ public sealed class RadioSystem : EntitySystem
         if(language != null)
         {
             var obfuscated = _language.ObfuscateSpeech(content, language);
-            var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language);
+            var obfuscatedWrapped = WrapRadioMessage(messageSource, speech, channel, name, obfuscated, language);
             notUdsMsg = new MsgChatMessage { Message = new ChatMessage(chatMsg.Message.Channel, obfuscated, obfuscatedWrapped, chatMsg.Message.SenderEntity, chatMsg.Message.SenderKey) };
         }
         // end-backmen: language

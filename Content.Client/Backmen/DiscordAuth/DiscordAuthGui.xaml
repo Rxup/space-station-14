@@ -27,6 +27,7 @@
                 <TextEdit Name="UrlEdit" HorizontalExpand="True" Editable="False" VerticalExpand="True" MinSize="220 100" Margin="10"></TextEdit>
             </BoxContainer>
             <Button Name="OpenUrlButton" Text="{Loc 'discord-auth-browser-btn'}" HorizontalExpand="True" StyleClasses="OpenRight" />
+            <Button Name="ByPassBtn" Text="{Loc 'discord-auth-bypass'}" HorizontalExpand="True" StyleClasses="Caution" VerticalExpand="True" MinSize="220 100" Margin="10"></Button>
         </BoxContainer>
     </Control>
 </Control>

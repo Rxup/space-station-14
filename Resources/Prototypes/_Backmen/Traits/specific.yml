@@ -1,0 +1,43 @@
+
+- type: trait
+  id: Giant10
+  name: Giant10-name
+  description: Giant10-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  sponsorOnly: true
+  components:
+  - type: TraitGiant
+    scale: 1.1
+
+- type: trait
+  id: Giant20
+  name: Giant20-name
+  description: Giant20-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  sponsorOnly: true
+  components:
+  - type: TraitGiant
+    scale: 1.2
+
+- type: trait
+  id: Giant30
+  name: Giant30-name
+  description: Giant30-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  sponsorOnly: true
+  components:
+  - type: TraitGiant
+    scale: 1.3
+

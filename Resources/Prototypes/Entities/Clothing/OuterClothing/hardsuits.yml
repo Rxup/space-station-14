@@ -582,7 +582,7 @@
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
-    sprintModifier: 0.9
+    sprintModifier: 1.0  #backmen-speedoznik
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -911,6 +911,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 1
 
 #CBURN Hardsuit
 - type: entity
@@ -949,6 +951,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURN
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.6
 
 #MISC. HARDSUITS
 #Clown Hardsuit

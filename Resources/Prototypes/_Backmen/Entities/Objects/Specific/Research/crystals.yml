@@ -37,3 +37,13 @@
     radius: 1.3
     energy: 7.0
     color: "#9932CC"
+  - type: BlockMovement
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Nekomimetic
+    understands:
+    - TauCetiBasic
+    - Nekomimetic

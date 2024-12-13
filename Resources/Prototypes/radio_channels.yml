@@ -12,6 +12,11 @@
   frequency: 1337
   color: "#2681a5"
   longRange: true
+  onSendSound:
+    path: /Audio/Backmen/Radio/cc.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Command
@@ -19,6 +24,11 @@
   keycode: 'к' # Corvax-Localization
   frequency: 1353
   color: "#fcdf03"
+  onSendSound:
+    path: /Audio/Backmen/Radio/command.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Engineering
@@ -26,6 +36,11 @@
   keycode: 'и' # Corvax-Localization
   frequency: 1357
   color: "#ff733c"
+  onSendSound:
+    path: /Audio/Backmen/Radio/eng.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Medical
@@ -33,6 +48,11 @@
   keycode: 'м' # Corvax-Localization
   frequency: 1355
   color: "#57b8f0"
+  onSendSound:
+    path: /Audio/Backmen/Radio/med.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Science
@@ -40,6 +60,11 @@
   keycode: 'н' # Corvax-Localization
   frequency: 1351
   color: "#cd7ccd"
+  onSendSound:
+    path: /Audio/Backmen/Radio/science.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Security
@@ -47,6 +72,11 @@
   keycode: 'о' # Corvax-Localization
   frequency: 1359
   color: "#ff4242"
+  onSendSound:
+    path: /Audio/Backmen/Radio/security.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Service
@@ -61,6 +91,11 @@
   keycode: 'п' # Corvax-Localization
   frequency: 1347
   color: "#b48b57"
+  onSendSound:
+    path: /Audio/Backmen/Radio/cargo.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Syndicate
@@ -69,6 +104,11 @@
   frequency: 1213
   color: "#8f4a4b"
   longRange: true
+  onSendSound:
+    path: /Audio/Backmen/Radio/security.ogg
+    params:
+      volume: -6
+      maxDistance: 2
 
 - type: radioChannel
   id: Handheld

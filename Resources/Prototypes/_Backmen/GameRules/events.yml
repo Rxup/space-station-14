@@ -1,13 +1,8 @@
 - type: entityTable
-  id: BasicBackmenEventsTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+  id: PsiBackmenEventsTable
+  table: !type:AllSelector
     children:
-    - id: EvilTwinSpawn
-    - id: FugitiveSpawn
-    - id: NoosphericStorm
-    - id: BlobSpawn
-    - id: BluespaceGoat
-    - id: SpiderSpiderVampireSpawn
+    - id: GlimmerWispSpawn
     - id: NoosphericZap
     - id: NoosphericFry
     - id: PsionicCatGotYourTongue
@@ -18,22 +13,37 @@
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
 
+
 - type: entityTable
-  id: CalmBackmenEventsTable
+  id: BasicBackmenEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
+    - !type:NestedSelector
+      tableId: PsiBackmenEventsTable
     - id: EvilTwinSpawn
     - id: FugitiveSpawn
     - id: NoosphericStorm
     - id: BluespaceGoat
     - id: SpiderSpiderVampireSpawn
-    - id: NoosphericZap
-    - id: NoosphericFry
-    - id: GlimmerWispSpawn
-    - id: FreeProberEarly
-    - id: FreeProber
-    - id: GlimmerRandomSentience
-    - id: GlimmerRevenantSpawn
+    - id: DiseaseOutbreak
+
+- type: entityTable
+  id: NormalBackmenEventsTable
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: BasicBackmenEventsTable
+    - id: EvilTwinSpawn
+    - id: BlobSpawn
+    - id: SpiderSpiderVampireSpawn
+
+
+- type: entityTable
+  id: CalmBackmenEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: BasicBackmenEventsTable
 
 - type: entity
   id: EvilTwinSpawn
@@ -75,23 +85,6 @@
       weight: 5
       earliestStart: 15
     - type: NoosphericStormRule
-
-- type: entity
-  id: BlobSpawn
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    weight: 15
-    duration: 1
-    earliestStart: 50
-    minimumPlayers: 20
-    maxOccurrences: 2 # can only happen once per round
-  - type: BlobSpawnRule
-    carrierBlobProtos:
-    - SpawnPointGhostBlobRat
-    playersPerCarrierBlob: 30
-    maxCarrierBlob: 2
 
 - type: entity
   id: BluespaceGoat

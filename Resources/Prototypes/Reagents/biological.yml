@@ -351,6 +351,14 @@
     collection: FootstepBlood
     params:
       volume: 6
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ChemMiasmaPoolSource
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
 
 - type: reagent
   id: GreyMatter

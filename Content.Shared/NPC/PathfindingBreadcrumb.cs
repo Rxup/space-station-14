@@ -120,4 +120,6 @@ public enum PathfindingBreadcrumbFlag : ushort
     /// Is there climbing involved
     /// </summary>
     Climb = 1 << 4,
+
+    Blob = 1 << 5
 }

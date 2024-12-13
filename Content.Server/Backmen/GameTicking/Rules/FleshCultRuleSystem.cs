@@ -17,6 +17,7 @@ using Content.Server.Store.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -53,6 +54,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -237,10 +239,12 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         var prefList = new List<ICommonSession>();
 
+        _prototypeManager.Index(component.FleshCultistLeaderMindRolePrototypeId)
+            .TryGetComponent<MindRoleComponent>(out var roleComponent, _componentFactory);
         foreach (var player in list)
         {
             var profile = candidates[player];
-            if (profile.AntagPreferences.Contains(component.FleshCultistPrototypeId))
+            if (profile.AntagPreferences.Contains(roleComponent!.AntagPrototype!.Value))
             {
                 prefList.Add(player);
             }
@@ -292,11 +296,14 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         }
 
         var prefList = new List<ICommonSession>();
+        _prototypeManager.Index(component.FleshCultistLeaderMindRolePrototypeId)
+            .TryGetComponent<MindRoleComponent>(out var roleComponent, _componentFactory);
 
         foreach (var player in list)
         {
             var profile = candidates[player];
-            if (profile.AntagPreferences.Contains(component.FleshCultistLeaderPrototypeId))
+
+            if (profile.AntagPreferences.Contains(roleComponent!.AntagPrototype!.Value))
             {
                 prefList.Add(player);
             }
@@ -340,7 +347,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [ValidatePrototypeId<EntityPrototype>]
     public const string FleshCultistSurvivalObjective = "FleshCultistSurvivalObjective";
 
-    private bool BaseMakeCultist(ICommonSession traitor, FleshCultRuleComponent fleshCultRule, EntityUid mindId, MindComponent mind, string role)
+    private bool BaseMakeCultist(ICommonSession traitor, FleshCultRuleComponent fleshCultRule, EntityUid mindId, MindComponent mind, EntProtoId role)
     {
         if (mind.OwnedEntity is not { } entity)
         {
@@ -357,10 +364,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         if (!HasComp<FleshCultistRoleComponent>(mindId))
         {
-            _roleSystem.MindAddRole(mindId, new FleshCultistRoleComponent
-            {
-                PrototypeId = role
-            });
+            _roleSystem.MindAddRole(mindId, role.Id);
         }
 
         if (fleshCultRule.Cultists.All(z => z.mindId != mindId))
@@ -417,7 +421,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             return false;
         }
 
-        return BaseMakeCultist(traitor, fleshCultRule, mindId.Value, mind, fleshCultRule.FleshCultistPrototypeId);
+        return BaseMakeCultist(traitor, fleshCultRule, mindId.Value, mind, fleshCultRule.FleshCultistMindRolePrototypeId);
     }
 
     public bool MakeCultistLeader(ICommonSession traitor)
@@ -437,7 +441,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             return false;
         }
 
-        return BaseMakeCultist(traitor, fleshCultRule, mindId.Value, mind, fleshCultRule.FleshCultistLeaderPrototypeId);
+        return BaseMakeCultist(traitor, fleshCultRule, mindId.Value, mind, fleshCultRule.FleshCultistLeaderMindRolePrototypeId);
     }
 
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
@@ -451,7 +455,11 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
                 return;
             if (!ev.LateJoin)
                 return;
-            if (!ev.Profile.AntagPreferences.Contains(fleshCult.FleshCultistPrototypeId))
+
+
+            _prototypeManager.Index(fleshCult.FleshCultistLeaderMindRolePrototypeId)
+                .TryGetComponent<MindRoleComponent>(out var roleComponent, _componentFactory);
+            if (!ev.Profile.AntagPreferences.Contains(roleComponent!.AntagPrototype!.Value))
                 return;
 
 
@@ -522,7 +530,8 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             var objectives = mind.AllObjectives.ToArray();
 
             var leader = "";
-            if (TryComp<FleshCultistRoleComponent>(mindId, out var cultist) && cultist.PrototypeId == fleshCult.FleshCultistLeaderPrototypeId)
+            if (_roleSystem.MindHasRole<FleshCultistRoleComponent>(mindId, out var cultist) &&
+                Prototype(cultist.Value)?.ID == fleshCult.FleshCultistLeaderMindRolePrototypeId.Id)
             {
                 leader = "-leader";
             }

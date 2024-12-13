@@ -1,4 +1,5 @@
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Climbing.Events;
@@ -151,6 +152,10 @@ public sealed partial class ClimbSystem : VirtualController
         if (args.Handled)
             return;
 
+        // If already climbing then don't show outlines.
+        if (TryComp(args.Dragged, out ClimbingComponent? climbing) && climbing.IsClimbing)
+            return;
+
         var canVault = args.User == args.Dragged
             ? CanVault(component, args.User, uid, out _)
             : CanVault(component, args.User, args.Dragged, uid, out _);
@@ -249,6 +254,18 @@ public sealed partial class ClimbSystem : VirtualController
             return;
 
         if (!Resolve(climbable, ref comp, false))
+            return;
+
+        var selfEvent = new SelfBeforeClimbEvent(uid, user, (climbable, comp));
+        RaiseLocalEvent(uid, selfEvent);
+
+        if (selfEvent.Cancelled)
+            return;
+
+        var targetEvent = new TargetBeforeClimbEvent(uid, user, (climbable, comp));
+        RaiseLocalEvent(climbable, targetEvent);
+
+        if (targetEvent.Cancelled)
             return;
 
         if (!ReplaceFixtures(uid, climbing, fixtures))
@@ -512,7 +529,7 @@ public sealed partial class ClimbSystem : VirtualController
         if (TryComp<PhysicsComponent>(args.Climber, out var physics) && physics.Mass <= component.MassLimit)
             return;
 
-        _damageableSystem.TryChangeDamage(args.Climber, component.ClimberDamage, origin: args.Climber);
+        _damageableSystem.TryChangeDamage(args.Climber, component.ClimberDamage, origin: args.Climber, targetPart: TargetBodyPart.FullLegs); // backmen: surgery
         _damageableSystem.TryChangeDamage(uid, component.TableDamage, origin: args.Climber);
         _stunSystem.TryParalyze(args.Climber, TimeSpan.FromSeconds(component.StunTime), true);
 

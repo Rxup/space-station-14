@@ -16,7 +16,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class DispelPowerSystem : EntitySystem
+public sealed class DispelPowerSystem : SharedDispelPowerSystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
@@ -64,12 +64,7 @@ public sealed class DispelPowerSystem : EntitySystem
 
     private void OnPowerUsed(DispelPowerActionEvent args)
     {
-        if (HasComp<PsionicallyInvisibleComponent>(args.Performer))
-        {
-            _popupSystem.PopupCursor(Loc.GetString("cant-use-in-invisible"),args.Performer);
-            return;
-        }
-        if (HasComp<PsionicInsulationComponent>(args.Target))
+        if(args.Handled)
             return;
 
         var ev = new DispelledEvent();

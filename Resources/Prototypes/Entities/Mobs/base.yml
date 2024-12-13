@@ -44,6 +44,13 @@
   - type: TTS # Corvax-TTS
   - type: RequireProjectileTarget
     active: False
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - SpaceMob
+    understands:
+    - TauCetiBasic
+    - SpaceMob
 
 - type: entity
   save: false

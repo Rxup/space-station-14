@@ -29,3 +29,25 @@
     Steel: 10
     Bluespace: 10
     Glass: 5
+
+- type: latheRecipe
+  id: EnergyDomeDirectionalTurtle
+  result: EnergyDomeDirectionalTurtle
+  completetime: 12
+  materials:
+    Steel: 1000
+    Plastic: 500
+    Gold: 250
+    Uranium: 50
+
+- type: latheRecipe
+  id: SecurityCyberneticEyes
+  result: SecurityCyberneticEyes
+  category: Robotics
+  completetime: 5
+  materials:
+    Steel: 1000
+    Glass: 500
+    Plastic: 500
+    Gold: 300
+    Silver: 300

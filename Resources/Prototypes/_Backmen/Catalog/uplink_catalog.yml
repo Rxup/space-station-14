@@ -113,6 +113,9 @@
   description: Клинки богомола, в качестве импланта, скрытные, смертоносные, а самое главное стильные.
   icon: { sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi, state: icon }
   productEntity: mantisImplanter
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
     Telecrystal: 5
   categories:
@@ -161,3 +164,12 @@
   categories:
   - UplinkPointless
 
+- type: listing
+  id: UplinkExperimentalSyndicateTeleporter
+  name: uplink-experimental-syndicate-teleporter-name
+  description: uplink-experimental-syndicate-teleporter-desc
+  productEntity: ExperimentalSyndicateTeleporter
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkDeception

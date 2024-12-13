@@ -44,16 +44,16 @@
     - id: MagazineLightRifle
     - id: MagazineLightRifle
 
-- type: listing
-  id: UplinkV31Bundle
-  name: набор "V31"
-  description: Основная винтовка вооруженных сил Сынов Марса, имеет реактивные патроны, эффективен против всего. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledV31
-  cost:
-    Telecrystal: 20
-  categories:
-  - UplinkBundles
+#- type: listing
+#  id: UplinkV31Bundle
+#  name: набор "V31"
+#  description: Основная винтовка вооруженных сил Сынов Марса, имеет реактивные патроны, эффективен против всего. В комплетке 3 магазина.
+#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledV31
+#  cost:
+#    Telecrystal: 20
+#  categories:
+#  - UplinkBundles
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -73,7 +73,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledAKSU
   cost:
-    Telecrystal: 17
+    Telecrystal: 15
   categories:
   - UplinkBundles
 
@@ -95,7 +95,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledStG44
   cost:
-    Telecrystal: 17
+    Telecrystal: 18
   categories:
   - UplinkBundles
 
@@ -117,7 +117,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledVector
   cost:
-    Telecrystal: 17
+    Telecrystal: 18
   categories:
   - UplinkBundles
 
@@ -193,7 +193,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi, state: icon }
   productEntity: WeaponPistolDEagle
   cost:
-    Telecrystal: 4
+    Telecrystal: 10
   categories:
   - UplinkWeaponry
 
@@ -227,7 +227,7 @@
   - type: StorageFill
     contents:
     - id: WeaponShotgunZauer
-    - id: MagazineShotgunMagnum12
+    - id: MagazineShotgunMagnum12Small
     - id: MagazineShotgun
       amount: 2
     - id: MagazineShotgunSlug
@@ -240,7 +240,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/gl-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledGL79
   cost:
-    Telecrystal: 25
+    Telecrystal: 55
   categories:
   - UplinkBundles
 
@@ -253,20 +253,20 @@
     contents:
     - id: WeaponLauncherGL70
     - id: GrenadeFrag
-      amount: 2
+      amount: 6
     - id: GrenadeBlast
-      amount: 4
+      amount: 6
 
-- type: listing
-  id: UplinkGrenadeLauncherM81Bundle
-  name: набор "M-81"
-  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
-  productEntity: ClothingBackpackDuffelSyndicateFilledM81
-  cost:
-    Telecrystal: 13
-  categories:
-  - UplinkBundles
+#- type: listing
+#  id: UplinkGrenadeLauncherM81Bundle
+#  name: набор "M-81"
+#  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
+#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledM81
+#  cost:
+#    Telecrystal: 13
+#  categories:
+#  - UplinkBundles
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -494,12 +494,10 @@
       - id: MagazineLightRiflePkBox # For RPD
         amount: 2
       - id: MagazinePistolSubMachineGun
-        amount: 2
+        amount: 4
       - id: MagazineLightRifle # For AKMS, AKSU and STG44
         amount: 3
       - id: MagazineRifleLightSniper # For Dragunov
-        amount: 1
-      - id: MagazineRifleRocket20 # For V31
         amount: 1
       - id: MagazineHeavyRifleBR64 # For BR64
         amount: 1
@@ -533,4 +531,33 @@
   cost:
     Telecrystal: 3
   categories:
+  - UplinkBundles
+
+- type: listing
+  id: UplinkEnergyDomeSyndie
+  name: uplink-energy-dome-name
+  description: uplink-energy-dome-desc
+  productEntity: EnergyDomeGeneratorPersonalSyndie
+  cost:
+    Telecrystal: 6
+  categories:
   - UplinkWearables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkGigareactorPowercell
+  name: Гигареакторная батарейка
+  description: Улучшенная микрореакторная батарейка, производства Interdyne corp, довольно полезна для обеспечения питания некоторым инструментам.
+  icon: { sprite: Objects/Power/power_cells.rsi, state: microreactor }
+  productEntity: PowerCellGigareactor
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkPointless

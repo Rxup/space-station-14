@@ -194,7 +194,7 @@
   result: FakeSpaceCash100
   completetime: 3
   materials:
-    SheetPrinter: 100
+    Paper: 100
     Cloth: 200
     Durathread: 50
 
@@ -203,7 +203,7 @@
   result: FakeSpaceCash1000
   completetime: 5
   materials:
-    SheetPrinter: 200
+    Paper: 200
     Cloth: 500
     Durathread: 200
 

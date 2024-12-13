@@ -25,7 +25,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class MindSwapPowerSystem : EntitySystem
+public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -79,10 +79,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
     private void OnPowerUsed(MindSwapPowerActionEvent args)
     {
-        if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
+        if(args.Handled)
             return;
 
-        if (HasComp<PsionicInsulationComponent>(args.Target))
+        if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
             return;
 
         _psionics.LogPowerUsed(args.Performer, "mind swap");

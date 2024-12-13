@@ -12,6 +12,42 @@
     },
     {
         "name": "pig_lefthand"
+    },
+    {
+      "name": "plushie_trystan"
+    },
+    {
+      "name": "plushie_vulp"
+    },
+    {
+      "name": "plushie_slips"
+    },
+    {
+      "name": "plushie_jester"
+    },
+    {
+      "name": "plushie_arachne"
+    },
+    {
+      "name": "loveable"
+    },
+    {
+      "name": "deer"
+    },
+    {
+      "name": "ipc"
+    },
+    {
+      "name": "abductor_agent"
+    },
+    {
+      "name": "abductor"
+    },
+    {
+      "name": "grey"
+    },
+    {
+      "name": "gnome"
     }
   ]
 }

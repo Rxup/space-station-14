@@ -19,7 +19,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!; // Ataraxia
+    [Dependency] private   readonly SharedAudioSystem _audio = default!; // backmen: combatmode
 
     public override void Initialize()
     {
@@ -54,16 +54,17 @@ public abstract class SharedCombatModeSystem : EntitySystem
         // TODO better handling of predicted pop-ups.
         // This probably breaks if the client has prediction disabled.
 
+        // start-backmen: combatmode
+/*
         if (!_netMan.IsClient || !Timing.IsFirstTimePredicted)
             return;
 
-        // Ataraxia START
-        _audio.PlayPvs(component.IsInCombatMode ? "/Audio/_Ataraxia/Effects/CombatMode/on.ogg" : "/Audio/_Ataraxia/Effects/CombatMode/off.ogg", uid);
-
-//        var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
-//        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
+        var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
+        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
+*/
+        // end-backmen: combatmode
     }
-        // Ataraxia END
+
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
     {
@@ -103,7 +104,14 @@ public abstract class SharedCombatModeSystem : EntitySystem
     {
         if (value)
         {
-            EnsureComp<MouseRotatorComponent>(uid);
+            var rot = EnsureComp<MouseRotatorComponent>(uid);
+            // BACKMEN EDIT START
+            if (TryComp<CombatModeComponent>(uid, out var comp) && comp.SmoothRotation) // no idea under which (intended) circumstances this can fail (if any), so i'll avoid Comp<>().
+            {
+                rot.AngleTolerance = Angle.FromDegrees(1); // arbitrary
+                rot.Simple4DirMode = false;
+            }
+            // BACKMEN EDIT END
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else

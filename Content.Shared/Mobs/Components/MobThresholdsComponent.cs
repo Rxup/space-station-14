@@ -44,6 +44,7 @@ public sealed partial class MobThresholdsComponent : Component
     /// <summary>
     /// Whether or not this entity can be revived out of a dead state.
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     [DataField("allowRevives")]
     public bool AllowRevives;
 }

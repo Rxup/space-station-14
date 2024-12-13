@@ -1,0 +1,15 @@
+- type: entity
+  id: ExplosionInstant
+  name: instant explosion
+  description: KA BOOOOM!
+  parent: AdminInstantEffectBase
+  components:
+  - type: Transform
+    anchored: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120 # about a ~4 tile radius
+    canCreateVacuum: false

@@ -6,6 +6,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.StatusIcon;
+using Content.Shared.StatusIcon.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -109,6 +110,7 @@ public abstract class SharedTdmTeamSystem : EntitySystem
         if(!Resolve(ent, ref ent.Comp))
             return;
 
+        EnsureComp<StatusIconComponent>(ent);
         ent.Comp.Team = team;
         Dirty(ent);
 

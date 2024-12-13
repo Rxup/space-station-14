@@ -20,6 +20,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.Radio.Components;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Changeling;
 using Content.Shared.Backmen.Changeling.Components;
 

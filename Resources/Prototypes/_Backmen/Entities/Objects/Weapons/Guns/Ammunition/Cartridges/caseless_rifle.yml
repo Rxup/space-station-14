@@ -43,3 +43,12 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#dbdbdb"
+
+- type: entity
+  id: CartridgeHeavyMinigun
+  name: cartridge (.15 rifle)
+  parent: BaseCartridgeHeavyRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletHeavyMinigun
+    deleteOnSpawn: true

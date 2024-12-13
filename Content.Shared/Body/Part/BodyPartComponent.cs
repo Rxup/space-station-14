@@ -1,14 +1,19 @@
-﻿using Content.Shared.Body.Components;
+using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Body.Part;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBodySystem))]
-public sealed partial class BodyPartComponent : Component
+//[Access(typeof(SharedBodySystem))]
+public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 {
     // Need to set this on container changes as it may be several transform parents up the hierarchy.
     /// <summary>
@@ -18,7 +23,126 @@ public sealed partial class BodyPartComponent : Component
     public EntityUid? Body;
 
     [DataField, AutoNetworkedField]
+    public BodyPartSlot? ParentSlot;
+
+    /// <summary>
+    ///     Shitmed Change: Amount of damage to deal when the part gets removed.
+    ///     Only works if IsVital is true.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 VitalDamage = 100;
+
+    [DataField, AlwaysPushInheritance]
+    public string ToolName { get; set; } = "A body part";
+
+    [DataField, AlwaysPushInheritance]
+    public string SlotId { get; set; } = "";
+
+    [DataField, AutoNetworkedField]
+    public bool? Used { get; set; } = null;
+
+    [DataField, AlwaysPushInheritance]
+    public float Speed { get; set; } = 1f;
+
+    /// <summary>
+    /// Shitmed Change: What's the max health this body part can have?
+    /// </summary>
+    [DataField]
+    public float MinIntegrity;
+
+    /// <summary>
+    /// Whether this body part can be severed or not
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CanSever = true;
+
+    /// <summary>
+    ///     Shitmed Change: Whether this body part is enabled or not.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
+
+    /// <summary>
+    ///     Shitmed Change: Whether this body part can be enabled or not. Used for non-functional prosthetics.
+    /// </summary>
+    [DataField]
+    public bool CanEnable = true;
+
+    /// <summary>
+    /// Whether this body part can attach children or not.
+    /// </summary>
+    [DataField]
+    public bool CanAttachChildren = true;
+
+    /// <summary>
+    ///     Shitmed Change: How long it takes to run another self heal tick on the body part.
+    /// </summary>
+    [DataField]
+    public float HealingTime = 10;
+
+    /// <summary>
+    ///     Shitmed Change: How long it has been since the last self heal tick on the body part.
+    /// </summary>
+    public float HealingTimer;
+
+    /// <summary>
+    ///     Shitmed Change: How much health to heal on the body part per tick.
+    /// </summary>
+    [DataField]
+    public float SelfHealingAmount = 0.15f;
+
+    /// <summary>
+    ///     Shitmed Change: The name of the container for this body part. Used in insertion surgeries.
+    /// </summary>
+    [DataField]
+    public string ContainerName { get; set; } = "part_slot";
+
+    /// <summary>
+    ///     Shitmed Change: The slot for item insertion.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ItemSlot ItemInsertionSlot = new();
+
+
+    /// <summary>
+    ///     Shitmed Change: Current species. Dictates things like body part sprites.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string Species { get; set; } = "";
+
+    /// <summary>
+    ///     Shitmed Change: The total damage that has to be dealt to a body part
+    ///     to make possible severing it.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float SeverIntegrity = 90;
+
+    /// <summary>
+    ///     Shitmed Change: The ID of the base layer for this body part.
+    /// </summary>
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
+    public string? BaseLayerId;
+
+    /// <summary>
+    ///     Shitmed Change: On what TargetIntegrity we should re-enable the part.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
+    {
+        { TargetIntegrity.CriticallyWounded, 75 },
+        { TargetIntegrity.HeavilyWounded, 60 },
+        { TargetIntegrity.ModeratelyWounded, 50 },
+        { TargetIntegrity.SomewhatWounded, 35 },
+        { TargetIntegrity.LightlyWounded, 20 },
+        { TargetIntegrity.Healthy, 10 },
+    };
+
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public BodyPartType PartType = BodyPartType.Other;
+
 
     // TODO BODY Replace with a simulation of organs
     /// <summary>
@@ -29,7 +153,21 @@ public sealed partial class BodyPartComponent : Component
     public bool IsVital;
 
     [DataField, AutoNetworkedField]
-    public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
+    public BodyPartSymmetry Symmetry { get; set; } = BodyPartSymmetry.None;
+
+    /// <summary>
+    ///     When attached, the part will ensure these components on the entity, and delete them on removal.
+    /// </summary>
+    [DataField, AlwaysPushInheritance]
+    public ComponentRegistry? OnAdd;
+
+    /// <summary>
+    ///     When removed, the part will ensure these components on the entity, and add them on removal.
+    /// </summary>
+    [DataField, AlwaysPushInheritance]
+    public ComponentRegistry? OnRemove;
+
+    // Shitmed Change End
 
     /// <summary>
     /// Child body parts attached to this body part.

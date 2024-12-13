@@ -49,6 +49,20 @@
     - VP78Set
     - DivetSet
 
+#blueshield
+
+- type: entity
+  id: BlueShieldSetLoadouts
+  parent: ArmySetLoadouts
+  components:
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 1
+    possibleSets:
+    - UTAPMk1Set
+    - ShotgunGuardian17Set
+
+#backpack sets
+
 - type: thiefBackpackSet
   id: ShotgunSet
   name: army-duffel-category-shotgun-name
@@ -216,3 +230,28 @@
   content:
   - WeaponPistolDivet
   - ClothingBeltMilitaryWebbingDivetFilled
+
+- type: thiefBackpackSet
+  id: UTAPMk1Set
+  name: duffel-category-utapmk1-name
+  description: duffel-category-utapmk1-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/big.rsi
+    state: icon
+  content:
+  - WeaponRifleUTAPM1
+  - MagazineRifle
+  - MagazineRifle
+  - MagazineRifle
+
+- type: thiefBackpackSet
+  id: ShotgunGuardian17Set
+  name: duffel-category-Guardian-name
+  description: duffel-category-Guardian-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/guard-17/big.rsi
+    state: icon
+  content:
+  - WeaponShotgunGuardian
+  - BoxLethalshot
+  - BoxLethalshot

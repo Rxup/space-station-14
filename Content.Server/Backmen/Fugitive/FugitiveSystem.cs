@@ -56,7 +56,7 @@ namespace Content.Server.Backmen.Fugitive;
 
 public sealed class FugitiveSystem : EntitySystem
 {
-    [ValidatePrototypeId<AntagPrototype>] private const string FugitiveAntagRole = "Fugitive";
+    [ValidatePrototypeId<EntityPrototype>] private const string FugitiveMindRole = "MindRoleFugitive";
     [ValidatePrototypeId<JobPrototype>] private const string FugitiveRole = "Fugitive";
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -100,8 +100,8 @@ public sealed class FugitiveSystem : EntitySystem
         if (args.SpawnResult != null)
             return;
 
-        if (!(args.Job?.Prototype != null &&
-              _prototypeManager.TryIndex(args.Job!.Prototype!, out var jobInfo) &&
+        if (!(args.Job != null &&
+              _prototypeManager.TryIndex(args.Job, out var jobInfo) &&
               jobInfo.AlwaysUseSpawner))
         {
             return;
@@ -120,7 +120,7 @@ public sealed class FugitiveSystem : EntitySystem
                 if (HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job == args.Job.Prototype))
+                    (args.Job == null || spawnPoint.Job == args.Job))
                 {
                     possiblePositions.Add((xform.Coordinates, uid));
                 }
@@ -267,30 +267,18 @@ public sealed class FugitiveSystem : EntitySystem
 
         component.FirstMindAdded = true;
 
-        _roleSystem.MindAddRole(mindId,
-            new FugitiveRoleComponent
-            {
-                PrototypeId = FugitiveAntagRole
-            },
-            mind,
-            true);
+        _roleSystem.MindAddRole(mindId, FugitiveMindRole, mind, true);
 
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 
         if (_prototypeManager.TryIndex<JobPrototype>(FugitiveRole, out _))
         {
-            if (_roleSystem.MindHasRole<JobComponent>(mindId))
+            if (_roleSystem.MindHasRole<JobRoleComponent>(mindId))
             {
-                _roleSystem.MindRemoveRole<JobComponent>(mindId);
+                _roleSystem.MindRemoveRole<JobRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId,
-                new JobComponent
-                {
-                    Prototype = FugitiveRole
-                },
-                mind,
-                true);
+            _roleSystem.MindAddRole(mindId, FugitiveMindRole, mind, true);
         }
 
         // workaround seperate shitcode moment

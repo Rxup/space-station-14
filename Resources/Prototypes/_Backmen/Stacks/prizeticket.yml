@@ -1,0 +1,6 @@
+- type: stack
+  id: PrizeTicket
+  name: prize ticket
+  icon: { sprite: Backmen/Objects/Fun/prizeticket.rsi, state: ticket }
+  spawn: PrizeTicket1
+  maxCount: 100

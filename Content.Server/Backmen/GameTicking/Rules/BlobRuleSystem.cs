@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.AlertLevel;
+using Content.Server.Antag;
+using Content.Server.Backmen.Blob;
 using Content.Server.Backmen.Blob.Components;
-using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
@@ -18,6 +19,7 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
 
@@ -31,9 +33,15 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     private static readonly SoundPathSpecifier BlobDetectAudio = new ("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<BlobRuleComponent, AfterAntagEntitySelectedEvent>(AfterAntagSelected);
+    }
 
     protected override void Started(EntityUid uid, BlobRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -268,5 +276,17 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         }
 
         ev.AddLine(result);
+    }
+
+    public void MakeBlob(EntityUid player)
+    {
+        var comp = EnsureComp<BlobCarrierComponent>(player);
+        comp.HasMind = HasComp<ActorComponent>(player);
+        comp.TransformationDelay = 10 * 60; // 10min
+    }
+
+    private void AfterAntagSelected(EntityUid uid, BlobRuleComponent component, AfterAntagEntitySelectedEvent args)
+    {
+        MakeBlob(args.EntityUid);
     }
 }

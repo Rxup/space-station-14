@@ -21,55 +21,56 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<LayingDownComponent, MoveEvent>(OnMovementInput);
-        SubscribeAllEvent<DrawDownedEvent>(OnDowned);
-        SubscribeAllEvent<DrawUpEvent>(OnUp);
-        SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStood);
+        SubscribeLocalEvent<LayingDownComponent, AfterAutoHandleStateEvent>(OnChangeDraw);
+        SubscribeLocalEvent<StandingStateComponent,AfterAutoHandleStateEvent>(OnChangeStanding);
 
         _cfg.OnValueChanged(CCVars.AutoGetUp, b => _autoGetUp = b, true);
 
         //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
     }
 
-    private void OnUp(DrawUpEvent args)
+    private void OnChangeStanding(Entity<StandingStateComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if(!TryGetEntity(args.Uid, out var uid))
+        if(_animation.HasRunningAnimation(ent, "rotate"))
             return;
 
-        if (!TryComp<SpriteComponent>(uid, out var sprite)
-            || !TryComp<LayingDownComponent>(uid, out var component)
-            || !component.OriginalDrawDepth.HasValue)
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+        {
             return;
+        }
 
-        sprite.DrawDepth = component.OriginalDrawDepth.Value;
+        if (ent.Comp.Standing)
+        {
+            sprite.Rotation = Angle.Zero;
+            return;
+        }
+
+        if (sprite.Rotation != Angle.FromDegrees(270) && sprite.Rotation != Angle.FromDegrees(90))
+        {
+            sprite.Rotation = Angle.FromDegrees(270);
+        }
     }
 
-    private void OnDowned(DrawDownedEvent args)
+    private void OnChangeDraw(Entity<LayingDownComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if(!TryGetEntity(args.Uid, out var uid))
+        if(!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        if (!TryComp<SpriteComponent>(uid, out var sprite)
-            || !TryComp<LayingDownComponent>(uid, out var component))
-            return;
-
-        if (!component.OriginalDrawDepth.HasValue)
-            component.OriginalDrawDepth = sprite.DrawDepth;
-
-        sprite.DrawDepth = (int) Content.Shared.DrawDepth.DrawDepth.SmallMobs;
-    }
-
-    private void OnStood(EntityUid uid, LayingDownComponent component, StoodEvent args)
-    {
-        if (!TryComp<SpriteComponent>(uid, out var sprite)
-            || !component.OriginalDrawDepth.HasValue)
-            return;
-        sprite.DrawDepth = component.OriginalDrawDepth.Value;
+        if (ent.Comp.DrawDowned)
+        {
+            sprite.DrawDepth = (int) Shared.DrawDepth.DrawDepth.SmallMobs;
+        }
+        else if (!ent.Comp.DrawDowned && sprite.DrawDepth == (int) Shared.DrawDepth.DrawDepth.SmallMobs)
+        {
+            sprite.DrawDepth = (int) Shared.DrawDepth.DrawDepth.Mobs;
+        }
     }
 
     private bool _autoGetUp;
@@ -103,15 +104,15 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
-            entity.Comp3.HorizontalRotation = Angle.FromDegrees(270);
+            _rotationVisuals.SetHorizontalAngle((entity.Owner, entity.Comp3), Angle.FromDegrees(270));
             if(entity.Comp2 != null)
                 entity.Comp2.Rotation = Angle.FromDegrees(270);
             return;
         }
 
-        entity.Comp3.HorizontalRotation = Angle.FromDegrees(90);
+        _rotationVisuals.ResetHorizontalAngle((entity.Owner, entity.Comp3));
         if(entity.Comp2 != null)
-            entity.Comp2.Rotation = Angle.FromDegrees(90);
+            entity.Comp2.Rotation = entity.Comp3.DefaultRotation;
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)

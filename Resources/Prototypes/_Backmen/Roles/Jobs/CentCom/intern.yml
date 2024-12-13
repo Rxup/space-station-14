@@ -11,6 +11,7 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
+  discordRequired: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering

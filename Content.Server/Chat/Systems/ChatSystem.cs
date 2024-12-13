@@ -896,8 +896,12 @@ private void SendEntityWhisper(
     // ReSharper disable once InconsistentNaming
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
-        var newMessage = message.Trim();
-        newMessage = SanitizeMessageReplaceWords(newMessage);
+        var newMessage = SanitizeMessageReplaceWords(message.Trim());
+
+        GetRadioKeycodePrefix(source, newMessage, out newMessage, out var prefix);
+
+        // Sanitize it first as it might change the word order
+        _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
 
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
@@ -906,9 +910,7 @@ private void SendEntityWhisper(
         if (punctuate)
             newMessage = SanitizeMessagePeriod(newMessage);
 
-        _sanitizer.TrySanitizeOutSmilies(newMessage, source, out newMessage, out emoteStr);
-
-        return newMessage;
+        return prefix + newMessage;
     }
 
     private string SanitizeInGameOOCMessage(string message)
@@ -1007,17 +1009,32 @@ private void SendEntityWhisper(
         var verbId = language.SpeechOverride.SpeechVerbOverrides is { } verbsOverride
             ? _random.Pick(verbsOverride).ToString()
             : _random.Pick(speech.SpeechVerbStrings);
-        var color = DefaultSpeakColor;
+
+        message = FormattedMessage.EscapeText(message);
+
         if (language.SpeechOverride.Color is { } colorOverride)
-            color = Color.InterpolateBetween(color, colorOverride, colorOverride.A);
+        {
+            var color = Color.InterpolateBetween(DefaultSpeakColor, colorOverride, colorOverride.A);
+            message = Loc.GetString("chat-manager-wrap-language-color", ("message", message), ("color", color));
+        }
+
+        if (
+            language.SpeechOverride?.FontId != null ||
+            language.SpeechOverride?.FontSize != null
+            )
+        {
+            message = Loc.GetString( chatType == InGameICChatType.Whisper ? "chat-manager-wrap-language-font" : "chat-manager-wrap-language-font-whisper",
+                ("message", message),
+                ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
+                ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize)
+                );
+        }
+
 
         return Loc.GetString(wrapId,
-            ("color", color),
             ("entityName", entityName),
             ("verb", Loc.GetString(verbId)),
-            ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
-            ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
-            ("message", FormattedMessage.EscapeText(message)));
+            ("message", message));
     }
 
     private bool CheckAttachedGrids(EntityUid source, EntityUid receiver)

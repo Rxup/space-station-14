@@ -1,0 +1,62 @@
+﻿- type: entity
+  id: SpawnPointCMBKCCOperator
+  name: Оператор ЦК
+  suffix: Спавнер, Директор Событий
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Оператор ЦК
+    description: Вас вызвали в этот сектор для помощи станции с целью!
+    rules: Вас вызвали в этот сектор для помощи станции с целью!
+    raffle:
+      settings: short
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 7200
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 14400
+    - !type:DepartmentTimeRequirement
+      department: Silicons
+      time: 6000
+    job: BKCCOperator
+    whitelistRequired: true
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanCMBKCCOperator
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon
+
+- type: entity
+  name: Оператор ЦК
+  suffix: Директор Событий
+  parent: MobHumanCombine
+  description: Офисный клерк
+  id: MobHumanCMBKCCOperator
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - FreedomImplant
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+    - CentralCommand
+  - type: Loadout
+    prototypes: [OperatorGavna]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: AntagImmune
+  - type: Psionic
+  - type: DispelPower

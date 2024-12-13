@@ -35,6 +35,7 @@ namespace Content.IntegrationTests.Tests.Buckle
   - type: Body
     prototype: Human
   - type: StandingState
+  - type: LayingDown # backmen
 
 - type: entity
   name: {StrapDummyId}
@@ -314,12 +315,7 @@ namespace Content.IntegrationTests.Tests.Buckle
             await server.WaitAssertion(() =>
             {
                 // Unbuckled and laydown
-                Assert.That(buckle.Buckled, Is.False);
-
-                var comp = entityManager.GetComponentOrNull<StandingStateComponent>(human);
-                Assert.That(comp, Is.Not.Null);
-
-                Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Lying));
+                Assert.That(buckle.Buckled, Is.True);
 
                 // Now with no item in any hand
                 foreach (var hand in hands.Hands.Values)
@@ -327,13 +323,15 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(hand.HeldEntity, Is.Null);
                 }
 
-                entityManager.System<StandingStateSystem>().Stand(human);
-
+                var comp = entityManager.GetComponentOrNull<StandingStateComponent>(human);
+                Assert.That(comp, Is.Not.Null);
                 Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Standing));
-                //buckleSystem.Unbuckle(human, human);
+                buckleSystem.Unbuckle(human, human);
                 Assert.That(buckle.Buckled, Is.False);
-
-
+                Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Lying));
+                Assert.That(comp.Standing, Is.False);
+                entityManager.System<StandingStateSystem>().Stand(human);
+                Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Lying));
             });
             // end-backmen: Laying System
 

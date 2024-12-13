@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Server.Antag;
 using Content.Shared.Verbs;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -8,23 +10,21 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Vampiric;
 using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Vampiric.Role;
+using Content.Server.Backmen.Vampiric.Rule;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.DoAfter;
 using Content.Server.Forensics;
-using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Nutrition.Components;
-using Content.Server.Roles;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Mind;
 using Content.Shared.Nutrition.Components;
@@ -39,6 +39,7 @@ namespace Content.Server.Backmen.Vampiric;
 
 public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 {
+    [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly PopupSystem _popups = default!;
@@ -51,15 +52,14 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
+    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly BkmVampireLevelingSystem _leveling = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly NPCRetaliationSystem _retaliationSystem = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
-    [ValidatePrototypeId<AntagPrototype>] private const string BloodsuckerAntagRole = "Bloodsucker";
+    [ValidatePrototypeId<EntityPrototype>] private const string BloodsuckerMindRole = "MindRoleBloodsucker";
 
     public override void Initialize()
     {
@@ -100,20 +100,8 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
 
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string BloodSuckerToxin = "BloodSuckerToxin";
-
     [ValidatePrototypeId<EntityPrototype>]
-    private const string EscapeObjective = "EscapeShuttleObjectiveBloodsucker";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Objective1 = "BloodsuckerDrinkObjective";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Objective2 = "BloodsuckerConvertObjective";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string VampireObjective = "VampireObjective";
+    private const string DefaultVampireRule = "VampiresGameRule";
 
     public void ConvertToVampire(EntityUid uid)
     {
@@ -124,23 +112,13 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             )
             return;
 
-        if (!_gameTicker.IsGameRuleAdded(VampireObjective))
-        {
-            _gameTicker.StartGameRule(VampireObjective);
-        }
+        EnsureComp<BloodSuckerComponent>(uid);
 
-        var bloodSucker = EnsureComp<BloodSuckerComponent>(uid);
-        //bloodSucker.InjectReagent = BloodSuckerToxin;
-        //bloodSucker.UnitsToInject = 10;
-        //bloodSucker.InjectWhenSucc = true;
-
+        var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(uid);// GetBodyOrganComponents<StomachComponent>(uid);
+        foreach (var organId in stomachs)
         {
-            var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(uid);// GetBodyOrganComponents<StomachComponent>(uid);
-            foreach (var organId in stomachs)
-            {
-                _bodySystem.RemoveOrgan(organId,organId);
-                QueueDel(organId);
-            }
+            _bodySystem.RemoveOrgan(organId,organId);
+            QueueDel(organId);
         }
 
         var stomach = Spawn(OrganVampiricHumanoidStomach);
@@ -153,20 +131,20 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             TryComp<BloodSuckedComponent>(uid, out var bloodsucked) &&
             bloodsucked.BloodSuckerMindId.HasValue &&
             !TerminatingOrDeleted(bloodsucked.BloodSuckerMindId.Value) &&
-            TryComp<VampireRoleComponent>(bloodsucked.BloodSuckerMindId.Value, out var bloodsucker)
+            _roleSystem.MindHasRole<VampireRoleComponent>(bloodsucked.BloodSuckerMindId.Value, out var bloodsucker)
             )
         {
             var masterUid = CompOrNull<MindComponent>(bloodsucked.BloodSuckerMindId.Value)?.CurrentEntity;
             if (TryComp<BkmVampireComponent>(masterUid, out var master))
             {
                 _leveling.AddCurrency((masterUid.Value,master),
-                    10 * (bloodsucker.Tier + 1),
+                    10 * (bloodsucker.Value.Comp2.Tier + 1),
                     "обращение"
                     );
             }
 
 
-            bloodsucker.Converted += 1;
+            bloodsucker.Value.Comp2.Converted += 1;
         }
 
         EnsureMindVampire(uid);
@@ -184,17 +162,30 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             return; // have it
         }
 
-        _roleSystem.MindAddRole(mindId,
-            new VampireRoleComponent()
-            {
-                PrototypeId = BloodsuckerAntagRole
-            },
-            mind,
-            true);
+        _roleSystem.MindAddRole(mindId, BloodsuckerMindRole, mind, true);
+    }
 
-        _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
-        _mindSystem.TryAddObjective(mindId, mind, Objective1);
-        _mindSystem.TryAddObjective(mindId, mind, Objective2);
+    public void MakeVampire(EntityUid uid, bool isElder = false)
+    {
+        _mindSystem.TryGetMind(uid, out var mindId, out _);
+        ConvertToVampire(uid);
+        var vmpRule = EntityQuery<BloodsuckerRuleComponent>().FirstOrDefault();
+
+        if (vmpRule == null)
+            return;
+
+        if (isElder)
+            vmpRule.Elders.Add(Name(uid), mindId);
+
+        vmpRule.TotalBloodsuckers++;
+    }
+
+    public void ForceMakeVampire(EntityUid uid)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        _antag.ForceMakeAntag<BloodsuckerRuleComponent>(actor.PlayerSession, DefaultVampireRule);
     }
 
     private void AddSuccVerb(GetVerbsEvent<AlternativeVerb> ev)
@@ -361,8 +352,10 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         if (_mindSystem.TryGetMind(bloodsucker, out var bloodsuckermidId, out _))
         {
             EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = bloodsuckermidId;
-            if (TryComp<VampireRoleComponent>(bloodsuckermidId, out var vpm))
+
+            if (_roleSystem.MindHasRole<VampireRoleComponent>(bloodsuckermidId, out var role))
             {
+                var vpm = role.Value.Comp2;
                 vpm.Drink += unitsToDrain;
 
                 if (TryComp<BkmVampireComponent>(bloodsucker, out var bkmVampireComponent))

@@ -49,6 +49,18 @@
     guides:
     - Cyborgs
     - Robotics
+  - type: LanguageSpeaker #backmen: languages
+    currentLanguage: Binary
+  - type: LanguageKnowledge
+    speaks:
+    - Binary
+    understands:
+    - Binary
+    - TauCetiBasic
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+      - SecretStash
 
 - type: entity
   parent: MMI
@@ -127,3 +139,15 @@
       guides:
       - Cyborgs
       - Robotics
+    - type: LanguageSpeaker #backmen: languages
+      currentLanguage: Binary
+    - type: LanguageKnowledge
+      speaks:
+      - Binary
+      understands:
+      - Binary
+      - TauCetiBasic
+    - type: ChangeVoiceInContainer
+      whitelist:
+        components:
+        - SecretStash

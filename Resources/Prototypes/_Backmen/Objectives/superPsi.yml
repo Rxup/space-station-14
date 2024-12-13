@@ -7,7 +7,7 @@
     issuer: objective-issuer-superpsi
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - SuperPsiRole
 
 - type: entity

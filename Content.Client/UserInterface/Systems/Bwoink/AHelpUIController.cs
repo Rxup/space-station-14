@@ -26,7 +26,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Client._White.UI.Buttons; //ataraxia-edit
+using Content.Client.Backmen.UI.Buttons; //ataraxia-edit
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
 

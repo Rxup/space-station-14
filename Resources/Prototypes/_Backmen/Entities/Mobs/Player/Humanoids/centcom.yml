@@ -1,0 +1,151 @@
+- type: entity
+  name:  Представитель ЦК
+  parent: MobHuman
+  suffix: CentCom
+  id: MobHumanCentComCorvax
+  components:
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: GhostRole
+      name: Представитель ЦК
+      description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
+      whitelistRequired: true
+      raffle:
+        settings: default
+      requirements:
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 216000
+        - !type:RoleTimeRequirement
+          role: JobCentralCommandAssistant
+          time: 21600
+        - !type:DepartmentTimeRequirement
+          department: CentCom
+          time: 43200
+      job: BKCCOfficial
+    - type: Loadout
+      prototypes: [CentComCorvax]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+        - CentralCommand
+    - type: SpecForce
+      actionBssActionName: ActionCentcomFtlAction
+    - type: AntagImmune
+
+- type: entity
+  name:  Оператор ЦК
+  parent: MobHuman
+  suffix: CentCom
+  id: MobHumanCentComOperatorCorvax
+  components:
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: GhostRole
+      name: Оператор ЦК
+      description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
+      whitelistRequired: true
+      raffle:
+        settings: default
+      requirements:
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 216000
+        - !type:RoleTimeRequirement
+          role: JobCentralCommandAssistant
+          time: 21600
+        - !type:DepartmentTimeRequirement
+          department: CentCom
+          time: 43200
+      job: BKCCOperator
+    - type: Loadout
+      prototypes: [OperatorGavna]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+        - CentralCommand
+    - type: SpecForce
+      actionBssActionName: ActionCentcomFtlAction
+    - type: AntagImmune
+
+- type: entity
+  name: Overwatch
+  parent: [MobHumanCombine,ShowSecurityIcons]
+  suffix: CentCom Офицер специальный операций
+  id: MobHumanSFOfficer
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: centcom
+  - type: GhostRole
+    whitelistRequired: true
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Офицер Специальных Операций
+    description: Офицер Специальных Операций, руководитель департамента специальных операций в секторе.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+    job: SpecialOperationsOfficer
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [SFOForma]
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+  - type: AntagImmune
+
+- type: entity
+  name:  Начальник Безопасности ЦК
+  parent: MobHuman
+  suffix: CentCom
+  id: MobHumanCentComOfficerSesurityGavna
+  components:
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: security_officer
+    - type: GhostRole
+      name: Начальник Безопасности ЦК
+      description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
+      raffle:
+        settings: default
+      requirements:
+        - !type:DepartmentTimeRequirement
+          department: Security
+          time: 240000
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 720000
+        - !type:RoleTimeRequirement
+          role: JobIAA
+          time: 3600
+      job: BKCCSecGavna
+    - type: Loadout
+      prototypes: [HeadOfSecurityCentComGear]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+        - CentralCommand
+    - type: SpecForce
+      actionBssActionName: ActionCentcomFtlAction
+    - type: AntagImmune

@@ -66,11 +66,8 @@
   recipeUnlocks:
     - ComputerTelevisionCircuitboard
     - SynthesizerInstrument
-    - BorgModuleMusique
-    - BorgModuleClowning
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
-    - ShipyardCircuitboard
     - JukeboxCircuitBoard
 
 - type: technology
@@ -83,7 +80,6 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - BorgModuleLightReplacer
   - BorgModuleAdvancedCleaning
 
 - type: technology
@@ -132,19 +128,6 @@
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
-
-- type: technology
-  id: MechanizedTreatment
-  name: research-technology-mechanized-treatment
-  icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: medical
-  discipline: CivilianServices
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedTreatment
-  - BorgModuleDefibrillator
 
 - type: technology
   id: AdvancedCleaning

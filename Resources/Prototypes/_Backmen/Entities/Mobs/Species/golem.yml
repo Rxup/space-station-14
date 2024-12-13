@@ -5,6 +5,7 @@
   abstract: true
   description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
   components:
+  - type: LayingDown # backmen: LayingDown
   - type: ComplexInteraction
   - type: ActionGrant
     actions:
@@ -262,6 +263,15 @@
     - AltarsGolemancy
   - type: TTS
     voice: Oleg
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Nekomimetic
+    understands:
+    - TauCetiBasic
+    - Nekomimetic
 
 - type: emoteSounds
   id: GolemEmote

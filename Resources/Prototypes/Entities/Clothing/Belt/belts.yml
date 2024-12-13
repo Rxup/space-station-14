@@ -268,9 +268,9 @@
         - PillCanister
         - Radio
         - DiscreteHealthAnalyzer
-        - SurgeryTool
         - Dropper
       components:
+        - SurgeryTool
         - Hypospray
         - Injector
         - Pill
@@ -487,7 +487,6 @@
         - CartridgeAmmo
         - DoorRemote
         - Whistle
-        - HolosignProjector
         - BalloonPopper
   - type: ItemMapper
     mapLayers:

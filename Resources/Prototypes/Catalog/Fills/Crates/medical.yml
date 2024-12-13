@@ -65,9 +65,13 @@
       - id: Retractor
       - id: Cautery
       - id: Drill
-      - id: Saw
+      - id: SawElectric # Shitmed Change
       - id: Hemostat
-      - id: ClothingMaskSterile
+      # start-backmen: surgery
+      - id: BoneGel
+      - id: BoxLatexGloves
+      - id: BoxSterileMask
+      # end-backmen: surgery
 
 - type: entity
   id: CrateMedicalScrubs

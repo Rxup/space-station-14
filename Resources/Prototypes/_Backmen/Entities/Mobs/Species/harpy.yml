@@ -38,6 +38,10 @@
           type: HumanoidMarkingModifierBoundUserInterface
         enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+        enum.SurgeryUIKey.Key: # backmen: surgery
+          type: SurgeryBui
     - type: Sprite
       scale: 0.9, 0.9
       layers:
@@ -130,6 +134,7 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 5.0
+    - type: FootPrints
 
 - type: entity
   save: false

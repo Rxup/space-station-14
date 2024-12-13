@@ -12,7 +12,7 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: OrganicPart # Shitmed
   - type: BodyPart
   - type: ContainerContainer
     containers:
@@ -45,6 +45,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Left
+    slotId: hands # Shitmed
 
 - type: entity
   id: LegsAnimal
@@ -58,6 +59,7 @@
     - state: r_leg
   - type: BodyPart
     partType: Leg
+    slotId: legs # Shitmed
   - type: MovementBodyPart
 
 - type: entity
@@ -72,6 +74,7 @@
     - state: l_foot
   - type: BodyPart
     partType: Foot
+    slotId: feet # Shitmed
 
 - type: entity
   id: TorsoAnimal
@@ -94,3 +97,13 @@
       - ReagentId: Blood
         Quantity: 20
 
+# Monkey head for borging/transplanting pun pun
+- type: entity
+  parent: [PartAnimal, BaseHead]
+  id: HeadAnimal
+  name: animal head
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: head_m

@@ -5,7 +5,7 @@
   components:
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - TraitorRole
   - type: Objective
     issuer: issuer-Waffle-Corporation

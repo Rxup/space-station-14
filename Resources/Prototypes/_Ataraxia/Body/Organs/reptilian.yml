@@ -1,9 +1,0 @@
-- type: entity
-  parent: BaseHumanOrgan
-  id: OrganReptilianTongue
-  name: reptilian tongue
-  description: Fleshy muscle used mainly for hissing.
-  components:
-  - type: Sprite
-    sprite: _Ataraxia/Items/Misc/lizardtongue.rsi
-    state: tonguelizard

@@ -4,47 +4,48 @@
   root: torso
   slots:
     head:
-      part: HeadHuman
+      part: HeadHarpy
       connections:
       - torso
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
     torso:
-      part: TorsoHuman
+      part: TorsoHarpy
+      connections: # Goobstation - fix some species having their hands the wrong way around
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      - head # Shitmed Change
       organs:
         heart: OrganHumanHeart
         lungs: OrganHarpyLungs
-        stomach: OrganHumanStomach
-        liver:  OrganHumanLiver
-        kidneys: OrganHumanKidneys
+        stomach: OrganAnimalStomach
+        liver:  OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
+    right arm:
+      part: RightArmHarpy
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
-    right_arm:
-      part: RightArmHuman
+      - right hand
+    left arm:
+      part: LeftArmHarpy
       connections:
-      - right_hand
-    left_arm:
-      part: LeftArmHuman
+      - left hand
+    right hand:
+      part: RightHandHarpy
+    left hand:
+      part: LeftHandHarpy
+    right leg:
+      part: RightLegHarpy
       connections:
-      - left_hand
-    right_hand:
-      part: RightHandHuman
-    left_hand:
-      part: LeftHandHuman
-    right_leg:
-      part: RightLegHuman
+      - right foot
+    left leg:
+      part: LeftLegHarpy
       connections:
-      - right_foot
-    left_leg:
-      part: LeftLegHuman
-      connections:
-      - left_foot
-    right_foot:
-      part: RightFootHuman
-    left_foot:
-      part: LeftFootHuman
+      - left foot
+    right foot:
+      part: RightFootHarpy
+    left foot:
+      part: LeftFootHarpy
 

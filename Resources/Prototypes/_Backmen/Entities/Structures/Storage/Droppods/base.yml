@@ -1,0 +1,187 @@
+#missiles
+- type: entity
+  id: MissileBase
+  parent: BaseStructure
+  name: supply drop pod
+  description: A standard-issue Nanotrasen storage unit.
+  abstract: true
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    noRot: true
+  - type: MovedByPressure
+  - type: ItemSlots
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 75
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: PlaceableSurface
+    placeCentered: true
+    isPlaceable: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+  - type: Appearance
+  - type: EmitSoundOnSpawn
+    sound:
+      collection:
+        BIGEXPLOSION
+      params:
+        volume: 5
+  - type: StaticPrice
+    price: 75
+  - type: ConditionalSpawner
+    prototypes:
+    - GibZone
+
+- type: entity
+  id: GibZone
+  name: gibbing zone
+  description: A zone when you step her, you got gibbed. If you see that, you are probably dead.
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Transform
+    anchored: true
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 1000
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: SupplyPodBase
+  parent: MissileBase
+  name: supply drop pod
+  description: A standard-issue Nanotrasen storage unit.
+  abstract: true
+  components:
+  - type: ResistLocker
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: supplypod
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: supplypod_door
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorage
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: EntityStorageVisuals
+    stateBaseClosed: supplypod
+    stateDoorOpen: supplypod_open
+    stateDoorClosed: supplypod_door
+
+- type: entity
+  id: DropPodMarkerBase
+  abstract: true
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+
+- type: entity
+  name: голографический маяк
+  id: DropPodMarker
+  parent: DropPodMarkerBase
+  suffix: Empty, supply
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Objects/Misc/marker.rsi
+    drawdepth: FloorTiles
+    layers:
+    - state: marker
+      shader: unshaded
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimation
+    intervalSeconds: 9
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: DropPodLaunchAnimation
+  parent: DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodEmpty
+    intervalSeconds: 2
+  - type: TimedDespawn
+    lifetime: 3
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Misc/mortar_long_whistle.ogg
+      params:
+        volume: 5

@@ -93,7 +93,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 10
   - type: LoadMapRule
     mapPath: /Maps/Backmen/Nonstations/nukieoutpost.yml # backmen nuke map
   - type: AntagSelection
@@ -114,9 +114,8 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
-      mindComponents:
-      - type: NukeopsRole
-        prototype: NukeopsCommander
+      mindRoles:
+      - MindRoleNukeopsCommander
     - prefRoles: [ NukeopsMedic ]
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
@@ -132,9 +131,8 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
-      mindComponents:
-      - type: NukeopsRole
-        prototype: NukeopsMedic
+      mindRoles:
+      - MindRoleNukeopsMedic
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
@@ -152,9 +150,8 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
-      mindComponents:
-      - type: NukeopsRole
-        prototype: Nukeops
+      mindRoles:
+      - MindRoleNukeops
 
 - type: entity
   abstract: true
@@ -189,9 +186,22 @@
         components:
         - AntagImmune
       lateJoinAdditional: true
-      mindComponents:
-      - type: TraitorRole
-        prototype: Traitor
+      mindRoles:
+      - MindRoleTraitor
+
+- type: entity
+  id: TraitorReinforcement
+  parent: BaseTraitorRule
+  components:
+  - type: TraitorRule
+    giveUplink: false
+    giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
+    giveBriefing: false
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Traitor ]
+      mindRoles:
+      - MindRoleTraitor
 
 - type: entity
   id: Revolutionary
@@ -213,9 +223,8 @@
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
-      mindComponents:
-      - type: RevolutionaryRole
-        prototype: HeadRev
+      mindRoles:
+      - MindRoleHeadRevolutionary
 
 - type: entity
   id: Sandbox
@@ -257,14 +266,13 @@
       - type: ZombifyOnDeath
       - type: IncurableZombie
       - type: InitialInfected
-      # Corvax-Не знаю какой тег, морти поправь
+      # Corvax-MRP
       - type: NpcFactionMember
         addFriendlyFactions:
         - Zombie
       # Corvax
-      mindComponents:
-      - type: InitialInfectedRole
-        prototype: InitialInfected
+      mindRoles:
+      - MindRoleInitialInfected
 
 # event schedulers
 
@@ -279,7 +287,7 @@
       - !type:NestedSelector
         tableId: CargoGiftsTable
       - !type:NestedSelector
-        tableId: BasicBackmenEventsTable # backmen events
+        tableId: NormalBackmenEventsTable # backmen events
       - !type:NestedSelector
         tableId: CalmPestEventsTable
       - !type:NestedSelector

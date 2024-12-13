@@ -7,6 +7,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Mind;
+using Content.Server.Players.JobWhitelist;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
 using Content.Server.Roles;
@@ -16,6 +17,7 @@ using Content.Shared.Backmen.Cryostorage;
 using Content.Shared.Backmen.Reinforcement;
 using Content.Shared.Backmen.Reinforcement.Components;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -70,6 +72,8 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly JobWhitelistManager _jobWhitelistManager = default!;
 
     public override void Initialize()
     {
@@ -152,20 +156,22 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         if (station == null)
             return;
 
-        var character = HumanoidCharacterProfile.Random();
+        var character = _ticker.GetPlayerProfile(args.Player).Clone();
+        character.Name = HumanoidCharacterProfile.GetName(character.Species, character.Gender);
+
+        //var character = HumanoidCharacterProfile.RandomWithSpecies();
         var newMind = _mind.CreateMind(args.Player.UserId, character.Name);
         _mind.SetUserId(newMind, args.Player.UserId);
 
-        var jobPrototype = _prototype.Index<JobPrototype>(args.Proto.Job);
-        var job = new JobComponent { Prototype = args.Proto.Job };
-        _roles.MindAddRole(newMind, job, silent: false);
+        var jobPrototype = _prototype.Index(args.Proto.Job);
+        _roles.MindAddJobRole(newMind, silent: false, jobPrototype:args.Proto.Job);
         EnsureComp<ReinforcementMindComponent>(newMind).Linked = ent.Comp.Linked;
         var jobName = _jobs.MindTryGetJobName(newMind);
 
         _playTimeTrackings.PlayerRolesChanged(args.Player);
 
         //var mob = Spawn(proto.Spawn);
-        var spawnEv = new PlayerSpawningEvent(job, character, station);
+        var spawnEv = new PlayerSpawningEvent(args.Proto.Job, character, station);
         RaiseLocalEvent(spawnEv);
 
         var mob = spawnEv.SpawnResult ?? Spawn("MobHuman", Transform(ent).Coordinates);
@@ -206,26 +212,35 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         var row = ent.Comp.Linked.Comp.Members.FirstOrDefault(x => x.Owner == ent.Owner);
         if (row == null)
         {
+            ent.Comp.Used = false;
             return;
         }
 
         var proto = ent.Comp.Linked.Comp.GetById(row.Id, _prototype);
         if (proto == null)
         {
+            ent.Comp.Used = false;
             return;
         }
 
-        if (_banManager.GetRoleBans(args.Player.UserId)?.Contains("Job:"+proto.Job) ?? false)
+        if (_banManager.GetJobBans(args.Player.UserId)?.Contains(proto.Job) ?? false)
         {
-            _popup.PopupCursor(Loc.GetString("role-ban"), args.Player, PopupType.LargeCaution);
             ent.Comp.Used = false;
+            SendChatMsg(args.Player, Loc.GetString("role-ban"));
             return;
         }
 
         if (!_playTimeTrackings.IsAllowed(args.Player,proto.Job))
         {
-            _popup.PopupCursor(Loc.GetString("role-timer-locked"), args.Player, PopupType.LargeCaution);
             ent.Comp.Used = false;
+            SendChatMsg(args.Player, Loc.GetString("role-timer-locked"));
+            return;
+        }
+
+        if (!_jobWhitelistManager.IsAllowed(args.Player, proto.Job))
+        {
+            ent.Comp.Used = false;
+            SendChatMsg(args.Player, Loc.GetString("role-not-whitelisted"));
             return;
         }
 
@@ -302,7 +317,9 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
                 ghost.Requirements = new HashSet<JobRequirement>(job.Requirements);
             }
 
-            ghost.WhitelistRequired = job.Whitelisted;
+            ghost.JobProto = job.ID;
+
+            //ghost.WhitelistRequired = job.Whitelisted;
         }
 
         UpdateUserInterface(ent);
@@ -397,5 +414,17 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         }
 
         _ui.SetUiState(uid.Owner, ReinforcementConsoleKey.Key, msg);
+    }
+
+    private void SendChatMsg(ICommonSession sess, string message)
+    {
+        _popup.PopupCursor(message, sess, PopupType.LargeCaution);
+        _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server,
+            message,
+            Loc.GetString("chat-manager-server-wrap-message", ("message", message)),
+            default,
+            false,
+            sess.Channel,
+            Color.Red);
     }
 }

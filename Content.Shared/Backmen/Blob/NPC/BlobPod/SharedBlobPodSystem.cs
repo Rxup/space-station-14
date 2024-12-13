@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
@@ -19,8 +20,8 @@ public abstract class SharedBlobPodSystem : EntitySystem
 {
     [Dependency] private readonly MobStateSystem _mobs = default!;
 
+
     private EntityQuery<HumanoidAppearanceComponent> _query;
-    private EntityQuery<InputMoverComponent> _inputQuery;
 
     public override void Initialize()
     {
@@ -31,21 +32,7 @@ public abstract class SharedBlobPodSystem : EntitySystem
         SubscribeLocalEvent<BlobPodComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<BlobPodComponent, DragDropTargetEvent>(OnBlobPodDragDrop);
 
-        SubscribeLocalEvent<BlobPodComponent, MoveInputEvent>(OnRelayMoveInput);
-
         _query = GetEntityQuery<HumanoidAppearanceComponent>();
-        _inputQuery = GetEntityQuery<InputMoverComponent>();
-    }
-
-    private void OnRelayMoveInput(Entity<BlobPodComponent> ent, ref MoveInputEvent args)
-    {
-        if (ent.Comp.ZombifiedEntityUid == null || TerminatingOrDeleted(ent.Comp.ZombifiedEntityUid.Value) || !_inputQuery.TryComp(ent.Comp.ZombifiedEntityUid.Value, out var inputMoverComponent))
-            return;
-
-        var inputMoverEntity = new Entity<InputMoverComponent>(EntityUid.FirstUid, inputMoverComponent);
-        var moveEvent = new MoveInputEvent(inputMoverEntity, args.OldMovement);
-        inputMoverComponent.HeldMoveButtons = args.OldMovement;
-        RaiseLocalEvent(ent.Comp.ZombifiedEntityUid.Value, ref moveEvent);
     }
 
     private void OnBlobPodDragDrop(Entity<BlobPodComponent> ent, ref DragDropTargetEvent args)

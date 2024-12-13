@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio;
@@ -35,4 +36,12 @@ public sealed partial class RadioChannelPrototype : IPrototype
     /// </summary>
     [DataField("longRange"), ViewVariables]
     public bool LongRange = false;
+
+    // start-backmen: radio sound
+    /// <summary>
+    /// Звук передачи сообщений в рации
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? OnSendSound = null;
+    // end-backmen: radio sound
 }

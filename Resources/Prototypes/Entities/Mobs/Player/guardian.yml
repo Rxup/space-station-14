@@ -109,6 +109,15 @@
     - type: Tag
       tags:
         - CannotSuicide
+    - type: LanguageSpeaker
+      currentLanguage: Nekomimetic
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - Nekomimetic
+      - TauCetiBasic
+      understands:
+      - TauCetiBasic
+      - Nekomimetic
 
 # From the uplink injector
 - type: entity
@@ -231,7 +240,7 @@
     - type: Hands
     - type: ComplexInteraction
     - type: Clumsy
-      clumsyDamage:
+      gunShootFailDamage:
         types:
           Blunt: 5
           Piercing: 4

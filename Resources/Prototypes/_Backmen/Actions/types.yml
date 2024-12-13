@@ -13,6 +13,7 @@
   name: action-name-metapsionic
   description: action-description-metapsionic
   components:
+    - type: PsiAction
     - type: InstantAction
       useDelay: 45
       icon: Backmen/Interface/VerbIcons/metapsionic.png
@@ -23,6 +24,7 @@
   name: action-name-dispel
   description: action-description-dispel
   components:
+    - type: PsiAction
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/dispel.png
       event: !type:DispelPowerActionEvent
@@ -30,24 +32,28 @@
       checkCanAccess: false
       range: 6
       canTargetSelf: false
+      itemIconStyle: BigAction
 
 - type: entity
   id: ActionMassSleep
   name: action-name-mass-sleep
   description: action-description-mass-sleep
   components:
+    - type: PsiAction
     - type: WorldTargetAction
       icon: Backmen/Interface/VerbIcons/mass_sleep.png
       event: !type:MassSleepPowerActionEvent
       useDelay: 60
       checkCanAccess: false
       range: 8
+      itemIconStyle: BigAction
 
 - type: entity
   id: ActionPsionicInvisibility
   name: action-name-psionic-invisibility
   description: action-description-psionic-invisibility
   components:
+    - type: PsiAction
     - type: InstantAction
       useDelay: 120
       icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
@@ -67,12 +73,14 @@
   name: action-name-mind-swap
   description: action-description-mind-swap
   components:
+    - type: PsiAction
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/mind_swap.png
       event: !type:MindSwapPowerActionEvent
       useDelay: 240
       checkCanAccess: false
       range: 8
+      itemIconStyle: BigAction
 
 - type: entity
   id: ActionMindSwapReturn
@@ -90,6 +98,7 @@
   name: action-name-telegnosis
   description: action-description-telegnosis
   components:
+    - type: PsiAction
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/telegnosis.png
       useDelay: 150
@@ -111,6 +120,7 @@
   name: action-name-psionic-regeneration
   description: action-description-psionic-regeneration
   components:
+    - type: PsiAction
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
       useDelay: 120
@@ -121,23 +131,27 @@
   name: action-name-noospheric-zap
   description: action-description-noospheric-zap
   components:
+    - type: PsiAction
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/noospheric_zap.png
       event: !type:NoosphericZapPowerActionEvent
       useDelay: 100
       range: 5
+      itemIconStyle: BigAction
 
 - type: entity
   id: ActionPyrokinesis
   name: action-name-pyrokinesis
   description: action-description-pyrokinesis
   components:
+    - type: PsiAction
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/pyrokinesis.png
       event: !type:PyrokinesisPowerActionEvent
       useDelay: 50
       checkCanAccess: false
       range: 6
+      itemIconStyle: BigAction
 
 
 - type: entity
@@ -145,6 +159,7 @@
   name: action-name-psychokinesis
   description: action-description-psychokinesis
   components:
+    - type: PsiAction
     - type: WorldTargetAction
       icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
       event: !type:PsychokinesisPowerActionEvent
@@ -162,6 +177,7 @@
       icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
       event: !type:SpinWebActionEvent
       range: 1.5
+      itemIconStyle: BigAction
 
 - type: entity
   id: ActionHairball
@@ -174,3 +190,12 @@
       event: !type:HairballActionEvent
       charges: 1
       useDelay: 30
+
+- type: entity
+  id: ActionToggleDome
+  name: Toggle energy dome
+  description: Turn the energy barrier on or off.
+  components:
+  - type: InstantAction
+    icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+    event: !type:ToggleActionEvent

@@ -342,6 +342,8 @@
       contents:
         - id: ShellShotgun
           amount: 30
+        - id: ShellShotgunMagnum12
+          amount: 12
 
 - type: entity
   name: пояс охраны спецсил
@@ -349,12 +351,16 @@
   parent: ClothingBeltSecurity
   id: ClothingBeltSecuritySuper
   components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
     - type: Storage
       grid:
       - 0,0,5,4
     - type: StorageFill
       contents:
-        - id: WeaponDisablerSuper
+        - id: WeaponDominatorNT
         - id: StunbatonSuper
         - id: GrenadeFlashBang
         - id: GrenadeFlashBang
@@ -367,6 +373,10 @@
   parent: ClothingBeltSecurity
   id: ClothingBeltSecurityCentComSecurity
   components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
     - type: StorageFill
       contents:
         - id: WeaponDominatorNT
@@ -375,3 +385,17 @@
         - id: GrenadeFlashBang
         - id: Handcuffs
         - id: Handcuffs
+
+- type: entity
+  parent: ClothingBeltGeneralG6
+  id: ClothingBeltGeneralG6FilledSpetsnaz
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: PaperManualCodes
+        - id: SpeedLoaderMagnumAP
+          amount: 4
+        - id: PinpointerNuclear

@@ -1,6 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
@@ -8,16 +13,29 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Physics;
+using Content.Shared.Popups;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag;
+using Content.Shared.Traits.Assorted;
 using Content.Shared.UserInterface;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Standing;
 
@@ -31,6 +49,15 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
@@ -42,7 +69,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             .Bind(ContentKeyFunctions.ToggleStanding, InputCmdHandler.FromDelegate(ToggleStanding))
             .Register<SharedLayingDownSystem>();
 
-        SubscribeNetworkEvent<ChangeLayingDownEvent>(OnChangeState);
+        SubscribeAllEvent<ChangeLayingDownEvent>(OnChangeState);
 
         SubscribeLocalEvent<StandingStateComponent, StandingUpDoAfterEvent>(OnStandingUpDoAfter);
         SubscribeLocalEvent<LayingDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
@@ -51,9 +78,19 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         SubscribeLocalEvent<LayingDownComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LayingDownComponent, UnbuckledEvent>(OnUnBuckled);
+        SubscribeLocalEvent<LayingDownComponent, StandAttemptEvent>(OnCheckLegs);
         SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
 
         Subs.CVar(_config, CCVars.CrawlUnderTables, b => CrawlUnderTables = b, true);
+    }
+
+    private void OnCheckLegs(Entity<LayingDownComponent> ent, ref StandAttemptEvent args)
+    {
+        if(!TryComp<BodyComponent>(ent, out var body))
+            return;
+
+        if (!HasComp<BorgChassisComponent>(ent) && (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0))
+            args.Cancel(); // no legs bro
     }
 
     private void OnBoundUserInterface(BoundUserInterfaceMessageAttempt args)
@@ -85,10 +122,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         if (CrawlUnderTables)
         {
-            if(_net.IsServer)
-                RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
-            else
-                RaiseLocalEvent(new DrawUpEvent(GetNetEntity(ent)));
+            ent.Comp.DrawDowned = false;
+            Dirty(ent,ent.Comp);
         }
     }
 
@@ -96,17 +131,23 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     private void OnUnBuckled(Entity<LayingDownComponent> ent, ref UnbuckledEvent args)
     {
-        if(
-            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
-            standingStateComponent.CurrentState != StandingState.Lying)
+        if(!TryComp<StandingStateComponent>(ent, out var standingStateComponent))
             return;
 
-        if (CrawlUnderTables)
+        if (TryComp<BodyComponent>(ent, out var body) &&
+            ((body.RequiredLegs > 0 && body.LegEntities.Count < body.RequiredLegs) || body.LegEntities.Count == 0)
+            && standingStateComponent.CurrentState != StandingState.Lying)
         {
-            if(_net.IsServer)
-                RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
-            else
-                RaiseLocalEvent(new DrawDownedEvent(GetNetEntity(ent)));
+            _standing.Down(ent, true, true, true);
+            return;
+        }
+
+        TryProcessAutoGetUp(ent);
+
+        if (CrawlUnderTables && standingStateComponent.CurrentState == StandingState.Lying)
+        {
+            ent.Comp.DrawDowned = true;
+            Dirty(ent,ent.Comp);
         }
     }
 
@@ -119,10 +160,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         if (CrawlUnderTables)
         {
-            if(_net.IsServer)
-                RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.Pvs(ent));
-            else
-                RaiseLocalEvent(new DrawUpEvent(GetNetEntity(ent)));
+            ent.Comp.DrawDowned = false;
+            Dirty(ent, ent.Comp);
         }
     }
 
@@ -130,6 +169,15 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
     {
+        if(_buckle.IsBuckled(ent))
+            return;
+
+        if(_pulling.IsPulled(ent))
+            return;
+
+        if(!IsSafeStanUp(ent, out _))
+            return;
+
         var autoUp = !_playerManager.TryGetSessionByEntity(ent, out var player) ||
                      GetAutoGetUp(ent, session: player);
 
@@ -152,15 +200,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        if (_net.IsServer)
-        {
-            RaiseNetworkEvent(new ChangeLayingDownEvent(), Filter.Pvs(session.AttachedEntity.Value));
-        }
-        else
-        {
-            RaiseNetworkEvent(new ChangeLayingDownEvent());
-        }
+        if (!_timing.IsFirstTimePredicted)
+            return;
 
+        RaisePredictiveEvent(new ChangeLayingDownEvent());
     }
 
     public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -186,11 +229,14 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid) || !inputMover.CanMove)
+        if (
+            HasComp<KnockedDownComponent>(uid) ||
+            !_mobState.IsAlive(uid) ||
+            !inputMover.CanMove)
             return;
 
         //RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
-        AutoGetUp((uid,layingDown));
+        TryProcessAutoGetUp((uid,layingDown));
 
         if (_standing.IsDown(uid, standing))
             TryStandUp(uid, layingDown, standing);
@@ -201,20 +247,23 @@ public abstract class SharedLayingDownSystem : EntitySystem
     private void OnStandingUpDoAfter(EntityUid uid, StandingStateComponent component, StandingUpDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || HasComp<KnockedDownComponent>(uid) ||
-            _mobState.IsIncapacitated(uid) || !_standing.Stand(uid))
+            _mobState.IsIncapacitated(uid) || !IsSafeStanUp(uid, out _) || !_standing.Stand(uid))
         {
             component.CurrentState = StandingState.Lying;
+            Dirty(uid,component);
+            return;
         }
 
         component.CurrentState = StandingState.Standing;
+        Dirty(uid,component);
     }
 
     private void OnRefreshMovementSpeed(EntityUid uid, LayingDownComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         if (_standing.IsDown(uid))
             args.ModifySpeed(component.SpeedModify, component.SpeedModify);
-        else
-            args.ModifySpeed(1f, 1f);
+        //else
+          //  args.ModifySpeed(1f, 1f);
     }
 
     private void OnParentChanged(EntityUid uid, LayingDownComponent component, EntParentChangedMessage args)
@@ -230,6 +279,28 @@ public abstract class SharedLayingDownSystem : EntitySystem
         _standing.Stand(uid, standingState);
     }
 
+    public bool IsSafeStanUp(EntityUid entity, [NotNullWhen(false)] out EntityUid? obj)
+    {
+        var xform = Transform(entity);
+        if (xform.GridUid != null)
+        {
+            foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, Comp<MapGridComponent>(xform.GridUid.Value), xform.Coordinates))
+            {
+                if (!_tag.HasTag(ent, "Structure") || !TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var phys))
+                    continue;
+
+                if(!phys.CanCollide|| (phys.CollisionMask & (int) CollisionGroup.MidImpassable) == 0x0)
+                    continue;
+
+                obj = ent;
+                return false;
+            }
+        }
+        obj = null;
+        return true;
+    }
+
+    private static SoundSpecifier _bonkSound = new SoundCollectionSpecifier("TrayHit");
     public bool TryStandUp(EntityUid uid, LayingDownComponent? layingDown = null, StandingStateComponent? standingState = null)
     {
         if (!Resolve(uid, ref standingState, false) ||
@@ -237,8 +308,24 @@ public abstract class SharedLayingDownSystem : EntitySystem
             standingState.CurrentState is not StandingState.Lying ||
             !_mobState.IsAlive(uid) ||
             _buckle.IsBuckled(uid) ||
+            _pulling.IsPulled(uid) ||
+            HasComp<LegsParalyzedComponent>(uid) ||
             TerminatingOrDeleted(uid))
         {
+            return false;
+        }
+
+        if (!IsSafeStanUp(uid, out var obj))
+        {
+            _popup.PopupPredicted(
+                Loc.GetString("bonkable-success-message-user",("bonkable", obj.Value)),
+                Loc.GetString("bonkable-success-message-others",("bonkable", obj.Value), ("user", uid)),
+                obj.Value,
+                uid,
+                PopupType.MediumCaution);
+            _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, canEvade: false, canSever: false, targetPart: TargetBodyPart.Head);
+            _stun.TryStun(uid, TimeSpan.FromSeconds(2), true);
+            _audioSystem.PlayPredicted(_bonkSound, uid, obj.Value);
             return false;
         }
 
@@ -252,6 +339,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
 
         standingState.CurrentState = StandingState.GettingUp;
+        Dirty(uid, standingState);
         return true;
     }
 
@@ -268,8 +356,20 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
         }
 
-        _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState);
+        _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState: standingState);
         return true;
+    }
+
+    // WWDP
+    public void LieDownInRange(EntityUid uid, EntityCoordinates coords, float range = 0.4f)
+    {
+        var ents = new HashSet<Entity<LayingDownComponent>>();
+        _lookup.GetEntitiesInRange(coords, range, ents);
+
+        foreach (var ent in ents.Where(ent => ent.Owner != uid))
+        {
+            TryLieDown(ent, behavior: DropHeldItemsBehavior.DropIfStanding);
+        }
     }
 }
 

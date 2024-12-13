@@ -1,5 +1,5 @@
 - type: entity
-  parent: Airlock
+  parent: AirlockCommand
   id: AirlockBlueShield
   suffix: Blue Shield
   components:

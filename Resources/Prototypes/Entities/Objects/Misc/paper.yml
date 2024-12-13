@@ -75,7 +75,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      SheetPrinter: 100
+      Paper: 100
 # Corvax-Printer-End
 
 - type: entity
@@ -603,6 +603,10 @@
     damage:
       types:
         Blunt: 10
+  - type: Tag
+    tags:
+    - Folder
+    - HighRiskItem
   - type: StealTarget
     stealGroup: BoxFolderQmClipboard
 

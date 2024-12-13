@@ -23,4 +23,7 @@ public sealed partial class ZombieBlobComponent : Component
 
     [DataField("greetSoundNotification")]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/zombie_start.ogg");
+
+    [DataField, AutoNetworkedField]
+    public bool CanShoot = false;
 }

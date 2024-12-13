@@ -1,0 +1,20 @@
+{
+    "name": "maprender",
+    "version": "1.0.0",
+    "description": "",
+    "main": "maprender.js",
+    "scripts": {
+        "start": "node maprender.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.7.7",
+        "form-data": "^4.0.1",
+        "glob": "^11.0.0",
+        "https-proxy-agent": "^7.0.5",
+        "prompt-checkbox": "^2.2.0",
+        "uuid": "^10.0.0"
+    }
+}

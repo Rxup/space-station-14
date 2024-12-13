@@ -28,7 +28,7 @@
           amount: 2
         - id: BattleMedipen
           amount: 2
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
@@ -80,7 +80,7 @@
           amount: 2
         - id: BattleMedipen
           amount: 2
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
@@ -142,9 +142,11 @@
     - type: StorageFill
       contents:
         - id: PinpointerNuclear
-        - id: WeaponPulseRifle
-        - id: SpeedLoaderMagnum
-          amount: 2
+        - id: WeaponPulseRifleSpetnaz
+        - id: PulseMag
+          amount: 4
+        - id: SpeedLoaderMagnumAP
+          amount: 4
         - id: PaperManualCodes
         - id: C4
           amount: 4
@@ -166,7 +168,7 @@
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: BoxFlare
         - id: ArmySetLoadouts
 
@@ -241,7 +243,7 @@
           amount: 2
         - id: SpetsnazMedipen
           amount: 3
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: WeaponPistolDivet2
         - id: MagazinePistol345
           amount: 3
@@ -249,10 +251,8 @@
         - id: MagazinePulseRifle
           amount: 9
         - id: WeaponShotgunAA12
-        - id: MagazineShotgunFRAG12
-          amount: 2
         - id: MagazineShotgunMagnum12
-          amount: 4
+          amount: 6
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -267,7 +267,7 @@
           amount: 2
         - id: SpetsnazMedipen
           amount: 3
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: WeaponPistolDivet2
         - id: MagazinePistol345
           amount: 3
@@ -291,7 +291,7 @@
           amount: 2
         - id: CombatMedipen
           amount: 3
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: WeaponPulseSMGTritonM3
         - id: WeaponPulseShotgunHellHammer
         - id: MedkitCombatFilled
@@ -333,7 +333,7 @@
           amount: 2
         - id: CombatMedipen
           amount: 3
-        - id: WeaponDisabler
+        - id: WeaponDominatorNT
         - id: WeaponPulseSMGTritonM3
         - id: MedkitAdvancedFilled
           amount: 3

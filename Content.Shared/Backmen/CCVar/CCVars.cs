@@ -1,6 +1,4 @@
-﻿using Content.Shared.Backmen.Supermatter;
-using Robust.Shared;
-using Robust.Shared.Configuration;
+﻿using Robust.Shared.Configuration;
 
 namespace Content.Shared.Backmen.CCVar;
 
@@ -29,6 +27,9 @@ public sealed class CCVars
     public static readonly CVarDef<string>
         GptApiGigaToken = CVarDef.Create("gpt.giga_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
+    public static readonly CVarDef<bool>
+        GptApiNoAdminAuto = CVarDef.Create("gpt.no_admin_auto", false, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
     /*
      * Queue
      */
@@ -50,7 +51,7 @@ public sealed class CCVars
     ///     Enabled Discord linking, show linking button and modal window
     /// </summary>
     public static readonly CVarDef<bool> DiscordAuthEnabled =
-        CVarDef.Create("discord_auth.enabled", false, CVar.SERVERONLY);
+        CVarDef.Create("discord_auth.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     URL of the Discord auth server API
@@ -63,6 +64,9 @@ public sealed class CCVars
     /// </summary>
     public static readonly CVarDef<string> DiscordAuthApiKey =
         CVarDef.Create("discord_auth.api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    public static readonly CVarDef<bool> DiscordAuthIsOptional =
+        CVarDef.Create("discord_auth.is_opt", false, CVar.SERVER | CVar.REPLICATED);
 
     /**
      * Sponsors
@@ -196,6 +200,9 @@ public sealed class CCVars
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
+    public static readonly CVarDef<bool> HoldLookUp =
+        CVarDef.Create("white.hold_look_up", false, CVar.CLIENT | CVar.ARCHIVE);
+
     #region Supermatter System
 
         /// <summary>
@@ -244,4 +251,27 @@ public sealed class CCVars
             CVarDef.Create("supermatter.rads_modifier", 1f, CVar.SERVER);
 
         #endregion
+
+    #region Surgery
+
+    public static readonly CVarDef<bool> CanOperateOnSelf =
+        CVarDef.Create("surgery.can_operate_on_self", false, CVar.SERVERONLY);
+
+    #endregion
+
+    #region Mood System
+
+    public static readonly CVarDef<bool> MoodEnabled =
+        CVarDef.Create("mood.enabled", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodIncreasesSpeed =
+        CVarDef.Create("mood.increases_speed", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodDecreasesSpeed =
+        CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodModifiesThresholds =
+        CVarDef.Create("mood.modify_thresholds", false, CVar.SERVER);
+
+    #endregion
 }

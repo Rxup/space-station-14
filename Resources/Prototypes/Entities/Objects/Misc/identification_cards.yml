@@ -443,7 +443,7 @@
     - state: default
     - state: idvisitor
   - type: IdCard
-    jobTitle: Visitor
+    jobTitle: job-title-visitor
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
@@ -618,9 +618,9 @@
     entries:
     - label: corvax-hidden-desc-AgentIDCard-syndicate
       whitelistMind:
-        components:
-          - TraitorRole
-          - NukeOperative
+        mindRoles:
+        - TraitorRole
+        - NukeopsRole
     - label: corvax-hidden-desc-AgentIDCard-research
       jobRequired:
         - ResearchAssistant
@@ -764,7 +764,7 @@
     - state: default
     - state: idcluwne
   - type: IdCard
-    jobTitle: Cluwne
+    jobTitle: job-title-cluwne
   - type: Unremoveable
 
 - type: entity
@@ -824,7 +824,7 @@
   - type: Item
     heldPrefix: green
   - type: IdCard
-    jobTitle: Universal
+    jobTitle: job-title-universal
     jobIcon: JobIconAdmin
   - type: Access
     groups:
@@ -833,3 +833,4 @@
     - CentralCommand
     - NuclearOperative
     - SyndicateAgent
+    - Wizard

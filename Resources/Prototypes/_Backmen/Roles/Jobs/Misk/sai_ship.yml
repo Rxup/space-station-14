@@ -17,3 +17,57 @@
   alwaysUseSpawner: true
   #canHaveTraits: false
   joinNotifyCrew: true
+
+- type: entity
+  id: PlayerStationAiSAI
+  parent: PlayerStationAi
+  suffix: Job spawn SAI
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - GlassLayer
+  - type: AnimationPlayer
+  - type: NodeContainer
+    nodes:
+      high:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+      medium:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+      low:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: PowerConsumer
+    showInMonitor: false
+  - type: Electrified
+    requirePower: false
+    noWindowInTile: true
+    highVoltageNode: high
+    mediumVoltageNode: medium
+    lowVoltageNode: low
+  - type: CanBuildWindowOnTop
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: monitorBroken
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

@@ -5,3 +5,6 @@
   id: MobVox
   components:
     - type: PotentialPsionic
+    - type: FootPrints
+      leftBarePrint: "footprint-left-bare-lizard"
+      rightBarePrint: "footprint-right-bare-lizard"

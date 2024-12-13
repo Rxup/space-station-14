@@ -889,7 +889,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkDisruption
 
@@ -1040,7 +1040,7 @@
   id: UplinkSurplusBundle
   name: uplink-surplus-bundle-name
   description: uplink-surplus-bundle-desc
-  productEntity: CrateSyndicateSurplusBundle
+  productEntity: DropPodMarkerSyndicateSurplusBundle #backmen-droppod
   cost:
     Telecrystal: 20
   categories:
@@ -1059,7 +1059,7 @@
   id: UplinkSuperSurplusBundle
   name: uplink-super-surplus-bundle-name
   description: uplink-super-surplus-bundle-desc
-  productEntity: CrateSyndicateSuperSurplusBundle
+  productEntity: DropPodMarkerSyndicateSuperSurplusBundle #backmen-droppod
   cost:
     Telecrystal: 40
   categories:
@@ -1122,7 +1122,7 @@
   id: UplinkReinforcementRadioSyndicate
   name: uplink-reinforcement-radio-name
   description: uplink-reinforcement-radio-traitor-desc
-  productEntity: ReinforcementRadioSyndicate
+  productEntity: DropPodMarkerReinforcementSyndicate #backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1141,7 +1141,7 @@
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
   name: uplink-reinforcement-radio-nukeops-name
   description: uplink-reinforcement-radio-nukeops-desc
-  productEntity: ReinforcementRadioSyndicateNukeops
+  productEntity: DropPodMarkerReinforcementSyndicateNukeops #backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
   cost:
     Telecrystal: 35
@@ -1157,7 +1157,7 @@
   id: UplinkReinforcementRadioSyndicateCyborgAssault
   name:  uplink-reinforcement-radio-cyborg-assault-name
   description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: ReinforcementRadioSyndicateCyborgAssault
+  productEntity: DropPodMarkerReinforcementSyndicateCyborgAssault #backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
   cost:
     Telecrystal: 65
@@ -1173,7 +1173,7 @@
   id: UplinkReinforcementRadioSyndicateAncestor
   name: uplink-reinforcement-radio-ancestor-name
   description: uplink-reinforcement-radio-ancestor-desc
-  productEntity: ReinforcementRadioSyndicateAncestor
+  productEntity: DropPodMarkerReinforcementSyndicateAncestor #backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1192,7 +1192,7 @@
   id: UplinkReinforcementRadioSyndicateAncestorNukeops # Version for Nukeops that spawns a syndicate monkey with the NukeOperative component.
   name: uplink-reinforcement-radio-ancestor-name
   description: uplink-reinforcement-radio-ancestor-desc
-  productEntity: ReinforcementRadioSyndicateAncestorNukeops
+  productEntity: DropPodMarkerReinforcementSyndicateAncestorNukeops #backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1615,7 +1615,7 @@
   name: uplink-clothing-outer-hardsuit-juggernaut-name
   description: uplink-clothing-outer-hardsuit-juggernaut-desc
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
-  productEntity: CrateCybersunJuggernautBundle
+  productEntity: DropPodMarkerSyndicateJuggernaut #backmen-droppod
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 8

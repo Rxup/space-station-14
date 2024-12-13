@@ -1,8 +1,10 @@
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Language;
+using Content.Server.Backmen.Language.Events;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.Backmen.Language;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
@@ -14,8 +16,23 @@ public sealed class BabelTowerRuleSystem : GameRuleSystem<BabelTowerRuleComponen
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<DetermineEntityLanguagesEvent>(OnLanguageApply);
+        SubscribeLocalEvent<DetermineEntityLanguagesEvent>(OnLanguageApply, after: [typeof(TranslatorSystem), typeof(TranslatorImplantSystem)]);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
+    }
+
+    private void OnRoundStarted(RoundStartedEvent ev)
+    {
+        var queue = QueryActiveRules();
+        while (queue.MoveNext(out _, out _, out _))
+        {
+            var q2 = EntityQueryEnumerator<LanguageSpeakerComponent>();
+            while (q2.MoveNext(out var owner, out var comp))
+            {
+                _language.UpdateEntityLanguages((owner, comp));
+            }
+            break;
+        }
     }
 
     protected override void Started(EntityUid uid, BabelTowerRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -58,6 +75,7 @@ public sealed class BabelTowerRuleSystem : GameRuleSystem<BabelTowerRuleComponen
         {
             ev.SpokenLanguages.RemoveWhere(x => lungComp.LanguagesToRemove.Contains(x));
             ev.UnderstoodLanguages.RemoveWhere(x => lungComp.LanguagesToRemove.Contains(x));
+            break;
         }
     }
 }

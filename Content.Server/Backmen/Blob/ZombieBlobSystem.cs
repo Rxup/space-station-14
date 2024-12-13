@@ -15,8 +15,11 @@ using Content.Server.Roles;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Damage;
+using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.NPC.Components;
@@ -24,6 +27,7 @@ using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
@@ -33,7 +37,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob;
 
-public sealed class ZombieBlobSystem : EntitySystem
+public sealed class ZombieBlobSystem : SharedZombieBlobSystem
 {
     [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
@@ -43,6 +47,8 @@ public sealed class ZombieBlobSystem : EntitySystem
     [Dependency] private readonly IChatManager _chatMan = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.BlobImpassable);
 
@@ -117,6 +123,13 @@ public sealed class ZombieBlobSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ZombieBlobComponent component, ComponentStartup args)
     {
+        _ui.CloseUis(uid);
+        _inventory.TryUnequip(uid, "underpants", true, true);
+        _inventory.TryUnequip(uid, "neck", true, true);
+        _inventory.TryUnequip(uid, "mask", true, true);
+        _inventory.TryUnequip(uid, "eyes", true, true);
+        _inventory.TryUnequip(uid, "ears", true, true);
+
         EnsureComp<BlobMobComponent>(uid);
         EnsureComp<BlobSpeakComponent>(uid);
 
@@ -172,6 +185,7 @@ public sealed class ZombieBlobSystem : EntitySystem
             var htn = EnsureComp<HTNComponent>(uid);
             htn.RootTask = new HTNCompoundTask() {Task = "SimpleHostileCompound"};
             htn.Blackboard.SetValue(NPCBlackboard.Owner, uid);
+            htn.Blackboard.SetValue(NPCBlackboard.NavBlob, true);
 
             if (!HasComp<ActorComponent>(component.BlobPodUid))
             {
@@ -188,6 +202,7 @@ public sealed class ZombieBlobSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return;
 
+        _ui.CloseUis(uid);
         RemComp<BlobSpeakComponent>(uid);
         RemComp<BlobMobComponent>(uid);
         RemComp<HTNComponent>(uid);

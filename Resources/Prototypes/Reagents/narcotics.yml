@@ -216,6 +216,11 @@
   plantMetabolism:
   - !type:PlantAdjustHealth
     amount: -5
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: NicotineBenefit
 
 # TODO: Replace these nonstandardized effects with generic brain damage
 - type: reagent
@@ -264,6 +269,12 @@
         type: Add
         time: 5
         refresh: false
+      - !type:ChemAddMoodlet
+        moodPrototype: SpaceDrugsBenefit
+        conditions:
+        - !type:ReagentThreshold
+          reagent: SpaceDrugs
+          min: 6
 
 - type: reagent
   id: Bananadine
@@ -321,6 +332,9 @@
       - !type:GenericStatusEffect
         key: Muted
         component: Muted
+        type: Add
+        time: 10
+        refresh: false
 
 - type: reagent
   id: NorepinephricAcid
@@ -461,3 +475,9 @@
         type: Add
         time: 5
         refresh: false
+      - !type:ChemAddMoodlet
+        moodPrototype: HappinessBenefit
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Happiness
+          min: 6

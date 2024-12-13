@@ -21,6 +21,7 @@
     delay: 10
   - type: Speech
     speechSounds: Pai # it just sounds better
+  - type: TTS
 
 - type: entity
   parent: BaseFigurine

@@ -10,6 +10,12 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -28,19 +34,37 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private EntityQuery<BlobCoreComponent> _blobCoreQuery;
+
+    [ValidatePrototypeId<NpcFactionPrototype>]
+    private const string BlobFaction = "Blob";
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<BlobTileComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BlobTileComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobTileComponent, BlobTileGetPulseEvent>(OnPulsed);
         SubscribeLocalEvent<BlobTileComponent, FlashAttemptEvent>(OnFlashAttempt);
         SubscribeLocalEvent<BlobTileComponent, EntityTerminatingEvent>(OnTerminate);
 
         _blobCoreQuery = GetEntityQuery<BlobCoreComponent>();
+    }
+
+    private void OnMapInit(Entity<BlobTileComponent> ent, ref MapInitEvent args)
+    {
+        var faction = EnsureComp<NpcFactionMemberComponent>(ent);
+        Entity<NpcFactionMemberComponent?> factionEnt = (ent, faction);
+
+        _npcFactionSystem.ClearFactions(factionEnt, false);
+        _npcFactionSystem.AddFaction(factionEnt, BlobFaction, true);
+
+        // make alive - true for npc combat
+        EnsureComp<MobStateComponent>(ent);
     }
 
     private void OnTerminate(EntityUid uid, BlobTileComponent component, EntityTerminatingEvent args)

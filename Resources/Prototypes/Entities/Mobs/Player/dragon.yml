@@ -163,6 +163,7 @@
     understands:
     - Carp
     - Dragon
+    - TauCetiBasic
 
 
   - type: Puller

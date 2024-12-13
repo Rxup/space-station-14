@@ -157,6 +157,9 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField("alwaysUseSpawner")]
         public bool AlwaysUseSpawner { get; private set; } = false;
+
+        [DataField]
+        public bool DiscordRequired;
 // end-backmen
         [DataField]
         public bool Whitelisted;

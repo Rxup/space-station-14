@@ -14,10 +14,10 @@ uplink-box-light-rifle-name = пакет патронов (7,62 винтовка
 uplink-box-light-rifle-desc = 30 патронов калибра 7,62 винтовка, совместимо с SVD.
 
 uplink-psi-grenade-bundle-name = набор пси гранат
-uplink-psi-grenade-bundle-desc = Набор содержит вещь мешок с 20-тью пси гранатами которые мешают жертвам говорить.
+uplink-psi-grenade-bundle-desc = Набор содержит вещмешок с 20-тью пси гранатами которые мешают жертвам говорить.
 
 uplink-anti-psi-grenade-bundle-name = набор анти-психических гранат
-uplink-anti-psi-grenade-bundle-desc = Полный вещьмешок ани-психических гранат.
+uplink-anti-psi-grenade-bundle-desc = Полный вещмешок ани-психических гранат.
 
 store-category-bundles = Наборы
 
@@ -39,30 +39,28 @@ uplink-book-knok-name = Тук-тук
 uplink-book-knok-desc = Открывает все двери в большой области на некоторое время, короткая перезарядка.
 
 uplink-book-fireball-name = Фаерболл
-uplink-book-fireball-desc = Throw a massive explosive at people, don't get caught in it yourself.
+uplink-book-fireball-desc = Пускает огненный шар в цель, на которую вы навелись. 
 
-uplink-book-heal-name = Healing book
-uplink-book-heal-desc = Target a being and heal them of all their wounds instantly! (WARNING - May be considered necromany if used on the dead)
-
+uplink-book-heal-name = Книга Исцеления
+uplink-book-heal-desc = Нацелитесь на существо и мгновенно исцелите его от всех ран! (ВНИМАНИЕ - Использование на мертвецах может быть расценено как некромантия)
 # Wands
 
 # Armor
-uplink-armor-hardsuit-name = Hardsuit
-uplink-armor-hardsuit-desc = A somewhat damage resistant, but heavy hardsuit that allows eva and protection in fights. Also acts as wizard robes, allowing you to use spells.
+uplink-armor-hardsuit-name = скафандр мага
+uplink-armor-hardsuit-desc = Несколько устойчивый к повреждениям, но тяжелый бронекостюм, который обеспечивает защиту в бою. Также действует как мантия волшебника, позволяя использовать заклинания.
 
 # Utility
-uplink-utility-spellbelt-name = Spell Belt
-uplink-utility-spellbelt-desc = A belt to hold your spells in.
+uplink-utility-spellbelt-name = Пояс заклинаний
+uplink-utility-spellbelt-desc = Пояс чтобы содержать в нем свои заклинания.
 
 # Bundles
-uplink-bundles-wizardsurpluscrate30bs-name = 30 to 50 BS surplus crate
-uplink-bundles-wizardsurpluscrate30bs-desc = A crate filled with random wizard items, overall worth 50BS.
+uplink-bundles-wizardsurpluscrate30bs-name = ящик разных магических штук за 50БС
+uplink-bundles-wizardsurpluscrate30bs-desc = Ящик заполненный вещами мага, ценой от 30 до 50 БС. 
 
-uplink-bundles-wizardoutfitbag-name = Wizard outfit bag
-uplink-bundles-wizardoutfitbag-desc = A nice set few sets of magical wizard clothing to use spells.
-
+uplink-bundles-wizardoutfitbag-name = рюкзак с одеждой мага
+uplink-bundles-wizardoutfitbag-desc = Хороший набор содержащий одежду мага, одежда мага дает возможность использовать магию.
 # Miscellanious
 
 # Pointless
-uplink-pointless-spellburger-name = Spell Burger
-uplink-pointless-spellburger-desc = A delicious burger made of magic and bluespace.
+uplink-pointless-spellburger-name = магический бургер
+uplink-pointless-spellburger-desc = Вкуснейший бургер созданный магией и блюспейсом.

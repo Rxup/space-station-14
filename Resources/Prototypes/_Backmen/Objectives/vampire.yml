@@ -57,5 +57,5 @@
       state: shuttle
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - VampireRole

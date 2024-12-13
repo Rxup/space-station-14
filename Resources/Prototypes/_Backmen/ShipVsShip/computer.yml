@@ -5,6 +5,17 @@
   suffix: Team A
   description: Used to purchase and sell shuttles
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 1000
+        mask:
+        - AllMask
+        layer:
+        - WallLayer
   - type: AccessReader
     access: [["Captain"], ["CentralCommand"]]
   - type: Damageable
@@ -14,7 +25,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -32,6 +43,17 @@
   suffix: Team B
   description: Used to purchase and sell shuttles
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 1000
+        mask:
+        - AllMask
+        layer:
+        - WallLayer
   - type: AccessReader
     access: [["Captain"], ["CentralCommand"]]
   - type: Damageable
@@ -41,7 +63,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:

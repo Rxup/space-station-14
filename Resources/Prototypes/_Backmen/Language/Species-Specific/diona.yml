@@ -4,7 +4,7 @@
   id: RootSpeak
   speech:
     color: "#ce5e14dd"
-    fontId: Ebbe
+    #fontId: Ebbe
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

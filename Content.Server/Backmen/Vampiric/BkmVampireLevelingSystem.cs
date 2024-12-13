@@ -23,8 +23,10 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -54,6 +56,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     [Dependency] private readonly BloodSuckerSystem _bloodSucker = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -95,7 +98,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
         _damageableSystem.TryChangeDamage(args.Target.Value, damage, true, true);
 
-        _bloodSucker.ConvertToVampire(args.Target.Value);
+        _bloodSucker.MakeVampire(args.Target.Value);
         _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
         _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
 
@@ -195,6 +198,12 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
     public void InitShop(Entity<BkmVampireComponent> ent)
     {
+        var ui = EnsureComp<UserInterfaceComponent>(ent);
+        if (!_ui.HasUi(ent, StoreUiKey.Key, ui))
+        {
+            // у пользователя нет ui магазин!
+            return;
+        }
         _actions.AddAction(ent, VmpShop);
         var store = EnsureComp<StoreComponent>(ent);
         store.RefundAllowed = false;
@@ -293,16 +302,24 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
     public void AddCurrency(Entity<BkmVampireComponent> ent, FixedPoint2 va, string? source = null)
     {
-        va = Math.Max(0D, va.Double());
+        va = FixedPoint2.Max(0, va);
         if (va == 0)
         {
             _popupSystem.PopupEntity($"Вы не получили эссенцию"+(source != null ? $" за {source}" : ""), ent, ent, PopupType.MediumCaution);
             return;
         }
+
+        var plus = va > 0;
+
+        if (plus)
+        {
+            va *= 3; // base mode buff
+        }
+
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
                 { { ent.Comp.CurrencyPrototype, va } },
             ent);
-        var plus = va > 0;
+
 
         _popupSystem.PopupEntity($"Вы получили {(plus ? "+" : "-")} {Math.Abs(va.Double())} эссенцию"+(source != null ? $" за {source}" : ""), ent, ent, plus ? PopupType.Medium : PopupType.MediumCaution);
     }

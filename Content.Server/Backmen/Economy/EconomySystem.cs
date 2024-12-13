@@ -20,6 +20,7 @@ using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Objectives.Components;
 using Content.Shared.PDA;
@@ -47,6 +48,8 @@ public sealed class EconomySystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+
+    [ValidatePrototypeId<EntityPrototype>] private readonly string MindRoleBankMemory = "MindRoleBankMemory";
 
     public override void Initialize()
     {
@@ -146,13 +149,14 @@ public sealed class EconomySystem : EntitySystem
     private void OnAfterBankAssign(EntityUid uid, MindNoteConditionComponent component,
         ref ObjectiveAfterAssignEvent args)
     {
-        if (!TryComp<BankMemoryComponent>(args.MindId, out var bankMemory))
+        if (!_roleSystem.MindHasRole<BankMemoryComponent>(args.MindId, out var bankMemory) ||
+            !TryComp<BankMemoryComponent>(bankMemory, out var bankMemoryComp))
         {
             UpdateNote(uid);
             return;
         }
 
-        if (!TryComp<BankAccountComponent>(bankMemory.BankAccount, out var bankAccount))
+        if (!TryComp<BankAccountComponent>(bankMemoryComp.BankAccount, out var bankAccount))
         {
             UpdateNote(uid);
             return;
@@ -283,13 +287,13 @@ public sealed class EconomySystem : EntitySystem
                 return null;
             }
 
-            if (AttachWage && !_roleSystem.MindHasRole<JobComponent>(mindId))
+            if (AttachWage && !_roleSystem.MindHasRole<JobRoleComponent>(mindId))
             {
                 AttachWage = false;
             }
 
-            if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.Prototype != null &&
-                _prototype.TryIndex<JobPrototype>(jobComponent.Prototype, out var jobPrototype))
+            if (_roleSystem.MindHasRole<JobRoleComponent>(mindId, out var jobComponent) && jobComponent.Value.Comp1.JobPrototype != null &&
+                _prototype.TryIndex(jobComponent.Value.Comp1.JobPrototype, out var jobPrototype))
             {
                 _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
 
@@ -305,13 +309,12 @@ public sealed class EconomySystem : EntitySystem
             _roleSystem.MindRemoveRole<BankMemoryComponent>(mindId);
         }
 
-        _roleSystem.MindAddRole(mindId, new BankMemoryComponent
-        {
-            BankAccount = bankAccount
-        });
+        _roleSystem.MindAddRole(mindId, MindRoleBankMemory);
+        _roleSystem.MindHasRole<BankMemoryComponent>(mindId, out var bankRoleComp);
+        EnsureComp<BankMemoryComponent>(bankRoleComp!.Value).BankAccount = bankAccount;
 
         var needAdd = true;
-        foreach (var condition in mind.AllObjectives.Where(HasComp<MindNoteConditionComponent>))
+        foreach (var condition in mind.Objectives.Where(HasComp<MindNoteConditionComponent>))
         {
             var md = Comp<MindNoteConditionComponent>(condition);
             Dirty(condition, md);

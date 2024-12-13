@@ -6,7 +6,7 @@
   setPreference: false
   startingGear: CBURNGear
   icon: "JobIconNanotrasen"
-  supervisors: job-supervisors-centcom
+  supervisors: job-supervisors-ueg
   canBeAntag: false
   accessGroups:
   - AllAccess

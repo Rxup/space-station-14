@@ -62,7 +62,7 @@ public sealed partial class SponsorWindow : DefaultWindow
         GhostTheme.AddItem(Loc.GetString("sponsor-win-manager-ghost-default"), id: -1);
         foreach (var (themePrototype,id) in _ghostThemePrototypes.Select((x,i)=>(x,i)))
         {
-            GhostTheme.AddItem(Loc.GetString($"sponsor-win-manager-ghost-{themePrototype.ID}"), id);
+            GhostTheme.AddItem(Loc.GetString(themePrototype.Name), id);
             if (selectedGhost == themePrototype.ID)
             {
                 selectedInt = id;

@@ -46,15 +46,6 @@
   - type: Polymorphable
   - type: Buckle
   - type: Insulated
-  - type: LanguageSpeaker
-    currentLanguage: Xeno
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Xeno
-    understands:
-    - Xeno
-  - type: TTS
-    voice: Xenia
   - type: Hands
     showInHands: true
   - type: MobState
@@ -157,6 +148,9 @@
   description: Молодой ксеноморф.
   parent: KsenosXenoBase
   components:
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -226,6 +220,18 @@
       - id: XenoRCD
       - id: WeaponXenoHealingSpit
       - id: PinpointerXeno
+  - type: XenoAcidSpiller
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: SlermQueenPlus
+          Quantity: 30
+  - type: Udder
+    reagentId: SlermQueenPlus
+    quantityPerUpdate: 25
+    growthDelay: 30
   - type: Destructible
     thresholds:
     - trigger:
@@ -1773,6 +1779,14 @@
   description: На вид мерзкое.
   save: false
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Xeno
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+    - TauCetiBasic
   - type: ContainerContainer
   - type: ActionsContainer
   - type: Actions
@@ -1810,7 +1824,7 @@
   #  softness: 5
   #  color: "#FF33FF"
   #  autoRot: true
-  - type: GhostTakeoverAvailable
+  #- type: GhostTakeoverAvailable
   - type: GhostRole
     allowMovement: false
     allowSpeech: false
@@ -1820,8 +1834,8 @@
     rules: "Вырасти в полноценного защитника улья."
     raffle:
       settings: default
-  - type: Polymorphable
-    innatePolymorphs: [ EggToLarva ]
+  - type: GhostRoleMobSpawner
+    prototype: KsenosXenoLarva
 
 
 # LOCATOR #
@@ -1873,7 +1887,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: LarvaToDrone
@@ -1884,7 +1898,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: LarvaToRunner
@@ -1895,7 +1909,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: DroneToSpitter
@@ -1906,7 +1920,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: RunnerToWarrior
@@ -1917,7 +1931,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: RunnerToHunter
@@ -1928,7 +1942,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 # ABILITIES #
 
@@ -1954,7 +1968,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: false
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Larva
@@ -1965,7 +1979,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Drone
@@ -1976,7 +1990,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Runner
@@ -1987,7 +2001,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Spitter
@@ -1998,7 +2012,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Warrior
@@ -2009,7 +2023,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Praetorian
@@ -2020,7 +2034,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Ravager
@@ -2031,7 +2045,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Queen
@@ -2042,4 +2056,4 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30

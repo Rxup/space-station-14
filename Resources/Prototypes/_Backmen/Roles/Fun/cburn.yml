@@ -65,6 +65,9 @@
     ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
     pocket2: ClothingMedicalPounchRXBZZFilled
+  storage:
+    back:
+    - RadioMTFHandheld
 
 - type: startingGear
   id: RXBZZBlobLeader

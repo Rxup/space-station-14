@@ -32,7 +32,7 @@
             Icon="{xe:Tex '/Textures/Interface/emotes.svg.192dpi.png'}"
             ToolTip="{Loc 'game-hud-open-emotes-menu-button-tooltip'}"
             BoundKey = "{x:Static is:ContentKeyFunctions.OpenEmotesMenu}"
-            MinSize="42 64"
+            MinSize="96 32"
             HorizontalExpand="True"
             AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
@@ -59,18 +59,6 @@
             AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
         <ui:MenuButton
-            Name="InventoryButton"
-            Access="Internal"
-            Icon="{xe:Tex '/Textures/Interface/inventory.svg.192dpi.png'}"
-            BoundKey = "{x:Static is:ContentKeyFunctions.OpenInventoryMenu}"
-            ToolTip="{Loc 'game-hud-open-inventory-menu-button-tooltip'}"
-            MinSize="96 32"
-            HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonOpenLeft}"
-            />
-    </BoxContainer>
-    <BoxContainer Orientation="Horizontal">
-        <ui:MenuButton
             Name="CraftingButton"
             Access="Internal"
             Icon="{xe:Tex '/Textures/Interface/hammer.svg.192dpi.png'}"
@@ -80,6 +68,8 @@
             HorizontalExpand="True"
             AppendStyleClass="{x:Static style:StyleBase.ButtonOpenRight}"
             />
+    </BoxContainer>
+    <BoxContainer Orientation="Horizontal">
         <ui:MenuButton
             Name="ActionButton"
             Access="Internal"
@@ -106,7 +96,7 @@
             Icon="{xe:Tex '/Textures/Backmen/Interface/language.png'}"
             BoundKey = "{x:Static is:ContentKeyFunctions.OpenLanguageMenu}"
             ToolTip="Open the Language Menu"
-            MinSize="42 64"
+            MinSize="96 32"
             HorizontalExpand="True"
             AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />

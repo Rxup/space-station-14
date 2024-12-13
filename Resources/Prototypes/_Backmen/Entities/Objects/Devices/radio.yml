@@ -1,6 +1,6 @@
 - type: entity
-  name: рация ОБР
-  description: A handy handheld radio.
+  name: рация
+  description: Рация которая связывается с ближайшей блю-спейс артиллерийской платформой.
   parent: BaseItem
   id: RadioMTFHandheld
   components:
@@ -10,3 +10,50 @@
   - type: Item
     sprite: Objects/Devices/communication.rsi
     heldPrefix: radio
+  - type: Spellbook
+    learnTime: 0
+    spellActions:
+      ActionCallAirSupportMissiles: -1
+  - type: UseDelay
+    delay: 10
+  - type: Speech
+    speechSounds: Combine
+  - type: SpeakOnUse
+    pack: ArtilleryComander
+
+- type: entity
+  id: ActionCallAirSupportMissiles
+  name: Вызов арт-обстрела
+  description: Запросить артиллерийской поддержки по указаной вами точке.
+  components:
+  - type: WorldTargetAction
+    useDelay: 240
+    range: 80
+    itemIconStyle: BigAction
+    icon:
+      sprite: Backmen/Structures/Storage/supplypod.rsi
+      state: missilepod_falling
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: MissileDropSpawnerAreaSpawner
+        amount: 1
+      offset: 0, 1
+      speech: atrillery-call
+
+- type: entity
+  name: рация вызова снабжения
+  description: Портативная рация для связи с отделом снабжения, настроена на одностороний разговор.
+  parent: BaseItem
+  id: RadioBlueShieldSupplyPod
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    state: radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: radio
+  - type: SpawnItemsOnUse
+    items:
+      - id: DropPodMarkerBlueShield
+    sound:
+      path: /Audio/Corvax/Effects/Footsteps/off2.ogg

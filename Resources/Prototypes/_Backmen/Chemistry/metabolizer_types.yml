@@ -1,0 +1,7 @@
+﻿- type: metabolizerType
+  id: AnthroAnimal
+  name: metabolizer-type-anthropomorph-animal
+
+- type: metabolizerType
+  id: Shadowkin
+  name: metabolizer-type-shadowkin

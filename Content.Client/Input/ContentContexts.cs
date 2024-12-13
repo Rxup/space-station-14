@@ -87,9 +87,18 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
             human.AddFunction(ContentKeyFunctions.ToggleStanding); // Ataraxia
-            human.AddFunction(ContentKeyFunctions.LookUp); // WD EDIT
-            human.AddFunction(CMKeyFunctions.CMUniqueAction); // backmen
-            human.AddFunction(ContentKeyFunctions.OfferItem); // Ataraxia
+            human.AddFunction(ContentKeyFunctions.LookUp); // BACKMEN EDIT
+            human.AddFunction(CMKeyFunctions.CMUniqueAction); // BACKMEN EDIT
+            human.AddFunction(ContentKeyFunctions.TargetHead);
+            human.AddFunction(ContentKeyFunctions.TargetTorso);
+            human.AddFunction(ContentKeyFunctions.TargetLeftArm);
+            human.AddFunction(ContentKeyFunctions.TargetLeftHand);
+            human.AddFunction(ContentKeyFunctions.TargetRightArm);
+            human.AddFunction(ContentKeyFunctions.TargetRightHand);
+            human.AddFunction(ContentKeyFunctions.TargetLeftLeg);
+            human.AddFunction(ContentKeyFunctions.TargetLeftFoot);
+            human.AddFunction(ContentKeyFunctions.TargetRightLeg);
+            human.AddFunction(ContentKeyFunctions.TargetRightFoot);
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

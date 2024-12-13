@@ -13,7 +13,6 @@
       - Electrocution
       - ForcedSleep
       - TemporaryBlindness
-      - Pacified
       - StaminaModifier
   - type: ZombieImmune
   - type: Rotatable
@@ -51,7 +50,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 100
+        density: 300
         mask:
         - MobMask
         layer:
@@ -71,7 +70,8 @@
     critThreshold: 100
   - type: Bloodstream
     bloodReagent: Blood
-    bloodMaxVolume: 0
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
   - type: Destructible
     thresholds:
     - trigger:
@@ -100,6 +100,14 @@
       - DoorBumpOpener
       - FootstepSound
       - CanPilot
+  - type: FootPrints
+
+- type: entity
+  id: MobBaseNpcSalvage
+  parent: MobBaseNpc
+  components:
+  - type: Physics
+    bodyType: Dynamic
 
 - type: body
   id: AnimalHuman
