@@ -9,6 +9,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Hands.Components;
 
 namespace Content.Server.Construction
 {
@@ -394,6 +395,17 @@ namespace Content.Server.Construction
                 }
             }
 
+            // WD EDIT START
+            if (userUid != null && IsTransformParentOf(userUid.Value, transform) && TryComp(userUid, out HandsComponent? hands))
+            {
+                var hand = hands.Hands.Values.FirstOrDefault(h => h.HeldEntity == uid);
+                if (hand != null)
+                    _handsSystem.TryDrop(userUid.Value, hand, handsComp: hands);
+
+                _handsSystem.PickupOrDrop(userUid, newUid, handsComp: hands);
+            }
+            // WD EDIT END
+
             var entChangeEv = new ConstructionChangeEntityEvent(newUid, uid);
             RaiseLocalEvent(uid, entChangeEv);
             RaiseLocalEvent(newUid, entChangeEv, broadcast: true);
@@ -408,6 +420,13 @@ namespace Content.Server.Construction
             QueueDel(uid);
 
             return newUid;
+        }
+
+        private bool IsTransformParentOf(EntityUid uid, TransformComponent target) // WD EDIT
+        {
+            var parentUid = target.ParentUid;
+
+            return parentUid == uid || TryComp(parentUid, out TransformComponent? trans) && IsTransformParentOf(uid, trans);
         }
 
         /// <summary>

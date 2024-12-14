@@ -62,7 +62,8 @@
     Telecrystal: 4
   productEntity: EnergySword
   cost:
-    Telecrystal: 8
+    Telecrystal: 9
+  saleLimit: 2 # Goob - 2 eswords = desword
   categories:
   - UplinkWeaponry
 

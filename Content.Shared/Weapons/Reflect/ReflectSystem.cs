@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Audio;
+using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Hands;
 using Content.Shared.Inventory;
@@ -62,7 +63,7 @@ public sealed class ReflectSystem : EntitySystem
 
         foreach (var ent in _inventorySystem.GetHandOrInventoryEntities(uid, SlotFlags.All & ~SlotFlags.POCKET))
         {
-            if (!TryReflectHitscan(uid, ent, args.Shooter, args.SourceItem, args.Direction, out var dir))
+            if (!TryReflectHitscan(uid, ent, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.Damage, out var dir)) // Goob edit
                 continue;
 
             args.Direction = dir.Value;
@@ -97,8 +98,12 @@ public sealed class ReflectSystem : EntitySystem
         if (!Resolve(reflector, ref reflect, false) ||
             !_toggle.IsActivated(reflector) ||
             !TryComp<ReflectiveComponent>(projectile, out var reflective) ||
-            (reflect.Reflects & reflective.Reflective) == 0x0 ||
-            !_random.Prob(reflect.ReflectProb) ||
+            // Goob edit start
+            !((reflect.Reflects & reflective.Reflective) != 0x0 &&
+                _random.Prob(reflect.ReflectProb) ||
+                (reflect.Reflects & reflective.Reflective) == 0x0 &&
+                _random.Prob(reflect.OtherTypeReflectProb)) ||
+            // Goob edit end
             !TryComp<PhysicsComponent>(projectile, out var physics))
         {
             return false;
@@ -142,13 +147,12 @@ public sealed class ReflectSystem : EntitySystem
 
     private void OnReflectHitscan(EntityUid uid, ReflectComponent component, ref HitScanReflectAttemptEvent args)
     {
-        if (args.Reflected ||
-            (component.Reflects & args.Reflective) == 0x0)
+        if (args.Reflected) // Goob edit
         {
             return;
         }
 
-        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, out var dir))
+        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.Damage, out var dir)) // Goob edit
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -161,11 +165,18 @@ public sealed class ReflectSystem : EntitySystem
         EntityUid? shooter,
         EntityUid shotSource,
         Vector2 direction,
+        ReflectType reflective, // Goobstation
+        DamageSpecifier? damage, // WD EDIT
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if (!TryComp<ReflectComponent>(reflector, out var reflect) ||
             !_toggle.IsActivated(reflector) ||
-            !_random.Prob(reflect.ReflectProb))
+            // Goob edit start
+            !((reflect.Reflects & reflective) != 0x0 &&
+                _random.Prob(reflect.ReflectProb) ||
+                (reflect.Reflects & reflective) == 0x0 &&
+                _random.Prob(reflect.OtherTypeReflectProb)))
+            // Goob edit end
         {
             newDirection = null;
             return false;
@@ -227,7 +238,7 @@ public sealed class ReflectSystem : EntitySystem
     {
         foreach (var ent in _inventorySystem.GetHandOrInventoryEntities(user, SlotFlags.All & ~SlotFlags.POCKET))
         {
-            if (!HasComp<ReflectComponent>(ent) || !_toggle.IsActivated(ent))
+            if (!HasComp<ReflectComponent>(ent)) // Goob edit - fix desword not reflecting
                 continue;
 
             EnsureComp<ReflectUserComponent>(user);

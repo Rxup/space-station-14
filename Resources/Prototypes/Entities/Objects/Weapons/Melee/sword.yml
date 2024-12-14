@@ -183,8 +183,11 @@
           Radiation: 10
       soundHit:
         path: /Audio/Effects/explosion_small1.ogg
-    - type: Reflect
-      reflectProb: .25
+    - type: Reflect # Goob edit
+      reflectProb: .5
+      otherTypeReflectProb: .1
+      reflects:
+        - Energy
       spread: 90
     - type: Item
       size: Ginormous
