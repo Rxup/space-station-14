@@ -1067,7 +1067,7 @@
   id: UplinkSurplusBundle
   name: uplink-surplus-bundle-name
   description: uplink-surplus-bundle-desc
-  productEntity: DropPodMarkerSyndicateSurplusBundle #backmen-droppod
+  productEntity: SupplyPodCircleSyndicateSurplusBundle # Backmen
   cost:
     Telecrystal: 20
   categories:
@@ -1086,7 +1086,7 @@
   id: UplinkSuperSurplusBundle
   name: uplink-super-surplus-bundle-name
   description: uplink-super-surplus-bundle-desc
-  productEntity: DropPodMarkerSyndicateSuperSurplusBundle #backmen-droppod
+  productEntity: SupplyPodCircleSyndicateSuperSurplusBundle # Backmen
   cost:
     Telecrystal: 40
   categories:
@@ -1706,7 +1706,7 @@
   name: uplink-clothing-outer-hardsuit-juggernaut-name
   description: uplink-clothing-outer-hardsuit-juggernaut-desc
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
-  productEntity: DropPodMarkerSyndicateJuggernaut #backmen-droppod
+  productEntity: CrateCybersunJuggernautBundle
   cost:
     Telecrystal: 12
   categories:
