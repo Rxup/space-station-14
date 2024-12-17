@@ -1,9 +1,9 @@
-using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Body.Systems;
@@ -29,10 +29,10 @@ public abstract partial class SharedBodySystem : EntitySystem
     /// </summary>
     public const string OrganSlotContainerIdPrefix = "body_organ_slot_";
 
+    [Dependency] private readonly RobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
     [Dependency] protected readonly MovementSpeedModifierSystem Movement = default!;
     [Dependency] protected readonly SharedContainerSystem Containers = default!;
     [Dependency] protected readonly SharedTransformSystem SharedTransform = default!;
@@ -44,7 +44,6 @@ public abstract partial class SharedBodySystem : EntitySystem
 
         InitializeBody();
         InitializeParts();
-        InitializeBkm(); // backmen
         InitializeOrgans();
         // To try and mitigate the server load due to integrity checks, we set up a Job Queue.
         InitializePartAppearances();

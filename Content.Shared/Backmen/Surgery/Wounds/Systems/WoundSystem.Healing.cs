@@ -1,36 +1,53 @@
-﻿using Content.Shared.Backmen.Surgery.CCVar;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
 public partial class WoundSystem
 {
-    private void UpdateHealing(float frameTime)
+    private const double WoundableJobTime = 0.005;
+    private readonly JobQueue _woundableJobQueue = new(WoundableJobTime);
+    public sealed class IntegrityJob : Job<object>
     {
-        var wounds = EntityQueryEnumerator<WoundComponent>();
-        var healRate = 1 / _cfg.GetCVar(SurgeryCvars.MedicalHealingTickrate);
-        var woundsToModify = new List<(EntityUid uid, WoundComponent wound)>();
-
-        while (wounds.MoveNext(out var uid, out var wound))
+        private readonly WoundSystem _self;
+        private readonly Entity<WoundableComponent> _ent;
+        public IntegrityJob(WoundSystem self, Entity<WoundableComponent> ent, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
         {
-            if (!wound.CanBeHealed)
-                continue;
-
-            wound.AccumulatedFrameTime += frameTime;
-            if (wound.AccumulatedFrameTime < healRate)
-                continue;
-
-            wound.AccumulatedFrameTime -= healRate;
-
-            woundsToModify.Add((uid, wound));
+            _self = self;
+            _ent = ent;
         }
 
-        foreach (var (uid, wound) in woundsToModify)
+        public IntegrityJob(WoundSystem self, Entity<WoundableComponent> ent, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
         {
-            ApplyWoundSeverity(uid, -wound.BaseHealingRate, wound,true);
-            CheckForMinusSeverity(uid, wound);
-            CheckSeverityThresholds(uid, wound);
+            _self = self;
+            _ent = ent;
+        }
+
+        protected override Task<object?> Process()
+        {
+            _self.ProcessHealing(_ent);
+            return Task.FromResult<object?>(null);
+        }
+    }
+    private void ProcessHealing(Entity<WoundableComponent> ent)
+    {
+        var healableWounds = ent.Comp.Wounds!.ContainedEntities.Select(Comp<WoundComponent>).Count(comp => comp.CanBeHealed);
+        var healAmount = ent.Comp.HealAbility / healableWounds;
+
+        foreach (var wound in ent.Comp.Wounds!.ContainedEntities)
+        {
+            var comp = Comp<WoundComponent>(wound);
+            if (!comp.CanBeHealed)
+                continue;
+
+            ApplyWoundSeverity(wound, ApplyHealingRateModifiers(wound, ent.Owner, healAmount, ent.Comp), comp, true);
         }
 
         // That's it! o(( >ω< ))o
@@ -38,111 +55,36 @@ public partial class WoundSystem
 
     #region Public API
 
-    /// <summary>
-    /// Applies base healing rate to wounds.
-    /// </summary>
-    /// <param name="uid">UID of the wound.</param>
-    /// <param name="change">Number to add.</param>
-    /// <param name="wound">Wound to which healing is applied.</param>
-    public void ApplyWoundHealingRate(EntityUid uid, FixedPoint2 change, WoundComponent? wound)
+    public FixedPoint2 ApplyHealingRateModifiers(EntityUid wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
     {
-        if (!Resolve(uid, ref wound) || _net.IsClient)
-            return;
+        if (!Resolve(woundable, ref component))
+            return severity;
 
-        wound.BaseHealingRate += ApplyModifiersToHealRate(wound, change);
+        var woundHealingMultiplier =
+            _prototype.Index<DamageTypePrototype>(MetaData(wound).EntityPrototype!.ID).WoundHealingMultiplier;
 
-        CheckSeverityThresholds(uid, wound);
-        Dirty(uid, wound);
+        if (component.HealingMultipliers.Count == 0)
+            return severity * woundHealingMultiplier;
+
+        var toMultiply =
+            component.HealingMultipliers.Sum(multiplier => (float) multiplier.Value.Change) / component.HealingMultipliers.Count;
+        return severity * toMultiply * woundHealingMultiplier;
     }
 
-    /// <summary>
-    /// Sets base healing rate to wounds.
-    /// </summary>
-    /// <param name="uid">UID of the wound.</param>
-    /// <param name="change">Number to set.</param>
-    /// <param name="wound">Wound to which healing is applied.</param>
-    public void SetWoundHealingRate(EntityUid uid, FixedPoint2 change, WoundComponent? wound)
+    public bool TryAddHealingRateModifier(EntityUid owner, EntityUid woundable, string identifier, FixedPoint2 change, WoundableComponent? component = null)
     {
-        if (!Resolve(uid, ref wound) || _net.IsClient)
-            return;
-
-        wound.BaseHealingRate = ApplyModifiersToHealRate(wound, change);
-
-        CheckSeverityThresholds(uid, wound);
-        Dirty(uid, wound);
-    }
-
-    /// <summary>
-    /// Applies healing multiplier to wounds.
-    /// </summary>
-    /// <param name="uid">UID of the wound.</param>
-    /// <param name="change">Healing multiplier.</param>
-    /// <param name="identifier">Identifier for multiplier.</param>
-    /// <param name="wound">Wound to which healing multiplier is applied.</param>
-    public bool ApplyHealingRateMultiplier(EntityUid uid, FixedPoint2 change, string identifier, WoundComponent? wound)
-    {
-        if (!Resolve(uid, ref wound) || _net.IsClient)
+        if (!Resolve(woundable, ref component) || !_net.IsServer)
             return false;
 
-        wound.HealingMultipliers.Add((uid, wound), new HealingMultiplier(change, identifier));
-
-        ApplyModifiersToHealRate(wound, wound.BaseHealingRate);
-        CheckSeverityThresholds(uid, wound);
-
-        Dirty(uid, wound);
-        return true;
+        return component.HealingMultipliers.TryAdd(owner, new WoundableHealingMultiplier(change, identifier));
     }
 
-    /// <summary>
-    /// Applies healing multiplier to wounds.
-    /// </summary>
-    /// <param name="uid">UID of the wound.</param>
-    /// <param name="identifier">Identifier for multiplier.</param>
-    /// <param name="wound">Wound to which healing multiplier is applied.</param>
-    public bool RemoveHealingRateMultiplier(EntityUid uid, string identifier, WoundComponent? wound)
+    public bool TryRemoveHealingRateModifier(EntityUid owner, EntityUid woundable, WoundableComponent? component = null)
     {
-        if (!Resolve(uid, ref wound) || _net.IsClient)
+        if (!Resolve(woundable, ref component)  || !_net.IsServer)
             return false;
 
-        if (!wound.HealingMultipliers.Remove((uid, wound), out _))
-            return false;
-
-        ApplyModifiersToHealRate(wound, wound.BaseHealingRate);
-        CheckSeverityThresholds(uid, wound);
-
-        Dirty(uid, wound);
-        return true;
-    }
-
-    #endregion
-
-    #region Private API
-
-    private FixedPoint2 ApplyModifiersToHealRate(WoundComponent wound, FixedPoint2 change)
-    {
-        if (wound.HealingMultipliers.Count == 0)
-            return change;
-
-        var healRateMultiplier = 0;
-        foreach (var (_, value) in wound.HealingMultipliers)
-        {
-            healRateMultiplier += (int) value.Change;
-        }
-
-        healRateMultiplier /= wound.HealingMultipliers.Count;
-        return change * healRateMultiplier;
-    }
-
-    private void CheckForMinusSeverity(EntityUid uid, WoundComponent? wound = null)
-    {
-        if (TerminatingOrDeleted(uid))
-            return;
-
-        if (!Resolve(uid, ref wound))
-            return;
-
-        if (wound.WoundSeverityPoint < 0)
-            wound.WoundSeverityPoint = 0;
+        return component.HealingMultipliers.Remove(owner);
     }
 
     #endregion

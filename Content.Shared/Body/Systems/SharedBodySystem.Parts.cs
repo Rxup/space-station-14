@@ -11,6 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
+using Content.Shared.Backmen.Targeting;
 
 namespace Content.Shared.Body.Systems;
 
@@ -85,7 +86,6 @@ public partial class SharedBodySystem
         {
             AddPart(ent.Comp.Body.Value, (insertedUid, part), slotId);
             RecursiveBodyUpdate((insertedUid, part), ent.Comp.Body.Value);
-            CheckBodyPart((insertedUid, part), GetTargetBodyPart(part), false); // Shitmed Change
         }
 
         if (TryComp(insertedUid, out OrganComponent? organ) && slotId.Contains(OrganSlotContainerIdPrefix + organ.SlotId)) // Shitmed Change
@@ -110,7 +110,6 @@ public partial class SharedBodySystem
 
             if (part.Body is not null)
             {
-                CheckBodyPart((removedUid, part), GetTargetBodyPart(part), true);
                 RemovePart(part.Body.Value, (removedUid, part), slotId);
                 RecursiveBodyUpdate((removedUid, part), null);
             }
@@ -627,6 +626,78 @@ public partial class SharedBodySystem
         sprintSpeed /= body.RequiredLegs;
         acceleration /= body.RequiredLegs;
         Movement.ChangeBaseSpeed(bodyId, walkSpeed, sprintSpeed, acceleration, movement);
+    }
+
+    public TargetBodyPart? GetRandomBodyPart(EntityUid uid, TargetingComponent? target = null)
+    {
+        if (!Resolve(uid, ref target))
+            return null;
+
+        var totalWeight = target.TargetOdds.Values.Sum();
+        var randomValue = _random.NextFloat() * totalWeight;
+
+        foreach (var (part, weight) in target.TargetOdds)
+        {
+            if (randomValue <= weight)
+                return part;
+            randomValue -= weight;
+        }
+
+        return TargetBodyPart.Torso; // Default to torso if something goes wrong
+    }
+
+    public TargetBodyPart? GetTargetBodyPart(Entity<BodyPartComponent> part)
+    {
+        return GetTargetBodyPart(part.Comp.PartType, part.Comp.Symmetry);
+    }
+
+    public TargetBodyPart? GetTargetBodyPart(BodyPartComponent part)
+    {
+        return GetTargetBodyPart(part.PartType, part.Symmetry);
+    }
+
+    /// <summary>
+    /// Converts Enums from BodyPartType to their Targeting system equivalent.
+    /// </summary>
+    public TargetBodyPart? GetTargetBodyPart(BodyPartType type, BodyPartSymmetry symmetry)
+    {
+        return (type, symmetry) switch
+        {
+            (BodyPartType.Head, _) => TargetBodyPart.Head,
+            (BodyPartType.Torso, _) => TargetBodyPart.Torso,
+            (BodyPartType.Arm, BodyPartSymmetry.Left) => TargetBodyPart.LeftArm,
+            (BodyPartType.Arm, BodyPartSymmetry.Right) => TargetBodyPart.RightArm,
+            (BodyPartType.Hand, BodyPartSymmetry.Left) => TargetBodyPart.LeftHand,
+            (BodyPartType.Hand, BodyPartSymmetry.Right) => TargetBodyPart.RightHand,
+            (BodyPartType.Leg, BodyPartSymmetry.Left) => TargetBodyPart.LeftLeg,
+            (BodyPartType.Leg, BodyPartSymmetry.Right) => TargetBodyPart.RightLeg,
+            (BodyPartType.Foot, BodyPartSymmetry.Left) => TargetBodyPart.LeftFoot,
+            (BodyPartType.Foot, BodyPartSymmetry.Right) => TargetBodyPart.RightFoot,
+            _ => null,
+        };
+    }
+
+    /// <summary>
+    /// Converts Enums from Targeting system to their BodyPartType equivalent.
+    /// </summary>
+    public (BodyPartType Type, BodyPartSymmetry Symmetry) ConvertTargetBodyPart(TargetBodyPart? targetPart)
+    {
+        return targetPart switch
+        {
+            TargetBodyPart.Head => (BodyPartType.Head, BodyPartSymmetry.None),
+            TargetBodyPart.Torso => (BodyPartType.Torso, BodyPartSymmetry.None),
+            TargetBodyPart.Groin => (BodyPartType.Torso, BodyPartSymmetry.None), // TODO: Groin is not a part type yet
+            TargetBodyPart.LeftArm => (BodyPartType.Arm, BodyPartSymmetry.Left),
+            TargetBodyPart.LeftHand => (BodyPartType.Hand, BodyPartSymmetry.Left),
+            TargetBodyPart.RightArm => (BodyPartType.Arm, BodyPartSymmetry.Right),
+            TargetBodyPart.RightHand => (BodyPartType.Hand, BodyPartSymmetry.Right),
+            TargetBodyPart.LeftLeg => (BodyPartType.Leg, BodyPartSymmetry.Left),
+            TargetBodyPart.LeftFoot => (BodyPartType.Foot, BodyPartSymmetry.Left),
+            TargetBodyPart.RightLeg => (BodyPartType.Leg, BodyPartSymmetry.Right),
+            TargetBodyPart.RightFoot => (BodyPartType.Foot, BodyPartSymmetry.Right),
+            _ => (BodyPartType.Torso, BodyPartSymmetry.None)
+        };
+
     }
 
     #endregion

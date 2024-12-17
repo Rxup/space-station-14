@@ -16,6 +16,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
@@ -37,11 +38,10 @@ public partial class SharedBodySystem
      * - Each "connection" is a body part (e.g. arm, hand, etc.) and each part can also contain organs.
      */
 
-    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
 
@@ -366,7 +366,7 @@ public partial class SharedBodySystem
         var bodyTransform = Transform(bodyId);
         if (TryComp<InventoryComponent>(bodyId, out var inventory))
         {
-            foreach (var item in _inventory.GetHandOrInventoryEntities(bodyId))
+            foreach (var item in _inventorySystem.GetHandOrInventoryEntities(bodyId))
             {
                 SharedTransform.DropNextTo(item, (bodyId, bodyTransform));
                 gibs.Add(item);
@@ -411,7 +411,7 @@ public partial class SharedBodySystem
 
         if (HasComp<InventoryComponent>(partId))
         {
-            foreach (var item in _inventory.GetHandOrInventoryEntities(partId))
+            foreach (var item in _inventorySystem.GetHandOrInventoryEntities(partId))
             {
                 SharedTransform.AttachToGridOrMap(item);
                 gibs.Add(item);

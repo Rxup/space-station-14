@@ -22,23 +22,7 @@ public sealed partial class WoundComponent : Component
     public FixedPoint2 WoundSeverityPoint;
 
     /// <summary>
-    /// Multipliers of severity applied to this wound.
-    /// </summary>
-    public Dictionary<(EntityUid, WoundComponent), WoundSeverityMultiplier> SeverityMultipliers = new();
-
-    /// <summary>
-    /// Base healing rate for wound. Cool!
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 BaseHealingRate;
-
-    /// <summary>
-    /// Multipliers applied to healing rate.
-    /// </summary>
-    public Dictionary<(EntityUid, WoundComponent), HealingMultiplier> HealingMultipliers = new();
-
-    /// <summary>
+    /// todo: bruh this serves almost 0 fucking pURPOSES WHY IS IT EVEN HEREHASSDASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     /// Wound type. External/Internal basically.
     /// </summary>
     [DataField, AutoNetworkedField]
@@ -93,9 +77,4 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CanBleed = true;
-
-    /// <summary>
-    /// Frame time, accumulated by this wound.
-    /// </summary>
-    public float AccumulatedFrameTime; //weoweoweo
 }

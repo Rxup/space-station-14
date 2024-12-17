@@ -378,14 +378,15 @@ public abstract partial class SharedSurgerySystem
 
         if (targetPart != default)
         {
+            // no.
             // We reward players for properly affixing the parts by healing a little bit of damage, and enabling the part temporarily.
-            var ev = new BodyPartEnableChangedEvent(true);
-            RaiseLocalEvent(targetPart.Id, ref ev);
-            _damageable.TryChangeDamage(args.Body,
-                _body.GetHealingSpecifier(targetPart.Component) * 2,
-                canSever: false, // Just in case we heal a brute damage specifier and the logic gets fucky lol
-                targetPart: _body.GetTargetBodyPart(targetPart.Component.PartType, targetPart.Component.Symmetry));
-            RemComp<BodyPartReattachedComponent>(targetPart.Id);
+            //var ev = new BodyPartEnableChangedEvent(true);
+            //RaiseLocalEvent(targetPart.Id, ref ev);
+            //_damageable.TryChangeDamage(args.Body,
+            //    _body.GetHealingSpecifier(targetPart.Component) * 2,
+            //    canSever: false, // Just in case we heal a brute damage specifier and the logic gets fucky lol
+            //    targetPart: _body.GetTargetBodyPart(targetPart.Component.PartType, targetPart.Component.Symmetry));
+            //RemComp<BodyPartReattachedComponent>(targetPart.Id);
         }
     }
 

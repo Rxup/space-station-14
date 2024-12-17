@@ -40,11 +40,35 @@ public sealed partial class WoundableComponent : Component
     public FixedPoint2 WoundableIntegrity;
 
     /// <summary>
+    /// How much damage will be healed ACROSS all limb, for example if there are 2 wounds,
+    /// Healing will be shared across those 2 wounds.
+    /// </summary>
+    [DataField]
+    [ViewVariables, AutoNetworkedField]
+    public FixedPoint2 HealAbility = 0.1;
+
+    /// <summary>
+    /// Multipliers of severity applied to this wound.
+    /// </summary>
+    public Dictionary<EntityUid, WoundableSeverityMultiplier> SeverityMultipliers = new();
+
+    /// <summary>
+    /// Multipliers applied to healing rate.
+    /// </summary>
+    public Dictionary<EntityUid, WoundableHealingMultiplier> HealingMultipliers = new();
+
+    /// <summary>
     /// State of the woundable. Severity basically.
     /// </summary>
     [DataField]
     [ViewVariables, AutoNetworkedField]
     public WoundableSeverity WoundableSeverity;
+
+    /// <summary>
+    /// How much time in seconds had this woundable accumulated from the last healing tick.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public float HealingRateAccumulated;
 
     /// <summary>
     /// DO NOT use OR I will break your knees.

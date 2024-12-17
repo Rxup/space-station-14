@@ -262,9 +262,10 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         */
 
         // Start-backmen: surgery
-        Dictionary<TargetBodyPart, TargetIntegrity>? body = null;
-        if (HasComp<TargetingComponent>(target))
-            body = _bodySystem.GetBodyPartStatus(target);
+        // TODO WOUNDING: Woundable visualizer
+        //Dictionary<TargetBodyPart, TargetIntegrity>? body = null;
+        //if (HasComp<TargetingComponent>(target))
+            //body = _bodySystem.GetBodyPartStatus(target);
         // End-backmen: surgery
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
@@ -274,7 +275,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             scanMode,
             bleeding,
             unrevivable,
-            body, // backmen: surgery
+            // this will be empty for the time being
+            new Dictionary<TargetBodyPart, TargetIntegrity>(),
             part != null ? GetNetEntity(part) : null // backmen: surgery
         ));
     }

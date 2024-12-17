@@ -11,7 +11,7 @@ public sealed class TargetingSystem : SharedTargetingSystem
     {
         base.Initialize();
         SubscribeNetworkEvent<TargetChangeEvent>(OnTargetChange);
-        SubscribeLocalEvent<TargetingComponent, MobStateChangedEvent>(OnMobStateChange);
+        //SubscribeLocalEvent<TargetingComponent, MobStateChangedEvent>(OnMobStateChange);
     }
 
     private void OnTargetChange(TargetChangeEvent message, EntitySessionEventArgs args)
@@ -23,31 +23,32 @@ public sealed class TargetingSystem : SharedTargetingSystem
         Dirty(GetEntity(message.Uid), target);
     }
 
-    private void OnMobStateChange(EntityUid uid, TargetingComponent component, MobStateChangedEvent args)
-    {
-        // Revival is handled by the server, so we're keeping all of this here.
-        var changed = false;
+    // TODO WOUNDING: Connect the funny woundable visualiser to this
+    //private void OnMobStateChange(EntityUid uid, TargetingComponent component, MobStateChangedEvent args)
+    //{
+    //    // Revival is handled by the server, so we're keeping all of this here.
+    //    var changed = false;
 
-        if (args.NewMobState == MobState.Dead)
-        {
-            foreach (var part in GetValidParts())
-            {
-                component.BodyStatus[part] = TargetIntegrity.Dead;
-                changed = true;
-            }
-            // I love groin shitcode.
-            component.BodyStatus[TargetBodyPart.Groin] = TargetIntegrity.Dead;
-        }
-        else if (args.OldMobState == MobState.Dead && (args.NewMobState == MobState.Alive || args.NewMobState == MobState.Critical))
-        {
-            component.BodyStatus = _bodySystem.GetBodyPartStatus(uid);
-            changed = true;
-        }
+    //    if (args.NewMobState == MobState.Dead)
+    //    {
+    //        foreach (var part in GetValidParts())
+    //        {
+    //            component.BodyStatus[part] = TargetIntegrity.Dead;
+    //            changed = true;
+    //        }
+    //        // I love groin shitcode.
+    //        component.BodyStatus[TargetBodyPart.Groin] = TargetIntegrity.Dead;
+    //    }
+    //    else if (args.OldMobState == MobState.Dead && (args.NewMobState == MobState.Alive || args.NewMobState == MobState.Critical))
+    //    {
+    //        component.BodyStatus = _bodySystem.GetBodyPartStatus(uid);
+    //        changed = true;
+    //    }
 
-        if (changed)
-        {
-            Dirty(uid, component);
-            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(uid)), uid);
-        }
-    }
+    //    if (changed)
+    //    {
+    //        Dirty(uid, component);
+    //        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(uid)), uid);
+    //    }
+    //}
 }

@@ -118,7 +118,7 @@ public record struct WoundableIntegrityChangedEvent(EntityUid Woundable, FixedPo
 public record struct WoundableSeverityChangedEvent(EntityUid Woundable, WoundableSeverity NewSeverity);
 
 [Serializable, DataRecord]
-public record struct WoundSeverityMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");
+public record struct WoundableSeverityMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");
 
 [Serializable, DataRecord]
-public record struct HealingMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");
+public record struct WoundableHealingMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");

@@ -46,7 +46,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
@@ -320,7 +319,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
                 obj.Value,
                 uid,
                 PopupType.MediumCaution);
-            _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, canEvade: false, canSever: false, targetPart: TargetBodyPart.Head);
+            _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, canSever: false, targetPart: TargetBodyPart.Head);
             _stun.TryStun(uid, TimeSpan.FromSeconds(2), true);
             _audioSystem.PlayPredicted(_bonkSound, uid, obj.Value);
             return false;
