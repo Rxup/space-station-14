@@ -2437,16 +2437,16 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: tarantula
       sprite: Mobs/Animals/spider.rsi
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: tarantula-moving
-    noMovementLayers:
-      movement:
-        state: tarantula
+#  - type: SpriteMovement
+#    movementLayers:
+#      movement:
+#        state: tarantula-moving
+#    noMovementLayers:
+#      movement:
+#        state: tarantula
   - type: Physics
   - type: Arachne
   - type: Cocooner

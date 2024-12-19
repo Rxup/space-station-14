@@ -319,12 +319,6 @@ namespace Content.Server.Connection
 
                 foreach (var whitelist in _whitelists)
                 {
-                    if (!IsValid(whitelist, softPlayerCount))
-                    {
-                        // Not valid for current player count.
-                        continue;
-                    }
-
                     var whitelistStatus = await IsWhitelisted(whitelist, e.UserData, _sawmill);
                     if (!whitelistStatus.isWhitelisted)
                     {
