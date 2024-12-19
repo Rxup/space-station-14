@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Content.Corvax.Interfaces.Server;
 using Content.Corvax.Interfaces.Shared;
+using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
@@ -62,6 +63,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         private ISharedSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
         private IServerVPNGuardManager? _vpnGuardMgr; // Corvax-VPNGuard
+        [Dependency] private readonly IAdminManager _adminManager = default!;
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
@@ -300,10 +302,10 @@ namespace Content.Server.Connection
             // Corvax-Queue-Start
             var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
             if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isQueueEnabled)
-            // Corvax-Queue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
+            // Corvax-Queue-End
 
             // Checks for whitelist IF it's enabled AND the user isn't an admin. Admins are always allowed.
             if (_cfg.GetCVar(CCVars.WhitelistEnabled) && adminData is null)
@@ -317,12 +319,6 @@ namespace Content.Server.Connection
 
                 foreach (var whitelist in _whitelists)
                 {
-                    if (!IsValid(whitelist, _plyMgr.PlayerCount))
-                    {
-                        // Not valid for current player count.
-                        continue;
-                    }
-
                     var whitelistStatus = await IsWhitelisted(whitelist, e.UserData, _sawmill);
                     if (!whitelistStatus.isWhitelisted)
                     {

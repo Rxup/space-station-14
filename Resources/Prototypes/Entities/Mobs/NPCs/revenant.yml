@@ -21,7 +21,8 @@
     - Stun
     - Corporeal
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: ManifestedSpirit
+    damageModifierSet: ManifestedSpirit
   - type: TTS # Corvax-TTS
     voice: Kelthuzad
   - type: NoSlip
@@ -88,3 +89,6 @@
     - TauCetiBasic
     understands:
     - TauCetiBasic
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
