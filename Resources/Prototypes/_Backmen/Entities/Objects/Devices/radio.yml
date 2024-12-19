@@ -18,8 +18,8 @@
     delay: 10
   - type: Speech
     speechSounds: Combine
-  - type: SpeakOnUse
-    pack: ArtilleryComander
+#  - type: SpeakOnUse
+#    pack: ArtilleryComander
 
 - type: entity
   id: ActionCallAirSupportMissiles
