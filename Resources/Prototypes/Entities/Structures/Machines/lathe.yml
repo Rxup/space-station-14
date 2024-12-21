@@ -204,7 +204,6 @@
       - FreezerElectronics
       - CassetteTape
       - TapeRecorder
-      - PlantAnalyzer # Corvax-Next-PlantAnalyzer
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
