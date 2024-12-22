@@ -1,0 +1,49 @@
+﻿- type: entity
+  id: BluntScar
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    canBeHealed: false
+    isScar: true
+  - type: PainInflicter
+
+- type: entity
+  id: PiercingScar
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    canBeHealed: false
+    isScar: true
+  - type: PainInflicter
+
+- type: entity
+  id: SlashScar
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    canBeHealed: false
+    isScar: true
+  - type: PainInflicter
+
+- type: entity
+  id: BurnScar
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    canBeHealed: false
+    isScar: true
+  - type: PainInflicter
+
+- type: entity
+  id: RadiationScar
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    canBeHealed: false
+    isScar: true
+  - type: PainInflicter

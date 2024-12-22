@@ -178,7 +178,7 @@ namespace Content.Shared.Damage
                 if (!_bodyQuery.Resolve(uid.Value, ref body))
                     return null;
 
-                // TODO: We will have to rewrite the armor for it cover special parts of body,
+                // TODO: We will have to rewrite the armor for it to cover special parts of body,
                 // and if the damage element has armor covering, we will be separating a few units of damage.
                 // or no?
 
@@ -231,6 +231,7 @@ namespace Content.Shared.Damage
                     // TODO: We need to add a check to see if the given armor covers the targeted part (if any) to modify or not.
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
+
                 var ev = new DamageModifyEvent(damage, origin, targetPart);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
@@ -271,9 +272,9 @@ namespace Content.Shared.Damage
         /// <summary>
         ///     Sets all damage types supported by a <see cref="DamageableComponent"/> to the specified value.
         /// </summary>
-        /// <remakrs>
+        /// <remarks>
         ///     Does nothing If the given damage value is negative.
-        /// </remakrs>
+        /// </remarks>
         public void SetAllDamage(EntityUid uid, DamageableComponent component, FixedPoint2 newValue)
         {
             if (newValue < 0)

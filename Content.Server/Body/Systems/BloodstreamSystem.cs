@@ -4,12 +4,16 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Drunk;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forensics;
@@ -40,6 +44,12 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
+    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
+
+    // TODO: Some good person, please balance the numbers out
+    private const float BleedDivider = 10;
+    private const float SeverityDivider = 14;
 
     public override void Initialize()
     {
@@ -56,7 +66,22 @@ public sealed class BloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
+
+        SubscribeLocalEvent<BleedInflicterComponent, WoundAddedEvent>(OnWoundAdded);
+        SubscribeLocalEvent<BleedInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityUpdate);
     }
+
+    #region Data
+
+    private readonly Dictionary<WoundSeverity, FixedPoint2> _severityPoints = new()
+    {
+        { WoundSeverity.Minor, 0.02 },
+        { WoundSeverity.Moderate, 0.06 },
+        { WoundSeverity.Severe, 0.08 },
+        { WoundSeverity.Critical, 0.10 }
+    };
+
+    #endregion
 
     private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
     {
@@ -155,7 +180,7 @@ public sealed class BloodstreamSystem : EntitySystem
                     applySlur: false);
                 _stutteringSystem.DoStutter(uid, bloodstream.UpdateInterval * 2, refresh: false);
 
-                // storing the drunk and stutter time so we can remove it independently from other effects additions
+                // storing the drunk and stutter time so we can remove it independently of other effects additions
                 bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
             }
             else if (!_mobStateSystem.IsDead(uid))
@@ -214,7 +239,7 @@ public sealed class BloodstreamSystem : EntitySystem
         }
 
         // TODO probably cache this or something. humans get hurt a lot
-        if (!_prototypeManager.TryIndex<DamageModifierSetPrototype>(ent.Comp.DamageBleedModifiers, out var modifiers))
+        if (!_prototypeManager.TryIndex(ent.Comp.DamageBleedModifiers, out var modifiers))
             return;
 
         var bloodloss = DamageSpecifier.ApplyModifierSet(args.DamageDelta, modifiers);
@@ -228,11 +253,9 @@ public sealed class BloodstreamSystem : EntitySystem
         var totalFloat = total.Float();
         TryModifyBleedAmount(ent, totalFloat, ent);
 
-        /// <summary>
-        ///     Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
-        ///     The crit chance is currently the bleed rate modifier divided by 25.
-        ///     Higher damage weapons have a higher chance to crit!
-        /// </summary>
+        // Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
+        // The crit chance is currently the bleed rate modifier divided by 25.
+        // Higher damage weapons have a higher chance to crit!
         var prob = Math.Clamp(totalFloat / 25, 0, 1);
         if (totalFloat > 0 && _robustRandom.Prob(prob))
         {
@@ -504,7 +527,8 @@ public sealed class BloodstreamSystem : EntitySystem
         if (TryComp<DnaComponent>(uid, out var donorComp))
         {
             dnaData.DNA = donorComp.DNA;
-        } else
+        }
+        else
         {
             dnaData.DNA = Loc.GetString("forensics-dna-unknown");
         }
@@ -512,5 +536,71 @@ public sealed class BloodstreamSystem : EntitySystem
         bloodData.Add(dnaData);
 
         return bloodData;
+    }
+
+    private void OnWoundAdded(EntityUid uid, BleedInflicterComponent component, ref WoundAddedEvent args)
+    {
+        if (!TryComp<WoundComponent>(args.WoundEntity, out var woundComponent))
+            return;
+
+        if (!woundComponent.CanBleed)
+            return;
+
+        component.IsBleeding = true;
+    }
+
+    private void OnWoundSeverityUpdate(EntityUid uid, BleedInflicterComponent component, ref WoundSeverityPointChangedEvent args)
+    {
+        if (!HasComp<WoundComponent>(args.WoundEntity))
+            return;
+
+        if (!TryComp<BodyPartComponent>(args.Component.Parent, out var bodyPart)
+            || bodyPart.Body == null
+            || !TryComp<BloodstreamComponent>(bodyPart.Body.Value, out var bloodstream))
+        {
+            return;
+        }
+
+        var totalDamage = (FixedPoint2) 0;
+        foreach (var (wound, comp) in _wounds.GetAllWounds(Comp<WoundableComponent>(args.Component.Parent).RootWoundable))
+        {
+            if (!comp.CanBleed)
+                continue;
+
+            if (!TryComp<BleedInflicterComponent>(wound, out var bleed) || !bleed.IsBleeding)
+                continue;
+
+            var oldDamage = totalDamage;
+            totalDamage += comp.WoundSeverityPoint * GetBleedPoint(comp.WoundSeverity);
+
+            if (totalDamage < oldDamage)
+                bleed.IsBleeding = false;
+        }
+
+        var severityDelta = args.NewSeverity - args.OldSeverity;
+        var bleedDelta = severityDelta * GetBleedPoint(args.Component.WoundSeverity);
+
+        TryModifyBleedAmount(bodyPart.Body.Value, (float) bleedDelta, bloodstream);
+        var nerveSys = _pain.GetNerveSystem(bodyPart.Body);
+        if (!nerveSys.HasValue)
+            return;
+
+        if (!_pain.TryChangePainMultiplier(
+                nerveSys.Value.Owner,
+                "BleedingPainMultiplier",
+                FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4),
+                nerveSys.Value.Comp))
+        {
+            _pain.TryAddPainMultiplier(
+                nerveSys.Value.Owner,
+                "BleedingPainMultiplier",
+                FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4),
+                nerveSys.Value.Comp);
+        }
+    }
+
+    private FixedPoint2 GetBleedPoint(WoundSeverity woundSeverity)
+    {
+        return _severityPoints.TryGetValue(woundSeverity, out var point) ? point : 0;
     }
 }

@@ -1,0 +1,79 @@
+﻿- type: entity
+  id: Blunt
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: BluntScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Piercing
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: PiercingScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Slash
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: SlashScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Burn
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: BurnScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Heat
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: BurnScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Cold
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: BurnScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Caustic
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: BurnScar
+  - type: PainInflicter
+  - type: BleedInflicter
+
+- type: entity
+  id: Radiation
+  components:
+  - type: Wound
+    WoundType: enum.WoundType.External
+    WoundVisibility: enum.WoundVisibility.Always
+    scarWound: RadiationScar
+  - type: PainInflicter
+  - type: BleedInflicter

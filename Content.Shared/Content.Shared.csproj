@@ -24,6 +24,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Backmen\Surgery\Pain\Components\" />
+    <Folder Include="Backmen\Surgery\Pain\Systems\" />
     <Folder Include="Backmen\Surgery\Traumas\" />
     <Folder Include="Backmen\Surgery\Wounds\" />
     <Folder Include="Power\Components\" />

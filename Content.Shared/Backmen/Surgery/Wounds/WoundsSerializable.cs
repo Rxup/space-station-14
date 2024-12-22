@@ -53,7 +53,6 @@ public enum WoundableVisualizerKeys
 {
     Wounds,
     Severity,
-    Update,
 }
 
 [Serializable, NetSerializable]
@@ -65,32 +64,6 @@ public sealed class WoundsVisualizerGroupData(List<NetEntity> woundsList) : IClo
     {
         return new WoundsVisualizerGroupData([..WoundsList]);
     }
-}
-
-/// <summary>
-/// todo: Honestly would have been better if this is rewritten
-///
-/// Is called from server, when woundable is about to be deleted. After this, client processes data given in the event,
-/// And updates body part visuals, after this sending the same event on the server (if it was updated),
-/// saying that update is done. After the update, body part is being deleted.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class OnWoundableLossDeleteMessage(NetEntity woundable, NetEntity body, HumanoidVisualLayers layer) : EntityEventArgs
-{
-    /// <summary>
-    /// Woundable that is being deleted.
-    /// </summary>
-    public NetEntity Woundable { get; } = woundable;
-
-    /// <summary>
-    /// Woundables Body.
-    /// </summary>
-    public NetEntity Body { get; } = body;
-
-    /// <summary>
-    /// Woundable body part layer to update.
-    /// </summary>
-    public HumanoidVisualLayers Layer { get; } = layer;
 }
 
 [ByRefEvent]

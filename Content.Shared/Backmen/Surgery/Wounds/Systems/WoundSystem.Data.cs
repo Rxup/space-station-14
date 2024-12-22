@@ -25,5 +25,17 @@ public partial class WoundSystem
         { WoundableSeverity.Loss, 150 },
     };
 
+    private readonly Dictionary<WoundableSeverity, FixedPoint2> _thresholdMultipliers = new()
+    {
+        { WoundableSeverity.Minor, 1 },
+        { WoundableSeverity.Moderate, 1 },
+        { WoundableSeverity.Severe, 1.2 },
+        { WoundableSeverity.Critical, 1.5 },
+        // TODO: Would be great if someone actually playing the game balanced this out,
+        // because I haven't touched SS14 in like a year now, but this value is to make
+        // limb loss more like to appear when a person gets critted
+        { WoundableSeverity.Loss, 2 }, // lmao no limb
+    };
+
     #endregion
 }

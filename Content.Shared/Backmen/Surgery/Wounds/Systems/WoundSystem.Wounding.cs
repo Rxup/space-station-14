@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Numerics;
-using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Part;
@@ -33,22 +31,9 @@ public partial class WoundSystem
 
         SubscribeLocalEvent<WoundComponent, WoundSeverityChangedEvent>(OnWoundSeverityChanged);
         SubscribeLocalEvent<WoundableComponent, WoundableSeverityChangedEvent>(OnWoundableSeverityChanged);
-
-        SubscribeLocalEvent<WoundableComponent, BodyPartRemovedEvent>((_, _, args) => UpdateWoundableStates(args.Part.Comp.Body!.Value));
-        SubscribeLocalEvent<WoundableComponent, BodyPartAddedEvent>((_, _, args) => UpdateWoundableStates(args.Part.Comp.Body!.Value));
-
-        SubscribeNetworkEvent<OnWoundableLossDeleteMessage>((msg, _) => OnWoundableDelete(msg));
     }
 
     #region Event Handling
-
-    private void OnWoundableDelete(OnWoundableLossDeleteMessage message)
-    {
-        if (TerminatingOrDeleted(GetEntity(message.Woundable)) || _net.IsClient)
-            return;
-
-        QueueDel(GetEntity(message.Woundable));
-    }
 
     private void OnWoundableInit(EntityUid uid, WoundableComponent comp, ComponentInit componentInit)
     {
@@ -313,34 +298,6 @@ public partial class WoundSystem
     }
 
     /// <summary>
-    /// Removes a multiplier from a woundable.
-    /// </summary>
-    /// <param name="uid">UID of the woundable.</param>
-    /// <param name="owner">UID of the multiplier owner.</param>
-    /// <param name="component">Woundable to which severity multiplier is applied.</param>
-    public bool TryRemoveWoundableSeverityMultiplier(
-        EntityUid uid,
-        EntityUid owner,
-        WoundableComponent? component = null)
-    {
-        if (!Resolve(uid, ref component) || !_net.IsServer)
-            return false;
-
-        if (!component.SeverityMultipliers.Remove(owner, out _))
-            return false;
-
-        foreach (var wound in component.Wounds!.ContainedEntities)
-        {
-            CheckSeverityThresholds(wound);
-        }
-
-        UpdateWoundableIntegrity(uid, component);
-        Dirty(uid, component);
-
-        return true;
-    }
-
-    /// <summary>
     /// Applies severity multiplier to a wound.
     /// </summary>
     /// <param name="uid">UID of the woundable.</param>
@@ -370,6 +327,76 @@ public partial class WoundSystem
         Dirty(uid, component);
 
         return true;
+    }
+
+    /// <summary>
+    /// Removes a multiplier from a woundable.
+    /// </summary>
+    /// <param name="uid">UID of the woundable.</param>
+    /// <param name="identifier">Identifier of the said multiplier.</param>
+    /// <param name="component">Woundable to which severity multiplier is applied.</param>
+    public bool TryRemoveWoundableSeverityMultiplier(
+        EntityUid uid,
+        string identifier,
+        WoundableComponent? component = null)
+    {
+        if (!Resolve(uid, ref component) || !_net.IsServer)
+            return false;
+
+        foreach (var multiplier in component.SeverityMultipliers.Where(multiplier => multiplier.Value.Identifier == identifier))
+        {
+            if (!component.SeverityMultipliers.Remove(multiplier.Key, out _))
+                return false;
+
+            foreach (var wound in component.Wounds!.ContainedEntities)
+            {
+                CheckSeverityThresholds(wound);
+            }
+
+            UpdateWoundableIntegrity(uid, component);
+            Dirty(uid, component);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Changes a multiplier's change in a specified woundable.
+    /// </summary>
+    /// <param name="uid">UID of the woundable.</param>
+    /// <param name="identifier">Identifier of the said multiplier.</param>
+    /// <param name="change">The new multiplier fixed point.</param>
+    /// <param name="component">Woundable to which severity multiplier is applied.</param>
+    public bool TryChangeWoundableSeverityMultiplier(
+        EntityUid uid,
+        string identifier,
+        FixedPoint2 change,
+        WoundableComponent? component = null)
+    {
+        if (!Resolve(uid, ref component) || !_net.IsServer)
+            return false;
+
+        foreach (var multiplier in component.SeverityMultipliers.Where(multiplier => multiplier.Value.Identifier == identifier).ToList())
+        {
+            component.SeverityMultipliers.Remove(multiplier.Key, out var value);
+
+            value.Change = change;
+            component.SeverityMultipliers.Add(multiplier.Key, value);
+
+            foreach (var wound in component.Wounds!.ContainedEntities)
+            {
+                CheckSeverityThresholds(wound);
+            }
+
+            UpdateWoundableIntegrity(uid, component);
+            Dirty(uid, component);
+
+            return true;
+        }
+
+        return false;
     }
 
     #endregion
@@ -545,11 +572,10 @@ public partial class WoundSystem
 
     private void CheckSeverityThresholds(EntityUid wound, WoundComponent? component = null)
     {
-        if (!Resolve(wound, ref component))
+        if (!Resolve(wound, ref component) || !_net.IsServer)
             return;
 
         var nearestSeverity = component.WoundSeverity;
-
         foreach (var (severity, value) in _woundThresholds.OrderByDescending(kv => kv.Value))
         {
             if (component.WoundSeverityPoint < value)
@@ -574,7 +600,7 @@ public partial class WoundSystem
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
     {
-        if (!Resolve(woundable, ref component)  || !_net.IsServer)
+        if (!Resolve(woundable, ref component) || !_net.IsServer)
             return;
 
         var nearestSeverity = component.WoundableSeverity;
@@ -596,6 +622,16 @@ public partial class WoundSystem
             RaiseLocalEvent(woundable, ref ev, true);
         }
         component.WoundableSeverity = nearestSeverity;
+
+        if (!TryChangeWoundableSeverityMultiplier(woundable, "WoundableSeverity", _thresholdMultipliers[component.WoundableSeverity], component))
+        {
+            TryAddWoundableSeverityMultiplier(
+                woundable,
+                woundable,
+                _thresholdMultipliers[component.WoundableSeverity],
+                "WoundableSeverity",
+                component);
+        }
 
         _appearance.SetData(woundable, WoundableVisualizerKeys.Severity, component.WoundableSeverity);
         Dirty(woundable, component);
@@ -635,6 +671,7 @@ public partial class WoundSystem
             return;
 
         woundableComp.ForceLoss = true;
+        CheckWoundableSeverityThresholds(woundableEntity, woundableComp);
 
         _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
         if (IsWoundableRoot(woundableEntity, woundableComp))
@@ -642,7 +679,7 @@ public partial class WoundSystem
             DestroyWoundableChildren(woundableEntity, woundableComp);
             _body.GibBody(bodyPart.Body.Value);
 
-            QueueDel(woundableEntity); // More blood for the blood God!
+            TryQueueDel(woundableEntity); // More blood for the blood God!
         }
         else
         {
@@ -653,10 +690,8 @@ public partial class WoundSystem
 
             DestroyWoundableChildren(woundableEntity, woundableComp);
 
-            RaiseNetworkEvent(new OnWoundableLossDeleteMessage(GetNetEntity(woundableEntity), GetNetEntity(bodyPart.Body.Value), key.Value));
             _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
-
-            _transform.SetWorldPosition(woundableEntity, new Vector2(0)); // Entity is detached and then removed. We don't want for it to be seen.
+            TryQueueDel(woundableEntity);
         }
     }
 
@@ -683,6 +718,7 @@ public partial class WoundSystem
         var bodyPartId = container.ID;
 
         woundableComp.ForceLoss = true;
+        UpdateWoundableIntegrity(woundableEntity, woundableComp);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);
         _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
@@ -695,21 +731,13 @@ public partial class WoundSystem
 
         foreach (var child in woundableComp.ChildWoundables)
         {
-            if (woundableComp.WoundableSeverity is WoundableSeverity.Loss or WoundableSeverity.Critical)
+            if (woundableComp.WoundableSeverity is WoundableSeverity.Critical)
             {
                 DestroyWoundable(woundableEntity, child, Comp<WoundableComponent>(child));
                 continue;
             }
 
             AmputateWoundable(woundableEntity, child, Comp<WoundableComponent>(child));
-        }
-    }
-
-    private void UpdateWoundableStates(EntityUid body)
-    {
-        foreach (var bodyPart in _body.GetBodyChildren(body))
-        {
-            _appearance.SetData(bodyPart.Id, WoundableVisualizerKeys.Update, true);
         }
     }
 
