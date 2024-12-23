@@ -6,11 +6,11 @@
   description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/big.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
   - type: Gun
     fireRate: 3
     cameraRecoilScalar: 2
