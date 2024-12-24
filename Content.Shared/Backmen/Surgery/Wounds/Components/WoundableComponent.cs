@@ -35,7 +35,7 @@ public sealed partial class WoundableComponent : Component
     /// <summary>
     /// Integrity points of this woundable.
     /// </summary>
-    [DataField]
+    [DataField("integrity")]
     [ViewVariables, AutoNetworkedField]
     public FixedPoint2 WoundableIntegrity;
 

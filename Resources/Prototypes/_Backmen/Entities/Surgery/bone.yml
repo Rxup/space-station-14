@@ -4,6 +4,7 @@
   name: bone
   description: A real bone. Contains calcium, a lot of calcium.
   components:
+  - type: Bone # backmen: wounding
   - type: Sprite
     sprite: Objects/Materials/materials.rsi
     state: bones
@@ -25,4 +26,3 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Bone

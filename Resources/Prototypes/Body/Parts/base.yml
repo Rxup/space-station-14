@@ -8,6 +8,9 @@
     damageContainer: OrganicPart
   - type: BodyPart
   # start-backmen: surgery
+  - type: Woundable
+    integrity: 50
+  - type: Nerve
   - type: SurgeryTool
     startSound:
       path: /Audio/Medical/Surgery/organ1.ogg

@@ -39,6 +39,7 @@
   - type: Organ # Shitmed
     slotId: Brain
   - type: Brain # Shitmed
+  - type: NerveSystem # backmen: wounding
   - type: SolutionContainerManager
     solutions:
       organ:
