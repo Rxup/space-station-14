@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Surgery.Wounds;
@@ -62,7 +61,7 @@ public sealed class WoundsVisualizerGroupData(List<NetEntity> woundsList) : IClo
 
     public object Clone()
     {
-        return new WoundsVisualizerGroupData([..WoundsList]);
+        return new WoundsVisualizerGroupData(new List<NetEntity>(WoundsList));
     }
 }
 

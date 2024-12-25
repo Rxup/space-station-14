@@ -41,7 +41,7 @@ public partial class WoundSystem
         var healableWounds = ent.Comp.Wounds!.ContainedEntities.Select(Comp<WoundComponent>).Count(comp => comp.CanBeHealed);
         var healAmount = ent.Comp.HealAbility / healableWounds;
 
-        foreach (var wound in ent.Comp.Wounds!.ContainedEntities)
+        foreach (var wound in ent.Comp.Wounds!.ContainedEntities.ToList())
         {
             var comp = Comp<WoundComponent>(wound);
             if (!comp.CanBeHealed)

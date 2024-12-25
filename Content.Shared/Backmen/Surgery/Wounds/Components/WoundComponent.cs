@@ -34,7 +34,7 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public string DamageGroup;
+    public string? DamageGroup;
 
     /// <summary>
     /// Scar wound prototype, what will be spawned upon healing this wound.
@@ -48,7 +48,7 @@ public sealed partial class WoundComponent : Component
     /// Well, name speaks for this.
     /// </summary>
     [DataField, AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadOnly)]
     public bool IsScar;
 
     /// <summary>
@@ -64,7 +64,7 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public WoundVisibility WoundVisibility;
+    public WoundVisibility WoundVisibility = WoundVisibility.Always;
 
     /// <summary>
     /// "Can be healed".

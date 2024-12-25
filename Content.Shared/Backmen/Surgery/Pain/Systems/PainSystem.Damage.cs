@@ -111,7 +111,7 @@ public partial class PainSystem
     /// <returns>Returns true, if pain modifier is removed.</returns>
     public bool TryRemovePainModifier(EntityUid uid, EntityUid nerveUid, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
             return false;
 
         if (!nerveSys.Modifiers.Remove(nerveUid))
@@ -136,7 +136,7 @@ public partial class PainSystem
     /// <returns>Returns true, if multiplier was applied.</returns>
     public bool TryAddPainMultiplier(EntityUid uid, string identifier, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
             return false;
 
         var modifier = new PainMultiplier(change, identifier);
@@ -159,7 +159,7 @@ public partial class PainSystem
     /// <returns>Returns true, if multiplier was applied.</returns>
     public bool TryChangePainMultiplier(EntityUid uid, string identifier, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
             return false;
 
         if (!nerveSys.Multipliers.TryGetValue(identifier, out var multiplier))

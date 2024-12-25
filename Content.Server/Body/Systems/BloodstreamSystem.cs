@@ -584,15 +584,22 @@ public sealed class BloodstreamSystem : EntitySystem
         if (!nerveSys.HasValue)
             return;
 
-        if (!_pain.TryChangePainMultiplier(
-                nerveSys.Value,
-                "BleedingPainMultiplier",
-                FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4)))
+        if (totalDamage > 0)
         {
-            _pain.TryAddPainMultiplier(
-                nerveSys.Value,
-                "BleedingPainMultiplier",
-                FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4));
+            if (!_pain.TryChangePainMultiplier(
+                    nerveSys.Value,
+                    "BleedingPainMultiplier",
+                    FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4)))
+            {
+                _pain.TryAddPainMultiplier(
+                    nerveSys.Value,
+                    "BleedingPainMultiplier",
+                    FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4));
+            }
+        }
+        else
+        {
+            _pain.TryRemovePainMultiplier(nerveSys.Value, "BleedingPainMultiplier");
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿- type: entity
   id: BluntScar
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -10,6 +11,7 @@
 
 - type: entity
   id: PiercingScar
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -20,6 +22,7 @@
 
 - type: entity
   id: SlashScar
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -30,6 +33,7 @@
 
 - type: entity
   id: BurnScar
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -40,6 +44,7 @@
 
 - type: entity
   id: RadiationScar
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -47,3 +52,4 @@
     canBeHealed: false
     isScar: true
   - type: PainInflicter
+    multiplier: 0.01 # lmao

@@ -1,5 +1,6 @@
 ﻿- type: entity
   id: Blunt
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -10,16 +11,19 @@
 
 - type: entity
   id: Piercing
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: PiercingScar
   - type: PainInflicter
+    multiplier: 0.8
   - type: BleedInflicter
 
 - type: entity
   id: Slash
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
@@ -29,51 +33,49 @@
   - type: BleedInflicter
 
 - type: entity
-  id: Burn
-  components:
-  - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
-    scarWound: BurnScar
-  - type: PainInflicter
-  - type: BleedInflicter
-
-- type: entity
   id: Heat
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
   - type: PainInflicter
+    multiplier: 1.4
   - type: BleedInflicter
 
 - type: entity
   id: Cold
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
+    canBleed: false
   - type: PainInflicter
-  - type: BleedInflicter
+    multiplier: 1.4
 
 - type: entity
   id: Caustic
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
+    canBleed: false
   - type: PainInflicter
-  - type: BleedInflicter
+    multiplier: 0.47 # radiation and caustics are a slow killer. You do not notice how you perish.
 
 - type: entity
   id: Radiation
+  categories: [ HideSpawnMenu ]
   components:
   - type: Wound
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: RadiationScar
+    canBleed: false
   - type: PainInflicter
-  - type: BleedInflicter
+    multiplier: 0.47

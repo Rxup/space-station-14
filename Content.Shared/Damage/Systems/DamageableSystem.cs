@@ -30,6 +30,8 @@ namespace Content.Shared.Damage
         [Dependency] private readonly WoundSystem _wounds = default!;
         [Dependency] private readonly IRobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
 
+        [Dependency] private readonly IComponentFactory _factory = default!;
+
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<BodyComponent> _bodyQuery;
@@ -152,7 +154,6 @@ namespace Content.Shared.Damage
             bool ignoreResistances = false,
             bool interruptsDoAfters = true,
             DamageableComponent? damageable = null,
-            BodyComponent? body = null,
             EntityUid? origin = null,
             bool? canSever = true,
             float partMultiplier = 1.00f,
@@ -173,9 +174,23 @@ namespace Content.Shared.Damage
                 return null;
 
             if (!_damageableQuery.Resolve(uid.Value, ref damageable))
+                return null;
+
+            if (_bodyQuery.TryComp(uid.Value, out var body))
             {
-                // possible null reference
-                if (!_bodyQuery.Resolve(uid.Value, ref body))
+                var damageDict = new Dictionary<string, FixedPoint2>();
+                foreach (var (type, severity) in damage.DamageDict)
+                {
+                    // TODO: Remove this when bloodloss and asphyxiation type damages are reworked into their own systems
+                    // the thing acts up and shits a lot of stuff into the console, which we DO NOT desire to see
+                    if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
+                        || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
+                        continue;
+
+                    damageDict.Add(type, severity);
+                }
+
+                if (damageDict.Count == 0)
                     return null;
 
                 // TODO: We will have to rewrite the armor for it to cover special parts of body,
@@ -183,6 +198,12 @@ namespace Content.Shared.Damage
                 // or no?
 
                 var target = targetPart ?? _body.GetRandomBodyPart(uid.Value);
+                if (origin != null && TryComp<TargetingComponent>(origin.Value, out var targeting))
+                    target = targeting.Target;
+
+                // TODO: If a person chooses to target a lost body part, it will throw an error
+                // make it not target lost body part and instead just pick random one again
+
                 var (targetType, targetSymmetry) = _body.ConvertTargetBodyPart(target);
                 var possibleBodyParts = _body.GetBodyChildrenOfType(uid.Value, targetType, body, targetSymmetry).ToHashSet();
 
@@ -190,7 +211,7 @@ namespace Content.Shared.Damage
                 foreach (var bodyPart in possibleBodyParts.ToList())
                 {
                     // Insert it into the list again to make the chance of hitting it higher
-                    // If we for example, aim for the hand, there is a 50% chance to hit the arm itself
+                    // If we for example, aim for the arm, there is a 50% chance to hit the arm itself
                     // AND 25% chance to hit the torso, 25% chance to hit the hand.
                     if (!_hardToHit.Contains(bodyPart.Component.PartType))
                         possibleBodyParts.Add(bodyPart);
@@ -210,7 +231,7 @@ namespace Content.Shared.Damage
                 }
 
                 var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleBodyParts.ToList());
-                foreach (var (damageType, severity) in damage.DamageDict)
+                foreach (var (damageType, severity) in damageDict)
                 {
                     var actualDamage = severity * partMultiplier;
                     if (!_wounds.TryContinueWound(chosenTarget.Id, damageType, actualDamage))

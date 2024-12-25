@@ -8,4 +8,8 @@ public sealed partial class PainInflicterComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 Pain;
+
+    // Some wounds hurt harder.
+    [DataField("multiplier"), ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public FixedPoint2 PainMultiplier = 1;
 }
