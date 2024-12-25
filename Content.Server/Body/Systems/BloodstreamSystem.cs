@@ -49,7 +49,6 @@ public sealed class BloodstreamSystem : EntitySystem
 
     // TODO: Some good person, please balance the numbers out
     private const float BleedDivider = 10;
-    private const float SeverityDivider = 14;
 
     public override void Initialize()
     {
