@@ -32,7 +32,7 @@ public sealed partial class WoundComponent : Component
     /// <summary>
     /// Damage group of this wound.
     /// </summary>
-    [DataField(required: true), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
     public string DamageGroup;
 

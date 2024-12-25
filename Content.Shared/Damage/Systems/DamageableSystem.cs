@@ -28,7 +28,7 @@ namespace Content.Shared.Damage
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
         [Dependency] private readonly SharedBodySystem _body = default!;
         [Dependency] private readonly WoundSystem _wounds = default!;
-        [Dependency] private readonly RobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
+        [Dependency] private readonly IRobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;

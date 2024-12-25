@@ -29,7 +29,7 @@ public abstract partial class SharedBodySystem : EntitySystem
     /// </summary>
     public const string OrganSlotContainerIdPrefix = "body_organ_slot_";
 
-    [Dependency] private readonly RobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
