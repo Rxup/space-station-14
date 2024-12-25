@@ -1,0 +1,25 @@
+- type: ghostTheme
+  id: Luna
+  name: sponsor-win-manager-ghost-Luna
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/luna.rsi
+    layers:
+      - state: pony
+        shader: unshaded
+
+- type: ghostTheme
+  id: p03
+  name: sponsor-win-manager-ghost-p03
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/p03.rsi
+    layers:
+      - state: p03
+        shader: unshaded
