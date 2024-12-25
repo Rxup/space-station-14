@@ -196,15 +196,15 @@ public partial class PainSystem
         return true;
     }
 
-    public Entity<NerveSystemComponent>? GetNerveSystem(EntityUid? body)
+    public EntityUid? GetNerveSystem(EntityUid? body)
     {
         foreach (var (id, _) in _body.GetBodyOrgans(body))
         {
-            if (TryComp<NerveSystemComponent>(id, out var component))
-                return (id, component);
+            if (HasComp<NerveSystemComponent>(id))
+                return id;
         }
 
-        return null;
+        return EntityUid.Invalid;
     }
 
     #endregion

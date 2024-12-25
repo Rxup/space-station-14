@@ -182,10 +182,10 @@ public partial class WoundSystem
     /// <returns>Returns true, if wound was continued.</returns>
     public bool TryContinueWound(EntityUid uid, string id, FixedPoint2 severity, WoundableComponent? woundable = null)
     {
-        if (!Resolve(uid, ref woundable))
+        if (!IsWoundPrototypeValid(id) || _net.IsClient)
             return false;
 
-        if (!IsWoundPrototypeValid(id) || _net.IsClient)
+        if (!Resolve(uid, ref woundable))
             return false;
 
         var proto = _prototype.Index(id);
@@ -442,8 +442,10 @@ public partial class WoundSystem
             return;
 
         var oldIntegrity = component.WoundableIntegrity;
-        component.WoundableIntegrity =
-            component.Wounds!.ContainedEntities.Aggregate((FixedPoint2) 0, (current, wound) => current + Comp<WoundComponent>(wound).WoundSeverityPoint);
+        component.WoundableIntegrity = FixedPoint2.Clamp(
+            component.Wounds!.ContainedEntities.Aggregate((FixedPoint2) 0, (current, wound) => current + Comp<WoundComponent>(wound).WoundSeverityPoint),
+            0,
+            component.IntegrityCap);
 
         CheckWoundableSeverityThresholds(uid, component);
 

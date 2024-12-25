@@ -35,6 +35,13 @@ public sealed partial class WoundableComponent : Component
     /// <summary>
     /// Integrity points of this woundable.
     /// </summary>
+    [DataField("integrityCap")]
+    [ViewVariables, AutoNetworkedField]
+    public FixedPoint2 IntegrityCap;
+
+    /// <summary>
+    /// Integrity points of this woundable.
+    /// </summary>
     [DataField("integrity")]
     [ViewVariables, AutoNetworkedField]
     public FixedPoint2 WoundableIntegrity;

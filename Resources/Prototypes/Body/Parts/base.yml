@@ -9,7 +9,8 @@
   - type: BodyPart
   # start-backmen: surgery
   - type: Woundable
-    integrity: 50
+    integrity: 100
+    integrityCap: 100
   - type: Nerve
   - type: SurgeryTool
     startSound:

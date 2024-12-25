@@ -13,16 +13,16 @@ public partial class WoundSystem
         { WoundSeverity.Moderate, 25 },
         { WoundSeverity.Severe, 50 },
         { WoundSeverity.Critical, 80 },
-        { WoundSeverity.Loss, 150 },
+        { WoundSeverity.Loss, 100 },
     };
 
     private readonly Dictionary<WoundableSeverity, FixedPoint2> _woundableThresholds = new()
     {
-        { WoundableSeverity.Minor, 1 },
-        { WoundableSeverity.Moderate, 25 },
-        { WoundableSeverity.Severe, 50 },
-        { WoundableSeverity.Critical, 80 },
-        { WoundableSeverity.Loss, 150 },
+        { WoundableSeverity.Minor, 90 },
+        { WoundableSeverity.Moderate, 70 },
+        { WoundableSeverity.Severe, 40 },
+        { WoundableSeverity.Critical, 20 },
+        { WoundableSeverity.Loss,  0 },
     };
 
     private readonly Dictionary<WoundableSeverity, FixedPoint2> _thresholdMultipliers = new()
