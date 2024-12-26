@@ -17,7 +17,6 @@
   components:
   - type: Sprite
     noRot: true
-    scale: 0.5, 0.5
     overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
     drawdepth: Ghosts
     sprite: Backmen/Mobs/Ghost/p03.rsi
