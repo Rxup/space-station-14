@@ -147,6 +147,8 @@
         - Scientist
         - Borg
 # Corvax-HiddenDesc-End
+  - type: FootstepModifier
+    footstepSoundCollection: null
 
 - type: entity
   parent: ClothingShoesBaseButcherable
