@@ -563,8 +563,8 @@
       - ShipyardCircuitboard # backmen
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
-      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
       - SMESAdvancedMachineCircuitboard
+      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
