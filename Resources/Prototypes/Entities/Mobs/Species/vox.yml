@@ -32,7 +32,14 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vox
-  - type: DamageVisuals
+  #- type: DamageVisuals
+  #  damageOverlayGroups:
+  #    Brute:
+  #      sprite: Mobs/Effects/brute_damage.rsi
+  #      color: "#7a8bf2"
+  #    Burn:
+  #      sprite: Mobs/Effects/burn_damage.rsi
+  - type: WoundableVisuals
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi

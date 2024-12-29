@@ -481,6 +481,9 @@ public partial class WoundSystem
 
         _sawmill.Info($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
 
+        Dirty(wound, woundComponent);
+        Dirty(target, woundableComponent);
+
         return true;
     }
 
@@ -490,6 +493,10 @@ public partial class WoundSystem
             || !TryComp(wound.Parent, out WoundableComponent? woundable)
             || woundable.Wounds == null)
             return false;
+
+        _sawmill.Info($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) created on {MetaData(wound.Parent).EntityPrototype!.ID}({wound.Parent})");
+
+        Dirty(wound.Parent, woundable);
 
         return _container.Remove(woundEntity, woundable.Wounds);
     }
@@ -592,6 +599,12 @@ public partial class WoundSystem
         component.WoundSeverity = nearestSeverity;
 
         Dirty(wound, component);
+
+        var bodyPart = Comp<BodyPartComponent>(component.Parent);
+        if (bodyPart.Body == null)
+            return;
+
+        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundSeverity);
     }
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
@@ -629,8 +642,13 @@ public partial class WoundSystem
                 component);
         }
 
-        _appearance.SetData(woundable, WoundableVisualizerKeys.Severity, component.WoundableSeverity);
         Dirty(woundable, component);
+
+        var bodyPart = Comp<BodyPartComponent>(woundable);
+        if (bodyPart.Body == null)
+            return;
+
+        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
     }
 
     #endregion
@@ -666,30 +684,36 @@ public partial class WoundSystem
         if (key == null)
             return;
 
+        // clean container triggers an enumeration fatal error
+        woundableComp.AllowWounds = false;
         woundableComp.ForceLoss = true;
-
-        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Severity, WoundableSeverity.Loss);
         Dirty(woundableEntity, woundableComp);
 
-        _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
         if (IsWoundableRoot(woundableEntity, woundableComp))
         {
             DestroyWoundableChildren(woundableEntity, woundableComp);
-            _body.GibBody(bodyPart.Body.Value);
+            var excludedStuff = new List<string>
+            {
+                WoundContainerId,
+                BoneContainerId,
+            };
 
-            TryQueueDel(woundableEntity); // More blood for the blood God!
+            _body.GibBody(bodyPart.Body.Value, excludedContainers: excludedStuff);
+
+            QueueDel(woundableEntity); // More blood for the blood God!
         }
         else
         {
             if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
                 return;
 
+            _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
             var bodyPartId = container.ID;
 
             DestroyWoundableChildren(woundableEntity, woundableComp);
 
             _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
-            TryQueueDel(woundableEntity);
+            QueueDel(woundableEntity);
         }
     }
 
@@ -716,8 +740,6 @@ public partial class WoundSystem
         var bodyPartId = container.ID;
 
         woundableComp.ForceLoss = true;
-
-        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Severity, WoundableSeverity.Loss);
         Dirty(woundableEntity, woundableComp);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);

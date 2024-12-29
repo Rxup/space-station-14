@@ -250,10 +250,22 @@
       deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
     - type: Pullable
     - type: Puller
-
     - type: BodyEmotes
       soundsId: GeneralBodyEmotes
-    - type: DamageVisuals
+    #- type: DamageVisuals
+    #  thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    #  targetLayers:
+    #    - "enum.HumanoidVisualLayers.Chest"
+    #    - "enum.HumanoidVisualLayers.Head"
+    #    - "enum.HumanoidVisualLayers.LArm"
+    #    - "enum.HumanoidVisualLayers.LLeg"
+    #    - "enum.HumanoidVisualLayers.RArm"
+    #    - "enum.HumanoidVisualLayers.RLeg"
+    #  damageOverlayGroups:
+    #    Brute:
+    #      sprite: Mobs/Effects/brute_damage.rsi
+    #      color: "#DD8822"
+    - type: WoundableVisuals
       thresholds: [ 10, 20, 30, 50, 70, 100 ]
       targetLayers:
         - "enum.HumanoidVisualLayers.Chest"
@@ -266,6 +278,10 @@
         Brute:
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#DD8822"
+        Burn:
+          # TODO: stuff here
+          sprite: Mobs/Effects/burn_damage.rsi # Would have been cool if those were some fancy burns or stuff
+      bleedingOverlay: Mobs/Effects/bleeding_damage.rsi # they bleed oil, no? Change this if possible
     # Organs
     - type: IdExaminable
     - type: HealthExaminable

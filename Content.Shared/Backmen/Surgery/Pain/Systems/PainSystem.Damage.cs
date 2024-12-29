@@ -33,7 +33,7 @@ public partial class PainSystem
     /// <returns>Returns true, if PAIN QUOTA WAS COLLECTED.</returns>
     public bool TryChangePainModifier(EntityUid uid, EntityUid nerveUid, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
             return false;
 
         if (!nerveSys.Modifiers.TryGetValue(nerveUid, out var modifier))

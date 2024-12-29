@@ -331,7 +331,9 @@ public partial class SharedBodySystem
         Angle splatCone = default,
         SoundSpecifier? gibSoundOverride = null,
         GibType gib = GibType.Gib,
-        GibContentsOption contents = GibContentsOption.Drop)
+        GibContentsOption contents = GibContentsOption.Drop,
+        List<string>? allowedContainers = null,
+        List<string>? excludedContainers = null)
     {
         var gibs = new HashSet<EntityUid>();
 
@@ -348,9 +350,10 @@ public partial class SharedBodySystem
         foreach (var part in parts)
         {
 
-            _gibbingSystem.TryGibEntityWithRef(bodyId, part.Id, gib, contents, ref gibs,
-                playAudio: false, launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
+            _gibbingSystem.TryGibEntityWithRef(bodyId, part.Id, gib, contents, ref gibs, playAudio: false,
+                launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
+                launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone,
+                allowedContainers: allowedContainers, excludedContainers: excludedContainers);
 
             if (!gibOrgans)
                 continue;
@@ -359,7 +362,8 @@ public partial class SharedBodySystem
             {
                 _gibbingSystem.TryGibEntityWithRef(bodyId, organ.Id, GibType.Drop, GibContentsOption.Skip,
                     ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
-                    launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
+                    launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone,
+                    allowedContainers: allowedContainers, excludedContainers: excludedContainers);
             }
         }
 

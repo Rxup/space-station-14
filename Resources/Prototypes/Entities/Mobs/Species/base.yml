@@ -71,13 +71,14 @@
   #    Burn:
   #      sprite: Mobs/Effects/burn_damage.rsi
   - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
-    - "enum.HumanoidVisualLayers.Chest"
-    - "enum.HumanoidVisualLayers.Head"
-    - "enum.HumanoidVisualLayers.LArm"
-    - "enum.HumanoidVisualLayers.LLeg"
-    - "enum.HumanoidVisualLayers.RArm"
-    - "enum.HumanoidVisualLayers.RLeg"
+      - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Head"
+      - "enum.HumanoidVisualLayers.LArm"
+      - "enum.HumanoidVisualLayers.LLeg"
+      - "enum.HumanoidVisualLayers.RArm"
+      - "enum.HumanoidVisualLayers.RLeg"
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi

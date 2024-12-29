@@ -28,6 +28,7 @@
     tags:
       - Trash
   # start-backmen: surgery
+  - type: Appearance
   - type: Gibbable
   - type: Destructible
     thresholds:

@@ -201,11 +201,18 @@ namespace Content.Shared.Damage
                 if (origin != null && TryComp<TargetingComponent>(origin.Value, out var targeting))
                     target = targeting.Target;
 
-                // TODO: If a person chooses to target a lost body part, it will throw an error
-                // make it not target lost body part and instead just pick random one again
-
                 var (targetType, targetSymmetry) = _body.ConvertTargetBodyPart(target);
                 var possibleBodyParts = _body.GetBodyChildrenOfType(uid.Value, targetType, body, targetSymmetry).ToHashSet();
+
+                // There is… No such body part targeted, this means the target has lost it / didn't have it at all.
+                if (possibleBodyParts.Count == 0)
+                {
+                    possibleBodyParts = [_LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(_body.GetBodyChildren(uid.Value).ToList())];
+                }
+
+                // No body parts at all.
+                if (possibleBodyParts.Count == 0)
+                    return null;
 
                 // Add parent and child entities of targeted ones, you know people sometimes miss
                 foreach (var bodyPart in possibleBodyParts.ToList())

@@ -62,13 +62,21 @@
       types:
         Piercing: 5
   # Visual & Audio
-  - type: DamageVisuals
+  #- type: DamageVisuals
+  #  damageOverlayGroups:
+  #    Brute:
+  #      sprite: Mobs/Effects/brute_damage.rsi
+  #      color: "#162581"
+  #    Burn:
+  #      sprite: Mobs/Effects/burn_damage.rsi
+  - type: WoundableVisuals
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#162581"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
