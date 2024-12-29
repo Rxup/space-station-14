@@ -19,7 +19,6 @@
           availableJobs:
             #command
             Captain: [ 1, 1 ]
-            IAA: [ 1, 1 ] # Corvax-IAA
             #service
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
