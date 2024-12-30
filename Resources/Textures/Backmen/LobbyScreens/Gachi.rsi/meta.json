@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": null,
-  "copyright": null,
+  "license": "CC0-1.0",
+  "copyright": "",
   "size": {
     "x": 498,
     "y": 379
@@ -54,7 +54,7 @@
 		  0.06,
 		  0.06,
 		  0.06
-		  
+
 
         ]
       ]

@@ -1,0 +1,9 @@
+# Command
+- type: loadoutGroup
+  id: SelfDefenceDevices
+  name: loadout-group-self-defence-devices
+  minLimit: 1
+  maxLimit: 2
+  loadouts:
+  - TelescopicBaton
+  - Flash

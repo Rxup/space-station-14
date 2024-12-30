@@ -109,3 +109,8 @@
   id: SaturationScale
   kind: source
   path: "/Textures/Shaders/saturationscale.swsl"
+
+- type: shader
+  id: Hologram
+  kind: source
+  path: "/Textures/Shaders/hologram.swsl"

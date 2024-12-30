@@ -22,9 +22,19 @@
       state: running
     noRot: true
     netsync: false
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: Slerm
+          Quantity: 30
+  - type: Udder
+    reagentId: Slerm
+    quantityPerUpdate: 25
+    growthDelay: 30
   - type: Clickable
   - type: InteractionOutline
-  - type: SolutionContainerManager
   - type: AtmosExposed
   - type: MobThresholds
     thresholds:

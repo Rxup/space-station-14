@@ -7,6 +7,7 @@ using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -39,9 +40,15 @@ public sealed class FootPrintsSystem : EntitySystem
 
        SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
        SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
+       SubscribeLocalEvent<FootPrintComponent, ComponentGetState>(OnGetState);
    }
 
-    private void OnStartupComponent(EntityUid uid, FootPrintsComponent comp, ComponentStartup args)
+   private void OnGetState(Entity<FootPrintComponent> ent, ref ComponentGetState args)
+   {
+       args.State = new FootPrintState(TerminatingOrDeleted(ent.Comp.PrintOwner) ? NetEntity.Invalid : GetNetEntity(ent.Comp.PrintOwner));
+   }
+
+   private void OnStartupComponent(EntityUid uid, FootPrintsComponent comp, ComponentStartup args)
     {
         comp.StepSize += _random.NextFloat(-0.05f, 0.05f);
     }
@@ -52,7 +59,7 @@ public sealed class FootPrintsSystem : EntitySystem
         if (comp.PrintsColor.A <= 0f)
             return;
 
-        if (!_transformQuery.TryComp(uid, out var transform))
+        if (TerminatingOrDeleted(uid) || !_transformQuery.TryComp(uid, out var transform))
             return;
 
         if (_gravity.IsWeightless(uid, xform: transform))

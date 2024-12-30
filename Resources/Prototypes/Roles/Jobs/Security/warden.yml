@@ -39,3 +39,4 @@
   storage:
     back:
     - Flash
+    - HandHeldCameras
