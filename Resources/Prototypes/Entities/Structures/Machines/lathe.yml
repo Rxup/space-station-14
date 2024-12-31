@@ -517,7 +517,6 @@
       - SolarControlComputerCircuitboard
       - SolarTrackerElectronics
       - TurboItemRechargerCircuitboard
-      - PowerComputerCircuitboard
       - AutolatheHyperConvectionMachineCircuitboard
       - ProtolatheHyperConvectionMachineCircuitboard
       - CircuitImprinterHyperConvectionMachineCircuitboard
@@ -564,8 +563,8 @@
       - ShipyardCircuitboard # backmen
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
-      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
       - SMESAdvancedMachineCircuitboard
+      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
