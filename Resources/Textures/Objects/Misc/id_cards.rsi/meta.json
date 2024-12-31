@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e idcluwne made by brainfood1183 (github) for ss14, idbrigmedic resprited by CatBackGround (Github), pirate made by brainfood1183 (github), idadmin made by Arimah (github), idvisitor by IProduceWidgets (Github), idintern-service resprited by CatBackGround(Github)",
+  "copyright": "Resprited ALL by CatBackGround(GitHub).",
   "size": {
     "x": 32,
     "y": 32
@@ -158,49 +158,6 @@
       "name": "idclown"
     },
     {
-      "name": "idstudent"
-    },
-    {
-      "name": "idueg"
-    },
-    {
-      "name": "black"
-    },
-    {
-      "name": "black-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "black-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "iddelivery"
-    },
-    {
-      "name": "idexplorer"
-    },
-    {
-      "name": "idfreelancer"
-    },
-    {
-      "name": "iduegofficer"
-    },
-    {
-      "name": "unaffiliated-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "unaffiliated"
-    },
-    {
-      "name": "unaffiliated-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "idblueshield"
-    },
-    {
       "name": "syndie"
     },
     {
@@ -319,6 +276,17 @@
     },
     {
       "name": "idchemist"
+    },
+    {
+      "name": "black-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "black-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "black"
     }
   ]
 }
