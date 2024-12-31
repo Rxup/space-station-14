@@ -76,9 +76,13 @@
       - "enum.HumanoidVisualLayers.Chest"
       - "enum.HumanoidVisualLayers.Head"
       - "enum.HumanoidVisualLayers.LArm"
+      - "enum.HumanoidVisualLayers.LHand"
       - "enum.HumanoidVisualLayers.LLeg"
+      - "enum.HumanoidVisualLayers.LFoot"
       - "enum.HumanoidVisualLayers.RArm"
+      - "enum.HumanoidVisualLayers.RHand"
       - "enum.HumanoidVisualLayers.RLeg"
+      - "enum.HumanoidVisualLayers.RFoot"
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
