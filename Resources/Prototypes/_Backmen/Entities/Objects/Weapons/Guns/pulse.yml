@@ -75,7 +75,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 8
+    fireRate: 6
     soundEmpty: /Audio/Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/ap12j.ogg
@@ -285,7 +285,7 @@
     damage:
       types:
         Heat: 5
-        Piercing: 4
+        Piercing: 3
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: Tag

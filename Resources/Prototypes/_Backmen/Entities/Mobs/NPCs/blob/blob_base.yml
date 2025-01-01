@@ -7,6 +7,12 @@
     snap:
       - Wall
   components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+      currentThresholdState: Alive
+      showOverlays: false
+    - type: MobState
     - type: ZombieImmune
     - type: StatusEffects
       allowed:

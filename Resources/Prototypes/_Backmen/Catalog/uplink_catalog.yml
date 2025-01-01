@@ -154,13 +154,11 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkSpecialDelivery
-  name: особая посылка
-  description: Посылка с случайной маской психов Майами!
-  icon: { sprite: Backmen/Objects/Misc/specialdelivery.rsi, state: specialdelivery }
-  productEntity: SpecialDeliveryBox
+  id: UplinkExperimentalSyndicateTeleporter
+  name: uplink-experimental-syndicate-teleporter-name
+  description: uplink-experimental-syndicate-teleporter-desc
+  productEntity: ExperimentalSyndicateTeleporter
   cost:
-    Telecrystal: 1
+    Telecrystal: 10
   categories:
-  - UplinkPointless
-
+    - UplinkDeception

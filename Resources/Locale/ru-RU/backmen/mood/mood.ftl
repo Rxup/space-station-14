@@ -34,6 +34,8 @@ mood-effect-MobHighPressure = Я чувствую будто воздух сжи
 
 mood-effect-TraitSaturnine = Тут всё очень скучное. Ненавижу эту работу.
 
+mood-effect-TraitFortitude = Мне уже на всё плевать.
+
 mood-effect-Dead = Вы мертвы.
 
 mood-effect-BeingHugged = Люблю когда меня обнимают.

@@ -167,7 +167,7 @@
     tags:
     - DNASolutionScannable
 
-#BACKMEN-EDIT
+# start-backmen: footsteps
 - type: entity
   name: след
   id: Footstep
@@ -208,5 +208,6 @@
       solution: step
     - type: Puddle
       solution: step
+      viscosityAffectsMovement: false
     - type: Appearance
-#BACKMEN-EDIT
+# end-backmen: footsteps

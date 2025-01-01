@@ -12,7 +12,7 @@
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
   jobEntity: StationAiBrain
-  startingGear: RobotGear # backmen
+  jobPreviewEntity: PlayerStationAiPreview
   applyTraits: false
 
 - type: job

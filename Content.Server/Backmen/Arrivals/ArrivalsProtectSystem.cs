@@ -20,6 +20,7 @@ using Content.Server.Construction;
 using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;

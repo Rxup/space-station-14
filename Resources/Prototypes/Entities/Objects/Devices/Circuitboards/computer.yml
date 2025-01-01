@@ -26,6 +26,15 @@
   components:
     - type: ComputerBoard
       prototype: ComputerAlert
+      
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: AtmosMonitoringComputerCircuitboard
+  name: atmospheric network monitor board
+  description: A computer printed circuit board for an atmospheric network monitor.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerAtmosMonitoring
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -111,6 +120,7 @@
   parent: BaseComputerCircuitboard
   id: CargoShuttleComputerCircuitboard
   name: cargo shuttle computer board
+  categories: [ HideSpawnMenu ] # backmen: salvage
   description: A computer printed circuit board for a cargo shuttle computer.
   components:
     - type: Sprite
