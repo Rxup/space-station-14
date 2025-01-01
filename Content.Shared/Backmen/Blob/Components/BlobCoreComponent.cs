@@ -31,7 +31,7 @@ public sealed partial class BlobCoreComponent : Component
     public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
 
     [ViewVariables]
-    public FixedPoint2 MaxStorageAmount = 200;
+    public FixedPoint2 MaxStorageAmount = 500;
 
     #endregion
 

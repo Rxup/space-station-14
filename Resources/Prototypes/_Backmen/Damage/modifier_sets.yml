@@ -83,24 +83,6 @@
     Heat: 3.00
 
 - type: damageModifierSet
-  id: ElectromagneticWebBlob # Explosive Lattice
-  coefficients:
-    Blunt: 0.50
-    Slash: 0.50
-    Piercing: 0.50
-    Heat: 2.50
-    Shock: 0.50
-
-- type: damageModifierSet
-  id: ExplosiveLatticeBlob # Explosive Lattice
-  coefficients:
-    Blunt: 0.25
-    Slash: 0.25
-    Piercing: 0.25
-    Heat: 3.00
-    Shock: 1.50
-
-- type: damageModifierSet
   id: BlobMob
   coefficients:
     Blunt: 0.50
@@ -111,9 +93,9 @@
 - type: damageModifierSet
   id: BlobStrong # Strong against melee and weak against lasers.
   coefficients:
-    Blunt: 0.20
-    Slash: 0.20
-    Piercing: 0.20
+    Blunt: 0.40
+    Slash: 0.40
+    Piercing: 0.30
     Heat: 2.00
 
 - type: damageModifierSet
@@ -121,8 +103,8 @@
   coefficients:
     Blunt: 1.00 # Weak for melee damages
     Slash: 1.10
-    Piercing: 1.00
-    Heat: 1.10 # Good against heat
+    Piercing: 0.90
+    Heat: 0.80 # Good against heat
 
 - type: damageModifierSet
   id: HardLightBarrier

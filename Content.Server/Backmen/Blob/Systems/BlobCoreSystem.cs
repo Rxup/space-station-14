@@ -166,6 +166,7 @@ public sealed class BlobCoreSystem : EntitySystem
     private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
     {
         UpdateAllAlerts((uid, component));
+        _popup.PopupCoordinates(Loc.GetString("blob-core-under-attack"), Transform(uid).Coordinates, component.Observer ?? uid, PopupType.LargeCaution);
     }
 
     private void OnTileTransform(EntityUid uid, BlobCoreComponent blobCoreComponent, BlobTransformTileActionEvent args)
@@ -264,14 +265,10 @@ public sealed class BlobCoreSystem : EntitySystem
         switch (newChem)
         {
             case BlobChemType.ExplosiveLattice:
-                //_damageable.SetDamageModifierSetId(uid, "ExplosiveLatticeBlob");
-                _explosionSystem.SetExplosionResistance(uid, 0f, EnsureComp<ExplosionResistanceComponent>(uid));
-                break;
-            case BlobChemType.ElectromagneticWeb:
-                //_damageable.SetDamageModifierSetId(uid, "ElectromagneticWebBlob");
+                _explosionSystem.SetExplosionResistance(uid, 0.1f, EnsureComp<ExplosionResistanceComponent>(uid));
                 break;
             default:
-                //_damageable.SetDamageModifierSetId(uid, "BaseBlob");
+                _explosionSystem.SetExplosionResistance(uid, 0.7f, EnsureComp<ExplosionResistanceComponent>(uid));
                 break;
         }
     }

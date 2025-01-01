@@ -13,6 +13,8 @@ using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.SubFloor;
 using Robust.Server.Audio;
@@ -46,6 +48,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly BlobTileSystem _blobTileSystem = default!;
     //[Dependency] private readonly GridFixtureSystem _gridFixture = default!;
 
@@ -119,8 +122,6 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         if (fromTile == null || node == null)
             return;
 
-        #region Handle Attack
-
         // Get the solid anchored target on a tile.
         var targetEnts = _mapSystem.GetAnchoredEntities(gridUid.Value, grid, targetTile.GridIndices);
         bool growTile = true;
@@ -162,8 +163,6 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         if (!growTile)
             return;
 
-        #endregion
-
         var targetTileEmpty = false;
         if (targetTile.Tile.IsEmpty)
         {
@@ -174,6 +173,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         }
 
         // This code doesn't work.
+        // It should merge two grids together if blob clicks from one grid to another.
         // If you can debug this, please do and fix it.
 
         /*if (targetTileEmpty)
@@ -282,7 +282,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         switch (ent.Comp.CurrentChem)
         {
             case BlobChemType.ExplosiveLattice:
-                _explosionSystem.QueueExplosion(target, ent.Comp.BlobExplosive, 4, 1, 6, maxTileBreak: 0);
+                _explosionSystem.QueueExplosion(target, ent.Comp.BlobExplosive, 2, 1, 2, maxTileBreak: 0, user: ent.Comp.Observer ?? ent);
                 break;
             case BlobChemType.ElectromagneticWeb:
             {

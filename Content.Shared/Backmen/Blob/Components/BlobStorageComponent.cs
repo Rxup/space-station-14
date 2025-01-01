@@ -6,8 +6,8 @@ namespace Content.Shared.Backmen.Blob.Components;
 public sealed partial class BlobStorageComponent : Component
 {
     [DataField]
-    public FixedPoint2 AddTotalStorage = 100;
+    public FixedPoint2 AddTotalStorage = 200;
 
     [DataField]
-    public FixedPoint2 DeleteOnRemove = 50;
+    public FixedPoint2 DeleteOnRemove = 60;
 }

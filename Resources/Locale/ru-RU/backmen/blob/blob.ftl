@@ -18,6 +18,7 @@ blob-mob-zombify-second-start = { $pod } начинает превращать �
 blob-mob-zombify-third-start = { $pod } начинает превращать { $target } в зомби!
 blob-mob-zombify-second-end = { $pod } превращает вас в зомби!
 blob-mob-zombify-third-end = { $pod } превращает { $target } в зомби!
+blob-core-under-attack = Ваше ядро находится под атакой!
 
 # UI
 blob-chem-swap-ui-window-name = Смена химиката
@@ -125,9 +126,13 @@ blob-user-was-a-blob = [color=gray]{ $user }[/color] был блобом.
 blob-user-was-a-blob-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был блобом.
 blob-was-a-blob-named = [color=White]{ $name }[/color] был блобом.
 preset-blob-objective-issuer-blob = [color=#33cc00]Блоб[/color]
-blob-user-was-a-blob-with-objectives = [color=gray]{ $user }[/color] был блобом и имел следующие цели:
-blob-user-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был блобом и имел следующие цели:
-blob-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] был блобом и имел следующие цели:
+blob-user-was-a-blob-with-objectives = [color=gray]{ $user }[/color] был блобом:
+blob-user-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был блобом:
+blob-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] был блобом:
+blob-objective-percentage = Он захватил [color=White]{ $progress }%[/color] до победы.
+blob-end-victory = [color=Red]Блоб(ы) успешно поглотил станцию![/color]
+blob-end-fail = [color=Green]Блоб(ы) не смог поглотить станцию.[/color]
+blob-end-fail-progress = Суммарно было захвачено [color=Yellow]{ $progress }%[/color] до победы.
 
 # Objectivies
 objective-condition-blob-capture-title = Захватить станцию
