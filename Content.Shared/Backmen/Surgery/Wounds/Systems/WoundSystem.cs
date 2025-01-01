@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.Surgery.CCVar;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Configuration;
@@ -29,7 +30,7 @@ public partial class WoundSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     //todo: make this work actually
-    //[Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     //[Dependency] private readonly TraumaSystem _trauma = default!;
 
     private ISawmill _sawmill = default!;

@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Surgery.Wounds;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Targeting;
@@ -27,26 +28,26 @@ public sealed partial class TargetingComponent : Component
         { TargetBodyPart.LeftLeg, 0.1f },
         { TargetBodyPart.LeftFoot, 0.05f },
         { TargetBodyPart.RightLeg, 0.1f },
-        { TargetBodyPart.RightFoot, 0.05f }
+        { TargetBodyPart.RightFoot, 0.05f },
     };
 
     /// <summary>
     /// What is the current integrity of each body part?
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public Dictionary<TargetBodyPart, TargetIntegrity> BodyStatus = new()
+    public Dictionary<TargetBodyPart, WoundableSeverity> BodyStatus = new()
     {
-        { TargetBodyPart.Head, TargetIntegrity.Healthy },
-        { TargetBodyPart.Torso, TargetIntegrity.Healthy },
-        { TargetBodyPart.Groin, TargetIntegrity.Healthy },
-        { TargetBodyPart.LeftArm, TargetIntegrity.Healthy },
-        { TargetBodyPart.LeftHand, TargetIntegrity.Healthy },
-        { TargetBodyPart.RightArm, TargetIntegrity.Healthy },
-        { TargetBodyPart.RightHand, TargetIntegrity.Healthy },
-        { TargetBodyPart.LeftLeg, TargetIntegrity.Healthy },
-        { TargetBodyPart.LeftFoot, TargetIntegrity.Healthy },
-        { TargetBodyPart.RightLeg, TargetIntegrity.Healthy },
-        { TargetBodyPart.RightFoot, TargetIntegrity.Healthy }
+        { TargetBodyPart.Head, WoundableSeverity.Healthy },
+        { TargetBodyPart.Torso, WoundableSeverity.Healthy },
+        { TargetBodyPart.Groin, WoundableSeverity.Healthy },
+        { TargetBodyPart.LeftArm, WoundableSeverity.Healthy },
+        { TargetBodyPart.LeftHand, WoundableSeverity.Healthy },
+        { TargetBodyPart.RightArm, WoundableSeverity.Healthy },
+        { TargetBodyPart.RightHand, WoundableSeverity.Healthy },
+        { TargetBodyPart.LeftLeg, WoundableSeverity.Healthy },
+        { TargetBodyPart.LeftFoot, WoundableSeverity.Healthy },
+        { TargetBodyPart.RightLeg, WoundableSeverity.Healthy },
+        { TargetBodyPart.RightFoot, WoundableSeverity.Healthy },
     };
 
     /// <summary>

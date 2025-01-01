@@ -70,6 +70,8 @@
   #      color: "#FF0000"
   #    Burn:
   #      sprite: Mobs/Effects/burn_damage.rsi
+  - type: Consciousness
+    threshold: 35
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:

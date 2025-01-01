@@ -1,15 +1,11 @@
 using Content.Server.Body.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical.Components;
 using Content.Server.PowerCell;
 using Content.Server.Temperature.Components;
-using Content.Server.Traits.Assorted;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Chemistry.EntitySystems;
-// backmen: surgery Start
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-// backmen: surgery End
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -23,9 +19,11 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Medical;
 
@@ -38,6 +36,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly WoundSystem _woundSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -262,10 +261,9 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         */
 
         // Start-backmen: surgery
-        // TODO WOUNDING: Woundable visualizer
-        //Dictionary<TargetBodyPart, TargetIntegrity>? body = null;
-        //if (HasComp<TargetingComponent>(target))
-            //body = _bodySystem.GetBodyPartStatus(target);
+        Dictionary<TargetBodyPart, WoundableSeverity>? body = null;
+        if (HasComp<BodyComponent>(target))
+            body = _woundSystem.GetWoundableStatesOnBody(target);
         // End-backmen: surgery
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
@@ -275,8 +273,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             scanMode,
             bleeding,
             unrevivable,
-            // this will be empty for the time being
-            new Dictionary<TargetBodyPart, TargetIntegrity>(),
+            body, // backmen: surgery
             part != null ? GetNetEntity(part) : null // backmen: surgery
         ));
     }

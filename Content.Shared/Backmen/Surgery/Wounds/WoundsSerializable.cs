@@ -32,11 +32,12 @@ public enum BleedingSeverity
 [Serializable, NetSerializable]
 public enum WoundableSeverity
 {
-    Minor,
-    Moderate,
-    Severe,
-    Critical,
-    Loss,
+    Healthy = 0,
+    Minor = 1,
+    Moderate = 2,
+    Severe = 3,
+    Critical = 4,
+    Loss = 5,
 }
 
 [Serializable, NetSerializable]

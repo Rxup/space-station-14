@@ -9,8 +9,14 @@
   - type: BodyPart
   # start-backmen: surgery
   - type: Woundable
-    integrity: 100
-    integrityCap: 100
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      "Enum.WoundableSeverity.Minor": 60,
+      "Enum.WoundableSeverity.Moderate": 45,
+      "Enum.WoundableSeverity.Severe": 30,
+      "Enum.WoundableSeverity.Critical": 12,
+      "Enum.WoundableSeverity.Loss": 0
   - type: Nerve
   - type: SurgeryTool
     startSound:
@@ -72,6 +78,18 @@
   # start-backmen: surgery
     toolName: "a torso"
     containerName: "torso_slot"
+  - type: Woundable
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      "Enum.WoundableSeverity.Minor": 84,
+      "Enum.WoundableSeverity.Moderate": 70,
+      "Enum.WoundableSeverity.Severe": 55,
+      "Enum.WoundableSeverity.Critical": 30,
+      "Enum.WoundableSeverity.Loss": 0
+  - type: ConsciousnessRequired
+    identifier: "Torso"
+    causesDeath: true
   - type: ContainerContainer
     containers:
       torso_slot: !type:ContainerSlot {}
@@ -89,6 +107,18 @@
     vital: true
   - type: Input
     context: "ghost"
+  - type: Woundable
+    integrity: 42
+    integrityCap: 42
+    thresholds:
+      "Enum.WoundableSeverity.Minor": 36,
+      "Enum.WoundableSeverity.Moderate": 30,
+      "Enum.WoundableSeverity.Severe": 24,
+      "Enum.WoundableSeverity.Critical": 12,
+      "Enum.WoundableSeverity.Loss": 0
+  - type: ConsciousnessRequired
+    identifier: "Head"
+    causesDeath: true
   - type: Tag
     tags:
       - Head
@@ -171,6 +201,15 @@
     partType: Foot
     symmetry: Left
     toolName: "a left foot" # backmen: surgery
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      "Enum.WoundableSeverity.Minor": 42,
+      "Enum.WoundableSeverity.Moderate": 36,
+      "Enum.WoundableSeverity.Severe": 26,
+      "Enum.WoundableSeverity.Critical": 15,
+      "Enum.WoundableSeverity.Loss": 0
 
 - type: entity
   id: BaseRightFoot
@@ -182,3 +221,12 @@
     partType: Foot
     symmetry: Right
     toolName: "a right foot" # backmen: surgery
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      "Enum.WoundableSeverity.Minor": 42,
+      "Enum.WoundableSeverity.Moderate": 36,
+      "Enum.WoundableSeverity.Severe": 26,
+      "Enum.WoundableSeverity.Critical": 15,
+      "Enum.WoundableSeverity.Loss": 0

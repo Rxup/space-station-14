@@ -4,6 +4,7 @@ using Content.Client.Message;
 using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -328,7 +329,7 @@ namespace Content.Client.HealthAnalyzer.UI
         /// <summary>
         /// Sets up the Body Doll using Alert Entity to use in Health Analyzer.
         /// </summary>
-        private EntityUid? SetupIcon(Dictionary<TargetBodyPart, TargetIntegrity>? body)
+        private EntityUid? SetupIcon(Dictionary<TargetBodyPart, WoundableSeverity>? body)
         {
             if (body is null)
                 return null;

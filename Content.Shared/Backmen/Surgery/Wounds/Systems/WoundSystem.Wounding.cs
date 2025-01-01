@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -120,8 +121,7 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
             return;
 
-        //todo: consciousness port
-        //_consciousness.ForcePassout(bodyPart.Body.Value, 7);
+        _consciousness.ForcePassout(bodyPart.Body.Value, 7);
 
         foreach (var wound in component.Wounds!.ContainedEntities)
         {
@@ -406,7 +406,6 @@ public partial class WoundSystem
 
         var bone = Spawn(BoneEntityId);
 
-        //todo: bones and traumas
         if (!TryComp<BoneComponent>(bone, out var boneComp))
             return;
 
@@ -437,12 +436,11 @@ public partial class WoundSystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        var oldIntegrity = component.WoundableIntegrity;
-        component.WoundableIntegrity = FixedPoint2.Clamp(
-            component.IntegrityCap - component.Wounds!.ContainedEntities.Aggregate((FixedPoint2) 0, (current, wound) => current + Comp<WoundComponent>(wound).WoundSeverityPoint),
-            0,
-            component.IntegrityCap);
+        var damage =
+            component.Wounds!.ContainedEntities.Select(Comp<WoundComponent>)
+                .Aggregate((FixedPoint2) 0, (current, comp) => current + comp.WoundSeverityPoint * comp.WoundableIntegrityMultiplier);
 
+        var oldIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
         if (oldIntegrity == component.WoundableIntegrity)
             return;
 
@@ -613,8 +611,14 @@ public partial class WoundSystem
             return;
 
         var nearestSeverity = component.WoundableSeverity;
-        foreach (var (severity, value) in _woundableThresholds.OrderByDescending(kv => kv.Value))
+        foreach (var (severity, value) in component.ThresholdMultipliers.OrderByDescending(kv => kv.Value))
         {
+            if (component.WoundableIntegrity >= component.IntegrityCap)
+            {
+                nearestSeverity = WoundableSeverity.Healthy;
+                break;
+            }
+
             if (component.WoundableIntegrity < value)
                 continue;
 
@@ -761,6 +765,32 @@ public partial class WoundSystem
 
             AmputateWoundable(woundableEntity, child, Comp<WoundableComponent>(child));
         }
+    }
+
+    public Dictionary<TargetBodyPart, WoundableSeverity> GetWoundableStatesOnBody(EntityUid body)
+    {
+        var result = new Dictionary<TargetBodyPart, WoundableSeverity>();
+
+        foreach (var part in SharedTargetingSystem.GetValidParts())
+        {
+            result[part] = WoundableSeverity.Loss;
+        }
+
+        foreach (var (id, bodyPart) in _body.GetBodyChildren(body))
+        {
+            var target = _body.GetTargetBodyPart(bodyPart);
+            if (target == null)
+                continue;
+
+            if (!TryComp<WoundableComponent>(id, out var woundable))
+                continue;
+
+            result[target.Value] = woundable.WoundableSeverity;
+        }
+
+        // Hardcoded shitcode for Groin :)
+        result[TargetBodyPart.Groin] = result[TargetBodyPart.Torso];
+        return result;
     }
 
     /// <summary>

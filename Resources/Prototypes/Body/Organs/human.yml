@@ -47,6 +47,7 @@
   - type: NerveSystem # backmen: wounding
   - type: Input
     context: "ghost"
+  - type: NerveSystem
   - type: Brain
   - type: InputMover
   - type: Examiner

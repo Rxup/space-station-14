@@ -1,5 +1,5 @@
 using Content.Shared.Backmen.Surgery.Tools;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Containers.ItemSlots;
@@ -124,25 +124,13 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public string? BaseLayerId;
 
     /// <summary>
-    ///     Shitmed Change: On what TargetIntegrity we should re-enable the part.
+    ///     Shitmed Change: On what WoundableSeverity we should re-enable the part.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
-
-    [DataField, AutoNetworkedField]
-    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
-    {
-        { TargetIntegrity.CriticallyWounded, 75 },
-        { TargetIntegrity.HeavilyWounded, 60 },
-        { TargetIntegrity.ModeratelyWounded, 50 },
-        { TargetIntegrity.SomewhatWounded, 35 },
-        { TargetIntegrity.LightlyWounded, 20 },
-        { TargetIntegrity.Healthy, 10 },
-    };
+    public WoundableSeverity EnableIntegrity = WoundableSeverity.Severe;
 
     [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public BodyPartType PartType = BodyPartType.Other;
-
 
     // TODO BODY Replace with a simulation of organs
     /// <summary>

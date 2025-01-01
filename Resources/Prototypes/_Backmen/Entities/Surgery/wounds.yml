@@ -6,6 +6,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BluntScar
+    integrityMultiplier: 1 #heheheha
   - type: PainInflicter
   - type: BleedInflicter
 
@@ -17,6 +18,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: PiercingScar
+    integrityMultiplier: 0.4
   - type: PainInflicter
     multiplier: 0.8
   - type: BleedInflicter
@@ -29,6 +31,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: SlashScar
+    integrityMultiplier: 0.55
   - type: PainInflicter
   - type: BleedInflicter
 
@@ -40,6 +43,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
+    integrityMultiplier: 1.2
   - type: PainInflicter
     multiplier: 1.4
   - type: BleedInflicter
@@ -53,6 +57,7 @@
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
     canBleed: false
+    integrityMultiplier: 0.1
   - type: PainInflicter
     multiplier: 1.4
 
@@ -65,6 +70,7 @@
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
     canBleed: false
+    integrityMultiplier: 0.01
   - type: PainInflicter
     multiplier: 0.47 # radiation and caustics are a slow killer. You do not notice how you perish.
 
@@ -77,5 +83,6 @@
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: RadiationScar
     canBleed: false
+    integrityMultiplier: 0.01
   - type: PainInflicter
     multiplier: 0.47

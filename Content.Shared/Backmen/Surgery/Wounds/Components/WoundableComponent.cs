@@ -35,7 +35,7 @@ public sealed partial class WoundableComponent : Component
     /// <summary>
     /// Integrity points of this woundable.
     /// </summary>
-    [DataField("integrityCap")]
+    [DataField]
     [ViewVariables, AutoNetworkedField]
     public FixedPoint2 IntegrityCap;
 
@@ -45,6 +45,19 @@ public sealed partial class WoundableComponent : Component
     [DataField("integrity")]
     [ViewVariables, AutoNetworkedField]
     public FixedPoint2 WoundableIntegrity;
+
+    /// <summary>
+    /// yeah
+    /// </summary>
+    [DataField("thresholds")]
+    public Dictionary<WoundableSeverity, FixedPoint2> ThresholdMultipliers = new()
+    {
+        { WoundableSeverity.Minor, 60 },
+        { WoundableSeverity.Moderate, 45 },
+        { WoundableSeverity.Severe, 30 },
+        { WoundableSeverity.Critical, 12 },
+        { WoundableSeverity.Loss, 0 },
+    };
 
     /// <summary>
     /// How much damage will be healed ACROSS all limb, for example if there are 2 wounds,

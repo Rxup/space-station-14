@@ -22,18 +22,26 @@ public sealed partial class WoundComponent : Component
     public FixedPoint2 WoundSeverityPoint;
 
     /// <summary>
+    /// Actually, severity of the wound. The more the worse.
+    /// Directly depends on <see cref="WoundSeverity"/>
+    /// </summary>
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly), DataField("integrityMultiplier")]
+    public FixedPoint2 WoundableIntegrityMultiplier = 1;
+
+    /// <summary>
     /// todo: bruh this serves almost 0 fucking pURPOSES WHY IS IT EVEN HEREHASSDASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     /// Wound type. External/Internal basically.
     /// </summary>
     [DataField, AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadOnly)]
     public WoundType WoundType;
 
     /// <summary>
     /// Damage group of this wound.
     /// </summary>
     [DataField, AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadOnly)]
     public string? DamageGroup;
 
     /// <summary>
