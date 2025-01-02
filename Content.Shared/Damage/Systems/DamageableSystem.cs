@@ -38,7 +38,7 @@ namespace Content.Shared.Damage
 
         private readonly HashSet<BodyPartType> _easyToHit =
         [
-            BodyPartType.Torso,
+            BodyPartType.Chest,
         ];
 
         private readonly HashSet<BodyPartType> _hardToHit =

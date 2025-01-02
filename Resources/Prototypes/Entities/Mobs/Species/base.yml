@@ -12,6 +12,7 @@
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -76,6 +77,7 @@
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
       - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Groin"
       - "enum.HumanoidVisualLayers.Head"
       - "enum.HumanoidVisualLayers.LArm"
       - "enum.HumanoidVisualLayers.LHand"

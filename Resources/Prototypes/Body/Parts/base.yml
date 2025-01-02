@@ -68,16 +68,15 @@
   # end-backmen: surgery
 
 - type: entity
-  id: BaseTorso
-  name: "torso"
+  id: BaseChest
+  name: "сhest"
   parent: BasePart
   abstract: true
   components:
   - type: BodyPart
-    partType: Torso
-  # start-backmen: surgery
-    toolName: "a torso"
-    containerName: "torso_slot"
+    partType: Chest
+    toolName: "a сhest"
+    containerName: "сhest_slot"
   - type: Woundable
     integrity: 100
     integrityCap: 100
@@ -88,12 +87,37 @@
       Critical: 30
       Loss: 0
   - type: ConsciousnessRequired
-    identifier: "Torso"
+    identifier: "Chest"
     causesDeath: true
   - type: ContainerContainer
     containers:
-      torso_slot: !type:ContainerSlot {}
-  # end-backmen: surgery
+      сhest_slot: !type:ContainerSlot {}
+
+- type: entity
+  id: BaseGroin
+  name: "groin"
+  parent: BasePart
+  abstract: true
+  components:
+  - type: BodyPart
+    partType: Groin
+    toolName: "a groin"
+    containerName: "groin_slot"
+  - type: Woundable
+    integrity: 100
+    integrityCap: 80
+    thresholds:
+      Minor: 64
+      Moderate: 50
+      Severe: 34
+      Critical: 15
+      Loss: 0
+  - type: ConsciousnessRequired
+    identifier: "Groin"
+    causesDeath: true
+  - type: ContainerContainer
+    containers:
+      groin_slot: !type:ContainerSlot {}
 
 - type: entity
   id: BaseHead

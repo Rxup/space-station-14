@@ -77,16 +77,37 @@
     slotId: feet # Shitmed
 
 - type: entity
-  id: TorsoAnimal
-  name: animal torso
+  id: ChestAnimal
+  name: animal chest
   parent: PartAnimal
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
-    - state: torso_m
+    - state: chest_m
   - type: BodyPart
-    partType: Torso
+    partType: Chest
+  - type: Damageable
+    damageContainer: Biological
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinAnimal
+  name: animal groin
+  parent: PartAnimal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: groin_m
+  - type: BodyPart
+    partType: Groin
   - type: Damageable
     damageContainer: Biological
   - type: Extractable

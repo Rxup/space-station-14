@@ -50,18 +50,28 @@
   # end-backmen: surgery
 
 - type: entity
-  id: TorsoSkeleton
-  name: "skeleton torso"
-  parent: PartSkeleton
+  id: ChestSkeleton
+  name: "skeleton chest"
+  parent: [PartSkeleton, BaseChest]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "torso_m"
+      state: "chest_m"
     - type: Icon
       sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "torso_m"
-    - type: BodyPart
-      partType: Torso
+      state: "chest_m"
+
+- type: entity
+  id: GroinSkeleton
+  name: "skeleton groin"
+  parent: [PartSkeleton, BaseGroin]
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: "groin_m"
+    - type: Icon
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: "groin_m"
 
 - type: entity
   id: HeadSkeleton

@@ -319,7 +319,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnCavityStep(Entity<SurgeryStepCavityEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (!TryComp(args.Part, out BodyPartComponent? partComp) || partComp.PartType != BodyPartType.Torso)
+        if (!TryComp(args.Part, out BodyPartComponent? partComp) || partComp.PartType != BodyPartType.Chest)
             return;
 
         var activeHandEntity = _hands.EnumerateHeld(args.User).FirstOrDefault();
@@ -768,7 +768,8 @@ public abstract partial class SharedSurgerySystem
         var slot = type switch
         {
             BodyPartType.Head => SlotFlags.HEAD,
-            BodyPartType.Torso => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
+            BodyPartType.Chest => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
+            BodyPartType.Groin => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
             BodyPartType.Arm => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
             BodyPartType.Hand => SlotFlags.GLOVES,
             BodyPartType.Leg => SlotFlags.OUTERCLOTHING | SlotFlags.LEGS,

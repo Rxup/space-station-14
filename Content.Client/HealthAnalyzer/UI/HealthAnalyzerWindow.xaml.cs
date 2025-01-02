@@ -63,7 +63,7 @@ namespace Content.Client.HealthAnalyzer.UI
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
                 { TargetBodyPart.Head, HeadButton },
-                { TargetBodyPart.Torso, ChestButton },
+                { TargetBodyPart.Chest, ChestButton },
                 { TargetBodyPart.Groin, GroinButton },
                 { TargetBodyPart.LeftArm, LeftArmButton },
                 { TargetBodyPart.LeftHand, LeftHandButton },
@@ -89,8 +89,7 @@ namespace Content.Client.HealthAnalyzer.UI
             if (_target == null)
                 return;
 
-            // Bit of the ole shitcode until we have Groins in the prototypes.
-            OnBodyPartSelected?.Invoke(part == TargetBodyPart.Groin ? TargetBodyPart.Torso : part, _target.Value);
+            OnBodyPartSelected?.Invoke(part, _target.Value);
         }
 
         public void ResetBodyPart()

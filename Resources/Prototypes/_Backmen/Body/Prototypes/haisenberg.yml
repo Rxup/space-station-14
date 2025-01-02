@@ -1,19 +1,24 @@
 - type: body
   id: BodyHaisenberg
   name: "BodyHaisenberg"
-  root: torso
+  root: chest
   slots:
-    torso:
-      part: TorsoAnimal
+    chest:
+      part: ChestAnimal
       organs:
         lungs: OrganAnimalLungs
-        stomach: OrganAnimalStomach
-        liver: OrganAnimalLiver
         heart: OrganAnimalHeart
-        kidneys: OrganAnimalKidneys
       connections:
       - right_arm
       - left_arm
+      - groin
+    groin:
+      part: GroinAnimal
+      organs:
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
+      connections:
       - legs
     right_arm:
       part: RightArmHuman

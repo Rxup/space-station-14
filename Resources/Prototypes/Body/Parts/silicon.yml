@@ -133,10 +133,10 @@
 - type: entity
   id: TorsoBorg
   parent: PartSilicon
-  name: cyborg torso
+  name: cyborg chest
   components:
   - type: BodyPart
-    partType: Torso
+    partType: Chest
   - type: Sprite
     state: borg_chest
   - type: Icon

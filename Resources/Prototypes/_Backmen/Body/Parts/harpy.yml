@@ -55,25 +55,25 @@
   # Shitmed Change End
 
 - type: entity
-  id: TorsoHarpy
-  name: "harpy torso"
+  id: ChestHarpy
+  name: "harpy chest"
   parent: PartHarpy
   components:
   - type: Sprite
     netsync: false
     sprite: Backmen/Mobs/Species/Harpy/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
   - type: Icon
     sprite: Backmen/Mobs/Species/Harpy/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
   - type: BodyPart
-    partType: Torso
+    partType: Chest
   # Shitmed Change Start
-    toolName: "a torso"
-    containerName: "torso_slot"
+    toolName: "a chest"
+    containerName: "chest_slot"
   - type: ContainerContainer
     containers:
-      torso_slot: !type:ContainerSlot {}
+      chest_slot: !type:ContainerSlot {}
   - type: Destructible
     thresholds:
     - trigger:
@@ -104,6 +104,58 @@
         sound:
           collection: MeatLaserImpact
   # Shitmed Change End
+
+- type: entity
+  id: GroinHarpy
+  name: "harpy groin"
+  parent: PartHarpy
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Mobs/Species/Harpy/parts.rsi
+    state: "groin_m"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Harpy/parts.rsi
+    state: "groin_m"
+  - type: BodyPart
+    partType: Groin
+  # Shitmed Change Start
+    toolName: "a groin"
+    containerName: "groin_slot"
+  - type: ContainerContainer
+    containers:
+      groin_slot: !type:ContainerSlot {}
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  # Shitmed Change End
+
 
 - type: entity
   id: HeadHarpy

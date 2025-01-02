@@ -6,10 +6,26 @@
     head: # Put pun pun into a humans body
       part: HeadAnimal
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
+    chest:
+      part: ChestAnimal
+      connections:
+      - hands 1
+      - hands 2
+      organs:
+        lungs: OrganAnimalLungs
+        heart: OrganAnimalHeart
+    groin:
+      part: GroinAnimal
+      connections:
+      - legs
+      organs:
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
     torso:
       part: TorsoAnimal
       connections:

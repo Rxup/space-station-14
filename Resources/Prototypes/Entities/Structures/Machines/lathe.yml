@@ -624,7 +624,7 @@
     - LeftLegBorg
     - RightLegBorg
     - LightHeadBorg
-    - TorsoBorg
+    - ChestBorg
     dynamicRecipes:
     - ProximitySensor
     - BorgModuleAdvancedCleaning

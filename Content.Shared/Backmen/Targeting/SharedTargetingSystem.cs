@@ -10,8 +10,8 @@ public abstract class SharedTargetingSystem : EntitySystem
         var parts = new[]
         {
             TargetBodyPart.Head,
-            TargetBodyPart.Torso,
-            //TargetBodyPart.Groin,
+            TargetBodyPart.Chest,
+            TargetBodyPart.Groin,
             TargetBodyPart.LeftArm,
             TargetBodyPart.LeftHand,
             TargetBodyPart.LeftLeg,

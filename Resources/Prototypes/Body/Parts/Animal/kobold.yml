@@ -15,13 +15,29 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoKobold
-  name: "Kobold torso"
-  parent: [PartKobold, BaseTorso]
+  id: ChestKobold
+  name: "Kobold chest"
+  parent: [PartKobold, BaseChest]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
-    state: "torso_m"
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinKobold
+  name: "Kobold groin"
+  parent: [PartKobold, BaseGroin]
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/kobold.rsi
+    state: "groin_m"
   - type: Extractable
     juiceSolution:
       reagents:

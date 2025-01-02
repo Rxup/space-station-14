@@ -10,7 +10,7 @@ namespace Content.Shared.Backmen.Targeting;
 public sealed partial class TargetingComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
-    public TargetBodyPart Target = TargetBodyPart.Torso;
+    public TargetBodyPart Target = TargetBodyPart.Chest;
 
     /// <summary>
     /// What odds does the entity have of targeting each body part?
@@ -19,7 +19,7 @@ public sealed partial class TargetingComponent : Component
     public Dictionary<TargetBodyPart, float> TargetOdds = new()
     {
         { TargetBodyPart.Head, 0.1f },
-        { TargetBodyPart.Torso, 0.3f },
+        { TargetBodyPart.Chest, 0.3f },
         { TargetBodyPart.Groin, 0.1f },
         { TargetBodyPart.LeftArm, 0.1f },
         { TargetBodyPart.LeftHand, 0.05f },
@@ -38,7 +38,7 @@ public sealed partial class TargetingComponent : Component
     public Dictionary<TargetBodyPart, WoundableSeverity> BodyStatus = new()
     {
         { TargetBodyPart.Head, WoundableSeverity.Healthy },
-        { TargetBodyPart.Torso, WoundableSeverity.Healthy },
+        { TargetBodyPart.Chest, WoundableSeverity.Healthy },
         { TargetBodyPart.Groin, WoundableSeverity.Healthy },
         { TargetBodyPart.LeftArm, WoundableSeverity.Healthy },
         { TargetBodyPart.LeftHand, WoundableSeverity.Healthy },

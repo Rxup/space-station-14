@@ -789,8 +789,6 @@ public partial class WoundSystem
             result[target.Value] = woundable.WoundableSeverity;
         }
 
-        // Hardcoded shitcode for Groin :)
-        result[TargetBodyPart.Groin] = result[TargetBodyPart.Torso];
         return result;
     }
 

@@ -32,7 +32,7 @@ public partial class SharedBodySystem
 
     private void OnMapInit(Entity<BodyPartComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.PartType == BodyPartType.Torso)
+        if (ent.Comp.PartType == BodyPartType.Chest)
         {
             _slots.AddItemSlot(ent, ent.Comp.ContainerName, ent.Comp.ItemInsertionSlot);
             Dirty(ent, ent.Comp);
@@ -49,7 +49,7 @@ public partial class SharedBodySystem
 
     private void OnBodyPartRemove(Entity<BodyPartComponent> ent, ref ComponentRemove args)
     {
-        if (ent.Comp.PartType == BodyPartType.Torso)
+        if (ent.Comp.PartType == BodyPartType.Chest)
             _slots.RemoveItemSlot(ent, ent.Comp.ItemInsertionSlot);
     }
 
@@ -643,7 +643,7 @@ public partial class SharedBodySystem
             randomValue -= weight;
         }
 
-        return TargetBodyPart.Torso; // Default to torso if something goes wrong
+        return TargetBodyPart.Chest; // Default to torso if something goes wrong
     }
 
     public TargetBodyPart? GetTargetBodyPart(Entity<BodyPartComponent> part)
@@ -664,7 +664,8 @@ public partial class SharedBodySystem
         return (type, symmetry) switch
         {
             (BodyPartType.Head, _) => TargetBodyPart.Head,
-            (BodyPartType.Torso, _) => TargetBodyPart.Torso,
+            (BodyPartType.Chest, _) => TargetBodyPart.Chest,
+            (BodyPartType.Groin, _) => TargetBodyPart.Groin,
             (BodyPartType.Arm, BodyPartSymmetry.Left) => TargetBodyPart.LeftArm,
             (BodyPartType.Arm, BodyPartSymmetry.Right) => TargetBodyPart.RightArm,
             (BodyPartType.Hand, BodyPartSymmetry.Left) => TargetBodyPart.LeftHand,
@@ -685,8 +686,8 @@ public partial class SharedBodySystem
         return targetPart switch
         {
             TargetBodyPart.Head => (BodyPartType.Head, BodyPartSymmetry.None),
-            TargetBodyPart.Torso => (BodyPartType.Torso, BodyPartSymmetry.None),
-            TargetBodyPart.Groin => (BodyPartType.Torso, BodyPartSymmetry.None), // TODO: Groin is not a part type yet
+            TargetBodyPart.Chest => (BodyPartType.Chest, BodyPartSymmetry.None),
+            TargetBodyPart.Groin => (BodyPartType.Groin, BodyPartSymmetry.None),
             TargetBodyPart.LeftArm => (BodyPartType.Arm, BodyPartSymmetry.Left),
             TargetBodyPart.LeftHand => (BodyPartType.Hand, BodyPartSymmetry.Left),
             TargetBodyPart.RightArm => (BodyPartType.Arm, BodyPartSymmetry.Right),
@@ -695,7 +696,7 @@ public partial class SharedBodySystem
             TargetBodyPart.LeftFoot => (BodyPartType.Foot, BodyPartSymmetry.Left),
             TargetBodyPart.RightLeg => (BodyPartType.Leg, BodyPartSymmetry.Right),
             TargetBodyPart.RightFoot => (BodyPartType.Foot, BodyPartSymmetry.Right),
-            _ => (BodyPartType.Torso, BodyPartSymmetry.None)
+            _ => (BodyPartType.Chest, BodyPartSymmetry.None)
         };
 
     }

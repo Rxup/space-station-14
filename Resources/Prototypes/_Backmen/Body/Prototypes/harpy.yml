@@ -1,28 +1,32 @@
 - type: body
   id: Harpy
   name: "harpy"
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadHarpy
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoHarpy
-      connections: # Goobstation - fix some species having their hands the wrong way around
+    chest:
+      part: ChestHarpy
+      connections:
+      - groin
       - right arm
       - left arm
-      - right leg
-      - left leg
-      - head # Shitmed Change
       organs:
         heart: OrganHumanHeart
         lungs: OrganHarpyLungs
+    groin:
+      part: GroinHarpy
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganAnimalStomach
-        liver:  OrganAnimalLiver
+        liver: OrganAnimalLiver
         kidneys: OrganAnimalKidneys
     right arm:
       part: RightArmHarpy
@@ -48,4 +52,3 @@
       part: RightFootHarpy
     left foot:
       part: LeftFootHarpy
-

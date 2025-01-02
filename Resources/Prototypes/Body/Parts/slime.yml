@@ -6,13 +6,22 @@
   abstract: true
 
 - type: entity
-  id: TorsoSlime
-  name: "slime torso"
-  parent: [PartSlime, BaseTorso]
+  id: ChestSlime
+  name: "slime chest"
+  parent: [PartSlime, BaseChest]
   components:
     - type: Sprite
       sprite: Mobs/Species/Slime/parts.rsi
-      state: "torso_m"
+      state: "chest_m"
+
+- type: entity
+  id: GroinSlime
+  name: "slime groin"
+  parent: [PartSlime, BaseGroin]
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Slime/parts.rsi
+      state: "groin_m"
 
 - type: entity
   id: HeadSlime

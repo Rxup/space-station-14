@@ -15,13 +15,29 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoArachnid
-  name: "arachnid torso"
-  parent: [PartArachnid, BaseTorso]
+  id: ChestArachnid
+  name: "arachnid chest"
+  parent: [PartArachnid, BaseChest]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: CopperBlood
+        Quantity: 20
+
+- type: entity
+  id: GroinArachnid
+  name: "arachnid groin"
+  parent: [PartArachnid, BaseGroin]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Arachnid/parts.rsi
+    state: "groin_m"
   - type: Extractable
     juiceSolution:
       reagents:

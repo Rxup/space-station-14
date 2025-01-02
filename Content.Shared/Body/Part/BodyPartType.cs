@@ -10,7 +10,8 @@ namespace Content.Shared.Body.Part
     public enum BodyPartType
     {
         Other = 0,
-        Torso,
+        Chest,
+        Groin,
         Head,
         Arm,
         Hand,

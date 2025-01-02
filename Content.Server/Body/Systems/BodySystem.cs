@@ -39,7 +39,7 @@ public sealed class BodySystem : SharedBodySystem
     // start-backmen: surgery
     private void OnGibTorsoAttempt(Entity<BodyPartComponent> ent, ref AttemptEntityGibEvent args)
     {
-        if (ent.Comp.PartType == BodyPartType.Torso)
+        if (ent.Comp.PartType == BodyPartType.Chest)
         {
             args.GibType = GibType.Skip;
         }
