@@ -436,11 +436,12 @@ public partial class WoundSystem
         if (!Resolve(uid, ref component, false))
             return;
 
+        var oldIntegrity = component.WoundableIntegrity;
         var damage =
             component.Wounds!.ContainedEntities.Select(Comp<WoundComponent>)
                 .Aggregate((FixedPoint2) 0, (current, comp) => current + comp.WoundSeverityPoint * comp.WoundableIntegrityMultiplier);
 
-        var oldIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
+        component.WoundableIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
         if (oldIntegrity == component.WoundableIntegrity)
             return;
 

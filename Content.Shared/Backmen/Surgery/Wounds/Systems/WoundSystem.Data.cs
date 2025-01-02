@@ -18,6 +18,7 @@ public partial class WoundSystem
 
     private readonly Dictionary<WoundableSeverity, FixedPoint2> _thresholdMultipliers = new()
     {
+        { WoundableSeverity.Healthy, 1 },
         { WoundableSeverity.Minor, 1 },
         { WoundableSeverity.Moderate, 1 },
         { WoundableSeverity.Severe, 1.2 },

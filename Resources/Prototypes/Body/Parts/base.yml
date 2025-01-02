@@ -12,11 +12,11 @@
     integrity: 65
     integrityCap: 65
     thresholds:
-      "Enum.WoundableSeverity.Minor": 60,
-      "Enum.WoundableSeverity.Moderate": 45,
-      "Enum.WoundableSeverity.Severe": 30,
-      "Enum.WoundableSeverity.Critical": 12,
-      "Enum.WoundableSeverity.Loss": 0
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: Nerve
   - type: SurgeryTool
     startSound:
@@ -82,11 +82,11 @@
     integrity: 100
     integrityCap: 100
     thresholds:
-      "Enum.WoundableSeverity.Minor": 84,
-      "Enum.WoundableSeverity.Moderate": 70,
-      "Enum.WoundableSeverity.Severe": 55,
-      "Enum.WoundableSeverity.Critical": 30,
-      "Enum.WoundableSeverity.Loss": 0
+      Minor: 84
+      Moderate: 70
+      Severe: 55
+      Critical: 30
+      Loss: 0
   - type: ConsciousnessRequired
     identifier: "Torso"
     causesDeath: true
@@ -111,11 +111,11 @@
     integrity: 42
     integrityCap: 42
     thresholds:
-      "Enum.WoundableSeverity.Minor": 36,
-      "Enum.WoundableSeverity.Moderate": 30,
-      "Enum.WoundableSeverity.Severe": 24,
-      "Enum.WoundableSeverity.Critical": 12,
-      "Enum.WoundableSeverity.Loss": 0
+      Minor: 36
+      Moderate: 30
+      Severe: 24
+      Critical: 12
+      Loss: 0
   - type: ConsciousnessRequired
     identifier: "Head"
     causesDeath: true
@@ -205,11 +205,11 @@
     integrity: 50
     integrityCap: 50
     thresholds:
-      "Enum.WoundableSeverity.Minor": 42,
-      "Enum.WoundableSeverity.Moderate": 36,
-      "Enum.WoundableSeverity.Severe": 26,
-      "Enum.WoundableSeverity.Critical": 15,
-      "Enum.WoundableSeverity.Loss": 0
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0
 
 - type: entity
   id: BaseRightFoot
@@ -225,8 +225,8 @@
     integrity: 50
     integrityCap: 50
     thresholds:
-      "Enum.WoundableSeverity.Minor": 42,
-      "Enum.WoundableSeverity.Moderate": 36,
-      "Enum.WoundableSeverity.Severe": 26,
-      "Enum.WoundableSeverity.Critical": 15,
-      "Enum.WoundableSeverity.Loss": 0
+      Minor: 42
+      Moderate: 36
+      Severe": 26
+      Critical: 15
+      Loss: 0
