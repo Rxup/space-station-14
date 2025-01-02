@@ -85,4 +85,10 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CanBleed = true;
+
+    /// <summary>
+    /// Should this apply trauma to the parent woundable when wound is opened / continued?
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool CanApplyTrauma = false;
 }

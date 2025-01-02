@@ -19,6 +19,7 @@
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: PiercingScar
     integrityMultiplier: 0.4
+    canApplyTrauma: true
   - type: PainInflicter
     multiplier: 0.8
   - type: BleedInflicter
@@ -32,6 +33,7 @@
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: SlashScar
     integrityMultiplier: 0.55
+    canApplyTrauma: true
   - type: PainInflicter
   - type: BleedInflicter
 
@@ -44,6 +46,7 @@
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
     integrityMultiplier: 1.2
+    canApplyTrauma: true
   - type: PainInflicter
     multiplier: 1.4
   - type: BleedInflicter
@@ -58,6 +61,7 @@
     scarWound: BurnScar
     canBleed: false
     integrityMultiplier: 0.1
+    canApplyTrauma: true
   - type: PainInflicter
     multiplier: 1.4
 
@@ -71,6 +75,7 @@
     scarWound: BurnScar
     canBleed: false
     integrityMultiplier: 0.01
+    canApplyTrauma: true
   - type: PainInflicter
     multiplier: 0.47 # radiation and caustics are a slow killer. You do not notice how you perish.
 

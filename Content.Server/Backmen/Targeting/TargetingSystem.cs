@@ -36,8 +36,6 @@ public sealed class TargetingSystem : SharedTargetingSystem
                 component.BodyStatus[part] = WoundableSeverity.Loss;
                 changed = true;
             }
-            // I love groin shitcode.
-            component.BodyStatus[TargetBodyPart.Groin] = WoundableSeverity.Loss;
         }
         else if (args is { OldMobState: MobState.Dead, NewMobState: MobState.Alive or MobState.Critical })
         {

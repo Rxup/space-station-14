@@ -30,14 +30,14 @@ public enum BleedingSeverity
 }
 
 [Serializable, NetSerializable]
-public enum WoundableSeverity
+public enum WoundableSeverity : byte
 {
-    Healthy = 0,
-    Minor = 1,
-    Moderate = 2,
-    Severe = 3,
-    Critical = 4,
-    Loss = 5,
+    Healthy,
+    Minor,
+    Moderate,
+    Severe,
+    Critical,
+    Loss,
 }
 
 [Serializable, NetSerializable]

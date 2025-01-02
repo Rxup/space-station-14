@@ -213,7 +213,7 @@ public partial class PainSystem
 
     private void UpdateNerveSystemPain(EntityUid uid, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys) || !_net.IsServer)
+        if (!Resolve(uid, ref nerveSys, false) || !_net.IsServer)
             return;
 
         nerveSys.Pain =
@@ -227,7 +227,7 @@ public partial class PainSystem
 
     private FixedPoint2 ApplyModifiersToPain(EntityUid nerveUid, FixedPoint2 pain, NerveSystemComponent nerveSys, NerveComponent? nerve = null)
     {
-        if (!Resolve(nerveUid, ref nerve) || !_net.IsServer)
+        if (!Resolve(nerveUid, ref nerve, false) || !_net.IsServer)
             return pain;
 
         var modifiedPain = pain * nerve.PainMultiplier;

@@ -44,9 +44,12 @@
     state: brain
   - type: Organ
     slotId: brain # backmen: surgery
-  - type: NerveSystem # backmen: wounding
   - type: Input
     context: "ghost"
+  - type: NerveSystem
+  - type: ConsciousnessRequired
+    identifier: "nerveSystem"
+    causesDeath: true
   - type: Brain
   - type: InputMover
   - type: Examiner

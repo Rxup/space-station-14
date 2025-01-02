@@ -87,7 +87,7 @@
       Critical: 30
       Loss: 0
   - type: ConsciousnessRequired
-    identifier: "Chest"
+    identifier: "chest"
     causesDeath: true
   - type: ContainerContainer
     containers:
@@ -104,16 +104,16 @@
     toolName: "a groin"
     containerName: "groin_slot"
   - type: Woundable
-    integrity: 100
-    integrityCap: 80
+    integrity: 70
+    integrityCap: 70
     thresholds:
-      Minor: 64
+      Minor: 65
       Moderate: 50
-      Severe: 34
-      Critical: 15
+      Severe: 36
+      Critical: 17
       Loss: 0
   - type: ConsciousnessRequired
-    identifier: "Groin"
+    identifier: "groin"
     causesDeath: true
   - type: ContainerContainer
     containers:
@@ -141,7 +141,7 @@
       Critical: 12
       Loss: 0
   - type: ConsciousnessRequired
-    identifier: "Head"
+    identifier: "head"
     causesDeath: true
   - type: Tag
     tags:
@@ -251,6 +251,6 @@
     thresholds:
       Minor: 42
       Moderate: 36
-      Severe": 26
+      Severe: 26
       Critical: 15
       Loss: 0

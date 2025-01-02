@@ -235,8 +235,8 @@ public partial class WoundSystem
         CheckSeverityThresholds(uid, wound);
         Dirty(uid, wound);
 
-        //todo: trauma port
-        //_trauma.TryApplyTrauma(wound.Parent, severity);
+        if (wound.CanApplyTrauma)
+            _trauma.TryApplyTrauma(wound.Parent, severity);
 
         UpdateWoundableIntegrity(wound.Parent);
         CheckWoundableSeverityThresholds(wound.Parent);
@@ -271,8 +271,8 @@ public partial class WoundSystem
         CheckSeverityThresholds(uid, wound);
         Dirty(uid, wound);
 
-        //todo: trauma port
-        //_trauma.TryApplyTrauma(wound.Parent, severity);
+        if (wound.CanApplyTrauma)
+            _trauma.TryApplyTrauma(wound.Parent, severity);
 
         UpdateWoundableIntegrity(wound.Parent);
         CheckWoundableSeverityThresholds(wound.Parent);
@@ -436,14 +436,16 @@ public partial class WoundSystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        var oldIntegrity = component.WoundableIntegrity;
         var damage =
             component.Wounds!.ContainedEntities.Select(Comp<WoundComponent>)
                 .Aggregate((FixedPoint2) 0, (current, comp) => current + comp.WoundSeverityPoint * comp.WoundableIntegrityMultiplier);
 
-        component.WoundableIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
-        if (oldIntegrity == component.WoundableIntegrity)
+        var newIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
+        if (newIntegrity == component.WoundableIntegrity)
             return;
+
+        component.WoundableIntegrity = newIntegrity;
+        Dirty(uid, component);
 
         var ev = new WoundableIntegrityChangedEvent(uid, component.WoundableIntegrity);
         RaiseLocalEvent(uid, ref ev);
@@ -612,7 +614,7 @@ public partial class WoundSystem
             return;
 
         var nearestSeverity = component.WoundableSeverity;
-        foreach (var (severity, value) in component.ThresholdMultipliers.OrderByDescending(kv => kv.Value))
+        foreach (var (severity, value) in component.Thresholds.OrderByDescending(kv => kv.Value))
         {
             if (component.WoundableIntegrity >= component.IntegrityCap)
             {
