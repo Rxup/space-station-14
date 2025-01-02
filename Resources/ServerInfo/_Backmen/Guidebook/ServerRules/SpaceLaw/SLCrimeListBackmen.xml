@@ -4,268 +4,302 @@
 
   ## Таблица преступлений
   <Table Columns="6">
-    <ColorBox>
-      <Box>
-        1-XX - Легкие
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box>
-        2-XX - Средние
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box>
-        3-XX - Тяжкие
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box>
-        4-XX - Особо тяжкие
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box>
-        5-XX - Критические
-      </Box>
-    </ColorBox>
-    <ColorBox>
+      <ColorBox>
       <Box>
         Код
       </Box>
     </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Жестокое обращение над животными
+    <ColorBox Color="#0F4F27">
+      <Box>
+        1-XX - Легкие
       </Box>
     </ColorBox>
-    <ColorBox Color="#593a4e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Отказ в сотрудничестве (E)
+    <ColorBox Color="#414700">
+      <Box>
+        2-XX - Средние
       </Box>
     </ColorBox>
-    <ColorBox Color="#593a4e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Сопротивление аресту (E)
+    <ColorBox Color="#611300">
+      <Box>
+        3-XX - Тяжкие
       </Box>
     </ColorBox>
-    <ColorBox Color="#593a4e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Побег (E)
+    <ColorBox Color="#57000C">
+      <Box>
+        4-XX - Особо тяжкие
       </Box>
     </ColorBox>
-    <ColorBox Color="#593a4e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Отказ от имплантации Щита Разума (E)
+    <ColorBox Color="#121212">
+      <Box>
+        5-XX - Критические
       </Box>
     </ColorBox>
-    <ColorBox>
+        <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        00
+      00
       </Box>
     </ColorBox>
-    <ColorBox Color="#2f3832">
+    <ColorBox Color="#0F4F27">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Контрабанда: Лёгкая (P)
+        Оскорбление должностного лица
       </Box>
     </ColorBox>
-    <ColorBox Color="#2f3832">
+    <ColorBox Color="#414700">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Контрабанда: Серьёзная (P)
+        Сопротивление органам власти
       </Box>
     </ColorBox>
-    <ColorBox Color="#2f3832">
+    <ColorBox Color="#611300">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Контрабанда: Синдикат (P)
+        Нападение на должностное лицо
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#57000C">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Восстание
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#121212">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        01
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#2e422e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Мелкая кража (H)
+        Убийство должностного лица
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      01
       </Box>
     </ColorBox>
-    <ColorBox Color="#2e422e">
+    <ColorBox Color="#0F4F27">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Крупная кража (H)
+        Харассмент
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#414700">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Похищение
+        Нападение
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#611300">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Нанесение увечий
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#57000C">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        02
+      Убийство
       </Box>
     </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Вандализм (D)
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Порча имущества (D)
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Массовые разрушения (D)
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Терроризм (D)
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        03
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#59563a">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Проникновение (T)
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#59563a">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Проникновение в защищённую точку (T)
-      </Box>
-    </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#121212">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      02
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#0F4F27">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#414700">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Оборот наркотиков
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#611300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Оборот контрабанды
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#57000C">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Эксплуатация опасных веществ
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#121212">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      	Владение вражеским снаряжением
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        04
+      03
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#0F4F27">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Злоупотребление экипировкой
       </Box>
     </ColorBox>
-    <ColorBox Color="#4d2e2e">
+    <ColorBox Color="#414700">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Подвержение опасности (V)
+        Владение боевым приспоспособлением
       </Box>
     </ColorBox>
-    <ColorBox Color="#4d2e2e">
+    <ColorBox Color="#611300">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Нападение (V)
+        Владение боевым оружием
       </Box>
     </ColorBox>
-    <ColorBox Color="#4d2e2e">
+    <ColorBox Color="#57000C">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Попытка убийства (V)
+      Распространение оружия
       </Box>
     </ColorBox>
-    <ColorBox Color="#4d2e2e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Помеха при воскрешении (V)
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        05
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#4d2e2e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Непредумышленное убийство (V)
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#4d2e2e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Убийство (V)
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#4d2e2e">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Массовое убийтсво (V)
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        06
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#3b4354">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Хулиганство (R)
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#3b4354">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Нарушение порядка (R)
-      </Box>
-    </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#121212">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      04
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#0F4F27">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Хулиганство
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#414700">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Порча имущества	
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#611300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Мошенничество
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#57000C">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#121212">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Теракт
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        07
+      05
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#0F4F27">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Мелкая кража
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#414700">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Грабеж
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#611300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Кража
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#57000C">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Разбой
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#121212">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Особо крупное хищение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      06
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#0F4F27">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Проникновение
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#414700">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#611300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение в защищённую точку
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#57000C">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение в стратегическую точку
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#121212">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение в защищённую стратегическую точку
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      07
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#0F4F27">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#414700">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Халатность
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#611300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Саботаж
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#57000C">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Грубая халатность
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#121212">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Особо крупный саботаж
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      08
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#0F4F27">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Подавление по расовому или половому признаку
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#414700">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Жестокое обращение с животными
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#611300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Особо жестокое обращение с животными
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#57000C">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#121212">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
       </Box>
     </ColorBox>
   </Table>
 
   ## Лёгкие нарушения
-  - При первом нарушении должно даваться предупреждение.
-  - Если было совершено несколько лёгких нарушений или это повторное нарушение, 5 минут за каждое преступление является пределом.
-  <Table Columns="4">
+  <Table Columns="3">
     <ColorBox>
       <Box>
         Нарушение
@@ -282,111 +316,48 @@
       </Box>
     </ColorBox>
     <ColorBox>
-      <Box>
-        Код
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Оскорбление должностного лица
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Жестокое обращение над животными
+		 Публичное выражение явного неуважения к представителю власти при исполнении им своих должностных обязанностей или в связи с их исполнением.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Причинение ненужных страданий или вред неразумному существу со злым умыслом.
+		 Прямое оскорбление должностных лиц, или же корпорации NanoTrasen и ее интересов в целом.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Это не включает законные и разрешённые опыты над животными и обычно не распространяется на вредителей или существ, которые представляют угрозу станции.
+     Харассмент или клевета
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        1-00
+		 Нарушение личных границ и субординации, приставания, нарушение неприкосновенности частной жизни, унижение достоинства.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Владение/Использование незначительной контрабанды
+         Клевета (распространение ложных сведений, причиняющих вред чьей-либо репутации), дискриминация по расовому или половому признаку, неоднократные словесные оскорбления и нежелательные прикосновения.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Создание, владение, или же использование незначительной контрабанды без разрешения.
+        Злоупотребление экипировкой
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Капитан или ГСБ могут разрешить использование незначительной конрабанды индивиду. Любая контрабанда которая относится к конкретному отделу помимо
-		Командования или Сужбы Безопасности является минорной контрабандой, если не указано обратное.
+		    Применение рабочего снаряжения для неправомерных действий или вне пределов своих обязанностей. Владение опасным инструментом, без соответствующей должности или разрешения главы соответствующего отдела.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        1-01
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Мелкая кража
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		    Присвоение имущества общего пользования или не дорогого имущества других индивидов без соответствующего разрешения.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		    Разница между мелкой и крупной кражей основывается на важности украденного предмета: вещи по типу
-		    одежды или инструментов подпадают под мелкую кражу. В большинсве случаев будет достаточно просто
-		    задержать вора, вернуть украденный предмет и отпустить дав им предупреждение.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        1-02
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Вандализм
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		    Намеренное повреждение или разрушение, другой ущерб имуществу экипажа или станции.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		    Покраска граффити, битьё стаканов в баре, разрушение внешних окон является вандализмом, а поломка окна в космос или защищённые точки - нет.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        1-03
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Проникновение
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Нахождение на территории маловажного отсека без соответствующего доступа или разрешения на нахождение.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Лучше просто прогонять их с отдела, только если это не рецедив.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        1-04
+		    Владение опасным инструментом (поварской тесак, хирургическая пила, топорик ботаника, кинетический акселератор и т.д.), использование рабочего снаряжения для неправомерных действий или за пределами своих обязанностей, неправомерное применение охранного оборудования или оборудования для самообороны, использование технического снаряжения для взлома шлюзов, а также ношение избыточного количества одежды, скрывающего униформу.
       </Box>
     </ColorBox>
     <ColorBox>
@@ -396,26 +367,48 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Совершение любых действий для вызова несерьёзных беспорядков в общественных местах.
+		    Нарушение общественного порядка, выражающее явное неуважение к обществу.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Универсальная статья для всех членов экипажа с неподобающим поведением.
-		Включает в себя такие нарушения как нахождение без одежды в общественном месте, бессмысленные оскорбления, препядствие власти.
+		    Неподобающее поведение (нахождение в общественном месте в нетрезвом виде или без одежды…), битьё стаканов в баре, бросание скользких предметов под ноги с целью опрокидывания (не распространяется на клоунов, если это не создаёт помех работе) и осквернение стен, пола с помощью мелков.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        1-07
+        Мелкая кража
       </Box>
     </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Присвоение имущества общего пользования или имущества из зоны без соответствующего к ней доступа.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Присвоение экипировки с территории отдела, к которому обвиняемый не относится, изъятие дефицитных вещей из мест, где они необходимы по назначению, отказ сдать экипировку после законного увольнения.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Нахождение на территории маловажного отсека без соответствующего доступа или разрешения на нахождение. Разрешить нахождение на территории отдела может любой член экипажа, работающий в данном отделе, но запрет главы приоритетнее. Разрешить находиться на территории технических тоннелей может Капитан, Старший Инженер или Глава Персонала.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Попытка или взлом шлюза во время проникновения наказуемы в соответствии со статьёй «Злоупотребление экипировкой».
+      </Box>
+    </ColorBox> 
   </Table>
 
   ## Средние нарушения
-  - Максимальное время заключения за среднее нарушение - 5 минут.
-  - В зависимости от ситуации разрешена выдача предупреждения вместо задержания.
-  <Table Columns="4">
+  <Table Columns="3">
     <ColorBox>
       <Box>
         Нарушение
@@ -432,49 +425,63 @@
       </Box>
     </ColorBox>
     <ColorBox>
-      <Box>
-        Код
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Сопротивление представителям власти
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Отказ в сотрудничестве
+		 Неповиновение законному требованию представителя власти либо иного лица, исполняющего обязанности по охране общественного порядка или пресекающего нарушение общественного порядка.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Отказ в выполнении легальных и разумных приказов представителя власти. Это включает в себя разрешённые обыски.
+	  	Попытки побега или побег при проведении законного ареста, помеха при аресте или обыске другого члена экипажа, нарушение распорядка мест заключения, отказ от законного обыска и нарушение норм экипажа.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Приказ должен быть разумным, а человек получить достаточное количество предупреждений для начала ареста.
+     Нападение
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        2-00
+		 Применение физической силы с причинением вреда здоровью либо с целью похищения.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Владение/Использование Крупной контрабанды
+         Побои, ограничение свободы: похищение, связывание, за­пирание, нанесение легких телесных повреждений от кулаков/когтей и подручных предметов и усыпление или введение члена экипажа в бессознательное состояние
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Создание, владение, или же использование крупной контрабанды без разрешения.
+        Оборот наркотиков
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		    Капитан может разрешить использование крупной конрабанды индивиду. Любая контрабанда которая относится к
-		    Командованию или Службе Безопасности является крупной контрабандой, если не указано обратное.
+		    Незаконная деятельность, включающая в себя хранение, культивирование, изготовление, распространение и сбыт наркотических веществ.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        2-01
+		    Перед применением данной статьи убедитесь, что эксплуатация запрещённых веществ не разрешена обвиняемому согласно СРП и при распространении наркотиков данная статья применяется вместе с модификатором “пособничество”
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Владение боевым приспособлением
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		    Владение опасным предметом, средством самообороны или самодельным оружием без соответствующего разрешения. Предмет считается опасным, если не является полезным для работы инструментом, но при этом является пригодным для нанесения тяжёлого вреда здоровью
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		    Самодельное или импровизированное оружие (бита, копье, ….), Средства самообороны (Вспышки, оглушающие дубинки, …).
       </Box>
     </ColorBox>
     <ColorBox>
@@ -484,48 +491,63 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Повреждение, разрушение, приведение в непригодность к эксплуатации, другой ущерб имуществу экипажа или станции.
+        Повреждение, разрушение, приведение в непригодность к эксплуатации, другой ущерб имуществу экипажа или станции, а также повреждение самой станции в незначительной степени.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Includes destruction of job equipment such as hydro trays, booze dispensers, chemical dispensers. Step up from
-        vandalism but a step down from mass destruction.
-        Включает уничто
+        Выведение из строя шлюзов путем поломки, электрификации или заваривания, уничтожение или разборка оборудования, перекрытий и предметов мебели вне своего рабочего места или без согласия отдела.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        2-03
+        Грабеж
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Подвержение опасности
+        Открытое присвоение или попытка присвоения чужого имущества.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Безрассудно подвергать себя или других опасности, через намеренное действиек или же из-за халатности.
+		 КПК или ID-карты, профессионального снаряжения, личных вещей, денежных средств и вымогательство.
+      </Box>
+    </ColorBox> 
+        <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Халатность
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Покрывает рабочие инциденты, проведение экспериментов на самом себе, халатность.
+	  	Преступное бездействие. Неисполнение или ненадлежащее исполнение лицом своих должностных обязанностей вследствие недобросовестного или небрежного отношения к ним. Неисполнение обязанностей заключается в фактическом бездействии при наличии обязанности действовать определенным образом в конкретной ситуации.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        2-05
+	  	Неисполнение прямого приказа Главы своего отдела, пренебрежение служебными обязанностями и бездействие, которое потенциально могло нанести вред
+      </Box>
+    </ColorBox>
+        <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Жестокое обращение с животными
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Не подобающее обращение с животными показывает неуравновешенность сотрудника, что может подорвать работу объекта.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  	Причинение боли животному и множественное проявление ненависти к тому или иному животному.
       </Box>
     </ColorBox>
   </Table>
 
-  ## Тяжкие нарушения
-  - Максимальное время заключения за тяжкое нарушение - 10 минут.
-  - Нападение и Непредумышленное убийство это связанные преступления, они не складываются.
-  - Не рекомендуется применять максимальные наказания для тех, кто соблюдает требования.
-  <Table Columns="4">
+    ## Тяжкие нарушения
+  <Table Columns="3">
     <ColorBox>
       <Box>
         Нарушение
@@ -542,183 +564,144 @@
       </Box>
     </ColorBox>
     <ColorBox>
-      <Box>
-        Код
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Нападение на должностное лицо
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Сопротивление аресту
+		 Насильственные действия (или угроза применения насилия) в отношении представителя власти при исполнении им своих должностных обязанностей.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Намеренное сопротивление и побег при аресте от представителей власти.
+		 Физическое или психологическое насилие (угрозы, шантаж, запугивание, контроль) в адрес должностных лиц
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Применяется только если кто-то находится в процессе физического ареста. Если человек сам расковывается или помогает
-		расковывать других,	к нему также может быть наложена эта статья. Отказ в сотрудничестве это отдельное преступление.
+     Нанесение увечий
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-00
+		 Причинение тяжкого вреда здоровью, опасного для жизни.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Владение/Использование контрабанды Синдиката
+         Вызов открытого кровотечения, нанесение тяжких телесных повреждений и введение в критическое состояние
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Создание, владение, или же использование контрабанды Синдиката.
+        Оборот контрабанды
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Контрабанда синдиката может быть использована только в экстренных ситуациях для предотвращения смертей или телесного ущерба.
+		    Хранение, распространение и сбыт нерегулируемого снаряжения.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-01
+		    Члены экипажа, обнаружившие контрабанду, обязаны сообщить о ней сотрудникам службы безопасности и действовать согласно их указаниям и присваивание контрабанды также ведёт к предъявлению обвинений по этой статье. При распространении контрабанды данная статья применяется вместе с модификатором “пособничество”. Исключение - контрабанда с статусом "Пропаганда", должностные лица вправе конфисковать подобную пропаганду
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Крупная кража
+        Владение боевым оружием
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Присваивание критического или незаменимого имущества другого существа или организации без разрешения.
+		    Владение боевым снаряжением без соответствующего разрешения. Боевым снаряжение считаются средство или предмет, предназначенные для ведения боевых действий, либо способное быстро привести к травмам и повреждениям, несовместимыми с жизнью.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Разница между мелкой и крупной кражей зависит от важности украденного предмета. В основном эта статья относится к
-		краже важных предметов членов командования, например пульты от шлюзов, скафандры, печати или незаменимые части машин.
+		    Список боевого снаряжение включает в себя, но не ограничивается: Энергетическое оружие (лазерный карабин и т.п.), стрелковое оружие (любые не-самодельные дробовики, револьверы и т.п.) и гранаты и взрывчатые вещества, включая самодельные.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-02
+        Мошенничество
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Массовые разрушения
+        Обман или злоупотребления доверием в преступных целях.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Нанесение серьёзного урона области или важной станционной системе.
+        Получение подписи другого сотрудника корпорации обманным путем, получение штампа печати на документ обманным путем и попытка передачи/успешная передача денежных и/или материальных благ с целью получения личной выгоды. В случае совершения коррупционной деятельности к принимавшему блага должен применяться модификатор “пособничество”.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		В основном относится к разбрасыванию бомб или саботажу важных систем станции,
-		например генераторам энергии, химической лаборатории, подстанциям или атмосу.
+        Кража
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-03
+        Присвоение редкого или важного для работы отделов имущества станции.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Проникновение в защищённую точку
+		 Вещи, находящиеся в ограниченном, малом количестве на станции, пополнение количества которых не является возможным, важное для функционирования отдела оборудование, платы консолей, печати должностных лиц, пульты управления шлюзами отделов и карты с расширенным уровнем доступа, без соответствующего разрешения уполномоченных лиц.
+      </Box>
+    </ColorBox> 
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение в защищенную точку
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Проникновение в защищённое место без разрешения.
+        Несанкционированный доступ в отсек повышенной важности. (Наличие у члена экипажа незаконно полученного доступа к данным отделам)
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Это покрывает такие важные для станции места как телекоммуникации, офисы глав,
-		мостик, хранилище, оружейная, охраняемые территории, важные генераторы энергии, основная часть брига.
+		 Химическая лаборатория, Токсикология, Хранилище плат, EVA, Телекоммуникационные сервера и Солнечные панели
+      </Box>
+    </ColorBox> 
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Саботаж
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-04
+        Умышленные действия, проводимые с целью затруднить или создать помеху нормальной работе отдела, либо станции в целом.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Нападение
+		 Под действие данной статьи попадает, но не ограничивается: Отключение электропитания на небольшой площади станции в пределах отделов, выпуск неопасных газов на небольшой площади в пределах отделов, блокировка проходов несанкционированными конструкциями, нарушение герметичности станции и Разрушение одного телекоммуникационного сервера
+      </Box>
+    </ColorBox> 
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Особо жестокое обращение с животными
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Угрожать или использовать физическую силу БЕЗ намерения в убийстве.
+        Особо жестокое обращение с животными является полной бесчеловечностью нарушителя и показывает его со стороны ненадёжного сотрудника, без понятий о нормах поведения в обществе.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Попытка убийства и нападение различаются: бой на кулаках скорее является нападением, в то время как стрельба
-		летальными патронами в существо вероятнее всего попытка убийства.
+		 Насильственное удержание и поддерживание жизни животного для причинения боли и убийство на основе ненависти.
       </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-05
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Непредумышленное убийство
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Случайное убийство азумного существа без явного намерения.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Включает в себя убийство в целях самообороны и убийство по халатности.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-06
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Нарушение порядка
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Участие в большой группе персонала, создающей незаконные публичные беспорядки.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Преступления по типу порчи имущества могут быть сложены вместе с этой статьёй. Лидеры беспорядков несут ответственность за все преступления, которые происходят под их руководством.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        3-07
-      </Box>
-    </ColorBox>
+    </ColorBox> 
   </Table>
 
-  ## Особо тяжкие нарушения
-  - Максимальный срок за особо тяжкие нарушения - 15 минут.
-  - Особо жестокие нарушители могут быть заключены в пермабриге. (Нападение на офицера и попытка побега)
-  - Срок за попытку убийства и убийство не складываются, поскольку относятся к одной категории.
-  - Попыка убийства должна иметь меньший срок чем убийство.
-  <Table Columns="4">
+    ## Особо тяжкие нарушения
+  <Table Columns="3">
     <ColorBox>
       <Box>
         Нарушение
@@ -735,95 +718,129 @@
       </Box>
     </ColorBox>
     <ColorBox>
-      <Box>
-        Код
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Восстание
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Попытка побега
+		 Организация акции сопротивления или бунта с целью агрессивного выступления против политики корпорации NanoTrasen или ее отдельных представителей.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Высвобождение из места заключения до окончания срока с явным намерением сбежать.
+		 Стихийное выражение недовольства действиями/бездействием руководства, организация свержения или принуждение командования станции, представителя NanoTrasen или Магистрата к сложению полномочий без законной для того причины, принуждение командования станции, представителя Nanotrasen или Магистрата к игнорированию политики NanoTrasen в целом или отдельных указов Центрального Командования и организация или участие в движении, направленном на достижение независимости от влияния NanoTrasen.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		При двух и более побегах из пермабрига заключенный может быть отправлен на казнь. Эта статья покрывает не-заключенных, которые незаконно высвобождают заключенных.
+     Убийство
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        4-00
+		 Противоправное лишение жизни разумного существа.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Похищение
+         Под действие данной статьи также попадает:Назначение неправомерных приговоров о казни и уничтожения на месте, попытки предотвратить выведение из критического состояния или клонирование члена экипажа. Случай убийства, при котором тело погибшего невозможно клонировать (например, при расчленении), являются критическим преступлением.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Незаконное удержание, транспортировка, контроль или огранричивать разумное существо с ОПРС против воли существа.
+        Эксплуатация опасных веществ
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		В основном включает в себя нарушение ОПРС, также может быть использовано при незаконном контроле другого существа.
+		    Производство, хранение, распространение или применение запрещённых веществ: токсинов и пиротехники.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        4-02
+		    Перед применением данной статьи убедитесь, что эксплуатация запрещённых веществ не разрешена обвиняемому согласно СРП и при распространении запрещённых веществ данная статья применяется вместе с модификатором “пособничество”
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Попытка убийства
+        Распространение боевого оружия
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Использование физической силы против разумного существа с явным намерением в его убийстве.
+		    Незаконное приобретение и сбыт огнестрельного оружия, его основных частей и боеприпасов к нему.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Убедитесь что у вас есть вещественные доказательства того, что подозреваемый хотел именно убить жертву, например использование летального оружия.
+		    При распространении данная статья применяется вместе с модификатором “пособничество”
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        4-05
+        Мелкая кража
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Убийство
+        Присвоение имущества общего пользования или имущества из зоны без соответствующего к ней доступа.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Убийство разумного существа с явным намерением.
+        Присвоение экипировки с территории отдела, к которому обвиняемый не относится, изъятие дефицитных вещей из мест, где они необходимы по назначению, отказ сдать экипировку после законного увольнения.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Применяется только при полном убийстве разумного существа, после чего ему требуется полное воскрешение.
+        Разбой
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        4-06
+        Нападение в целях хищения чужого имущества, совершенное с применением насилия, опасного для жизни или здоровья, либо с угрозой применения такого насилия.
       </Box>
     </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Насильственный грабеж, случаи, когда виновный, начав тайное хищение, применяет насилие для изъятия имущества в целях его удержания, eсли же в процессе, будучи застигнутым на месте преступления, виновный бросает похищенное и применяет насилие в отношении потерпевшего с целью скрыться от преследования, ответственность должна наступать не за разбой, а за кражу и соответствующее преступление против личности.
+      </Box>
+    </ColorBox> 
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение в стратегическую точку
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Несанкционированный доступ в отсек стратегической важности. (Наличие у члена экипажа незаконно полученного доступа, к данным отделам)
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Отсек с двигателем АМ, Хранилище, Рабочие кабинеты должностных лиц и зоны службы безопасности (бриг, КПП, пермабриг)
+      </Box>
+    </ColorBox> 
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Грубая халатность
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Неисполнение или ненадлежащее исполнение обязанностей вследствие недобросовестного или небрежного отношения к службе либо обязанностей по должности, если это повлекло причинение крупного ущерба или существенное нарушение прав.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Под действие данной статьи попадает, но не ограничивается: Неоказание помощи больному, приведшее к смерти или существенному ухудшению здоровья, превышение должностных полномочий, взрыв двигателя Суперматерии и взрыв двигателя Антиматерии
+      </Box>
+    </ColorBox> 
   </Table>
 
-  ## Критические нарушения
-  - Критические преступления обычно приводят к пожизненному заключению, либо же казни по решению капитана.
-  <Table Columns="4">
+    ## Критические нарушения
+  <Table Columns="3">
     <ColorBox>
       <Box>
         Нарушение
@@ -840,89 +857,125 @@
       </Box>
     </ColorBox>
     <ColorBox>
-      <Box>
-        Код
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     Убийство должностного лица
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Отказ в установке Щита Разума
+		 Лишение жизни должностного лица или его близких в связи с осуществлением данным лицом служебной деятельности или выполнением общественного долга.  
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Отказ от установки импланта Щит Разума, если на установку была весомая причина.
+		 Попытки предотвратить выведение из критического состояния или клонирование должностного лица и уничтожение тела погибшего должностного лица, клонирование которого было возможным
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Применяется если преступник особенно сильно сопротивляется, либо же имплант отказывает в работе из-за слишком нестабильного ментального состояния заключенного. При отказе импланта крайне рекомендуется казнь.
+     Владение вражеским снаряжением
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        5-00
+		 Владение контрабандой, помеченной как «вражеское снаряжение».
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Терроризм
+         Владение вражеским снаряжением делает обвиняемого врагом корпорации
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Совершение злонамеренных разрушительных действий, которые угрожают уничтожить шаттл(ы) или помещения.
+        Теракт
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Суммируя; экстремальный саботаж систем станции или установка средств самоуничтожения.
+		    Общеопасные действия или угрозы таковыми, направленные на шантаж, устрашение или запугивание органов власти или социальных групп, в целях воздействия на принятие какого-либо решения или отказ от него в интересах террористов.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        5-03
+		    Похищение или захват в заложники командных лиц, хайджекинг (захват транспортного средства), вооруженный захват заложников, угрозы подрыва и подрыв заложенных бомб, националистический или религиозный терроризм и подрыв бомбы в общественном месте.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Уничтожение тела
+        Особо крупное хищение
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Полное преднамеренное уничтожение тела существа с ОПРС без возможности воскрешения.
+		    Присвоение особо ценного или же критически важного оборудования и имущества станции.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-		Это относится к расчленению, космированию, намеренному скрытия тела или любым другим способам для предотвращения воскрешения тела с душой.
+		    ID-карты с доступом Капитана и Главы персонала, либо аналогичными (с полным доступом, либо возможностью изменять доступ через консоль), Диск ядерной аутентификации, Роскошный джетпак капитана, Антикварный лазерный пистолет, Улучшенные магнитные ботинки, Экспериментальный научный скафандр, Иан, Гипоспрей, Особо ценные платы(Шкафчики глав) и Ручной телепортер.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        5-05
+        Мелкая кража
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Массовое убийство
+        Присвоение имущества общего пользования или имущества из зоны без соответствующего к ней доступа.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Убийство трёх или более существ с ОПРС со злым умыслом.
+        Присвоение экипировки с территории отдела, к которому обвиняемый не относится, изъятие дефицитных вещей из мест, где они необходимы по назначению, отказ сдать экипировку после законного увольнения.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Применяется только в том случае, если было совершено несколько преднамеренных убийств.
+        Проникновение
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        5-06
+        Нахождение на территории маловажного отсека без соответствующего доступа или разрешения на нахождение. Разрешить нахождение на территории отдела может любой член экипажа, работающий в данном отделе, но запрет главы приоритетнее. Разрешить находиться на территории технических тоннелей может Капитан, Старший Инженер или Глава Персонала.
       </Box>
     </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Попытка или взлом шлюза во время проникновения наказуемы в соответствии со статьёй «Злоупотребление экипировкой».
+      </Box>
+    </ColorBox> 
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Проникновение в защищенную стратегическую точку
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Нахождение в запретной зоне без соответствующего доступа или разрешения на нахождение.(Наличие у члена экипажа незаконно полученного доступа, к данным отделам)
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+		 Шаттл представителей ЦК, Мостик, Атмосферика, Арсенал, Ядро ИИ, Серверная, Отсек генератора гравитации, Отсек с Ускорителем частиц и Каюта капитана
+      </Box>
+    </ColorBox> 
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Особо крупный саботаж
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Создание значительной угрозы экипажу или нанесение значительного ущерба станции, попытка создать условия невыполнимости цели или полной неработоспособности станции.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+Отключение электропитания отдела или эквивалентно большой части станции, вызов большого количества разгерметизаций по всей площади станции, подача особо опасных газов в систему вентиляции станции, нарушение условий содержания двигателя сингулярности, нарушение условий содержания двигателя теслы, несанкционированная смена законов киборгов или ИИ, разрушение всех телекоммуникационных серверов, Ссоздание пожаров на больших площадях и уничтожение ИИ.
+      </Box>
+    </ColorBox> 
   </Table>
-</Document>
+  </Document>
