@@ -69,6 +69,9 @@
   cures:
   - !type:DiseaseBedrestCure
     maxLength: 100
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Ultravasculine
 
 - type: disease
   id: BirdFlew
@@ -90,6 +93,9 @@
   cures:
   - !type:DiseaseBedrestCure
     maxLength: 120
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Ultravasculine
 
 - type: disease
   id: VanAusdallsRobovirus
@@ -97,7 +103,7 @@
   cureResist: 0.1
   stages:
   - 0
-  - 240
+  - 900
   effects:
   - !type:DiseaseAdjustReagent
     probability: 0.025
@@ -118,13 +124,9 @@
     stages:
     - 1
   cures:
-  - !type:DiseaseJustWaitCure
-    maxLength: 900
-    stages:
-    - 0
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: BeepskySmash
+      ReagentId: Ultravasculine
     stages:
     - 0
 
@@ -212,11 +214,17 @@
     - 2
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: BananaHonk
+      ReagentId: Ultravasculine
     stages:
     - 0
     - 1
     - 2
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Ipecac
+    stages:
+    - 0
+    - 1
 
 - type: disease
   id: MemeticAmirmir
@@ -235,7 +243,6 @@
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Coffee
-    min: 10
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: IrishCoffee
@@ -267,6 +274,9 @@
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: DemonsBlood
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Pyrazine
 
 - type: disease
   id: Plague
@@ -286,10 +296,9 @@
       types:
         Poison: 2
   cures:
-  - !type:DiseaseBedrestCure
-    maxLength: 120
-  - !type:DiseaseJustWaitCure
-    maxLength: 240
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Ultravasculine
 
 - type: disease
   id: OwOnavirus
@@ -326,8 +335,7 @@
     min: 420 ## Reachable with a flamer
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: Theobromine
-    min: 10
+      ReagentId: Ultravasculine
 
 - type: disease
   id: TongueTwister
@@ -348,3 +356,6 @@
     maxLength: 30
   - !type:DiseaseJustWaitCure
     maxLength: 400
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Ultravasculine
