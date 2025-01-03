@@ -25,5 +25,16 @@ public sealed partial class NerveSystemComponent : Component
     public Dictionary<string, PainMultiplier> Multipliers = new();
     public Dictionary<EntityUid, PainModifier> Modifiers = new();
 
-    //TODO: thresholda!!!!
+    [DataField("lastThreshold"), ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 LastPainThreshold = 0f;
+
+    [DataField("reflexThresholds"), ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<PainThresholdTypes, FixedPoint2> PainThresholds = new()
+    {
+        { PainThresholdTypes.PainSound, 8 },
+        { PainThresholdTypes.PainShock, 24 },
+        { PainThresholdTypes.PainPassout, 45 },
+        // usually appears after an explosion. or some ultra big damage output thing, you might survive, and most importantly, you will fall down in pain.
+        // :troll:
+    };
 }

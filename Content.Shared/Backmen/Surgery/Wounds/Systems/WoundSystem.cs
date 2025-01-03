@@ -30,7 +30,6 @@ public partial class WoundSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
 
     private ISawmill _sawmill = default!;

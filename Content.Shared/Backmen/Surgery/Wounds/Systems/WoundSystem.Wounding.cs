@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
@@ -19,6 +20,8 @@ public partial class WoundSystem
     private const string BoneEntityId = "Bone";
 
     private const float ScarChance = 0.10f;
+
+    private const float WoundMaxSeverity = 200f;
 
     private void InitWounding()
     {
@@ -121,8 +124,6 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
             return;
 
-        _consciousness.ForcePassout(bodyPart.Body.Value, 7);
-
         foreach (var wound in component.Wounds!.ContainedEntities)
         {
             Comp<WoundComponent>(wound).CanBeHealed = false;
@@ -154,22 +155,24 @@ public partial class WoundSystem
     /// <param name="severity">Severity for wound to apply.</param>
     /// <param name="damageGroup">Damage group.</param>
     /// <param name="woundable">Woundable component.</param>
+    /// <param name="traumaList">Trauma list to set, if you wanna</param>
     public bool TryCreateWound(
          EntityUid uid,
          string woundProtoId,
          FixedPoint2 severity,
          string damageGroup,
-         WoundableComponent? woundable = null)
+         WoundableComponent? woundable = null,
+         IEnumerable<TraumaType>? traumaList = null)
     {
-        if (!Resolve(uid, ref woundable) || !_net.IsServer)
+        if (!IsWoundPrototypeValid(woundProtoId) || _net.IsClient)
             return false;
 
-        if (!IsWoundPrototypeValid(woundProtoId))
+        if (!Resolve(uid, ref woundable))
             return false;
 
         var wound = Spawn(woundProtoId);
 
-        return AddWound(uid, wound, severity, damageGroup);
+        return AddWound(uid, wound, severity, damageGroup, traumaList: traumaList);
     }
 
     /// <summary>
@@ -188,11 +191,28 @@ public partial class WoundSystem
         if (!Resolve(uid, ref woundable, false))
             return false;
 
+        var traumas = _trauma.RandomTraumaChance(uid, severity, woundable).ToList();
+        var openNewWound = true;
+
         var proto = _prototype.Index(id);
         foreach (var wound in woundable.Wounds!.ContainedEntities)
         {
             if (proto.ID != MetaData(wound).EntityPrototype!.ID)
                 continue;
+
+            var comp = Comp<WoundComponent>(wound);
+            if (comp is { CanApplyTrauma: true, WoundType: WoundType.Internal })
+            {
+                openNewWound = false;
+                ApplyWoundSeverity(wound, severity, comp, traumaList: traumas);
+
+                continue;
+            }
+
+            if (openNewWound)
+            {
+                TryCreateWound(uid, proto.ID, severity, comp.DamageGroup!, woundable, traumaList: traumas);
+            }
 
             ApplyWoundSeverity(wound, severity);
 
@@ -226,17 +246,16 @@ public partial class WoundSystem
             return;
 
         var old = wound.WoundSeverityPoint;
+        wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(uid, severity), 0, WoundMaxSeverity);
 
-        wound.WoundSeverityPoint = severity;
-
-        var ev = new WoundSeverityPointChangedEvent(uid, wound, old, severity);
-        RaiseLocalEvent(uid, ref ev);
+        if (wound.WoundSeverityPoint != old)
+        {
+            var ev = new WoundSeverityPointChangedEvent(uid, wound, old, severity);
+            RaiseLocalEvent(uid, ref ev);
+        }
 
         CheckSeverityThresholds(uid, wound);
         Dirty(uid, wound);
-
-        if (wound.CanApplyTrauma)
-            _trauma.TryApplyTrauma(wound.Parent, severity);
 
         UpdateWoundableIntegrity(wound.Parent);
         CheckWoundableSeverityThresholds(wound.Parent);
@@ -249,30 +268,43 @@ public partial class WoundSystem
     /// <param name="severity">Severity to add.</param>
     /// <param name="wound">Wound to which severity is applied.</param>
     /// <param name="isHealing">Name speaks for this.</param>
+    /// <param name="traumaList">Traumas to apply when applying severity.. Please use _trauma.RandomTraumaChance if you expect your thing to apply traumas.</param>
     public void ApplyWoundSeverity(
         EntityUid uid,
         FixedPoint2 severity,
         WoundComponent? wound = null,
-        bool isHealing = false)
+        bool isHealing = false,
+        IEnumerable<TraumaType>? traumaList = null)
     {
         if (!Resolve(uid, ref wound) || _net.IsClient)
             return;
 
         var old = wound.WoundSeverityPoint;
 
-        wound.WoundSeverityPoint = FixedPoint2.Clamp(isHealing ? old - severity : old + ApplySeverityModifiers(wound.Parent, severity), 0, 200);
+        wound.WoundSeverityPoint = FixedPoint2.Clamp(isHealing ? old - severity : old + ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity);
         // Apply modifiers, actually we've got "raw" severity up here.
         // Healing modifiers are applied, so doing this again isn't needed.
         // why would you even want a wound with more than 100 severity
 
-        var ev = new WoundSeverityPointChangedEvent(uid, wound, old, severity);
-        RaiseLocalEvent(uid, ref ev);
+        if (wound.WoundSeverityPoint != old)
+        {
+            var ev = new WoundSeverityPointChangedEvent(uid, wound, old, severity);
+            RaiseLocalEvent(uid, ref ev);
+        }
+
+        // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
+        if (wound.CanApplyTrauma)
+        {
+            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.Parent, severity);
+            wound.WoundType =
+                _trauma.TryApplyTrauma(wound.Parent, severity, traumasToApply)
+                    ? WoundType.Internal
+                    : WoundType.External;
+        }
+        // wounds that cause traumas are separated from those that don't.
 
         CheckSeverityThresholds(uid, wound);
         Dirty(uid, wound);
-
-        if (wound.CanApplyTrauma)
-            _trauma.TryApplyTrauma(wound.Parent, severity);
 
         UpdateWoundableIntegrity(wound.Parent);
         CheckWoundableSeverityThresholds(wound.Parent);
@@ -395,6 +427,84 @@ public partial class WoundSystem
         return false;
     }
 
+        /// <summary>
+    /// Destroys an entity's body part if conditions are met.
+    /// </summary>
+    /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
+    /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
+    /// <param name="woundableComp">Woundable component of woundableEntity.</param>
+    public void DestroyWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
+    {
+        var bodyPart = Comp<BodyPartComponent>(woundableEntity);
+        if (bodyPart.Body == null)
+            return;
+
+        var key = bodyPart.ToHumanoidLayers();
+        if (key == null)
+            return;
+
+        // clean container triggers an enumeration fatal error
+        woundableComp.AllowWounds = false;
+        woundableComp.ForceLoss = true;
+        Dirty(woundableEntity, woundableComp);
+
+        if (IsWoundableRoot(woundableEntity, woundableComp))
+        {
+            DestroyWoundableChildren(woundableEntity, woundableComp);
+            var excludedStuff = new List<string>
+            {
+                WoundContainerId,
+                BoneContainerId,
+            };
+
+            _body.GibBody(bodyPart.Body.Value, excludedContainers: excludedStuff);
+
+            QueueDel(woundableEntity); // More blood for the blood God!
+        }
+        else
+        {
+            if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
+                return;
+
+            _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
+            var bodyPartId = container.ID;
+
+            DestroyWoundableChildren(woundableEntity, woundableComp);
+
+            _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
+            QueueDel(woundableEntity);
+        }
+    }
+
+    /// <summary>
+    /// Amputates (not destroys) an entity's body part if conditions are met.
+    /// </summary>
+    /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
+    /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
+    /// <param name="woundableComp">Woundable component of woundableEntity.</param>
+    public void AmputateWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
+    {
+        var bodyPart = Comp<BodyPartComponent>(woundableEntity);
+        if (bodyPart.Body == null)
+            return;
+
+        if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
+            return;
+
+        foreach (var wound in woundableComp.Wounds!.ContainedEntities)
+        {
+            Comp<WoundComponent>(wound).CanBeHealed = false;
+        }
+
+        var bodyPartId = container.ID;
+
+        woundableComp.ForceLoss = true;
+        Dirty(woundableEntity, woundableComp);
+
+        DestroyWoundableChildren(woundableEntity, woundableComp);
+        _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
+    }
+
     #endregion
 
     #region Private API
@@ -457,7 +567,8 @@ public partial class WoundSystem
         FixedPoint2 woundSeverity,
         string damageGroup,
         WoundableComponent? woundableComponent = null,
-        WoundComponent? woundComponent = null)
+        WoundComponent? woundComponent = null,
+        IEnumerable<TraumaType>? traumaList = null)
     {
         if (!Resolve(target, ref woundableComponent, false)
             || !Resolve(wound, ref woundComponent, false)
@@ -470,6 +581,15 @@ public partial class WoundSystem
         woundComponent.DamageGroup = damageGroup;
 
         SetWoundSeverity(wound, woundSeverity);
+
+        if (woundComponent.CanApplyTrauma)
+        {
+            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(target, woundSeverity, woundableComponent);
+            woundComponent.WoundType =
+                _trauma.TryApplyTrauma(target, woundSeverity, traumasToApply)
+                    ? WoundType.Internal
+                    : WoundType.External;
+        }
 
         Dirty(wound, woundComponent);
         Dirty(target, woundableComponent);
@@ -673,84 +793,6 @@ public partial class WoundSystem
     {
         return _prototype.TryIndex<EntityPrototype>(protoId, out var woundPrototype)
                && woundPrototype.TryGetComponent<WoundComponent>(out _, _factory);
-    }
-
-    /// <summary>
-    /// Destroys an entity's body part if conditions are met.
-    /// </summary>
-    /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
-    /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
-    /// <param name="woundableComp">Woundable component of woundableEntity.</param>
-    private void DestroyWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
-    {
-        var bodyPart = Comp<BodyPartComponent>(woundableEntity);
-        if (bodyPart.Body == null)
-            return;
-
-        var key = bodyPart.ToHumanoidLayers();
-        if (key == null)
-            return;
-
-        // clean container triggers an enumeration fatal error
-        woundableComp.AllowWounds = false;
-        woundableComp.ForceLoss = true;
-        Dirty(woundableEntity, woundableComp);
-
-        if (IsWoundableRoot(woundableEntity, woundableComp))
-        {
-            DestroyWoundableChildren(woundableEntity, woundableComp);
-            var excludedStuff = new List<string>
-            {
-                WoundContainerId,
-                BoneContainerId,
-            };
-
-            _body.GibBody(bodyPart.Body.Value, excludedContainers: excludedStuff);
-
-            QueueDel(woundableEntity); // More blood for the blood God!
-        }
-        else
-        {
-            if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
-                return;
-
-            _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
-            var bodyPartId = container.ID;
-
-            DestroyWoundableChildren(woundableEntity, woundableComp);
-
-            _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
-            QueueDel(woundableEntity);
-        }
-    }
-
-    /// <summary>
-    /// Amputates (not destroys) an entity's body part if conditions are met.
-    /// </summary>
-    /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
-    /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
-    /// <param name="woundableComp">Woundable component of woundableEntity.</param>
-    private void AmputateWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
-    {
-        var bodyPart = Comp<BodyPartComponent>(woundableEntity);
-        if (bodyPart.Body == null)
-            return;
-
-        if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
-            return;
-
-        foreach (var wound in woundableComp.Wounds!.ContainedEntities)
-        {
-            Comp<WoundComponent>(wound).CanBeHealed = false;
-        }
-
-        var bodyPartId = container.ID;
-
-        woundableComp.ForceLoss = true;
-        Dirty(woundableEntity, woundableComp);
-
-        DestroyWoundableChildren(woundableEntity, woundableComp);
-        _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
     }
 
     private void DestroyWoundableChildren(EntityUid woundableEntity, WoundableComponent? woundableComp = null)

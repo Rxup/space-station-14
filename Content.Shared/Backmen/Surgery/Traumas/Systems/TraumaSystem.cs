@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
@@ -16,6 +17,7 @@ public partial class TraumaSystem : EntitySystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
 
     private ISawmill _sawmill = default!;
 

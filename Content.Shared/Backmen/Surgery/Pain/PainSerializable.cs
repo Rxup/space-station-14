@@ -1,6 +1,15 @@
 ﻿using Content.Shared.FixedPoint;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Surgery.Pain;
+
+[Serializable, NetSerializable]
+public enum PainThresholdTypes
+{
+    PainSound,
+    PainShock,
+    PainPassout,
+}
 
 [Serializable, DataRecord]
 public record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");

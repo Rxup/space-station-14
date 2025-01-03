@@ -14,6 +14,16 @@ public enum BoneSeverity
     Broken, // Ha-ha.
 }
 
+[Serializable, NetSerializable]
+public enum TraumaType
+{
+    BoneDamage,
+    OrganDamage,
+    VeinsDamage,
+    Dismemberment,
+    // something cooler later mb
+}
+
 [ByRefEvent]
 public record struct BoneSeverityPointChangedEvent(EntityUid Bone, BoneComponent BoneComponent, FixedPoint2 CurrentSeverity, FixedPoint2 SeverityDelta);
 

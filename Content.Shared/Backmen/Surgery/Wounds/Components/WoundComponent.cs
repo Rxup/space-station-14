@@ -30,12 +30,12 @@ public sealed partial class WoundComponent : Component
     public FixedPoint2 WoundableIntegrityMultiplier = 1;
 
     /// <summary>
-    /// todo: bruh this serves almost 0 fucking pURPOSES WHY IS IT EVEN HEREHASSDASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    /// maybe some cool mechanical stuff to treat those wounds later. I genuinely have no idea
     /// Wound type. External/Internal basically.
     /// </summary>
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public WoundType WoundType;
+    public WoundType WoundType = WoundType.External;
 
     /// <summary>
     /// Damage group of this wound.
@@ -89,6 +89,12 @@ public sealed partial class WoundComponent : Component
     /// <summary>
     /// Should this apply trauma to the parent woundable when wound is opened / continued?
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool CanApplyTrauma = false;
+
+    /// <summary>
+    /// Should this wound sever it's woundable from the body when applied?
+    /// </summary>
+    [DataField("ableToSever")]
+    public bool CanSeverWoundables = true;
 }
