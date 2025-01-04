@@ -16,9 +16,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-orden
     - type: Pda
       id: IdCardRO
-      state: pda-orden
       penSlot:
         startingItem: EnergyDagger
         priority: -1
@@ -49,9 +53,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-Delivery
     - type: Pda
       id: DeliveryIDCard
-      state: pda-Delivery
       penSlot:
         startingItem: EnergyDagger
         priority: -1
@@ -71,9 +79,13 @@
   name: prisoner PDA
   description: Clear, so you can make sure there's nothing being smuggled inside.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-clear
     - type: Pda
       id: PrisonerIDCard
-      state: pda-clear
     - type: Icon
       state: pda-clear
 
@@ -95,9 +107,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-Roboticist
     - type: Pda
       id: RoboticistIDCard
-      state: pda-Roboticist
       penSlot:
         startingItem: Pen
         priority: -1
@@ -126,9 +142,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-blue
     - type: Pda
       id: BlueShieldIDCard
-      state: pda-blue
       penSlot:
         startingItem: Pen
         priority: -1

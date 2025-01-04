@@ -1,5 +1,5 @@
 ﻿[game]
-hostname = "[RU][TTS]🌆Backmen - Ataraxia [MRP] (Doll Update)"
+hostname = "[RU][TTS]🌆Backmen - Ataraxia [MRP]"
 maxplayers = 70
 soft_max_players = 60
 desc="""📣 Наш личный модовый не коммерческий проект, который мы ведем и разрабатываем уже более года
@@ -23,7 +23,7 @@ defaultpreset="secret"
 lobbyenabled = true
 cryo_sleep_rejoining = true
 lobbyduration=300
-contraband_examine = false
+contraband_examine = true
 
 [infolinks]
 website="https://backmen.ru"
