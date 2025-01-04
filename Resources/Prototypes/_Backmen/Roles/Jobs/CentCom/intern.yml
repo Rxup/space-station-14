@@ -78,9 +78,13 @@
   name: CentCom Assistant PDA
   description: Light green sign of walking bureaucracy.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-centcom
     - type: Pda
       id: IDCardCentComIntern
-      state: pda-centcom
       penSlot:
         startingItem: PenCentcom
         whitelist:
