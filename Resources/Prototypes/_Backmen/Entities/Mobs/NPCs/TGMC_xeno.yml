@@ -976,7 +976,10 @@
     partType: Hand
     symmetry: None
   - type: Sprite
-    sprite: Mobs/Species/Reptilian/parts.rsi
+    sprite: Mobs/Silicon/drone.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: Mobs/Silicon/drone.rsi
     state: "l_hand"
 
 # WEAPONS #
