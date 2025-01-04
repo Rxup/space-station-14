@@ -2,7 +2,7 @@
   id: BackmenTortuga
   mapName: 'Tortuga'
   mapPath: /Maps/Backmen/backmen_tortuga.yml
-  minPlayers: 50
+  minPlayers: 10
   stations:
     Tortuga:
       stationProto: StandardNanotrasenStation
