@@ -70,6 +70,8 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#5ed7aa"
+    global: true # Corvax-Announcements
+    sound: /Audio/Corvax/Announcements/aiannounce.ogg # Corvax-Announcements
   - type: HolographicAvatar
     layerData:
     - sprite: Mobs/Silicon/station_ai.rsi
@@ -369,6 +371,10 @@
           Empty: { state: ai_empty }
           Occupied: { state: ai }
   - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
     listeningRange: 0
     speakerVolume: Speak
     unlistedNumber: true
@@ -420,6 +426,7 @@
     interfaces:
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
+        requireInputValidation: false
   - type: ComplexInteraction
   - type: Actions
   - type: Access

@@ -4,7 +4,7 @@
   mapPath: /Maps/packed.yml
   # Corvax-start
   minPlayers: 0
-  maxPlayers: 30
+  maxPlayers: 25
   # Corvax-end
   stations:
     Packed:
@@ -15,6 +15,8 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'VG'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/Shuttles/emergency_crimson.yml
         - type: StationJobs
           availableJobs:
             #service

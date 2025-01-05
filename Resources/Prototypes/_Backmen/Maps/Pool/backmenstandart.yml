@@ -1,12 +1,12 @@
 - type: gameMapPool
   id: BackmenDefaultMapPool
   maps:
-  - BackmenAspid
+  #- BackmenAspid
   - BackmenKettle
   - BackmenTortuga
   - BackmenHive
   - BackmenShoukou
-  - BackmenRook
+  #- BackmenRook
   - BackmenDelta
   - CorvaxSplit
   - Saltern
@@ -21,4 +21,7 @@
   - Omega
   - Packed
   - Reach
+  - Amber
+  - CorvaxTushkan
+  - Elkridge
   #- Train
