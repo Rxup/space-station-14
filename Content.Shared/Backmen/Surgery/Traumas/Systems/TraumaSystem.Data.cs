@@ -23,15 +23,17 @@ public partial class TraumaSystem
 
     private readonly Dictionary<WoundableSeverity, FixedPoint2> _boneTraumaChanceMultipliers = new()
     {
+        { WoundableSeverity.Healthy, 0.01 },
         { WoundableSeverity.Minor, 0.1 },
         { WoundableSeverity.Moderate, 0.3 },
         { WoundableSeverity.Severe, 0.5 },
         { WoundableSeverity.Critical, 0.7 },
-        { WoundableSeverity.Loss, 0 }, // If we lost the woundable holding this bone, I guess we don't care, if is it broken.
+        { WoundableSeverity.Loss, 0.01 }, // If we lost the woundable holding this bone, I guess we don't care, if is it broken.
     };
 
     private readonly Dictionary<WoundableSeverity, FixedPoint2> _boneDamageMultipliers = new()
     {
+        { WoundableSeverity.Healthy, 0.01 },
         { WoundableSeverity.Minor, 0.4 },
         { WoundableSeverity.Moderate, 0.6 },
         { WoundableSeverity.Severe, 0.9 },

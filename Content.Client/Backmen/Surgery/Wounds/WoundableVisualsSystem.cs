@@ -13,6 +13,7 @@ namespace Content.Client.Backmen.Surgery.Wounds;
 
 public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
 {
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -116,7 +117,10 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     private void UpdateWoundableVisuals(EntityUid uid, WoundableVisualsComponent visuals, HumanoidVisualLayers layer, SpriteComponent sprite)
     {
         var woundable = Comp<WoundableComponent>(uid);
-        if (UpdateLostWoundableVisuals(layer, sprite, woundable.WoundableSeverity))
+        if (!_appearance.TryGetData<WoundableSeverity>(uid, WoundableVisualizerKeys.Severity, out var woundableSeverity))
+            return;
+
+        if (UpdateLostWoundableVisuals(layer, sprite, woundableSeverity))
             return;
 
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
@@ -154,9 +158,10 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
         foreach (var damageGroup in _damageGroups)
         {
-            sprite.LayerMapTryGet($"{key}{damageGroup}", out var damageLayer);
-
-            UpdateDamageLayerState(sprite, damageLayer, $"{key}_{damageGroup}", 0);
+            if (sprite.LayerMapTryGet($"{key}{damageGroup}", out var damageLayer))
+            {
+                UpdateDamageLayerState(sprite, damageLayer, $"{key}_{damageGroup}", 0);
+            }
         }
 
         if (key == HumanoidVisualLayers.Head)

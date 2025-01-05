@@ -19,7 +19,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: PiercingScar
-    integrityMultiplier: 0.4
+    integrityMultiplier: 0.3
     canApplyTrauma: true
   - type: PainInflicter
     multiplier: 0.8
@@ -33,7 +33,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: SlashScar
-    integrityMultiplier: 0.55
+    integrityMultiplier: 0.3
     canApplyTrauma: true
   - type: PainInflicter
   - type: BleedInflicter

@@ -107,9 +107,9 @@
     integrity: 70
     integrityCap: 70
     thresholds:
-      Minor: 65
-      Moderate: 50
-      Severe: 36
+      Minor: 60
+      Moderate: 47
+      Severe: 33
       Critical: 17
       Loss: 0
   - type: ConsciousnessRequired

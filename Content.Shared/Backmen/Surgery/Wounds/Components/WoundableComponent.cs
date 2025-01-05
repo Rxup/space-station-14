@@ -84,12 +84,6 @@ public sealed partial class WoundableComponent : Component
     public float HealingRateAccumulated;
 
     /// <summary>
-    /// DO NOT use OR I will break your knees.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public bool ForceLoss = false;
-
-    /// <summary>
     /// Container potentially holding wounds.
     /// </summary>
     [ViewVariables]

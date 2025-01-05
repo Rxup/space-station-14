@@ -52,6 +52,7 @@ public enum WoundVisibility
 public enum WoundableVisualizerKeys
 {
     Update,
+    Severity,
 }
 
 [ByRefEvent]

@@ -7,7 +7,7 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public partial class TraumaSystem
 {
-    private const float DismembermentChanceMultiplier = 0.10f;
+    private const float DismembermentChanceMultiplier = 0.04f;
 
     #region Public API
 
@@ -107,7 +107,10 @@ public partial class TraumaSystem
         if (traumaList.Contains(TraumaType.Dismemberment))
         {
             if (!_wound.IsWoundableRoot(target, woundable) && woundable.ParentWoundable.HasValue)
+            {
                 _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
+                _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
+            }
         }
     }
 

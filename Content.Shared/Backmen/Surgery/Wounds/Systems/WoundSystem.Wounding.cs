@@ -19,6 +19,8 @@ public partial class WoundSystem
 
     private const string BoneEntityId = "Bone";
 
+    private const float WoundTransferDivider = 10f;
+
     private const float ScarChance = 0.10f;
 
     private const float WoundMaxSeverity = 200f;
@@ -246,7 +248,7 @@ public partial class WoundSystem
             return;
 
         var old = wound.WoundSeverityPoint;
-        wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(uid, severity), 0, WoundMaxSeverity);
+        wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity);
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -293,7 +295,7 @@ public partial class WoundSystem
         }
 
         // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
-        if (wound.CanApplyTrauma)
+        if (wound.CanApplyTrauma && !isHealing)
         {
             var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.Parent, severity);
             wound.WoundType =
@@ -445,8 +447,12 @@ public partial class WoundSystem
 
         // clean container triggers an enumeration fatal error
         woundableComp.AllowWounds = false;
-        woundableComp.ForceLoss = true;
+        woundableComp.WoundableSeverity = WoundableSeverity.Loss;
+
         Dirty(woundableEntity, woundableComp);
+
+        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Severity, WoundableSeverity.Loss);
+        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
 
         if (IsWoundableRoot(woundableEntity, woundableComp))
         {
@@ -498,8 +504,12 @@ public partial class WoundSystem
 
         var bodyPartId = container.ID;
 
-        woundableComp.ForceLoss = true;
+        woundableComp.WoundableSeverity = WoundableSeverity.Loss;
+
         Dirty(woundableEntity, woundableComp);
+
+        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Severity, WoundableSeverity.Loss);
+        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);
         _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
@@ -530,12 +540,12 @@ public partial class WoundSystem
         if (!Resolve(parent, ref woundableComp))
             return;
 
-        if (!TryContinueWound(parent, MetaData(wound).EntityPrototype!.ID, woundComp.WoundSeverityPoint / 4, woundableComp))
+        if (!TryContinueWound(parent, MetaData(wound).EntityPrototype!.ID, woundComp.WoundSeverityPoint / WoundTransferDivider, woundableComp))
         {
             TryCreateWound(
                 parent,
                 MetaData(wound).EntityPrototype!.ID,
-                woundComp.WoundSeverityPoint / 4,
+                woundComp.WoundSeverityPoint / WoundTransferDivider,
                 woundComp.DamageGroup!,
                 woundableComp);
         }
@@ -749,9 +759,6 @@ public partial class WoundSystem
             break;
         }
 
-        if (component.ForceLoss)
-            nearestSeverity = WoundableSeverity.Loss;
-
         if (nearestSeverity != component.WoundableSeverity)
         {
             var ev = new WoundableSeverityChangedEvent(woundable, nearestSeverity);
@@ -775,6 +782,7 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
             return;
 
+        _appearance.SetData(woundable, WoundableVisualizerKeys.Severity, component.WoundableSeverity);
         _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
     }
 
