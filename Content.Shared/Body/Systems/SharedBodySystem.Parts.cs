@@ -198,6 +198,10 @@ public partial class SharedBodySystem
 
         var ev = new BodyPartRemovedEvent(slotId, partEnt);
         RaiseLocalEvent(bodyEnt, ref ev);
+
+        var ev1 = new BodyPartRemovedEvent(slotId, partEnt);
+        RaiseLocalEvent(partEnt, ref ev1);
+
         RemoveLeg(partEnt, bodyEnt);
     }
 

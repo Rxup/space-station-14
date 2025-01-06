@@ -13,7 +13,7 @@ public sealed partial class WoundableVisualsComponent : Component
     [DataField] public List<Enum>? TargetLayers;
 
     [DataField(required: true)]
-    public List<FixedPoint2> Thresholds = new();
+    public List<FixedPoint2> Thresholds = [];
 
     [DataField] public Dictionary<BleedingSeverity, FixedPoint2> BleedingThresholds = new()
     {
@@ -21,14 +21,15 @@ public sealed partial class WoundableVisualsComponent : Component
         { BleedingSeverity.Severe, 0.30 },
     };
 
-    public List<Enum> TargetLayerMapKeys = [];
+    public HashSet<Enum> TargetLayerMapKeys = [];
+    public HashSet<EntityUid> DroppedBodyParts = [];
 }
 
 // :fort:
 [DataDefinition]
 public sealed partial class WoundVisualizerSprite
 {
-    [DataField(required: true)] public  string Sprite = default!;
+    [DataField(required: true)] public string Sprite = default!;
 
     [DataField] public string? Color;
 }

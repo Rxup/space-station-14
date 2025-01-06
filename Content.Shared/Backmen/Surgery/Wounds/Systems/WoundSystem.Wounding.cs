@@ -451,7 +451,6 @@ public partial class WoundSystem
 
         Dirty(woundableEntity, woundableComp);
 
-        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Severity, WoundableSeverity.Loss);
         _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
 
         if (IsWoundableRoot(woundableEntity, woundableComp))
@@ -508,7 +507,6 @@ public partial class WoundSystem
 
         Dirty(woundableEntity, woundableComp);
 
-        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Severity, WoundableSeverity.Loss);
         _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);
@@ -782,7 +780,6 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
             return;
 
-        _appearance.SetData(woundable, WoundableVisualizerKeys.Severity, component.WoundableSeverity);
         _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
     }
 

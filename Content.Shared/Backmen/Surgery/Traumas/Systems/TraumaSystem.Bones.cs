@@ -82,6 +82,8 @@ public partial class TraumaSystem
     public bool RandomBoneTraumaChance(WoundableComponent woundableComp)
     {
         var bone = Comp<BoneComponent>(woundableComp.Bone!.ContainedEntities[0]);
+        if (woundableComp.WoundableIntegrity <= 0 || bone.BoneIntegrity <= 0)
+            return true;
 
         // We do complete random to get the chance for trauma to happen,
         // We combine multiple parameters and do some math, to get the chance.

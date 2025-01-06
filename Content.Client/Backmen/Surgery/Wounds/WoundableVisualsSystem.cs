@@ -1,6 +1,9 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
@@ -13,11 +16,11 @@ namespace Content.Client.Backmen.Surgery.Wounds;
 
 public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
 
-    private const float AltBleedingSpriteChance = 0.4f;
+    private const float AltBleedingSpriteChance = 0.15f;
     private readonly HashSet<string> _damageGroups = ["Brute", "Burn", "Bleeding"];
 
     public override void Initialize()
@@ -25,6 +28,8 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         base.Initialize();
 
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity);
+
+        SubscribeLocalEvent<WoundableVisualsComponent, BodyPartRemovedEvent>(WoundableRemoved);
     }
 
     private void InitializeEntity(EntityUid uid, WoundableVisualsComponent component, ComponentInit args)
@@ -85,18 +90,86 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
     }
 
+    private void WoundableRemoved(EntityUid body, WoundableVisualsComponent component, BodyPartRemovedEvent args)
+    {
+        if (!TryComp<SpriteComponent>(args.Part.Owner, out var spriteComponent))
+            return;
+
+        var layer = args.Part.Comp.ToHumanoidLayers();
+        if (layer == null)
+            return;
+
+        foreach (var (group, sprite) in component.DamageOverlayGroups!)
+        {
+            var newLayer = spriteComponent.AddLayer(
+                new SpriteSpecifier.Rsi(
+                    new ResPath(sprite.Sprite),
+                    $"{layer}_{group}_100"
+                ));
+            spriteComponent.LayerMapSet($"{layer}{group}", newLayer);
+            spriteComponent.LayerSetVisible(newLayer, false);
+        }
+
+        if (args.Part.Comp.PartType is not BodyPartType.Hand and not BodyPartType.Foot)
+        {
+            var bleedLayer = spriteComponent.AddLayer(
+                new SpriteSpecifier.Rsi(
+                    new ResPath(component.BleedingOverlay),
+                    $"{layer}_Severe"
+                ));
+            spriteComponent.LayerMapSet($"{layer}Bleeding", bleedLayer);
+            spriteComponent.LayerSetVisible(bleedLayer, false);
+        }
+
+        UpdateWoundableVisuals(args.Part, component, layer.Value, spriteComponent);
+    }
+
     protected override void OnAppearanceChange(EntityUid body, WoundableVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        foreach (var (uid, bodyPart) in _body.GetBodyChildren(body))
+        foreach (var (bodyPart, severity) in _wounds.GetWoundableStatesOnBody(body))
         {
-            var layer = bodyPart.ToHumanoidLayers();
-            if (!layer.HasValue)
-                return;
+            var layer = SharedTargetingSystem.ToVisualLayers(bodyPart);
+            args.Sprite.LayerMapTryGet(layer, out var key);
 
-            UpdateWoundableVisuals(uid, component, layer.Value, args.Sprite);
+            if (severity == WoundableSeverity.Loss)
+            {
+                args.Sprite.LayerSetVisible(key, false);
+                foreach (var damageGroup in _damageGroups)
+                {
+                    if (args.Sprite.LayerMapTryGet($"{layer}{damageGroup}", out var damageLayer))
+                    {
+                        args.Sprite.LayerSetVisible(damageLayer, false);
+                    }
+                }
+
+                if (layer == HumanoidVisualLayers.Head)
+                {
+                    if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.Eyes, out var eyesLayer))
+                    {
+                        args.Sprite.LayerSetVisible(eyesLayer, false);
+                    }
+
+                    if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.Hair, out var hairLayer))
+                    {
+                        args.Sprite.LayerSetVisible(hairLayer, false);
+                    }
+                }
+            }
+            else
+            {
+                args.Sprite.LayerSetVisible(key, true);
+
+                var (type, symmetry) = _body.ConvertTargetBodyPart(bodyPart);
+                var parts = _body.GetBodyChildrenOfType(body, type, symmetry: symmetry);
+
+                foreach (var (uid, _) in parts)
+                {
+                    UpdateWoundableVisuals(uid, component, layer, args.Sprite);
+                }
+            }
         }
     }
 
@@ -117,11 +190,6 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     private void UpdateWoundableVisuals(EntityUid uid, WoundableVisualsComponent visuals, HumanoidVisualLayers layer, SpriteComponent sprite)
     {
         var woundable = Comp<WoundableComponent>(uid);
-        if (!_appearance.TryGetData<WoundableSeverity>(uid, WoundableVisualizerKeys.Severity, out var woundableSeverity))
-            return;
-
-        if (UpdateLostWoundableVisuals(layer, sprite, woundableSeverity))
-            return;
 
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
         foreach (var wound in woundable.Wounds!.ContainedEntities)
@@ -144,37 +212,6 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
 
         UpdateBleeding(uid, visuals, layer, sprite);
-    }
-
-    private bool UpdateLostWoundableVisuals(HumanoidVisualLayers key, SpriteComponent sprite, WoundableSeverity? severity = null)
-    {
-        sprite.LayerMapTryGet(key, out var layer);
-        if (severity != WoundableSeverity.Loss)
-        {
-            sprite.LayerSetVisible(layer, true);
-
-            return false;
-        }
-
-        foreach (var damageGroup in _damageGroups)
-        {
-            if (sprite.LayerMapTryGet($"{key}{damageGroup}", out var damageLayer))
-            {
-                UpdateDamageLayerState(sprite, damageLayer, $"{key}_{damageGroup}", 0);
-            }
-        }
-
-        if (key == HumanoidVisualLayers.Head)
-        {
-            sprite.LayerMapTryGet(HumanoidVisualLayers.Eyes, out var eyesLayer);
-            sprite.LayerSetVisible(eyesLayer, false);
-
-            sprite.LayerMapTryGet(HumanoidVisualLayers.Hair, out var hairLayer);
-            sprite.LayerSetVisible(hairLayer, false);
-        }
-
-        sprite.LayerSetVisible(layer, false);
-        return true;
     }
 
     private void UpdateBleeding(EntityUid uid, WoundableVisualsComponent comp, HumanoidVisualLayers layer, SpriteComponent sprite)

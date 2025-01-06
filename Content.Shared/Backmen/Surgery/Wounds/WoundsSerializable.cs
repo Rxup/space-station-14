@@ -52,7 +52,18 @@ public enum WoundVisibility
 public enum WoundableVisualizerKeys
 {
     Update,
-    Severity,
+    DroppedParts,
+}
+
+[Serializable, NetSerializable]
+public sealed class DroppedWoundablesGroupData(List<NetEntity> woundableList) : ICloneable
+{
+    public List<NetEntity> WoundableList = woundableList;
+
+    public object Clone()
+    {
+        return new DroppedWoundablesGroupData(new List<NetEntity>(WoundableList));
+    }
 }
 
 [ByRefEvent]

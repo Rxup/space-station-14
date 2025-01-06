@@ -173,7 +173,7 @@ namespace Content.Shared.Damage
             if (before.Cancelled)
                 return null;
 
-            if (!_damageableQuery.Resolve(uid.Value, ref damageable))
+            if (!_damageableQuery.Resolve(uid.Value, ref damageable, false))
                 return null;
 
             if (_bodyQuery.TryComp(uid.Value, out var body))
