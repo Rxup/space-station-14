@@ -6,6 +6,8 @@
   name: "moth body part"
   abstract: true
   components:
+  - type: BodyPart
+    bruteTextureColor: "#808A51"
   - type: Extractable
     juiceSolution:
       reagents:

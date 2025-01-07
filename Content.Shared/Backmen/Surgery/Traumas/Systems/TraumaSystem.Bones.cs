@@ -174,7 +174,7 @@ public partial class TraumaSystem
             if (!TryComp<WoundableComponent>(legEntity, out var legWoundable))
                 continue;
 
-            if (Comp<BoneComponent>(legWoundable.Bone!.ContainedEntities[0]).BoneSeverity == BoneSeverity.Broken)
+            if (Comp<BoneComponent>(legWoundable.Bone!.ContainedEntities.First()).BoneSeverity == BoneSeverity.Broken)
             {
                 brokenLegs++;
             }
@@ -212,12 +212,10 @@ public partial class TraumaSystem
             if (!TryComp<BodyPartComponent>(legEntity, out var bodyPart))
                 continue;
 
-            var feet =
-                (from child in _body.GetBodyPartChildren(legEntity, bodyPart) where child.Component.PartType == BodyPartType.Foot select child.Id).ToList();
+            var feet = _body.GetBodyChildrenOfType(body, BodyPartType.Foot, symmetry: bodyPart.Symmetry).ToList();
 
             var feetModifier = 1f;
-            if (feet.Count != 0 && TryComp<BoneComponent>(feet.First(), out var bone)
-                && bone.BoneSeverity == BoneSeverity.Broken)
+            if (feet.Count != 0 && TryComp<BoneComponent>(feet.First().Id, out var bone) && bone.BoneSeverity == BoneSeverity.Broken)
             {
                 feetModifier = 0.4f;
             }
@@ -226,6 +224,7 @@ public partial class TraumaSystem
             sprintSpeed += legModifier.SprintSpeed * feetModifier;
             acceleration += legModifier.Acceleration * feetModifier;
         }
+
         walkSpeed /= bodyComp.RequiredLegs;
         sprintSpeed /= bodyComp.RequiredLegs;
         acceleration /= bodyComp.RequiredLegs;

@@ -4,6 +4,8 @@
   name: "diona body part"
   abstract: true
   components:
+  - type: BodyPart
+    bruteTextureColor: "#cd7314"
   - type: Sprite
     sprite: Mobs/Species/Diona/parts.rsi
 

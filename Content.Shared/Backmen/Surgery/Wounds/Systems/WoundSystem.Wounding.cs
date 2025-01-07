@@ -113,10 +113,15 @@ public partial class WoundSystem
         }
         else
         {
-            if (component.ParentWoundable == null)
-                return;
-
-            ProcessBodyPartLoss(uid, component.ParentWoundable.Value, component);
+            if (component.ParentWoundable != null && Comp<BodyPartComponent>(uid).Body != null)
+            {
+                ProcessBodyPartLoss(uid, component.ParentWoundable.Value, component);
+            }
+            else
+            {
+                // it will be destroyed.
+                DestroyWoundable(uid, uid, component);
+            }
         }
     }
 
@@ -439,45 +444,58 @@ public partial class WoundSystem
     {
         var bodyPart = Comp<BodyPartComponent>(woundableEntity);
         if (bodyPart.Body == null)
-            return;
-
-        var key = bodyPart.ToHumanoidLayers();
-        if (key == null)
-            return;
-
-        // clean container triggers an enumeration fatal error
-        woundableComp.AllowWounds = false;
-        woundableComp.WoundableSeverity = WoundableSeverity.Loss;
-
-        Dirty(woundableEntity, woundableComp);
-
-        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
-
-        if (IsWoundableRoot(woundableEntity, woundableComp))
         {
-            DestroyWoundableChildren(woundableEntity, woundableComp);
-            var excludedStuff = new List<string>
-            {
-                WoundContainerId,
-                BoneContainerId,
-            };
-
-            _body.GibBody(bodyPart.Body.Value, excludedContainers: excludedStuff);
-
-            QueueDel(woundableEntity); // More blood for the blood God!
+            QueueDel(woundableEntity);
+            // TODO: Some cool effect when the limb gets destroyed
         }
         else
         {
-            if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
+            var key = bodyPart.ToHumanoidLayers();
+            if (key == null)
                 return;
 
-            _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
-            var bodyPartId = container.ID;
+            // if wounds amount somehow changes it triggers an enumeration error. owch
+            woundableComp.AllowWounds = false;
+            woundableComp.WoundableSeverity = WoundableSeverity.Loss;
 
-            DestroyWoundableChildren(woundableEntity, woundableComp);
+            if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting) && _net.IsServer)
+            {
+                targeting.BodyStatus = GetWoundableStatesOnBody(bodyPart.Body.Value);
+                Dirty(bodyPart.Body.Value, targeting);
 
-            _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
-            QueueDel(woundableEntity);
+                RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+            }
+
+            Dirty(woundableEntity, woundableComp);
+
+            _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
+
+            if (IsWoundableRoot(woundableEntity, woundableComp))
+            {
+                DestroyWoundableChildren(woundableEntity, woundableComp);
+                var excludedStuff = new List<string>
+                {
+                    WoundContainerId,
+                    BoneContainerId,
+                };
+
+                _body.GibBody(bodyPart.Body.Value, excludedContainers: excludedStuff);
+
+                QueueDel(woundableEntity); // More blood for the blood God!
+            }
+            else
+            {
+                if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
+                    return;
+
+                _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
+                var bodyPartId = container.ID;
+
+                DestroyWoundableChildren(woundableEntity, woundableComp);
+
+                _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
+                QueueDel(woundableEntity);
+            }
         }
     }
 
@@ -489,7 +507,7 @@ public partial class WoundSystem
     /// <param name="woundableComp">Woundable component of woundableEntity.</param>
     public void AmputateWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
     {
-        var bodyPart = Comp<BodyPartComponent>(woundableEntity);
+        var bodyPart = Comp<BodyPartComponent>(parentWoundableEntity);
         if (bodyPart.Body == null)
             return;
 
@@ -505,6 +523,13 @@ public partial class WoundSystem
 
         woundableComp.WoundableSeverity = WoundableSeverity.Loss;
 
+        if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting) && _net.IsServer)
+        {
+            targeting.BodyStatus = GetWoundableStatesOnBody(bodyPart.Body.Value);
+            Dirty(bodyPart.Body.Value, targeting);
+
+            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+        }
         Dirty(woundableEntity, woundableComp);
 
         _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
@@ -780,6 +805,14 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
             return;
 
+        if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+        {
+            targeting.BodyStatus = GetWoundableStatesOnBody(bodyPart.Body.Value);
+            Dirty(bodyPart.Body.Value, targeting);
+
+            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+        }
+
         _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
     }
 
@@ -807,13 +840,14 @@ public partial class WoundSystem
 
         foreach (var child in woundableComp.ChildWoundables)
         {
-            if (woundableComp.WoundableSeverity is WoundableSeverity.Critical)
+            var childWoundable = Comp<WoundableComponent>(child);
+            if (childWoundable.WoundableSeverity is WoundableSeverity.Critical)
             {
-                DestroyWoundable(woundableEntity, child, Comp<WoundableComponent>(child));
+                DestroyWoundable(woundableEntity, child, childWoundable);
                 continue;
             }
 
-            AmputateWoundable(woundableEntity, child, Comp<WoundableComponent>(child));
+            AmputateWoundable(woundableEntity, child, childWoundable);
         }
     }
 

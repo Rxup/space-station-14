@@ -29,7 +29,7 @@ public sealed partial class PartStatusControl : UIWidget
             { TargetBodyPart.LeftLeg, DollLeftLeg },
             { TargetBodyPart.LeftFoot, DollLeftFoot },
             { TargetBodyPart.RightLeg, DollRightLeg },
-            { TargetBodyPart.RightFoot, DollRightFoot }
+            { TargetBodyPart.RightFoot, DollRightFoot },
         };
     }
 

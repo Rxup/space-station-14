@@ -6,6 +6,8 @@
   name: "arachnid body part"
   abstract: true
   components:
+  - type: BodyPart
+    bruteTextureColor: "#162581"
   - type: Extractable
     juiceSolution:
       reagents:

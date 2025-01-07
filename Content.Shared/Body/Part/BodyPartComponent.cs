@@ -22,8 +22,32 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public EntityUid? Body;
 
+    /// <summary>
+    /// Parent (last) body for this part.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? LastBody;
+
     [DataField, AutoNetworkedField]
     public BodyPartSlot? ParentSlot;
+
+    /// <summary>
+    /// Used when a body part is gibbed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string BleedTexture = "Mobs/Effects/bleeding_damage.rsi";
+
+    /// <summary>
+    /// Used when a body part is gibbed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string BruteTexture = "Mobs/Effects/brute_damage.rsi";
+
+    /// <summary>
+    /// Used when a body part is gibbed. yeeeeah, shitcodey
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string BruteTextureColor = "#FF0000";
 
     /// <summary>
     ///     Shitmed Change: Amount of damage to deal when the part gets removed.

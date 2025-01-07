@@ -6,9 +6,10 @@
   name: "vox body part"
   abstract: true
   components:
+  - type: BodyPart
+    bruteTextureColor: "#7a8bf2"
   - type: Damageable
     damageContainer: OrganicPart # Shitmed
-  - type: BodyPart
   - type: ContainerContainer
     containers:
       bodypart: !type:Container

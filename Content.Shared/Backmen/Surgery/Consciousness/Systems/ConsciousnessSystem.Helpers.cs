@@ -91,7 +91,7 @@ public partial class ConsciousnessSystem
     /// <param name="consciousness">consciousness component</param>
     private void SetConscious(EntityUid target, bool isConscious, ConsciousnessComponent? consciousness = null)
     {
-        if (!Resolve(target,ref consciousness) || consciousness.IsConscious == isConscious || _net.IsClient)
+        if (!Resolve(target,ref consciousness) || _net.IsClient)
             return;
 
         consciousness.IsConscious = isConscious;
@@ -101,7 +101,7 @@ public partial class ConsciousnessSystem
 
     private void UpdateMobState(EntityUid target, ConsciousnessComponent? consciousness = null, MobStateComponent? mobState = null)
     {
-        if (!Resolve(target,ref consciousness, ref mobState) || _net.IsClient)
+        if (!Resolve(target, ref consciousness, ref mobState) || _net.IsClient || TerminatingOrDeleted(target))
             return;
 
         var newMobState = consciousness.IsConscious

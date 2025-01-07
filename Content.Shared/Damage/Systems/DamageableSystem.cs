@@ -35,6 +35,7 @@ namespace Content.Shared.Damage
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<BodyComponent> _bodyQuery;
+        private EntityQuery<WoundableComponent> _woundableQuery;
 
         private readonly HashSet<BodyPartType> _easyToHit =
         [
@@ -58,6 +59,7 @@ namespace Content.Shared.Damage
             _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _damageableQuery = GetEntityQuery<DamageableComponent>();
             _bodyQuery = GetEntityQuery<BodyComponent>();
+            _woundableQuery = GetEntityQuery<WoundableComponent>();
         }
 
         /// <summary>
@@ -176,7 +178,34 @@ namespace Content.Shared.Damage
             if (!_damageableQuery.Resolve(uid.Value, ref damageable, false))
                 return null;
 
-            if (_bodyQuery.TryComp(uid.Value, out var body))
+            if (_woundableQuery.TryComp(uid.Value, out var woundable))
+            {
+                var damageDict = new Dictionary<string, FixedPoint2>();
+                foreach (var (type, severity) in damage.DamageDict)
+                {
+                    // TODO: Remove this when bloodloss and asphyxiation type damages are reworked into their own systems
+                    // the thing acts up and shits a lot of stuff into the console, which we DO NOT desire to see
+                    if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
+                        || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
+                        continue;
+
+                    damageDict.Add(type, severity);
+                }
+
+                if (damageDict.Count == 0)
+                    return null;
+
+                foreach (var (damageType, severity) in damageDict)
+                {
+                    var actualDamage = severity * partMultiplier;
+                    if (!_wounds.TryContinueWound(uid.Value, damageType, actualDamage, woundable))
+                        _wounds.TryCreateWound(uid.Value, damageType, actualDamage, GetDamageGroupByType(damageType));
+                }
+
+                return null;
+            }
+
+            if (_bodyQuery.TryComp(uid.Value, out var body) && ValidateWoundablesOnBody(uid.Value, body))
             {
                 var damageDict = new Dictionary<string, FixedPoint2>();
                 foreach (var (type, severity) in damage.DamageDict)
@@ -345,6 +374,20 @@ namespace Content.Shared.Damage
 
             comp.DamageModifierSetId = damageModifierSetId;
             Dirty(uid, comp);
+        }
+
+        private bool ValidateWoundablesOnBody(EntityUid body, BodyComponent comp)
+        {
+            // anomalous behaviour. we do not want an immortal mouse
+            foreach (var (part, _) in _body.GetBodyChildren(body, comp))
+            {
+                if (HasComp<WoundableComponent>(part))
+                    continue;
+
+                return false;
+            }
+
+            return true;
         }
 
         private string GetDamageGroupByType(string id)
