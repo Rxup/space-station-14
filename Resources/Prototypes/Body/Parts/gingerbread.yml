@@ -4,8 +4,6 @@
   name: "gingerbread body part"
   abstract: true
   components:
-  - type: BodyPart
-    bruteTextureColor: "#896e55"
   - type: Extractable
     juiceSolution:
       reagents:

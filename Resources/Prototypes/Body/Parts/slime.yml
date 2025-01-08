@@ -4,9 +4,6 @@
   parent: [BaseItem, BasePart]
   name: "slime body part"
   abstract: true
-  components:
-    - type: BodyPart
-      bruteTextureColor: "#2cf274"
 
 - type: entity
   id: ChestSlime

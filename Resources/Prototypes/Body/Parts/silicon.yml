@@ -3,8 +3,6 @@
   parent: BaseItem
   abstract: true
   components:
-  - type: BodyPart
-    bruteTextureColor: "#DD8822"
   - type: Sprite
     sprite: Objects/Specific/Robotics/cyborg_parts.rsi
   - type: Icon

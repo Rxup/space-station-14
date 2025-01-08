@@ -174,7 +174,7 @@ public partial class TraumaSystem
             if (!TryComp<WoundableComponent>(legEntity, out var legWoundable))
                 continue;
 
-            if (Comp<BoneComponent>(legWoundable.Bone!.ContainedEntities.First()).BoneSeverity == BoneSeverity.Broken)
+            if (Comp<BoneComponent>(legWoundable.Bone!.ContainedEntities[0]).BoneSeverity == BoneSeverity.Broken)
             {
                 brokenLegs++;
             }
@@ -182,7 +182,7 @@ public partial class TraumaSystem
 
         if (brokenLegs >= bodyComp.LegEntities.Count / 2 && brokenLegs < bodyComp.LegEntities.Count)
         {
-            _movementSpeed.ChangeBaseSpeed(body, 0.4f, 0.4f, 0.4f);
+            _movementSpeed.ChangeBaseSpeed(body, 2.5f * 0.4f, 4.5f * 0.4f, 20f * 0.4f);
         }
         else if (brokenLegs == bodyComp.LegEntities.Count)
         {
@@ -191,7 +191,7 @@ public partial class TraumaSystem
         else
         {
             _standing.Stand(body);
-            _movementSpeed.ChangeBaseSpeed(body, 1f, 1f, 1f);
+            _movementSpeed.ChangeBaseSpeed(body, 2.5f, 4.5f, 20f);
         }
     }
 

@@ -28,7 +28,6 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         base.Initialize();
 
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity);
-
         SubscribeLocalEvent<WoundableComponent, BodyPartRemovedEvent>(WoundableRemoved);
     }
 
@@ -88,11 +87,21 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
                 $"{layer}Bleeding",
                 index);
         }
+
+        foreach (var (part, comp) in _body.GetBodyChildren(uid))
+        {
+            var layer = comp.ToHumanoidLayers();
+            if (layer == null)
+                continue;
+
+            UpdateWoundableVisuals(part, component, layer.Value, spriteComponent);
+            spriteComponent.LayerSetVisible(layer, true); // for some reason, the fucking layers sometimes just disappear. maybe preloading issue maybe
+        }
     }
 
-    private void WoundableRemoved(EntityUid body, WoundableComponent component, BodyPartRemovedEvent args)
+    private void WoundableRemoved(EntityUid uid, WoundableComponent component, BodyPartRemovedEvent args)
     {
-        if (!TryComp<SpriteComponent>(args.Part.Owner, out var spriteComponent))
+        if (!TryComp<SpriteComponent>(uid, out var spriteComponent))
             return;
 
         var layer = args.Part.Comp.ToHumanoidLayers();
@@ -100,31 +109,11 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             return;
 
         if (!TryComp<WoundableVisualsComponent>(args.Part.Comp.LastBody, out var visuals))
-        {
-            // if the body is gone we will just add a 100 threshold of brute and bleeding. yeah
-            if (args.Part.Comp.PartType is not BodyPartType.Hand and not BodyPartType.Foot)
-            {
-                var bleedLayer = spriteComponent.AddLayer(
-                    new SpriteSpecifier.Rsi(
-                        new ResPath(args.Part.Comp.BleedTexture),
-                        $"{layer}_Severe"
-                    ));
-                spriteComponent.LayerMapSet($"{layer}Bleeding", bleedLayer);
-                spriteComponent.LayerSetVisible(bleedLayer, true);
-            }
+            return;
 
-            var newLayer = spriteComponent.AddLayer(
-                new SpriteSpecifier.Rsi(
-                    new ResPath(args.Part.Comp.BruteTexture),
-                    $"{layer}_Brute_100"
-                ));
-            spriteComponent.LayerMapSet($"{layer}Brute", newLayer);
-            spriteComponent.LayerSetColor(newLayer, Color.FromHex(args.Part.Comp.BruteTextureColor));
-            spriteComponent.LayerSetVisible(newLayer, false);
-        }
-        else
+        foreach (var (group, sprite) in visuals.DamageOverlayGroups!)
         {
-            foreach (var (group, sprite) in visuals.DamageOverlayGroups!)
+            if (!spriteComponent.LayerMapTryGet($"{layer}{group}", out _))
             {
                 var newLayer = spriteComponent.AddLayer(
                     new SpriteSpecifier.Rsi(
@@ -137,8 +126,11 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
                     spriteComponent.LayerSetColor(newLayer, Color.FromHex(sprite.Color));
                 spriteComponent.LayerSetVisible(newLayer, false);
             }
+        }
 
-            if (args.Part.Comp.PartType is not BodyPartType.Hand and not BodyPartType.Foot)
+        if (args.Part.Comp.PartType is not BodyPartType.Hand and not BodyPartType.Foot)
+        {
+            if (!spriteComponent.LayerMapTryGet($"{layer}Bleeding", out _))
             {
                 var bleedLayer = spriteComponent.AddLayer(
                     new SpriteSpecifier.Rsi(
@@ -148,9 +140,9 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
                 spriteComponent.LayerMapSet($"{layer}Bleeding", bleedLayer);
                 spriteComponent.LayerSetVisible(bleedLayer, false);
             }
-
-            UpdateWoundableVisuals(args.Part, visuals, layer.Value, spriteComponent);
         }
+
+        UpdateWoundableVisuals(args.Part, visuals, layer.Value, spriteComponent);
     }
 
     protected override void OnAppearanceChange(EntityUid body, WoundableVisualsComponent component, ref AppearanceChangeEvent args)

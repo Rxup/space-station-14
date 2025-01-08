@@ -6,8 +6,6 @@
   components:
   - type: Damageable
     damageContainer: OrganicPart # backmen: surgery
-  - type: BodyPart
-    bruteTextureColor: "#555555AA"
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
