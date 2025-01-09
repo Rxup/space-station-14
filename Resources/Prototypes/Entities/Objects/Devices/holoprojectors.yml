@@ -66,7 +66,7 @@
     tags:
       - HolofanProjector
   - type: StaticPrice
-    price: 80
+    price: 60
 
 - type: entity
   parent: HolofanProjector

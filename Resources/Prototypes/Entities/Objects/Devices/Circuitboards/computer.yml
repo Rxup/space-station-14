@@ -402,7 +402,7 @@
     - type: Sprite
       state: cpu_service
     - type: StaticPrice
-      price: 150
+      price: 100
     - type: ComputerBoard
       prototype: ComputerMassMedia
 
