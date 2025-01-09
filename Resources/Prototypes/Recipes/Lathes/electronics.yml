@@ -15,7 +15,7 @@
   id: BaseCheapElectronicsRecipe
   materials:
     Steel: 100
-    Plastic: 50
+    Plastic: 150
 
 - type: latheRecipe
   abstract: true
