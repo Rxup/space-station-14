@@ -12,5 +12,3 @@
     - type: Tag
       tags:
       - FirelockElectronics
-    - type: StaticPrice
-      price: 20

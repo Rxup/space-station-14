@@ -14,7 +14,7 @@
   parent: BaseElectronicsRecipe
   id: BaseCheapElectronicsRecipe
   materials:
-    Steel: 50
+    Steel: 100
     Plastic: 50
 
 - type: latheRecipe
