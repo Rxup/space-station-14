@@ -1,10 +1,10 @@
 using Content.Shared.FixedPoint;
 
-namespace Content.Server.Backmen.Blob.Components;
+namespace Content.Shared.Backmen.Blob.Components;
 
 [RegisterComponent]
 public sealed partial class BlobResourceComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("pointsPerPulsed")]
+    [DataField]
     public FixedPoint2 PointsPerPulsed = 3;
 }

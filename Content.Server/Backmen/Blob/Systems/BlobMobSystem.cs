@@ -1,35 +1,19 @@
-using System.Numerics;
-using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Language;
-using Content.Server.Backmen.Language.Events;
 using Content.Server.Chat.Systems;
-using Content.Server.Explosion.EntitySystems;
-using Content.Server.Fluids.EntitySystems;
-using Content.Server.Popups;
 using Content.Server.Radio;
 using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Backmen.Blob;
-using Content.Shared.Backmen.Blob.Chemistry;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Chat;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Popups;
 using Content.Shared.Speech;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
-namespace Content.Server.Backmen.Blob;
+namespace Content.Server.Backmen.Blob.Systems;
 
 public sealed class BlobMobSystem : SharedBlobMobSystem
 {
@@ -37,7 +21,6 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
-    private EntityQuery<BlobSpeakComponent> _activeBSpeak;
 
     public override void Initialize()
     {
@@ -52,9 +35,6 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
         SubscribeLocalEvent<BlobSpeakComponent, SpeakAttemptEvent>(OnSpokeCan, after: new []{ typeof(SpeechSystem) });
         SubscribeLocalEvent<BlobSpeakComponent, EntitySpokeEvent>(OnSpoke, before: new []{ typeof(RadioSystem), typeof(HeadsetSystem) });
         SubscribeLocalEvent<BlobSpeakComponent, RadioReceiveEvent>(OnIntrinsicReceive);
-        //SubscribeLocalEvent<SmokeOnTriggerComponent, TriggerEvent>(HandleSmokeTrigger);
-
-        _activeBSpeak = GetEntityQuery<BlobSpeakComponent>();
     }
 
     private void OnIntrinsicReceive(Entity<BlobSpeakComponent> ent, ref RadioReceiveEvent args)
