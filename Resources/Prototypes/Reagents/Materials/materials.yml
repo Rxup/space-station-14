@@ -94,6 +94,7 @@
   icon: { sprite: Objects/Materials/Sheets/meaterial.rsi, state: meat }
   color: "#c53648"
   price: 0.05
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: WebSilk

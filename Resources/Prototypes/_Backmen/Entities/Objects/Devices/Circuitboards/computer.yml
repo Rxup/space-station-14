@@ -9,7 +9,7 @@
     - type: ComputerBoard
       prototype: ComputerShipyard
     - type: StaticPrice
-      price: 750
+      price: 150
 
 - type: entity
   parent: BaseComputerCircuitboard

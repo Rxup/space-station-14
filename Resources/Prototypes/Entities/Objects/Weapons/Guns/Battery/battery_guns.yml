@@ -388,6 +388,8 @@
     - type: Battery
       maxCharge: 10000
       startingCharge: 10000
+    - type: StaticPrice
+      price: 300
 
 - type: entity
   name: x-ray cannon
