@@ -1,14 +1,10 @@
-﻿using System.Numerics;
-using Content.Shared.Backmen.Blob.Components;
+﻿using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Player;
 
 namespace Content.Shared.Backmen.Blob;
 
 public abstract class SharedBlobTileSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-
     protected EntityQuery<BlobObserverComponent> ObserverQuery;
     protected EntityQuery<BlobCoreComponent> CoreQuery;
     protected EntityQuery<TransformComponent> TransformQuery;
@@ -45,17 +41,5 @@ public abstract class SharedBlobTileSystem : EntitySystem
             Text = verbName,
         };
         args.Verbs.Add(verb);
-    }
-
-    public void DoLunge(EntityUid from, EntityUid target)
-    {
-        if(!TransformQuery.TryComp(from, out var userXform))
-            return;
-
-        var targetPos = _transform.GetWorldPosition(target);
-        var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
-        localPos = userXform.LocalRotation.RotateVec(localPos);
-
-        RaiseNetworkEvent(new BlobAttackEvent(GetNetEntity(from), GetNetEntity(target), localPos), Filter.Pvs(from));
     }
 }
