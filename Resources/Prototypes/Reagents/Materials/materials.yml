@@ -6,6 +6,7 @@
   icon: { sprite: /Textures/Objects/Misc/monkeycube.rsi, state: cube }
   color: "#8A9A5B"
   price: 0.1
+  ignoreArbitrage: true # lathe-test change # We don't care about biomass too much...
 
 - type: material
   id: Cardboard
@@ -14,6 +15,7 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: cardboard }
   color: "#70736c"
   price: 0.025
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: Cloth
@@ -41,6 +43,7 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: paper }
   color: "#d9d9d9"
   price: 0.01 # it's paper bro what do you expect?
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: Plasma

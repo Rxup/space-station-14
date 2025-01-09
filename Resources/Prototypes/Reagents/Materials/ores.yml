@@ -5,6 +5,7 @@
   unit: materials-unit-chunk
   icon: { sprite: Objects/Materials/ore.rsi, state: iron }
   price: 0.05
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawQuartz
@@ -14,6 +15,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: spacequartz }
   color: "#a8ccd7"
   price: 0.075
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawGold
@@ -23,6 +25,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: gold }
   color: "#FFD700"
   price: 0.2
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawDiamond
@@ -32,6 +35,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: diamond }
   color: "#C9D8F2"
   price: 0.5
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawSilver
@@ -41,6 +45,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: silver }
   color: "#C0C0C0"
   price: 0.15
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawPlasma
@@ -50,6 +55,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: plasma }
   color: "#7e009e"
   price: 0.2
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawUranium
@@ -59,6 +65,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: uranium }
   color: "#32a852"
   price: 0.2
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawBananium
@@ -68,6 +75,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: bananium }
   color: "#32a852"
   price: 0.2
+  ignoreArbitrage: true # lathe-test change
 
 - type: material
   id: RawSalt
@@ -77,3 +85,4 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: salt }
   color: "#f5e7d7"
   price: 0.075
+  ignoreArbitrage: true # lathe-test change
