@@ -87,3 +87,8 @@
   id: corncob
   flavorType: Complex
   description: flavor-complex-corncob
+
+- type: flavor
+  id: BacchusDrinkFlavour
+  flavorType: Complex
+  description: flavor-complex-bacchus-drink

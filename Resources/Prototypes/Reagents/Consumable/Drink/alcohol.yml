@@ -170,7 +170,7 @@
           shouldHave: false
         damage:
           types:
-            Poison: 1
+            Poison: 0.5 # backmen: less toxins from alcohol
       # dwarves take less toxin damage and heal a marginal amount of brute
       - !type:HealthChange
         conditions:
@@ -180,7 +180,7 @@
           type: Dwarf
         damage:
           types:
-            Poison: 0.2
+            Poison: 0.1 # backmen: less toxins from alcohol
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
