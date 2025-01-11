@@ -28,5 +28,5 @@
         - ReagentId: BacchusBlessing
           Quantity: 30
   - type: Icon
-    sprite: Objects/Consumable/Drinks/bacchus.rsi
+    sprite: Backmen/Objects/Consumable/Drinks/bacchus.rsi
     state: icon
