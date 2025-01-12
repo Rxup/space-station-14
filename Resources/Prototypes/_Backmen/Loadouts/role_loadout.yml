@@ -1,6 +1,9 @@
 ﻿- type: roleLoadout
   id: JobBKCCCargo
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - BKCCCargoJumpsuit
   - BKCCCargoNeck
   - BKCCCargoBackpack
@@ -28,6 +31,9 @@
 - type: roleLoadout
   id: JobBlueShield
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - ClothingUniformJumpsuitBlueShield
   - ClothingHeadHatBlueShield
   - ClothingOuterBlueShield
@@ -36,6 +42,3 @@
   - Survival
   - Medals #backmen
   - Inventory # Corvax-Loadouts
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
