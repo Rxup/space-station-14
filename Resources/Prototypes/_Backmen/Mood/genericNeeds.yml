@@ -52,7 +52,6 @@
 - type: moodEffect
   id: HealthNoDamage
   moodChange: 0
-  hidden: true
   category: "Health"
   hidden: true
 
