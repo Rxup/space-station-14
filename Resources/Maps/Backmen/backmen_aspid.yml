@@ -8509,7 +8509,8 @@ entities:
           12,13:
             2: 3
           -4,17:
-            0: 3281
+            0: 1233
+            7: 2048
             2: 4096
           -5,17:
             0: 255
@@ -8656,7 +8657,7 @@ entities:
           -9,-6:
             2: 1
             0: 29068
-            7: 512
+            8: 512
           -9,-8:
             2: 61440
           -8,-8:
@@ -9047,6 +9048,21 @@ entities:
           moles:
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.823984
+          - 82.09976
           - 0
           - 0
           - 0
@@ -10920,7 +10936,7 @@ entities:
       pos: 11.5,-16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -57052.945
+      secondsUntilStateChange: -57457.926
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -56959,6 +56975,11 @@ entities:
     - type: Transform
       pos: 9.5,68.5
       parent: 1
+  - uid: 19110
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
 - proto: DisposalTrunk
   entities:
   - uid: 1783
@@ -57803,6 +57824,17 @@ entities:
     - type: Transform
       pos: 21.773798,17.597416
       parent: 1
+  - uid: 19107
+    components:
+    - type: Transform
+      pos: -19.71447,66.407936
+      parent: 1
+  - uid: 19108
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.323845,69.73606
+      parent: 1
 - proto: DrinkWaterCup
   entities:
   - uid: 8442
@@ -58368,31 +58400,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-41.5
       parent: 1
-  - uid: 2149
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,-41.5
-      parent: 1
   - uid: 2150
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-44.5
       parent: 1
-  - uid: 4710
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-44.5
-      parent: 1
   - uid: 4740
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-41.5
-      parent: 1
-  - uid: 7159
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -60257,7 +60271,7 @@ entities:
       pos: 7.5,-33.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11480.038
+      secondsUntilStateChange: -11885.0205
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -60717,7 +60731,7 @@ entities:
       pos: 31.5,35.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -73479.22
+      secondsUntilStateChange: -73884.2
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 1086.7989152
@@ -84921,6 +84935,11 @@ entities:
     - type: Transform
       pos: -52.5,16.5
       parent: 1
+  - uid: 2149
+    components:
+    - type: Transform
+      pos: -22.5,70.5
+      parent: 1
   - uid: 2166
     components:
     - type: Transform
@@ -85503,6 +85522,16 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-22.5
+      parent: 1
+  - uid: 3831
+    components:
+    - type: Transform
+      pos: -22.5,71.5
+      parent: 1
+  - uid: 3832
+    components:
+    - type: Transform
+      pos: -19.5,72.5
       parent: 1
   - uid: 3902
     components:
@@ -87941,6 +87970,21 @@ entities:
     - type: Transform
       pos: -40.5,-24.5
       parent: 1
+  - uid: 19100
+    components:
+    - type: Transform
+      pos: -20.5,72.5
+      parent: 1
+  - uid: 19101
+    components:
+    - type: Transform
+      pos: -22.5,72.5
+      parent: 1
+  - uid: 19102
+    components:
+    - type: Transform
+      pos: -18.5,72.5
+      parent: 1
 - proto: GrilleBroken
   entities:
   - uid: 1735
@@ -88690,6 +88734,27 @@ entities:
     components:
     - type: Transform
       pos: -40.5,-19.5
+      parent: 1
+  - uid: 19103
+    components:
+    - type: Transform
+      pos: -21.5,72.5
+      parent: 1
+  - uid: 19104
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -21.5,72.5
+      parent: 1
+  - uid: 19105
+    components:
+    - type: Transform
+      pos: -22.5,69.5
+      parent: 1
+  - uid: 19106
+    components:
+    - type: Transform
+      pos: -17.5,71.5
       parent: 1
 - proto: GroundCannabis
   entities:
@@ -91408,8 +91473,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8968438
-        - 7.1357465
+        - 1.8977377
+        - 7.139109
         - 0
         - 0
         - 0
@@ -91426,10 +91491,10 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 1682
-          - 18573
-          - 18591
           - 18592
+          - 18591
+          - 18573
+          - 1682
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -104835,6 +104900,33 @@ entities:
     - type: Transform
       pos: 6.5,3.5
       parent: 1
+- proto: SMESAdvanced
+  entities:
+  - uid: 3992
+    components:
+    - type: Transform
+      pos: 8.5,-29.5
+      parent: 1
+  - uid: 4710
+    components:
+    - type: Transform
+      pos: 6.5,-29.5
+      parent: 1
+  - uid: 6507
+    components:
+    - type: Transform
+      pos: 10.5,-35.5
+      parent: 1
+  - uid: 6575
+    components:
+    - type: Transform
+      pos: 5.5,-29.5
+      parent: 1
+  - uid: 7159
+    components:
+    - type: Transform
+      pos: 7.5,-29.5
+      parent: 1
 - proto: SMESBasic
   entities:
   - uid: 3459
@@ -104843,39 +104935,6 @@ entities:
       name: Comms SMES
     - type: Transform
       pos: 15.5,-11.5
-      parent: 1
-  - uid: 3831
-    components:
-    - type: MetaData
-      name: Engi SMES 4
-    - type: Transform
-      pos: 8.5,-29.5
-      parent: 1
-  - uid: 3832
-    components:
-    - type: MetaData
-      name: Engi SMES 2
-    - type: Transform
-      pos: 6.5,-29.5
-      parent: 1
-  - uid: 3992
-    components:
-    - type: Transform
-      pos: 10.5,-35.5
-      parent: 1
-  - uid: 6507
-    components:
-    - type: MetaData
-      name: Engi SMES 1
-    - type: Transform
-      pos: 5.5,-29.5
-      parent: 1
-  - uid: 6575
-    components:
-    - type: MetaData
-      name: Engi SMES 3
-    - type: Transform
-      pos: 7.5,-29.5
       parent: 1
   - uid: 7262
     components:
@@ -111259,6 +111318,13 @@ entities:
     components:
     - type: Transform
       pos: -35.5,56.5
+      parent: 1
+- proto: VendingMachineBoxingDrobe
+  entities:
+  - uid: 19109
+    components:
+    - type: Transform
+      pos: -15.5,68.5
       parent: 1
 - proto: VendingMachineCargoDrobe
   entities:
