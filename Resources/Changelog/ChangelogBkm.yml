@@ -1046,3 +1046,12 @@
   id: 68
   time: '2025-01-09T15:03:10.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/997
+- author: KayzelW
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D \u043B\u043E\u0434\
+      \u0430\u0443\u0442 \u043D\u0438\u0436\u043D\u0435\u0433\u043E \u0431\u0435\u043B\
+      \u044C\u044F."
+    type: Fix
+  id: 69
+  time: '2025-01-12T14:35:11.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1002
