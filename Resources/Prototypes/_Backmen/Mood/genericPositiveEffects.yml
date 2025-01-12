@@ -36,19 +36,24 @@
 - type: moodEffect
   id: TraitorFocused # Used for traitors to boost their goals completion.
   moodChange: 7
+  hidden: true
 
 - type: moodEffect
   id: NukeopsFocused # Used for nukies
   moodChange: 10
+  hidden: true
 
 - type: moodEffect
   id: RevolutionFocused # Used for revolution
   moodChange: 7
+  hidden: true
 
 - type: moodEffect
   id: CultFocused
   moodChange: 10
+  hidden: true
 
 - type: moodEffect
   id: TraitSanguine # Happi! Also used for Clown
   moodChange: 15
+  hidden: true

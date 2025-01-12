@@ -1,31 +1,37 @@
 ﻿- type: moodEffect
   id: Handcuffed
   moodChange: -3
+  hidden: true
 
 - type: moodEffect
   id: Suffocating
   moodChange: -7
   timeout: 6
+  hidden: true
 
 - type: moodEffect
   id: OnFire
   moodChange: -10
   timeout: 180
+  hidden: true
 
 - type: moodEffect
   id: Creampied
   moodChange: -3
   timeout: 180
+  hidden: true
 
 - type: moodEffect
   id: MobSlipped
   moodChange: -3
   timeout: 30
+  hidden: true
 
 - type: moodEffect
   id: MobVomit
   moodChange: -5
   timeout: 300
+  hidden: true
 
 - type: moodEffect
   id: MobLowPressure
@@ -36,14 +42,17 @@
   id: MobHighPressure
   moodChange: -7
   timeout: 10
+  hidden: true
 
 - type: moodEffect
   id: TraitSaturnine
   moodChange: -20
+  hidden: true
 
 - type: moodEffect
   id: TraitFortitude
   moodChange: -10
+  hidden: true
 
 - type: moodEffect
   id: Dead

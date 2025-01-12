@@ -84,8 +84,7 @@ public sealed class MoodSystem : EntitySystem
 
         foreach (var (_, protoId) in component.CategorisedEffects)
         {
-            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto)
-                || proto.Hidden)
+            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto))
                 continue;
 
             SendDescToChat(proto, session);
@@ -93,8 +92,7 @@ public sealed class MoodSystem : EntitySystem
 
         foreach (var (protoId, _) in component.UncategorisedEffects)
         {
-            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto)
-                || proto.Hidden)
+            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto))
                 continue;
 
             SendDescToChat(proto, session);

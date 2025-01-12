@@ -1,68 +1,80 @@
 ﻿# Hunger
 - type: moodEffect
   id: HungerOverfed
-  moodChange: -10
+  moodChange: 10
   category: "Hunger"
+  hidden: true
 
 - type: moodEffect
   id: HungerOkay
   moodChange: 7
   category: "Hunger"
+  hidden: true
 
 - type: moodEffect
   id: HungerPeckish
   moodChange: -3
   category: "Hunger"
+  hidden: true
 
 - type: moodEffect
   id: HungerStarving
   moodChange: -7
   category: "Hunger"
+  hidden: true
 
 # Thirst
 - type: moodEffect
   id: ThirstOverHydrated
-  moodChange: -3
+  moodChange: 10
   category: "Thirst"
+  hidden: true
 
 - type: moodEffect
   id: ThirstOkay
   moodChange: 7
   category: "Thirst"
+  hidden: true
 
 - type: moodEffect
   id: ThirstThirsty
   moodChange: -3
   category: "Thirst"
+  hidden: true
 
 - type: moodEffect
   id: ThirstParched
   moodChange: -7
   category: "Thirst"
+  hidden: true
 
 # Health
 - type: moodEffect
   id: HealthNoDamage
   moodChange: 0
-  hidden: true
   category: "Health"
+  hidden: true
 
 - type: moodEffect
   id: HealthLightDamage
   moodChange: -3
   category: "Health"
+  hidden: true
 
 - type: moodEffect
   id: HealthOkayDamage
   moodChange: -7
   category: "Health"
+  hidden: true
 
 - type: moodEffect
   id: HealthSevereDamage
   moodChange: -12
   category: "Health"
+  hidden: true
 
 - type: moodEffect
   id: HealthHeavyDamage
   moodChange: -20
   category: "Health"
+  hidden: true
