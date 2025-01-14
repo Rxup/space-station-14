@@ -31,6 +31,9 @@ namespace Content.Shared.Fluids.Components
         // start-backmen: footsteps
         [DataField]
         public bool ViscosityAffectsMovement = true;
+        
+        [DataField]
+        public bool AffectsSound = true;
         // end-backmen: footsteps
     }
 }

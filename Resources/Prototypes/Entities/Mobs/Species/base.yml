@@ -306,6 +306,7 @@
     - TauCetiBasic
     understands:
     - TauCetiBasic
+  - type: FootprintOwner # Corvax-Next-Footprints
 
 - type: entity
   save: false

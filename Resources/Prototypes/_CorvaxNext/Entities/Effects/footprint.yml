@@ -1,0 +1,49 @@
+- type: entity
+  name: footprint
+  id: Footprint
+  save: false
+  description: Trace of liquid.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: Transform
+    noRot: false
+    anchored: true
+  - type: Sprite
+    drawdepth: FloorObjects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      slipFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+  - type: SolutionContainerManager
+  - type: Footprint
+  - type: Puddle
+    solution: print
+    affectsMovement: false
+    affectsSound: false
+  - type: ExaminableSolution
+    solution: print
+  - type: MixableSolution
+    solution: print
+  - type: DrawableSolution
+    solution: print
+  - type: BadDrink
+  - type: IgnoresFingerprints
+  - type: Drink
+    delay: 3
+    transferAmount: 0.5
+    solution: print
+    examinable: false
+  - type: Tag
+    tags:
+    - DNASolutionScannable
