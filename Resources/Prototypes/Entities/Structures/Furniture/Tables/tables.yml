@@ -201,7 +201,7 @@
 
 - type: entity
   id: TableReinforced
-  parent: TableBase
+  parent: FullTableBase #Backmen-tablet
   name: reinforced table
   description: A square piece of metal standing on four metal legs. Extra robust.
   components:
@@ -302,7 +302,7 @@
 
 - type: entity
   id: TableReinforcedGlass
-  parent: TableBase
+  parent: FullTableBase #Backmen-tablet
   name: reinforced glass table
   description: A square piece of glass, standing on four metal legs. Extra robust.
   components:
@@ -551,7 +551,7 @@
 
 - type: entity
   id: TableStone
-  parent: TableBase
+  parent: FullTableBase #Backmen-tablet
   name: stone table
   description: Literally the sturdiest thing you have ever seen.
   components:

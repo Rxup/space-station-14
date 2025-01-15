@@ -19,7 +19,7 @@
         mask: # tables should collide with other tables
         - TableMask
         layer:
-        - TableLayer
+        - MachineLayer #Backmen-tablet
   - type: SpriteFade
   - type: Sprite
   - type: Icon
@@ -55,3 +55,20 @@
         - TableMask
         layer:
         - TableLayer
+
+- type: entity #Backmen-tablet
+  id: FullTableBase
+  parent: TableBase
+  abstract: true
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - CrateMask #this is so they can go under full table
+        layer:
+        - MachineLayer
