@@ -25,6 +25,10 @@ cryo_sleep_rejoining = true
 lobbyduration=300
 contraband_examine = true
 
+# IPIntel stuff
+ipintel_enabled = true
+ipintel_contact_email = "backmen@bk.ru"
+
 [infolinks]
 website="https://backmen.ru"
 discord="https://discord.gg/B7gWj7hB8b"
@@ -62,10 +66,11 @@ enabled_crit = true
 easy_mode = false
 
 [atmos]
-space_wind = false
-space_wind_max_velocity = 22.0
+space_wind = true
+#space_wind_max_velocity = 22.0
 #tickrate = 7
 monstermos_rip_tiles = true
+max_explosion_range = 5
 
 [physics]
 target_minimum_tickrate = 20
