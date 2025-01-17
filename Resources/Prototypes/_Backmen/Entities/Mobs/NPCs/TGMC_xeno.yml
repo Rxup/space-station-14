@@ -972,16 +972,15 @@
   name: "кость ксено"
   parent: PartSilicon
   components:
+  - type: BodyPart
+    partType: Hand
+    symmetry: None
   - type: Sprite
-    netsync: false
     sprite: Mobs/Silicon/drone.rsi
     state: "l_hand"
   - type: Icon
     sprite: Mobs/Silicon/drone.rsi
     state: "l_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
 
 # WEAPONS #
 

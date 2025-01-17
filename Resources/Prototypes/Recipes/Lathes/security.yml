@@ -75,9 +75,9 @@
   id: WeaponLaserPistol
   result: WeaponEarthGovLaserPistol
   materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 200
+    Steel: 800
+    Glass: 400
+    Plastic: 400
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -116,8 +116,8 @@
   materials:
     Steel: 1500
     Glass: 500
-    Plastic: 250
-    Gold: 100
+    Plastic: 400
+    Gold: 200
 
 - type: latheRecipe
   id: ClothingBackpackElectropack

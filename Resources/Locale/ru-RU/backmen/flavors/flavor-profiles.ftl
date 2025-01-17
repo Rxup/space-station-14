@@ -1,4 +1,5 @@
 flavor-complex-RedOrdenDrinkFlavour = триумф красного ордена
+flavor-complex-bacchus-drink = нечто самое резкое и разрывное в вашем горле
 
 ## Nyano???
 

@@ -6,9 +6,13 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Shared.Chat;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Database;
+using Content.Shared.Labels.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Power;
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Speech;
 using Content.Shared.Telephone;
 using Robust.Server.GameObjects;
@@ -20,6 +24,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using System.Linq;
 using Content.Shared.Backmen.Chat;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Silicons.Borgs.Components;
 
@@ -89,7 +94,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         if (!_recentChatMessages.Add((args.Source, args.Message, entity)))
             return;
 
-        SendTelephoneMessage(args.Source, args.Message, entity);
+        SendTelephoneMessage(args.Source, args.Message, entity, language: args.Language); // backmen: language
     }
 
     private void OnTelephoneMessageReceived(Entity<TelephoneComponent> entity, ref TelephoneMessageReceivedEvent args)
@@ -105,12 +110,29 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
         RaiseLocalEvent(args.MessageSource, nameEv);
 
-        var name = Loc.GetString("speech-name-relay",
-            ("speaker", Name(entity)),
-            ("originalName", nameEv.VoiceName));
+        // Determine if speech should be relayed via the telephone itself or a designated speaker
+        var speaker = entity.Comp.Speaker != null ? entity.Comp.Speaker.Value.Owner : entity.Owner;
 
+        var name = Loc.GetString("chat-telephone-name-relay",
+            ("originalName", nameEv.VoiceName),
+            ("speaker", Name(speaker)));
+
+        var range = args.TelephoneSource.Comp.LinkedTelephones.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimit;
         var volume = entity.Comp.SpeakerVolume == TelephoneVolume.Speak ? InGameICChatType.Speak : InGameICChatType.Whisper;
-        _chat.TrySendInGameICMessage(entity, args.Message, volume, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false);
+        // Corvax-TTS-Start
+        // If speaker entity has TTS, the telephone will speak with the same voice
+        if(TryComp<TTSComponent>(args.MessageSource, out var ttsSpeaker))
+        {
+            EnsureComp<TTSComponent>(speaker, out var ttsTelephone);
+            ttsTelephone.VoicePrototypeId = ttsSpeaker.VoicePrototypeId;
+        }
+        else // Remove TTS if the speaker has no TTS
+        {
+            RemComp<TTSComponent>(speaker);
+        }
+        // Corvax-TTS-End
+
+        _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
     }
 
     #endregion
@@ -216,7 +238,14 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         source.Comp.Muted = options?.MuteSource == true;
 
         var callerInfo = GetNameAndJobOfCallingEntity(user);
-        receiver.Comp.LastCallerId = (callerInfo.Item1, callerInfo.Item2, Name(source)); // This will be networked when the state changes
+
+        // Base the name of the device on its label
+        string? deviceName = null;
+
+        if (TryComp<LabelComponent>(source, out var label))
+            deviceName = label.CurrentLabel;
+
+        receiver.Comp.LastCallerId = (callerInfo.Item1, callerInfo.Item2, deviceName); // This will be networked when the state changes
         receiver.Comp.LinkedTelephones.Add(source);
         receiver.Comp.Muted = options?.MuteReceiver == true;
 
@@ -316,7 +345,9 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         SetTelephoneMicrophoneState(entity, false);
     }
 
-    private void SendTelephoneMessage(EntityUid messageSource, string message, Entity<TelephoneComponent> source, bool escapeMarkup = true)
+    private void SendTelephoneMessage(EntityUid messageSource, string message, Entity<TelephoneComponent> source, bool escapeMarkup = true,
+        LanguagePrototype? language = null // backmen: language
+        )
     {
         // This method assumes that you've already checked that this
         // telephone is able to transmit messages and that it can
@@ -359,7 +390,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         RaiseLocalEvent(source, ref evSentMessage);
         source.Comp.StateStartTime = _timing.CurTime;
 
-        var evReceivedMessage = new TelephoneMessageReceivedEvent(message, chatMsg, messageSource, source);
+        var evReceivedMessage = new TelephoneMessageReceivedEvent(message, chatMsg, messageSource, source, language); // backmen: language
 
         foreach (var receiver in source.Comp.LinkedTelephones)
         {
@@ -401,6 +432,11 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         {
             RemComp<ActiveListenerComponent>(entity);
         }
+    }
+
+    public void SetSpeakerForTelephone(Entity<TelephoneComponent> entity, Entity<SpeechComponent>? speaker)
+    {
+        entity.Comp.Speaker = speaker;
     }
 
     private (string?, string?) GetNameAndJobOfCallingEntity(EntityUid uid)

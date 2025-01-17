@@ -41,7 +41,6 @@ holopad-hologram-name = hologram of {THE($name)}
 # Holopad actions
 holopad-activate-projector-verb = Activate holopad projector
 holopad-ai-is-unable-to-reach-holopad = You are unable to interface with the source of the call, it is too far from your core.
-holopad-ai-is-unable-to-activate-projector = You are unable to activate the holopad's projector, it is too far from your core.
 
 # Mapping prototypes
 # General
@@ -72,8 +71,6 @@ holopad-command-hos = Command - HoS
 # Science
 holopad-science-anomaly = Science - Anomaly
 holopad-science-artifact = Science - Artifact
-holopad-science-artifact-north = Science - Artifact North
-holopad-science-artifact-south = Science - Artifact South
 holopad-science-robotics = Science - Robotics
 holopad-science-rnd = Science - R&D
 holopad-science-front = Science - Front
@@ -89,6 +86,7 @@ holopad-medical-paramedic = Medical - Paramedic
 holopad-medical-virology = Medical - Virology
 holopad-medical-front = Medical - Front
 holopad-medical-breakroom = Medical - Breakroom
+holopad-medical-clinic = Medical - Clinic
 
 # Cargo
 holopad-cargo-front = Cargo - Front
@@ -97,7 +95,6 @@ holopad-cargo-salvage-bay = Cargo - Salvage Bay
 holopad-cargo-breakroom  = Cargo - Breakroom
 holopad-cargo-ats = Cargo - ATS
 holopad-cargo-shuttle = Cargo - Shuttle
-holopad-cargo-mailroom = Cargo - Mailroom
 
 # Engineering
 holopad-engineering-atmos-front = Atmos - Front
@@ -110,7 +107,6 @@ holopad-engineering-telecoms = Engineering - Telecoms
 holopad-engineering-tech-vault = Engineering - Tech Vault
 holopad-engineering-ame = Engineering - AME
 holopad-engineering-power = Engineering - Power
-holopad-engineering-main = Engineering - Main
 
 # Security
 holopad-security-front = Security - Front
@@ -125,8 +121,6 @@ holopad-security-lawyer = Security - Lawyer
 holopad-security-armory = Security - Armory
 holopad-security-locker-room = Security - Locker Room
 holopad-security-brig-med = Security - Brig Med
-holopad-security-evac-checkpoint = Security - Evac Checkpoint
-holopad-security-arrivals-checkpoint = Security - Arrivals Checkpoint
 
 # Service
 holopad-service-janitor = Service - Janitor
