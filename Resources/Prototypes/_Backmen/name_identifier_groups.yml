@@ -1,4 +1,4 @@
-﻿- type: nameIdentifierGroup
+- type: nameIdentifierGroup
   id: Drone
   prefix: ДР
   fullName: true
@@ -18,3 +18,8 @@
   fullName: true
   minValue: 10000
   maxValue: 99999
+
+# used by the nanochatcard numbers
+- type: nameIdentifierGroup
+  id: NanoChat
+  maxValue: 9999
