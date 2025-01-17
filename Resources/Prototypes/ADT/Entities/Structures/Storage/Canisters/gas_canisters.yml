@@ -1,0 +1,693 @@
+- type: entity
+  parent: GasCanister
+  id: ADTBZCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: purple
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 1871.71051 # BZ
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTBZCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTPluoxiumCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: darkblue
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 1871.71051 # Pluoxium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTPluoxiumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTHydrogenCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: h2
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 1871.71051 # Hydrogen
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTHydrogenCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTNitriumCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: brown
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 1871.71051 # Nitrium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTNitriumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTHealiumCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: healium
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 1871.71051 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTHealiumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTHyperNobliumCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: nob
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 1871.71051 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTHyperNobliumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTProtoNitrateCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: proto_nitrate
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 1871.71051 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTProtoNitrateCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTZaukerCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: zauker
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 1871.71051 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTZaukerCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTHalonCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: halon
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 1871.71051 # Halon
+      - 0 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTHalonCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTHeliumCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: helium
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 1871.71051 # Helium
+      - 0 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTHeliumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ADTAntiNobliumCanister
+  components:
+  - type: Sprite
+    layers:
+    - state: antinob
+  - type: GasCanister
+    gasMixture:
+      volume: 1000
+      moles:
+      - 0 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 0 # Plasma
+      - 0 # Tritium
+      - 0 # Water vapor
+      - 0 # Miasma
+      - 0 # N2O
+      - 0 # Frezon
+      - 0 # BZ
+      - 0 # Pluoxium
+      - 0 # Hydrogen
+      - 0 # Nitrium
+      - 0 # Healium
+      - 0 # Hyper-Noblium
+      - 0 # Proto-Nitrate
+      - 0 # Zauker
+      - 0 # Halon
+      - 0 # Helium
+      - 1871.71051 # Anti-Noblium
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ADTAntiNobliumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+# А дальше сломанные
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTBZCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: purple-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTPluoxiumCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: darkblue-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTHydrogenCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: h2-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTNitriumCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: brown-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTHealiumCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: healium-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTHyperNobliumCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: nob-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTProtoNitrateCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: proto_nitrate-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTZaukerCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: zauker-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTHalonCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: halon-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTHeliumCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: helium-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ADTAntiNobliumCanisterBroken
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: antinob-1
