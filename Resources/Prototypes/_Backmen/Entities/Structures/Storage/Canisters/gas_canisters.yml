@@ -607,7 +607,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTBZCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: purple-1
@@ -615,7 +614,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTPluoxiumCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: darkblue-1
@@ -623,7 +621,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTHydrogenCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: h2-1
@@ -631,7 +628,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTNitriumCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: brown-1
@@ -639,7 +635,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTHealiumCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: healium-1
@@ -647,7 +642,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTHyperNobliumCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: nob-1
@@ -655,7 +649,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTProtoNitrateCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: proto_nitrate-1
@@ -663,7 +656,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTZaukerCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: zauker-1
@@ -671,7 +663,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTHalonCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: halon-1
@@ -679,7 +670,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTHeliumCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: helium-1
@@ -687,7 +677,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: ADTAntiNobliumCanisterBroken
-  noSpawn: true
   components:
   - type: Sprite
     state: antinob-1

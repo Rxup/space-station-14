@@ -84,10 +84,6 @@
         amount: -2.0
     Gas:
       effects:
-      - !type:Oxygenate
-        conditions:
-        - !type:OrganType
-          type: Novakid
       - !type:HealthChange
         scaleByQuantity: true
         ignoreResistances: true
