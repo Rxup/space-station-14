@@ -13,6 +13,7 @@ desc="""📣 Наш личный модовый не коммерческий п
 ✔️ - DS-авторизация с просмотром своей статистики прямо в чате!
 ✔️ - Новая боёвка!
 ✔️ - Система языков!
+✔️ - Хирургия и кукла!
 🕖 Именно мы одни из тех первых проектов, кто решился встать на открытый путь разработки по личной инициативе!
 
 ☎️ Присоединяйся и стань частью нашей большой семьи!
@@ -24,6 +25,10 @@ lobbyenabled = true
 cryo_sleep_rejoining = true
 lobbyduration=300
 contraband_examine = true
+
+# IPIntel stuff
+ipintel_enabled = true
+ipintel_contact_email = "backmen@bk.ru"
 
 [infolinks]
 website="https://backmen.ru"
@@ -62,10 +67,11 @@ enabled_crit = true
 easy_mode = false
 
 [atmos]
-space_wind = false
-space_wind_max_velocity = 22.0
+space_wind = true
+#space_wind_max_velocity = 22.0
 #tickrate = 7
 monstermos_rip_tiles = true
+max_explosion_range = 5
 
 [physics]
 target_minimum_tickrate = 20
@@ -137,6 +143,10 @@ enabled=true
 
 [laying]
 crawlundertables=true
+
+[hub]
+advertise = true
+tags = "lang:ru,region:eu_e,rp:med"
 
 [vote]
 map_enabled = true
