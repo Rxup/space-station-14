@@ -27,12 +27,10 @@ ent-ClothingEyesHudMultiversal = мультиверсальный визор
 ent-ClothingEyesHudOmni = омни визор
     .desc = Заполнитель
 # Corvax-HiddenDesc-Start
-ent-ClothingEyesHudSyndicate = визор оперативника
-    .suffix = синди-визор
-    .desc = Профессиональный визор со встроенной индикацией "свой-чужой", предназначенный для обнаружения и идентификации гуманоидных целей для их последующего уничтожения.
-ent-ClothingEyesHudSyndicateAgent = визор агента Синдиката
+ent-ClothingEyesHudSyndicate = синди-визор
+    .desc = Профессиональный визор Синдиката с индикатором на стекле, предназначенный для более точного обнаружения гуманоидов с их последующим уничтожением.
+ent-ClothingEyesHudSyndicateAgent = синди-визор агента
     .desc = Профессиональный визор агента Синдиката, предназначенный для быстрой диагностики состояния команды.
-# Corvax-HiddenDesc-End
 ent-ClothingEyesGlassesHiddenSecurity = { ent-ClothingEyesGlassesSunglasses }
     .desc = { ent-ClothingEyesGlassesSunglasses.desc }
     .suffix = Синдикат
