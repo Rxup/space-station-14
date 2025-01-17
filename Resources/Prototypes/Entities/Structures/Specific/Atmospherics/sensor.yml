@@ -26,17 +26,17 @@
         NitrousOxide: stationNO
         Frezon: danger
         # ADT-Gas-Start
-        BZ: danger
-        Pluoxium: unwanted
-        Hydrogen: danger
-        Nitrium: unwanted
-        Healium: danger
-        HyperNoblium: unwanted
-        ProtoNitrate: danger
-        Zauker: danger
-        Halon: danger
-        Helium: unwanted
-        AntiNoblium: danger
+        BZ: stationBZ
+        Pluoxium: stationPluoxium
+        Hydrogen: stationHydrogen
+        Nitrium: stationNitrium
+        Healium: stationHealium
+        HyperNoblium: stationHyperNoblium
+        ProtoNitrate: stationProtoNitrate
+        Zauker: stationZauker
+        Halon: stationHalon
+        Helium: stationHelium
+        AntiNoblium: stationAntiNoblium
         # ADT-Gas-End
     - type: Tag
       tags:
