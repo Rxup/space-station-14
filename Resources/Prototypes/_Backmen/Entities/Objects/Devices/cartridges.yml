@@ -40,3 +40,25 @@
       sprite: Backmen/Icons/psi.rsi
       state: psi
   - type: GlimmerMonitorCartridge
+
+- type: entity
+  parent: BaseItem
+  id: NanoChatCartridge
+  name: NanoChat cartridge
+  description: Lets you message other people!
+  components:
+  - type: Sprite
+    sprite: Backmen\Objects\Weapons\Gunsx64\Flamethrowers\tank.rsi
+    state: cart-chat
+  - type: UIFragment
+    ui: !type:NanoChatUi
+  - type: NanoChatCartridge
+  - type: Cartridge
+    programName: nano-chat-program-name
+    icon:
+      sprite: _CorvaxNext/Misc/program_icons.rsi
+      state: nanochat
+  - type: ActiveRadio
+    channels:
+    - Common
+
