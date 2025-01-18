@@ -878,6 +878,16 @@ private void SendEntityWhisper(
 
         var mindContainerComponent = player.ContentData()?.Mind;
 
+        //BACMEN-EDIT-START
+        if (player.AttachedEntity.HasValue){
+            if (_mobStateSystem.IsCritical(player.AttachedEntity!.Value))
+            {
+                shell?.WriteError("You in crit!");
+                return false;
+            }
+        }
+        // BACKMEN-EDIT-END
+
         if (mindContainerComponent == null)
         {
             shell?.WriteError("You don't have a mind!");
