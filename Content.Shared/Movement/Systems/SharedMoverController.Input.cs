@@ -303,10 +303,13 @@ namespace Content.Shared.Movement.Systems
 
                 if (MoverQuery.TryGetComponent(entity, out var mover))
                     SetMoveInput((entity, mover), MoveButtons.None);
+                //BACKMEN-EDIT-START
+                if (_mobState.IsDead(entity)
+                    || _mobState.IsCritical(entity) && !_configManager.GetCVar(CCVars.AllowMovementWhileCrit))
+                    return;
 
-                if (!_mobState.IsIncapacitated(entity))
-                    HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
-
+                HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
+                //BACKMEN-EDIT-END
                 return;
             }
 
