@@ -42,7 +42,7 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
             }
 
-            if (tile.ExcitedGroup != null) // backmen: gas
+            if(tile.ExcitedGroup != null)
                 ExcitedGroupResetCooldowns(tile.ExcitedGroup);
 
             if ((tile.Hotspot.Temperature < Atmospherics.FireMinimumTemperatureToExist) || (tile.Hotspot.Volume <= 1f)
@@ -92,14 +92,14 @@ namespace Content.Server.Atmos.EntitySystems
                         if (otherTile == null)
                             continue;
 
-                        if (!otherTile.Hotspot.Valid) // backmen: gas
+                        if(!otherTile.Hotspot.Valid)
                             HotspotExpose(gridAtmosphere, otherTile, radiatedTemperature, Atmospherics.CellVolume / 4); // backmen: gas
                     }
                 }
             }
             else
             {
-                tile.Hotspot.State = (byte)(tile.Hotspot.Volume > Atmospherics.CellVolume * 0.4f ? 2 : 1); // backmen: gas
+                tile.Hotspot.State = (byte) (tile.Hotspot.Volume > Atmospherics.CellVolume * 0.4f ? 2 : 1);
             }
 
             if (tile.Hotspot.Temperature > tile.MaxFireTemperatureSustained)
