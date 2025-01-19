@@ -1064,12 +1064,3 @@
   id: 70
   time: '2025-01-12T17:50:05.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1003
-- author: Rxup
-  changes:
-  - message: "\u0421\u0435\u0440\u0432\u0435\u0440 \u043E\u0431\u043D\u043E\u0432\u043B\
-      \u0451\u043D \u0434\u043E \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0439\
-      \ \u0432\u0435\u0440\u0441\u0438\u0438 Upstream 17.01.2025"
-    type: Tweak
-  id: 71
-  time: '2025-01-17T08:11:36.0000000+00:00'
-  url: https://github.com/Rxup/space-station-14/pull/1007

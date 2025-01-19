@@ -16,5 +16,5 @@ public sealed partial class FootPrintComponent : Component
     public EntityUid PrintOwner;
 
     [DataField("solution")] public string SolutionName = "step";
-    public Entity<SolutionComponent>? Solution;
+    [DataField("solutionRef")] public Entity<SolutionComponent>? Solution;
 }

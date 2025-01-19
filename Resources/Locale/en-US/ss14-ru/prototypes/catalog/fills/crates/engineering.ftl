@@ -32,5 +32,3 @@ ent-CrateParticleDecelerators = particle decelerators crate
     .desc = A crate containing 3 Particle Decelerators.
 ent-CrateEngineeringSpaceHeater = space heater crate
     .desc = Contains a space heater for climate control.
-ent-CrateTechBoardRandom = surplus boards
-    .desc = Surplus boards from somewhere.

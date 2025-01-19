@@ -169,9 +169,6 @@
     - !type:NestedSelector
       tableId: BackmenMaintLoot
       prob: 0.2
-    # Recursive
-    - id: ClosetMaintenanceFilledRandom
-      prob: 0.01
 
 - type: entity
   id: ClosetMaintenanceFilledRandom

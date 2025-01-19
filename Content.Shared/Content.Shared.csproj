@@ -26,6 +26,23 @@
   <ItemGroup>
     <Folder Include="Power\Components\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Backmen\Supermatter\Components\BkmSupermatterComponent.calculation.cs">
+      <DependentUpon>BkmSupermatterComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Supermatter\Components\BkmSupermatterComponent.delamm.cs">
+      <DependentUpon>BkmSupermatterComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Supermatter\Components\BkmSupermatterComponent.sound.cs">
+      <DependentUpon>BkmSupermatterComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Supermatter\Components\BkmSupermatterComponent.threshold.cs">
+      <DependentUpon>BkmSupermatterComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Supermatter\Components\BkmSupermatterComponent.timer.cs">
+      <DependentUpon>BkmSupermatterComponent.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
 </Project>

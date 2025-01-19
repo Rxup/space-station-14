@@ -368,8 +368,7 @@
   storage:
     back:
     - Hypospray
-    - MedkitCombatFilled
-    - MedkitCombatFilled
+    - MedkitAdvancedFilled
     - CrowbarRed
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
@@ -392,8 +391,7 @@
   storage:
     back:
     - Hypospray
-    - MedkitCombatFilled
-    - MedkitCombatFilled
+    - MedkitAdvancedFilled
     - CrowbarRed
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
