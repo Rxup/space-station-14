@@ -611,6 +611,7 @@
       - 0 # Ammonia
       - 0 # N2O
       - 1871.71051 # Frezon
+      - 0 # BZ + ADT-Gas
       temperature: 293.15
   - type: Destructible
     thresholds:
