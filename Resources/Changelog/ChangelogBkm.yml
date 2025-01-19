@@ -1073,3 +1073,19 @@
   id: 71
   time: '2025-01-17T08:11:36.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1007
+- author: trest100
+  changes:
+  - message: "\u043D\u043E\u0432\u044B\u0435 \u0433\u0430\u0437\u044B"
+    type: Add
+  id: 72
+  time: '2025-01-19T14:39:09.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1008
+- author: no_mad
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u044B \u0441\u043F\u043E\u0441\
+      \u043E\u0431\u044B \u043B\u0435\u0447\u0435\u043D\u0438\u044F \u0432\u0438\u0440\
+      \u0443\u0441\u043E\u0432."
+    type: Tweak
+  id: 73
+  time: '2025-01-19T14:47:29.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1004
