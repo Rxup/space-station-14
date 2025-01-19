@@ -25,6 +25,19 @@
         Ammonia: stationAmmonia
         NitrousOxide: stationNO
         Frezon: danger
+        # ADT-Gas-Start
+        BZ: stationBZ
+        Pluoxium: stationPluoxium
+        Hydrogen: stationHydrogen
+        Nitrium: stationNitrium
+        Healium: stationHealium
+        HyperNoblium: stationHyperNoblium
+        ProtoNitrate: stationProtoNitrate
+        Zauker: stationZauker
+        Halon: stationHalon
+        Helium: stationHelium
+        AntiNoblium: stationAntiNoblium
+        # ADT-Gas-End
     - type: Tag
       tags:
         - AirSensor
