@@ -3,7 +3,7 @@
   maps:
   - BackmenAspid
   - BackmenKettle
-  - BackmenTortuga
+  #- BackmenTortuga
   - BackmenHive
   - BackmenShoukou
   #- BackmenRook
