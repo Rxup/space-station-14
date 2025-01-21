@@ -11,7 +11,7 @@
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
     chest:
-      part: TorsoHuman
+      part: ChestHuman
       connections:
       - groin
       - right arm
