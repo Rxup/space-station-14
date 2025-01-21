@@ -115,7 +115,7 @@
   root: torso
   slots:
     torso:
-      part: TorsoHuman
+      part: ChestHuman
       connections:
       - legs
       organs:
