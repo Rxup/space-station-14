@@ -12,9 +12,9 @@ public partial class ConsciousnessSystem
 {
     private void InitProcess()
     {
-        SubscribeLocalEvent<BodyPartComponent, PainModifierChangedEvent>(OnPainChanged);
-        SubscribeLocalEvent<BodyPartComponent, PainModifierAddedEvent>(OnPainAdded);
-        SubscribeLocalEvent<BodyPartComponent, PainModifierRemovedEvent>(OnPainRemoved);
+        SubscribeLocalEvent<OrganComponent, PainModifierChangedEvent>(OnPainChanged);
+        SubscribeLocalEvent<OrganComponent, PainModifierAddedEvent>(OnPainAdded);
+        SubscribeLocalEvent<OrganComponent, PainModifierRemovedEvent>(OnPainRemoved);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, ComponentInit>(OnConsciousnessPartInit);
 
@@ -27,7 +27,7 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
     }
 
-    private void OnPainChanged(EntityUid uid, BodyPartComponent component, PainModifierChangedEvent args)
+    private void OnPainChanged(EntityUid uid, OrganComponent component, PainModifierChangedEvent args)
     {
         if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) ||
             !TryComp<NerveSystemComponent>(args.NerveSystem, out var nerveSys))
@@ -48,7 +48,7 @@ public partial class ConsciousnessSystem
         }
     }
 
-    private void OnPainAdded(EntityUid uid, BodyPartComponent component, PainModifierAddedEvent args)
+    private void OnPainAdded(EntityUid uid, OrganComponent component, PainModifierAddedEvent args)
     {
         if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) ||
             !TryComp<NerveSystemComponent>(args.NerveSystem, out var nerveSys))
@@ -69,7 +69,7 @@ public partial class ConsciousnessSystem
         }
     }
 
-    private void OnPainRemoved(EntityUid uid, BodyPartComponent component, PainModifierRemovedEvent args)
+    private void OnPainRemoved(EntityUid uid, OrganComponent component, PainModifierRemovedEvent args)
     {
         if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) ||
             !TryComp<NerveSystemComponent>(args.NerveSystem, out var nerveSys))
