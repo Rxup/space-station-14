@@ -62,10 +62,10 @@
   minimumTemperature: 1000
   minimumRequirements:
   - 0     # oxygen
-  - 0.02  # nitrogen
+  - 0.01  # nitrogen
   - 0     # carbon dioxide
   - 0     # plasma
-  - 0.02  # tritium
+  - 0.01  # tritium
   - 0     # vapor
   - 0     # miasma
   - 0     # n2o
@@ -119,10 +119,10 @@
   maximumTemperature: 24.15 # Reachable with Frezon and Nitrogen
   minimumRequirements:
   - 0     # oxygen
-  - 0.10  # nitrogen
+  - 0.01  # nitrogen
   - 0     # carbon dioxide
   - 0     # plasma
-  - 0.05  # tritium
+  - 0.01  # tritium
   - 0     # vapor
   - 0     # miasma
   - 0     # n2o
@@ -229,7 +229,7 @@
 
 - type: gasReaction
   id: HalonFrezonDecomposition
-  priority: 9
+  priority: 10
   minimumRequirements:
   - 0     # oxygen
   - 0     # nitrogen
@@ -256,7 +256,7 @@
 
 - type: gasReaction
   id: ZaukerProduction
-  priority: 9
+  priority: 11
   minimumTemperature: 50000
   maximumTemperature: 75000
   minimumRequirements:
@@ -285,7 +285,7 @@
 
 - type: gasReaction
   id: ZaukerDecomposition
-  priority: 10
+  priority: 12
   minimumRequirements:
   - 0     # oxygen
   - 0.01  # nitrogen
@@ -312,7 +312,7 @@
 
 - type: gasReaction
   id: ProtoNitrateProduction
-  priority: 11
+  priority: 13
   minimumTemperature: 5000
   maximumTemperature: 10000
   minimumRequirements:
@@ -341,7 +341,7 @@
 
 - type: gasReaction
   id: ProtoNitrateHydrogenConversion
-  priority: 12
+  priority: 14
   minimumRequirements:
   - 0     # oxygen
   - 0     # nitrogen
@@ -368,7 +368,7 @@
 
 - type: gasReaction
   id: ProtoNitrateTritiumDeirradiation
-  priority: 13
+  priority: 15
   minimumTemperature: 150
   maximumTemperature: 340
   minimumRequirements:
@@ -397,7 +397,7 @@
 
 - type: gasReaction
   id: ProtoNitrateBZaseAction
-  priority: 14
+  priority: 16
   minimumTemperature: 260
   maximumTemperature: 280
   minimumRequirements:

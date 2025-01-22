@@ -22,9 +22,10 @@ public sealed partial class HalonFrezonDecompositionReaction : IGasReactionEffec
 
         var producedAmount = Math.Min(ratioEfficiency * environmentEfficiency * 2f, Math.Min(initialFrezon * 0.5f, initialHalon * 0.5f));
 
-        if (producedAmount <= 0 || initialHalon - producedAmount * 0.5f < 0 || initialFrezon - producedAmount * 0.5f < 0 || initialHalon > initialFrezon + initialHalon)
+        if (producedAmount <= 0 || initialHalon - producedAmount * 0.5f < 0 || initialFrezon - producedAmount * 0.5f < 0)
             return ReactionResult.NoReaction;
 
+        var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         mixture.AdjustMoles(Gas.Halon, -producedAmount * 0.5f);
         mixture.AdjustMoles(Gas.Frezon, -producedAmount * 0.5f);
         mixture.AdjustMoles(Gas.Helium, producedAmount * 1f);
@@ -33,7 +34,6 @@ public sealed partial class HalonFrezonDecompositionReaction : IGasReactionEffec
 
         var energyReleased = producedAmount * Atmospherics.HalonFrezonDecompositionEnergy;
 
-        var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
