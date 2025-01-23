@@ -14,6 +14,11 @@
   - type: Item
     size: Normal
   - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95

@@ -13,9 +13,17 @@
     tags:
       - FullBodyOuter
   - type: Armor
+    coverage:
+    - Head
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
     modifiers:
       coefficients:
-        Caustic: 0.5
+        Caustic: 0.2
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.4
 
@@ -70,12 +78,21 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    coverage:
+    - Head
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.70
-        Heat: 0.80
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.6
+        Caustic: 0.2
 
 - type: entity
   parent: ClothingOuterBioGeneral

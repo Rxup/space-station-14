@@ -1,6 +1,10 @@
 ﻿using System.Linq;
+using Content.Shared.Armor;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
+using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Inventory;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -64,11 +68,38 @@ public partial class TraumaSystem
         return true;
     }
 
+    public FixedPoint2 GetCoverageDeduction(EntityUid body, BodyPartType coverage)
+    {
+        var deduction = (FixedPoint2) 0;
+
+        foreach (var ent in _inventory.GetHandOrInventoryEntities(body, SlotFlags.WITHOUT_POCKET))
+        {
+            if (!TryComp<ArmorComponent>(ent, out var armour))
+                continue;
+
+            if (armour.ArmorCoverage.Contains(coverage))
+            {
+                deduction += armour.DismembermentChanceDeduction;
+            }
+        }
+
+        return deduction;
+    }
+
     public bool RandomDismembermentTraumaChance(EntityUid target, WoundableComponent woundable, FixedPoint2 severity)
     {
+        var bodyPart = Comp<BodyPartComponent>(target);
+        if (!bodyPart.Body.HasValue)
+            return false; // Can't sever if already severed
+
+        var deduction = GetCoverageDeduction(bodyPart.Body.Value, bodyPart.PartType);
+
         // random-y but not so random-y like bones. Heavily depends on woundable state and damage
         var chance =
-            woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity)) * DismembermentChanceMultiplier;
+            FixedPoint2.Clamp(
+                woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity)) * DismembermentChanceMultiplier - deduction,
+                0,
+                1);
         // getting hit again increases the chance
 
         return _random.Prob((float) chance);
@@ -95,13 +126,9 @@ public partial class TraumaSystem
         //if (RandomVeinsTraumaChance(woundable))
         //{
         //    traumaApplied = ApplyDamageToVeins(woundable.Veins!.ContainedEntities[0], severity * _veinsDamageMultipliers[woundable.WoundableSeverity]);
-        //_sawmill.Info(
-        //    traumaApplied
-        //        ? $"A new trauma (Raw Severity: {severity}) was created on target: {target} of type bone damage"
-        //        : $"Tried to create a trauma on target: {target}, but no trauma was applied. Type: Bone damage.");
-        //
-        //if (traumaApplied)
-        //    globalTraumaApplied = true;
+        //    _sawmill.Info(traumaApplied
+        //        ? $"A new trauma (Raw Severity: {severity}) was created on target: {target} of type Vein damage"
+        //        : $"Tried to create a trauma on target: {target}, but no trauma was applied. Type: Vein damage.");
         //}
 
         if (traumaList.Contains(TraumaType.Dismemberment))

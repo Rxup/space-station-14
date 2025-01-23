@@ -28,6 +28,7 @@ namespace Content.Shared.Damage
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
         [Dependency] private readonly SharedBodySystem _body = default!;
         [Dependency] private readonly WoundSystem _wounds = default!;
+        [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly IRobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
 
         [Dependency] private readonly IComponentFactory _factory = default!;
@@ -207,25 +208,6 @@ namespace Content.Shared.Damage
 
             if (_bodyQuery.TryComp(uid.Value, out var body) && ValidateWoundablesOnBody(uid.Value, body))
             {
-                var damageDict = new Dictionary<string, FixedPoint2>();
-                foreach (var (type, severity) in damage.DamageDict)
-                {
-                    // TODO: Remove this when bloodloss and asphyxiation type damages are reworked into their own systems
-                    // the thing acts up and shits a lot of stuff into the console, which we DO NOT desire to see
-                    if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
-                        || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
-                        continue;
-
-                    damageDict.Add(type, severity);
-                }
-
-                if (damageDict.Count == 0)
-                    return null;
-
-                // TODO: We will have to rewrite the armor for it to cover special parts of body,
-                // and if the damage element has armor covering, we will be separating a few units of damage.
-                // or no?
-
                 var target = targetPart ?? _body.GetRandomBodyPart(uid.Value);
                 if (origin != null && TryComp<TargetingComponent>(origin.Value, out var targeting))
                     target = targeting.Target;
@@ -267,6 +249,46 @@ namespace Content.Shared.Damage
                 }
 
                 var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleBodyParts.ToList());
+
+                var damageDict = new Dictionary<string, FixedPoint2>();
+                foreach (var (type, severity) in damage.DamageDict)
+                {
+                    // TODO: Remove this when bloodloss and asphyxiation type damages are reworked into their own systems
+                    // the thing acts up and shits a lot of stuff into the console, which we DO NOT desire to see
+                    if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
+                        || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
+                        continue;
+
+                    damageDict.Add(type, severity);
+                }
+
+                if (damageDict.Count == 0)
+                    return null;
+
+                if (!ignoreResistances)
+                {
+                    if (damageable.DamageModifierSetId != null &&
+                        _prototypeManager.TryIndex(damageable.DamageModifierSetId, out var modifierSet))
+                    {
+                        // lol bozo
+                        var spec = new DamageSpecifier
+                        {
+                            DamageDict = damageDict,
+                        };
+
+                        damage = DamageSpecifier.ApplyModifierSet(spec, modifierSet);
+                    }
+
+                    var ev = new DamageModifyEvent(damage, origin, targetPart);
+                    RaiseLocalEvent(uid.Value, ev);
+                    damage = ev.Damage;
+
+                    if (damage.Empty)
+                    {
+                        return damage;
+                    }
+                }
+
                 foreach (var (damageType, severity) in damageDict)
                 {
                     var actualDamage = severity * partMultiplier;
@@ -274,7 +296,7 @@ namespace Content.Shared.Damage
                         _wounds.TryCreateWound(chosenTarget.Id, damageType, actualDamage, GetDamageGroupByType(damageType));
                 }
 
-                return null;
+                return damage;
             }
 
             // Apply resistances
@@ -285,7 +307,6 @@ namespace Content.Shared.Damage
                 {
                     // TODO DAMAGE PERFORMANCE
                     // use a local private field instead of creating a new dictionary here..
-                    // TODO: We need to add a check to see if the given armor covers the targeted part (if any) to modify or not.
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
 
