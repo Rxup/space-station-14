@@ -49,7 +49,13 @@ public abstract class SharedArmorSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var examineMarkup = GetArmorExamine(component.Modifiers, component.ArmorCoverage);
+        if (component is { ArmourCoverageHidden: true, ArmourModifiersHidden: true })
+            return;
+
+        if (!component.Modifiers.Coefficients.Any() && !component.Modifiers.FlatReduction.Any())
+            return;
+
+        var examineMarkup = GetArmorExamine(component);
 
         var ev = new ArmorExamineEvent(examineMarkup);
         RaiseLocalEvent(uid, ref ev);
@@ -59,39 +65,48 @@ public abstract class SharedArmorSystem : EntitySystem
             Loc.GetString("armor-examinable-verb-message"));
     }
 
-    private FormattedMessage GetArmorExamine(DamageModifierSet armorModifiers, List<BodyPartType> coverage)
+    private FormattedMessage GetArmorExamine(ArmorComponent component)
     {
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("armor-examine"));
 
-        foreach (var coveragePart in coverage.Where(coveragePart => coveragePart != BodyPartType.Other))
-        {
-            msg.PushNewline();
+        var coverage = component.ArmorCoverage;
+        var armorModifiers = component.Modifiers;
 
-            var bodyPartType = Loc.GetString("armor-coverage-type-" + coveragePart.ToString().ToLower());
-            msg.AddMarkupOrThrow(Loc.GetString("armor-coverage-value", ("type", bodyPartType)));
+        if (!component.ArmourCoverageHidden)
+        {
+            foreach (var coveragePart in coverage.Where(coveragePart => coveragePart != BodyPartType.Other))
+            {
+                msg.PushNewline();
+
+                var bodyPartType = Loc.GetString("armor-coverage-type-" + coveragePart.ToString().ToLower());
+                msg.AddMarkupOrThrow(Loc.GetString("armor-coverage-value", ("type", bodyPartType)));
+            }
         }
 
-        foreach (var coefficientArmor in armorModifiers.Coefficients)
+        if (!component.ArmourModifiersHidden)
         {
-            msg.PushNewline();
+            foreach (var coefficientArmor in armorModifiers.Coefficients)
+            {
+                msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
-            msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
-                ("type", armorType),
-                ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
-            ));
-        }
+                var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
+                msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
+                    ("type", armorType),
+                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
+                ));
+            }
 
-        foreach (var flatArmor in armorModifiers.FlatReduction)
-        {
-            msg.PushNewline();
+            foreach (var flatArmor in armorModifiers.FlatReduction)
+            {
+                msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
-            msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
-                ("type", armorType),
-                ("value", flatArmor.Value)
-            ));
+                var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
+                msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
+                    ("type", armorType),
+                    ("value", flatArmor.Value)
+                ));
+            }
         }
 
         return msg;

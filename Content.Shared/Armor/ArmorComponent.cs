@@ -26,6 +26,18 @@ public sealed partial class ArmorComponent : Component
     [DataField]
     public float PriceMultiplier = 1;
 
+    /// <summary>
+    /// If true, the coverage won't show.
+    /// </summary>
+    [DataField("coverageHidden")]
+    public bool ArmourCoverageHidden = false;
+
+    /// <summary>
+    /// If true, the modifiers won't show.
+    /// </summary>
+    [DataField("coverageHidden")]
+    public bool ArmourModifiersHidden = false;
+
     // thankfully all the armor in the game is symmetrical.
     [DataField("coverage")]
     public List<BodyPartType> ArmorCoverage = new();
