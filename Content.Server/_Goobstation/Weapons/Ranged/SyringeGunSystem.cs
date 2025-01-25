@@ -17,11 +17,13 @@ public sealed class SyringeGunSystem : EntitySystem
     private void OnFire(Entity<SyringeGunComponent> gun, ref AmmoShotEvent args)
     {
         foreach (var projectile in args.FiredProjectiles)
+        {
             if (TryComp(projectile, out SolutionInjectOnEmbedComponent? inject))
             {
                 inject.Shot = true;
                 inject.PierceArmor = gun.Comp.PierceArmor;
             }
+        }
     }
 
 }
