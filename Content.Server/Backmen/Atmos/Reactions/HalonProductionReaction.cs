@@ -27,7 +27,7 @@ public sealed partial class HalonProductionReaction : IGasReactionEffect
 
         mixture.AdjustMoles(Gas.BZ, -producedAmount * 0.2f);
         mixture.AdjustMoles(Gas.Tritium, -producedAmount * 0.5f);
-        mixture.AdjustMoles(Gas.Halon, producedAmount * 0.4f);
+        mixture.AdjustMoles(Gas.Halon, producedAmount * 0.7f);
 
         var energyReleased = producedAmount * Atmospherics.HalonFormationEnergy;
         var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
