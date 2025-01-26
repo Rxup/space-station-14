@@ -17,10 +17,10 @@ public sealed partial class BZProductionReaction : IGasReactionEffect
         var initialNitrousOxide = mixture.GetMoles(Gas.NitrousOxide);
         var initialPlasma = mixture.GetMoles(Gas.Plasma);
 
-        var environmentEfficiency = mixture.Volume / mixture.Pressure;
+        var environmentEfficiency = mixture.Volume / mixture.Pressure * Atmospherics.BZFormationPressurePenalty;
         var ratioEfficiency = Math.Min(initialNitrousOxide / initialPlasma, 1);
 
-        var bZFormed = Math.Min(0.01f * ratioEfficiency * environmentEfficiency, Math.Min(initialNitrousOxide * 0.4f, initialPlasma * 0.8f));
+        var bZFormed = Math.Min(ratioEfficiency * environmentEfficiency * 0.5f, Math.Min(initialNitrousOxide * 0.4f, initialPlasma * 0.8f));
 
         if (initialNitrousOxide - bZFormed * 0.4f < 0 || initialPlasma - (0.8f - bZFormed) < 0 || bZFormed <= 0)
             return ReactionResult.NoReaction;

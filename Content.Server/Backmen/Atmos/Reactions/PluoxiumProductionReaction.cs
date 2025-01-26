@@ -18,16 +18,16 @@ public sealed partial class PluoxiumProductionReaction : IGasReactionEffect
         var initialOxygen = mixture.GetMoles(Gas.Oxygen);
         var initialTritium = mixture.GetMoles(Gas.Tritium);
 
-        var producedAmount = Math.Min(Atmospherics.PluoxiumMaxRate, Math.Min(initialCarbonDioxide, Math.Min(initialOxygen * 0.5f, initialTritium * 0.01f)));
+        var producedAmount = Math.Min(Atmospherics.PluoxiumMaxRate, Math.Min(initialCarbonDioxide, Math.Min(initialOxygen * 0.5f, initialTritium * Atmospherics.PluoxiumTritiumConversion)));
 
-        if (producedAmount <= 0 || initialCarbonDioxide - producedAmount < 0 || initialOxygen - producedAmount * 0.5f < 0 || initialTritium - producedAmount * 0.01f < 0)
+        if (producedAmount <= 0 || initialCarbonDioxide - producedAmount < 0 || initialOxygen - producedAmount * 0.5f < 0 || initialTritium - producedAmount * Atmospherics.PluoxiumTritiumConversion < 0)
             return ReactionResult.NoReaction;
 
         mixture.AdjustMoles(Gas.CarbonDioxide, -producedAmount);
         mixture.AdjustMoles(Gas.Oxygen, -producedAmount * 0.5f);
-        mixture.AdjustMoles(Gas.Tritium, -producedAmount * 0.01f);
+        mixture.AdjustMoles(Gas.Tritium, -producedAmount * Atmospherics.PluoxiumTritiumConversion);
         mixture.AdjustMoles(Gas.Pluoxium, producedAmount);
-        mixture.AdjustMoles(Gas.Hydrogen, producedAmount * 0.01f);
+        mixture.AdjustMoles(Gas.Hydrogen, producedAmount * Atmospherics.PluoxiumTritiumConversion);
 
         var energyReleased = producedAmount * Atmospherics.PluoxiumFormationEnergy;
 

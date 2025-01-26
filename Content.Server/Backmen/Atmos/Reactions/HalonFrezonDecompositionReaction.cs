@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Content.Server.Atmos.Reactions;
 
 [UsedImplicitly]
-public sealed partial class HealiumProductionReaction : IGasReactionEffect
+public sealed partial class HalonFrezonDecompositionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
@@ -14,22 +14,25 @@ public sealed partial class HealiumProductionReaction : IGasReactionEffect
         if (initialHyperNoblium >= 5.0f && mixture.Temperature > 20f)
             return ReactionResult.NoReaction;
 
-        var initialBZ = mixture.GetMoles(Gas.BZ);
+        var initialHalon = mixture.GetMoles(Gas.Halon);
         var initialFrezon = mixture.GetMoles(Gas.Frezon);
 
-        var temperature = mixture.Temperature;
-        var heatEfficiency = Math.Min(temperature * 0.08f, Math.Min(initialFrezon * 2.75f, initialBZ * 0.25f));
+        var environmentEfficiency = mixture.Pressure * Atmospherics.HalonFrezonDecompositionPressureBonus / mixture.Volume;
+        var ratioEfficiency = Math.Min(initialHalon / initialFrezon, 1);
 
-        if (heatEfficiency <= 0 || initialFrezon - heatEfficiency * 2.75f < 0 || initialBZ - heatEfficiency * 0.25f < 0)
+        var producedAmount = Math.Min(ratioEfficiency * environmentEfficiency * 2f, Math.Min(initialFrezon * 0.5f, initialHalon * 0.5f));
+
+        if (producedAmount <= 0 || initialHalon - producedAmount * 0.5f < 0 || initialFrezon - producedAmount * 0.5f < 0)
             return ReactionResult.NoReaction;
 
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
+        mixture.AdjustMoles(Gas.Halon, -producedAmount * 0.5f);
+        mixture.AdjustMoles(Gas.Frezon, -producedAmount * 0.5f);
+        mixture.AdjustMoles(Gas.Helium, producedAmount * 1f);
+        mixture.AdjustMoles(Gas.CarbonDioxide, producedAmount * 0.25f);
+        mixture.AdjustMoles(Gas.Hydrogen, producedAmount * 2f);
 
-        mixture.AdjustMoles(Gas.Frezon, -heatEfficiency * 2.75f);
-        mixture.AdjustMoles(Gas.BZ, -heatEfficiency * 0.25f);
-        mixture.AdjustMoles(Gas.Healium, heatEfficiency * 3);
-
-        var energyReleased = heatEfficiency * Atmospherics.HealiumFormationEnergy;
+        var energyReleased = producedAmount * Atmospherics.HalonFrezonDecompositionEnergy;
 
         var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
