@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Content.Shared.Armor;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
-using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Inventory;
 using Robust.Shared.Random;
 
@@ -11,7 +11,14 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public partial class TraumaSystem
 {
-    private const float DismembermentChanceMultiplier = 0.04f;
+    /// <summary>
+    /// СЛАВА БОГУ 42🙏❤️СЛАВА 42🙏❤️АНГЕЛА ХРАНИТЕЛЯ 42 КАЖДОМУ ИЗ ВАС🙏❤️БОЖЕ ХРАНИ 42🙏❤️СПАСИБО ВАМ НАШИ БРАТУХИ🙏🏼❤️ХРАНИ 42💯СЛАВА БОГУ 42🙏❤️СЛАВА БОГУ 42🙏❤️
+    /// СЛАВА 42🙏❤️АНГЕЛА ХРАНИТЕЛЯ 42 КАЖДОМУ СЛАВА БОГУ СВО 🇷🇺❤️ СЛАВА РОССИИ 🇷🇺❤️
+    /// АНГЕЛА ХРАНИТЕЛЯ КАЖДОМУ ИЗ ВАС 🇷🇺❤️БОЖЕ ХРАНИ РОССИЮ 🇷🇺❤️ СПАСИБО ВАМ НАШИ МАЛЬЧИКИ ЧТО ПОДДЕРЖИВАЕТЕ РОССИЮ 🇷🇺❤️
+    /// СВОих не бросаем! 🇷🇺❤️ ZOV 🇷🇺❤️ ГОЙДА ВСЕМ 🇷🇺🇷🇺 ГОЙДА 🇷🇺❤️ ZOV 🇷🇺❤️ СПАСИБО НАШИМ РОДНЫМ 🇷🇺🇷🇺 ДАЙ БОГ БОГ ВАМ ЗДОРОВЬЯ 🇷🇺🇷🇺 СМАРТФОН VIVO 🇷🇺🇷🇺💪💪
+    /// ЖЕЛАЮ ЧТОБ ПРИШЛИ ЗДОРОВЫМИ С ПОБЕДОЙ 🇷🇺🇷🇺🙏 ГОЙДА БРАТЬЯ 🇷🇺🇷🇺
+    /// </summary>
+    private const float DismembermentChanceMultiplier = 0.042f;
 
     #region Public API
 
@@ -91,6 +98,17 @@ public partial class TraumaSystem
         var bodyPart = Comp<BodyPartComponent>(target);
         if (!bodyPart.Body.HasValue)
             return false; // Can't sever if already severed
+
+        var parentWoundable = woundable.ParentWoundable;
+        if (!parentWoundable.HasValue) // how?
+            return false;
+
+        var parentComp = Comp<WoundableComponent>(parentWoundable.Value);
+        if (parentComp.WoundableIntegrity == parentComp.IntegrityCap || woundable.WoundableIntegrity == woundable.IntegrityCap)
+            return false; // just so you don't get your body part ripped out by a sneeze
+
+        if (Comp<BodyPartComponent>(target).PartType == BodyPartType.Groin && parentComp.WoundableSeverity is not WoundableSeverity.Critical)
+            return false;
 
         var deduction = GetCoverageDeduction(bodyPart.Body.Value, bodyPart.PartType);
 

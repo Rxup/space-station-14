@@ -55,14 +55,21 @@ public partial class WoundSystem
 
     private void OnWoundInserted(EntityUid uid, WoundComponent comp, EntGotInsertedIntoContainerMessage args)
     {
+        if (comp.Parent == EntityUid.Invalid)
+            return;
+
         var parentWoundable = Comp<WoundableComponent>(comp.Parent);
         var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
 
-        var ev = new WoundAddedEvent(uid, comp, parentWoundable, woundableRoot);
+        var ev = new WoundAddedEvent(comp, parentWoundable, woundableRoot);
         RaiseLocalEvent(args.Entity, ref ev);
 
-        var ev2 = new WoundAddedEvent(uid, comp, parentWoundable, woundableRoot);
-        RaiseLocalEvent(parentWoundable.RootWoundable, ref ev2, true);
+        var bodyPart = Comp<BodyPartComponent>(comp.Parent);
+        if (bodyPart.Body.HasValue)
+        {
+            var ev2 = new WoundAddedOnBodyEvent(uid, comp, parentWoundable, woundableRoot);
+            RaiseLocalEvent(bodyPart.Body.Value, ref ev2, true);
+        }
     }
 
     private void OnWoundRemoved(EntityUid woundableEntity, WoundComponent wound, EntGotRemovedFromContainerMessage args)
@@ -257,8 +264,15 @@ public partial class WoundSystem
 
         if (wound.WoundSeverityPoint != old)
         {
-            var ev = new WoundSeverityPointChangedEvent(uid, wound, old, severity);
+            var ev = new WoundSeverityPointChangedEvent(wound, old, severity);
             RaiseLocalEvent(uid, ref ev);
+
+            var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+            if (bodyPart.Body.HasValue)
+            {
+                var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, old, severity);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+            }
         }
 
         CheckSeverityThresholds(uid, wound);
@@ -295,8 +309,15 @@ public partial class WoundSystem
 
         if (wound.WoundSeverityPoint != old)
         {
-            var ev = new WoundSeverityPointChangedEvent(uid, wound, old, severity);
+            var ev = new WoundSeverityPointChangedEvent(wound, old, severity);
             RaiseLocalEvent(uid, ref ev);
+
+            var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+            if (bodyPart.Body.HasValue)
+            {
+                var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, old, severity);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+            }
         }
 
         // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
@@ -674,11 +695,15 @@ public partial class WoundSystem
 
         foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
         {
-            var ev = new WoundAddedEvent(woundId, wound, childWoundable, woundableRoot);
+            var ev = new WoundAddedEvent(wound, parentWoundable, woundableRoot);
             RaiseLocalEvent(woundId, ref ev);
 
-            var ev2 = new WoundAddedEvent(woundId, wound, childWoundable, woundableRoot);
-            RaiseLocalEvent(childWoundable.RootWoundable, ref ev2, true);
+            var bodyPart = Comp<BodyPartComponent>(childEntity);
+            if (bodyPart.Body.HasValue)
+            {
+                var ev2 = new WoundAddedOnBodyEvent(woundId, wound, parentWoundable, woundableRoot);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev2, true);
+            }
         }
 
         Dirty(childEntity, childWoundable);

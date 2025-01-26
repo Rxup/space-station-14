@@ -35,7 +35,7 @@ public sealed partial class ArmorComponent : Component
     /// <summary>
     /// If true, the modifiers won't show.
     /// </summary>
-    [DataField("coverageHidden")]
+    [DataField("modifiersHidden")]
     public bool ArmourModifiersHidden = false;
 
     // thankfully all the armor in the game is symmetrical.

@@ -48,7 +48,7 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly WoundSystem _wounds = default!;
 
     // TODO: Some good person, please balance the numbers out
-    private const float BleedDivider = 10;
+    private const float BleedDivider = 3.22f;
 
     public override void Initialize()
     {
@@ -66,8 +66,9 @@ public sealed class BloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
 
+        SubscribeLocalEvent<BloodstreamComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundSeverityUpdate);
+
         SubscribeLocalEvent<BleedInflicterComponent, WoundAddedEvent>(OnWoundAdded);
-        SubscribeLocalEvent<BleedInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityUpdate);
     }
 
     #region Data
@@ -539,27 +540,14 @@ public sealed class BloodstreamSystem : EntitySystem
 
     private void OnWoundAdded(EntityUid uid, BleedInflicterComponent component, ref WoundAddedEvent args)
     {
-        if (!TryComp<WoundComponent>(args.WoundEntity, out var woundComponent))
-            return;
-
-        if (!woundComponent.CanBleed)
+        if (!args.Component.CanBleed)
             return;
 
         component.IsBleeding = true;
     }
 
-    private void OnWoundSeverityUpdate(EntityUid uid, BleedInflicterComponent component, ref WoundSeverityPointChangedEvent args)
+    private void OnWoundSeverityUpdate(EntityUid uid, BloodstreamComponent component, ref WoundSeverityPointChangedOnBodyEvent args)
     {
-        if (!HasComp<WoundComponent>(args.WoundEntity))
-            return;
-
-        if (!TryComp<BodyPartComponent>(args.Component.Parent, out var bodyPart)
-            || bodyPart.Body == null
-            || !TryComp<BloodstreamComponent>(bodyPart.Body.Value, out var bloodstream))
-        {
-            return;
-        }
-
         var totalDamage = (FixedPoint2) 0;
         foreach (var (wound, comp) in _wounds.GetAllWounds(Comp<WoundableComponent>(args.Component.Parent).RootWoundable))
         {
@@ -579,8 +567,8 @@ public sealed class BloodstreamSystem : EntitySystem
         var severityDelta = args.NewSeverity - args.OldSeverity;
         var bleedDelta = severityDelta * GetBleedPoint(args.Component.WoundSeverity);
 
-        TryModifyBleedAmount(bodyPart.Body.Value, (float) bleedDelta, bloodstream);
-        var nerveSys = _pain.GetNerveSystem(bodyPart.Body);
+        TryModifyBleedAmount(uid, (float) bleedDelta, component);
+        var nerveSys = _pain.GetNerveSystem(uid);
         if (!nerveSys.HasValue)
             return;
 

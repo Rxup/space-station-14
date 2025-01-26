@@ -67,7 +67,10 @@ public sealed class DroppedWoundablesGroupData(List<NetEntity> woundableList) : 
 }
 
 [ByRefEvent]
-public record struct WoundAddedEvent(EntityUid WoundEntity, WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
+public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
+
+[ByRefEvent]
+public record struct WoundAddedOnBodyEvent(EntityUid WoundEntity, WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
 
 [ByRefEvent]
 public record struct WoundRemovedEvent(EntityUid WoundEntity, WoundComponent Component, WoundableComponent OldWoundable, WoundableComponent OldRootWoundable);
@@ -79,7 +82,10 @@ public record struct WoundableAttachedEvent(EntityUid ParentWoundableEntity, Wou
 public record struct WoundableDetachedEvent(EntityUid ParentWoundableEntity, WoundableComponent Component);
 
 [ByRefEvent]
-public record struct WoundSeverityPointChangedEvent(EntityUid WoundEntity, WoundComponent Component, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
+public record struct WoundSeverityPointChangedEvent(WoundComponent Component, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
+
+[ByRefEvent]
+public record struct WoundSeverityPointChangedOnBodyEvent(EntityUid WoundEntity, WoundComponent Component, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
 
 [ByRefEvent]
 public record struct WoundSeverityChangedEvent(EntityUid WoundEntity, WoundSeverity NewSeverity);
