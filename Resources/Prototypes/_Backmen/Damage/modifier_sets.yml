@@ -127,3 +127,36 @@
     Cold: 0.5
     Heat: 0.8
     Shock: 0.5
+
+- type: damageModifierSet
+  id: CombineHuman
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 0.6
+    Cold: 0.0
+    Poison: 0.0
+    Radiation: 0.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: damageModifierSet
+  id: FelinidSkin
+  coefficients:
+    Blunt: 1.45
+    Slash: 1.35
+    Piercing: 1.35
+    Heat: 1.2
+    Cold: 1.5
+    Cellular: 1.1
+    Bloodloss: 1.25
+    Shock: 1.25
+    Radiation: 1.1
+
+- type: damageModifierSet
+  id: DwarfSkin
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 0.8

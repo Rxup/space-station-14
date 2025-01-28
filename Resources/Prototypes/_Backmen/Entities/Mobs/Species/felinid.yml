@@ -34,6 +34,7 @@
     prototype: Felinid
   - type: Damageable
     damageContainer: Biological
+    damageModifierSet: FelinidSkin
   - type: MeleeWeapon
     hidden: true
     soundHit:
