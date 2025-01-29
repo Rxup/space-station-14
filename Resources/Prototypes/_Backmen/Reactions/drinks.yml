@@ -8,3 +8,17 @@
       amount: 1
   products:
     CondensedMilk: 2
+
+- type: reaction
+  id: BacchusDrink
+  reactants:
+    Hooch:
+      amount: 1
+    Absinthe:
+      amount: 1
+    ManlyDorf:
+      amount: 1
+    SyndicateBomb:
+      amount: 1
+  products:
+    BacchusBlessing: 3

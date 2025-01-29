@@ -389,6 +389,8 @@
     - type: Battery
       maxCharge: 10000
       startingCharge: 10000
+    - type: StaticPrice
+      price: 300
 
 - type: entity
   name: x-ray cannon
@@ -781,4 +783,4 @@
     autoRecharge: true
     autoRechargeRate: 24
     autoRechargePause: true
-    autoRechargePauseTime: 10
+    autoRechargePauseTime: 30

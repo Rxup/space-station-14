@@ -95,7 +95,7 @@
                 </Control>
             </BoxContainer>
             <!-- Right Panel -->
-            <PanelContainer Name="RightSide" StyleClasses="LobbyBackground" HorizontalAlignment="Right" VerticalExpand="True"
+            <PanelContainer Name="RightSide" Access="Public" StyleClasses="AngleRect" HorizontalAlignment="Right" VerticalExpand="True"
                             VerticalAlignment="Stretch">
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                     <!-- Top row -->

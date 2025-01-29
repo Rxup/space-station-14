@@ -61,9 +61,13 @@
   name: Centcom Cargo PDA
   description: Light green sign of walking bureaucracy.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-centcomcargo
     - type: Pda
       id: IDCardCentComCargoBackmen
-      state: pda-centcomcargo
       penSlot:
         startingItem: PenCentcom
         whitelist:

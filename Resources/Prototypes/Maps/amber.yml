@@ -2,14 +2,16 @@
   id: Amber
   mapName: 'Amber'
   mapPath: /Maps/amber.yml
-  minPlayers: 7
-  maxPlayers: 50
+  # Corvax-start
+  minPlayers: 15
+  maxPlayers: 55
+  # Corvax-end
   stations:
     Amber:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Amber Station {1}'
+          mapNameTemplate: '{0} Амбер {1}' # Corvax
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14-SB'
@@ -64,3 +66,5 @@
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
+            #backmen
+            Prisoner: [ 1, 2]

@@ -151,6 +151,7 @@
       - LightBulb
       - LedLightBulb
       - DimLightBulb
+      - WarmLightBulb
       - Bucket
       - DrinkMug
       - DrinkMugMetal
@@ -194,7 +195,6 @@
       - SubstationMachineCircuitboard
       - WallmountSubstationElectronics
       - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
       - HandheldStationMap
@@ -493,8 +493,8 @@
     - SodaDispenserMachineCircuitboard
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
-    - StationAnchorCircuitboard
     - SalvageMagnetMachineCircuitboard
+    - BorgChargerCircuitboard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -517,7 +517,6 @@
       - SolarControlComputerCircuitboard
       - SolarTrackerElectronics
       - TurboItemRechargerCircuitboard
-      - PowerComputerCircuitboard
       - AutolatheHyperConvectionMachineCircuitboard
       - ProtolatheHyperConvectionMachineCircuitboard
       - CircuitImprinterHyperConvectionMachineCircuitboard
@@ -564,8 +563,9 @@
       - ShipyardCircuitboard # backmen
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
-      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
       - SMESAdvancedMachineCircuitboard
+      - HolopadMachineCircuitboard
+      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
@@ -786,6 +786,7 @@
       - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
+      - SyringeGun #Goobstation
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -842,6 +843,7 @@
       - ClothingHeadHelmetInsulated
       - ShellSoulbreaker
       - WeaponXrayCannon
+      - RapidSyringeGun # Goobstation
       - SecurityCyberneticEyes # Shitmed Change
       - MedicalCyberneticEyes # Shitmed Change
   - type: MaterialStorage
@@ -963,6 +965,7 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
+      - SyringeGun # backmen
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -970,12 +973,14 @@
       - SyringeBluespace
       - SyringeCryostasis
       - BluespacePillCanister # backmen
-      # Shitmed Change
+      - RapidSyringeGun # backmen
+      # Shitmed Change start
       - EnergyScalpel
       - EnergyCautery
       - AdvancedRetractor
       - OmnimedTool
       - MedicalCyberneticEyes
+      # Shitmed Change end
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -1151,6 +1156,25 @@
       - CarpetPurple
       - CarpetCyan
       - CarpetWhite
+      # Bedsheets
+      - BedsheetBlack
+      - BedsheetBlue
+      - BedsheetBrown
+      - BedsheetGreen
+      - BedsheetGrey
+      - BedsheetOrange
+      - BedsheetPurple
+      - BedsheetRed
+      - BedsheetWhite
+      - BedsheetYellow
+      - BedsheetClown
+      - BedsheetCosmos
+      - BedsheetIan
+      - BedsheetMedical
+      - BedsheetMime
+      - BedsheetNT
+      - BedsheetRainbow
+      - BedsheetBrigmedic
       # Corvax-Clothing-Start
       - ClothingHeadHatCapHoS
       - ClothingHeadHatBeretSecurityMedic
@@ -1166,6 +1190,7 @@
       # Corvax-Clothing-End
   - type: EmagLatheRecipes
     emagStaticRecipes:
+      # Clothing
       - ClothingHeadHatCentcomcap
       - ClothingHeadHatCentcom
       - ClothingUniformJumpsuitCentcomAgent
@@ -1188,6 +1213,8 @@
       - ClothingOuterWinterCentcom
       - ClothingOuterWinterSyndie
       - ClothingOuterWinterSyndieCap
+      # Bedsheets
+      - BedsheetSyndie
   - type: MaterialStorage
     whitelist:
       tags:

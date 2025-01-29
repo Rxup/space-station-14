@@ -33,7 +33,6 @@
       entities:
         - FloraTree
         - FloraTreeLarge
-        - FloraRockSolid
         - FloraTreeStump
     - !type:BiomeDecalLayer
       allowedTiles:
@@ -78,7 +77,6 @@
         - FloorCaveDrought
       entities:
         - FloraStalagmite
-        - FloraRockSolid
         - CrystalOrange
     - !type:BiomeEntityLayer
       allowedTiles:

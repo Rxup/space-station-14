@@ -2,13 +2,13 @@
   id: Box
   mapName: 'Box Station'
   mapPath: /Maps/box.yml
-  minPlayers: 50
+  minPlayers: 55 # Corvax
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Box Station {1}'
+          mapNameTemplate: '{0} Бокс {1}' # Corvax
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
@@ -26,7 +26,8 @@
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 4, 4 ]
+            Reporter: [ 1, 1 ]
+            ServiceWorker: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]

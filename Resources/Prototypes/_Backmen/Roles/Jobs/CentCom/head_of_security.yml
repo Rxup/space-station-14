@@ -86,9 +86,13 @@
   name: Centcom Officer PDA
   description: Black with green lines, sign of the walking protection of the bureaucracy.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-centcomsec
     - type: Pda
       id: IDCardCentComGavnaOfficerSesurity
-      state: pda-centcomsec
       penSlot:
         startingItem: PenCentcom
         whitelist:

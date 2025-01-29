@@ -56,5 +56,12 @@ namespace Content.Shared.Materials
         /// </summary>
         [DataField(required: true)]
         public double Price = 0;
+
+        /// <summary>
+        /// Backmen Change: Setting this to true will make
+        /// this material be ignored in Price Tests.
+        /// </summary>
+        [DataField]
+        public bool IgnoreArbitrage;
     }
 }

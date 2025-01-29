@@ -171,3 +171,6 @@ ent-SyringeRomerol = { ent-PrefilledSyringe }
 ent-SyringeStimulants = { ent-PrefilledSyringe }
     .desc = { ent-PrefilledSyringe.desc }
     .suffix = Стимулятор
+ent-SyringePax = { ent-PrefilledSyringe }
+    .desc = { ent-PrefilledSyringe.desc }
+    .suffix = Пакс
