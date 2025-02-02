@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 
@@ -32,7 +33,7 @@ public partial class PainSystem
             return;
 
         pain.Pain = FixedPoint2.Clamp(
-            args.Component.WoundSeverityPoint * _painMultipliers[args.Component.WoundSeverity] / 3,
+            args.Component.WoundSeverityPoint * _painMultipliers[args.Component.WoundSeverity],
             0,
             100);
 
@@ -57,9 +58,26 @@ public partial class PainSystem
         if (!brainUid.HasValue)
             return;
 
+        var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+        if (!rootPart.HasValue)
+            return;
+
         // bro how
-        pain.Pain += FixedPoint2.Clamp(args.NewSeverity * _painMultipliers[args.Component.WoundSeverity] / 3, 0, 100);
-        TryChangePainModifier(brainUid.Value, args.Component.Parent, args.NewSeverity * _painMultipliers[args.Component.WoundSeverity] / 3);
+        pain.Pain = FixedPoint2.Clamp(args.NewSeverity * _painMultipliers[args.Component.WoundSeverity], 0, 100);
+        var allPain = (FixedPoint2) 0;
+
+        foreach (var (_, comp) in _wound.GetAllWoundableChildren(rootPart.Value))
+        {
+            foreach (var woundId in comp.Wounds!.ContainedEntities)
+            {
+                if (!TryComp<PainInflicterComponent>(woundId, out var painInflicter))
+                    continue;
+
+                allPain += painInflicter.Pain;
+            }
+        }
+
+        TryChangePainModifier(brainUid.Value, args.Component.Parent, allPain);
     }
 
     #endregion

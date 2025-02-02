@@ -104,7 +104,7 @@ public partial class TraumaSystem
             return false;
 
         var parentComp = Comp<WoundableComponent>(parentWoundable.Value);
-        if (parentComp.WoundableIntegrity == parentComp.IntegrityCap || woundable.WoundableIntegrity == woundable.IntegrityCap)
+        if (parentComp.WoundableIntegrity == parentComp.IntegrityCap || woundable.WoundableIntegrity == woundable.IntegrityCap || severity < 14)
             return false; // just so you don't get your body part ripped out by a sneeze
 
         if (Comp<BodyPartComponent>(target).PartType == BodyPartType.Groin && parentComp.WoundableSeverity is not WoundableSeverity.Critical)

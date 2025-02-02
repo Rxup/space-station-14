@@ -48,3 +48,34 @@
     - /Audio/Voice/Human/femalescream_3.ogg
     - /Audio/Voice/Human/femalescream_4.ogg
     - /Audio/Voice/Human/femalescream_5.ogg
+
+# Pain screams (male)
+- type: soundCollection
+  id: PainScreamsShortMale
+  files:
+    - /Audio/Voice/BrutalDeathRattles/MalePainShort1.ogg
+    - /Audio/Voice/BrutalDeathRattles/MalePainShort2.ogg
+    - /Audio/Voice/BrutalDeathRattles/MalePainShort3.ogg
+    - /Audio/Voice/BrutalDeathRattles/MalePainShort4.ogg
+    - /Audio/Voice/BrutalDeathRattles/MalePainShort5.ogg
+    - /Audio/Voice/BrutalDeathRattles/MalePainShort6.ogg
+
+- type: soundCollection
+  id: PainShockScreamsMale
+  files:
+    - /Audio/Voice/BrutalDeathRattles/PainShockMale1.ogg
+    - /Audio/Voice/BrutalDeathRattles/PainShockMale2.ogg
+
+- type: soundCollection
+  id: CritWhimpersMale
+  files:
+    - /Audio/Voice/BrutalDeathRattles/StillAliveMale1.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAliveMale2.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAliveMale3.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAliveMale4.ogg
+
+- type: soundCollection
+  id: PainShockWhimpersMale
+  files:
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale1.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale2.ogg

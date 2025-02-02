@@ -47,7 +47,7 @@ public partial class WoundSystem
             if (!comp.CanBeHealed)
                 continue;
 
-            ApplyWoundSeverity(wound, ApplyHealingRateModifiers(wound, ent.Owner, healAmount, ent.Comp), comp, true);
+            ApplyWoundSeverity(wound, ApplyHealingRateModifiers(wound, ent.Owner, healAmount, ent.Comp), comp);
         }
 
         // That's it! o(( >ω< ))o

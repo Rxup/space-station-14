@@ -60,19 +60,20 @@ public sealed partial class ConsciousnessComponent : Component
 
     // Forceful control attributes, it's recommended not to use them directly.
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool PassedOut;
+    public bool PassedOut = false;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public float AccumulatedPassedOutTime;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float PassedOutTime;
+    public TimeSpan PassedOutTime = TimeSpan.Zero;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ForceDead;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ForceUnconscious;
+
+    // funny
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool ForceConscious;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsConscious = true;

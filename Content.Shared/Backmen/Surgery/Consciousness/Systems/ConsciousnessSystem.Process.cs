@@ -12,9 +12,9 @@ public partial class ConsciousnessSystem
 {
     private void InitProcess()
     {
-        SubscribeLocalEvent<OrganComponent, PainModifierChangedEvent>(OnPainChanged);
-        SubscribeLocalEvent<OrganComponent, PainModifierAddedEvent>(OnPainAdded);
-        SubscribeLocalEvent<OrganComponent, PainModifierRemovedEvent>(OnPainRemoved);
+        SubscribeLocalEvent<NerveSystemComponent, PainModifierChangedEvent>(OnPainChanged);
+        SubscribeLocalEvent<NerveSystemComponent, PainModifierAddedEvent>(OnPainAdded);
+        SubscribeLocalEvent<NerveSystemComponent, PainModifierRemovedEvent>(OnPainRemoved);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, ComponentInit>(OnConsciousnessPartInit);
 
@@ -27,52 +27,62 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
     }
 
-    private void OnPainChanged(EntityUid uid, OrganComponent component, PainModifierChangedEvent args)
+    private void UpdatePassedOut(float frameTime)
     {
-        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) ||
-            !TryComp<NerveSystemComponent>(args.NerveSystem, out var nerveSys))
+        var query = EntityQueryEnumerator<ConsciousnessComponent>();
+        while (query.MoveNext(out var ent, out var consciousness))
+        {
+            if (consciousness.PassedOutTime > _timing.CurTime)
+                return;
+
+            consciousness.PassedOut = false;
+            CheckConscious(ent, consciousness);
+        }
+    }
+
+    private void OnPainChanged(EntityUid uid, NerveSystemComponent component, PainModifierChangedEvent args)
+    {
+        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan))
             return;
 
         if (!SetConsciousnessModifier(nerveSysOrgan.Body!.Value,
                 args.NerveSystem,
-                -nerveSys.Pain,
+                -component.Pain,
                 null,
                 ConsciousnessModType.Pain))
         {
             AddConsciousnessModifier(nerveSysOrgan.Body!.Value,
                 args.NerveSystem,
-                -nerveSys.Pain,
+                -component.Pain,
                 null,
                 "Pain",
                 ConsciousnessModType.Pain);
         }
     }
 
-    private void OnPainAdded(EntityUid uid, OrganComponent component, PainModifierAddedEvent args)
+    private void OnPainAdded(EntityUid uid, NerveSystemComponent component, PainModifierAddedEvent args)
     {
-        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) ||
-            !TryComp<NerveSystemComponent>(args.NerveSystem, out var nerveSys))
+        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan))
             return;
 
         if (!SetConsciousnessModifier(nerveSysOrgan.Body!.Value,
                 args.NerveSystem,
-                -nerveSys.Pain,
+                -component.Pain,
                 null,
                 ConsciousnessModType.Pain))
         {
             AddConsciousnessModifier(nerveSysOrgan.Body!.Value,
                 args.NerveSystem,
-                -nerveSys.Pain,
+                -component.Pain,
                 null,
                 "Pain",
                 ConsciousnessModType.Pain);
         }
     }
 
-    private void OnPainRemoved(EntityUid uid, OrganComponent component, PainModifierRemovedEvent args)
+    private void OnPainRemoved(EntityUid uid, NerveSystemComponent component, PainModifierRemovedEvent args)
     {
-        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) ||
-            !TryComp<NerveSystemComponent>(args.NerveSystem, out var nerveSys))
+        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan))
             return;
 
         if (args.CurrentPain <= 0)
@@ -85,7 +95,7 @@ public partial class ConsciousnessSystem
         {
             SetConsciousnessModifier(nerveSysOrgan.Body!.Value,
                 args.NerveSystem,
-                -nerveSys.Pain,
+                -component.Pain,
                 type: ConsciousnessModType.Pain);
         }
     }

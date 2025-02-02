@@ -22,7 +22,6 @@ public sealed partial class WoundableVisualsComponent : Component
     };
 
     public HashSet<Enum> TargetLayerMapKeys = [];
-    public HashSet<EntityUid> DroppedBodyParts = [];
 }
 
 // :fort:

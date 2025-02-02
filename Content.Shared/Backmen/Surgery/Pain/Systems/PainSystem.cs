@@ -1,8 +1,15 @@
 ﻿using Content.Shared.Backmen.Surgery.Body.Events;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Jittering;
+using Content.Shared.Popups;
+using Content.Shared.Stunnable;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
@@ -10,7 +17,19 @@ namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 public partial class PainSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
+
     [Dependency] private readonly SharedBodySystem _body = default!;
+
+    [Dependency] private readonly SharedAudioSystem _IHaveNoMouthAndIMustScream = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
+
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+
+    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -26,23 +45,24 @@ public partial class PainSystem : EntitySystem
         InitAffliction();
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        UpdateDamage(frameTime);
+    }
+
     private void OnBodyPartAdded(EntityUid uid, BodyComponent body, ref BodyPartAddedEvent args)
     {
         if (_net.IsClient)
             return;
 
-        var brainUid = EntityUid.Invalid;
-        foreach (var organ in _body.GetBodyOrgans(args.Part.Comp.Body))
-        {
-            if (!TryComp<NerveSystemComponent>(organ.Id, out _))
-                continue;
-            brainUid = organ.Id;
-        }
-
-        if (brainUid == EntityUid.Invalid)
+        var brainUid = GetNerveSystem(uid);
+        if (!brainUid.HasValue || TerminatingOrDeleted(brainUid.Value))
             return;
 
-        UpdateNerveSystemNerves(brainUid, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid));
+        TryRemovePainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss");
+        UpdateNerveSystemNerves(brainUid.Value, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
     private void OnBodyPartRemoved(EntityUid uid, BodyComponent body, ref BodyPartRemovedEvent args)
@@ -50,18 +70,12 @@ public partial class PainSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var brainUid = EntityUid.Invalid;
-        foreach (var organ in _body.GetBodyOrgans(args.Part.Comp.Body))
-        {
-            if (!TryComp<NerveSystemComponent>(organ.Id, out _))
-                continue;
-            brainUid = organ.Id;
-        }
-
-        if (brainUid == EntityUid.Invalid)
+        var brainUid = GetNerveSystem(uid);
+        if (!brainUid.HasValue || TerminatingOrDeleted(brainUid.Value))
             return;
 
-        UpdateNerveSystemNerves(brainUid, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid));
+        TryAddPainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss", 2);
+        UpdateNerveSystemNerves(brainUid.Value, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
     private void UpdateNerveSystemNerves(EntityUid uid, EntityUid body, NerveSystemComponent component)

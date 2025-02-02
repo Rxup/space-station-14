@@ -3,6 +3,7 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -259,6 +260,22 @@ public partial class WoundSystem
         if (!Resolve(uid, ref wound) || !_net.IsServer)
             return;
 
+        var oldBody = (FixedPoint2) 0;
+
+        var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+        if (bodyPart.Body.HasValue)
+        {
+            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+            if (rootPart.HasValue)
+            {
+                foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
+                {
+                    oldBody =
+                        woundable.Wounds!.ContainedEntities.Aggregate(oldBody, (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
+                }
+            }
+        }
+
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity);
 
@@ -267,11 +284,27 @@ public partial class WoundSystem
             var ev = new WoundSeverityPointChangedEvent(wound, old, severity);
             RaiseLocalEvent(uid, ref ev);
 
-            var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+            var bodySeverity = (FixedPoint2) 0;
+
             if (bodyPart.Body.HasValue)
             {
-                var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, old, severity);
-                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+                var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+                if (rootPart.HasValue)
+                {
+                    foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
+                    {
+                        bodySeverity =
+                            woundable.Wounds!.ContainedEntities.Aggregate(
+                                bodySeverity,
+                                (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
+                    }
+                }
+
+                if (bodySeverity != oldBody)
+                {
+                    var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, oldBody, bodySeverity);
+                    RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+                }
             }
         }
 
@@ -294,34 +327,63 @@ public partial class WoundSystem
         EntityUid uid,
         FixedPoint2 severity,
         WoundComponent? wound = null,
-        bool isHealing = false,
         IEnumerable<TraumaType>? traumaList = null)
     {
         if (!Resolve(uid, ref wound) || _net.IsClient)
             return;
 
-        var old = wound.WoundSeverityPoint;
+        var oldBody = (FixedPoint2) 0;
 
-        wound.WoundSeverityPoint = FixedPoint2.Clamp(isHealing ? old - severity : old + ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity);
-        // Apply modifiers, actually we've got "raw" severity up here.
-        // Healing modifiers are applied, so doing this again isn't needed.
-        // why would you even want a wound with more than 100 severity
+        var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+        if (bodyPart.Body.HasValue)
+        {
+            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+            if (rootPart.HasValue)
+            {
+                foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
+                {
+                    oldBody =
+                        woundable.Wounds!.ContainedEntities.Aggregate(oldBody, (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
+                }
+            }
+        }
+
+        var old = wound.WoundSeverityPoint;
+        wound.WoundSeverityPoint = severity > 0
+            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity)
+            : FixedPoint2.Clamp(old + severity, 0, WoundMaxSeverity);
 
         if (wound.WoundSeverityPoint != old)
         {
-            var ev = new WoundSeverityPointChangedEvent(wound, old, severity);
+            var ev = new WoundSeverityPointChangedEvent(wound, old, wound.WoundSeverityPoint);
             RaiseLocalEvent(uid, ref ev);
 
-            var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+            var bodySeverity = (FixedPoint2) 0;
+
             if (bodyPart.Body.HasValue)
             {
-                var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, old, severity);
-                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+                var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+                if (rootPart.HasValue)
+                {
+                    foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
+                    {
+                        bodySeverity =
+                            woundable.Wounds!.ContainedEntities.Aggregate(
+                                bodySeverity,
+                                (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
+                    }
+                }
+
+                if (bodySeverity != oldBody)
+                {
+                    var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, oldBody, bodySeverity);
+                    RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+                }
             }
         }
 
         // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
-        if (wound.CanApplyTrauma && !isHealing)
+        if (wound.CanApplyTrauma && severity > 0)
         {
             var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.Parent, severity);
             wound.WoundType =
@@ -920,7 +982,7 @@ public partial class WoundSystem
     public IEnumerable<(EntityUid, WoundComponent)> GetAllWounds(EntityUid targetEntity,
         WoundableComponent? targetWoundable = null)
     {
-        if (!Resolve(targetEntity, ref targetWoundable) || targetWoundable.Wounds!.Count == 0)
+        if (!Resolve(targetEntity, ref targetWoundable))
             yield break;
 
         foreach (var (_, childWoundable) in GetAllWoundableChildren(targetEntity, targetWoundable))

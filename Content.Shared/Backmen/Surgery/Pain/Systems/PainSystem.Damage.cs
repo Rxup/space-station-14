@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
+using Content.Shared.Popups;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
@@ -11,12 +14,12 @@ public partial class PainSystem
 
     private readonly Dictionary<WoundSeverity, FixedPoint2> _painMultipliers = new()
     {
-        { WoundSeverity.Healed, 1 },
-        { WoundSeverity.Minor, 1 },
-        { WoundSeverity.Moderate, 1.15 },
-        { WoundSeverity.Severe, 1.35 },
-        { WoundSeverity.Critical, 1.5 },
-        { WoundSeverity.Loss, 1.75},
+        { WoundSeverity.Healed, 0.34 },
+        { WoundSeverity.Minor, 0.34 },
+        { WoundSeverity.Moderate, 0.47 },
+        { WoundSeverity.Severe, 0.54 },
+        { WoundSeverity.Critical, 0.62 },
+        { WoundSeverity.Loss, 0.62 }, // already painful enough
     };
 
     #endregion
@@ -28,7 +31,7 @@ public partial class PainSystem
     /// </summary>
     /// <param name="uid">Uid of the nerveSystem component owner.</param>
     /// <param name="nerveUid">Nerve uid.</param>
-    /// <param name="change">How many pain to add.</param>
+    /// <param name="change">How many pain to set.</param>
     /// <param name="nerveSys">NerveSystemComponent.</param>
     /// <returns>Returns true, if PAIN QUOTA WAS COLLECTED.</returns>
     public bool TryChangePainModifier(EntityUid uid, EntityUid nerveUid, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
@@ -211,6 +214,21 @@ public partial class PainSystem
 
     #region Private API
 
+    private void UpdateDamage(float frameTime)
+    {
+        var query = EntityQueryEnumerator<NerveSystemComponent>();
+        while (query.MoveNext(out _, out var nerveSys))
+        {
+            if (nerveSys.LastPainThreshold == nerveSys.Pain)
+                continue;
+
+            if (_timing.CurTime < nerveSys.UpdateTime)
+                continue;
+
+            nerveSys.LastPainThreshold = nerveSys.Pain;
+        }
+    }
+
     private void UpdateNerveSystemPain(EntityUid uid, NerveSystemComponent? nerveSys = null)
     {
         if (!Resolve(uid, ref nerveSys, false) || !_net.IsServer)
@@ -222,7 +240,99 @@ public partial class PainSystem
                     (current, modifier) =>
                     current + ApplyModifiersToPain(modifier.Key, modifier.Value.Change, nerveSys)),
                 0,
-                100);
+                nerveSys.PainCap);
+
+        UpdatePainThreshold(uid, nerveSys);
+    }
+
+    private void ApplyPainReflexesEffects(EntityUid body, NerveSystemComponent nerveSys, PainThresholdTypes reaction)
+    {
+        if (!_net.IsServer)
+            return;
+
+        var sex = Sex.Unsexed;
+        if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
+            sex = humanoid.Sex;
+
+        switch (reaction)
+        {
+            case PainThresholdTypes.PainFlinch:
+                foreach (var (sound, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
+                {
+                    _IHaveNoMouthAndIMustScream.Stop(sound);
+                    nerveSys.PlayedPainSounds.Remove(sound);
+                }
+
+                _IHaveNoMouthAndIMustScream.PlayPvs(nerveSys.PainScreams[sex], body);
+                _popup.PopupPredicted(Loc.GetString("screams-and-flinches-pain", ("entity", body)), body, null, PopupType.MediumCaution);
+
+                _jitter.DoJitter(body, TimeSpan.FromSeconds(0.9), true, 24f, 1f);
+
+                break;
+            case PainThresholdTypes.PainShock:
+                foreach (var (sound, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
+                {
+                    _IHaveNoMouthAndIMustScream.Stop(sound);
+                    nerveSys.PlayedPainSounds.Remove(sound);
+                }
+
+                _IHaveNoMouthAndIMustScream.PlayPvs(nerveSys.PainShockScreams[sex], body);
+                _popup.PopupPredicted(Loc.GetString("screams-and-falls-pain", ("entity", body)), body, null, PopupType.MediumCaution);
+
+                _stun.TryParalyze(body, nerveSys.PainShockStunTime, true);
+
+                _IHaveNoMouthAndIMustScream.PlayPvs(nerveSys.PainShockWhimpers[sex], body);
+
+                break;
+            case PainThresholdTypes.PainPassout:
+                foreach (var (sound, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
+                {
+                    _IHaveNoMouthAndIMustScream.Stop(sound);
+                    nerveSys.PlayedPainSounds.Remove(sound);
+                }
+
+                _popup.PopupPredicted(Loc.GetString("passes-out-pain", ("entity", body)), body, null, PopupType.MediumCaution);
+                _consciousness.ForcePassout(body, nerveSys.ForcePassoutTime);
+
+                break;
+            case PainThresholdTypes.None:
+                break;
+        }
+    }
+
+    private void UpdatePainThreshold(EntityUid uid, NerveSystemComponent nerveSys)
+    {
+        var painInput = nerveSys.Pain - nerveSys.LastPainThreshold;
+
+        var nearestReflex = PainThresholdTypes.None;
+        foreach (var (reflex, threshold) in nerveSys.PainThresholds.OrderByDescending(kv => kv.Value))
+        {
+            if (painInput < threshold)
+                continue;
+
+            nearestReflex = reflex;
+            break;
+        }
+
+        if (nearestReflex == PainThresholdTypes.None)
+            return;
+
+        if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
+            return;
+
+        var ev1 = new PainThresholdTriggered(uid, nerveSys, nearestReflex, painInput);
+        RaiseLocalEvent(organ.Body.Value, ref ev1);
+
+        if (ev1.Cancelled || !_consciousness.CheckConscious(organ.Body.Value))
+            return;
+
+        var ev2 = new PainThresholdEffected(uid, nerveSys, nearestReflex, painInput);
+        RaiseLocalEvent(organ.Body.Value, ref ev2);
+
+        nerveSys.UpdateTime = _timing.CurTime + nerveSys.ThresholdUpdateTime;
+
+        ApplyPainReflexesEffects(organ.Body.Value, nerveSys, nearestReflex);
+        _sawmill.Info($"Pain threshold (reflex) chosen: {nearestReflex} ({nerveSys.PainThresholds[nearestReflex]}) with painInput of {painInput}. What a good day.");
     }
 
     private FixedPoint2 ApplyModifiersToPain(EntityUid nerveUid, FixedPoint2 pain, NerveSystemComponent nerveSys, NerveComponent? nerve = null)

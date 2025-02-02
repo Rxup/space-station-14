@@ -10,23 +10,6 @@ public enum ConsciousnessModType
     Pain, // Pain is affected only by pain multipliers
 }
 
-[Serializable, NetSerializable]
-public sealed class ConsciousnessComponentState : ComponentState
-{
-    public FixedPoint2 Threshold;
-    public FixedPoint2 RawConsciousness;
-    public FixedPoint2 Multiplier;
-    public FixedPoint2 Cap;
-
-    public readonly Dictionary<(NetEntity, ConsciousnessModType), ConsciousnessModifier> Modifiers = new();
-    public readonly Dictionary<(NetEntity, ConsciousnessModType), ConsciousnessMultiplier> Multipliers = new();
-    public readonly Dictionary<string, (NetEntity?, bool, bool)> RequiredConsciousnessParts = new();
-
-    public bool ForceDead;
-    public bool ForceUnconscious;
-    public bool IsConscious;
-}
-
 [ByRefEvent]
 public record struct ConsciousnessUpdatedEvent(bool IsConscious, FixedPoint2 ConsciousnessDelta);
 

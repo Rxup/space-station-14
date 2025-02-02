@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Mobs.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
@@ -8,6 +9,8 @@ public partial class ConsciousnessSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private const string UnspecifiedIdentifier = "Unspecified";
 
@@ -20,5 +23,12 @@ public partial class ConsciousnessSystem : EntitySystem
         _sawmill = Logger.GetSawmill("consciousness");
 
         InitProcess();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        UpdatePassedOut(frameTime);
     }
 }

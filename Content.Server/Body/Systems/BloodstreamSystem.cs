@@ -47,8 +47,9 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly PainSystem _pain = default!;
     [Dependency] private readonly WoundSystem _wounds = default!;
 
-    // TODO: Some good person, please balance the numbers out
-    private const float BleedDivider = 3.22f;
+    // balanced, trust me
+    private const float BleedDivider = 14.322f;
+    private const float BleedsSeverityTrade = 0.20f;
 
     public override void Initialize()
     {
@@ -70,18 +71,6 @@ public sealed class BloodstreamSystem : EntitySystem
 
         SubscribeLocalEvent<BleedInflicterComponent, WoundAddedEvent>(OnWoundAdded);
     }
-
-    #region Data
-
-    private readonly Dictionary<WoundSeverity, FixedPoint2> _severityPoints = new()
-    {
-        { WoundSeverity.Minor, 0.02 },
-        { WoundSeverity.Moderate, 0.06 },
-        { WoundSeverity.Severe, 0.08 },
-        { WoundSeverity.Critical, 0.10 }
-    };
-
-    #endregion
 
     private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
     {
@@ -543,56 +532,45 @@ public sealed class BloodstreamSystem : EntitySystem
         if (!args.Component.CanBleed)
             return;
 
+        // wounds that BLEED will not HEAL.
+        args.Component.CanBeHealed = false;
+
         component.IsBleeding = true;
+        component.BleedingAmountRaw = args.Component.WoundSeverityPoint * BleedsSeverityTrade;
+
+        var bodyPart = Comp<BodyPartComponent>(args.Component.Parent);
+        if (!bodyPart.Body.HasValue)
+            return;
+
+        TryModifyBleedAmount(bodyPart.Body.Value, (float) component.BleedingAmount);
     }
 
     private void OnWoundSeverityUpdate(EntityUid uid, BloodstreamComponent component, ref WoundSeverityPointChangedOnBodyEvent args)
     {
-        var totalDamage = (FixedPoint2) 0;
-        foreach (var (wound, comp) in _wounds.GetAllWounds(Comp<WoundableComponent>(args.Component.Parent).RootWoundable))
-        {
-            if (!comp.CanBleed)
-                continue;
-
-            if (!TryComp<BleedInflicterComponent>(wound, out var bleed) || !bleed.IsBleeding)
-                continue;
-
-            var oldDamage = totalDamage;
-            totalDamage += comp.WoundSeverityPoint * GetBleedPoint(comp.WoundSeverity);
-
-            if (totalDamage < oldDamage)
-                bleed.IsBleeding = false;
-        }
-
         var severityDelta = args.NewSeverity - args.OldSeverity;
-        var bleedDelta = severityDelta * GetBleedPoint(args.Component.WoundSeverity);
+        var bleedDelta = severityDelta * BleedsSeverityTrade;
 
         TryModifyBleedAmount(uid, (float) bleedDelta, component);
         var nerveSys = _pain.GetNerveSystem(uid);
         if (!nerveSys.HasValue)
             return;
 
-        if (totalDamage > 0)
+        if (args.NewSeverity > 0)
         {
             if (!_pain.TryChangePainMultiplier(
                     nerveSys.Value,
                     "BleedingPainMultiplier",
-                    FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4)))
+                    FixedPoint2.Clamp(BleedDivider / args.NewSeverity, 1.07, 2.4)))
             {
                 _pain.TryAddPainMultiplier(
                     nerveSys.Value,
                     "BleedingPainMultiplier",
-                    FixedPoint2.Clamp(BleedDivider / totalDamage, 1.07, 2.4));
+                    FixedPoint2.Clamp(BleedDivider / args.NewSeverity, 1.07, 2.4));
             }
         }
         else
         {
             _pain.TryRemovePainMultiplier(nerveSys.Value, "BleedingPainMultiplier");
         }
-    }
-
-    private FixedPoint2 GetBleedPoint(WoundSeverity woundSeverity)
-    {
-        return _severityPoints.TryGetValue(woundSeverity, out var point) ? point : 0;
     }
 }

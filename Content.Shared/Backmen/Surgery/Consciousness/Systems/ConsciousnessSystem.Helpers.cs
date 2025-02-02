@@ -17,24 +17,15 @@ public partial class ConsciousnessSystem
     /// </summary>
     /// <param name="target">Target entity</param>
     /// <param name="consciousness">Consciousness component</param>
-    public void CheckConscious(EntityUid target, ConsciousnessComponent? consciousness = null)
+    public bool CheckConscious(EntityUid target, ConsciousnessComponent? consciousness = null)
     {
         if (!Resolve(target, ref consciousness))
-            return;
+            return false;
 
         SetConscious(target, consciousness.Consciousness > consciousness.Threshold, consciousness);
         UpdateMobState(target, consciousness);
-    }
 
-    /// <summary>
-    /// Gets the current consciousness state of an entity. This is mainly used internally.
-    /// </summary>
-    /// <param name="target">Target entity</param>
-    /// <param name="consciousness">Consciousness component</param>
-    /// <returns>True if conscious</returns>
-    public bool IsConscious(EntityUid target, ConsciousnessComponent? consciousness = null)
-    {
-        return Resolve(target, ref consciousness) && consciousness.Consciousness > consciousness.Threshold;
+        return consciousness.Consciousness > consciousness.Threshold;
     }
 
     /// <summary>
@@ -43,13 +34,13 @@ public partial class ConsciousnessSystem
     /// <param name="target">Target to pass out.</param>
     /// <param name="time">Time. In seconds.</param>
     /// <param name="consciousness"><see cref="ConsciousnessComponent"/> of an entity.</param>
-    public void ForcePassout(EntityUid target, float time, ConsciousnessComponent? consciousness = null)
+    public void ForcePassout(EntityUid target, TimeSpan time, ConsciousnessComponent? consciousness = null)
     {
         if (!Resolve(target, ref consciousness))
             return;
 
         consciousness.PassedOut = true;
-        consciousness.PassedOutTime = time;
+        consciousness.PassedOutTime = _timing.CurTime + time;
 
         CheckConscious(target, consciousness);
     }
@@ -128,7 +119,7 @@ public partial class ConsciousnessSystem
         var alive = true;
         var conscious = true;
 
-        foreach (var (/*identifier */_, (entity,forcesDeath, isLost)) in consciousness.RequiredConsciousnessParts)
+        foreach (var (/*identifier */_, (entity, forcesDeath, isLost)) in consciousness.RequiredConsciousnessParts)
         {
             if (entity == null || !isLost)
                 continue;
@@ -136,11 +127,9 @@ public partial class ConsciousnessSystem
             if (forcesDeath)
             {
                 consciousness.ForceDead = true;
-
                 Dirty(bodyId, consciousness);
 
                 alive = false;
-
                 break;
             }
 
@@ -225,11 +214,10 @@ public partial class ConsciousnessSystem
 
         UpdateConsciousnessModifiers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness), modifier * consciousness.Multiplier);
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness), modifier * consciousness.Multiplier);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
 
         return true;
     }
@@ -283,12 +271,11 @@ public partial class ConsciousnessSystem
 
         UpdateConsciousnessModifiers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness),
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness),
             foundModifier.Change * consciousness.Multiplier);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
 
         return true;
     }
@@ -317,12 +304,11 @@ public partial class ConsciousnessSystem
         consciousness.Modifiers[(modifierOwner,type)] = newModifier;
         UpdateConsciousnessModifiers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness),
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness),
             modifierChange * consciousness.Multiplier);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
 
         return true;
     }
@@ -351,12 +337,11 @@ public partial class ConsciousnessSystem
         consciousness.Modifiers[(modifierOwner,type)] = newModifier;
         UpdateConsciousnessModifiers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness),
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness),
             modifierChange * consciousness.Multiplier);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
 
         return true;
     }
@@ -415,11 +400,10 @@ public partial class ConsciousnessSystem
 
         UpdateConsciousnessMultipliers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness), multiplier * consciousness.RawConsciousness);
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness), multiplier * consciousness.RawConsciousness);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
 
         return true;
     }
@@ -473,12 +457,11 @@ public partial class ConsciousnessSystem
 
         UpdateConsciousnessMultipliers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness),
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness),
             foundMultiplier.Change * consciousness.RawConsciousness);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
         UpdateConsciousnessModifiers(target, consciousness);
 
         return true;
@@ -508,12 +491,11 @@ public partial class ConsciousnessSystem
         consciousness.Multipliers[(multiplierOwner, type)] = newMultiplier;
         UpdateConsciousnessMultipliers(target, consciousness);
 
-        var ev = new ConsciousnessUpdatedEvent(IsConscious(target, consciousness),
+        var ev = new ConsciousnessUpdatedEvent(CheckConscious(target, consciousness),
             multiplierChange * consciousness.RawConsciousness);
         RaiseLocalEvent(target, ref ev, true);
 
         Dirty(target, consciousness);
-        CheckConscious(target, consciousness);
         UpdateConsciousnessModifiers(target, consciousness);
 
         return true;
