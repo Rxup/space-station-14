@@ -35,6 +35,7 @@ namespace Content.Shared.DrawDepth
         ///     tables, even though they are technically "on the floor".
         /// </summary>
         FloorObjects = DrawDepthTag.Default - 7,
+        BlobTiles = DrawDepthTag.Default - 5, // backmen: blob
 
         /// <summary>
         //     Discrete drawdepth to avoid z-fighting with other FloorObjects but also above floor entities.
