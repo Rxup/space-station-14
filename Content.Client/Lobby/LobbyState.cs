@@ -193,7 +193,7 @@ namespace Content.Client.Lobby
             if (_gameTicker.ServerInfoBlob != null)
             {
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
-                Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20] BackMen And Ataraxia [/font]"); // BACKMEN EDIT
+                Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20] FLX: Cosmi Station [/font]"); // BACKMEN EDIT
                 Lobby!.ChangelogLabel.SetMarkup(Loc.GetString("ui-lobby-changelog")); // BACKMEN EDIT
             }
         }
