@@ -9,6 +9,7 @@ public enum PainThresholdTypes
 {
     None,
     PainFlinch,
+    Agony,
     PainShock,
     PainPassout,
 }

@@ -1,10 +1,12 @@
-﻿using Content.Shared.Backmen.Surgery.Body.Events;
+﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
+using Content.Shared.Mobs;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
@@ -15,6 +17,8 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<NerveSystemComponent, PainModifierChangedEvent>(OnPainChanged);
         SubscribeLocalEvent<NerveSystemComponent, PainModifierAddedEvent>(OnPainAdded);
         SubscribeLocalEvent<NerveSystemComponent, PainModifierRemovedEvent>(OnPainRemoved);
+
+        SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, ComponentInit>(OnConsciousnessPartInit);
 
@@ -32,10 +36,12 @@ public partial class ConsciousnessSystem
         var query = EntityQueryEnumerator<ConsciousnessComponent>();
         while (query.MoveNext(out var ent, out var consciousness))
         {
-            if (consciousness.PassedOutTime > _timing.CurTime)
-                return;
+            if (consciousness.PassedOutTime < _timing.CurTime)
+                consciousness.PassedOut = false;
 
-            consciousness.PassedOut = false;
+            if (consciousness.ForceConsciousnessTime < _timing.CurTime)
+                consciousness.ForceConscious = false;
+
             CheckConscious(ent, consciousness);
         }
     }
@@ -97,6 +103,21 @@ public partial class ConsciousnessSystem
                 args.NerveSystem,
                 -component.Pain,
                 type: ConsciousnessModType.Pain);
+        }
+    }
+
+    private void OnMobStateChanged(EntityUid uid, ConsciousnessComponent component, MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead)
+            return;
+
+        AddConsciousnessModifier(uid, uid, -component.Cap, component, "DeathThreshold");
+        // To prevent people from suddenly resurrecting while being dead. whoops
+
+        foreach (var multiplier in
+                 component.Multipliers.Where(multiplier => multiplier.Value.Type != ConsciousnessModType.Pain))
+        {
+            RemoveConsciousnessMultiplier(uid, multiplier.Key.Item1, multiplier.Value.Type, component);
         }
     }
 

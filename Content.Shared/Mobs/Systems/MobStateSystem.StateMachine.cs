@@ -114,6 +114,16 @@ public partial class MobStateSystem
         var ev = new MobStateChangedEvent(target, component, oldState, newState, origin);
         OnStateChanged(target, component, oldState, newState);
         RaiseLocalEvent(target, ev, true);
+
+        var nerveSys = _pain.GetNerveSystem(target);
+        if (nerveSys.HasValue)
+        {
+            var ev1 = new MobStateChangedEvent(target, component, oldState, newState, origin);
+            RaiseLocalEvent(nerveSys.Value, ev1, true);
+
+            // to handle consciousness related stuff. sorry
+        }
+
         _adminLogger.Add(LogType.Damaged, oldState == MobState.Alive ? LogImpact.Low : LogImpact.Medium,
             $"{ToPrettyString(target):user} state changed from {oldState} to {newState}");
         Dirty(target, component);

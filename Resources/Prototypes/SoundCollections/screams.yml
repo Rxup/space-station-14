@@ -61,10 +61,19 @@
     - /Audio/Voice/BrutalDeathRattles/MalePainShort6.ogg
 
 - type: soundCollection
+  id: AgonyScreamsMale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/MaleAgony1.ogg
+  - /Audio/Voice/BrutalDeathRattles/MaleAgony2.ogg
+  - /Audio/Voice/BrutalDeathRattles/MaleAgony3.ogg
+
+- type: soundCollection
   id: PainShockScreamsMale
   files:
     - /Audio/Voice/BrutalDeathRattles/PainShockMale1.ogg
     - /Audio/Voice/BrutalDeathRattles/PainShockMale2.ogg
+    - /Audio/Voice/BrutalDeathRattles/PainShockMale3.ogg
+    - /Audio/Voice/BrutalDeathRattles/PainShockMale4.ogg
 
 - type: soundCollection
   id: CritWhimpersMale

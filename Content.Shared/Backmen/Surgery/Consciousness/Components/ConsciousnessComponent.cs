@@ -66,6 +66,9 @@ public sealed partial class ConsciousnessComponent : Component
     public TimeSpan PassedOutTime = TimeSpan.Zero;
 
     [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan ForceConsciousnessTime = TimeSpan.Zero;
+
+    [ViewVariables(VVAccess.ReadOnly)]
     public bool ForceDead;
 
     [ViewVariables(VVAccess.ReadOnly)]

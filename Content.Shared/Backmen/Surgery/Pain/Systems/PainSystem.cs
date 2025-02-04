@@ -4,9 +4,13 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Jittering;
+using Content.Shared.Mobs;
 using Content.Shared.Popups;
+using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -17,16 +21,16 @@ namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 public partial class PainSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
 
     [Dependency] private readonly SharedAudioSystem _IHaveNoMouthAndIMustScream = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
-
-    [Dependency] private readonly IGameTiming _timing = default!;
-
     [Dependency] private readonly SharedStunSystem _stun = default!;
+
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     [Dependency] private readonly WoundSystem _wound = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
@@ -41,6 +45,8 @@ public partial class PainSystem : EntitySystem
 
         SubscribeLocalEvent<BodyComponent, BodyPartAddedEvent>(OnBodyPartAdded);
         SubscribeLocalEvent<BodyComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+
+        SubscribeLocalEvent<NerveSystemComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         InitAffliction();
     }
@@ -76,6 +82,24 @@ public partial class PainSystem : EntitySystem
 
         TryAddPainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss", 2);
         UpdateNerveSystemNerves(brainUid.Value, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid.Value));
+    }
+
+    private void OnMobStateChanged(EntityUid uid, NerveSystemComponent nerveSys, MobStateChangedEvent args)
+    {
+        switch (args.NewMobState)
+        {
+            case MobState.Critical:
+                var sex = Sex.Unsexed;
+                if (TryComp<HumanoidAppearanceComponent>(args.Target, out var humanoid))
+                    sex = humanoid.Sex;
+
+                CleanupSounds(nerveSys);
+                PlayPainSound(args.Target, nerveSys, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f));
+                break;
+            default:
+                CleanupSounds(nerveSys);
+                break;
+        }
     }
 
     private void UpdateNerveSystemNerves(EntityUid uid, EntityUid body, NerveSystemComponent component)

@@ -32,7 +32,7 @@ public partial class ConsciousnessSystem
     /// Force passes out an entity with consciousness component.
     /// </summary>
     /// <param name="target">Target to pass out.</param>
-    /// <param name="time">Time. In seconds.</param>
+    /// <param name="time">Time.</param>
     /// <param name="consciousness"><see cref="ConsciousnessComponent"/> of an entity.</param>
     public void ForcePassout(EntityUid target, TimeSpan time, ConsciousnessComponent? consciousness = null)
     {
@@ -41,6 +41,24 @@ public partial class ConsciousnessSystem
 
         consciousness.PassedOut = true;
         consciousness.PassedOutTime = _timing.CurTime + time;
+
+        CheckConscious(target, consciousness);
+    }
+
+    /// <summary>
+    /// Forces the entity to stay alive even if on 0 Consciousness, unless induced injuries that cause direct death, like getting your brain blown out
+    /// Overrides ForcePassout and all other factors, the only requirement is entity being able to live
+    /// </summary>
+    /// <param name="target">Target to pass out.</param>
+    /// <param name="time">Time.</param>
+    /// <param name="consciousness"><see cref="ConsciousnessComponent"/> of an entity.</param>
+    public void ForceConscious(EntityUid target, TimeSpan time, ConsciousnessComponent? consciousness = null)
+    {
+        if (!Resolve(target, ref consciousness))
+            return;
+
+        consciousness.ForceConscious = true;
+        consciousness.ForceConsciousnessTime = _timing.CurTime + time;
 
         CheckConscious(target, consciousness);
     }
@@ -105,7 +123,7 @@ public partial class ConsciousnessSystem
         if (consciousness.ForceUnconscious)
             newMobState = MobState.Critical;
 
-        if (consciousness.Consciousness <= 0)
+        if (consciousness.Consciousness <= 0 && !consciousness.ForceConscious)
             newMobState = MobState.Dead;
 
         if (consciousness.ForceDead)

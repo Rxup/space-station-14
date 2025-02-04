@@ -34,6 +34,9 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("lastThreshold"), ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 LastPainThreshold = 0;
 
+    [ViewVariables(VVAccess.ReadOnly)]
+    public PainThresholdTypes LastThresholdType = PainThresholdTypes.None;
+
     [DataField("thresholdUpdate")]
     public TimeSpan ThresholdUpdateTime = TimeSpan.FromSeconds(2);
 
@@ -70,6 +73,29 @@ public sealed partial class NerveSystemComponent : Component
     };
 
     [DataField]
+    public Dictionary<Sex, SoundSpecifier> AgonyScreams = new()
+    {
+        {
+            Sex.Male, new SoundCollectionSpecifier("AgonyScreamsMale")
+            {
+                Params = AudioParams.Default.WithVariation(0.04f),
+            }
+        },
+        {
+            Sex.Female, new SoundCollectionSpecifier("AgonyScreamsMale") // TODO: Female screams. Temporary for now.
+            {
+                Params = AudioParams.Default.WithVariation(0.04f),
+            }
+        },
+        {
+            Sex.Unsexed, new SoundCollectionSpecifier("AgonyScreamsMale") // yeah
+            {
+                Params = AudioParams.Default.WithVariation(0.2f),
+            }
+        },
+    };
+
+    [DataField]
     public Dictionary<Sex, SoundSpecifier> PainShockScreams = new()
     {
         {
@@ -98,19 +124,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("CritWhimpersMale")
             {
-                Params = AudioParams.Default.WithVolume(-0.7f),
+                Params = AudioParams.Default,
             }
         },
         {
             Sex.Female, new SoundCollectionSpecifier("CritWhimpersMale") // TODO: Female screams. Temporary for now.
             {
-                Params = AudioParams.Default.WithVolume(-0.7f),
+                Params = AudioParams.Default,
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("CritWhimpersMale") // yeah
             {
-                Params = AudioParams.Default.WithVolume(-0.7f),
+                Params = AudioParams.Default,
             }
         },
     };
@@ -121,19 +147,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("PainShockWhimpersMale")
             {
-                Params = AudioParams.Default.WithVolume(-0.7f),
+                Params = AudioParams.Default,
             }
         },
         {
             Sex.Female, new SoundCollectionSpecifier("PainShockWhimpersMale") // TODO: Female screams. Temporary for now.
             {
-                Params = AudioParams.Default.WithVolume(-0.7f),
+                Params = AudioParams.Default,
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("PainShockWhimpersMale") // yeah
             {
-                Params = AudioParams.Default.WithVolume(-0.7f),
+                Params = AudioParams.Default,
             }
         },
     };
@@ -142,6 +168,9 @@ public sealed partial class NerveSystemComponent : Component
     public Dictionary<PainThresholdTypes, FixedPoint2> PainThresholds = new()
     {
         { PainThresholdTypes.PainFlinch, 6 },
+        { PainThresholdTypes.Agony, 16 },
+        // Just having 'PainFlinch' is lame, people scream for a few seconds before passing out / getting pain shocked, so I added agony.
+        // A lot of screams (individual pain screams poll), for the funnies.
         { PainThresholdTypes.PainShock, 27 },
         { PainThresholdTypes.PainPassout, 50 },
         // usually appears after an explosion. or some ultra big damage output thing, you might survive, and most importantly, you will fall down in pain.

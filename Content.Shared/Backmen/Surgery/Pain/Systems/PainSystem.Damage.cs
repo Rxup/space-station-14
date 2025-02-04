@@ -5,6 +5,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Popups;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
@@ -245,6 +246,22 @@ public partial class PainSystem
         UpdatePainThreshold(uid, nerveSys);
     }
 
+    private void CleanupSounds(NerveSystemComponent nerveSys)
+    {
+        foreach (var (id, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
+        {
+            _IHaveNoMouthAndIMustScream.Stop(id);
+            nerveSys.PlayedPainSounds.Remove(id);
+        }
+    }
+
+    private void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    {
+        var sound = _IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
+        if (sound.HasValue)
+            nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
+    }
+
     private void ApplyPainReflexesEffects(EntityUid body, NerveSystemComponent nerveSys, PainThresholdTypes reaction)
     {
         if (!_net.IsServer)
@@ -257,39 +274,46 @@ public partial class PainSystem
         switch (reaction)
         {
             case PainThresholdTypes.PainFlinch:
-                foreach (var (sound, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
-                {
-                    _IHaveNoMouthAndIMustScream.Stop(sound);
-                    nerveSys.PlayedPainSounds.Remove(sound);
-                }
+                CleanupSounds(nerveSys);
+                PlayPainSound(body, nerveSys, nerveSys.PainScreams[sex]);
 
-                _IHaveNoMouthAndIMustScream.PlayPvs(nerveSys.PainScreams[sex], body);
                 _popup.PopupPredicted(Loc.GetString("screams-and-flinches-pain", ("entity", body)), body, null, PopupType.MediumCaution);
-
                 _jitter.DoJitter(body, TimeSpan.FromSeconds(0.9), true, 24f, 1f);
 
                 break;
-            case PainThresholdTypes.PainShock:
-                foreach (var (sound, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
-                {
-                    _IHaveNoMouthAndIMustScream.Stop(sound);
-                    nerveSys.PlayedPainSounds.Remove(sound);
-                }
+            case PainThresholdTypes.Agony:
+                CleanupSounds(nerveSys);
+                PlayPainSound(body, nerveSys, nerveSys.AgonyScreams[sex], AudioParams.Default.WithVolume(12f));
 
-                _IHaveNoMouthAndIMustScream.PlayPvs(nerveSys.PainShockScreams[sex], body);
-                _popup.PopupPredicted(Loc.GetString("screams-and-falls-pain", ("entity", body)), body, null, PopupType.MediumCaution);
+                // We love violence, don't we?
+
+                _popup.PopupPredicted(Loc.GetString("screams-in-agony", ("entity", body)), body, null, PopupType.MediumCaution);
+                _jitter.DoJitter(body, nerveSys.PainShockStunTime / 1.4, true, 30f, 12f);
+
+                break;
+            case PainThresholdTypes.PainShock:
+                CleanupSounds(nerveSys);
+
+                PlayPainSound(body, nerveSys, nerveSys.PainShockScreams[sex], AudioParams.Default.WithVolume(12f));
+                PlayPainSound(body, nerveSys, nerveSys.PainShockWhimpers[sex], AudioParams.Default.WithVolume(-12f));
+
+                _popup.PopupPredicted(
+                    _standing.IsDown(body)
+                        ? Loc.GetString("screams-in-pain", ("entity", body))
+                        : Loc.GetString("screams-and-falls-pain", ("entity", body)),
+                    body,
+                    null,
+                    PopupType.MediumCaution);
 
                 _stun.TryParalyze(body, nerveSys.PainShockStunTime, true);
+                _jitter.DoJitter(body, nerveSys.PainShockStunTime, true, 20, 7);
 
-                _IHaveNoMouthAndIMustScream.PlayPvs(nerveSys.PainShockWhimpers[sex], body);
+                // For the funnies :3
+                _consciousness.ForceConscious(body, nerveSys.PainShockStunTime);
 
                 break;
             case PainThresholdTypes.PainPassout:
-                foreach (var (sound, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
-                {
-                    _IHaveNoMouthAndIMustScream.Stop(sound);
-                    nerveSys.PlayedPainSounds.Remove(sound);
-                }
+                CleanupSounds(nerveSys);
 
                 _popup.PopupPredicted(Loc.GetString("passes-out-pain", ("entity", body)), body, null, PopupType.MediumCaution);
                 _consciousness.ForcePassout(body, nerveSys.ForcePassoutTime);
@@ -317,6 +341,9 @@ public partial class PainSystem
         if (nearestReflex == PainThresholdTypes.None)
             return;
 
+        if (nerveSys.LastThresholdType == nearestReflex && _timing.CurTime < nerveSys.UpdateTime)
+            return;
+
         if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
             return;
 
@@ -330,6 +357,7 @@ public partial class PainSystem
         RaiseLocalEvent(organ.Body.Value, ref ev2);
 
         nerveSys.UpdateTime = _timing.CurTime + nerveSys.ThresholdUpdateTime;
+        nerveSys.LastThresholdType = nearestReflex;
 
         ApplyPainReflexesEffects(organ.Body.Value, nerveSys, nearestReflex);
         _sawmill.Info($"Pain threshold (reflex) chosen: {nearestReflex} ({nerveSys.PainThresholds[nearestReflex]}) with painInput of {painInput}. What a good day.");
