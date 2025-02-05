@@ -10,12 +10,15 @@
 
 - type: entity
   id: MagazineRiflePan
-  name: "дисковый магазин (.20 винтовочные)"
+  name: "дисковый магазин (5.56 UEG)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle
+    proto: CartridgeRifleLight556UEG
     capacity: 96
+    whitelist:
+      tags:
+        - CartridgeRifle556UEG
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/maxim.rsi
 
@@ -35,7 +38,7 @@
 
 - type: entity
   id: MagazineAntiMaterielRifleSR
-  name: rifle magazine (.60 anti-material)
+  name: rifle magazine (.50 BMG)
   description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
@@ -45,10 +48,10 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 10
-    proto: CartridgeAntiMateriel
+    proto: Cartridge50BMG
     whitelist:
       tags:
-        - CartridgeAntiMateriel
+        - CartridgeRifle50BMG
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -65,35 +68,44 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
 - type: entity
+  id: MagazineAntiMaterielRifleSRAP
+  name: rifle magazine (.50 BMG AP)
+  parent: MagazineAntiMaterielRifleSR
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge50BMGAP
+
+- type: entity
   id: MagazineHeavyRifleBR64
-  name: rifle magazine (.62 rifle)
+  name: rifle magazine (.308 win)
   description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
     tags:
       - MagazineHeavyRifle62
+      - MagazineRifle
   - type: BallisticAmmoProvider
     mayTransfer: true
-    capacity: 20
-    proto: CartridgeRifleHeavy
+    capacity: 18
+    proto: Cartridge308win
     whitelist:
       tags:
-        - CartridgeRifle62
+        - CartridgeRifle300win
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/big_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/big_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -101,9 +113,17 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineHeavyRifleBR64AP
+  name: rifle magazine (.308 win AP)
+  parent: MagazineHeavyRifleBR64
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge308winAP
 
 - type: entity
   id: MagazineRifleRocket20
@@ -143,13 +163,14 @@
 
 - type: entity
   id: MagazineRifleLightSniper
-  name: rifle magazine (7,62 rifle)
+  name: rifle magazine (7,62x52)
   description: Standart USSP type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
     tags:
       - MagazineRifleLightSniper
+      - MagazineLightRifle
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 20
@@ -173,6 +194,214 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazineRifleLightSniperAP
+  name: rifle magazine (7,62x52 AP)
+  parent: MagazineRifleLightSniper
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762AP
+
+- type: entity
+  id: MagazineRifleLight762x39
+  name: магазин АК (7,62x39)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762x39
+    capacity: 30
+    whitelist:
+      tags:
+        - CartridgeRifle762x39
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ak_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Tag
+    tags:
+      - MagazineRifleLight762x39
+      - MagazineLightRifle
+
+- type: entity
+  id: MagazineRifleLight762x39Incendiary
+  name: магазин АК incendiary (7,62x39)
+  parent: MagazineRifleLight762x39
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762x39Incendiary
+
+- type: entity
+  id: MagazineRifleLight762x39AP
+  name: магазин АК (7,62x39 AP)
+  parent: MagazineRifleLight762x39
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762x39AP
+
+- type: entity
+  id: MagazineRifleLight762x39Ext
+  name: магазин АК extended (7,62x39)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762x39
+    capacity: 50
+    whitelist:
+      tags:
+        - CartridgeRifle762x39
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ak_long_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Tag
+    tags:
+      - MagazineRifleLight762x39
+      - MagazineLightRifle
+
+- type: entity
+  id: MagazineRifle556UEG
+  name: магазин AR (5.56 UEG)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight556UEG
+    capacity: 30
+    whitelist:
+      tags:
+        - CartridgeRifle556UEG
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Tag
+    tags:
+      - MagazineRifle556UEG
+      - MagazineRifle
+
+- type: entity
+  id: MagazineRifle556UEGIncendiary
+  name: магазин AR incendiary (5.56 UEG)
+  parent: MagazineRifle556UEG
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight556UEGIncendiary
+
+- type: entity
+  id: MagazineRifle556UEGAP
+  name: магазин AR (5.56 UEG AP)
+  parent: MagazineRifle556UEG
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight556UEGAP
+
+- type: entity
+  id: MagazineRifle762UEG
+  name: магазин AR (7,62 UEG)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762UEG
+    capacity: 30
+    whitelist:
+      tags:
+        - CartridgeRifle762UEG
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ar_mag.rsi
+    scale: 0.7, 0.7
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Tag
+    tags:
+      - MagazineRifle762UEG
+      - MagazineRifle
+
+- type: entity
+  id: MagazineRifle762UEGAP
+  name: магазин AR (7,62 UEG AP)
+  parent: MagazineRifle762UEG
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762UEGAP
+
+- type: entity
+  id: MagazineRifle762UEGIncendiary
+  name: магазин AR incendiary (7,62 UEG)
+  parent: MagazineRifle762UEG
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762UEGIncendiary
+
+- type: entity
+  id: MagazineRifleFamas556UEG
+  name: магазин Famas (5.56 UEG)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight556UEG
+    capacity: 20
+    whitelist:
+      tags:
+        - CartridgeRifle556UEG
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/famas_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Tag
+    tags:
+      - MagazineRifleFamas556UEG
+      - MagazineRifle
+
+- type: entity
+  id: MagazineRifleFamas556UEGAP
+  name: магазин Famas (5.56 UEG AP)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight556UEGAP
+
+- type: entity
+  id: MagazineRifleFamas556UEGIncendiary
+  name: магазин Famas incendiary (5.56 UEG)
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight556UEGIncendiary

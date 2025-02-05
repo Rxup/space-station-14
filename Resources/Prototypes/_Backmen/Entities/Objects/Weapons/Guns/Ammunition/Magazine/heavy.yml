@@ -14,7 +14,7 @@
     capacity: 200
     whitelist:
       tags:
-        - CartridgeAntiMateriel
+        - CartridgeRifle50BMG
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -26,7 +26,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
@@ -36,7 +36,7 @@
   parent: BaseMagazineHeavyRifle50
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeAntiMateriel
+    proto: Cartridge50BMG
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
     layers:
@@ -47,15 +47,15 @@
 
 - type: entity
   id: MagazineHeavyRifleV41
-  name: "magazine (.20 rifle)"
+  name: "magazine (5.56 UEG)"
   parent: BaseMagazineHeavyRifle50
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle
+    proto: CartridgeRifleLight556UEG
     capacity: 200
     whitelist:
       tags:
-        - CartridgeRifle
+        - CartridgeRifle556UEG
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
     layers:
@@ -93,13 +93,13 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
 - type: entity
   id: MagazineLightMachineGunDrum
-  name: Drum magazine (.20 винтовочный)
+  name: Drum magazine (5.56 UEG)
   parent: BaseItem
   components:
   - type: Tag
@@ -107,10 +107,10 @@
       - MagazineLightMachineGunDrum
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeRifle
+    proto: CartridgeRifleLight556UEG
     whitelist:
       tags:
-        - CartridgeRifle
+        - CartridgeRifle556UEG
     capacity: 250
   - type: Item
     size: Small
@@ -126,6 +126,39 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineLightMachineGun762x39
+  name: RPD magazine (7,62x39)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightMachineGunRPD
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRifleLight762x39
+    whitelist:
+      tags:
+        - CartridgeRifle762x39
+    capacity: 80
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/rpd.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
     zeroVisible: false
   - type: Appearance

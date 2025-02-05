@@ -1,6 +1,6 @@
 - type: entity
   id: MagazineMagnumPistolAP
-  name: pistol magazine (.50AE AP)
+  name: pistol magazine (.45 Magnum AP)
   parent: MagazineMagnumPistol
   components:
   - type: BallisticAmmoProvider
@@ -12,7 +12,7 @@
 
 - type: entity
   id: MagazineMagnumPistol
-  name: pistol magazine (.50AE)
+  name: pistol magazine (.45 Magnum)
   parent: BaseItem
   components:
   - type: Tag
@@ -71,32 +71,26 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
 - type: entity
-  id: MagazinePistolBoxSubMachineGun
-  name: SMG box magazine (.9×19mm parabellum)
-  parent: BaseItem
+  id: MagazinePistol45ACP
+  name: pistol magazine (.45 Auto)
+  parent: BaseMagazinePistol
   components:
   - type: Tag
     tags:
-      - MagazinePistolBoxSubMachineGun
+      - MagazinePistol45ACP
   - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgePistol
+    proto: CartridgePistolACP
+    capacity: 12
     whitelist:
       tags:
-        - CartridgePistol
-    capacity: 45
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
+        - CartridgePistol45ACP
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_boxmag.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_45acp.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -104,32 +98,49 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 5
     zeroVisible: false
-  - type: Appearance
 
 - type: entity
-  id: MagazinePistolDrumSubMachineGun
-  name: SMG Drum magazine (.9×19mm parabellum)
-  parent: BaseItem
+  id: MagazinePistol45ACPuranium
+  name: pistol magazine uranium (.45 Auto)
+  parent: MagazinePistol45ACP
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistolACPUranium
+
+- type: entity
+  id: MagazinePistol45ACPpractice
+  name: pistol magazine practice (.45 Auto)
+  parent: MagazinePistol45ACP
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistolACPPractice
+
+- type: entity
+  id: MagazinePistol45ACPincendiary
+  name: pistol magazine incendiary (.45 Auto)
+  parent: MagazinePistol45ACP
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistolACPIncendiary
+
+- type: entity
+  id: MagazinePistol57x28
+  name: pistol magazine (5,7x28)
+  parent: BaseMagazinePistol
   components:
   - type: Tag
     tags:
-      - MagazinePistolDrumSubMachineGun
+      - MagazinePistol57x28
   - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgePistol
+    proto: CartridgePistol57x28
+    capacity: 10
     whitelist:
       tags:
-        - CartridgePistol
-    capacity: 71
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
+        - CartridgePistol57x28
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_drummag.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -137,32 +148,81 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 5
     zeroVisible: false
-  - type: Appearance
 
 - type: entity
-  id: MagazinePistolTopSubMachineGun
-  name: SMG top mounted magazine (.9×19mm parabellum)
+  id: MagazinePistol57x28Uranium
+  name: pistol magazine uranium (5,7x28)
+  parent: MagazinePistol57x28
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistol57x28Uranium
+
+- type: entity
+  id: MagazinePistol57x28Practice
+  name: pistol magazine practice (5,7x28)
+  parent: MagazinePistol57x28
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistol57x28Practice
+
+- type: entity
+  id: MagazinePistol57x28Incendiary
+  name: pistol magazine incendiary (5,7x28)
+  parent: MagazinePistol57x28
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistol57x28Incendiary
+
+- type: entity
+  id: MagazinePistol57x28Extd
+  name: pistol magazine extended (5,7x28)
+  parent: BaseMagazinePistol
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistol57x28
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol57x28
+    capacity: 19
+    whitelist:
+      tags:
+        - CartridgePistol57x28
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: MagazinePistol50AE
+  name: pistol magazine (.50 AE)
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - MagazinePistolTopSubMachineGun
+      - MagazinePistol50AE
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol
+    proto: CartridgePistol50AE
     whitelist:
       tags:
-        - CartridgePistol
-    capacity: 50
+        - CartridgePistol50AE
+    capacity: 7
   - type: Item
     size: Small
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_top_moumted_mag.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -173,3 +233,45 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: MagazinePistol50AEAP
+  name: pistol magazine (.50 AE AP)
+  parent: MagazinePistol50AE
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletPistol50AEAP
+
+- type: entity
+  id: MagazinePistol9x17
+  name: pistol magazine (9x17 mm)
+  parent: BaseMagazinePistol
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistol9x17
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol9x17
+    capacity: 17
+    whitelist:
+      tags:
+        - CartridgePistol9x17
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+
+- type: entity
+  id: MagazinePistol9x17Incendiary
+  name: pistol magazine incendiary (9x17 mm)
+  parent: MagazinePistol9x17
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol9x17Incendiary
