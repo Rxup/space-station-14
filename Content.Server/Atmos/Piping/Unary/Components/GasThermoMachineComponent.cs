@@ -1,5 +1,4 @@
 using Content.Shared.Atmos;
-using Content.Shared.Guidebook;
 
 namespace Content.Server.Atmos.Piping.Unary.Components
 {
@@ -14,7 +13,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         ///     thermomachine to heat or cool air.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float HeatCapacity = 5000;
 
         [DataField, ViewVariables(VVAccess.ReadWrite)]
@@ -23,7 +21,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         /// <summary>
         ///     Tolerance for temperature setpoint hysteresis.
         /// </summary>
-        [GuidebookData]
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float TemperatureTolerance = 2f;
 
@@ -47,7 +44,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         ///     Ignored if heater.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float MinTemperature = 73.15f;
 
         /// <summary>
@@ -55,7 +51,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         ///     Ignored if freezer.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float MaxTemperature = 593.15f;
 
         /// <summary>
@@ -68,7 +63,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         /// An percentage of the energy change that is leaked into the surrounding environment rather than the inlet pipe.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float EnergyLeakPercentage;
 
         /// <summary>

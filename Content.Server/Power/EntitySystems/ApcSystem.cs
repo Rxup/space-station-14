@@ -4,6 +4,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.Pow3r;
 using Content.Shared.Access.Systems;
 using Content.Shared.APC;
+using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rounding;
@@ -18,7 +19,6 @@ public sealed class ApcSystem : EntitySystem
 {
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -111,12 +111,7 @@ public sealed class ApcSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, ApcComponent comp, ref GotEmaggedEvent args)
     {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            return;
-
+        // no fancy conditions
         args.Handled = true;
     }
 
@@ -175,7 +170,7 @@ public sealed class ApcSystem : EntitySystem
 
     private ApcChargeState CalcChargeState(EntityUid uid, PowerState.Battery battery)
     {
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
+        if (HasComp<EmaggedComponent>(uid))
             return ApcChargeState.Emag;
 
         if (battery.CurrentStorage / battery.Capacity > ApcComponent.HighPowerThreshold)

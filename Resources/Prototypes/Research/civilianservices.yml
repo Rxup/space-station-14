@@ -114,7 +114,6 @@
   - FauxTileJungleAstroGrass
   - FauxTileAstroIce
   - FauxTileAstroSnow
-  - FauxTileAstroAsteroidSand
 
 - type: technology
   id: BiochemicalStasis

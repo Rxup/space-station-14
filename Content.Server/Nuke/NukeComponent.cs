@@ -26,13 +26,6 @@ namespace Content.Server.Nuke
         public int Timer = 300;
 
         /// <summary>
-        ///     If the nuke is disarmed, this sets the minimum amount of time the timer can have.
-        ///     The remaining time will reset to this value if it is below it.
-        /// </summary>
-        [DataField]
-        public int MinimumTime = 180;
-
-        /// <summary>
         ///     How long until the bomb can arm again after deactivation.
         ///     Used to prevent announcements spam.
         /// </summary>

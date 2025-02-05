@@ -8,7 +8,7 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
-using Content.Shared.Emag.Systems;
+using Content.Shared.Emag.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
@@ -21,7 +21,6 @@ namespace Content.Server.Cargo.Systems
     public sealed partial class CargoSystem
     {
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
 
         /// <summary>
         /// How much time to wait (in seconds) before increasing bank accounts balance.
@@ -42,7 +41,6 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing);
             SubscribeLocalEvent<CargoOrderConsoleComponent, BankBalanceUpdatedEvent>(OnOrderBalanceUpdated);
-            SubscribeLocalEvent<CargoOrderConsoleComponent, GotEmaggedEvent>(OnEmagged);
             Reset();
         }
 
@@ -77,17 +75,6 @@ namespace Content.Server.Cargo.Systems
             _timer = 0;
         }
 
-        private void OnEmagged(Entity<CargoOrderConsoleComponent> ent, ref GotEmaggedEvent args)
-        {
-            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-                return;
-
-            if (_emag.CheckFlag(ent, EmagType.Interaction))
-                return;
-
-            args.Handled = true;
-        }
-
         private void UpdateConsole(float frameTime)
         {
             _timer += frameTime;
@@ -98,11 +85,9 @@ namespace Content.Server.Cargo.Systems
             {
                 _timer -= Delay;
 
-                var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
-                while (stationQuery.MoveNext(out var uid, out var bank))
+                foreach (var account in EntityQuery<StationBankAccountComponent>())
                 {
-                    var balanceToAdd = bank.IncreasePerSecond * Delay;
-                    UpdateBankAccount(uid, bank, balanceToAdd);
+                    account.Balance += account.IncreasePerSecond * Delay;
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();
@@ -207,7 +192,7 @@ namespace Content.Server.Cargo.Systems
             order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
 
-            if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            if (!HasComp<EmaggedComponent>(uid))
             {
                 var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, player);
                 RaiseLocalEvent(tryGetIdentityShortInfoEvent);
@@ -228,7 +213,7 @@ namespace Content.Server.Cargo.Systems
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bank.Balance}");
 
             orderDatabase.Orders.Remove(order);
-            UpdateBankAccount(station.Value, bank, -cost);
+            DeductFunds(bank, cost);
             UpdateOrders(station.Value);
         }
 

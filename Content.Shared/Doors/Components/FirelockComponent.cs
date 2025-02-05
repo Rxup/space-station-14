@@ -1,4 +1,3 @@
-using Content.Shared.Guidebook;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Doors.Components
@@ -24,14 +23,12 @@ namespace Content.Shared.Doors.Components
         /// Maximum pressure difference before the firelock will refuse to open, in kPa.
         /// </summary>
         [DataField("pressureThreshold"), ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float PressureThreshold = 20;
 
         /// <summary>
         /// Maximum temperature difference before the firelock will refuse to open, in k.
         /// </summary>
         [DataField("temperatureThreshold"), ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float TemperatureThreshold = 330;
         // this used to check for hot-spots, but because accessing that data is a a mess this now just checks
         // temperature. This does mean a cold room will trigger hot-air pop-ups

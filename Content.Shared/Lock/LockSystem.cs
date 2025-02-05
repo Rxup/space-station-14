@@ -28,7 +28,6 @@ public sealed class LockSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly ActivatableUISystem _activatableUI = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
@@ -296,10 +295,7 @@ public sealed class LockSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, LockComponent component, ref GotEmaggedEvent args)
     {
-        if (!_emag.CompareFlag(args.Type, EmagType.Access))
-            return;
-
-        if (!component.Locked || !component.BreakOnAccessBreaker)
+        if (!component.Locked || !component.BreakOnEmag)
             return;
 
         _audio.PlayPredicted(component.UnlockSound, uid, args.UserUid);
@@ -311,7 +307,7 @@ public sealed class LockSystem : EntitySystem
         var ev = new LockToggledEvent(false);
         RaiseLocalEvent(uid, ref ev, true);
 
-        args.Repeatable = true;
+        RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged
         args.Handled = true;
     }
 

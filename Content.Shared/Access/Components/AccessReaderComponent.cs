@@ -76,7 +76,7 @@ public sealed partial class AccessReaderComponent : Component
     /// Whether or not emag interactions have an effect on this.
     /// </summary>
     [DataField]
-    public bool BreakOnAccessBreaker = true;
+    public bool BreakOnEmag = true;
 }
 
 [DataDefinition, Serializable, NetSerializable]

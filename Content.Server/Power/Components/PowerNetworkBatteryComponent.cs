@@ -1,5 +1,4 @@
 ﻿using Content.Server.Power.Pow3r;
-using Content.Shared.Guidebook;
 
 namespace Content.Server.Power.Components
 {
@@ -25,7 +24,6 @@ namespace Content.Server.Power.Components
 
         [DataField("maxSupply")]
         [ViewVariables(VVAccess.ReadWrite)]
-        [GuidebookData]
         public float MaxSupply
         {
             get => NetworkBattery.MaxSupply;

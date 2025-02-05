@@ -2,7 +2,6 @@ using Content.Shared.Emag.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.DoAfter;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
@@ -20,14 +19,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
     }
 
@@ -53,21 +49,9 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         Dirty(uid, component);
     }
 
-    private void OnEmagged(EntityUid uid, VendingMachineComponent component, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            return;
-
-        // only emag if there are emag-only items
-        args.Handled = component.EmaggedInventory.Count > 0;
-    }
-
     /// <summary>
     /// Returns all of the vending machine's inventory. Only includes emagged and contraband inventories if
-    /// <see cref="EmaggedComponent"/> with the EmagType.Interaction flag exists and <see cref="VendingMachineComponent.Contraband"/> is true
+    /// <see cref="EmaggedComponent"/> exists and <see cref="VendingMachineComponent.Contraband"/> is true
     /// are <c>true</c> respectively.
     /// </summary>
     /// <param name="uid"></param>
@@ -80,7 +64,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         var inventory = new List<VendingMachineInventoryEntry>(component.Inventory.Values);
 
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
+        if (HasComp<EmaggedComponent>(uid))
             inventory.AddRange(component.EmaggedInventory.Values);
 
         if (component.Contraband)

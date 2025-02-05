@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 
 namespace Content.Shared.Camera;
@@ -18,15 +17,3 @@ namespace Content.Shared.Camera;
 /// </remarks>
 [ByRefEvent]
 public record struct GetEyeOffsetEvent(Vector2 Offset);
-
-/// <summary>
-///     Raised on any equipped and in-hand items that may modify the eye offset.
-///     Pockets and suitstorage are excluded.
-/// </summary>
-[ByRefEvent]
-public sealed class GetEyeOffsetRelayedEvent : EntityEventArgs, IInventoryRelayEvent
-{
-    public SlotFlags TargetSlots { get; } = ~(SlotFlags.POCKET & SlotFlags.SUITSTORAGE);
-
-    public Vector2 Offset;
-}

@@ -7,7 +7,7 @@
   - type: Sprite
     noRot: true
     sprite: Structures/Machines/artifact_analyzer.rsi
-    drawdepth: HighFloorObjects
+    drawdepth: FloorObjects
     layers:
     - state: icon
     - state: unshaded

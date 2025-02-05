@@ -1,7 +1,6 @@
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.DeviceLinking;
-using Content.Shared.Guidebook;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Atmos.Piping.Unary.Components
@@ -36,7 +35,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         ///     In releasing mode, do not pump when environment pressure is below this limit.
         /// </summary>
         [DataField]
-        [GuidebookData]
         public float UnderPressureLockoutThreshold = 80; // this must be tuned in conjunction with atmos.mmos_spacing_speed
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         [DataField]
         public bool IsPressureLockoutManuallyDisabled = false;
         /// <summary>
-        /// The time when the manual pressure lockout will be reenabled.
+        /// The time when the manual pressure lockout will be reenabled. 
         /// </summary>
         [DataField]
         [AutoPausedField]
@@ -103,7 +101,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         ///     Max pressure of the target gas (NOT relative to source).
         /// </summary>
         [DataField]
-        [GuidebookData]
         public float MaxPressure = Atmospherics.MaxOutputPressure;
 
         /// <summary>
@@ -175,12 +172,5 @@ namespace Content.Server.Atmos.Piping.Unary.Components
             InternalPressureBound = data.InternalPressureBound;
             PressureLockoutOverride = data.PressureLockoutOverride;
         }
-
-        #region GuidebookData
-
-        [GuidebookData]
-        public float DefaultExternalBound => Atmospherics.OneAtmosphere;
-
-        #endregion
     }
 }

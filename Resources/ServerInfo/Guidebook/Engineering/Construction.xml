@@ -1,14 +1,6 @@
 <Document>
 # Строительство
 
-
-  <Box>
-    <GuideEntityEmbed Entity="Bed" Caption=""/>
-    <GuideEntityEmbed Entity="TableReinforced" Caption=""/>
-    <GuideEntityEmbed Entity="WeaponImprovisedPneumaticCannon" Caption=""/>
-    <GuideEntityEmbed Entity="Chair" Caption=""/>
-  </Box>
-  
 Нажав [color=#a4885c]G[/color] на клавиатуре, или соответствующую кнопку на экране, вы откроете меню строительства, через которое можно строить различные объекты и создавать предметы.
 
 При размещении призраков объектов, которые «привязываются» к сетке, зажмите [color=#a4885c]Shift[/color] чтобы разместить сразу несколько объектов в линию, или [color=#a4885c]Ctrl[/color] чтобы разместить объекты квадратом.

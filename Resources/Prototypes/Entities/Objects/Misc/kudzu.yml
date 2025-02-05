@@ -116,7 +116,7 @@
   parent: Kudzu
   components:
     - type: Sprite
-      drawdepth: HighFloorObjects
+      drawdepth: FloorObjects
       sprite: Objects/Misc/kudzuflower.rsi
       state: kudzu_11
     - type: Kudzu
@@ -247,10 +247,8 @@
       solutions:
         food:
           reagents:
-          - ReagentId: Razorium
-            Quantity: 2
           - ReagentId: Protein
-            Quantity: 1
+            Quantity: 2
     - type: Respirator
       damage:
         types:
@@ -258,9 +256,6 @@
       damageRecovery:
         types:
           Asphyxiation: -0.25
-    - type: Tag
-      tags:
-      - Meat
 
 - type: entity
   name: dark haze

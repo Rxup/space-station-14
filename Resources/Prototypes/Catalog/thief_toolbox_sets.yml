@@ -17,7 +17,6 @@
   - ClothingShoesChameleon
   - BarberScissors
   - ChameleonProjector
-  - FakeMindShieldImplanter
   - AgentIDCard
 
 - type: thiefBackpackSet
@@ -63,7 +62,6 @@
   - RadioJammer
   - TraitorCodePaper
   - Emag
-  - AccessBreaker
   - Lighter
   - CigPackSyndicate
   - Telecrystal10 #The thief cannot use them, but it may induce communication with traitors

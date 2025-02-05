@@ -357,7 +357,6 @@
       - FauxTileJungleAstroGrass
       - FauxTileAstroIce
       - FauxTileAstroSnow
-      - FauxTileAstroAsteroidSand
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle # cats-shield energy_barrier

@@ -64,9 +64,7 @@
   - type: StaticPrice
     price: 500
   - type: GuideHelp
-    guides:
-    - AME
-    - Power
+    guides: [ AME, Power ]
   - type: StealTarget
     stealGroup: AmePartFlatpack
 
@@ -82,9 +80,7 @@
     layers:
     - state: singularity-generator
   - type: GuideHelp
-    guides:
-      - SingularityEngine
-      - Power
+    guides: [ Singularity, Power ]
 
 - type: entity
   parent: BaseFlatpack
@@ -98,9 +94,7 @@
     layers:
     - state: radiation-collector
   - type: GuideHelp
-    guides:
-    - SingularityEngine
-    - Power
+    guides: [ Singularity, Power ]
 
 - type: entity
   parent: BaseFlatpack
@@ -114,9 +108,7 @@
     layers:
     - state: containment-field-generator
   - type: GuideHelp
-    guides:
-    - SingularityEngine
-    - Power
+    guides: [ Singularity, Power ]
 
 - type: entity
   parent: BaseFlatpack
@@ -130,9 +122,7 @@
     layers:
     - state: emitter
   - type: GuideHelp
-    guides:
-    - SingularityEngine
-    - Power
+    guides: [ Singularity, Power ]
 
 - type: entity
   parent: BaseFlatpack
@@ -146,9 +136,7 @@
     layers:
     - state: tesla-generator
   - type: GuideHelp
-    guides:
-    - TeslaEngine
-    - Power
+    guides: [ Power ] # TODO add tesla guide
 
 - type: entity
   parent: BaseFlatpack
@@ -162,9 +150,7 @@
     layers:
     - state: tesla-coil
   - type: GuideHelp
-    guides:
-    - TeslaEngine
-    - Power
+    guides: [ Power ] # TODO add tesla guide
 
 - type: entity
   parent: BaseFlatpack
@@ -178,9 +164,7 @@
     layers:
     - state: grounding-rod
   - type: GuideHelp
-    guides:
-    - TeslaEngine
-    - Power
+    guides: [ Power ] # TODO add tesla guide
 
 - type: entity
   parent: BaseFlatpack

@@ -8,6 +8,3 @@
   - type: ConstructionGhost
   - type: Clickable
   - type: InteractionOutline
-  - type: GuideHelp
-    guides:
-    - Construction

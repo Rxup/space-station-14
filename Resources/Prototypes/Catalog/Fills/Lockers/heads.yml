@@ -367,8 +367,6 @@
       prob: 0.5
     - id: ClothingOuterCoatHoSGreatcoat # Corvax-Resprite
     - id: BookBusido # Corvax-Books
-    - id: DrinkHosFlask
-    
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
