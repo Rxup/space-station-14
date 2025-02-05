@@ -14,7 +14,9 @@
           Blunt: 0.7
           Slash: 0.7
           Piercing: 0.4
+          ArmorPiercing: 0.8
           Heat: 0.7
+          Stun: 0.6
 
 - type: entity
   parent: ClothingOuterCoatDetectiveLoadout
@@ -32,7 +34,9 @@
           Blunt: 0.8
           Slash: 0.8
           Piercing: 0.6
+          ArmorPiercing: 0.9
           Heat: 0.9
+          Stun: 0.6
 
 - type: entity
   parent: ClothingOuterCoatWarden
@@ -50,7 +54,9 @@
           Blunt: 0.8
           Slash: 0.8
           Piercing: 0.4
+          ArmorPiercing: 0.8
           Heat: 0.8
+          Stun: 0.6
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -68,7 +74,9 @@
           Blunt: 0.8
           Slash: 0.8
           Piercing: 0.6
+          ArmorPiercing: 0.9
           Heat: 0.9
+          Stun: 0.6
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -101,7 +109,9 @@
         Blunt: 0.5
         Slash: 0.5
         Piercing: 0.6
+        ArmorPiercing: 0.7
         Heat: 0.5
+        Stun: 0.6
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -119,3 +129,4 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+        ArmorPiercing: 0.99

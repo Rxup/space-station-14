@@ -538,6 +538,7 @@
         Blunt: 0.80
         Slash: 0.80
         Piercing: 0.70
+        ArmorPiercing: 0.95
         Heat: 0.90
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
