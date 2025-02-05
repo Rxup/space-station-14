@@ -150,3 +150,72 @@
 
 - type: Tag
   id: Eyes
+
+- type: Tag
+  id: CartridgeRifle762x39
+
+- type: Tag
+  id: CartridgeRifle762UEG
+
+- type: Tag
+  id: CartridgeRifle556UEG
+
+- type: Tag
+  id: CartridgeRifle50BMG
+
+- type: Tag
+  id: CartridgeRifle300win
+
+- type: Tag
+  id: CartridgePistol9x17
+
+- type: Tag
+  id: CartridgePistol45ACP
+
+- type: Tag
+  id: CartridgePistol57x28
+
+- type: Tag
+  id: CartridgePistol50AE
+
+- type: Tag
+  id: MagazinePistol9x17
+
+- type: Tag
+  id: MagazinePistol45ACP
+
+- type: Tag
+  id: MagazinePistol57x28
+
+- type: Tag
+  id: MagazinePistol50AE
+
+- type: Tag
+  id: MagazineSMG9x17
+
+- type: Tag
+  id: MagazineSMGVector9x17
+
+- type: Tag
+  id: MagazineSMGScorpion9x17
+
+- type: Tag
+  id: MagazineSMG45ACP
+
+- type: Tag
+  id: MagazineSMG57x28
+
+- type: Tag
+  id: MagazineRifleLight762x39
+
+- type: Tag
+  id: MagazineRifle556UEG
+
+- type: Tag
+  id: MagazineRifleFamas556UEG
+
+- type: Tag
+  id: MagazineRifle762UEG
+
+- type: Tag
+  id: MagazineLightMachineGunRPD
