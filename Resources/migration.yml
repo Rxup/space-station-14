@@ -722,6 +722,9 @@ DrinkIrishCarBomb: DrinkIrishSlammer
 ClothingMaskSexyClown: ClothingMaskBlushingClown
 ClothingMaskSexyMime: ClothingMaskBlushingMime
 
+# 2025-01-27
+FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
+
 # 2025-02-05 backmen
 MagazineRifle: MagazineRifle556UEG
 MagazineRifleEmpty: null
