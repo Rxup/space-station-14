@@ -3,12 +3,6 @@
 
 Инженерное дело - это комбинация работа по строительству, ремонту, обслуживанию машин смерти, которые ещё и энергию производят; а также забота о том, чтобы на станции был пригодный для дыхания воздух.
 
-  <Box>
-    <GuideEntityEmbed Entity="ToyFigurineEngineer" Caption="Engineer"/>
-    <GuideEntityEmbed Entity="ToyFigurineAtmosTech" Caption="Atmosian"/>
-    <GuideEntityEmbed Entity="ToyFigurineChiefEngineer" Caption="CE"/>
-  </Box>
-
 ## Инструментарий
 <Box>
 <GuideEntityEmbed Entity="Wrench"/>

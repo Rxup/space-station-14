@@ -116,11 +116,8 @@ public sealed class TechAnomalySystem : EntitySystem
 
             if (_random.Prob(tech.Comp.EmagSupercritProbability))
             {
-                var sourceEv = new GotEmaggedEvent(tech, EmagType.Access | EmagType.Interaction);
-                RaiseLocalEvent(source, ref sourceEv);
-
-                var sinkEv = new GotEmaggedEvent(tech, EmagType.Access | EmagType.Interaction);
-                RaiseLocalEvent(sink, ref sinkEv);
+                _emag.DoEmagEffect(tech, source);
+                _emag.DoEmagEffect(tech, sink);
             }
 
             CreateNewLink(tech, source, sink);

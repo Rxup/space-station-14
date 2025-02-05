@@ -112,10 +112,6 @@
               collection: MetalGlassBreak
               params:
                 volume: -4
-  - type: GuideHelp
-    guides:
-    - AirAlarms
-    - DeviceMonitoringAndControl
 
 - type: entity
   id: AirAlarmAssembly

@@ -48,10 +48,6 @@
             type: AtmosAlertsComputerBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
-  - type: GuideHelp
-    guides:
-    - AtmosphericAlertsComputer
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -85,10 +81,6 @@
         type: AtmosMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: GuideHelp
-    guides:
-    - AtmosphericNetworkMonitor
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputer
@@ -156,9 +148,6 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
 
 - type: entity
   parent: BaseComputerShuttle
@@ -621,7 +610,7 @@
     color: "#3c5eb5"
   - type: Tag
     tags:
-    - AccessBreakerImmune
+    - EmagImmune
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -752,10 +741,6 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
-  - type: GuideHelp
-    guides:
-    - SolarPanels
-    - Power
 
 - type: entity
   parent: BaseComputerAiAccess

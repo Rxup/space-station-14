@@ -1386,7 +1386,7 @@
         reagents:
           - ReagentId: Nutriment
             Quantity: 4
-          - ReagentId: FrostOil
+          - ReagentId: Frostoil
             Quantity: 10
           - ReagentId: Vitamin
             Quantity: 4

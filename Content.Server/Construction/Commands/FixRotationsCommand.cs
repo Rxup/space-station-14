@@ -89,8 +89,6 @@ public sealed class FixRotationsCommand : IConsoleCommand
             valid |= tagSystem.HasTag(child, "ForceFixRotations");
             // override
             valid &= !tagSystem.HasTag(child, "ForceNoFixRotations");
-            // remove diagonal entities as well
-            valid &= !tagSystem.HasTag(child, "Diagonal");
 
             if (!valid)
                 continue;

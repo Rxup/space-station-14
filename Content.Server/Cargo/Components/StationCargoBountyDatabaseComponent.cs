@@ -12,21 +12,14 @@ public sealed partial class StationCargoBountyDatabaseComponent : Component
     /// <summary>
     /// Maximum amount of bounties a station can have.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public int MaxBounties = 6;
 
     /// <summary>
     /// A list of all the bounties currently active for a station.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public List<CargoBountyData> Bounties = new();
-
-    /// <summary>
-    /// A list of all the bounties that have been completed or
-    /// skipped for a station.
-    /// </summary>
-    [DataField]
-    public List<CargoBountyHistoryData> History = new();
 
     /// <summary>
     /// Used to determine unique order IDs

@@ -56,35 +56,35 @@ public abstract class EquipmentHudSystem<T> : EntitySystem where T : IComponent
 
     protected virtual void DeactivateInternal() { }
 
-    private void OnStartup(Entity<T> ent, ref ComponentStartup args)
+    private void OnStartup(EntityUid uid, T component, ComponentStartup args)
     {
-        RefreshOverlay();
+        RefreshOverlay(uid);
     }
 
-    private void OnRemove(Entity<T> ent, ref ComponentRemove args)
+    private void OnRemove(EntityUid uid, T component, ComponentRemove args)
     {
-        RefreshOverlay();
+        RefreshOverlay(uid);
     }
 
     private void OnPlayerAttached(LocalPlayerAttachedEvent args)
     {
-        RefreshOverlay();
+        RefreshOverlay(args.Entity);
     }
 
     private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
-        if (_player.LocalSession?.AttachedEntity is null)
+        if (_player.LocalSession?.AttachedEntity == null)
             Deactivate();
     }
 
-    private void OnCompEquip(Entity<T> ent, ref GotEquippedEvent args)
+    private void OnCompEquip(EntityUid uid, T component, GotEquippedEvent args)
     {
-        RefreshOverlay();
+        RefreshOverlay(args.Equipee);
     }
 
-    private void OnCompUnequip(Entity<T> ent, ref GotUnequippedEvent args)
+    private void OnCompUnequip(EntityUid uid, T component, GotUnequippedEvent args)
     {
-        RefreshOverlay();
+        RefreshOverlay(args.Equipee);
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent args)
@@ -92,24 +92,24 @@ public abstract class EquipmentHudSystem<T> : EntitySystem where T : IComponent
         Deactivate();
     }
 
-    protected virtual void OnRefreshEquipmentHud(Entity<T> ent, ref InventoryRelayedEvent<RefreshEquipmentHudEvent<T>> args)
+    protected virtual void OnRefreshEquipmentHud(EntityUid uid, T component, InventoryRelayedEvent<RefreshEquipmentHudEvent<T>> args)
     {
-        OnRefreshComponentHud(ent, ref args.Args);
+        OnRefreshComponentHud(uid, component, args.Args);
     }
 
-    protected virtual void OnRefreshComponentHud(Entity<T> ent, ref RefreshEquipmentHudEvent<T> args)
+    protected virtual void OnRefreshComponentHud(EntityUid uid, T component, RefreshEquipmentHudEvent<T> args)
     {
         args.Active = true;
-        args.Components.Add(ent.Comp);
+        args.Components.Add(component);
     }
 
-    protected void RefreshOverlay()
+    protected void RefreshOverlay(EntityUid uid)
     {
-        if (_player.LocalSession?.AttachedEntity is not { } entity)
+        if (uid != _player.LocalSession?.AttachedEntity)
             return;
 
         var ev = new RefreshEquipmentHudEvent<T>(TargetSlots);
-        RaiseLocalEvent(entity, ref ev);
+        RaiseLocalEvent(uid, ev);
 
         if (ev.Active)
             Update(ev);
