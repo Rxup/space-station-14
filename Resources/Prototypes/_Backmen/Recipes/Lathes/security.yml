@@ -51,3 +51,162 @@
     Plastic: 500
     Gold: 300
     Silver: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGun57x28
+  result: MagazinePistolSubMachineGun57x28
+  materials:
+    Steel: 350
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunVector9x17
+  result: MagazinePistolSubMachineGunVector9x17
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleFamas556UEG
+  result: MagazineRifleFamas556UEG
+  materials:
+    Steel: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762UEG
+  result: MagazineRifle762UEG
+  materials:
+    Steel: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762UEGIncendiary
+  result: MagazineRifle762UEGIncendiary
+  materials:
+    Steel: 25
+    Plastic: 450
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleFamas556UEGIncendiary
+  result: MagazineRifleFamas556UEGIncendiary
+  materials:
+    Steel: 25
+    Plastic: 450
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol45ACP
+  result: MagazinePistol45ACP
+  materials:
+    Steel: 150
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol45ACPincendiary
+  result: MagazinePistol45ACPincendiary
+  materials:
+    Steel: 25
+    Plastic: 120
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol57x28
+  result: MagazinePistol57x28
+  materials:
+    Steel: 150
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol57x28Incendiary
+  result: MagazinePistol57x28Incendiary
+  materials:
+    Steel: 25
+    Plastic: 120
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol57x28Extd
+  result: MagazinePistol57x28Extd
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxHeavyRifle
+  result: MagazineBoxHeavyRifle
+  materials:
+    Steel: 900
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle762x39
+  result: MagazinePacketRifle762x39
+  materials:
+    Steel: 900
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle762UEG
+  result: MagazinePacketRifle762UEG
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistolACP
+  result: MagazinePacketPistolACP
+  materials:
+    Steel: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistol57x28
+  result: MagazinePacketPistol57x28
+  materials:
+    Steel: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistol50AE
+  result: MagazinePacketPistol50AE
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistol50AEAP
+  result: MagazinePacketPistol50AEAP
+  materials:
+    Steel: 2000
+    Plasteel: 1000
+    Diamond: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle762x39AP
+  result: MagazinePacketRifle762x39AP
+  materials:
+    Steel: 3000
+    Plasteel: 1500
+    Diamond: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle556UEGAP
+  result: MagazinePacketRifle556UEGAP
+  materials:
+    Steel: 2000
+    Plasteel: 1200
+    Diamond: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle762UEGAP
+  result: MagazinePacketRifle762UEGAP
+  materials:
+    Steel: 1500
+    Plasteel: 1100
+    Diamond: 500
