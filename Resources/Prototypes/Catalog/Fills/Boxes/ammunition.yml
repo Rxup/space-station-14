@@ -42,7 +42,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazineLightRifle
+      - id: MagazineRifleLight762x39
         amount: 4
 
 - type: entity
@@ -98,7 +98,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistol
+      - id: MagazinePistol9x17
         amount: 4
 
 - type: entity
@@ -120,7 +120,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolHighCapacity
+      - id: MagazinePistol57x28Extd
         amount: 4
 
 - type: entity
@@ -142,7 +142,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGun
+      - id: MagazinePistolSubMachineGun9x17
         amount: 3
 
 - type: entity
@@ -210,7 +210,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazineRifle
+      - id: MagazineRifle556UEG
         amount: 4
 
 - type: entity
