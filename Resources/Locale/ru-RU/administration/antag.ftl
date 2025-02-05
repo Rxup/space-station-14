@@ -21,4 +21,4 @@ admin-verb-text-make-head-rev = Сделать Главой революции
 admin-verb-text-make-thief = Сделать вором
 admin-verb-text-make-changeling = Сделать генокрадом
 admin-verb-make-changeling = Превратить цель в генокрада.
-admin-overlay-antag-classic = ANTAG
+admin-overlay-antag-classic = АНТАГ

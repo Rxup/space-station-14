@@ -51,7 +51,8 @@
   - type: Appearance
   - type: PipeColorVisuals
   - type: NodeContainer
-  - type: PipeRestrictOverlap
+  # backmen - Allow device-on-pipe stacking
+  # - type: PipeRestrictOverlap
   - type: AtmosUnsafeUnanchor
   - type: AtmosPipeColor
   - type: AtmosMonitoringConsoleDevice
@@ -64,10 +65,19 @@
   - type: StaticPrice
     price: 30
 
+# backmen - Allow device-on-pipe stacking
+- type: entity
+  abstract: true
+  parent: GasPipeBase
+  id: GasPipeNoOverlap
+  components:
+  - type: PipeRestrictOverlap
+
 #Note: The PipeDirection of the PipeNode should be the south-facing version, because the entity starts at an angle of 0 (south)
 
 - type: entity
-  parent: GasPipeBase
+  # backmen - Allow device-on-pipe stacking
+  parent: GasPipeNoOverlap
   id: GasPipeHalf
   suffix: Half
   components:
@@ -84,9 +94,14 @@
   - type: Construction
     graph: GasPipe
     node: half
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
 
 - type: entity
-  parent: GasPipeBase
+  # backmen - Allow device-on-pipe stacking
+  parent: GasPipeNoOverlap
   id: GasPipeStraight
   suffix: Straight
   components:
@@ -117,9 +132,14 @@
         Blunt: 8
     soundHit:
       collection: MetalThud # this NEEDS to changed to the metal pipe falling sound effect on april first every year
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
 
 - type: entity
-  parent: GasPipeBase
+  # backmen - Allow device-on-pipe stacking
+  parent: GasPipeNoOverlap
   id: GasPipeBend
   suffix: Bend
   components:
@@ -157,9 +177,14 @@
     damage:
       types:
         Blunt: 8 # Woe, pipe be upon ye!
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
 
 - type: entity
-  parent: GasPipeBase
+  # backmen - Allow device-on-pipe stacking
+  parent: GasPipeNoOverlap
   id: GasPipeTJunction
   suffix: TJunction
   components:
@@ -193,9 +218,14 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
 
 - type: entity
-  parent: GasPipeBase
+  # backmen - Allow device-on-pipe stacking
+  parent: GasPipeNoOverlap
   id: GasPipeFourway
   suffix: Fourway
   components:
@@ -228,10 +258,15 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
 
 - type: entity
   id: GasPipeBroken
-  parent: GasPipeBase
+  # backmen - Allow device-on-pipe stacking
+  parent: GasPipeNoOverlap
   name: broken pipe
   description: It used to hold gas.
   components:
@@ -253,3 +288,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks

@@ -203,6 +203,16 @@ public sealed class CCVars
     public static readonly CVarDef<bool> HoldLookUp =
         CVarDef.Create("white.hold_look_up", false, CVar.CLIENT | CVar.ARCHIVE);
 
+    /*
+    Atmos
+    */
+    /// <summary>
+    ///     Whether pipes will unanchor on ANY conflicting connection. May break maps.
+    ///     If false, allows you to stack pipes as long as new directions are added (i.e. in a new pipe rotation, layer or multi-Z link), otherwise unanchoring them.
+    /// </summary>
+    public static readonly CVarDef<bool> StrictPipeStacking =
+        CVarDef.Create("atmos.strict_pipe_stacking", false, CVar.SERVERONLY);
+
     #region Supermatter System
 
         /// <summary>

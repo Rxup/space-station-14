@@ -195,7 +195,6 @@
       - SubstationMachineCircuitboard
       - WallmountSubstationElectronics
       - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
       - HandheldStationMap
@@ -358,6 +357,7 @@
       - FauxTileJungleAstroGrass
       - FauxTileAstroIce
       - FauxTileAstroSnow
+      - FauxTileAstroAsteroidSand
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle # cats-shield energy_barrier
@@ -495,6 +495,7 @@
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
     - SalvageMagnetMachineCircuitboard
+    - BorgChargerCircuitboard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -786,6 +787,7 @@
       - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
+      - SyringeGun #Goobstation
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -842,6 +844,7 @@
       - ClothingHeadHelmetInsulated
       - ShellSoulbreaker
       - WeaponXrayCannon
+      - RapidSyringeGun # Goobstation
       - SecurityCyberneticEyes # Shitmed Change
       - MedicalCyberneticEyes # Shitmed Change
   - type: MaterialStorage
@@ -963,6 +966,7 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
+      - SyringeGun # backmen
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -970,12 +974,14 @@
       - SyringeBluespace
       - SyringeCryostasis
       - BluespacePillCanister # backmen
-      # Shitmed Change
+      - RapidSyringeGun # backmen
+      # Shitmed Change start
       - EnergyScalpel
       - EnergyCautery
       - AdvancedRetractor
       - OmnimedTool
       - MedicalCyberneticEyes
+      # Shitmed Change end
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

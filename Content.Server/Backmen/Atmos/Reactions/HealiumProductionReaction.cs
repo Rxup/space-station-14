@@ -18,7 +18,7 @@ public sealed partial class HealiumProductionReaction : IGasReactionEffect
         var initialFrezon = mixture.GetMoles(Gas.Frezon);
 
         var temperature = mixture.Temperature;
-        var heatEfficiency = Math.Min(temperature * 0.3f, Math.Min(initialFrezon * 2.75f, initialBZ * 0.25f));
+        var heatEfficiency = Math.Min(temperature * 0.08f, Math.Min(initialFrezon * 2.75f, initialBZ * 0.25f));
 
         if (heatEfficiency <= 0 || initialFrezon - heatEfficiency * 2.75f < 0 || initialBZ - heatEfficiency * 0.25f < 0)
             return ReactionResult.NoReaction;

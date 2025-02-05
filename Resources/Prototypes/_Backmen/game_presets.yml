@@ -19,7 +19,7 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: true
+  showInVote: false # secret
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler
@@ -324,7 +324,7 @@
   name: babelTower-title
   description: babelTower-description
   minPlayers: 5
-  showInVote: true
+  showInVote: false # secret
   rules:
     - BabelTower
     - CalmStationEventScheduler

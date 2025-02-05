@@ -10,10 +10,6 @@ public sealed partial class ZaukerProductionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
-        var initialHyperNoblium = mixture.GetMoles(Gas.HyperNoblium);
-        if (initialHyperNoblium >= 5.0f && mixture.Temperature > 20f)
-            return ReactionResult.NoReaction;
-
         var initialHypernoblium = mixture.GetMoles(Gas.HyperNoblium);
         var initialNitrium = mixture.GetMoles(Gas.Nitrium);
 
