@@ -113,17 +113,6 @@
   id: MagazineBoxHeavyRifle50BMG
   name: ammunition box (.50 BMG)
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi
-    layers:
-    - state: base-b
-      map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: magb
-    steps: 4
-    zeroVisible: false
   - type: BallisticAmmoProvider
     proto: BaseCartridgeRifleLightSniper
     capacity: 60
