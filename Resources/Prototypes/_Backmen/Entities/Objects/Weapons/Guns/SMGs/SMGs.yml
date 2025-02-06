@@ -163,13 +163,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunVector9x17
+        startingItem: MagazinePistolSubMachineGunVector45ACP
         insertSound: /Audio/Weapons/Guns64/SMGs/smg_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/SMGs/smg_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineSMGVector9x17
+            - MagazineSMGVector45ACP
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol9x17

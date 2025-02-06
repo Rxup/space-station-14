@@ -19,7 +19,7 @@
     contents:
     - id: WeaponSubMachineGunVectorSpecial
       amount: 2
-    - id: MagazinePistolSubMachineGunVector9x17
+    - id: MagazinePistolSubMachineGunVector45ACP
       amount: 4
 
 - type: entity

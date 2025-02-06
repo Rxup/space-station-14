@@ -224,7 +224,7 @@
 #      - MagazineRifleEmpty
       # Backmen-ammonation-start
       - MagazinePistolSubMachineGun57x28
-      - MagazinePistolSubMachineGunVector9x17
+      - MagazinePistolSubMachineGunVector45ACP
       - MagazineRifleFamas556UEG
       - MagazineRifle762UEG
       - MagazineRifle762UEGIncendiary
@@ -441,7 +441,7 @@
 #      - MagazineRifleUranium
       # Backmen-ammonation-start
       - MagazinePistolSubMachineGun57x28
-      - MagazinePistolSubMachineGunVector9x17
+      - MagazinePistolSubMachineGunVector45ACP
       - MagazineRifleFamas556UEG
       - MagazineRifle762UEG
       - MagazineRifle762UEGIncendiary
@@ -819,7 +819,7 @@
 #      - SpeedLoaderMagnumEmpty
       # Backmen-ammonation-start
       - MagazinePistolSubMachineGun57x28
-      - MagazinePistolSubMachineGunVector9x17
+      - MagazinePistolSubMachineGunVector45ACP
       - MagazineRifleFamas556UEG
       - MagazineRifle762UEG
       - MagazinePistol45ACP
@@ -962,7 +962,7 @@
 #        - SpeedLoaderMagnumEmpty
       # Backmen-ammonation-start
         - MagazinePistolSubMachineGun57x28
-        - MagazinePistolSubMachineGunVector9x17
+        - MagazinePistolSubMachineGunVector45ACP
         - MagazineRifleFamas556UEG
         - MagazineRifle762UEG
         - MagazinePistol45ACP

@@ -55,19 +55,19 @@
     zeroVisible: false
 
 - type: entity
-  id: MagazinePistolSubMachineGunVector9x17
-  name: Vector magazine (9x17 mm)
+  id: MagazinePistolSubMachineGunVector45ACP
+  name: Vector magazine (.45 Auto)
   parent: BaseMagazinePistolSubMachineGun
   components:
   - type: Tag
     tags:
-      - MagazineSMGVector9x17
+      - MagazineSMGVector45ACP
   - type: BallisticAmmoProvider
-    proto: CartridgePistol9x17
+    proto: CartridgePistolACP
     capacity: 20
     whitelist:
       tags:
-        - CartridgePistol9x17
+        - CartridgePistol45ACP
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite
@@ -83,9 +83,9 @@
     zeroVisible: false
 
 - type: entity
-  id: MagazinePistolSubMachineGunVector9x17Ext
-  name: Vector magazine Extended (9x17 mm)
-  parent: MagazinePistolSubMachineGunVector9x17
+  id: MagazinePistolSubMachineGunVector45ACPExt
+  name: Vector magazine Extended (.45 Auto)
+  parent: MagazinePistolSubMachineGunVector45ACP
   components:
   - type: BallisticAmmoProvider
     capacity: 40

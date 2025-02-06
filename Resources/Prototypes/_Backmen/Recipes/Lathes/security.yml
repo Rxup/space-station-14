@@ -61,8 +61,8 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistolSubMachineGunVector9x17
-  result: MagazinePistolSubMachineGunVector9x17
+  id: MagazinePistolSubMachineGunVector45ACP
+  result: MagazinePistolSubMachineGunVector45ACP
   materials:
     Steel: 300
 

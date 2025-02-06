@@ -163,7 +163,7 @@
 
 - type: entity
   id: MagazineRifleLightSniper
-  name: rifle magazine (7,62x52)
+  name: rifle magazine (7,62x54)
   description: Standart USSP type of heavy magazines.
   parent: BaseItem
   components:
@@ -200,7 +200,7 @@
 
 - type: entity
   id: MagazineRifleLightSniperAP
-  name: rifle magazine (7,62x52 AP)
+  name: rifle magazine (7,62x54 AP)
   parent: MagazineRifleLightSniper
   components:
   - type: BallisticAmmoProvider

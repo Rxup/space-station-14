@@ -129,8 +129,8 @@
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunVectorSpecial
-    - id: MagazinePistolSubMachineGunVector9x17Ext
-    - id: MagazinePistolSubMachineGunVector9x17Ext
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -495,7 +495,7 @@
         amount: 2
       - id: MagazinePistolSubMachineGun57x28
         amount: 2
-      - id: MagazinePistolSubMachineGunVector9x17
+      - id: MagazinePistolSubMachineGunVector45ACP
         amount: 2
       - id: MagazineRifleLight762x39 # For AKMS, AKSU and STG44
         amount: 3

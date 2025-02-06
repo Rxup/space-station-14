@@ -275,7 +275,7 @@
 
 - type: entity
   id: CartridgeRifleLight762
-  name: cartridge (7,62x52)
+  name: cartridge (7,62x54)
   parent: BaseCartridgeRifleLightSniper
   components:
   - type: Tag
@@ -293,7 +293,7 @@
 
 - type: entity
   id: CartridgeRifleLight762AP
-  name: cartridge (7,62x52 AP)
+  name: cartridge (7,62x54 AP)
   parent: CartridgeRifleLight762
   components:
   - type: CartridgeAmmo

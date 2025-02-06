@@ -237,7 +237,7 @@
 - type: entity
   parent: BaseBullet
   id: BulletLight762
-  name: bullet (7,62x52 rifle)
+  name: bullet (7,62x54 rifle)
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -248,7 +248,7 @@
 
 - type: entity
   id: BulletLight762AP
-  name: bullet (.308 win AP)
+  name: bullet (7,62x54 AP)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
