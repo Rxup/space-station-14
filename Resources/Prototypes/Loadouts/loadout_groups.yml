@@ -19,17 +19,19 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
-  - ClothingNeckLGBTPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckOmnisexualPin
-  - ClothingNeckTransPin
+# start-backmen: no pride
+#  - ClothingNeckLGBTPin
+#  - ClothingNeckAromanticPin
+#  - ClothingNeckAsexualPin
+#  - ClothingNeckBisexualPin
+#  - ClothingNeckGayPin
+#  - ClothingNeckIntersexPin
+#  - ClothingNeckLesbianPin
+#  - ClothingNeckNonBinaryPin
+#  - ClothingNeckPansexualPin
+#  - ClothingNeckOmnisexualPin
+#  - ClothingNeckTransPin
+# end-backmen: no pride
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
   # backmen-pins-start
