@@ -1,5 +1,5 @@
 - type: damageType
   id: ArmorPiercing
-  name: damage-type-armor-piercing
+  name: damage-type-armorpiercing
   armorCoefficientPrice: 2
   armorFlatPrice: 10

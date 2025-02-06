@@ -15,4 +15,4 @@ damage-type-holy = Holy
 
 #backmen
 damage-type-stun = Stun
-damage-type-armor-piercing = Punching
+damage-type-armorpiercing = Punching
