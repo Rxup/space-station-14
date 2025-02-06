@@ -36,20 +36,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineRifleLight762x39
         insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - MagazineRifleLight762x39
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: CartridgeRifleLight762x39
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -105,20 +105,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineRifleLight762x39
         insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - MagazineRifleLight762x39
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: CartridgeRifleLight762x39
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -173,20 +173,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle556UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/ar18_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/ar18_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle556UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight556UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle556UEG
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -238,20 +238,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle556UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/ar18_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/ar18_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle556UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight556UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle556UEG
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -303,20 +303,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle762UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle762UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight762UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle762UEG
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -332,18 +332,6 @@
 - type: entity
   parent: WeaponRifleM28
   id: WeaponRifleM28Rubber
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineRifle
-        insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
-        ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineRifle
 
 - type: entity
   name: STG 44
@@ -382,20 +370,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineRifleLight762x39
         insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - MagazineRifleLight762x39
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: CartridgeRifleLight762x39
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -445,20 +433,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle556UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/m16_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m16_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle556UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight556UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle556UEG
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -513,20 +501,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifleFamas556UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/m16_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m16_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifleFamas556UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight556UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle556UEG
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -712,11 +700,11 @@
             - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight556UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle556UEG
 
 - type: entity
   suffix: Зажигательные
@@ -778,20 +766,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle556UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/m16_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m16_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle556UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight556UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle556UEG
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -839,20 +827,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle762UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/m4ra_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m4ra_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle762UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight762UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle762UEG
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -903,20 +891,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineRifle762UEG
         insertSound: /Audio/Weapons/Guns64/Rifles/m4ra_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m4ra_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineRifle762UEG
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeRifleLight762UEG
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeRifle762UEG
   - type: MagazineVisuals
     magState: mag
     steps: 1

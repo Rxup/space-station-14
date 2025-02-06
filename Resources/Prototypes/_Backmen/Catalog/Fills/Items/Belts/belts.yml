@@ -62,7 +62,7 @@
   components:
     - type: StorageFill
       contents:
-        - id: MagazineRifle
+        - id: MagazineRifle556UEG
           amount: 3
         - id: MagazinePistol
           amount: 2
@@ -78,7 +78,7 @@
           amount: 2
         - id: BattleSpaceMedipen
           amount: 2
-        - id: MagazineRifle
+        - id: MagazineRifle556UEG
           amount: 4
 
 - type: entity
@@ -216,7 +216,7 @@
   components:
     - type: StorageFill
       contents:
-        - id: MagazinePistolSubMachineGun
+        - id: MagazinePistolSubMachineGun9x17
           amount: 6
 
 - type: entity
@@ -226,7 +226,7 @@
   components:
     - type: StorageFill
       contents:
-        - id: MagazineRifle
+        - id: MagazineRifle556UEG
           amount: 6
 
 - type: entity

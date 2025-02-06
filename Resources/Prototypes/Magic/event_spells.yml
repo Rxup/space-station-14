@@ -75,7 +75,7 @@
         orGroup: Guns
       - id: WeaponSubMachineGunWt550
         orGroup: Guns
-      - id: WeaponSniperMosin
+      - id: WeaponSniperMosinNew
         orGroup: Guns
       - id: WeaponSniperHristov
         orGroup: Guns
@@ -158,7 +158,7 @@
       - id: RevolverCapGunFake
         orGroup: Guns
       speech: action-speech-spell-summon-guns
-      
+
 - type: entity
   id: ActionSummonMagic
   name: Summon Magic

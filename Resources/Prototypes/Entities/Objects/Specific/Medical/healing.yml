@@ -278,6 +278,7 @@
       types:
         Slash: -5
         Piercing: -10
+        ArmorPiercing: -10
     bloodlossModifier: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"

@@ -33,7 +33,7 @@
         - id: MagazinePistol
           amount: 2
         - id: WeaponRifleM28Tactical
-        - id: MagazineRifle
+        - id: MagazineRifle762UEG
           amount: 5
         - id: BoxHandcuff
 
@@ -85,7 +85,7 @@
         - id: MagazinePistol
           amount: 2
         - id: WeaponRifleG36Tactical
-        - id: MagazineRifle
+        - id: MagazineRifle556UEG
           amount: 5
         - id: BoxHandcuff
 
@@ -104,7 +104,7 @@
         - id: MagazinePistol
           amount: 2
         - id: WeaponSubMachineGunMP5Tactical
-        - id: MagazinePistolSubMachineGun
+        - id: MagazinePistolSubMachineGun9x17
           amount: 6
         - id: MedkitFilled
         - id: SyringeInaprovaline

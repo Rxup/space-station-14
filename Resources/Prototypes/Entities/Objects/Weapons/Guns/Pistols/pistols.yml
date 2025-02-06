@@ -40,21 +40,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: MagazinePistol9x17
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistol
+            - MagazinePistol9x17
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistol9x17
         priority: 1
         whitelist:
           tags:
-            - CartridgePistol
+            - CartridgePistol9x17
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -80,22 +80,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: MagazinePistol57x28
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistol
-            - MagazinePistolHighCapacity
+            - MagazinePistol57x28
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistol57x28
         priority: 1
         whitelist:
           tags:
-            - CartridgePistol
+            - CartridgePistol57x28
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

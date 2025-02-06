@@ -467,7 +467,7 @@
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol
+  productEntity: MagazinePistol9x17 #backmen-ammonation
   cost:
     Telecrystal: 1
   categories:
@@ -479,7 +479,7 @@
   name: uplink-pistol-magazine-c20r-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGun
+  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
   cost:
     Telecrystal: 2
   categories:
@@ -525,7 +525,7 @@
   id: UplinkHristovAmmo
   name: uplink-sniper-ammo-name
   description: uplink-sniper-ammo-desc
-  productEntity: MagazineBoxAntiMateriel
+  productEntity: MagazinePacketHeavyRifle50BMG #backmen-ammonation
   cost:
     Telecrystal: 2
   categories:

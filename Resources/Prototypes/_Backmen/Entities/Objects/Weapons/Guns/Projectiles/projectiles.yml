@@ -104,17 +104,6 @@
     canCreateVacuum: false
 
 - type: entity
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  id: BulletLight762
-  name: bullet (7,62 rifle)
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 39
-
-- type: entity
   id: BulletGrenadeTearGas
   name: tear gas grenade
   parent: BaseBulletTrigger

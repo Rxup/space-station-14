@@ -22,6 +22,7 @@
   id: CartridgePistol
   name: cartridge (.35 auto)
   parent: BaseCartridgePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletPistol
@@ -30,6 +31,7 @@
   id: CartridgePistolPractice
   name: cartridge (.35 auto practice)
   parent: BaseCartridgePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletPistolPractice
@@ -45,6 +47,7 @@
   id: CartridgePistolIncendiary
   name: cartridge (.35 auto incendiary)
   parent: BaseCartridgePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletPistolIncendiary
@@ -60,6 +63,7 @@
   id: CartridgePistolUranium
   name: cartridge (.35 auto uranium)
   parent: BaseCartridgePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletPistolUranium

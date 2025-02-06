@@ -112,6 +112,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.4
+        ArmorPiercing: 0.7
   - type: HideLayerClothing
     slots:
     - Snout

@@ -29,6 +29,7 @@
   parent: BaseMagazineBoxAntiMateriel
   id: MagazineBoxAntiMateriel
   name: ammunition box (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMateriel

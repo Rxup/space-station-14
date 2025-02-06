@@ -72,7 +72,7 @@
     amount: 0
     maxAmount: 5
 
-  - id: WeaponSniperMosin
+  - id: WeaponSniperMosinNew
     amount: 0
     maxAmount: 5
   - id: WeaponSniperHristov
