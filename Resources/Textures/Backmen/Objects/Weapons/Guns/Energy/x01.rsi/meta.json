@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "taken from tg station at commit https://github.com/tgstation/tgstation/pull/44216",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/484fcb08e8e2058b81059424fb5aa77034a3fcf1. Multiphase variant spriyed by Agronomist",
   "size": {
     "x": 32,
     "y": 32
@@ -13,15 +13,17 @@
 		{
 			"name": "base"
 		},
-        {
-            "name": "mag-unshaded-0",
+		{
+			"name": "mag-unshaded-0",
             "delays": [
-                [
-                    0.5,
-                    0.5
-                ]
+              [
+                0.1,
+                0.1,
+                0.1,
+                0.1
+              ]
             ]
-        },
+		},
 		{
 			"name": "mag-unshaded-1"
 		},
@@ -36,11 +38,47 @@
 		},
 		{
 			"name": "inhand-left-0",
-			"directions": 4
+            "directions": 4,
+            "delays": [
+              [
+                0.3,
+                0.3
+              ],
+              [
+                0.3,
+                0.3
+              ],
+              [
+                0.3,
+                0.3
+              ],
+              [
+                0.3,
+                0.3
+              ]
+            ]
 		},
 		{
 			"name": "inhand-right-0",
-			"directions": 4
+            "directions": 4,
+            "delays": [
+              [
+                0.3,
+                0.3
+              ],
+              [
+                0.3,
+                0.3
+              ],
+              [
+                0.3,
+                0.3
+              ],
+              [
+                0.3,
+                0.3
+              ]
+            ]
 		},
 		{
 			"name": "inhand-left-1",
@@ -79,7 +117,8 @@
 			"directions": 4
 		},
 		{
-			"name": "redtrac"
+			"name": "equipped-SUITSTORAGE",
+			"directions": 4
 		}
 	]
 }
