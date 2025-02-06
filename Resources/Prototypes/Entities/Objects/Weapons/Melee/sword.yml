@@ -31,11 +31,11 @@
     attackRate: 1.5
     damage:
       types:
-        Slash: 17 #cmon, it has to be at least BETTER than the rest.
+        Slash: 19 #кто скажет про дисбаланс, я знаю где вы все живёте
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: .1
+    reflectProb: .45
     spread: 90
   - type: Item
     sprite: Objects/Weapons/Melee/captain_sabre.rsi
