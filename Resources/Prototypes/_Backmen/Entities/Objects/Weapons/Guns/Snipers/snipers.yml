@@ -148,6 +148,13 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CartridgeRifleLight762
+    cycleable: false
+    whitelist:
+      tags:
+      - CartridgeRifle762
   - type: Gun
     fireRate: 0.8
   - type: Wieldable
@@ -169,6 +176,12 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/garand/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/garand/tiny.rsi
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CartridgeRifleLight762UEG
+    whitelist:
+      tags:
+      - CartridgeRifle762UEG
   - type: Gun
     fireRate: 0.8
     soundGunshot:

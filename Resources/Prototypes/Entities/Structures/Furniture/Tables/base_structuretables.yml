@@ -37,6 +37,9 @@
     footstepSoundCollection:
       collection: FootstepHull
   - type: RequireProjectileTarget
+  - type: Tag
+    tags:
+    - ForceFixRotations
 
 - type: entity
   id: CounterBase

@@ -6,11 +6,11 @@
   - 0     # oxygen
   - 0     # nitrogen
   - 0     # carbon dioxide
-  - 10    # plasma
+  - 0.01    # plasma
   - 0     # tritium
   - 0     # vapor
   - 0     # miasma
-  - 10    # n2o
+  - 0.01    # n2o
   - 0     # frezon
   - 0     # bz
   effects:
@@ -59,18 +59,18 @@
 - type: gasReaction
   id: NitriumProduction
   priority: 5
-  minimumTemperature: 1500
+  minimumTemperature: 1000
   minimumRequirements:
   - 0     # oxygen
-  - 10    # nitrogen
+  - 0.01  # nitrogen
   - 0     # carbon dioxide
   - 0     # plasma
-  - 20    # tritium
+  - 0.01  # tritium
   - 0     # vapor
   - 0     # miasma
   - 0     # n2o
   - 0     # frezon
-  - 5     # bz
+  - 0.01  # bz
   - 0     # pluoxium
   - 0     # hydrogen
   - 0     # nitrium
@@ -115,14 +115,14 @@
 - type: gasReaction
   id: HyperNobliumProduction
   priority: 7
-  minimumTemperature: 2.7
-  maximumTemperature: 15
+  minimumTemperature: 2.7 # TCMB
+  maximumTemperature: 24.15 # Reachable with Frezon and Nitrogen
   minimumRequirements:
   - 0     # oxygen
-  - 10    # nitrogen
+  - 0.01  # nitrogen
   - 0     # carbon dioxide
   - 0     # plasma
-  - 5     # tritium
+  - 0.01  # tritium
   - 0     # vapor
   - 0     # miasma
   - 0     # n2o
@@ -199,8 +199,64 @@
   - !type:HealiumProductionReaction {}
 
 - type: gasReaction
-  id: ZaukerProduction
+  id: HalonProduction
   priority: 9
+  minimumTemperature: 23.15
+  maximumTemperature: 73.15
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0.01  # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0.01  # bz
+  - 0     # pluoxium
+  - 0     # hydrogen
+  - 0     # nitrium
+  - 0     # healium
+  - 0     # hyper-noblium
+  - 0     # proto-nitrate
+  - 0     # zauker
+  - 0     # halon
+  - 0     # helium
+  - 0     # anti-noblium
+  effects:
+  - !type:HalonProductionReaction {}
+
+- type: gasReaction
+  id: HalonFrezonDecomposition
+  priority: 10
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0.01  # frezon
+  - 0     # bz
+  - 0     # pluoxium
+  - 0     # hydrogen
+  - 0     # nitrium
+  - 0     # healium
+  - 0     # hyper-noblium
+  - 0     # proto-nitrate
+  - 0     # zauker
+  - 0.01  # halon
+  - 0     # helium
+  - 0     # anti-noblium
+  effects:
+  - !type:HalonFrezonDecompositionReaction {}
+
+- type: gasReaction
+  id: ZaukerProduction
+  priority: 11
   minimumTemperature: 50000
   maximumTemperature: 75000
   minimumRequirements:
@@ -229,7 +285,7 @@
 
 - type: gasReaction
   id: ZaukerDecomposition
-  priority: 10
+  priority: 12
   minimumRequirements:
   - 0     # oxygen
   - 0.01  # nitrogen
@@ -256,7 +312,7 @@
 
 - type: gasReaction
   id: ProtoNitrateProduction
-  priority: 11
+  priority: 13
   minimumTemperature: 5000
   maximumTemperature: 10000
   minimumRequirements:
@@ -285,7 +341,7 @@
 
 - type: gasReaction
   id: ProtoNitrateHydrogenConversion
-  priority: 12
+  priority: 14
   minimumRequirements:
   - 0     # oxygen
   - 0     # nitrogen
@@ -312,7 +368,7 @@
 
 - type: gasReaction
   id: ProtoNitrateTritiumDeirradiation
-  priority: 13
+  priority: 15
   minimumTemperature: 150
   maximumTemperature: 340
   minimumRequirements:
@@ -341,7 +397,7 @@
 
 - type: gasReaction
   id: ProtoNitrateBZaseAction
-  priority: 14
+  priority: 16
   minimumTemperature: 260
   maximumTemperature: 280
   minimumRequirements:

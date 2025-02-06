@@ -195,7 +195,6 @@
       - SubstationMachineCircuitboard
       - WallmountSubstationElectronics
       - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
       - HandheldStationMap
@@ -214,21 +213,40 @@
       - MagazineBoxPistol
       - MagazineBoxRifle
       - MagazineLightRifle
-      - MagazineLightRifleEmpty
+#      - MagazineLightRifleEmpty
       - MagazinePistol
-      - MagazinePistolEmpty
+#      - MagazinePistolEmpty
       - MagazinePistolSubMachineGun
-      - MagazinePistolSubMachineGunEmpty
+#      - MagazinePistolSubMachineGunEmpty
       - MagazinePistolSubMachineGunTopMounted
-      - MagazinePistolSubMachineGunTopMountedEmpty
+#      - MagazinePistolSubMachineGunTopMountedEmpty
       - MagazineRifle
-      - MagazineRifleEmpty
+#      - MagazineRifleEmpty
+      # Backmen-ammonation-start
+      - MagazinePistolSubMachineGun57x28
+      - MagazinePistolSubMachineGunVector45ACP
+      - MagazineRifleFamas556UEG
+      - MagazineRifle762UEG
+      - MagazineRifle762UEGIncendiary
+      - MagazineRifleFamas556UEGIncendiary
+      - MagazinePistol45ACP
+      - MagazinePistol45ACPincendiary
+      - MagazinePistol57x28
+      - MagazinePistol57x28Incendiary
+      - MagazinePistol57x28Extd
+      - MagazineBoxHeavyRifle
+      - MagazinePacketRifle762x39
+      - MagazinePacketRifle762UEG
+      - MagazinePacketPistolACP
+      - MagazinePacketPistol57x28
+      - MagazinePacketPistol50AE
+      # Backmen-ammonation-end
       - MagazineShotgun
-      - MagazineShotgunEmpty
+#      - MagazineShotgunEmpty
       - MagazineShotgunSlug
       - RiotShield
       - SpeedLoaderMagnum
-      - SpeedLoaderMagnumEmpty
+#      - SpeedLoaderMagnumEmpty
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -358,6 +376,7 @@
       - FauxTileJungleAstroGrass
       - FauxTileAstroIce
       - FauxTileAstroSnow
+      - FauxTileAstroAsteroidSand
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle # cats-shield energy_barrier
@@ -406,20 +425,39 @@
       - GrenadeFlash
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
-      - MagazineBoxLightRifleUranium
+#      - MagazineBoxLightRifleUranium
       - MagazineBoxMagnumIncendiary
-      - MagazineBoxMagnumUranium
+#      - MagazineBoxMagnumUranium
       - MagazineBoxPistolIncendiary
-      - MagazineBoxPistolUranium
+#      - MagazineBoxPistolUranium
       - MagazineBoxRifleIncendiary
-      - MagazineBoxRifleUranium
+#      - MagazineBoxRifleUranium
       - MagazineGrenadeEmpty
       - MagazineLightRifleIncendiary
-      - MagazineLightRifleUranium
+#      - MagazineLightRifleUranium
       - MagazinePistolIncendiary
-      - MagazinePistolUranium
+#      - MagazinePistolUranium
       - MagazineRifleIncendiary
-      - MagazineRifleUranium
+#      - MagazineRifleUranium
+      # Backmen-ammonation-start
+      - MagazinePistolSubMachineGun57x28
+      - MagazinePistolSubMachineGunVector45ACP
+      - MagazineRifleFamas556UEG
+      - MagazineRifle762UEG
+      - MagazineRifle762UEGIncendiary
+      - MagazineRifleFamas556UEGIncendiary
+      - MagazinePistol45ACP
+      - MagazinePistol45ACPincendiary
+      - MagazinePistol57x28
+      - MagazinePistol57x28Incendiary
+      - MagazinePistol57x28Extd
+      - MagazineBoxHeavyRifle
+      - MagazinePacketRifle762x39
+      - MagazinePacketRifle762UEG
+      - MagazinePacketPistolACP
+      - MagazinePacketPistol57x28
+      - MagazinePacketPistol50AE
+      # Backmen-ammonation-end
       - MagazineShotgunBeanbag
       - MagazineShotgunIncendiary
       - MagazineShotgunIncendiary
@@ -495,6 +533,7 @@
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
     - SalvageMagnetMachineCircuitboard
+    - BorgChargerCircuitboard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -755,29 +794,44 @@
       - ForensicPad
       - Handcuffs
       - MagazineBoxLightRifle
-      - MagazineBoxLightRiflePractice
+#      - MagazineBoxLightRiflePractice
       - MagazineBoxMagnum
-      - MagazineBoxMagnumPractice
+#      - MagazineBoxMagnumPractice
       - MagazineBoxPistol
-      - MagazineBoxPistolPractice
+#      - MagazineBoxPistolPractice
       - MagazineBoxRifle
-      - MagazineBoxRiflePractice
+#      - MagazineBoxRiflePractice
       - MagazineLightRifle
-      - MagazineLightRifleEmpty
+#      - MagazineLightRifleEmpty
       - MagazinePistol
-      - MagazinePistolEmpty
+#      - MagazinePistolEmpty
       - MagazinePistolSubMachineGun
-      - MagazinePistolSubMachineGunEmpty
+#      - MagazinePistolSubMachineGunEmpty
       - MagazinePistolSubMachineGunTopMounted
-      - MagazinePistolSubMachineGunTopMountedEmpty
+#      - MagazinePistolSubMachineGunTopMountedEmpty
       - MagazineRifle
-      - MagazineRifleEmpty
+#      - MagazineRifleEmpty
       - MagazineShotgun
-      - MagazineShotgunEmpty
+#      - MagazineShotgunEmpty
       - MagazineShotgunSlug
       - RiotShield
       - SpeedLoaderMagnum
-      - SpeedLoaderMagnumEmpty
+#      - SpeedLoaderMagnumEmpty
+      # Backmen-ammonation-start
+      - MagazinePistolSubMachineGun57x28
+      - MagazinePistolSubMachineGunVector45ACP
+      - MagazineRifleFamas556UEG
+      - MagazineRifle762UEG
+      - MagazinePistol45ACP
+      - MagazinePistol57x28
+      - MagazinePistol57x28Extd
+      - MagazineBoxHeavyRifle
+      - MagazinePacketRifle762x39
+      - MagazinePacketRifle762UEG
+      - MagazinePacketPistolACP
+      - MagazinePacketPistol57x28
+      - MagazinePacketPistol50AE
+      # Backmen-ammonation-end
       - Stunbaton
       - TargetClown
       - TargetHuman
@@ -786,6 +840,7 @@
       - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
+      - SyringeGun #Goobstation
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -799,20 +854,30 @@
       - GrenadeFlash
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
-      - MagazineBoxLightRifleUranium
+#      - MagazineBoxLightRifleUranium
       - MagazineBoxMagnumIncendiary
-      - MagazineBoxMagnumUranium
+#      - MagazineBoxMagnumUranium
       - MagazineBoxPistolIncendiary
-      - MagazineBoxPistolUranium
+#      - MagazineBoxPistolUranium
       - MagazineBoxRifleIncendiary
-      - MagazineBoxRifleUranium
+#      - MagazineBoxRifleUranium
       - MagazineGrenadeEmpty
       - MagazineLightRifleIncendiary
-      - MagazineLightRifleUranium
+#      - MagazineLightRifleUranium
       - MagazinePistolIncendiary
-      - MagazinePistolUranium
+#      - MagazinePistolUranium
       - MagazineRifleIncendiary
-      - MagazineRifleUranium
+#      - MagazineRifleUranium
+      # Backmen-ammonation-start
+      - MagazineRifle762UEGIncendiary
+      - MagazineRifleFamas556UEGIncendiary
+      - MagazinePistol45ACPincendiary
+      - MagazinePistol57x28Incendiary
+      - MagazinePacketPistol50AEAP
+      - MagazinePacketRifle762x39AP
+      - MagazinePacketRifle762x39AP
+      - MagazinePacketRifle762UEGAP
+      # Backmen-ammonation-end
       - MagazineShotgunBeanbag
       - MagazineShotgunIncendiary
       - PortableRecharger
@@ -842,6 +907,7 @@
       - ClothingHeadHelmetInsulated
       - ShellSoulbreaker
       - WeaponXrayCannon
+      - RapidSyringeGun # Goobstation
       - SecurityCyberneticEyes # Shitmed Change
       - MedicalCyberneticEyes # Shitmed Change
   - type: MaterialStorage
@@ -884,16 +950,31 @@
         - MagazineBoxPistol
         - MagazineBoxRifle
         - MagazineLightRifle
-        - MagazineLightRifleEmpty
+#        - MagazineLightRifleEmpty
         - MagazinePistol
-        - MagazinePistolEmpty
+#        - MagazinePistolEmpty
         - MagazineRifle
-        - MagazineRifleEmpty
+#        - MagazineRifleEmpty
         - MagazineShotgun
-        - MagazineShotgunEmpty
+#        - MagazineShotgunEmpty
         - MagazineShotgunSlug
         - SpeedLoaderMagnum
-        - SpeedLoaderMagnumEmpty
+#        - SpeedLoaderMagnumEmpty
+      # Backmen-ammonation-start
+        - MagazinePistolSubMachineGun57x28
+        - MagazinePistolSubMachineGunVector45ACP
+        - MagazineRifleFamas556UEG
+        - MagazineRifle762UEG
+        - MagazinePistol45ACP
+        - MagazinePistol57x28
+        - MagazinePistol57x28Extd
+        - MagazineBoxHeavyRifle
+        - MagazinePacketRifle762x39
+        - MagazinePacketRifle762UEG
+        - MagazinePacketPistolACP
+        - MagazinePacketPistol57x28
+        - MagazinePacketPistol50AE
+      # Backmen-ammonation-end
     - type: MaterialStorage
       whitelist:
         tags:
@@ -963,6 +1044,7 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
+      - SyringeGun # backmen
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -970,12 +1052,14 @@
       - SyringeBluespace
       - SyringeCryostasis
       - BluespacePillCanister # backmen
-      # Shitmed Change
+      - RapidSyringeGun # backmen
+      # Shitmed Change start
       - EnergyScalpel
       - EnergyCautery
       - AdvancedRetractor
       - OmnimedTool
       - MedicalCyberneticEyes
+      # Shitmed Change end
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

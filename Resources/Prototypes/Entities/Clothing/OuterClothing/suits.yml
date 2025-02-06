@@ -16,8 +16,9 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.75
+        Piercing: 0.7
+        ArmorPiercing: 0.7
+        Heat: 0.55
   - type: ExplosionResistance
     damageCoefficient: 0.15
   - type: GroupExamine
@@ -157,6 +158,7 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+        ArmorPiercing: 0.9
         Heat: 0.8
   # phase cloak
   - type: ToggleClothing

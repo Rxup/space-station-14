@@ -24,6 +24,8 @@
   specificHeat: 15
   heatCapacityRatio: 1.4
   molarMass: 2
+  gasOverlaySprite: /Textures/Effects/atmospherics.rsi
+  gasOverlayState: hydrogen
   color: FFFFFF
   reagent: Hydrogen
   pricePerMole: 5
