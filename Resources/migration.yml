@@ -729,3 +729,5 @@ FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
 #2025-02-05
 #WeaponSubMachineGunVector: null
 #WeaponSubMachineGunVectorRubber: null
+MagazineBoxCaselessRifleBig: MagazineBoxCaselessRifle
+MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
