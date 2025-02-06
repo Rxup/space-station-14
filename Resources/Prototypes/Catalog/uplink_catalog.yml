@@ -1157,7 +1157,7 @@
   productEntity: DropPodMarkerReinforcementSyndicateNukeops #backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
   cost:
-    Telecrystal: 35
+    Telecrystal: 30
   categories:
   - UplinkAllies
   conditions:

@@ -453,7 +453,6 @@ MagazineBoxLightRifleRubber: MagazineBoxLightRifle
 MagazineBoxRifleRubber: MagazineBoxRifle
 MagazineBoxRifleBigRubber: MagazineBoxRifleBig
 MagazineBoxCaselessRifleRubber: MagazineBoxCaselessRifle
-MagazineBoxCaselessRifleBigRubber: MagazineBoxCaselessRifle10x24
 BoxMagazinePistolRubber: BoxMagazinePistol
 BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
 BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
@@ -466,6 +465,7 @@ WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunVectorRubber: WeaponSubMachineGunMP5 #Backmen-migration
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5 #Backmen-migration
 WeaponRifleLecterRubber: WeaponRifleFamas #Backmen-migration
+
 
 # 2024-04-26
 GlassBoxLaserBroken: GlassBoxBroken
@@ -779,5 +779,10 @@ MagazineBoxLightRifle: MagazinePacketRifle762x39
 MagazineBoxLightRiflePractice: MagazinePacketRifle762x39
 MagazineBoxLightRifleIncendiary: MagazinePacketRifle762x39Incendiary
 MagazineBoxLightRifleUranium: MagazinePacketRifle762x39
-MagazineBoxAntiMaterielBig: MagazineBoxHeavyRifle50BMG
 MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
+
+#2025-02-05
+#WeaponSubMachineGunVector: null
+#WeaponSubMachineGunVectorRubber: null
+MagazineBoxCaselessRifleBig: MagazineBoxCaselessRifle
+MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
