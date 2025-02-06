@@ -119,6 +119,10 @@
 		{
 			"name": "equipped-SUITSTORAGE",
 			"directions": 4
+		},
+		{
+			"name": "redtrac",
+			"directions": 4
 		}
 	]
 }
