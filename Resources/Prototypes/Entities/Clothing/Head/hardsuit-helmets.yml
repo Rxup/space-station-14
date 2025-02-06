@@ -278,21 +278,21 @@
     sprite: Clothing/Head/Hardsuits/capspace.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/capspace.rsi
-  - type: PointLight
+  - type: PointLight               #Backmen edit
     color: cyan
     radius: 7
     energy: 3
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: Armor                    #Backmen edit
     modifiers:
       coefficients:
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: TinfoilHat
+  - type: TinfoilHat               #Backmen edit
     destroyOnFry: false
 
 #Chief Engineer's Hardsuit

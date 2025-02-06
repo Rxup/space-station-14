@@ -355,17 +355,17 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        ArmorPiercing: 0.6
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
-        Stun: 0.6
+        Blunt: 0.5          #Backmen edit
+        Slash: 0.5          #Backmen edit
+        Piercing: 0.5       #Backmen edit
+        ArmorPiercing: 0.6  #Backmen edit
+        Heat: 0.5           #Backmen edit
+        Radiation: 0.5      #Backmen edit
+        Caustic: 0.5        #Backmen edit
+        Stun: 0.6           #Backmen edit
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.9       #Backmen edit
+    sprintModifier: 0.9     #Backmen edit
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap
