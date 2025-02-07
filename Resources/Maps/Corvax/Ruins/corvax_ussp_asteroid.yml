@@ -12,13 +12,25 @@ tilemap:
 entities:
 - proto: ""
   entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
+    - type: Broadphase
+    - type: OccluderTree
   - uid: 2
     components:
     - type: MetaData
       name: ""
     - type: Transform
       pos: 1.8041825,-0.32618448
-      parent: invalid
+      parent: 1
     - type: MapGrid
       chunks:
         0,0:
@@ -557,6 +569,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -654,7 +674,7 @@ entities:
       parent: 355
     - type: InstantAction
       container: 355
-- proto: AirlockHatch
+- proto: AirlockHatchBasik
   entities:
   - uid: 134
     components:
@@ -11235,6 +11255,13 @@ entities:
     - type: Transform
       pos: 22.5,-9.5
       parent: 2
+- proto: BackmenVendingMachineSovietSoda
+  entities:
+  - uid: 1587
+    components:
+    - type: Transform
+      pos: 20.5,-11.5
+      parent: 2
 - proto: BaseUplinkRadio
   entities:
   - uid: 1591
@@ -11499,7 +11526,7 @@ entities:
     - type: Transform
       pos: 14.57781,-12.755797
       parent: 2
-- proto: CartridgeLightRifle
+- proto: CartridgeRifleLight762x39
   entities:
   - uid: 20
     components:
@@ -11529,486 +11556,6 @@ entities:
       parent: 2
     - type: CartridgeAmmo
       spent: True
-  - uid: 184
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 185
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 186
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 187
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 188
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 189
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 190
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 191
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 192
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 193
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 194
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 195
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 196
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 197
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 198
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 199
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 200
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 201
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 203
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 205
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 206
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 207
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 208
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 209
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 210
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 211
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 212
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 213
-    components:
-    - type: Transform
-      parent: 183
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 216
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 217
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 218
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 219
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 220
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 221
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 222
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 223
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 224
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 225
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 226
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 227
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 228
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 229
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 230
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 231
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 232
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 233
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 234
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 235
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 236
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 237
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 238
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 239
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 240
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 241
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 242
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 243
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 244
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
-  - uid: 245
-    components:
-    - type: Transform
-      parent: 215
-    - type: CartridgeAmmo
-      spent: True
-    - type: Physics
-      canCollide: False
   - uid: 246
     components:
     - type: Transform
@@ -12369,7 +11916,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - Opaque
+          - TeleportLayer
           density: 50
           hard: True
           restitution: 0
@@ -12423,7 +11970,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - Opaque
+          - TeleportLayer
           density: 50
           hard: True
           restitution: 0
@@ -12456,7 +12003,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - Opaque
+          - TeleportLayer
           density: 50
           hard: True
           restitution: 0
@@ -12489,7 +12036,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - Opaque
+          - TeleportLayer
           density: 50
           hard: True
           restitution: 0
@@ -13056,155 +12603,6 @@ entities:
     - type: Transform
       pos: 18.5,-15.5
       parent: 2
-- proto: MagazineLightRifleEmpty
-  entities:
-  - uid: 183
-    components:
-    - type: Transform
-      pos: 11.547438,-14.408712
-      parent: 2
-    - type: BallisticAmmoProvider
-      entities:
-      - 191
-      - 193
-      - 188
-      - 187
-      - 190
-      - 189
-      - 185
-      - 186
-      - 195
-      - 192
-      - 204
-      - 198
-      - 205
-      - 197
-      - 184
-      - 211
-      - 213
-      - 202
-      - 200
-      - 196
-      - 194
-      - 199
-      - 212
-      - 201
-      - 203
-      - 207
-      - 210
-      - 209
-      - 206
-      - 208
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 191
-          - 193
-          - 188
-          - 187
-          - 190
-          - 189
-          - 185
-          - 186
-          - 195
-          - 192
-          - 204
-          - 198
-          - 205
-          - 197
-          - 184
-          - 211
-          - 213
-          - 202
-          - 200
-          - 196
-          - 194
-          - 199
-          - 212
-          - 201
-          - 203
-          - 207
-          - 210
-          - 209
-          - 206
-          - 208
-  - uid: 215
-    components:
-    - type: Transform
-      parent: 214
-    - type: BallisticAmmoProvider
-      entities:
-      - 223
-      - 225
-      - 220
-      - 219
-      - 222
-      - 221
-      - 217
-      - 218
-      - 227
-      - 224
-      - 236
-      - 230
-      - 237
-      - 229
-      - 216
-      - 243
-      - 245
-      - 234
-      - 232
-      - 228
-      - 226
-      - 231
-      - 244
-      - 233
-      - 235
-      - 239
-      - 242
-      - 241
-      - 238
-      - 240
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 223
-          - 225
-          - 220
-          - 219
-          - 222
-          - 221
-          - 217
-          - 218
-          - 227
-          - 224
-          - 236
-          - 230
-          - 237
-          - 229
-          - 216
-          - 243
-          - 245
-          - 234
-          - 232
-          - 228
-          - 226
-          - 231
-          - 244
-          - 233
-          - 235
-          - 239
-          - 242
-          - 241
-          - 238
-          - 240
-    - type: Physics
-      canCollide: False
 - proto: MaterialGunpowder
   entities:
   - uid: 275
@@ -13249,7 +12647,7 @@ entities:
       pos: 13.5,-8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -14372.478
+      secondsUntilStateChange: -14393.855
       state: Opening
   - uid: 151
     components:
@@ -13710,7 +13108,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - Opaque
+          - TeleportLayer
           density: 350
           hard: True
           restitution: 0
@@ -13756,7 +13154,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - Opaque
+          - TeleportLayer
           density: 350
           hard: True
           restitution: 0
@@ -13882,13 +13280,6 @@ entities:
     components:
     - type: Transform
       pos: 15.361559,-11.243308
-      parent: 2
-- proto: VendingMachineSovietSoda
-  entities:
-  - uid: 1587
-    components:
-    - type: Transform
-      pos: 20.5,-11.5
       parent: 2
 - proto: VendingMachineTankDispenserEVA
   entities:
@@ -14505,7 +13896,7 @@ entities:
     - type: Transform
       pos: 17.5,-7.5
       parent: 2
-- proto: WeaponRifleAk
+- proto: WeaponAKMSRifle
   entities:
   - uid: 214
     components:
@@ -14517,17 +13908,7 @@ entities:
       currentAngle: 0.01745329251994332 rad
     - type: ChamberMagazineAmmoProvider
       boltClosed: True
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 215
-        gun_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: WeaponSniperMosin
+- proto: WeaponSniperMosinNew
   entities:
   - uid: 26
     components:
