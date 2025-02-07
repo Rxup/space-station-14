@@ -113,7 +113,7 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
             return false;
 
         if(!_interaction.InRangeUnobstructed(performer, target, 0,
-               CollisionGroup.TeleportLayer,
+               CollisionGroup.Opaque,
                predicate: (ent) => _tagSystem.HasTag(ent, "Structure"),
                popup:true))
             return false;
