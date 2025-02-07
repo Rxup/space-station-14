@@ -11916,7 +11916,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - TeleportLayer
+          - Opaque
           density: 50
           hard: True
           restitution: 0
@@ -11970,7 +11970,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - TeleportLayer
+          - Opaque
           density: 50
           hard: True
           restitution: 0
@@ -12003,7 +12003,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - TeleportLayer
+          - Opaque
           density: 50
           hard: True
           restitution: 0
@@ -12036,7 +12036,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - TeleportLayer
+          - Opaque
           density: 50
           hard: True
           restitution: 0
@@ -13108,7 +13108,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - TeleportLayer
+          - Opaque
           density: 350
           hard: True
           restitution: 0
@@ -13154,7 +13154,7 @@ entities:
           - LowImpassable
           layer:
           - BulletImpassable
-          - TeleportLayer
+          - Opaque
           density: 350
           hard: True
           restitution: 0

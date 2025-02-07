@@ -88,7 +88,7 @@ public enum CollisionGroup
     ThrownItem = Impassable | HighImpassable | BulletImpassable | BlobImpassable,
     WallLayer = Opaque | Impassable | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
     BlobTileLayer = Opaque | BlobImpassable | BulletImpassable, // backmen: blob
-    TeleportLayer = Opaque, //backmen: teleport(psionic, shadowkin)
+    //TeleportLayer = Opaque, //backmen: teleport(psionic, shadowkin)
     GlassLayer = Impassable | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
     HalfWallLayer = MidImpassable | LowImpassable,
 
