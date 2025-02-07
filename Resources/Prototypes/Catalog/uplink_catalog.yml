@@ -514,9 +514,9 @@
   id: UplinkMosinAmmo
   name: uplink-mosin-ammo-name
   description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxLightRifle
+  productEntity: MagazineBoxHeavyRifle762 #backmen-ammonation
   cost:
-    Telecrystal: 1
+    Telecrystal: 4 #backmen-ammonation
   categories:
   - UplinkAmmo
 
