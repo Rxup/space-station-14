@@ -1,4 +1,5 @@
-﻿using Content.Shared.FixedPoint;
+﻿using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -11,7 +12,7 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public EntityUid Parent;
+    public EntityUid HoldingWoundable;
 
     /// <summary>
     /// Actually, severity of the wound. The more the worse.
@@ -22,8 +23,7 @@ public sealed partial class WoundComponent : Component
     public FixedPoint2 WoundSeverityPoint;
 
     /// <summary>
-    /// Actually, severity of the wound. The more the worse.
-    /// Directly depends on <see cref="WoundSeverity"/>
+    /// How much damage this wound does to it's parent woundable?
     /// </summary>
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly), DataField("integrityMultiplier")]
@@ -86,15 +86,24 @@ public sealed partial class WoundComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CanBleed = true;
 
+    [DataField("bleedsScaling"), ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 BleedingScalingMultiplier = 1f;
+
     /// <summary>
     /// Should this apply trauma to the parent woundable when wound is opened / continued?
     /// </summary>
     [DataField]
-    public bool CanApplyTrauma = false;
+    public bool CanApplyTrauma = true;
 
     /// <summary>
-    /// Should this wound sever it's woundable from the body when applied?
+    /// Additional chance (-1, 0, 1) that is added in chance calculation
     /// </summary>
-    [DataField("ableToSever")]
-    public bool CanSeverWoundables = true;
+    public Dictionary<TraumaType, FixedPoint2> TraumasChances = new()
+    {
+        { TraumaType.Dismemberment, 0 },
+        { TraumaType.OrganDamage, 0 },
+        { TraumaType.BoneDamage, 0 },
+        { TraumaType.NerveDamage, 0 },
+        { TraumaType.VeinsDamage, 0 },
+    };
 }

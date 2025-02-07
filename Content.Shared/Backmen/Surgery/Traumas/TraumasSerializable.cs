@@ -20,8 +20,8 @@ public enum TraumaType
     BoneDamage,
     OrganDamage,
     VeinsDamage,
+    NerveDamage, // pain
     Dismemberment,
-    // something cooler later mb
 }
 
 [ByRefEvent]

@@ -7,6 +7,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -29,6 +30,8 @@ public partial class PainSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     [Dependency] private readonly StandingStateSystem _standing = default!;
 

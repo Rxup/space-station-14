@@ -19,17 +19,24 @@ public partial class TraumaSystem
     /// ЖЕЛАЮ ЧТОБ ПРИШЛИ ЗДОРОВЫМИ С ПОБЕДОЙ 🇷🇺🇷🇺🙏 ГОЙДА БРАТЬЯ 🇷🇺🇷🇺
     /// </summary>
     private const float DismembermentChanceMultiplier = 0.042f;
+    private const float NerveDamageChanceMultiplier = 0.032f;
+
+    // In seconds
+    private const float NerveDamageMultiplierTime = 8f;
 
     #region Public API
 
-    public IEnumerable<TraumaType> RandomTraumaChance(EntityUid target, FixedPoint2 severity, WoundableComponent? woundable = null)
+    public IEnumerable<TraumaType> RandomTraumaChance(EntityUid target, EntityUid woundInflicter, FixedPoint2 severity, WoundableComponent? woundable = null)
     {
         var traumaList = new HashSet<TraumaType>();
         if (!Resolve(target, ref woundable) || _net.IsClient)
             return traumaList;
 
-        if (RandomBoneTraumaChance(woundable))
+        if (RandomBoneTraumaChance(woundable, woundInflicter))
             traumaList.Add(TraumaType.BoneDamage);
+
+        if (RandomNerveDamageChance(target, woundInflicter, woundable, severity))
+            traumaList.Add(TraumaType.NerveDamage);
 
         //if (RandomOrganTraumaChance(woundable))
         //    traumaList.Add(TraumaType.OrganDamage);
@@ -37,7 +44,7 @@ public partial class TraumaSystem
         //if (RandomVeinsTraumaChance(woundable))
         //    traumaList.Add(TraumaType.VeinsDamage);
 
-        if (RandomDismembermentTraumaChance(target, woundable, severity))
+        if (RandomDismembermentTraumaChance(target, woundInflicter, woundable, severity))
             traumaList.Add(TraumaType.Dismemberment);
 
         return traumaList;
@@ -59,7 +66,7 @@ public partial class TraumaSystem
         return true;
     }
 
-    public bool TryApplyTraumaWithRandom(EntityUid target, FixedPoint2 severity, WoundableComponent? woundable = null)
+    public bool TryApplyTraumaWithRandom(EntityUid target, EntityUid woundInflicter, FixedPoint2 severity, WoundableComponent? woundable = null)
     {
         if (!Resolve(target, ref woundable) || _net.IsClient)
             return false;
@@ -67,7 +74,7 @@ public partial class TraumaSystem
         if (severity <= 0)
             return false;
 
-        var traumas = RandomTraumaChance(target, severity, woundable).ToList();
+        var traumas = RandomTraumaChance(target, woundInflicter, severity, woundable).ToList();
         if (traumas.Count == 0)
             return false;
 
@@ -93,7 +100,24 @@ public partial class TraumaSystem
         return deduction;
     }
 
-    public bool RandomDismembermentTraumaChance(EntityUid target, WoundableComponent woundable, FixedPoint2 severity)
+    public bool RandomNerveDamageChance(EntityUid target, EntityUid woundInflicter, WoundableComponent woundable, FixedPoint2 severity)
+    {
+        var bodyPart = Comp<BodyPartComponent>(target);
+        if (!bodyPart.Body.HasValue)
+            return false; // No body entity to apply pain to
+
+        // literally dismemberment chance, but lower by default
+        var chance =
+            FixedPoint2.Clamp(
+                woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity))
+                * NerveDamageChanceMultiplier + Comp<WoundComponent>(woundInflicter).TraumasChances[TraumaType.NerveDamage],
+                0,
+                1);
+        
+        return _random.Prob((float) chance);
+    }
+
+    public bool RandomDismembermentTraumaChance(EntityUid target, EntityUid woundInflicter, WoundableComponent woundable, FixedPoint2 severity)
     {
         var bodyPart = Comp<BodyPartComponent>(target);
         if (!bodyPart.Body.HasValue)
@@ -104,7 +128,7 @@ public partial class TraumaSystem
             return false;
 
         var parentComp = Comp<WoundableComponent>(parentWoundable.Value);
-        if (parentComp.WoundableIntegrity == parentComp.IntegrityCap || woundable.WoundableIntegrity == woundable.IntegrityCap || severity < 14)
+        if ((parentComp.WoundableIntegrity == parentComp.IntegrityCap || woundable.WoundableIntegrity == woundable.IntegrityCap) && severity < 21)
             return false; // just so you don't get your body part ripped out by a sneeze
 
         if (Comp<BodyPartComponent>(target).PartType == BodyPartType.Groin && parentComp.WoundableSeverity is not WoundableSeverity.Critical)
@@ -115,7 +139,8 @@ public partial class TraumaSystem
         // random-y but not so random-y like bones. Heavily depends on woundable state and damage
         var chance =
             FixedPoint2.Clamp(
-                woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity)) * DismembermentChanceMultiplier - deduction,
+                woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity))
+                * DismembermentChanceMultiplier - deduction + Comp<WoundComponent>(woundInflicter).TraumasChances[TraumaType.Dismemberment],
                 0,
                 1);
         // getting hit again increases the chance
@@ -138,6 +163,28 @@ public partial class TraumaSystem
             _sawmill.Info(traumaApplied
                 ? $"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: Bone damage."
                 : $"Tried to create a trauma on target: {target}, but no trauma was applied. Type: Bone damage.");
+        }
+
+        if (traumaList.Contains(TraumaType.NerveDamage))
+        {
+            var bodyPart = Comp<BodyPartComponent>(target);
+            if (bodyPart.Body.HasValue)
+            {
+                var nerveSys = _pain.GetNerveSystem(bodyPart.Body.Value);
+                if (nerveSys.HasValue)
+                {
+                    _pain.TryAddPainMultiplier(nerveSys.Value,
+                        "NerveDamage",
+                        2f,
+                        time: TimeSpan.FromSeconds(NerveDamageMultiplierTime));
+                    _pain.TryAddPainFeelsModifier(nerveSys.Value,
+                        target,
+                        -0.4f,
+                        time: TimeSpan.FromSeconds(NerveDamageMultiplierTime));
+
+                    _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: NerveDamage.");
+                }
+            }
         }
 
         // TODO: veins, would have been very lovely to integrate this into vascular system

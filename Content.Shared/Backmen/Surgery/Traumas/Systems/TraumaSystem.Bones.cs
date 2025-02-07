@@ -79,8 +79,9 @@ public partial class TraumaSystem
         return true;
     }
 
-    public bool RandomBoneTraumaChance(WoundableComponent woundableComp)
+    public bool RandomBoneTraumaChance(WoundableComponent woundableComp, EntityUid woundInflicter)
     {
+        var wound = Comp<WoundComponent>(woundInflicter);
         var bone = Comp<BoneComponent>(woundableComp.Bone!.ContainedEntities[0]);
         if (woundableComp.WoundableIntegrity <= 0 || bone.BoneIntegrity <= 0)
             return true;
@@ -90,8 +91,8 @@ public partial class TraumaSystem
         // Even if we get 0.1 damage there's still a chance for injury to be applied, but with the extremely low chance.
         // The more damage, the bigger is the chance.
         var chance =
-            woundableComp.WoundableIntegrity / (woundableComp.WoundableIntegrity + bone.BoneIntegrity)
-            * _boneTraumaChanceMultipliers[woundableComp.WoundableSeverity];
+            (woundableComp.WoundableIntegrity / (woundableComp.WoundableIntegrity + bone.BoneIntegrity)
+            * _boneTraumaChanceMultipliers[woundableComp.WoundableSeverity]) + wound.TraumasChances[TraumaType.BoneDamage];
 
         // Some examples of how this works:
         // 81 / (81 + 20) * 0.1 (Moderate) = 0.08. Or 8%:

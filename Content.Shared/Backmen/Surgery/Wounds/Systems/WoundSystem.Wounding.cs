@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -56,16 +57,16 @@ public partial class WoundSystem
 
     private void OnWoundInserted(EntityUid uid, WoundComponent comp, EntGotInsertedIntoContainerMessage args)
     {
-        if (comp.Parent == EntityUid.Invalid)
+        if (comp.HoldingWoundable == EntityUid.Invalid)
             return;
 
-        var parentWoundable = Comp<WoundableComponent>(comp.Parent);
+        var parentWoundable = Comp<WoundableComponent>(comp.HoldingWoundable);
         var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
 
         var ev = new WoundAddedEvent(comp, parentWoundable, woundableRoot);
         RaiseLocalEvent(args.Entity, ref ev);
 
-        var bodyPart = Comp<BodyPartComponent>(comp.Parent);
+        var bodyPart = Comp<BodyPartComponent>(comp.HoldingWoundable);
         if (bodyPart.Body.HasValue)
         {
             var ev2 = new WoundAddedOnBodyEvent(uid, comp, parentWoundable, woundableRoot);
@@ -75,13 +76,13 @@ public partial class WoundSystem
 
     private void OnWoundRemoved(EntityUid woundableEntity, WoundComponent wound, EntGotRemovedFromContainerMessage args)
     {
-        if (wound.Parent == EntityUid.Invalid)
+        if (wound.HoldingWoundable == EntityUid.Invalid)
             return;
 
-        var oldParentWoundable = Comp<WoundableComponent>(wound.Parent);
+        var oldParentWoundable = Comp<WoundableComponent>(wound.HoldingWoundable);
         var oldWoundableRoot = Comp<WoundableComponent>(oldParentWoundable.RootWoundable);
 
-        wound.Parent = EntityUid.Invalid;
+        wound.HoldingWoundable = EntityUid.Invalid;
 
         var ev = new WoundRemovedEvent(args.Entity, wound, oldParentWoundable, oldWoundableRoot);
         RaiseLocalEvent(args.Entity, ref ev);
@@ -206,29 +207,11 @@ public partial class WoundSystem
         if (!Resolve(uid, ref woundable, false))
             return false;
 
-        var traumas = _trauma.RandomTraumaChance(uid, severity, woundable).ToList();
-        var openNewWound = true;
-
         var proto = _prototype.Index(id);
         foreach (var wound in woundable.Wounds!.ContainedEntities)
         {
             if (proto.ID != MetaData(wound).EntityPrototype!.ID)
                 continue;
-
-            var comp = Comp<WoundComponent>(wound);
-            if (comp is { CanApplyTrauma: true, WoundType: WoundType.Internal })
-            {
-                openNewWound = false;
-                ApplyWoundSeverity(wound, severity, comp, traumaList: traumas);
-
-                continue;
-            }
-
-            if (openNewWound)
-            {
-                TryCreateWound(uid, proto.ID, severity, comp.DamageGroup!, woundable, traumaList: traumas);
-            }
-
             ApplyWoundSeverity(wound, severity);
 
             return true;
@@ -245,7 +228,7 @@ public partial class WoundSystem
     {
         if (_net.IsServer && _random.Prob(ScarChance) && woundComponent is { ScarWound: not null, DamageGroup: not null, IsScar: false })
         {
-            TryCreateWound(woundComponent.Parent, woundComponent.ScarWound, 1, woundComponent.DamageGroup);
+            TryCreateWound(woundComponent.HoldingWoundable, woundComponent.ScarWound, 1, woundComponent.DamageGroup);
         }
     }
 
@@ -262,7 +245,7 @@ public partial class WoundSystem
 
         var oldBody = (FixedPoint2) 0;
 
-        var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+        var bodyPart = Comp<BodyPartComponent>(wound.HoldingWoundable);
         if (bodyPart.Body.HasValue)
         {
             var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
@@ -277,7 +260,7 @@ public partial class WoundSystem
         }
 
         var old = wound.WoundSeverityPoint;
-        wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity);
+        wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, WoundMaxSeverity);
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -311,8 +294,8 @@ public partial class WoundSystem
         CheckSeverityThresholds(uid, wound);
         Dirty(uid, wound);
 
-        UpdateWoundableIntegrity(wound.Parent);
-        CheckWoundableSeverityThresholds(wound.Parent);
+        UpdateWoundableIntegrity(wound.HoldingWoundable);
+        CheckWoundableSeverityThresholds(wound.HoldingWoundable);
     }
 
     /// <summary>
@@ -321,7 +304,6 @@ public partial class WoundSystem
     /// <param name="uid">UID of the wound.</param>
     /// <param name="severity">Severity to add.</param>
     /// <param name="wound">Wound to which severity is applied.</param>
-    /// <param name="isHealing">Name speaks for this.</param>
     /// <param name="traumaList">Traumas to apply when applying severity.. Please use _trauma.RandomTraumaChance if you expect your thing to apply traumas.</param>
     public void ApplyWoundSeverity(
         EntityUid uid,
@@ -334,7 +316,7 @@ public partial class WoundSystem
 
         var oldBody = (FixedPoint2) 0;
 
-        var bodyPart = Comp<BodyPartComponent>(wound.Parent);
+        var bodyPart = Comp<BodyPartComponent>(wound.HoldingWoundable);
         if (bodyPart.Body.HasValue)
         {
             var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
@@ -350,7 +332,7 @@ public partial class WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = severity > 0
-            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.Parent, severity), 0, WoundMaxSeverity)
+            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, WoundMaxSeverity)
             : FixedPoint2.Clamp(old + severity, 0, WoundMaxSeverity);
 
         if (wound.WoundSeverityPoint != old)
@@ -385,9 +367,9 @@ public partial class WoundSystem
         // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
         if (wound.CanApplyTrauma && severity > 0)
         {
-            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.Parent, severity);
+            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.HoldingWoundable, uid, severity);
             wound.WoundType =
-                _trauma.TryApplyTrauma(wound.Parent, severity, traumasToApply)
+                _trauma.TryApplyTrauma(wound.HoldingWoundable, severity, traumasToApply)
                     ? WoundType.Internal
                     : WoundType.External;
         }
@@ -396,8 +378,8 @@ public partial class WoundSystem
         CheckSeverityThresholds(uid, wound);
         Dirty(uid, wound);
 
-        UpdateWoundableIntegrity(wound.Parent);
-        CheckWoundableSeverityThresholds(wound.Parent);
+        UpdateWoundableIntegrity(wound.HoldingWoundable);
+        CheckWoundableSeverityThresholds(wound.HoldingWoundable);
     }
 
     public FixedPoint2 ApplySeverityModifiers(
@@ -693,14 +675,14 @@ public partial class WoundSystem
 
         _transform.SetParent(wound, target);
 
-        woundComponent.Parent = target;
+        woundComponent.HoldingWoundable = target;
         woundComponent.DamageGroup = damageGroup;
 
         SetWoundSeverity(wound, woundSeverity);
 
         if (woundComponent.CanApplyTrauma)
         {
-            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(target, woundSeverity, woundableComponent);
+            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(target, wound, woundSeverity, woundableComponent);
             woundComponent.WoundType =
                 _trauma.TryApplyTrauma(target, woundSeverity, traumasToApply)
                     ? WoundType.Internal
@@ -727,13 +709,13 @@ public partial class WoundSystem
     protected bool RemoveWound(EntityUid woundEntity, WoundComponent? wound = null)
     {
         if (!Resolve(woundEntity, ref wound, false)
-            || !TryComp(wound.Parent, out WoundableComponent? woundable)
+            || !TryComp(wound.HoldingWoundable, out WoundableComponent? woundable)
             || woundable.Wounds == null)
             return false;
 
-        _sawmill.Info($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) created on {MetaData(wound.Parent).EntityPrototype!.ID}({wound.Parent})");
+        _sawmill.Info($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) created on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
 
-        Dirty(wound.Parent, woundable);
+        Dirty(wound.HoldingWoundable, woundable);
 
         return _container.Remove(woundEntity, woundable.Wounds);
     }
@@ -841,7 +823,7 @@ public partial class WoundSystem
 
         Dirty(wound, component);
 
-        var bodyPart = Comp<BodyPartComponent>(component.Parent);
+        var bodyPart = Comp<BodyPartComponent>(component.HoldingWoundable);
         if (bodyPart.Body == null)
             return;
 
@@ -957,6 +939,43 @@ public partial class WoundSystem
                 continue;
 
             result[target.Value] = woundable.WoundableSeverity;
+        }
+
+        return result;
+    }
+
+    public Dictionary<TargetBodyPart, WoundableSeverity> GetWoundableStatesOnBodyPainFeels(EntityUid body)
+    {
+        var result = new Dictionary<TargetBodyPart, WoundableSeverity>();
+
+        foreach (var (id, bodyPart) in _body.GetBodyChildren(body))
+        {
+            var target = _body.GetTargetBodyPart(bodyPart);
+            if (target == null)
+                continue;
+
+            if (!TryComp<WoundableComponent>(id, out var woundable) || !TryComp<NerveComponent>(id, out var nerve))
+                continue;
+
+            var damageFeeling = woundable.WoundableIntegrity * nerve.PainFeels;
+
+            var nearestSeverity = woundable.WoundableSeverity;
+            foreach (var (severity, value) in woundable.Thresholds.OrderByDescending(kv => kv.Value))
+            {
+                if (damageFeeling >= woundable.IntegrityCap)
+                {
+                    nearestSeverity = WoundableSeverity.Healthy;
+                    break;
+                }
+
+                if (damageFeeling < value)
+                    continue;
+
+                nearestSeverity = severity;
+                break;
+            }
+
+            result[target.Value] = nearestSeverity;
         }
 
         return result;

@@ -37,9 +37,9 @@ public partial class PainSystem
             0,
             100);
 
-        if (!TryChangePainModifier(brainUid.Value, args.Component.Parent, pain.Pain))
+        if (!TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, pain.Pain))
         {
-            TryAddPainModifier(brainUid.Value, args.Component.Parent, pain.Pain);
+            TryAddPainModifier(brainUid.Value, args.Component.HoldingWoundable, pain.Pain);
         }
     }
 
@@ -48,7 +48,7 @@ public partial class PainSystem
         if (_net.IsClient)
             return;
 
-        if (!TryComp<BodyPartComponent>(args.Component.Parent, out var bodyPart))
+        if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
             return;
 
         if (bodyPart.Body == null)
@@ -77,7 +77,7 @@ public partial class PainSystem
             }
         }
 
-        TryChangePainModifier(brainUid.Value, args.Component.Parent, allPain);
+        TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, allPain);
     }
 
     #endregion
