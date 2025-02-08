@@ -4518,11 +4518,6 @@ entities:
     - type: ArrivalsProtect
 - proto: BackmenVendingMachineChang
   entities:
-  - uid: 207
-    components:
-    - type: Transform
-      pos: -2.5,1.5
-      parent: 2
   - uid: 208
     components:
     - type: Transform
@@ -18414,8 +18409,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.151331,-12.650532
       parent: 2
-    - type: Physics
-      sleepTime: 0.48333287
   - uid: 2868
     components:
     - type: Transform
@@ -21775,6 +21768,13 @@ entities:
     - type: Transform
       pos: -14.5,12.5
       parent: 2
+- proto: ComputerWage
+  entities:
+  - uid: 207
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 2
 - proto: ConveyorBelt
   entities:
   - uid: 3463
@@ -23533,6 +23533,8 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 2
+    - type: Pullable
+      prevFixedRotation: True
   - uid: 3746
     components:
     - type: Transform
@@ -28314,7 +28316,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 4390
     components:
@@ -28532,15 +28534,15 @@ entities:
     - type: Transform
       pos: 14.5,4.5
       parent: 2
-- proto: HolopadCentCommLongRange
+- proto: HolopadCentCommUnlimitedRange
   entities:
   - uid: 7060
     components:
     - type: Transform
       pos: -0.5,-0.5
       parent: 2
-- proto: HolopadCentCommUnlimitedRange
-  entities:
+    - type: Label
+      currentLabel: ЦК - Оператор
   - uid: 7066
     components:
     - type: MetaData
@@ -34375,7 +34377,7 @@ entities:
   - uid: 7057
     components:
     - type: Transform
-      pos: -20.513174,6.188437
+      pos: -20.471672,6.1512794
       parent: 2
 - proto: RubberStampDenied
   entities:
