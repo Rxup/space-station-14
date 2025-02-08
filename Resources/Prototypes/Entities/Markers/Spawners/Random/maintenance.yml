@@ -140,19 +140,19 @@
       # Pins
       - !type:GroupSelector
         children:
-        - id: ClothingNeckLGBTPin
-        - id: ClothingNeckAromanticPin
-        - id: ClothingNeckAsexualPin
-        - id: ClothingNeckBisexualPin
-        - id: ClothingNeckGayPin
-        - id: ClothingNeckIntersexPin
-        - id: ClothingNeckLesbianPin
-        - id: ClothingNeckNonBinaryPin
-        - id: ClothingNeckPansexualPin
-        - id: ClothingNeckOmnisexualPin
-        - id: ClothingNeckTransPin
-        - id: ClothingNeckAutismPin
-        - id: ClothingNeckGoldAutismPin
+        #- id: ClothingNeckLGBTPin
+        #- id: ClothingNeckAromanticPin
+        #- id: ClothingNeckAsexualPin
+        #- id: ClothingNeckBisexualPin
+        #- id: ClothingNeckGayPin
+        #- id: ClothingNeckIntersexPin
+        #- id: ClothingNeckLesbianPin
+        #- id: ClothingNeckNonBinaryPin
+        #- id: ClothingNeckPansexualPin
+        #- id: ClothingNeckOmnisexualPin
+        #- id: ClothingNeckTransPin
+        #- id: ClothingNeckAutismPin
+        #- id: ClothingNeckGoldAutismPin
         # Corvax-Pins-Start
         - id: ClothingNeckUSSPPin
         - id: ClothingNeckDonkPin
