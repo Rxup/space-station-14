@@ -135,14 +135,14 @@
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/miner.rsi
 
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingNeckCloakTrans
-  name: vampire cloak
-  description: Worn by high ranking vampires of the transylvanian society of vampires.
-  components:
-  - type: Sprite
-    sprite: Clothing/Neck/Cloaks/trans.rsi
+#- type: entity
+#  parent: ClothingNeckBase
+#  id: ClothingNeckCloakTrans
+#  name: vampire cloak
+#  description: Worn by high ranking vampires of the transylvanian society of vampires.
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Neck/Cloaks/trans.rsi
 
 - type: entity
   parent: ClothingNeckBase
