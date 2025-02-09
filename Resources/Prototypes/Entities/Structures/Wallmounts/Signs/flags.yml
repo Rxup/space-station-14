@@ -35,16 +35,16 @@
   components:
   - type: Sprite
     state: syndie_flag
-    
-- type: entity
-  parent: BaseFlag
-  id: LGBTQFlag
-  name: LGBTQ flag
-  description: "\"Be gay do crime\" flag."
-  components:
-  - type: Sprite
-    state: lgbtq_flag
-    
+
+#- type: entity # backmen: no pride
+#  parent: BaseFlag
+#  id: LGBTQFlag
+#  name: LGBTQ flag
+#  description: "\"Be gay do crime\" flag."
+#  components:
+#  - type: Sprite
+#    state: lgbtq_flag
+
 - type: entity
   parent: BaseFlag
   id: PirateFlag

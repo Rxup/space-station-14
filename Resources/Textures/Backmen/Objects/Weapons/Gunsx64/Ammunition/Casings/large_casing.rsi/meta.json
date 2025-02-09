@@ -12,6 +12,12 @@
         },
         {
             "name": "base-spent"
+        },
+        {
+            "name": "50combat"
+        },
+        {
+            "name": "50combat-spent"
         }
     ]
 }

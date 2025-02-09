@@ -101,6 +101,7 @@
     Blunt: 0.7
     Slash: 0.5
     Piercing: 0.7
+    ArmorPiercing: 0.9
     Heat: 1.8
     Shock: 1.8
     Poison: 0.0
@@ -115,6 +116,7 @@
     Blunt: 0.5
     Slash: 0.3
     Piercing: 0.4
+    ArmorPiercing: 0.7
     Heat: 1.8
     Shock: 1.8
     Poison: 0.0

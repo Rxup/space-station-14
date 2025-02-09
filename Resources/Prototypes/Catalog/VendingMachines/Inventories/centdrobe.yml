@@ -22,3 +22,6 @@
     ClothingNeckScarfStripedCentcom: 3
     ClothingNeckTieCentCom: 3 # backmen
     ClothingNeckCloakCentcom: 3
+  contrabandInventory:
+    ToyFigurineCaptain: 1
+    ToyFigurineHeadOfPersonnel: 1

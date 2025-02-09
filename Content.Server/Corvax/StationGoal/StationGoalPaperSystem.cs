@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Backmen.Arrivals;
 using Content.Server.Fax;
 using Content.Server.GameTicking.Events;
 using Content.Server.Station.Components;
@@ -25,6 +26,7 @@ namespace Content.Server.Corvax.StationGoal
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly CentcommSystem _centcomm = default!;
 
 
         public override void Initialize()
@@ -108,15 +110,19 @@ namespace Content.Server.Corvax.StationGoal
 
                 var largestGrid = _station.GetLargestGrid(stationData);
                 var grid = Transform(faxUid).GridUid;
-                if (grid is not null && largestGrid == grid.Value)
+
+                if (grid is null)
+                    continue;
+
+                if(!(largestGrid == grid.Value || _centcomm.CentComGrid == largestGrid))
+                    continue;
+
+                _fax.Receive(faxUid, printout, null, fax);
+                foreach (var spawnEnt in goal.Spawns)
                 {
-                    _fax.Receive(faxUid, printout, null, fax);
-                    foreach (var spawnEnt in goal.Spawns)
-                    {
-                        SpawnAtPosition(spawnEnt, Transform(faxUid).Coordinates);
-                    }
-                    wasSent = true;
+                    SpawnAtPosition(spawnEnt, Transform(faxUid).Coordinates);
                 }
+                wasSent = true;
             }
             return wasSent;
         }
