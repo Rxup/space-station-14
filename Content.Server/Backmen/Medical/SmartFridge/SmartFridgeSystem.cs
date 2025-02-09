@@ -1,6 +1,6 @@
 using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
-using Content.Shared._CorvaxNext.Medical.SmartFridge;
+using Content.Shared.Backmen.Medical.SmartFridge;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Interaction;
@@ -15,7 +15,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Verbs;
 
-namespace Content.Server._CorvaxNext.Medical.SmartFridge;
+namespace Content.Server.Backmen.Medical.SmartFridge;
 
 public sealed class SmartFridgeSystem : SharedSmartFridgeSystem
 {

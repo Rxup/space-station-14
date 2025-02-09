@@ -1,7 +1,7 @@
-using Content.Shared._CorvaxNext.Medical.SmartFridge;
-using SmartFridgeComponent = Content.Shared._CorvaxNext.Medical.SmartFridge.SmartFridgeComponent;
+using Content.Shared.Backmen.Medical.SmartFridge;
+using SmartFridgeComponent = Content.Shared.Backmen.Medical.SmartFridge.SmartFridgeComponent;
 
-namespace Content.Client._CorvaxNext.Medical.SmartFridge;
+namespace Content.Client.Backmen.Medical.SmartFridge;
 
 public sealed class SmartFridgeSystem : SharedSmartFridgeSystem
 {

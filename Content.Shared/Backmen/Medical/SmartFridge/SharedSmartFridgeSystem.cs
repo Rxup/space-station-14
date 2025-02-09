@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Labels.Components;
 
-namespace Content.Shared._CorvaxNext.Medical.SmartFridge;
+namespace Content.Shared.Backmen.Medical.SmartFridge;
 
 public abstract class SharedSmartFridgeSystem : EntitySystem
 {

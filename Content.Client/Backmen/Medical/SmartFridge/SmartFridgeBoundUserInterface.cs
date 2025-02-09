@@ -2,10 +2,10 @@ using Content.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
-using Content.Shared._CorvaxNext.Medical.SmartFridge;
-using SmartFridgeMenu = Content.Client._CorvaxNext.Medical.SmartFridge.UI.SmartFridgeMenu;
+using Content.Shared.Backmen.Medical.SmartFridge;
+using SmartFridgeMenu = Content.Client.Backmen.Medical.SmartFridge.UI.SmartFridgeMenu;
 
-namespace Content.Client._CorvaxNext.Medical.SmartFridge;
+namespace Content.Client.Backmen.Medical.SmartFridge;
 
 public sealed class SmartFridgeBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
