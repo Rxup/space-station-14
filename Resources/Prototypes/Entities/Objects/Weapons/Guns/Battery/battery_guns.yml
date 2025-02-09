@@ -578,7 +578,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Gun
-    projectileSpeed: 40   #Backmen edit
+    projectileSpeed: 30   #Backmen edit
     soundGunshot:
       path: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg   #Backmen edit
       params:
