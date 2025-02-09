@@ -88,12 +88,12 @@ public partial class PainSystem
     /// <param name="change">Number of pain to add.</param>
     /// <param name="nerveSys">NerveSystem component.</param>
     /// <returns>Returns true, if the PAIN WAS APPLIED.</returns>
-    public bool TryAddPainModifier(EntityUid uid, EntityUid nerveUid, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
+    public bool TryAddPainModifier(EntityUid uid, EntityUid nerveUid, FixedPoint2 change, NerveSystemComponent? nerveSys = null, TimeSpan? time = null)
     {
         if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
             return false;
 
-        var modifier = new PainModifier(change, MetaData(nerveUid).EntityPrototype!.ID);
+        var modifier = new PainModifier(change, MetaData(nerveUid).EntityPrototype!.ID, time);
         if (!nerveSys.Modifiers.TryAdd(nerveUid, modifier))
             return false;
 
@@ -296,6 +296,12 @@ public partial class PainSystem
             {
                 if (_timing.CurTime < value.Time)
                     TryRemovePainMultiplier(nerveSysEnt, key, nerveSys);
+            }
+
+            foreach (var (key, value) in nerveSys.Modifiers)
+            {
+                if (_timing.CurTime < value.Time)
+                    TryRemovePainModifier(nerveSysEnt, key, nerveSys);
             }
 
             // I hate myself.

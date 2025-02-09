@@ -17,7 +17,7 @@ public partial class PainSystem
 
     #region Event Handling
 
-    private void OnPainAdded(EntityUid uid, PainInflicterComponent pain, WoundAddedEvent args)
+    private void OnPainAdded(EntityUid uid, PainInflicterComponent pain, ref WoundAddedEvent args)
     {
         if (_net.IsClient)
             return;

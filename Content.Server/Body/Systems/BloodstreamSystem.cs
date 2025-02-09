@@ -45,9 +45,9 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
     [Dependency] private readonly PainSystem _pain = default!;
 
-// balanced, trust me
-    private const float BleedsSeverityTrade = 0.20f;
-    private const float BleedsScalingTimeDefault = 10f;
+    // balanced, trust me
+    private const float BleedsSeverityTrade = 0.16f;
+    private const float BleedsScalingTimeDefault = 4f;
 
     public override void Initialize()
     {
@@ -188,18 +188,19 @@ public sealed class BloodstreamSystem : EntitySystem
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, WoundComponent>();
         while (bleedsQuery.MoveNext(out _, out var bleeds, out var wound))
         {
-            if (!bleeds.IsBleeding)
+            if (!bleeds.IsBleeding || !bleeds.BleedingScales)
                 continue;
 
             var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
-            var currentTime = _gameTiming.CurTime - bleeds.ScalingFinishesAt;
+            var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
 
-            if (totalTime <= currentTime)
+            if (totalTime <= currentTime || bleeds.ScalingLimit == bleeds.Scaling)
                 return;
 
-            var newBleeds = (bleeds.SeverityPenalty + totalTime / currentTime) * (bleeds.Scaling - bleeds.ScalingLimit);
-            if (!bleeds.BleedingScales && newBleeds > bleeds.Scaling)
-                continue;
+            var newBleeds = FixedPoint2.Clamp(
+                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
+                0,
+                bleeds.ScalingLimit);
 
             if (TryComp<BodyPartComponent>(wound.HoldingWoundable, out var bodyPart) && bodyPart.Body.HasValue)
             {
@@ -222,7 +223,7 @@ public sealed class BloodstreamSystem : EntitySystem
             }
             bleeds.Scaling = newBleeds;
 
-            if (bleeds.Scaling > bleeds.ScalingLimit || _gameTiming.CurTime > bleeds.ScalingFinishesAt)
+            if (bleeds.Scaling >= bleeds.ScalingLimit || _gameTiming.CurTime > bleeds.ScalingFinishesAt)
                 bleeds.BleedingScales = false;
         }
     }

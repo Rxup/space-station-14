@@ -64,7 +64,10 @@ public partial class WoundSystem
         var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
 
         var ev = new WoundAddedEvent(comp, parentWoundable, woundableRoot);
-        RaiseLocalEvent(args.Entity, ref ev);
+        RaiseLocalEvent(uid, ref ev);
+
+        var ev1 = new WoundAddedEvent(comp, parentWoundable, woundableRoot);
+        RaiseLocalEvent(comp.HoldingWoundable, ref ev1);
 
         var bodyPart = Comp<BodyPartComponent>(comp.HoldingWoundable);
         if (bodyPart.Body.HasValue)
@@ -88,7 +91,7 @@ public partial class WoundSystem
         RaiseLocalEvent(args.Entity, ref ev);
 
         var ev2 = new WoundRemovedEvent(args.Entity, wound, oldParentWoundable, oldWoundableRoot);
-        RaiseLocalEvent(oldParentWoundable.RootWoundable, ref ev2, true);
+        RaiseLocalEvent(wound.HoldingWoundable, ref ev2, true);
 
         if (_net.IsServer && !TerminatingOrDeleted(woundableEntity))
             Del(woundableEntity);
@@ -240,7 +243,7 @@ public partial class WoundSystem
     /// <param name="wound">Wound to which severity is applied.</param>
     public void SetWoundSeverity(EntityUid uid, FixedPoint2 severity, WoundComponent? wound = null)
     {
-        if (!Resolve(uid, ref wound) || !_net.IsServer)
+        if (!Resolve(uid, ref wound) || _net.IsClient)
             return;
 
         var oldBody = (FixedPoint2) 0;
@@ -674,12 +677,13 @@ public partial class WoundSystem
             return false;
 
         _transform.SetParent(wound, target);
-
         woundComponent.HoldingWoundable = target;
         woundComponent.DamageGroup = damageGroup;
 
-        SetWoundSeverity(wound, woundSeverity);
+        if (!_container.Insert(wound, woundableComponent.Wounds))
+            return false;
 
+        SetWoundSeverity(wound, woundSeverity, woundComponent);
         if (woundComponent.CanApplyTrauma)
         {
             var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(target, wound, woundSeverity, woundableComponent);
@@ -688,12 +692,6 @@ public partial class WoundSystem
                     ? WoundType.Internal
                     : WoundType.External;
         }
-
-        Dirty(wound, woundComponent);
-        Dirty(target, woundableComponent);
-
-        if (!_container.Insert(wound, woundableComponent.Wounds))
-            return false;
 
         var woundMeta = MetaData(wound);
         var targetMeta = MetaData(target);
@@ -733,7 +731,7 @@ public partial class WoundSystem
         FixWoundableRoots(childEntity, childWoundable);
 
         var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
-        var woundableAttached= new WoundableAttachedEvent(parentEntity, parentWoundable);
+        var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
 
         RaiseLocalEvent(childEntity, ref woundableAttached, true);
 

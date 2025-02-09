@@ -113,7 +113,7 @@ public partial class TraumaSystem
                 * NerveDamageChanceMultiplier + Comp<WoundComponent>(woundInflicter).TraumasChances[TraumaType.NerveDamage],
                 0,
                 1);
-        
+
         return _random.Prob((float) chance);
     }
 
@@ -159,6 +159,15 @@ public partial class TraumaSystem
         {
             var damage = severity * _boneDamageMultipliers[woundable.WoundableSeverity];
             var traumaApplied = ApplyDamageToBone(woundable.Bone!.ContainedEntities[0], damage);
+
+
+            var bodyPart = Comp<BodyPartComponent>(target);
+            if (bodyPart.Body.HasValue)
+            {
+                var nerveSys = _pain.GetNerveSystem(bodyPart.Body.Value);
+                if (nerveSys.HasValue)
+                    _pain.TryAddPainModifier(nerveSys.Value, target, 20f);
+            }
 
             _sawmill.Info(traumaApplied
                 ? $"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: Bone damage."

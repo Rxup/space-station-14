@@ -38,8 +38,11 @@ public partial class WoundSystem
     }
     private void ProcessHealing(Entity<WoundableComponent> ent)
     {
+        if (_net.IsClient)
+            return;
+
         var healableWounds = ent.Comp.Wounds!.ContainedEntities.Select(Comp<WoundComponent>).Count(comp => comp.CanBeHealed);
-        var healAmount = ent.Comp.HealAbility / healableWounds;
+        var healAmount = -ent.Comp.HealAbility / healableWounds;
 
         foreach (var wound in ent.Comp.Wounds!.ContainedEntities.ToList())
         {

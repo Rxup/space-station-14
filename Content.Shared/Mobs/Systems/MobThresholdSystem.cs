@@ -8,6 +8,7 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -320,9 +321,7 @@ public sealed class MobThresholdSystem : EntitySystem
 
         if (damageable != null)
             CheckThresholds(target, mobState, threshold, damageable);
-
-        var ev = new MobThresholdChecked(target, mobState, threshold, damageable, body);
-        RaiseLocalEvent(target, ref ev, true);
+        RaiseNetworkEvent(new MobThresholdChecked(GetNetEntity(target)), target);
 
         UpdateAlerts(target, mobState.CurrentState, threshold, damageable, body);
     }
@@ -442,8 +441,7 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!TryComp<MobStateComponent>(target, out var mobState))
             return;
         CheckThresholds(target, mobState, thresholds, args.Damageable, args.Origin);
-        var ev = new MobThresholdChecked(target, mobState, thresholds, args.Damageable, null);
-        RaiseLocalEvent(target, ref ev, true);
+        RaiseNetworkEvent(new MobThresholdChecked(GetNetEntity(target)), target);
 
         UpdateAlerts(target, mobState.CurrentState, thresholds, args.Damageable);
     }
@@ -454,8 +452,7 @@ public sealed class MobThresholdSystem : EntitySystem
             return;
 
         // mob states are handled by consciousness. so we fine here
-        var ev = new MobThresholdChecked(body, mobState, thresholds, null, Comp<BodyComponent>(body));
-        RaiseLocalEvent(body, ref ev, true);
+        RaiseNetworkEvent(new MobThresholdChecked(GetNetEntity(body)), body);
 
         UpdateAlerts(body, mobState.CurrentState, thresholds, null, Comp<BodyComponent>(body));
     }
@@ -491,8 +488,7 @@ public sealed class MobThresholdSystem : EntitySystem
         var (_, thresholds, mobState, damageable, bodyComponent) = ent;
         if (Resolve(ent, ref thresholds, ref mobState))
         {
-            var ev = new MobThresholdChecked(ent, mobState, thresholds, damageable, bodyComponent);
-            RaiseLocalEvent(ent, ref ev, true);
+            RaiseNetworkEvent(new MobThresholdChecked(GetNetEntity(ent.Owner)), ent.Owner);
         }
 
         UpdateAlerts(ent, currentState, thresholds, damageable, bodyComponent);
@@ -509,11 +505,14 @@ public sealed class MobThresholdSystem : EntitySystem
 /// <summary>
 /// Event that triggers when an entity with a mob threshold is checked
 /// </summary>
-/// <param name="Target">Target entity</param>
-/// <param name="Threshold">Threshold Component owned by the Target</param>
-/// <param name="MobState">MobState Component owned by the Target</param>
-/// <param name="Damageable">Damageable Component owned by the Target</param>
-/// <param name="Body">Body Component owned by the Target, for woundable-based entities</param>
-[ByRefEvent]
-public readonly record struct MobThresholdChecked(EntityUid Target, MobStateComponent MobState,
-    MobThresholdsComponent Threshold, DamageableComponent? Damageable, BodyComponent? Body);
+[Serializable, NetSerializable]
+public sealed class MobThresholdChecked : EntityEventArgs
+{
+    public NetEntity Uid { get; }
+    public MobThresholdChecked(NetEntity uid)
+    {
+        Uid = uid;
+    }
+}
+
+

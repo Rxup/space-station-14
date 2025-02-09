@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
@@ -20,7 +21,7 @@ public sealed class DamageOverlayUiController : UIController
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    [UISystemDependency] private readonly WoundSystem _woundSystem = default!;
+    [UISystemDependency] private readonly WoundSystem _wound = default!;
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     private Overlays.DamageOverlay _overlay = default!;
 
@@ -30,7 +31,7 @@ public sealed class DamageOverlayUiController : UIController
         SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerAttach);
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<MobThresholdChecked>(OnThresholdCheck);
+        SubscribeNetworkEvent<MobThresholdChecked>(OnThresholdCheck);
     }
 
     private void OnPlayerAttach(LocalPlayerAttachedEvent args)
@@ -57,12 +58,13 @@ public sealed class DamageOverlayUiController : UIController
         UpdateOverlays(args.Target, args.Component);
     }
 
-    private void OnThresholdCheck(ref MobThresholdChecked args)
+    private void OnThresholdCheck(MobThresholdChecked args, EntitySessionEventArgs session)
     {
-
-        if (args.Target != _playerManager.LocalEntity)
+        if (!EntityManager.TryGetEntity(args.Uid, out var entity)
+            || !_playerManager.LocalEntity.Equals(entity))
             return;
-        UpdateOverlays(args.Target, args.MobState, args.Body, args.Damageable, args.Threshold);
+
+        UpdateOverlays(entity.Value);
     }
 
     private void ClearOverlay()
@@ -75,16 +77,16 @@ public sealed class DamageOverlayUiController : UIController
 
     // Jezi: adjust oxygen and hp overlays to use appropriate systems once bodysim is implemented
     // dw vro
-    private void UpdateOverlays(EntityUid entity, MobStateComponent? mobState,
-        BodyComponent? body = null, DamageableComponent? damageable = null, MobThresholdsComponent? thresholds = null)
+    private void UpdateOverlays(EntityUid entity,
+        MobStateComponent? mobState = null,
+        BodyComponent? body = null,
+        DamageableComponent? damageable = null,
+        MobThresholdsComponent? thresholds = null)
     {
         if (mobState == null && !EntityManager.TryGetComponent(entity, out mobState) ||
             thresholds == null && !EntityManager.TryGetComponent(entity, out thresholds) ||
             body == null && !EntityManager.TryGetComponent(entity, out body) && damageable == null && !EntityManager.TryGetComponent(entity, out damageable))
             return;
-
-        if (!_mobThresholdSystem.TryGetIncapThreshold(entity, out var foundThreshold, thresholds))
-            return; //this entity cannot die or crit!!
 
         if (!thresholds.ShowOverlays)
         {
@@ -92,10 +94,13 @@ public sealed class DamageOverlayUiController : UIController
             return; //this entity intentionally has no overlays
         }
 
-        var critThreshold = foundThreshold.Value;
         _overlay.State = mobState.CurrentState;
         if (body == null && damageable != null)
         {
+            if (!_mobThresholdSystem.TryGetIncapThreshold(entity, out var foundThreshold, thresholds))
+                return; //this entity cannot die or crit!!
+
+            var critThreshold = foundThreshold.Value;
             switch (mobState.CurrentState)
             {
                 case MobState.Alive:
@@ -140,23 +145,20 @@ public sealed class DamageOverlayUiController : UIController
         }
         else if (body != null)
         {
-            if (!body.RootContainer.ContainedEntity.HasValue)
+            if (!EntityManager.TryGetComponent<ConsciousnessComponent>(entity, out var consciousness))
                 return;
-
-            var totalDamage = (FixedPoint2) 0;
-            var bruteDamage = (FixedPoint2) 0;
-            foreach (var (_, wound) in _woundSystem.GetAllWounds(body.RootContainer.ContainedEntity.Value))
-            {
-                totalDamage += wound.WoundSeverityPoint;
-                if (wound.DamageGroup == "Brute")
-                    bruteDamage += wound.WoundSeverityPoint;
-            }
 
             switch (mobState.CurrentState)
             {
                 case MobState.Alive:
                 {
-                    _overlay.BruteLevel = FixedPoint2.Min(1f, bruteDamage / critThreshold).Float();
+                    if (consciousness.Consciousness <= 0)
+                    {
+                        _overlay.BruteLevel = 0;
+                        return;
+                    }
+
+                    _overlay.BruteLevel = FixedPoint2.Min(1f, consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness)).Float();
 
                     /*if (damageable.DamagePerGroup.TryGetValue("Airloss", out var oxyDamage))
                     {
@@ -174,10 +176,7 @@ public sealed class DamageOverlayUiController : UIController
                 }
                 case MobState.Critical:
                 {
-                    if (!_mobThresholdSystem.TryGetDeadPercentage(entity,
-                            FixedPoint2.Max(0.0, totalDamage), out var critLevel))
-                        return;
-                    _overlay.CritLevel = critLevel.Value.Float();
+                    _overlay.CritLevel = FixedPoint2.Min(1f, (consciousness.Cap / 12) / (consciousness.Cap - consciousness.Consciousness)).Float();
 
                     _overlay.BruteLevel = 0;
                     _overlay.DeadLevel = 0;
