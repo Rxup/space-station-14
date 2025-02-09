@@ -578,10 +578,13 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Gun
+    projectileSpeed: 40   #Backmen edit
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+      path: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg   #Backmen edit
+      params:
+          volume: -2
+  - type: ProjectileBatteryAmmoProvider   #Backmen edit
+    proto: BulletEnergyGunLaserMk2
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -597,7 +600,7 @@
     - Sidearm
     - WeaponAntiqueLaser
   - type: StaticPrice
-    price: 750
+    price: 5750   #Backmen edit
   - type: StealTarget
     stealGroup: WeaponAntiqueLaser
   - type: SentienceTarget # I hope this is only the captain's gun
