@@ -53,6 +53,7 @@
   stackEntity: SpaceCash
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
   price: 1
+  ignoreArbitrage: true # lathe-test change # uhhhh no
 
 - type: stack
   id: Credit

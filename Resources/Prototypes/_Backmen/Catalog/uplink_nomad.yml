@@ -41,8 +41,8 @@
   - type: StorageFill
     contents:
     - id: WeaponAKMSRifle
-    - id: MagazineLightRifle
-    - id: MagazineLightRifle
+    - id: MagazineRifleLight762x39
+    - id: MagazineRifleLight762x39
 
 #- type: listing
 #  id: UplinkV31Bundle
@@ -85,8 +85,8 @@
   - type: StorageFill
     contents:
     - id: WeaponRifleAKSU
-    - id: MagazineLightRifle
-    - id: MagazineLightRifle
+    - id: MagazineRifleLight762x39
+    - id: MagazineRifleLight762x39
 
 - type: listing
   id: UplinkStG44Bundle
@@ -107,8 +107,8 @@
   - type: StorageFill
     contents:
     - id: WeaponRifleSTG44
-    - id: MagazineLightRifle
-    - id: MagazineLightRifle
+    - id: MagazineRifleLight762x39
+    - id: MagazineRifleLight762x39
 
 - type: listing
   id: UplinkVectorBundle
@@ -129,8 +129,8 @@
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunVectorSpecial
-    - id: MagazinePistolSubMachineGun
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -140,8 +140,8 @@
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunMP7
-    - id: MagazinePistolSubMachineGun
-    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun57x28
+    - id: MagazinePistolSubMachineGun57x28
 
 - type: listing
   id: UplinkMP38Bundle
@@ -202,7 +202,7 @@
   name: магазин (.45 магнум)
   description: Магазин для того самого пустынного орла.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi, state: base }
-  productEntity: MagazineMagnumPistol
+  productEntity: MagazinePistol50AE
   cost:
     Telecrystal: 1
   categories:
@@ -300,7 +300,7 @@
   - type: StorageFill
     contents:
     - id: WeaponLightMachineGunRPD
-    - id: MagazineLightRiflePkBox
+    - id: MagazineLightMachineGun762x39
       amount: 2
 
 - type: listing
@@ -322,7 +322,7 @@
   - type: StorageFill
     contents:
     - id: WeaponLightMachineGunMG42
-    - id: MagazineBoxCaselessRifleBig
+    - id: MagazineBoxCaselessRifle
       amount: 2
 
 - type: listing
@@ -491,11 +491,13 @@
         amount: 1
       - id: MagazinePistolTopSubMachineGun # For P90
         amount: 1
-      - id: MagazineLightRiflePkBox # For RPD
+      - id: MagazineLightMachineGun762x39 # For RPD
         amount: 2
-      - id: MagazinePistolSubMachineGun
-        amount: 4
-      - id: MagazineLightRifle # For AKMS, AKSU and STG44
+      - id: MagazinePistolSubMachineGun57x28
+        amount: 2
+      - id: MagazinePistolSubMachineGunVector45ACP
+        amount: 2
+      - id: MagazineRifleLight762x39 # For AKMS, AKSU and STG44
         amount: 3
       - id: MagazineRifleLightSniper # For Dragunov
         amount: 1

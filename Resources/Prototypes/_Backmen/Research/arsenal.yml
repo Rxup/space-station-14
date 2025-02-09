@@ -9,3 +9,18 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
+
+- type: technology
+  id: ArmorPiercingAmmo
+  name: research-technology-armorpiercingammo
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/large_casing.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 150000
+  recipeUnlocks:
+  - MagazinePacketPistol50AEAP
+  - MagazinePacketRifle762x39AP
+  - MagazinePacketRifle556UEGAP
+  - MagazinePacketRifle762UEGAP

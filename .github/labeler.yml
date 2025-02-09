@@ -8,6 +8,7 @@
     - 'Resources/Maps/**/*.yml'
     - 'Resources/Prototypes/Maps/**/*.yml'
     - 'Resources/Prototypes/Corvax/Maps/**/*.yml'
+    - 'Resources/Prototypes/_Backmen/Maps/**/*.yml'
 
 "Changes: UI":
 - changed-files:

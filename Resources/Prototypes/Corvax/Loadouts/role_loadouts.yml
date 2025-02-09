@@ -1,6 +1,9 @@
 - type: roleLoadout
   id: JobIAA
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - LawyerNeck
   - LawyerJumpsuit
   - CommonBackpack
@@ -13,6 +16,9 @@
 - type: roleLoadout
   id: JobPilot
   groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - SecurityJumpsuit
   - SecurityBackpack
   - SecurityOuterClothing

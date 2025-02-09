@@ -101,6 +101,7 @@
   id: MagazinePistolSubMachineGunTopMounted
   name: WT550 magazine (.35 auto top-mounted)
   parent: [ BaseItem, BaseRestrictedContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
@@ -132,6 +133,7 @@
   id: MagazinePistolSubMachineGunTopMountedEmpty
   name: WT550 magazine (.35 auto top-mounted any)
   parent: MagazinePistolSubMachineGunTopMounted
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -140,6 +142,7 @@
   id: MagazinePistol
   name: pistol magazine (.35 auto)
   parent: BaseMagazinePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
@@ -155,6 +158,7 @@
   name: pistol magazine (.35 auto any)
   suffix: empty
   parent: MagazinePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -168,6 +172,7 @@
   id: MagazinePistolIncendiary
   name: pistol magazine (.35 auto incendiary)
   parent: MagazinePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
@@ -176,6 +181,7 @@
   id: MagazinePistolPractice
   name: pistol magazine (.35 auto practice)
   parent: BaseMagazinePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -190,6 +196,7 @@
   id: MagazinePistolUranium
   name: pistol magazine (.35 auto uranium)
   parent: BaseMagazinePistol
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium
@@ -205,6 +212,7 @@
   name: machine pistol magazine (.35 auto any)
   suffix: empty
   parent: BaseMagazinePistolHighCapacity
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -217,6 +225,7 @@
   id: MagazinePistolHighCapacity
   name: machine pistol magazine (.35 auto)
   parent: BaseMagazinePistolHighCapacity
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
@@ -231,6 +240,7 @@
   id: MagazinePistolHighCapacityPractice
   name: machine pistol magazine (.35 auto practice)
   parent: BaseMagazinePistolHighCapacity
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
@@ -245,20 +255,16 @@
   id: MagazinePistolHighCapacityRubber
   name: machine pistol magazine (.35 auto rubber)
   parent: BaseMagazinePistolHighCapacity
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
-  - type: Sprite
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: MagazinePistolSubMachineGun
   name: SMG magazine (.35 auto)
   parent: BaseMagazinePistolSubMachineGun
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     capacity: 30
@@ -280,6 +286,7 @@
   name: SMG magazine (.35 auto any)
   suffix: empty
   parent: BaseMagazinePistolSubMachineGun
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -292,6 +299,7 @@
   id: MagazinePistolSubMachineGunPractice
   name: SMG magazine (.35 auto practice)
   parent: BaseMagazinePistolSubMachineGun
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -306,6 +314,7 @@
   id: MagazinePistolSubMachineGunUranium
   name: SMG magazine (.35 auto uranium)
   parent: BaseMagazinePistolSubMachineGun
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium

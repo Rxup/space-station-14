@@ -6,6 +6,7 @@ holopad-window-options = [color=darkgray][font size=10][italic]Please select an 
 # Call status
 holopad-window-no-calls-in-progress = No holo-calls in progress
 holopad-window-incoming-call = Incoming holo-call from:
+holopad-window-relay-label = Originating at:
 holopad-window-outgoing-call = Attempting to establish a connection...
 holopad-window-call-in-progress = Holo-call in progress
 holopad-window-call-ending = Disconnecting...
@@ -28,6 +29,7 @@ holopad-window-access-denied = Access denied
 holopad-window-select-contact-from-list = Select a contact to initiate a holo-call
 holopad-window-fetching-contacts-list = No holopads are currently contactable
 holopad-window-contact-label = {CAPITALIZE($label)}
+holopad-window-filter-line-placeholder = Search for a contact
 
 # Flavor
 holopad-window-flavor-left = ⚠ Do not enter while projector is active
@@ -37,7 +39,8 @@ holopad-window-flavor-right = v3.0.9
 holopad-hologram-name = hologram of {THE($name)}
 
 # Holopad actions
-activate-holopad-projector-verb = Activate holopad projector
+holopad-activate-projector-verb = Activate holopad projector
+holopad-ai-is-unable-to-reach-holopad = You are unable to interface with the source of the call, it is too far from your core.
 
 # Mapping prototypes
 # General
@@ -83,6 +86,7 @@ holopad-medical-paramedic = Medical - Paramedic
 holopad-medical-virology = Medical - Virology
 holopad-medical-front = Medical - Front
 holopad-medical-breakroom = Medical - Breakroom
+holopad-medical-clinic = Medical - Clinic
 
 # Cargo
 holopad-cargo-front = Cargo - Front

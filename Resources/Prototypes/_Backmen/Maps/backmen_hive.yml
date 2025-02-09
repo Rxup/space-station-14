@@ -2,8 +2,7 @@
   id: BackmenHive
   mapName: 'The Hive'
   mapPath: /Maps/Backmen/backmen_hive.yml
-  minPlayers: 30
-  maxPlayers: 80
+  minPlayers: 10
   stations:
     TheHive:
       stationProto: StandardNanotrasenStation
