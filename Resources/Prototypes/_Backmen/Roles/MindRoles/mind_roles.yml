@@ -21,30 +21,6 @@
     exclusiveAntag: true
   - type: BlobRole
 
-# Flesh Cultists
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleFlesh
-  name: Flesh Cultist Role
-#  description: mind-role-flesh-description
-  components:
-  - type: MindRole
-    antagPrototype: FleshCultist
-    exclusiveAntag: true
-  - type: FleshCultistRole
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleFleshLeader
-  name: Flesh Cultist Leader Role
-#  description: mind-role-flesh-description
-  components:
-  - type: MindRole
-    antagPrototype: FleshCultistLeader
-    exclusiveAntag: true
-  - type: FleshCultistRole
-    isLeader: true
-
 # Bloodsucker
 - type: entity
   parent: BaseMindRoleAntag

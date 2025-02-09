@@ -40,7 +40,6 @@
     # start-backmen
     - WageScheduler #backmen: currency
     - VampiresGameRule # backmen: vampire
-    - FleshCult # backmen: flesh cult
     - ExtendedThief # backmen: extended-thief
     #- Changeling # backmen: changeling
     # end-backmen
@@ -67,8 +66,7 @@
     # start-backmen
     - WageScheduler #backmen: currency
     - BlobGameMode
-    - VampiresGameRule
-    - FleshCult
+#    - VampiresGameRule # Removed until rework
     - ExtendedThief
     - Changeling
     # end-backmen

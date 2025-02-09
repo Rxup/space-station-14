@@ -100,42 +100,6 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(vampireAntag);
 
-        Verb fleshLeaderCultist = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/flesh_heart.rsi"), "base_heart"),
-            Act = () =>
-            {
-                if (!TryComp<ActorComponent>(args.Target, out var actor))
-                    return;
-
-                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
-                    .MakeCultist(actor.PlayerSession);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
-        };
-        args.Verbs.Add(fleshLeaderCultist);
-
-        Verb fleshCultist = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-flesh-cultist"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi"), "worm"),
-            Act = () =>
-            {
-                if (!TryComp<ActorComponent>(args.Target, out var actor))
-                    return;
-
-                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
-                    .MakeCultist(actor.PlayerSession);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-text-make-flesh-cultist"),
-        };
-        args.Verbs.Add(fleshCultist);
-
         Verb EvilTwin = new()
         {
             Text = "Make EvilTwin",
