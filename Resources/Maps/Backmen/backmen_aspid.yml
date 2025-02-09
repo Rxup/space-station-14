@@ -17292,8 +17292,6 @@ entities:
       pos: -10.5,69.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
   - uid: 19510
@@ -17302,8 +17300,6 @@ entities:
       pos: -7.5,74.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
   - uid: 19511
@@ -17312,8 +17308,6 @@ entities:
       pos: -12.5,70.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
 - proto: AirSensorSupermatter
@@ -68313,8 +68307,6 @@ entities:
       pos: -8.5,72.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
   - uid: 20115
@@ -69601,8 +69593,6 @@ entities:
       pos: 31.5,35.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17400
   - uid: 7894
@@ -69842,8 +69832,6 @@ entities:
       pos: 9.5,12.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17517
   - uid: 19514
@@ -69852,8 +69840,6 @@ entities:
       pos: -11.5,70.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
 - proto: Fireplace
@@ -91104,8 +91090,6 @@ entities:
       pos: -7.5,73.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
     - type: AtmosPipeColor
@@ -91117,8 +91101,6 @@ entities:
       pos: -12.5,71.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
     - type: AtmosPipeColor
@@ -91130,8 +91112,6 @@ entities:
       pos: -10.5,70.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
     - type: AtmosPipeColor
@@ -92373,8 +92353,6 @@ entities:
       pos: -6.5,73.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
     - type: AtmosPipeColor
@@ -92386,8 +92364,6 @@ entities:
       pos: -12.5,69.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
     - type: AtmosPipeColor
@@ -92398,8 +92374,6 @@ entities:
       pos: -9.5,70.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 17330
     - type: AtmosPipeColor
