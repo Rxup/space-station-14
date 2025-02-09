@@ -39,7 +39,7 @@
   rules:
     # start-backmen
     - WageScheduler #backmen: currency
-    - VampiresGameRule # backmen: vampire
+    #- VampiresGameRule # backmen: vampire Removed until rework
     - ExtendedThief # backmen: extended-thief
     #- Changeling # backmen: changeling
     # end-backmen
