@@ -746,6 +746,8 @@ ClothingNeckNonBinaryPin: null
 ClothingNeckPansexualPin: null
 ClothingNeckOmnisexualPin: null
 ClothingNeckTransPin: null
+ClothingNeckAutismPin: null
+ClothingNeckGoldAutismPin: null
 ClothingNeckScarfStripedAce: null
 ClothingNeckScarfStripedAro: null
 ClothingNeckScarfStripedBiSexual: null
@@ -756,4 +758,12 @@ ClothingNeckScarfStripedPan: null
 ClothingNeckScarfStripedNonBinary: null
 ClothingNeckScarfStripedRainbow: null
 ClothingNeckScarfStripedTrans: null
+ClothingNeckCloakAce: null
+ClothingNeckCloakAro: null
+ClothingNeckCloakBi: null
+ClothingNeckCloakIntersex: null
+ClothingNeckCloakLesbian: null
+ClothingNeckCloakGay: null
+ClothingNeckCloakEnby: null
+ClothingNeckCloakPan: null
 VendingMachinePride: null
