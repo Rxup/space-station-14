@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameObjects;
@@ -36,8 +37,11 @@ public sealed class HandsTest
             await server.WaitAssertion(() =>
             {
                 Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
-                var handCount = bodySys.GetBodyPartCount(dummy, BodyPartType.Leg);
-                Assert.That(handCount, Is.GreaterThanOrEqualTo(2), $"legs {speciesPrototype.ID}({speciesPrototype.Prototype})");
+                var bodyComp = server.EntMan.GetComponent<BodyComponent>(dummy);
+                var legs = bodyComp.LegEntities;
+                var legsCount = bodySys.GetBodyPartCount(dummy, BodyPartType.Leg);
+                Assert.That(legsCount, Is.EqualTo(legs.Count));
+                Assert.That(legsCount, Is.GreaterThanOrEqualTo(2), $"legs {speciesPrototype.ID}({speciesPrototype.Prototype})");
             });
 
         }

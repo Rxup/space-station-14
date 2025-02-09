@@ -167,17 +167,33 @@ public partial class SharedBodySystem
         if (ent.Comp.Body is null)
             return;
 
+
         if (TryComp(insertedUid, out BodyPartComponent? part) && slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part))) // Shitmed Change
         {
             AddPart(ent.Comp.Body.Value, (insertedUid, part), slotId);
             RecursiveBodyUpdate((insertedUid, part), ent.Comp.Body.Value);
             CheckBodyPart((insertedUid, part), GetTargetBodyPart(part), false); // Shitmed Change
         }
+#if DEBUG
+        else if(HasComp<BodyPartComponent>(insertedUid))
+        {
+            DebugTools.Assert(
+                slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part)),
+                $"BodyPartComponent has not been inserted ({MetaData(args.Entity).EntityName})" +
+                $" прототип должен иметь подключение начиная с {GetSlotFromBodyPart(part)}");
+        }
+#endif
 
         if (TryComp(insertedUid, out OrganComponent? organ) && slotId.Contains(OrganSlotContainerIdPrefix + organ.SlotId)) // Shitmed Change
         {
             AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent);
         }
+#if DEBUG
+        else if(HasComp<OrganComponent>(insertedUid))
+        {
+            DebugTools.Assert($"OrganComponent has not been inserted ({MetaData(args.Entity).EntityName})");
+        }
+#endif
     }
 
     private void OnBodyPartRemoved(Entity<BodyPartComponent> ent, ref EntRemovedFromContainerMessage args)
