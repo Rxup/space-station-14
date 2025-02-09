@@ -802,6 +802,10 @@
       {
         "name": "longbow",
         "directions": 4
+      },
+      {
+        "name": "shaved_female",
+        "directions": 4
       }
     ]
   }
