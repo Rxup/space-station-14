@@ -74,7 +74,7 @@ monstermos_rip_tiles = true
 max_explosion_range = 5
 
 [physics]
-target_minimum_tickrate = 20
+target_minimum_tickrate = 30
 timetosleep = 0.1
 angsleeptol = 0.01
 linsleeptol = 0.001
