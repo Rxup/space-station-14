@@ -2,21 +2,10 @@
 # TODO BODY: Part damage
 - type: entity
   id: PartVox
-  parent: BaseItem
+  parent: BasePart
   name: "vox body part"
   abstract: true
   components:
-  - type: Damageable
-    damageContainer: OrganicPart # Shitmed
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice
-    price: 100
-  - type: Tag
-    tags:
-      - Trash
   - type: Extractable
     juiceSolution:
       reagents:

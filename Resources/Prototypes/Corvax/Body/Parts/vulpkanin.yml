@@ -2,29 +2,11 @@
 # TODO BODY: Part damage
 - type: entity
   id: PartVulpkanin
-  parent: BaseItem
+  parent: BasePart
   name: "vulpkanin body part"
   abstract: true
   components:
-  - type: Damageable
-    damageContainer: OrganicPart # Shitmed Change
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice #DynamicPrice
-    price: 100
-  - type: Tag
-    tags:
-      - Trash
   # Shitmed Change Start
-  - type: Gibbable
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/_Shitmed/Medical/Surgery/organ1.ogg
-    endSound:
-      path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
   - type: Destructible
     thresholds:
     - trigger:

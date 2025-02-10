@@ -1,6 +1,6 @@
 - type: entity
   id: PartShadowkin
-  parent: BaseItem
+  parent: BasePart
   name: "Shadowkin body part"
   abstract: true
   components:
@@ -9,51 +9,6 @@
     sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Icon
     sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
-  - type: Damageable
-    damageContainer: OrganicPart # backmen: surgery
-  - type: SurgeryTool
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice #DynamicPrice
-    price: 100
-  - type: Tag
-    tags:
-      - Trash
-  # start-backmen: surgery
-  - type: Gibbable
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 120
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Slash
-        damage: 120
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
-  # end-backmen: surgery
 
 - type: entity
   id: ChestShadowkin

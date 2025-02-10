@@ -11,6 +11,23 @@
     containers:
       bodypart: !type:Container
         ents: []
+  # start-backmen: surgery
+  - type: Woundable
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
+  - type: Nerve
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/Medical/Surgery/organ2.ogg
+  # end-backmen: surgery
 
 - type: entity
   id: ThoraxSpider

@@ -27,7 +27,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity);
+        SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity, after:[typeof(WoundSystem)]);
         SubscribeLocalEvent<WoundableComponent, BodyPartRemovedEvent>(WoundableRemoved);
     }
 
@@ -211,9 +211,11 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     private void UpdateWoundableVisuals(EntityUid uid, WoundableVisualsComponent visuals, HumanoidVisualLayers layer, SpriteComponent sprite)
     {
         var woundable = Comp<WoundableComponent>(uid);
+        if (woundable.Wounds is null)
+            return;
 
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
-        foreach (var wound in woundable.Wounds!.ContainedEntities)
+        foreach (var wound in woundable.Wounds.ContainedEntities)
         {
             var comp = Comp<WoundComponent>(wound);
             if (comp.DamageGroup == null)
