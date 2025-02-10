@@ -1,0 +1,113 @@
+- type: entity
+  id: MobStateParent
+  components:
+  - type: MobState
+
+- type: entity
+  id: FactionStateParentTeamA
+  components:
+  - type: NpcFactionMember
+    factions:
+    - TeamA
+
+- type: entity
+  id: FactionStateParentTeamB
+  components:
+  - type: NpcFactionMember
+    factions:
+    - TeamB
+
+- type: entity
+  parent:
+  - WallMining
+  - FactionStateParentTeamB
+  - MobStateParent
+  id: WallMiningFactionB
+  name: shuttle wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+      - RCDDeconstructWhitelist
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3000
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: entity
+  parent:
+  - WallReinforced
+  - FactionStateParentTeamA
+  - MobStateParent
+  id: WallReinforcedFactionA
+  name: shuttle wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+      - RCDDeconstructWhitelist
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3000
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: entity
+  id: ReinforcedWindowFactionA
+  parent:
+  - ReinforcedWindow
+  - FactionStateParentTeamA
+  - MobStateParent
+  name: shuttle window
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MiningWindowFactionB
+  parent:
+  - MiningWindow
+  - FactionStateParentTeamB
+  - MobStateParent
+  name: shuttle window
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
