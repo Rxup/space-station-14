@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Body.Organ;
@@ -6,6 +7,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
@@ -264,6 +266,21 @@ public partial class PainSystem
         return true;
     }
 
+    public bool TryGetNerveSystem(EntityUid body, [NotNullWhen(true)] out EntityUid? nerveSystem)
+    {
+        foreach (var (id, _) in _body.GetBodyOrgans(body))
+        {
+            if (!HasComp<NerveSystemComponent>(id))
+                continue;
+
+            nerveSystem = id;
+            return true;
+        }
+
+        nerveSystem = null;
+        return false;
+    }
+
     /// <summary>
     /// Lets you quickly get a nerve system of a body instance, if you are lazy.
     /// </summary>
@@ -292,16 +309,25 @@ public partial class PainSystem
             if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime < nerveSys.UpdateTime)
                 nerveSys.LastPainThreshold = nerveSys.Pain;
 
-            foreach (var (key, value) in nerveSys.Multipliers)
+            foreach (var (key, value) in nerveSys.PainSoundsToPlay)
             {
-                if (_timing.CurTime < value.Time)
-                    TryRemovePainMultiplier(nerveSysEnt, key, nerveSys);
+                if (_timing.CurTime > value.Item3)
+                    continue;
+
+                PlayPainSound(key, nerveSys, value.Item1, value.Item2);
+                nerveSys.PainSoundsToPlay.Remove(key);
             }
 
             foreach (var (key, value) in nerveSys.Modifiers)
             {
                 if (_timing.CurTime < value.Time)
                     TryRemovePainModifier(nerveSysEnt, key, nerveSys);
+            }
+
+            foreach (var (key, value) in nerveSys.Multipliers)
+            {
+                if (_timing.CurTime < value.Time)
+                    TryRemovePainMultiplier(nerveSysEnt, key, nerveSys);
             }
 
             // I hate myself.
@@ -339,13 +365,26 @@ public partial class PainSystem
             _IHaveNoMouthAndIMustScream.Stop(id);
             nerveSys.PlayedPainSounds.Remove(id);
         }
+
+        foreach (var (id, _) in nerveSys.PainSoundsToPlay.Where(sound => !TerminatingOrDeleted(sound.Key)))
+        {
+            nerveSys.PainSoundsToPlay.Remove(id);
+        }
     }
 
-    private void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    private Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
     {
         var sound = _IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
-        if (sound.HasValue)
-            nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
+        if (!sound.HasValue)
+            return null;
+
+        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
+        return sound.Value;
+    }
+
+    private void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, TimeSpan delay, AudioParams? audioParams = null)
+    {
+        nerveSys.PainSoundsToPlay.Add(body, (specifier, audioParams, _timing.CurTime + delay));
     }
 
     private void ApplyPainReflexesEffects(EntityUid body, NerveSystemComponent nerveSys, PainThresholdTypes reaction)
@@ -380,8 +419,19 @@ public partial class PainSystem
             case PainThresholdTypes.PainShock:
                 CleanupSounds(nerveSys);
 
-                PlayPainSound(body, nerveSys, nerveSys.PainShockScreams[sex], AudioParams.Default.WithVolume(12f));
-                PlayPainSound(body, nerveSys, nerveSys.PainShockWhimpers[sex], AudioParams.Default.WithVolume(-12f));
+                var screamSpecifier = nerveSys.PainShockScreams[sex];
+                var scream = PlayPainSound(body, nerveSys, screamSpecifier, AudioParams.Default.WithVolume(12f));
+                if (scream.HasValue)
+                {
+                    var sound = nerveSys.PainShockWhimpers[sex];
+                    PlayPainSound(body,
+                        nerveSys,
+                        sound,
+                        _IHaveNoMouthAndIMustScream.GetAudioLength(_IHaveNoMouthAndIMustScream.GetSound(screamSpecifier)) - TimeSpan.FromSeconds(2),
+                        AudioParams.Default.WithVolume(-12f));
+                }
+
+                PlayPainSound(body, nerveSys, nerveSys.PainRattles, AudioParams.Default.WithVolume(-6f));
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)

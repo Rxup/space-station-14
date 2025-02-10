@@ -160,14 +160,9 @@ public partial class TraumaSystem
             var damage = severity * _boneDamageMultipliers[woundable.WoundableSeverity];
             var traumaApplied = ApplyDamageToBone(woundable.Bone!.ContainedEntities[0], damage);
 
-
             var bodyPart = Comp<BodyPartComponent>(target);
-            if (bodyPart.Body.HasValue)
-            {
-                var nerveSys = _pain.GetNerveSystem(bodyPart.Body.Value);
-                if (nerveSys.HasValue)
-                    _pain.TryAddPainModifier(nerveSys.Value, target, 20f);
-            }
+            if (bodyPart.Body.HasValue && _pain.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+                _pain.TryAddPainModifier(nerveSys.Value, target, 20f, time: TimeSpan.FromSeconds(12f));
 
             _sawmill.Info(traumaApplied
                 ? $"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: Bone damage."
@@ -210,6 +205,10 @@ public partial class TraumaSystem
             if (!_wound.IsWoundableRoot(target, woundable) && woundable.ParentWoundable.HasValue)
             {
                 _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
+                var bodyPart = Comp<BodyPartComponent>(target);
+                if (bodyPart.Body.HasValue && _pain.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+                    _pain.TryAddPainModifier(nerveSys.Value, target, 20f, time: TimeSpan.FromSeconds(12f));
+
                 _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
             }
         }

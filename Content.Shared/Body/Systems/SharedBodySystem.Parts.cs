@@ -634,15 +634,18 @@ public partial class SharedBodySystem
         Movement.ChangeBaseSpeed(bodyId, walkSpeed, sprintSpeed, acceleration, movement);
     }
 
-    public TargetBodyPart? GetRandomBodyPart(EntityUid uid, TargetingComponent? target = null)
+    public TargetBodyPart? GetRandomBodyPart(EntityUid target,
+        EntityUid attacker,
+        TargetingComponent? targetComp = null,
+        TargetingComponent? attackerComp = null)
     {
-        if (!Resolve(uid, ref target))
+        if (!Resolve(target, ref targetComp) || !Resolve(attacker, ref attackerComp))
             return null;
 
-        var totalWeight = target.TargetOdds.Values.Sum();
+        var totalWeight = targetComp.TargetOdds[attackerComp.Target].Values.Sum();
         var randomValue = _random.NextFloat() * totalWeight;
 
-        foreach (var (part, weight) in target.TargetOdds)
+        foreach (var (part, weight) in targetComp.TargetOdds[attackerComp.Target])
         {
             if (randomValue <= weight)
                 return part;
@@ -650,6 +653,26 @@ public partial class SharedBodySystem
         }
 
         return TargetBodyPart.Chest; // Default to torso if something goes wrong
+    }
+
+    public TargetBodyPart? GetRandomBodyPart(EntityUid target,
+        TargetBodyPart targetPart = TargetBodyPart.Chest,
+        TargetingComponent? targetComp = null)
+    {
+        if (!Resolve(target, ref targetComp))
+            return null;
+
+        var totalWeight = targetComp.TargetOdds[targetPart].Values.Sum();
+        var randomValue = _random.NextFloat() * totalWeight;
+
+        foreach (var (part, weight) in targetComp.TargetOdds[targetPart])
+        {
+            if (randomValue <= weight)
+                return part;
+            randomValue -= weight;
+        }
+
+        return targetPart;
     }
 
     public TargetBodyPart? GetTargetBodyPart(Entity<BodyPartComponent> part)

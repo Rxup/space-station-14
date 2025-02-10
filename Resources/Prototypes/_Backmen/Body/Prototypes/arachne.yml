@@ -16,16 +16,9 @@
         heart: OrganSpaceAnimalHeart
         lungs: OrganSpaceAnimalLungs
       connections:
+      - thorax
       - right_arm
       - left_arm
-    groin:
-      part: GroinHuman
-      organs:
-        stomach: OrganVampiricHumanoidStomach
-        liver:  OrganHumanLiver
-        kidneys: OrganHumanKidneys
-      connections:
-      - thorax
     right_arm:
       part: RightArmHuman
       connections:
@@ -40,6 +33,10 @@
       part: LeftHandHuman
     thorax:
       part: ThoraxSpider
+      organs:
+        stomach: OrganVampiricHumanoidStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
       connections:
         - left foreleg
         - left second leg

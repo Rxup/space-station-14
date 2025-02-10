@@ -49,6 +49,14 @@
     - /Audio/Voice/Human/femalescream_4.ogg
     - /Audio/Voice/Human/femalescream_5.ogg
 
+# BRUTAL DEATH RATTLES // REBELL
+- type: soundCollection
+  id: PainRattles
+  files:
+  - /Audio/Voice/BrutalDeathRattles/PainRattles1.ogg
+  - /Audio/Voice/BrutalDeathRattles/PainRattles2.ogg
+  - /Audio/Voice/BrutalDeathRattles/PainRattles3.ogg
+
 # Pain screams (male)
 - type: soundCollection
   id: PainScreamsShortMale

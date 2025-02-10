@@ -30,6 +30,7 @@ public sealed partial class NerveSystemComponent : Component
     public Dictionary<EntityUid, PainModifier> Modifiers = new();
 
     public Dictionary<EntityUid, AudioComponent> PlayedPainSounds = new();
+    public Dictionary<EntityUid, (SoundSpecifier, AudioParams?, TimeSpan)> PainSoundsToPlay = new();
 
     [DataField("lastThreshold"), ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 LastPainThreshold = 0;
@@ -38,16 +39,19 @@ public sealed partial class NerveSystemComponent : Component
     public PainThresholdTypes LastThresholdType = PainThresholdTypes.None;
 
     [DataField("thresholdUpdate")]
-    public TimeSpan ThresholdUpdateTime = TimeSpan.FromSeconds(2);
+    public TimeSpan ThresholdUpdateTime = TimeSpan.FromSeconds(2f);
 
     [DataField("accumulated", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan UpdateTime = TimeSpan.Zero;
 
     [DataField("painShockStun")]
-    public TimeSpan PainShockStunTime = TimeSpan.FromSeconds(12);
+    public TimeSpan PainShockStunTime = TimeSpan.FromSeconds(12f);
 
     [DataField("passoutTime")]
-    public TimeSpan ForcePassoutTime = TimeSpan.FromSeconds(7);
+    public TimeSpan ForcePassoutTime = TimeSpan.FromSeconds(7f);
+
+    [DataField]
+    public SoundSpecifier PainRattles = new SoundCollectionSpecifier("PainRattles");
 
     [DataField]
     public Dictionary<Sex, SoundSpecifier> PainScreams = new()

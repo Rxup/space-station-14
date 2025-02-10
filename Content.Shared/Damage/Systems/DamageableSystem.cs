@@ -12,6 +12,7 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -209,46 +210,8 @@ namespace Content.Shared.Damage
             if (_bodyQuery.TryComp(uid.Value, out var body) && ValidateWoundablesOnBody(uid.Value, body))
             {
                 var target = targetPart ?? _body.GetRandomBodyPart(uid.Value);
-                if (origin != null && TryComp<TargetingComponent>(origin.Value, out var targeting))
-                    target = targeting.Target;
-
-                var (targetType, targetSymmetry) = _body.ConvertTargetBodyPart(target);
-                var possibleBodyParts = _body.GetBodyChildrenOfType(uid.Value, targetType, body, targetSymmetry).ToHashSet();
-
-                // There is… No such body part targeted, this means the target has lost it / didn't have it at all.
-                if (possibleBodyParts.Count == 0)
-                {
-                    possibleBodyParts = [_LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(_body.GetBodyChildren(uid.Value).ToList())];
-                }
-
-                // No body parts at all.
-                if (possibleBodyParts.Count == 0)
-                    return null;
-
-                // Add parent and child entities of targeted ones, you know people sometimes miss
-                foreach (var bodyPart in possibleBodyParts.ToList())
-                {
-                    // Insert it into the list again to make the chance of hitting it higher
-                    // If we for example, aim for the arm, there is a 50% chance to hit the arm itself
-                    // AND 25% chance to hit the torso, 25% chance to hit the hand.
-                    if (!_hardToHit.Contains(bodyPart.Component.PartType))
-                        possibleBodyParts.Add(bodyPart);
-
-                    // We do it again for easy to hit parts, since yeah
-                    if (_easyToHit.Contains(bodyPart.Component.PartType))
-                        possibleBodyParts.Add(bodyPart);
-
-                    var parent = _body.GetParentPartOrNull(bodyPart.Id);
-                    if (parent.HasValue)
-                        possibleBodyParts.Add((parent.Value, Comp<BodyPartComponent>(parent.Value)));
-
-                    foreach (var (id, component) in _body.GetBodyPartChildren(bodyPart.Id, bodyPart.Component))
-                    {
-                        possibleBodyParts.Add((id, component));
-                    }
-                }
-
-                var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleBodyParts.ToList());
+                if (origin.HasValue && TryComp<TargetingComponent>(origin.Value, out var targeting))
+                    target = _body.GetRandomBodyPart(uid.Value, origin.Value, attackerComp: targeting);
 
                 var damageDict = new Dictionary<string, FixedPoint2>();
                 foreach (var (type, severity) in damage.DamageDict)
@@ -259,8 +222,20 @@ namespace Content.Shared.Damage
                         || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
                         continue;
 
-                    damageDict.Add(type, severity);
+                    damageDict.Add(type, severity * partMultiplier);
                 }
+
+                var (partType, symmetry) = _body.ConvertTargetBodyPart(target);
+                var possibleTargets = _body.GetBodyChildrenOfType(uid.Value, partType, symmetry: symmetry).ToList();
+
+                if (possibleTargets.Count == 0)
+                    possibleTargets = _body.GetBodyChildren(uid.Value).ToList();
+
+                // No body parts at all?
+                if (possibleTargets.Count == 0)
+                    return null;
+
+                var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleTargets);
 
                 if (damageDict.Count == 0)
                     return null;
@@ -291,9 +266,8 @@ namespace Content.Shared.Damage
 
                 foreach (var (damageType, severity) in damageDict)
                 {
-                    var actualDamage = severity * partMultiplier;
-                    if (!_wounds.TryContinueWound(chosenTarget.Id, damageType, actualDamage))
-                        _wounds.TryCreateWound(chosenTarget.Id, damageType, actualDamage, GetDamageGroupByType(damageType));
+                    if (!_wounds.TryContinueWound(chosenTarget.Id, damageType, severity))
+                        _wounds.TryCreateWound(chosenTarget.Id, damageType, severity, GetDamageGroupByType(damageType));
                 }
 
                 return damage;
