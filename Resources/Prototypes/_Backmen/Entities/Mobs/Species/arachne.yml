@@ -272,7 +272,7 @@
     - name: outerClothing
       whitelist:
         tags:
-          BroneArachne
+          - BroneArachne
       slotTexture: suit
       slotFlags: OUTERCLOTHING
       stripTime: 6
