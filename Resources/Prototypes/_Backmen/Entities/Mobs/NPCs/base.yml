@@ -117,16 +117,25 @@
     torso:
       part: TorsoHuman
       connections:
-      - legs
+      - right leg
+      - left leg
       organs:
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
-    legs:
+    right leg:
       part: RightLegHuman
       connections:
-      - feet
+      - right foot
+    left leg:
+      part: LeftLegHuman
+      connections:
+      - left foot
+    right foot:
+      part: RightFootHuman
+    left foot:
+      part: LeftFootHuman
     feet:
       part: RightFootHuman
