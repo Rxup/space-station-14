@@ -29,7 +29,6 @@
       - StaminaModifier
   - type: ZombieImmune
   - type: Rotatable
-  - type: CombatMode
   - type: InputMover
   - type: MobMover
   - type: MeleeWeapon
