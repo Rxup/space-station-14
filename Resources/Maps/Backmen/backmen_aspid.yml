@@ -12692,13 +12692,15 @@ entities:
           -3,14:
             0: 61695
           -3,15:
-            0: 52431
+            0: 52427
+            7: 4
           -3,16:
             0: 61452
           -2,13:
             0: 32486
           -2,14:
-            0: 61542
+            0: 28774
+            8: 32768
           -2,15:
             0: 65535
           -2,16:
@@ -12731,7 +12733,7 @@ entities:
             0: 65535
           2,14:
             0: 65519
-            7: 16
+            9: 16
           2,15:
             0: 61695
           2,16:
@@ -12763,7 +12765,8 @@ entities:
           5,16:
             2: 13107
           6,13:
-            0: 1911
+            0: 887
+            10: 1024
           6,14:
             0: 4095
           6,15:
@@ -12779,7 +12782,7 @@ entities:
             0: 30495
           8,14:
             0: 5
-            7: 2
+            9: 2
             2: 36608
           8,15:
             2: 34959
@@ -13502,8 +13505,77 @@ entities:
         - volume: 2500
           temperature: 293.14975
           moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14975
+          moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.813705
+          - 82.06108
           - 0
           - 0
           - 0
@@ -13594,6 +13666,11 @@ entities:
       - 6363
       - 15266
       - 15265
+  - uid: 1359
+    components:
+    - type: Transform
+      pos: 4.5,-37.5
+      parent: 1
   - uid: 3254
     components:
     - type: Transform
@@ -14964,13 +15041,6 @@ entities:
     - type: Transform
       pos: 13.596838,-24.666937
       parent: 1
-- proto: AirAlarmSupermatter
-  entities:
-  - uid: 6871
-    components:
-    - type: Transform
-      pos: 4.5,-37.5
-      parent: 1
 - proto: AirCanister
   entities:
   - uid: 6412
@@ -15397,7 +15467,7 @@ entities:
       pos: 11.5,-16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -137654.75
+      secondsUntilStateChange: -143066.58
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18171,11 +18241,6 @@ entities:
     - type: Transform
       pos: 3.5,-40.5
       parent: 1
-  - uid: 1359
-    components:
-    - type: Transform
-      pos: 2.5,-41.5
-      parent: 1
   - uid: 1367
     components:
     - type: Transform
@@ -18220,6 +18285,11 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-30.5
+      parent: 1
+  - uid: 17713
+    components:
+    - type: Transform
+      pos: 2.5,-41.5
       parent: 1
   - uid: 19159
     components:
@@ -20077,20 +20147,10 @@ entities:
       parent: 1
 - proto: BoxBeanbag
   entities:
-  - uid: 11368
-    components:
-    - type: Transform
-      pos: -4.813313,61.73764
-      parent: 1
   - uid: 13331
     components:
     - type: Transform
       pos: -9.5083065,10.722602
-      parent: 1
-  - uid: 18873
-    components:
-    - type: Transform
-      pos: -4.797688,61.51889
       parent: 1
 - proto: BoxBodyBag
   entities:
@@ -57879,6 +57939,13 @@ entities:
     - type: Transform
       pos: -42.5,-9.5
       parent: 1
+- proto: ClothingHeadHatBeretHoS
+  entities:
+  - uid: 18405
+    components:
+    - type: Transform
+      pos: 2.4440584,60.18473
+      parent: 1
 - proto: ClothingHeadHatBeretMerc
   entities:
   - uid: 9861
@@ -58108,6 +58175,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: ClothingMaskGasSecurity
+  entities:
+  - uid: 18921
+    components:
+    - type: Transform
+      pos: -16.869228,40.45539
+      parent: 1
 - proto: ClothingMaskMuzzle
   entities:
   - uid: 13446
@@ -58157,13 +58231,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.098274,26.636099
       parent: 1
-- proto: ClothingNeckAromanticPin
-  entities:
-  - uid: 17713
-    components:
-    - type: Transform
-      pos: 43.669888,38.451065
-      parent: 1
 - proto: ClothingNeckBisexualPin
   entities:
   - uid: 17715
@@ -58203,13 +58270,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingNeckLesbianPin
-  entities:
-  - uid: 17717
-    components:
-    - type: Transform
-      pos: -16.415733,-15.699648
-      parent: 1
 - proto: ClothingNeckLGBTPin
   entities:
   - uid: 17712
@@ -59220,6 +59280,11 @@ entities:
       parent: 1
 - proto: ComputerSurveillanceCameraMonitor
   entities:
+  - uid: 4260
+    components:
+    - type: Transform
+      pos: 0.5,80.5
+      parent: 1
   - uid: 6661
     components:
     - type: Transform
@@ -59258,13 +59323,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,116.5
-      parent: 1
-- proto: ComputerSurveillanceWirelessCameraMonitor
-  entities:
-  - uid: 4260
-    components:
-    - type: Transform
-      pos: 0.5,80.5
       parent: 1
 - proto: ComputerTechnologyDiskTerminal
   entities:
@@ -60158,8 +60216,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -60451,7 +60509,7 @@ entities:
       pos: 4.5,65.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2432.9485
+      secondsUntilStateChange: -7844.773
       state: Closing
   - uid: 7276
     components:
@@ -66495,6 +66553,16 @@ entities:
     - type: Transform
       pos: 12.5,0.5
       parent: 1
+  - uid: 3653
+    components:
+    - type: Transform
+      pos: -33.5,-5.5
+      parent: 1
+  - uid: 3660
+    components:
+    - type: Transform
+      pos: 17.5,29.5
+      parent: 1
   - uid: 4286
     components:
     - type: Transform
@@ -66539,6 +66607,16 @@ entities:
     components:
     - type: Transform
       pos: 22.5,35.5
+      parent: 1
+  - uid: 6787
+    components:
+    - type: Transform
+      pos: 34.5,7.5
+      parent: 1
+  - uid: 6788
+    components:
+    - type: Transform
+      pos: 5.5,29.5
       parent: 1
   - uid: 6981
     components:
@@ -66595,6 +66673,11 @@ entities:
     - type: Transform
       pos: 15.5,53.5
       parent: 1
+  - uid: 8392
+    components:
+    - type: Transform
+      pos: 14.5,-12.5
+      parent: 1
   - uid: 9264
     components:
     - type: Transform
@@ -66625,24 +66708,6 @@ entities:
     - type: Transform
       pos: -11.5,-30.5
       parent: 1
-  - uid: 18369
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 14.5,-12.5
-      parent: 1
-  - uid: 18374
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 34.5,7.5
-      parent: 1
-  - uid: 18384
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -33.5,-5.5
-      parent: 1
   - uid: 18389
     components:
     - type: Transform
@@ -66654,18 +66719,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 26.5,46.5
-      parent: 1
-  - uid: 18405
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,29.5
-      parent: 1
-  - uid: 18406
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 17.5,29.5
       parent: 1
   - uid: 18409
     components:
@@ -68281,7 +68334,7 @@ entities:
       pos: 7.5,-33.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -92081.836
+      secondsUntilStateChange: -97493.664
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -91139,12 +91192,6 @@ entities:
       color: '#0000FFFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 159
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-40.5
-      parent: 1
   - uid: 566
     components:
     - type: Transform
@@ -91232,17 +91279,11 @@ entities:
       - 6578
     - type: AtmosPipeColor
       color: '#FF0000FF'
-  - uid: 6787
+  - uid: 6871
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-41.5
-      parent: 1
-  - uid: 6788
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-42.5
       parent: 1
   - uid: 8976
     components:
@@ -91276,6 +91317,12 @@ entities:
       - 3254
     - type: AtmosPipeColor
       color: '#FF0000FF'
+  - uid: 11368
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-40.5
+      parent: 1
   - uid: 12901
     components:
     - type: Transform
@@ -92257,6 +92304,12 @@ entities:
       - 3254
     - type: AtmosPipeColor
       color: '#FF0000FF'
+  - uid: 17717
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-42.5
+      parent: 1
   - uid: 18123
     components:
     - type: Transform
@@ -98827,6 +98880,13 @@ entities:
     - type: Transform
       pos: -4.495366,11.8913
       parent: 1
+- proto: GunSafeShotgunShotgun39
+  entities:
+  - uid: 18626
+    components:
+    - type: Transform
+      pos: -9.5,60.5
+      parent: 1
 - proto: GyroscopeMachineCircuitboard
   entities:
   - uid: 8624
@@ -99483,18 +99543,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,40.5
       parent: 1
-  - uid: 8392
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 11.5,46.5
-      parent: 1
-    - type: Door
-      state: Closed
-    - type: Occluder
-      enabled: True
-    - type: Physics
-      canCollide: True
   - uid: 8393
     components:
     - type: Transform
@@ -99577,6 +99625,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,69.5
+      parent: 1
+  - uid: 18369
+    components:
+    - type: Transform
+      pos: 11.5,46.5
       parent: 1
   - uid: 18775
     components:
@@ -102503,7 +102556,7 @@ entities:
     - type: Transform
       pos: -25.5,56.5
       parent: 1
-- proto: MagazinePistolHighCapacityRubber
+- proto: MagazinePistol57x28Extd
   entities:
   - uid: 9149
     components:
@@ -104106,7 +104159,7 @@ entities:
     - type: MetaData
       name: оружейный лист
     - type: Transform
-      pos: -8.291908,60.742546
+      pos: -8.191004,60.741486
       parent: 1
     - type: Paper
       content: >
@@ -104134,11 +104187,11 @@ entities:
         [bold]Должность составителя:[/bold] [italic][color=#3167bd]<ДОЛЖНОСТЬ>[/color][/italic]
 
 
-        [head=2]Пистолет G-22.[/head]
+        [head=2]Хай Браунинг-88 М4.[/head]
 
-        [bold]Кол-во на складе: 4.[/bold]
+        [bold]Кол-во на складе: 3.[/bold]
 
-        [bold]Аммуниция: 5 автопистолетных магазинов (.35 авто резиновые), 4 стандартных магазина (.35 авто).[/bold]
+        [bold]Аммуниция: 5 автопистолетных магазинов (5,7x28), 4 стандартных магазина (5,7x28).[/bold]
 
         [bold]Кол-во выдано: 0.[/bold]
 
@@ -104147,7 +104200,7 @@ entities:
 
         [bold]Кол-во на складе: 4.[/bold]
 
-        [bold]Аммуниция: 4 магазина ПП (.35 авто).[/bold]
+        [bold]Аммуниция: 4 магазина ПП (9x17 mm).[/bold]
 
         [bold]Кол-во выдано: 0.[/bold]
 
@@ -104156,7 +104209,7 @@ entities:
 
         [bold]Кол-во на складе: 2.[/bold]
 
-        [bold]Аммуниция: 2 коробки ружейных патронов (травматические).[/bold]
+        [bold]Аммуниция: 4 барабана (.50 дробь).[/bold]
 
         [bold]Кол-во выдано: 0.[/bold]
 
@@ -104175,6 +104228,15 @@ entities:
         [bold]Кол-во на складе: 4.[/bold]
 
         [bold]Аммуниция: ---.[/bold]
+
+        [bold]Кол-во выдано: 0.[/bold]
+
+
+        [head=2]FAMAS.[/head]
+
+        [bold]Кол-во на складе: 3.[/bold]
+
+        [bold]Аммуниция: 3 магазина Famas (5.56 UEG).[/bold]
 
         [bold]Кол-во выдано: 0.[/bold]
 
@@ -119826,6 +119888,16 @@ entities:
       bodyType: Static
 - proto: SurveillanceCameraCommand
   entities:
+  - uid: 9033
+    components:
+    - type: Transform
+      pos: -2.5,76.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraCommand
+      nameSet: True
+      id: Мостик
   - uid: 10265
     components:
     - type: Transform
@@ -119847,7 +119919,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Телекомм
+      id: Телекоммуникации
   - uid: 16381
     components:
     - type: Transform
@@ -119858,7 +119930,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Tech Storage
+      id: Хранилище плат
   - uid: 16395
     components:
     - type: Transform
@@ -119869,7 +119941,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Chief Engineer's Office
+      id: Офис СИ
   - uid: 16415
     components:
     - type: Transform
@@ -119880,7 +119952,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Gravity
+      id: Генератор гравитации
   - uid: 16421
     components:
     - type: Transform
@@ -119891,7 +119963,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Quartermaster's Office
+      id: Офис КМа
   - uid: 16425
     components:
     - type: Transform
@@ -119902,7 +119974,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: HoP's Office
+      id: Офис ГП
   - uid: 16426
     components:
     - type: Transform
@@ -119913,7 +119985,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: HoP's Bedroom
+      id: Каюта ГП
   - uid: 16427
     components:
     - type: Transform
@@ -119924,7 +119996,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: EVA Storage
+      id: Хранилище ВКД
   - uid: 16454
     components:
     - type: Transform
@@ -119935,7 +120007,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: HoS' Office
+      id: Офис ГСБ
   - uid: 16458
     components:
     - type: Transform
@@ -119946,7 +120018,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Vault
+      id: Хранилище боеголовки
   - uid: 16461
     components:
     - type: Transform
@@ -119957,7 +120029,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Bridge Hallway
+      id: Вход мостика
   - uid: 16462
     components:
     - type: Transform
@@ -119968,7 +120040,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: Conference Room
+      id: Конференц-зал
   - uid: 16467
     components:
     - type: Transform
@@ -119979,7 +120051,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: CMO's Office
+      id: Офис ГВ
   - uid: 16482
     components:
     - type: Transform
@@ -119990,7 +120062,17 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: RD's Office
+      id: Офис НРа
+  - uid: 19054
+    components:
+    - type: Transform
+      pos: -8.5,69.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraCommand
+      nameSet: True
+      id: Каюта капитана
   - uid: 20102
     components:
     - type: Transform
@@ -120014,7 +120096,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: SMES Room
+      id: СМЭСы
   - uid: 16393
     components:
     - type: Transform
@@ -120024,6 +120106,8 @@ entities:
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
+      nameSet: True
+      id: Атриум
   - uid: 16394
     components:
     - type: Transform
@@ -120033,6 +120117,8 @@ entities:
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
+      nameSet: True
+      id: Хранилище снаряжения
   - uid: 16396
     components:
     - type: Transform
@@ -120042,7 +120128,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: Reception
+      id: Ресепшен
   - uid: 16397
     components:
     - type: Transform
@@ -120052,7 +120138,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: Atmos Reception
+      id: Атмос ресепшен
   - uid: 16398
     components:
     - type: Transform
@@ -120063,7 +120149,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: Atmos Locker Room
+      id: Хранилище снаряжения А.Т.М.О.С
   - uid: 16399
     components:
     - type: Transform
@@ -120074,7 +120160,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: Atmos Canister Storage
+      id: Хранилище канистр
   - uid: 16400
     components:
     - type: Transform
@@ -120085,7 +120171,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: Atmos Storage Tanks
+      id: Хранилище газов
   - uid: 16401
     components:
     - type: Transform
@@ -120096,7 +120182,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
-      id: Atmos Mixing Chambers
+      id: Атмос радиатор
   - uid: 17853
     components:
     - type: Transform
@@ -120116,12 +120202,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 29.5,-7.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Правый нижний коридор №1
   - uid: 10113
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 49.5,-10.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Прибытие
   - uid: 16402
     components:
     - type: Transform
@@ -120131,7 +120221,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Engineering Lobby
+      id: Лобби инженерии
   - uid: 16424
     components:
     - type: Transform
@@ -120142,7 +120232,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: HoP Line
+      id: Очередь ГП
   - uid: 16434
     components:
     - type: Transform
@@ -120153,7 +120243,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Laundry Room
+      id: Прачечная
   - uid: 16435
     components:
     - type: Transform
@@ -120164,7 +120254,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Dorms
+      id: Дормитории
   - uid: 16438
     components:
     - type: Transform
@@ -120175,7 +120265,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Arcade
+      id: Криосон
   - uid: 16439
     components:
     - type: Transform
@@ -120186,7 +120276,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: EVAC A
+      id: Эвак А
   - uid: 16440
     components:
     - type: Transform
@@ -120197,7 +120287,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: EVAV B
+      id: Эвак Б
   - uid: 16443
     components:
     - type: Transform
@@ -120207,7 +120297,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Aft Hallway 2
+      id: Правый нижний коридор №2
   - uid: 16444
     components:
     - type: Transform
@@ -120217,7 +120307,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Aft Hallway 1
+      id: Левый нижний коридор №2
   - uid: 16446
     components:
     - type: Transform
@@ -120228,7 +120318,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Port Docking Hangar
+      id: Левый стыковочный порт
   - uid: 16447
     components:
     - type: Transform
@@ -120239,7 +120329,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Port Hallway
+      id: Левый вспомогательный коридор №2
   - uid: 16448
     components:
     - type: Transform
@@ -120250,7 +120340,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Tool Room
+      id: Мастерская
   - uid: 16449
     components:
     - type: Transform
@@ -120261,7 +120351,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Port Garden
+      id: Сад
   - uid: 16459
     components:
     - type: Transform
@@ -120272,7 +120362,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Fore Hallway
+      id: Коридор миделя №3
   - uid: 16460
     components:
     - type: Transform
@@ -120282,7 +120372,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Bridge Observatory
+      id: Мостовая обсерватория
   - uid: 16475
     components:
     - type: Transform
@@ -120292,7 +120382,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Med/Sci Lobby
+      id: Вход в мед и РнД
   - uid: 16476
     components:
     - type: Transform
@@ -120302,7 +120392,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Aft Port Hallway
+      id: Левый средний коридор №1
   - uid: 16477
     components:
     - type: Transform
@@ -120312,7 +120402,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Aft Starboard Hallway
+      id: Средний правый коридор №2
   - uid: 16484
     components:
     - type: Transform
@@ -120322,7 +120412,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Fore Port Hallway
+      id: Левый верхний коридор №2
   - uid: 16485
     components:
     - type: Transform
@@ -120332,7 +120422,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Fore Starboard Hallway
+      id: Правый верхний коридор №1
   - uid: 16487
     components:
     - type: Transform
@@ -120343,7 +120433,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Midships Hallway
+      id: Коридор миделя №4
   - uid: 16489
     components:
     - type: Transform
@@ -120354,54 +120444,73 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: Aft Port Access
+      id: Кормовой тех. доступ
   - uid: 18480
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -27.5,-7.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Левый нижний коридор
   - uid: 18482
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,64.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Коридор миделя №1
   - uid: 18483
     components:
     - type: Transform
       pos: 1.5,52.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: Коридор миделя №2
   - uid: 18492
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 28.5,15.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Средний правый коридор №1
   - uid: 18493
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -32.5,32.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Левый вспомогательный коридор №1
   - uid: 18495
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -38.5,38.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Левый верхний коридор №1
   - uid: 18500
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,38.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Коридор миделя №3
   - uid: 18501
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 29.5,38.5
       parent: 1
+    - type: SurveillanceCamera
+      id: Правый верхний коридор №1
 - proto: SurveillanceCameraMedical
   entities:
   - uid: 16436
@@ -120413,7 +120522,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraMedical
       nameSet: True
-      id: Reception
+      id: Ресепшен
   - uid: 16437
     components:
     - type: Transform
@@ -120424,7 +120533,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraMedical
       nameSet: True
-      id: Atrium
+      id: Атриум
   - uid: 16466
     components:
     - type: Transform
@@ -120435,7 +120544,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraMedical
       nameSet: True
-      id: Ward
+      id: Палаты
   - uid: 16468
     components:
     - type: Transform
@@ -120446,7 +120555,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraMedical
       nameSet: True
-      id: Morgue
+      id: Морг
   - uid: 16470
     components:
     - type: Transform
@@ -120457,7 +120566,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraMedical
       nameSet: True
-      id: Chemistry
+      id: Химия
   - uid: 18438
     components:
     - type: Transform
@@ -120541,7 +120650,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraScience
       nameSet: True
-      id: Anomaly generator
+      id: Генератор аномалий
   - uid: 16478
     components:
     - type: Transform
@@ -120552,7 +120661,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraScience
       nameSet: True
-      id: Robotics
+      id: Робототехника
   - uid: 16479
     components:
     - type: Transform
@@ -120563,7 +120672,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraScience
       nameSet: True
-      id: XenoArch
+      id: Ксено-археология
   - uid: 16480
     components:
     - type: Transform
@@ -120574,7 +120683,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraScience
       nameSet: True
-      id: R&D
+      id: РнД
   - uid: 16481
     components:
     - type: Transform
@@ -120585,7 +120694,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraScience
       nameSet: True
-      id: Atrium
+      id: Атриум
 - proto: SurveillanceCameraSecurity
   entities:
   - uid: 9380
@@ -120608,7 +120717,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: EVAC Checkpoint
+      id: КПП эвака
   - uid: 16442
     components:
     - type: Transform
@@ -120619,7 +120728,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Arrivals Checkpoint
+      id: КПП прибытия
   - uid: 16445
     components:
     - type: Transform
@@ -120630,7 +120739,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Cargo Checkpoint
+      id: КПП снабжения
   - uid: 16450
     components:
     - type: Transform
@@ -120641,7 +120750,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Perma Brig
+      id: Перманентный бриг
   - uid: 16451
     components:
     - type: Transform
@@ -120652,7 +120761,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Atrium 2
+      id: Атриум №2
   - uid: 16452
     components:
     - type: Transform
@@ -120662,7 +120771,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Atrium 1
+      id: Атриум №1
   - uid: 16455
     components:
     - type: Transform
@@ -120673,7 +120782,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Armory
+      id: Оружейная
   - uid: 16456
     components:
     - type: Transform
@@ -120684,7 +120793,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Court Room
+      id: Суд
   - uid: 19126
     components:
     - type: Transform
@@ -120695,7 +120804,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Locker Room
+      id: Комната отдыха
 - proto: SurveillanceCameraService
   entities:
   - uid: 16409
@@ -120708,7 +120817,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraService
       nameSet: True
-      id: North Cafeteria
+      id: Кафетерий СЕВЕР
   - uid: 16413
     components:
     - type: Transform
@@ -120718,7 +120827,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraService
       nameSet: True
-      id: Botany
+      id: Ботаника
   - uid: 16423
     components:
     - type: Transform
@@ -120729,7 +120838,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraService
       nameSet: True
-      id: Janitor Closet
+      id: Коморка уборщиков
   - uid: 16429
     components:
     - type: Transform
@@ -120740,7 +120849,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraService
       nameSet: True
-      id: Library
+      id: Библиотека
   - uid: 16430
     components:
     - type: Transform
@@ -120751,7 +120860,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraService
       nameSet: True
-      id: Chapel
+      id: Церковь
   - uid: 16431
     components:
     - type: Transform
@@ -120761,7 +120870,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraService
       nameSet: True
-      id: Crematorium
+      id: Крематорий
 - proto: SurveillanceCameraSupply
   entities:
   - uid: 16416
@@ -120773,6 +120882,7 @@ entities:
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraSupply
+      id: Склад №1
   - uid: 16417
     components:
     - type: Transform
@@ -120783,7 +120893,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSupply
       nameSet: True
-      id: Loading Dock
+      id: Склад №2
   - uid: 16418
     components:
     - type: Transform
@@ -120805,7 +120915,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSupply
       nameSet: True
-      id: Lobby
+      id: Ресепшен
   - uid: 16420
     components:
     - type: Transform
@@ -120815,7 +120925,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSupply
       nameSet: True
-      id: Mail Room
+      id: Гараж РИПЛИ
   - uid: 16422
     components:
     - type: Transform
@@ -120826,7 +120936,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSupply
       nameSet: True
-      id: Salvage
+      id: Утилизаторская
 - proto: SurveillanceCameraWirelessRouterEntertainment
   entities:
   - uid: 3414
@@ -123844,6 +123954,13 @@ entities:
     components:
     - type: Transform
       pos: 14.5,29.5
+      parent: 1
+- proto: VendingMachineNutri
+  entities:
+  - uid: 18873
+    components:
+    - type: Transform
+      pos: 11.5,8.5
       parent: 1
 - proto: VendingMachineRestockChemVend
   entities:
@@ -135623,8 +135740,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.8968438
+        - 7.1357465
         - 0
         - 0
         - 0
@@ -135649,18 +135766,18 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 2910
-          - 2909
-          - 2908
-          - 8377
-          - 2907
-          - 8254
-          - 8249
-          - 8168
-          - 8124
-          - 8123
-          - 8122
           - 8121
+          - 8122
+          - 8123
+          - 8124
+          - 8168
+          - 8249
+          - 8254
+          - 2907
+          - 8377
+          - 2908
+          - 2909
+          - 2910
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -136270,41 +136387,42 @@ entities:
     - type: Transform
       pos: -36.46574,-20.498257
       parent: 1
-- proto: WeaponPistolG22NonLethal
+- proto: WeaponPistolHIB88M4
   entities:
-  - uid: 349
-    components:
-    - type: Transform
-      pos: -6.4979763,64.69686
-      parent: 1
-  - uid: 3653
+  - uid: 18374
     components:
     - type: Transform
       pos: -6.5,64.5
       parent: 1
-  - uid: 3660
+  - uid: 18384
     components:
     - type: Transform
-      pos: -6.4979763,64.3944
+      pos: -6.5006304,64.59079
       parent: 1
-  - uid: 18626
+  - uid: 18406
     components:
     - type: Transform
-      pos: -6.4933467,64.60273
+      pos: -6.498774,64.4017
       parent: 1
-- proto: WeaponShotgun39NonLethal
+- proto: WeaponRifleFamas
   entities:
-  - uid: 9033
+  - uid: 159
     components:
     - type: Transform
-      rot: -14.137166941154069 rad
-      pos: -4.2675986,61.97508
+      rot: -1.5707963267948966 rad
+      pos: -4.5018353,62.084064
+      parent: 1
+  - uid: 349
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.2796135,62.084064
       parent: 1
   - uid: 18816
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -4.517705,61.97508
+      pos: -4.7240577,62.084064
       parent: 1
 - proto: WeaponSubMachineGunMP5
   entities:
