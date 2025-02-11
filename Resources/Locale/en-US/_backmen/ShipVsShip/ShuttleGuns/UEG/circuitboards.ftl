@@ -1,0 +1,9 @@
+ent-ShuttleGunUEGSmallCircuitboard = UEG small ship gun machine board
+    .desc = Circuitboard board for United Earth Government small laser.
+    .suffix = Machine Board
+ent-ShuttleGunUEGMediumCircuitboard = UEG medium ship gun machine board
+    .desc = Circuitboard board for United Earth Government medium laser.
+    .suffix = Machine Board
+ent-ShuttleGunUEGLargeCircuitboard = UEG large ship gun machine board
+    .desc = Circuitboard board for United Earth Government large laser.
+    .suffix = Machine Board

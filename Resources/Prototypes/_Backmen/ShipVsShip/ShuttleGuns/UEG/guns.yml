@@ -1,0 +1,271 @@
+###----------------------Платы--------------------------###
+- type: entity
+  id: ShuttleGunUEGSmallCircuitboard
+  parent: BaseMachineCircuitboard
+  name: UEG small ship gun machine board
+  description: Circuitboard board for United Earth Government small laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunUEGSmall
+    stackRequirements:
+      MatterBin: 2
+      Manipulator: 4
+      Steel: 5
+      CableHV: 5
+      
+- type: entity
+  id: ShuttleGunUEGMediumCircuitboard
+  parent: BaseMachineCircuitboard
+  name: UEG medium ship gun machine board
+  description: Circuitboard board for United Earth Government medium laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunUEGMedium
+    stackRequirements:
+      MatterBin: 4
+      Manipulator: 6
+      Steel: 10
+      CableHV: 5
+      
+- type: entity
+  id: ShuttleGunUEGLargeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: UEG large ship gun machine board
+  description: Circuitboard board for United Earth Government large laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunUEGLarge
+    stackRequirements:
+      MatterBin: 8
+      Manipulator: 12
+      Steel: 20
+      CableHV: 10
+      
+###----------------------Орудия-------------------------###
+- type: entity
+  id: ShuttleGunUEGSmall
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: UEG small ship gun
+  description: United Earth Government ship laser gun. It has an extremely high rate of fire but mediocre destructive capabilities.
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
+    layers:
+    - state: lse-400c
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 40
+    fireRate: 15
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunUEGSmallCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: UEGSmallLaserBolt
+    fireCost: 100
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 500
+  - type: AmmoCounter
+  
+- type: entity
+  id: ShuttleGunUEGMedium
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: UEG medium ship gun
+  description: United Earth Government ship medium laser. It has a medium rate of fire and moderate destructive capabilities. There is a slight limitation on reloading.
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
+    layers:
+    - state: lse-1200c
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunUEGMediumCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: UEGMediumLaserBolt
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 1000
+  - type: AmmoCounter
+  
+- type: entity
+  id: ShuttleGunUEGLarge
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: UEG large ship gun
+  description: United Earth Government ship large laser gun. It has a low rate of fire and impressive destructive capabilities. Slow reload.
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/ShipVsShip/UEG/HeavyUEGLaser.rsi
+    layers:
+    - state: UEG-H
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 40
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Backmen/ShipVsShip/Weapons/Wpn_Rebel_Heavy_Turbolaser_00.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunUEGMediumCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: UEGHeavyLaserBolt
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: AmmoCounter
+  
+###----------------------Прожектайлы-------------------------###
+- type: entity
+  name: UEG small laser bolt
+  id: UEGSmallLaserBolt
+  parent: X01Attack
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 40
+        
+- type: entity
+  name: UEG medium laser bolt
+  id: UEGMediumLaserBolt
+  parent: WatcherBoltMagmawing
+  categories: [HideSpawnMenu]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 50
+        Structural: 50
+        
+- type: entity
+  id: UEGHeavyLaserBolt
+  name: UEG heavy laser bolt
+  parent: [BaseBulletTrigger, BulletLaser]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 75
+    intensitySlope: 5
+    maxIntensity: 10
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 200
+        Structural: 50
+  - type: PointLight
+    radius: 3.5
+    color: red
+    energy: 0.5
+    
