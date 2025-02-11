@@ -1,0 +1,208 @@
+- type: entity
+  parent: BaseWeaponTurret
+  id: BaseWeaponTurretAutoGun
+  components:
+  - type: BallisticAmmoProvider
+    proto: GrenadeFrag
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        3.14
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+      VisionRadius: !type:Single
+        60
+      AggroVisionRadius: !type:Single
+        60
+
+- type: entity
+  parent: BaseWeaponTurretAutoGun
+  id: WeaponTurretAutoGunTeamA
+  suffix: TeamA
+  components:
+  - type: NpcFactionMember
+    factions:
+    - TeamA
+
+- type: entity
+  parent: BaseWeaponTurretAutoGun
+  id: WeaponTurretAutoGunTeamB
+  suffix: TeamB
+  components:
+  - type: NpcFactionMember
+    factions:
+    - TeamB
+
+- type: entity
+  parent: BaseWeaponTurretAutoGun
+  id: WeaponTurretAutoGunNeutral
+  suffix: Neutral
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Team0
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: BaseWeaponTurretPointDefence
+  name: point defence
+  components:
+  - type: Gun
+    fireRate: 12
+    projectileSpeed: 20
+  - type: MouseRotator
+    angleTolerance: 50
+    rotationSpeed: 360
+    simple4DirMode: false
+  - type: HTN
+    rootTask:
+      task: TurretHuyiniCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        120
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+      ShootDelay: !type:Single
+        0
+      VisionRadius: !type:Single
+        80
+      AggroVisionRadius: !type:Single
+        80
+
+- type: entity
+  parent: WeaponTurretBaseLaser
+  id: BaseWeaponTurretLaserPointDefence
+  name: point defence
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedAntiAirLaser
+    fireCost: 2
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: Gun
+    fireRate: 12
+    angleDecay: 30
+    angleIncrease: 5
+    minAngle: 1
+    maxAngle: 8
+  - type: MouseRotator
+    angleTolerance: 50
+    rotationSpeed: 360
+    simple4DirMode: false
+  - type: HTN
+    rootTask:
+      task: TurretHuyiniCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        120
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+      ShootDelay: !type:Single
+        0
+      VisionRadius: !type:Single
+        80
+      AggroVisionRadius: !type:Single
+        80
+
+- type: htnCompound
+  id: TurretHuyiniCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyGunTargets
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              # TODO: Non-scuffed
+              rangeKey: AggroVisionRadius
+            - !type:TargetInLOSPrecondition
+              targetKey: Target
+              rangeKey: AggroVisionRadius
+          operator: !type:GunOperator
+            targetKey: Target
+            requireLOS: true
+          services:
+            - !type:UtilityService
+              id: RangedService
+              proto: NearbyGunTargets
+              key: Target
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleSpinCompound
+
+- type: entity
+  parent: BaseWeaponTurretPointDefence
+  id: WeaponTurretPointDefenceTeamA
+  suffix: TeamA
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BulletA
+
+- type: entity
+  parent: BaseWeaponTurretPointDefence
+  id: WeaponTurretPointDefenceTeamB
+  suffix: TeamB
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BulletB
+
+- type: entity
+  parent: BaseWeaponTurretPointDefence
+  id: WeaponTurretPointDefenceNeutral
+  suffix: Neutral
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Bullet0
+
+- type: entity
+  parent: BaseWeaponTurretLaserPointDefence
+  id: WeaponTurretLaserPointDefenceTeamA
+  suffix: TeamA
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BulletA
+
+- type: entity
+  parent: BaseWeaponTurretLaserPointDefence
+  id: WeaponTurretLaserPointDefenceTeamB
+  suffix: TeamB
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BulletB
+
+- type: entity
+  parent: BaseWeaponTurretLaserPointDefence
+  id: WeaponTurretLaserPointDefenceNeutral
+  suffix: Neutral
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Bullet0
+
+- type: hitscan
+  id: RedAntiAirLaser
+  maxLength: 100
+  damage:
+    types:
+      Heat: 5
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy2
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy2
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy2

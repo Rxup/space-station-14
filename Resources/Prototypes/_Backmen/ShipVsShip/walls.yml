@@ -8,14 +8,14 @@
   components:
   - type: NpcFactionMember
     factions:
-    - TeamA
+    - WallsA
 
 - type: entity
   id: FactionStateParentTeamB
   components:
   - type: NpcFactionMember
     factions:
-    - TeamB
+    - WallsB
 
 - type: entity
   parent:

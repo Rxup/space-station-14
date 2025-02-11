@@ -15,7 +15,7 @@
       Manipulator: 4
       Steel: 5
       CableHV: 5
-      
+
 - type: entity
   id: ShuttleGunUEGMediumCircuitboard
   parent: BaseMachineCircuitboard
@@ -32,7 +32,7 @@
       Manipulator: 6
       Steel: 10
       CableHV: 5
-      
+
 - type: entity
   id: ShuttleGunUEGLargeCircuitboard
   parent: BaseMachineCircuitboard
@@ -49,7 +49,7 @@
       Manipulator: 12
       Steel: 20
       CableHV: 10
-      
+
 ###----------------------Орудия-------------------------###
 - type: entity
   id: ShuttleGunUEGSmall
@@ -103,7 +103,7 @@
     autoRecharge: true
     autoRechargeRate: 500
   - type: AmmoCounter
-  
+
 - type: entity
   id: ShuttleGunUEGMedium
   parent: [ ShuttleGunBase, ConstructibleMachine]
@@ -133,7 +133,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 80
+    projectileSpeed: 30
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
@@ -155,7 +155,7 @@
     autoRecharge: true
     autoRechargeRate: 1000
   - type: AmmoCounter
-  
+
 - type: entity
   id: ShuttleGunUEGLarge
   parent: [ ShuttleGunBase, ConstructibleMachine]
@@ -185,7 +185,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 40
+    projectileSpeed: 15
     fireRate: 1
     soundGunshot:
       path: /Audio/Backmen/ShipVsShip/Weapons/Wpn_Rebel_Heavy_Turbolaser_00.ogg
@@ -207,7 +207,7 @@
     autoRecharge: true
     autoRechargeRate: 100
   - type: AmmoCounter
-  
+
 ###----------------------Прожектайлы-------------------------###
 - type: entity
   name: UEG small laser bolt
@@ -219,11 +219,12 @@
     damage:
       types:
         Heat: 40
-        
+
 - type: entity
   name: UEG medium laser bolt
   id: UEGMediumLaserBolt
-  parent: WatcherBoltMagmawing
+  parent:
+  - WatcherBoltMagmawing
   categories: [HideSpawnMenu]
   components:
   - type: Projectile
@@ -231,13 +232,44 @@
       types:
         Heat: 50
         Structural: 50
-        
+
 - type: entity
   id: UEGHeavyLaserBolt
   name: UEG heavy laser bolt
-  parent: [BaseBulletTrigger, BulletLaser]
+  parent:
+  - BaseBulletTrigger
+  - BulletLaser
+  - MobStateParent
   categories: [ HideSpawnMenu ]
   components:
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 0
+        mask:
+        - Impassable
+        - BulletImpassable
+        layer:
+        - BulletImpassable
+        - Opaque
+  - type: NpcFactionMember
+    factions:
+    - BulletB
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Shuttle
   - type: Reflective
     reflective:
     - Energy
@@ -268,4 +300,3 @@
     radius: 3.5
     color: red
     energy: 0.5
-    
