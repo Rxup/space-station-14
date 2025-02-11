@@ -478,8 +478,6 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: ComputerSensorMonitoring
-    - type: ComputerTabletopBoard # Frontier
-      prototype: ComputerTabletopSensorMonitoring # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
