@@ -12,6 +12,7 @@ using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body.Events;
@@ -167,17 +168,33 @@ public partial class SharedBodySystem
         if (ent.Comp.Body is null)
             return;
 
+
         if (TryComp(insertedUid, out BodyPartComponent? part) && slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part))) // Shitmed Change
         {
             AddPart(ent.Comp.Body.Value, (insertedUid, part), slotId);
             RecursiveBodyUpdate((insertedUid, part), ent.Comp.Body.Value);
             CheckBodyPart((insertedUid, part), GetTargetBodyPart(part), false); // Shitmed Change
         }
+#if DEBUG
+        else if(HasComp<BodyPartComponent>(insertedUid))
+        {
+            DebugTools.Assert(
+                slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part)),
+                $"BodyPartComponent has not been inserted ({Prototype(args.Entity)?.ID}) into {Prototype(ent.Comp.Body.Value)?.ID}" +
+                $" прототип должен иметь подключение начиная с {GetSlotFromBodyPart(part)} (сейчас {slotId.Replace(PartSlotContainerIdPrefix,"")})");
+        }
+#endif
 
-        if (TryComp(insertedUid, out OrganComponent? organ) && slotId.Contains(OrganSlotContainerIdPrefix + organ.SlotId)) // Shitmed Change
+        if (TryComp(insertedUid, out OrganComponent? organ) && slotId.Contains(OrganSlotContainerIdPrefix + organ.SlotId.ToLower(CultureInfo.InvariantCulture))) // Shitmed Change
         {
             AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent);
         }
+#if DEBUG
+        else if(HasComp<OrganComponent>(insertedUid))
+        {
+            DebugTools.Assert($"OrganComponent has not been inserted ({Prototype(args.Entity)?.ID}) into {Prototype(ent.Comp.Body.Value)?.ID}");
+        }
+#endif
     }
 
     private void OnBodyPartRemoved(Entity<BodyPartComponent> ent, ref EntRemovedFromContainerMessage args)

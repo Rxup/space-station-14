@@ -37,27 +37,27 @@
     thorax:
       part: ThoraxSpider
       connections:
-        - left foreleg
-        - left second leg
-        - left third leg
-        - left hind leg
-        - right foreleg
-        - right second leg
-        - right third leg
-        - right hind leg
-    left foreleg:
+        - left leg first
+        - left leg second
+        - left leg third
+        - left leg hind
+        - right leg first
+        - right leg second
+        - right leg third
+        - right leg hind
+    left leg first:
       part: LeftLegSpider
-    left second leg:
+    left leg second:
       part: LeftLegSpider
-    left third leg:
+    left leg third:
       part: LeftLegSpider
-    left hind leg:
+    left leg hind:
       part: LeftLegSpider
-    right foreleg:
+    right leg first:
       part: RightLegSpider
-    right second leg:
+    right leg second:
       part: RightLegSpider
-    right third leg:
+    right leg third:
       part: RightLegSpider
-    right hind leg:
+    right leg hind:
       part: RightLegSpider

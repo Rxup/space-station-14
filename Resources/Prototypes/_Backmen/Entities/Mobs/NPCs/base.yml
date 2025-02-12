@@ -1,9 +1,22 @@
 ﻿- type: entity
-  name: BaseNpc
+  name: Базированная База НПЦ
   id: MobBaseNpc
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, StripableInventoryBase]
   description: Just a body, be calm.
   components:
+  - type: UniversalLanguageSpeaker
+  - type: DiseaseCarrier
+  - type: CombatMode
+  - type: SurgeryTarget
+  - type: Stripping
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: ComplexInteraction
   - type: StatusEffects
     allowed:
       - Stun
@@ -16,7 +29,6 @@
       - StaminaModifier
   - type: ZombieImmune
   - type: Rotatable
-  - type: CombatMode
   - type: InputMover
   - type: MobMover
   - type: MeleeWeapon
@@ -40,6 +52,8 @@
   - type: NpcFactionMember
     factions:
       - SimpleNeutral
+  - type: Inventory
+    templateId: human
   - type: Hands
   - type: RotationVisuals
     defaultRotation: 90
@@ -117,16 +131,25 @@
     torso:
       part: TorsoHuman
       connections:
-      - legs
+      - right leg
+      - left leg
       organs:
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
-    legs:
+    right leg:
       part: RightLegHuman
       connections:
-      - feet
+      - right foot
+    left leg:
+      part: LeftLegHuman
+      connections:
+      - left foot
+    right foot:
+      part: RightFootHuman
+    left foot:
+      part: LeftFootHuman
     feet:
       part: RightFootHuman

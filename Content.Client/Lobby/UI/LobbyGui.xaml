@@ -27,12 +27,12 @@
                     <!-- Vertical Padding -->
                     <Control VerticalExpand="True" />
                     <RichTextLabel Name="LabelName" Access="Public" HorizontalAlignment="Left"
-                                   VerticalAlignment="Center" Margin="20 0 0 420" />
+                                   VerticalAlignment="Center" Margin="20 0 0 450" />
                     <!-- Left Bot Panel -->
                     <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3" />
                         <PanelContainer StyleClasses="AngleRect">
-                            <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" />
+                            <RichTextLabel Name="LobbySong" StyleClasses="LobbyBackground" Access="Public" HorizontalAlignment="Center" />
                         </PanelContainer>
                     </BoxContainer>
                     <!-- Left Panel -->
@@ -61,11 +61,11 @@
                                 Access="Public"
                                 ButtonText="{Loc 'ui-lobby-options-button'}"
                                 Margin="0 10 0 10" />
-                            <!--<buttons:WhiteLobbyTextButton
-                                Name="DiscordButton"
+                            <buttons:WhiteLobbyTextButton
+                                Name="VotemenuButton"
                                 Access="Public"
-                                ButtonText="Привязать Discord"
-                                Margin="0 10 0 10" />-->
+                                ButtonText="{Loc 'ui-lobby-open-votemenu'}"
+                                Margin="0 10 0 10" />
                             <buttons:WhiteLobbyTextButton
                                 Name="AHelpButton"
                                 Access="Public"
@@ -95,7 +95,7 @@
                 </Control>
             </BoxContainer>
             <!-- Right Panel -->
-            <PanelContainer Name="RightSide" Access="Public" StyleClasses="AngleRect" HorizontalAlignment="Right" VerticalExpand="True"
+            <PanelContainer Name="RightSide" Access="Public" StyleClasses="LobbyBackground" HorizontalAlignment="Right" VerticalExpand="True"
                             VerticalAlignment="Stretch">
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                     <!-- Top row -->
