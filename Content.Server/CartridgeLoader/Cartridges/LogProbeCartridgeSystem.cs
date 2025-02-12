@@ -1,3 +1,5 @@
+using Content.Shared.Access.Components;
+using Content.Shared.Audio;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.Popups;
@@ -7,13 +9,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed class LogProbeCartridgeSystem : EntitySystem
 public sealed partial class LogProbeCartridgeSystem : EntitySystem // Corvax-Next-PDAChat - Made partial
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -21,6 +23,7 @@ public sealed partial class LogProbeCartridgeSystem : EntitySystem // Corvax-Nex
         SubscribeLocalEvent<LogProbeCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<LogProbeCartridgeComponent, CartridgeAfterInteractEvent>(AfterInteract);
     }
+
     /// <summary>
     /// The <see cref="CartridgeAfterInteractEvent" /> gets relayed to this system if the cartridge loader is running
     /// the LogProbe program and someone clicks on something with it. <br/>
@@ -57,10 +60,13 @@ public sealed partial class LogProbeCartridgeSystem : EntitySystem // Corvax-Nex
                 accessRecord.AccessTime,
                 accessRecord.Accessor
             );
+
             ent.Comp.PulledAccessLogs.Add(log);
         }
+
         UpdateUiState(ent, args.Loader);
     }
+
     /// <summary>
     /// This gets called when the ui fragment needs to be updated for the first time after activating
     /// </summary>
@@ -71,7 +77,6 @@ public sealed partial class LogProbeCartridgeSystem : EntitySystem // Corvax-Nex
 
     private void UpdateUiState(Entity<LogProbeCartridgeComponent> ent, EntityUid loaderUid)
     {
-        var state = new LogProbeUiState(ent.Comp.PulledAccessLogs);
         var state = new LogProbeUiState(ent.Comp.PulledAccessLogs, ent.Comp.ScannedNanoChatData); // Corvax-Next-PDAChat - NanoChat support
         _cartridgeLoaderSystem?.UpdateCartridgeUiState(loaderUid, state);
     }
