@@ -1,14 +1,12 @@
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-
 namespace Content.Shared.Access.Systems
 {
     public abstract class SharedAgentIdCardSystem : EntitySystem
     {
         // Just for friending for now
     }
-
     /// <summary>
     /// Key representing which <see cref="PlayerBoundUserInterface"/> is currently open.
     /// Useful when there are multiple UI for an object. Here it's future-proofing only.
@@ -18,7 +16,6 @@ namespace Content.Shared.Access.Systems
     {
         Key,
     }
-
     /// <summary>
     /// Represents an <see cref="AgentIDCardComponent"/> state that can be sent to the client
     /// </summary>
@@ -28,12 +25,27 @@ namespace Content.Shared.Access.Systems
         public string CurrentName { get; }
         public string CurrentJob { get; }
         public string CurrentJobIconId { get; }
+        public uint? CurrentNumber { get; } // Corvax-Next-PDAChat
 
         public AgentIDCardBoundUserInterfaceState(string currentName, string currentJob, string currentJobIconId)
+        public AgentIDCardBoundUserInterfaceState(string currentName, string currentJob, string currentJobIconId, uint? currentNumber = null) // Corvax-Next-PDAChat - Added currentNumber
         {
             CurrentName = currentName;
             CurrentJob = currentJob;
             CurrentJobIconId = currentJobIconId;
+            CurrentNumber = currentNumber; // Corvax-Next-PDAChat
+        }
+    }
+
+    // Corvax-Next-PDAChat - Add number change message
+    [Serializable, NetSerializable]
+    public sealed class AgentIDCardNumberChangedMessage : BoundUserInterfaceMessage
+    {
+        public uint Number { get; }
+
+        public AgentIDCardNumberChangedMessage(uint number)
+        {
+            Number = number;
         }
     }
 
@@ -41,29 +53,24 @@ namespace Content.Shared.Access.Systems
     public sealed class AgentIDCardNameChangedMessage : BoundUserInterfaceMessage
     {
         public string Name { get; }
-
         public AgentIDCardNameChangedMessage(string name)
         {
             Name = name;
         }
     }
-
     [Serializable, NetSerializable]
     public sealed class AgentIDCardJobChangedMessage : BoundUserInterfaceMessage
     {
         public string Job { get; }
-
         public AgentIDCardJobChangedMessage(string job)
         {
             Job = job;
         }
     }
-
     [Serializable, NetSerializable]
     public sealed class AgentIDCardJobIconChangedMessage : BoundUserInterfaceMessage
     {
         public ProtoId<JobIconPrototype> JobIconId { get; }
-
         public AgentIDCardJobIconChangedMessage(ProtoId<JobIconPrototype> jobIconId)
         {
             JobIconId = jobIconId;
