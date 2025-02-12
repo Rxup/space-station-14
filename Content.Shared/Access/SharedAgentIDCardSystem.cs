@@ -27,7 +27,7 @@ namespace Content.Shared.Access.Systems
         public string CurrentJobIconId { get; }
         public uint? CurrentNumber { get; } // Corvax-Next-PDAChat
 
-        public AgentIDCardBoundUserInterfaceState(string currentName, string currentJob, string currentJobIconId)
+        public AgentIDCardBoundUserInterfaceState(string currentName, string currentJob, string currentJobIconId);
         public AgentIDCardBoundUserInterfaceState(string currentName, string currentJob, string currentJobIconId, uint? currentNumber = null) // Corvax-Next-PDAChat - Added currentNumber
         {
             CurrentName = currentName;
