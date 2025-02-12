@@ -12,7 +12,7 @@ public sealed class LogProbeUiState : BoundUserInterfaceState
     /// </summary>
     public List<PulledAccessLog> PulledLogs;
 
-    public LogProbeUiState(List<PulledAccessLog> pulledLogs)
+    public LogProbeUiState(List<PulledAccessLog> pulledLogs);
     /// <summary>
     /// Corvax-Next-PDAChat: The NanoChat data if a card was scanned, null otherwise
     /// </summary>
