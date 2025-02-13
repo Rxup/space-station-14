@@ -332,27 +332,54 @@
   components:
   - type: HereticRule
   - type: AntagSelection
+  - type: AntagObjectives
+    objectives:
+    - HereticKnowledgeObjective
+    - HereticSacrificeObjective
+    - HereticSacrificeHeadObjective
+
+- type: entity
+  parent: BaseHereticRule
+  id: Heretic
+  components:
+  - type: GameRule
+    minPlayers: 10
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Heretic ]
+      max: 5
+      playerRatio: 20
+      blacklist:
+        components:
+        - AntagImmune
+        - BibleUser
+      lateJoinAdditional: true
+      briefing:
+        text: heretic-role-greeting
+        color: Plum
+        #sound: /Audio/Backmen/Ambience/Antag/vampier_start.ogg # TODO heretic antag sound
+      mindRoles:
+      - MindRoleHeretic
 
 - type: entity
   parent: BaseHereticRule
   id: HereticGameRule
   components:
   - type: GameRule
-    minPlayers: 25
+    minPlayers: 10
   - type: AntagSelection
     definitions:
     - prefRoles: [ Heretic ]
       max: 8
-      playerRatio: 15
+      playerRatio: 10
       blacklist:
         components:
         - AntagImmune
         - BibleUser
       lateJoinAdditional: true
+      briefing:
+        text: heretic-role-greeting
+        color: Plum
+        #sound: /Audio/Backmen/Ambience/Antag/vampier_start.ogg # TODO heretic antag sound
       mindRoles:
-      - Heretic
-  - type: AntagObjectives
-    objectives:
-    - HereticKnowledgeObjective
-    - HereticSacrificeObjective
-    - HereticSacrificeHeadObjective
+      - MindRoleHeretic
