@@ -1,16 +1,4 @@
 - type: factionIcon
-  id: FleshcultistFaction
-  priority: 5
-  showTo:
-    tags:
-    - Flesh
-    components:
-    - FleshCultist
-  icon:
-    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
-    state: flesh
-
-- type: factionIcon
   id: VampireFaction
   priority: 9
   showTo:

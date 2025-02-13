@@ -125,19 +125,6 @@ public sealed class CCVars
         CVarDef.Create("shipwrecked.max_players", 15);
 
     /*
- * FleshCult
- */
-
-    public static readonly CVarDef<int> FleshCultMinPlayers =
-        CVarDef.Create("fleshcult.min_players", 25, CVar.SERVERONLY);
-
-    public static readonly CVarDef<int> FleshCultMaxCultist =
-        CVarDef.Create("fleshcult.max_cultist", 6, CVar.SERVERONLY);
-
-    public static readonly CVarDef<int> FleshCultPlayersPerCultist =
-        CVarDef.Create("fleshcult.players_per_cultist", 7, CVar.SERVERONLY);
-
-    /*
      * bloodsucker
      */
 

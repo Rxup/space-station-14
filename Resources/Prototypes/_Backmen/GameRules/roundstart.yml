@@ -1,47 +1,4 @@
-﻿# Flesh Cult
-- type: entity
-  id: FleshCult
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: GameRule
-    minPlayers: 20
-  - type: FleshCultRule
-    faction: Flesh
-# Перенести в прототипы культ сложно из-за наличия Лидера,
-# так что пусть пока вот тут полежит заготовка
-#
-#  - type: AntagSelection
-#    selectionTime: PrePlayerSpawn
-#    definitions:
-#    - prefRoles: [ FleshCultistLeader ]
-#      fallbackRoles: [ FleshCultist ]
-#      max: 1
-#      components:
-#      - type: FleshCultist
-#      - type: NpcFactionMember
-#        factions:
-#        - Flesh
-#      mindRoles:
-#      - MindRoleFleshLeader
-#    - prefRoles: [ FleshCultist ]
-#      fallbackRoles: [ FleshCultistLeader ]
-#      max: 6
-#      playerRatio: 10
-#      components:
-#      - type: FleshCultist
-#      - type: NpcFactionMember
-#        factions:
-#        - Flesh
-#      lateJoinAdditional: true
-#      mindRoles:
-#      - MindRoleFlesh
-#      briefing:
-#        text: flesh-cult-role-greeting
-#        color: Plum
-#        #sound: #TODO: Flesh Cultist briefing TTS
-
-# Blob
+﻿# Blob
 - type: entity
   id: BlobRule
   parent: BaseGameRule
@@ -137,22 +94,22 @@
       min: 30
       max: 60
 
-## Vampire Outbreak
-- type: entity
-  id: VampireOutbreak
-  parent: BaseVampiresGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    earliestStart: 20
-    minimumPlayers: 15
-    weight: 5
-    maxOccurrences: 1 # can only happen once per round
-    startAnnouncement: station-event-communication-interception
-    startAudio:
-      path: /Audio/Announcements/intercept.ogg
-    duration: null # the rule has to last the whole round not 1 second
-    occursDuringRoundEnd: false
+## Vampire Outbreak # Removed until rework
+#- type: entity
+#  id: VampireOutbreak
+#  parent: BaseVampiresGameRule
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: StationEvent
+#    earliestStart: 20
+#    minimumPlayers: 15
+#    weight: 5
+#    maxOccurrences: 1 # can only happen once per round
+#    startAnnouncement: station-event-communication-interception
+#    startAudio:
+#      path: /Audio/Announcements/intercept.ogg
+#    duration: null # the rule has to last the whole round not 1 second
+#    occursDuringRoundEnd: false
 
 # Shipwrecked
 - type: entity
