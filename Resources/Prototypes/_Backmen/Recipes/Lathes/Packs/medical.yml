@@ -39,7 +39,6 @@
   - SpeedLeftLeg
   - SpeedRightLeg
   - BasicCyberneticEyes
-  - BorgModuleSurgery
 
 - type: latheRecipePack
   id: BackmenSynthBodyParts

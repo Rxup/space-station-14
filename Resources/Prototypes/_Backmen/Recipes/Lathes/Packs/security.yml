@@ -44,6 +44,10 @@
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
+  - MagazineRifle762UEGIncendiary
+  - MagazineRifleFamas556UEGIncendiary
+  - MagazinePistol45ACPincendiary
+  - MagazinePistol57x28Incendiary
   # Backmen-ammonation-end
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary
@@ -56,3 +60,5 @@
   - ShellSoulbreaker
   - SpeedLoaderMagnumUranium
   - BoxShotgunUranium
+  - 
+  - WeaponLaserPistol
