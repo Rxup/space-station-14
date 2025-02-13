@@ -17,6 +17,10 @@
   wageDepartment: Cargo
   wage: 50
   #end-backmen: currency
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: BoxingDay
+    prototype: BoxCardboard
 
 - type: startingGear
   id: CargoTechGear

@@ -19,7 +19,7 @@ namespace Content.Server.Atmos.Reactions
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
             var location = holder as TileAtmosphere;
-            mixture.ReactionResults[GasReaction.Fire] = 0;
+            mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
 
             var initialOxygen = mixture.GetMoles(Gas.Oxygen);
             var initialHydrogen = mixture.GetMoles(Gas.Hydrogen);
@@ -34,7 +34,7 @@ namespace Content.Server.Atmos.Reactions
                 mixture.AdjustMoles(Gas.Hydrogen, -burnedFuel);
                 mixture.AdjustMoles(Gas.Oxygen, -burnedFuel * 0.5f);
 
-                mixture.ReactionResults[GasReaction.Fire] += burnedFuel;
+                mixture.ReactionResults[(byte)GasReaction.Fire] += burnedFuel;
             }
 
             if (energyReleased > 0)
@@ -53,7 +53,7 @@ namespace Content.Server.Atmos.Reactions
                 }
             }
 
-            return mixture.ReactionResults[GasReaction.Fire] != 0 ? ReactionResult.Reacting : ReactionResult.NoReaction;
+            return mixture.ReactionResults[(byte)GasReaction.Fire] != 0 ? ReactionResult.Reacting : ReactionResult.NoReaction;
         }
     }
 }

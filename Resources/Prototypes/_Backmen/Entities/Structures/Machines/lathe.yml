@@ -37,97 +37,11 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-      - PrizeBall
-      - PlushieBee
-      - PlushieHampter
-      - PlushieRouny
-      - PlushieLamp
-      - PlushieArachind
-      - PlushieLizard
-      - PlushieSpaceLizard
-      - PlushieSharkBlue
-      - PlushieSharkPink
-      - PlushieSharkGrey
-      - PlushieCarp
-      - PlushieMagicarp
-      - PlushieHolocarp
-      - PlushieSlime
-      - PlushieSnake
-      - ToyMouse
-      - ToyRubberDuck
-      - PlushieVox
-      - PlushieAtmosian
-      - PlushiePenguin
-      - PlushieHuman
-      - PlushieArachne
-      - PlushieGnome
-      - PlushieLoveable
-      - PlushieDeer
-      - PlushieIpc
-      - PlushieGrey
-      - PlushieRedFox
-      - PlushiePurpleFox
-      - PlushiePinkFox
-      - PlushieOrangeFox
-      - PlushieMarbleFox
-      - PlushieCrimsonFox
-      - PlushieCoffeeFox
-      - PlushieBlueFox
-      - PlushieBlackFox
-      - PlushieVulp
-      - PlushieCorgi
-      - PlushieGirlyCorgi
-      - PlushieRobotCorgi
-      - PlushieCatBlack
-      - PlushieCatGrey
-      - PlushieCatOrange
-      - PlushieCatSiames
-      - PlushieCatTabby
-      - PlushieCatTuxedo
-      - PlushieCatWhite
-      - ToyAi
-      - ToyIan
-      - BalloonNT
-      - BalloonCorgi
-      - CrayonBox
-      - PetRockCarrier
-      - PlushieXeno
-      - FoamCrossbow
-      - RevolverCapGun
-      - PonderingOrb
-      - ToyAmongPequeno
-      - FoamCutlass
-      - WhoopieCushion
-      - ToyHammer
-      - PlasticBanana
-      - WeaponWaterPistol
-      - WeaponWaterBlaster
-      - NewtonCradle
-      - SnapPopBox
-      - MrDips
-      - MrChips
-      - CrazyGlue
-      - PlushieRatvar
-      - PlushieNar
+    staticPacks:
+    - BackmenToys
   - type: EmagLatheRecipes
-    emagStaticRecipes:
-      - PlushieGhost
-      - PlushieRGBee
-      - PlushieRainbowCarp
-      - PlushieJester
-      - PlushieSlips
-      - PlushieTrystan
-      - PlushieAbductor
-      - PlushieAbductorAgent
-      - PlushieNuke
-      - ToyNuke
-      - FoamBlade
-      - BalloonSyn
-      - SingularityToy
-      - TeslaToy
-      - ToySword
-      - ThronglerToy
+    emagStaticPacks:
+    - BackmenToysEmag
   - type: MaterialStorage
     whitelist:
       tags:
@@ -162,16 +76,41 @@
   - type: Lathe
     idleState: limbgrower_idleoff
     runningState: limbgrower_idleon
-    staticRecipes:
-    - SynthLiver
-    - SynthHeart
-    - SynthLungs
-    - SynthEyes
-    - SynthLeftLeg
-    - SynthRightLeg
-    - SynthLeftFoot
-    - SynthRightFoot
-    - SynthLeftArm
-    - SynthRightArm
-    - SynthLeftHand
-    - SynthRightHand
+    staticPacks:
+    - BackmenSynthBodyParts
+
+- type: entity
+  id: ProtolatheCash
+  parent: BaseLathe
+  name: Принтер кредитов
+  description: Распечатывает "фальшивые", неофициальные кредиты, в обход систем и бюррократии, за счет бумаги и некоторых связных материалов
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/protoprint.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ProtolatheCashMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Document
+        - RawMaterial
+  - type: Lathe
+    producingSound: /Audio/Machines/scanning.ogg
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - BackmenCash
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BackmenCashEmag

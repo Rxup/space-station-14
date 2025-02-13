@@ -29,6 +29,7 @@ using Content.Shared.Backmen.Language;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning;
 using Content.Shared.Fluids.Components;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;

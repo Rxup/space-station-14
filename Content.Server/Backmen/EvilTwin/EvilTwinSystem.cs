@@ -40,6 +40,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;

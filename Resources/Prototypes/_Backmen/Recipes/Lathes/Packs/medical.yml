@@ -1,0 +1,57 @@
+# Only medfab (static)
+- type: latheRecipePack
+  id: BackmenMedfabStatic
+  recipes:
+  - BoneGel
+  - SyringeGun
+
+# Only medfab (dynamic)
+- type: latheRecipePack
+  id: BackmenMedfab
+  recipes:
+  - OmnimedTool
+  - RapidSyringeGun
+  - MedicalCyberneticEyes
+  - SecurityCyberneticEyes
+
+# Shared between Medfab and Protolathe
+- type: latheRecipePack
+  id: BackmenSurgery
+  recipes:
+  - BluespacePillCanister
+  - EnergyScalpel
+  - EnergyCautery
+  - AdvancedRetractor
+
+# Static robofab
+- type: latheRecipePack
+  id: BackmenShitmedModulesStatic
+  recipes:
+  - BorgModuleSurgery
+
+# Dynamic robofab
+- type: latheRecipePack
+  id: BackmenShitmedModules
+  recipes:
+  - BorgModuleAdvancedSurgery
+  - JawsOfLifeLeftArm
+  - JawsOfLifeRightArm
+  - SpeedLeftLeg
+  - SpeedRightLeg
+  - BasicCyberneticEyes
+
+- type: latheRecipePack
+  id: BackmenSynthBodyParts
+  recipes:
+  - SynthLiver
+  - SynthHeart
+  - SynthLungs
+  - SynthEyes
+  - SynthLeftLeg
+  - SynthRightLeg
+  - SynthLeftFoot
+  - SynthRightFoot
+  - SynthLeftArm
+  - SynthRightArm
+  - SynthLeftHand
+  - SynthRightHand
