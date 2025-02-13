@@ -156,13 +156,13 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Components
         /// <summary>
         ///     Internal solution for blood storage
         /// </summary>
-        [DataField, AutoNetworkedField]
+        [DataField]
         public Entity<SolutionComponent>? BloodSolution = null;
 
         /// <summary>
         ///     Internal solution for reagent storage
         /// </summary>
-        [DataField, AutoNetworkedField]
+        [DataField]
         public Entity<SolutionComponent>? ChemicalSolution = null;
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Components
         ///     When blood is lost, it goes to this solution, and when this
         ///     solution hits a certain cap, the blood is actually spilled as a puddle.
         /// </summary>
-        [DataField, AutoNetworkedField]
+        [DataField]
         public Entity<SolutionComponent>? TemporarySolution = null;
 
         /// <summary>

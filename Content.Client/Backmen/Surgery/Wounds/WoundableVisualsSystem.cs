@@ -18,8 +18,9 @@ namespace Content.Client.Backmen.Surgery.Wounds;
 public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
 {
     [Dependency] private readonly SharedBodySystem _body = default!;
+
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PrototypeManager _protoMan = default!;
+    [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
     private const float AltBleedingSpriteChance = 0.15f;
 

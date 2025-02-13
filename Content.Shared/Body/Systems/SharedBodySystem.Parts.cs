@@ -1015,7 +1015,7 @@ public partial class SharedBodySystem
         return false;
     }
 
-    private bool TryGetPartSlotContainerName(BodyPartType partType, out HashSet<string> containerNames)
+    public bool TryGetPartSlotContainerName(BodyPartType partType, out HashSet<string> containerNames)
     {
         containerNames = partType switch
         {
@@ -1027,7 +1027,7 @@ public partial class SharedBodySystem
         return containerNames.Count > 0;
     }
 
-    private bool TryGetPartFromSlotContainer(string slot, out BodyPartType? partType)
+    public bool TryGetPartFromSlotContainer(string slot, out BodyPartType? partType)
     {
         partType = slot switch
         {

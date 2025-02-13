@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Numerics;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -576,7 +577,7 @@ public partial class WoundSystem
     public void AmputateWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
     {
         var bodyPart = Comp<BodyPartComponent>(parentWoundableEntity);
-        if (bodyPart.Body == null)
+        if (!bodyPart.Body.HasValue)
             return;
 
         if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
@@ -598,12 +599,24 @@ public partial class WoundSystem
 
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
+
+        if (_body.TryGetPartSlotContainerName(bodyPart.PartType, out var slots))
+        {
+            foreach (var slot in slots)
+            {
+                if (_inventory.TryUnequip(bodyPart.Body.Value, slot, out var removedItem))
+                    _throwing.TryThrow(removedItem.Value, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+            }
+        }
+
         Dirty(woundableEntity, woundableComp);
 
         _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);
         _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
+
+        _throwing.TryThrow(woundableEntity, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
     }
 
     #endregion

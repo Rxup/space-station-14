@@ -4,6 +4,8 @@ using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Inventory;
+using Content.Shared.Throwing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -31,6 +33,9 @@ public partial class WoundSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
+    // I'm the one.... who throws........
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
 
     private ISawmill _sawmill = default!;
