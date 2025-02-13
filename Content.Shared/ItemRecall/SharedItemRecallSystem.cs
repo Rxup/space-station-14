@@ -14,7 +14,7 @@ namespace Content.Shared.ItemRecall;
 public abstract partial class SharedItemRecallSystem : EntitySystem
 {
     [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
+    //[Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
@@ -174,7 +174,7 @@ public abstract partial class SharedItemRecallSystem : EntitySystem
         if (!_player.TryGetSessionByEntity(user, out var mindSession))
             return;
 
-        _pvs.AddSessionOverride(uid, mindSession);
+        //_pvs.AddSessionOverride(uid, mindSession);
     }
 
     private void RemoveFromPvsOverride(EntityUid uid, EntityUid user)
@@ -182,6 +182,6 @@ public abstract partial class SharedItemRecallSystem : EntitySystem
         if (!_player.TryGetSessionByEntity(user, out var mindSession))
             return;
 
-        _pvs.RemoveSessionOverride(uid, mindSession);
+        //_pvs.RemoveSessionOverride(uid, mindSession);
     }
 }

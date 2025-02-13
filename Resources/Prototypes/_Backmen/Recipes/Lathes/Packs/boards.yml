@@ -1,0 +1,11 @@
+# Round-start circut printer boards
+- type: latheRecipePack
+  id: BackmenBoardsStatic
+  recipes:
+  - PrinterDocMachineCircuitboard # Corvax-Printer
+
+# Dynamic circut printer boards
+- type: latheRecipePack
+  id: BackmenBoards
+  recipes:
+  - ShipyardCircuitboard # backmen
