@@ -336,7 +336,7 @@ public partial class PainSystem
         var query = EntityQueryEnumerator<NerveSystemComponent>();
         while (query.MoveNext(out var nerveSysEnt, out var nerveSys))
         {
-            if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime < nerveSys.UpdateTime)
+            if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
                 nerveSys.LastPainThreshold = nerveSys.Pain;
 
             foreach (var (key, value) in nerveSys.PainSoundsToPlay)

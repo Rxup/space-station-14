@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using System.Numerics;
+using Content.Shared.Backmen.Surgery.CCVar;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -21,12 +21,6 @@ public partial class WoundSystem
     private const string BoneContainerId = "Bone";
 
     private const string BoneEntityId = "Bone";
-
-    private const float WoundTransferDivider = 10f;
-
-    private const float ScarChance = 0.10f;
-
-    private const float WoundMaxSeverity = 200f;
 
     private void InitWounding()
     {
@@ -230,7 +224,7 @@ public partial class WoundSystem
     /// <param name="woundComponent">The WoundComponent representing a specific wound.</param>
     public void TryMakeScar(WoundComponent woundComponent)
     {
-        if (_net.IsServer && _random.Prob(ScarChance) && woundComponent is { ScarWound: not null, DamageGroup: not null, IsScar: false })
+        if (_net.IsServer && _random.Prob(_cfg.GetCVar(SurgeryCvars.WoundScarChance)) && woundComponent is { ScarWound: not null, DamageGroup: not null, IsScar: false })
         {
             TryCreateWound(woundComponent.HoldingWoundable, woundComponent.ScarWound, 1, woundComponent.DamageGroup);
         }
@@ -264,7 +258,8 @@ public partial class WoundSystem
         }
 
         var old = wound.WoundSeverityPoint;
-        wound.WoundSeverityPoint = FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, WoundMaxSeverity);
+        wound.WoundSeverityPoint =
+            FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(SurgeryCvars.MaxWoundSeverity));
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -336,8 +331,8 @@ public partial class WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = severity > 0
-            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, WoundMaxSeverity)
-            : FixedPoint2.Clamp(old + severity, 0, WoundMaxSeverity);
+            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(SurgeryCvars.MaxWoundSeverity))
+            : FixedPoint2.Clamp(old + severity, 0, _cfg.GetCVar(SurgeryCvars.MaxWoundSeverity));
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -644,12 +639,16 @@ public partial class WoundSystem
         if (!Resolve(parent, ref woundableComp))
             return;
 
-        if (!TryContinueWound(parent, MetaData(wound).EntityPrototype!.ID, woundComp.WoundSeverityPoint / WoundTransferDivider, woundableComp))
+        if (!TryContinueWound(
+                parent,
+                MetaData(wound).EntityPrototype!.ID,
+                woundComp.WoundSeverityPoint * _cfg.GetCVar(SurgeryCvars.WoundTransferPart),
+                woundableComp))
         {
             TryCreateWound(
                 parent,
                 MetaData(wound).EntityPrototype!.ID,
-                woundComp.WoundSeverityPoint / WoundTransferDivider,
+                woundComp.WoundSeverityPoint * _cfg.GetCVar(SurgeryCvars.WoundTransferPart),
                 woundComp.DamageGroup!,
                 woundableComp);
         }

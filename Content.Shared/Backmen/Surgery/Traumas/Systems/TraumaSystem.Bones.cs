@@ -132,8 +132,12 @@ public partial class TraumaSystem
             var bodyComp = Comp<BodyPartComponent>(boneComp.BoneWoundable);
             if (bodyComp.Body.HasValue)
             {
-                if (nearestSeverity == BoneSeverity.Damaged && _pain.TryGetNerveSystemWithComp(bodyComp.Body.Value, out var nerveSys))
+                if (boneComp.IntegrityCap / 1.6 > boneComp.BoneIntegrity &&
+                    nearestSeverity == BoneSeverity.Damaged &&
+                    _pain.TryGetNerveSystemWithComp(bodyComp.Body.Value, out var nerveSys))
+                {
                     _pain.PlayPainSound(bodyComp.Body.Value, nerveSys, boneComp.BoneBreakSound, AudioParams.Default.WithVolume(-8f));
+                }
             }
         }
         boneComp.BoneSeverity = nearestSeverity;

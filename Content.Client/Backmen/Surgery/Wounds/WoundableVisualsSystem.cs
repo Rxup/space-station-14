@@ -217,6 +217,9 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
             sprite.LayerMapTryGet($"{layer}Bleeding", out var bleedingLayer);
 
+            var color = GetBleedsColor(bodyPart.Body.Value);
+            sprite.LayerSetColor(bleedingLayer, color);
+
             UpdateBleedingLayerState(sprite,
                 bleedingLayer,
                 layer.ToString(),
