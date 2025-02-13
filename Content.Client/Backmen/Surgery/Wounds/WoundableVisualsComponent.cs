@@ -6,22 +6,17 @@ namespace Content.Client.Backmen.Surgery.Wounds;
 [RegisterComponent]
 public sealed partial class WoundableVisualsComponent : Component
 {
-    [DataField] public Dictionary<string, WoundVisualizerSprite>? DamageOverlayGroups = new();
+    [DataField(required: true)] public Enum OccupiedLayer;
 
+    [DataField] public Dictionary<string, WoundVisualizerSprite>? DamageOverlayGroups = new();
     [DataField] public string BleedingOverlay;
 
-    [DataField] public List<Enum>? TargetLayers;
-
-    [DataField(required: true)]
-    public List<FixedPoint2> Thresholds = [];
-
+    [DataField(required: true)] public List<FixedPoint2> Thresholds = [];
     [DataField] public Dictionary<BleedingSeverity, FixedPoint2> BleedingThresholds = new()
     {
-        { BleedingSeverity.Minor, 0.05 },
-        { BleedingSeverity.Severe, 0.30 },
+        { BleedingSeverity.Minor, 1.2 },
+        { BleedingSeverity.Severe, 6.5 },
     };
-
-    public HashSet<Enum> TargetLayerMapKeys = [];
 }
 
 // :fort:

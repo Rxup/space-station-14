@@ -528,7 +528,7 @@ public partial class WoundSystem
 
             if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting) && _net.IsServer)
             {
-                targeting.BodyStatus = GetWoundableStatesOnBody(bodyPart.Body.Value);
+                targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
                 Dirty(bodyPart.Body.Value, targeting);
 
                 RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
@@ -536,7 +536,7 @@ public partial class WoundSystem
 
             Dirty(woundableEntity, woundableComp);
 
-            _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
+            _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
 
             if (IsWoundableRoot(woundableEntity, woundableComp))
             {
@@ -593,14 +593,14 @@ public partial class WoundSystem
 
         if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting) && _net.IsServer)
         {
-            targeting.BodyStatus = GetWoundableStatesOnBody(bodyPart.Body.Value);
+            targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
             Dirty(bodyPart.Body.Value, targeting);
 
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
         Dirty(woundableEntity, woundableComp);
 
-        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, 0);
+        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);
         _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
@@ -825,7 +825,7 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
             return;
 
-        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundSeverity);
+        _appearance.SetData(component.HoldingWoundable, WoundableVisualizerKeys.Update, component.WoundSeverity);
     }
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
@@ -874,13 +874,13 @@ public partial class WoundSystem
 
         if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
         {
-            targeting.BodyStatus = GetWoundableStatesOnBody(bodyPart.Body.Value);
+            targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
             Dirty(bodyPart.Body.Value, targeting);
 
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
 
-        _appearance.SetData(bodyPart.Body.Value, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
+        _appearance.SetData(woundable, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
     }
 
     #endregion

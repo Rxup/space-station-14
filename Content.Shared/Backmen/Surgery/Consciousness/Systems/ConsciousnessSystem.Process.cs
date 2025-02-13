@@ -166,7 +166,7 @@ public partial class ConsciousnessSystem
             !TryComp<ConsciousnessComponent>(args.Part.Comp.Body, out var consciousness))
             return;
 
-        if (!consciousness.RequiredConsciousnessParts.ContainsKey(component.Identifier)
+        if (consciousness.RequiredConsciousnessParts.ContainsKey(component.Identifier)
             && consciousness.RequiredConsciousnessParts[component.Identifier].Item1 != null)
         {
             _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} added to a body:" +

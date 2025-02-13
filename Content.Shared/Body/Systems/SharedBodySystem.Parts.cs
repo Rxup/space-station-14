@@ -130,7 +130,6 @@ public partial class SharedBodySystem
     private void RecursiveBodyUpdate(Entity<BodyPartComponent> ent, EntityUid? bodyUid)
     {
         ent.Comp.Body = bodyUid;
-        ent.Comp.LastBody = bodyUid;
         Dirty(ent, ent.Comp);
 
         foreach (var slotId in ent.Comp.Organs.Keys)
@@ -182,10 +181,12 @@ public partial class SharedBodySystem
     {
         Dirty(partEnt, partEnt.Comp);
         partEnt.Comp.Body = bodyEnt;
-        partEnt.Comp.LastBody = bodyEnt;
 
         var ev = new BodyPartAddedEvent(slotId, partEnt);
         RaiseLocalEvent(bodyEnt, ref ev);
+
+        var ev1 = new BodyPartAddedEvent(slotId, partEnt);
+        RaiseLocalEvent(partEnt, ref ev1);
 
         AddLeg(partEnt, bodyEnt);
     }

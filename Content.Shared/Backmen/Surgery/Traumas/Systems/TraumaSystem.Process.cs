@@ -106,6 +106,10 @@ public partial class TraumaSystem
         if (!bodyPart.Body.HasValue)
             return false; // No body entity to apply pain to
 
+        // dawg how
+        if (woundable.WoundableIntegrity <= 0)
+            return false;
+
         // literally dismemberment chance, but lower by default
         var chance =
             FixedPoint2.Clamp(

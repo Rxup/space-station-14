@@ -1,4 +1,5 @@
 ﻿using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -17,4 +18,7 @@ public sealed partial class BoneComponent : Component
 
     [DataField, AutoNetworkedField, ViewVariables]
     public BoneSeverity BoneSeverity = BoneSeverity.Normal;
+
+    [DataField]
+    public SoundSpecifier BoneBreakSound = new SoundCollectionSpecifier("BoneGone");
 }

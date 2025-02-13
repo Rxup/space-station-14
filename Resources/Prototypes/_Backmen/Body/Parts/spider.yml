@@ -32,7 +32,7 @@
 - type: entity
   id: ThoraxSpider
   name: "spider thorax" #for ArachneClassic, actual spiders should get a cephalothorax that combines with head.
-  parent: PartSpider
+  parent: [BaseGroin, PartSpider]
   components:
   - type: Sprite
     netsync: false

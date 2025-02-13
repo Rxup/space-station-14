@@ -73,27 +73,6 @@
   #      sprite: Mobs/Effects/burn_damage.rsi
   - type: Consciousness
     threshold: 35
-  - type: WoundableVisuals
-    thresholds: [ 10, 20, 30, 50, 70, 100 ]
-    targetLayers:
-      - "enum.HumanoidVisualLayers.Chest"
-      - "enum.HumanoidVisualLayers.Groin"
-      - "enum.HumanoidVisualLayers.Head"
-      - "enum.HumanoidVisualLayers.LArm"
-      - "enum.HumanoidVisualLayers.LHand"
-      - "enum.HumanoidVisualLayers.LLeg"
-      - "enum.HumanoidVisualLayers.LFoot"
-      - "enum.HumanoidVisualLayers.RArm"
-      - "enum.HumanoidVisualLayers.RHand"
-      - "enum.HumanoidVisualLayers.RLeg"
-      - "enum.HumanoidVisualLayers.RFoot"
-    damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#FF0000"
-      Burn:
-        sprite: Mobs/Effects/burn_damage.rsi
-    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:

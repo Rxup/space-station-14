@@ -26,6 +26,7 @@ using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Backmen.Language;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning;
 using Content.Shared.Fluids.Components;

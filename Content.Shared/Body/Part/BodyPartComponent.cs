@@ -22,12 +22,6 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public EntityUid? Body;
 
-    /// <summary>
-    /// Parent (last) body for this part.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? LastBody;
-
     [DataField, AutoNetworkedField]
     public BodyPartSlot? ParentSlot;
 

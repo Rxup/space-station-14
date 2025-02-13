@@ -20,6 +20,7 @@ using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Nutrition.Components;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;

@@ -17,6 +17,7 @@ using Content.Server.Body.Components;
 using Robust.Shared.GameStates;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Robust.Server.Audio;
 
 namespace Content.Server.Chemistry.EntitySystems;

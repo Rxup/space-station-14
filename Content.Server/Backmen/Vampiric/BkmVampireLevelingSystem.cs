@@ -9,6 +9,7 @@ using Content.Server.Store.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Damage;

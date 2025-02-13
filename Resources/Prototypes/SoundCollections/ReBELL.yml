@@ -1,0 +1,9 @@
+# Trauma Sounds
+- type: soundCollection
+  id: BoneGone
+  files:
+  - /Audio/_Shitmed/ReBELL/Bone/BoneGone1.ogg
+  - /Audio/_Shitmed/ReBELL/Bone/BoneGone2.ogg
+  - /Audio/_Shitmed/ReBELL/Bone/BoneGone3.ogg
+  - /Audio/_Shitmed/ReBELL/Bone/BoneGone4.ogg
+  - /Audio/_Shitmed/ReBELL/Bone/BoneGone5.ogg

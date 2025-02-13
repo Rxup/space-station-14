@@ -3,11 +3,20 @@
   parent: BasePart
   name: "skeleton body part"
   abstract: true
+  components:
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#555555AA"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
 
 - type: entity
   id: ChestSkeleton
   name: "skeleton chest"
-  parent: [PartSkeleton, BaseChest]
+  parent: [BaseChest, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -19,7 +28,7 @@
 - type: entity
   id: GroinSkeleton
   name: "skeleton groin"
-  parent: [PartSkeleton, BaseGroin]
+  parent: [BaseGroin, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -32,7 +41,7 @@
   id: HeadSkeleton
   name: "skull"
   description: Alas poor Yorick...
-  parent: PartSkeleton
+  parent: [BaseHead, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -70,7 +79,7 @@
 - type: entity
   id: LeftArmSkeleton
   name: "left skeleton arm"
-  parent: PartSkeleton
+  parent: [BaseHead, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -85,7 +94,7 @@
 - type: entity
   id: RightArmSkeleton
   name: "right skeleton arm"
-  parent: PartSkeleton
+  parent: [BaseRightArm, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -100,7 +109,7 @@
 - type: entity
   id: LeftHandSkeleton
   name: "left skeleton hand"
-  parent: PartSkeleton
+  parent: [BaseLeftHand, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -115,7 +124,7 @@
 - type: entity
   id: RightHandSkeleton
   name: "right skeleton hand"
-  parent: PartSkeleton
+  parent: [BaseRightHand, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -130,7 +139,7 @@
 - type: entity
   id: LeftLegSkeleton
   name: "left skeleton leg"
-  parent: PartSkeleton
+  parent: [BaseLeftLeg, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -146,7 +155,7 @@
 - type: entity
   id: RightLegSkeleton
   name: "right skeleton leg"
-  parent: PartSkeleton
+  parent: [BaseRightLeg, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -162,7 +171,7 @@
 - type: entity
   id: LeftFootSkeleton
   name: "left skeleton foot"
-  parent: PartSkeleton
+  parent: [BaseLeftFoot, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -177,7 +186,7 @@
 - type: entity
   id: RightFootSkeleton
   name: "right skeleton foot"
-  parent: PartSkeleton
+  parent: [BaseRightFoot, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi

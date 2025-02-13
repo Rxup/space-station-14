@@ -2,7 +2,7 @@
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Jittering;
@@ -46,8 +46,8 @@ public partial class PainSystem : EntitySystem
 
         _sawmill = Logger.GetSawmill("pain");
 
-        SubscribeLocalEvent<BodyComponent, BodyPartAddedEvent>(OnBodyPartAdded);
-        SubscribeLocalEvent<BodyComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+        SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded);
+        SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
 
         SubscribeLocalEvent<NerveSystemComponent, MobStateChangedEvent>(OnMobStateChanged);
 
@@ -61,30 +61,36 @@ public partial class PainSystem : EntitySystem
         UpdateDamage(frameTime);
     }
 
-    private void OnBodyPartAdded(EntityUid uid, BodyComponent body, ref BodyPartAddedEvent args)
+    private void OnBodyPartAdded(EntityUid uid, NerveComponent nerve, ref BodyPartAddedEvent args)
     {
         if (_net.IsClient)
             return;
 
-        var brainUid = GetNerveSystem(uid);
-        if (!brainUid.HasValue || TerminatingOrDeleted(brainUid.Value))
+        var bodyPart = Comp<BodyPartComponent>(uid);
+        if (!bodyPart.Body.HasValue)
+            return;
+
+        if (!TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
         TryRemovePainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss");
-        UpdateNerveSystemNerves(brainUid.Value, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid.Value));
+        UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
-    private void OnBodyPartRemoved(EntityUid uid, BodyComponent body, ref BodyPartRemovedEvent args)
+    private void OnBodyPartRemoved(EntityUid uid, NerveComponent nerve, ref BodyPartRemovedEvent args)
     {
         if (_net.IsClient)
             return;
 
-        var brainUid = GetNerveSystem(uid);
-        if (!brainUid.HasValue || TerminatingOrDeleted(brainUid.Value))
+        var bodyPart = Comp<BodyPartComponent>(uid);
+        if (!bodyPart.Body.HasValue)
+            return;
+
+        if (!TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
         TryAddPainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss", 2);
-        UpdateNerveSystemNerves(brainUid.Value, args.Part.Comp.Body!.Value, Comp<NerveSystemComponent>(brainUid.Value));
+        UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
     private void OnMobStateChanged(EntityUid uid, NerveSystemComponent nerveSys, MobStateChangedEvent args)

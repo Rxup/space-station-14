@@ -281,6 +281,21 @@ public partial class PainSystem
         return false;
     }
 
+    public bool TryGetNerveSystemWithComp(EntityUid body, [NotNullWhen(true)] out Entity<NerveSystemComponent>? nerveSystem)
+    {
+        foreach (var (id, _) in _body.GetBodyOrgans(body))
+        {
+            if (!TryComp<NerveSystemComponent>(id, out var comp))
+                continue;
+
+            nerveSystem = (id, comp);
+            return true;
+        }
+
+        nerveSystem = null;
+        return false;
+    }
+
     /// <summary>
     /// Lets you quickly get a nerve system of a body instance, if you are lazy.
     /// </summary>
@@ -295,6 +310,21 @@ public partial class PainSystem
         }
 
         return EntityUid.Invalid;
+    }
+
+    public Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    {
+        var sound = _IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
+        if (!sound.HasValue)
+            return null;
+
+        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
+        return sound.Value;
+    }
+
+    public void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, TimeSpan delay, AudioParams? audioParams = null)
+    {
+        nerveSys.PainSoundsToPlay.Add(body, (specifier, audioParams, _timing.CurTime + delay));
     }
 
     #endregion
@@ -370,21 +400,6 @@ public partial class PainSystem
         {
             nerveSys.PainSoundsToPlay.Remove(id);
         }
-    }
-
-    private Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
-    {
-        var sound = _IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
-        if (!sound.HasValue)
-            return null;
-
-        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
-        return sound.Value;
-    }
-
-    private void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, TimeSpan delay, AudioParams? audioParams = null)
-    {
-        nerveSys.PainSoundsToPlay.Add(body, (specifier, audioParams, _timing.CurTime + delay));
     }
 
     private void ApplyPainReflexesEffects(EntityUid body, NerveSystemComponent nerveSys, PainThresholdTypes reaction)

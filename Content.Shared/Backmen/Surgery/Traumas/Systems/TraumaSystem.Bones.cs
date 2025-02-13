@@ -5,6 +5,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Components;
+using Robust.Shared.Audio;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -127,6 +128,13 @@ public partial class TraumaSystem
         {
             var ev = new BoneSeverityChangedEvent(bone, nearestSeverity);
             RaiseLocalEvent(bone, ref ev, true);
+
+            var bodyComp = Comp<BodyPartComponent>(boneComp.BoneWoundable);
+            if (bodyComp.Body.HasValue)
+            {
+                if (nearestSeverity == BoneSeverity.Damaged && _pain.TryGetNerveSystemWithComp(bodyComp.Body.Value, out var nerveSys))
+                    _pain.PlayPainSound(bodyComp.Body.Value, nerveSys, boneComp.BoneBreakSound, AudioParams.Default.WithVolume(-8f));
+            }
         }
         boneComp.BoneSeverity = nearestSeverity;
 

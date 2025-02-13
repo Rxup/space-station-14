@@ -130,7 +130,6 @@ public partial class SharedBodySystem
         var rootPartUid = SpawnInContainerOrDrop(protoRoot.Part, bodyEntity, BodyRootContainerId);
         var rootPart = Comp<BodyPartComponent>(rootPartUid);
         rootPart.Body = bodyEntity;
-        rootPart.LastBody = bodyEntity;
         Dirty(rootPartUid, rootPart);
         // Setup the rest of the body entities.
         SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);

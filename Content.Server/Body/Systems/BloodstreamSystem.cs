@@ -5,6 +5,7 @@ using Content.Server.Forensics;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Part;
@@ -25,6 +26,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using BleedInflicterComponent = Content.Shared.Backmen.Surgery.Traumas.Components.BleedInflicterComponent;
 
 namespace Content.Server.Body.Systems;
 
@@ -186,7 +188,7 @@ public sealed class BloodstreamSystem : EntitySystem
         }
 
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, WoundComponent>();
-        while (bleedsQuery.MoveNext(out _, out var bleeds, out var wound))
+        while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var wound))
         {
             if (!bleeds.IsBleeding || !bleeds.BleedingScales)
                 continue;
@@ -225,6 +227,8 @@ public sealed class BloodstreamSystem : EntitySystem
 
             if (bleeds.Scaling >= bleeds.ScalingLimit || _gameTiming.CurTime > bleeds.ScalingFinishesAt)
                 bleeds.BleedingScales = false;
+
+            Dirty(ent, bleeds);
         }
     }
 

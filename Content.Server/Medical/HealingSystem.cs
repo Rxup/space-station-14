@@ -26,6 +26,7 @@ using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Targeting;
 
 namespace Content.Server.Medical;

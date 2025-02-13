@@ -62,14 +62,6 @@
   #      color: "#2cf274"
   #    Burn:
   #      sprite: Mobs/Effects/burn_damage.rsi
-  - type: WoundableVisuals
-    damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#2cf274"
-      Burn:
-        sprite: Mobs/Effects/burn_damage.rsi
-    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: Bloodstream
     bloodReagent: Slime # TODO Color slime blood based on their slime color or smth
   - type: Barotrauma

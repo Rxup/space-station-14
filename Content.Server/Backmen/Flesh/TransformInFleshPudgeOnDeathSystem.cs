@@ -4,6 +4,7 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Mind;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Humanoid;

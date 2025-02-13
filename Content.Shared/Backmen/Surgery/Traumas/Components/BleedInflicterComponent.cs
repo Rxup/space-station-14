@@ -1,37 +1,36 @@
-using Content.Server.Body.Systems;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.FixedPoint;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Body.Components;
+namespace Content.Shared.Backmen.Surgery.Traumas.Components;
 
-[RegisterComponent, Access(typeof(BloodstreamSystem), typeof(WoundSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BleedInflicterComponent : Component
 {
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public bool IsBleeding = false;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 BleedingAmount => BleedingAmountRaw * Scaling;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 BleedingAmountRaw = 0;
 
     [DataField("canGrow"), ViewVariables(VVAccess.ReadOnly)]
     public bool BleedingScales = true;
 
     // it's calculated when a wound is spawned.
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public TimeSpan ScalingFinishesAt = TimeSpan.Zero;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public TimeSpan ScalingStartsAt = TimeSpan.Zero;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 SeverityPenalty = 1f;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 Scaling = 1;
 
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 ScalingLimit = 2.4;
 }

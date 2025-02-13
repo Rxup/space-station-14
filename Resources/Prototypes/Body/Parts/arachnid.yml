@@ -6,6 +6,14 @@
   name: "arachnid body part"
   abstract: true
   components:
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#162581"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: Extractable
     juiceSolution:
       reagents:
@@ -17,7 +25,7 @@
 - type: entity
   id: ChestArachnid
   name: "arachnid chest"
-  parent: [PartArachnid, BaseChest]
+  parent: [BaseChest, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -33,7 +41,7 @@
 - type: entity
   id: GroinArachnid
   name: "arachnid groin"
-  parent: [PartArachnid, BaseGroin]
+  parent: [BaseGroin, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -49,7 +57,7 @@
 - type: entity
   id: HeadArachnid
   name: "arachnid head"
-  parent: [PartArachnid, BaseHead]
+  parent: [BaseHead, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -65,7 +73,7 @@
 - type: entity
   id: LeftArmArachnid
   name: "left arachnid arm"
-  parent: [PartArachnid, BaseLeftArm]
+  parent: [BaseLeftArm, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -74,7 +82,7 @@
 - type: entity
   id: RightArmArachnid
   name: "right arachnid arm"
-  parent: [PartArachnid, BaseRightArm]
+  parent: [BaseRightArm, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -83,7 +91,7 @@
 - type: entity
   id: LeftHandArachnid
   name: "left arachnid hand"
-  parent: [PartArachnid, BaseLeftHand]
+  parent: [BaseLeftHand, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -92,7 +100,7 @@
 - type: entity
   id: RightHandArachnid
   name: "right arachnid hand"
-  parent: [PartArachnid, BaseRightHand]
+  parent: [BaseRightHand, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -101,7 +109,7 @@
 - type: entity
   id: LeftLegArachnid
   name: "left arachnid leg"
-  parent: [PartArachnid, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -111,7 +119,7 @@
 - type: entity
   id: RightLegArachnid
   name: "right arachnid leg"
-  parent: [PartArachnid, BaseRightLeg]
+  parent: [BaseRightLeg, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -121,7 +129,7 @@
 - type: entity
   id: LeftFootArachnid
   name: "left arachnid foot"
-  parent: [PartArachnid, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi
@@ -130,7 +138,7 @@
 - type: entity
   id: RightFootArachnid
   name: "right arachnid foot"
-  parent: [PartArachnid, BaseRightFoot]
+  parent: [BaseRightFoot, PartArachnid]
   components:
   - type: Sprite
     sprite: Mobs/Species/Arachnid/parts.rsi

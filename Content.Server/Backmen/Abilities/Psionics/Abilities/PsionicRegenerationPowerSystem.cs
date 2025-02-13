@@ -11,6 +11,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Examine;
 using Robust.Server.Audio;
 using static Content.Shared.Examine.ExamineSystemShared;
