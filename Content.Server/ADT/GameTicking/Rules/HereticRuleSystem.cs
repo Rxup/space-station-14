@@ -81,8 +81,12 @@ public sealed partial class HereticRuleSystem : GameRuleSystem<HereticRuleCompon
 
         rule.Minds.Add(mindId);
 
-        foreach (var objective in rule.Objectives)
-            _mind.TryAddObjective(mindId, mind, objective);
+        _role.MindHasRole<HereticRoleComponent>(mindId, out var traitorRole);
+        if (traitorRole is not null)
+        {
+            AddComp<RoleBriefingComponent>(traitorRole.Value.Owner);
+            Comp<RoleBriefingComponent>(traitorRole.Value.Owner).Briefing = Loc.GetString("heretic-role-greeting-short");
+        }
 
         return true;
     }

@@ -342,7 +342,7 @@
   name: heretic-title
   minPlayers: 25
   showInVote: true
-  description: heretic-title
+  description: heretic-desc
   rules:
     - HereticGameRule
     - BasicRoundstartVariation

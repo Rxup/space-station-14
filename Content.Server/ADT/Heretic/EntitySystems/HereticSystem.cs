@@ -13,6 +13,7 @@ using Content.Server.Body.Components;
 using Content.Server.Atmos.Components;
 using Content.Shared.Damage;
 using Content.Server.Heretic.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Heretic.EntitySystems;
 
@@ -76,7 +77,9 @@ public sealed partial class HereticSystem : EntitySystem
             _eye.SetVisibilityMask(ent, eye.VisibilityMask | EldritchInfluenceComponent.LayerMask);
 
         foreach (var knowledge in ent.Comp.BaseKnowledge)
+        {
             _knowledge.AddKnowledge(ent, ent.Comp, knowledge);
+        }
     }
 
     private void OnMagicItemExamine(Entity<HereticMagicItemComponent> ent, ref ExaminedEvent args)

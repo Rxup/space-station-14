@@ -351,3 +351,8 @@
       lateJoinAdditional: true
       mindRoles:
       - Heretic
+  - type: AntagObjectives
+    objectives:
+    - HereticKnowledgeObjective
+    - HereticSacrificeObjective
+    - HereticSacrificeHeadObjective
