@@ -1,12 +1,15 @@
 - type: entity
   parent: BaseWeaponTurret
   id: BaseWeaponTurretAutoGun
+  name: autocannon
   components:
+  - type: Gun
+    fireRate: 2
   - type: BallisticAmmoProvider
-    proto: GrenadeFrag
+    proto: UEGHeavyLaserBolt
   - type: HTN
     rootTask:
-      task: TurretCompound
+      task: TurretHuyiniCompound
     blackboard:
       RotateSpeed: !type:Single
         3.14
@@ -24,7 +27,7 @@
   components:
   - type: NpcFactionMember
     factions:
-    - TeamA
+    - WallsA
 
 - type: entity
   parent: BaseWeaponTurretAutoGun
@@ -33,7 +36,7 @@
   components:
   - type: NpcFactionMember
     factions:
-    - TeamB
+    - WallsB
 
 - type: entity
   parent: BaseWeaponTurretAutoGun
@@ -42,7 +45,7 @@
   components:
   - type: NpcFactionMember
     factions:
-    - Team0
+    - Walls0
 
 - type: entity
   parent: BaseWeaponTurret
@@ -206,3 +209,61 @@
   impactFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_beam_heavy2
+
+- type: entity
+  parent: ShuttleGunUEGSmall
+  id: ShuttleGunUEGSmallTurret
+  suffix: DO NOT MAP Turret
+  components:
+  - type: NpcFactionMember
+    factions:
+    - WallsB
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: MouseRotator
+    angleTolerance: 50
+    rotationSpeed: 360
+    simple4DirMode: false
+  - type: HTN
+    rootTask:
+      task: TurretGunHuyiniCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        120
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+      ShootDelay: !type:Single
+        0
+      VisionRadius: !type:Single
+        80
+      AggroVisionRadius: !type:Single
+        80
+
+- type: htnCompound
+  id: TurretGunHuyiniCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyGunTargets
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              # TODO: Non-scuffed
+              rangeKey: AggroVisionRadius
+            - !type:TargetInLOSPrecondition
+              targetKey: Target
+              rangeKey: AggroVisionRadius
+          operator: !type:GunOperator
+            targetKey: Target
+            requireLOS: true
+          services:
+            - !type:UtilityService
+              id: RangedService
+              proto: NearbyGunTargets
+              key: Target

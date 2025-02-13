@@ -24,6 +24,7 @@
   - MobStateParent
   id: WallMiningFactionB
   name: shuttle wall
+  suffix: TeamB
   components:
   - type: Tag
     tags:
@@ -33,7 +34,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 3000
+          damage: 1500
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
@@ -45,6 +46,7 @@
   - MobStateParent
   id: WallReinforcedFactionA
   name: shuttle wall
+  suffix: TeamA
   components:
   - type: Tag
     tags:
@@ -54,7 +56,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 3000
+          damage: 1500
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
@@ -66,12 +68,13 @@
   - FactionStateParentTeamA
   - MobStateParent
   name: shuttle window
+  suffix: TeamA
   components:
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1500
+        damage: 700
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -94,12 +97,13 @@
   - FactionStateParentTeamB
   - MobStateParent
   name: shuttle window
+  suffix: TeamB
   components:
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1500
+        damage: 700
       behaviors:
       - !type:PlaySoundBehavior
         sound:

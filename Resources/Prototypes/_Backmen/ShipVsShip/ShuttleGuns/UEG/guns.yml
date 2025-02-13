@@ -54,8 +54,8 @@
 - type: entity
   id: ShuttleGunUEGSmall
   parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: UEG small ship gun
-  description: United Earth Government ship laser gun. It has an extremely high rate of fire but mediocre destructive capabilities.
+  name: energy machine gun "M-96 Dogma"
+  description: A low-cost energy machine gun that uses the Dogma system to fire low-penetration energy shots. It has very poor penetrating capabilities, but is extremely effective against light vehicles.
   suffix: DO NOT MAP
   components:
   - type: Sprite
@@ -73,7 +73,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 400
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
@@ -107,7 +107,7 @@
 - type: entity
   id: ShuttleGunUEGMedium
   parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: UEG medium ship gun
+  name: лаз-пушка "Икар"
   description: United Earth Government ship medium laser. It has a medium rate of fire and moderate destructive capabilities. There is a slight limitation on reloading.
   suffix: DO NOT MAP
   components:
@@ -126,7 +126,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 800
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
@@ -159,7 +159,7 @@
 - type: entity
   id: ShuttleGunUEGLarge
   parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: UEG large ship gun
+  name: лазерная батарея типа Каратель
   description: United Earth Government ship large laser gun. It has a low rate of fire and impressive destructive capabilities. Slow reload.
   suffix: DO NOT MAP
   components:
@@ -178,7 +178,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 800
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
@@ -247,7 +247,7 @@
       projectile:
         shape:
           !type:PhysShapeCircle
-          radius: 0.5
+          radius: 0.3
         density: 0
         mask:
         - Impassable
@@ -269,7 +269,6 @@
       - !type:TriggerBehavior
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Shuttle
   - type: Reflective
     reflective:
     - Energy
