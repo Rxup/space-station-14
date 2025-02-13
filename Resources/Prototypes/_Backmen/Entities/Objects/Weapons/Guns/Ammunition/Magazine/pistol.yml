@@ -107,7 +107,7 @@
   parent: MagazinePistol45ACP
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistolACPUranium
+    proto: CartridgePistolACPUranium
 
 - type: entity
   id: MagazinePistol45ACPpractice
@@ -115,7 +115,7 @@
   parent: MagazinePistol45ACP
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistolACPPractice
+    proto: CartridgePistolACPPractice
 
 - type: entity
   id: MagazinePistol45ACPincendiary
@@ -123,7 +123,7 @@
   parent: MagazinePistol45ACP
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistolACPIncendiary
+    proto: CartridgePistolACPIncendiary
 
 - type: entity
   id: MagazinePistol57x28
@@ -157,7 +157,7 @@
   parent: MagazinePistol57x28
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistol57x28Uranium
+    proto: CartridgePistol57x28Uranium
 
 - type: entity
   id: MagazinePistol57x28Practice
@@ -165,7 +165,7 @@
   parent: MagazinePistol57x28
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistol57x28Practice
+    proto: CartridgePistol57x28Practice
 
 - type: entity
   id: MagazinePistol57x28Incendiary
@@ -173,7 +173,7 @@
   parent: MagazinePistol57x28
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistol57x28Incendiary
+    proto: CartridgePistol57x28Incendiary
 
 - type: entity
   id: MagazinePistol57x28Extd
@@ -240,7 +240,7 @@
   parent: MagazinePistol50AE
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistol50AEAP
+    proto: CartridgePistol50AEAP
 
 - type: entity
   id: MagazinePistol9x17

@@ -192,7 +192,7 @@
     contents:
     - id: WeaponPistolACP14
       amount: 4
-    - id: MagazinePistol
+    - id: MagazinePistol9x17
       amount: 8
 
 - type: entity

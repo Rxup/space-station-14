@@ -462,28 +462,28 @@
 
 # Ammo
 
-- type: listing
-  id: UplinkPistol9mmMagazine
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol9x17 #backmen-ammonation
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkPistol9mmMagazine
+#  name: uplink-pistol-magazine-name
+#  description: uplink-pistol-magazine-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+#  productEntity: MagazinePistol9x17 #backmen-ammonation
+#  cost:
+#    Telecrystal: 1
+#  categories:
+#  - UplinkAmmo
 
 # For the C20R
-- type: listing
-  id: UplinkMagazinePistolSubMachineGun
-  name: uplink-pistol-magazine-c20r-name
-  description: uplink-pistol-magazine-c20r-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkMagazinePistolSubMachineGun
+#  name: uplink-pistol-magazine-c20r-name
+#  description: uplink-pistol-magazine-c20r-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
+#  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
+#  cost:
+#    Telecrystal: 2
+#  categories:
+#  - UplinkAmmo
 
 # For the Cobra
 - type: listing
@@ -510,26 +510,26 @@
   - UplinkAmmo
 
 # For the mosin
-- type: listing
-  id: UplinkMosinAmmo
-  name: uplink-mosin-ammo-name
-  description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxHeavyRifle762 #backmen-ammonation
-  cost:
-    Telecrystal: 4 #backmen-ammonation
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkMosinAmmo
+#  name: uplink-mosin-ammo-name
+#  description: uplink-mosin-ammo-desc
+#  productEntity: MagazineBoxHeavyRifle762 #backmen-ammonation
+#  cost:
+#    Telecrystal: 4 #backmen-ammonation
+#  categories:
+#  - UplinkAmmo
 
 # for the hristov
-- type: listing
-  id: UplinkHristovAmmo
-  name: uplink-sniper-ammo-name
-  description: uplink-sniper-ammo-desc
-  productEntity: MagazinePacketHeavyRifle50BMG #backmen-ammonation
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkHristovAmmo
+#  name: uplink-sniper-ammo-name
+#  description: uplink-sniper-ammo-desc
+#  productEntity: MagazinePacketHeavyRifle50BMG #backmen-ammonation
+#  cost:
+#    Telecrystal: 2
+#  categories:
+#  - UplinkAmmo
 
 - type: listing
   id: UplinkAmmoBundle
