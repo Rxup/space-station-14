@@ -15,7 +15,7 @@
 - type: entity
   id: ThoraxSpider
   name: "spider thorax" #for ArachneClassic, actual spiders should get a cephalothorax that combines with head.
-  parent: PartSpider
+  parent: [PartSpider, BaseTorso]
   components:
   - type: Sprite
     netsync: false
@@ -25,11 +25,13 @@
     sprite: Backmen/Mobs/Species/Moth/parts.rsi
     state: "torso_m"
   - type: BodyPart #"Other" type
+    slotId: thorax
+    containerName: thorax_slot
 
 - type: entity
   id: RightLegSpider
   name: "right spider leg"
-  parent: PartSpider
+  parent: [PartSpider, BaseRightLeg]
   components:
   - type: Sprite
     netsync: false
@@ -48,7 +50,7 @@
 - type: entity
   id: LeftLegSpider
   name: "left spider leg"
-  parent: PartSpider
+  parent: [PartSpider, BaseLeftLeg]
   components:
   - type: Sprite
     netsync: false

@@ -457,7 +457,21 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     {
         EntityUid dummyEnt;
 
-        if (humanoid is not null)
+        EntProtoId? previewEntity = null;
+        if (humanoid != null && jobClothes)
+        {
+            job ??= GetPreferredJob(humanoid);
+
+            previewEntity = job.JobPreviewEntity ?? (EntProtoId?)job?.JobEntity;
+        }
+
+        if (previewEntity != null)
+        {
+            // Special type like borg or AI, do not spawn a human just spawn the entity.
+            dummyEnt = EntityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+            return dummyEnt;
+        }
+        else if (humanoid is not null)
         {
             var dummy = _prototypeManager.Index<SpeciesPrototype>(humanoid.Species).DollPrototype;
             dummyEnt = EntityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
@@ -471,29 +485,28 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         if (humanoid != null)
         {
-            job ??= GetPreferredJob(humanoid);
+            DebugTools.Assert(job != null);
+
             GiveDummyJobClothes(dummyEnt, humanoid, job);
 
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
             {
                 var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager);
+
                 //backmen-clothing: start
-                HashSet<string> groupsToShow = ["Werx", "Niz", "Socks"];
-                if (jobClothes)
+                IReadOnlyList<string> groupsToShow = ["Werx", "Niz", "Socks"]; //consts
+                if (!jobClothes)
                 {
-                    foreach (var loadoutsKey in loadout.SelectedLoadouts.Keys.Where(loadoutsKey => groupsToShow.Contains(loadoutsKey)))
+                    foreach (var loadoutsKey in loadout.SelectedLoadouts.Keys)
                     {
-                        loadout.SelectedLoadouts.Remove(loadoutsKey);
-                    }
-                }
-                else
-                {
-                    foreach (var loadoutsKey in loadout.SelectedLoadouts.Keys.Where(loadoutsKey => !groupsToShow.Contains(loadoutsKey)))
-                    {
-                        loadout.SelectedLoadouts.Remove(loadoutsKey);
+                        if (groupsToShow.Contains(loadoutsKey.Id))
+                        {
+                            loadout.SelectedLoadouts.Remove(loadoutsKey);
+                        }
                     }
                 }
                 //backmen-clothing: end
+
                 GiveDummyLoadout(dummyEnt, loadout);
             }
         }

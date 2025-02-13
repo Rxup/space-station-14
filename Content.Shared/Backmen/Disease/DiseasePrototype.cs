@@ -16,7 +16,7 @@ public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
     public string ID { get; private set; } = default!;
 
     [DataField("name")]
-    public string Name { get; private set; } = string.Empty;
+    public LocId Name { get; private set; } = string.Empty;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<DiseasePrototype>))]
     public string[]? Parents { get; private set; }

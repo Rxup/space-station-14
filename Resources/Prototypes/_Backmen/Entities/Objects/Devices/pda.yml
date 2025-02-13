@@ -8,6 +8,7 @@
       sprite: Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
+        state: "pda-orden"
       - state: "light_overlay"
         map: [ "enum.PdaVisualLayers.Flashlight" ]
         shader: "unshaded"
@@ -16,9 +17,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-orden
     - type: Pda
       id: IdCardRO
-      state: pda-orden
       penSlot:
         startingItem: EnergyDagger
         priority: -1
@@ -41,6 +46,7 @@
       sprite: Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
+        state: "pda-Delivery"
       - state: "light_overlay"
         map: [ "enum.PdaVisualLayers.Flashlight" ]
         shader: "unshaded"
@@ -49,9 +55,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-Delivery
     - type: Pda
       id: DeliveryIDCard
-      state: pda-Delivery
       penSlot:
         startingItem: EnergyDagger
         priority: -1
@@ -71,9 +81,13 @@
   name: prisoner PDA
   description: Clear, so you can make sure there's nothing being smuggled inside.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-clear
     - type: Pda
       id: PrisonerIDCard
-      state: pda-clear
     - type: Icon
       state: pda-clear
 
@@ -87,6 +101,7 @@
       sprite: Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
+        state: "pda-Roboticist"
       - state: "light_overlay"
         map: [ "enum.PdaVisualLayers.Flashlight" ]
         shader: "unshaded"
@@ -95,9 +110,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-Roboticist
     - type: Pda
       id: RoboticistIDCard
-      state: pda-Roboticist
       penSlot:
         startingItem: Pen
         priority: -1
@@ -118,6 +137,7 @@
       sprite: Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
+        state: "pda-blue"
       - state: "light_overlay"
         map: [ "enum.PdaVisualLayers.Flashlight" ]
         shader: "unshaded"
@@ -126,9 +146,13 @@
         map: [ "enum.PdaVisualLayers.IdLight" ]
         shader: "unshaded"
         visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-blue
     - type: Pda
       id: BlueShieldIDCard
-      state: pda-blue
       penSlot:
         startingItem: Pen
         priority: -1

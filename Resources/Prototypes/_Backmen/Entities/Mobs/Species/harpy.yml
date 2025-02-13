@@ -134,6 +134,7 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 5.0
+    - type: FootPrints
 
 - type: entity
   save: false

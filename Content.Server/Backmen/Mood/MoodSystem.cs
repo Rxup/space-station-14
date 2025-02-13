@@ -84,8 +84,7 @@ public sealed class MoodSystem : EntitySystem
 
         foreach (var (_, protoId) in component.CategorisedEffects)
         {
-            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto)
-                || proto.Hidden)
+            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto))
                 continue;
 
             SendDescToChat(proto, session);
@@ -93,8 +92,7 @@ public sealed class MoodSystem : EntitySystem
 
         foreach (var (protoId, _) in component.UncategorisedEffects)
         {
-            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto)
-                || proto.Hidden)
+            if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var proto))
                 continue;
 
             SendDescToChat(proto, session);
@@ -155,8 +153,12 @@ public sealed class MoodSystem : EntitySystem
 
     private void OnTraitStartup(EntityUid uid, MoodModifyTraitComponent component, ComponentStartup args)
     {
-        if (component.MoodId != null)
-            RaiseLocalEvent(uid, new MoodEffectEvent($"{component.MoodId}"));
+        if (!TryComp<MoodComponent>(uid, out var mood))
+            return;
+
+        mood.GoodMoodMultiplier = component.GoodMoodMultiplier;
+        mood.BadMoodMultiplier = component.BadMoodMultiplier;
+        RaiseLocalEvent(uid, new MoodEffectEvent($"{component.MoodId}"));
     }
 
     private void OnMoodEffect(EntityUid uid, MoodComponent component, MoodEffectEvent args)
@@ -308,12 +310,18 @@ public sealed class MoodSystem : EntitySystem
             if (!_prototypeManager.TryIndex<MoodEffectPrototype>(protoId, out var prototype))
                 continue;
 
-            amount += prototype.MoodChange;
+            if (prototype.MoodChange > 0)
+                amount += prototype.MoodChange * component.GoodMoodMultiplier;
+            else
+                amount += prototype.MoodChange * component.BadMoodMultiplier;
         }
 
         foreach (var (_, value) in component.UncategorisedEffects)
         {
-            amount += value;
+            if (value > 0)
+                amount += value * component.GoodMoodMultiplier;
+            else
+                amount += value * component.BadMoodMultiplier;
         }
 
         SetMood(uid, amount, component, refresh: true);
@@ -326,7 +334,6 @@ public sealed class MoodSystem : EntitySystem
             && _mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, mobThresholdsComponent))
             component.CritThresholdBeforeModify = critThreshold.Value;
 
-        EnsureComp<NetMoodComponent>(uid);
         RefreshMood(uid, component);
     }
 
@@ -359,12 +366,8 @@ public sealed class MoodSystem : EntitySystem
 
         component.CurrentMoodLevel = newMoodLevel;
 
-        if (TryComp<NetMoodComponent>(uid, out var mood))
-        {
-            mood.CurrentMoodLevel = component.CurrentMoodLevel;
-            mood.NeutralMoodThreshold = component.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
-        }
-
+        component.NeutralMoodThreshold = component.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
+        Dirty(uid, component);
         UpdateCurrentThreshold(uid, component);
     }
 
@@ -388,10 +391,10 @@ public sealed class MoodSystem : EntitySystem
             || component.CurrentMoodThreshold == component.LastThreshold && !force)
             return;
 
-        var modifier = GetMovementThreshold(component.CurrentMoodThreshold);
+        var modifier = GetMovementThreshold(component.CurrentMoodThreshold, component);
 
         // Modify mob stats
-        if (modifier != GetMovementThreshold(component.LastThreshold))
+        if (modifier != GetMovementThreshold(component.LastThreshold, component))
         {
             _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
             SetCritThreshold(uid, component, modifier);
@@ -451,14 +454,15 @@ public sealed class MoodSystem : EntitySystem
         return result;
     }
 
-    private int GetMovementThreshold(MoodThreshold threshold)
+    private int GetMovementThreshold(MoodThreshold threshold, MoodComponent component)
     {
-        return threshold switch
-        {
-            >= MoodThreshold.Good => 1,
-            <= MoodThreshold.Meh => -1,
-            _ => 0
-        };
+        if (threshold >= component.BuffsMoodThreshold)
+            return 1;
+
+        if (threshold <= component.ConsMoodThreshold)
+            return -1;
+
+        return 0;
     }
 
     private string GetMoodName(MoodThreshold threshold)

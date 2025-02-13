@@ -4,9 +4,13 @@
   name: internal affairs agent PDA
   description: Corporation and profit are best friends.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-lawyer
     - type: Pda
       id: IAAIDCard
-      state: pda-lawyer
     - type: PdaBorderColor
       borderColor: "#6f6192"
     - type: Icon
@@ -18,9 +22,13 @@
   name: pilot PDA
   description: Нas protection from cosmic radiation.
   components:
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-seniorofficer
     - type: Pda
       id: PilotIDCard
-      state: pda-seniorofficer
     - type: PdaBorderColor
       borderColor: "#A32D26"
       accentVColor: "#DFDFDF"

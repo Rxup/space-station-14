@@ -17,6 +17,7 @@
     slots:
     - Back
     - suitStorage
+  - type: Wieldable
 
 - type: entity
   parent: ClothingOuterStorageBase

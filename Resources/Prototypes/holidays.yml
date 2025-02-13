@@ -265,11 +265,11 @@
     !type:DayOfYear
     dayOfYear: 256
 
-- type: holiday
-  id: BisexualPrideDay
-  name: holiday-name-bisexual-pride-day
-  beginDay: 23
-  beginMonth: September
+#- type: holiday # backmen: no pride
+#  id: BisexualPrideDay
+#  name: holiday-name-bisexual-pride-day
+#  beginDay: 23
+#  beginMonth: September
 
 - type: holiday
   id: StupidQuestionsDay
@@ -289,11 +289,11 @@
   beginDay: 7
   beginMonth: October
 
-- type: holiday
-  id: LesbianDay
-  name: holiday-name-lesbian-day
-  beginDay: 8
-  beginMonth: October
+#- type: holiday # backmen: no pride
+#  id: LesbianDay
+#  name: holiday-name-lesbian-day
+#  beginDay: 8
+#  beginMonth: October
 
 - type: holiday
   id: NationalComingOutDay
@@ -438,9 +438,9 @@
   shouldCelebrate:
     !type:FridayThirteenth { }
 
-- type: holiday
-  id: PrideMonth
-  name: holiday-name-pride-month
-  beginDay: 1
-  endDay: 31
-  beginMonth: June
+#- type: holiday # backmen: no pride
+#  id: PrideMonth
+#  name: holiday-name-pride-month
+#  beginDay: 1
+#  endDay: 31
+#  beginMonth: June

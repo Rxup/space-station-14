@@ -39,7 +39,7 @@
 
 #Mercenary Helmet
 - type: entity
-  parent: [ ClothingHeadHelmetBase, BaseRestrictedContraband ]
+  parent: [ ClothingHeadHelmetBase, BaseMajorContraband ]
   id: ClothingHeadHelmetMerc
   name: mercenary helmet
   description: The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle.
@@ -308,6 +308,7 @@
         Blunt: 0.5
         Slash: 0.5
         Piercing: 0.5
+        ArmorPiercing: 0.8
         Heat: 0.9
 
 #ERT HELMETS

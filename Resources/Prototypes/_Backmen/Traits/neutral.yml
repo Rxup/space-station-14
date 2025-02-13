@@ -1,8 +1,9 @@
-﻿
-- type: trait
+﻿- type: trait
   id: OwOAccent
   name: OwOAccent-name
   description: OwOAccent-desc
+  category: SpeechTraits
+  cost: 1
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
@@ -13,3 +14,37 @@
     - Felinid
   components:
   - type: OwOAccent
+
+# for mood haters
+- type: trait
+  id: Fortitude
+  name: trait-fortitude-name
+  description: trait-fortitude-desc
+  category: MoodTraits
+  cost: 1
+  components:
+  - type: MoodModifyTrait
+    moodId: TraitFortitude
+    goodMoodMultiplier: 0.5
+    badMoodMultiplier: 0.5
+
+- type: trait
+  id: Hypomania
+  name: trait-hypomania-name
+  description: trait-hypomania-desc
+  category: MoodTraits
+  cost: 1
+  components:
+  - type: MoodModifyTrait
+    moodId: TraitSanguine
+    badMoodMultiplier: 1.5 # Everything comes with a price.
+
+- type: trait
+  id: Depression
+  name: trait-depression-name
+  description: trait-depression-desc
+  category: MoodTraits
+  cost: 1
+  components:
+  - type: MoodModifyTrait
+    moodId: TraitSaturnine

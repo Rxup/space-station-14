@@ -171,6 +171,8 @@
     steps: 3
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 250
 
 - type: entity
   name: EarthGov heavy laser rifle

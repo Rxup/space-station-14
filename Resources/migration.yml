@@ -30,7 +30,7 @@ BulletAntiMaterial: BulletAntiMateriel
 # 2023-05-10
 FoodCondimentBottleSmallHotsauce: FoodCondimentBottleHotsauce
 FoodBakedCookieFortune: FoodSnackCookieFortune
-GunSafeSubMachineGunVector: GunSafeSubMachineGunDrozd
+# GunSafeSubMachineGunVector: GunSafeSubMachineGunDrozd
 
 # 2023-05-24
 AMEController: AmeController
@@ -206,7 +206,6 @@ WeaponShotgunBulldog: WeaponShotgunZauer
 
 # 2023-11-26
 WeaponSniperHristov: WeaponRifleSR127
-MagazineBoxAntiMateriel: MagazineAntiMaterielRifleSR
 
 # 2023-12-10
 SpawnPointSeniorResearcher: null
@@ -454,7 +453,6 @@ MagazineBoxLightRifleRubber: MagazineBoxLightRifle
 MagazineBoxRifleRubber: MagazineBoxRifle
 MagazineBoxRifleBigRubber: MagazineBoxRifleBig
 MagazineBoxCaselessRifleRubber: MagazineBoxCaselessRifle
-MagazineBoxCaselessRifleBigRubber: MagazineBoxCaselessRifle10x24
 BoxMagazinePistolRubber: BoxMagazinePistol
 BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
 BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
@@ -467,6 +465,7 @@ WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunVectorRubber: WeaponSubMachineGunMP5 #Backmen-migration
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5 #Backmen-migration
 WeaponRifleLecterRubber: WeaponRifleFamas #Backmen-migration
+
 
 # 2024-04-26
 GlassBoxLaserBroken: GlassBoxBroken
@@ -662,3 +661,169 @@ CargoShuttleComputerCircuitboard: ShipyardComputerCircuitboard
 
 # 2024-11-25
 CrateSlimepersonLifeSupport: CrateNitrogenInternals
+
+# 2024-12-01
+DungeonMasterCircuitBoard: GameMasterCircuitBoard
+
+# 2024-12-12
+FloraRockSolid01: FloraRockSolid
+FloraRockSolid02: FloraRockSolid
+FloraRockSolid03: FloraRockSolid
+FloraStalagmite1: FloraStalagmite
+FloraStalagmite2: FloraStalagmite
+FloraStalagmite3: FloraStalagmite
+FloraStalagmite4: FloraStalagmite
+FloraStalagmite5: FloraStalagmite
+FloraStalagmite6: FloraStalagmite
+FloraGreyStalagmite1: FloraGreyStalagmite
+FloraGreyStalagmite2: FloraGreyStalagmite
+FloraGreyStalagmite3: FloraGreyStalagmite
+FloraGreyStalagmite4: FloraGreyStalagmite
+FloraGreyStalagmite5: FloraGreyStalagmite
+FloraGreyStalagmite6: FloraGreyStalagmite
+FloraTree01: FloraTree
+FloraTree02: FloraTree
+FloraTree03: FloraTree
+FloraTree04: FloraTree
+FloraTree05: FloraTree
+FloraTree06: FloraTree
+FloraTreeSnow01: FloraTreeSnow
+FloraTreeSnow02: FloraTreeSnow
+FloraTreeSnow03: FloraTreeSnow
+FloraTreeSnow04: FloraTreeSnow
+FloraTreeSnow05: FloraTreeSnow
+FloraTreeSnow06: FloraTreeSnow
+FloraTreeLarge01: FloraTreeLarge
+FloraTreeLarge02: FloraTreeLarge
+FloraTreeLarge03: FloraTreeLarge
+FloraTreeLarge04: FloraTreeLarge
+FloraTreeLarge05: FloraTreeLarge
+FloraTreeLarge06: FloraTreeLarge
+FloraTreeConifer01: FloraTreeConifer
+FloraTreeConifer02: FloraTreeConifer
+FloraTreeConifer03: FloraTreeConifer
+ShadowTree01: ShadowTree
+ShadowTree02: ShadowTree
+ShadowTree03: ShadowTree
+ShadowTree04: ShadowTree
+ShadowTree05: ShadowTree
+ShadowTree06: ShadowTree
+LightTree01: LightTree
+LightTree02: LightTree
+LightTree03: LightTree
+LightTree04: LightTree
+LightTree05: LightTree
+LightTree06: LightTree
+
+# 2024-12-12 - Corvax-next
+NTFlag: FlagNanoTrasen
+SyndieFlag: FlagSyndicate
+
+#2024-12-28
+DrinkIrishCarBomb: DrinkIrishSlammer
+
+#2025-01-06
+ClothingMaskSexyClown: ClothingMaskBlushingClown
+ClothingMaskSexyMime: ClothingMaskBlushingMime
+
+# 2025-01-27
+FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
+
+# 2025-02-05 backmen
+MagazineRifle: MagazineRifle556UEG
+MagazineRifleEmpty: null
+MagazineRifleIncendiary: MagazineRifle556UEGIncendiary
+MagazineRiflePractice: MagazineRifle556UEG
+MagazineRifleUranium: MagazineRifle556UEG
+MagazinePistolSubMachineGunTopMountedEmpty: null
+MagazinePistol: MagazinePistol9x17
+MagazinePistolEmpty: null
+MagazinePistolIncendiary: MagazinePistol9x17Incendiary
+MagazinePistolPractice: MagazinePistol9x17
+MagazinePistolUranium: MagazinePistol9x17
+MagazinePistolHighCapacityEmpty: null
+MagazinePistolHighCapacity: MagazinePistol57x28Extd
+MagazinePistolHighCapacityPractice: MagazinePistol57x28Extd
+MagazinePistolHighCapacityRubber: MagazinePistol57x28Extd
+MagazinePistolSubMachineGun: MagazinePistolSubMachineGun9x17
+MagazinePistolSubMachineGunEmpty: null
+MagazinePistolSubMachineGunPractice: MagazinePistolSubMachineGun9x17
+MagazinePistolSubMachineGunUranium: MagazinePistolSubMachineGun9x17
+MagazineLightRifleBox: MagazineLightMachineGun762x39
+MagazineLightRifle: MagazineRifleLight762x39
+MagazineLightRifleEmpty: null
+MagazineLightRiflePractice: MagazineRifleLight762x39
+MagazineLightRifleUranium: MagazineRifleLight762x39
+MagazineLightRifleIncendiary: MagazineRifleLight762x39Incendiary
+MagazineLightRiflePkBox: MagazineLightMachineGun762x39
+CartridgeRifle: CartridgeRifleLight556UEG
+CartridgeRiflePractice: CartridgeRifleLight556UEG
+CartridgeRifleIncendiary: CartridgeRifleLight556UEGIncendiary
+CartridgeRifleUranium: CartridgeRifleLight556UEG
+CartridgePistol: CartridgePistol9x17
+CartridgePistolPractice: CartridgePistol9x17
+CartridgePistolIncendiary: CartridgePistol9x17Incendiary
+CartridgePistolUranium: CartridgePistol9x17
+CartridgeLightRifle: CartridgeRifleLight762x39
+CartridgeLightRiflePractice: CartridgeRifleLight762x39
+CartridgeLightRifleIncendiary: CartridgeRifleLight762x39Incendiary
+CartridgeLightRifleUranium: CartridgeRifleLight762x39
+CartridgeAntiMateriel: Cartridge50BMG
+MagazineBoxRifleBig: MagazineBoxRifle556UEG
+MagazineBoxRifle: MagazinePacketRifle556UEG
+MagazineBoxRiflePractice: MagazinePacketRifle556UEG
+MagazineBoxRifleIncendiary: MagazinePacketRifle556UEGIncendiary
+MagazineBoxRifleUranium: MagazinePacketRifle556UEG
+MagazineBoxPistol: MagazinePacketPistol9x17
+MagazineBoxPistolPractice: MagazinePacketPistol9x17
+MagazineBoxPistolIncendiary: MagazinePacketPistol9x17Incendiary
+MagazineBoxPistolUranium: MagazinePacketPistol9x17
+MagazineBoxLightRifleBig: MagazineBoxRifle762x39
+MagazineBoxLightRifle: MagazinePacketRifle762x39
+MagazineBoxLightRiflePractice: MagazinePacketRifle762x39
+MagazineBoxLightRifleIncendiary: MagazinePacketRifle762x39Incendiary
+MagazineBoxLightRifleUranium: MagazinePacketRifle762x39
+MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
+
+#2025-02-05
+#WeaponSubMachineGunVector: null
+#WeaponSubMachineGunVectorRubber: null
+MagazineBoxCaselessRifleBig: MagazineBoxCaselessRifle
+MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
+
+#2025-02-06 backmen: no pride
+LGBTQFlag: null
+LGBTQHandyFlag: null
+ClothingNeckLGBTPin: null
+ClothingNeckAromanticPin: null
+ClothingNeckAsexualPin: null
+ClothingNeckBisexualPin: null
+ClothingNeckGayPin: null
+ClothingNeckIntersexPin: null
+ClothingNeckLesbianPin: null
+ClothingNeckNonBinaryPin: null
+ClothingNeckPansexualPin: null
+ClothingNeckOmnisexualPin: null
+ClothingNeckTransPin: null
+ClothingNeckAutismPin: null
+ClothingNeckGoldAutismPin: null
+ClothingNeckScarfStripedAce: null
+ClothingNeckScarfStripedAro: null
+ClothingNeckScarfStripedBiSexual: null
+ClothingNeckScarfStripedGay: null
+ClothingNeckScarfStripedInter: null
+ClothingNeckScarfStripedLesbian: null
+ClothingNeckScarfStripedPan: null
+ClothingNeckScarfStripedNonBinary: null
+ClothingNeckScarfStripedRainbow: null
+ClothingNeckScarfStripedTrans: null
+ClothingNeckCloakAce: null
+ClothingNeckCloakAro: null
+ClothingNeckCloakBi: null
+ClothingNeckCloakIntersex: null
+ClothingNeckCloakLesbian: null
+ClothingNeckCloakTrans: null
+ClothingNeckCloakGay: null
+ClothingNeckCloakEnby: null
+ClothingNeckCloakPan: null
+VendingMachinePride: null

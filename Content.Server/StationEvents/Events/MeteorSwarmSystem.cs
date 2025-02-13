@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
@@ -44,11 +45,12 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
+        var stations = _station.GetStations().Where(HasComp<StationEventEligibleComponent>).ToList();
 
-        if (_station.GetStations().Count == 0)
+        if (stations.Count == 0)
             return;
 
-        var station = RobustRandom.Pick(_station.GetStations());
+        var station = RobustRandom.Pick(stations); // backmen: centcomm
         if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid)
             return;
 

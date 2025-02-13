@@ -19,7 +19,12 @@ namespace Content.Shared.Fluids.Components
 
         [DataField("solution")] public string SolutionName = "puddle";
 
-        [DataField("solutionRef")]
+        [ViewVariables]
         public Entity<SolutionComponent>? Solution;
+
+        // start-backmen: footsteps
+        [DataField]
+        public bool ViscosityAffectsMovement = true;
+        // end-backmen: footsteps
     }
 }

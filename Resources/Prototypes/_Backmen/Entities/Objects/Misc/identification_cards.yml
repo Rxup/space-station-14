@@ -557,7 +557,7 @@
   components:
     - type: Sprite
       layers:
-        - state: default
+        - state: silver
         - sprite: Backmen/Objects/Misc/id_cards.rsi
           state: idblueshield
     - type: PresetIdCard

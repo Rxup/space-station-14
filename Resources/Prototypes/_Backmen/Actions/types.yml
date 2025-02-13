@@ -69,7 +69,7 @@
       event: !type:PsionicInvisibilityPowerOffActionEvent
 
 - type: entity
-  id: ActionMindSwap
+  id: ActionMindSwapPsionic
   name: action-name-mind-swap
   description: action-description-mind-swap
   components:
