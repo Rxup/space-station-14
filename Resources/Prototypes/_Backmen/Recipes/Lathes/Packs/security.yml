@@ -40,24 +40,19 @@
   - MagazinePistolIncendiary
   - MagazineRifleIncendiary
   # Backmen-ammonation-start
-  - MagazinePistolSubMachineGun57x28
-  - MagazinePistolSubMachineGunVector45ACP
-  - MagazineRifleFamas556UEG
-  - MagazineRifle762UEG
-  - MagazineRifle762UEGIncendiary
-  - MagazineRifleFamas556UEGIncendiary
-  - MagazinePistol45ACP
-  - MagazinePistol45ACPincendiary
-  - MagazinePistol57x28
-  - MagazinePistol57x28Incendiary
-  - MagazinePistol57x28Extd
-  - MagazineBoxHeavyRifle
-  - MagazinePacketRifle762x39
-  - MagazinePacketRifle762UEG
-  - MagazinePacketPistolACP
-  - MagazinePacketPistol57x28
-  - MagazinePacketPistol50AE
+  - MagazinePacketPistol50AEAP
+  - MagazinePacketRifle762x39AP
+  - MagazinePacketRifle556UEGAP
+  - MagazinePacketRifle762UEGAP
   # Backmen-ammonation-end
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary
   - MagazineShotgunIncendiary
+  - BoxShotgunIncendiary
+  - MagazinePistolSubMachineGunIncendiary
+  - SpeedLoaderMagnumIncendiary
+  - BoxShellTranquilizer
+  - BoxBeanbag
+  - ShellSoulbreaker
+  - SpeedLoaderMagnumUranium
+  - BoxShotgunUranium

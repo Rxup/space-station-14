@@ -208,6 +208,7 @@
     - FauxTiles
     - BackmenTranslators # backmen
     - BackmenProtolathe # backmen
+    - BackmenSurgery # backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - BackmenAmmo # backmen
@@ -478,6 +479,7 @@
     dynamicPacks:
     - Chemistry
     - BackmenMedfab # backmen
+    - BackmenSurgery # backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
