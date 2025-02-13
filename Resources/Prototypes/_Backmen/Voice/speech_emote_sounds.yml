@@ -120,7 +120,7 @@
     Growl:
       collection: FoxesGrowl
     Howl:
-      path: /Audio/Corvax/Effects/howl.ogg
+      collection: FoxesHowl
     Sneeze:
       collection: MaleSneezes
     Cough:
@@ -157,7 +157,7 @@
     Growl:
       collection: FoxesGrowl
     Howl:
-      path: /Audio/Corvax/Effects/howl.ogg
+      collection: FoxesHowl
     Sneeze:
       collection: FemaleSneezes
     Cough:
