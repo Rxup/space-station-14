@@ -253,7 +253,7 @@
     - id: MagazinePistolSubMachineGunVector45ACPExt
 
 - type: listing
-  id: UplinkVectorBundle
+  id: UplinkMP7Bundle
   name: набор "MP7"
   description: Модель SMG7 с архаичным дизайном, насчитывающим сотни лет, была распространена в свое время. Сегодня он находит ограниченное применение в качестве дешевых компьютерных копий или семейных реликвий, хотя каким-то образом попал в руки колониальных повстанцев. В комплетке 3 магазина.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi, state: icon }
