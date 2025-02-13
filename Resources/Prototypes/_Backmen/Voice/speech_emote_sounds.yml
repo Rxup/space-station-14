@@ -151,7 +151,7 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: FoxesScreams
+      collection: FoxesScream
     Laugh:
       collection: FoxesLaugh
     Growl:
