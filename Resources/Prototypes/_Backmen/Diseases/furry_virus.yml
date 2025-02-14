@@ -13,6 +13,8 @@
   name: chat-emote-name-BCatMeow
   category: Vocal
   chatMessages: ["chat-emote-msg-BCatMeow"]
+  BCatMeow:
+    collection: FoxesGrowl
 
 - type: disease
   parent: FurryVirus
