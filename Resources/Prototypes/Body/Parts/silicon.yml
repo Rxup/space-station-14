@@ -42,7 +42,7 @@
 
 - type: entity
   id: LeftArmBorg
-  parent: PartSilicon
+  parent: [BaseLeftArm, PartSilicon]
   name: cyborg left arm
   components:
   - type: BodyPart
@@ -60,7 +60,7 @@
 
 - type: entity
   id: RightArmBorg
-  parent: PartSilicon
+  parent: [BaseRightArm, PartSilicon]
   name: cyborg right arm
   components:
   - type: BodyPart
@@ -78,7 +78,7 @@
 
 - type: entity
   id: LeftLegBorg
-  parent: PartSilicon
+  parent: [BaseLeftLeg, PartSilicon]
   name: cyborg left leg
   components:
   - type: BodyPart
@@ -101,7 +101,7 @@
 
 - type: entity
   id: RightLegBorg
-  parent: PartSilicon
+  parent: [BaseRightLeg, PartSilicon]
   name: cyborg right leg
   components:
   - type: BodyPart
@@ -124,7 +124,7 @@
 
 - type: entity
   id: LightHeadBorg
-  parent: PartSilicon
+  parent: [BaseHead, PartSilicon]
   name: cyborg head
   components:
   - type: BodyPart
@@ -140,7 +140,7 @@
 
 - type: entity
   id: TorsoBorg
-  parent: PartSilicon
+  parent: [BaseChest, PartSilicon]
   name: cyborg chest
   components:
   - type: BodyPart

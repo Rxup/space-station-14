@@ -77,8 +77,9 @@ public partial class WoundSystem
         if (wound.HoldingWoundable == EntityUid.Invalid)
             return;
 
-        var oldParentWoundable = Comp<WoundableComponent>(wound.HoldingWoundable);
-        var oldWoundableRoot = Comp<WoundableComponent>(oldParentWoundable.RootWoundable);
+        if (!TryComp(wound.HoldingWoundable, out WoundableComponent? oldParentWoundable) ||
+            !TryComp(oldParentWoundable.RootWoundable, out WoundableComponent? oldWoundableRoot))
+            return;
 
         wound.HoldingWoundable = EntityUid.Invalid;
 

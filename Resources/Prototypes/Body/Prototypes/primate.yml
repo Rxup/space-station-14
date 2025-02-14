@@ -13,6 +13,7 @@
     chest:
       part: ChestAnimal
       connections:
+      - groin
       - hands 1
       - hands 2
       organs:
@@ -25,19 +26,6 @@
       organs:
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
-        kidneys: OrganAnimalKidneys
-    torso:
-      part: TorsoAnimal
-      connections:
-      - hands 1
-      - hands 2
-      - legs
-      - head
-      organs:
-        lungs: OrganAnimalLungs
-        stomach: OrganAnimalStomach
-        liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
     hands 1:
       part: HandsAnimal

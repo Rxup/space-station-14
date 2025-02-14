@@ -29,7 +29,6 @@ namespace Content.Shared.Damage
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
         [Dependency] private readonly SharedBodySystem _body = default!;
         [Dependency] private readonly WoundSystem _wounds = default!;
-        [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly IRobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
 
         [Dependency] private readonly IComponentFactory _factory = default!;
@@ -38,17 +37,6 @@ namespace Content.Shared.Damage
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<BodyComponent> _bodyQuery;
         private EntityQuery<WoundableComponent> _woundableQuery;
-
-        private readonly HashSet<BodyPartType> _easyToHit =
-        [
-            BodyPartType.Chest,
-        ];
-
-        private readonly HashSet<BodyPartType> _hardToHit =
-        [
-            BodyPartType.Head,
-            BodyPartType.Other,
-        ];
 
         public override void Initialize()
         {

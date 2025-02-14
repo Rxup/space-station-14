@@ -5,7 +5,6 @@ using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Part;
 using Content.Shared.Mobs;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
@@ -20,7 +19,8 @@ public partial class ConsciousnessSystem
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
 
-        SubscribeLocalEvent<ConsciousnessRequiredComponent, ComponentInit>(OnConsciousnessPartInit);
+        // too silly
+        // SubscribeLocalEvent<ConsciousnessRequiredComponent, ComponentInit>(OnConsciousnessPartInit);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartAddedEvent>(OnBodyPartAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
@@ -132,42 +132,13 @@ public partial class ConsciousnessSystem
         CheckConscious(uid, consciousness);
     }
 
-    private void OnConsciousnessPartInit(EntityUid uid, ConsciousnessRequiredComponent component, ComponentInit args)
-    {
-        if (_net.IsClient)
-            return;
-
-        EntityUid? body = null;
-        if (TryComp<BodyPartComponent>(uid, out var bodyPart))
-        {
-            body = bodyPart.Body;
-        }
-        else if (TryComp<OrganComponent>(uid, out var organ))
-        {
-            body = organ.Body;
-        }
-
-        if (!TryComp<ConsciousnessComponent>(body, out var consciousness))
-            return;
-
-        if (!consciousness.RequiredConsciousnessParts.TryAdd(component.Identifier, (uid, component.CausesDeath, false)))
-        {
-            _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} added to a body:" +
-                             $" {uid} this will result in unexpected behaviour!");
-        }
-    }
-
     private void OnBodyPartAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartAddedEvent args)
     {
-        if (_net.IsClient)
-            return;
-
         if (args.Part.Comp.Body == null ||
             !TryComp<ConsciousnessComponent>(args.Part.Comp.Body, out var consciousness))
             return;
 
-        if (consciousness.RequiredConsciousnessParts.ContainsKey(component.Identifier)
-            && consciousness.RequiredConsciousnessParts[component.Identifier].Item1 != null)
+        if (consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null && value.Item1 != uid)
         {
             _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} added to a body:" +
                         $" {args.Part.Comp.Body} this will result in unexpected behaviour!");
@@ -180,36 +151,29 @@ public partial class ConsciousnessSystem
 
     private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
     {
-        if (_net.IsClient)
-            return;
-
         if (args.Part.Comp.Body == null || !TryComp<ConsciousnessComponent>(args.Part.Comp.Body.Value, out var consciousness))
             return;
 
         if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
         {
-            _sawmill.Warning($"ConsciousnessRequirementPart with identifier {component.Identifier} not found on body:{uid}");
+            _sawmill.Warning($"ConsciousnessRequirementPart with identifier {component.Identifier}:{uid} not found on body:{args.Part.Comp.Body}");
             return;
         }
 
-        consciousness.RequiredConsciousnessParts[component.Identifier] =
-            (uid, value.Item2, true);
+        consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
 
         CheckRequiredParts(args.Part.Comp.Body.Value, consciousness);
     }
 
     private void OnOrganAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganAddedToBodyEvent args)
     {
-        if (_net.IsClient)
-            return;
-
         if (!TryComp<ConsciousnessComponent>(args.Body, out var consciousness))
             return;
 
-        if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null)
+        if (consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null && value.Item1 != uid)
         {
             _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} added to a body:" +
-                        $" {args.Body} this will result in unexpected behaviour!");
+                             $" {args.Body} this will result in unexpected behaviour! Old {component.Identifier} wielder: {value.Item1}");
         }
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
@@ -224,12 +188,11 @@ public partial class ConsciousnessSystem
 
         if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
         {
-            _sawmill.Warning($"ConsciousnessRequirementPart with identifier {component.Identifier} not found on body:{uid}");
+            _sawmill.Warning($"ConsciousnessRequirementPart with identifier {component.Identifier}:{uid} not found on body:{args.OldBody}");
             return;
         }
 
-        consciousness.RequiredConsciousnessParts[component.Identifier] =
-            (uid, value.Item2, true);
+        consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
 
         CheckRequiredParts(args.OldBody, consciousness);
     }

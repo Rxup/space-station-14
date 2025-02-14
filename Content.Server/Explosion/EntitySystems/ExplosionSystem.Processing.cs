@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -471,8 +472,34 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage(entity, damage, ignoreResistances: true);
+                if (TryComp<BodyComponent>(entity, out var body))
+                {
+                    var bodyParts = _body.GetBodyChildren(entity, body).ToList();
+                    _robustRandom.Shuffle(bodyParts);
 
+                    var targetedBodyParts = _robustRandom.Next(2, 4);
+                    var damagedBodyParts = 0;
+                    foreach (var bodyPart in bodyParts)
+                    {
+                        // The damage is disposed around all body
+                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / targetedBodyParts, ignoreResistances: true);
+                        bodyParts.Remove(bodyPart);
+
+                        damagedBodyParts++;
+                        if (targetedBodyParts >= damagedBodyParts)
+                            break;
+                    }
+
+                    foreach (var bodyPart in bodyParts)
+                    {
+                        // Distribute the last damage on the other parts... for the cinematic effect :3
+                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count * 0.75, ignoreResistances: true);
+                    }
+                }
+                else
+                {
+                    _damageableSystem.TryChangeDamage(entity, damage, ignoreResistances: true);
+                }
             }
         }
 

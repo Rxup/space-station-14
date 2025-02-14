@@ -189,8 +189,12 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             woundList.AddRange(Comp<WoundableComponent>(uid).Wounds!.ContainedEntities);
             woundList.AddRange(Comp<WoundableComponent>(parentUid.Value).Wounds!.ContainedEntities);
 
-            var totalBleeds =
-                woundList.Aggregate((FixedPoint2) 0, (current, wound) => current + Comp<BleedInflicterComponent>(wound).BleedingAmount);
+            var totalBleeds = (FixedPoint2) 0;
+            foreach (var wound in woundList)
+            {
+                if (TryComp<BleedInflicterComponent>(wound, out var bleeds))
+                    totalBleeds += bleeds.BleedingAmount;
+            }
 
             var symmetry = bodyPart.Symmetry == BodyPartSymmetry.Left ? "L" : "R";
             var partType = bodyPart.PartType == BodyPartType.Foot ? "Leg" : "Arm";
@@ -211,9 +215,12 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
         else
         {
-            var totalDamage =
-                Comp<WoundableComponent>(uid).Wounds!.ContainedEntities.Aggregate((FixedPoint2) 0,
-                    (current, wound) => current + Comp<BleedInflicterComponent>(wound).BleedingAmount);
+            var totalBleeds = (FixedPoint2) 0;
+            foreach (var wound in Comp<WoundableComponent>(uid).Wounds!.ContainedEntities)
+            {
+                if (TryComp<BleedInflicterComponent>(wound, out var bleeds))
+                    totalBleeds += bleeds.BleedingAmount;
+            }
 
             sprite.LayerMapTryGet($"{layer}Bleeding", out var bleedingLayer);
 
@@ -223,8 +230,8 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             UpdateBleedingLayerState(sprite,
                 bleedingLayer,
                 layer.ToString(),
-                totalDamage,
-                GetBleedingThreshold(totalDamage, comp));
+                totalBleeds,
+                GetBleedingThreshold(totalBleeds, comp));
         }
     }
 
