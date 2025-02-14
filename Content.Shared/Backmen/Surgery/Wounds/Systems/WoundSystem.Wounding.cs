@@ -533,6 +533,7 @@ public partial class WoundSystem
 
             Dirty(woundableEntity, woundableComp);
 
+            _audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyPart.Body.Value);
             _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
 
             if (IsWoundableRoot(woundableEntity, woundableComp))
@@ -608,6 +609,7 @@ public partial class WoundSystem
         Dirty(woundableEntity, woundableComp);
 
         _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
+        _audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyPart.Body.Value);
 
         DestroyWoundableChildren(woundableEntity, woundableComp);
         _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);

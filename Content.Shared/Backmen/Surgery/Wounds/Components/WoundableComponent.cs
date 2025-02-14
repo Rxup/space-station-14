@@ -1,4 +1,5 @@
 ﻿using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 
@@ -69,6 +70,12 @@ public sealed partial class WoundableComponent : Component
     /// Multipliers applied to healing rate.
     /// </summary>
     public Dictionary<EntityUid, WoundableHealingMultiplier> HealingMultipliers = new();
+
+    [DataField]
+    public SoundSpecifier WoundableDestroyedSound = new SoundCollectionSpecifier("WoundableDestroyed");
+
+    [DataField]
+    public SoundSpecifier WoundableDelimbedSound = new SoundCollectionSpecifier("WoundableDelimbed");
 
     /// <summary>
     /// State of the woundable. Severity basically.

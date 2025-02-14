@@ -206,7 +206,7 @@ public sealed class BloodstreamSystem : EntitySystem
 
             if (TryComp<BodyPartComponent>(wound.HoldingWoundable, out var bodyPart) && bodyPart.Body.HasValue)
             {
-                TryModifyBleedAmount(bodyPart.Body.Value, (float) (newBleeds * bleeds.BleedingAmountRaw - bleeds.BleedingAmount));
+                TryModifyBleedAmount(bodyPart.Body.Value, (float) bleeds.BleedingAmount / 1.6f);
 
                 var nerveSys = _pain.GetNerveSystem(bodyPart.Body.Value);
                 if (nerveSys.HasValue)
