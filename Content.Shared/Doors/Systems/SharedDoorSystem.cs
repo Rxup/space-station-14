@@ -24,7 +24,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
 
 namespace Content.Shared.Doors.Systems;
 
