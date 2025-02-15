@@ -59,8 +59,9 @@
       path: /Audio/Corvax/Effects/Footsteps/off2.ogg
 
 - type: entity
-  name: рация вызова снабжения
-  description: Портативная рация для связи с отделом снабжения, настроена на одностороний разговор.
+  name: supply call radio
+  description: A portable radio for communication with the supply department, configured for one-way conversation.
+  suffix: security pilot
   parent: BaseItem
   id: RadioSecurityPilotSupplyPod
   components:

@@ -57,7 +57,7 @@
   parent: [ClothingShoesBootsMagBase, BaseToggleClothing, BaseSecurityContraband]
   id: ClothingShoesBootsMagSecurity
   name: security magboots
-  description: Армейский образец магнитных сапог, дешевый и более массовый вариант продвинутых магниток, имеет встроенный джетпак.
+  description: Magnetic boots are standard equipment for security services for work in zero gravity and outer space.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
