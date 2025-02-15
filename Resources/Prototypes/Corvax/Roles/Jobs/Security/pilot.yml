@@ -31,14 +31,14 @@
 - type: startingGear
   id: PilotGear
   equipment:
+    jumpsuit: ClothingUniformJumpsuiSecurityPilot #backmen
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatBeretSecurity
+    head: ClothingHeadCapSecurityPilot #backmen
     id: PilotPDA
     ears: ClothingHeadsetSecurity
-    neck: ClothingNeckTieRed
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponMultiphaseEnergyGun #backmen
   storage:
     back:
     - BoxSurvivalSecurity
     - Flash
-    - MagazinePistol
+   #- MagazinePistol  (backmen)

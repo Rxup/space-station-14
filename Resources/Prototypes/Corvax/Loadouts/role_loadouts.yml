@@ -19,11 +19,12 @@
   - Werx #backmen
   - Niz #backmen
   - Socks #backmen
-  - SecurityJumpsuit
+  - SecurityJumpsuitPilot #backmen
   - SecurityBackpack
-  - SecurityOuterClothing
+  - SecurityOuterClothingPilot
+  - SecurityHeadPilot #backmen
   - SecurityBelt
-  - SecurityShoes
+  - SecurityShoesPilot #backmen
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool

@@ -12,3 +12,49 @@
   - ChiefEngineerBackpack
   - ChiefEngineerSatchel
   - ChiefEngineerDuffel
+#backmen start
+- type: loadoutGroup
+  id: SecurityJumpsuitPilot
+  name: loadout-group-security-pilot-jumpsuit
+  loadouts:
+  - SecurityPilotJumpsuit
+  - SecurityJumpsuit
+  - SecurityJumpskirt
+  - SeniorOfficerJumpsuit
+  - SeniorOfficerJumpskirt
+  - TrooperUniform
+  
+- type: loadoutGroup
+  id: SecurityShoesPilot
+  name: loadout-group-security-pilot-shoes
+  loadouts:
+  - JackSecBoots # Corvax
+  - JackBoots
+  - SecurityWinterBoots
+  - ClothingShoesBootsMagSecurity
+  - ClothingShoesBootsLaceup
+
+- type: loadoutGroup
+  id: SecurityHeadPilot
+  name: loadout-group-security-pilot-head
+  loadouts:
+  - SecurityHelmet
+  - SecurityBeret
+  - SecurityHat
+  - ClothingHeadHatCapSec
+  - ClothingHeadHatPilotkaSec
+  - TrooperHat
+  - SecurityPilotHelmet
+  - SecurityPilotCap
+  
+- type: loadoutGroup
+  id: SecurityOuterClothingPilot
+  name: loadout-group-security-pilot-outerclothing
+  loadouts:
+  - ArmorVest
+  - ArmorVestSlim
+  - ClothingOuterCoatSecurityOvercoat
+  - ClothingOuterCoatSecurityOfficerOvercoat
+  - SecurityOfficerWintercoat
+  - ClothingOuterCoatBomber
+#backmen end

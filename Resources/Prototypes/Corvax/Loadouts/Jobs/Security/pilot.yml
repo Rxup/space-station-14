@@ -1,0 +1,22 @@
+# Head
+- type: loadout
+  id: SecurityPilotHelmet
+  equipment:
+    head: ClothingHeadHelmetHardsuitSecurityPilot
+    
+- type: loadout
+  id: SecurityPilotCap
+  equipment:
+    head: ClothingHeadCapSecurityPilot
+    
+# Jumpsuit
+- type: loadout
+  id: SecurityPilotJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuiSecurityPilot
+    
+# Shoes
+- type: loadout
+  id: SecurityMagBoots
+  equipment:
+    shoes: ClothingShoesBootsMagSecurity
