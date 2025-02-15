@@ -52,3 +52,28 @@
     stateDoorClosed: egov_door
   - type: AccessReader
     access: [ [ "CCOfficer" ] ]
+
+- type: entity
+  id: LockerSecurityPilot
+  parent: LockerSecurity
+  name: security pilot locker
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Structures/Storage/sec-pilot.rsi
+    noRot: true
+    layers:
+    - state: sec
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: sec_pilot_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_pilot_door

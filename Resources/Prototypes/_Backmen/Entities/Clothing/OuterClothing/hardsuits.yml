@@ -473,3 +473,20 @@
     sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: Unremoveable
+
+ type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSecurityPilot
+  name: security pilot hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor. Lightened especially for the pilot.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecurityPilot

@@ -1,0 +1,28 @@
+- type: entity
+  parent: [LockerSecurityPilot, BaseRestrictedContraband]
+  id: LockerSecurityPilotFilled
+  name: security pilot locker
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadCapSecurityPilot
+      amount: 1
+    - id: ClothingHeadSecurityPilotHelmet
+      amount: 1
+    - id: ClothingShoesBootsMagSecurity
+      amount: 1
+    - id: ClothingUniformJumpsuiSecurityPilot
+      amount: 1
+    - id: ShuttleConsoleCircuitboard
+      amount: 1
+    - id: DoubleEmergencyNitrogenTankFilled
+      amount: 1
+    - id: DoubleEmergencyOxygenTankFilled
+      amount: 1
+    - id: SecGasmask
+      amount: 1
+    - id: SecBelt
+      amount: 1
+    - id: JetpackSecurityFilled
+      amount: 1

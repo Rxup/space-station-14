@@ -52,3 +52,22 @@
       collection: FootstepSoldier
       params:
         volume: -2
+
+- type: entity
+  parent: [ClothingShoesBootsMagBase, BaseToggleClothing, BaseSecurityContraband]
+  id: ClothingShoesBootsMagSecurity
+  name: security magboots
+  description: Армейский образец магнитных сапог, дешевый и более массовый вариант продвинутых магниток, имеет встроенный джетпак.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
+  - type: Magboots
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
