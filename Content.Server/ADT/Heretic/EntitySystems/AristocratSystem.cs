@@ -13,6 +13,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 using System.Numerics;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Heretic.EntitySystems;
 
@@ -26,57 +27,71 @@ public sealed partial class AristocratSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TemperatureSystem _temp = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly MapSystem _map = default!;
 
-    private string _snowWallPrototype = "WallSnowCobblebrick";
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string SnowWallPrototype = "WallSnowCobblebrick";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _ghoulQuery = GetEntityQuery<GhoulComponent>();
+        _hereticQuery = GetEntityQuery<HereticComponent>();
+    }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        foreach (var aristocrat in EntityQuery<AristocratComponent>())
+        var query = EntityQueryEnumerator<AristocratComponent>();
+
+        while (query.MoveNext(out var owner, out var aristocrat))
         {
             aristocrat.UpdateTimer += frameTime;
 
-            if (aristocrat.UpdateTimer >= aristocrat.UpdateDelay)
-            {
-                Cycle((aristocrat.Owner, aristocrat));
-                aristocrat.UpdateTimer = 0;
-            }
+            if (aristocrat.UpdateTimer < aristocrat.UpdateDelay)
+                continue;
+
+            Cycle((owner, aristocrat));
+            aristocrat.UpdateTimer = 0;
         }
     }
+
+    private HashSet<EntityUid> _cycleEntities = new();
+    private EntityQuery<HereticComponent> _hereticQuery;
+    private EntityQuery<GhoulComponent> _ghoulQuery;
 
     private void Cycle(Entity<AristocratComponent> ent)
     {
         SpawnTiles(ent);
+        var entTransform = Transform(ent);
 
-        var mix = _atmos.GetTileMixture((ent, Transform(ent)));
+        var mix = _atmos.GetTileMixture((ent, entTransform));
         if (mix != null)
             mix.Temperature -= 50f;
 
+        var queryTemp = GetEntityQuery<TemperatureComponent>();
+
         // replace certain things with their winter analogue
-        var lookup = _lookup.GetEntitiesInRange(Transform(ent).Coordinates, ent.Comp.Range);
-        foreach (var look in lookup)
+        _cycleEntities.Clear();
+        _lookup.GetEntitiesInRange(entTransform.Coordinates, ent.Comp.Range, _cycleEntities);
+        foreach (var look in _cycleEntities)
         {
-            if (HasComp<HereticComponent>(look) || HasComp<GhoulComponent>(look))
+            if (_hereticQuery.HasComp(look) || _ghoulQuery.HasComp(look))
                 continue;
 
-            if (TryComp<TemperatureComponent>(look, out var temp))
+            if (queryTemp.TryComp(look, out var temp))
                 _temp.ChangeHeat(look, -100f, true, temp);
 
             _statusEffect.TryAddStatusEffect<MutedComponent>(look, "Muted", TimeSpan.FromSeconds(5), true);
 
-            if (TryComp<TagComponent>(look, out var tag))
-            {
-                var tags = tag.Tags;
+            if (!_rand.Prob(.45f) || !_tag.HasTag(look, "Wall") || Prototype(look)?.ID == SnowWallPrototype)
+                continue;
 
-                // replace walls with snow ones
-                if (_rand.Prob(.45f) && tags.Contains("Wall")
-                && Prototype(look) != null && Prototype(look)!.ID != _snowWallPrototype)
-                {
-                    Spawn(_snowWallPrototype, Transform(look).Coordinates);
-                    QueueDel(look);
-                }
-            }
+            // replace walls with snow ones
+            Spawn(SnowWallPrototype, Transform(look).Coordinates);
+            QueueDel(look);
         }
     }
 
@@ -88,15 +103,16 @@ public sealed partial class AristocratSystem : EntitySystem
             return;
 
         var pos = xform.Coordinates.Position;
-        var box = new Box2(pos + new Vector2(-ent.Comp.Range, -ent.Comp.Range), pos + new Vector2(ent.Comp.Range, ent.Comp.Range));
-        var tilerefs = grid.GetLocalTilesIntersecting(box).ToList();
+        var box = new Box2(pos + new Vector2(-ent.Comp.Range, -ent.Comp.Range),
+            pos + new Vector2(ent.Comp.Range, ent.Comp.Range));
+        var tileRefs = _map.GetLocalTilesIntersecting(xform.GridUid.Value, grid, box).ToList();
 
-        if (tilerefs.Count == 0)
+        if (tileRefs.Count == 0)
             return;
 
         var tiles = new List<TileRef>();
         var tiles2 = new List<TileRef>();
-        foreach (var tile in tilerefs)
+        foreach (var tile in tileRefs)
         {
             if (_rand.Prob(.45f))
                 tiles.Add(tile);
@@ -105,15 +121,15 @@ public sealed partial class AristocratSystem : EntitySystem
                 tiles2.Add(tile);
         }
 
-        foreach (var tileref in tiles)
+        foreach (var tileRef in tiles)
         {
             var tile = _prot.Index<ContentTileDefinition>("FloorAstroSnow");
-            _tile.ReplaceTile(tileref, tile);
+            _tile.ReplaceTile(tileRef, tile);
         }
 
-        foreach (var tileref in tiles2)
-        {
-            // todo add more tile variety
-        }
+        // foreach (var tileRef in tiles2)
+        // {
+        //     // todo add more tile variety
+        // }
     }
 }

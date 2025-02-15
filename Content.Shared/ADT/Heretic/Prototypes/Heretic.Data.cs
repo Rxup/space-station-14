@@ -6,12 +6,12 @@ namespace Content.Shared.Heretic.Prototypes;
 
 [Serializable, NetSerializable]
 [Prototype("hereticKnowledge")]
-[DataDefinition] 
+[DataDefinition]
 public sealed partial class HereticKnowledgePrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
 
-    [DataField] public string? Path;
+    [DataField] public HereticPath? Path;
 
     [DataField] public int Stage = 1;
 

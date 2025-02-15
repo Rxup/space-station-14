@@ -16,6 +16,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -27,7 +28,7 @@ using Robust.Shared.Audio;
 
 namespace Content.Server.Heretic.EntitySystems;
 
-public sealed partial class GhoulSystem : EntitySystem
+public sealed partial class GhoulSystem : SharedGhoulSystem
 {
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -42,15 +43,15 @@ public sealed partial class GhoulSystem : EntitySystem
 
     public void GhoulifyEntity(Entity<GhoulComponent> ent)
     {
-        RemComp<RespiratorComponent>(ent);
-        RemComp<BarotraumaComponent>(ent);
-        RemComp<HungerComponent>(ent);
-        RemComp<ThirstComponent>(ent);
-        RemComp<ReproductiveComponent>(ent);
-        RemComp<ReproductivePartnerComponent>(ent);
-        RemComp<TemperatureComponent>(ent);
+        RemCompDeferred<RespiratorComponent>(ent);
+        RemCompDeferred<BarotraumaComponent>(ent);
+        RemCompDeferred<HungerComponent>(ent);
+        RemCompDeferred<ThirstComponent>(ent);
+        RemCompDeferred<ReproductiveComponent>(ent);
+        RemCompDeferred<ReproductivePartnerComponent>(ent);
+        RemCompDeferred<TemperatureComponent>(ent);
 
-        var hasMind = _mind.TryGetMind(ent, out var mindId, out var mind);
+        var hasMind = HasComp<MindContainerComponent>(ent);
 
         var hasEretic = ent.Comp.BoundHeretic.HasValue;
         _antag.SendBriefing(ent,
@@ -98,9 +99,7 @@ public sealed partial class GhoulSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<GhoulComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<GhoulComponent, AttackAttemptEvent>(OnTryAttack);
         SubscribeLocalEvent<GhoulComponent, TakeGhostRoleEvent>(OnTakeGhostRole);
-        SubscribeLocalEvent<GhoulComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<GhoulComponent, MobStateChangedEvent>(OnMobStateChange);
     }
 
@@ -110,14 +109,16 @@ public sealed partial class GhoulSystem : EntitySystem
         {
             if (ent.Comp.BoundHeretic == null)
                 ent.Comp.BoundHeretic = look;
-            else break;
+            else
+                break;
         }
 
         GhoulifyEntity(ent);
     }
+
     private void OnTakeGhostRole(Entity<GhoulComponent> ent, ref TakeGhostRoleEvent args)
     {
-        var hasMind = _mind.TryGetMind(ent, out var mindId, out var mind);
+        var hasMind = HasComp<MindContainerComponent>(ent);
         if (!hasMind)
             return;
 
@@ -128,19 +129,6 @@ public sealed partial class GhoulSystem : EntitySystem
                 : Loc.GetString("heretic-ghoul-greeting-noname"),
             Color.MediumPurple,
             null);
-    }
-
-    private void OnTryAttack(Entity<GhoulComponent> ent, ref AttackAttemptEvent args)
-    {
-        // prevent attacking owner and other heretics
-        if (args.Target == ent.Owner
-        || HasComp<HereticComponent>(args.Target))
-            args.Cancel();
-    }
-
-    private void OnExamine(Entity<GhoulComponent> ent, ref ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString("examine-system-cant-see-entity"));
     }
 
     private void OnMobStateChange(Entity<GhoulComponent> ent, ref MobStateChangedEvent args)

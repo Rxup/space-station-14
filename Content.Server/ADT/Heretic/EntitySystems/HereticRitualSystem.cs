@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Content.Server.Heretic.Components;
 using Content.Shared.Heretic.Prototypes;
 using Content.Shared.Heretic;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Linq;
 using Robust.Shared.Serialization.Manager;
 using Content.Shared.Examine;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Heretic.EntitySystems;
 
@@ -22,12 +24,15 @@ public sealed partial class HereticRitualSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly HereticKnowledgeSystem _knowledge = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public SoundSpecifier RitualSuccessSound = new SoundPathSpecifier("/Audio/ADT/Heretic/castsummon.ogg");
 
     public HereticRitualPrototype GetRitual(ProtoId<HereticRitualPrototype>? id)
     {
-        if (id == null) throw new ArgumentNullException();
+        DebugTools.Assert(id != null, nameof(id));
+        if (id == null)
+            throw new ArgumentNullException();
         return _proto.Index<HereticRitualPrototype>(id);
     }
 
@@ -45,7 +50,7 @@ public sealed partial class HereticRitualSystem : EntitySystem
         if (!TryComp<HereticComponent>(performer, out var hereticComp))
             return false;
 
-        var rit = _series.CreateCopy((HereticRitualPrototype) GetRitual(ritualId).Clone(), notNullableOverride: true);
+        var rit = _series.CreateCopy((HereticRitualPrototype)GetRitual(ritualId).Clone(), notNullableOverride: true);
         var lookup = _lookup.GetEntitiesInRange(platform, .75f);
 
         var missingList = new List<string>();
@@ -53,9 +58,14 @@ public sealed partial class HereticRitualSystem : EntitySystem
 
         // check for all conditions
         // this is god awful but it is that it is
-        var behaviors = rit.CustomBehaviors ?? new();
-        var requiredNames = rit.RequiredEntityNames?.ToDictionary(e => e.Key, e => e.Value) ?? new();
-        var requiredTags = rit.RequiredTags?.ToDictionary(e => e.Key, e => e.Value) ?? new();
+        var behaviors = rit.CustomBehaviors
+                        ?? new();
+        var requiredNames = rit.RequiredEntityNames?
+                                .ToDictionary(e => e.Key, e => e.Value)
+                            ?? new();
+        var requiredTags = rit.RequiredTags?
+                               .ToDictionary(e => e.Key, e => e.Value)
+                           ?? new();
 
         foreach (var behavior in behaviors)
         {
@@ -87,45 +97,48 @@ public sealed partial class HereticRitualSystem : EntitySystem
             // check for matching tags
             foreach (var tag in requiredTags)
             {
-                if (!TryComp<TagComponent>(look, out var tags))
+                if (!_tag.HasTag(look, tag.Key))
                     continue;
-                var ltags = tags.Tags;
 
-                if (ltags.Contains(tag.Key))
-                {
-                    requiredTags[tag.Key] -= 1;
+                requiredTags[tag.Key] -= 1;
 
-                    // prevent deletion of more items than needed
-                    if (requiredTags[tag.Key] >= 0)
-                        toDelete.Add(look);
-                }
+                // prevent deletion of more items than needed
+                if (requiredTags[tag.Key] >= 0)
+                    toDelete.Add(look);
             }
         }
 
         // add missing names
         foreach (var name in requiredNames)
+        {
             if (name.Value > 0)
                 missingList.Add(name.Key);
+        }
 
         // add missing tags
         foreach (var tag in requiredTags)
+        {
             if (tag.Value > 0)
                 missingList.Add(tag.Key);
+        }
 
         // are we missing anything?
         if (missingList.Count > 0)
         {
             // we are! notify the performer about that!
             var sb = new StringBuilder();
-            for (int i = 0; i < missingList.Count; i++)
+            for (var i = 0; i < missingList.Count; i++)
             {
                 // makes a nice, list, of, missing, items.
                 if (i != missingList.Count - 1)
                     sb.Append($"{missingList[i]}, ");
-                else sb.Append(missingList[i]);
+                else
+                    sb.Append(missingList[i]);
             }
 
-            _popup.PopupEntity(Loc.GetString("heretic-ritual-fail-items", ("itemlist", sb.ToString())), platform, performer);
+            _popup.PopupEntity(Loc.GetString("heretic-ritual-fail-items", ("itemlist", sb.ToString())),
+                platform,
+                performer);
             return false;
         }
 
@@ -143,19 +156,25 @@ public sealed partial class HereticRitualSystem : EntitySystem
 
         // ya get some, ya lose some
         foreach (var ent in toDelete)
+        {
             QueueDel(ent);
+        }
 
         // add stuff
         var output = rit.Output ?? new();
         foreach (var ent in output.Keys)
-            for (int i = 0; i < output[ent]; i++)
+        {
+            for (var i = 0; i < output[ent]; i++)
+            {
                 Spawn(ent, Transform(platform).Coordinates);
+            }
+        }
 
         if (rit.OutputEvent != null)
             RaiseLocalEvent(performer, rit.OutputEvent, true);
 
         if (rit.OutputKnowledge != null)
-            _knowledge.AddKnowledge(performer, hereticComp, (ProtoId<HereticKnowledgePrototype>) rit.OutputKnowledge);
+            _knowledge.AddKnowledge(performer, hereticComp, (ProtoId<HereticKnowledgePrototype>)rit.OutputKnowledge);
 
         return true;
     }
@@ -196,12 +215,15 @@ public sealed partial class HereticRitualSystem : EntitySystem
         var ritualName = Loc.GetString(GetRitual(heretic.ChosenRitual).Name);
         _popup.PopupEntity(Loc.GetString("heretic-ritual-switch", ("name", ritualName)), args.User, args.User);
     }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string HereticRuneRitualAnimation = "HereticRuneRitualAnimation";
     private void OnInteractUsing(Entity<HereticRitualRuneComponent> ent, ref InteractUsingEvent args)
     {
         if (!TryComp<HereticComponent>(args.User, out var heretic))
             return;
 
-        if (!TryComp<MansusGraspComponent>(args.Used, out var grasp))
+        if (!HasComp<MansusGraspComponent>(args.Used))
             return;
 
         if (heretic.ChosenRitual == null)
@@ -210,11 +232,11 @@ public sealed partial class HereticRitualSystem : EntitySystem
             return;
         }
 
-        if (!TryDoRitual(args.User, ent, (ProtoId<HereticRitualPrototype>) heretic.ChosenRitual))
+        if (!TryDoRitual(args.User, ent, (ProtoId<HereticRitualPrototype>)heretic.ChosenRitual))
             return;
 
         _audio.PlayPvs(RitualSuccessSound, ent, AudioParams.Default.WithVolume(-3f));
-        Spawn("HereticRuneRitualAnimation", Transform(ent).Coordinates);
+        Spawn(HereticRuneRitualAnimation, Transform(ent).Coordinates);
     }
 
     private void OnExamine(Entity<HereticRitualRuneComponent> ent, ref ExaminedEvent args)

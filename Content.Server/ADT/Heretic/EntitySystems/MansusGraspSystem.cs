@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.EntityEffects.Effects.StatusEffects;
 using Content.Server.Heretic.Components;
@@ -22,6 +23,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Heretic.EntitySystems;
 
@@ -37,22 +39,23 @@ public sealed partial class MansusGraspSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
-    public void ApplyGraspEffect(EntityUid performer, EntityUid target, string path)
+    public void ApplyGraspEffect(EntityUid performer, EntityUid target, HereticPath path)
     {
         switch (path)
         {
-            case "Ash":
+            case HereticPath.Ash:
                 var timeSpan = TimeSpan.FromSeconds(5f);
                 _statusEffect.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect, timeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
                 break;
 
-            case "Blade":
+            case HereticPath.Blade:
                 // blade is basically an upgrade to the current grasp
                 _stamina.TakeStaminaDamage(target, 100f);
                 break;
 
-            case "Lock":
+            case HereticPath.Lock:
                 if (!TryComp<DoorComponent>(target, out var door))
                     break;
 
@@ -63,7 +66,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/ADT/Heretic/hereticknock.ogg"), target);
                 break;
 
-            case "Flesh":
+            case HereticPath.Flesh:
                 if (TryComp<MobStateComponent>(target, out var mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
                 {
                     var ghoul = EnsureComp<GhoulComponent>(target);
@@ -71,7 +74,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
                 }
                 break;
 
-            case "Rust":
+            case HereticPath.Rust:
                 if (!TryComp<DamageableComponent>(target, out var dmg))
                     break;
                 // hopefully damage only walls and cyborgs
@@ -79,7 +82,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
                     _damage.SetAllDamage(target, dmg, 50f);
                 break;
 
-            case "Void":
+            case HereticPath.Void:
                 if (TryComp<TemperatureComponent>(target, out var temp))
                     _temperature.ForceChangeTemperature(target, temp.CurrentTemperature - 20f, temp);
                 _statusEffect.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(8), false);
@@ -90,6 +93,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
         }
     }
 
+    private EntityQuery<HereticComponent> _hereticQuery;
     public override void Initialize()
     {
         base.Initialize();
@@ -98,6 +102,8 @@ public sealed partial class MansusGraspSystem : EntitySystem
 
         SubscribeLocalEvent<TagComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<HereticComponent, DrawRitualRuneDoAfterEvent>(OnRitualRuneDoAfter);
+
+        _hereticQuery = GetEntityQuery<HereticComponent>();
     }
 
     private void OnAfterInteract(Entity<MansusGraspComponent> ent, ref AfterInteractEvent args)
@@ -132,12 +138,12 @@ public sealed partial class MansusGraspSystem : EntitySystem
         if (hereticComp.CurrentPath != null)
         {
             if (hereticComp.PathStage >= 2)
-                ApplyGraspEffect(args.User, target, hereticComp.CurrentPath!);
+                ApplyGraspEffect(args.User, target, hereticComp.CurrentPath.Value);
 
             if (hereticComp.PathStage >= 4 && HasComp<StatusEffectsComponent>(target))
             {
                 var markComp = EnsureComp<HereticCombatMarkComponent>(target);
-                markComp.Path = hereticComp.CurrentPath;
+                markComp.Path = hereticComp.CurrentPath.Value;
             }
         }
 
@@ -145,16 +151,23 @@ public sealed partial class MansusGraspSystem : EntitySystem
         QueueDel(ent);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string HereticRuneRitualDrawAnimation = "HereticRuneRitualDrawAnimation";
+    [ValidatePrototypeId<TagPrototype>]
+    private const string Write = "Write";
+    [ValidatePrototypeId<TagPrototype>]
+    private const string Pen = "Pen";
     private void OnAfterInteract(Entity<TagComponent> ent, ref AfterInteractEvent args)
     {
+        if (!_hereticQuery.TryComp(ent, out var heretic))
+            return;
         var tags = ent.Comp.Tags;
 
         if (!args.CanReach
         || !args.ClickLocation.IsValid(EntityManager)
-        || !TryComp<HereticComponent>(args.User, out var heretic) // not a heretic - how???
         || !heretic.MansusGraspActive // no grasp - not special
         || HasComp<ActiveDoAfterComponent>(args.User) // prevent rune shittery
-        || !tags.Contains("Write") || !tags.Contains("Pen")) // not a pen
+        || !tags.Contains(Write) || !tags.Contains(Pen)) // not a pen
             return;
 
         // remove our rune if clicked
@@ -166,7 +179,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
         }
 
         // spawn our rune
-        var rune = Spawn("HereticRuneRitualDrawAnimation", args.ClickLocation);
+        var rune = Spawn(HereticRuneRitualDrawAnimation, args.ClickLocation);
         var dargs = new DoAfterArgs(EntityManager, args.User, 14f, new DrawRitualRuneDoAfterEvent(rune, args.ClickLocation), args.User)
         {
             BreakOnDamage = true,
@@ -176,12 +189,15 @@ public sealed partial class MansusGraspSystem : EntitySystem
         };
         _doAfter.TryStartDoAfter(dargs);
     }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string HereticRuneRitual = "HereticRuneRitual";
     private void OnRitualRuneDoAfter(Entity<HereticComponent> ent, ref DrawRitualRuneDoAfterEvent ev)
     {
         // delete the animation rune regardless
         QueueDel(ev.RitualRune);
 
         if (!ev.Cancelled)
-            Spawn("HereticRuneRitual", ev.Coords);
+            Spawn(HereticRuneRitual, ev.Coords);
     }
 }

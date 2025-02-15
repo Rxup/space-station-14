@@ -20,11 +20,26 @@ public sealed partial class MadnessMaskSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
+    private EntityQuery<HereticComponent> _hereticQuery;
+    private EntityQuery<GhoulComponent> _ghoulQuery;
+    private EntityQuery<StaminaComponent> _staminaQuery;
+    private HashSet<EntityUid> _maskEffectEntities = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _hereticQuery = GetEntityQuery<HereticComponent>();
+        _ghoulQuery = GetEntityQuery<GhoulComponent>();
+        _staminaQuery = GetEntityQuery<StaminaComponent>();
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        foreach (var mask in EntityQuery<MadnessMaskComponent>())
+        var query = EntityQueryEnumerator<MadnessMaskComponent>();
+
+        while (query.MoveNext(out var owner, out var mask))
         {
             mask.UpdateAccumulator += frameTime;
             if (mask.UpdateAccumulator < mask.UpdateTimer)
@@ -32,16 +47,16 @@ public sealed partial class MadnessMaskSystem : EntitySystem
 
             mask.UpdateAccumulator = 0;
 
-            var lookup = _lookup.GetEntitiesInRange(mask.Owner, 5f);
-            foreach (var look in lookup)
+            _maskEffectEntities.Clear();
+            _lookup.GetEntitiesInRange(owner, 5f, _maskEffectEntities);
+            foreach (var look in _maskEffectEntities)
             {
                 // heathens exclusive
-                if (HasComp<HereticComponent>(look)
-                || HasComp<GhoulComponent>(look))
+                if (_hereticQuery.HasComp(look) || _ghoulQuery.HasComp(look))
                     continue;
 
-                if (HasComp<StaminaComponent>(look) && _random.Prob(.4f))
-                    _stamina.TakeStaminaDamage(look, 5f, visual: false);
+                if (_random.Prob(.4f) && _staminaQuery.TryComp(look, out var staminaComp))
+                    _stamina.TakeStaminaDamage(look, 5f, staminaComp, visual: false);
 
                 if (_random.Prob(.4f))
                     _jitter.DoJitter(look, TimeSpan.FromSeconds(.5f), true, amplitude: 5, frequency: 10);

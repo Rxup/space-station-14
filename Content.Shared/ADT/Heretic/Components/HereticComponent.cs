@@ -27,7 +27,7 @@ public sealed partial class HereticComponent : Component
     /// <summary>
     ///     Indicates a path the heretic is on.
     /// </summary>
-    [DataField, AutoNetworkedField] public string? CurrentPath = null;
+    [DataField, AutoNetworkedField] public HereticPath? CurrentPath = null;
 
     /// <summary>
     ///     Indicates a stage of a path the heretic is on. 0 is no path, 10 is ascension
@@ -52,4 +52,14 @@ public sealed partial class HereticComponent : Component
     ///     Requires wearing focus, codex cicatrix, hood or anything else that allows him to do so.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)] public bool CanCastSpells = false;
+}
+
+public enum HereticPath
+{
+    Ash,
+    Blade,
+    Flesh,
+    Lock,
+    Rust,
+    Void
 }

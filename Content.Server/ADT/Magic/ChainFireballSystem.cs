@@ -4,6 +4,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Magic;
@@ -17,6 +18,7 @@ public sealed partial class ChainFireballSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
 
     public override void Initialize()
     {
@@ -43,11 +45,12 @@ public sealed partial class ChainFireballSystem : EntitySystem
         foreach (var look in lookup)
         {
             if (ignoredTargets.Contains(look)
-            || !HasComp<StatusEffectsComponent>(look)) // ignore non mobs whatsoever
+                || !HasComp<StatusEffectsComponent>(look)) // ignore non mobs whatsoever
                 continue;
 
             mobs.Add(look);
         }
+
         if (mobs.Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("heretic-ability-fail-notarget"), source, source);
@@ -56,13 +59,19 @@ public sealed partial class ChainFireballSystem : EntitySystem
 
         return Spawn(source, mobs[_random.Next(0, mobs.Count - 1)], ignoredTargets);
     }
+
     public bool Spawn(EntityUid source, EntityUid target, List<EntityUid> ignoredTargets)
     {
         return SpawnFireball(source, target, ignoredTargets);
     }
+
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string FireballChain = "FireballChain";
+
     private bool SpawnFireball(EntityUid uid, EntityUid target, List<EntityUid> ignoredTargets)
     {
-        var ball = Spawn("FireballChain", Transform(uid).Coordinates);
+        var ball = Spawn(FireballChain, Transform(uid).Coordinates);
         if (TryComp<ChainFireballComponent>(ball, out var sfc))
         {
             sfc.IgnoredTargets = sfc.IgnoredTargets.Count > 0 ? sfc.IgnoredTargets : ignoredTargets;
@@ -77,14 +86,19 @@ public sealed partial class ChainFireballSystem : EntitySystem
         var userVelocity = _physics.GetMapLinearVelocity(uid);
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
-        var fromMap = fromCoords.ToMap(EntityManager, _transform);
+        var fromMap = _transform.ToMapCoordinates(fromCoords);
+
+        if (!_mapSystem.TryGetMap(fromMap.MapId, out var spawnEntId))
+        {
+            return false;
+        }
+
         var spawnCoords = _mapMan.TryFindGridAt(fromMap, out var gridUid, out _)
-            ? fromCoords.WithEntityId(gridUid, EntityManager)
-            : new(_mapMan.GetMapEntityId(fromMap.MapId), fromMap.Position);
+            ? _transform.WithEntityId(fromCoords, gridUid)
+            : new(spawnEntId.Value, fromMap.Position);
 
-
-        var direction = toCoords.ToMapPos(EntityManager, _transform) -
-                        spawnCoords.ToMapPos(EntityManager, _transform);
+        var direction = _transform.ToMapCoordinates(toCoords).Position -
+                        _transform.ToMapCoordinates(spawnCoords).Position;
 
         _gun.ShootProjectile(ball, direction, userVelocity, uid, ball);
 

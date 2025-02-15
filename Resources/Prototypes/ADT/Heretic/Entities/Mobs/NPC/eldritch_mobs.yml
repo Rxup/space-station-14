@@ -65,7 +65,7 @@
   - type: IntrinsicRadioTransmitter
     channels:
     - Mansus
-  
+
 
 - type: entity
   parent: BaseMobGhoul
@@ -81,7 +81,7 @@
   - type: GhostRole
     name: ghostrole-stalker-name
     description: ghostrole-stalker-desc
-  - type: ActionsProvider
+  - type: ActionGrant
     actions:
     - ActionHereticJaunt
   # basically an EMP implant. don't feel like making 1 more emp action
@@ -116,7 +116,7 @@
   - type: GhostRole
     name: ghostrole-prophet-name
     description: ghostrole-prophet-desc
-  - type: ActionsProvider
+  - type: ActionGrant
     actions:
     - ActionHereticJaunt
     - ActionHereticMansusLink

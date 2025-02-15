@@ -28,7 +28,8 @@ public sealed partial class HereticRuleSystem : GameRuleSystem<HereticRuleCompon
     [Dependency] private readonly ObjectivesSystem _objective = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
 
-    public readonly SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/ADT/Heretic/Ambience/Antag/Heretic/heretic_gain.ogg");
+    public readonly SoundSpecifier BriefingSound =
+        new SoundPathSpecifier("/Audio/ADT/Heretic/Ambience/Antag/Heretic/heretic_gain.ogg");
 
     public readonly ProtoId<NpcFactionPrototype> HereticFactionId = "Heretic";
 
@@ -44,13 +45,18 @@ public sealed partial class HereticRuleSystem : GameRuleSystem<HereticRuleCompon
         SubscribeLocalEvent<HereticRuleComponent, ObjectivesTextPrependEvent>(OnTextPrepend);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string EldritchInfluence = "EldritchInfluence";
+
     private void OnAntagSelect(Entity<HereticRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         TryMakeHeretic(args.EntityUid, ent.Comp);
 
-        for (int i = 0; i < _rand.Next(6, 12); i++)
+        var antagCount = _rand.Next(6, 12);
+        for (var i = 0; i < antagCount; i++)
+        {
             if (TryFindRandomTile(out var _, out var _, out var _, out var coords))
-                Spawn("EldritchInfluence", coords);
+                Spawn(EldritchInfluence, coords);
+        }
     }
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -75,7 +81,10 @@ public sealed partial class HereticRuleSystem : GameRuleSystem<HereticRuleCompon
         // add store
         var store = EnsureComp<StoreComponent>(target);
         foreach (var category in rule.StoreCategories)
+        {
             store.Categories.Add(category);
+        }
+
         store.CurrencyWhitelist.Add(Currency);
         store.Balance.Add(Currency, 2);
 
@@ -90,12 +99,14 @@ public sealed partial class HereticRuleSystem : GameRuleSystem<HereticRuleCompon
         var mostKnowledge = 0f;
         var mostKnowledgeName = string.Empty;
 
-        foreach (var heretic in EntityQuery<HereticComponent>())
+        var query = EntityQueryEnumerator<HereticComponent>();
+
+        while (query.MoveNext(out var owner, out var heretic))
         {
-            if (!_mind.TryGetMind(heretic.Owner, out var mindId, out var mind))
+            if (!_mind.TryGetMind(owner, out var mindId, out var mind))
                 continue;
 
-            var name = _objective.GetTitle((mindId, mind), Name(heretic.Owner));
+            var name = _objective.GetTitle((mindId, mind), Name(owner));
             if (_mind.TryGetObjectiveComp<HereticKnowledgeConditionComponent>(mindId, out var objective, mind))
             {
                 if (objective.Researched > mostKnowledge)
@@ -103,11 +114,14 @@ public sealed partial class HereticRuleSystem : GameRuleSystem<HereticRuleCompon
                 mostKnowledgeName = name;
             }
 
-            var str = Loc.GetString($"roundend-prepend-heretic-ascension-{(heretic.Ascended ? "success" : "fail")}", ("name", name));
+            var str = Loc.GetString($"roundend-prepend-heretic-ascension-{(heretic.Ascended ? "success" : "fail")}",
+                ("name", name));
             sb.AppendLine(str);
         }
 
-        sb.AppendLine("\n" + Loc.GetString("roundend-prepend-heretic-knowledge-named", ("name", mostKnowledgeName), ("number", mostKnowledge)));
+        sb.AppendLine("\n" + Loc.GetString("roundend-prepend-heretic-knowledge-named",
+            ("name", mostKnowledgeName),
+            ("number", mostKnowledge)));
 
         args.Text = sb.ToString();
     }
