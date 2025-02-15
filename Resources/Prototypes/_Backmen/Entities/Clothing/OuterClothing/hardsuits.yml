@@ -474,7 +474,7 @@
   - type: HeldSpeedModifier
   - type: Unremoveable
 
- type: entity
+- type: entity
   parent: ClothingOuterHardsuitSecurity
   id: ClothingOuterHardsuitSecurityPilot
   name: security pilot hardsuit
