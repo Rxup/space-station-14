@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Timfa, plus edits by portfiend",
+    "copyright": "cart-chat made by kushbreth (discord). cart-cri made by Timfa, plus edits by portfiend",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cart-cri"
+        },
+        {
+            "name": "cart-chat"
+        }
+    ]
+}
