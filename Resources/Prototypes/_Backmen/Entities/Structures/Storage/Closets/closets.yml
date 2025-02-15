@@ -57,6 +57,7 @@
   id: LockerSecurityPilot
   parent: LockerSecurity
   name: security pilot locker
+  description: This is where the pilot keeps his belongings.
   components:
   - type: Sprite
     netsync: false

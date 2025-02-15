@@ -2,6 +2,7 @@
   parent: [LockerSecurityPilot, BaseRestrictedContraband]
   id: LockerSecurityPilotFilled
   name: security pilot locker
+  description: This is where the pilot keeps his belongings.
   suffix: Filled
   components:
   - type: StorageFill
