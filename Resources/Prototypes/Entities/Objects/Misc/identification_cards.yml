@@ -25,6 +25,7 @@
     - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
+  - type: NanoChatCard # Corvax-Next-PDAChat
 
 #IDs with layers
 
@@ -843,3 +844,5 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: NanoChatCard # Corvax-Next-PDAChat
+    notificationsMuted: true
