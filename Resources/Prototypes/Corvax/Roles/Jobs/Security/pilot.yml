@@ -36,7 +36,9 @@
     head: ClothingHeadCapSecurityPilot #backmen
     id: PilotPDA
     ears: ClothingHeadsetSecurity
+    gloves: ClothingHandsGlovesCombat #backmen
     pocket1: WeaponMultiphaseEnergyGun #backmen
+    pocket2: RadioSecurityPilotSupplyPod #backmen
   storage:
     back:
     - BoxSurvivalSecurity
