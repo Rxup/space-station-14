@@ -1,0 +1,15 @@
+diff a/Resources/Prototypes/Entities/Objects/Misc/identification_cards.yml b/Resources/Prototypes/Entities/Objects/Misc/identification_cards.yml	(rejected hunks)
+@@ -24,6 +24,7 @@
+     - WhitelistChameleon
+   - type: StealTarget
+     stealGroup: IDCard
++  - type: NanoChatCard # Corvax-Next-PDAChat
+ 
+ #IDs with layers
+ 
+@@ -828,3 +829,5 @@
+     - NuclearOperative
+     - SyndicateAgent
+     - Wizard
++  - type: NanoChatCard # Corvax-Next-PDAChat
++    notificationsMuted: true
