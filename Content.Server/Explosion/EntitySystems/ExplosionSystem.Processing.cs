@@ -477,24 +477,17 @@ public sealed partial class ExplosionSystem
                     var bodyParts = _body.GetBodyChildren(entity, body).ToList();
                     _robustRandom.Shuffle(bodyParts);
 
-                    var targetedBodyParts = _robustRandom.Next(2, 4);
-                    var damagedBodyParts = 0;
+                    var targeted = bodyParts.FirstOrDefault();
+                    _damageableSystem.TryChangeDamage(targeted.Id, damage, ignoreResistances: true);
+
+                    bodyParts.Remove(targeted);
+
+                    var rest = damage / 2;
                     foreach (var bodyPart in bodyParts)
                     {
-                        // The damage is disposed around all body
-                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / targetedBodyParts, ignoreResistances: true);
-                        bodyParts.Remove(bodyPart);
-
-                        damagedBodyParts++;
-                        if (targetedBodyParts >= damagedBodyParts)
-                            break;
-                    }
-
-                    /*foreach (var bodyPart in bodyParts)
-                    {
                         // Distribute the last damage on the other parts... for the cinematic effect :3
-                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count, ignoreResistances: true);
-                    }*/
+                        _damageableSystem.TryChangeDamage(bodyPart.Id, rest / bodyParts.Count, ignoreResistances: true);
+                    }
                 }
                 else
                 {

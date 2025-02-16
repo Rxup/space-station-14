@@ -91,18 +91,18 @@ public partial class ConsciousnessSystem
 
     private void OnPainRemoved(EntityUid uid, NerveSystemComponent component, PainModifierRemovedEvent args)
     {
-        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan))
+        if (!TryComp<OrganComponent>(args.NerveSystem, out var nerveSysOrgan) || !nerveSysOrgan.Body.HasValue)
             return;
 
         if (args.CurrentPain <= 0)
         {
-            RemoveConsciousnessModifer(nerveSysOrgan.Body!.Value,
+            RemoveConsciousnessModifer(nerveSysOrgan.Body.Value,
                 args.NerveSystem,
                 type: ConsciousnessModType.Pain);
         }
         else
         {
-            SetConsciousnessModifier(nerveSysOrgan.Body!.Value,
+            SetConsciousnessModifier(nerveSysOrgan.Body.Value,
                 args.NerveSystem,
                 -component.Pain,
                 type: ConsciousnessModType.Pain);
@@ -143,7 +143,7 @@ public partial class ConsciousnessSystem
 
         foreach (var painModifier in nerveSys.Value.Comp.Modifiers)
         {
-            _pain.TryRemovePainModifier(nerveSys.Value.Owner, painModifier.Key, nerveSys.Value.Comp);
+            _pain.TryRemovePainModifier(nerveSys.Value.Owner, painModifier.Key.Item1, painModifier.Key.Item2, nerveSys.Value.Comp);
         }
 
         foreach (var painMultiplier in nerveSys.Value.Comp.Multipliers)
@@ -155,7 +155,7 @@ public partial class ConsciousnessSystem
         {
             foreach (var painFeelsModifier in nerve.Value.PainFeelingModifiers)
             {
-                _pain.TryRemovePainFeelsModifier(painFeelsModifier.Key, nerve.Key, nerve.Value);
+                _pain.TryRemovePainFeelsModifier(painFeelsModifier.Key.Item1, painFeelsModifier.Key.Item2, nerve.Key, nerve.Value);
             }
         }
     }

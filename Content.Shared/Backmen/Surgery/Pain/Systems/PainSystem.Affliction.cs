@@ -15,6 +15,8 @@ public partial class PainSystem
         SubscribeLocalEvent<PainInflicterComponent, WoundSeverityPointChangedEvent>(OnPainChanged);
     }
 
+    public const string PainModifierIdentifier = "Pain";
+
     #region Event Handling
 
     private void OnPainAdded(EntityUid uid, PainInflicterComponent pain, ref WoundAddedEvent args)
@@ -37,9 +39,9 @@ public partial class PainSystem
             0,
             100);
 
-        if (!TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, pain.Pain))
+        if (!TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain))
         {
-            TryAddPainModifier(brainUid.Value, args.Component.HoldingWoundable, pain.Pain);
+            TryAddPainModifier(brainUid.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain);
         }
     }
 
@@ -77,7 +79,7 @@ public partial class PainSystem
             }
         }
 
-        TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, allPain);
+        TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain);
     }
 
     #endregion

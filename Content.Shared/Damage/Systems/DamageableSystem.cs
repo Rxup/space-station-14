@@ -224,6 +224,16 @@ namespace Content.Shared.Damage
                     return null;
 
                 var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleTargets);
+                if (targetPart == TargetBodyPart.All && damage.GetTotal() < 0)
+                {
+                    if (_wounds.TryGetWoundableWithMostDamage(
+                            uid.Value,
+                            out var damageWoundable,
+                            GetDamageGroupByType(damageDict.FirstOrDefault().Key)))
+                    {
+                        chosenTarget = (damageWoundable.Value.Owner, Comp<BodyPartComponent>(damageWoundable.Value.Owner));
+                    }
+                }
 
                 if (damageDict.Count == 0)
                     return null;

@@ -48,10 +48,12 @@ public partial class TraumaSystem
 
         if (!_pain.TryChangePainModifier(brainUid.Value,
                 component.BoneWoundable,
+                "BoneDamage",
                 args.SeverityDelta * _bonePainModifiers[component.BoneSeverity]))
         {
             _pain.TryAddPainModifier(brainUid.Value,
                 component.BoneWoundable,
+                "BoneDamage",
                 args.SeverityDelta * _bonePainModifiers[component.BoneSeverity]);
         }
     }

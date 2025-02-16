@@ -16,7 +16,7 @@ public sealed partial class NerveComponent : Component
     public FixedPoint2 PainFeels => 1f + PainFeelingModifiers.Values.Sum(modifier => (float) modifier.Change);
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public Dictionary<EntityUid, PainFeelingModifier> PainFeelingModifiers = new();
+    public Dictionary<(EntityUid, string), PainFeelingModifier> PainFeelingModifiers = new();
 
     /// <summary>
     /// Nerve system, to which this nerve is parented.

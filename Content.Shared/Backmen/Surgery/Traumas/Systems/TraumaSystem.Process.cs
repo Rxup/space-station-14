@@ -113,7 +113,7 @@ public partial class TraumaSystem
         // literally dismemberment chance, but lower by default
         var chance =
             FixedPoint2.Clamp(
-                woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity))
+                woundable.WoundableIntegrity / woundable.IntegrityCap
                 * NerveDamageChanceMultiplier + Comp<WoundComponent>(woundInflicter).TraumasChances[TraumaType.NerveDamage],
                 0,
                 1);
@@ -143,7 +143,7 @@ public partial class TraumaSystem
         // random-y but not so random-y like bones. Heavily depends on woundable state and damage
         var chance =
             FixedPoint2.Clamp(
-                woundable.WoundableIntegrity / (woundable.IntegrityCap - _wound.ApplySeverityModifiers(target, severity))
+                woundable.WoundableIntegrity / woundable.IntegrityCap
                 * DismembermentChanceMultiplier - deduction + Comp<WoundComponent>(woundInflicter).TraumasChances[TraumaType.Dismemberment],
                 0,
                 1);
@@ -166,7 +166,7 @@ public partial class TraumaSystem
 
             var bodyPart = Comp<BodyPartComponent>(target);
             if (bodyPart.Body.HasValue && _pain.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
-                _pain.TryAddPainModifier(nerveSys.Value, target, 20f, time: TimeSpan.FromSeconds(12f));
+                _pain.TryAddPainModifier(nerveSys.Value, target, "BoneDamageImminent", 20f, time: TimeSpan.FromSeconds(12f));
 
             _sawmill.Info(traumaApplied
                 ? $"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: Bone damage."
@@ -186,9 +186,17 @@ public partial class TraumaSystem
                         2f,
                         time: TimeSpan.FromSeconds(NerveDamageMultiplierTime));
                     _pain.TryAddPainFeelsModifier(nerveSys.Value,
+                        "NerveDamage",
                         target,
-                        -0.4f,
-                        time: TimeSpan.FromSeconds(NerveDamageMultiplierTime));
+                        -0.4f);
+
+                    foreach (var child in _wound.GetAllWoundableChildren(target))
+                    {
+                        _pain.TryAddPainFeelsModifier(nerveSys.Value,
+                            "NerveDamage",
+                            child.Item1,
+                            -0.4f);
+                    }
 
                     _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: NerveDamage.");
                 }
@@ -211,7 +219,7 @@ public partial class TraumaSystem
                 _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
                 var bodyPart = Comp<BodyPartComponent>(target);
                 if (bodyPart.Body.HasValue && _pain.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
-                    _pain.TryAddPainModifier(nerveSys.Value, target, 20f, time: TimeSpan.FromSeconds(12f));
+                    _pain.TryAddPainModifier(nerveSys.Value, target, "Dismemberment", 20f, time: TimeSpan.FromSeconds(12f));
 
                 _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
             }

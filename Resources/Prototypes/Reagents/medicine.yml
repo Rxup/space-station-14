@@ -137,6 +137,14 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:SuppressPain
+        amount: 1.2
+        time: 30 # it REFRESHES. Not accumulates
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        amount: 0.04
       - !type:HealthChange
         damage:
           groups:
@@ -1161,7 +1169,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
-          
+
 - type: reagent
   id: Opporozidone #Name based of an altered version of the startreck chem "Opporozine"
   name: reagent-name-opporozidone

@@ -27,7 +27,7 @@ public sealed partial class NerveSystemComponent : Component
 
     // Don't add manually!! Use built-in functions.
     public Dictionary<string, PainMultiplier> Multipliers = new();
-    public Dictionary<EntityUid, PainModifier> Modifiers = new();
+    public Dictionary<(EntityUid, string), PainModifier> Modifiers = new();
 
     public Dictionary<EntityUid, AudioComponent> PlayedPainSounds = new();
     public Dictionary<EntityUid, (SoundSpecifier, AudioParams?, TimeSpan)> PainSoundsToPlay = new();

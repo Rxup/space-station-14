@@ -665,7 +665,8 @@ public partial class WoundSystem
         // Ignore scars for woundable integrity.. Unless you want to confuse people with minor woundable state
         var damage = component.Wounds!.ContainedEntities.Where(wound => !Comp<WoundComponent>(wound).IsScar)
             .Aggregate((FixedPoint2) 0,
-            (current, wound) => current + Comp<WoundComponent>(wound).WoundSeverityPoint);
+            (current, wound)
+                => current + Comp<WoundComponent>(wound).WoundSeverityPoint * Comp<WoundComponent>(wound).WoundableIntegrityMultiplier);
 
         var newIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
         if (newIntegrity == component.WoundableIntegrity)

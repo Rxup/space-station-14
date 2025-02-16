@@ -32,5 +32,5 @@ public sealed partial class BleedInflicterComponent : Component
     public FixedPoint2 Scaling = 1;
 
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public FixedPoint2 ScalingLimit = 2.4;
+    public FixedPoint2 ScalingLimit = 1.4;
 }

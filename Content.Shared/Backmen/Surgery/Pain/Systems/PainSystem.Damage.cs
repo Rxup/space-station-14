@@ -34,20 +34,22 @@ public partial class PainSystem
     /// </summary>
     /// <param name="uid">Uid of the nerveSystem component owner.</param>
     /// <param name="nerveUid">Nerve uid.</param>
+    /// <param name="identifier">Identifier of the said modifier.</param>
     /// <param name="change">How many pain to set.</param>
     /// <param name="nerveSys">NerveSystemComponent.</param>
+    /// <param name="time">How long will the modifier last?</param>
     /// <returns>Returns true, if PAIN QUOTA WAS COLLECTED.</returns>
-    public bool TryChangePainModifier(EntityUid uid, EntityUid nerveUid, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
+    public bool TryChangePainModifier(EntityUid uid, EntityUid nerveUid, string identifier, FixedPoint2 change, NerveSystemComponent? nerveSys = null, TimeSpan? time = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false))
             return false;
 
-        if (!nerveSys.Modifiers.TryGetValue(nerveUid, out var modifier))
+        if (!nerveSys.Modifiers.TryGetValue((nerveUid, identifier), out var modifier))
             return false;
 
         var modifierToSet =
-            modifier with {Change = change};
-        nerveSys.Modifiers[nerveUid] = modifierToSet;
+            modifier with {Change = change, Time = time ?? modifier.Time};
+        nerveSys.Modifiers[(nerveUid, identifier)] = modifierToSet;
 
         var ev = new PainModifierChangedEvent(uid, nerveUid, modifier.Change);
         RaiseLocalEvent(uid, ref ev);
@@ -62,20 +64,23 @@ public partial class PainSystem
     /// Gets a copy of pain modifier.
     /// </summary>
     /// <param name="uid">Uid of the nerveSystem component owner.</param>
-    /// <param name="nerveUid">Nerve uid, used to seek for modifier..</param>
+    /// <param name="nerveUid">Nerve uid, used to seek for modifier.</param>
+    /// <param name="identifier">Identifier of the said modifier.</param>
     /// <param name="modifier">Modifier copy acquired.</param>
     /// <param name="nerveSys">NerveSystemComponent.</param>
     /// <returns>Returns true, if the modifier was acquired.</returns>
-    public bool TryGetPainModifier(EntityUid uid, EntityUid nerveUid, out PainModifier? modifier, NerveSystemComponent? nerveSys = null)
+    public bool TryGetPainModifier(
+        EntityUid uid,
+        EntityUid nerveUid,
+        string identifier,
+        [NotNullWhen(true)] out PainModifier? modifier,
+        NerveSystemComponent? nerveSys = null)
     {
         modifier = null;
-        if (_net.IsClient)
-            return false;
-
         if (!Resolve(uid, ref nerveSys, false))
             return false;
 
-        if (!nerveSys.Modifiers.TryGetValue(nerveUid, out var data))
+        if (!nerveSys.Modifiers.TryGetValue((nerveUid, identifier), out var data))
             return false;
 
         modifier = data;
@@ -87,16 +92,18 @@ public partial class PainSystem
     /// </summary>
     /// <param name="uid">Uid of the nerveSystem owner.</param>
     /// <param name="nerveUid">Uid of the nerve, to which damage was applied.</param>
+    /// <param name="identifier">Identifier of the said modifier.</param>
     /// <param name="change">Number of pain to add.</param>
     /// <param name="nerveSys">NerveSystem component.</param>
+    /// <param name="time">Timespan of the modifier's existence</param>
     /// <returns>Returns true, if the PAIN WAS APPLIED.</returns>
-    public bool TryAddPainModifier(EntityUid uid, EntityUid nerveUid, FixedPoint2 change, NerveSystemComponent? nerveSys = null, TimeSpan? time = null)
+    public bool TryAddPainModifier(EntityUid uid, EntityUid nerveUid, string identifier, FixedPoint2 change, NerveSystemComponent? nerveSys = null, TimeSpan? time = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false))
             return false;
 
-        var modifier = new PainModifier(change, MetaData(nerveUid).EntityPrototype!.ID, time);
-        if (!nerveSys.Modifiers.TryAdd(nerveUid, modifier))
+        var modifier = new PainModifier(change, MetaData(nerveUid).EntityPrototype!.ID, _timing.CurTime + time);
+        if (!nerveSys.Modifiers.TryAdd((nerveUid, identifier), modifier))
             return false;
 
         var ev = new PainModifierAddedEvent(uid, nerveUid, change);
@@ -112,18 +119,19 @@ public partial class PainSystem
     /// Adds a pain feeling modifier to the needed nerve, uses modifiers.
     /// </summary>
     /// <param name="effectOwner">Uid of the owner of this effect.</param>
+    /// <param name="identifier">The string identifier of the modifier to add</param>
     /// <param name="nerveUid">Uid of the nerve, to which damage is being applied.</param>
     /// <param name="change">Number of pain feeling to add / subtract.</param>
     /// <param name="nerve">The nerve component of the nerve entity.</param>
     /// <param name="time">The TimeSpan of the effect; When runs out, the effect will be removed.</param>
     /// <returns>Returns true, if the pain feeling modifier was added.</returns>
-    public bool TryAddPainFeelsModifier(EntityUid effectOwner, EntityUid nerveUid, FixedPoint2 change, NerveComponent? nerve = null, TimeSpan? time = null)
+    public bool TryAddPainFeelsModifier(EntityUid effectOwner, string identifier, EntityUid nerveUid, FixedPoint2 change, NerveComponent? nerve = null, TimeSpan? time = null)
     {
-        if (!Resolve(nerveUid, ref nerve, false) || _net.IsClient)
+        if (!Resolve(nerveUid, ref nerve, false))
             return false;
 
-        var modifier = new PainFeelingModifier(change, time);
-        if (!nerve.PainFeelingModifiers.TryAdd(effectOwner, modifier))
+        var modifier = new PainFeelingModifier(change, _timing.CurTime + time);
+        if (!nerve.PainFeelingModifiers.TryAdd((effectOwner, identifier), modifier))
             return false;
 
         Dirty(nerveUid, nerve);
@@ -131,20 +139,58 @@ public partial class PainSystem
     }
 
     /// <summary>
+    /// Tries to get a pain feeling modifier.
+    /// </summary>
+    /// <param name="nerveEnt">Uid of the nerve from which you get the modifier.</param>
+    /// <param name="effectOwner">Uid of the effect owner.</param>
+    /// <param name="identifier">String identifier of the modifier.</param>
+    /// <param name="modifier">The modifier you wanted.</param>
+    /// <param name="nerve">The nerve component of the nerve entity.</param>
+    /// <returns>Returns true, if the pain feeling modifier was added.</returns>
+    public bool TryGetPainFeelsModifier(EntityUid nerveEnt,
+        EntityUid effectOwner,
+        string identifier,
+        [NotNullWhen(true)] out PainFeelingModifier? modifier,
+        NerveComponent? nerve = null)
+    {
+        modifier = null;
+        if (!Resolve(nerveEnt, ref nerve, false))
+            return false;
+
+        if (!nerve.PainFeelingModifiers.TryGetValue((effectOwner, identifier), out var data))
+            return false;
+
+        modifier = data;
+        return true;
+    }
+
+    /// <summary>
     /// Changes a pain feeling modifier of a needed nerve, uses modifiers.
     /// </summary>
     /// <param name="effectOwner">Uid of the owner of this effect.</param>
+    /// <param name="identifier">The string identifier of this.. yeah</param>
     /// <param name="nerveUid">Uid of the nerve, to which damage is being applied.</param>
     /// <param name="change">Number of pain feeling to add / subtract.</param>
     /// <param name="nerve">The nerve component of the nerve entity.</param>
     /// <param name="time">The TimeSpan of the effect; When runs out, the effect will be removed.</param>
     /// <returns>Returns true, if the pain feeling modifier was changed.</returns>
-    public bool TryChangePainFeelsModifier(EntityUid effectOwner, EntityUid nerveUid, FixedPoint2 change, NerveComponent? nerve = null, TimeSpan? time = null)
+    public bool TryChangePainFeelsModifier(
+        EntityUid effectOwner,
+        string identifier,
+        EntityUid nerveUid,
+        FixedPoint2 change,
+        NerveComponent? nerve = null,
+        TimeSpan? time = null)
     {
-        if (!Resolve(nerveUid, ref nerve, false) || _net.IsClient)
+        if (!Resolve(nerveUid, ref nerve, false))
             return false;
 
-        nerve.PainFeelingModifiers[effectOwner] = new PainFeelingModifier(Change: change, Time: time);
+        if (!nerve.PainFeelingModifiers.TryGetValue((effectOwner, identifier), out var modifier))
+            return false;
+
+        var modifierToSet =
+            new PainFeelingModifier(Change: change, Time: time ?? modifier.Time);
+        nerve.PainFeelingModifiers[(nerveUid, identifier)] = modifierToSet;
 
         Dirty(nerveUid, nerve);
         return true;
@@ -154,16 +200,17 @@ public partial class PainSystem
     /// Removes a pain feeling modifier of a needed nerve, uses modifiers.
     /// </summary>
     /// <param name="effectOwner">Uid of the owner of this effect.</param>
+    /// <param name="identifier">The identifier of the said modifier.</param>
     /// <param name="nerveUid">Uid of the nerve, to which damage is being applied.</param>
     /// <param name="nerve">The nerve component of the nerve entity.</param>
     /// <returns>Returns true, if the pain feeling modifier was removed.</returns>
-    public bool TryRemovePainFeelsModifier(EntityUid effectOwner, EntityUid nerveUid, NerveComponent? nerve = null)
+    public bool TryRemovePainFeelsModifier(EntityUid effectOwner, string identifier, EntityUid nerveUid, NerveComponent? nerve = null)
     {
-        if (!Resolve(nerveUid, ref nerve, false) || _net.IsClient)
+        if (!Resolve(nerveUid, ref nerve, false))
             return false;
 
         Dirty(nerveUid, nerve);
-        return nerve.PainFeelingModifiers.Remove(effectOwner);
+        return nerve.PainFeelingModifiers.Remove((effectOwner, identifier));
     }
 
     /// <summary>
@@ -171,14 +218,15 @@ public partial class PainSystem
     /// </summary>
     /// <param name="uid">NerveSystemComponent owner.</param>
     /// <param name="nerveUid">Nerve Uid, to which pain is applied.</param>
+    /// <param name="identifier">Identifier of the said pain modifier.</param>
     /// <param name="nerveSys">NerveSystemComponent.</param>
     /// <returns>Returns true, if the pain modifier was removed.</returns>
-    public bool TryRemovePainModifier(EntityUid uid, EntityUid nerveUid, NerveSystemComponent? nerveSys = null)
+    public bool TryRemovePainModifier(EntityUid uid, EntityUid nerveUid, string identifier, NerveSystemComponent? nerveSys = null)
     {
         if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
             return false;
 
-        if (!nerveSys.Modifiers.Remove(nerveUid))
+        if (!nerveSys.Modifiers.Remove((nerveUid, identifier)))
             return false;
 
         var ev = new PainModifierRemovedEvent(uid, nerveUid, nerveSys.Pain);
@@ -351,7 +399,7 @@ public partial class PainSystem
             foreach (var (key, value) in nerveSys.Modifiers)
             {
                 if (_timing.CurTime > value.Time)
-                    TryRemovePainModifier(nerveSysEnt, key, nerveSys);
+                    TryRemovePainModifier(nerveSysEnt, key.Item1, key.Item2, nerveSys);
             }
 
             foreach (var (key, value) in nerveSys.Multipliers)
@@ -363,10 +411,10 @@ public partial class PainSystem
             // I hate myself.
             foreach (var (ent, nerve) in nerveSys.Nerves)
             {
-                foreach (var (key, value) in nerve.PainFeelingModifiers)
+                foreach (var (key, value) in nerve.PainFeelingModifiers.ToList())
                 {
                     if (_timing.CurTime > value.Time)
-                        TryRemovePainFeelsModifier(key, ent, nerve);
+                        TryRemovePainFeelsModifier(key.Item1, key.Item2, ent, nerve);
                 }
             }
         }
@@ -381,7 +429,7 @@ public partial class PainSystem
             FixedPoint2.Clamp(
                 nerveSys.Modifiers.Aggregate((FixedPoint2) 0,
                     (current, modifier) =>
-                    current + ApplyModifiersToPain(modifier.Key, modifier.Value.Change, nerveSys)),
+                    current + ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys)),
                 0,
                 nerveSys.PainCap);
 

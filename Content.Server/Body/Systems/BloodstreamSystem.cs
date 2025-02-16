@@ -48,8 +48,8 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly PainSystem _pain = default!;
 
     // balanced, trust me
-    private const float BleedsSeverityTrade = 0.16f;
-    private const float BleedsScalingTimeDefault = 4f;
+    private const float BleedsSeverityTrade = 0.15f;
+    private const float BleedsScalingTimeDefault = 7f;
 
     public override void Initialize()
     {

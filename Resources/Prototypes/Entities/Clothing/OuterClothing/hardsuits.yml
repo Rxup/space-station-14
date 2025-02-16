@@ -67,13 +67,13 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.6
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.3
         Radiation: 0.4
         Caustic: 0.4
-        Stun: 0.7 # not sigma
+        Stun: 0.4 # not sigma
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
@@ -107,13 +107,14 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Shock: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.45
+        Shock: 0.5
         Caustic: 0.5
         Radiation: 0.2
-        Stun: 0.7
+        Stun: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
@@ -184,12 +185,13 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.5
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.5
         Radiation: 0.3
         Caustic: 0.7
-        Stun: 0.7
+        Stun: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -223,9 +225,9 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
         Heat: 0.3
         Radiation: 0.1
   - type: ExplosionResistance
@@ -251,7 +253,7 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.3
   - type: Armor
     coverage:
     - Chest
@@ -262,11 +264,12 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.5
         Caustic: 0.7
-        Stun: 0.5 # I hate this really much
+        Stun: 0.3 # I hate this really much
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -298,12 +301,12 @@
     - Foot
     modifiers:
       coefficients: # backmen brigmedic's hardsuit rebalance
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.5
         Caustic: 0.5
-        Stun: 0.7
+        Stun: 0.2
   - type: ClothingSpeedModifier # backmen brigmedic's hardsuit rebalance
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -337,9 +340,10 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.5
         Caustic: 0.7
         Stun: 0.5
   - type: ClothingSpeedModifier
@@ -375,13 +379,13 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.5
-        Heat: 0.5
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.3
         Radiation: 0.6
         Caustic: 0.6
-        Stun: 0.5
+        Stun: 0.1
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -417,9 +421,9 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
         Heat: 0.4
         Radiation: 0.0
         Caustic: 0.7
@@ -442,6 +446,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -455,10 +461,10 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.4
         Caustic: 0 # it literally gives no other protections. so
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -534,7 +540,7 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.2
   - type: Armor
     coverage:
     - Chest
@@ -545,12 +551,12 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
         Radiation: 0.5
         Caustic: 0.5
-        Stun: 0.5
+        Stun: 0.2
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -584,12 +590,12 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.8
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.5
         Radiation: 0.5
         Caustic: 0.5
-        Stun: 0.57
+        Stun: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.9
@@ -615,7 +621,7 @@
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.2
   - type: Armor
     coverage:
     - Chest
@@ -626,10 +632,10 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
         Stun: 0.2
@@ -694,10 +700,10 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        Heat: 0.2
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.3
         Radiation: 0.01
         Caustic: 0.5
         Stun: 0.2
@@ -725,7 +731,7 @@
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.2
   - type: Armor
     coverage:
     - Chest
@@ -738,10 +744,10 @@
       coefficients:
         Blunt: 0.3
         Slash: 0.3
-        Piercing: 0.4
+        Piercing: 0.3
         Heat: 0.5
-        Radiation: 0.25
-        Caustic: 0.4
+        Radiation: 0.5
+        Caustic: 0.5
         Stun: 0.2
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -765,7 +771,7 @@
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.3
+    damageCoefficient: 0.05
   - type: Armor
     coverage:
     - Chest
@@ -935,10 +941,10 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
-        Heat: 0.4
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.5
+        Heat: 0.3
         Caustic: 0.5
         Stun: 0.4
   - type: ClothingSpeedModifier
@@ -1058,7 +1064,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.0
   - type: FireProtection
     reduction: 0.8
   - type: Armor
@@ -1105,7 +1111,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.3
   - type: Armor
     coverage:
     - Chest
@@ -1116,9 +1122,9 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.5
         Heat: 0.05
         Cold: 0.05
         Shock: 0.05
