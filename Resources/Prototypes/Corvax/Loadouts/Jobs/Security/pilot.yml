@@ -2,7 +2,7 @@
 - type: loadout
   id: SecurityPilotHelmet
   equipment:
-    head: ClothingHeadHelmetHardsuitSecurityPilot
+    head: ClothingHeadSecurityPilotHelmet
     
 - type: loadout
   id: SecurityPilotCap
