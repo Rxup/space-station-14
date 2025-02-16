@@ -23,3 +23,16 @@
     layers:
       - state: p03
         shader: unshaded
+
+- type: ghostTheme
+  id: Astronaut
+  name: sponsor-win-manager-ghost-astronaut
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/astronaut.rsi
+    layers:
+      - state: astronaut
+        shader: unshaded

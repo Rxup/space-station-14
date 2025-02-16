@@ -2,7 +2,7 @@
 # Управление
 
 <Box>Вы можете в любой момент изменить привязки клавиш здесь:</Box>
-<Box Orientation="Vertical"><CommandButton Text="ui-options-tab-controls" Command="options 1"/></Box>
+<Box Orientation="Vertical"><CommandButton Text="ui-options-tab-controls" Command="options 2"/></Box>
 
 ## Перемещение
 Вы можете перемещаться по игровому миру с помощью [color=yellow][bold][keybind="MoveUp"][keybind="MoveLeft"][keybind="MoveDown"][keybind="MoveRight"][/bold][/color].
