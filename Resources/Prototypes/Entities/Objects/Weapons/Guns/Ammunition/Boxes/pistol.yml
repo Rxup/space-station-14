@@ -29,6 +29,7 @@
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistol
   name: ammunition box (.35 auto)
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
@@ -43,6 +44,7 @@
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolPractice
   name: ammunition box (.35 auto practice)
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -58,6 +60,7 @@
   id: MagazineBoxPistolIncendiary
   parent: BaseMagazineBoxPistol
   name: ammunition box (.35 auto incendiary)
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
@@ -73,6 +76,7 @@
   id: MagazineBoxPistolUranium
   parent: BaseMagazineBoxPistol
   name: ammunition box (.35 auto uranium)
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium

@@ -71,6 +71,7 @@ ent-BorgModuleHarvesting = модуль киборга: урожай
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleClowning = модуль киборга: клоун
     .desc = { ent-BaseBorgModule.desc }
+# Corvax-HiddenDesc-Start
 ent-BorgModuleSyndicateWeapon = кроваво-красный модуль киборга
     .desc = { ent-BaseBorgModule.desc }
     .suffix = оружейный модуль киборга
@@ -86,3 +87,4 @@ ent-BorgModuleL6C = кроваво-красный модуль киборга
 ent-BorgModuleMartyr = кроваво-красный модуль киборга
     .desc = { ent-BaseBorgModule.desc }
     .suffix = модуль киборга Мученик
+# Corvax-HiddenDesc-End

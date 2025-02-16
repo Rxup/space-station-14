@@ -2,3 +2,10 @@
 
 # Ping for all PRs
 * @Rxup
+
+# Head Mapper
+/Resources/Maps/** @Roudenn
+
+# Head Spriter
+*.png @CatBackGround
+

@@ -41,7 +41,7 @@ public sealed class OracleSystem : EntitySystem
     [ValidatePrototypeId<ReagentPrototype>]
     public readonly IReadOnlyList<ProtoId<ReagentPrototype>> RewardReagents = new ProtoId<ReagentPrototype>[]
     {
-        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor", "FluorosulfuricAcid"
+        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor", "SlermQueenPlus"
     };
 
     [ViewVariables(VVAccess.ReadWrite)]

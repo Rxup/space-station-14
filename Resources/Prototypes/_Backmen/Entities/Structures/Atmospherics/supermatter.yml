@@ -35,7 +35,7 @@
   components:
   - type: GasVentScrubber
     wideNet: true # This will also filter a tile with supermatter, pretty useful.
-    transferRate: 40 # Not too much so pressure will be OK
+    transferRate: 50 # Not too much so pressure will be OK
     filterGases: # Filter all gases at once to filter out hot nitrogen for economy
     - Nitrogen
     - Oxygen
@@ -62,7 +62,7 @@
 - type: alarmThreshold
   id: supermatterPressure
   upperBound: !type:AlarmThresholdSetting
-    threshold: 700 # High pressure is either made with a lot of warm gas, or a lot of buring plasma, both is bad for supa mata.
+    threshold: 10000 # High pressure is either made with a lot of warm gas, or a lot of buring plasma, both is bad for supa mata.
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.5
 
@@ -83,13 +83,13 @@
 - type: alarmThreshold
   id: supermatterPlasma
   upperBound: !type:AlarmThresholdSetting
-    threshold: 0.01 # 1%, lightable beyond this concentration
+    threshold: 0.03 # 3%, when it happens it's probably over
   upperWarnAround: !type:AlarmThresholdSetting
-    threshold: 0.5 # 0.5%
+    threshold: 0.33 # 1%, could happen in normal enviroment if it's more active than usual, so better to warn.
 
 - type: alarmThreshold
   id: supermatterCO2
   upperBound: !type:AlarmThresholdSetting
-    threshold: 0.5 # You can put in carbon oxide safely until 50% to make supermatter more active.
+    threshold: 0.5 # You can put in carbon oxide safely until 50% to make supermatter less active.
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.6

@@ -125,12 +125,10 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                 msg = args.LanguageObfuscatedChatMsg;
 
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+            _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
         }
 
         // end-backmen: language
-
-
-        _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)

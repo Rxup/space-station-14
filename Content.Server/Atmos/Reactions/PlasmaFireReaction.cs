@@ -11,11 +11,17 @@ namespace Content.Server.Atmos.Reactions
     {
         public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
         {
+            //ADT-Gas-Start
+            var initialHyperNoblium = mixture.GetMoles(Gas.HyperNoblium);
+            if (initialHyperNoblium >= 5.0f && mixture.Temperature > 20f)
+                return ReactionResult.NoReaction;
+            //ADT-Gas-End
+
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
             var location = holder as TileAtmosphere;
-            mixture.ReactionResults[GasReaction.Fire] = 0;
+            mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
 
             // More plasma released at higher temperatures.
             var temperatureScale = 0f;
@@ -60,7 +66,7 @@ namespace Content.Server.Atmos.Reactions
 
                     energyReleased += Atmospherics.FirePlasmaEnergyReleased * plasmaBurnRate;
                     energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
-                    mixture.ReactionResults[GasReaction.Fire] += plasmaBurnRate * (1 + oxygenBurnRate);
+                    mixture.ReactionResults[(byte)GasReaction.Fire] += plasmaBurnRate * (1 + oxygenBurnRate);
                 }
             }
 
@@ -80,7 +86,7 @@ namespace Content.Server.Atmos.Reactions
                 }
             }
 
-            return mixture.ReactionResults[GasReaction.Fire] != 0 ? ReactionResult.Reacting : ReactionResult.NoReaction;
+            return mixture.ReactionResults[(byte)GasReaction.Fire] != 0 ? ReactionResult.Reacting : ReactionResult.NoReaction;
         }
     }
 }

@@ -127,7 +127,7 @@
     - 2
   # possible xeno polymorph
   - !type:DiseasePolymorph
-    probability: 0.050
+    probability: 0.030
     polymorphId: XenoDroneMorph
     polymorphMessage: disease-xeno-polymorph
     polymorphSound:
@@ -142,3 +142,84 @@
       path: /Audio/Animals/space_dragon_roar.ogg
     stages:
     - 2
+
+- type: disease
+  id: XenoMaidVirus
+  name: disease-proto-xeno-slerm
+  cureResist: 1
+  infectious: false
+  stages:
+  - 0
+  - 120
+  - 600
+  effects:
+  # compulsion pop ups
+  - !type:DiseasePopUp
+    probability: 0.015
+    type: Pvs
+    message: disease-seizures-compulsion
+    visualType: Medium
+    stages:
+    - 0
+    - 1
+    - 2
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: disease-blood-compulsion
+    visualType: Medium
+    stages:
+    - 0
+    - 1
+    - 2
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: disease-eaten-inside
+    visualType: Medium
+  # Seizures
+  - !type:DiseaseAdjustReagent
+    probability: 0.025
+    reagent:
+      ReagentId: Licoxide
+    amount: 0.5
+  # accent chance when speaking
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.1
+    key: Stutter
+    component: XenoAccent
+    stages:
+    - 1
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.4
+    key: Stutter
+    component: XenoAccent
+    stages:
+    - 2
+  # cellular damage, from being eaten on the inside
+  - !type:DiseaseHealthChange
+    probability: 0.025
+    damage:
+      types:
+        Genetic: 0.1
+    stages:
+    - 2
+  - !type:DiseasePolymorph
+    probability: 0.07
+    polymorphId: XenoMaidMorph # >w<
+    polymorphMessage: disease-xeno-polymorph
+    polymorphSound:
+      path: /Audio/Animals/cat_meow.ogg
+    stages:
+    - 2
+  - !type:DiseasePolymorph
+    probability: 0.001
+    polymorphId: XenoQueenMorph # >w<
+    polymorphMessage: disease-xeno-polymorph
+    polymorphSound:
+      path: /Audio/Animals/cat_meow.ogg
+    stages:
+    - 2
+  cures:
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Diphenylmethylamine # the hardest-to-get med known to mankind... good luck
+    min: 5

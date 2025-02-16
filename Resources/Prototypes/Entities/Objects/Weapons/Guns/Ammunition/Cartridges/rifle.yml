@@ -22,6 +22,7 @@
   id: CartridgeRifle
   name: cartridge (.20 rifle)
   parent: BaseCartridgeRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletRifle
@@ -30,6 +31,7 @@
   id: CartridgeRiflePractice
   name: cartridge (.20 rifle practice)
   parent: BaseCartridgeRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletRiflePractice
@@ -45,6 +47,7 @@
   id: CartridgeRifleIncendiary
   name: cartridge (.20 rifle incendiary)
   parent: BaseCartridgeRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletRifleIncendiary
@@ -60,6 +63,7 @@
   id: CartridgeRifleUranium
   name: cartridge (.20 rifle uranium)
   parent: BaseCartridgeRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: BulletRifleUranium

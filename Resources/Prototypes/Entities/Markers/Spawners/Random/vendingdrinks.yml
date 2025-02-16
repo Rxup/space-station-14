@@ -14,11 +14,11 @@
       - BackmenVendingMachineCoffee
       - BackmenVendingMachineCola
       - BackmenVendingMachineColaBlack
-      - BackmenVendingMachineSovietSoda
       - BackmenVendingMachineShamblersJuice
       - BackmenVendingMachinePwrGame
       - BackmenVendingMachineSoda
       - BackmenVendingMachineDrGibb
-      - BackmenVendingMachineStarkist
+      - BackmenVendingMachineSovietSoda
       - BackmenVendingMachineSpaceUp
+      - BackmenVendingMachineStarkist
     chance: 1

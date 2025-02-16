@@ -38,6 +38,7 @@
   id: MagazineLightRifleBox
   name: "L6 SAW magazine box (.30 rifle)"
   parent: BaseMagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
@@ -58,6 +59,7 @@
   id: MagazineLightRifle
   name: "magazine (.30 rifle)"
   parent: BaseMagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifle
@@ -73,6 +75,7 @@
   name: "magazine (.30 rifle any)"
   suffix: empty
   parent: MagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -85,6 +88,7 @@
   id: MagazineLightRiflePractice
   name: "magazine (.30 rifle practice)"
   parent: BaseMagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
@@ -99,6 +103,7 @@
   id: MagazineLightRifleUranium
   name: "magazine (.30 rifle uranium)"
   parent: BaseMagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleUranium
@@ -113,6 +118,7 @@
   id: MagazineLightRifleIncendiary
   name: "magazine (.30 rifle incendiary)"
   parent: MagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleIncendiary
@@ -121,6 +127,7 @@
   id: MagazineLightRifleMaxim
   name: "pan magazine (.30 rifle)"
   parent: BaseMagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
@@ -135,6 +142,7 @@
   id: MagazineLightRiflePkBox
   name: "PK munitions box (.30 rifle)"
   parent: BaseMagazineLightRifle
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:

@@ -7,6 +7,7 @@ using Content.Server.Popups;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;

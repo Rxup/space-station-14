@@ -14,3 +14,19 @@
   - type: Drink
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkBacchusBlessing
+  suffix: Благословение Бахуса
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BacchusBlessing
+          Quantity: 30
+  - type: Icon
+    sprite: Backmen/Objects/Consumable/Drinks/bacchus.rsi
+    state: icon

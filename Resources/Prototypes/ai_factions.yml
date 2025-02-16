@@ -15,6 +15,8 @@
     - SpecialForce
     - CombineForce
     - CentralCommand
+    - AllHostile
+    - Wizard
 
 - type: npcFaction
   id: NanoTrasen
@@ -31,11 +33,15 @@
   - Britan
   - SpecialForce
   - CombineForce
+  - Dragon
+  - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Mouse
   hostile:
-    - PetsNT
+  - PetsNT
+  - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -52,6 +58,7 @@
   - SuperZloy
   - SpecialForce
   - CombineForce
+  - AllHostile
 
 - type: npcFaction
   id: SimpleHostile
@@ -70,6 +77,8 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: SimpleNeutral
@@ -89,6 +98,9 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - Dragon
+  - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Xeno
@@ -107,6 +119,8 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Zombie
@@ -126,6 +140,8 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Revolutionary
@@ -142,3 +158,33 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - AllHostile
+  - Wizard
+
+- type: npcFaction
+  id: AllHostile
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Wizard
+
+- type: npcFaction
+  id: Wizard
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile

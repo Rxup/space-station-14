@@ -11,6 +11,7 @@
   - Headphones
   - PlushieLizard
   - PlushieSpaceLizard
+  - ThreeCandles
   - Lighter
   - CigPackGreen
   - CigPackRed
@@ -18,18 +19,21 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
-  - ClothingNeckLGBTPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
-  - ClothingNeckGoldAutismPin
+# start-backmen: no pride
+#  - ClothingNeckLGBTPin
+#  - ClothingNeckAromanticPin
+#  - ClothingNeckAsexualPin
+#  - ClothingNeckBisexualPin
+#  - ClothingNeckGayPin
+#  - ClothingNeckIntersexPin
+#  - ClothingNeckLesbianPin
+#  - ClothingNeckNonBinaryPin
+#  - ClothingNeckPansexualPin
+#  - ClothingNeckOmnisexualPin
+#  - ClothingNeckTransPin
+#  - ClothingNeckAutismPin
+#  - ClothingNeckGoldAutismPin
+# end-backmen: no pride
   # backmen-pins-start
   - ClothingNeckDonkPin
   - ClothingNeckDeForestPin
@@ -1150,7 +1154,6 @@
 - type: loadoutGroup
   id: DetectiveOuterClothing
   name: loadout-group-detective-outerclothing
-  minLimit: 0
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat

@@ -58,6 +58,7 @@ using Content.Server.Backmen.Objectives.Components;
 using Content.Shared.Backmen.Changeling;
 using Content.Shared.Backmen.Changeling.Components;
 using Content.Shared.Corvax.TTS;
+using Content.Shared.Forensics.Components;
 using Content.Shared.NameModifier.EntitySystems;
 using Robust.Shared.Utility;
 

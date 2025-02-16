@@ -1,0 +1,105 @@
+- type: entity
+  id: MobMaidXeno
+  parent: MobXeno
+  name: горничная ксеноморфа
+  description: Это чертовски мило, пока она сытная.
+  components:
+  - type: LagCompensation
+  - type: Input
+    context: "human"
+  - type: MovedByPressure
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Aliens/Xenos/maidxenos.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+    noRot: true
+    netsync: false
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: Slerm
+          Quantity: 30
+  - type: Udder
+    reagentId: Slerm
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Clickable
+  - type: InteractionOutline
+  - type: AtmosExposed
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Internals
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Xenolian
+  - type: Body
+    prototype: Animal
+  - type: Actions
+  - type: DoAfter
+  - type: Polymorphable
+  - type: Buckle
+  - type: Insulated
+  - type: Hands
+    showInHands: true
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4
+  - type: Stamina
+    critThreshold: 500
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 4
+    color: "purple"
+  - type: Puller
+    needsHands: false
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Hivemind
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Hivemind
+  - type: LizardAccent
+  - type: Speech
+    speechSounds: Xeno
+  - type: Eye
+    drawFov: false
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
+  - type: Access
+    tags:
+    - Xeno
+  - type: LanguageSpeaker
+    currentLanguage: Xeno
+  - type: LanguageKnowledge
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+    - TauCetiBasic

@@ -20,6 +20,7 @@
         Blunt: 0.60
         Slash: 0.6
         Piercing: 0.4
+        ArmorPiercing: 0.8
         Heat: 0.3
         Radiation: 0.25
         Caustic: 0.75
@@ -54,6 +55,7 @@
         Blunt: 0.15
         Slash: 0.15
         Piercing: 0.20
+        ArmorPiercing: 0.8
         Heat: 0.30
         Radiation: 0.1
         Caustic: 0.15
@@ -123,6 +125,7 @@
         Blunt: 0.4
         Slash: 0.5
         Piercing: 0.5
+        ArmorPiercing: 0.8
         Radiation: 0.6
         Caustic: 0.6
         Heat: 0.4
@@ -154,6 +157,7 @@
         Blunt: 0.4
         Slash: 0.4
         Piercing: 0.4
+        ArmorPiercing: 0.8
         Radiation: 0.6
         Caustic: 0.6
         Heat: 0.4
@@ -181,6 +185,7 @@
         Blunt: 0.3
         Slash: 0.2
         Piercing: 0.3
+        ArmorPiercing: 0.6
         Heat: 0.3
         Radiation: 0.3
         Stun: 0.2
@@ -284,6 +289,7 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.7
+        ArmorPiercing: 0.9
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
@@ -409,6 +415,7 @@
         Blunt: 0.2
         Slash: 0.2
         Piercing: 0.2
+        ArmorPiercing: 0.3
         Heat: 0.1
         Radiation: 0
         Caustic: 0.2
@@ -466,3 +473,20 @@
     sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSecurityPilot
+  name: security pilot hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor. Lightened especially for the pilot.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecurityPilot

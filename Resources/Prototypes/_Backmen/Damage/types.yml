@@ -1,6 +1,5 @@
-﻿# Only affects magical beings.
 - type: damageType
-  id: Holy
-  name: damage-group-holy
-  armorCoefficientPrice: 25
-  armorFlatPrice: 150
+  id: ArmorPiercing
+  name: damage-type-armorpiercing
+  armorCoefficientPrice: 2
+  armorFlatPrice: 10

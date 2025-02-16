@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Yogstation at https://github.com/yogstation13/Yogstation/blob/79ec28fd4d17e03308adee9b06f94850ac1cd5c1/icons/mob/alien.dmi | Modificated @CrimeMoot",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "running",
+      "directions": 4
+    },
+    {
+      "name": "dead"
+    }
+  ]
+}

@@ -54,7 +54,7 @@ public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
         SubscribeLocalEvent<MindSwappedComponent, ComponentInit>(OnSwapInit);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionMindSwap = "ActionMindSwap";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionMindSwap = "ActionMindSwapPsionic";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionMindSwapReturn = "ActionMindSwapReturn";
 
     private void OnInit(EntityUid uid, MindSwapPowerComponent component, ComponentInit args)
