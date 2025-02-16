@@ -13,7 +13,7 @@
 - type: loadout
   id: SecurityPilotJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuiSecurityPilot
+    jumpsuit: ClothingUniformJumpsuitSecurityPilot
     
 # Outer
 - type: loadout

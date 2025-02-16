@@ -894,7 +894,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuiSecurityPilot
+  id: ClothingUniformJumpsuitSecurityPilot
   name: security pilot jumpsuit
   description: A jumpsuit specifically for a security pilot. Definitely not in the colors of the Syndicate...
   components:
