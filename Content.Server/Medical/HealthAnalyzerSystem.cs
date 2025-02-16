@@ -26,6 +26,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
+using Content.Shared.Traits.Assorted;
 
 namespace Content.Server.Medical;
 

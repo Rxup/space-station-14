@@ -52,3 +52,22 @@
       collection: FootstepSoldier
       params:
         volume: -2
+
+- type: entity
+  parent: [ClothingShoesBootsMagBase, BaseToggleClothing, BaseSecurityContraband]
+  id: ClothingShoesBootsMagSecurity
+  name: security magboots
+  description: Magnetic boots are standard equipment for security services for work in zero gravity and outer space.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
+  - type: Magboots
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}

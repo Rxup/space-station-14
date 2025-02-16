@@ -19,7 +19,7 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: true
+  showInVote: false # secret
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler
@@ -37,6 +37,20 @@
   showInVote: false
   rules:
   - BlobGameMode
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - SubGamemodesRule
+  - CalmMeteorSwarmScheduler
+
+- type: gamePreset
+  id: XenoAgent
+  alias: []
+  name: xeno-agent-title
+  description: xeno-agent-description
+  showInVote: false
+  rules:
+  - XenoAgentGameMode
   - CalmStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
@@ -310,7 +324,7 @@
   name: babelTower-title
   description: babelTower-description
   minPlayers: 5
-  showInVote: true
+  showInVote: false # secret
   rules:
     - BabelTower
     - CalmStationEventScheduler

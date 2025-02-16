@@ -101,6 +101,7 @@
     Blunt: 0.7
     Slash: 0.5
     Piercing: 0.7
+    ArmorPiercing: 0.9
     Heat: 1.8
     Shock: 1.8
     Poison: 0.0
@@ -115,6 +116,7 @@
     Blunt: 0.5
     Slash: 0.3
     Piercing: 0.4
+    ArmorPiercing: 0.7
     Heat: 1.8
     Shock: 1.8
     Poison: 0.0
@@ -220,6 +222,18 @@
       - id: XenoRCD
       - id: WeaponXenoHealingSpit
       - id: PinpointerXeno
+  - type: XenoAcidSpiller
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: SlermQueenPlus
+          Quantity: 30
+  - type: Udder
+    reagentId: SlermQueenPlus
+    quantityPerUpdate: 25
+    growthDelay: 30
   - type: Destructible
     thresholds:
     - trigger:
@@ -960,16 +974,15 @@
   name: "кость ксено"
   parent: [BaseLeftHand, PartSilicon]
   components:
+  - type: BodyPart
+    partType: Hand
+    symmetry: None
   - type: Sprite
-    netsync: false
     sprite: Mobs/Silicon/drone.rsi
     state: "l_hand"
   - type: Icon
     sprite: Mobs/Silicon/drone.rsi
     state: "l_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
 
 # WEAPONS #
 

@@ -6,23 +6,23 @@
     chest:
       part: ChestDrone
       connections:
-      - hand 1
-      - hand 2
-      - hand 3
-      - hand 4
-      - hand 5
-      - hand 6
-    hand 1:
+      - left arm 1
+      - left arm 2
+      - left arm 3
+      - left arm 4
+      - right arm 5
+      - right arm 6
+    left arm 1:
       part: LeftArmBorg
-    hand 2:
+    left arm 2:
       part: LeftArmBorg
-    hand 3:
+    left arm 3:
       part: LeftArmBorg
-    hand 4:
+    left arm 4:
       part: LeftArmBorg
-    hand 5:
+    right arm 5:
       part: RightArmBorg
-    hand 6:
+    right arm 6:
       part: RightArmBorg
 
 - type: entity

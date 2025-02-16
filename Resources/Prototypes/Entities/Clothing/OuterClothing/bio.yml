@@ -93,6 +93,11 @@
         Piercing: 0.7
         Heat: 0.6
         Caustic: 0.2
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.70
+        ArmorPiercing: 0.90
+        Heat: 0.80
 
 - type: entity
   parent: ClothingOuterBioGeneral

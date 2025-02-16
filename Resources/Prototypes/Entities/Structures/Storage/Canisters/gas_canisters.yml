@@ -5,6 +5,7 @@
   name: gas canister
   description: A canister that can contain any type of gas. It can be attached to connector ports using a wrench.
   components:
+    - type: Animateable
     - type: InteractionOutline
     - type: Transform
       noRot: true
@@ -16,7 +17,7 @@
     - type: Appearance
     - type: GenericVisualizer
       visuals:
-        enum.GasPortableVisuals.ConnectedState:
+        enum.AnchorVisuals.Anchored:
           connectedToPort:
             False: { state: can-connector, visible: false }
             True: { state: can-connector, visible: true }
@@ -104,6 +105,9 @@
       access: [["Atmospherics"], ["Engineering"], ["Research"]]
     - type: Lock
       locked: false
+    - type: GuideHelp
+      guides:
+      - GasCanisters
 
 - type: entity
   parent: GasCanister
@@ -611,6 +615,7 @@
       - 0 # Ammonia
       - 0 # N2O
       - 1871.71051 # Frezon
+      - 0 # BZ + ADT-Gas
       temperature: 293.15
   - type: Destructible
     thresholds:

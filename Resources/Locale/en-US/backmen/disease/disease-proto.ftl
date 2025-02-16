@@ -18,4 +18,5 @@ disease-proto-tongue-twister = Tongue Twister
 
 # XenoVirus
 disease-proto-xeno = XenoVirus
+disease-proto-xeno-slerm = Slerm Alpha-virus
 disease-proto-xenodrone = XenoVirus

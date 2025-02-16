@@ -35,7 +35,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
+    //[Dependency] private readonly SharedMoverController _mover = default!;
 
     public override void Initialize()
     {
@@ -75,7 +75,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
             return;
         if (blobCoreComponent.CurrentChem == BlobChemType.ExplosiveLattice)
         {
-            _explosionSystem.QueueExplosion(uid, blobCoreComponent.BlobExplosive, 4, 1, 2, maxTileBreak: 0);
+            _explosionSystem.QueueExplosion(uid, blobCoreComponent.BlobExplosive, 4, 1, 2, maxTileBreak: 0, user: uid);
         }
     }
 
@@ -118,7 +118,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
         if (HasComp<ActorComponent>(ent))
         {
             _npc.SleepNPC(target);
-            _mover.SetRelay(ent, target);
+            //_mover.SetRelay(ent, target);
         }
 
         return true;

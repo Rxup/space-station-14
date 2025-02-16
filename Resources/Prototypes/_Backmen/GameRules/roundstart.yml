@@ -66,6 +66,8 @@
       max: 2
       playerRatio: 40 #players = 2 blobs
       allowNonHumans: true
+      components:
+      - type: BlobCarrier
       blacklist:
         components:
         - AntagImmune
@@ -82,7 +84,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
-    weight: 15
+    weight: 5
     duration: 1
     earliestStart: 50
     minimumPlayers: 20
@@ -291,3 +293,34 @@
   components:
   - type: GameRule
   - type: BabelTowerRule
+
+#xeno
+- type: entity
+  id: XenoAgentGameMode
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 15
+    #delay: # 7-10 minutes
+    #  min: 420
+    #  max: 600
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ XenoAgent ]
+      min: 1
+      max: 2
+      playerRatio: 40 #players = 2 blobs
+      allowNonHumans: true
+      components:
+      - type: XenoAgent
+      - type: NpcFactionMember
+        factions:
+        - Xeno
+        - NanoTrasen
+      - type: XenoAcidSpiller
+      blacklist:
+        components:
+        - AntagImmune
+      mindRoles:
+      - MindRoleXenoAgent

@@ -2871,6 +2871,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -2886,6 +2894,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -2901,11 +2917,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2936,6 +2968,55 @@ entities:
     components:
     - type: Transform
       pos: 4.5448904,18.624214
+      parent: 2
+- proto: ADTBZCanister
+  entities:
+  - uid: 7075
+    components:
+    - type: Transform
+      pos: 23.5,-31.5
+      parent: 2
+- proto: ADTHalonCanister
+  entities:
+  - uid: 7068
+    components:
+    - type: Transform
+      pos: 23.5,-32.5
+      parent: 2
+- proto: ADTHyperNobliumCanister
+  entities:
+  - uid: 7074
+    components:
+    - type: Transform
+      pos: 19.5,-31.5
+      parent: 2
+- proto: ADTNitriumCanister
+  entities:
+  - uid: 7070
+    components:
+    - type: Transform
+      pos: 21.5,-28.5
+      parent: 2
+- proto: ADTPluoxiumCanister
+  entities:
+  - uid: 7071
+    components:
+    - type: Transform
+      pos: 22.5,-28.5
+      parent: 2
+- proto: ADTProtoNitrateCanister
+  entities:
+  - uid: 7072
+    components:
+    - type: Transform
+      pos: 22.5,-32.5
+      parent: 2
+- proto: ADTZaukerCanister
+  entities:
+  - uid: 7069
+    components:
+    - type: Transform
+      pos: 25.5,-30.5
       parent: 2
 - proto: AirCanister
   entities:
@@ -3057,11 +3138,21 @@ entities:
     - type: Transform
       pos: -6.5,18.5
       parent: 2
+    - type: Tag
+      tags:
+      - Airlock
+      - EmagImmune
+    - type: ArrivalsProtect
   - uid: 21
     components:
     - type: Transform
       pos: -10.5,18.5
       parent: 2
+    - type: Tag
+      tags:
+      - Airlock
+      - EmagImmune
+    - type: ArrivalsProtect
 - proto: AirlockCCEngineeringLocked
   entities:
   - uid: 22
@@ -3152,6 +3243,21 @@ entities:
     components:
     - type: Transform
       pos: 16.5,-6.5
+      parent: 2
+  - uid: 131
+    components:
+    - type: Transform
+      pos: 4.5,-8.5
+      parent: 2
+  - uid: 132
+    components:
+    - type: Transform
+      pos: 14.5,-3.5
+      parent: 2
+  - uid: 133
+    components:
+    - type: Transform
+      pos: 12.5,-3.5
       parent: 2
 - proto: AirlockCCSecurityLocked
   entities:
@@ -3721,6 +3827,11 @@ entities:
     - type: Transform
       pos: -4.5,21.5
       parent: 2
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
   - uid: 128
     components:
     - type: Transform
@@ -3741,32 +3852,11 @@ entities:
     - type: Transform
       pos: -15.5,-32.5
       parent: 2
-- proto: AirlockMedicalGlassLocked
-  entities:
-  - uid: 131
-    components:
-    - type: Transform
-      pos: 12.5,-3.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
-  - uid: 132
-    components:
-    - type: Transform
-      pos: 14.5,-3.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
-  - uid: 133
-    components:
-    - type: Transform
-      pos: 4.5,-8.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
 - proto: APCBasic
   entities:
   - uid: 134
@@ -4233,6 +4323,80 @@ entities:
     - type: Transform
       pos: -10.652057,6.7775984
       parent: 2
+- proto: ATM
+  entities:
+  - uid: 7077
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.5,-1.5
+      parent: 2
+  - uid: 7078
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 24.5,-7.5
+      parent: 2
+  - uid: 7079
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,1.5
+      parent: 2
+  - uid: 7080
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,2.5
+      parent: 2
+  - uid: 7081
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-2.5
+      parent: 2
+  - uid: 7082
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -24.5,1.5
+      parent: 2
+  - uid: 7083
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-43.5
+      parent: 2
+  - uid: 7084
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-43.5
+      parent: 2
+  - uid: 7085
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,-27.5
+      parent: 2
+  - uid: 7086
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -28.5,5.5
+      parent: 2
+  - uid: 7087
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -11.5,18.5
+      parent: 2
+  - uid: 7088
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,22.5
+      parent: 2
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 7058
@@ -4354,11 +4518,6 @@ entities:
     - type: ArrivalsProtect
 - proto: BackmenVendingMachineChang
   entities:
-  - uid: 207
-    components:
-    - type: Transform
-      pos: -2.5,1.5
-      parent: 2
   - uid: 208
     components:
     - type: Transform
@@ -4652,6 +4811,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
+    - type: ArrivalsProtect
   - uid: 253
     components:
     - type: Transform
@@ -4660,6 +4820,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
+    - type: ArrivalsProtect
   - uid: 254
     components:
     - type: Transform
@@ -4668,6 +4829,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
+    - type: ArrivalsProtect
   - uid: 255
     components:
     - type: Transform
@@ -4676,6 +4838,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
+    - type: ArrivalsProtect
   - uid: 256
     components:
     - type: Transform
@@ -4684,6 +4847,7 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
+    - type: ArrivalsProtect
   - uid: 257
     components:
     - type: Transform
@@ -4692,6 +4856,7 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
+    - type: ArrivalsProtect
   - uid: 258
     components:
     - type: Transform
@@ -4700,6 +4865,7 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
+    - type: ArrivalsProtect
   - uid: 259
     components:
     - type: Transform
@@ -18241,7 +18407,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -4.5,-12.5
+      pos: -4.151331,-12.650532
       parent: 2
   - uid: 2868
     components:
@@ -21327,26 +21493,6 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
-- proto: ComputerCargoShuttle
-  entities:
-  - uid: 3428
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,12.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
-  - uid: 3429
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -12.5,14.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
 - proto: ComputerCloningConsole
   entities:
   - uid: 3430
@@ -21545,6 +21691,24 @@ entities:
       parent: 2
 - proto: ComputerShipyard
   entities:
+  - uid: 3428
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,12.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - CentralCommand
+  - uid: 3429
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -12.5,14.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - CentralCommand
   - uid: 3454
     components:
     - type: Transform
@@ -21603,6 +21767,13 @@ entities:
     components:
     - type: Transform
       pos: -14.5,12.5
+      parent: 2
+- proto: ComputerWage
+  entities:
+  - uid: 207
+    components:
+    - type: Transform
+      pos: -2.5,1.5
       parent: 2
 - proto: ConveyorBelt
   entities:
@@ -21827,6 +21998,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -23354,11 +23533,15 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 2
+    - type: Pullable
+      prevFixedRotation: True
   - uid: 3746
     components:
     - type: Transform
-      pos: -6.5,-9.5
+      pos: -5.8550076,-12.618795
       parent: 2
+    - type: Pullable
+      prevFixedRotation: True
   - uid: 3747
     components:
     - type: Transform
@@ -28133,7 +28316,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 4390
     components:
@@ -28211,11 +28394,21 @@ entities:
     - type: Transform
       pos: -3.5,-42.5
       parent: 2
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
   - uid: 4403
     components:
     - type: Transform
       pos: 2.5,-42.5
       parent: 2
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
 - proto: HighSecCCOfficerLocked
   entities:
   - uid: 4404
@@ -28238,6 +28431,11 @@ entities:
     - type: Transform
       pos: -21.5,1.5
       parent: 2
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
   - uid: 4408
     components:
     - type: Transform
@@ -28253,11 +28451,21 @@ entities:
     - type: Transform
       pos: -22.5,-2.5
       parent: 2
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
   - uid: 4411
     components:
     - type: Transform
       pos: -20.5,-2.5
       parent: 2
+    - type: Tag
+      tags:
+      - HighSecDoor
+      - EmagImmune
+    - type: ArrivalsProtect
 - proto: HighSecCentComLocked
   entities:
   - uid: 4412
@@ -28305,6 +28513,56 @@ entities:
     - type: Transform
       pos: -12.5,-22.5
       parent: 2
+- proto: HolopadCentCommAdmiral
+  entities:
+  - uid: 7061
+    components:
+    - type: Transform
+      pos: -18.5,11.5
+      parent: 2
+- proto: HolopadCentCommBase
+  entities:
+  - uid: 7063
+    components:
+    - type: Transform
+      pos: -13.5,16.5
+      parent: 2
+- proto: HolopadCentCommEvac
+  entities:
+  - uid: 7062
+    components:
+    - type: Transform
+      pos: 14.5,4.5
+      parent: 2
+- proto: HolopadCentCommUnlimitedRange
+  entities:
+  - uid: 7060
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 2
+    - type: Label
+      currentLabel: ЦК - Оператор
+  - uid: 7066
+    components:
+    - type: MetaData
+      name: ЦК - СУД (П)
+    - type: Transform
+      pos: 31.5,20.5
+      parent: 2
+    - type: Label
+      currentLabel: ЦК - СУД (П)
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 7067
+    components:
+    - type: MetaData
+      name: ЦК - СУД (Л)
+    - type: Transform
+      pos: 25.5,20.5
+      parent: 2
+    - type: Label
+      currentLabel: ЦК - СУД (Л)
 - proto: HospitalCurtainsOpen
   entities:
   - uid: 4421
@@ -28445,6 +28703,13 @@ entities:
     - type: Transform
       pos: -18.379215,8.381029
       parent: 2
+- proto: LiquidOxygenCanister
+  entities:
+  - uid: 7073
+    components:
+    - type: Transform
+      pos: 21.5,-32.5
+      parent: 2
 - proto: LockerAtmosphericsFilledHardsuit
   entities:
   - uid: 4444
@@ -28574,6 +28839,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -32987,26 +33260,31 @@ entities:
     - type: Transform
       pos: -16.5,17.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5163
     components:
     - type: Transform
       pos: -16.5,18.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5164
     components:
     - type: Transform
       pos: -15.5,18.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5165
     components:
     - type: Transform
       pos: -13.5,18.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5166
     components:
     - type: Transform
       pos: -12.5,18.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5167
     components:
     - type: Transform
@@ -33875,31 +34153,37 @@ entities:
     - type: Transform
       pos: -17.5,-34.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5331
     components:
     - type: Transform
       pos: -18.5,-34.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5332
     components:
     - type: Transform
       pos: -19.5,-34.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5333
     components:
     - type: Transform
       pos: -20.5,-31.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5334
     components:
     - type: Transform
       pos: -20.5,-32.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5335
     components:
     - type: Transform
       pos: -20.5,-33.5
       parent: 2
+    - type: ArrivalsProtect
   - uid: 5336
     components:
     - type: Transform
@@ -34093,7 +34377,7 @@ entities:
   - uid: 7057
     components:
     - type: Transform
-      pos: -20.513174,6.188437
+      pos: -20.471672,6.1512794
       parent: 2
 - proto: RubberStampDenied
   entities:
@@ -34380,6 +34664,14 @@ entities:
     components:
     - type: Transform
       pos: 14.5,-29.5
+      parent: 2
+- proto: SignCansScience
+  entities:
+  - uid: 7076
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 24.5,-31.5
       parent: 2
 - proto: SignCargo
   entities:
@@ -35161,6 +35453,18 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
+- proto: SuitStorageCentcomCarporatHardsuit
+  entities:
+  - uid: 7064
+    components:
+    - type: Transform
+      pos: 25.5,-11.5
+      parent: 2
+  - uid: 7065
+    components:
+    - type: Transform
+      pos: -6.5,-9.5
+      parent: 2
 - proto: SuitStorageCMO
   entities:
   - uid: 5528
@@ -37594,6 +37898,49 @@ entities:
         - Left: Forward
         - Right: Reverse
         - Middle: Off
+- proto: UraniumWindoorSecureCentralCommandLocked
+  entities:
+  - uid: 6978
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-16.5
+      parent: 2
+  - uid: 6991
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-11.5
+      parent: 2
+  - uid: 6992
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-12.5
+      parent: 2
+  - uid: 6994
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 26.5,-7.5
+      parent: 2
+    - type: Tag
+      tags:
+      - SecureUraniumWindoor
+      - EmagImmune
+    - type: ArrivalsProtect
+  - uid: 6997
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-12.5
+      parent: 2
+  - uid: 6998
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-11.5
+      parent: 2
 - proto: Vaccinator
   entities:
   - uid: 5907
@@ -42009,11 +42356,6 @@ entities:
     - type: Transform
       pos: -17.5,-28.5
       parent: 2
-  - uid: 6742
-    components:
-    - type: Transform
-      pos: -3.5,-39.5
-      parent: 2
   - uid: 6743
     components:
     - type: Transform
@@ -42023,11 +42365,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-38.5
-      parent: 2
-  - uid: 6745
-    components:
-    - type: Transform
-      pos: -3.5,-38.5
       parent: 2
   - uid: 6746
     components:
@@ -42181,45 +42518,10 @@ entities:
     - type: Transform
       pos: -6.5,-37.5
       parent: 2
-  - uid: 6775
-    components:
-    - type: Transform
-      pos: -6.5,-38.5
-      parent: 2
-  - uid: 6776
-    components:
-    - type: Transform
-      pos: -5.5,-38.5
-      parent: 2
-  - uid: 6777
-    components:
-    - type: Transform
-      pos: -4.5,-38.5
-      parent: 2
   - uid: 6778
     components:
     - type: Transform
       pos: 1.5,-38.5
-      parent: 2
-  - uid: 6779
-    components:
-    - type: Transform
-      pos: 2.5,-38.5
-      parent: 2
-  - uid: 6780
-    components:
-    - type: Transform
-      pos: 3.5,-38.5
-      parent: 2
-  - uid: 6781
-    components:
-    - type: Transform
-      pos: 4.5,-38.5
-      parent: 2
-  - uid: 6782
-    components:
-    - type: Transform
-      pos: 5.5,-38.5
       parent: 2
   - uid: 6783
     components:
@@ -42241,25 +42543,10 @@ entities:
     - type: Transform
       pos: -2.5,-40.5
       parent: 2
-  - uid: 6787
-    components:
-    - type: Transform
-      pos: 2.5,-39.5
-      parent: 2
-  - uid: 6788
-    components:
-    - type: Transform
-      pos: 2.5,-40.5
-      parent: 2
   - uid: 6789
     components:
     - type: Transform
       pos: 1.5,-40.5
-      parent: 2
-  - uid: 6790
-    components:
-    - type: Transform
-      pos: -3.5,-44.5
       parent: 2
   - uid: 6791
     components:
@@ -42271,11 +42558,6 @@ entities:
     - type: Transform
       pos: -3.5,-46.5
       parent: 2
-  - uid: 6793
-    components:
-    - type: Transform
-      pos: 2.5,-44.5
-      parent: 2
   - uid: 6794
     components:
     - type: Transform
@@ -42285,56 +42567,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-46.5
-      parent: 2
-  - uid: 6796
-    components:
-    - type: Transform
-      pos: -4.5,-44.5
-      parent: 2
-  - uid: 6797
-    components:
-    - type: Transform
-      pos: -5.5,-44.5
-      parent: 2
-  - uid: 6798
-    components:
-    - type: Transform
-      pos: -6.5,-44.5
-      parent: 2
-  - uid: 6799
-    components:
-    - type: Transform
-      pos: -7.5,-44.5
-      parent: 2
-  - uid: 6800
-    components:
-    - type: Transform
-      pos: -7.5,-43.5
-      parent: 2
-  - uid: 6801
-    components:
-    - type: Transform
-      pos: -7.5,-42.5
-      parent: 2
-  - uid: 6802
-    components:
-    - type: Transform
-      pos: -7.5,-41.5
-      parent: 2
-  - uid: 6803
-    components:
-    - type: Transform
-      pos: -7.5,-40.5
-      parent: 2
-  - uid: 6804
-    components:
-    - type: Transform
-      pos: -7.5,-39.5
-      parent: 2
-  - uid: 6805
-    components:
-    - type: Transform
-      pos: -7.5,-38.5
       parent: 2
   - uid: 6806
     components:
@@ -42365,71 +42597,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-37.5
-      parent: 2
-  - uid: 6812
-    components:
-    - type: Transform
-      pos: 6.5,-38.5
-      parent: 2
-  - uid: 6813
-    components:
-    - type: Transform
-      pos: 6.5,-39.5
-      parent: 2
-  - uid: 6814
-    components:
-    - type: Transform
-      pos: 6.5,-40.5
-      parent: 2
-  - uid: 6815
-    components:
-    - type: Transform
-      pos: 6.5,-41.5
-      parent: 2
-  - uid: 6816
-    components:
-    - type: Transform
-      pos: 6.5,-42.5
-      parent: 2
-  - uid: 6817
-    components:
-    - type: Transform
-      pos: 6.5,-43.5
-      parent: 2
-  - uid: 6818
-    components:
-    - type: Transform
-      pos: 6.5,-44.5
-      parent: 2
-  - uid: 6819
-    components:
-    - type: Transform
-      pos: 5.5,-44.5
-      parent: 2
-  - uid: 6820
-    components:
-    - type: Transform
-      pos: 4.5,-44.5
-      parent: 2
-  - uid: 6821
-    components:
-    - type: Transform
-      pos: 3.5,-44.5
-      parent: 2
-  - uid: 6822
-    components:
-    - type: Transform
-      pos: 2.5,-43.5
-      parent: 2
-  - uid: 6823
-    components:
-    - type: Transform
-      pos: 2.5,-41.5
-      parent: 2
-  - uid: 6824
-    components:
-    - type: Transform
-      pos: -3.5,-43.5
       parent: 2
   - uid: 6825
     components:
@@ -42508,6 +42675,222 @@ entities:
       parent: 2
 - proto: WallRivetedIndestructible
   entities:
+  - uid: 6742
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-39.5
+      parent: 2
+  - uid: 6745
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-38.5
+      parent: 2
+  - uid: 6775
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5,-38.5
+      parent: 2
+  - uid: 6776
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,-38.5
+      parent: 2
+  - uid: 6777
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-38.5
+      parent: 2
+  - uid: 6779
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-38.5
+      parent: 2
+  - uid: 6780
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-38.5
+      parent: 2
+  - uid: 6781
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-38.5
+      parent: 2
+  - uid: 6782
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-38.5
+      parent: 2
+  - uid: 6787
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-39.5
+      parent: 2
+  - uid: 6788
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-40.5
+      parent: 2
+  - uid: 6790
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-44.5
+      parent: 2
+  - uid: 6793
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-44.5
+      parent: 2
+  - uid: 6796
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-44.5
+      parent: 2
+  - uid: 6797
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,-44.5
+      parent: 2
+  - uid: 6798
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5,-44.5
+      parent: 2
+  - uid: 6799
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-44.5
+      parent: 2
+  - uid: 6800
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-43.5
+      parent: 2
+  - uid: 6801
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-42.5
+      parent: 2
+  - uid: 6802
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-41.5
+      parent: 2
+  - uid: 6803
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-40.5
+      parent: 2
+  - uid: 6804
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-39.5
+      parent: 2
+  - uid: 6805
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-38.5
+      parent: 2
+  - uid: 6812
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-38.5
+      parent: 2
+  - uid: 6813
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-39.5
+      parent: 2
+  - uid: 6814
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-40.5
+      parent: 2
+  - uid: 6815
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-41.5
+      parent: 2
+  - uid: 6816
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-42.5
+      parent: 2
+  - uid: 6817
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-43.5
+      parent: 2
+  - uid: 6818
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-44.5
+      parent: 2
+  - uid: 6819
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-44.5
+      parent: 2
+  - uid: 6820
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-44.5
+      parent: 2
+  - uid: 6821
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-44.5
+      parent: 2
+  - uid: 6822
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-43.5
+      parent: 2
+  - uid: 6823
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-41.5
+      parent: 2
+  - uid: 6824
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-43.5
+      parent: 2
   - uid: 6840
     components:
     - type: Transform
@@ -43264,15 +43647,6 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
-  - uid: 6978
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-16.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
   - uid: 6979
     components:
     - type: Transform
@@ -43391,24 +43765,6 @@ entities:
       - - CentralCommand
 - proto: WindoorSecureMedicalLocked
   entities:
-  - uid: 6991
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-11.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
-  - uid: 6992
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-12.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CentralCommand
   - uid: 6993
     components:
     - type: Transform
@@ -43420,15 +43776,6 @@ entities:
       - - CentralCommand
 - proto: WindoorSecureSecurityLocked
   entities:
-  - uid: 6994
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 26.5,-7.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CCSecurity
   - uid: 6995
     components:
     - type: Transform
@@ -43443,24 +43790,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 14.5,2.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CCSecurity
-  - uid: 6997
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-11.5
-      parent: 2
-    - type: AccessReader
-      access:
-      - - CCSecurity
-  - uid: 6998
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-12.5
       parent: 2
     - type: AccessReader
       access:

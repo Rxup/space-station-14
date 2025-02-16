@@ -13,9 +13,10 @@
     chest:
       part: ChestAnimal
       connections:
+      - left hands 1
+      - left hands 2
       - groin
-      - hands 1
-      - hands 2
+      - head
       organs:
         lungs: OrganAnimalLungs
         heart: OrganAnimalHeart
@@ -27,9 +28,9 @@
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         kidneys: OrganAnimalKidneys
-    hands 1:
+    left hands 1:
       part: HandsAnimal
-    hands 2:
+    left hands 2:
       part: HandsAnimal
     legs:
       part: LegsAnimal

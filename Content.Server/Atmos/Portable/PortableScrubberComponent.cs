@@ -1,4 +1,5 @@
 using Content.Shared.Atmos;
+using Content.Shared.Guidebook;
 
 namespace Content.Server.Atmos.Portable
 {
@@ -28,7 +29,20 @@ namespace Content.Server.Atmos.Portable
             Gas.WaterVapor,
             Gas.Ammonia,
             Gas.NitrousOxide,
-            Gas.Frezon
+            Gas.Frezon,
+            //ADT-Gas-Start
+            Gas.BZ,
+            Gas.Pluoxium,
+            Gas.Hydrogen,
+            Gas.Nitrium,
+            Gas.Healium,
+            Gas.HyperNoblium,
+            Gas.ProtoNitrate,
+            Gas.Zauker,
+            Gas.Halon,
+            Gas.Helium,
+            Gas.AntiNoblium
+            //ADT-Gas-End
         };
 
         [ViewVariables(VVAccess.ReadWrite)]
@@ -45,5 +59,12 @@ namespace Content.Server.Atmos.Portable
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public float TransferRate = 800;
+
+        #region GuidebookData
+
+        [GuidebookData]
+        public float Volume => Air.Volume;
+
+        #endregion
     }
 }

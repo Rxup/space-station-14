@@ -538,6 +538,7 @@
         Blunt: 0.80
         Slash: 0.80
         Piercing: 0.70
+        ArmorPiercing: 0.95
         Heat: 0.90
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
@@ -890,3 +891,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecurityPilot
+  name: security pilot jumpsuit
+  description: A jumpsuit specifically for a security pilot. Definitely not in the colors of the Syndicate...
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/sec_pilot.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/sec_pilot.rsi

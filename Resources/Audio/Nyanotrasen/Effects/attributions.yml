@@ -1,6 +1,7 @@
 - files: ["double_beep_whirr.ogg"]
   license: "CC-BY-SA-4.0"
   copyright: "@Vordenburg"
+  source: "https://freesound.org"
 
 - files: ["crash_impact_metal.ogg"]
   license: "CC-BY-4.0"

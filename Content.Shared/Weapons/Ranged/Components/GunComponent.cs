@@ -8,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 [Access(typeof(SharedGunSystem))]
 public sealed partial class GunComponent : Component
 {
@@ -263,6 +263,12 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
+	
+    /// <summary>
+    /// Corvax-Next. The percentage chance of a given gun to accidentally discharge if violently thrown into a wall or person
+    /// </summary>
+    [DataField]
+    public float FireOnDropChance = 0.1f;
 }
 
 [Flags]

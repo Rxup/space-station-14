@@ -51,7 +51,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
-    weight: 10
+    weight: 7
     earliestStart: 15
     minimumPlayers: 5
   - type: EvilTwinRule

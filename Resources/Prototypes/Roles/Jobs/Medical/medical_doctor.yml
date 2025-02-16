@@ -29,6 +29,9 @@
     - type: SurgerySpeedModifier
       SpeedModifier: 1.75
     #end-backmen: surgery
+  - !type:GiveItemOnHolidaySpecial
+    holiday: DoctorDay
+    prototype: WehMedipen
 
 - type: startingGear
   id: DoctorGear

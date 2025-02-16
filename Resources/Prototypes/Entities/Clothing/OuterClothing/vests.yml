@@ -22,15 +22,16 @@
         Blunt: 0.5 #ballistic plates = better protection
         Slash: 0.5
         Piercing: 0.3
-        Heat: 0.8
+        ArmorPiercing: 0.6
+        Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
 #Mercenary web vest
 - type: entity
-  parent: [ClothingOuterVestWeb, BaseMinorContraband] #web vest so it should have some pockets for ammo
+  parent: [ BaseMajorContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebMerc
-  name: merc web vest
+  name: mercenary web vest
   description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
   components:
   - type: Sprite
@@ -46,13 +47,14 @@
         Blunt: 0.45 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
         Slash: 0.45
         Piercing: 0.5
-        Heat: 0.8
+        ArmorPiercing: 0.7
+        Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
 #Detective's vest
 - type: entity
-  parent: [ClothingOuterArmorBasic, BaseRestrictedContraband]
+  parent: [ClothingOuterArmorBase, BaseRestrictedContraband]
   id: ClothingOuterVestDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.
@@ -71,8 +73,17 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Vests/hazard.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/hazard.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: unshaded
   - type: Tag
     tags:
     - HiViz

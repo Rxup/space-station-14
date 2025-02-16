@@ -9,8 +9,8 @@
         lungs: OrganAnimalLungs
         heart: OrganAnimalHeart
       connections:
-      - right_arm
-      - left_arm
+      - right arm
+      - left arm
       - groin
     groin:
       part: GroinAnimal
@@ -20,17 +20,17 @@
         kidneys: OrganAnimalKidneys
       connections:
       - legs
-    right_arm:
+    right arm:
       part: RightArmHuman
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmHuman
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandHuman
-    left_hand:
+    left hand:
       part: LeftHandHuman
     legs:
       part: LegsAnimal

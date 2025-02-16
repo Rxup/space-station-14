@@ -42,11 +42,13 @@
     sprite: Backmen/Mobs/Species/Moth/parts.rsi
     state: "chest_m"
   - type: BodyPart #"Other" type
+    slotId: thorax
+    containerName: thorax_slot
 
 - type: entity
   id: RightLegSpider
   name: "right spider leg"
-  parent: PartSpider
+  parent: [PartSpider, BaseRightLeg]
   components:
   - type: Sprite
     netsync: false
@@ -65,7 +67,7 @@
 - type: entity
   id: LeftLegSpider
   name: "left spider leg"
-  parent: PartSpider
+  parent: [PartSpider, BaseLeftLeg]
   components:
   - type: Sprite
     netsync: false
