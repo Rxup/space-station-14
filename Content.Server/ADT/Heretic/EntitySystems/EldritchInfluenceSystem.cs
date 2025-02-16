@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Heretic;
 using Content.Shared.Interaction;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Heretic.EntitySystems;
 
@@ -43,6 +44,9 @@ public sealed partial class EldritchInfluenceSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string EldritchInfluenceIntermediate = "EldritchInfluenceIntermediate";
     public void OnDoAfter(Entity<EldritchInfluenceComponent> ent, ref EldritchInfluenceDoAfterEvent args)
     {
         if (args.Cancelled)
@@ -59,7 +63,7 @@ public sealed partial class EldritchInfluenceSystem : EntitySystem
 
         _heretic.UpdateKnowledge(args.User, heretic, ev.Handled ? 2 : 1);
 
-        Spawn("EldritchInfluenceIntermediate", Transform((EntityUid) args.Target).Coordinates);
+        Spawn(EldritchInfluenceIntermediate, Transform((EntityUid) args.Target).Coordinates);
         QueueDel(args.Target);
     }
 }

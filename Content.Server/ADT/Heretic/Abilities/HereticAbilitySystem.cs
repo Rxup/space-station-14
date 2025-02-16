@@ -23,15 +23,17 @@ using Robust.Shared.Random;
 using Content.Shared.Body.Systems;
 using Content.Server.Medical;
 using Content.Shared.Backmen.Chat;
+using Content.Shared.Radio;
 using Robust.Server.GameObjects;
 using Content.Shared.Stunnable;
 using Robust.Shared.Map;
 using Content.Shared.StatusEffect;
 using Content.Shared.Throwing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Heretic.Abilities;
 
-public sealed partial class HereticAbilitySystem : EntitySystem
+public sealed partial class HereticAbilitySystem : SharedHereticAbilitySystem
 {
     // keeping track of all systems in a single file
     [Dependency] private readonly StoreSystem _store = default!;
@@ -58,19 +60,18 @@ public sealed partial class HereticAbilitySystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly ThrowingSystem _throw = default!;
 
+
+
     private List<EntityUid> GetNearbyPeople(Entity<HereticComponent> ent, float range)
     {
         var list = new List<EntityUid>();
-        var lookup = _lookup.GetEntitiesInRange(Transform(ent).Coordinates, range);
+        var lookup = _lookup.GetEntitiesInRange<StatusEffectsComponent>(Transform(ent).Coordinates, range);
 
         foreach (var look in lookup)
         {
             // ignore heretics with the same path*, affect everyone else
-            if ((TryComp<HereticComponent>(look, out var th) && th.CurrentPath == ent.Comp.CurrentPath)
-            || HasComp<GhoulComponent>(look))
-                continue;
-
-            if (!HasComp<StatusEffectsComponent>(look))
+            if ((_hereticQuery.TryComp(look, out var th) && th.CurrentPath == ent.Comp.CurrentPath)
+            || _ghoulQuery.HasComp(look))
                 continue;
 
             list.Add(look);
@@ -95,36 +96,12 @@ public sealed partial class HereticAbilitySystem : EntitySystem
         SubscribeVoid();
     }
 
-    private bool TryUseAbility(EntityUid ent, BaseActionEvent args)
+    protected override void TrySendInGameMessage(HereticActionComponent comp, EntityUid ent)
     {
-        if (args.Handled)
-            return false;
-
-        if (!TryComp<HereticActionComponent>(args.Action, out var actionComp))
-            return false;
-
-        // check if any magic items are worn
-        if (TryComp<HereticComponent>(ent, out var hereticComp) && actionComp.RequireMagicItem && !hereticComp.Ascended)
-        {
-            if (hereticComp.CodexActive)
-                return true;
-
-            var ev = new CheckMagicItemEvent();
-            RaiseLocalEvent(ent, ev);
-
-            if (!ev.Handled)
-            {
-                _popup.PopupEntity(Loc.GetString("heretic-ability-fail-magicitem"), ent, ent);
-                return false;
-            }
-        }
-
-        // shout the spell out
-        if (!string.IsNullOrWhiteSpace(actionComp.MessageLoc))
-            _chat.TrySendInGameICMessage(ent, Loc.GetString(actionComp.MessageLoc!), InGameICChatType.Speak, false);
-
-        return true;
+        if (!string.IsNullOrWhiteSpace(comp.MessageLoc))
+            _chat.TrySendInGameICMessage(ent, Loc.GetString(comp.MessageLoc!), InGameICChatType.Speak, false);
     }
+
     private void OnCheckMagicItem(Entity<HereticMagicItemComponent> ent, ref InventoryRelayedEvent<CheckMagicItemEvent> args)
     {
         // no need to check fo anythign because the event gets processed only by magic items
@@ -137,18 +114,18 @@ public sealed partial class HereticAbilitySystem : EntitySystem
             return;
         _store.ToggleUi(uid, uid, store);
     }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string TouchSpellMansus = "TouchSpellMansus";
     private void OnMansusGrasp(Entity<HereticComponent> ent, ref EventHereticMansusGrasp args)
     {
-        if (!TryUseAbility(ent, args))
-            return;
-
         if (ent.Comp.MansusGraspActive)
         {
             _popup.PopupEntity(Loc.GetString("heretic-ability-fail"), ent, ent);
             return;
         }
 
-        var st = Spawn("TouchSpellMansus", Transform(ent).Coordinates);
+        var st = Spawn(TouchSpellMansus, Transform(ent).Coordinates);
 
         if (!_hands.TryForcePickupAnyHand(ent, st))
         {
@@ -161,11 +138,10 @@ public sealed partial class HereticAbilitySystem : EntitySystem
         args.Handled = true;
     }
 
+    [ValidatePrototypeId<RadioChannelPrototype>]
+    private const string Mansus = "Mansus";
     private void OnMansusLink(Entity<GhoulComponent> ent, ref EventHereticMansusLink args)
     {
-        if (!TryUseAbility(ent, args))
-            return;
-
         if (!HasComp<MindContainerComponent>(args.Target))
         {
             _popup.PopupEntity(Loc.GetString("heretic-manselink-fail-nomind"), ent, ent);
@@ -173,7 +149,7 @@ public sealed partial class HereticAbilitySystem : EntitySystem
         }
 
         if (TryComp<ActiveRadioComponent>(args.Target, out var radio)
-        && radio.Channels.Contains("Mansus"))
+        && radio.Channels.Contains(Mansus))
         {
             _popup.PopupEntity(Loc.GetString("heretic-manselink-fail-exists"), ent, ent);
             return;
@@ -183,7 +159,7 @@ public sealed partial class HereticAbilitySystem : EntitySystem
         {
             BreakOnDamage = true,
             BreakOnMove = true,
-            BreakOnWeightlessMove = true
+            BreakOnWeightlessMove = true,
         };
         _popup.PopupEntity(Loc.GetString("heretic-manselink-start"), ent, ent);
         _popup.PopupEntity(Loc.GetString("heretic-manselink-start-target"), args.Target, args.Target, PopupType.MediumCaution);
@@ -191,11 +167,11 @@ public sealed partial class HereticAbilitySystem : EntitySystem
     }
     private void OnMansusLinkDoafter(Entity<GhoulComponent> ent, ref HereticMansusLinkDoAfter args)
     {
-        var reciever = EnsureComp<IntrinsicRadioReceiverComponent>(args.Target);
+        // var reciever = EnsureComp<IntrinsicRadioReceiverComponent>(args.Target);
         var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(args.Target);
         var radio = EnsureComp<ActiveRadioComponent>(args.Target);
-        radio.Channels = new() { "Mansus" };
-        transmitter.Channels = new() { "Mansus" };
+        radio.Channels = [Mansus];
+        transmitter.Channels = [Mansus];
 
         // this "* 1000f" (divided by 1000 in FlashSystem) is gonna age like fine wine :clueless:
         _flash.Flash(args.Target, null, null, 2f * 1000f, 0f, false, true, stunDuration: TimeSpan.FromSeconds(1f));

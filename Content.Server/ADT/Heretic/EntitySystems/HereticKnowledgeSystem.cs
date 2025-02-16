@@ -24,15 +24,23 @@ public sealed partial class HereticKnowledgeSystem : EntitySystem
             RaiseLocalEvent(uid, (object) data.Event, true);
 
         if (data.ActionPrototypes != null && data.ActionPrototypes.Count > 0)
+        {
             foreach (var act in data.ActionPrototypes)
+            {
                 _action.AddAction(uid, act);
+            }
+        }
 
         if (data.RitualPrototypes != null && data.RitualPrototypes.Count > 0)
+        {
             foreach (var ritual in data.RitualPrototypes)
+            {
                 comp.KnownRituals.Add(_ritual.GetRitual(ritual));
+            }
+        }
 
         // set path if out heretic doesn't have it, or if it's different from whatever he has atm
-        if (string.IsNullOrWhiteSpace(comp.CurrentPath))
+        if (comp.CurrentPath == null)
         {
             if (!data.SideKnowledge && comp.CurrentPath != data.Path)
                 comp.CurrentPath = data.Path;
@@ -55,14 +63,20 @@ public sealed partial class HereticKnowledgeSystem : EntitySystem
                 var actionName = (EntityPrototype) _proto.Index(typeof(EntityPrototype), act);
                 // jesus christ.
                 foreach (var action in _action.GetActions(uid))
+                {
                     if (Name(action.Id) == actionName.Name)
                         _action.RemoveAction(action.Id);
+                }
             }
         }
 
         if (data.RitualPrototypes != null && data.RitualPrototypes.Count > 0)
+        {
             foreach (var ritual in data.RitualPrototypes)
+            {
                 comp.KnownRituals.Remove(_ritual.GetRitual(ritual));
+            }
+        }
 
         if (!silent)
             _popup.PopupEntity(Loc.GetString("heretic-knowledge-loss"), uid, uid);

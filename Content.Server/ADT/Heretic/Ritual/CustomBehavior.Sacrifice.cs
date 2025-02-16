@@ -63,7 +63,7 @@ namespace Content.Server.Heretic.Ritual;
         foreach (var look in lookup)
         {
             if (!args.EntityManager.TryGetComponent<MobStateComponent>(look, out var mobstate)
-            || !args.EntityManager.HasComponent<HumanoidAppearanceComponent>(look))
+                || !args.EntityManager.HasComponent<HumanoidAppearanceComponent>(look))
                 continue;
 
             if (mobstate.CurrentState == Shared.Mobs.MobState.Dead)
@@ -80,9 +80,19 @@ namespace Content.Server.Heretic.Ritual;
         return true;
     }
 
+
+    [ValidatePrototypeId<DamageGroupPrototype>]
+    private const string Brute = "Brute";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string HereticSacrificeObjective = "HereticSacrificeObjective";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string HereticSacrificeHeadObjective = "HereticSacrificeHeadObjective";
+
     public override void Finalize(RitualData args)
     {
-        for (int i = 0; i < Max; i++)
+        for (var i = 0; i < Max; i++)
         {
             var isCommand = args.EntityManager.HasComponent<CommandStaffComponent>(uids[i]);
             var knowledgeGain = isCommand ? 2f : 1f;
@@ -90,7 +100,7 @@ namespace Content.Server.Heretic.Ritual;
             // YES!!! GIB!!!
             if (args.EntityManager.TryGetComponent<DamageableComponent>(uids[i], out var dmg))
             {
-                var prot = (ProtoId<DamageGroupPrototype>) "Brute";
+                var prot = (ProtoId<DamageGroupPrototype>)Brute;
                 var dmgtype = _proto.Index(prot);
                 _damage.TryChangeDamage(uids[i], new DamageSpecifier(dmgtype, 1984f), true);
             }
@@ -102,13 +112,15 @@ namespace Content.Server.Heretic.Ritual;
             if (_mind.TryGetMind(args.Performer, out var mindId, out var mind))
             {
                 // this is godawful dogshit. but it works :)
-                if (_mind.TryFindObjective((mindId, mind), "HereticSacrificeObjective", out var crewObj)
-                && args.EntityManager.TryGetComponent<HereticSacrificeConditionComponent>(crewObj, out var crewObjComp))
+                if (_mind.TryFindObjective((mindId, mind), HereticSacrificeObjective, out var crewObj)
+                    && args.EntityManager.TryGetComponent<HereticSacrificeConditionComponent>(crewObj,
+                        out var crewObjComp))
                     crewObjComp.Sacrificed += 1;
 
-                if (_mind.TryFindObjective((mindId, mind), "HereticSacrificeHeadObjective", out var crewHeadObj)
-                && args.EntityManager.TryGetComponent<HereticSacrificeConditionComponent>(crewHeadObj, out var crewHeadObjComp)
-                && isCommand)
+                if (_mind.TryFindObjective((mindId, mind), HereticSacrificeHeadObjective, out var crewHeadObj)
+                    && args.EntityManager.TryGetComponent<HereticSacrificeConditionComponent>(crewHeadObj,
+                        out var crewHeadObjComp)
+                    && isCommand)
                     crewHeadObjComp.Sacrificed += 1;
             }
         }

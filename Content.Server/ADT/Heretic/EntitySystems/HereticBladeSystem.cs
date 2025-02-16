@@ -44,6 +44,8 @@ public sealed partial class HereticBladeSystem : EntitySystem
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private HashSet<Entity<MapGridComponent>> _targetGrids = [];
+    private EntityQuery<HereticComponent> _hereticQuery;
+    private EntityQuery<HereticCombatMarkComponent> _hereticCombatMarkQuery;
 
     public void ApplySpecialEffect(EntityUid performer, EntityUid target)
     {
@@ -52,32 +54,32 @@ public sealed partial class HereticBladeSystem : EntitySystem
 
         switch (hereticComp.CurrentPath)
         {
-            case "Ash":
+            case HereticPath.Ash:
                 _flammable.AdjustFireStacks(target, 2.5f, ignite: true);
                 break;
 
-            case "Blade":
+            case HereticPath.Blade:
                 // todo: double it's damage
                 break;
 
-            case "Flesh":
+            case HereticPath.Flesh:
                 // ultra bleed
                 _blood.TryModifyBleedAmount(target, 1.5f);
                 break;
 
-            case "Lock":
+            case HereticPath.Lock:
                 // todo: do something that has weeping and avulsion in it
                 if (_random.Next(0, 10) >= 8)
                     _blood.TryModifyBleedAmount(target, 10f);
                 break;
 
-            case "Rust":
-                var dmgProt = _proto.Index((ProtoId<DamageGroupPrototype>) "Poison");
+            case HereticPath.Rust:
+                var dmgProt = _proto.Index((ProtoId<DamageGroupPrototype>)"Poison");
                 var dmgSpec = new DamageSpecifier(dmgProt, 7.5f);
                 _damage.TryChangeDamage(target, dmgSpec);
                 break;
 
-            case "Void":
+            case HereticPath.Void:
                 if (TryComp<TemperatureComponent>(target, out var temp))
                     _temp.ForceChangeTemperature(target, temp.CurrentTemperature - 5f, temp);
                 break;
@@ -92,6 +94,9 @@ public sealed partial class HereticBladeSystem : EntitySystem
         base.Initialize();
 
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _hereticQuery = GetEntityQuery<HereticComponent>();
+        _hereticCombatMarkQuery = GetEntityQuery<HereticCombatMarkComponent>();
+
         SubscribeLocalEvent<HereticBladeComponent, UseInHandEvent>(OnInteract);
         SubscribeLocalEvent<HereticBladeComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<HereticBladeComponent, MeleeHitEvent>(OnMeleeHit);
@@ -107,8 +112,8 @@ public sealed partial class HereticBladeSystem : EntitySystem
         var targetCoords = SelectRandomTileInRange(xform, 250f);
         var queuedel = true;
 
-        // void path exxclusive
-        if (heretic.CurrentPath == "Void" && heretic.PathStage >= 7)
+        // void path exclusive
+        if (heretic.CurrentPath == HereticPath.Void && heretic.PathStage >= 7)
         {
             var look = _lookupSystem.GetEntitiesInRange<HereticCombatMarkComponent>(Transform(ent).Coordinates, 15f);
             if (look.Count > 0)
@@ -133,7 +138,7 @@ public sealed partial class HereticBladeSystem : EntitySystem
 
     private void OnExamine(Entity<HereticBladeComponent> ent, ref ExaminedEvent args)
     {
-        if (!HasComp<HereticComponent>(args.Examiner))
+        if (!_hereticQuery.HasComp(args.Examiner))
             return;
 
         args.PushMarkup(Loc.GetString("heretic-blade-examine"));
@@ -141,19 +146,19 @@ public sealed partial class HereticBladeSystem : EntitySystem
 
     private void OnMeleeHit(Entity<HereticBladeComponent> ent, ref MeleeHitEvent args)
     {
-        if (string.IsNullOrWhiteSpace(ent.Comp.Path))
+        if (ent.Comp.Path == null)
             return;
 
-        if (!TryComp<HereticComponent>(args.User, out var hereticComp))
+        if (!_hereticQuery.TryComp(args.User, out var hereticComp))
             return;
 
         foreach (var hit in args.HitEntities)
         {
             // does not work on other heretics
-            if (HasComp<HereticComponent>(hit))
+            if (_hereticQuery.HasComp(hit))
                 continue;
 
-            if (TryComp<HereticCombatMarkComponent>(hit, out var mark))
+            if (_hereticCombatMarkQuery.TryComp(hit, out var mark))
             {
                 _combatMark.ApplyMarkEffect(hit, ent.Comp.Path);
                 RemComp(hit, mark);
@@ -192,11 +197,11 @@ public sealed partial class HereticBladeSystem : EntitySystem
 
         EntityCoordinates? targetCoords = null;
 
-        do
+        while (true)
         {
             var valid = false;
 
-            var range = (float) Math.Sqrt(radius);
+            var range = (float)Math.Sqrt(radius);
             var box = Box2.CenteredAround(userCoords.Position, new Vector2(range, range));
             var tilesInRange = _mapSystem.GetTilesEnumerator(targetGrid.Value.Owner, targetGrid.Value.Comp, box, false);
             var tileList = new ValueList<Vector2i>();
@@ -210,15 +215,19 @@ public sealed partial class HereticBladeSystem : EntitySystem
             {
                 var tile = tileList.RemoveSwap(_random.Next(tileList.Count));
                 valid = true;
-                foreach (var entity in _mapSystem.GetAnchoredEntities(targetGrid.Value.Owner, targetGrid.Value.Comp,
-                             tile))
+                foreach (var entity in _mapSystem.GetAnchoredEntities(
+                             targetGrid.Value.Owner,
+                             targetGrid.Value.Comp,
+                             tile
+                         )
+                        )
                 {
                     if (!_physicsQuery.TryGetComponent(entity, out var body))
                         continue;
 
                     if (body.BodyType != BodyType.Static ||
                         !body.Hard ||
-                        (body.CollisionLayer & (int) CollisionGroup.MobMask) == 0)
+                        (body.CollisionLayer & (int)CollisionGroup.MobMask) == 0)
                         continue;
 
                     valid = false;
@@ -233,13 +242,13 @@ public sealed partial class HereticBladeSystem : EntitySystem
                 }
             }
 
-            if (valid || _targetGrids.Count == 0) // if we don't do the check here then PickAndTake will blow up on an empty set.
+            // if we don't do the check here then PickAndTake will blow up on an empty set.
+            if (valid || _targetGrids.Count == 0)
                 break;
 
             targetGrid = _random.GetRandom().PickAndTake(_targetGrids);
-        } while (true);
+        }
 
         return targetCoords;
     }
-
 }

@@ -16,11 +16,13 @@ public sealed partial class RitualAshAscendBehavior : RitualSacrificeBehavior
         if (!base.Execute(args, out outstr))
             return false;
 
-        for (int i = 0; i < Max; i++)
+        for (var i = 0; i < Max; i++)
         {
             if (args.EntityManager.TryGetComponent<FlammableComponent>(uids[i], out var flam))
+            {
                 if (flam.OnFire)
                     burningUids.Add(uids[i]);
+            }
         }
 
         if (burningUids.Count < Min)
@@ -33,14 +35,16 @@ public sealed partial class RitualAshAscendBehavior : RitualSacrificeBehavior
         return true;
     }
 
+    [ValidatePrototypeId<DamageGroupPrototype>]
+    private const string Burn = "Burn";
     public override void Finalize(RitualData args)
     {
-        for (int i = 0; i < Max; i++)
+        for (var i = 0; i < Max; i++)
         {
             // YES!!! ASH!!!
             if (args.EntityManager.TryGetComponent<DamageableComponent>(uids[i], out var dmg))
             {
-                var prot = (ProtoId<DamageGroupPrototype>) "Burn";
+                var prot = (ProtoId<DamageGroupPrototype>) Burn;
                 var dmgtype = _proto.Index(prot);
                 _damage.TryChangeDamage(uids[i], new DamageSpecifier(dmgtype, 3984f), true);
             }

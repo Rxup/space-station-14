@@ -31,31 +31,32 @@ public sealed partial class HereticCombatMarkSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    public bool ApplyMarkEffect(EntityUid target, string? path)
+    public bool ApplyMarkEffect(EntityUid target, HereticPath? path)
     {
-        if (string.IsNullOrWhiteSpace(path))
+        if (path == null)
             return false;
 
         switch (path)
         {
-            case "Ash":
+            case HereticPath.Ash:
                 // gives fire stacks
                 _flammable.AdjustFireStacks(target, 5, ignite: true);
                 break;
 
-            case "Blade":
+            case HereticPath.Blade:
                 // TODO: add rotating protective blade type shit
                 break;
 
-            case "Flesh":
+            case HereticPath.Flesh:
                 if (TryComp<BloodstreamComponent>(target, out var blood))
                 {
                     _blood.TryModifyBleedAmount(target, 5f, blood);
                     _blood.SpillAllSolutions(target, blood);
                 }
+
                 break;
 
-            case "Lock":
+            case HereticPath.Lock:
                 // bolts nearby doors
                 var lookup = _lookup.GetEntitiesInRange(target, 5f);
                 foreach (var door in lookup)
@@ -64,10 +65,11 @@ public sealed partial class HereticCombatMarkSystem : EntitySystem
                         continue;
                     _door.SetBoltsDown((door, doorComp), true);
                 }
+
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/knock.ogg"), target);
                 break;
 
-            case "Rust":
+            case HereticPath.Rust:
                 // TODO: add item damage, for now just break a random item
                 if (!TryComp<InventoryComponent>(target, out var inv))
                     break;
@@ -82,11 +84,13 @@ public sealed partial class HereticCombatMarkSystem : EntitySystem
                     break;
                 var item = cont.ContainedEntities[itemrandom];
 
-                _popup.PopupEntity(Loc.GetString("heretic-rust-mark-itembreak", ("name", Name(item))), target, PopupType.LargeCaution);
+                _popup.PopupEntity(Loc.GetString("heretic-rust-mark-itembreak", ("name", Name(item))),
+                    target,
+                    PopupType.LargeCaution);
                 QueueDel(item);
                 break;
 
-            case "Void":
+            case HereticPath.Void:
                 // set target's temperature to -40C
                 // is really OP with the new temperature slowing thing :godo:
                 if (TryComp<TemperatureComponent>(target, out var temp))
@@ -103,10 +107,10 @@ public sealed partial class HereticCombatMarkSystem : EntitySystem
         {
             var lookent = look.ToArray()[0];
             if (HasComp<HumanoidAppearanceComponent>(lookent)
-            && !HasComp<HereticComponent>(lookent))
+                && !HasComp<HereticComponent>(lookent))
             {
                 var markComp = EnsureComp<HereticCombatMarkComponent>(lookent);
-                markComp.Path = path;
+                markComp.Path = path.Value;
             }
         }
 
@@ -127,10 +131,12 @@ public sealed partial class HereticCombatMarkSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        foreach (var comp in EntityQuery<HereticCombatMarkComponent>())
+        var query = EntityQueryEnumerator<HereticCombatMarkComponent>();
+
+        while (query.MoveNext(out var owner, out var comp))
         {
             if (_timing.CurTime > comp.Timer)
-                RemComp(comp.Owner, comp);
+                RemCompDeferred(owner, comp);
         }
     }
 

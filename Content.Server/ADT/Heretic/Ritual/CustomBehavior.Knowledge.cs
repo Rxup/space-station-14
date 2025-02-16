@@ -20,6 +20,8 @@ public sealed partial class RitualKnowledgeBehavior : RitualCustomBehavior
     private EntityLookupSystem _lookup = default!;
     private HereticSystem _heretic = default!;
 
+    [ValidatePrototypeId<DatasetPrototype>]
+    private const string EligibleTags = "EligibleTags";
     // this is basically a ripoff from hereticritualsystem
     public override bool Execute(RitualData args, out string? outstr)
     {
@@ -32,8 +34,12 @@ public sealed partial class RitualKnowledgeBehavior : RitualCustomBehavior
 
         // generate new set of tags
         if (requiredTags.Count == 0)
-            for (int i = 0; i < 4; i++)
-                requiredTags.Add(_rand.Pick(_prot.Index<DatasetPrototype>("EligibleTags").Values), 1);
+        {
+            for (var i = 0; i < 4; i++)
+            {
+                requiredTags.Add(_rand.Pick(_prot.Index<DatasetPrototype>(EligibleTags).Values), 1);
+            }
+        }
 
         var lookup = _lookup.GetEntitiesInRange(args.Platform, .75f);
         var missingList = new List<string>();
@@ -55,17 +61,20 @@ public sealed partial class RitualKnowledgeBehavior : RitualCustomBehavior
         }
 
         foreach (var tag in requiredTags)
+        {
             if (tag.Value > 0)
                 missingList.Add(tag.Key);
+        }
 
         if (missingList.Count > 0)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < missingList.Count; i++)
+            for (var i = 0; i < missingList.Count; i++)
             {
                 if (i != missingList.Count - 1)
                     sb.Append($"{missingList[i]}, ");
-                else sb.Append(missingList[i]);
+                else
+                    sb.Append(missingList[i]);
             }
 
             outstr = Loc.GetString("heretic-ritual-fail-items", ("itemlist", sb.ToString()));
@@ -79,7 +88,10 @@ public sealed partial class RitualKnowledgeBehavior : RitualCustomBehavior
     {
         // delete all and reset
         foreach (var ent in toDelete)
+        {
             args.EntityManager.QueueDeleteEntity(ent);
+        }
+
         toDelete = new();
 
         if (args.EntityManager.TryGetComponent<HereticComponent>(args.Performer, out var hereticComp))

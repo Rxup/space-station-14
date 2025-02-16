@@ -62,7 +62,6 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
-
     }
 
     private void OnTryPowerWorldTarget(Entity<PsiActionComponent> ent, ref ValidateActionWorldTargetEvent args)

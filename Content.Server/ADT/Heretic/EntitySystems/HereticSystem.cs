@@ -50,10 +50,12 @@ public sealed partial class HereticSystem : EntitySystem
 
         _timer = 0f;
 
-        foreach (var heretic in EntityQuery<HereticComponent>())
+        var query = EntityQueryEnumerator<HereticComponent>();
+
+        while(query.MoveNext(out var owner, out var heretic))
         {
             // passive point gain every 20 minutes
-            UpdateKnowledge(heretic.Owner, heretic, 1f);
+            UpdateKnowledge(owner, heretic, 1f);
         }
     }
 
@@ -66,8 +68,10 @@ public sealed partial class HereticSystem : EntitySystem
         }
 
         if (_mind.TryGetMind(uid, out var mindId, out var mind))
+        {
             if (_mind.TryGetObjectiveComp<HereticKnowledgeConditionComponent>(mindId, out var objective, mind))
                 objective.Researched += amount;
+        }
     }
 
     private void OnCompInit(Entity<HereticComponent> ent, ref ComponentInit args)
@@ -103,7 +107,7 @@ public sealed partial class HereticSystem : EntitySystem
 
         switch (ent.Comp.CurrentPath)
         {
-            case "Ash":
+            case HereticPath.Ash:
                 // nullify heat damage because zased
                 args.Damage.DamageDict["Heat"] = 0;
                 break;
@@ -123,15 +127,15 @@ public sealed partial class HereticSystem : EntitySystem
         var color = Color.Pink;
         switch (ent.Comp.CurrentPath!)
         {
-            case "Ash":
+            case HereticPath.Ash:
                 color = Color.DarkGray;
                 break;
 
-            case "Void":
+            case HereticPath.Void:
                 color = Color.Aquamarine;
                 break;
 
-            case "Flesh":
+            case HereticPath.Flesh:
                 color = Color.IndianRed;
                 break;
 
@@ -139,14 +143,14 @@ public sealed partial class HereticSystem : EntitySystem
                 break;
         }
 
-        var pathLoc = ent.Comp.CurrentPath!.ToLower();
+        var pathLoc = ent.Comp.CurrentPath!.ToString()!.ToLower();
         var ascendSound = new SoundPathSpecifier($"/Audio/ADT/Heretic/Ambience/Antag/Heretic/ascend_{pathLoc}.ogg");
         _chat.DispatchGlobalAnnouncement(Loc.GetString($"heretic-ascension-{pathLoc}"), Name(ent), true, ascendSound, color);
 
         // do other logic, e.g. make heretic immune to whatever
         switch (ent.Comp.CurrentPath!)
         {
-            case "Ash":
+            case HereticPath.Ash:
                 RemComp<TemperatureComponent>(ent);
                 RemComp<RespiratorComponent>(ent);
                 RemComp<BarotraumaComponent>(ent);
