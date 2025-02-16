@@ -31,9 +31,7 @@
 - type: startingGear
   id: PilotGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSecurityPilot #backmen
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadCapSecurityPilot #backmen
     id: PilotPDA
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat #backmen
