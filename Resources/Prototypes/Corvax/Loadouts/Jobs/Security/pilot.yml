@@ -15,8 +15,19 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuiSecurityPilot
     
+# Outer
+- type: loadout
+  id: CoatBomber
+  equipment:
+    outerClothing: ClothingOuterCoatBomber
+
 # Shoes
 - type: loadout
   id: SecurityMagBoots
   equipment:
     shoes: ClothingShoesBootsMagSecurity
+
+- type: loadout
+  id: Laceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup

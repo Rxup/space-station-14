@@ -31,8 +31,8 @@
   - JackSecBoots # Corvax
   - JackBoots
   - SecurityWinterBoots
-  - ClothingShoesBootsMagSecurity
-  - ClothingShoesBootsLaceup
+  - SecurityMagBoots
+  - Laceup
 
 - type: loadoutGroup
   id: SecurityHeadPilot
@@ -56,5 +56,5 @@
   - ClothingOuterCoatSecurityOvercoat
   - ClothingOuterCoatSecurityOfficerOvercoat
   - SecurityOfficerWintercoat
-  - ClothingOuterCoatBomber
+  - CoatBomber
 #backmen end

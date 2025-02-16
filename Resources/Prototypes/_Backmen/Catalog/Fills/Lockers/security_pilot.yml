@@ -21,9 +21,9 @@
       amount: 1
     - id: DoubleEmergencyOxygenTankFilled
       amount: 1
-    - id: SecGasmask
+    - id: ClothingMaskGasSecurity
       amount: 1
-    - id: SecBelt
+    - id: ClothingBeltSecurityFilled
       amount: 1
     - id: JetpackSecurityFilled
       amount: 1
