@@ -172,7 +172,7 @@
       - Biological
     damage:
       groups:
-        Brute: -30 # 10 for each type in the group
+        Brute: -10 # 3.3~ for each type in the group
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -211,7 +211,8 @@
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
-    ModifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
+    bloodlossModifier: -1 # a suture should stop ongoing bleeding
+    ModifyBloodLevel: 20 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
@@ -249,7 +250,7 @@
           Brute: 5 # Tourniquets HURT!
         types:
           Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
-      bloodlossModifier: -10 # Tourniquets stop bleeding
+      bloodlossModifier: -40 # Tourniquets stop bleeding, rework this latuh
       delay: 0.5
       healingBeginSound:
         path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -278,7 +279,7 @@
       types:
         Slash: -5
         Piercing: -10
-    bloodlossModifier: -10
+    bloodlossModifier: -20
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:

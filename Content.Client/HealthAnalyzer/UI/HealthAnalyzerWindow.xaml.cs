@@ -5,7 +5,10 @@ using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -38,6 +41,8 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
 
+        private readonly WoundSystem _wound;
+
         // Start-backmen: surgery
         public event Action<TargetBodyPart?, EntityUid>? OnBodyPartSelected;
         private EntityUid _spriteViewEntity;
@@ -59,6 +64,7 @@ namespace Content.Client.HealthAnalyzer.UI
             _spriteSystem = _entityManager.System<SpriteSystem>();
             _prototypes = dependencies.Resolve<IPrototypeManager>();
             _cache = dependencies.Resolve<IResourceCache>();
+            _wound = _entityManager.System<WoundSystem>();
             // Start-backmen: surgery
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
@@ -113,8 +119,7 @@ namespace Content.Client.HealthAnalyzer.UI
             EntityUid? part = msg.Part != null ? _entityManager.GetEntity(msg.Part.Value) : null;
             var isPart = part != null;
 
-            if (_target == null
-                || !_entityManager.TryGetComponent<DamageableComponent>(isPart ? part : _target, out var damageable))
+            if (_target == null)
             {
                 NoPatientDataText.Visible = true;
                 return;
@@ -177,9 +182,57 @@ namespace Content.Client.HealthAnalyzer.UI
                     ? GetStatus(mobStateComponent.CurrentState)
                     : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-            // Total Damage
+            // Damage stuff
 
-            DamageLabel.Text = damageable.TotalDamage.ToString();
+            if (_entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
+            {
+                DamageLabel.Text = damageable.TotalDamage.ToString();
+
+                var damageSortedGroups =
+                    damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
+
+                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+
+                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+            }
+
+            if (!isPart && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body) && body.RootContainer.ContainedEntity.HasValue)
+            {
+                var total =
+                    _wound.GetAllWoundableChildren(body.RootContainer.ContainedEntity.Value)
+                        .Aggregate((FixedPoint2) 0,
+                            (current, damagedWoundable)
+                            => current + _wound.GetWoundableSeverityPoint(damagedWoundable.Item1, damagedWoundable.Item2));
+
+                DamageLabel.Text = total.ToString();
+            }
+
+            if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
+            {
+                DamageLabel.Text = _wound.GetWoundableSeverityPoint(part.Value, woundable).ToString();
+
+                var damageGroups = new Dictionary<string, FixedPoint2>();
+                foreach (var wound in _wound.GetWoundableWounds(part.Value, woundable))
+                {
+                    var woundGroup = wound.Item2.DamageGroup;
+                    if (woundGroup == null)
+                        continue;
+
+                    if (!damageGroups.TryAdd(woundGroup, wound.Item2.WoundSeverityPoint))
+                    {
+                        damageGroups[woundGroup] += wound.Item2.WoundSeverityPoint;
+                    }
+                }
+
+                var damageSortedGroups =
+                    damageGroups.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
+
+                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageGroups;
+
+                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+            }
 
             // Alerts
 
@@ -212,17 +265,6 @@ namespace Content.Client.HealthAnalyzer.UI
                 bleedingLabel.SetMessage(Loc.GetString("health-analyzer-window-entity-bleeding-text"), defaultColor: Color.Red);
                 AlertsContainer.AddChild(bleedingLabel);
             }
-
-            // Damage Groups
-
-            var damageSortedGroups =
-                damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
-                    .ToDictionary(x => x.Key, x => x.Value);
-
-            IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
-
-            DrawDiagnosticGroups(damageSortedGroups, damagePerType);
-            // End-backmen: surgery
         }
 
         private static string GetStatus(MobState mobState)

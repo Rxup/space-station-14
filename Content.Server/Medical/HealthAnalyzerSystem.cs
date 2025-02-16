@@ -21,6 +21,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.Traits.Assorted;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -238,8 +239,6 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key))
             return;
 
-        if (!HasComp<DamageableComponent>(target))
-            return;
         var bodyTemperature = float.NaN;
 
         if (TryComp<TemperatureComponent>(target, out var temp))
@@ -257,9 +256,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bleeding = bloodstream.BleedAmount > 0;
         }
 
-        /*if (HasComp<UnrevivableComponent>(target)) Somehow we dont have unrevivable???
+        if (HasComp<UnrevivableComponent>(target))
             unrevivable = true;
-        */
 
         // Start-backmen: surgery
         Dictionary<TargetBodyPart, WoundableSeverity>? body = null;

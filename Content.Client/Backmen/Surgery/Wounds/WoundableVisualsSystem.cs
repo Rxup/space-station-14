@@ -165,6 +165,16 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             }
         }
 
+        if (damagePerGroup.Count == 0 && visuals.DamageOverlayGroups != null)
+        {
+            foreach (var damage in visuals.DamageOverlayGroups!)
+            {
+                bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}{damage.Key}", out var damageLayer);
+
+                UpdateDamageLayerState(bodySprite, damageLayer, $"{visuals.OccupiedLayer}_{damage.Key}", 0);
+            }
+        }
+
         foreach (var (type, damage) in damagePerGroup)
         {
             bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}{type}", out var damageLayer);

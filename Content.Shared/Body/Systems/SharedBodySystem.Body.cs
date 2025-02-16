@@ -1,14 +1,13 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
 using Content.Shared.DragDrop;
-using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Gibbing.Systems;
@@ -25,7 +24,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Body.Systems;
 
@@ -38,6 +36,7 @@ public partial class SharedBodySystem
      * - Each "connection" is a body part (e.g. arm, hand, etc.) and each part can also contain organs.
      */
 
+    [Dependency] private readonly WoundSystem _woundSystem = default!;
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
@@ -57,6 +56,8 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, StandAttemptEvent>(OnStandAttempt);
         SubscribeLocalEvent<BodyComponent, ProfileLoadFinishedEvent>(OnProfileLoadFinished);
         SubscribeLocalEvent<BodyComponent, IsEquippingAttemptEvent>(OnBeingEquippedAttempt);
+
+        SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
     private void OnBodyInserted(Entity<BodyComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -235,6 +236,111 @@ public partial class SharedBodySystem
             {
                 Log.Error($"Could not create organ for slot {organSlotId} in {ToPrettyString(ent)}");
             }
+        }
+    }
+
+    private void OnRejuvenate(EntityUid ent, BodyComponent body, ref RejuvenateEvent args)
+    {
+        if (body.Prototype == null)
+            return;
+
+        var prototype = Prototypes.Index(body.Prototype.Value);
+
+        var rootPart = GetRootPartOrNull(ent, body);
+        if (rootPart == null)
+            return;
+
+        Dirty(rootPart.Value.Entity, rootPart.Value.BodyPart);
+
+        var rootSlot = prototype.Root;
+        var frontier = new Queue<string>();
+        frontier.Enqueue(rootSlot);
+
+        var cameFrom = new Dictionary<string, string>();
+        cameFrom[rootSlot] = rootSlot;
+
+        var cameFromEntities = new Dictionary<string, EntityUid>();
+        cameFromEntities[rootSlot] = rootPart.Value.Entity;
+
+        while (frontier.TryDequeue(out var currentSlotId))
+        {
+            var currentSlot = prototype.Slots[currentSlotId];
+
+            foreach (var connection in currentSlot.Connections)
+            {
+                if (!cameFrom.TryAdd(connection, currentSlotId))
+                    continue;
+
+                var connectionSlot = prototype.Slots[connection];
+                var parentEntity = cameFromEntities[currentSlotId];
+                var parentPartComponent = Comp<BodyPartComponent>(parentEntity);
+
+                if (Containers.TryGetContainer(parentEntity, GetPartSlotContainerId(connection), out var container))
+                {
+                    if (container.ContainedEntities.Count > 0)
+                    {
+                        cameFromEntities[connection] = container.ContainedEntities[0];
+                    }
+                    else
+                    {
+                        var childPart = Spawn(connectionSlot.Part, new EntityCoordinates(parentEntity, Vector2.Zero));
+                        cameFromEntities[connection] = childPart;
+
+                        var childPartComponent = Comp<BodyPartComponent>(childPart);
+
+                        var partSlot = new BodyPartSlot(connection, childPartComponent.PartType);
+                        childPartComponent.ParentSlot = partSlot;
+                        parentPartComponent.Children.Add(connection, partSlot);
+
+                        Dirty(parentEntity, parentPartComponent);
+                        Dirty(childPart, childPartComponent);
+
+                        Containers.Insert(childPart, container);
+
+                        SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
+                    }
+                }
+                else
+                {
+                    var childPart = Spawn(connectionSlot.Part, new EntityCoordinates(parentEntity, Vector2.Zero));
+                    cameFromEntities[connection] = childPart;
+
+                    var childPartComponent = Comp<BodyPartComponent>(childPart);
+
+                    var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, parentPartComponent);
+                    childPartComponent.ParentSlot = partSlot;
+
+                    Dirty(parentEntity, parentPartComponent);
+                    Dirty(childPart, childPartComponent);
+
+                    if (partSlot is null)
+                    {
+                        Log.Error($"Could not create slot for connection {connection} in body {prototype.ID}");
+                        QueueDel(childPart);
+                        continue;
+                    }
+
+                    container = Containers.GetContainer(parentEntity, GetPartSlotContainerId(connection));
+                    Containers.Insert(childPart, container);
+
+                    SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
+                }
+
+                frontier.Enqueue(connection);
+            }
+        }
+
+        foreach (var bodyPart in GetBodyChildren(ent, body))
+        {
+            if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
+                continue;
+
+            _woundSystem.TryHaltAllBleeding(bodyPart.Id, woundable);
+            _woundSystem.TryHealWoundsOnWoundable(
+                bodyPart.Id,
+                _woundSystem.GetWoundableSeverityPoint(bodyPart.Id, woundable),
+                out _,
+                ignoreMultipliers: true);
         }
     }
 

@@ -6,7 +6,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BluntScar
-    integrityMultiplier: 1 #heheheha
+    integrityMultiplier: 0.5 #heheheha
     bleedsScaling: 2
     traumasChance:
       Dismemberment: -0.2
@@ -65,7 +65,7 @@
     WoundType: enum.WoundType.External
     WoundVisibility: enum.WoundVisibility.Always
     scarWound: BurnScar
-    integrityMultiplier: 1.2
+    integrityMultiplier: 0.5
     bleedsScaling: 0.34
     traumasChance:
       Dismemberment: -0.5 # fire and lasers can't dismember, damage organs or bones. But they can damage veins and nerves pretty much easily

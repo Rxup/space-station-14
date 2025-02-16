@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Mobs;
+using Content.Shared.Rejuvenate;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
@@ -18,6 +19,8 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<NerveSystemComponent, PainModifierRemovedEvent>(OnPainRemoved);
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
+
+        SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate);
 
         // too silly
         // SubscribeLocalEvent<ConsciousnessRequiredComponent, ComponentInit>(OnConsciousnessPartInit);
@@ -111,13 +114,49 @@ public partial class ConsciousnessSystem
         if (args.NewMobState != MobState.Dead)
             return;
 
-        AddConsciousnessModifier(uid, uid, -component.Cap, component, "DeathThreshold");
+        AddConsciousnessModifier(uid, uid, -component.Cap, component, "DeathThreshold", ConsciousnessModType.Pain);
         // To prevent people from suddenly resurrecting while being dead. whoops
 
         foreach (var multiplier in
                  component.Multipliers.Where(multiplier => multiplier.Value.Type != ConsciousnessModType.Pain))
         {
             RemoveConsciousnessMultiplier(uid, multiplier.Key.Item1, multiplier.Value.Type, component);
+        }
+    }
+
+    private void OnRejuvenate(EntityUid uid, ConsciousnessComponent component, ref RejuvenateEvent args)
+    {
+        foreach (var multiplier in
+                 component.Multipliers.Where(multiplier => multiplier.Key.Item2 == ConsciousnessModType.Pain))
+        {
+            RemoveConsciousnessMultiplier(uid, multiplier.Key.Item1, ConsciousnessModType.Pain, component);
+        }
+
+        foreach (var modifier in
+                 component.Modifiers.Where(modifier => modifier.Key.Item2 == ConsciousnessModType.Pain))
+        {
+            RemoveConsciousnessModifer(uid, modifier.Key.Item1, component, ConsciousnessModType.Pain);
+        }
+
+        if (!_pain.TryGetNerveSystemWithComp(uid, out var nerveSys))
+            return;
+
+        foreach (var painModifier in nerveSys.Value.Comp.Modifiers)
+        {
+            _pain.TryRemovePainModifier(nerveSys.Value.Owner, painModifier.Key, nerveSys.Value.Comp);
+        }
+
+        foreach (var painMultiplier in nerveSys.Value.Comp.Multipliers)
+        {
+            _pain.TryRemovePainMultiplier(nerveSys.Value.Owner, painMultiplier.Key, nerveSys.Value.Comp);
+        }
+
+        foreach (var nerve in nerveSys.Value.Comp.Nerves)
+        {
+            foreach (var painFeelsModifier in nerve.Value.PainFeelingModifiers)
+            {
+                _pain.TryRemovePainFeelsModifier(painFeelsModifier.Key, nerve.Key, nerve.Value);
+            }
         }
     }
 

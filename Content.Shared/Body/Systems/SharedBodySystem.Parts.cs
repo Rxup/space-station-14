@@ -80,18 +80,19 @@ public partial class SharedBodySystem
         var insertedUid = args.Entity;
         var slotId = args.Container.ID;
 
-        if (ent.Comp.Body is null)
+        var body = ent.Comp.Body;
+        if (body is null)
             return;
 
         if (TryComp(insertedUid, out BodyPartComponent? part) && slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part))) // Shitmed Change
         {
-            AddPart(ent.Comp.Body.Value, (insertedUid, part), slotId);
-            RecursiveBodyUpdate((insertedUid, part), ent.Comp.Body.Value);
+            AddPart(body.Value, (insertedUid, part), slotId);
+            RecursiveBodyUpdate((insertedUid, part), body.Value);
         }
 
         if (TryComp(insertedUid, out OrganComponent? organ) && slotId.Contains(OrganSlotContainerIdPrefix + organ.SlotId)) // Shitmed Change
         {
-            AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent);
+            AddOrgan((insertedUid, organ), body.Value, ent);
         }
     }
 
@@ -592,6 +593,8 @@ public partial class SharedBodySystem
             DebugTools.Assert($"Unable to find body slot {slot.Id} for {ToPrettyString(parentPartId)}");
             return false;
         }
+
+        parentPart.Children.Remove(slot.Id);
 
         // start-backmen: surgery
         if (HasComp<HumanoidAppearanceComponent>(part.Body)

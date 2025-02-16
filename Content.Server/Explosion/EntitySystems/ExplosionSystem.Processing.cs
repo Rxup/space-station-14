@@ -490,11 +490,11 @@ public sealed partial class ExplosionSystem
                             break;
                     }
 
-                    foreach (var bodyPart in bodyParts)
+                    /*foreach (var bodyPart in bodyParts)
                     {
                         // Distribute the last damage on the other parts... for the cinematic effect :3
-                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count * 0.75, ignoreResistances: true);
-                    }
+                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count, ignoreResistances: true);
+                    }*/
                 }
                 else
                 {

@@ -190,14 +190,19 @@ public sealed class BloodstreamSystem : EntitySystem
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, WoundComponent>();
         while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var wound))
         {
-            if (!bleeds.IsBleeding || !bleeds.BleedingScales)
-                continue;
+            if (bleeds is { IsBleeding: false, BleedingScales: false })
+            {
+                if (!TryComp<BodyPartComponent>(wound.HoldingWoundable, out var holder) || !holder.Body.HasValue)
+                    continue;
+
+                wound.CanBeHealed = true;
+            }
 
             var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
             var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
 
             if (totalTime <= currentTime || bleeds.ScalingLimit == bleeds.Scaling)
-                return;
+                continue;
 
             var newBleeds = FixedPoint2.Clamp(
                 (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
@@ -601,7 +606,7 @@ public sealed class BloodstreamSystem : EntitySystem
         component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
         component.ScalingStartsAt = _gameTiming.CurTime;
 
-        if (!component.IsBleeding)
+        if (!component.IsBleeding && args.NewSeverity > args.OldSeverity)
         {
             component.ScalingLimit += 0.6;
             component.IsBleeding = true;
