@@ -35,6 +35,40 @@
     contents:
         - id: ClothingOuterHardsuitBlueShield
 
+#pilot
+
+- type: entity
+  id: DropPodMarkerSecurityPilot
+  parent: DropPodMarker
+  suffix: SecurityPilot, supply
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationSecurityPilot
+
+- type: entity
+  id: DropPodLaunchAnimationSecurityPilot
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodSecurityPilotHardsuit
+
+- type: entity
+  id: SupplyDropPodSecurityPilotHardsuit
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitSecurityPilot
+
 #syndi
 
 - type: entity
