@@ -84,6 +84,7 @@
       - BankCartridge
       - GlimmerMonitorCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # Corvax-Next-PDAChat
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -156,6 +157,7 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: BasePDA
