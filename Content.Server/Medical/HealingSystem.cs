@@ -127,7 +127,7 @@ public sealed class HealingSystem : EntitySystem
         _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
 
         // Logic to determine whether or not to repeat the healing action
-        args.Repeat = HasDamage(entity.Comp, healing) && !dontRepeat;
+        args.Repeat = HasDamage(entity, healing) && !dontRepeat;
         if (!args.Repeat && !dontRepeat)
             _popupSystem.PopupEntity(Loc.GetString("medical-item-finished-using", ("item", args.Used)), entity.Owner, args.User);
         args.Handled = true;
@@ -381,7 +381,7 @@ public sealed class HealingSystem : EntitySystem
             return false;
 
         var anythingToDo =
-            HasDamage(targetDamage, component) ||
+            HasDamage((target, targetDamage), component) ||
             (TryComp<BodyComponent>(target, out var bodyComp) && // I'm paranoid, sorry.
              IsBodyDamaged((target, bodyComp), user, component)) ||
             component.ModifyBloodLevel > 0 // Special case if healing item can restore lost blood...
