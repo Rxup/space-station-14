@@ -14,10 +14,11 @@
     coverage:
     - Head
     modifiers:
-      Heat: 0.95
-      Blunt: 0.95
-      Slash: 0.95
-      Piercing: 0.95
+      coefficients:
+        Heat: 0.95
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
 
 - type: entity
   parent: [ClothingEyesBase, BaseFoldable]

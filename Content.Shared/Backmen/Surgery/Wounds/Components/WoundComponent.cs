@@ -98,6 +98,7 @@ public sealed partial class WoundComponent : Component
     /// <summary>
     /// Additional chance (-1, 0, 1) that is added in chance calculation
     /// </summary>
+    [DataField]
     public Dictionary<TraumaType, FixedPoint2> TraumasChances = new()
     {
         { TraumaType.Dismemberment, 0 },

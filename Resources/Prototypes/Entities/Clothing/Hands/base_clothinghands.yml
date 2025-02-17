@@ -31,10 +31,11 @@
     coverage:
     - Hand
     modifiers:
-      Heat: 0.9
-      Blunt: 0.9
-      Slash: 0.9
-      Piercing: 0.9
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.1
 

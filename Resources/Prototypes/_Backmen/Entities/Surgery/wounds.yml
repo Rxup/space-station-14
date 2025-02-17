@@ -3,12 +3,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     scarWound: BluntScar
     integrityMultiplier: 0.5 #heheheha
     bleedsScaling: 2
-    traumasChance:
+    traumasChances:
       Dismemberment: -0.2
       OrganDamage: -0.2
       BoneDamage: 0.2
@@ -23,12 +23,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     scarWound: PiercingScar
     integrityMultiplier: 0.3
     bleedsScaling: 0.8
-    traumasChance:
+    traumasChances:
       Dismemberment: 0.14
       OrganDamage: 0.2
       BoneDamage: 0.2
@@ -43,12 +43,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     scarWound: SlashScar
     integrityMultiplier: 0.3
     bleedsScaling: 0.8
-    traumasChance:
+    traumasChances:
       Dismemberment: 0.25
       OrganDamage: -0.34
       BoneDamage: -0.34
@@ -62,12 +62,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     scarWound: BurnScar
     integrityMultiplier: 0.5
     bleedsScaling: 0.34
-    traumasChance:
+    traumasChances:
       Dismemberment: -0.5 # fire and lasers can't dismember, damage organs or bones. But they can damage veins and nerves pretty much easily
       OrganDamage: -0.5
       BoneDamage: -0.7
@@ -82,12 +82,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     scarWound: BurnScar
     canBleed: false
     integrityMultiplier: 0.1
-    traumasChance:
+    traumasChances:
       Dismemberment: -1
       OrganDamage: -1
       BoneDamage: -1
@@ -101,12 +101,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.AdvancedScanner
+    woundType: External
+    woundVisibility: AdvancedScanner
     scarWound: BurnScar
     canBleed: false
     integrityMultiplier: 0.01
-    traumasChance:
+    traumasChances:
       Dismemberment: -1
       OrganDamage: -1
       BoneDamage: -1
@@ -120,12 +120,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.HandScanner
+    woundType: External
+    woundVisibility: HandScanner
     scarWound: RadiationScar
     canBleed: false
     integrityMultiplier: 0.01
-    traumasChance:
+    traumasChances:
       Dismemberment: -1
       OrganDamage: -1
       BoneDamage: -1

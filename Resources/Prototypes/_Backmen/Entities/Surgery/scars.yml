@@ -3,8 +3,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     canBeHealed: false
     isScar: true
   - type: PainInflicter
@@ -14,8 +14,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     canBeHealed: false
     isScar: true
   - type: PainInflicter
@@ -25,8 +25,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     canBeHealed: false
     isScar: true
   - type: PainInflicter
@@ -36,8 +36,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     canBeHealed: false
     isScar: true
   - type: PainInflicter
@@ -47,8 +47,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    WoundType: enum.WoundType.External
-    WoundVisibility: enum.WoundVisibility.Always
+    woundType: External
+    woundVisibility: Always
     canBeHealed: false
     isScar: true
   - type: PainInflicter

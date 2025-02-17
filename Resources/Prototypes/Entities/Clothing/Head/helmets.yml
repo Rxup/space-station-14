@@ -102,9 +102,9 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/light_riot.rsi
   - type: IngestionBlocker
+  - type: Armor
     coverage:
     - Head
-  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.65

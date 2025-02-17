@@ -1,7 +1,7 @@
 ﻿- type: body
   id: Primate
   name: "primate"
-  root: torso
+  root: chest
   slots:
     head: # Put pun pun into a humans body
       part: HeadAnimal

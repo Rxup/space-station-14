@@ -174,10 +174,11 @@
     coverage:
     - Head
     modifiers:
-      Heat: 0.9
-      Blunt: 0.9
-      Slash: 0.9
-      Piercing: 0.9
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -228,10 +229,11 @@
     coverage:
     - Head
     modifiers:
-      Heat: 0.9
-      Blunt: 0.9
-      Slash: 0.9
-      Piercing: 0.9
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
   - type: EyeProtection
     protectionTime: 5
   - type: IdentityBlocker
@@ -290,7 +292,8 @@
     coverage:
     - Head
     modifiers:
-      Heat: 0.9
-      Blunt: 0.9
-      Slash: 0.9
-      Piercing: 0.9
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
