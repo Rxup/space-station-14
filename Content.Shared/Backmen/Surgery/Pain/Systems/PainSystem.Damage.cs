@@ -309,55 +309,9 @@ public partial class PainSystem
             return false;
 
         UpdateNerveSystemPain(uid, nerveSys);
-
         Dirty(uid, nerveSys);
+
         return true;
-    }
-
-    public bool TryGetNerveSystem(EntityUid body, [NotNullWhen(true)] out EntityUid? nerveSystem)
-    {
-        foreach (var (id, _) in _body.GetBodyOrgans(body))
-        {
-            if (!HasComp<NerveSystemComponent>(id))
-                continue;
-
-            nerveSystem = id;
-            return true;
-        }
-
-        nerveSystem = null;
-        return false;
-    }
-
-    public bool TryGetNerveSystemWithComp(EntityUid body, [NotNullWhen(true)] out Entity<NerveSystemComponent>? nerveSystem)
-    {
-        foreach (var (id, _) in _body.GetBodyOrgans(body))
-        {
-            if (!TryComp<NerveSystemComponent>(id, out var comp))
-                continue;
-
-            nerveSystem = (id, comp);
-            return true;
-        }
-
-        nerveSystem = null;
-        return false;
-    }
-
-    /// <summary>
-    /// Lets you quickly get a nerve system of a body instance, if you are lazy.
-    /// </summary>
-    /// <param name="body">Body entity</param>
-    /// <returns></returns>
-    public EntityUid? GetNerveSystem(EntityUid? body)
-    {
-        foreach (var (id, _) in _body.GetBodyOrgans(body))
-        {
-            if (HasComp<NerveSystemComponent>(id))
-                return id;
-        }
-
-        return EntityUid.Invalid;
     }
 
     public Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
@@ -422,7 +376,7 @@ public partial class PainSystem
 
     private void UpdateNerveSystemPain(EntityUid uid, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || !_net.IsServer)
+        if (!Resolve(uid, ref nerveSys, false))
             return;
 
         nerveSys.Pain =
@@ -507,17 +461,10 @@ public partial class PainSystem
                     PopupType.MediumCaution);
 
                 _stun.TryParalyze(body, nerveSys.Comp.PainShockStunTime, true);
-                _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime, true, 20, 7);
+                _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime, true, 20f, 7f);
 
                 // For the funnies :3
                 _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime);
-
-                break;
-            case PainThresholdTypes.PainPassout:
-                CleanupSounds(nerveSys);
-
-                _popup.PopupPredicted(Loc.GetString("passes-out-pain", ("entity", body)), body, null, PopupType.MediumCaution);
-                _consciousness.ForcePassout(body, nerveSys.Comp.ForcePassoutTime);
 
                 break;
             case PainThresholdTypes.None:
@@ -561,12 +508,11 @@ public partial class PainSystem
         nerveSys.LastThresholdType = nearestReflex;
 
         ApplyPainReflexesEffects(organ.Body.Value, (uid, nerveSys), nearestReflex);
-        _sawmill.Info($"Pain threshold (reflex) chosen: {nearestReflex} ({nerveSys.PainThresholds[nearestReflex]}) with painInput of {painInput}. What a good day.");
     }
 
     private FixedPoint2 ApplyModifiersToPain(EntityUid nerveUid, FixedPoint2 pain, NerveSystemComponent nerveSys, NerveComponent? nerve = null)
     {
-        if (!Resolve(nerveUid, ref nerve, false) || !_net.IsServer)
+        if (!Resolve(nerveUid, ref nerve, false))
             return pain;
 
         var modifiedPain = pain * nerve.PainMultiplier;

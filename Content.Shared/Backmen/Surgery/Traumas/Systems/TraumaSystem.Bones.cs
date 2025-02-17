@@ -42,16 +42,15 @@ public partial class TraumaSystem
         if (!TryComp<BodyPartComponent>(component.BoneWoundable, out var bodyPart) || bodyPart.Body == null)
             return;
 
-        var brainUid = _pain.GetNerveSystem(bodyPart.Body);
-        if (!brainUid.HasValue)
+        if (!_conciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             return;
 
-        if (!_pain.TryChangePainModifier(brainUid.Value,
+        if (!_pain.TryChangePainModifier(nerveSys.Value,
                 component.BoneWoundable,
                 "BoneDamage",
                 args.SeverityDelta * _bonePainModifiers[component.BoneSeverity]))
         {
-            _pain.TryAddPainModifier(brainUid.Value,
+            _pain.TryAddPainModifier(nerveSys.Value,
                 component.BoneWoundable,
                 "BoneDamage",
                 args.SeverityDelta * _bonePainModifiers[component.BoneSeverity]);
@@ -112,9 +111,6 @@ public partial class TraumaSystem
 
     private void CheckBoneSeverity(EntityUid bone, BoneComponent boneComp)
     {
-        if (_net.IsClient)
-            return;
-
         var nearestSeverity = boneComp.BoneSeverity;
 
         foreach (var (severity, value) in _boneThresholds.OrderByDescending(kv => kv.Value))
@@ -136,7 +132,7 @@ public partial class TraumaSystem
             {
                 if (boneComp.IntegrityCap / 1.6 > boneComp.BoneIntegrity &&
                     nearestSeverity == BoneSeverity.Damaged &&
-                    _pain.TryGetNerveSystemWithComp(bodyComp.Body.Value, out var nerveSys))
+                    _conciousness.TryGetNerveSystem(bodyComp.Body.Value, out var nerveSys))
                 {
                     _pain.PlayPainSound(bodyComp.Body.Value, nerveSys, boneComp.BoneBreakSound, AudioParams.Default.WithVolume(-8f));
                 }
@@ -149,9 +145,6 @@ public partial class TraumaSystem
 
     private void ApplyBoneDamageEffects(BoneComponent boneComp)
     {
-        if (_net.IsClient)
-            return;
-
         var bodyPart = Comp<BodyPartComponent>(boneComp.BoneWoundable);
 
         if (bodyPart.Body == null || !TryComp<BodyComponent>(bodyPart.Body, out var body))
@@ -180,9 +173,6 @@ public partial class TraumaSystem
 
     private void ProcessLegsState(EntityUid body, BodyComponent bodyComp)
     {
-        if (_net.IsClient)
-            return;
-
         var brokenLegs = 0;
         foreach (var legEntity in bodyComp.LegEntities)
         {
@@ -212,9 +202,6 @@ public partial class TraumaSystem
 
     private void UpdateLegsMovementSpeed(EntityUid body, BodyComponent bodyComp)
     {
-        if (_net.IsClient)
-            return;
-
         var walkSpeed = 0f;
         var sprintSpeed = 0f;
         var acceleration = 0f;
@@ -232,7 +219,7 @@ public partial class TraumaSystem
             var feetModifier = 1f;
             if (feet.Count != 0 && TryComp<BoneComponent>(feet.First().Id, out var bone) && bone.BoneSeverity == BoneSeverity.Broken)
             {
-                feetModifier = 0.4f;
+                feetModifier = 0.2f;
             }
 
             walkSpeed += legModifier.WalkSpeed * feetModifier;

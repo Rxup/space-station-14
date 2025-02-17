@@ -175,8 +175,7 @@ public sealed partial class NerveSystemComponent : Component
         { PainThresholdTypes.Agony, 20 },
         // Just having 'PainFlinch' is lame, people scream for a few seconds before passing out / getting pain shocked, so I added agony.
         // A lot of screams (individual pain screams poll), for the funnies.
-        { PainThresholdTypes.PainShock, 36 },
-        { PainThresholdTypes.PainPassout, 60 },
+        { PainThresholdTypes.PainShock, 40 },
         // usually appears after an explosion. or some ultra big damage output thing, you might survive, and most importantly, you will fall down in pain.
         // :troll:
     };

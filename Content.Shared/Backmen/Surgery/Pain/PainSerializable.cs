@@ -11,7 +11,6 @@ public enum PainThresholdTypes
     PainFlinch,
     Agony,
     PainShock,
-    PainPassout,
 }
 
 [Serializable, DataRecord]

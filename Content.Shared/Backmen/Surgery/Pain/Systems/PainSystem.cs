@@ -70,7 +70,7 @@ public partial class PainSystem : EntitySystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        if (!TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
+        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
         TryRemovePainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss");
@@ -86,7 +86,7 @@ public partial class PainSystem : EntitySystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        if (!TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
+        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
         TryAddPainMultiplier(brainUid.Value, MetaData(args.Part.Owner).EntityPrototype!.ID + "Loss", 2);
@@ -125,7 +125,5 @@ public partial class PainSystem : EntitySystem
             nerve.ParentedNerveSystem = uid;
             Dirty(bodyPart.Id, nerve); // ヾ(≧▽≦*)o
         }
-
-        _sawmill.Info($"Nerve system's (uid: {uid}) nerves updated on body (uid: {body}). Current nerves count: {component.Nerves.Count}");
     }
 }

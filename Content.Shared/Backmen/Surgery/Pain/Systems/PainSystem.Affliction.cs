@@ -15,7 +15,7 @@ public partial class PainSystem
         SubscribeLocalEvent<PainInflicterComponent, WoundSeverityPointChangedEvent>(OnPainChanged);
     }
 
-    public const string PainModifierIdentifier = "Pain";
+    private const string PainModifierIdentifier = "Pain";
 
     #region Event Handling
 
@@ -30,18 +30,17 @@ public partial class PainSystem
         if (bodyPart.Body == null)
             return;
 
-        var brainUid = GetNerveSystem(bodyPart.Body);
-        if (!brainUid.HasValue)
+        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             return;
 
         pain.Pain = FixedPoint2.Clamp(
-            args.Component.WoundSeverityPoint * _painMultipliers[args.Component.WoundSeverity],
+            args.Component.WoundSeverityPoint * _painMultipliers[args.Component.WoundSeverity] * pain.PainMultiplier,
             0,
             100);
 
-        if (!TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain))
+        if (!TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain))
         {
-            TryAddPainModifier(brainUid.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain);
+            TryAddPainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain);
         }
     }
 
@@ -56,16 +55,15 @@ public partial class PainSystem
         if (bodyPart.Body == null)
             return;
 
-        var brainUid = GetNerveSystem(bodyPart.Body);
-        if (!brainUid.HasValue)
-            return;
-
         var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
         if (!rootPart.HasValue)
             return;
 
+        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+            return;
+
         // bro how
-        pain.Pain = FixedPoint2.Clamp(args.NewSeverity * _painMultipliers[args.Component.WoundSeverity], 0, 100);
+        pain.Pain = FixedPoint2.Clamp(args.NewSeverity * _painMultipliers[args.Component.WoundSeverity] * pain.PainMultiplier, 0, 100);
         var allPain = (FixedPoint2) 0;
 
         foreach (var (_, comp) in _wound.GetAllWoundableChildren(rootPart.Value))
@@ -79,7 +77,7 @@ public partial class PainSystem
             }
         }
 
-        TryChangePainModifier(brainUid.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain);
+        TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain);
     }
 
     #endregion

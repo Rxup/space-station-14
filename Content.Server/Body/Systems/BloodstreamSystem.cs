@@ -4,10 +4,13 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -46,7 +49,10 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
 
     // balanced, trust me
     private const float BleedsSeverityTrade = 0.15f;
@@ -186,6 +192,26 @@ public sealed class BloodstreamSystem : EntitySystem
                 // Reset the drunk and stutter time to zero
                 bloodstream.StatusTime = TimeSpan.Zero;
             }
+
+            if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys))
+                continue;
+
+            var total = (FixedPoint2) 0;
+            foreach (var (bodyPart, _) in _body.GetBodyChildren(uid))
+            {
+                foreach (var (wound, _) in _wound.GetWoundableWounds(bodyPart))
+                {
+                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
+                        continue;
+
+                    total += bleeds.BleedingAmount;
+                }
+            }
+
+            if (!_consciousness.SetConsciousnessModifier(uid, nerveSys.Value, -total, type: ConsciousnessModType.Pain))
+            {
+                _consciousness.AddConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain);
+            }
         }
 
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, WoundComponent>();
@@ -213,21 +239,6 @@ public sealed class BloodstreamSystem : EntitySystem
             if (TryComp<BodyPartComponent>(wound.HoldingWoundable, out var bodyPart) && bodyPart.Body.HasValue)
             {
                 TryModifyBleedAmount(bodyPart.Body.Value, (float) bleeds.BleedingAmount / 1.6f);
-
-                var nerveSys = _pain.GetNerveSystem(bodyPart.Body.Value);
-                if (nerveSys.HasValue)
-                {
-                    if (!_pain.TryChangePainMultiplier(
-                            nerveSys.Value,
-                            $"{MetaData(wound.HoldingWoundable).EntityPrototype!.ID}Bleeds",
-                            FixedPoint2.Clamp(bleeds.Scaling * 1.4, 1.07, 2.4)))
-                    {
-                        _pain.TryAddPainMultiplier(
-                            nerveSys.Value,
-                            $"{MetaData(wound.HoldingWoundable).EntityPrototype!.ID}Bleeds",
-                            FixedPoint2.Clamp(bleeds.Scaling * 1.4, 1.07, 2.4));
-                    }
-                }
             }
             bleeds.Scaling = newBleeds;
 
