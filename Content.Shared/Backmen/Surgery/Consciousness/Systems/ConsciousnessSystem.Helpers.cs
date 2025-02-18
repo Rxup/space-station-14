@@ -30,15 +30,13 @@ public partial class ConsciousnessSystem
     /// Gets a nerve system off a body, if has one.
     /// </summary>
     /// <param name="body">Target entity</param>
-    /// <param name="nerveSys">The nerve system you wanted..</param>
-    /// <param name="consciousness">Consciousness component</param>
+    /// <param name="nerveSys">The nerve system you wanted.</param>
     public bool TryGetNerveSystem(
         EntityUid body,
-        [NotNullWhen(true)] out Entity<NerveSystemComponent>? nerveSys,
-        ConsciousnessComponent? consciousness = null)
+        [NotNullWhen(true)] out Entity<NerveSystemComponent>? nerveSys)
     {
         nerveSys = null;
-        if (!Resolve(body, ref consciousness))
+        if (!TryComp<ConsciousnessComponent>(body, out var consciousness))
             return false;
 
         nerveSys = consciousness.NerveSystem;
@@ -288,7 +286,7 @@ public partial class ConsciousnessSystem
     /// <returns>Successful</returns>
     public bool TryGetConsciousnessModifier(EntityUid target,
         EntityUid modifierOwner,
-        out ConsciousnessModifier? modifier,
+        [NotNullWhen(true)] out ConsciousnessModifier? modifier,
         string identifier,
         ConsciousnessComponent? consciousness = null)
     {

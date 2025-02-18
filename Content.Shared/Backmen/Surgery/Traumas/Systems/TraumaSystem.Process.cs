@@ -165,7 +165,7 @@ public partial class TraumaSystem
             var traumaApplied = ApplyDamageToBone(woundable.Bone!.ContainedEntities[0], damage);
 
             var bodyPart = Comp<BodyPartComponent>(target);
-            if (bodyPart.Body.HasValue && _conciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+            if (bodyPart.Body.HasValue && _consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
                 _pain.TryAddPainModifier(nerveSys.Value, target, "BoneDamageImminent", 20f, time: TimeSpan.FromSeconds(12f));
 
             _sawmill.Info(traumaApplied
@@ -176,7 +176,7 @@ public partial class TraumaSystem
         if (traumaList.Contains(TraumaType.NerveDamage))
         {
             var bodyPart = Comp<BodyPartComponent>(target);
-            if (bodyPart.Body.HasValue && _conciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+            if (bodyPart.Body.HasValue && _consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             {
                 _pain.TryAddPainMultiplier(nerveSys.Value,
                     "NerveDamage",
@@ -214,7 +214,7 @@ public partial class TraumaSystem
             {
                 _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
                 var bodyPart = Comp<BodyPartComponent>(target);
-                if (bodyPart.Body.HasValue && _conciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+                if (bodyPart.Body.HasValue && _consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
                     _pain.TryAddPainModifier(nerveSys.Value, target, "Dismemberment", 20f, time: TimeSpan.FromSeconds(12f));
 
                 _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");

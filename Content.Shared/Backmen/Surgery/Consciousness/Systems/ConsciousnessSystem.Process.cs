@@ -5,6 +5,7 @@ using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Rejuvenate;
 
@@ -20,6 +21,7 @@ public partial class ConsciousnessSystem
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
 
+        // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartAddedEvent>(OnBodyPartAdded);
@@ -31,7 +33,7 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
     }
 
-    private const string NerveSystemIdentifier = "nerveSys";
+    private const string NerveSystemIdentifier = "nerveSystem";
 
     private void UpdatePassedOut(float frameTime)
     {

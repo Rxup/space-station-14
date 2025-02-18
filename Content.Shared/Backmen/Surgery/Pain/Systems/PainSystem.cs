@@ -57,8 +57,16 @@ public partial class PainSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        _painJobQueue.Process();
 
-        UpdateDamage(frameTime);
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        using var query = EntityQueryEnumerator<NerveSystemComponent>();
+        while (query.MoveNext(out var ent, out var nerveSystem))
+        {
+            _painJobQueue.EnqueueJob(new PainTimerJob(this, (ent, nerveSystem), PainJobTime));
+        }
     }
 
     private void OnBodyPartAdded(EntityUid uid, NerveComponent nerve, ref BodyPartAddedEvent args)

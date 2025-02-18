@@ -1,12 +1,11 @@
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Traits.Assorted;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -22,7 +21,7 @@ public sealed class DamageOverlayUiController : UIController
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    [UISystemDependency] private readonly WoundSystem _wound = default!;
+    [UISystemDependency] private readonly ConsciousnessSystem _consciousness = default!;
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     private Overlays.DamageOverlay _overlay = default!;
 
@@ -153,31 +152,37 @@ public sealed class DamageOverlayUiController : UIController
             {
                 case MobState.Alive:
                 {
-                    if (consciousness.Consciousness <= 0)
+                    _overlay.CritLevel = 0;
+                    _overlay.DeadLevel = 0;
+
+                    if (consciousness.Consciousness <= 0 || consciousness.Consciousness >= consciousness.Cap)
                     {
                         _overlay.BruteLevel = 0;
                         return;
                     }
 
-                    _overlay.BruteLevel = FixedPoint2.Min(1f, consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness)).Float();
+                    _overlay.BruteLevel = FixedPoint2.Min(1f,
+                        (consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold))
+                        .Float();
 
-                    /*if (damageable.DamagePerGroup.TryGetValue("Airloss", out var oxyDamage))
+                    if (_consciousness.TryGetNerveSystem(_playerManager.LocalEntity!.Value, out var nerveSys) &&
+                        _consciousness.TryGetConsciousnessModifier(nerveSys.Value, nerveSys.Value, out var modifier, "Suffocation"))
                     {
-                        _overlay.OxygenLevel = FixedPoint2.Min(1f, oxyDamage / critThreshold).Float();
-                    } TODO: make it work with airloss later */
+                        _overlay.OxygenLevel = FixedPoint2.Min(1f, modifier.Value.Change / (consciousness.Cap - consciousness.Threshold)).Float();
+                    }
 
                     if (_overlay.BruteLevel < 0.05f) // Don't show damage overlay if they're near enough to max.
                     {
                         _overlay.BruteLevel = 0;
                     }
 
-                    _overlay.CritLevel = 0;
-                    _overlay.DeadLevel = 0;
                     break;
                 }
                 case MobState.Critical:
                 {
-                    _overlay.CritLevel = FixedPoint2.Min(1f, (consciousness.Cap / 12) / (consciousness.Cap - consciousness.Consciousness)).Float();
+                    _overlay.CritLevel = FixedPoint2.Min(1f,
+                        (consciousness.Threshold - consciousness.Consciousness) / consciousness.Threshold)
+                        .Float();
 
                     _overlay.BruteLevel = 0;
                     _overlay.DeadLevel = 0;

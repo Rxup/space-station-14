@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Body.Organ;
@@ -8,11 +10,17 @@ using Content.Shared.Humanoid;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
 public partial class PainSystem
 {
+    private const double PainJobTime = 0.005;
+    private readonly JobQueue _painJobQueue = new(PainJobTime);
+
     #region Data
 
     private readonly Dictionary<WoundSeverity, FixedPoint2> _painMultipliers = new()
@@ -333,43 +341,62 @@ public partial class PainSystem
 
     #region Private API
 
-    private void UpdateDamage(float frameTime)
+    public sealed class PainTimerJob : Job<object>
     {
-        var query = EntityQueryEnumerator<NerveSystemComponent>();
-        while (query.MoveNext(out var nerveSysEnt, out var nerveSys))
+        private readonly PainSystem _self;
+        private readonly Entity<NerveSystemComponent> _ent;
+        public PainTimerJob(PainSystem self, Entity<NerveSystemComponent> ent, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
         {
-            if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
-                nerveSys.LastPainThreshold = nerveSys.Pain;
+            _self = self;
+            _ent = ent;
+        }
 
-            foreach (var (key, value) in nerveSys.PainSoundsToPlay)
-            {
-                if (_timing.CurTime < value.Item3)
-                    continue;
+        public PainTimerJob(PainSystem self, Entity<NerveSystemComponent> ent, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
+        {
+            _self = self;
+            _ent = ent;
+        }
 
-                PlayPainSound(key, nerveSys, value.Item1, value.Item2);
-                nerveSys.PainSoundsToPlay.Remove(key);
-            }
+        protected override Task<object?> Process()
+        {
+            _self.UpdateDamage(_ent.Owner, _ent.Comp);
+            return Task.FromResult<object?>(null);
+        }
+    }
 
-            foreach (var (key, value) in nerveSys.Modifiers)
+    private void UpdateDamage(EntityUid nerveSysEnt, NerveSystemComponent nerveSys)
+    {
+        if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
+            nerveSys.LastPainThreshold = nerveSys.Pain;
+
+        foreach (var (key, value) in nerveSys.PainSoundsToPlay)
+        {
+            if (_timing.CurTime < value.Item3)
+                continue;
+
+            PlayPainSound(key, nerveSys, value.Item1, value.Item2);
+            nerveSys.PainSoundsToPlay.Remove(key);
+        }
+
+        foreach (var (key, value) in nerveSys.Modifiers)
+        {
+            if (_timing.CurTime > value.Time)
+                TryRemovePainModifier(nerveSysEnt, key.Item1, key.Item2, nerveSys);
+        }
+
+        foreach (var (key, value) in nerveSys.Multipliers)
+        {
+            if (_timing.CurTime > value.Time)
+                TryRemovePainMultiplier(nerveSysEnt, key, nerveSys);
+        }
+
+        // I hate myself.
+        foreach (var (ent, nerve) in nerveSys.Nerves)
+        {
+            foreach (var (key, value) in nerve.PainFeelingModifiers.ToList())
             {
                 if (_timing.CurTime > value.Time)
-                    TryRemovePainModifier(nerveSysEnt, key.Item1, key.Item2, nerveSys);
-            }
-
-            foreach (var (key, value) in nerveSys.Multipliers)
-            {
-                if (_timing.CurTime > value.Time)
-                    TryRemovePainMultiplier(nerveSysEnt, key, nerveSys);
-            }
-
-            // I hate myself.
-            foreach (var (ent, nerve) in nerveSys.Nerves)
-            {
-                foreach (var (key, value) in nerve.PainFeelingModifiers.ToList())
-                {
-                    if (_timing.CurTime > value.Time)
-                        TryRemovePainFeelsModifier(key.Item1, key.Item2, ent, nerve);
-                }
+                    TryRemovePainFeelsModifier(key.Item1, key.Item2, ent, nerve);
             }
         }
     }
@@ -449,7 +476,7 @@ public partial class PainSystem
                 }
 
                 // Due to people being whiny. Adrenaline
-                TryAddPainMultiplier(nerveSys, "PainShockAdrenaline", 0.5f, nerveSys, TimeSpan.FromSeconds(29f));
+                TryAddPainMultiplier(nerveSys, "PainShockAdrenaline", 0.5f, nerveSys, TimeSpan.FromSeconds(21f));
                 PlayPainSound(body, nerveSys, nerveSys.Comp.PainRattles, AudioParams.Default.WithVolume(-6f));
 
                 _popup.PopupPredicted(
@@ -465,6 +492,13 @@ public partial class PainSystem
 
                 // For the funnies :3
                 _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime);
+
+                break;
+            case PainThresholdTypes.PainPassout:
+                CleanupSounds(nerveSys);
+
+                _popup.PopupPredicted(Loc.GetString("passes-out-pain", ("entity", body)), body, null, PopupType.MediumCaution);
+                _consciousness.ForcePassout(body, nerveSys.Comp.ForcePassoutTime);
 
                 break;
             case PainThresholdTypes.None:
@@ -489,7 +523,8 @@ public partial class PainSystem
         if (nearestReflex == PainThresholdTypes.None)
             return;
 
-        if (nerveSys.LastThresholdType == nearestReflex && _timing.CurTime < nerveSys.UpdateTime)
+        // TODO: Might be bad.
+        if (nerveSys.LastThresholdType == nearestReflex || _timing.CurTime < nerveSys.UpdateTime)
             return;
 
         if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)

@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
@@ -57,7 +58,8 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, ProfileLoadFinishedEvent>(OnProfileLoadFinished);
         SubscribeLocalEvent<BodyComponent, IsEquippingAttemptEvent>(OnBeingEquippedAttempt);
 
-        SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
+        // to prevent people from falling immediately as rejuvenated
+        SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(ConsciousnessSystem)]);
     }
 
     private void OnBodyInserted(Entity<BodyComponent> ent, ref EntInsertedIntoContainerMessage args)

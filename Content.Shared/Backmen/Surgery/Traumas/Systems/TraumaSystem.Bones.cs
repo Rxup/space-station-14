@@ -42,7 +42,7 @@ public partial class TraumaSystem
         if (!TryComp<BodyPartComponent>(component.BoneWoundable, out var bodyPart) || bodyPart.Body == null)
             return;
 
-        if (!_conciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             return;
 
         if (!_pain.TryChangePainModifier(nerveSys.Value,
@@ -92,9 +92,11 @@ public partial class TraumaSystem
         // We combine multiple parameters and do some math, to get the chance.
         // Even if we get 0.1 damage there's still a chance for injury to be applied, but with the extremely low chance.
         // The more damage, the bigger is the chance.
-        var chance =
+        var chance = FixedPoint2.Clamp(
             (woundableComp.WoundableIntegrity / (woundableComp.WoundableIntegrity + bone.BoneIntegrity)
-            * _boneTraumaChanceMultipliers[woundableComp.WoundableSeverity]) + wound.TraumasChances[TraumaType.BoneDamage];
+            * _boneTraumaChanceMultipliers[woundableComp.WoundableSeverity]) + wound.TraumasChances[TraumaType.BoneDamage],
+            0,
+            1);
 
         // Some examples of how this works:
         // 81 / (81 + 20) * 0.1 (Moderate) = 0.08. Or 8%:
@@ -132,7 +134,7 @@ public partial class TraumaSystem
             {
                 if (boneComp.IntegrityCap / 1.6 > boneComp.BoneIntegrity &&
                     nearestSeverity == BoneSeverity.Damaged &&
-                    _conciousness.TryGetNerveSystem(bodyComp.Body.Value, out var nerveSys))
+                    _consciousness.TryGetNerveSystem(bodyComp.Body.Value, out var nerveSys))
                 {
                     _pain.PlayPainSound(bodyComp.Body.Value, nerveSys, boneComp.BoneBreakSound, AudioParams.Default.WithVolume(-8f));
                 }

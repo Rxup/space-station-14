@@ -21,7 +21,7 @@ public sealed partial class TraumaSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ConsciousnessSystem _conciousness = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
 
     private ISawmill _sawmill = default!;
 

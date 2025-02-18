@@ -554,7 +554,14 @@ public partial class WoundSystem
                 if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
                     return;
 
-                _body.DropSlotContents(new Entity<BodyPartComponent>(woundableEntity, Comp<BodyPartComponent>(woundableEntity)));
+                if (_body.TryGetPartSlotContainerName(bodyPart.PartType, out var slots))
+                {
+                    foreach (var slot in slots)
+                    {
+                        if (_inventory.TryUnequip(bodyPart.Body.Value, slot, out var removedItem))
+                            _throwing.TryThrow(removedItem.Value, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+                    }
+                }
                 var bodyPartId = container.ID;
 
                 DestroyWoundableChildren(woundableEntity, woundableComp);
@@ -571,8 +578,41 @@ public partial class WoundSystem
     /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
     /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
     /// <param name="woundableComp">Woundable component of woundableEntity.</param>
-    public void AmputateWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
+    public void AmputateWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent? woundableComp = null)
     {
+        if (!Resolve(woundableEntity, ref woundableComp))
+            return;
+
+        var bodyPart = Comp<BodyPartComponent>(parentWoundableEntity);
+        if (!bodyPart.Body.HasValue)
+            return;
+
+        AmputateWoundableSafely(parentWoundableEntity, woundableEntity, out var droppedItems);
+        foreach (var droppedItem in droppedItems)
+        {
+            _throwing.TryThrow(droppedItem, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+        }
+
+        _audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyPart.Body.Value);
+        _throwing.TryThrow(woundableEntity, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+    }
+
+    /// <summary>
+    /// Does whatever AmputateWoundable does, but does it without pain and the other mess.
+    /// </summary>
+    /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
+    /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
+    /// <param name="woundableComp">Woundable component of woundableEntity.</param>
+    /// <param name="droppedItems">All the items dropped while removing this woundable</param>
+    public void AmputateWoundableSafely(EntityUid parentWoundableEntity,
+        EntityUid woundableEntity,
+        out List<EntityUid> droppedItems,
+        WoundableComponent? woundableComp = null)
+    {
+        droppedItems = [];
+        if (!Resolve(woundableEntity, ref woundableComp))
+            return;
+
         var bodyPart = Comp<BodyPartComponent>(parentWoundableEntity);
         if (!bodyPart.Body.HasValue)
             return;
@@ -586,7 +626,6 @@ public partial class WoundSystem
         }
 
         var bodyPartId = container.ID;
-
         woundableComp.WoundableSeverity = WoundableSeverity.Loss;
 
         if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting) && _net.IsServer)
@@ -602,19 +641,16 @@ public partial class WoundSystem
             foreach (var slot in slots)
             {
                 if (_inventory.TryUnequip(bodyPart.Body.Value, slot, out var removedItem))
-                    _throwing.TryThrow(removedItem.Value, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+                    droppedItems.Add(removedItem.Value);
             }
         }
 
         Dirty(woundableEntity, woundableComp);
-
         _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
-        _audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyPart.Body.Value);
 
+        // Still does the funny popping, if the children are critted. for the funny :3
         DestroyWoundableChildren(woundableEntity, woundableComp);
         _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
-
-        _throwing.TryThrow(woundableEntity, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
     }
 
     #endregion
@@ -957,6 +993,11 @@ public partial class WoundSystem
     public Dictionary<TargetBodyPart, WoundableSeverity> GetWoundableStatesOnBodyPainFeels(EntityUid body)
     {
         var result = new Dictionary<TargetBodyPart, WoundableSeverity>();
+
+        foreach (var part in SharedTargetingSystem.GetValidParts())
+        {
+            result[part] = WoundableSeverity.Loss;
+        }
 
         foreach (var (id, bodyPart) in _body.GetBodyChildren(body))
         {

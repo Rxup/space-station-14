@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
 [Virtual]
-public partial class ConsciousnessSystem : EntitySystem
+public sealed partial class ConsciousnessSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
