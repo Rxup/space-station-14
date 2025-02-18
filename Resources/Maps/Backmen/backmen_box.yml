@@ -16084,22 +16084,6 @@ entities:
     - type: InstantAction
       originalIconColor: '#FFFFFFFF'
       container: 9182
-- proto: ActionToggleJetpack
-  entities:
-  - uid: 26541
-    components:
-    - type: Transform
-      parent: 9182
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 9182
-  - uid: 29050
-    components:
-    - type: Transform
-      pos: -16.14442,25.918446
-      parent: 8364
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
 - proto: ActionToggleLight
   entities:
   - uid: 16587
@@ -138685,48 +138669,6 @@ entities:
     components:
     - type: Transform
       pos: -9.50687,-66.32498
-      parent: 8364
-- proto: JetpackSecurityFilled
-  entities:
-  - uid: 8572
-    components:
-    - type: Transform
-      parent: 4163
-    - type: GasTank
-      toggleActionEntity: 26540
-    - type: Jetpack
-      toggleActionEntity: 29050
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 26540
-    - type: InsideEntityStorage
-  - uid: 9182
-    components:
-    - type: Transform
-      parent: 4213
-    - type: GasTank
-      toggleActionEntity: 26542
-    - type: Jetpack
-      toggleActionEntity: 26541
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 26541
-          - 26542
-    - type: InsideEntityStorage
-  - uid: 29117
-    components:
-    - type: Transform
-      pos: -20.506342,29.45761
       parent: 8364
 - proto: Jukebox
   entities:
