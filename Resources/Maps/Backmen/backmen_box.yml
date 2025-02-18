@@ -6759,7 +6759,6 @@ entities:
             7379: -65,-3
             7432: -62,3
             8571: 21,32
-            8572: 22,33
             8573: 22,35
             8578: 25,33
             8611: 22,37
@@ -16070,13 +16069,6 @@ entities:
     - type: InstantAction
       originalIconColor: '#FFFFFFFF'
       container: 20121
-  - uid: 26540
-    components:
-    - type: Transform
-      parent: 8572
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 8572
   - uid: 26542
     components:
     - type: Transform
