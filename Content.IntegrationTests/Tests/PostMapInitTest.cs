@@ -87,6 +87,7 @@ namespace Content.IntegrationTests.Tests
 			"BackmenRook",
             "BargeVsShip",
             "BackmenDelta",
+            "BackmenBox",
             //end-backmen
             "Saltern",
             "Reach",
