@@ -212,11 +212,11 @@ public partial class TraumaSystem
         {
             if (!_wound.IsWoundableRoot(target, woundable) && woundable.ParentWoundable.HasValue)
             {
-                _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
                 var bodyPart = Comp<BodyPartComponent>(target);
                 if (bodyPart.Body.HasValue && _consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
-                    _pain.TryAddPainModifier(nerveSys.Value, target, "Dismemberment", 20f, time: TimeSpan.FromSeconds(12f));
+                    _pain.TryAddPainModifier(nerveSys.Value, target, "Dismemberment", 25f, time: TimeSpan.FromSeconds(40f));
 
+                _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
                 _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
             }
         }

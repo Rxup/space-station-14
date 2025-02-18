@@ -338,11 +338,7 @@ public partial class SharedBodySystem
                 continue;
 
             _woundSystem.TryHaltAllBleeding(bodyPart.Id, woundable);
-            _woundSystem.TryHealWoundsOnWoundable(
-                bodyPart.Id,
-                _woundSystem.GetWoundableSeverityPoint(bodyPart.Id, woundable),
-                out _,
-                ignoreMultipliers: true);
+            _woundSystem.ForceHealWoundsOnWoundable(bodyPart.Id, out _);
         }
     }
 

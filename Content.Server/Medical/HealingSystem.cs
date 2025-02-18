@@ -207,7 +207,7 @@ public sealed class HealingSystem : EntitySystem
                 bleedStopAbility -= bleeds.BleedingAmount;
             }
 
-            if (bleedStopAbility != -healing.BloodlossModifier)
+            if (bleedStopAbility != healing.BloodlossModifier)
             {
                 _popupSystem.PopupEntity(bleedStopAbility > 0
                         ? Loc.GetString("medical-item-stop-bleeding-fully-rebell")
@@ -235,7 +235,7 @@ public sealed class HealingSystem : EntitySystem
             }
         }
 
-        if (healedTotal <= 0 && healing.BloodlossModifier != 0)
+        if (healedTotal <= 0)
         {
             _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User, PopupType.SmallCaution);
             return;

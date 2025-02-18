@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Pain.Components;
-using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -20,20 +20,6 @@ public partial class PainSystem
 {
     private const double PainJobTime = 0.005;
     private readonly JobQueue _painJobQueue = new(PainJobTime);
-
-    #region Data
-
-    private readonly Dictionary<WoundSeverity, FixedPoint2> _painMultipliers = new()
-    {
-        { WoundSeverity.Healed, 0.34 },
-        { WoundSeverity.Minor, 0.34 },
-        { WoundSeverity.Moderate, 0.37 },
-        { WoundSeverity.Severe, 0.43 },
-        { WoundSeverity.Critical, 0.52 },
-        { WoundSeverity.Loss, 0.52 }, // already painful enough
-    };
-
-    #endregion
 
     #region Public API
 
@@ -406,6 +392,9 @@ public partial class PainSystem
         if (!Resolve(uid, ref nerveSys, false))
             return;
 
+        if (!TryComp<OrganComponent>(uid, out var organ) || organ.Body == null)
+            return;
+
         nerveSys.Pain =
             FixedPoint2.Clamp(
                 nerveSys.Modifiers.Aggregate((FixedPoint2) 0,
@@ -415,6 +404,20 @@ public partial class PainSystem
                 nerveSys.PainCap);
 
         UpdatePainThreshold(uid, nerveSys);
+        if (!_consciousness.SetConsciousnessModifier(
+                organ.Body.Value,
+                uid,
+                -nerveSys.Pain,
+                identifier: PainModifierIdentifier,
+                type: ConsciousnessModType.Pain))
+        {
+            _consciousness.AddConsciousnessModifier(
+                organ.Body.Value,
+                uid,
+                -nerveSys.Pain,
+                identifier: PainModifierIdentifier,
+                type: ConsciousnessModType.Pain);
+        }
     }
 
     private void CleanupSounds(NerveSystemComponent nerveSys)
@@ -492,6 +495,7 @@ public partial class PainSystem
 
                 // For the funnies :3
                 _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime);
+                nerveSys.Comp.LastThresholdType = PainThresholdTypes.None;
 
                 break;
             case PainThresholdTypes.PainPassout:
@@ -499,6 +503,8 @@ public partial class PainSystem
 
                 _popup.PopupPredicted(Loc.GetString("passes-out-pain", ("entity", body)), body, null, PopupType.MediumCaution);
                 _consciousness.ForcePassout(body, nerveSys.Comp.ForcePassoutTime);
+
+                nerveSys.Comp.LastThresholdType = PainThresholdTypes.None;
 
                 break;
             case PainThresholdTypes.None:
@@ -523,7 +529,6 @@ public partial class PainSystem
         if (nearestReflex == PainThresholdTypes.None)
             return;
 
-        // TODO: Might be bad.
         if (nerveSys.LastThresholdType == nearestReflex || _timing.CurTime < nerveSys.UpdateTime)
             return;
 

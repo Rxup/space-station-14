@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
-public partial class WoundSystem
+public sealed partial class WoundSystem
 {
     private const string WoundContainerId = "Wounds";
     private const string BoneContainerId = "Bone";
@@ -179,7 +179,7 @@ public partial class WoundSystem
          WoundableComponent? woundable = null,
          IEnumerable<TraumaType>? traumaList = null)
     {
-        if (!IsWoundPrototypeValid(woundProtoId) || _net.IsClient)
+        if (!IsWoundPrototypeValid(woundProtoId))
             return false;
 
         if (!Resolve(uid, ref woundable))
@@ -264,7 +264,7 @@ public partial class WoundSystem
 
         if (wound.WoundSeverityPoint != old)
         {
-            var ev = new WoundSeverityPointChangedEvent(wound, old, severity);
+            var ev = new WoundSeverityPointChangedEvent(wound, old, wound.WoundSeverityPoint);
             RaiseLocalEvent(uid, ref ev);
 
             var bodySeverity = (FixedPoint2) 0;

@@ -11,7 +11,7 @@ public partial class PainSystem
     private void InitAffliction()
     {
         // Pain management hooks.
-        SubscribeLocalEvent<PainInflicterComponent, WoundAddedEvent>(OnPainAdded);
+        SubscribeLocalEvent<PainInflicterComponent, WoundRemovedEvent>(OnPainRemoved);
         SubscribeLocalEvent<PainInflicterComponent, WoundSeverityPointChangedEvent>(OnPainChanged);
     }
 
@@ -19,12 +19,9 @@ public partial class PainSystem
 
     #region Event Handling
 
-    private void OnPainAdded(EntityUid uid, PainInflicterComponent pain, ref WoundAddedEvent args)
+    private void OnPainChanged(EntityUid uid, PainInflicterComponent pain, WoundSeverityPointChangedEvent args)
     {
-        if (_net.IsClient)
-            return;
-
-        if (!TryComp<BodyPartComponent>(args.Woundable.RootWoundable, out var bodyPart))
+        if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
             return;
 
         if (bodyPart.Body == null)
@@ -33,22 +30,24 @@ public partial class PainSystem
         if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             return;
 
-        pain.Pain = FixedPoint2.Clamp(
-            args.Component.WoundSeverityPoint * _painMultipliers[args.Component.WoundSeverity] * pain.PainMultiplier,
-            0,
-            100);
+        // bro how
+        pain.Pain = FixedPoint2.Clamp(args.NewSeverity * pain.PainMultiplier, 0, 100);
+        var allPain = (FixedPoint2) 0;
 
-        if (!TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain))
+        foreach (var (woundId, _) in _wound.GetWoundableWounds(args.Component.HoldingWoundable))
         {
-            TryAddPainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, pain.Pain);
+            if (!TryComp<PainInflicterComponent>(woundId, out var painInflicter))
+                continue;
+
+            allPain += painInflicter.Pain;
         }
+
+        if (!TryAddPainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain))
+            TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain);
     }
 
-    private void OnPainChanged(EntityUid uid, PainInflicterComponent pain, WoundSeverityPointChangedEvent args)
+    private void OnPainRemoved(EntityUid uid, PainInflicterComponent pain, WoundRemovedEvent args)
     {
-        if (_net.IsClient)
-            return;
-
         if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
             return;
 
@@ -63,21 +62,23 @@ public partial class PainSystem
             return;
 
         // bro how
-        pain.Pain = FixedPoint2.Clamp(args.NewSeverity * _painMultipliers[args.Component.WoundSeverity] * pain.PainMultiplier, 0, 100);
         var allPain = (FixedPoint2) 0;
-
-        foreach (var (_, comp) in _wound.GetAllWoundableChildren(rootPart.Value))
+        foreach (var (woundId, _) in _wound.GetWoundableWounds(args.Component.HoldingWoundable))
         {
-            foreach (var woundId in comp.Wounds!.ContainedEntities)
-            {
-                if (!TryComp<PainInflicterComponent>(woundId, out var painInflicter))
-                    continue;
+            if (!TryComp<PainInflicterComponent>(woundId, out var painInflicter))
+                continue;
 
-                allPain += painInflicter.Pain;
-            }
+            allPain += painInflicter.Pain;
         }
 
-        TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain);
+        if (allPain <= 0)
+        {
+            TryRemovePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier);
+        }
+        else
+        {
+            TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, allPain);
+        }
     }
 
     #endregion

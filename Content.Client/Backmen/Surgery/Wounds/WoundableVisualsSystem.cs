@@ -248,7 +248,10 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     private Color GetBleedsColor(EntityUid body)
     {
         // return dark red.. If for some reason there is no blood in this entity.
-        return !TryComp<BloodstreamComponent>(body, out var bloodstream) ? Color.DarkRed : _protoMan.Index(bloodstream.BloodReagent).SubstanceColor;
+        if (!TryComp<BloodstreamComponent>(body, out var bloodstream))
+            return Color.DarkRed;
+
+        return _protoMan.Index(bloodstream.BloodReagent).SubstanceColor;
     }
 
     private FixedPoint2 GetThreshold(FixedPoint2 threshold, WoundableVisualsComponent comp)

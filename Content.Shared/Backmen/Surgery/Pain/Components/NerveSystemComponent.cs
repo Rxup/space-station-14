@@ -20,7 +20,7 @@ public sealed partial class NerveSystemComponent : Component
     /// How much Pain can this nerve system hold.
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 PainCap = 100f;
+    public FixedPoint2 PainCap = 200f;
 
     // Don't change, OR I will break your knees, filled up upon initialization.
     public Dictionary<EntityUid, NerveComponent> Nerves = new();

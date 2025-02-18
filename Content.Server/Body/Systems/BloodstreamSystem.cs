@@ -208,7 +208,7 @@ public sealed class BloodstreamSystem : EntitySystem
                 }
             }
 
-            if (!_consciousness.SetConsciousnessModifier(uid, nerveSys.Value, -total, type: ConsciousnessModType.Pain))
+            if (!_consciousness.SetConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain))
             {
                 _consciousness.AddConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain);
             }

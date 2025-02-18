@@ -367,7 +367,8 @@ public sealed class RespiratorSystem : EntitySystem
                     ent,
                     nerveSys.Value,
                     modifier.Value.Change + ent.Comp.DamageRecovery.GetTotal(),
-                    identifier: "Suffocation");
+                    identifier: "Suffocation",
+                    type: ConsciousnessModType.Pain);
             }
 
             return;
