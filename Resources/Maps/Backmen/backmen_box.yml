@@ -163134,8 +163134,6 @@ entities:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
-          ents:
-          - 8572
   - uid: 4213
     components:
     - type: Transform
