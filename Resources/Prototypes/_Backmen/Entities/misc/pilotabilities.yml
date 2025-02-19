@@ -121,7 +121,7 @@
   id: TurretInstallationBookBase
   name: turret installation instructions
   description: This detailed manual allows the reader to master the skills of installing temporary turrets. Burns in 60 seconds! Hurry up and read it before NT technology turns this book to dust.
-  suffix: Base Turret
+  suffix: Base Turret, disintegration t-60s
   parent: BaseSpellbook
   components:
     - type: Sprite
@@ -149,7 +149,7 @@
   id: TurretInstallationBookRifle
   name: turret installation instructions
   description: This detailed manual allows the reader to master the skills of installing temporary turrets.
-  suffix: Rifle Turret
+  suffix: Rifle Turret, disintegration t-60s
   parent: BaseSpellbook
   components:
     - type: Sprite
@@ -177,7 +177,7 @@
   id: TurretInstallationBookDisabler
   name: turret installation instructions
   description: This detailed manual allows the reader to master the skills of installing temporary turrets.
-  suffix: Disabler Turret
+  suffix: Disabler Turret, disintegration t-60s
   parent: BaseSpellbook
   components:
     - type: Sprite
@@ -205,7 +205,7 @@
   id: TurretInstallationBookLaser
   name: turret installation instructions
   description: This detailed manual allows the reader to master the skills of installing temporary turrets.
-  suffix: Laser Turret
+  suffix: Laser Turret, disintegration t-60s
   parent: BaseSpellbook
   components:
     - type: Sprite
@@ -233,7 +233,7 @@
   id: LandMineLayingBook
   name: mine laying instructions
   description: This detailed manual allows the reader to master the skills of laying mines.
-  suffix: Land Mines
+  suffix: Land Mines, disintegration t-60s
   parent: BaseSpellbook
   components:
     - type: Sprite

@@ -57,7 +57,7 @@
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesSecEngineerVisors
   name: security technician visors
-  description: 
+  description: It is a combination of several types of polarized scanners. It shows the status of various borgs and mechs, ID card statuses and provides eye protection from welding. It does not have flash protection.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Eyes/Glasses/security-technician-visor.rsi

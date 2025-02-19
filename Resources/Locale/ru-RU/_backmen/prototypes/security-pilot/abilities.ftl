@@ -1,0 +1,10 @@
+ent-ActionSpawnTempSecTurretBase = установить временную турель
+    .desc = Устанавливает временную боевую турель.
+ent-ActionSpawnTempSecTurretRifle = установить временную турель винтовочного калибра
+    .desc = Устанавливает временную боевую турель винтовочного калибра.
+ent-ActionSpawnTempSecTurretDisabler = установить временную станнер-турель
+    .desc = Устанавливает временную нелетальную турель.
+ent-ActionSpawnTempSecTurretLaser = установить временную лазерную турель
+    .desc = Устанавливает временную лазерную турель.
+ent-ActionSpawnSecLandMine = заложить мину
+    .desc = ЗАЛОЖИТЕ МИНУ ЗА ИМПЕРАТОРА!!!
