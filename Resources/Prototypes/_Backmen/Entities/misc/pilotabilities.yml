@@ -1,0 +1,508 @@
+#-------------временные турели для спавна--------------#
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecBase
+  suffix: Base sec Turret
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 30
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+    
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecRifle
+  suffix: Rifle sec Turret
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    drawdepth: Mobs
+    layers:
+      - state: temp-rifle
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762x39
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 30
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+    
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecDisabler
+  suffix: Disabler sec Turret
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    drawdepth: Mobs
+    layers:
+      - state: temp-disabler
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: BallisticAmmoProvider
+    proto: BulletDisablerSmg
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 30
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+    
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecLaser
+  suffix: Laser sec Turret
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    drawdepth: Mobs
+    layers:
+      - state: temp-laser
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
+  - type: BallisticAmmoProvider
+    proto: BulletEnergyGunLaserMk2
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 30
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+
+#--------------------мина для спавна-------------------#
+- type: entity
+  name: explosive mine
+  parent: BaseLandMine
+  id: LandMineWeakExplosive
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 100 
+    canCreateVacuum: false
+    
+#------------книжки инструкций по установке------------#
+- type: entity
+  id: TurretInstallationBookBase
+  name: turret installation instructions
+  description: This detailed manual allows the reader to master the skills of installing temporary turrets. Burns in 60 seconds! Hurry up and read it before NT technology turns this book to dust.
+  suffix: Base Turret
+  parent: BaseSpellbook
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_strong
+        color: "#b22222"
+      - state: decor_vertical_middle
+        color: "#2F4F4F"
+      - state: icon_wrench
+      - state: detail_rivets
+        color: gold
+    - type: Spellbook
+      spellActions:
+        ActionSpawnTempSecTurretBase: -1
+      learnTime: 20
+      learnPermanently: true
+    - type: TimedDespawn
+      lifetime: 60
+    - type: SpawnOnDespawn
+      prototype: Ash
+
+- type: entity
+  id: TurretInstallationBookRifle
+  name: turret installation instructions
+  description: This detailed manual allows the reader to master the skills of installing temporary turrets.
+  suffix: Rifle Turret
+  parent: BaseSpellbook
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_strong
+        color: "#b22222"
+      - state: decor_vertical_middle
+        color: "#ffa500"
+      - state: icon_wrench
+      - state: detail_rivets
+        color: gold
+    - type: Spellbook
+      spellActions:
+        ActionSpawnTempSecTurretRifle: -1
+      learnTime: 20
+      learnPermanently: true
+    - type: TimedDespawn
+      lifetime: 60
+    - type: SpawnOnDespawn
+      prototype: Ash
+        
+- type: entity
+  id: TurretInstallationBookDisabler
+  name: turret installation instructions
+  description: This detailed manual allows the reader to master the skills of installing temporary turrets.
+  suffix: Disabler Turret
+  parent: BaseSpellbook
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_strong
+        color: "#b22222"
+      - state: decor_vertical_middle
+        color: "#4169E1"
+      - state: icon_wrench
+      - state: detail_rivets
+        color: gold
+    - type: Spellbook
+      spellActions:
+        ActionSpawnTempSecTurretDisabler: -1
+      learnTime: 20
+      learnPermanently: true
+    - type: TimedDespawn
+      lifetime: 60
+    - type: SpawnOnDespawn
+      prototype: Ash
+        
+- type: entity
+  id: TurretInstallationBookLaser
+  name: turret installation instructions
+  description: This detailed manual allows the reader to master the skills of installing temporary turrets.
+  suffix: Laser Turret
+  parent: BaseSpellbook
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_strong
+        color: "#b22222"
+      - state: decor_vertical_middle
+        color: "#ff0000"
+      - state: icon_wrench
+      - state: detail_rivets
+        color: gold
+    - type: Spellbook
+      spellActions:
+        ActionSpawnTempSecTurretLaser: -1
+      learnTime: 20
+      learnPermanently: true
+    - type: TimedDespawn
+      lifetime: 60
+    - type: SpawnOnDespawn
+      prototype: Ash
+        
+- type: entity
+  id: LandMineLayingBook
+  name: mine laying instructions
+  description: This detailed manual allows the reader to master the skills of laying mines.
+  suffix: Land Mines
+  parent: BaseSpellbook
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers: 
+      - state: paper
+      - state: cover_strong
+        color: "#b22222"
+      - state: decor_vertical_middle
+        color: "#000000"
+      - state: icon_wrench
+      - state: detail_rivets
+        color: gold
+    - type: Spellbook
+      spellActions:
+        ActionSpawnSecLandMine: -1
+      learnTime: 20
+      learnPermanently: true
+    - type: TimedDespawn
+      lifetime: 60
+    - type: SpawnOnDespawn
+      prototype: Ash
+        
+#----технические эффекты для спавна турелей и мин------#
+- type: entity
+  parent: EffectRCDBase
+  id: EffectRCDConstructSecTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: construct0
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: SpawnOnDespawn
+    prototype: WeaponTurretSecBase
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/deconstruct.ogg
+    
+- type: entity
+  parent: EffectRCDBase
+  id: EffectRCDConstructSecTurretRifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: construct0
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: SpawnOnDespawn
+    prototype: WeaponTurretSecRifle
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/deconstruct.ogg
+      
+- type: entity
+  parent: EffectRCDBase
+  id: EffectRCDConstructSecTurretDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: construct0
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: SpawnOnDespawn
+    prototype: WeaponTurretSecDisabler
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/deconstruct.ogg
+      
+- type: entity
+  parent: EffectRCDBase
+  id: EffectRCDConstructSecTurretLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: construct0
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: SpawnOnDespawn
+    prototype: WeaponTurretSecLaser
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/deconstruct.ogg
+
+- type: entity
+  parent: EffectRCDBase
+  id: EffectRCDConstructSecLandMine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: construct0
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: SpawnOnDespawn
+    prototype: LandMineWeakExplosive
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/deconstruct.ogg
+
+#------------------акшены для спавна-------------------#
+- type: entity
+  id: ActionSpawnTempSecTurretBase
+  name: set up a temporary turret
+  description: Deploys a temporary combat turret.
+  components:
+  - type: WorldTargetAction
+    useDelay: 45
+    range: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EffectRCDConstructSecTurretBase
+        amount: 1
+
+- type: entity
+  id: ActionSpawnTempSecTurretRifle
+  name: set up a temporary rifle turret
+  description: Deploys a temporary rifle caliber combat turret.
+  components:
+  - type: WorldTargetAction
+    useDelay: 45
+    range: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Backmen/Objects/Weapons/temp-turret.rsi
+      state: temp-rifle
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EffectRCDConstructSecTurretRifle
+        amount: 1
+        
+- type: entity
+  id: ActionSpawnTempSecTurretDisabler
+  name: set up a temporary disabler turret
+  description: Deploys a temporary disabler turret.
+  components:
+  - type: WorldTargetAction
+    useDelay: 45
+    range: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Backmen/Objects/Weapons/temp-turret.rsi
+      state: temp-disabler
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EffectRCDConstructSecTurretDisabler
+        amount: 1
+        
+- type: entity
+  id: ActionSpawnTempSecTurretLaser
+  name: set up a temporary laser turret
+  description: Deploys a temporary laser turret.
+  components:
+  - type: WorldTargetAction
+    useDelay: 45
+    range: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Backmen/Objects/Weapons/temp-turret.rsi
+      state: temp-laser
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EffectRCDConstructSecTurretLaser
+        amount: 1
+        
+- type: entity
+  id: ActionSpawnSecLandMine
+  name: lay a mine
+  description: Deploys a land mine.
+  components:
+  - type: WorldTargetAction
+    useDelay: 30
+    range: 3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Misc/landmine.rsi
+      state: landmine
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EffectRCDConstructSecLandMine
+        amount: 1
+        
+#-----------заглушка для использованных книг-----------#
+- type: entity
+  parent: BookBase
+  id: TechBookRead
+  name: a book read
+  description: Read technical manual...
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_base
+        color: "#8c8c8c"
+      - state: decor_wingette_circle
+      - state: icon_letter_N
+      - state: detail_bookmark
+      - state: overlay_dirt
+    - type: Paper
+      content: book-text-names
+      
+#------------------сумка-лодаут------------------------#
+- type: entity
+  id: SecPilotSetLoadouts
+  name: pilot duffel bag with equipment
+  parent: ArmySetLoadouts
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/security.rsi
+    state: icon
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 2
+    possibleSets:
+    - SecTurretBase
+    - SecTurretRifle
+    - SecTurretDisabler
+    - SecTurretLaser
+    - SecLandMine
+    
+- type: thiefBackpackSet
+  id: SecTurretBase
+  name: pilot-duffel-category-turret-base-name
+  description: pilot-duffel-category-turret-base-name-description
+  sprite:
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    state: syndie_lethal
+  content:
+  - TurretInstallationBookBase  
+
+- type: thiefBackpackSet
+  id: SecTurretRifle
+  name: pilot-duffel-category-turret-rifle-name
+  description: pilot-duffel-category-turret-rifle-name-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    state: temp-rifle
+  content:
+  - TurretInstallationBookRifle
+
+- type: thiefBackpackSet
+  id: SecTurretDisabler
+  name: pilot-duffel-category-turret-disabler-name
+  description: pilot-duffel-category-turret-disabler-name-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    state: temp-disabler
+  content:
+  - TurretInstallationBookDisabler
+
+- type: thiefBackpackSet
+  id: SecTurretLaser
+  name: pilot-duffel-category-turret-laser-name
+  description: pilot-duffel-category-turret-laser-name-description
+  sprite:
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    state: temp-laser
+  content:
+  - TurretInstallationBookLaser
+  
+- type: thiefBackpackSet
+  id: SecLandMine
+  name: pilot-duffel-category-land-mine-name
+  description: pilot-duffel-category-land-mine-name-description
+  sprite:
+    sprite: Objects/Misc/landmine.rsi
+    state: landmine
+  content:
+  - LandMineLayingBook
