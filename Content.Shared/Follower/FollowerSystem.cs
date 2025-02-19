@@ -49,7 +49,7 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
         SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
     }
-
+/*
     private void OnFollowedGetState(EntityUid uid, FollowedComponent component, ref ComponentGetState args)
     {
         component.Following.RemoveWhere(x => TerminatingOrDeleted(x));

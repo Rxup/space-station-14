@@ -1,6 +1,6 @@
 - type: gameMap
   id: CentComm
-  isGrid: true # Did you know that centcomm is the only "game map" that isn't actually a map? Send help.
+  isGrid: false # backmen
   mapName: 'Central Command'
   mapPath: /Maps/centcomm.yml
   minPlayers: 10
@@ -27,6 +27,7 @@
   mapName: 'Central Command'
   mapPath: /Maps/Backmen/corvax_centcomm_bkm.yml
   minPlayers: 20
+  isGrid: false # backmen
   stations:
     centcomm:
       stationProto: NanotrasenCentralCommand

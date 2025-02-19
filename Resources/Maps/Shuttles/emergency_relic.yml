@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:43
+  entityCount: 206
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   32: FloorDark
@@ -21,6 +32,7 @@ entities:
     - type: MetaData
       name: grid
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -116,11 +128,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0

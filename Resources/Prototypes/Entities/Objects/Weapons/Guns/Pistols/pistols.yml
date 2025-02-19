@@ -61,10 +61,10 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
   - type: AmmoCounter
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
+  #- type: MagazineVisuals
+  #  magState: mag
+  #  steps: 1
+  #  zeroVisible: true
   - type: Appearance
   - type: StaticPrice
     price: 500

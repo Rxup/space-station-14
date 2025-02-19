@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:54
+  entityCount: 316
+maps: []
+grids:
+- 3
+orphans:
+- 3
+nullspace: []
 tilemap:
   0: Space
   16: FloorBlue
@@ -120,11 +131,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14996
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -154,8 +181,6 @@ entities:
       - 226
       - 210
       - 227
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: AirCanister
   entities:
   - uid: 195
@@ -163,8 +188,6 @@ entities:
     - type: Transform
       pos: -2.5,-9.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: AirlockEngineeringGlass
   entities:
   - uid: 33
@@ -251,20 +274,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-8.5
       parent: 3
-    - type: Apc
-      hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
   - uid: 120
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 3
-    - type: Apc
-      hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 1
@@ -831,6 +846,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1027,8 +1050,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-12.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: GasPipeBend
   entities:
   - uid: 196
@@ -1201,8 +1222,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-9.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: GasVentPump
   entities:
   - uid: 209
@@ -1211,24 +1230,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-3.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
   - uid: 210
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-4.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
   - uid: 211
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-4.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: GasVentScrubber
   entities:
   - uid: 226
@@ -1236,24 +1249,18 @@ entities:
     - type: Transform
       pos: 0.5,-4.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
   - uid: 227
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-5.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
   - uid: 228
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-5.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: GeneratorBasic15kW
   entities:
   - uid: 106
@@ -1627,6 +1634,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: PaperBin10
   entities:
   - uid: 268
@@ -1840,13 +1855,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-5.5
-      parent: 3
-- proto: SignShield
-  entities:
-  - uid: 297
-    components:
-    - type: Transform
-      pos: -2.5,-2.5
       parent: 3
 - proto: StoolBar
   entities:

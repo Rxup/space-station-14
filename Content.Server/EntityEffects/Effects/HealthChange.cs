@@ -165,7 +165,7 @@ namespace Content.Server.EntityEffects.Effects
                     args.TargetEntity,
                     damageSpec * scale,
                     IgnoreResistances,
-                    interruptsDoAfters: false
+                    interruptsDoAfters: false,
                 // start-backmen: surgery
                     targetPart: TargetBodyPart.All,
                     partMultiplier: 0.5f,

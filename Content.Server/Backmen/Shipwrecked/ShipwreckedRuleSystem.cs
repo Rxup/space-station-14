@@ -85,10 +85,10 @@ using Content.Shared.Verbs;
 using Content.Shared.Zombies;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
+using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Enumerators;
@@ -545,8 +545,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private MapId LoadDefaultMap()
     {
-        _gameTicker.LoadGameMap(_prototypeManager.Index<GameMapPrototype>(DefaultShuttle), _gameTicker.DefaultMap, new MapLoadOptions(), null);
-        return _gameTicker.DefaultMap;
+        _gameTicker.LoadGameMap(_prototypeManager.Index<GameMapPrototype>(DefaultShuttle), out var mapId);
+        return mapId;
     }
 
     [ValidatePrototypeId<GameMapPrototype>]

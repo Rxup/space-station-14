@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:29
+  entityCount: 1
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   85: FloorShuttleOrange
@@ -13,7 +24,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -73,9 +87,6 @@ entities:
       chunkCollection:
         version: 2
         nodes: []
-    - type: LoadedMap
     - type: SpreaderGrid
-    - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
 ...

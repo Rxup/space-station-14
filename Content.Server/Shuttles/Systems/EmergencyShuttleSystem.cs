@@ -399,7 +399,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // TODO: Need filter extensions or something don't blame me.
         _audio.PlayGlobal(audioFile, Filter.Broadcast(), true);
 
-        _centcommSystem.EnableFtl(_centcommSystem.CentComMapUid); // backmen: centcom
+        _centcommSystem.EnableFtl(_centcommSystem.CentComMapUid!.Value.Owner); // backmen: centcom
     }
 
     private void OnStationInit(EntityUid uid, StationCentcommComponent component, MapInitEvent args)
@@ -521,8 +521,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     {
         var maps = new HashSet<EntityUid>();
 
-        if(_centcommSystem.CentComMapUid.IsValid())
-            maps.Add(_centcommSystem.CentComMapUid);
+        if(_centcommSystem.CentComMapUid != null)
+            maps.Add(_centcommSystem.CentComMapUid.Value);
 
         return maps;
     }
