@@ -31,6 +31,9 @@
   id: ArtifactFragment
 
 - type: Tag
+  id: BroneArachne
+
+- type: Tag
   id: ATVKeys
 
 - type: Tag
@@ -1200,6 +1203,9 @@
 
 - type: Tag
   id: Spray
+
+- type: Tag
+  id: SprayNozzle
 
 - type: Tag
   id: SpreaderIgnore

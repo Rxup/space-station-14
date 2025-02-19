@@ -23,6 +23,10 @@
         ArmorPiercing: 0.90
   - type: ExplosionResistance
     damageCoefficient: 0.90
+  - type: Tag
+    tags:
+      - BroneArachne
+
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity

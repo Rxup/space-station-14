@@ -2,6 +2,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Forensics;
 using Content.Shared.Administration;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Inventory;
 using Robust.Shared.Console;
 

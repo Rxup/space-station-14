@@ -12,7 +12,7 @@ using Content.Server.Players;
 using Content.Server.Popups;
 using Content.Server.SS220.Chat.Systems;
 using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Components;
+using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
