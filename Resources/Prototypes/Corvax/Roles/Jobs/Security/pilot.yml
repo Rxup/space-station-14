@@ -21,7 +21,8 @@
   - Security
   - Brig
   - Maintenance
-  - Service
+  - Engineering #backmen
+  - Atmospherics #backmen
   - External
   - Cryogenics
   special:
@@ -41,4 +42,5 @@
     back:
     - BoxSurvivalSecurity
     - Flash
+    - SecPilotSetLoadouts #backmen
    #- MagazinePistol  (backmen)
