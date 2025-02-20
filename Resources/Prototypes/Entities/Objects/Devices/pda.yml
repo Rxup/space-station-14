@@ -84,7 +84,6 @@
       - BankCartridge
       - GlimmerMonitorCartridge
       - NewsReaderCartridge
-      - NanoChatCartridge # Corvax-Next-PDAChat
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -143,7 +142,6 @@
     - NotekeeperCartridge
     - NewsReaderCartridge
     - WantedListCartridge
-    - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: BasePDA
@@ -157,7 +155,6 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - MedTekCartridge
-      - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: BasePDA
@@ -856,7 +853,6 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
-    - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: BaseSecurityPDA
@@ -927,7 +923,6 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
-      - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: CentcomPDA
@@ -1100,7 +1095,6 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
-      - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1269,7 +1263,6 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
-    - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1297,7 +1290,6 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
-    - NanoChatCartridge # Corvax-Next-PDAChat
 
 - type: entity
   parent: ClownPDA
