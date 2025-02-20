@@ -41,6 +41,13 @@ public sealed partial class WoundableComponent : Component
     public FixedPoint2 IntegrityCap;
 
     /// <summary>
+    /// How big is the Woundable Entity, mostly used for trauma calculation, dodging and targeting
+    /// </summary>
+    [DataField]
+    [ViewVariables, AutoNetworkedField]
+    public FixedPoint2 DodgeChance = 0.1;
+
+    /// <summary>
     /// Integrity points of this woundable.
     /// </summary>
     [DataField("integrity")]

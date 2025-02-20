@@ -173,8 +173,7 @@ namespace Content.Shared.Damage
                 var damageDict = new Dictionary<string, FixedPoint2>();
                 foreach (var (type, severity) in damage.DamageDict)
                 {
-                    // TODO: Remove this when bloodloss and asphyxiation type damages are reworked into their own systems
-                    // the thing acts up and shits a lot of stuff into the console, which we DO NOT desire to see
+                    // some wounds like Asphyxiation and Bloodloss aren't supposed to be created.
                     if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
                         || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
                         continue;
@@ -234,6 +233,12 @@ namespace Content.Shared.Damage
                         chosenTarget = (damageWoundable.Value.Owner, Comp<BodyPartComponent>(damageWoundable.Value.Owner));
                     }
                 }
+
+                var beforePart = new BeforeDamageChangedEvent(damage, origin);
+                RaiseLocalEvent(chosenTarget.Id, ref before);
+
+                if (beforePart.Cancelled)
+                    return null;
 
                 if (damageDict.Count == 0)
                     return null;

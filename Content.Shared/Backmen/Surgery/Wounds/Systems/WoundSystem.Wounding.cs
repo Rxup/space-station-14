@@ -7,6 +7,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Robust.Shared.Containers;
@@ -34,6 +35,8 @@ public sealed partial class WoundSystem
 
         SubscribeLocalEvent<WoundComponent, WoundSeverityChangedEvent>(OnWoundSeverityChanged);
         SubscribeLocalEvent<WoundableComponent, WoundableSeverityChangedEvent>(OnWoundableSeverityChanged);
+
+        SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(DudeItsJustLikeMatrix);
     }
 
     #region Event Handling
@@ -131,6 +134,19 @@ public sealed partial class WoundSystem
                 DestroyWoundable(uid, uid, component);
             }
         }
+    }
+
+    private void DudeItsJustLikeMatrix(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)
+    {
+        var chance = comp.DodgeChance;
+
+        if (args.Origin != null)
+        {
+            // calculate some stupid ass distance shi here later.
+        }
+
+        if (_random.Prob((float) chance))
+            args.Cancelled = true;
     }
 
     private void ProcessBodyPartLoss(EntityUid uid, EntityUid parentUid, WoundableComponent component)
@@ -727,6 +743,9 @@ public sealed partial class WoundSystem
         if (!Resolve(target, ref woundableComponent, false)
             || !Resolve(wound, ref woundComponent, false)
             || woundableComponent.Wounds!.Contains(wound))
+            return false;
+
+        if (!woundableComponent.AllowWounds)
             return false;
 
         _transform.SetParent(wound, target);

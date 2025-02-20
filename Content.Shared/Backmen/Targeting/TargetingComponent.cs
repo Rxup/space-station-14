@@ -23,7 +23,7 @@ public sealed partial class TargetingComponent : Component
             TargetBodyPart.Head, new Dictionary<TargetBodyPart, float>
             {
                 { TargetBodyPart.Head, 0.34f },
-                { TargetBodyPart.Chest, 0.45f },
+                { TargetBodyPart.Chest, 0.27f },
                 { TargetBodyPart.LeftArm, 0.23f },
                 { TargetBodyPart.RightArm, 0.23f },
             }
