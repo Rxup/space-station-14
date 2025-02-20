@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:05
+  entityCount: 272
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   33: FloorDarkMini
@@ -223,9 +234,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -721,7 +748,7 @@ entities:
             - -0.25,0.48
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
           - BulletImpassable
@@ -736,6 +763,14 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1519,7 +1554,7 @@ entities:
             radius: 0.35
             position: 0,0
           mask:
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - BulletImpassable

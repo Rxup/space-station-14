@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:27
+  entityCount: 1628
+maps:
+- 1653
+grids:
+- 1653
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   17: FloorBlueCircuit
@@ -42,7 +53,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -2220,10 +2234,7 @@ entities:
           decals:
             611: 8.178589,27.034609
     - type: RadiationGridResistance
-    - type: LoadedMap
     - type: SpreaderGrid
-    - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
 - proto: Airlock
   entities:
@@ -6167,13 +6178,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 44.5,1.5
       parent: 1653
-- proto: chem_master
-  entities:
-  - uid: 1454
-    components:
-    - type: Transform
-      pos: 29.5,4.5
-      parent: 1653
 - proto: ChemDispenserMachineCircuitboard
   entities:
   - uid: 1116
@@ -6187,6 +6191,13 @@ entities:
     components:
     - type: Transform
       pos: 6.4166045,15.55332
+      parent: 1653
+- proto: ChemMaster
+  entities:
+  - uid: 1454
+    components:
+    - type: Transform
+      pos: 29.5,4.5
       parent: 1653
 - proto: ChessBoard
   entities:
@@ -8771,13 +8782,6 @@ entities:
     - type: Transform
       pos: 10.533063,27.58727
       parent: 1653
-- proto: RPED
-  entities:
-  - uid: 1646
-    components:
-    - type: Transform
-      pos: 32.49994,15.5244
-      parent: 1653
 - proto: SalvageCanisterSpawner
   entities:
   - uid: 493
@@ -8888,25 +8892,16 @@ entities:
     - type: Transform
       pos: 10.5,43.5
       parent: 1653
-    - type: DeviceLinkSink
-      links:
-      - 583
   - uid: 581
     components:
     - type: Transform
       pos: 11.5,43.5
       parent: 1653
-    - type: DeviceLinkSink
-      links:
-      - 583
   - uid: 582
     components:
     - type: Transform
       pos: 12.5,43.5
       parent: 1653
-    - type: DeviceLinkSink
-      links:
-      - 583
 - proto: SignalButton
   entities:
   - uid: 583
@@ -9005,7 +9000,7 @@ entities:
     - type: Transform
       pos: 12.5,13.5
       parent: 1653
-- proto: SignXenolab
+- proto: SignXenobio
   entities:
   - uid: 1461
     components:

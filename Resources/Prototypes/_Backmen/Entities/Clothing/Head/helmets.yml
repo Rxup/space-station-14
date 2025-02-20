@@ -108,7 +108,7 @@
 
 #Cargo EVA Helmet
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCargoEVA
   categories: [ HideSpawnMenu ]
   name: EVA cargo helmet

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:32
+  entityCount: 339
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -138,6 +149,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -148,9 +167,6 @@ entities:
     - type: Transform
       pos: 1.5,-11.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 126
     - type: DeviceLinkSource
       linkedPorts:
         126:
@@ -160,9 +176,6 @@ entities:
     - type: Transform
       pos: 1.5,-13.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 125
     - type: DeviceLinkSource
       linkedPorts:
         125:
@@ -199,6 +212,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-3.5
+      parent: 2
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 310
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
       parent: 2
 - proto: Bed
   entities:
@@ -1669,13 +1689,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,0.5
-      parent: 2
-- proto: VendingMachineSnack
-  entities:
-  - uid: 310
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
       parent: 2
 - proto: WallSolid
   entities:

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:02
+  entityCount: 617
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   10: FloorAsteroidSandUnvariantized
@@ -24,6 +35,7 @@ entities:
       name: map 100
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
@@ -788,6 +800,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -806,8 +826,6 @@ entities:
       - 400
       - 410
       - 402
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 803
     components:
     - type: Transform
@@ -821,8 +839,6 @@ entities:
       - 410
       - 400
       - 411
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: AirCanister
   entities:
   - uid: 387
@@ -833,8 +849,6 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: AirlockCargo
   entities:
   - uid: 169
@@ -899,6 +913,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-14.5
+      parent: 2
+- proto: BackmenVendingMachineSovietSoda
+  entities:
+  - uid: 239
+    components:
+    - type: Transform
+      pos: 10.5,4.5
       parent: 2
 - proto: BoxFolderClipboard
   entities:
@@ -2376,44 +2397,45 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-16.5
       parent: 2
-- proto: FloraRockSolid01
+- proto: FloraRockSolid
   entities:
   - uid: 172
     components:
     - type: Transform
       pos: -3.5348911,-15.427944
       parent: 2
-  - uid: 176
+  - uid: 174
     components:
     - type: Transform
-      pos: -2.9255161,6.9836364
+      pos: 15.402607,-13.249047
       parent: 2
-- proto: FloraRockSolid02
-  entities:
   - uid: 175
     components:
     - type: Transform
       pos: 0.18930483,-20.856546
+      parent: 2
+  - uid: 176
+    components:
+    - type: Transform
+      pos: -2.9255161,6.9836364
       parent: 2
   - uid: 182
     components:
     - type: Transform
       pos: 17.18618,2.0623155
       parent: 2
-- proto: FloraRockSolid03
-  entities:
-  - uid: 174
-    components:
-    - type: Transform
-      pos: 15.402607,-13.249047
-      parent: 2
   - uid: 191
     components:
     - type: Transform
       pos: 4.345023,9.902354
       parent: 2
-- proto: FloraTree03
+- proto: FloraTree
   entities:
+  - uid: 213
+    components:
+    - type: Transform
+      pos: 13.518762,-12.343048
+      parent: 2
   - uid: 216
     components:
     - type: Transform
@@ -2424,12 +2446,10 @@ entities:
     - type: Transform
       pos: 11.68185,4.7530994
       parent: 2
-- proto: FloraTree04
-  entities:
-  - uid: 213
+  - uid: 221
     components:
     - type: Transform
-      pos: 13.518762,-12.343048
+      pos: -3.0373468,3.5499744
       parent: 2
   - uid: 233
     components:
@@ -2441,22 +2461,23 @@ entities:
     - type: Transform
       pos: -1.2792706,-14.166586
       parent: 2
-- proto: FloraTree05
-  entities:
-  - uid: 221
-    components:
-    - type: Transform
-      pos: -3.0373468,3.5499744
-      parent: 2
-- proto: FloraTreeLarge01
+- proto: FloraTreeLarge
   entities:
   - uid: 3
     components:
     - type: Transform
       pos: -0.45114565,-19.573124
       parent: 2
-- proto: FloraTreeLarge02
-  entities:
+  - uid: 211
+    components:
+    - type: Transform
+      pos: 14.737512,3.246604
+      parent: 2
+  - uid: 212
+    components:
+    - type: Transform
+      pos: 4.1089177,4.7687244
+      parent: 2
   - uid: 214
     components:
     - type: Transform
@@ -2466,20 +2487,6 @@ entities:
     components:
     - type: Transform
       pos: 12.145311,-16.744999
-      parent: 2
-- proto: FloraTreeLarge03
-  entities:
-  - uid: 211
-    components:
-    - type: Transform
-      pos: 14.737512,3.246604
-      parent: 2
-- proto: FloraTreeLarge06
-  entities:
-  - uid: 212
-    components:
-    - type: Transform
-      pos: 4.1089177,4.7687244
       parent: 2
 - proto: FoodMeatCooked
   entities:
@@ -2503,8 +2510,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-15.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: GasPassiveVent
   entities:
   - uid: 397
@@ -2513,16 +2518,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,-15.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 414
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-13.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: GasPipeBend
   entities:
   - uid: 434
@@ -2930,8 +2931,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,-15.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: GasVentPump
   entities:
   - uid: 398
@@ -2940,32 +2939,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,-17.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 400
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-8.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 402
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,-0.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 412
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-16.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: GasVentScrubber
   entities:
   - uid: 399
@@ -2974,32 +2965,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-15.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 410
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,-8.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 411
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 413
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-17.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: GeneratorBasic15kW
   entities:
   - uid: 266
@@ -3150,8 +3133,6 @@ entities:
     - type: Transform
       pos: 5.5,-17.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: LiquidOxygenCanister
   entities:
   - uid: 384
@@ -3159,8 +3140,6 @@ entities:
     - type: Transform
       pos: 4.5,-17.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: Paper
   entities:
   - uid: 775
@@ -3885,13 +3864,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-5.5
-      parent: 2
-- proto: VendingMachineSovietSoda
-  entities:
-  - uid: 239
-    components:
-    - type: Transform
-      pos: 10.5,4.5
       parent: 2
 - proto: WallReinforced
   entities:

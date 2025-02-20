@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:49
+  entityCount: 351
+maps: []
+grids:
+- 46
+orphans:
+- 46
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -144,11 +155,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14993
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -174,6 +201,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14993
           moles:
@@ -189,11 +224,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.1499
           moles:
           - 18.472576
           - 69.49208
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -226,8 +277,6 @@ entities:
       - 222
       - 235
       - 236
-    - type: AtmosDevice
-      joinedGrid: 46
 - proto: AirCanister
   entities:
   - uid: 254
@@ -256,10 +305,16 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 46
 - proto: AirlockCommand
   entities:
   - uid: 144
@@ -914,6 +969,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -951,6 +1014,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1332,16 +1403,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-3.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
   - uid: 231
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-3.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
 - proto: GasPipeBend
   entities:
   - uid: 233
@@ -1495,8 +1562,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-7.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
 - proto: GasVentPump
   entities:
   - uid: 222
@@ -1505,23 +1570,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-3.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
   - uid: 223
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-3.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
   - uid: 224
     components:
     - type: Transform
       pos: -0.5,2.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
 - proto: GasVentScrubber
   entities:
   - uid: 235
@@ -1530,31 +1589,23 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-4.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
   - uid: 236
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
   - uid: 237
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
   - uid: 238
     components:
     - type: Transform
       pos: 0.5,2.5
       parent: 46
-    - type: AtmosDevice
-      joinedGrid: 46
 - proto: GeneratorRTG
   entities:
   - uid: 139
@@ -1788,6 +1839,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1828,6 +1887,14 @@ entities:
         moles:
         - 1.606311
         - 6.042789
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0

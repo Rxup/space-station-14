@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:28
+  entityCount: 384
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -27,7 +38,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: MapGrid
       chunks:
         0,0:
@@ -861,6 +875,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 147.92499
           moles:
@@ -876,12 +898,17 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: LoadedMap
-    - type: GridTree
-    - type: MovedGrids
     - type: Fixtures
       fixtures: {}
 - proto: AltarConvertOrange
@@ -1463,6 +1490,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1494,6 +1529,73 @@ entities:
     components:
     - type: Transform
       pos: 52.5,8.5
+      parent: 1
+- proto: FakeSpaceCash10
+  entities:
+  - uid: 133
+    components:
+    - type: Transform
+      pos: 3.9111257,6.7460666
+      parent: 1
+  - uid: 134
+    components:
+    - type: Transform
+      pos: 4.6142507,6.4804416
+      parent: 1
+  - uid: 135
+    components:
+    - type: Transform
+      pos: 27.696236,8.594199
+      parent: 1
+  - uid: 319
+    components:
+    - type: Transform
+      pos: 65.43828,3.8464036
+      parent: 1
+  - uid: 382
+    components:
+    - type: Transform
+      pos: 5.68773,-5.946528
+      parent: 1
+  - uid: 383
+    components:
+    - type: Transform
+      pos: 5.34398,-5.649653
+      parent: 1
+- proto: FakeSpaceCash100
+  entities:
+  - uid: 239
+    components:
+    - type: Transform
+      pos: 53.28011,5.7698836
+      parent: 1
+  - uid: 240
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 53.18636,5.3480086
+      parent: 1
+  - uid: 242
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 52.96761,5.6292586
+      parent: 1
+  - uid: 243
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 53.420734,5.5355086
+      parent: 1
+  - uid: 244
+    components:
+    - type: Transform
+      pos: 53.264484,5.7855086
+      parent: 1
+  - uid: 380
+    components:
+    - type: Transform
+      pos: 5.234605,-6.274653
       parent: 1
 - proto: hydroponicsSoil
   entities:
@@ -2375,73 +2477,6 @@ entities:
     components:
     - type: Transform
       pos: 63.5,7.5
-      parent: 1
-- proto: FakeSpaceCash10
-  entities:
-  - uid: 133
-    components:
-    - type: Transform
-      pos: 3.9111257,6.7460666
-      parent: 1
-  - uid: 134
-    components:
-    - type: Transform
-      pos: 4.6142507,6.4804416
-      parent: 1
-  - uid: 135
-    components:
-    - type: Transform
-      pos: 27.696236,8.594199
-      parent: 1
-  - uid: 319
-    components:
-    - type: Transform
-      pos: 65.43828,3.8464036
-      parent: 1
-  - uid: 382
-    components:
-    - type: Transform
-      pos: 5.68773,-5.946528
-      parent: 1
-  - uid: 383
-    components:
-    - type: Transform
-      pos: 5.34398,-5.649653
-      parent: 1
-- proto: FakeSpaceCash100
-  entities:
-  - uid: 239
-    components:
-    - type: Transform
-      pos: 53.28011,5.7698836
-      parent: 1
-  - uid: 240
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 53.18636,5.3480086
-      parent: 1
-  - uid: 242
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 52.96761,5.6292586
-      parent: 1
-  - uid: 243
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 53.420734,5.5355086
-      parent: 1
-  - uid: 244
-    components:
-    - type: Transform
-      pos: 53.264484,5.7855086
-      parent: 1
-  - uid: 380
-    components:
-    - type: Transform
-      pos: 5.234605,-6.274653
       parent: 1
 - proto: SubstationWallBasic
   entities:

@@ -98,7 +98,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 6
     zeroVisible: false
 
 - type: entity
@@ -109,13 +109,13 @@
   - type: BallisticAmmoProvider
     proto: BulletPistolACPUranium
 
-- type: entity
-  id: MagazinePistol45ACPpractice
-  name: pistol magazine practice (.45 Auto)
-  parent: MagazinePistol45ACP
-  components:
-  - type: BallisticAmmoProvider
-    proto: BulletPistolACPPractice
+#- type: entity
+#  id: MagazinePistol45ACPpractice
+#  name: pistol magazine practice (.45 Auto)
+#  parent: MagazinePistol45ACP
+#  components:
+#  - type: BallisticAmmoProvider
+#    proto: BulletPistolACPPractice
 
 - type: entity
   id: MagazinePistol45ACPincendiary
@@ -148,7 +148,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 6
     zeroVisible: false
 
 - type: entity
@@ -198,7 +198,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 6
     zeroVisible: false
 
 - type: entity

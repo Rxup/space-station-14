@@ -1,5 +1,5 @@
 - type: entity
-  parent: [LockerSecurityPilot, BaseRestrictedContraband]
+  parent: [LockerSecurityPilot, BaseSecurityContraband]
   id: LockerSecurityPilotFilled
   name: security pilot locker
   description: This is where the pilot keeps his belongings.

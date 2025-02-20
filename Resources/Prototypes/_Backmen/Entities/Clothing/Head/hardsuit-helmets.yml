@@ -13,7 +13,7 @@
     lowPressureMultiplier: 1000
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitOrden
   name: Helmet of the space suit of the elite special squad of the Red Order.
   description: An indispensable part of the suit, it has small scratches.
@@ -39,7 +39,7 @@
         Radiation: 0.2
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitOrdinaryOrden
   name: Helmet of the space suit of the Red Order.
   description: An indispensable part of the suit, it has small scratches.
@@ -67,7 +67,7 @@
 
 # carporate hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCentcomCarporate
   name: Шлем скафандра ЦК (Корпорат)
   description: Специальный космический шлем Корпорат сделаный для различных ситуация с хорошим фанариком лоялиста НаноТрайзен.
@@ -109,7 +109,7 @@
         - Psionics
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitUEG
   name: Шлем скафандра охраны ОПЗ
   description: Этот шлем был нагло скопирован с шлема лидера ОБР NanoTrasen
@@ -215,7 +215,7 @@
     sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityEgov
   name: marine hardsuit helmet
   description: A marine helmet designed specifically for combat in space and the harsh far-off worlds.
@@ -247,7 +247,7 @@
 
 #Chrono
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitChronoLegionnaire
   name: chrono legionnaire hardsuit helmet
   description: An advanced and stylish helmet right from the future. Or from the past?

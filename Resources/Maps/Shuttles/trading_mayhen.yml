@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:45
+  entityCount: 532
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   19: FloorBrassFilled
@@ -485,6 +496,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -503,8 +522,6 @@ entities:
       - 306
       - 532
       - 349
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 3
     components:
     - type: Transform
@@ -518,8 +535,6 @@ entities:
       - 306
       - 348
       - 12
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 4
@@ -533,15 +548,11 @@ entities:
       releasePressure: 101.3
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 5
     components:
     - type: Transform
       pos: -2.5,7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockCargoGlassLocked
   entities:
   - uid: 6
@@ -598,8 +609,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: APCBasic
   entities:
   - uid: 13
@@ -641,6 +650,20 @@ entities:
     components:
     - type: Transform
       pos: -5.5,1.5
+      parent: 1
+- proto: BackmenVendingMachineChang
+  entities:
+  - uid: 430
+    components:
+    - type: Transform
+      pos: 3.5,2.5
+      parent: 1
+- proto: BackmenVendingMachineSnackOrange
+  entities:
+  - uid: 431
+    components:
+    - type: Transform
+      pos: -2.5,2.5
       parent: 1
 - proto: BedsheetBrown
   entities:
@@ -2049,72 +2072,48 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 429
   - uid: 273
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 428
   - uid: 274
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 429
   - uid: 275
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 428
   - uid: 276
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 428
   - uid: 277
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 429
   - uid: 278
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 429
   - uid: 279
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 428
 - proto: DeskBell
   entities:
   - uid: 280
@@ -2370,8 +2369,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#947507FF'
 - proto: GasPassiveVent
@@ -2381,8 +2378,6 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 312
@@ -2391,8 +2386,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 313
@@ -2401,8 +2394,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 314
@@ -2411,8 +2402,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
 - proto: GasPipeBend
@@ -2662,8 +2651,6 @@ entities:
     - type: Transform
       pos: -2.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#947507FF'
 - proto: GasVentScrubber
@@ -2677,8 +2664,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 3
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 349
@@ -2690,8 +2675,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#FF0000FF'
 - proto: GeneratorRTG
@@ -3026,65 +3009,41 @@ entities:
     - type: Transform
       pos: -0.5,-9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 399
     components:
     - type: Transform
       pos: 0.5,-9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 400
     components:
     - type: Transform
       pos: 1.5,-9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 401
     components:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 402
     components:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 403
     components:
     - type: Transform
       pos: -1.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 404
     components:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 405
     components:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
 - proto: SignShipDock
   entities:
   - uid: 406
@@ -3267,20 +3226,6 @@ entities:
         - Left: Forward
         - Right: Reverse
         - Middle: Off
-- proto: VendingMachineChang
-  entities:
-  - uid: 430
-    components:
-    - type: Transform
-      pos: 3.5,2.5
-      parent: 1
-- proto: VendingMachineSnackOrange
-  entities:
-  - uid: 431
-    components:
-    - type: Transform
-      pos: -2.5,2.5
-      parent: 1
 - proto: WallClock
   entities:
   - uid: 432

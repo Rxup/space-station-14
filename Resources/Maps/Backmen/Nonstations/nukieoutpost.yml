@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:52
+  entityCount: 3353
+maps:
+- 1295
+grids:
+- 104
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -1998,11 +2009,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14975
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2028,9 +2055,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2048,6 +2091,14 @@ entities:
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2078,6 +2129,7 @@ entities:
         tags:
         - Syndicate
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
@@ -2104,7 +2156,14 @@ entities:
         - 0
         - 0
         - 0
-    - type: LoadedMap
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: AgentfoursevenSuit
   entities:
   - uid: 1755
@@ -11121,6 +11180,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -11262,13 +11329,6 @@ entities:
     - type: Transform
       pos: 1.0420169,-63.260147
       parent: 104
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 3228
-    components:
-    - type: Transform
-      pos: -0.4809549,-85.08635
-      parent: 104
 - proto: ClothingNeckSyndicakePin
   entities:
   - uid: 3227
@@ -11285,13 +11345,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingNeckTransPin
-  entities:
-  - uid: 3230
-    components:
-    - type: Transform
-      pos: -0.2778299,-85.226974
-      parent: 104
 - proto: ClothingUnderSocksCoder
   entities:
   - uid: 3229
@@ -11428,14 +11481,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-86.5
       parent: 104
-- proto: ComputerCargoShuttle
-  entities:
-  - uid: 822
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 25.5,-64.5
-      parent: 104
 - proto: ComputerRadar
   entities:
   - uid: 2174
@@ -11443,6 +11488,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 29.5,-80.5
+      parent: 104
+- proto: ComputerShipyard
+  entities:
+  - uid: 822
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 25.5,-64.5
       parent: 104
 - proto: ComputerStationRecords
   entities:
@@ -11514,6 +11567,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -11542,6 +11603,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -11584,6 +11653,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateGenericSteel
   entities:
   - uid: 322
@@ -11599,6 +11676,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -11632,6 +11717,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 443
     components:
     - type: Transform
@@ -11655,6 +11748,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 444
     components:
     - type: Transform
@@ -11668,6 +11769,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -11712,6 +11821,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateServiceJanitorialSupplies
   entities:
   - uid: 635
@@ -11727,6 +11844,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -12429,54 +12554,7 @@ entities:
     - type: Transform
       pos: 32.5,-64.5
       parent: 104
-- proto: FloraTreeConifer01
-  entities:
-  - uid: 2104
-    components:
-    - type: Transform
-      pos: 5.714305,-69.69715
-      parent: 104
-  - uid: 2108
-    components:
-    - type: Transform
-      pos: 15.85829,-77.82389
-      parent: 104
-  - uid: 2117
-    components:
-    - type: Transform
-      pos: -2.3320408,-89.263535
-      parent: 104
-  - uid: 2119
-    components:
-    - type: Transform
-      pos: -4.063773,-89.85478
-      parent: 104
-  - uid: 2122
-    components:
-    - type: Transform
-      pos: 22.330017,-89.39548
-      parent: 104
-  - uid: 2123
-    components:
-    - type: Transform
-      pos: 21.540874,-87.70934
-      parent: 104
-  - uid: 2126
-    components:
-    - type: Transform
-      pos: 15.7514515,-90.51103
-      parent: 104
-  - uid: 2130
-    components:
-    - type: Transform
-      pos: -10.973816,-66.60443
-      parent: 104
-  - uid: 2134
-    components:
-    - type: Transform
-      pos: -4.88338,-57.533184
-      parent: 104
-- proto: FloraTreeConifer02
+- proto: FloraTreeConifer
   entities:
   - uid: 73
     components:
@@ -12488,78 +12566,6 @@ entities:
     - type: Transform
       pos: 21.848312,-81.77968
       parent: 104
-  - uid: 1415
-    components:
-    - type: Transform
-      pos: 0.11017007,-92.52746
-      parent: 104
-  - uid: 1731
-    components:
-    - type: Transform
-      pos: -21.322247,-57.479324
-      parent: 104
-  - uid: 2043
-    components:
-    - type: Transform
-      pos: 9.372111,-84.93609
-      parent: 104
-  - uid: 2103
-    components:
-    - type: Transform
-      pos: 15.907415,-69.28109
-      parent: 104
-  - uid: 2105
-    components:
-    - type: Transform
-      pos: 7.140139,-78.656006
-      parent: 104
-  - uid: 2107
-    components:
-    - type: Transform
-      pos: 9.852027,-79.64141
-      parent: 104
-  - uid: 2118
-    components:
-    - type: Transform
-      pos: -1.6086588,-90.51171
-      parent: 104
-  - uid: 2121
-    components:
-    - type: Transform
-      pos: 24.280956,-87.796936
-      parent: 104
-  - uid: 2127
-    components:
-    - type: Transform
-      pos: 10.75354,-88.97819
-      parent: 104
-  - uid: 2132
-    components:
-    - type: Transform
-      pos: -13.269195,-59.350704
-      parent: 104
-  - uid: 2135
-    components:
-    - type: Transform
-      pos: 6.448004,-59.017456
-      parent: 104
-  - uid: 3064
-    components:
-    - type: Transform
-      pos: 7.118539,-88.854996
-      parent: 104
-  - uid: 3309
-    components:
-    - type: Transform
-      pos: 9.023613,-91.09396
-      parent: 104
-  - uid: 3310
-    components:
-    - type: Transform
-      pos: 14.132988,-91.34396
-      parent: 104
-- proto: FloraTreeConifer03
-  entities:
   - uid: 1204
     components:
     - type: Transform
@@ -12569,6 +12575,16 @@ entities:
     components:
     - type: Transform
       pos: 4.51642,-91.46496
+      parent: 104
+  - uid: 1415
+    components:
+    - type: Transform
+      pos: 0.11017007,-92.52746
+      parent: 104
+  - uid: 1731
+    components:
+    - type: Transform
+      pos: -21.322247,-57.479324
       parent: 104
   - uid: 2030
     components:
@@ -12580,10 +12596,40 @@ entities:
     - type: Transform
       pos: 12.868539,-89.21437
       parent: 104
+  - uid: 2043
+    components:
+    - type: Transform
+      pos: 9.372111,-84.93609
+      parent: 104
   - uid: 2102
     components:
     - type: Transform
       pos: 7.906372,-69.20843
+      parent: 104
+  - uid: 2103
+    components:
+    - type: Transform
+      pos: 15.907415,-69.28109
+      parent: 104
+  - uid: 2104
+    components:
+    - type: Transform
+      pos: 5.714305,-69.69715
+      parent: 104
+  - uid: 2105
+    components:
+    - type: Transform
+      pos: 7.140139,-78.656006
+      parent: 104
+  - uid: 2107
+    components:
+    - type: Transform
+      pos: 9.852027,-79.64141
+      parent: 104
+  - uid: 2108
+    components:
+    - type: Transform
+      pos: 15.85829,-77.82389
       parent: 104
   - uid: 2111
     components:
@@ -12605,61 +12651,92 @@ entities:
     - type: Transform
       pos: 0.38288453,-90.380325
       parent: 104
+  - uid: 2117
+    components:
+    - type: Transform
+      pos: -2.3320408,-89.263535
+      parent: 104
+  - uid: 2118
+    components:
+    - type: Transform
+      pos: -1.6086588,-90.51171
+      parent: 104
+  - uid: 2119
+    components:
+    - type: Transform
+      pos: -4.063773,-89.85478
+      parent: 104
+  - uid: 2121
+    components:
+    - type: Transform
+      pos: 24.280956,-87.796936
+      parent: 104
+  - uid: 2122
+    components:
+    - type: Transform
+      pos: 22.330017,-89.39548
+      parent: 104
+  - uid: 2123
+    components:
+    - type: Transform
+      pos: 21.540874,-87.70934
+      parent: 104
+  - uid: 2126
+    components:
+    - type: Transform
+      pos: 15.7514515,-90.51103
+      parent: 104
+  - uid: 2127
+    components:
+    - type: Transform
+      pos: 10.75354,-88.97819
+      parent: 104
   - uid: 2129
     components:
     - type: Transform
       pos: -11.81926,-55.41105
+      parent: 104
+  - uid: 2130
+    components:
+    - type: Transform
+      pos: -10.973816,-66.60443
+      parent: 104
+  - uid: 2132
+    components:
+    - type: Transform
+      pos: -13.269195,-59.350704
       parent: 104
   - uid: 2133
     components:
     - type: Transform
       pos: 0.8379135,-58.233917
       parent: 104
-- proto: FloraTreeSnow02
-  entities:
-  - uid: 2059
+  - uid: 2134
     components:
     - type: Transform
-      pos: 13.035873,-69.1159
+      pos: -4.88338,-57.533184
       parent: 104
-  - uid: 2062
+  - uid: 2135
     components:
     - type: Transform
-      pos: 15.884973,-67.692535
+      pos: 6.448004,-59.017456
       parent: 104
-  - uid: 2064
+  - uid: 3064
     components:
     - type: Transform
-      pos: 6.002928,-55.326836
+      pos: 7.118539,-88.854996
       parent: 104
-  - uid: 2070
+  - uid: 3309
     components:
     - type: Transform
-      pos: -7.3307667,-59.28352
+      pos: 9.023613,-91.09396
       parent: 104
-  - uid: 2125
+  - uid: 3310
     components:
     - type: Transform
-      pos: 20.282734,-89.307884
+      pos: 14.132988,-91.34396
       parent: 104
-  - uid: 3312
-    components:
-    - type: Transform
-      pos: 9.284832,-87.39084
-      parent: 104
-- proto: FloraTreeSnow03
-  entities:
-  - uid: 2069
-    components:
-    - type: Transform
-      pos: -6.289916,-54.23194
-      parent: 104
-  - uid: 2075
-    components:
-    - type: Transform
-      pos: 16.124458,-62.669407
-      parent: 104
-- proto: FloraTreeSnow04
+- proto: FloraTreeSnow
   entities:
   - uid: 1040
     components:
@@ -12681,10 +12758,65 @@ entities:
     - type: Transform
       pos: 12.759164,-91.136246
       parent: 104
+  - uid: 2059
+    components:
+    - type: Transform
+      pos: 13.035873,-69.1159
+      parent: 104
+  - uid: 2060
+    components:
+    - type: Transform
+      pos: 6.67888,-68.78743
+      parent: 104
+  - uid: 2061
+    components:
+    - type: Transform
+      pos: 8.227797,-67.88962
+      parent: 104
+  - uid: 2062
+    components:
+    - type: Transform
+      pos: 15.884973,-67.692535
+      parent: 104
+  - uid: 2063
+    components:
+    - type: Transform
+      pos: 11.307728,-58.98377
+      parent: 104
+  - uid: 2064
+    components:
+    - type: Transform
+      pos: 6.002928,-55.326836
+      parent: 104
   - uid: 2065
     components:
     - type: Transform
       pos: 3.3464987,-58.37063
+      parent: 104
+  - uid: 2066
+    components:
+    - type: Transform
+      pos: 1.5796034,-55.54581
+      parent: 104
+  - uid: 2067
+    components:
+    - type: Transform
+      pos: 0.74661756,-54.23194
+      parent: 104
+  - uid: 2068
+    components:
+    - type: Transform
+      pos: -7.73668,-55.326836
+      parent: 104
+  - uid: 2069
+    components:
+    - type: Transform
+      pos: -6.289916,-54.23194
+      parent: 104
+  - uid: 2070
+    components:
+    - type: Transform
+      pos: -7.3307667,-59.28352
       parent: 104
   - uid: 2071
     components:
@@ -12705,6 +12837,11 @@ entities:
     components:
     - type: Transform
       pos: 6.7837105,-61.12986
+      parent: 104
+  - uid: 2075
+    components:
+    - type: Transform
+      pos: 16.124458,-62.669407
       parent: 104
   - uid: 2106
     components:
@@ -12741,54 +12878,30 @@ entities:
     - type: Transform
       pos: 22.921875,-87.205696
       parent: 104
-  - uid: 3311
+  - uid: 2125
     components:
     - type: Transform
-      pos: 14.773613,-89.40646
-      parent: 104
-  - uid: 3313
-    components:
-    - type: Transform
-      pos: 17.941082,-89.59396
-      parent: 104
-- proto: FloraTreeSnow05
-  entities:
-  - uid: 2060
-    components:
-    - type: Transform
-      pos: 6.67888,-68.78743
-      parent: 104
-  - uid: 2063
-    components:
-    - type: Transform
-      pos: 11.307728,-58.98377
-      parent: 104
-  - uid: 2068
-    components:
-    - type: Transform
-      pos: -7.73668,-55.326836
-      parent: 104
-- proto: FloraTreeSnow06
-  entities:
-  - uid: 2061
-    components:
-    - type: Transform
-      pos: 8.227797,-67.88962
-      parent: 104
-  - uid: 2066
-    components:
-    - type: Transform
-      pos: 1.5796034,-55.54581
-      parent: 104
-  - uid: 2067
-    components:
-    - type: Transform
-      pos: 0.74661756,-54.23194
+      pos: 20.282734,-89.307884
       parent: 104
   - uid: 2137
     components:
     - type: Transform
       pos: -2.4126801,-54.242588
+      parent: 104
+  - uid: 3311
+    components:
+    - type: Transform
+      pos: 14.773613,-89.40646
+      parent: 104
+  - uid: 3312
+    components:
+    - type: Transform
+      pos: 9.284832,-87.39084
+      parent: 104
+  - uid: 3313
+    components:
+    - type: Transform
+      pos: 17.941082,-89.59396
       parent: 104
 - proto: FoodBakedWaffleRoffle
   entities:
@@ -13857,6 +13970,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -13896,6 +14017,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -13953,6 +14082,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -13978,6 +14115,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -14023,6 +14168,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -14048,6 +14201,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -14094,6 +14255,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -14120,6 +14289,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -14165,6 +14342,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -14190,6 +14375,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -14227,7 +14420,7 @@ entities:
       parent: 2081
     - type: Physics
       canCollide: False
-- proto: MagazinePistolSubMachineGun
+- proto: MagazinePistolSubMachineGun9x17
   entities:
   - uid: 2080
     components:
@@ -14241,13 +14434,6 @@ entities:
     components:
     - type: Transform
       pos: 26.506485,-70.40716
-      parent: 104
-- proto: MaterialReclaimer
-  entities:
-  - uid: 878
-    components:
-    - type: Transform
-      pos: -6.5,-76.5
       parent: 104
 - proto: Mattress
   entities:
@@ -14490,7 +14676,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -23.5,-67.5
       parent: 104
-- proto: PlastitanedWindow
+- proto: PlastitaniumWindow
   entities:
   - uid: 39
     components:

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:35
+  entityCount: 274
+maps: []
+grids:
+- 289
+orphans:
+- 289
+nullspace: []
 tilemap:
   0: Space
   12: FloorAstroGrass
@@ -375,6 +386,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -436,6 +455,13 @@ entities:
       name: bear outpost APC
     - type: Transform
       pos: 2.5,-3.5
+      parent: 289
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 136
+    components:
+    - type: Transform
+      pos: 5.5,-8.5
       parent: 289
 - proto: BlastDoor
   entities:
@@ -874,6 +900,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1540,13 +1574,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-2.5
-      parent: 289
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 136
-    components:
-    - type: Transform
-      pos: 5.5,-8.5
       parent: 289
 - proto: WallReinforced
   entities:

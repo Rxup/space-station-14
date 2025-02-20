@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:54
+  entityCount: 1570
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   20: FloorArcadeBlue
@@ -1790,11 +1801,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2311,6 +2338,47 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-30.5
+      parent: 2
+- proto: BackmenVendingMachineChang
+  entities:
+  - uid: 1210
+    components:
+    - type: Transform
+      pos: 3.5,-22.5
+      parent: 2
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 1211
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 2
+  - uid: 1212
+    components:
+    - type: Transform
+      pos: -5.5,-2.5
+      parent: 2
+  - uid: 1213
+    components:
+    - type: Transform
+      pos: 9.5,-16.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 1216
+    components:
+    - type: Transform
+      pos: -6.5,-2.5
+      parent: 2
+  - uid: 1217
+    components:
+    - type: Transform
+      pos: 13.5,5.5
+      parent: 2
+  - uid: 1218
+    components:
+    - type: Transform
+      pos: 9.5,-18.5
       parent: 2
 - proto: BarSign
   entities:
@@ -7952,6 +8020,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -10105,30 +10181,6 @@ entities:
       parent: 2
     missingComponents:
     - AccessReader
-- proto: VendingMachineChang
-  entities:
-  - uid: 1210
-    components:
-    - type: Transform
-      pos: 3.5,-22.5
-      parent: 2
-- proto: VendingMachineCigs
-  entities:
-  - uid: 1211
-    components:
-    - type: Transform
-      pos: 5.5,5.5
-      parent: 2
-  - uid: 1212
-    components:
-    - type: Transform
-      pos: -5.5,-2.5
-      parent: 2
-  - uid: 1213
-    components:
-    - type: Transform
-      pos: 9.5,-16.5
-      parent: 2
 - proto: VendingMachineClothing
   entities:
   - uid: 1214
@@ -10140,23 +10192,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-14.5
-      parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 1216
-    components:
-    - type: Transform
-      pos: -6.5,-2.5
-      parent: 2
-  - uid: 1217
-    components:
-    - type: Transform
-      pos: 13.5,5.5
-      parent: 2
-  - uid: 1218
-    components:
-    - type: Transform
-      pos: 9.5,-18.5
       parent: 2
 - proto: VendingMachineSecDrobe
   entities:

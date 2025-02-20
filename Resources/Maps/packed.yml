@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:05:41
+  entityCount: 15475
+maps:
+- 126
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   3: FloorArcadeRed
@@ -1908,9 +1919,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1938,9 +1965,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1968,6 +2011,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -1983,11 +2034,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -6612,7 +6679,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
 - proto: AccordionInstrument
   entities:
   - uid: 13494
@@ -11386,6 +11452,98 @@ entities:
     components:
     - type: Transform
       pos: 13.5,20.5
+      parent: 2
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 2771
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 24.5,42.5
+      parent: 2
+  - uid: 5349
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 63.5,16.5
+      parent: 2
+  - uid: 5426
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 34.5,43.5
+      parent: 2
+  - uid: 6615
+    components:
+    - type: Transform
+      pos: 32.5,-2.5
+      parent: 2
+  - uid: 7507
+    components:
+    - type: Transform
+      pos: -21.5,-14.5
+      parent: 2
+  - uid: 11033
+    components:
+    - type: Transform
+      pos: 19.5,35.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 90
+    components:
+    - type: Transform
+      pos: -25.5,-11.5
+      parent: 2
+  - uid: 586
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: 11.5,-3.5
+      parent: 2
+  - uid: 5350
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: 62.5,16.5
+      parent: 2
+  - uid: 5468
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: 67.5,41.5
+      parent: 2
+  - uid: 7774
+    components:
+    - type: Transform
+      pos: 19.5,44.5
+      parent: 2
+  - uid: 8864
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: 107.5,-12.5
+      parent: 2
+  - uid: 11224
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: 45.5,20.5
+      parent: 2
+- proto: BackmenVendingMachineSovietSoda
+  entities:
+  - uid: 5467
+    components:
+    - type: Transform
+      pos: 67.5,35.5
       parent: 2
 - proto: BananaPhoneInstrument
   entities:
@@ -38610,6 +38768,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -38631,6 +38797,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -39081,18 +39255,6 @@ entities:
     components:
     - type: Transform
       pos: 17.479858,8.394902
-      parent: 2
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 688
-    components:
-    - type: Transform
-      pos: 7.491953,-13.240216
-      parent: 2
-  - uid: 7009
-    components:
-    - type: Transform
-      pos: 19.545155,5.62142
       parent: 2
 - proto: ClothingNeckScarfStripedRed
   entities:
@@ -39687,14 +39849,6 @@ entities:
     - type: Transform
       pos: 7.5,19.5
       parent: 2
-- proto: ComputerCargoShuttle
-  entities:
-  - uid: 14770
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,21.5
-      parent: 2
 - proto: ComputerComms
   entities:
   - uid: 405
@@ -39894,6 +40048,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.5,31.5
+      parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 14770
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,21.5
       parent: 2
 - proto: ComputerShuttleCargo
   entities:
@@ -40352,6 +40514,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -40595,6 +40765,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67570,7 +67748,7 @@ entities:
     - type: Transform
       pos: 23.5,57.5
       parent: 2
-- proto: GunSafeLaserCarbine
+- proto: GunSafeLaserCarbineUEG
   entities:
   - uid: 10849
     components:
@@ -67590,7 +67768,7 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleAR18
   entities:
   - uid: 2460
     components:
@@ -67600,7 +67778,7 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun
   entities:
   - uid: 15471
     components:
@@ -67610,7 +67788,7 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 2461
     components:
@@ -69201,6 +69379,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: LockerSalvageSpecialistFilledHardsuit
   entities:
   - uid: 705
@@ -69350,7 +69536,7 @@ entities:
     - type: Transform
       pos: 19.434057,-38.4118
       parent: 2
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazinePistolTopSubMachineGun
   entities:
   - uid: 348
     components:
@@ -77431,7 +77617,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 2221
     components:
@@ -79982,6 +80168,13 @@ entities:
     - type: Transform
       pos: 31.5,41.5
       parent: 2
+- proto: SpawnMobGorillaLargo
+  entities:
+  - uid: 14740
+    components:
+    - type: Transform
+      pos: 5.5,15.5
+      parent: 2
 - proto: SpawnMobMcGriff
   entities:
   - uid: 2493
@@ -80046,13 +80239,6 @@ entities:
     components:
     - type: Transform
       pos: 73.5,-1.5
-      parent: 2
-- proto: SpawnMobRaccoonMorticia
-  entities:
-  - uid: 14740
-    components:
-    - type: Transform
-      pos: 5.5,15.5
       parent: 2
 - proto: SpawnMobShiva
   entities:
@@ -84688,97 +84874,12 @@ entities:
     - type: Transform
       pos: 51.5,-4.5
       parent: 2
-- proto: VendingMachineCigs
-  entities:
-  - uid: 2771
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 24.5,42.5
-      parent: 2
-  - uid: 5349
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 63.5,16.5
-      parent: 2
-  - uid: 5426
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 34.5,43.5
-      parent: 2
-  - uid: 6615
-    components:
-    - type: Transform
-      pos: 32.5,-2.5
-      parent: 2
-  - uid: 7507
-    components:
-    - type: Transform
-      pos: -21.5,-14.5
-      parent: 2
-  - uid: 11033
-    components:
-    - type: Transform
-      pos: 19.5,35.5
-      parent: 2
 - proto: VendingMachineClothing
   entities:
   - uid: 127
     components:
     - type: Transform
       pos: 20.5,7.5
-      parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 90
-    components:
-    - type: Transform
-      pos: -25.5,-11.5
-      parent: 2
-  - uid: 586
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: 11.5,-3.5
-      parent: 2
-  - uid: 5350
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: 62.5,16.5
-      parent: 2
-  - uid: 5468
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: 67.5,41.5
-      parent: 2
-  - uid: 7774
-    components:
-    - type: Transform
-      pos: 19.5,44.5
-      parent: 2
-  - uid: 8864
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: 107.5,-12.5
-      parent: 2
-  - uid: 11224
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: 45.5,20.5
       parent: 2
 - proto: VendingMachineCondiments
   entities:
@@ -84938,13 +85039,6 @@ entities:
     components:
     - type: Transform
       pos: 55.5,36.5
-      parent: 2
-- proto: VendingMachineSovietSoda
-  entities:
-  - uid: 5467
-    components:
-    - type: Transform
-      pos: 67.5,35.5
       parent: 2
 - proto: VendingMachineSustenance
   entities:
@@ -95814,6 +95908,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 13063
     components:
     - type: Transform
@@ -95827,6 +95929,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -96102,7 +96212,7 @@ entities:
     - type: Transform
       pos: 36.48081,27.346535
       parent: 2
-- proto: WeaponSubMachineGunWt550
+- proto: WeaponSubMachineGunP90
   entities:
   - uid: 7940
     components:
