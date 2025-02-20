@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:34
+  entityCount: 726
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   1: FloorAsteroidSand
@@ -2937,7 +2948,7 @@ entities:
     - type: Transform
       pos: 7.5,-11.5
       parent: 1
-- proto: CrateFunPlushie
+- proto: CrateFunToyBox
   entities:
   - uid: 521
     components:

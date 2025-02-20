@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:41
+  entityCount: 644
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   32: FloorDark
@@ -18,6 +29,7 @@ entities:
       name: NT Evac Log
     - type: Transform
       pos: -0.42093527,-0.86894274
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -785,9 +797,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -804,10 +832,10 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: DeviceNetwork
+      deviceNetId: Wireless
       configurators: []
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
-      deviceNetId: Wireless
 - proto: AirAlarm
   entities:
   - uid: 577
