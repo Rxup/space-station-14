@@ -1,4 +1,5 @@
-﻿using Content.Shared.FixedPoint;
+﻿using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Components;
@@ -44,19 +45,22 @@ public sealed partial class ConsciousnessComponent : Component
     /// Represents the collection of additional effects that modify the base consciousness level.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public Dictionary<(EntityUid, ConsciousnessModType), ConsciousnessModifier> Modifiers = new();
+    public Dictionary<(EntityUid, string), ConsciousnessModifier> Modifiers = new();
 
     /// <summary>
     /// Represents the collection of coefficients that further modulate the consciousness level.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public Dictionary<(EntityUid, ConsciousnessModType), ConsciousnessMultiplier> Multipliers = new();
+    public Dictionary<(EntityUid, string), ConsciousnessMultiplier> Multipliers = new();
 
     /// <summary>
     /// Defines which parts of the consciousness state are necessary for the entity.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<string, (EntityUid?, bool, bool)> RequiredConsciousnessParts = new();
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Entity<NerveSystemComponent> NerveSystem = default;
 
     // Forceful control attributes, it's recommended not to use them directly.
     [ViewVariables(VVAccess.ReadWrite)]

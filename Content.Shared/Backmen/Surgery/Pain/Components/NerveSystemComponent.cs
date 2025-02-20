@@ -20,7 +20,7 @@ public sealed partial class NerveSystemComponent : Component
     /// How much Pain can this nerve system hold.
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 PainCap = 100f;
+    public FixedPoint2 PainCap = 200f;
 
     // Don't change, OR I will break your knees, filled up upon initialization.
     public Dictionary<EntityUid, NerveComponent> Nerves = new();
@@ -171,13 +171,13 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("reflexThresholds"), ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<PainThresholdTypes, FixedPoint2> PainThresholds = new()
     {
-        { PainThresholdTypes.PainFlinch, 6 },
-        { PainThresholdTypes.Agony, 20 },
+        { PainThresholdTypes.PainFlinch, 5 },
+        { PainThresholdTypes.Agony, 18 },
         // Just having 'PainFlinch' is lame, people scream for a few seconds before passing out / getting pain shocked, so I added agony.
         // A lot of screams (individual pain screams poll), for the funnies.
         { PainThresholdTypes.PainShock, 36 },
-        { PainThresholdTypes.PainPassout, 60 },
         // usually appears after an explosion. or some ultra big damage output thing, you might survive, and most importantly, you will fall down in pain.
         // :troll:
+        { PainThresholdTypes.PainPassout, 60 },
     };
 }

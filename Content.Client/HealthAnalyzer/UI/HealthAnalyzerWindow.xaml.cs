@@ -199,13 +199,31 @@ namespace Content.Client.HealthAnalyzer.UI
 
             if (!isPart && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body) && body.RootContainer.ContainedEntity.HasValue)
             {
-                var total =
-                    _wound.GetAllWoundableChildren(body.RootContainer.ContainedEntity.Value)
-                        .Aggregate((FixedPoint2) 0,
-                            (current, damagedWoundable)
-                            => current + _wound.GetWoundableSeverityPoint(damagedWoundable.Item1, damagedWoundable.Item2));
+                var damageGroups = new Dictionary<string, FixedPoint2>();
+                foreach (var child in _wound.GetAllWoundableChildren(body.RootContainer.ContainedEntity.Value))
+                {
+                    foreach (var wound in _wound.GetWoundableWounds(child.Item1, child.Item2))
+                    {
+                        var woundGroup = wound.Item2.DamageGroup;
+                        if (woundGroup == null)
+                            continue;
 
-                DamageLabel.Text = total.ToString();
+                        if (!damageGroups.TryAdd(woundGroup, wound.Item2.WoundSeverityPoint))
+                        {
+                            damageGroups[woundGroup] += wound.Item2.WoundSeverityPoint;
+                        }
+                    }
+                }
+
+                var damageSortedGroups =
+                    damageGroups.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
+
+                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageGroups;
+
+                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+
+                DamageLabel.Text = damageGroups.Values.Sum().ToString();
             }
 
             if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))

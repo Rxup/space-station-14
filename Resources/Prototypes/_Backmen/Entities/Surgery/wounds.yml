@@ -15,7 +15,7 @@
       VeinsDamage: 0
       NerveDamage: 0
   - type: PainInflicter
-    multiplier: 0.8
+    multiplier: 0.87
   - type: BleedInflicter
 
 - type: entity
@@ -35,7 +35,7 @@
       VeinsDamage: -0.4
       NerveDamage: -0.4
   - type: PainInflicter
-    multiplier: 0.8
+    multiplier: 0.87
   - type: BleedInflicter
 
 - type: entity
@@ -55,6 +55,7 @@
       VeinsDamage: 0
       NerveDamage: 0
   - type: PainInflicter
+    multiplier: 0.87
   - type: BleedInflicter
 
 - type: entity
@@ -65,8 +66,8 @@
     woundType: External
     woundVisibility: Always
     scarWound: BurnScar
-    integrityMultiplier: 0.5
-    bleedsScaling: 0.34
+    integrityMultiplier: 0.34
+    bleedsScaling: 0.17
     traumasChances:
       Dismemberment: -0.5 # fire and lasers can't dismember, damage organs or bones. But they can damage veins and nerves pretty much easily
       OrganDamage: -0.5
@@ -74,7 +75,7 @@
       VeinsDamage: 0.27
       NerveDamage: 0.27
   - type: PainInflicter
-    multiplier: 1.4
+    multiplier: 1.34
   - type: BleedInflicter
 
 - type: entity
@@ -94,7 +95,7 @@
       VeinsDamage: 0.5
       NerveDamage: 0.5
   - type: PainInflicter
-    multiplier: 1.4
+    multiplier: 1.5
 
 - type: entity
   id: Caustic
@@ -113,7 +114,7 @@
       VeinsDamage: 0.5
       NerveDamage: 0.14
   - type: PainInflicter
-    multiplier: 0.47 # radiation and caustics are a slow killer. You do not notice how you perish.
+    multiplier: 0.12 # radiation and caustics are a slow killer. You do not notice how you perish.
 
 - type: entity
   id: Radiation
@@ -132,4 +133,4 @@
       VeinsDamage: 0.5
       NerveDamage: 0.14
   - type: PainInflicter
-    multiplier: 0.47
+    multiplier: 0.12

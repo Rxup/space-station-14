@@ -4,16 +4,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Surgery.Traumas;
 
-#region Bones
-
-[Serializable, NetSerializable]
-public enum BoneSeverity
-{
-    Normal,
-    Damaged,
-    Broken, // Ha-ha.
-}
-
 [Serializable, NetSerializable]
 public enum TraumaType
 {
@@ -22,6 +12,16 @@ public enum TraumaType
     VeinsDamage,
     NerveDamage, // pain
     Dismemberment,
+}
+
+#region Bones
+
+[Serializable, NetSerializable]
+public enum BoneSeverity
+{
+    Normal,
+    Damaged,
+    Broken, // Ha-ha.
 }
 
 [ByRefEvent]

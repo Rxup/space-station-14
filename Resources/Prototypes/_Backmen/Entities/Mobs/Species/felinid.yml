@@ -14,6 +14,9 @@
     understands:
     - TauCetiBasic
     - Nekomimetic
+  - type: Consciousness
+    cap: 85
+    threshold: 25
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance

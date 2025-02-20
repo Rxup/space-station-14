@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Content.Server.Body.Systems;
-using Content.Server.Database;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
@@ -33,7 +33,7 @@ public sealed partial class AdjustPainFeels : EntityEffect
             scale = reagentArgs.Quantity * reagentArgs.Scale;
         }
 
-        if (!args.EntityManager.System<PainSystem>().TryGetNerveSystem(args.TargetEntity, out var nerveSys))
+        if (!args.EntityManager.System<ConsciousnessSystem>().TryGetNerveSystem(args.TargetEntity, out var nerveSys))
             return;
 
         foreach (var bodyPart in args.EntityManager.System<BodySystem>().GetBodyChildren(args.TargetEntity))

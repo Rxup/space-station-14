@@ -6,15 +6,13 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
 [Virtual]
-public partial class ConsciousnessSystem : EntitySystem
+public sealed partial class ConsciousnessSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly PainSystem _pain = default!;
-
-    private const string UnspecifiedIdentifier = "Unspecified";
 
     private ISawmill _sawmill = default!;
 
@@ -25,6 +23,7 @@ public partial class ConsciousnessSystem : EntitySystem
         _sawmill = Logger.GetSawmill("consciousness");
 
         InitProcess();
+        InitNet();
     }
 
     public override void Update(float frameTime)

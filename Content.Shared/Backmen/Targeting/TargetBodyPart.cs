@@ -36,6 +36,7 @@ public enum TargetBodyPart : ushort
     FullLegs = Feet | Legs,
 
     BodyMiddle = Chest | Groin | FullArms,
+    FullLegsGroin = FullLegs | Groin,
 
     All = Head | Chest | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
 }

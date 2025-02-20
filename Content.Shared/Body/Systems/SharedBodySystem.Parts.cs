@@ -96,7 +96,7 @@ public partial class SharedBodySystem
         {
             DebugTools.Assert(
                 slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part)),
-                $"BodyPartComponent has not been inserted ({Prototype(args.Entity)?.ID}) into {Prototype(ent.Comp.Body.Value)?.ID}" +
+                $"BodyPartComponent has not been inserted ({Prototype(args.Entity)?.ID}) into {Prototype(ent.Comp.Body!.Value)?.ID}" +
                 $" прототип должен иметь подключение начиная с {GetSlotFromBodyPart(part)} (сейчас {slotId.Replace(PartSlotContainerIdPrefix,"")})");
         }
 #endif
@@ -108,7 +108,7 @@ public partial class SharedBodySystem
 #if DEBUG
         else if(HasComp<OrganComponent>(insertedUid))
         {
-            DebugTools.Assert($"OrganComponent has not been inserted ({Prototype(args.Entity)?.ID}) into {Prototype(ent.Comp.Body.Value)?.ID}");
+            DebugTools.Assert($"OrganComponent has not been inserted ({Prototype(args.Entity)?.ID}) into {Prototype(ent.Comp.Body!.Value)?.ID}");
         }
 #endif
     }

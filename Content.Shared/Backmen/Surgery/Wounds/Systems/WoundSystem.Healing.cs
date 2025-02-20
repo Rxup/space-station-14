@@ -79,6 +79,31 @@ public partial class WoundSystem
         return true;
     }
 
+    public void ForceHealWoundsOnWoundable(EntityUid woundable,
+        out FixedPoint2 healed,
+        string? damageGroup = null,
+        WoundableComponent? component = null)
+    {
+        healed = 0;
+        if (!Resolve(woundable, ref component))
+            return;
+
+        var woundsToHeal =
+            GetWoundableWounds(woundable, component)
+                .Where(wound => damageGroup == null || wound.Item2.DamageGroup == damageGroup)
+                .Select(wound => (Entity<WoundComponent>) wound)
+                .ToList();
+
+        foreach (var wound in woundsToHeal)
+        {
+            healed += wound.Comp.WoundSeverityPoint;
+            RemoveWound(wound);
+        }
+
+        UpdateWoundableIntegrity(woundable, component);
+        CheckWoundableSeverityThresholds(woundable, component);
+    }
+
     public bool TryHealWoundsOnWoundable(EntityUid woundable,
         FixedPoint2 healAmount,
         out FixedPoint2 healed,

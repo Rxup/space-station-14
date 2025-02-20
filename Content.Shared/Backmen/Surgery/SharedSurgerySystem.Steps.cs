@@ -15,7 +15,6 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
@@ -24,7 +23,6 @@ using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Containers.ItemSlots;
-using AmputateAttemptEvent = Content.Shared.Body.Events.AmputateAttemptEvent;
 
 namespace Content.Shared.Backmen.Surgery;
 
@@ -415,8 +413,10 @@ public abstract partial class SharedSurgerySystem
             || partComp.Body != args.Body)
             return;
 
-        var ev = new AmputateAttemptEvent(args.Part);
-        RaiseLocalEvent(args.Part, ref ev);
+        if (!_body.TryGetParentBodyPart(args.Part, out var parentPart, out _))
+            return;
+
+        _wounds.AmputateWoundableSafely(parentPart.Value, args.Part, out _);
         _hands.TryPickupAnyHand(args.User, args.Part);
     }
 

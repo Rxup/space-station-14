@@ -115,8 +115,7 @@ public partial class MobStateSystem
         OnStateChanged(target, component, oldState, newState);
         RaiseLocalEvent(target, ev, true);
 
-        var nerveSys = _pain.GetNerveSystem(target);
-        if (nerveSys.HasValue)
+        if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
         {
             var ev1 = new MobStateChangedEvent(target, component, oldState, newState, origin);
             RaiseLocalEvent(nerveSys.Value, ev1, true);
