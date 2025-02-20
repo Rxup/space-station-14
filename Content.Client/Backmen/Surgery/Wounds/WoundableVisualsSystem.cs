@@ -177,6 +177,9 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
         foreach (var (type, damage) in damagePerGroup)
         {
+            if (!visuals.DamageOverlayGroups!.ContainsKey(type))
+                continue;
+
             bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}{type}", out var damageLayer);
 
             UpdateDamageLayerState(bodySprite, damageLayer, $"{visuals.OccupiedLayer}_{type}", GetThreshold(damage, visuals));
