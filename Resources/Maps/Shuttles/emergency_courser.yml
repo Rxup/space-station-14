@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:40
+  entityCount: 657
+maps: []
+grids:
+- 656
+orphans:
+- 656
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -61,10 +72,10 @@ entities:
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: DeviceNetwork
+      deviceNetId: Wireless
       configurators: []
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
-      deviceNetId: Wireless
     - type: DecalGrid
       chunkCollection:
         version: 2
@@ -453,11 +464,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -648,6 +675,20 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.5,4.5
+      parent: 656
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 634
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 656
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 633
+    components:
+    - type: Transform
+      pos: -2.5,2.5
       parent: 656
 - proto: Bed
   entities:
@@ -3653,26 +3694,12 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 656
-- proto: VendingMachineCigs
-  entities:
-  - uid: 634
-    components:
-    - type: Transform
-      pos: 2.5,2.5
-      parent: 656
 - proto: VendingMachineMedical
   entities:
   - uid: 191
     components:
     - type: Transform
       pos: 1.5,-4.5
-      parent: 656
-- proto: VendingMachineSnack
-  entities:
-  - uid: 633
-    components:
-    - type: Transform
-      pos: -2.5,2.5
       parent: 656
 - proto: WallShuttle
   entities:

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:35
+  entityCount: 462
+maps: []
+grids:
+- 16
+orphans:
+- 16
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -598,9 +609,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -628,11 +655,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14975
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1811,15 +1854,13 @@ entities:
     - type: Transform
       pos: 7.5,-8.5
       parent: 16
-- proto: FloraRockSolid01
+- proto: FloraRockSolid
   entities:
   - uid: 54
     components:
     - type: Transform
       pos: 5.505496,-8.531757
       parent: 16
-- proto: FloraRockSolid03
-  entities:
   - uid: 490
     components:
     - type: Transform
@@ -2012,6 +2053,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -2441,33 +2490,21 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 464
   - uid: 179
     components:
     - type: Transform
       pos: -1.5,2.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 463
   - uid: 180
     components:
     - type: Transform
       pos: 0.5,2.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 464
   - uid: 181
     components:
     - type: Transform
       pos: 1.5,2.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 464
   - uid: 264
     components:
     - type: Transform
@@ -2503,17 +2540,11 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 463
   - uid: 459
     components:
     - type: Transform
       pos: -2.5,2.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 463
 - proto: ShuttersRadiation
   entities:
   - uid: 675
@@ -2521,9 +2552,6 @@ entities:
     - type: Transform
       pos: 6.5,7.5
       parent: 16
-    - type: DeviceLinkSink
-      links:
-      - 584
 - proto: SignalButton
   entities:
   - uid: 463

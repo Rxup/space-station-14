@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:27
+  entityCount: 1806
+maps:
+- 588
+grids:
+- 588
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   15: FloorBasalt
@@ -28,7 +39,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -2682,10 +2696,7 @@ entities:
           decals:
             2127: 9.110695,42.81673
     - type: RadiationGridResistance
-    - type: LoadedMap
     - type: SpreaderGrid
-    - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
 - proto: AirlockBrigGlassLocked
   entities:
@@ -2760,6 +2771,32 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 19.5,47.5
+      parent: 588
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 720
+    components:
+    - type: Transform
+      pos: 22.5,22.5
+      parent: 588
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 765
+    components:
+    - type: Transform
+      pos: 10.5,22.5
+      parent: 588
+  - uid: 1285
+    components:
+    - type: Transform
+      pos: 18.5,40.5
+      parent: 588
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 538
+    components:
+    - type: Transform
+      pos: 16.5,16.5
       parent: 588
 - proto: BannerSecurity
   entities:
@@ -3157,19 +3194,19 @@ entities:
     - type: Transform
       pos: 15.616387,0.61007345
       parent: 588
-- proto: BookEscalationSecurity
-  entities:
-  - uid: 373
-    components:
-    - type: Transform
-      pos: 19.42657,0.6288943
-      parent: 588
 - proto: BookRandom
   entities:
   - uid: 1835
     components:
     - type: Transform
       pos: 24.420084,44.539436
+      parent: 588
+- proto: BookRandomStory
+  entities:
+  - uid: 373
+    components:
+    - type: Transform
+      pos: 19.42657,0.6288943
       parent: 588
 - proto: BookSecurity
   entities:
@@ -8034,6 +8071,38 @@ entities:
     - type: Transform
       pos: 17.5,44.5
       parent: 588
+- proto: FakeSpaceCash100
+  entities:
+  - uid: 1243
+    components:
+    - type: Transform
+      pos: 11.887424,39.621456
+      parent: 588
+  - uid: 1244
+    components:
+    - type: Transform
+      pos: 11.759636,39.479546
+      parent: 588
+  - uid: 1296
+    components:
+    - type: Transform
+      pos: 12.100407,39.465355
+      parent: 588
+  - uid: 1297
+    components:
+    - type: Transform
+      pos: 12.100407,39.80594
+      parent: 588
+  - uid: 1298
+    components:
+    - type: Transform
+      pos: 11.688642,39.720795
+      parent: 588
+  - uid: 1299
+    components:
+    - type: Transform
+      pos: 11.4330635,39.57888
+      parent: 588
 - proto: filingCabinetRandom
   entities:
   - uid: 320
@@ -10908,17 +10977,11 @@ entities:
     - type: Transform
       pos: 34.5,27.5
       parent: 588
-    - type: DeviceLinkSink
-      links:
-      - 593
   - uid: 1238
     components:
     - type: Transform
       pos: 32.5,27.5
       parent: 588
-    - type: DeviceLinkSink
-      links:
-      - 593
 - proto: ShuttersWindow
   entities:
   - uid: 1239
@@ -10926,9 +10989,6 @@ entities:
     - type: Transform
       pos: 33.5,27.5
       parent: 588
-    - type: DeviceLinkSink
-      links:
-      - 593
 - proto: SignCloning
   entities:
   - uid: 1484
@@ -11044,38 +11104,6 @@ entities:
     components:
     - type: Transform
       pos: 10.4890785,27.46785
-      parent: 588
-- proto: FakeSpaceCash100
-  entities:
-  - uid: 1243
-    components:
-    - type: Transform
-      pos: 11.887424,39.621456
-      parent: 588
-  - uid: 1244
-    components:
-    - type: Transform
-      pos: 11.759636,39.479546
-      parent: 588
-  - uid: 1296
-    components:
-    - type: Transform
-      pos: 12.100407,39.465355
-      parent: 588
-  - uid: 1297
-    components:
-    - type: Transform
-      pos: 12.100407,39.80594
-      parent: 588
-  - uid: 1298
-    components:
-    - type: Transform
-      pos: 11.688642,39.720795
-      parent: 588
-  - uid: 1299
-    components:
-    - type: Transform
-      pos: 11.4330635,39.57888
       parent: 588
 - proto: Spear
   entities:
@@ -11636,25 +11664,6 @@ entities:
     - type: Transform
       pos: 18.5,12.5
       parent: 588
-- proto: VendingMachineCigs
-  entities:
-  - uid: 720
-    components:
-    - type: Transform
-      pos: 22.5,22.5
-      parent: 588
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 765
-    components:
-    - type: Transform
-      pos: 10.5,22.5
-      parent: 588
-  - uid: 1285
-    components:
-    - type: Transform
-      pos: 18.5,40.5
-      parent: 588
 - proto: VendingMachineDetDrobe
   entities:
   - uid: 582
@@ -11668,13 +11677,6 @@ entities:
     components:
     - type: Transform
       pos: 30.5,46.5
-      parent: 588
-- proto: VendingMachineDonut
-  entities:
-  - uid: 538
-    components:
-    - type: Transform
-      pos: 16.5,16.5
       parent: 588
 - proto: VendingMachineLawDrobe
   entities:
@@ -12354,7 +12356,7 @@ entities:
     - type: Transform
       pos: 22.543945,6.5464144
       parent: 588
-- proto: WeaponShotgunKammerer
+- proto: WeaponShotguntrenchgun4034
   entities:
   - uid: 583
     components:

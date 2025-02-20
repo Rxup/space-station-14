@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:39
+  entityCount: 1019
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   32: FloorDark
@@ -621,9 +632,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -858,7 +885,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-1.5
       parent: 1
-- proto: AirlockHatch
+- proto: AirlockHatchBasik
   entities:
   - uid: 223
     components:
@@ -5696,7 +5723,7 @@ entities:
     - type: Transform
       pos: 5.5,13.5
       parent: 1
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 605
     components:

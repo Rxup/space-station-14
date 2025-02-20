@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:36
+  entityCount: 135
+maps: []
+grids:
+- 55
+orphans:
+- 55
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -349,9 +360,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 111.618744
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -650,18 +677,18 @@ entities:
     - type: Transform
       pos: 6.5,-4.5
       parent: 55
-- proto: ClothingMaskClown
+- proto: ClothingMaskBlushingClown
   entities:
-  - uid: 111
+  - uid: 110
     components:
     - type: Transform
       parent: 108
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingMaskSexyClown
+- proto: ClothingMaskClown
   entities:
-  - uid: 110
+  - uid: 111
     components:
     - type: Transform
       parent: 108
@@ -778,6 +805,14 @@ entities:
         immutable: False
         temperature: 93.465614
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0

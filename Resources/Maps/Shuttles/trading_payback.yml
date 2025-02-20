@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:46
+  entityCount: 382
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   108: FloorTechMaint
@@ -231,6 +242,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -247,8 +266,6 @@ entities:
       - 184
       - 183
       - 185
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 3
@@ -256,8 +273,6 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockExternalGlassCargoLocked
   entities:
   - uid: 4
@@ -1128,8 +1143,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,13.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeBend
   entities:
   - uid: 162
@@ -1257,8 +1270,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentPump
   entities:
   - uid: 183
@@ -1270,8 +1281,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 184
     components:
     - type: Transform
@@ -1281,8 +1290,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentScrubber
   entities:
   - uid: 185
@@ -1294,8 +1301,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GeneratorRTG
   entities:
   - uid: 186
