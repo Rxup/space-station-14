@@ -292,7 +292,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseRestrictedContraband]
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseCommandContraband]
   id: ClothingOuterArmorCentcom
   name: бронежилет Центком
   description: Бронежилет бренда "Центком".

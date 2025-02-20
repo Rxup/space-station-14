@@ -26,10 +26,6 @@
   - type: Battery
     maxCharge: 40000
     startingCharge: 40000
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: false
   - type: Appearance
   - type: StaticPrice
     price: 500
@@ -64,10 +60,6 @@
     - type: Battery
       maxCharge: 20000
       startingCharge: 20000
-    - type: MagazineVisuals
-      magState: mag
-      steps: 5
-      zeroVisible: true
     - type: Appearance
     - type: StaticPrice
       price: 500
@@ -119,10 +111,6 @@
     state: mecha_ion
   - type: Item
     size: HeavyMachineGun
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
   - type: Appearance
   - type: Battery
     maxCharge: 1000

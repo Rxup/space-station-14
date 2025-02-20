@@ -1,6 +1,18 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:05:21
+  entityCount: 28701
+maps:
+- 951
+grids:
+- 5350
+- 28213
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   11: FloorArcadeBlue
@@ -68,7 +80,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 5350
     components:
     - type: MetaData
@@ -8687,9 +8698,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -8717,11 +8744,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.813705
           - 82.06108
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -8747,9 +8790,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -8777,6 +8836,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -8792,6 +8859,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -8807,10 +8882,26 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -8837,6 +8928,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -8844,6 +8943,14 @@ entities:
           - 0
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -21889,6 +21996,172 @@ entities:
     - type: Transform
       pos: 54.5,5.5
       parent: 5350
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 976
+    components:
+    - type: Transform
+      pos: -19.5,6.5
+      parent: 5350
+  - uid: 6514
+    components:
+    - type: Transform
+      pos: 53.5,5.5
+      parent: 5350
+  - uid: 7936
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 8.5,15.5
+      parent: 5350
+  - uid: 8219
+    components:
+    - type: Transform
+      pos: -17.5,21.5
+      parent: 5350
+  - uid: 10436
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 12.5,47.5
+      parent: 5350
+  - uid: 11397
+    components:
+    - type: Transform
+      pos: -6.5,-40.5
+      parent: 5350
+  - uid: 12451
+    components:
+    - type: Transform
+      pos: 46.5,12.5
+      parent: 5350
+  - uid: 16821
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: -49.5,-31.5
+      parent: 5350
+  - uid: 17271
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: -40.5,-4.5
+      parent: 5350
+  - uid: 22731
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 37.5,-18.5
+      parent: 5350
+  - uid: 23331
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 5350
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 4325
+    components:
+    - type: Transform
+      pos: -34.5,24.5
+      parent: 5350
+  - uid: 7529
+    components:
+    - type: Transform
+      pos: 6.5,42.5
+      parent: 5350
+  - uid: 7935
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: 0.5,15.5
+      parent: 5350
+  - uid: 13775
+    components:
+    - type: Transform
+      pos: -17.5,-44.5
+      parent: 5350
+  - uid: 17645
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: -26.5,-6.5
+      parent: 5350
+  - uid: 22776
+    components:
+    - type: Transform
+      pos: -6.5,-5.5
+      parent: 5350
+  - uid: 22937
+    components:
+    - type: MetaData
+      name: Hot drinks machine
+    - type: Transform
+      pos: -4.5,-55.5
+      parent: 5350
+- proto: BackmenVendingMachineCola
+  entities:
+  - uid: 1177
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 5350
+- proto: BackmenVendingMachineDiscount
+  entities:
+  - uid: 16822
+    components:
+    - type: Transform
+      pos: -49.5,-30.5
+      parent: 5350
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 7509
+    components:
+    - type: Transform
+      pos: 11.5,34.5
+      parent: 5350
+  - uid: 10466
+    components:
+    - type: MetaData
+      name: Donut
+    - type: Transform
+      pos: 7.5,42.5
+      parent: 5350
+  - uid: 22936
+    components:
+    - type: MetaData
+      name: Donut
+    - type: Transform
+      pos: -4.5,-54.5
+      parent: 5350
+- proto: BackmenVendingMachineHappyHonk
+  entities:
+  - uid: 2423
+    components:
+    - type: Transform
+      pos: 35.5,-9.5
+      parent: 5350
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 1178
+    components:
+    - type: Transform
+      pos: -4.5,-1.5
+      parent: 5350
+- proto: BackmenVendingMachineSovietSoda
+  entities:
+  - uid: 6712
+    components:
+    - type: Transform
+      pos: 34.5,-25.5
+      parent: 5350
 - proto: BagpipeInstrument
   entities:
   - uid: 3492
@@ -22997,6 +23270,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66185,6 +66466,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 2089
     components:
     - type: Transform
@@ -66198,6 +66487,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66231,6 +66528,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 3685
     components:
     - type: Transform
@@ -66244,6 +66549,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66282,6 +66595,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 6050
     components:
     - type: Transform
@@ -66295,6 +66616,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66328,6 +66657,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 6153
     components:
     - type: Transform
@@ -66351,6 +66688,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 6154
     components:
     - type: Transform
@@ -66364,6 +66709,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66422,6 +66775,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 15321
     components:
     - type: Transform
@@ -66440,6 +66801,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66473,6 +66842,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 19016
     components:
     - type: Transform
@@ -66486,6 +66863,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66519,6 +66904,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66581,6 +66974,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 3084
     components:
     - type: Transform
@@ -66599,6 +67000,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66637,6 +67046,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 8058
     components:
     - type: Transform
@@ -66665,6 +67082,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 13624
     components:
     - type: Transform
@@ -66678,6 +67103,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66716,6 +67149,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 18526
     components:
     - type: Transform
@@ -66729,6 +67170,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66767,6 +67216,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 22738
     components:
     - type: Transform
@@ -66780,6 +67237,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66822,6 +67287,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66876,6 +67349,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ClosetMaintenanceFilledRandom
   entities:
   - uid: 1541
@@ -66901,6 +67382,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 2080
     components:
     - type: Transform
@@ -66914,6 +67403,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -66967,6 +67464,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 17299
     components:
     - type: Transform
@@ -66984,7 +67489,7 @@ entities:
             - -0.25,0.48
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
           - BulletImpassable
@@ -66999,6 +67504,14 @@ entities:
         immutable: False
         temperature: 293.1495
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67043,6 +67556,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 18409
     components:
     - type: Transform
@@ -67066,6 +67587,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 19007
     components:
     - type: Transform
@@ -67079,6 +67608,14 @@ entities:
         moles:
         - 2.053867
         - 7.7264524
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67122,6 +67659,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 22787
     components:
     - type: Transform
@@ -67135,6 +67680,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67173,6 +67726,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 24141
     components:
     - type: Transform
@@ -67186,6 +67747,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67226,6 +67795,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 14058
     components:
     - type: Transform
@@ -67249,6 +67826,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 19146
     components:
     - type: Transform
@@ -67262,6 +67847,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67312,6 +67905,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 23127
     components:
     - type: Transform
@@ -67325,6 +67926,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -68158,53 +68767,6 @@ entities:
     components:
     - type: Transform
       pos: 49.558456,-13.3518505
-      parent: 5350
-- proto: ClothingNeckCloakAro
-  entities:
-  - uid: 28327
-    components:
-    - type: Transform
-      pos: 48.4059,34.733707
-      parent: 5350
-- proto: ClothingNeckCloakBi
-  entities:
-  - uid: 28322
-    components:
-    - type: Transform
-      pos: -45.293335,5.678726
-      parent: 5350
-  - uid: 28323
-    components:
-    - type: Transform
-      pos: -39.36795,-12.329826
-      parent: 5350
-- proto: ClothingNeckCloakEnby
-  entities:
-  - uid: 28324
-    components:
-    - type: Transform
-      pos: -10.296133,-53.285557
-      parent: 5350
-- proto: ClothingNeckCloakGay
-  entities:
-  - uid: 16726
-    components:
-    - type: Transform
-      pos: 26.360043,-58.493557
-      parent: 5350
-- proto: ClothingNeckCloakLesbian
-  entities:
-  - uid: 28320
-    components:
-    - type: Transform
-      pos: -26.34226,41.685402
-      parent: 5350
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 24116
-    components:
-    - type: Transform
-      pos: 0.42782736,-64.34981
       parent: 5350
 - proto: ClothingNeckHeadphones
   entities:
@@ -69526,14 +70088,6 @@ entities:
     - type: Transform
       pos: -9.5,2.5
       parent: 5350
-- proto: ComputerCargoShuttle
-  entities:
-  - uid: 28195
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -32.5,17.5
-      parent: 5350
 - proto: ComputerComms
   entities:
   - uid: 1060
@@ -69825,6 +70379,14 @@ entities:
     components:
     - type: Transform
       pos: -40.5,33.5
+      parent: 5350
+- proto: ComputerShipyard
+  entities:
+  - uid: 28195
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -32.5,17.5
       parent: 5350
 - proto: ComputerShuttleCargo
   entities:
@@ -70670,6 +71232,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -70703,6 +71273,14 @@ entities:
         moles:
         - 1.606311
         - 6.042789
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70759,6 +71337,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 12480
     components:
     - type: Transform
@@ -70777,6 +71363,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70822,6 +71416,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 22525
     components:
     - type: Transform
@@ -70835,6 +71437,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70870,6 +71480,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateEngineeringGyroscope
   entities:
   - uid: 28530
@@ -70885,6 +71503,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70913,6 +71539,14 @@ entities:
         moles:
         - 1.606311
         - 6.042789
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70967,6 +71601,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -71005,6 +71647,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -71033,6 +71683,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -71138,6 +71796,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -71156,7 +71822,7 @@ entities:
     - type: Transform
       pos: -24.5,17.5
       parent: 5350
-- proto: CrateFunPlushie
+- proto: CrateFunToyBox
   entities:
   - uid: 21772
     components:
@@ -71176,6 +71842,14 @@ entities:
         immutable: False
         temperature: 75.31249
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -71211,6 +71885,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 19427
     components:
     - type: Transform
@@ -71222,6 +71904,14 @@ entities:
         immutable: False
         temperature: 75.31249
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -71250,6 +71940,14 @@ entities:
         immutable: False
         temperature: 75.31249
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -71395,6 +72093,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -128717,6 +129423,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: GunSafePistolMk58
   entities:
   - uid: 6511
@@ -128729,7 +129443,7 @@ entities:
       parent: 5350
     - type: Physics
       bodyType: Static
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleAR18
   entities:
   - uid: 22966
     components:
@@ -128759,6 +129473,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -128772,7 +129494,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun
   entities:
   - uid: 11588
     components:
@@ -128802,6 +129524,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -128814,7 +129544,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 13851
     components:
@@ -128834,6 +129564,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131207,6 +131945,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 1509
@@ -131229,6 +131975,14 @@ entities:
         moles:
         - 2.053867
         - 7.7264524
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131264,6 +132018,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: LockerElectricalSuppliesFilled
   entities:
   - uid: 1671
@@ -131279,6 +132041,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131312,6 +132082,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 4733
     components:
     - type: Transform
@@ -131330,6 +132108,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131457,6 +132243,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: LockerFreezer
   entities:
   - uid: 3158
@@ -131472,6 +132266,14 @@ entities:
         moles:
         - 2.053867
         - 7.7264524
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131535,6 +132337,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131628,6 +132438,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -131828,6 +132646,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -131978,7 +132804,7 @@ entities:
     - type: Transform
       pos: -15.199577,42.62874
       parent: 5350
-- proto: MagazineBoxPistolPractice
+- proto: MagazinePacketPistol9x17
   entities:
   - uid: 13619
     components:
@@ -131990,14 +132816,14 @@ entities:
     - type: Transform
       pos: -15.574577,42.476746
       parent: 5350
-- proto: MagazineBoxRiflePractice
+- proto: MagazinePacketRifle556UEG
   entities:
   - uid: 22344
     components:
     - type: Transform
       pos: -15.720936,42.71257
       parent: 5350
-- proto: MagazinePistolPractice
+- proto: MagazinePistol9x17
   entities:
   - uid: 22240
     components:
@@ -132009,7 +132835,7 @@ entities:
     - type: Transform
       pos: -15.689243,42.42685
       parent: 5350
-- proto: MagazinePistolSubMachineGun
+- proto: MagazinePistolSubMachineGun9x17
   entities:
   - uid: 14878
     components:
@@ -132025,8 +132851,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazinePistolSubMachineGunPractice
-  entities:
   - uid: 22238
     components:
     - type: Transform
@@ -132037,7 +132861,7 @@ entities:
     - type: Transform
       pos: -15.387077,43.488113
       parent: 5350
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazinePistolTopSubMachineGun
   entities:
   - uid: 10438
     components:
@@ -132053,8 +132877,18 @@ entities:
       parent: 5350
     - type: BallisticAmmoProvider
       unspawnedCount: 30
-- proto: MagazineRifle
+- proto: MagazineRifle556UEG
   entities:
+  - uid: 22345
+    components:
+    - type: Transform
+      pos: -15.668327,43.44124
+      parent: 5350
+  - uid: 22347
+    components:
+    - type: Transform
+      pos: -15.512077,43.44124
+      parent: 5350
   - uid: 28208
     components:
     - type: Transform
@@ -132069,18 +132903,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazineRiflePractice
-  entities:
-  - uid: 22345
-    components:
-    - type: Transform
-      pos: -15.668327,43.44124
-      parent: 5350
-  - uid: 22347
-    components:
-    - type: Transform
-      pos: -15.512077,43.44124
-      parent: 5350
 - proto: MailingUnit
   entities:
   - uid: 657
@@ -132842,6 +133664,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 15023
     components:
     - type: Transform
@@ -132856,6 +133686,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -132890,6 +133728,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 15400
     components:
     - type: Transform
@@ -132910,6 +133756,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -132994,6 +133848,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -151758,6 +152620,13 @@ entities:
     - type: Transform
       pos: 34.5,-15.5
       parent: 5350
+- proto: SpawnMobGorillaLargo
+  entities:
+  - uid: 15359
+    components:
+    - type: Transform
+      pos: -30.5,17.5
+      parent: 5350
 - proto: SpawnMobLizard
   entities:
   - uid: 24475
@@ -151814,13 +152683,6 @@ entities:
     components:
     - type: Transform
       pos: 44.5,8.5
-      parent: 5350
-- proto: SpawnMobRaccoonMorticia
-  entities:
-  - uid: 15359
-    components:
-    - type: Transform
-      pos: -30.5,17.5
       parent: 5350
 - proto: SpawnMobShiva
   entities:
@@ -153583,6 +154445,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 23578
     components:
     - type: Transform
@@ -153606,6 +154476,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -153651,6 +154529,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -153676,6 +154562,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -153721,6 +154615,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -153756,6 +154658,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -153781,6 +154691,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -153828,6 +154746,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -153853,6 +154779,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -153898,6 +154832,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -153923,6 +154865,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -153967,6 +154917,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 7774
     components:
     - type: Transform
@@ -153990,6 +154948,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9506
     components:
     - type: Transform
@@ -154003,6 +154969,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -154062,6 +155036,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 7540
     components:
     - type: Transform
@@ -154085,6 +155067,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161327,73 +162317,6 @@ entities:
     - type: Transform
       pos: -23.5,-24.5
       parent: 5350
-- proto: VendingMachineCigs
-  entities:
-  - uid: 976
-    components:
-    - type: Transform
-      pos: -19.5,6.5
-      parent: 5350
-  - uid: 6514
-    components:
-    - type: Transform
-      pos: 53.5,5.5
-      parent: 5350
-  - uid: 7936
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 8.5,15.5
-      parent: 5350
-  - uid: 8219
-    components:
-    - type: Transform
-      pos: -17.5,21.5
-      parent: 5350
-  - uid: 10436
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 12.5,47.5
-      parent: 5350
-  - uid: 11397
-    components:
-    - type: Transform
-      pos: -6.5,-40.5
-      parent: 5350
-  - uid: 12451
-    components:
-    - type: Transform
-      pos: 46.5,12.5
-      parent: 5350
-  - uid: 16821
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: -49.5,-31.5
-      parent: 5350
-  - uid: 17271
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: -40.5,-4.5
-      parent: 5350
-  - uid: 22731
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 37.5,-18.5
-      parent: 5350
-  - uid: 23331
-    components:
-    - type: Transform
-      pos: 1.5,-5.5
-      parent: 5350
 - proto: VendingMachineClothing
   entities:
   - uid: 13488
@@ -161405,56 +162328,6 @@ entities:
     components:
     - type: Transform
       pos: 28.5,25.5
-      parent: 5350
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 4325
-    components:
-    - type: Transform
-      pos: -34.5,24.5
-      parent: 5350
-  - uid: 7529
-    components:
-    - type: Transform
-      pos: 6.5,42.5
-      parent: 5350
-  - uid: 7935
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: 0.5,15.5
-      parent: 5350
-  - uid: 13775
-    components:
-    - type: Transform
-      pos: -17.5,-44.5
-      parent: 5350
-  - uid: 17645
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: -26.5,-6.5
-      parent: 5350
-  - uid: 22776
-    components:
-    - type: Transform
-      pos: -6.5,-5.5
-      parent: 5350
-  - uid: 22937
-    components:
-    - type: MetaData
-      name: Hot drinks machine
-    - type: Transform
-      pos: -4.5,-55.5
-      parent: 5350
-- proto: VendingMachineCola
-  entities:
-  - uid: 1177
-    components:
-    - type: Transform
-      pos: -0.5,-1.5
       parent: 5350
 - proto: VendingMachineCondiments
   entities:
@@ -161483,34 +162356,6 @@ entities:
     components:
     - type: Transform
       pos: 34.5,-9.5
-      parent: 5350
-- proto: VendingMachineDiscount
-  entities:
-  - uid: 16822
-    components:
-    - type: Transform
-      pos: -49.5,-30.5
-      parent: 5350
-- proto: VendingMachineDonut
-  entities:
-  - uid: 7509
-    components:
-    - type: Transform
-      pos: 11.5,34.5
-      parent: 5350
-  - uid: 10466
-    components:
-    - type: MetaData
-      name: Donut
-    - type: Transform
-      pos: 7.5,42.5
-      parent: 5350
-  - uid: 22936
-    components:
-    - type: MetaData
-      name: Donut
-    - type: Transform
-      pos: -4.5,-54.5
       parent: 5350
 - proto: VendingMachineEngiDrobe
   entities:
@@ -161544,13 +162389,6 @@ entities:
     components:
     - type: Transform
       pos: 39.5,-45.5
-      parent: 5350
-- proto: VendingMachineHappyHonk
-  entities:
-  - uid: 2423
-    components:
-    - type: Transform
-      pos: 35.5,-9.5
       parent: 5350
 - proto: VendingMachineHydrobe
   entities:
@@ -161691,20 +162529,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,60.5
-      parent: 5350
-- proto: VendingMachineSnack
-  entities:
-  - uid: 1178
-    components:
-    - type: Transform
-      pos: -4.5,-1.5
-      parent: 5350
-- proto: VendingMachineSovietSoda
-  entities:
-  - uid: 6712
-    components:
-    - type: Transform
-      pos: 34.5,-25.5
       parent: 5350
 - proto: VendingMachineSustenance
   entities:
@@ -179275,6 +180099,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: WardrobeBlueFilled
   entities:
   - uid: 13499
@@ -179290,6 +180122,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -179332,6 +180172,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: WardrobeEngineeringFilled
   entities:
   - uid: 22651
@@ -179354,6 +180202,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -179389,6 +180245,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 18435
     components:
     - type: Transform
@@ -179402,6 +180266,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -179432,6 +180304,14 @@ entities:
         moles:
         - 1.8968438
         - 7.1357465
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -179523,6 +180403,14 @@ entities:
         moles:
         - 3.848459
         - 14.477538
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -179854,7 +180742,7 @@ entities:
     - type: Transform
       pos: -17.620625,47.599594
       parent: 5350
-- proto: WeaponLaserCarbine
+- proto: WeaponEarthGovLaserRifle
   entities:
   - uid: 28447
     components:
@@ -179898,7 +180786,7 @@ entities:
     - type: Transform
       pos: -17.487097,43.821205
       parent: 5350
-- proto: WeaponRifleLecter
+- proto: WeaponRifleAR18
   entities:
   - uid: 28446
     components:
@@ -179907,14 +180795,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponShotgunEnforcer
+- proto: WeaponShotgun39
   entities:
   - uid: 7743
     components:
     - type: Transform
       pos: -3.48983,38.175747
       parent: 5350
-- proto: WeaponShotgunKammerer
+- proto: WeaponShotguntrenchgun4034
   entities:
   - uid: 3634
     components:
@@ -179923,7 +180811,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponSubMachineGunDrozd
+- proto: WeaponSubMachineGunP90
+  entities:
+  - uid: 10437
+    components:
+    - type: Transform
+      pos: 12.542325,46.203403
+      parent: 5350
+- proto: WeaponSubMachineGunVectorSpecial
   entities:
   - uid: 28207
     components:
@@ -179932,13 +180827,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponSubMachineGunWt550
-  entities:
-  - uid: 10437
-    components:
-    - type: Transform
-      pos: 12.542325,46.203403
-      parent: 5350
 - proto: Welder
   entities:
   - uid: 3830

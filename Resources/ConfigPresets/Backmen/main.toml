@@ -83,7 +83,7 @@ linsleeptol = 0.001
 restart_delay = 120
 
 [worldgen]
-enabled = false
+enabled = true
 
 [ahelp]
 admin_prefix = true

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:43
+  entityCount: 720
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -67,10 +78,10 @@ entities:
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: DeviceNetwork
+      deviceNetId: Wireless
       configurators: []
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
-      deviceNetId: Wireless
     - type: DecalGrid
       chunkCollection:
         version: 2
@@ -747,9 +758,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -934,6 +961,34 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,3.5
+      parent: 2
+- proto: BackmenVendingMachineChang
+  entities:
+  - uid: 304
+    components:
+    - type: Transform
+      pos: 0.5,11.5
+      parent: 2
+- proto: BackmenVendingMachineCola
+  entities:
+  - uid: 518
+    components:
+    - type: Transform
+      pos: 3.5,11.5
+      parent: 2
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 303
+    components:
+    - type: Transform
+      pos: 1.5,11.5
+      parent: 2
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 302
+    components:
+    - type: Transform
+      pos: 2.5,11.5
       parent: 2
 - proto: BedsheetMedical
   entities:
@@ -2272,6 +2327,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 354
     components:
     - type: Transform
@@ -3539,7 +3602,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-2.5
       parent: 2
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 187
     components:
@@ -4197,27 +4260,6 @@ entities:
     - type: Transform
       pos: -3.5,16.5
       parent: 2
-- proto: VendingMachineChang
-  entities:
-  - uid: 304
-    components:
-    - type: Transform
-      pos: 0.5,11.5
-      parent: 2
-- proto: VendingMachineCola
-  entities:
-  - uid: 518
-    components:
-    - type: Transform
-      pos: 3.5,11.5
-      parent: 2
-- proto: VendingMachineDonut
-  entities:
-  - uid: 303
-    components:
-    - type: Transform
-      pos: 1.5,11.5
-      parent: 2
 - proto: VendingMachineMedical
   entities:
   - uid: 320
@@ -4231,13 +4273,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,1.5
-      parent: 2
-- proto: VendingMachineSnack
-  entities:
-  - uid: 302
-    components:
-    - type: Transform
-      pos: 2.5,11.5
       parent: 2
 - proto: VendingMachineTankDispenserEVA
   entities:

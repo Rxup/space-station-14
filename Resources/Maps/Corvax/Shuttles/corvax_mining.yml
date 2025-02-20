@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:59
+  entityCount: 82
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   77: FloorMining
@@ -16,6 +27,7 @@ entities:
       name: NT-SAL "Блоха"
     - type: Transform
       pos: -0.52229434,-0.43310228
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -288,13 +300,6 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-- proto: ComputerShuttleSalvage
-  entities:
-  - uid: 16
-    components:
-    - type: Transform
-      pos: 0.5,3.5
-      parent: 1
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 40
@@ -480,6 +485,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 1
+- proto: WallSolidDiagonal
+  entities:
+  - uid: 82
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 1
+  - uid: 83
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,2.5
+      parent: 1
 - proto: WallSolidRust
   entities:
   - uid: 25
@@ -551,19 +569,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-1.5
-      parent: 1
-- proto: WallSolidDiagonal
-  entities:
-  - uid: 82
-    components:
-    - type: Transform
-      pos: -2.5,2.5
-      parent: 1
-  - uid: 83
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,2.5
       parent: 1
 - proto: WeldingFuelTankFull
   entities:

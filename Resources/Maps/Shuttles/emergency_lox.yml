@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:41
+  entityCount: 641
+maps: []
+grids:
+- 670
+orphans:
+- 670
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -67,10 +78,10 @@ entities:
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: DeviceNetwork
+      deviceNetId: Wireless
       configurators: []
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
-      deviceNetId: Wireless
     - type: DecalGrid
       chunkCollection:
         version: 2
@@ -664,9 +675,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -876,6 +903,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-2.5
+      parent: 670
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 262
+    components:
+    - type: Transform
+      pos: -1.5,8.5
       parent: 670
 - proto: BedsheetMedical
   entities:
@@ -3545,7 +3579,7 @@ entities:
     - type: Transform
       pos: -2.5,12.5
       parent: 670
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 106
     components:
@@ -3964,13 +3998,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,14.5
-      parent: 670
-- proto: VendingMachineCigs
-  entities:
-  - uid: 262
-    components:
-    - type: Transform
-      pos: -1.5,8.5
       parent: 670
 - proto: VendingMachineMedical
   entities:
