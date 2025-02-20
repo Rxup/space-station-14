@@ -16069,13 +16069,6 @@ entities:
     - type: InstantAction
       originalIconColor: '#FFFFFFFF'
       container: 20121
-  - uid: 26542
-    components:
-    - type: Transform
-      parent: 9182
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 9182
 - proto: ActionToggleLight
   entities:
   - uid: 16587
@@ -19268,7 +19261,7 @@ entities:
         DoorStatus: True
         DockStatus: True
     - type: Door
-      secondsUntilStateChange: -21486.111
+      secondsUntilStateChange: -21925.91
       changeAirtight: False
       state: Opening
   - uid: 12469
@@ -19399,7 +19392,7 @@ entities:
       pos: 28.5,10.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -44127.754
+      secondsUntilStateChange: -44567.555
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19410,7 +19403,7 @@ entities:
       pos: 24.5,16.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -184307.52
+      secondsUntilStateChange: -184747.31
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -20915,7 +20908,7 @@ entities:
       pos: 9.5,25.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -97564.03
+      secondsUntilStateChange: -98003.83
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -22102,6 +22095,14 @@ entities:
     components:
     - type: Transform
       pos: -12.278092,-72.498535
+      parent: 8364
+- proto: AnimalTranslator
+  entities:
+  - uid: 8572
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 39.502045,11.588823
       parent: 8364
 - proto: AnomalyScanner
   entities:
@@ -81722,6 +81723,28 @@ entities:
     - type: Transform
       pos: 66.39981,-80.5017
       parent: 8364
+- proto: ClothingShoesBootsMagSecurity
+  entities:
+  - uid: 9182
+    components:
+    - type: Transform
+      pos: -2.5011284,38.599228
+      parent: 8364
+  - uid: 11615
+    components:
+    - type: Transform
+      pos: -2.5,38.5
+      parent: 8364
+  - uid: 26540
+    components:
+    - type: Transform
+      pos: -2.5011284,38.70256
+      parent: 8364
+  - uid: 26541
+    components:
+    - type: Transform
+      pos: -2.5011284,38.804413
+      parent: 8364
 - proto: ClothingShoesBootsWork
   entities:
   - uid: 11558
@@ -97797,7 +97820,7 @@ entities:
       pos: -34.5,-14.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -178496.06
+      secondsUntilStateChange: -178935.86
       state: Closing
   - uid: 15010
     components:
@@ -143046,24 +143069,6 @@ entities:
     - type: Transform
       pos: 56.5,1.5
       parent: 8364
-  - uid: 11615
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 39.70577,11.624892
-      parent: 8364
-  - uid: 11619
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 39.51827,11.703017
-      parent: 8364
-  - uid: 11623
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 39.5,11.5
-      parent: 8364
   - uid: 12359
     components:
     - type: Transform
@@ -143668,6 +143673,18 @@ entities:
     components:
     - type: Transform
       pos: -22.188848,7.6088066
+      parent: 8364
+- proto: PetCarrier
+  entities:
+  - uid: 11619
+    components:
+    - type: Transform
+      pos: 37.5,12.5
+      parent: 8364
+  - uid: 11623
+    components:
+    - type: Transform
+      pos: 37.5,11.5
       parent: 8364
 - proto: PhoneInstrument
   entities:
@@ -149528,6 +149545,11 @@ entities:
     components:
     - type: Transform
       pos: 2.5,39.5
+      parent: 8364
+  - uid: 9195
+    components:
+    - type: Transform
+      pos: -2.5,38.5
       parent: 8364
   - uid: 9364
     components:
@@ -156872,7 +156894,7 @@ entities:
   - uid: 9316
     components:
     - type: Transform
-      pos: -2.430175,38.67102
+      pos: -1.4750742,39.653862
       parent: 8364
   - uid: 9730
     components:
@@ -163121,49 +163143,11 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
   - uid: 4213
     components:
     - type: Transform
       pos: -0.5,35.5
       parent: 8364
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 9182
   - uid: 8783
     components:
     - type: Transform
@@ -165772,11 +165756,6 @@ entities:
     components:
     - type: Transform
       pos: -19.5,22.5
-      parent: 8364
-  - uid: 9195
-    components:
-    - type: Transform
-      pos: -2.5,38.5
       parent: 8364
   - uid: 9196
     components:
@@ -189814,11 +189793,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-5.5
-      parent: 8364
-  - uid: 27291
-    components:
-    - type: Transform
-      pos: -2.5,38.5
       parent: 8364
   - uid: 29368
     components:
