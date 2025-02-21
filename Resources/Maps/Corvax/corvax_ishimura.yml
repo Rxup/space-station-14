@@ -1,6 +1,23 @@
-﻿meta:
-  format: 6
-  postmapinit: false
+meta:
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:08:17
+  entityCount: 29668
+maps:
+- 1
+grids:
+- 2
+- 24173
+- 24375
+- 24792
+- 24902
+- 27712
+- 28600
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   20: FloorArcadeBlue
@@ -70,8 +87,7 @@ tilemap:
   86: FloorShuttleRed
   87: FloorShuttleWhite
   91: FloorSteel
-  13: FloorSteelBurnt
-  12: FloorSteelDamaged
+  13: FloorSteelDamaged
   96: FloorSteelDiagonal
   97: FloorSteelDiagonalMini
   98: FloorSteelDirty
@@ -97,8 +113,7 @@ tilemap:
   123: Lattice
   124: Plating
   125: PlatingAsteroid
-  22: PlatingBurnt
-  27: PlatingDamaged
+  22: PlatingDamaged
 entities:
 - proto: ""
   entities:
@@ -114,7 +129,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
     - type: BecomesStation
       id: Ishimura
     - type: NavMap
@@ -368,7 +382,7 @@ entities:
           version: 6
         -9,-1:
           ind: -9,-1
-          tiles: fAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAewAAAAAAewAAAAAAewAAAAAAewAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAewAAAAAAewAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAABAAAAAAABAAAAAAABAAAAAAABAAAAAAAKgAAAAAAFgAAAAAAGwAAAAAAKgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAABAAAAAAAGwAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAJgAAAAAAFgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAABAAAAAAABAAAAAAABAAAAAAABAAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAATwAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAATwAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAATwAAAAAAfAAAAAAAfAAAAAAA
+          tiles: fAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAewAAAAAAewAAAAAAewAAAAAAewAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAewAAAAAAewAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAABAAAAAAABAAAAAAABAAAAAAABAAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAJgAAAAAAFgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAABAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAABAAAAAAABAAAAAAABAAAAAAABAAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAATwAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAfAAAAAAAfAAAAAAATwAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAKgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAAfAAAAAAAIgAAAAAAIgAAAAAAIgAAAAAAIgAAAAAATwAAAAAAfAAAAAAAfAAAAAAA
           version: 6
         -9,0:
           ind: -9,0
@@ -12305,11 +12319,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 235
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -12335,6 +12365,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
@@ -12350,6 +12388,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -12365,6 +12411,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -12380,9 +12434,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -12400,6 +12470,14 @@ entities:
           moles:
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -12417,6 +12495,14 @@ entities:
           - 0
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -12673,6 +12759,14 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -13081,9 +13175,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -13111,11 +13221,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.6852
           - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -13267,6 +13393,14 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -14564,11 +14698,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.6852
           - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -14594,6 +14744,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -14609,11 +14767,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -15178,6 +15352,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -15247,6 +15429,14 @@ entities:
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -18142,6 +18332,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 49.5,20.5
       parent: 2
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking111798
       dockedWith: 24795
@@ -18155,6 +18347,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 33.5,-25.5
       parent: 2
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking314611
       dockedWith: 24181
@@ -18168,6 +18362,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 33.5,-23.5
       parent: 2
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking314616
       dockedWith: 24180
@@ -18180,6 +18376,8 @@ entities:
     - type: Transform
       pos: 3.5,-12.5
       parent: 24375
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking206957
       dockedWith: 27723
@@ -18192,6 +18390,8 @@ entities:
     - type: Transform
       pos: 5.5,-12.5
       parent: 24375
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking206958
       dockedWith: 27724
@@ -18204,6 +18404,8 @@ entities:
     - type: Transform
       pos: 0.5,-6.5
       parent: 24792
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking111798
       dockedWith: 265
@@ -18237,6 +18439,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 27712
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking206957
       dockedWith: 24386
@@ -18250,6 +18454,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 27712
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking206958
       dockedWith: 24387
@@ -18428,7 +18634,7 @@ entities:
     - type: Transform
       pos: 61.5,-0.5
       parent: 2
-- proto: AirlockHatch
+- proto: AirlockHatchBasik
   entities:
   - uid: 289
     components:
@@ -19554,6 +19760,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,-4.5
       parent: 24173
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking314616
       dockedWith: 267
@@ -19567,6 +19775,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,-6.5
       parent: 24173
+    - type: Door
+      changeAirtight: False
     - type: Docking
       dockJointId: docking314611
       dockedWith: 266
@@ -20387,10 +20597,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,26.5
       parent: 2
-    - type: Apc
-      hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
   - uid: 584
     components:
     - type: MetaData
@@ -20765,10 +20971,6 @@ entities:
     - type: Transform
       pos: -9.5,16.5
       parent: 2
-    - type: Apc
-      hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
   - uid: 639
     components:
     - type: Transform
@@ -20801,10 +21003,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -17.5,11.5
       parent: 2
-    - type: Apc
-      hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
   - uid: 644
     components:
     - type: Transform
@@ -24623,6 +24821,153 @@ entities:
     - type: Transform
       pos: -27.5,2.5
       parent: 24902
+- proto: BackmenVendingMachineChang
+  entities:
+  - uid: 20042
+    components:
+    - type: Transform
+      pos: -51.5,-9.5
+      parent: 2
+  - uid: 20043
+    components:
+    - type: Transform
+      pos: -2.5,37.5
+      parent: 2
+  - uid: 20044
+    components:
+    - type: Transform
+      pos: -28.5,21.5
+      parent: 2
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 20052
+    components:
+    - type: Transform
+      pos: -55.5,26.5
+      parent: 2
+  - uid: 20053
+    components:
+    - type: Transform
+      pos: -63.5,31.5
+      parent: 2
+  - uid: 20054
+    components:
+    - type: Transform
+      pos: -63.5,39.5
+      parent: 2
+  - uid: 20055
+    components:
+    - type: Transform
+      pos: -85.5,45.5
+      parent: 2
+  - uid: 20056
+    components:
+    - type: Transform
+      pos: -29.5,5.5
+      parent: 2
+  - uid: 20057
+    components:
+    - type: Transform
+      pos: -58.5,12.5
+      parent: 2
+  - uid: 20058
+    components:
+    - type: Transform
+      pos: -52.5,5.5
+      parent: 2
+  - uid: 20059
+    components:
+    - type: Transform
+      pos: -53.5,5.5
+      parent: 2
+  - uid: 20060
+    components:
+    - type: Transform
+      pos: -33.5,15.5
+      parent: 2
+  - uid: 20061
+    components:
+    - type: Transform
+      pos: 1.5,-22.5
+      parent: 2
+  - uid: 20062
+    components:
+    - type: Transform
+      pos: 15.5,-5.5
+      parent: 2
+  - uid: 20063
+    components:
+    - type: Transform
+      pos: -23.5,-8.5
+      parent: 2
+  - uid: 20064
+    components:
+    - type: Transform
+      pos: -67.5,1.5
+      parent: 2
+  - uid: 20065
+    components:
+    - type: Transform
+      pos: -8.5,33.5
+      parent: 2
+  - uid: 20066
+    components:
+    - type: Transform
+      pos: -18.5,-10.5
+      parent: 2
+  - uid: 20067
+    components:
+    - type: Transform
+      pos: -69.5,-5.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 20070
+    components:
+    - type: Transform
+      pos: 1.5,-6.5
+      parent: 2
+  - uid: 20071
+    components:
+    - type: Transform
+      pos: 1.5,-21.5
+      parent: 2
+  - uid: 20072
+    components:
+    - type: Transform
+      pos: -51.5,11.5
+      parent: 2
+- proto: BackmenVendingMachineDiscount
+  entities:
+  - uid: 20076
+    components:
+    - type: Transform
+      pos: -58.5,1.5
+      parent: 2
+- proto: BackmenVendingMachineHappyHonk
+  entities:
+  - uid: 20084
+    components:
+    - type: Transform
+      pos: -33.5,-5.5
+      parent: 2
+- proto: BackmenVendingMachineSovietSoda
+  entities:
+  - uid: 20105
+    components:
+    - type: Transform
+      pos: -33.5,9.5
+      parent: 2
+  - uid: 20106
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 2
+  - uid: 20107
+    components:
+    - type: Transform
+      pos: -108.5,-9.5
+      parent: 2
 - proto: BalloonCorgi
   entities:
   - uid: 846
@@ -75327,6 +75672,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9055
     components:
     - type: Transform
@@ -75389,6 +75742,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -75601,6 +75962,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -75631,6 +76000,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -75680,6 +76057,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -75709,6 +76094,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -75759,6 +76152,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -75788,6 +76189,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -75838,6 +76247,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -75870,6 +76287,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76064,6 +76489,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -76089,6 +76522,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76206,6 +76647,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 17217
     components:
     - type: Transform
@@ -76219,6 +76668,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76255,6 +76712,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76332,6 +76797,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9144
     components:
     - type: Transform
@@ -76346,6 +76819,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76425,6 +76906,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9150
     components:
     - type: Transform
@@ -76439,6 +76928,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76473,6 +76970,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9152
     components:
     - type: Transform
@@ -76487,6 +76992,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -76651,7 +77164,7 @@ entities:
     - type: Transform
       pos: -46.598465,-10.565041
       parent: 2
-- proto: ClothingBeltSuspenders
+- proto: ClothingBeltSuspendersRed
   entities:
   - uid: 9166
     components:
@@ -77485,6 +77998,24 @@ entities:
     - type: Transform
       pos: -5.363779,-7.512106
       parent: 2
+- proto: ClothingMaskBlushingClown
+  entities:
+  - uid: 1117
+    components:
+    - type: Transform
+      parent: 1115
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: ClothingMaskBlushingMime
+  entities:
+  - uid: 9318
+    components:
+    - type: Transform
+      parent: 9315
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ClothingMaskBreath
   entities:
   - uid: 9297
@@ -77659,31 +78190,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingMaskSexyClown
-  entities:
-  - uid: 1117
-    components:
-    - type: Transform
-      parent: 1115
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingMaskSexyMime
-  entities:
-  - uid: 9318
-    components:
-    - type: Transform
-      parent: 9315
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingNeckCloakAce
-  entities:
-  - uid: 9332
-    components:
-    - type: Transform
-      pos: -34.519188,25.479324
-      parent: 2
 - proto: ClothingNeckCloakAdmin
   entities:
   - uid: 9333
@@ -77693,33 +78199,12 @@ entities:
     - type: Transform
       pos: -130.50995,23.450384
       parent: 2
-- proto: ClothingNeckCloakAro
-  entities:
-  - uid: 9334
-    components:
-    - type: Transform
-      pos: -75.593666,21.535728
-      parent: 2
 - proto: ClothingNeckCloakCentcomAdmiral
   entities:
   - uid: 9335
     components:
     - type: Transform
       pos: -49.524063,30.571947
-      parent: 2
-- proto: ClothingNeckCloakEnby
-  entities:
-  - uid: 9336
-    components:
-    - type: Transform
-      pos: -32.582123,33.335163
-      parent: 2
-- proto: ClothingNeckCloakGay
-  entities:
-  - uid: 9337
-    components:
-    - type: Transform
-      pos: -34.487938,29.385574
       parent: 2
 - proto: ClothingNeckCloakGoliathCloak
   entities:
@@ -77735,20 +78220,6 @@ entities:
     - type: Transform
       pos: -8.461792,32.446552
       parent: 2
-- proto: ClothingNeckCloakIntersex
-  entities:
-  - uid: 9340
-    components:
-    - type: Transform
-      pos: -46.493187,25.578531
-      parent: 2
-- proto: ClothingNeckCloakLesbian
-  entities:
-  - uid: 9341
-    components:
-    - type: Transform
-      pos: -25.483047,33.553913
-      parent: 2
 - proto: ClothingNeckCloakMiner
   entities:
   - uid: 9342
@@ -77762,20 +78233,6 @@ entities:
     components:
     - type: Transform
       pos: -23.404922,29.538288
-      parent: 2
-- proto: ClothingNeckCloakPan
-  entities:
-  - uid: 9344
-    components:
-    - type: Transform
-      pos: 32.597904,7.4234333
-      parent: 2
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 9345
-    components:
-    - type: Transform
-      pos: -76.46504,-16.328894
       parent: 2
 - proto: ClothingNeckCloakVoid
   entities:
@@ -78466,8 +78923,6 @@ entities:
     - type: Transform
       pos: 24.469347,-18.35476
       parent: 2
-    - type: Magboots
-      toggleActionEntity: 6
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
@@ -79783,14 +80238,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -64.5,-5.5
       parent: 2
-- proto: ComputerShuttleSalvage
-  entities:
-  - uid: 9532
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,-17.5
-      parent: 2
 - proto: ComputerSolarControl
   entities:
   - uid: 9533
@@ -80413,6 +80860,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
       open: True
       removedMasks: 20
     - type: PlaceableSurface
@@ -80432,6 +80887,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -80527,6 +80990,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateEngineeringParticleAccelerator
   entities:
   - uid: 9606
@@ -80549,6 +81020,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -80582,6 +81061,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9609
     components:
     - type: Transform
@@ -80595,6 +81082,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -80658,6 +81153,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -80701,6 +81204,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -80720,13 +81231,6 @@ entities:
     - type: Transform
       pos: -60.5,-11.5
       parent: 2
-- proto: CrateFunLizardPlushieBulk
-  entities:
-  - uid: 9613
-    components:
-    - type: Transform
-      pos: -61.5,-12.5
-      parent: 2
 - proto: CrateFunParty
   entities:
   - uid: 9614
@@ -80736,6 +81240,11 @@ entities:
       parent: 2
 - proto: CrateFunToyBox
   entities:
+  - uid: 9613
+    components:
+    - type: Transform
+      pos: -61.5,-12.5
+      parent: 2
   - uid: 9615
     components:
     - type: Transform
@@ -80756,6 +81265,14 @@ entities:
         moles:
         - 3.3955739
         - 12.773826
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -80817,6 +81334,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateHydroponicsTools
   entities:
   - uid: 9620
@@ -80839,6 +81364,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -80905,6 +81438,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 9623
     components:
     - type: Transform
@@ -80932,6 +81473,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -80997,6 +81546,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -81047,6 +81604,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateServiceBureaucracy
   entities:
   - uid: 9627
@@ -81062,6 +81627,14 @@ entities:
         moles:
         - 3.3493855
         - 12.60007
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -81094,6 +81667,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -81182,6 +81763,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -81227,6 +81816,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -81255,6 +81852,14 @@ entities:
         moles:
         - 1.606311
         - 6.042789
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -81369,6 +81974,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -95980,7 +96593,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 31.5,13.5
       parent: 2
-- proto: FloraTree05
+- proto: FloraTree
   entities:
   - uid: 4628
     components:
@@ -95994,15 +96607,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -74.41959,16.457644
       parent: 2
-- proto: FloraTree06
-  entities:
   - uid: 11529
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -92.38655,-14.519233
       parent: 2
-- proto: FloraTreeLarge03
+- proto: FloraTreeLarge
   entities:
   - uid: 4632
     components:
@@ -96467,7 +97078,7 @@ entities:
     - type: Transform
       pos: -13.176779,-2.1402254
       parent: 2
-- proto: FoodCondimentPacketFrostoil
+- proto: FoodCondimentPacketColdsauce
   entities:
   - uid: 11593
     components:
@@ -96574,34 +97185,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: FoodMeatClown
-  entities:
-  - uid: 11598
-    components:
-    - type: Transform
-      pos: -16.534744,-4.0452023
-      parent: 2
-- proto: FoodMeatFiestaKebab
+- proto: FoodKebabSkewer
   entities:
   - uid: 11599
     components:
     - type: Transform
       pos: -0.5881367,-28.311087
       parent: 2
-- proto: FoodMeatKebab
-  entities:
-  - uid: 19084
-    components:
-    - type: Transform
-      pos: 34.55114,14.407778
-      parent: 2
-  - uid: 23840
-    components:
-    - type: Transform
-      pos: 34.336266,14.622622
-      parent: 2
-- proto: FoodMeatRatdoubleKebab
-  entities:
   - uid: 11600
     components:
     - type: Transform
@@ -96616,6 +97206,23 @@ entities:
     components:
     - type: Transform
       pos: -93.517395,-4.3078394
+      parent: 2
+  - uid: 19084
+    components:
+    - type: Transform
+      pos: 34.55114,14.407778
+      parent: 2
+  - uid: 23840
+    components:
+    - type: Transform
+      pos: 34.336266,14.622622
+      parent: 2
+- proto: FoodMeatClown
+  entities:
+  - uid: 11598
+    components:
+    - type: Transform
+      pos: -16.534744,-4.0452023
       parent: 2
 - proto: FoodMeatSpiderLeg
   entities:
@@ -132379,6 +132986,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -132419,6 +133034,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -132449,6 +133072,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -132502,6 +133133,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -132532,6 +133171,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -132637,6 +133284,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -132664,7 +133319,7 @@ entities:
     - type: Transform
       pos: 44.5,-6.5
       parent: 2
-- proto: GunSafeLaserCarbine
+- proto: GunSafeLaserCarbineUEG
   entities:
   - uid: 15792
     components:
@@ -132678,21 +133333,21 @@ entities:
     - type: Transform
       pos: 46.5,-8.5
       parent: 2
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleAR18
   entities:
   - uid: 15795
     components:
     - type: Transform
       pos: 49.5,-6.5
       parent: 2
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun
   entities:
   - uid: 23663
     components:
     - type: Transform
       pos: 47.5,-6.5
       parent: 2
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 23662
     components:
@@ -132811,13 +133466,6 @@ entities:
     components:
     - type: Transform
       pos: -29.5,-9.5
-      parent: 2
-- proto: HeadBorgJanitor
-  entities:
-  - uid: 15810
-    components:
-    - type: Transform
-      pos: -35.29812,9.790613
       parent: 2
 - proto: HeadSkeleton
   entities:
@@ -134759,6 +135407,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: LightHeadBorg
+  entities:
+  - uid: 15810
+    components:
+    - type: Transform
+      pos: -35.29812,9.790613
+      parent: 2
 - proto: LightReplacer
   entities:
   - uid: 16068
@@ -134771,15 +135426,7 @@ entities:
     - type: Transform
       pos: -95.46373,16.583893
       parent: 2
-- proto: LightTree02
-  entities:
-  - uid: 4631
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -75.46679,15.675932
-      parent: 2
-- proto: LightTree03
+- proto: LightTree
   entities:
   - uid: 4629
     components:
@@ -134787,8 +135434,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -77.47269,17.93257
       parent: 2
-- proto: LightTree04
-  entities:
+  - uid: 4631
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -75.46679,15.675932
+      parent: 2
   - uid: 16070
     components:
     - type: Transform
@@ -135215,6 +135866,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135252,6 +135911,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135279,6 +135946,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -135328,6 +136003,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135352,6 +136035,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -135418,6 +136109,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135446,6 +136145,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -135510,6 +136217,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135552,6 +136267,14 @@ entities:
         moles:
         - 1.9054979
         - 7.168302
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -135654,6 +136377,14 @@ entities:
         moles:
         - 3.0981817
         - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -135821,6 +136552,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135913,6 +136652,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -135961,6 +136708,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136037,6 +136792,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -136071,6 +136834,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -136095,6 +136866,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136158,6 +136937,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -136189,6 +136976,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136233,6 +137028,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -136258,6 +137061,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136308,6 +137119,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 16152
     components:
     - type: Transform
@@ -136321,6 +137140,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136356,6 +137183,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -136381,6 +137216,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136427,6 +137270,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -136487,7 +137338,7 @@ entities:
     - type: Transform
       pos: 7.2006645,-26.447071
       parent: 2
-- proto: LogicGate
+- proto: LogicGateOr
   entities:
   - uid: 28254
     components:
@@ -136801,89 +137652,12 @@ entities:
     - type: Transform
       pos: 1.5,9.5
       parent: 24902
-- proto: MagazineBoxLightRifle
-  entities:
-  - uid: 1195
-    components:
-    - type: Transform
-      parent: 1192
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 1210
-    components:
-    - type: Transform
-      parent: 15793
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineBoxLightRifleIncendiary
-  entities:
-  - uid: 1196
-    components:
-    - type: Transform
-      parent: 1192
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineBoxLightRiflePractice
-  entities:
-  - uid: 1197
-    components:
-    - type: Transform
-      parent: 1192
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineBoxLightRifleUranium
-  entities:
-  - uid: 1198
-    components:
-    - type: Transform
-      parent: 1192
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MagazineBoxMagnum
   entities:
   - uid: 1211
     components:
     - type: Transform
       parent: 15793
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineBoxPistol
-  entities:
-  - uid: 1212
-    components:
-    - type: Transform
-      parent: 15793
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineBoxPistolPractice
-  entities:
-  - uid: 1220
-    components:
-    - type: Transform
-      parent: 1216
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineBoxRifle
-  entities:
-  - uid: 1213
-    components:
-    - type: Transform
-      parent: 15793
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 27772
-    components:
-    - type: Transform
-      parent: 27770
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -136968,7 +137742,78 @@ entities:
     - type: Transform
       pos: 2.5,4.499996
       parent: 24375
-- proto: MagazinePistolPractice
+- proto: MagazinePacketPistol9x17
+  entities:
+  - uid: 1212
+    components:
+    - type: Transform
+      parent: 15793
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 1220
+    components:
+    - type: Transform
+      parent: 1216
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazinePacketRifle556UEG
+  entities:
+  - uid: 1213
+    components:
+    - type: Transform
+      parent: 15793
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 27772
+    components:
+    - type: Transform
+      parent: 27770
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazinePacketRifle762x39
+  entities:
+  - uid: 1195
+    components:
+    - type: Transform
+      parent: 1192
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 1197
+    components:
+    - type: Transform
+      parent: 1192
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 1198
+    components:
+    - type: Transform
+      parent: 1192
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 1210
+    components:
+    - type: Transform
+      parent: 15793
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazinePacketRifle762x39Incendiary
+  entities:
+  - uid: 1196
+    components:
+    - type: Transform
+      parent: 1192
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazinePistol9x17
   entities:
   - uid: 1221
     components:
@@ -136991,7 +137836,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazineRifle
+- proto: MagazineRifle556UEG
   entities:
   - uid: 27773
     components:
@@ -139213,7 +140058,7 @@ entities:
             radius: 0.35
             position: 0,0
           mask:
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - BulletImpassable
@@ -150841,7 +151686,7 @@ entities:
     - type: Transform
       pos: -50.51814,24.483156
       parent: 2
-- proto: RightLegBorgEngineer
+- proto: RightLegBorg
   entities:
   - uid: 9411
     components:
@@ -151450,6 +152295,329 @@ entities:
     - type: Transform
       pos: -65.438156,-17.318188
       parent: 2
+- proto: SheetPaper
+  entities:
+  - uid: 18067
+    components:
+    - type: Transform
+      pos: -104.492775,7.828447
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampState: paper_stamp-centcom
+      stampedBy:
+      - stampedColor: '#006600FF'
+        stampedName: stamp-component-stamped-name-centcom
+      content: >-
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        ===================================================
+                       [head=3]Указание Секторального Штаба ЦК[/head]
+        ===================================================
+
+        [bold]Дата отправки:[/bold]
+          24.06.3024
+        [bold]Составитель документа:[/bold]
+
+        [color=Red]  Доулсон-Младший Кристофор[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red]  Оператор ЦК[/color]
+
+        ─────────────────────────────────────────
+
+        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
+
+        ===================================================
+                      Подпись: Оператор ЦК, Доулсон-Младший
+                            [italic]место для печатей:[/italic]
+- proto: SheetPaper1
+  entities:
+  - uid: 18068
+    components:
+    - type: Transform
+      rot: 9.42477796076938 rad
+      pos: 58.069187,11.4281025
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampedBy: []
+      content: >-
+        Не забудь попить молоко с печеньем перед сном.
+
+        И надевай шерстяные носки. Я знаю что на ваших станциях вечная мерзлота.
+
+
+
+
+
+
+                                                                           [italic]с любовью, Мама[/italic]
+  - uid: 18069
+    components:
+    - type: Transform
+      pos: 1.609585,-29.195381
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampState: paper_stamp-centcom
+      stampedBy:
+      - stampedColor: '#006600FF'
+        stampedName: stamp-component-stamped-name-centcom
+      content: >-
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        ===================================================
+                       [head=3]Указание Секторального Штаба ЦК[/head]
+        ===================================================
+
+        [bold]Дата отправки:[/bold]
+          24.06.3024
+        [bold]Составитель документа:[/bold]
+
+        [color=Red]  Доулсон-Младший Кристофор[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red]  Оператор ЦК[/color]
+
+        ─────────────────────────────────────────
+
+        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
+
+        ===================================================
+                      Подпись: Оператор ЦК, Доулсон-Младший
+                            [italic]место для печатей:[/italic]
+  - uid: 18070
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -11.828682,17.402174
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampedBy: []
+      content: >-
+        ====================================================
+                     СПРАВКА О ПСИХОЛОГИЧЕСКОМ ЗДОРОВЬЕ
+        ====================================================
+
+
+        Имя- не выясненно.
+
+        Симптомы - галюцинации, необдуманные действия.
+
+        Диагноз - конченый до...
+  - uid: 18071
+    components:
+    - type: Transform
+      pos: 7.5402384,-12.220547
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampedBy: []
+      content: >-
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        ===================================================
+                       [head=3]Указание Секторального Штаба ЦК[/head]
+        ===================================================
+
+        [bold]Дата отправки:[/bold]
+          24.06.3024
+        [bold]Составитель документа:[/bold]
+
+        [color=Red]  Доулсон-Младший Кристофор[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red]  Оператор ЦК[/color]
+
+        ─────────────────────────────────────────
+
+        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
+
+        ===================================================
+                      Подпись: Оператор ЦК, Доулсон-Младший
+                            [italic]место для печатей:[/italic]
+  - uid: 18072
+    components:
+    - type: Transform
+      pos: -18.664803,7.5229063
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampState: paper_stamp-centcom
+      stampedBy:
+      - stampedColor: '#006600FF'
+        stampedName: stamp-component-stamped-name-centcom
+      content: >-
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        ===================================================
+                       [head=3]Указание Секторального Штаба ЦК[/head]
+        ===================================================
+
+        [bold]Дата отправки:[/bold]
+          24.06.3024
+        [bold]Составитель документа:[/bold]
+
+        [color=Red]  Доулсон-Младший Кристофор[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red]  Оператор ЦК[/color]
+
+        ─────────────────────────────────────────
+
+        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
+
+        ===================================================
+                      Подпись: Оператор ЦК, Доулсон-Младший
+                            [italic]место для печатей:[/italic]
+  - uid: 18073
+    components:
+    - type: Transform
+      pos: 37.456852,-3.191236
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampState: paper_stamp-centcom
+      stampedBy:
+      - stampedColor: '#006600FF'
+        stampedName: stamp-component-stamped-name-centcom
+      content: >-
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        ===================================================
+                       [head=3]Указание Секторального Штаба ЦК[/head]
+        ===================================================
+
+        [bold]Дата отправки:[/bold]
+          24.06.3024
+        [bold]Составитель документа:[/bold]
+
+        [color=Red]  Доулсон-Младший Кристофор[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red]  Оператор ЦК[/color]
+
+        ─────────────────────────────────────────
+
+        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
+
+        ===================================================
+                      Подпись: Оператор ЦК, Доулсон-Младший
+                            [italic]место для печатей:[/italic]
+  - uid: 18074
+    components:
+    - type: Transform
+      pos: -71.44939,-17.030027
+      parent: 2
+    - type: Paper
+      sound: !type:SoundCollectionSpecifier
+        params:
+          variation: 0.1
+        collection: PaperScribbles
+      stampState: paper_stamp-centcom
+      stampedBy:
+      - stampedColor: '#006600FF'
+        stampedName: stamp-component-stamped-name-centcom
+      content: >-
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        ===================================================
+                       [head=3]Указание Секторального Штаба ЦК[/head]
+        ===================================================
+
+        [bold]Дата отправки:[/bold]
+          24.06.3024
+        [bold]Составитель документа:[/bold]
+
+        [color=Red]  Доулсон-Младший Кристофор[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red]  Оператор ЦК[/color]
+
+        ─────────────────────────────────────────
+
+        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
+
+        ===================================================
+                      Подпись: Оператор ЦК, Доулсон-Младший
+                            [italic]место для печатей:[/italic]
 - proto: SheetPlasma
   entities:
   - uid: 18042
@@ -151680,294 +152848,6 @@ entities:
     - type: Transform
       pos: -65.719406,-17.505688
       parent: 2
-- proto: SheetPrinter
-  entities:
-  - uid: 18067
-    components:
-    - type: Transform
-      pos: -104.492775,7.828447
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      content: >-
-        [color=#006400]███░███░░░░██░░░░[/color]
-
-        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
-
-        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
-
-        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
-
-        [color=#006400]░░░░██░░░████░███[/color]
-
-        ===================================================
-                       [head=3]Указание Секторального Штаба ЦК[/head]
-        ===================================================
-
-        [bold]Дата отправки:[/bold]
-          24.06.3024
-        [bold]Составитель документа:[/bold]
-
-        [color=Red]  Доулсон-Младший Кристофор[/color]
-
-        [bold]Должность составителя:[/bold]
-
-        [color=Red]  Оператор ЦК[/color]
-
-        ─────────────────────────────────────────
-
-        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
-
-        ===================================================
-                      Подпись: Оператор ЦК, Доулсон-Младший
-                            [italic]место для печатей:[/italic]
-- proto: SheetPrinter1
-  entities:
-  - uid: 18068
-    components:
-    - type: Transform
-      rot: 9.42477796076938 rad
-      pos: 58.069187,11.4281025
-      parent: 2
-    - type: Paper
-      content: >-
-        Не забудь попить молоко с печеньем перед сном.
-
-        И надевай шерстяные носки. Я знаю что на ваших станциях вечная мерзлота.
-
-
-
-
-
-
-                                                                           [italic]с любовью, Мама[/italic]
-  - uid: 18069
-    components:
-    - type: Transform
-      pos: 1.609585,-29.195381
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      content: >-
-        [color=#006400]███░███░░░░██░░░░[/color]
-
-        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
-
-        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
-
-        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
-
-        [color=#006400]░░░░██░░░████░███[/color]
-
-        ===================================================
-                       [head=3]Указание Секторального Штаба ЦК[/head]
-        ===================================================
-
-        [bold]Дата отправки:[/bold]
-          24.06.3024
-        [bold]Составитель документа:[/bold]
-
-        [color=Red]  Доулсон-Младший Кристофор[/color]
-
-        [bold]Должность составителя:[/bold]
-
-        [color=Red]  Оператор ЦК[/color]
-
-        ─────────────────────────────────────────
-
-        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
-
-        ===================================================
-                      Подпись: Оператор ЦК, Доулсон-Младший
-                            [italic]место для печатей:[/italic]
-  - uid: 18070
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -11.828682,17.402174
-      parent: 2
-    - type: Paper
-      content: >-
-        ====================================================
-                     СПРАВКА О ПСИХОЛОГИЧЕСКОМ ЗДОРОВЬЕ
-        ====================================================
-
-
-        Имя- не выясненно.
-
-        Симптомы - галюцинации, необдуманные действия.
-
-        Диагноз - конченый до...
-  - uid: 18071
-    components:
-    - type: Transform
-      pos: 7.5402384,-12.220547
-      parent: 2
-    - type: Paper
-      content: >-
-        [color=#006400]███░███░░░░██░░░░[/color]
-
-        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
-
-        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
-
-        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
-
-        [color=#006400]░░░░██░░░████░███[/color]
-
-        ===================================================
-                       [head=3]Указание Секторального Штаба ЦК[/head]
-        ===================================================
-
-        [bold]Дата отправки:[/bold]
-          24.06.3024
-        [bold]Составитель документа:[/bold]
-
-        [color=Red]  Доулсон-Младший Кристофор[/color]
-
-        [bold]Должность составителя:[/bold]
-
-        [color=Red]  Оператор ЦК[/color]
-
-        ─────────────────────────────────────────
-
-        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
-
-        ===================================================
-                      Подпись: Оператор ЦК, Доулсон-Младший
-                            [italic]место для печатей:[/italic]
-  - uid: 18072
-    components:
-    - type: Transform
-      pos: -18.664803,7.5229063
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      content: >-
-        [color=#006400]███░███░░░░██░░░░[/color]
-
-        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
-
-        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
-
-        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
-
-        [color=#006400]░░░░██░░░████░███[/color]
-
-        ===================================================
-                       [head=3]Указание Секторального Штаба ЦК[/head]
-        ===================================================
-
-        [bold]Дата отправки:[/bold]
-          24.06.3024
-        [bold]Составитель документа:[/bold]
-
-        [color=Red]  Доулсон-Младший Кристофор[/color]
-
-        [bold]Должность составителя:[/bold]
-
-        [color=Red]  Оператор ЦК[/color]
-
-        ─────────────────────────────────────────
-
-        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
-
-        ===================================================
-                      Подпись: Оператор ЦК, Доулсон-Младший
-                            [italic]место для печатей:[/italic]
-  - uid: 18073
-    components:
-    - type: Transform
-      pos: 37.456852,-3.191236
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      content: >-
-        [color=#006400]███░███░░░░██░░░░[/color]
-
-        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
-
-        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
-
-        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
-
-        [color=#006400]░░░░██░░░████░███[/color]
-
-        ===================================================
-                       [head=3]Указание Секторального Штаба ЦК[/head]
-        ===================================================
-
-        [bold]Дата отправки:[/bold]
-          24.06.3024
-        [bold]Составитель документа:[/bold]
-
-        [color=Red]  Доулсон-Младший Кристофор[/color]
-
-        [bold]Должность составителя:[/bold]
-
-        [color=Red]  Оператор ЦК[/color]
-
-        ─────────────────────────────────────────
-
-        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
-
-        ===================================================
-                      Подпись: Оператор ЦК, Доулсон-Младший
-                            [italic]место для печатей:[/italic]
-  - uid: 18074
-    components:
-    - type: Transform
-      pos: -71.44939,-17.030027
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      content: >-
-        [color=#006400]███░███░░░░██░░░░[/color]
-
-        [color=#006400]░██░████░░░██░░░░[/color]      [head=3]Бланк документа[/head]
-
-        [color=#006400]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
-
-        [color=#006400]░░░░██░░██░██░██░[/color]  [bold]USG Ishimura Station ЦК - КОМ[/bold]
-
-        [color=#006400]░░░░██░░░████░███[/color]
-
-        ===================================================
-                       [head=3]Указание Секторального Штаба ЦК[/head]
-        ===================================================
-
-        [bold]Дата отправки:[/bold]
-          24.06.3024
-        [bold]Составитель документа:[/bold]
-
-        [color=Red]  Доулсон-Младший Кристофор[/color]
-
-        [bold]Должность составителя:[/bold]
-
-        [color=Red]  Оператор ЦК[/color]
-
-        ─────────────────────────────────────────
-
-        [bold][italic] Приветствуем, уважаемое Командование Станции.[/italic][/bold] В связи с долгой не эксплуатацией станций данного типа, а так-же несоблюдении СанПиН - на ней было замечено много биологических факторов жизнедеятельности, поражающие некоторые части станций этого типа. Грызуны, тараканы и многие другие. В связи с этой проблемой, нами было решено прийти к самому логичному, здравому и правильному смыслу решения проблемы - [bold]установка мин.[/bold] Предупредите свой персонал, и не ходите лишний раз по техническим тоннелям. Слава НТ!
-
-        ===================================================
-                      Подпись: Оператор ЦК, Доулсон-Младший
-                            [italic]место для печатей:[/italic]
 - proto: SheetRGlass
   entities:
   - uid: 18075
@@ -152333,7 +153213,7 @@ entities:
     - type: Transform
       pos: -65.5,-12.5
       parent: 2
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 18126
     components:
@@ -154956,8 +155836,6 @@ entities:
     - type: Transform
       pos: -96.5,-3.5
       parent: 2
-- proto: SignAtmosMinsky
-  entities:
   - uid: 18459
     components:
     - type: Transform
@@ -155049,18 +155927,16 @@ entities:
     - type: Transform
       pos: -8.5,10.5
       parent: 2
-  - uid: 28318
-    components:
-    - type: Transform
-      pos: -2.5,-8.5
-      parent: 27712
-- proto: SignChemistry2
-  entities:
   - uid: 18475
     components:
     - type: Transform
       pos: -4.5,5.5
       parent: 2
+  - uid: 28318
+    components:
+    - type: Transform
+      pos: -2.5,-8.5
+      parent: 27712
 - proto: SignCloning
   entities:
   - uid: 18476
@@ -155080,13 +155956,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-37.5
-      parent: 2
-- proto: SignCourt
-  entities:
-  - uid: 18479
-    components:
-    - type: Transform
-      pos: -72.5,1.5
       parent: 2
 - proto: SignCryogenicsMed
   entities:
@@ -155585,13 +156454,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -11.25161,0.7494161
       parent: 2
-- proto: SignDrones
-  entities:
-  - uid: 18559
-    components:
-    - type: Transform
-      pos: 19.5,0.5
-      parent: 2
 - proto: SignElectricalMed
   entities:
   - uid: 18560
@@ -155756,7 +156618,7 @@ entities:
     - type: Transform
       pos: -2.5,-4.5
       parent: 27712
-- proto: SignHydro2
+- proto: SignHydro1
   entities:
   - uid: 18585
     components:
@@ -155783,12 +156645,26 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -15.5,5.5
       parent: 2
+- proto: SignLawyer
+  entities:
+  - uid: 18479
+    components:
+    - type: Transform
+      pos: -72.5,1.5
+      parent: 2
 - proto: SignLibrary
   entities:
   - uid: 18589
     components:
     - type: Transform
       pos: -47.5,6.5
+      parent: 2
+- proto: SignMaterials
+  entities:
+  - uid: 18559
+    components:
+    - type: Transform
+      pos: 19.5,0.5
       parent: 2
 - proto: SignMedical
   entities:
@@ -156079,13 +156955,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 27712
-- proto: SignShield
-  entities:
-  - uid: 18617
-    components:
-    - type: Transform
-      pos: 2.5,-7.5
-      parent: 2
 - proto: SignShipDock
   entities:
   - uid: 28332
@@ -160848,6 +161717,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -160872,6 +161749,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -160916,6 +161801,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -160950,6 +161843,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -160974,6 +161875,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161042,6 +161951,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161071,6 +161988,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161171,6 +162096,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161197,6 +162130,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161288,6 +162229,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161309,6 +162258,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161342,6 +162299,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161429,6 +162394,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161460,6 +162433,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161525,6 +162506,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161546,6 +162535,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161586,6 +162583,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161606,6 +162611,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161646,6 +162659,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161676,6 +162697,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161696,6 +162725,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -161767,6 +162804,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -161800,6 +162845,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -167580,23 +168633,6 @@ entities:
     - type: Transform
       pos: -14.5,6.5
       parent: 2
-- proto: VendingMachineChang
-  entities:
-  - uid: 20042
-    components:
-    - type: Transform
-      pos: -51.5,-9.5
-      parent: 2
-  - uid: 20043
-    components:
-    - type: Transform
-      pos: -2.5,37.5
-      parent: 2
-  - uid: 20044
-    components:
-    - type: Transform
-      pos: -28.5,21.5
-      parent: 2
 - proto: VendingMachineChapel
   entities:
   - uid: 20045
@@ -167649,88 +168685,6 @@ entities:
     - type: Transform
       pos: -87.5,30.5
       parent: 2
-- proto: VendingMachineCigs
-  entities:
-  - uid: 20052
-    components:
-    - type: Transform
-      pos: -55.5,26.5
-      parent: 2
-  - uid: 20053
-    components:
-    - type: Transform
-      pos: -63.5,31.5
-      parent: 2
-  - uid: 20054
-    components:
-    - type: Transform
-      pos: -63.5,39.5
-      parent: 2
-  - uid: 20055
-    components:
-    - type: Transform
-      pos: -85.5,45.5
-      parent: 2
-  - uid: 20056
-    components:
-    - type: Transform
-      pos: -29.5,5.5
-      parent: 2
-  - uid: 20057
-    components:
-    - type: Transform
-      pos: -58.5,12.5
-      parent: 2
-  - uid: 20058
-    components:
-    - type: Transform
-      pos: -52.5,5.5
-      parent: 2
-  - uid: 20059
-    components:
-    - type: Transform
-      pos: -53.5,5.5
-      parent: 2
-  - uid: 20060
-    components:
-    - type: Transform
-      pos: -33.5,15.5
-      parent: 2
-  - uid: 20061
-    components:
-    - type: Transform
-      pos: 1.5,-22.5
-      parent: 2
-  - uid: 20062
-    components:
-    - type: Transform
-      pos: 15.5,-5.5
-      parent: 2
-  - uid: 20063
-    components:
-    - type: Transform
-      pos: -23.5,-8.5
-      parent: 2
-  - uid: 20064
-    components:
-    - type: Transform
-      pos: -67.5,1.5
-      parent: 2
-  - uid: 20065
-    components:
-    - type: Transform
-      pos: -8.5,33.5
-      parent: 2
-  - uid: 20066
-    components:
-    - type: Transform
-      pos: -18.5,-10.5
-      parent: 2
-  - uid: 20067
-    components:
-    - type: Transform
-      pos: -69.5,-5.5
-      parent: 2
 - proto: VendingMachineClothing
   entities:
   - uid: 20068
@@ -167742,23 +168696,6 @@ entities:
     components:
     - type: Transform
       pos: -33.5,21.5
-      parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 20070
-    components:
-    - type: Transform
-      pos: 1.5,-6.5
-      parent: 2
-  - uid: 20071
-    components:
-    - type: Transform
-      pos: 1.5,-21.5
-      parent: 2
-  - uid: 20072
-    components:
-    - type: Transform
-      pos: -51.5,11.5
       parent: 2
 - proto: VendingMachineCondiments
   entities:
@@ -167780,13 +168717,6 @@ entities:
     components:
     - type: Transform
       pos: -11.5,-5.5
-      parent: 2
-- proto: VendingMachineDiscount
-  entities:
-  - uid: 20076
-    components:
-    - type: Transform
-      pos: -58.5,1.5
       parent: 2
 - proto: VendingMachineEngiDrobe
   entities:
@@ -167833,13 +168763,6 @@ entities:
     components:
     - type: Transform
       pos: 55.5,-28.5
-      parent: 2
-- proto: VendingMachineHappyHonk
-  entities:
-  - uid: 20084
-    components:
-    - type: Transform
-      pos: -33.5,-5.5
       parent: 2
 - proto: VendingMachineHydrobe
   entities:
@@ -167986,23 +168909,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-0.5
-      parent: 2
-- proto: VendingMachineSovietSoda
-  entities:
-  - uid: 20105
-    components:
-    - type: Transform
-      pos: -33.5,9.5
-      parent: 2
-  - uid: 20106
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
-      parent: 2
-  - uid: 20107
-    components:
-    - type: Transform
-      pos: -108.5,-9.5
       parent: 2
 - proto: VendingMachineSustenance
   entities:
@@ -190700,6 +191606,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -190724,6 +191638,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -191181,6 +192103,15 @@ entities:
     - type: Transform
       pos: -4.452469,-4.4048767
       parent: 27712
+- proto: WeaponAKMSRifle
+  entities:
+  - uid: 1199
+    components:
+    - type: Transform
+      parent: 1192
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 23320
@@ -191373,7 +192304,7 @@ entities:
     - BallisticAmmoProvider
     - CollisionWake
     - GunWieldBonus
-- proto: WeaponPistolMk58
+- proto: WeaponPistolACP14
   entities:
   - uid: 15779
     components:
@@ -191391,23 +192322,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponRevolverMateba
+- proto: WeaponRevolverMatebaNew
   entities:
   - uid: 23337
     components:
     - type: Transform
       pos: 35.433388,-0.3926619
       parent: 2
-- proto: WeaponRifleAk
-  entities:
-  - uid: 1199
-    components:
-    - type: Transform
-      parent: 1192
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponRifleLecter
+- proto: WeaponRifleAR18
   entities:
   - uid: 28536
     components:
@@ -191419,13 +192341,15 @@ entities:
     - type: Transform
       pos: 6.577652,-11.609314
       parent: 27712
-- proto: WeaponShotgunBulldog
+- proto: WeaponShotgun39NonLethal
   entities:
-  - uid: 28538
+  - uid: 15780
     components:
     - type: Transform
-      pos: 4.5026855,-13.328033
-      parent: 27712
+      parent: 15774
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: WeaponShotgunDoubleBarreledRubber
   entities:
   - uid: 20576
@@ -191452,15 +192376,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 47.672577,-1.4873939
       parent: 2
-- proto: WeaponShotgunEnforcerRubber
-  entities:
-  - uid: 15780
-    components:
-    - type: Transform
-      parent: 15774
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponShotgunImprovisedLoaded
   entities:
   - uid: 27662
@@ -191473,7 +192388,7 @@ entities:
     - type: Transform
       pos: 4.4302773,11.299874
       parent: 24902
-- proto: WeaponShotgunKammerer
+- proto: WeaponShotguntrenchgun4034
   entities:
   - uid: 16094
     components:
@@ -191489,7 +192404,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponSubMachineGunDrozd
+- proto: WeaponShotgunZauer
+  entities:
+  - uid: 28538
+    components:
+    - type: Transform
+      pos: 4.5026855,-13.328033
+      parent: 27712
+- proto: WeaponSubMachineGunVectorSpecial
   entities:
   - uid: 15781
     components:

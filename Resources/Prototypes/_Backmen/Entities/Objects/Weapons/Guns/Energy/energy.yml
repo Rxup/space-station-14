@@ -5,6 +5,7 @@
   suffix: Винтовка
   description: A Earth Government standard issue laser rifle, use by army and police.
   components:
+  - type: Appearance
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/big.rsi
     layers:
@@ -52,6 +53,7 @@
   suffix: Пулемёт
   description: A Earth Government standard issue laser machine gun, use by army. Heavy and deadly.
   components:
+  - type: Appearance
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/big.rsi
     layers:
@@ -103,6 +105,7 @@
   suffix: Пистолет-пулемёт
   description: A Earth Government standard issue laser carbine, use by army and police. Thanks to the short barrel it has better maneuverability in narrow spaces.
   components:
+  - type: Appearance
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
     layers:
@@ -181,6 +184,7 @@
   suffix: Винтовка
   description: A Earth Government heavy sniper rifle for a extended combat situation.
   components:
+  - type: Appearance
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
     layers:
@@ -229,6 +233,7 @@
   suffix: Винтовка
   description: A Earth Government Experemental x-ray weapon, it looks like it emits radiation.
   components:
+  - type: Appearance
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/big.rsi
     layers:

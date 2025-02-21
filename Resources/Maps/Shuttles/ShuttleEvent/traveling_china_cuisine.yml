@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:05
+  entityCount: 238
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -129,9 +140,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -182,6 +209,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,-0.5
+      parent: 1
+- proto: BackmenVendingMachineChang
+  entities:
+  - uid: 188
+    components:
+    - type: Transform
+      pos: 2.5,0.5
       parent: 1
 - proto: BarSignMaidCafe
   entities:
@@ -443,6 +477,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -562,6 +604,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1187,6 +1237,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1612,13 +1670,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5731925,-0.16962886
-      parent: 1
-- proto: VendingMachineChang
-  entities:
-  - uid: 188
-    components:
-    - type: Transform
-      pos: 2.5,0.5
       parent: 1
 - proto: VisitorChefSpawner
   entities:

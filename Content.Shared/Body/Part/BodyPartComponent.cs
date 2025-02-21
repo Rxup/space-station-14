@@ -32,7 +32,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public FixedPoint2 VitalDamage = 100;
 
-    [DataField, AlwaysPushInheritance]
+    [DataField] //AlwaysPushInheritance
     public string ToolName { get; set; } = "A body part";
 
     [DataField, AlwaysPushInheritance]
@@ -129,7 +129,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public WoundableSeverity EnableIntegrity = WoundableSeverity.Severe;
 
-    [DataField, AutoNetworkedField, AlwaysPushInheritance]
+    [DataField, AutoNetworkedField] //, AlwaysPushInheritance
     public BodyPartType PartType = BodyPartType.Other;
 
     // TODO BODY Replace with a simulation of organs

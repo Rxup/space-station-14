@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:30
+  entityCount: 2162
+maps:
+- 1927
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -1126,6 +1137,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -1165,7 +1184,14 @@ entities:
         - 0
         - 0
         - 0
-    - type: LoadedMap
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: AirCanister
   entities:
   - uid: 2
@@ -6921,43 +6947,35 @@ entities:
     - type: Transform
       pos: -26.5,2.5
       parent: 1
-- proto: FloraTree05
+- proto: FloraTree
   entities:
   - uid: 1064
     components:
     - type: Transform
       pos: -25.99427,-15.181601
       parent: 1
-- proto: FloraTree06
-  entities:
   - uid: 1065
     components:
     - type: Transform
       pos: -22.025412,-7.482005
       parent: 1
-- proto: FloraTreeLarge01
+- proto: FloraTreeLarge
   entities:
   - uid: 1066
     components:
     - type: Transform
       pos: -25.769777,-6.884783
       parent: 1
-- proto: FloraTreeLarge03
-  entities:
   - uid: 1067
     components:
     - type: Transform
       pos: -17.39607,-7.120894
       parent: 1
-- proto: FloraTreeLarge05
-  entities:
   - uid: 1068
     components:
     - type: Transform
       pos: -16.318836,-15.181601
       parent: 1
-- proto: FloraTreeLarge06
-  entities:
   - uid: 1069
     components:
     - type: Transform

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:49
+  entityCount: 223
+maps: []
+grids:
+- 65
+orphans:
+- 65
+nullspace: []
 tilemap:
   0: Space
   83: FloorShuttleBlue
@@ -101,6 +112,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: RadiationGridResistance
     - type: GravityShake
@@ -136,10 +155,16 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 65
   - uid: 136
     components:
     - type: Transform
@@ -166,10 +191,16 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 65
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 126
@@ -854,16 +885,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-5.5
       parent: 65
-    - type: AtmosDevice
-      joinedGrid: 65
   - uid: 120
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-5.5
       parent: 65
-    - type: AtmosDevice
-      joinedGrid: 65
 - proto: GasVentPump
   entities:
   - uid: 121
@@ -871,16 +898,12 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 65
-    - type: AtmosDevice
-      joinedGrid: 65
   - uid: 180
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-4.5
       parent: 65
-    - type: AtmosDevice
-      joinedGrid: 65
 - proto: GeneratorRTG
   entities:
   - uid: 72
@@ -1116,6 +1139,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1147,6 +1178,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0

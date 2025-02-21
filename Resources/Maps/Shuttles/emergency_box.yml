@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:39
+  entityCount: 594
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -62,10 +73,10 @@ entities:
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: DeviceNetwork
+      deviceNetId: Wireless
       configurators: []
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
-      deviceNetId: Wireless
     - type: DecalGrid
       chunkCollection:
         version: 2
@@ -474,9 +485,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2804,7 +2831,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,12.5
       parent: 1
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 585
     components:

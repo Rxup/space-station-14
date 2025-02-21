@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:37
+  entityCount: 253
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   49: FloorGrassJungle
@@ -226,6 +237,14 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -481,13 +500,12 @@ entities:
       pos: -1.5,-3.5
       parent: 1
     - type: PlantHolder
-      lastProduce: 1
       age: 1
+      lastProduce: 1
       health: 100
       seed:
-        splatPrototype: null
-        lifespan: 75
-        endurance: 100
+        mutations: []
+        heatTolerance: 10
         weedHighLevelThreshold: 10
         weedTolerance: 5
         pestTolerance: 5
@@ -496,8 +514,8 @@ entities:
         toxinsTolerance: 4
         lightTolerance: 3
         idealLight: 9
-        heatTolerance: 10
         idealHeat: 298
+        splatPrototype: null
         waterConsumption: 0.4
         nutrientConsumption: 0.75
         exudeGasses: {}
@@ -512,10 +530,10 @@ entities:
         - LeavesCannabis
         packetPrototype: CannabisSeeds
         immutable: False
+        endurance: 100
         yield: 2
+        lifespan: 75
         maturation: 8
-        bioluminescentColor: '#FFFFFFFF'
-        production: 12
         plantIconState: produce
         plantRsi: Objects/Specific/Hydroponics/cannabis.rsi
         displayName: seeds-cannabis-display-name
@@ -524,7 +542,6 @@ entities:
         mutationPrototypes: []
         turnIntoKudzu: False
         kudzuPrototype: WeakKudzu
-        bioluminescent: False
         screaming: False
         screamSound: !type:SoundPathSpecifier
           params:
@@ -534,19 +551,16 @@ entities:
             referenceDistance: 1
             rolloffFactor: 1
             maxDistance: 20
-            busName: Master
             pitch: 1
             volume: 0
-            attenuation: LinearDistanceClamped
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
-        sentient: False
-        slip: False
         viable: True
         seedless: False
         potency: 20
         harvestRepeat: Repeat
         growthStages: 3
+        production: 12
         mysterious: False
   - uid: 232
     components:
@@ -554,13 +568,12 @@ entities:
       pos: 1.5,3.5
       parent: 1
     - type: PlantHolder
-      lastProduce: 1
       age: 1
+      lastProduce: 1
       health: 100
       seed:
-        splatPrototype: null
-        lifespan: 25
-        endurance: 100
+        mutations: []
+        heatTolerance: 10
         weedHighLevelThreshold: 10
         weedTolerance: 5
         pestTolerance: 5
@@ -569,8 +582,8 @@ entities:
         toxinsTolerance: 4
         lightTolerance: 3
         idealLight: 7
-        heatTolerance: 10
         idealHeat: 293
+        splatPrototype: null
         waterConsumption: 0.6
         nutrientConsumption: 0.75
         exudeGasses: {}
@@ -585,10 +598,10 @@ entities:
         - FoodGalaxythistle
         packetPrototype: GalaxythistleSeeds
         immutable: False
+        endurance: 100
         yield: 3
+        lifespan: 25
         maturation: 10
-        bioluminescentColor: '#FFFFFFFF'
-        production: 3
         plantIconState: produce
         plantRsi: Objects/Specific/Hydroponics/galaxythistle.rsi
         displayName: seeds-galaxythistle-display-name
@@ -597,7 +610,6 @@ entities:
         mutationPrototypes: []
         turnIntoKudzu: False
         kudzuPrototype: WeakKudzu
-        bioluminescent: False
         screaming: False
         screamSound: !type:SoundPathSpecifier
           params:
@@ -607,19 +619,16 @@ entities:
             referenceDistance: 1
             rolloffFactor: 1
             maxDistance: 20
-            busName: Master
             pitch: 1
             volume: 0
-            attenuation: LinearDistanceClamped
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
-        sentient: False
-        slip: False
         viable: True
         seedless: False
         potency: 10
         harvestRepeat: NoRepeat
         growthStages: 3
+        production: 3
         mysterious: False
 - proto: KudzuFlowerFriendly
   entities:
@@ -966,27 +975,77 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 1
-- proto: ShadowTree01
+- proto: ShadowTree
   entities:
+  - uid: 104
+    components:
+    - type: Transform
+      pos: -5.7578125,0.8203125
+      parent: 1
+  - uid: 105
+    components:
+    - type: Transform
+      pos: -6.2734375,-0.28125
+      parent: 1
+  - uid: 106
+    components:
+    - type: Transform
+      pos: 2.1875,0.046875
+      parent: 1
   - uid: 107
     components:
     - type: Transform
       pos: 2.2109375,3.4453125
+      parent: 1
+  - uid: 108
+    components:
+    - type: Transform
+      pos: 1.25,4.9453125
       parent: 1
   - uid: 109
     components:
     - type: Transform
       pos: -2.921875,1.453125
       parent: 1
+  - uid: 110
+    components:
+    - type: Transform
+      pos: -1.1640625,4.5
+      parent: 1
   - uid: 111
     components:
     - type: Transform
       pos: -5.078125,0.0234375
       parent: 1
+  - uid: 112
+    components:
+    - type: Transform
+      pos: -4.375,-3.515625
+      parent: 1
+  - uid: 113
+    components:
+    - type: Transform
+      pos: 2.3515625,-4.5
+      parent: 1
+  - uid: 114
+    components:
+    - type: Transform
+      pos: 0.40625,-2.625
+      parent: 1
   - uid: 192
     components:
     - type: Transform
       pos: 2.3984375,0.796875
+      parent: 1
+  - uid: 194
+    components:
+    - type: Transform
+      pos: -6.5371046,1.2498822
+      parent: 1
+  - uid: 195
+    components:
+    - type: Transform
+      pos: -6.2871046,0.28113228
       parent: 1
   - uid: 196
     components:
@@ -998,75 +1057,15 @@ entities:
     - type: Transform
       pos: -6.0928297,-0.68256617
       parent: 1
-  - uid: 237
-    components:
-    - type: Transform
-      pos: 2.1853876,-0.5390625
-      parent: 1
-- proto: ShadowTree02
-  entities:
-  - uid: 105
-    components:
-    - type: Transform
-      pos: -6.2734375,-0.28125
-      parent: 1
-  - uid: 110
-    components:
-    - type: Transform
-      pos: -1.1640625,4.5
-      parent: 1
-  - uid: 114
-    components:
-    - type: Transform
-      pos: 0.40625,-2.625
-      parent: 1
-  - uid: 194
-    components:
-    - type: Transform
-      pos: -6.5371046,1.2498822
-      parent: 1
   - uid: 236
     components:
     - type: Transform
       pos: 2.6307,-0.3046875
       parent: 1
-- proto: ShadowTree03
-  entities:
-  - uid: 104
+  - uid: 237
     components:
     - type: Transform
-      pos: -5.7578125,0.8203125
-      parent: 1
-- proto: ShadowTree04
-  entities:
-  - uid: 113
-    components:
-    - type: Transform
-      pos: 2.3515625,-4.5
-      parent: 1
-- proto: ShadowTree05
-  entities:
-  - uid: 112
-    components:
-    - type: Transform
-      pos: -4.375,-3.515625
-      parent: 1
-- proto: ShadowTree06
-  entities:
-  - uid: 106
-    components:
-    - type: Transform
-      pos: 2.1875,0.046875
-      parent: 1
-  - uid: 108
-    components:
-    - type: Transform
-      pos: 1.25,4.9453125
-      parent: 1
-  - uid: 195
-    components:
-    - type: Transform
-      pos: -6.2871046,0.28113228
+      pos: 2.1853876,-0.5390625
       parent: 1
 - proto: SpawnMobLuminousEntity
   entities:
