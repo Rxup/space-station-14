@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Damage.Prototypes;
@@ -12,7 +13,6 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Random.Helpers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -36,6 +36,7 @@ namespace Content.Shared.Damage
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<BodyComponent> _bodyQuery;
+        private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
         private EntityQuery<WoundableComponent> _woundableQuery;
 
         public override void Initialize()
@@ -49,6 +50,7 @@ namespace Content.Shared.Damage
             _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _damageableQuery = GetEntityQuery<DamageableComponent>();
             _bodyQuery = GetEntityQuery<BodyComponent>();
+            _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
             _woundableQuery = GetEntityQuery<WoundableComponent>();
         }
 
@@ -113,8 +115,7 @@ namespace Content.Shared.Damage
             DamageableComponent component,
             DamageSpecifier? damageDelta = null,
             bool interruptsDoAfters = true,
-            EntityUid? origin = null,
-            bool? canSever = null)
+            EntityUid? origin = null)
 
         {
             component.Damage.GetDamagePerGroup(_prototypeManager, component.DamagePerGroup);
@@ -126,7 +127,7 @@ namespace Content.Shared.Damage
                 var data = new DamageVisualizerGroupData(component.DamagePerGroup.Keys.ToList());
                 _appearance.SetData(uid, DamageVisualizerKeys.DamageUpdateGroups, data, appearance);
             }
-            RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin, canSever ?? true));
+            RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin));
         }
 
         /// <summary>
@@ -147,7 +148,7 @@ namespace Content.Shared.Damage
             bool interruptsDoAfters = true,
             DamageableComponent? damageable = null,
             EntityUid? origin = null,
-            bool? canSever = true,
+            bool canBeCancelled = false,
             float partMultiplier = 1.00f,
             TargetBodyPart? targetPart = null)
         {
@@ -159,7 +160,7 @@ namespace Content.Shared.Damage
             if (!uid.HasValue)
                 return null;
 
-            var before = new BeforeDamageChangedEvent(damage, origin); // heheheha
+            var before = new BeforeDamageChangedEvent(damage, origin, canBeCancelled); // heheheha
             RaiseLocalEvent(uid.Value, ref before);
 
             if (before.Cancelled)
@@ -194,7 +195,10 @@ namespace Content.Shared.Damage
                 return null;
             }
 
-            if (_bodyQuery.TryComp(uid.Value, out var body) && ValidateWoundablesOnBody(uid.Value, body))
+            // I added a check for consciousness, because pain is directly hardwired into
+            // woundables, pain and other stuff. things having a body and no consciousness comp
+            // are impossible to kill... So yeah.
+            if (_bodyQuery.HasComp(uid.Value) && _consciousnessQuery.HasComp(uid.Value))
             {
                 var target = targetPart ?? _body.GetRandomBodyPart(uid.Value);
                 if (origin.HasValue && TryComp<TargetingComponent>(origin.Value, out var targeting))
@@ -203,8 +207,7 @@ namespace Content.Shared.Damage
                 var damageDict = new Dictionary<string, FixedPoint2>();
                 foreach (var (type, severity) in damage.DamageDict)
                 {
-                    // TODO: Remove this when bloodloss and asphyxiation type damages are reworked into their own systems
-                    // the thing acts up and shits a lot of stuff into the console, which we DO NOT desire to see
+                    // some wounds like Asphyxiation and Bloodloss aren't supposed to be created.
                     if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
                         || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
                         continue;
@@ -319,7 +322,7 @@ namespace Content.Shared.Damage
             }
 
             if (delta.DamageDict.Count > 0)
-                DamageChanged(uid.Value, damageable, delta, interruptsDoAfters, origin, canSever);
+                DamageChanged(uid.Value, damageable, delta, interruptsDoAfters, origin);
 
             return delta;
         }
@@ -372,20 +375,6 @@ namespace Content.Shared.Damage
 
             comp.DamageModifierSetId = damageModifierSetId;
             Dirty(uid, comp);
-        }
-
-        private bool ValidateWoundablesOnBody(EntityUid body, BodyComponent comp)
-        {
-            // anomalous behaviour. we do not want an immortal mouse
-            foreach (var (part, _) in _body.GetBodyChildren(body, comp))
-            {
-                if (HasComp<WoundableComponent>(part))
-                    continue;
-
-                return false;
-            }
-
-            return true;
         }
 
         private string GetDamageGroupByType(string id)
@@ -462,6 +451,7 @@ namespace Content.Shared.Damage
     public record struct BeforeDamageChangedEvent(
         DamageSpecifier Damage,
         EntityUid? Origin = null,
+        bool CanBeCancelled = true,
         bool Cancelled = false);
 
     /// <summary>
@@ -524,17 +514,11 @@ namespace Content.Shared.Damage
         /// </summary>
         public readonly EntityUid? Origin;
 
-        /// <summary>
-        ///     Can this damage event sever parts?
-        /// </summary>
-        public readonly bool CanSever;
-
-        public DamageChangedEvent(DamageableComponent damageable, DamageSpecifier? damageDelta, bool interruptsDoAfters, EntityUid? origin, bool canSever = true)
+        public DamageChangedEvent(DamageableComponent damageable, DamageSpecifier? damageDelta, bool interruptsDoAfters, EntityUid? origin)
         {
             Damageable = damageable;
             DamageDelta = damageDelta;
             Origin = origin;
-            CanSever = canSever;
 
             if (DamageDelta == null)
                 return;

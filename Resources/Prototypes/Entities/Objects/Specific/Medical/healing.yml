@@ -211,7 +211,6 @@
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
-    bloodlossModifier: -1 # a suture should stop ongoing bleeding
     ModifyBloodLevel: 20 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"

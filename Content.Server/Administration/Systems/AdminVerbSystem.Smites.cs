@@ -111,7 +111,13 @@ public sealed partial class AdminVerbSystem
                         4, 1, 2, args.Target, maxTileBreak: 0), // it gibs, damage doesn't need to be high.
                     CancellationToken.None);
 
-                _bodySystem.GibBody(args.Target);
+                var excludedStuff = new List<string>
+                {
+                    "Wounds",
+                    "Bone",
+                };
+
+                _bodySystem.GibBody(args.Target, excludedContainers: excludedStuff);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", explodeName, Loc.GetString("admin-smite-explode-description")) // we do this so the description tells admins the Text to run it via console.

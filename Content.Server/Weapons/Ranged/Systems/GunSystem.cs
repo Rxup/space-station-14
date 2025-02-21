@@ -212,7 +212,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                         var hitName = ToPrettyString(hitEntity);
                         if (dmg != null)
-                            dmg = Damageable.TryChangeDamage(hitEntity, dmg, origin: user); // backmen: surgery
+                            dmg = Damageable.TryChangeDamage(hitEntity, dmg, origin: user, canBeCancelled: true); // backmen: surgery
 
                         // check null again, as TryChangeDamage returns modified damage values
                         if (dmg != null)

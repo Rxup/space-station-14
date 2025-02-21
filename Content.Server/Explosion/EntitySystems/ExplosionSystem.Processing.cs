@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -472,7 +473,7 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                if (TryComp<BodyComponent>(entity, out var body))
+                if (TryComp<BodyComponent>(entity, out var body) && HasComp<ConsciousnessComponent>(entity))
                 {
                     var bodyParts = _body.GetBodyChildren(entity, body).ToList();
                     _robustRandom.Shuffle(bodyParts);

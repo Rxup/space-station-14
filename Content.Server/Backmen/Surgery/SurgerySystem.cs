@@ -97,7 +97,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
             damage,
             true,
             origin: user,
-            canSever: false,
             partMultiplier: partMultiplier,
             targetPart: _body.GetTargetBodyPart(partComp));
     }

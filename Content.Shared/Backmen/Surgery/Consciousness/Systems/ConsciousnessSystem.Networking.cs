@@ -57,17 +57,20 @@ public partial class ConsciousnessSystem
 
         foreach (var ((modEntity, modType), modifier) in comp.Modifiers)
         {
-            state.Modifiers.Add((GetNetEntity(modEntity), modType), modifier);
+            if (!TerminatingOrDeleted(modEntity))
+                state.Modifiers.Add((GetNetEntity(modEntity), modType), modifier);
         }
 
         foreach (var ((multiplierEntity, multiplierType), modifier) in comp.Multipliers)
         {
-            state.Multipliers.Add((GetNetEntity(multiplierEntity), multiplierType), modifier);
+            if (!TerminatingOrDeleted(multiplierEntity))
+                state.Multipliers.Add((GetNetEntity(multiplierEntity), multiplierType), modifier);
         }
 
         foreach (var (id, (entity, causesDeath, isLost)) in comp.RequiredConsciousnessParts)
         {
-            state.RequiredConsciousnessParts.Add(id, (GetNetEntity(entity), causesDeath, isLost));
+            if (!TerminatingOrDeleted(entity))
+                state.RequiredConsciousnessParts.Add(id, (GetNetEntity(entity), causesDeath, isLost));
         }
 
         args.State = state;

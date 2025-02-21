@@ -10,6 +10,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -138,15 +139,33 @@ public sealed partial class WoundSystem
 
     private void DudeItsJustLikeMatrix(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)
     {
+        if (!args.CanBeCancelled)
+            return;
+
         var chance = comp.DodgeChance;
 
+        var bodyPart = Comp<BodyPartComponent>(uid);
         if (args.Origin != null)
         {
-            // calculate some stupid ass distance shi here later.
+            if (bodyPart.Body != null)
+            {
+                var bodyTransform = _transform.GetWorldPosition(bodyPart.Body.Value);
+                var originTransform = _transform.GetWorldPosition(args.Origin.Value);
+
+                var distance = (originTransform - bodyTransform).Length();
+                var additionalChance = distance / _cfg.GetCVar(SurgeryCvars.DodgeDistanceChance) * _cfg.GetCVar(SurgeryCvars.DodgeDistanceChange);
+
+                chance += additionalChance;
+            }
         }
 
-        if (_random.Prob((float) chance))
-            args.Cancelled = true;
+        if (!_random.Prob(Math.Clamp((float) chance, 0, 1)))
+            return;
+
+        if (bodyPart.Body.HasValue)
+            _popup.PopupEntity(Loc.GetString("woundable-dodged", ("entity", bodyPart.Body.Value)), bodyPart.Body.Value, PopupType.Medium);
+
+        args.Cancelled = true;
     }
 
     private void ProcessBodyPartLoss(EntityUid uid, EntityUid parentUid, WoundableComponent component)
