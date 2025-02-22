@@ -14,7 +14,7 @@
     slots:
     - belt
   - type: Item
-    size: Ginormous
+    size: Huge # DeltaV: Was Ginormous, lets it fit in conscription bag
   - type: Storage
     maxItemSize: Normal
     grid:
@@ -26,3 +26,22 @@
         - ArtifactFragment
         - Ore
   - type: Dumpable
+  # WHITE EDIT START
+  - type: ItemToggle
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { state: orebag_on }
+          False: { state: orebag_off }
+  # WHITE EDIT END
+  - type: OreBag # Lavaland Change

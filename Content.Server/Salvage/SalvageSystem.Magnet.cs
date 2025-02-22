@@ -50,7 +50,7 @@ public sealed partial class SalvageSystem
         {
             try
             {
-                await TakeMagnetOffer((station.Value, dataComp), index, (uid, component));
+                await TakeMagnetOffer((station.Value, dataComp), args.Index, (uid, component), args.Actor); // DeltaV: pass the user entity
             }
             catch (Exception e)
             {
@@ -262,11 +262,15 @@ public sealed partial class SalvageSystem
         }
     }
 
-    private async Task TakeMagnetOffer(Entity<SalvageMagnetDataComponent> data, int index, Entity<SalvageMagnetComponent> magnet)
+    private async Task TakeMagnetOffer(Entity<SalvageMagnetDataComponent> data, int index, Entity<SalvageMagnetComponent> magnet, EntityUid user) // DeltaV: add user param
     {
         var seed = data.Comp.Offered[index];
 
         var offering = GetSalvageOffering(seed);
+        // Begin DeltaV Addition: make wrecks cost mining points to pull
+        if (offering.Cost > 0 && !(_points.TryFindIdCard(user) is {} idCard && _points.RemovePoints(idCard, offering.Cost)))
+            return;
+        // End DeltaV Addition
         var salvMap = _mapSystem.CreateMap();
         var salvMapXform = Transform(salvMap);
 
