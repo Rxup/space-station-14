@@ -14,8 +14,8 @@ public sealed partial class WoundableVisualsComponent : Component
     [DataField(required: true)] public List<FixedPoint2> Thresholds = [];
     [DataField] public Dictionary<BleedingSeverity, FixedPoint2> BleedingThresholds = new()
     {
-        { BleedingSeverity.Minor, 1.2 },
-        { BleedingSeverity.Severe, 6.5 },
+        { BleedingSeverity.Minor, 2.6 },
+        { BleedingSeverity.Severe, 7 },
     };
 }
 

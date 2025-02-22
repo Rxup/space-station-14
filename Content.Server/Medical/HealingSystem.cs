@@ -171,19 +171,7 @@ public sealed class HealingSystem : EntitySystem
 
         if (targetedWoundable == EntityUid.Invalid)
         {
-            foreach (var damage in healing.Damage.DamageDict)
-            {
-                if (!_wounds.TryGetWoundableWithMostDamage(ent, out var woundable, damage.Key, true))
-                    continue;
-
-                targetedWoundable = woundable.Value.Owner;
-                stuffToHeal.Add(damage.Key, damage.Value);
-            }
-        }
-
-        if (targetedWoundable == EntityUid.Invalid || stuffToHeal.Count == 0)
-        {
-            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use", ("item", args.User)), ent, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
             return;
         }
 
@@ -203,9 +191,14 @@ public sealed class HealingSystem : EntitySystem
 
                     wound.Item2.CanBeHealed = true;
                 }
+                else
+                {
+                    bleeds.BleedingAmountRaw -= bleedStopAbility;
+                }
 
                 bleedStopAbility -= bleeds.BleedingAmount;
             }
+            _bloodstreamSystem.TryModifyBleedAmount(ent, healing.ModifyBloodLevel);
 
             if (bleedStopAbility != healing.BloodlossModifier)
             {
@@ -215,8 +208,25 @@ public sealed class HealingSystem : EntitySystem
                     ent,
                     args.User);
             }
+        }
 
-            _bloodstreamSystem.TryModifyBleedAmount(ent, healing.ModifyBloodLevel);
+        if (targetedWoundable == EntityUid.Invalid || stuffToHeal.Count == 0 && healing.BloodlossModifier == 0)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use", ("item", args.User)), ent, args.User);
+            return;
+        }
+
+        // Re-verify that we can heal the damage.
+        if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
+        {
+            _stacks.Use(args.Used.Value, 1, stackComp);
+
+            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+                dontRepeat = true;
+        }
+        else
+        {
+            QueueDel(args.Used.Value);
         }
 
         var healedTotal = (FixedPoint2) 0;
@@ -237,22 +247,10 @@ public sealed class HealingSystem : EntitySystem
 
         if (healedTotal <= 0)
         {
-            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User, PopupType.SmallCaution);
+            if (healing.BloodlossModifier == 0)
+                _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User, PopupType.MediumCaution);
+
             return;
-        }
-
-        // Re-verify that we can heal the damage.
-
-        if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
-        {
-            _stacks.Use(args.Used.Value, 1, stackComp);
-
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
-                dontRepeat = true;
-        }
-        else
-        {
-            QueueDel(args.Used.Value);
         }
 
         if (ent != args.User)
@@ -309,39 +307,30 @@ public sealed class HealingSystem : EntitySystem
 
     private bool IsBodyDamaged(Entity<BodyComponent> target, EntityUid user, HealingComponent healing)
     {
-        var targetedWoundable = EntityUid.Invalid;
-        if (TryComp<TargetingComponent>(user, out var targeting))
-        {
-            var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-            var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(target, partType, target, symmetry).ToList().FirstOrDefault();
+        if (!TryComp<TargetingComponent>(user, out var targeting))
+            return false;
 
-            if (healing.Damage.DamageDict.Keys.ToList()
-                .Any(damage => _wounds.HasDamageOfGroup(targetedBodyPart.Id, damage) || _wounds.HasDamageOfType(targetedBodyPart.Id, damage)))
+        var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
+        var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(target, partType, target, symmetry).ToList().FirstOrDefault();
+
+        if (healing.Damage.DamageDict.Keys.ToList()
+            .Any(damage => _wounds.HasDamageOfGroup(targetedBodyPart.Id, damage) || _wounds.HasDamageOfType(targetedBodyPart.Id, damage)))
+        {
+            return true;
+        }
+
+        if (healing.BloodlossModifier != 0)
+        {
+            foreach (var wound in _wounds.GetWoundableWounds(targetedBodyPart.Id))
             {
+                if (!TryComp<BleedInflicterComponent>(wound.Item1, out var bleeds) || !bleeds.IsBleeding)
+                    continue;
+
                 return true;
             }
-
-            if (healing.BloodlossModifier != 0)
-            {
-                foreach (var wound in _wounds.GetWoundableWounds(targetedBodyPart.Id))
-                {
-                    if (!TryComp<BleedInflicterComponent>(wound.Item1, out var bleeds) || !bleeds.IsBleeding)
-                        continue;
-
-                    return true;
-                }
-            }
         }
 
-        foreach (var damage in healing.Damage.DamageDict.Keys.ToList())
-        {
-            if (!_wounds.TryGetWoundableWithMostDamage(target, out var woundable, damage))
-                continue;
-
-            targetedWoundable = woundable.Value.Owner;
-        }
-
-        return targetedWoundable != EntityUid.Invalid;
+        return false;
     }
 
     private void OnHealingUse(Entity<HealingComponent> entity, ref UseInHandEvent args)

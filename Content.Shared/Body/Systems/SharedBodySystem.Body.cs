@@ -292,7 +292,7 @@ public partial class SharedBodySystem
 
                         var partSlot = new BodyPartSlot(connection, childPartComponent.PartType);
                         childPartComponent.ParentSlot = partSlot;
-                        parentPartComponent.Children.Add(connection, partSlot);
+                        parentPartComponent.Children.TryAdd(connection, partSlot);
 
                         Dirty(parentEntity, parentPartComponent);
                         Dirty(childPart, childPartComponent);

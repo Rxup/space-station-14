@@ -4,4 +4,5 @@ medical-item-cant-use-rebell = Вы не можете помочь { $target }. 
 medical-item-stop-bleeding-fully-rebell = Вы остановили кровотечение.
 medical-item-stop-bleeding-partially-rebell = Вы частично остановили кровотечение.
 medical-item-stop-bleeding = Кровотечение было остановлено.
+does-not-exist-rebell = Эта часть тела отсутствует.
 medical-item-popup-target = { CAPITALIZE($user) } пытается лечить вас при помощи { $item }!
