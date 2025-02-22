@@ -118,6 +118,8 @@
     - type: StationEvent
       # Favor glimmer events just a little more than regular events.
       weight: 12
+      earliestStart: 1
+      reoccurrenceDelay: 1
     - type: GlimmerEvent
 
 ## Glimmer events
