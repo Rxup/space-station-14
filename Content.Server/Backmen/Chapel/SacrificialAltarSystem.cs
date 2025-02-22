@@ -17,8 +17,10 @@ using Content.Server.Backmen.Soul;
 using Content.Server.Body.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Chapel;
+using Content.Shared.Backmen.Chapel.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Backmen.Soul;
+using Content.Shared.Hands.Components;
 using Content.Shared.Players;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
@@ -28,7 +30,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Chapel;
 
-public sealed class SacrificialAltarSystem : EntitySystem
+public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
 {
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
@@ -46,51 +48,9 @@ public sealed class SacrificialAltarSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SacrificialAltarComponent, GetVerbsEvent<AlternativeVerb>>(AddSacrificeVerb);
-        SubscribeLocalEvent<SacrificialAltarComponent, StrapAttemptEvent>(OnStrappedEvent);
-        SubscribeLocalEvent<SacrificialAltarComponent, UnstrapAttemptEvent>(OnUnstrappedEvent);
+
         SubscribeLocalEvent<SacrificialAltarComponent, SacrificeDoAfterEvent>(OnDoAfter);
 
-    }
-
-    private void AddSacrificeVerb(EntityUid uid, SacrificialAltarComponent component, GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract || component.DoAfter != null)
-            return;
-
-        if (!TryComp<StrapComponent>(uid, out var strap))
-            return;
-
-        EntityUid? sacrificee = null;
-
-        foreach (var entity in strap.BuckledEntities) // mm yes I love hashsets which can't be accessed via index
-        {
-            sacrificee = entity;
-        }
-
-        if (sacrificee == null)
-            return;
-
-        AlternativeVerb verb = new()
-        {
-            Act = () =>
-            {
-                AttemptSacrifice(args.User, sacrificee.Value, uid, component);
-            },
-            Text = Loc.GetString("altar-sacrifice-verb"),
-            Priority = 2
-        };
-        args.Verbs.Add(verb);
-    }
-
-    private void OnUnstrappedEvent(EntityUid uid, SacrificialAltarComponent component, ref UnstrapAttemptEvent args)
-    {
-        args.Cancelled = true;
-    }
-
-    private void OnStrappedEvent(EntityUid uid, SacrificialAltarComponent component, ref StrapAttemptEvent args)
-    {
-        args.Cancelled = true;
     }
 
     private void OnDoAfter(EntityUid uid, SacrificialAltarComponent component, SacrificeDoAfterEvent args)
@@ -151,7 +111,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
         }
     }
 
-    public void AttemptSacrifice(EntityUid agent, EntityUid patient, EntityUid altar, SacrificialAltarComponent? component = null)
+    protected override void AttemptSacrifice(EntityUid agent, EntityUid patient, EntityUid altar, SacrificialAltarComponent? component = null)
     {
         if (!Resolve(altar, ref component))
             return;

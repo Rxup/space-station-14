@@ -1,3 +1,16 @@
+- type: entity
+  parent: BaseGameRule
+  id: PsiScheduler
+  components:
+  - type: GameRule
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 0
+    minMaxEventTiming:
+      min: 240 # 4 min
+      max: 480 # 8 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: PsiBackmenEventsTable
+
 - type: entityTable
   id: PsiBackmenEventsTable
   table: !type:AllSelector
@@ -12,17 +25,15 @@
     - id: FreeProber
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
+    - id: NoosphericStorm
 
 
 - type: entityTable
   id: BasicBackmenEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    - !type:NestedSelector
-      tableId: PsiBackmenEventsTable
     - id: EvilTwinSpawn
     - id: FugitiveSpawn
-    - id: NoosphericStorm
     - id: BluespaceGoat
     - id: SpiderSpiderVampireSpawn
     - id: DiseaseOutbreak

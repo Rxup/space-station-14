@@ -92,7 +92,7 @@ public sealed class GolemSystem : SharedGolemSystem
         // Add the first emag law
         args.Laws.Laws.Add(new SiliconLaw
         {
-            LawString = Loc.GetString("law-golem-1", ("name", component.Master ?? "----")),
+            LawString = Loc.GetString("golem-law", ("master", component.Master ?? "----")),
             Order = 1
         });
 
