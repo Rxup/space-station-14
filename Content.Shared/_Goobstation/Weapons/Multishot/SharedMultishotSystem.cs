@@ -1,21 +1,20 @@
+using Content.Shared._Goobstation.Weapons.Multishot;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 
-namespace Content.Shared.Goobstation.Weapons.Multishot;
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Weapons.Ranged.Systems;
 
-public sealed partial class SharedMultishotSystem : EntitySystem
+public abstract partial class SharedGunSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
-    public override void Initialize()
+    protected void InitializeMultishot()
     {
-        base.Initialize();
-
         SubscribeLocalEvent<MultishotComponent, GotEquippedHandEvent>(OnEquipWeapon);
         SubscribeLocalEvent<MultishotComponent, GotUnequippedHandEvent>(OnUnequipWeapon);
         SubscribeLocalEvent<MultishotComponent, GunRefreshModifiersEvent>(OnRefreshModifiers);
