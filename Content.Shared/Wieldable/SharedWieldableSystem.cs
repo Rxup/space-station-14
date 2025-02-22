@@ -47,7 +47,6 @@ public abstract class SharedWieldableSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _delay = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!; // Lavaland Change
     [Dependency] private readonly SharedStunSystem _stun = default!; // Lavaland Change
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // Lavaland Change
 
     public override void Initialize()
     {
