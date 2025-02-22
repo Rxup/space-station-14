@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:58
+  entityCount: 358
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   60: FloorGrayConcreteOutsideMono
@@ -658,9 +669,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1490,15 +1517,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.4708157,2.4782007
       parent: 1
-- proto: FloraGreyStalagmite2
+- proto: FloraGreyStalagmite
   entities:
   - uid: 141
     components:
     - type: Transform
       pos: 4.053198,3.8774834
       parent: 1
-- proto: FloraGreyStalagmite6
-  entities:
   - uid: 142
     components:
     - type: Transform
@@ -2640,7 +2665,7 @@ entities:
             - -0.25,0.48
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
           - BulletImpassable
@@ -3120,7 +3145,7 @@ entities:
     - type: Transform
       pos: -2.6085157,4.5205574
       parent: 1
-- proto: WeaponSniperMosin
+- proto: WeaponSniperMosinNew
   entities:
   - uid: 355
     components:

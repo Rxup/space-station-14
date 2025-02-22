@@ -477,6 +477,7 @@ public sealed partial class ExplosionSystem
                 {
                     var bodyParts = _body.GetBodyChildren(entity, body).ToList();
                     _robustRandom.Shuffle(bodyParts);
+                //_damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true);
 
                     var targeted = bodyParts.FirstOrDefault();
                     _damageableSystem.TryChangeDamage(targeted.Id, damage, ignoreResistances: true);

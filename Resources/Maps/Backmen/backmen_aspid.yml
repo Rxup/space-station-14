@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:06:08
+  entityCount: 20232
+maps:
+- 6526
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   1: FloorArcadeBlue
@@ -13614,7 +13625,6 @@ entities:
     - type: OccluderTree
     - type: Parallax
       parallax: AspidParallax
-    - type: LoadedMap
 - proto: ActionToggleLight
   entities:
   - uid: 1686
@@ -58231,13 +58241,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.098274,26.636099
       parent: 1
-- proto: ClothingNeckBisexualPin
-  entities:
-  - uid: 17715
-    components:
-    - type: Transform
-      pos: -44.6231,38.434673
-      parent: 1
 - proto: ClothingNeckCloakBlackCloak
   entities:
   - uid: 2908
@@ -58270,13 +58273,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingNeckLGBTPin
-  entities:
-  - uid: 17712
-    components:
-    - type: Transform
-      pos: 14.597307,15.443957
-      parent: 1
 - proto: ClothingNeckMantleHOS
   entities:
   - uid: 6828
@@ -58307,13 +58303,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingNeckTransPin
-  entities:
-  - uid: 17720
-    components:
-    - type: Transform
-      pos: 19.415567,41.43221
-      parent: 1
 - proto: ClothingOuterArmorBulletproof
   entities:
   - uid: 9022
@@ -69911,6 +69900,13 @@ entities:
     components:
     - type: Transform
       pos: 42.5,51.5
+      parent: 1
+- proto: FlagNanoTrasen
+  entities:
+  - uid: 6985
+    components:
+    - type: Transform
+      pos: 11.5,62.5
       parent: 1
 - proto: Flash
   entities:
@@ -103721,13 +103717,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5368433,117.767784
-      parent: 1
-- proto: NTFlag
-  entities:
-  - uid: 6985
-    components:
-    - type: Transform
-      pos: 11.5,62.5
       parent: 1
 - proto: NuclearBomb
   entities:

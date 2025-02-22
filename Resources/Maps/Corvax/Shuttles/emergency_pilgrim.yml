@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:02
+  entityCount: 867
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   31: FloorDark
@@ -974,9 +985,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2981,10 +3008,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3003,7 +3030,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3029,10 +3056,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3051,7 +3078,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3077,10 +3104,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3099,7 +3126,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3124,10 +3151,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3146,7 +3173,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3171,10 +3198,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3193,7 +3220,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3218,10 +3245,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3240,7 +3267,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3265,10 +3292,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3287,7 +3314,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3312,10 +3339,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3334,7 +3361,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3359,10 +3386,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3381,7 +3408,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3406,10 +3433,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3428,7 +3455,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3453,10 +3480,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3475,7 +3502,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3500,10 +3527,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3522,7 +3549,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3547,10 +3574,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3569,7 +3596,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3595,10 +3622,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3617,7 +3644,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3643,10 +3670,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3665,7 +3692,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3691,10 +3718,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3713,7 +3740,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3739,10 +3766,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3761,7 +3788,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3787,10 +3814,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3809,7 +3836,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3835,10 +3862,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3857,7 +3884,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3883,10 +3910,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3905,7 +3932,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3931,10 +3958,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -3953,7 +3980,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -3979,10 +4006,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4001,7 +4028,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4027,10 +4054,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4049,7 +4076,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4075,10 +4102,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4097,7 +4124,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4123,10 +4150,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4145,7 +4172,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4171,10 +4198,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4193,7 +4220,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4219,10 +4246,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4241,7 +4268,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4267,10 +4294,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4289,7 +4316,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4315,10 +4342,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4337,7 +4364,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4363,10 +4390,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4385,7 +4412,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable
@@ -4411,10 +4438,10 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           - BulletImpassable
           - Opaque
@@ -4433,7 +4460,7 @@ entities:
           mask: []
           layer:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - HighImpassable
           - LowImpassable
           - InteractImpassable

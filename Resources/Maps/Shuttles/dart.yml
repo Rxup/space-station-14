@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:38
+  entityCount: 1005
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -773,9 +784,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -803,10 +830,26 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1063,6 +1106,13 @@ entities:
     components:
     - type: Transform
       pos: -7.5,-21.5
+      parent: 1
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 991
+    components:
+    - type: Transform
+      pos: 2.5,4.5
       parent: 1
 - proto: Bed
   entities:
@@ -5565,13 +5615,6 @@ entities:
     - type: Transform
       pos: -6.5,-6.5
       parent: 1
-- proto: VendingMachineCigs
-  entities:
-  - uid: 991
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 1
 - proto: VendingMachineClothing
   entities:
   - uid: 427
@@ -6583,19 +6626,19 @@ entities:
     - type: Transform
       pos: -1.5,6.5
       parent: 1
+- proto: WeaponDominatorNT
+  entities:
+  - uid: 243
+    components:
+    - type: Transform
+      pos: 2.464967,-12.427811
+      parent: 1
 - proto: WeaponSprayNozzle
   entities:
   - uid: 337
     components:
     - type: Transform
       pos: 2.6503453,-10.527685
-      parent: 1
-- proto: WeaponTaser
-  entities:
-  - uid: 243
-    components:
-    - type: Transform
-      pos: 2.464967,-12.427811
       parent: 1
 - proto: WeldingFuelTankHighCapacity
   entities:

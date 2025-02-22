@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:27
+  entityCount: 272
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   2: FloorAsteroidSand
@@ -785,7 +796,6 @@ entities:
             id: splatter
           decals:
             810: 2.0135477,19.99514
-    - type: LoadedMap
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: RadiationGridResistance

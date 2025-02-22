@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:00
+  entityCount: 1283
+maps: []
+grids:
+- 410
+orphans:
+- 410
+nullspace: []
 tilemap:
   0: Space
   12: FloorBar
@@ -897,6 +908,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14996
           moles:
@@ -912,11 +931,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14996
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1332,6 +1367,20 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -17.5,-0.5
+      parent: 410
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 488
+    components:
+    - type: Transform
+      pos: -9.5,12.5
+      parent: 410
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 445
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
       parent: 410
 - proto: BedsheetMedical
   entities:
@@ -3438,6 +3487,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3465,6 +3522,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3503,6 +3568,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3634,6 +3707,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 1244
     components:
     - type: Transform
@@ -3648,6 +3729,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3683,6 +3772,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3708,6 +3805,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -8180,20 +8285,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,10.5
-      parent: 410
-- proto: VendingMachineCigs
-  entities:
-  - uid: 488
-    components:
-    - type: Transform
-      pos: -9.5,12.5
-      parent: 410
-- proto: VendingMachineDonut
-  entities:
-  - uid: 445
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
       parent: 410
 - proto: VendingMachineMedical
   entities:

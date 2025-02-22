@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:34
+  entityCount: 145
+maps: []
+grids:
+- 20
+orphans:
+- 20
+nullspace: []
 tilemap:
   0: Space
   19: FloorBrokenWood
@@ -218,6 +229,14 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -846,13 +865,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-2.5
-      parent: 20
-- proto: VehicleKeyATV
-  entities:
-  - uid: 107
-    components:
-    - type: Transform
-      pos: -1.4804568,3.5168486
       parent: 20
 - proto: WallReinforced
   entities:

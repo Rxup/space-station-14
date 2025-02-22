@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:35
+  entityCount: 151
+maps: []
+grids:
+- 52
+orphans:
+- 52
+nullspace: []
 tilemap:
   0: Space
   19: FloorBrokenWood
@@ -121,9 +132,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 147.92499
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -450,6 +477,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: DrinkGildlagerBottleFull
   entities:
   - uid: 2
@@ -485,6 +520,23 @@ entities:
     components:
     - type: Transform
       pos: -0.042627335,-1.4742832
+      parent: 52
+- proto: FakeSpaceCash10
+  entities:
+  - uid: 14
+    components:
+    - type: Transform
+      pos: 1.578125,-2.515625
+      parent: 52
+  - uid: 16
+    components:
+    - type: Transform
+      pos: 1.953125,-2.1875
+      parent: 52
+  - uid: 43
+    components:
+    - type: Transform
+      pos: 0.671875,-2.4375
       parent: 52
 - proto: FoodCakeLemon
   entities:
@@ -747,23 +799,6 @@ entities:
     components:
     - type: Transform
       pos: 2.345557,-1.4329147
-      parent: 52
-- proto: FakeSpaceCash10
-  entities:
-  - uid: 14
-    components:
-    - type: Transform
-      pos: 1.578125,-2.515625
-      parent: 52
-  - uid: 16
-    components:
-    - type: Transform
-      pos: 1.953125,-2.1875
-      parent: 52
-  - uid: 43
-    components:
-    - type: Transform
-      pos: 0.671875,-2.4375
       parent: 52
 - proto: SpawnMobCobraSalvage
   entities:

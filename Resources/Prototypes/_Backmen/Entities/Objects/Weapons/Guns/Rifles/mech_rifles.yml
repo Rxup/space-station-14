@@ -24,10 +24,6 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: ChamberMagazineAmmoProvider
   - type: AmmoCounter
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -110,10 +106,6 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: ChamberMagazineAmmoProvider
   - type: AmmoCounter
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
