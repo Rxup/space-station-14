@@ -1,11 +1,22 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:36:16
+  entityCount: 102
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
+  131: FloorBasalt
   71: FloorMining
   130: Lattice
-  131: FloorBasalt
   132: Plating
 entities:
 - proto: ""
@@ -123,6 +134,14 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0

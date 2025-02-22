@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:22:35
+  entityCount: 646
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   11: FloorAsteroidTile
@@ -16,7 +27,7 @@ tilemap:
   127: FloorWood
   129: FloorWoodTile
   131: Plating
-  134: PlatingBurnt
+  134: PlatingDamaged
 entities:
 - proto: ""
   entities:
@@ -552,6 +563,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -599,7 +618,7 @@ entities:
     - type: Transform
       pos: 20.5,12.5
       parent: 2
-- proto: AirlockHatch
+- proto: AirlockHatchBasik
   entities:
   - uid: 4
     components:
@@ -2541,15 +2560,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,1.5
       parent: 2
-- proto: FloraRockSolid01
+- proto: FloraRockSolid
   entities:
   - uid: 366
     components:
     - type: Transform
       pos: 3.5,11.5
       parent: 2
-- proto: FloraRockSolid02
-  entities:
   - uid: 367
     components:
     - type: Transform

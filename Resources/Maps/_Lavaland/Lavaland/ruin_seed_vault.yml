@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:38:44
+  entityCount: 274
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   12: FloorAstroGrass
@@ -188,6 +199,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -207,7 +226,7 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 2
-- proto: AirlockHatch
+- proto: AirlockHatchBasik
   entities:
   - uid: 10
     components:

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:28:33
+  entityCount: 16
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   16: FloorBasalt

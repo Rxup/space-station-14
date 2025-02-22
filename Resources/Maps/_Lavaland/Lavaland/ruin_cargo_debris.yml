@@ -1,11 +1,22 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:23:18
+  entityCount: 11
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   105: FloorSteelDirty
   130: Lattice
-  135: PlatingBurnt
+  135: PlatingDamaged
 entities:
 - proto: ""
   entities:
@@ -71,6 +82,76 @@ entities:
     - type: GridAtmosphere
       version: 2
       data:
+        tiles:
+          0,0:
+            0: 47
+            1: 65488
+          0,-1:
+            0: 36864
+          -1,0:
+            0: 9416
+            1: 51200
+          0,1:
+            1: 1791
+            0: 30976
+          -1,1:
+            1: 204
+            0: 3107
+          1,0:
+            0: 18519
+            1: 14112
+          1,1:
+            1: 375
+            0: 5768
+          1,-1:
+            0: 8192
+        uniqueMixes:
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
 - proto: CrateFilledSpawner

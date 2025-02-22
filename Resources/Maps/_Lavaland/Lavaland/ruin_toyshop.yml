@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:41:59
+  entityCount: 567
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   16: FloorBasalt
@@ -99,6 +110,14 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -3020,7 +3039,6 @@ entities:
   - uid: 394
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 13.5,8.5
       parent: 2
 - proto: VendingMachineMagivend
@@ -3622,7 +3640,7 @@ entities:
       pos: 10.5,15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -41896.145
+      secondsUntilStateChange: -41936.418
       state: Opening
   - uid: 508
     components:

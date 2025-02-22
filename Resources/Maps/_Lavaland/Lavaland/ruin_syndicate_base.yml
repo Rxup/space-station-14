@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:41:03
+  entityCount: 3372
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   19: FloorBasalt
@@ -1361,8 +1372,7 @@ entities:
           5,-9:
             0: 65520
           5,-4:
-            0: 52479
-            2: 512
+            0: 52991
           6,-8:
             0: 65535
           6,-7:
@@ -1589,6 +1599,10 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
@@ -1598,21 +1612,6 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-          - 20.078888
-          - 75.53487
           - 0
           - 0
           - 0
@@ -2146,7 +2145,7 @@ entities:
       pos: 25.5,0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -9718.281
+      secondsUntilStateChange: -9745.599
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2239,7 +2238,7 @@ entities:
       pos: 18.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -23550.703
+      secondsUntilStateChange: -23578.021
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2520,6 +2519,41 @@ entities:
     components:
     - type: Transform
       pos: 27.5,-24.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 1864
+    components:
+    - type: Transform
+      pos: 12.5,7.5
+      parent: 2
+- proto: BackmenVendingMachineColaRed
+  entities:
+  - uid: 1865
+    components:
+    - type: Transform
+      pos: 27.5,-1.5
+      parent: 2
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 1866
+    components:
+    - type: Transform
+      pos: 11.5,7.5
+      parent: 2
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 1874
+    components:
+    - type: Transform
+      pos: 13.5,-10.5
+      parent: 2
+- proto: BackmenVendingMachineSoda
+  entities:
+  - uid: 1875
+    components:
+    - type: Transform
+      pos: 13.5,-11.5
       parent: 2
 - proto: BannerSyndicate
   entities:
@@ -6676,6 +6710,10 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateGenericSteel
   entities:
   - uid: 75
@@ -6691,6 +6729,10 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -6731,6 +6773,10 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -6787,6 +6833,10 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -6811,6 +6861,10 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -6868,6 +6922,10 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -6893,6 +6951,10 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -6949,6 +7011,10 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -6974,6 +7040,10 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -7016,6 +7086,10 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -7121,9 +7195,6 @@ entities:
     - type: Transform
       pos: 24.08374,-18.192871
       parent: 2
-    - type: Sharp
-      hadBoneSaw: True
-      hadScalpel: True
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -7282,7 +7353,7 @@ entities:
       pos: 16.5,-11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -29754.447
+      secondsUntilStateChange: -29781.766
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -7537,6 +7608,24 @@ entities:
       deviceLists:
       - 91
       - 90
+- proto: FlagSyndicate
+  entities:
+  - uid: 1782
+    components:
+    - type: Transform
+      pos: 17.5,-3.5
+      parent: 2
+  - uid: 1783
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 24.5,-15.5
+      parent: 2
+  - uid: 1784
+    components:
+    - type: Transform
+      pos: 5.5,-17.5
+      parent: 2
 - proto: FlashlightLantern
   entities:
   - uid: 1026
@@ -17485,6 +17574,10 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -17512,6 +17605,10 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -17630,6 +17727,10 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -17672,7 +17773,7 @@ entities:
     - type: Transform
       pos: 30.5,-10.5
       parent: 2
-- proto: MagazinePistol
+- proto: MagazinePistol9x17
   entities:
   - uid: 949
     components:
@@ -19070,8 +19171,6 @@ entities:
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
-          showEnts: False
-          occludes: True
           ents:
           - 6
   - uid: 1757
@@ -19263,24 +19362,6 @@ entities:
     - type: Physics
       angularDamping: 0
       linearDamping: 0
-- proto: SyndieFlag
-  entities:
-  - uid: 1782
-    components:
-    - type: Transform
-      pos: 17.5,-3.5
-      parent: 2
-  - uid: 1783
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 24.5,-15.5
-      parent: 2
-  - uid: 1784
-    components:
-    - type: Transform
-      pos: 5.5,-17.5
-      parent: 2
 - proto: Syringe
   entities:
   - uid: 6
@@ -19785,28 +19866,6 @@ entities:
     - type: Transform
       pos: 14.5,-14.5
       parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 1864
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 12.5,7.5
-      parent: 2
-- proto: VendingMachineColaRed
-  entities:
-  - uid: 1865
-    components:
-    - type: Transform
-      pos: 27.5,-1.5
-      parent: 2
-- proto: VendingMachineDonut
-  entities:
-  - uid: 1866
-    components:
-    - type: Transform
-      pos: 11.5,7.5
-      parent: 2
 - proto: VendingMachineMedical
   entities:
   - uid: 1867
@@ -19852,20 +19911,6 @@ entities:
     - type: Transform
       pos: 16.723942,-15.432798
       parent: 2
-- proto: VendingMachineSnack
-  entities:
-  - uid: 1874
-    components:
-    - type: Transform
-      pos: 13.5,-10.5
-      parent: 2
-- proto: VendingMachineSoda
-  entities:
-  - uid: 1875
-    components:
-    - type: Transform
-      pos: 13.5,-11.5
-      parent: 2
 - proto: VendingMachineSyndieDrobe
   entities:
   - uid: 1876
@@ -19885,13 +19930,11 @@ entities:
   - uid: 1878
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 20.5,5.5
       parent: 2
   - uid: 1879
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 21.5,3.5
       parent: 2
 - proto: WallmountTelescreen
@@ -21671,7 +21714,7 @@ entities:
     - type: Transform
       pos: 30.5,-21.5
       parent: 2
-- proto: WeaponPistolViper
+- proto: WeaponPistolHIB88M4
   entities:
   - uid: 952
     components:

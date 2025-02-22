@@ -1,12 +1,23 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:39:26
+  entityCount: 39
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
+  131: FloorBasalt
   43: FloorDirt
   105: FloorSteelDirty
-  131: FloorBasalt
-  135: PlatingBurnt
+  135: PlatingDamaged
 entities:
 - proto: ""
   entities:

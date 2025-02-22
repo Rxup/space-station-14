@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:27:09
+  entityCount: 125
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   15: FloorBar
@@ -14,7 +25,7 @@ tilemap:
   122: FloorWhiteMono
   130: Lattice
   132: Plating
-  1: PlatingBurnt
+  1: PlatingDamaged
 entities:
 - proto: ""
   entities:
@@ -179,6 +190,100 @@ entities:
     - type: GridAtmosphere
       version: 2
       data:
+        tiles:
+          1,0:
+            0: 2176
+          2,0:
+            0: 34696
+            1: 2050
+          2,1:
+            1: 2050
+          2,-1:
+            0: 32768
+            1: 2048
+          3,0:
+            0: 64975
+            1: 560
+          3,1:
+            0: 3311
+            1: 32768
+          3,-1:
+            0: 62208
+            1: 128
+          4,0:
+            0: 13183
+            1: 52352
+          4,1:
+            0: 3831
+            1: 8
+          4,-1:
+            0: 65392
+          5,-1:
+            0: 61440
+            1: 32
+          5,0:
+            0: 26623
+            1: 38912
+          6,-1:
+            1: 512
+          6,0:
+            0: 12279
+            1: 4104
+          5,1:
+            0: 5363
+            1: 8204
+          6,1:
+            0: 273
+            1: 520
+          7,0:
+            0: 9008
+        uniqueMixes:
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: IFF

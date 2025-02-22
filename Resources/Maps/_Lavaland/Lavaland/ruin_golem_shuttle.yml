@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:27:49
+  entityCount: 537
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   1: FloorArcadeBlue
@@ -243,7 +254,7 @@ entities:
           0,1:
             0: 13107
           -1,1:
-            0: 24347
+            0: 24351
           0,2:
             0: 9011
           -1,2:
@@ -257,7 +268,7 @@ entities:
           -4,0:
             0: 65263
           -5,0:
-            0: 29166
+            0: 29182
           -4,1:
             0: 64988
           -5,1:
@@ -271,7 +282,7 @@ entities:
           -5,3:
             0: 61153
           -4,-1:
-            0: 57344
+            0: 59392
           -3,0:
             0: 26358
           -3,1:
@@ -285,13 +296,13 @@ entities:
           -3,-1:
             0: 61184
           -2,0:
-            0: 4095
+            0: 28671
           -2,1:
             0: 65535
           -2,2:
             0: 4095
           -2,3:
-            0: 4095
+            0: 20479
           -2,4:
             0: 1
           -1,0:
@@ -316,6 +327,14 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -374,7 +393,7 @@ entities:
       pos: -13.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -316.9489
+      secondsUntilStateChange: -346.18732
       state: Opening
     - type: DeviceLinkSource
       lastSignals:

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/22/2025 13:35:27
+  entityCount: 409
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   16: FloorBasalt
@@ -373,8 +384,8 @@ entities:
   - uid: 1221
     components:
     - type: MetaData
-      desc: 'An old suspicious-looking duffel bag '
-      name: Old duffel bag
+      desc: Сомнительный вещмешок, выглядит очень старым и пыльным.
+      name: старый вещмешок
     - type: Transform
       pos: -17.50602,0.4585264
       parent: 2
@@ -383,11 +394,14 @@ entities:
         1222:
           position: 0,0
           _rotation: South
-        1223:
-          position: 1,0
-          _rotation: East
-        1224:
+        57:
           position: 3,0
+          _rotation: South
+        55:
+          position: 2,0
+          _rotation: North
+        56:
+          position: 1,0
           _rotation: South
     - type: ContainerContainer
       containers:
@@ -396,8 +410,9 @@ entities:
           occludes: True
           ents:
           - 1222
-          - 1223
-          - 1224
+          - 56
+          - 55
+          - 57
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -427,23 +442,29 @@ entities:
     - type: Transform
       pos: -16.5,3.5
       parent: 2
-- proto: ClothingHeadHatVioletwizard
+- proto: ClothingNeckCloakSanabi
   entities:
-  - uid: 1223
+  - uid: 56
     components:
-    - type: MetaData
-      desc: >2
-         a strange-looking hat wearer that most certainly belongs to the real loaf user.
-      name: Violet's hat
     - type: Transform
       parent: 1221
     - type: Physics
-      angularDamping: 0
-      linearDamping: 0
       canCollide: False
-    - type: PointLight
-      energy: 2.5
-      radius: 25
+- proto: ClothingShoesBootsJack
+  entities:
+  - uid: 59
+    components:
+    - type: Transform
+      pos: -20.500614,1.46875
+      parent: 2
+- proto: ClothingWhitsHunter
+  entities:
+  - uid: 55
+    components:
+    - type: Transform
+      parent: 1221
+    - type: Physics
+      canCollide: False
 - proto: FloorLavaEntity
   entities:
   - uid: 2247
@@ -1742,37 +1763,37 @@ entities:
     missingComponents:
     - Food
     - SliceableFood
-- proto: SalvageSpawnerScrapValuable
+- proto: LavalandJaunter
   entities:
-  - uid: 168
+  - uid: 60
     components:
     - type: Transform
-      pos: -20.5,1.5
+      pos: -14.537817,1.4427903
       parent: 2
-- proto: SalvageSpawnerScrapValuable75
+- proto: RandomArtifactSpawner
   entities:
-  - uid: 165
-    components:
-    - type: Transform
-      pos: -14.5,1.5
-      parent: 2
-  - uid: 166
+  - uid: 58
     components:
     - type: Transform
       pos: -17.5,-2.5
       parent: 2
-- proto: ViolinInstrument
-  entities:
-  - uid: 1224
-    components:
-    - type: Transform
-      parent: 1221
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
-      canCollide: False
 - proto: WallRockBasalt
   entities:
+  - uid: 10
+    components:
+    - type: Transform
+      pos: -21.5,-0.5
+      parent: 2
+  - uid: 25
+    components:
+    - type: Transform
+      pos: -14.5,4.5
+      parent: 2
+  - uid: 26
+    components:
+    - type: Transform
+      pos: -14.5,-0.5
+      parent: 2
   - uid: 1231
     components:
     - type: Transform
@@ -2185,21 +2206,12 @@ entities:
     - type: Transform
       pos: -19.5,-2.5
       parent: 2
-- proto: WallRockBasaltBSCrystal
+- proto: WeaponGrapplingGun
   entities:
-  - uid: 10
+  - uid: 57
     components:
     - type: Transform
-      pos: -21.5,-0.5
-      parent: 2
-  - uid: 25
-    components:
-    - type: Transform
-      pos: -14.5,4.5
-      parent: 2
-  - uid: 26
-    components:
-    - type: Transform
-      pos: -14.5,-0.5
-      parent: 2
+      parent: 1221
+    - type: Physics
+      canCollide: False
 ...
