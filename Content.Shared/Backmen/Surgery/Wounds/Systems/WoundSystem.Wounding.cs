@@ -10,6 +10,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -17,7 +18,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
-public sealed partial class WoundSystem
+public partial class WoundSystem
 {
     private const string WoundContainerId = "Wounds";
     private const string BoneContainerId = "Bone";
@@ -589,12 +590,14 @@ public sealed partial class WoundSystem
                 if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
                     return;
 
-                if (_body.TryGetPartSlotContainerName(bodyPart.PartType, out var slots))
+                if (bodyPart.Body is not null
+                    && TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
+                    && _body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
+                    && _body.TryGetPartSlotContainerName(bodyPart.PartType, out var containerNames))
                 {
-                    foreach (var slot in slots)
+                    foreach (var containerName in containerNames)
                     {
-                        if (_inventory.TryUnequip(bodyPart.Body.Value, slot, out var removedItem))
-                            _throwing.TryThrow(removedItem.Value, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+                        _inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
                     }
                 }
                 var bodyPartId = container.ID;
@@ -622,11 +625,7 @@ public sealed partial class WoundSystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        AmputateWoundableSafely(parentWoundableEntity, woundableEntity, out var droppedItems);
-        foreach (var droppedItem in droppedItems)
-        {
-            _throwing.TryThrow(droppedItem, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
-        }
+        AmputateWoundableSafely(parentWoundableEntity, woundableEntity);
 
         _audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyPart.Body.Value);
         _throwing.TryThrow(woundableEntity, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
@@ -638,13 +637,10 @@ public sealed partial class WoundSystem
     /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
     /// <param name="woundableEntity">The entity containing the vulnerable body part</param>
     /// <param name="woundableComp">Woundable component of woundableEntity.</param>
-    /// <param name="droppedItems">All the items dropped while removing this woundable</param>
     public void AmputateWoundableSafely(EntityUid parentWoundableEntity,
         EntityUid woundableEntity,
-        out List<EntityUid> droppedItems,
         WoundableComponent? woundableComp = null)
     {
-        droppedItems = [];
         if (!Resolve(woundableEntity, ref woundableComp))
             return;
 
@@ -671,12 +667,14 @@ public sealed partial class WoundSystem
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
 
-        if (_body.TryGetPartSlotContainerName(bodyPart.PartType, out var slots))
+        if (bodyPart.Body is not null
+            && TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
+            && _body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
+            && _body.TryGetPartSlotContainerName(bodyPart.PartType, out var containerNames))
         {
-            foreach (var slot in slots)
+            foreach (var containerName in containerNames)
             {
-                if (_inventory.TryUnequip(bodyPart.Body.Value, slot, out var removedItem))
-                    droppedItems.Add(removedItem.Value);
+                _inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
             }
         }
 
