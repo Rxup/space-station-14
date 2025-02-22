@@ -5803,13 +5803,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 27.5,-17.5
       parent: 2
-- proto: CardBoxBlack
-  entities:
-  - uid: 816
-    components:
-    - type: Transform
-      pos: 26.493616,1.5219853
-      parent: 2
 - proto: Catwalk
   entities:
   - uid: 817
@@ -6480,13 +6473,6 @@ entities:
       linearDamping: 0
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitSyndicateDurathread
-  entities:
-  - uid: 2267
-    components:
-    - type: Transform
-      pos: 5.4686418,-20.469305
-      parent: 2
 - proto: ClothingOuterStraightjacket
   entities:
   - uid: 199

@@ -6,8 +6,6 @@
     cost: 100
   - id: DrinkAbsintheBottleFull
     cost: 100
-  - id: LavalandEquipmentExplorerSuit
-    cost: 100
   - id: CigarGold
     cost: 150
   - id: Soap
@@ -43,6 +41,8 @@
     cost: 750
   - id: SurvivalMedipen
     cost: 800
+  - id: LavalandEquipmentExplorerSuit
+    cost: 850
   - id: Fulton
     cost: 1000
   - id: PKAUpgradeRange
@@ -52,8 +52,6 @@
   - id: AdvancedMineralScanner
     cost: 1100
   - id: PKAUpgradeDamage
-    cost: 1200
-  - id: LavalandEquipmentExplorerSuit
     cost: 1200
   # TODO: lazarus injector for 1k
   - id: LavalandWeaponKineticHammer

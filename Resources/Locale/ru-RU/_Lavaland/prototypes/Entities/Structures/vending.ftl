@@ -1,2 +1,2 @@
-ent-MiningDrobe = ШахтерШкаф
+ent-VendingMachineMiningDrobe = ШахтерШкаф
     .desc = Продвинутый автомат для выдачи шахтёрской одежды. Пожалуйста, не майните при помощи него Bitcoin.
