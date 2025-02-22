@@ -1,0 +1,1 @@
+lavaland-examine-pressure-buff = Это оружие достигает максимальной эффективности при давлении в [color=yellow]{$min} - {$max} кПа[/color], позволяя ему наносить в [color=yellow]{$buff} раза[/color] больше урона!
