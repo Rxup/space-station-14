@@ -5,7 +5,7 @@ using Content.Server.Materials;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Components;
 
-namespace Content.Server.Goobstation.Plasmacutter
+namespace Content.Server._Goobstation.Plasmacutter
 {
     public sealed class BatteryRechargeSystem : EntitySystem
     {
@@ -62,7 +62,7 @@ namespace Content.Server.Goobstation.Plasmacutter
         {
             if (!Resolve(uid, ref recharge))
                 return;
-            
+
             var availableMaterial = _materialStorage.GetMaterialAmount(uid, fuelType);
 
             if (_materialStorage.TryChangeMaterialAmount(uid, fuelType, -availableMaterial))
@@ -83,7 +83,7 @@ namespace Content.Server.Goobstation.Plasmacutter
                 {
                     _hands.TryForcePickupAnyHand(playerUid, entUid);
                 }
-                
+
                 _batterySystem.AddCharge(uid, availableMaterial);
             }
         }

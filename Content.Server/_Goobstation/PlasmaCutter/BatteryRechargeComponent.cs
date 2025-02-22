@@ -1,4 +1,4 @@
-namespace Content.Server.Goobstation.Plasmacutter;
+namespace Content.Server._Goobstation.Plasmacutter;
 
 [RegisterComponent]
 public sealed partial class BatteryRechargeComponent : Component
