@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:33
+  entityCount: 2269
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   15: FloorBar
@@ -851,9 +862,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1139,6 +1166,25 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-2.5
+      parent: 1
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 217
+    components:
+    - type: Transform
+      pos: 31.5,3.5
+      parent: 1
+  - uid: 721
+    components:
+    - type: Transform
+      pos: 48.5,-13.5
+      parent: 1
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 722
+    components:
+    - type: Transform
+      pos: 48.5,-14.5
       parent: 1
 - proto: BaseComputer
   entities:
@@ -6284,25 +6330,6 @@ entities:
     - type: Transform
       pos: 39.5,-24.5
       parent: 1
-- proto: MagazinePistolSubMachineGunEmpty
-  entities:
-  - uid: 473
-    components:
-    - type: Transform
-      pos: 4.945919,4.3761344
-      parent: 1
-- proto: MagazinePistolSubMachineGunTopMountedEmpty
-  entities:
-  - uid: 1698
-    components:
-    - type: Transform
-      pos: 14.469492,4.7017136
-      parent: 1
-  - uid: 1700
-    components:
-    - type: Transform
-      pos: 120.48175,-7.394827
-      parent: 1
 - proto: MagazineShotgunEmpty
   entities:
   - uid: 1242
@@ -7305,10 +7332,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 62.5,-9.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        383: []
-        510: []
 - proto: SinkEmpty
   entities:
   - uid: 554
@@ -7851,25 +7874,6 @@ entities:
     components:
     - type: Transform
       pos: 77.5,-11.5
-      parent: 1
-- proto: VendingMachineCigs
-  entities:
-  - uid: 217
-    components:
-    - type: Transform
-      pos: 31.5,3.5
-      parent: 1
-  - uid: 721
-    components:
-    - type: Transform
-      pos: 48.5,-13.5
-      parent: 1
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 722
-    components:
-    - type: Transform
-      pos: 48.5,-14.5
       parent: 1
 - proto: WallReinforced
   entities:
@@ -12151,7 +12155,7 @@ entities:
     - type: Transform
       pos: 28.5,-4.5
       parent: 1
-- proto: WeaponSubMachineGunWt550
+- proto: WeaponSubMachineGunP90
   entities:
   - uid: 1699
     components:

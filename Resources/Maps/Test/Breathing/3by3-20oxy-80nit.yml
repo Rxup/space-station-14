@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:05
+  entityCount: 9
+maps: []
+grids:
+- 9
+orphans:
+- 9
+nullspace: []
 tilemap:
   0: Space
   92: FloorSteel
@@ -57,6 +68,14 @@ entities:
           moles:
           - 20
           - 80
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0

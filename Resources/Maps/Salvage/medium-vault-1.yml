@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:35
+  entityCount: 218
+maps: []
+grids:
+- 222
+orphans:
+- 222
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -238,6 +249,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 139.98299
           moles:
@@ -253,9 +272,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 197.84607
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -305,6 +340,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,1.5
+      parent: 222
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 208
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
       parent: 222
 - proto: BlueprintSeismicCharge
   entities:
@@ -795,7 +837,7 @@ entities:
             - -0.25,0.48
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
           - BulletImpassable
@@ -810,6 +852,14 @@ entities:
         immutable: False
         temperature: 127.50272
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1102,13 +1152,6 @@ entities:
     components:
     - type: Transform
       pos: -0.48346323,3.4946802
-      parent: 222
-- proto: VendingMachineSnack
-  entities:
-  - uid: 208
-    components:
-    - type: Transform
-      pos: 2.5,-0.5
       parent: 222
 - proto: WallPlastitanium
   entities:

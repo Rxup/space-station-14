@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 namespace Content.Shared.Backmen.Psionics.Glimmer;
 
 [RegisterComponent]
-public sealed partial class SharedGlimmerReactiveComponent : Component
+public sealed partial class GlimmerReactiveComponent : Component
 {
     /// <summary>
     /// Do the effects of this component require power from an APC?
