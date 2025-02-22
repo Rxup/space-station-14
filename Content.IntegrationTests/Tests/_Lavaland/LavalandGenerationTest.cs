@@ -96,7 +96,7 @@ public sealed class LavalandGenerationTest
             {
                 if (doNotClean.Contains(map.Owner))
                     continue;
-                
+
                 entMan.DeleteEntity(map.Owner);
             }
         });
