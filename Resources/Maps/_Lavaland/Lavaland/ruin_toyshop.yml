@@ -1209,13 +1209,6 @@ entities:
     - type: Transform
       pos: 14.512007,14.852795
       parent: 2
-- proto: ClothingHeadHatCatEars
-  entities:
-  - uid: 177
-    components:
-    - type: Transform
-      pos: 12.480757,15.790295
-      parent: 2
 - proto: ClothingHeadHatHoodCulthood
   entities:
   - uid: 178
@@ -1609,16 +1602,6 @@ entities:
     - type: Transform
       pos: 3.971548,17.564209
       parent: 2
-- proto: GoldenBikeHorn
-  entities:
-  - uid: 547
-    components:
-    - type: Transform
-      pos: 1.7154441,7.9047127
-      parent: 2
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
 - proto: GrenadeDummy
   entities:
   - uid: 534
