@@ -611,7 +611,8 @@ public partial class SharedBodySystem
             return false;
         }
 
-        parentPart.Children.Remove(slot.Id);
+        // TODO: Might break something. but fixes surgery!
+        //parentPart.Children.Remove(slot.Id);
 
         // start-backmen: surgery
         if (HasComp<HumanoidAppearanceComponent>(part.Body)

@@ -1,4 +1,5 @@
-﻿using Content.Shared.FixedPoint;
+﻿using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness;

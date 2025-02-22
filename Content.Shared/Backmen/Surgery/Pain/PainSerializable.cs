@@ -14,6 +14,16 @@ public enum PainThresholdTypes
     PainPassout,
 }
 
+[Serializable, NetSerializable]
+public sealed class NerveComponentState : ComponentState
+{
+    public FixedPoint2 PainMultiplier;
+
+    public Dictionary<(NetEntity, string), PainFeelingModifier> PainFeelingModifiers = new();
+
+    public NetEntity ParentedNerveSystem;
+}
+
 [Serializable, DataRecord]
 public record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", TimeSpan? Time = null);
 

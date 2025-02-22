@@ -13,13 +13,14 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
 [Virtual]
-public partial class PainSystem : EntitySystem
+public sealed partial class PainSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -46,6 +47,9 @@ public partial class PainSystem : EntitySystem
 
         _sawmill = Logger.GetSawmill("pain");
 
+        SubscribeLocalEvent<NerveComponent, ComponentHandleState>(OnComponentHandleState);
+        SubscribeLocalEvent<NerveComponent, ComponentGetState>(OnComponentGet);
+
         SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded);
         SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
 
@@ -67,6 +71,37 @@ public partial class PainSystem : EntitySystem
         {
             _painJobQueue.EnqueueJob(new PainTimerJob(this, (ent, nerveSystem), PainJobTime));
         }
+    }
+
+    private void OnComponentHandleState(EntityUid uid, NerveComponent component, ref ComponentHandleState args)
+    {
+        if (args.Current is not NerveComponentState state)
+            return;
+
+        component.ParentedNerveSystem = GetEntity(state.ParentedNerveSystem);
+        component.PainMultiplier = state.PainMultiplier;
+
+        component.PainFeelingModifiers.Clear();
+        foreach (var ((modEntity, id), modifier) in state.PainFeelingModifiers)
+        {
+            component.PainFeelingModifiers.Add((GetEntity(modEntity), id), modifier);
+        }
+    }
+
+    private void OnComponentGet(EntityUid uid, NerveComponent comp, ref ComponentGetState args)
+    {
+        var state = new NerveComponentState();
+
+        state.ParentedNerveSystem = GetNetEntity(comp.ParentedNerveSystem);
+        state.PainMultiplier = comp.PainMultiplier;
+
+        foreach (var ((modEntity, id), modifier) in comp.PainFeelingModifiers)
+        {
+            if (!TerminatingOrDeleted(modEntity))
+                state.PainFeelingModifiers.Add((GetNetEntity(modEntity), id), modifier);
+        }
+
+        args.State = state;
     }
 
     private void OnBodyPartAdded(EntityUid uid, NerveComponent nerve, ref BodyPartAddedEvent args)
