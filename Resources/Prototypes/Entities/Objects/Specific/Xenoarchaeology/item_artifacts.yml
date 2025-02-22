@@ -5,6 +5,7 @@
   description: A strange handheld alien device.
   abstract: true
   components:
+  - type: GlimmerSource
   - type: Sprite
     sprite: Objects/Specific/Xenoarchaeology/item_artifacts.rsi
     layers:

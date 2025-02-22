@@ -62,14 +62,14 @@ namespace Content.Server.Backmen.Psionics.Glimmer
 
             SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
 
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, ComponentRemove>(OnComponentRemove);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, GlimmerTierChangedEvent>(OnTierChanged);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, GetVerbsEvent<AlternativeVerb>>(AddShockVerb);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, DamageChangedEvent>(OnDamageChanged);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, DestructionEventArgs>(OnDestroyed);
-            SubscribeLocalEvent<SharedGlimmerReactiveComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
+            SubscribeLocalEvent<GlimmerReactiveComponent, MapInitEvent>(OnMapInit);
+            SubscribeLocalEvent<GlimmerReactiveComponent, ComponentRemove>(OnComponentRemove);
+            SubscribeLocalEvent<GlimmerReactiveComponent, PowerChangedEvent>(OnPowerChanged);
+            SubscribeLocalEvent<GlimmerReactiveComponent, GlimmerTierChangedEvent>(OnTierChanged);
+            SubscribeLocalEvent<GlimmerReactiveComponent, GetVerbsEvent<AlternativeVerb>>(AddShockVerb);
+            SubscribeLocalEvent<GlimmerReactiveComponent, DamageChangedEvent>(OnDamageChanged);
+            SubscribeLocalEvent<GlimmerReactiveComponent, DestructionEventArgs>(OnDestroyed);
+            SubscribeLocalEvent<GlimmerReactiveComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         /// difference since last update. This can be zero for the sake of
         /// toggling the enabled states.</param>
         private void UpdateEntityState(EntityUid uid,
-            SharedGlimmerReactiveComponent component,
+            GlimmerReactiveComponent component,
             GlimmerTier currentGlimmerTier,
             int glimmerTierDelta)
         {
@@ -132,7 +132,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         /// current status of the glimmer tier, if it wasn't around when an
         /// update went out.
         /// </summary>
-        private void OnMapInit(EntityUid uid, SharedGlimmerReactiveComponent component, MapInitEvent args)
+        private void OnMapInit(EntityUid uid, GlimmerReactiveComponent component, MapInitEvent args)
         {
             if (component.RequiresApcPower && !HasComp<ApcPowerReceiverComponent>(uid))
             {
@@ -150,7 +150,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         /// just in case some objects can temporarily become reactive to the
         /// glimmer.
         /// </summary>
-        private void OnComponentRemove(EntityUid uid, SharedGlimmerReactiveComponent component, ComponentRemove args)
+        private void OnComponentRemove(EntityUid uid, GlimmerReactiveComponent component, ComponentRemove args)
         {
             UpdateEntityState(uid, component, GlimmerTier.Minimal, -1 * (int) LastGlimmerTier);
         }
@@ -159,7 +159,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         /// If the Entity has RequiresApcPower set to true, this will force an
         /// update to the entity's state.
         /// </summary>
-        private void OnPowerChanged(EntityUid uid, SharedGlimmerReactiveComponent component, ref PowerChangedEvent args)
+        private void OnPowerChanged(EntityUid uid, GlimmerReactiveComponent component, ref PowerChangedEvent args)
         {
             if (component.RequiresApcPower)
                 UpdateEntityState(uid, component, LastGlimmerTier, 0);
@@ -169,7 +169,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         ///     Enable / disable special effects from higher tiers.
         /// </summary>
         private void OnTierChanged(EntityUid uid,
-            SharedGlimmerReactiveComponent component,
+            GlimmerReactiveComponent component,
             GlimmerTierChangedEvent args)
         {
             if (!TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
@@ -190,7 +190,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         }
 
         private void AddShockVerb(EntityUid uid,
-            SharedGlimmerReactiveComponent component,
+            GlimmerReactiveComponent component,
             GetVerbsEvent<AlternativeVerb> args)
         {
             if (!args.CanAccess || !args.CanInteract)
@@ -218,7 +218,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             args.Verbs.Add(verb);
         }
 
-        private void OnDamageChanged(EntityUid uid, SharedGlimmerReactiveComponent component, DamageChangedEvent args)
+        private void OnDamageChanged(EntityUid uid, GlimmerReactiveComponent component, DamageChangedEvent args)
         {
             if (args.Origin == null)
                 return;
@@ -233,7 +233,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         }
 
         [ValidatePrototypeId<EntityPrototype>] private const string MaterialBluespace = "MaterialBluespace1";
-        private void OnDestroyed(EntityUid uid, SharedGlimmerReactiveComponent component, DestructionEventArgs args)
+        private void OnDestroyed(EntityUid uid, GlimmerReactiveComponent component, DestructionEventArgs args)
         {
             Spawn(MaterialBluespace, Transform(uid).Coordinates);
 
@@ -251,7 +251,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             _explosionSystem.QueueExplosion(uid, "Default", totalIntensity, slope, maxIntensity);
         }
 
-        private void OnUnanchorAttempt(EntityUid uid, SharedGlimmerReactiveComponent component,
+        private void OnUnanchorAttempt(EntityUid uid, GlimmerReactiveComponent component,
             UnanchorAttemptEvent args)
         {
             if (_glimmerSystem.GetGlimmerTier() >= GlimmerTier.Dangerous)
@@ -273,7 +273,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             var pos = Transform(prober).Coordinates.ToMap(EntityManager,_transformSystem);
             _entitySet.Clear();
             _entityLookupSystem.GetEntitiesInRange(typeof(StatusEffectsComponent),pos.MapId,pos.Position, range, _entitySet);
-            _entityLookupSystem.GetEntitiesInRange(typeof(SharedGlimmerReactiveComponent),pos.MapId,pos.Position, range, _entitySet);
+            _entityLookupSystem.GetEntitiesInRange(typeof(GlimmerReactiveComponent),pos.MapId,pos.Position, range, _entitySet);
             _entities.Clear();
 
             foreach (var target in _entitySet)
@@ -389,7 +389,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
                     var glimmerTierDelta = (int) currentGlimmerTier - (int) LastGlimmerTier;
                     var ev = new GlimmerTierChangedEvent(LastGlimmerTier, currentGlimmerTier, glimmerTierDelta);
 
-                    var reactiv = EntityQueryEnumerator<SharedGlimmerReactiveComponent>();
+                    var reactiv = EntityQueryEnumerator<GlimmerReactiveComponent>();
                     while (reactiv.MoveNext(out var owner, out var reactive))
                     {
                         UpdateEntityState(owner, reactive, currentGlimmerTier, glimmerTierDelta);
@@ -429,7 +429,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
                     }
                 }
 
-                var reactives = EntityQueryEnumerator<SharedGlimmerReactiveComponent,TransformComponent>();
+                var reactives = EntityQueryEnumerator<GlimmerReactiveComponent,TransformComponent>();
                 while (reactives.MoveNext(out var owner, out _, out var transformComponent))
                 {
                     if (currentGlimmerTier == GlimmerTier.Critical)

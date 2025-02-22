@@ -1,10 +1,11 @@
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Backmen.Chapel;
+namespace Content.Shared.Backmen.Chapel.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SacrificialAltarComponent : Component
 {
     [DataField("doAfter")]
