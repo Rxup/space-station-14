@@ -253,6 +253,16 @@ namespace Content.Shared.Damage
                 if (origin.HasValue && TryComp<TargetingComponent>(origin.Value, out var targeting))
                     target = _body.GetRandomBodyPart(uid.Value, origin.Value, attackerComp: targeting);
 
+                var (partType, symmetry) = _body.ConvertTargetBodyPart(target);
+                var possibleTargets = _body.GetBodyChildrenOfType(uid.Value, partType, symmetry: symmetry).ToList();
+
+                if (possibleTargets.Count == 0)
+                    possibleTargets = _body.GetBodyChildren(uid.Value).ToList();
+
+                // No body parts at all?
+                if (possibleTargets.Count == 0)
+                    return null;
+
                 var damageDict = new Dictionary<string, FixedPoint2>();
                 foreach (var (type, severity) in damage.DamageDict)
                 {
@@ -263,16 +273,6 @@ namespace Content.Shared.Damage
 
                     damageDict.Add(type, severity * partMultiplier);
                 }
-
-                var (partType, symmetry) = _body.ConvertTargetBodyPart(target);
-                var possibleTargets = _body.GetBodyChildrenOfType(uid.Value, partType, symmetry: symmetry).ToList();
-
-                if (possibleTargets.Count == 0)
-                    possibleTargets = _body.GetBodyChildren(uid.Value).ToList();
-
-                // No body parts at all?
-                if (possibleTargets.Count == 0)
-                    return null;
 
                 var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleTargets);
                 if (targetPart == TargetBodyPart.All && damage.GetTotal() < 0)
@@ -316,6 +316,12 @@ namespace Content.Shared.Damage
                     if (damage.Empty)
                     {
                         return damage;
+                    }
+
+                    foreach (var (type, _) in damageDict)
+                    {
+                        if (damage.DamageDict.TryGetValue(type, out var value))
+                            damageDict[type] = value;
                     }
                 }
 

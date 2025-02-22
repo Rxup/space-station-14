@@ -478,8 +478,9 @@ public partial class PainSystem
                         AudioParams.Default.WithVolume(-12f));
                 }
 
-                // Due to people being whiny. Adrenaline
-                TryAddPainMultiplier(nerveSys, "PainShockAdrenaline", 0.5f, nerveSys, TimeSpan.FromSeconds(21f));
+                // This shit is NOT helpful. It breaks the multipliers, and every 21 seconds the multiplier ends, you fall into fucking crit
+                // and stand up AGAIN due to adrenaline. Thus trapping you in an endless cycle of pain, not funny
+                // TryAddPainMultiplier(nerveSys, "PainShockAdrenaline", 0.5f, nerveSys, TimeSpan.FromSeconds(21f));
                 PlayPainSound(body, nerveSys, nerveSys.Comp.PainRattles, AudioParams.Default.WithVolume(-6f));
 
                 _popup.PopupPredicted(
