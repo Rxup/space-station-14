@@ -78,10 +78,10 @@ public sealed class SpecForceTest
                 Assert.That(entMan.Count<SpecForceComponent>(), Is.GreaterThanOrEqualTo(total));
 
                 // Get all ghost roles and take them over.
-                var ghostRoles = entMan.EntityQuery<GhostRoleComponent>().ToList();
-                foreach (var ghostRoleComp in ghostRoles)
+                var ghostRoles = entMan.EntityQueryEnumerator<GhostRoleComponent, SpecForceComponent>();
+                while (ghostRoles.MoveNext(out var specforce, out var ghostRoleComp, out _))
                 {
-                    if (!ghostRoleComp.Owner.Valid)
+                    if (!specforce.Valid)
                         continue;
 
                     await server.WaitPost(() =>
@@ -90,7 +90,7 @@ public sealed class SpecForceTest
                         Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
                         // Take the ghost role.
                         var ev = new TakeGhostRoleEvent(session);
-                        entMan.EventBus.RaiseLocalEvent(ghostRoleComp.Owner, ref ev);
+                        entMan.EventBus.RaiseLocalEvent(specforce, ref ev);
                     });
 
                     await pair.ReallyBeIdle();

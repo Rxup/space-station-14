@@ -6,6 +6,8 @@ using Content.Shared._Lavaland.Procedural.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Parallax.Biomes;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Log;
+using Robust.Shared.Map.Components;
 
 namespace Content.IntegrationTests.Tests._Lavaland;
 
@@ -16,7 +18,13 @@ public sealed class LavalandGenerationTest
     [Test]
     public async Task LavalandPlanetGenerationTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { DummyTicker = false, Dirty = true, Fresh = true});
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Dirty = false,
+            DummyTicker = false,
+            Connected = true
+        });
+
         var server = pair.Server;
         var entMan = server.EntMan;
         var protoMan = server.ProtoMan;
@@ -31,6 +39,8 @@ public sealed class LavalandGenerationTest
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
         var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
+
+        var doNotClean = entMan.EntityQuery<MapGridComponent>().Select(x=>x.Owner).ToArray();
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);
@@ -75,7 +85,24 @@ public sealed class LavalandGenerationTest
         var lavalands = lavaSystem.GetLavalands();
         Assert.That(planets, Has.Count.EqualTo(lavalands.Count));
 
+        var logMan = server.ResolveDependency<ILogManager>();
+        var logger = logMan.RootSawmill;
+
+        logger.Info("Cleanup!");
+
+        await server.WaitPost(() =>
+        {
+            foreach (var map in entMan.EntityQuery<MapGridComponent>())
+            {
+                if (doNotClean.Contains(map.Owner))
+                    continue;
+                
+                entMan.DeleteEntity(map.Owner);
+            }
+        });
+
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, gameMap);
+        await pair.RunTicksSync(5);
 
         pair.ClearModifiedCvars();
         await pair.CleanReturnAsync();
