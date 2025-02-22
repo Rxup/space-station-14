@@ -68,8 +68,8 @@
     cost: 1250
   - id: WeaponProtoKineticPistol
     cost: 1250
-  - id: ClothingBackpackDuffelSalvageConscription
-    cost: 1250
+  - id: ClothingShoesBootsMoon
+    cost: 1400
   - id: AdvancedMineralScanner
     cost: 1550
   - id: WeaponPlasmaCutter

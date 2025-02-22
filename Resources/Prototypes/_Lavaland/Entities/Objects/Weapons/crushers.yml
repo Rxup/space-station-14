@@ -114,7 +114,8 @@
     size: Ginormous
     sprite: _Lavaland/Objects/Weapons/Crushers/crusher_hammer-inhands.rsi
   - type: MeleeThrowOnHit
-    speed: 5
+    speed: 6
+    distance: 2.5
   #- type: FlipOnHit # TODO: портировать кувырки...
   - type: GunRequiresWield
   - type: Wieldable
