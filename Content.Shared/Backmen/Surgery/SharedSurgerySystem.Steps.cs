@@ -407,7 +407,7 @@ public abstract partial class SharedSurgerySystem
         if (!_body.TryGetParentBodyPart(args.Part, out var parentPart, out _))
             return;
 
-        _wounds.AmputateWoundableSafely(parentPart.Value, args.Part, out _);
+        _wounds.AmputateWoundableSafely(parentPart.Value, args.Part);
         _hands.TryPickupAnyHand(args.User, args.Part);
     }
 
