@@ -3,11 +3,7 @@
   id: PsiScheduler
   components:
   - type: GameRule
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 0
-    minMaxEventTiming:
-      min: 240 # 4 min
-      max: 480 # 8 min
+  - type: GlimmerStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: PsiBackmenEventsTable
 
@@ -217,6 +213,12 @@
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+    - type: StationEvent
+      weight: 5
+      duration: 1
+      earliestStart: 50
+      minimumPlayers: 20
+      maxOccurrences: 2
     - type: GlimmerEvent
       minimumGlimmer: 500
       maximumGlimmer: 900
