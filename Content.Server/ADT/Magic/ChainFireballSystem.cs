@@ -20,11 +20,17 @@ public sealed partial class ChainFireballSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
+    private EntityQuery<ChainFireballComponent> _fireballQuery;
+    private EntityQuery<StatusEffectsComponent> _statusQuery;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ChainFireballComponent, ProjectileHitEvent>(OnHit);
+
+        _fireballQuery = GetEntityQuery<ChainFireballComponent>();
+        _statusQuery = GetEntityQuery<StatusEffectsComponent>();
     }
 
     private void OnHit(Entity<ChainFireballComponent> ent, ref ProjectileHitEvent args)
@@ -45,7 +51,7 @@ public sealed partial class ChainFireballSystem : EntitySystem
         foreach (var look in lookup)
         {
             if (ignoredTargets.Contains(look)
-                || !HasComp<StatusEffectsComponent>(look)) // ignore non mobs whatsoever
+                || !_statusQuery.HasComp(look)) // ignore non mobs whatsoever
                 continue;
 
             mobs.Add(look);
@@ -72,11 +78,11 @@ public sealed partial class ChainFireballSystem : EntitySystem
     private bool SpawnFireball(EntityUid uid, EntityUid target, List<EntityUid> ignoredTargets)
     {
         var ball = Spawn(FireballChain, Transform(uid).Coordinates);
-        if (TryComp<ChainFireballComponent>(ball, out var sfc))
+        if (_fireballQuery.TryComp(ball, out var sfc))
         {
             sfc.IgnoredTargets = sfc.IgnoredTargets.Count > 0 ? sfc.IgnoredTargets : ignoredTargets;
 
-            if (TryComp<ChainFireballComponent>(uid, out var usfc))
+            if (_fireballQuery.TryComp(uid, out var usfc))
                 sfc.DisappearChance = usfc.DisappearChance + sfc.DisappearChanceDelta;
         }
 

@@ -1,9 +1,6 @@
-using System.Linq;
 using Content.Server.Chat.Systems;
-using Content.Server.EntityEffects.Effects.StatusEffects;
 using Content.Server.Heretic.Components;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Backmen.Chat;
 using Content.Shared.Damage;
@@ -12,11 +9,11 @@ using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Hands;
+using Content.Shared.FixedPoint;
 using Content.Shared.Heretic;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
@@ -39,7 +36,6 @@ public sealed partial class MansusGraspSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
 
     public void ApplyGraspEffect(EntityUid performer, EntityUid target, HereticPath path)
     {
@@ -56,18 +52,19 @@ public sealed partial class MansusGraspSystem : EntitySystem
                 break;
 
             case HereticPath.Lock:
-                if (!TryComp<DoorComponent>(target, out var door))
+                // Опен зе доор!
+                if (!_doorQuery.TryComp(target, out var door))
                     break;
 
-                if (TryComp<DoorBoltComponent>(target, out var doorBolt))
+                if (_doorBoltsQuery.TryComp(target, out var doorBolt))
                     _door.SetBoltsDown((target, doorBolt), false);
 
-                _door.StartOpening(target, door);
+                _door.StartOpening(target, door, performer);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/ADT/Heretic/hereticknock.ogg"), target);
                 break;
 
             case HereticPath.Flesh:
-                if (TryComp<MobStateComponent>(target, out var mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
+                if (_mobsQuery.TryComp(target, out var mobState) && mobState.CurrentState == MobState.Dead)
                 {
                     var ghoul = EnsureComp<GhoulComponent>(target);
                     ghoul.BoundHeretic = performer;
@@ -75,16 +72,12 @@ public sealed partial class MansusGraspSystem : EntitySystem
                 break;
 
             case HereticPath.Rust:
-                if (!TryComp<DamageableComponent>(target, out var dmg))
-                    break;
                 // hopefully damage only walls and cyborgs
-                if (HasComp<BorgChassisComponent>(target) || !HasComp<StatusEffectsComponent>(target))
-                    _damage.SetAllDamage(target, dmg, 50f);
+                _damage.TryChangeDamage(target, new DamageSpecifier() { DamageDict = new Dictionary<string, FixedPoint2>() {{"Structural", 150}}});
                 break;
 
             case HereticPath.Void:
-                if (TryComp<TemperatureComponent>(target, out var temp))
-                    _temperature.ForceChangeTemperature(target, temp.CurrentTemperature - 20f, temp);
+                _temperature.ChangeHeat(target, -30000f, true);
                 _statusEffect.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(8), false);
                 break;
 
@@ -94,6 +87,10 @@ public sealed partial class MansusGraspSystem : EntitySystem
     }
 
     private EntityQuery<HereticComponent> _hereticQuery;
+    private EntityQuery<MobStateComponent> _mobsQuery;
+    private EntityQuery<DoorComponent> _doorQuery;
+    private EntityQuery<DoorBoltComponent> _doorBoltsQuery;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -104,6 +101,9 @@ public sealed partial class MansusGraspSystem : EntitySystem
         SubscribeLocalEvent<HereticComponent, DrawRitualRuneDoAfterEvent>(OnRitualRuneDoAfter);
 
         _hereticQuery = GetEntityQuery<HereticComponent>();
+        _mobsQuery = GetEntityQuery<MobStateComponent>();
+        _doorQuery = GetEntityQuery<DoorComponent>();
+        _doorBoltsQuery = GetEntityQuery<DoorBoltComponent>();
     }
 
     private void OnAfterInteract(Entity<MansusGraspComponent> ent, ref AfterInteractEvent args)
@@ -114,7 +114,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
         if (args.Target == null || args.Target == args.User)
             return;
 
-        if (!TryComp<HereticComponent>(args.User, out var hereticComp))
+        if (!_hereticQuery.TryComp(args.User, out var hereticComp))
         {
             QueueDel(ent);
             return;
@@ -122,7 +122,7 @@ public sealed partial class MansusGraspSystem : EntitySystem
 
         var target = (EntityUid) args.Target;
 
-        if ((TryComp<HereticComponent>(args.Target, out var th) && th.CurrentPath == ent.Comp.Path))
+        if (_hereticQuery.TryComp(args.Target, out var th) && th.CurrentPath == ent.Comp.Path)
             return;
 
         if (HasComp<StatusEffectsComponent>(target))

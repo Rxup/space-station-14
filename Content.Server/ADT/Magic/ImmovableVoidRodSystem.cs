@@ -1,10 +1,8 @@
-using Content.Server.Heretic.Components;
 using Content.Shared.Heretic;
 using Content.Shared.Maps;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Map.Components;
@@ -14,11 +12,14 @@ namespace Content.Server.Magic;
 public sealed partial class ImmovableVoidRodSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prot = default!;
-    [Dependency] private readonly IMapManager _map = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
+    private EntityQuery<MapGridComponent> _gridQuery;
+    private EntityQuery<HereticComponent> _hereticQuery;
+    private EntityQuery<GhoulComponent> _ghoulQuery;
+    private EntityQuery<TagComponent> _tagQuery;
 
     [ValidatePrototypeId<ContentTileDefinition>]
     private const string FloorAstroSnow = "FloorAstroSnow";
@@ -26,11 +27,13 @@ public sealed partial class ImmovableVoidRodSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<ImmovableVoidRodComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<ImmovableVoidRodComponent>();
 
         // we are deliberately including paused entities. rod hungers for all
-        while (query.MoveNext(out var owner , out var rod, out var trans))
+        while (query.MoveNext(out var owner , out var rod))
         {
+            var trans = Transform(owner);
+
             rod.Accumulator += frameTime;
 
             if (rod.Accumulator > rod.Lifetime.TotalSeconds)
@@ -39,7 +42,7 @@ public sealed partial class ImmovableVoidRodSystem : EntitySystem
                 return;
             }
 
-            if (!TryComp<MapGridComponent>(trans.GridUid, out var grid))
+            if (!_gridQuery.TryComp(trans.GridUid, out var grid))
                 continue;
 
             var tileRef = _mapSystem.GetTileRef(trans.GridUid.Value, grid, trans.Coordinates);
@@ -52,6 +55,11 @@ public sealed partial class ImmovableVoidRodSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ImmovableVoidRodComponent, StartCollideEvent>(OnCollide);
+
+        _gridQuery = GetEntityQuery<MapGridComponent>();
+        _hereticQuery = GetEntityQuery<HereticComponent>();
+        _ghoulQuery = GetEntityQuery<GhoulComponent>();
+        _tagQuery = GetEntityQuery<TagComponent>();
     }
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -60,13 +68,13 @@ public sealed partial class ImmovableVoidRodSystem : EntitySystem
     private const string Wall = "Wall";
     private void OnCollide(Entity<ImmovableVoidRodComponent> ent, ref StartCollideEvent args)
     {
-        if ((TryComp<HereticComponent>(args.OtherEntity, out var th) && th.CurrentPath == HereticPath.Void)
-        || HasComp<GhoulComponent>(args.OtherEntity))
+        if ((_hereticQuery.TryComp(args.OtherEntity, out var th) && th.CurrentPath == HereticPath.Void)
+        || _ghoulQuery.HasComp(args.OtherEntity))
             return;
 
         _stun.TryParalyze(args.OtherEntity, TimeSpan.FromSeconds(2.5f), false);
 
-        TryComp<TagComponent>(args.OtherEntity, out var tag);
+        _tagQuery.TryComp(args.OtherEntity, out var tag);
         var tags = tag?.Tags ?? new();
 
         if (tags.Contains(Wall) && Prototype(args.OtherEntity) != null && Prototype(args.OtherEntity)!.ID != WallSnowCobblebrick)

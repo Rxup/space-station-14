@@ -13,7 +13,6 @@ using Content.Server.Body.Components;
 using Content.Server.Atmos.Components;
 using Content.Shared.Damage;
 using Content.Server.Heretic.Components;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Heretic.EntitySystems;
 
