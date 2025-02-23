@@ -1,8 +1,8 @@
 <Document>
-  # Радиоизотопный термоэлектрический генератор (РИТЭГ)
+  # Radioisotope Thermoelectric Generator (RTG)
 
   <Box>
-    <GuideEntityEmbed Entity="GeneratorRTG" Caption="РИТЭГ" />
+    <GuideEntityEmbed Entity="GeneratorRTG" Caption="RTG" />
   </Box>
 
   A Radioisotope Thermoelectric Generator (RTG) is a passive power source that generates power from the decay of radioactive isotopes.
@@ -15,10 +15,11 @@
 
   ## RTG Damage
   <Box>
-    <GuideEntityEmbed Entity="GeneratorRTGDamaged" Caption="Повреждённый РИТЭГ" />
+    <GuideEntityEmbed Entity="GeneratorRTGDamaged" Caption="Damaged RTG" />
   </Box>
-  Иногда РИТЭГи повреждаются.
-  Повереждённые РИТЭГи работают также как и обычные, но при этом они [color=yellow]радиоактивны[/color].
-  Это означает, что они более опасны, но вы можете использовать это, разместив поблизости накопители радиации, преобразующие излучение в ещё больше энергии.
-  Обычно, это намного выгоднее, ведь энергия все ещё бесплатная, пока у вас есть безопасное место чтобы разместить РИТЭГи.
+  If RTGs take enough damage, they can become damaged RTGs.
+  Damaged RTGs behave just like regular ones, but they're [color=yellow]radioactive[/color].
+
+  That means they're more dangerous, but on the bright side, you can put radiation collectors next to them to turn that radiation into more power.
+  This is usually more worthwhile, considering the power is still free, so long as you can find a safe spot to put the RTG(s) in.
 </Document>
