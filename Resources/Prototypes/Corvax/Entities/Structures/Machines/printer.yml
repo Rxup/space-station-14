@@ -26,10 +26,10 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - CorvaxDocuments
+    - CorvaxDocumentsPack
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - CorvaxDocumentsEmag
+    - CorvaxEmagDocumentsPack
   - type: Fixtures
     fixtures:
       fix1:
