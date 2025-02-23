@@ -17,7 +17,6 @@ using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Configuration;
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -124,7 +123,7 @@ public sealed class LavalandPlanetSystem : EntitySystem
             TerminatingOrDeleted(_lavalandPreloader.Value.Uid))
             return;
 
-        _mapManager.DeleteMap(_lavalandPreloader.Value.Id);
+        _map.DeleteMap(_lavalandPreloader.Value.Id);
         _lavalandPreloader = null;
     }
 
@@ -189,7 +188,8 @@ public sealed class LavalandPlanetSystem : EntitySystem
         var atmos = EnsureComp<MapAtmosphereComponent>(lavalandMap);
         _atmos.SetMapGasMixture(lavalandMap, new GasMixture(moles, prototype.Temperature), atmos);
 
-        _mapManager.SetMapPaused(lavalandMapId, true);
+        // Ensure that it's paused
+        _map.SetPaused(lavalandMapId, true);
 
         // Restricted Range
         // TODO: Fix restricted range...
@@ -247,8 +247,9 @@ public sealed class LavalandPlanetSystem : EntitySystem
             _shuttle.AddIFFFlag(grid, flag);
         }
         // Start!!1!!!
-        _mapManager.DoMapInitialize(lavalandMapId);
-        _mapManager.SetMapPaused(lavalandMapId, false);
+        _map.InitializeMap(lavalandMapId);
+        // also preload the planet itself
+        _biome.Preload(lavaland.Value, biome, Box2.CentredAroundZero(new Vector2(prototype.RestrictedRange, prototype.RestrictedRange)));
 
         // Finally add destination, only for Mining Shittles
         var dest = AddComp<FTLDestinationComponent>(lavalandMap);
