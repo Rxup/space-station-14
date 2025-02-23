@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:04:12
+  entityCount: 7088
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -35,7 +46,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 2
     components:
     - type: MetaData
@@ -24075,6 +24085,23 @@ entities:
     - type: Transform
       pos: -23.5,12.5
       parent: 2
+- proto: FlagNanoTrasen
+  entities:
+  - uid: 4499
+    components:
+    - type: Transform
+      pos: 15.5,7.5
+      parent: 2
+  - uid: 4500
+    components:
+    - type: Transform
+      pos: -5.5,-38.5
+      parent: 2
+  - uid: 4501
+    components:
+    - type: Transform
+      pos: 4.5,-38.5
+      parent: 2
 - proto: Flash
   entities:
   - uid: 3815
@@ -29182,23 +29209,6 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
-- proto: NTFlag
-  entities:
-  - uid: 4499
-    components:
-    - type: Transform
-      pos: 15.5,7.5
-      parent: 2
-  - uid: 4500
-    components:
-    - type: Transform
-      pos: -5.5,-38.5
-      parent: 2
-  - uid: 4501
-    components:
-    - type: Transform
-      pos: 4.5,-38.5
-      parent: 2
 - proto: NTHandyFlag
   entities:
   - uid: 4502

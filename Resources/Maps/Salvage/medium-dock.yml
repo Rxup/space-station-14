@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:34
+  entityCount: 121
+maps: []
+grids:
+- 50
+orphans:
+- 50
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -150,6 +161,14 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -542,6 +561,13 @@ entities:
     - type: Transform
       pos: -1.5,-1.5
       parent: 50
+- proto: FakeSpaceCash1000
+  entities:
+  - uid: 115
+    components:
+    - type: Transform
+      pos: -4.4192514,-4.5524406
+      parent: 50
 - proto: GoldOre1
   entities:
   - uid: 17
@@ -738,33 +764,21 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 50
-    - type: DeviceLinkSink
-      links:
-      - 99
   - uid: 96
     components:
     - type: Transform
       pos: -4.5,-5.5
       parent: 50
-    - type: DeviceLinkSink
-      links:
-      - 99
   - uid: 97
     components:
     - type: Transform
       pos: -3.5,-5.5
       parent: 50
-    - type: DeviceLinkSink
-      links:
-      - 99
   - uid: 98
     components:
     - type: Transform
       pos: -2.5,-5.5
       parent: 50
-    - type: DeviceLinkSink
-      links:
-      - 99
 - proto: SignalButton
   entities:
   - uid: 99
@@ -782,19 +796,12 @@ entities:
         - Pressed: Toggle
         87:
         - Pressed: Toggle
-- proto: SignMinerDock
+- proto: SignShipDock
   entities:
   - uid: 106
     components:
     - type: Transform
       pos: -2.5,2.5
-      parent: 50
-- proto: FakeSpaceCash1000
-  entities:
-  - uid: 115
-    components:
-    - type: Transform
-      pos: -4.4192514,-4.5524406
       parent: 50
 - proto: SpaceTickSpawner
   entities:

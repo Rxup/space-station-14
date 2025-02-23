@@ -1,0 +1,12 @@
+ent-ClothingOuterHardsuitSecurityPilot = security pilot hardsuit
+    .desc = A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor. Lightened especially for the pilot.
+ent-ClothingHeadHelmetHardsuitSecurityPilot = security pilot hardsuit helmet
+    .desc = Armored hardsuit helmet for security needs.
+ent-ClothingUniformJumpsuitSecurityPilot = security pilot jumpsuit
+    .desc = A jumpsuit specifically for a security pilot. Definitely not in the colors of the Syndicate...
+ent-ClothingShoesBootsMagSecurity = security magboots
+    .desc = Magnetic boots are standard equipment for security services for work in zero gravity and outer space.
+ent-ClothingHeadSecurityPilotHelmet = security pilot helmet
+    .desc = Standard security pilot gear. Protects the head from impacts.
+ent-ClothingHeadCapSecurityPilot = security pilot cap
+    .desc = The cap of the security service pilot... Contains signs of communism...
