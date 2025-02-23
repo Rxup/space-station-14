@@ -7137,18 +7137,16 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 3190
-      - 3162
-      - 3191
-      - 3163
-      - 3189
-      - 3188
-      - 3165
-      - 3166
-      - 3164
-      - 113
-      - 2354
       - 2353
+      - 2354
+      - 113
+      - 3164
+      - 3166
+      - 3165
+      - 3188
+      - 3189
+      - 3163
+      - 3191
   - uid: 31
     components:
     - type: Transform
@@ -7895,6 +7893,9 @@ entities:
     - type: Transform
       pos: 8.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
   - uid: 114
     components:
     - type: Transform
@@ -18534,11 +18535,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,0.5
       parent: 2
-  - uid: 1713
-    components:
-    - type: Transform
-      pos: 7.5,-5.5
-      parent: 2
   - uid: 1714
     components:
     - type: Transform
@@ -25198,6 +25194,23 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,-2.5
       parent: 5654
+- proto: FolderSpawner
+  entities:
+  - uid: 7470
+    components:
+    - type: Transform
+      pos: -9.6497345,1.5
+      parent: 2
+  - uid: 7471
+    components:
+    - type: Transform
+      pos: -19.137331,24.5
+      parent: 2
+  - uid: 7472
+    components:
+    - type: Transform
+      pos: -2.3018785,12.5
+      parent: 2
 - proto: FoodBoxDonkpocketTeriyaki
   entities:
   - uid: 2487
@@ -30494,6 +30507,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 11.5,-10.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 3164
@@ -30502,6 +30518,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 3165
@@ -30510,6 +30529,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 3166
@@ -30518,6 +30540,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-7.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 3167
@@ -30714,6 +30739,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 3189
@@ -30722,6 +30750,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-12.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 3190
@@ -30737,6 +30768,9 @@ entities:
     - type: Transform
       pos: 8.5,-9.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 30
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 3192
@@ -34407,6 +34441,26 @@ entities:
     - type: Transform
       pos: 23.678116,-6.4702315
       parent: 2
+- proto: NoticeBoard
+  entities:
+  - uid: 7473
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -13.5,10.5
+      parent: 2
+    - type: Storage
+      storedItems:
+        7474:
+          position: 0,0
+          _rotation: South
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 7474
 - proto: NuclearBomb
   entities:
   - uid: 3561
@@ -34764,6 +34818,27 @@ entities:
       content: >2
 
         [head=1]Я НЕ УМРУ В ТУАЛЕТЕ![/head]
+  - uid: 7474
+    components:
+    - type: Transform
+      parent: 7473
+    - type: Paper
+      content: >-
+        Важные цитаты, чтобы блеснуть перед начальством:[italic]
+
+        [bullet] Строить предположения, не зная всех обстоятельств дела, — крупнейшая ошибка. Это может повлиять на дальнейший ход рассуждений.
+
+        [bullet] Ничто так не обманчиво, как слишком очевидные факты.
+
+        [bullet] Простое объяснение всегда приходит в голову в последнюю очередь.
+
+        [bullet] Ничто не ново под луной. Все уже бывало прежде.
+
+        [bullet] ...
+
+        [/italic]
+    - type: Physics
+      canCollide: False
 - proto: PaperBin10
   entities:
   - uid: 3579
@@ -34781,6 +34856,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
+      parent: 2
+  - uid: 4212
+    components:
+    - type: Transform
+      pos: 7.5,-5.5
       parent: 2
   - uid: 6301
     components:
@@ -39289,13 +39369,6 @@ entities:
     - type: Transform
       pos: 15.749573,2.364502
       parent: 5654
-- proto: SheetPaper
-  entities:
-  - uid: 4212
-    components:
-    - type: Transform
-      pos: 6.7473125,-5.4191527
-      parent: 2
 - proto: SheetPGlass1
   entities:
   - uid: 4213
@@ -41741,6 +41814,11 @@ entities:
       parent: 5654
 - proto: Table
   entities:
+  - uid: 1713
+    components:
+    - type: Transform
+      pos: 7.5,-5.5
+      parent: 2
   - uid: 4506
     components:
     - type: Transform
@@ -42060,11 +42138,13 @@ entities:
   - uid: 4544
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 1.5,-12.5
       parent: 2
   - uid: 4545
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 1.5,-13.5
       parent: 2
   - uid: 4546
@@ -52536,6 +52616,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,9.5
       parent: 5654
+  - uid: 7468
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-12.5
+      parent: 2
+  - uid: 7469
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-13.5
+      parent: 2
 - proto: WindowReinforcedDirectional
   entities:
   - uid: 5567

@@ -103,7 +103,7 @@ internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleCo
         }
 
         // for probers:
-        var queryReactive = EntityQueryEnumerator<SharedGlimmerReactiveComponent, TransformComponent, PhysicsComponent>();
+        var queryReactive = EntityQueryEnumerator<GlimmerReactiveComponent, TransformComponent, PhysicsComponent>();
         while (queryReactive.MoveNext(out var reactive, out _, out var xform, out var physics))
         {
             // shoot out three bolts of lighting...

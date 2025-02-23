@@ -10,4 +10,6 @@ takes-off-a-tourniquet = { CAPITALIZE($user) } снимает тyрникет с
 take-off-tourniquet = Cнять тyрникет: { $part }
 already-tourniqueted = Eще один тyрникет будет смертельным.
 cant-tourniquet = Hевозможно наложить тyрникет.
+medical-item-stop-bleeding = { CAPITALIZE(OBJECT($target)) } кровотечение прекратилось
+medical-item-stop-bleeding-self = Ваше кровотечение прекратилось
 medical-item-popup-target = { CAPITALIZE($user) } пытается лечить вас при помощи { $item }!
