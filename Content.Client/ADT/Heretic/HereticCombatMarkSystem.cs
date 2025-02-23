@@ -21,11 +21,11 @@ public sealed partial class HereticCombatMarkSystem : EntitySystem
 
         if (sprite.LayerMapTryGet(0, out var l))
         {
-            sprite.LayerSetState(l, ent.Comp.Path.ToLower());
+            sprite.LayerSetState(l, ent.Comp.Path.ToString().ToLower());
             return;
         }
 
-        var rsi = new SpriteSpecifier.Rsi(new ResPath("ADT/Heretic/combat_marks.rsi"), ent.Comp.Path.ToLower());
+        var rsi = new SpriteSpecifier.Rsi(new ResPath("ADT/Heretic/combat_marks.rsi"), ent.Comp.Path.ToString().ToLower());
         var layer = sprite.AddLayer(rsi);
 
         sprite.LayerMapSet(0, layer);
