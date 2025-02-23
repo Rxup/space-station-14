@@ -65,15 +65,16 @@ public partial class WoundSystem
         if (!Resolve(woundable, ref component) || component.Wounds!.Count == 0)
             return false;
 
-        foreach (var wound in component.Wounds!.ContainedEntities)
+        foreach (var wound in GetWoundableWounds(woundable, component))
         {
-            if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
+            if (!TryComp<BleedInflicterComponent>(wound.Item1, out var bleeds))
                 continue;
 
             bleeds.BleedingScales = false;
             bleeds.IsBleeding = false;
 
-            Comp<WoundComponent>(wound).CanBeHealed = true;
+            wound.Item2.CanBleed = false;
+            wound.Item2.CanBeHealed = true;
         }
 
         return true;

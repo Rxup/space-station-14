@@ -59,7 +59,8 @@ public sealed class HealingSystem : EntitySystem
     {
         var dontRepeat = false;
 
-        if (!TryComp(args.Used, out HealingComponent? healing) || HasComp<BodyComponent>(entity))
+        // Consciousness check because some body entities don't have Consciousness
+        if (!TryComp(args.Used, out HealingComponent? healing) || HasComp<BodyComponent>(entity) && HasComp<ConsciousnessComponent>(entity))
             return;
 
         if (args.Handled || args.Cancelled)
