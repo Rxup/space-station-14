@@ -2,6 +2,7 @@
 using Content.Shared.Atmos;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Markers;
+using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -15,9 +16,7 @@ public sealed partial class LavalandMapPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;
 
-    [DataField] public string Name = "Lavaland Planet";
-
-    [DataField] public string OutpostName = "Lavaland Outpost";
+    [DataField] public LocId Name = "lavaland-planet-name-unknown";
 
     [DataField]
     public ResPath OutpostPath = new ResPath("");
@@ -27,6 +26,9 @@ public sealed partial class LavalandMapPrototype : IPrototype
 
     [DataField(required: true)]
     public ProtoId<LavalandRuinPoolPrototype> RuinPool;
+
+    [DataField(required: true)]
+    public EntityWhitelist ShuttleWhitelist = new();
 
     #region Atmos
 
@@ -44,10 +46,10 @@ public sealed partial class LavalandMapPrototype : IPrototype
     #region Biomes
 
     [DataField("biome", required: true)]
-    public ProtoId<BiomeTemplatePrototype> BiomePrototype = "Lava";
+    public ProtoId<BiomeTemplatePrototype> BiomePrototype;
 
-    [DataField("ore")]
-    public List<ProtoId<BiomeMarkerLayerPrototype>> OreLayers = new List<ProtoId<BiomeMarkerLayerPrototype>>()
+    [DataField("markers")]
+    public List<ProtoId<BiomeMarkerLayerPrototype>> OreLayers = new()
     {
         "OreIron",
         "OreCoal",
@@ -56,12 +58,10 @@ public sealed partial class LavalandMapPrototype : IPrototype
         "OreSilver",
         "OrePlasma",
         "OreUranium",
+        "OreBananium",
         "OreArtifactFragment",
         "OreDiamond",
     };
-
-    [DataField("mobs")]
-    public List<ProtoId<BiomeMarkerLayerPrototype>> MobLayers = new();
 
     [DataField("weather")]
     public List<ProtoId<LavalandWeatherPrototype>>? AvailableWeather;
