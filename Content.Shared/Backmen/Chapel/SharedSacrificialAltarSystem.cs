@@ -2,6 +2,7 @@
 using Content.Shared.Buckle.Components;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.DoAfter;
 using Content.Shared.Verbs;
 
 namespace Content.Shared.Backmen.Chapel;
@@ -10,6 +11,9 @@ public abstract class SharedSacrificialAltarSystem : EntitySystem
 {
     [Dependency]
     private readonly SharedCuffableSystem _cuffable = default!;
+
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -27,6 +31,11 @@ public abstract class SharedSacrificialAltarSystem : EntitySystem
         {
             args.Cancelled = true;
             return;
+        }
+        if (component.DoAfter is {} id)
+        {
+            _doAfterSystem.Cancel(id);
+            component.DoAfter = null;
         }
     }
 
