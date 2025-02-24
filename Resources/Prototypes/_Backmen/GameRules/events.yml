@@ -1,3 +1,12 @@
+- type: entity
+  parent: BaseGameRule
+  id: PsiScheduler
+  components:
+  - type: GameRule
+  - type: GlimmerStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: PsiBackmenEventsTable
+
 - type: entityTable
   id: PsiBackmenEventsTable
   table: !type:AllSelector
@@ -12,17 +21,15 @@
     - id: FreeProber
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
+    - id: NoosphericStorm
 
 
 - type: entityTable
   id: BasicBackmenEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    - !type:NestedSelector
-      tableId: PsiBackmenEventsTable
     - id: EvilTwinSpawn
     - id: FugitiveSpawn
-    - id: NoosphericStorm
     - id: BluespaceGoat
     - id: SpiderSpiderVampireSpawn
     - id: DiseaseOutbreak
@@ -107,6 +114,8 @@
     - type: StationEvent
       # Favor glimmer events just a little more than regular events.
       weight: 12
+      earliestStart: 1
+      reoccurrenceDelay: 1
     - type: GlimmerEvent
 
 ## Glimmer events
@@ -204,6 +213,12 @@
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+    - type: StationEvent
+      weight: 5
+      duration: 1
+      earliestStart: 50
+      minimumPlayers: 20
+      maxOccurrences: 2
     - type: GlimmerEvent
       minimumGlimmer: 500
       maximumGlimmer: 900
