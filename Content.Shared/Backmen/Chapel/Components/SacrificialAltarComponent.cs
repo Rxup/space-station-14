@@ -25,10 +25,10 @@ public sealed partial class SacrificialAltarComponent : Component
     public ProtoId<WeightedRandomPrototype> RewardPool = "PsionicArtifactPool";
 
     [DataField("rewardPoolChance")]
-    public float RewardPoolChance = 0.1f;
+    public float RewardPoolChance = 0.3f;
 
     [DataField("rewardPoolChanceBibleUser")]
-    public float RewardPoolChanceBibleUser = 0.5f;
+    public float RewardPoolChanceBibleUser = 0.8f;
 
     [DataField("bluespaceRewardMin")]
     public int BluespaceRewardMin = 4;
@@ -37,10 +37,10 @@ public sealed partial class SacrificialAltarComponent : Component
     public int BlueSpaceRewardMax = 8;
 
     [DataField("glimmerReductionMin")]
-    public int GlimmerReductionMin = 300;
+    public int GlimmerReductionMin = 500;
 
     [DataField("glimmerReductionMax")]
-    public int GlimmerReductionMax = 600;
+    public int GlimmerReductionMax = 900;
 
     [DataField("trapPrototype")]
     public EntProtoId TrapPrototype = "CrystalSoul";
