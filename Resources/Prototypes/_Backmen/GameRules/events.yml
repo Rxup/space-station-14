@@ -112,10 +112,9 @@
   abstract: true
   components:
     - type: StationEvent
-      # Favor glimmer events just a little more than regular events.
       weight: 12
       earliestStart: 1
-      reoccurrenceDelay: 1
+      reoccurrenceDelay: 5
     - type: GlimmerEvent
 
 ## Glimmer events
@@ -134,7 +133,7 @@
   components:
     - type: GlimmerEvent
       minimumGlimmer: 300
-      maximumGlimmer: 900
+      maximumGlimmer: 1000
     - type: NoosphericFryRule
 
 
@@ -157,8 +156,8 @@
   components:
     - type: GlimmerEvent
       minimumGlimmer: 400
-      glimmerBurnLower: 20
-      glimmerBurnUpper: 70
+      glimmerBurnLower: 50
+      glimmerBurnUpper: 200
     - type: MassMindSwapRule
 
 - type: entity
@@ -169,6 +168,8 @@
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
+      glimmerBurnLower: 90
+      glimmerBurnUpper: 120
       report: glimmer-event-report-signatures
     - type: GlimmerWispRule
 
@@ -177,6 +178,10 @@
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 1
   - type: GlimmerEvent
     minimumGlimmer: 0
     maximumGlimmer: 100
@@ -190,6 +195,10 @@
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+    - type: StationEvent
+      weight: 12
+      earliestStart: 1
+      reoccurrenceDelay: 1
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
