@@ -39,7 +39,6 @@
     pocket2: RadioSecurityPilotSupplyPod #backmen
   storage:
     back:
-    - BoxSurvivalSecurity
     - Flash
     - SecPilotSetLoadouts #backmen
    #- MagazinePistol  (backmen)
