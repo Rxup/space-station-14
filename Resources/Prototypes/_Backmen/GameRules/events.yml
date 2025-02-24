@@ -156,8 +156,8 @@
   components:
     - type: GlimmerEvent
       minimumGlimmer: 400
-      glimmerBurnLower: 20
-      glimmerBurnUpper: 70
+      glimmerBurnLower: 50
+      glimmerBurnUpper: 200
     - type: MassMindSwapRule
 
 - type: entity
@@ -168,6 +168,8 @@
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
+      glimmerBurnLower: 90
+      glimmerBurnUpper: 120
       report: glimmer-event-report-signatures
     - type: GlimmerWispRule
 
