@@ -1,9 +1,8 @@
 medical-item-finished-using = Вы закончили лечить при помощи { $item }
 medical-item-cant-use = Нет повреждений, которые можно вылечить при помощи { $item }
 medical-item-cant-use-rebell = Вы не можете помочь { $target }. Слишком много крови.
-medical-item-stop-bleeding-fully-rebell = Вы остановили кровотечение.
-medical-item-stop-bleeding-partially-rebell = Вы частично остановили кровотечение.
-medical-item-stop-bleeding = Кровотечение было остановлено.
+rebell-medical-item-stop-bleeding-fully = Вы остановили кровотечение.
+rebell-medical-item-stop-bleeding-partially = Вы частично остановили кровотечение.
 does-not-exist-rebell = Эта часть тела отсутствует.
 puts-on-a-tourniquet = { CAPITALIZE($user) } накладывает тyрникет на часть тела { $part }.
 takes-off-a-tourniquet = { CAPITALIZE($user) } снимает тyрникет с части тела { $part }.
