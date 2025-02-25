@@ -21,7 +21,8 @@
   - Security
   - Brig
   - Maintenance
-  - Service
+  - Engineering #backmen
+  - Atmospherics #backmen
   - External
   - Cryogenics
   special:
@@ -31,7 +32,6 @@
 - type: startingGear
   id: PilotGear
   equipment:
-    eyes: ClothingEyesGlassesSecurity
     id: PilotPDA
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat #backmen
@@ -40,4 +40,5 @@
   storage:
     back:
     - Flash
+    - SecPilotSetLoadouts #backmen
    #- MagazinePistol  (backmen)
