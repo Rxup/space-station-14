@@ -1,17 +1,59 @@
 - type: entity
-  parent: BaseItem
+  parent: MaterialBase
   id: CrystalNormality
   name: normality crystal
-  description: It looks... normal. Placeholder sprite.
+  description: It looks... normal.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Materials/materials.rsi
-    state: bluespace
-    color: gray
+    layers:
+      - state: normalitycrystal_3
+        map: ["base"] 
+  - type: Appearance
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      NormalityCrystal: 100
+  - type: Stack
+    stackType: NormalityCrystal
+    baseLayer: base
+    layerStates:
+      - normalitycrystal
+      - normalitycrystal_2
+      - normalitycrystal_3
+    count: 30
   - type: Tag
     tags:
       - NormalityCrystal
-
+  - type: Item
+    size: Normal
+- type: entity
+  parent: CrystalNormality
+  id: CrystalNormality1
+  name: normality crystal
+  suffix: 1
+  components:
+  - type: Stack
+    stackType: NormalityCrystal
+    count: 1
+  - type: Tag
+    tags:
+    - NormalityCrystal
+    - RawMaterial
+    
+- type: entity
+  parent: CrystalNormality
+  id: CrystalNormality10
+  name: normality crystal
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: NormalityCrystal
+    count: 10
+  - type: Tag
+    tags:
+    - NormalityCrystal  
+    
 - type: entity
   parent: BaseItem
   id: CrystalSoul
