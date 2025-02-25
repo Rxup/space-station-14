@@ -82,17 +82,21 @@
   id: EGMCWeaponInventoryMarine
   startingInventory:
     WeaponPistolACP14: 10
+    MagazinePistol45ACP: 10
     WeaponPistolG22: 10
-    MagazinePistol: 20
-    WeaponRifleAR18: 10
+    MagazinePistol9x17: 20
     WeaponRifleFamas: 10
+    MagazineRifleFamas556UEG: 10
+    WeaponRifleAR18: 10
     WeaponRifleG36: 10
     WeaponRifleM16A4: 10
-    MagazineRifle: 40
+    MagazineRifle556UEG: 40
     WeaponSubMachineGunMP5: 10
+    MagazinePistolSubMachineGun9x17: 10
     WeaponSubMachineGunMP7: 10
+    MagazinePistolSubMachineGun57x28: 10
     WeaponSubMachineGunVectorSpecial: 10
-    MagazinePistolSubMachineGun: 30
+    MagazinePistolSubMachineGunVector45ACP: 10
     WeaponSubMachineGunP90: 10
     MagazinePistolTopSubMachineGun: 20
     WeaponEarthGovXRay: 5
@@ -103,7 +107,7 @@
     WeaponRifleSR127: 5
     MagazineAntiMaterielRifleSR: 10
     WeaponPistolDEagle: 5
-    MagazineMagnumPistol: 10
+    MagazinePistol50AE: 10
     WeaponShotgun39: 10
     WeaponShotgun12: 10
     WeaponShotgunPaladin12: 10
@@ -411,7 +415,7 @@
   id: EGMCWeaponInventoryMarineSpecialits
   startingInventory:
     WeaponPistolVP78: 2
-    MagazinePistolHighCapacity: 20
+    MagazinePistol57x28Extd: 20
     WeaponSubMachineGunUzi: 2
     MagazinePistolBoxSubMachineGun: 20
     WeaponPistolDivet2: 2
@@ -419,7 +423,7 @@
     MagazinePistol345: 40
     WeaponEarthGovLaserMG: 5
     WeaponPistolDEagle: 5
-    MagazineMagnumPistol: 20
+    MagazinePistol50AE: 20
     WeaponShotgunZauer: 2
     MagazineShotgun: 20
     WeaponShotgun39: 10
@@ -433,15 +437,13 @@
     MagazineHeavyRifleV41: 10
     FirethrowerGun: 1
     FuelTankFirethrower: 10
-    MagazineBoxRifle: 20
     WeaponMinigun100: 1
     PowerpackRifle: 1
-    MagazineBoxLightRifle: 20
-    MagazineBoxPistol: 20
+    MagazineBoxRifle556UEG: 20
+    MagazineBoxRifle762x39: 20
+    MagazinePacketPistol9x17: 20
     MagazineBoxMagnum: 20
     MagazineBoxCaselessRifle: 20
-    MagazineBoxLightRifleBig: 20
-    MagazineBoxRifleBig: 20
 
 - type: entity
   parent: VendingMachine
@@ -479,11 +481,11 @@
     WeaponRevolverMateba: 5
     SpeedLoaderMagnum: 20
     WeaponPistolDEagle: 5
-    MagazineMagnumPistol: 20
+    MagazinePistol50AE: 20
     WeaponSniperGarand: 5
-    SpeedLoaderLightRifle: 20
+    MagazineBoxRifle762UEG: 5
     WeaponRifleSTG44: 5
-    MagazineLightRifle: 20
+    MagazineRifleLight762x39Ext: 20
     WeaponRifleDragunov: 5
     MagazineRifleLightSniper: 20
     WeaponSubMachineGunPPSH41: 5

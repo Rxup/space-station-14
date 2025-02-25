@@ -606,8 +606,6 @@
         amount: 4
       - id: MagazinePistolSubMachineGunVector45ACPExt
         amount: 2
-      - id: MagazinePistol57x28Extd
-        amount: 4
       - id: MagazineRifleLight762x39Ext # For AKMS, AKSU and STG44
         amount: 3
       - id: MagazineRifleLightSniper # For Dragunov
