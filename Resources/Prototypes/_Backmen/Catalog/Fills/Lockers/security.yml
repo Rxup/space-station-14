@@ -1,5 +1,5 @@
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
   id: GunSafeRifleAR18
   name: ar rifle safe
   components:
@@ -11,7 +11,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
   id: GunSafeSubMachineGunVector
   name: Vector safe
   components:
@@ -23,7 +23,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
   id: GunSafeShotgunShotgun39
   name: XM1014 safe
   components:
@@ -35,7 +35,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
   id: GunSafeShotgunTrenchgun
   name: trenchgun safe
   components:
@@ -47,7 +47,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
   id: GunSafeSubMachineGunMP5
   name: mp5 safe
   components:
@@ -59,7 +59,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
   id: GunSafeLaserCarbineUEG
   name: laser safe
   components:
@@ -67,3 +67,16 @@
     contents:
     - id: WeaponEarthGovLaserRifle
       amount: 3
+
+- type: entity
+  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
+  id: GunSafePistolGlock
+  name: G22 safe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolG22
+      amount: 4
+    - id: MagazinePistol9x17
+      amount: 8
