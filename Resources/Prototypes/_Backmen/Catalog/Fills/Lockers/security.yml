@@ -1,5 +1,5 @@
 - type: entity
-  parent: [GunSafe, BaseSecurityContraband]
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeRifleAR18
   name: ar rifle safe
   components:
@@ -11,7 +11,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseSecurityContraband]
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeSubMachineGunVector
   name: Vector safe
   components:
@@ -23,7 +23,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseSecurityContraband]
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeShotgunShotgun39
   name: XM1014 safe
   components:
@@ -35,7 +35,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseSecurityContraband]
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeShotgunTrenchgun
   name: trenchgun safe
   components:
@@ -47,7 +47,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseSecurityContraband]
+  parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeSubMachineGunMP5
   name: mp5 safe
   components:
@@ -59,7 +59,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: GunSafeBaseSecure
   id: GunSafeLaserCarbineUEG
   name: laser safe
   components:
