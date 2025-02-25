@@ -18,15 +18,15 @@
   minTemp: 400
   reactants:
     Ash:
-      amount: 5
+      amount: 10
     Water:
-      amount: 5
+      amount: 10
     Blood:
-      amount: 5
+      amount: 10
     Ectoplasm:
-      amount: 5
+      amount: 10
     Plasma:
-      amount: 5
+      amount: 10
       catalyst: true
   effects:
     - !type:CreateEntityReactionEffect

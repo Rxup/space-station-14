@@ -1,4 +1,3 @@
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -34,12 +33,7 @@ public sealed class AdminTestArenaSystem : EntitySystem
         }
 
         var path = new ResPath(ArenaMapPath);
-        if (!_loader.TryLoadMap(path, out var map, out var grids, new DeserializationOptions
-            {
-                InitializeMaps = true,
-                PauseMaps = false,
-                StoreYamlUids = true
-            }))
+        if (!_loader.TryLoadMap(path, out var map, out var grids))
             throw new Exception($"Failed to load admin arena");
 
         ArenaMap[admin.UserId] = map.Value.Owner;

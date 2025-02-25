@@ -154,11 +154,9 @@
           maxVol: 50
           reagents:
             - ReagentId: Ash
-              Quantity: 10
+              Quantity: 25
             - ReagentId: Necrosol
-              Quantity: 10
-            - ReagentId: Ectoplasm
-              Quantity: 5
+              Quantity: 25
     - type: GuideHelp
       guides:
       - MinorAntagonists

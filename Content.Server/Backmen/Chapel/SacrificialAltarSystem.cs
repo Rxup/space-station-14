@@ -20,7 +20,6 @@ using Content.Shared.Backmen.Chapel;
 using Content.Shared.Backmen.Chapel.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Backmen.Soul;
-using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Players;
 using Robust.Server.Audio;
@@ -54,57 +53,61 @@ public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
 
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string MaterialBluespace = "MaterialBluespace1";
     private void OnDoAfter(EntityUid uid, SacrificialAltarComponent component, SacrificeDoAfterEvent args)
     {
         _audioSystem.Stop(component.SacrificeStingStream,component.SacrificeStingStream);
         component.DoAfter = null;
 
-        if (args.Cancelled || args.Handled || args.Args.Target is not { } target)
+        if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        if (!_mindSystem.TryGetMind(target, out var mindId, out var mind))
+        // note: we checked this twice in case they could have gone SSD in the doafter time.
+        if (!TryComp<ActorComponent>(args.Args.Target.Value, out var actor))
             return;
 
-        _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Args.User):player} sacrificed {ToPrettyString(target):target} on {ToPrettyString(uid):altar}");
+        if (!_mindSystem.TryGetMind(args.Args.Target.Value, out var mindId, out var mind))
+            return;
 
-        var pool = _prototypeManager.Index(component.RewardPool);
+        _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Args.User):player} sacrificed {ToPrettyString(args.Args.Target.Value):target} on {ToPrettyString(uid):altar}");
+
+        if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(component.RewardPool, out var pool))
+            return;
 
         var chance = HasComp<BibleUserComponent>(args.Args.User) ? component.RewardPoolChanceBibleUser : component.RewardPoolChance;
 
-        var pos = Transform(uid).Coordinates;
-
         if (_robustRandom.Prob(chance))
-            Spawn(pool.Pick(), pos);
+            Spawn(pool.Pick(), Transform(uid).Coordinates);
 
-        var i = _robustRandom.Next(component.BluespaceRewardMin, component.BlueSpaceRewardMax);
+        int i = _robustRandom.Next(component.BluespaceRewardMin, component.BlueSpaceRewardMax);
 
         while (i > 0)
         {
-            Spawn(MaterialBluespace, pos);
+            Spawn("MaterialBluespace1", Transform(uid).Coordinates);
             i--;
         }
 
         int reduction = _robustRandom.Next(component.GlimmerReductionMin, component.GlimmerReductionMax);
         _glimmerSystem.Glimmer -= reduction;
 
-        var trap = Spawn(component.TrapPrototype, pos);
-        _mindSystem.TransferTo(mindId, trap, mind: mind);
-
-        if (TryComp<SoulCrystalComponent>(trap, out var crystalComponent))
-            crystalComponent.TrueName = Name(target);
-
-        _metaDataSystem.SetEntityName(trap, Loc.GetString("soul-entity-name", ("trapped", target)));
-        _metaDataSystem.SetEntityDescription(trap, Loc.GetString("soul-entity-name", ("trapped", target)));
-
-        if (TryComp<BodyComponent>(target, out var body))
+        if (actor.PlayerSession.ContentData()?.Mind != null)
         {
-            _bodySystem.GibBody(target, false, body, true);
+            var trap = Spawn(component.TrapPrototype, Transform(uid).Coordinates);
+            _mindSystem.TransferTo(mindId, trap);
+
+            if (TryComp<SoulCrystalComponent>(trap, out var crystalComponent))
+                crystalComponent.TrueName = Name(args.Args.Target.Value);
+
+            _metaDataSystem.SetEntityName(trap, Loc.GetString("soul-entity-name", ("trapped", args.Args.Target)));
+            _metaDataSystem.SetEntityDescription(trap, Loc.GetString("soul-entity-name", ("trapped", args.Args.Target)));
+        }
+
+        if (TryComp<BodyComponent>(args.Args.Target, out var body))
+        {
+            _bodySystem.GibBody(args.Args.Target.Value, false, body, false);
         }
         else
         {
-            QueueDel(target);
+            QueueDel(args.Args.Target.Value);
         }
     }
 
@@ -119,39 +122,39 @@ public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
         // can't sacrifice yourself
         if (agent == patient)
         {
-            _popups.PopupEntity(Loc.GetString("altar-failure-reason-self"), altar, agent, Shared.Popups.PopupType.MediumCaution);
+            _popups.PopupEntity(Loc.GetString("altar-failure-reason-self"), altar, agent, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
         // you need psionic OR bible user
-        if (!(HasComp<PsionicComponent>(agent) || HasComp<BibleUserComponent>(agent) || HasComp<GhostComponent>(agent)))
+        if (!HasComp<PsionicComponent>(agent) && !HasComp<BibleUserComponent>(agent))
         {
-            _popups.PopupEntity(Loc.GetString("altar-failure-reason-user"), altar, agent, Shared.Popups.PopupType.MediumCaution);
+            _popups.PopupEntity(Loc.GetString("altar-failure-reason-user"), altar, agent, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
         // and no golems or familiars or whatever should be sacrificing
-        if (!(HasComp<HumanoidAppearanceComponent>(agent) || HasComp<GhostComponent>(agent)))
+        if (!HasComp<HumanoidAppearanceComponent>(agent))
         {
-            _popups.PopupEntity(Loc.GetString("altar-failure-reason-user-humanoid"), altar, agent, Shared.Popups.PopupType.MediumCaution);
+            _popups.PopupEntity(Loc.GetString("altar-failure-reason-user-humanoid"), altar, agent, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
         if (!HasComp<PsionicComponent>(patient))
         {
-            _popups.PopupEntity(Loc.GetString("altar-failure-reason-target", ("target", patient)), altar, agent, Shared.Popups.PopupType.MediumCaution);
+            _popups.PopupEntity(Loc.GetString("altar-failure-reason-target", ("target", patient)), altar, agent, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
         if (!HasComp<HumanoidAppearanceComponent>(patient) && !HasComp<MetempsychosisKarmaComponent>(patient))
         {
-            _popups.PopupEntity(Loc.GetString("altar-failure-reason-target-humanoid", ("target", patient)), altar, agent, Shared.Popups.PopupType.MediumCaution);
+            _popups.PopupEntity(Loc.GetString("altar-failure-reason-target-humanoid", ("target", patient)), altar, agent, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
         if (!HasComp<ActorComponent>(patient))
         {
-            _popups.PopupEntity(Loc.GetString("altar-failure-reason-target-ssd", ("target", patient)), altar, agent, Shared.Popups.PopupType.MediumCaution);
+            _popups.PopupEntity(Loc.GetString("altar-failure-reason-target-ssd", ("target", patient)), altar, agent, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
