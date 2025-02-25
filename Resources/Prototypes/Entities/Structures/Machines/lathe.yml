@@ -576,7 +576,7 @@
     - BioGenMaterialsStatic
 
 - type: entity
-  parent: [BaseLathe, BaseSiloUtilizer] # Goob edit
+  parent: BaseLathe
   id: OreProcessor
   name: ore processor
   description: It produces sheets and ingots using ores.

@@ -16,7 +16,6 @@ public sealed partial class MaterialStorageControl : ScrollContainer
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Goobstation
-    private readonly SiloSystem _silo; // Goobstation
     private readonly TagSystem _tagSystem; // Goobstation
 
     private EntityUid? _owner;
@@ -28,7 +27,6 @@ public sealed partial class MaterialStorageControl : ScrollContainer
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        _silo = _entityManager.System<SiloSystem>(); // Goobstation
         _tagSystem = _entityManager.System<TagSystem>(); // Goobstation
     }
 
@@ -54,20 +52,7 @@ public sealed partial class MaterialStorageControl : ScrollContainer
         // Goobstation start
         Dictionary<string, int> storage;
         Dictionary<string, int> mats;
-        if (materialStorage.ConnectToSilo)
-        {
-            var silo = _silo.GetSilo(_owner.Value);
-            storage = silo != null
-                ? silo.Value.Comp.Storage.Select(pair => (pair.Key.Id, pair.Value)).ToDictionary()
-                : materialStorage.Storage.Select(pair => (pair.Key.Id, pair.Value)).ToDictionary();
-            SiloLabel.Visible = silo != null;
-        }
-        else
-        {
-            storage = materialStorage.Storage.Select(pair => (pair.Key.Id, pair.Value)).ToDictionary();
-            SiloLabel.Visible = false;
-        }
-
+        storage = materialStorage.Storage.Select(pair => (pair.Key.Id, pair.Value)).ToDictionary();
         mats = materialStorage.DisallowOreEjection
             ? FilterOutOres(storage)
             : storage;

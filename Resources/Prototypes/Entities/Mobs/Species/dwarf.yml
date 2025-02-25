@@ -80,15 +80,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-<<<<<<< HEAD
-=======
-  - type: FootPrints # WD EDIT
-    leftBarePrint: "footprint-left-bare-dwarf"
-    rightBarePrint: "footprint-right-bare-dwarf"
   - type: InnateMiningScannerViewer # Frontier
     pingSound: null
     viewRange: 3 # Goob value
->>>>>>> 7ccf11679f (dwarves feel ore (#1751))
 
 - type: entity
   parent: BaseSpeciesDummy
