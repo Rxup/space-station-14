@@ -143,7 +143,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
         var dest = docking.Destinations[args.Index];
         var map = dest.Map;
         // can't FTL if its already there or somehow failed whitelist
-        if (map == Transform(shuttle).MapID || !_shuttle.CanFTLTo(shuttle, map, ent))
+        if (map == Transform(shuttle).MapID)
             return;
 
         if (FindLargestGrid(map) is not {} grid)
