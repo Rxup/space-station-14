@@ -5,14 +5,14 @@
     # Backmen-ammonation-start
     - MagazinePistolSubMachineGun57x28
     - MagazinePistolSubMachineGunVector45ACP
+    - MagazinePistolSubMachineGun9x17
+    - MagazinePistolTopSubMachineGun
     - MagazineRifleFamas556UEG
+    - MagazineRifle556UEG
     - MagazineRifle762UEG
-    - MagazineRifle762UEGIncendiary
-    - MagazineRifleFamas556UEGIncendiary
     - MagazinePistol45ACP
-    - MagazinePistol45ACPincendiary
     - MagazinePistol57x28
-    - MagazinePistol57x28Incendiary
+    - MagazinePistol9x17
     - MagazinePistol57x28Extd
     - MagazineBoxHeavyRifle
     - MagazinePacketRifle762x39
@@ -21,39 +21,34 @@
     - MagazinePacketPistol57x28
     - MagazinePacketPistol50AE
     # Backmen-ammonation-end
-    - MagazineBoxLightRifle
     - MagazineBoxMagnum
-    - MagazineBoxPistol
-    - MagazineBoxRifle
-    - MagazineLightRifle
 
 # Shared between secfab and emagged protolathe
 - type: latheRecipePack
   id: BackmenAmmo
   recipes:
-  - MagazineBoxLightRifleIncendiary
   - MagazineBoxMagnumIncendiary
-  - MagazineBoxPistolIncendiary
-  - MagazineBoxRifleIncendiary
-  - MagazineGrenadeEmpty
-  - MagazineLightRifleIncendiary
-  - MagazinePistolIncendiary
-  - MagazineRifleIncendiary
   # Backmen-ammonation-start
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
+  - MagazinePacketPistolACPIncendiary
+  - MagazinePacketPistol9x17Incendiary
+  - MagazinePacketRifle762x39Incendiary
+  - MagazinePacketRifle556UEGIncendiary
+  - MagazinePacketRifle762UEGIncendiary
+  - MagazinePacketPistol57x28Incendiary
   - MagazineRifle762UEGIncendiary
   - MagazineRifleFamas556UEGIncendiary
+  - MagazineRifle556UEGIncendiary
   - MagazinePistol45ACPincendiary
   - MagazinePistol57x28Incendiary
+  - MagazinePistol9x17Incendiary
   # Backmen-ammonation-end
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary
-  - MagazineShotgunIncendiary
   - BoxShotgunIncendiary
-  - MagazinePistolSubMachineGunIncendiary
   - SpeedLoaderMagnumIncendiary
   - BoxShellTranquilizer
   - BoxBeanbag
