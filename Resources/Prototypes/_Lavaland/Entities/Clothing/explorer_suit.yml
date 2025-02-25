@@ -77,8 +77,7 @@
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: reinforced1-equipped-OUTERCLOTHING
   - type: ToggleableClothing
-    clothingPrototypes:
-      head: LavalandEquipmentExplorerHoodReinforced1
+    clothingPrototype: LavalandEquipmentExplorerHoodReinforced1
   - type: Construction
     graph: ExplorerSuit
     node: reinforced1
@@ -127,8 +126,7 @@
         Heat: 0.75
         Caustic: 0.50
   - type: ToggleableClothing
-    clothingPrototypes:
-      head: LavalandEquipmentExplorerHoodReinforced2
+    clothingPrototype: LavalandEquipmentExplorerHoodReinforced2
   - type: Construction
     graph: ExplorerSuit
     node: reinforced2
@@ -177,8 +175,7 @@
         Heat: 0.75
         Caustic: 0.50
   - type: ToggleableClothing
-    clothingPrototypes:
-      head: LavalandEquipmentExplorerHoodReinforced3
+    clothingPrototype: LavalandEquipmentExplorerHoodReinforced3
   - type: Construction
     graph: ExplorerSuit
     node: reinforced3
