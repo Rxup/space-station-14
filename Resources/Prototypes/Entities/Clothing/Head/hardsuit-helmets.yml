@@ -269,7 +269,7 @@
 
 #Captain's Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]   #Backmen edit
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCap
   name: captain's hardsuit helmet
   description: Special hardsuit helmet, made for the captain of the station.
@@ -748,7 +748,7 @@
 
 #Deathsquad Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, BaseCentcommContraband, ClothingHeadSuitWithLightBase ] # Corvax-Resprite
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ] # Corvax-Resprite
   id: ClothingHeadHelmetHardsuitDeathsquad
   name: deathsquad hardsuit helmet
   description: A robust helmet for special operations.

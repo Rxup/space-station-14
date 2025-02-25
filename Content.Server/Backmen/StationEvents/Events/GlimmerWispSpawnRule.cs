@@ -38,6 +38,9 @@ internal sealed class GlimmerWispRule : StationEventSystem<GlimmerWispRuleCompon
             var locations = EntityQueryEnumerator<GlimmerSourceComponent, TransformComponent>();
             while (locations.MoveNext(out var sUid, out _, out var transform))
             {
+                if(Paused(sUid))
+                    continue;
+
                 if (_stationSystem.GetOwningStation(sUid, transform) == station)
                 {
                     glimmerSources.Add(transform.Coordinates);
