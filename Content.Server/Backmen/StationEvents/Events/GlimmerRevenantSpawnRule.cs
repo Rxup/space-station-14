@@ -27,9 +27,6 @@ internal sealed class GlimmerRevenantRule : StationEventSystem<GlimmerRevenantRu
         var query = EntityQueryEnumerator<GlimmerSourceComponent,TransformComponent>();
         while (query.MoveNext(out var source, out _, out var transform))
         {
-            if(Paused(source))
-                continue;
-
             if (_stationSystem.GetOwningStation(source, transform) == station)
                 glimmerSources.Add(source);
         }

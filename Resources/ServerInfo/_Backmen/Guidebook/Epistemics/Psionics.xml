@@ -54,9 +54,6 @@
 [color=#a4885c]Снаряды Soulbreaker[/color] удаляют псионику у псиоников, в которых они попадают.
 
 <GuideEntityEmbed Entity="Ectoplasm" />
-  <GuideReagentEmbed Reagent="Ectoplasm"/>
 [color=#a4885c] Эктоплазма[/color], смешанная в мензурке с равными частями воды, золы, крови и плазмы, при достаточном нагревании даст нормальный кристалл. [color=#fcdf03]Используйте для этого горячую плиту.[/color]
-
-
 
 </Document>
