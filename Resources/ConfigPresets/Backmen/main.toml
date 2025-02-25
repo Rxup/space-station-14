@@ -70,7 +70,7 @@ easy_mode = false
 space_wind = true
 #space_wind_max_velocity = 22.0
 #tickrate = 7
-monstermos_rip_tiles = true
+monstermos_rip_tiles = false
 max_explosion_range = 5
 
 [physics]
