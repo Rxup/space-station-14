@@ -192,3 +192,13 @@
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.5
 
+- type: alarmThreshold
+  id: freezerTemperature
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 335.15 # T-38.15C (235) + 100
+  lowerBound: !type:AlarmThresholdSetting
+    threshold: 135.15 # T-38.15C (235) - 100
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8
+  lowerWarnAround: !type:AlarmThresholdSetting
+    threshold: 1.1

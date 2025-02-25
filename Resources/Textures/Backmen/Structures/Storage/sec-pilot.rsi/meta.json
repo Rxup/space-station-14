@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Saddam Hussein",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "sec"
+    },
+    {
+      "name": "sec_open"
+    },
+    {
+      "name": "sec_pilot_door"
+    },
+    {
+      "name": "welded"
+    }
+  ]
+}

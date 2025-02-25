@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:38
+  entityCount: 100
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   53: FloorGrayConcrete
@@ -123,6 +134,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: NavMap
@@ -141,8 +160,6 @@ entities:
     - type: DeviceList
       devices:
       - 51
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockExternalShuttleLocked
   entities:
   - uid: 3
@@ -184,9 +201,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 67
 - proto: CableApcExtension
   entities:
   - uid: 9
@@ -411,18 +425,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 74
   - uid: 48
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 74
 - proto: GasPassiveVent
   entities:
   - uid: 49
@@ -431,8 +439,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeStraight
   entities:
   - uid: 50
@@ -452,8 +458,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GeneratorRTG
   entities:
   - uid: 52

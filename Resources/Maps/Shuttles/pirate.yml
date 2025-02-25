@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:45
+  entityCount: 774
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -397,9 +408,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -597,6 +624,22 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,15.5
+      parent: 1
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 617
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: -6.5,-5.5
+      parent: 1
+- proto: BackmenVendingMachineSovietSoda
+  entities:
+  - uid: 618
+    components:
+    - type: Transform
+      pos: -9.5,-0.5
       parent: 1
 - proto: Bed
   entities:
@@ -3060,19 +3103,19 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-- proto: MagazineBoxAntiMateriel
-  entities:
-  - uid: 464
-    components:
-    - type: Transform
-      pos: -4.7390633,3.4536512
-      parent: 1
 - proto: MagazineBoxMagnum
   entities:
   - uid: 465
     components:
     - type: Transform
       pos: -4.394046,3.4745688
+      parent: 1
+- proto: MagazinePacketHeavyRifle50BMG
+  entities:
+  - uid: 464
+    components:
+    - type: Transform
+      pos: -4.7390633,3.4536512
       parent: 1
 - proto: MedkitFilled
   entities:
@@ -4038,22 +4081,6 @@ entities:
       name: turret box
     - type: Transform
       pos: -1.6820242,4.308466
-      parent: 1
-- proto: VendingMachineCigs
-  entities:
-  - uid: 617
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: -6.5,-5.5
-      parent: 1
-- proto: VendingMachineSovietSoda
-  entities:
-  - uid: 618
-    components:
-    - type: Transform
-      pos: -9.5,-0.5
       parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:

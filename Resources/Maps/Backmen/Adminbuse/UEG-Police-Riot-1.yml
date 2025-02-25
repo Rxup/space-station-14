@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:47
+  entityCount: 570
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   39: FloorDarkMini
@@ -669,9 +680,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -689,6 +716,14 @@ entities:
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -773,6 +808,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -847,6 +883,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -921,6 +958,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -995,6 +1033,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -1069,6 +1108,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -1142,6 +1182,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -1215,6 +1256,7 @@ entities:
       jobDepartments: []
       jobIcon: JobIconSecurityOfficer
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: PresetIdCard
@@ -1528,6 +1570,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -1550,6 +1593,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -1572,6 +1616,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -1594,6 +1639,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -1616,6 +1662,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -1638,6 +1685,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -1659,6 +1707,7 @@ entities:
     - type: RadioMicrophone
       broadcastChannel: Security
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     missingComponents:
@@ -2845,6 +2894,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3143,6 +3193,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3158,6 +3209,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3173,6 +3225,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3188,6 +3241,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3203,6 +3257,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3218,6 +3273,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage
@@ -3232,6 +3288,7 @@ entities:
     - type: Item
       size: Small
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
 - proto: EmergencyOxygenTankFilled
@@ -3596,6 +3653,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3651,6 +3716,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3726,6 +3799,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3781,6 +3862,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3963,7 +4052,7 @@ entities:
     - type: Transform
       pos: -3.3282561,-3.6117432
       parent: 1
-- proto: MagazineRifleIncendiary
+- proto: MagazineRifle556UEGIncendiary
   entities:
   - uid: 352
     components:
@@ -4133,6 +4222,7 @@ entities:
       fingerprints:
       - C7D79A6434D55C7D79189E0B337C7C77
     - type: Contraband
+      allowedJobs: []
       allowedDepartments:
       - Security
     - type: InsideEntityStorage

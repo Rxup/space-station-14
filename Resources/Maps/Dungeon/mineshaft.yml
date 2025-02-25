@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:28
+  entityCount: 1108
+maps:
+- 2
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   15: FloorBasalt
@@ -17,7 +28,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -106,10 +120,7 @@ entities:
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
     - type: RadiationGridResistance
-    - type: LoadedMap
     - type: SpreaderGrid
-    - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
     - type: DecalGrid
       chunkCollection:
@@ -2801,15 +2812,13 @@ entities:
     - type: Transform
       pos: 26.5,28.5
       parent: 2
-- proto: FloraRockSolid01
+- proto: FloraRockSolid
   entities:
   - uid: 205
     components:
     - type: Transform
       pos: 14.417985,10.609197
       parent: 2
-- proto: FloraRockSolid03
-  entities:
   - uid: 542
     components:
     - type: Transform
@@ -2822,19 +2831,7 @@ entities:
     - type: Transform
       pos: 29.534237,13.61823
       parent: 2
-- proto: FoodMeatBearCooked
-  entities:
-  - uid: 612
-    components:
-    - type: Transform
-      pos: 17.658442,29.564983
-      parent: 2
-  - uid: 634
-    components:
-    - type: Transform
-      pos: 17.526375,29.71021
-      parent: 2
-- proto: FoodMeatRatdoubleKebab
+- proto: FoodKebabSkewer
   entities:
   - uid: 1051
     components:
@@ -2847,6 +2844,18 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.68329763,25.391584
+      parent: 2
+- proto: FoodMeatBearCooked
+  entities:
+  - uid: 612
+    components:
+    - type: Transform
+      pos: 17.658442,29.564983
+      parent: 2
+  - uid: 634
+    components:
+    - type: Transform
+      pos: 17.526375,29.71021
       parent: 2
 - proto: FoodTartGapple
   entities:
@@ -3156,7 +3165,7 @@ entities:
     - type: Transform
       pos: 43.573917,7.488577
       parent: 2
-- proto: LeftLegBorgEngineer
+- proto: LeftLegBorg
   entities:
   - uid: 808
     components:
@@ -4667,8 +4676,6 @@ entities:
     - type: Transform
       pos: 42.660984,19.533558
       parent: 2
-- proto: TorsoBorgJanitor
-  entities:
   - uid: 835
     components:
     - type: Transform

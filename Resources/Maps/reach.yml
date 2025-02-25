@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:05:50
+  entityCount: 2498
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   1: FloorBlueCircuit
@@ -38,7 +49,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 2
     components:
     - type: MetaData
@@ -1249,6 +1259,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
@@ -1264,6 +1282,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -1279,10 +1305,26 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1894,6 +1936,27 @@ entities:
     components:
     - type: Transform
       pos: -0.5,10.5
+      parent: 2
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 2111
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 2113
+    components:
+    - type: Transform
+      pos: -2.5,-10.5
+      parent: 2
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 2125
+    components:
+    - type: Transform
+      pos: 1.5,3.5
       parent: 2
 - proto: BarSignTheLightbulb
   entities:
@@ -6168,6 +6231,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ClothingBackpackERTJanitor
   entities:
   - uid: 887
@@ -6223,20 +6294,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5246525,11.641014
-      parent: 2
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 907
-    components:
-    - type: Transform
-      pos: 3.506415,3.5395489
-      parent: 2
-- proto: ClothingNeckLGBTPin
-  entities:
-  - uid: 908
-    components:
-    - type: Transform
-      pos: 6.5183535,-8.5258465
       parent: 2
 - proto: ClothingNeckStethoscope
   entities:
@@ -6435,14 +6492,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,7.5
       parent: 2
-- proto: ComputerCargoShuttle
-  entities:
-  - uid: 938
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,10.5
-      parent: 2
 - proto: ComputerComms
   entities:
   - uid: 939
@@ -6525,6 +6574,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,15.5
+      parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 938
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,10.5
       parent: 2
 - proto: ComputerShuttle
   entities:
@@ -14596,26 +14653,12 @@ entities:
     - type: Transform
       pos: 10.5,1.5
       parent: 2
-- proto: VendingMachineCigs
-  entities:
-  - uid: 2111
-    components:
-    - type: Transform
-      pos: -3.5,-4.5
-      parent: 2
 - proto: VendingMachineClothing
   entities:
   - uid: 2112
     components:
     - type: Transform
       pos: 5.5,7.5
-      parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 2113
-    components:
-    - type: Transform
-      pos: -2.5,-10.5
       parent: 2
 - proto: VendingMachineCondiments
   entities:
@@ -14694,13 +14737,6 @@ entities:
     components:
     - type: Transform
       pos: -14.5,6.5
-      parent: 2
-- proto: VendingMachineSnack
-  entities:
-  - uid: 2125
-    components:
-    - type: Transform
-      pos: 1.5,3.5
       parent: 2
 - proto: VendingMachineSustenance
   entities:

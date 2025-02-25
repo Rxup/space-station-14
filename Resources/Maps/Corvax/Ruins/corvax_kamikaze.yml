@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:56
+  entityCount: 1683
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -929,6 +940,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -944,9 +963,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -8053,6 +8088,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -8120,7 +8163,7 @@ entities:
     - type: Openable
       opened: True
     - type: PressurizedSolution
-      sprayFizzinessThresholdRoll: 0.67950535
+      sprayFizzinessThresholdRoll: 0.21739809
     - type: ContainerContainer
       containers:
         solution@drink: !type:ContainerSlot
@@ -8141,7 +8184,7 @@ entities:
     - type: Openable
       opened: True
     - type: PressurizedSolution
-      sprayFizzinessThresholdRoll: 0.50197107
+      sprayFizzinessThresholdRoll: 0.7993737
     - type: ContainerContainer
       containers:
         solution@drink: !type:ContainerSlot
@@ -8339,6 +8382,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -8519,6 +8570,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -8531,7 +8590,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: MagazineBoxLightRifleBig
+- proto: MagazineBoxRifle762x39
   entities:
   - uid: 1319
     components:
@@ -10376,21 +10435,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.260035,4.570198
       parent: 1
-- proto: WeaponPistolViper
+- proto: WeaponPistolHIB88M4
   entities:
   - uid: 1317
     components:
     - type: Transform
       parent: 1316
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponShotgunBulldog
-  entities:
-  - uid: 1244
-    components:
-    - type: Transform
-      parent: 1243
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -10402,6 +10452,15 @@ entities:
       rot: 0.4014257279586958 rad
       pos: 35.41117,-3.8679833
       parent: 1
+- proto: WeaponShotgunZauer
+  entities:
+  - uid: 1244
+    components:
+    - type: Transform
+      parent: 1243
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: WeaponTurretXeno
   entities:
   - uid: 1557

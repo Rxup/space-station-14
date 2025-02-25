@@ -176,14 +176,16 @@
       collection: FootstepBounce
 #  - type: ReplacementAccent
 #    accent: kangaroo
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Kangaroo
   - type: LanguageKnowledge #backmen: languages
     speaks:
-    - SpaceMob
     - Kangaroo
     understands:
-    - SpaceMob
     - Kangaroo
 
 - type: entity

@@ -177,6 +177,7 @@ namespace Content.Server.Entry
                 // end-backmen: IoC
                 IoCManager.Resolve<IConnectionManager>().PostInit();
                 IoCManager.Resolve<MultiServerKickManager>().Initialize();
+                IoCManager.Resolve<CVarControlManager>().Initialize();
             }
         }
 

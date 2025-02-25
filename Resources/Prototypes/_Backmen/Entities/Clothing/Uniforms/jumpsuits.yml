@@ -891,3 +891,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecurityPilot
+  name: security pilot jumpsuit
+  description: A jumpsuit specifically for a security pilot. Definitely not in the colors of the Syndicate...
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/sec_pilot.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/sec_pilot.rsi

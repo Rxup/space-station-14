@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:58
+  entityCount: 617
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   29: FloorDark
@@ -296,11 +307,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 20.785248
           - 77.47229
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -326,11 +353,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14996
           moles:
           - 19.67328
           - 73.32768
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -389,6 +432,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 4
     components:
     - type: MetaData
@@ -405,6 +456,14 @@ entities:
         moles:
         - 393.0592
         - 1478.6512
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -590,6 +649,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,8.5
+      parent: 1
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 515
+    components:
+    - type: Transform
+      pos: 1.5,14.5
       parent: 1
 - proto: BedsheetMedical
   entities:
@@ -1680,6 +1746,14 @@ entities:
         moles:
         - 1.7107201
         - 6.37632
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3665,13 +3739,6 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-- proto: VendingMachineDonut
-  entities:
-  - uid: 515
-    components:
-    - type: Transform
-      pos: 1.5,14.5
-      parent: 1
 - proto: VendingMachineMedical
   entities:
   - uid: 516

@@ -67,6 +67,11 @@
       types:
         Asphyxiation: -2.0
   - type: Wagging
+  - type: Vocal
+    sounds:
+      Male: MaleFoxes
+      Female: FemaleFoxes
+      Unsexed: MaleFoxes
 
 
 - type: entity

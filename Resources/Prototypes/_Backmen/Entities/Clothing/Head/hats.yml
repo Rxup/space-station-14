@@ -380,3 +380,14 @@
     sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband]
+  id: ClothingHeadCapSecurityPilot
+  name: security pilot cap
+  description: The cap of the security service pilot... Contains signs of communism...
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/secpilotcap.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/secpilotcap.rsi
