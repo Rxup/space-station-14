@@ -46,6 +46,10 @@
     slotId: brain # backmen: surgery
   - type: Input
     context: "ghost"
+  - type: NerveSystem
+  - type: ConsciousnessRequired
+    identifier: "nerveSystem"
+    causesDeath: true
   - type: Brain
   - type: InputMover
   - type: Examiner

@@ -1,26 +1,30 @@
 ﻿- type: body
   name: "vulpkanin"
   id: Vulpkanin
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadVulpkanin
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoVulpkanin
+    chest:
+      part: ChestVulpkanin
       connections:
       - right arm
       - left arm
-      - right leg
-      - left leg
       - head
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
+    groin:
+      part: GroinVulpkanin
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganVulpkaninStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
