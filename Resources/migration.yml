@@ -605,6 +605,7 @@ GunSafeShotgunEnforcer: GunSafeShotgunShotgun39
 GunSafeShotgunKammerer: GunSafeShotgunTrenchgun
 GunSafeSubMachineGunWt550: GunSafeSubMachineGunMP5
 GunSafeLaserCarbine: GunSafeLaserCarbineUEG
+GunSafePistolMk58: GunSafePistolGlock
 ShotGunCabinetFilled: ShotGunCabinetFilledBackmen
 ShotGunCabinetFilledOpen: ShotGunCabinetFilledOpenBackmen
 

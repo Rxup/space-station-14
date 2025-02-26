@@ -1,9 +1,7 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Chapel.Components;
 
@@ -22,28 +20,28 @@ public sealed partial class SacrificialAltarComponent : Component
     public Entity<AudioComponent>? SacrificeStingStream;
 
     [DataField("rewardPool")]
-    public ProtoId<WeightedRandomPrototype> RewardPool = "PsionicArtifactPool";
+    public string RewardPool = "PsionicArtifactPool";
 
     [DataField("rewardPoolChance")]
-    public float RewardPoolChance = 0.3f;
+    public float RewardPoolChance = 0.1f;
 
     [DataField("rewardPoolChanceBibleUser")]
-    public float RewardPoolChanceBibleUser = 0.8f;
+    public float RewardPoolChanceBibleUser = 0.5f;
 
     [DataField("bluespaceRewardMin")]
-    public int BluespaceRewardMin = 4;
+    public int BluespaceRewardMin = 1;
 
     [DataField("bluespaceRewardMax")]
-    public int BlueSpaceRewardMax = 8;
+    public int BlueSpaceRewardMax = 4;
 
     [DataField("glimmerReductionMin")]
-    public int GlimmerReductionMin = 500;
+    public int GlimmerReductionMin = 30;
 
     [DataField("glimmerReductionMax")]
-    public int GlimmerReductionMax = 900;
+    public int GlimmerReductionMax = 60;
 
     [DataField("trapPrototype")]
-    public EntProtoId TrapPrototype = "CrystalSoul";
+    public string TrapPrototype = "CrystalSoul";
 
     /// <summary>
     ///     Antiexploit.

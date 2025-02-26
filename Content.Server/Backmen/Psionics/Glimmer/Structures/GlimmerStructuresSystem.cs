@@ -130,12 +130,9 @@ public sealed class GlimmerStructuresSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var q = EntityQueryEnumerator<GlimmerSourceComponent, MetaDataComponent>();
-        while (q.MoveNext(out var owner, out var source, out var md))
+        var q = EntityQueryEnumerator<GlimmerSourceComponent>();
+        while (q.MoveNext(out var owner, out var source))
         {
-            if(Paused(owner, md))
-                continue;
-
             if (!source.Active)
                 continue;
 
