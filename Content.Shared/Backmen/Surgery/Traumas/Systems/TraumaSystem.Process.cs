@@ -168,7 +168,7 @@ public partial class TraumaSystem
             if (bodyPart.Body.HasValue && _consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
                 _pain.TryAddPainModifier(nerveSys.Value, target, "BoneDamageImminent", 20f, time: TimeSpan.FromSeconds(12f));
 
-            _sawmill.Info(traumaApplied
+            _sawmill.Debug(traumaApplied
                 ? $"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: Bone damage."
                 : $"Tried to create a trauma on target: {target}, but no trauma was applied. Type: Bone damage.");
         }
