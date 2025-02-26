@@ -5,3 +5,11 @@
   color: "#53a9ff"
   stackEntity: MaterialBluespace
   price: 15
+
+- type: material
+  id: NormalityCrystal
+  name: normality crystal
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: normalitycrystal }
+  color: "#77e5f6"
+  stackEntity: CrystalNormality
+  price: 20

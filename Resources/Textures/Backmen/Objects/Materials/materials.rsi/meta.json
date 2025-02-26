@@ -6,15 +6,24 @@
     "x": 32,
     "y": 32
   },
-  "states": [
-    {
-      "name": "bluespace"
-    },
-    {
-      "name": "bluespace_2"
-    },
-    {
-      "name": "bluespace_3"
-    }
-  ]
+    "states": [
+        {
+            "name": "bluespace"
+        },
+        {
+            "name": "bluespace_2"
+        },
+        {
+            "name": "bluespace_3"
+        },
+        {
+            "name": "normalitycrystal"
+        },
+        {
+            "name": "normalitycrystal_2"
+        },
+        {
+            "name": "normalitycrystal_3"
+        }
+    ]
 }

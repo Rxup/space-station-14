@@ -25,7 +25,7 @@
         - bluespace
         - bluespace_2
         - bluespace_3
-      count: 5
+      count: 30
     - type: Item
       size: Normal
 
@@ -38,6 +38,20 @@
   - type: Stack
     stackType: Bluespace
     count: 1
+  - type: Tag
+    tags:
+    - BluespaceCrystal
+    - RawMaterial
+    
+- type: entity
+  parent: MaterialBluespace
+  id: MaterialBluespace10
+  name: bluespace crystal
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: Bluespace
+    count: 10
   - type: Tag
     tags:
     - BluespaceCrystal
