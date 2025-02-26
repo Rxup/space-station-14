@@ -102,28 +102,12 @@
     zeroVisible: false
 
 - type: entity
-  id: MagazinePistol45ACPuranium
-  name: pistol magazine uranium (.45 Auto)
-  parent: MagazinePistol45ACP
-  components:
-  - type: BallisticAmmoProvider
-    proto: BulletPistolACPUranium
-
-#- type: entity
-#  id: MagazinePistol45ACPpractice
-#  name: pistol magazine practice (.45 Auto)
-#  parent: MagazinePistol45ACP
-#  components:
-#  - type: BallisticAmmoProvider
-#    proto: BulletPistolACPPractice
-
-- type: entity
   id: MagazinePistol45ACPincendiary
   name: pistol magazine incendiary (.45 Auto)
   parent: MagazinePistol45ACP
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistolACPIncendiary
+    proto: CartridgePistolACPIncendiary
 
 - type: entity
   id: MagazinePistol57x28
@@ -152,28 +136,12 @@
     zeroVisible: false
 
 - type: entity
-  id: MagazinePistol57x28Uranium
-  name: pistol magazine uranium (5,7x28)
-  parent: MagazinePistol57x28
-  components:
-  - type: BallisticAmmoProvider
-    proto: BulletPistol57x28Uranium
-
-- type: entity
-  id: MagazinePistol57x28Practice
-  name: pistol magazine practice (5,7x28)
-  parent: MagazinePistol57x28
-  components:
-  - type: BallisticAmmoProvider
-    proto: BulletPistol57x28Practice
-
-- type: entity
   id: MagazinePistol57x28Incendiary
   name: pistol magazine incendiary (5,7x28)
   parent: MagazinePistol57x28
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistol57x28Incendiary
+    proto: CartridgePistol57x28Incendiary
 
 - type: entity
   id: MagazinePistol57x28Extd
@@ -240,7 +208,7 @@
   parent: MagazinePistol50AE
   components:
   - type: BallisticAmmoProvider
-    proto: BulletPistol50AEAP
+    proto: CartridgePistol50AEAP
 
 - type: entity
   id: MagazinePistol9x17

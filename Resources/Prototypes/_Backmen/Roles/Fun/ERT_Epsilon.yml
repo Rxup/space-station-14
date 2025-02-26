@@ -55,9 +55,10 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetERTLeader
-    outerClothing: ClothingOuterArmorBasic
-    suitstorage: WeaponPistolACP14
+    head: ClothingHeadHelmetXenonauten
+    mask: ClothingMaskTacticalGas
+    outerClothing: ClothingOuterXenonautenMedium
+    suitstorage: AirTankFilled
     ears: ClothingHeadsetCentComCCMTFEPS11
     eyes: ClothingEyesGlassesSunglasses
     belt: ClothingBeltSheathFilled
@@ -73,9 +74,10 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetERTEngineer
-    outerClothing: ClothingOuterArmorBasic
-    suitstorage: WeaponPistolACP14
+    head: ClothingHeadHelmetXenonauten
+    mask: ClothingMaskGasAtmos
+    outerClothing: ClothingOuterXenonautenMedium
+    suitstorage: AirTankFilled
     ears: ClothingHeadsetCentComCCMTFEPS11
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltChiefEngineerFilled
@@ -86,13 +88,14 @@
   id: ERTSecurityGearEggV3
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
-    back: WeaponRifleG36
+    back: WeaponSubMachineGunP90
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetERTSecurity
-    outerClothing: ClothingOuterArmorBasic
-    suitstorage: WeaponPistolACP14
+    head: ClothingHeadHelmetMVD
+    mask: ClothingMaskTacticalGas
+    outerClothing: ClothingOuterMVDVest
+    suitstorage: AirTankFilled
     ears: ClothingHeadsetCentComCCMTFEPS11
     pocket1: ClothingPounchMTFBattleFilled
     pocket2: ClothingPounchMTFSecurityFilled
@@ -104,17 +107,18 @@
   id: ERTMedicalGearEggV3
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
-    back: WeaponRifleG36
+    back: WeaponSubMachineGunMP5Tactical
     shoes: ClothingShoesBootsNedoSpetsnaz
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesNitrile
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetERTMedic
-    outerClothing: ClothingOuterArmorBasic
-    suitstorage: WeaponPistolACP14
+    head: ClothingHeadHelmetXenonauten
+    mask: ClothingMaskBreathMedicalSecurity
+    outerClothing: ClothingOuterVestArmorMedSecUEG
+    suitstorage: AirTankFilled
     ears: ClothingHeadsetCentComCCMTFEPS11
     pocket1: ClothingPounchMTFBattleFilled
     eyes: ClothingEyesHudMedical
     id: OBRGavnaMedicIDCard2
-    belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMedicalEps11Filled
     pocket2: ClothingPounchMTFMedicalFilled
 
