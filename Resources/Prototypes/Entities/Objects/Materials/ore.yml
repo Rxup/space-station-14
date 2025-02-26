@@ -301,6 +301,9 @@
           Quantity: 5
   - type: Item
     heldPrefix: bananium
+  - type: RadiationSource # Goobstation - yeag
+    intensity: 0.006
+    slope: 0.1
 
 - type: entity
   parent: BananiumOre
@@ -342,6 +345,9 @@
       Coal: 100
   - type: Item
     heldPrefix: coal
+  - type: RadiationSource
+    intensity: 0.02
+    slope: 0.1
 
 - type: entity
   parent: Coal
