@@ -1,43 +1,52 @@
 <Document>
-# Шаттлостроение
+  # Shuttle-craft
 
-Строительство шаттла — занятие простое и легкое, хотя и довольно хлопотное по ресурсам и времени. Оно отлично подойдёт тем, у кого много свободного времени и кому хочется вызова.
+  Shuttle construction is straightforward, albeit rather expensive and hard to pull off within an hour.
 
-## С чего начать
-<Box>Без чего никак:</Box>
-<Box>
-<GuideEntityEmbed Entity="Thruster"/>
-<GuideEntityEmbed Entity="Gyroscope"/>
-<GuideEntityEmbed Entity="ComputerShuttle"/>
-<GuideEntityEmbed Entity="SubstationBasic"/>
-<GuideEntityEmbed Entity="PortableGeneratorPacman" Caption="P.A.C.M.A.N." />
-</Box>
-<Box>
-<GuideEntityEmbed Entity="CableHVStack"/>
-<GuideEntityEmbed Entity="CableMVStack"/>
-<GuideEntityEmbed Entity="CableApcStack"/>
-<GuideEntityEmbed Entity="APCBasic"/>
-</Box>
+  It's a good activity if you have a significant amount of spare time on your hands and want a bit of a challenge.
 
-<Box>Опционально:</Box>
-<Box>
-<GuideEntityEmbed Entity="AirCanister"/>
-<GuideEntityEmbed Entity="LightTube"/>
-<GuideEntityEmbed Entity="AirlockGlassShuttle"/>
-<GuideEntityEmbed Entity="SMESBasic"/>
-</Box>
-<Box>
-<GuideEntityEmbed Entity="MobCorgiIan"/>
-<GuideEntityEmbed Entity="NuclearBomb"/>
-</Box>
+  ## Getting started
+  <Box>Required parts:</Box>
+  <Box>
+  <GuideEntityEmbed Entity="Thruster"/>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="ComputerShuttle"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="PortableGeneratorPacman" Caption="P.A.C.M.A.N." />
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="CableHVStack"/>
+  <GuideEntityEmbed Entity="CableMVStack"/>
+  <GuideEntityEmbed Entity="CableApcStack"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
 
-Возьмите стальные листы, металлические стержни, и выдвигайтесь в космос. Как только вы окажетесь в трех или более тайлах от станции, возьмите стержни в руку и кликните на пространство под собой или рядом. Это разместит в пространстве решетку, которую затем с помощью стальных листов можно будет превратить в пол. Расширяйте решётку, кликая стержнями в руке рядом с краем уже имеющейся решётки.
+  <Box>Optional parts:</Box>
+  <Box>
+  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="LightTube" Caption="lighting"/>
+  <GuideEntityEmbed Entity="AirlockGlassShuttle"/>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MobCorgiIan"/>
+  <GuideEntityEmbed Entity="NuclearBomb"/>
+  </Box>
 
-Как только вы разместите решётки в нужной форме, притащите ракетные двигатели и установите их по краям. Для работы они должны быть направлены в космос, а плитка перед ними не должна быть занята. Установите гироскоп где посчитаете нужным, и используйте генератор и подстанцию для организации электропитания. Проведите СВ провод от подстанции, постройте над ним стену, и разместите на ней ЛКП, который будет снабжать питанием приборы на шаттле.
+  ## Foundation
+  For this step you'll need steel sheets, metal rods, and floor tiles (optional).
 
-Наконец, установите консоль управления шатлом, и убедитесь что все двигатели и гироскопы получают питание. Если всё так — наши поздравления! У вас получился работоспособный шаттл. Сделать его пригодным для жизни и красивым предлагается читателю самому в качестве упражнения.
+  <Box>
+    <GuideEntityEmbed Entity="SheetSteel" Caption=""/>
+    <GuideEntityEmbed Entity="PartRodMetal" Caption=""/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="FloorTileItemSteel" Caption=""/>
+    <GuideEntityEmbed Entity="FloorTileItemDark" Caption=""/>
+    <GuideEntityEmbed Entity="FloorTileItemWhite" Caption=""/>
+  </Box>
 
-  Head out into space with steel sheets and metal rods in hand and click on the edge of the station to place lattice.
+  Head out into space with steel sheets and metal rods in hand, and click on the edge of the station to place lattice.
 
   Place a line of lattice about 3-4 tiles away from the station, then start building a platform with lattice.
 
