@@ -63,7 +63,7 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
         {
-            Sex.Female, new SoundCollectionSpecifier("PainScreamsShortMale") // TODO: Female screams. Temporary for now.
+            Sex.Female, new SoundCollectionSpecifier("PainScreamsShortFemale")
             {
                 Params = AudioParams.Default.WithVariation(0.04f),
             }
@@ -86,7 +86,7 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
         {
-            Sex.Female, new SoundCollectionSpecifier("AgonyScreamsMale") // TODO: Female screams. Temporary for now.
+            Sex.Female, new SoundCollectionSpecifier("AgonyScreamsFemale")
             {
                 Params = AudioParams.Default.WithVariation(0.04f),
             }
@@ -109,7 +109,7 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
         {
-            Sex.Female, new SoundCollectionSpecifier("PainShockScreamsMale") // TODO: Female screams. Temporary for now.
+            Sex.Female, new SoundCollectionSpecifier("PainShockScreamsFemale")
             {
                 Params = AudioParams.Default.WithVariation(0.05f),
             }
@@ -132,7 +132,7 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
         {
-            Sex.Female, new SoundCollectionSpecifier("CritWhimpersMale") // TODO: Female screams. Temporary for now.
+            Sex.Female, new SoundCollectionSpecifier("CritWhimpersFemale")
             {
                 Params = AudioParams.Default,
             }
@@ -155,7 +155,7 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
         {
-            Sex.Female, new SoundCollectionSpecifier("PainShockWhimpersMale") // TODO: Female screams. Temporary for now.
+            Sex.Female, new SoundCollectionSpecifier("PainShockWhimpersFemale")
             {
                 Params = AudioParams.Default,
             }
