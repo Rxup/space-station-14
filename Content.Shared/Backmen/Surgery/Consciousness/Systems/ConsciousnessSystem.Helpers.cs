@@ -48,17 +48,18 @@ public partial class ConsciousnessSystem
     /// Unless you are directly modifying a consciousness component (pls dont) you don't need to call this.
     /// </summary>
     /// <param name="target">Target entity</param>
-    /// <param name="consciousness">Consciousness component</param>
-    public bool CheckConscious(EntityUid target, ConsciousnessComponent? consciousness = null)
+    /// <param name="consciousness">ConsciousnessComponent</param>
+    /// <param name="mobState">MobStateComponent</param>
+    public bool CheckConscious(EntityUid target, ConsciousnessComponent? consciousness = null, MobStateComponent? mobState = null)
     {
-        if (!Resolve(target, ref consciousness))
+        if (!Resolve(target, ref consciousness, ref mobState, false))
             return false;
 
         var shouldBeUnconscious =
             consciousness.Consciousness > consciousness.Threshold || consciousness is { ForceUnconscious: true, ForceConscious: false };
 
         SetConscious(target, shouldBeUnconscious, consciousness);
-        UpdateMobState(target, consciousness);
+        UpdateMobState(target, consciousness, mobState);
 
         return shouldBeUnconscious;
     }
@@ -135,7 +136,7 @@ public partial class ConsciousnessSystem
     /// <param name="consciousness">consciousness component</param>
     private void SetConscious(EntityUid target, bool isConscious, ConsciousnessComponent? consciousness = null)
     {
-        if (!Resolve(target,ref consciousness) || _net.IsClient)
+        if (!Resolve(target,ref consciousness))
             return;
 
         consciousness.IsConscious = isConscious;
@@ -145,7 +146,7 @@ public partial class ConsciousnessSystem
 
     private void UpdateMobState(EntityUid target, ConsciousnessComponent? consciousness = null, MobStateComponent? mobState = null)
     {
-        if (!Resolve(target, ref consciousness, ref mobState) || _net.IsClient || TerminatingOrDeleted(target))
+        if (TerminatingOrDeleted(target) || !Resolve(target, ref consciousness, ref mobState))
             return;
 
         var newMobState = consciousness.IsConscious

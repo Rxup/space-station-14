@@ -15,6 +15,7 @@
       connections:
       - right arm
       - left arm
+      - groin
       - head
       organs:
         heart: OrganAnimalHeart

@@ -114,6 +114,9 @@ public partial class ConsciousnessSystem
 
     private void OnBodyPartAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartAddedEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (args.Part.Comp.Body == null ||
             !TryComp<ConsciousnessComponent>(args.Part.Comp.Body, out var consciousness))
             return;
@@ -131,6 +134,9 @@ public partial class ConsciousnessSystem
 
     private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (args.Part.Comp.Body == null || !TryComp<ConsciousnessComponent>(args.Part.Comp.Body.Value, out var consciousness))
             return;
 
@@ -147,6 +153,9 @@ public partial class ConsciousnessSystem
 
     private void OnOrganAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganAddedToBodyEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (!TryComp<ConsciousnessComponent>(args.Body, out var consciousness))
             return;
 
@@ -166,6 +175,9 @@ public partial class ConsciousnessSystem
 
     private void OnOrganRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganRemovedFromBodyEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (!TryComp<ConsciousnessComponent>(args.OldBody, out var consciousness))
             return;
 

@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.Surgery.Wounds;
 

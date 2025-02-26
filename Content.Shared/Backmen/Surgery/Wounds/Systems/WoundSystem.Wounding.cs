@@ -9,6 +9,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.Gibbing.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
@@ -27,13 +28,15 @@ public partial class WoundSystem
 
     private void InitWounding()
     {
-        SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
+        SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableInit);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
 
         SubscribeLocalEvent<WoundComponent, EntGotInsertedIntoContainerMessage>(OnWoundInserted);
         SubscribeLocalEvent<WoundComponent, EntGotRemovedFromContainerMessage>(OnWoundRemoved);
+
+        SubscribeLocalEvent<WoundableComponent, AttemptEntityContentsGibEvent>(OnWoundableContentsGibAttempt);
 
         SubscribeLocalEvent<WoundComponent, WoundSeverityChangedEvent>(OnWoundSeverityChanged);
         SubscribeLocalEvent<WoundableComponent, WoundableSeverityChangedEvent>(OnWoundableSeverityChanged);
@@ -43,7 +46,7 @@ public partial class WoundSystem
 
     #region Event Handling
 
-    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, ComponentInit componentInit)
+    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, MapInitEvent componentInit)
     {
         // Set root to itself.
         comp.RootWoundable = uid;
@@ -122,7 +125,7 @@ public partial class WoundSystem
         if (IsWoundableRoot(uid, component))
         {
             DestroyWoundable(uid, uid, component);
-            // We can call DestroyWoundable instead of ProcessBodyPartLoss, because body will be gibbed, and we may not process body part loss.
+            // We can call DestroyWoundable instead of ProcessBodyPartLoss, because the body will be gibbed, and we may not process body part loss.
         }
         else
         {
@@ -136,6 +139,11 @@ public partial class WoundSystem
                 DestroyWoundable(uid, uid, component);
             }
         }
+    }
+
+    private void OnWoundableContentsGibAttempt(EntityUid uid, WoundableComponent comp, ref AttemptEntityContentsGibEvent args)
+    {
+        args.ExcludedContainers = new List<string> { WoundContainerId, BoneContainerId };
     }
 
     private void DudeItsJustLikeMatrix(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)

@@ -313,7 +313,13 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             }
             else
             {
-                spriteComponent.LayerSetState(spriteLayer, $"{statePrefix}_{threshold}");
+                var rsi = spriteComponent.LayerGetActualRSI(spriteLayer);
+
+                // ... for some reason?
+                if (rsi != null && rsi.TryGetState($"{statePrefix}_{threshold}", out _))
+                {
+                    spriteComponent.LayerSetState(spriteLayer, $"{statePrefix}_{threshold}");
+                }
             }
         }
     }

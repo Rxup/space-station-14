@@ -92,7 +92,8 @@ public sealed partial class PainSystem : EntitySystem
     {
         var state = new NerveComponentState();
 
-        state.ParentedNerveSystem = GetNetEntity(comp.ParentedNerveSystem);
+        if (!TerminatingOrDeleted(comp.ParentedNerveSystem))
+            state.ParentedNerveSystem = GetNetEntity(comp.ParentedNerveSystem);
         state.PainMultiplier = comp.PainMultiplier;
 
         foreach (var ((modEntity, id), modifier) in comp.PainFeelingModifiers)

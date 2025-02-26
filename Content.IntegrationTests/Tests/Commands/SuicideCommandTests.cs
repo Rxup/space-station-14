@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Execution;
@@ -130,6 +131,9 @@ public sealed class SuicideCommandTests
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
+
+        if (entManager.HasComponent<ConsciousnessComponent>(player))
+            return; // Consciousness entities don't use damage to die
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
