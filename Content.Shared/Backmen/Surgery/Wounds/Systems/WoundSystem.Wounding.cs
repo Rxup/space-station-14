@@ -28,7 +28,7 @@ public partial class WoundSystem
 
     private void InitWounding()
     {
-        SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
+        SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableInit);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -46,7 +46,7 @@ public partial class WoundSystem
 
     #region Event Handling
 
-    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, ComponentInit componentInit)
+    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, MapInitEvent args)
     {
         // Set root to itself.
         comp.RootWoundable = uid;
@@ -578,18 +578,14 @@ public partial class WoundSystem
             Dirty(woundableEntity, woundableComp);
 
             _audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyPart.Body.Value);
-            _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
+            _appearance.SetData(woundableEntity,
+                WoundableVisualizerKeys.Wounds,
+                new WoundVisualizerGroupData(GetWoundableWounds(woundableEntity).Select(ent => GetNetEntity(ent.Item1)).ToList()));
 
             if (IsWoundableRoot(woundableEntity, woundableComp))
             {
                 DestroyWoundableChildren(woundableEntity, woundableComp);
-                var excludedStuff = new List<string>
-                {
-                    WoundContainerId,
-                    BoneContainerId,
-                };
-
-                _body.GibBody(bodyPart.Body.Value, excludedContainers: excludedStuff);
+                _body.GibBody(bodyPart.Body.Value);
 
                 QueueDel(woundableEntity); // More blood for the blood God!
             }
@@ -687,7 +683,9 @@ public partial class WoundSystem
         }
 
         Dirty(woundableEntity, woundableComp);
-        _appearance.SetData(woundableEntity, WoundableVisualizerKeys.Update, 0);
+        _appearance.SetData(woundableEntity,
+            WoundableVisualizerKeys.Wounds,
+            new WoundVisualizerGroupData(GetWoundableWounds(woundableEntity).Select(ent => GetNetEntity(ent.Item1)).ToList()));
 
         // Still does the funny popping, if the children are critted. for the funny :3
         DestroyWoundableChildren(woundableEntity, woundableComp);
@@ -923,13 +921,9 @@ public partial class WoundSystem
 
         Dirty(wound, component);
 
-        if (!TryComp<BodyPartComponent>(component.HoldingWoundable, out var bodyPart))
-            return;
-
-        if (bodyPart.Body == null)
-            return;
-
-        _appearance.SetData(component.HoldingWoundable, WoundableVisualizerKeys.Update, component.WoundSeverity);
+        _appearance.SetData(component.HoldingWoundable,
+            WoundableVisualizerKeys.Wounds,
+            new WoundVisualizerGroupData(GetWoundableWounds(component.HoldingWoundable).Select(ent => GetNetEntity(ent.Item1)).ToList()));
     }
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
@@ -974,7 +968,9 @@ public partial class WoundSystem
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
 
-        _appearance.SetData(woundable, WoundableVisualizerKeys.Update, component.WoundableIntegrity); // don't mind
+        _appearance.SetData(woundable,
+            WoundableVisualizerKeys.Wounds,
+            new WoundVisualizerGroupData(GetWoundableWounds(woundable).Select(ent => GetNetEntity(ent.Item1)).ToList()));
     }
 
     #endregion

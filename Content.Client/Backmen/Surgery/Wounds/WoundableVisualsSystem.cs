@@ -22,6 +22,8 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+
     private const float AltBleedingSpriteChance = 0.15f;
 
     public override void Initialize()
@@ -148,14 +150,12 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
     private void UpdateWoundableVisuals(EntityUid uid, WoundableVisualsComponent visuals, SpriteComponent bodySprite)
     {
-        var woundable = Comp<WoundableComponent>(uid);
-        if (woundable.Wounds is null)
+        if (!_appearance.TryGetData<WoundVisualizerGroupData>(uid, WoundableVisualizerKeys.Wounds, out var wounds))
             return;
 
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
-        foreach (var wound in woundable.Wounds.ContainedEntities)
+        foreach (var comp in wounds.GroupList.Select(GetEntity).Select(Comp<WoundComponent>))
         {
-            var comp = Comp<WoundComponent>(wound);
             if (comp.DamageGroup == null)
                 continue;
 
@@ -198,9 +198,13 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             if (!_body.TryGetParentBodyPart(uid, out var parentUid, out _))
                 return;
 
+            if (!_appearance.TryGetData<WoundVisualizerGroupData>(uid, WoundableVisualizerKeys.Wounds, out var wounds)
+                || !_appearance.TryGetData<WoundVisualizerGroupData>(parentUid.Value, WoundableVisualizerKeys.Wounds, out var parentWounds))
+                return;
+
             var woundList = new List<EntityUid>();
-            woundList.AddRange(Comp<WoundableComponent>(uid).Wounds!.ContainedEntities);
-            woundList.AddRange(Comp<WoundableComponent>(parentUid.Value).Wounds!.ContainedEntities);
+            woundList.AddRange(wounds.GroupList.Select(GetEntity));
+            woundList.AddRange(parentWounds.GroupList.Select(GetEntity));
 
             var totalBleeds = (FixedPoint2) 0;
             foreach (var wound in woundList)
@@ -228,8 +232,11 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
         else
         {
+            if (!_appearance.TryGetData<WoundVisualizerGroupData>(uid, WoundableVisualizerKeys.Wounds, out var wounds))
+                return;
+
             var totalBleeds = (FixedPoint2) 0;
-            foreach (var wound in Comp<WoundableComponent>(uid).Wounds!.ContainedEntities)
+            foreach (var wound in wounds.GroupList.Select(GetEntity))
             {
                 if (TryComp<BleedInflicterComponent>(wound, out var bleeds))
                     totalBleeds += bleeds.BleedingAmount;

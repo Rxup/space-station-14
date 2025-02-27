@@ -51,7 +51,23 @@ public enum WoundVisibility
 [Serializable, NetSerializable]
 public enum WoundableVisualizerKeys
 {
-    Update,
+    Wounds,
+}
+
+[Serializable, NetSerializable]
+public sealed class WoundVisualizerGroupData : ICloneable
+{
+    public List<NetEntity> GroupList;
+
+    public WoundVisualizerGroupData(List<NetEntity> groupList)
+    {
+        GroupList = groupList;
+    }
+
+    public object Clone()
+    {
+        return new WoundVisualizerGroupData(new List<NetEntity>(GroupList));
+    }
 }
 
 [ByRefEvent]
