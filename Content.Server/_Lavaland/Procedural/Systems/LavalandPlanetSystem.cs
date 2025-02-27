@@ -35,7 +35,7 @@ public sealed class LavalandPlanetSystem : EntitySystem
     /// <summary>
     /// Whether lavaland is enabled or not.
     /// </summary>
-    public bool LavalandEnabled;
+    public bool LavalandEnabled = true;
 
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -58,7 +58,6 @@ public sealed class LavalandPlanetSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PostGameMapLoad>(OnPreloadStart);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         _gridQuery = GetEntityQuery<MapGridComponent>();
