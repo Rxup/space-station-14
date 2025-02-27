@@ -8,7 +8,7 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Components;
 public sealed partial class BoneComponent : Component
 {
     [DataField, AutoNetworkedField, ViewVariables]
-    public EntityUid BoneWoundable = EntityUid.Invalid;
+    public EntityUid? BoneWoundable;
 
     [DataField, AutoNetworkedField, ViewVariables]
     public FixedPoint2 IntegrityCap = 40;

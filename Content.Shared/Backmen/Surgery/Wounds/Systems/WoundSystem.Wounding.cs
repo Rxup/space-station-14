@@ -28,7 +28,7 @@ public partial class WoundSystem
 
     private void InitWounding()
     {
-        SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableInit);
+        SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -46,7 +46,7 @@ public partial class WoundSystem
 
     #region Event Handling
 
-    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, MapInitEvent componentInit)
+    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, ComponentInit componentInit)
     {
         // Set root to itself.
         comp.RootWoundable = uid;
@@ -704,14 +704,13 @@ public partial class WoundSystem
             return;
 
         var bone = Spawn(BoneEntityId);
-
         if (!TryComp<BoneComponent>(bone, out var boneComp))
             return;
 
-        boneComp.BoneWoundable = uid;
-
         _transform.SetParent(bone, uid);
         _container.Insert(bone, comp.Bone!);
+
+        boneComp.BoneWoundable = uid;
     }
 
     private void TransferWoundDamage(EntityUid parent, EntityUid wound, WoundComponent woundComp, WoundableComponent? woundableComp = null)
@@ -857,6 +856,9 @@ public partial class WoundSystem
         WoundableComponent parentWoundable,
         WoundableComponent childWoundable)
     {
+        if (TerminatingOrDeleted(childEntity) || TerminatingOrDeleted(parentEntity))
+            return;
+
         parentWoundable.ChildWoundables.Remove(childEntity);
         childWoundable.ParentWoundable = null;
         childWoundable.RootWoundable = childEntity;

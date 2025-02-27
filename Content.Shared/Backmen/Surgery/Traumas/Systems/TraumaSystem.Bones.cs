@@ -45,13 +45,16 @@ public partial class TraumaSystem
         if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             return;
 
+        if (component.BoneWoundable == null)
+            return;
+
         if (!_pain.TryChangePainModifier(nerveSys.Value,
-                component.BoneWoundable,
+                component.BoneWoundable.Value,
                 "BoneDamage",
                 args.SeverityDelta * _bonePainModifiers[component.BoneSeverity]))
         {
             _pain.TryAddPainModifier(nerveSys.Value,
-                component.BoneWoundable,
+                component.BoneWoundable.Value,
                 "BoneDamage",
                 args.SeverityDelta * _bonePainModifiers[component.BoneSeverity]);
         }
@@ -129,14 +132,17 @@ public partial class TraumaSystem
             var ev = new BoneSeverityChangedEvent(bone, nearestSeverity);
             RaiseLocalEvent(bone, ref ev, true);
 
-            var bodyComp = Comp<BodyPartComponent>(boneComp.BoneWoundable);
-            if (bodyComp.Body.HasValue)
+            if (boneComp.BoneWoundable != null)
             {
-                if (boneComp.IntegrityCap / 1.6 > boneComp.BoneIntegrity &&
-                    nearestSeverity == BoneSeverity.Damaged &&
-                    _consciousness.TryGetNerveSystem(bodyComp.Body.Value, out var nerveSys))
+                var bodyComp = Comp<BodyPartComponent>(boneComp.BoneWoundable.Value);
+                if (bodyComp.Body.HasValue)
                 {
-                    _pain.PlayPainSound(bodyComp.Body.Value, nerveSys, boneComp.BoneBreakSound, AudioParams.Default.WithVolume(-8f));
+                    if (boneComp.IntegrityCap / 1.6 > boneComp.BoneIntegrity &&
+                        nearestSeverity == BoneSeverity.Damaged &&
+                        _consciousness.TryGetNerveSystem(bodyComp.Body.Value, out var nerveSys))
+                    {
+                        _pain.PlayPainSound(bodyComp.Body.Value, nerveSys, boneComp.BoneBreakSound, AudioParams.Default.WithVolume(-8f));
+                    }
                 }
             }
         }
@@ -147,7 +153,10 @@ public partial class TraumaSystem
 
     private void ApplyBoneDamageEffects(BoneComponent boneComp)
     {
-        var bodyPart = Comp<BodyPartComponent>(boneComp.BoneWoundable);
+        if (boneComp.BoneWoundable == null)
+            return;
+
+        var bodyPart = Comp<BodyPartComponent>(boneComp.BoneWoundable.Value);
 
         if (bodyPart.Body == null || !TryComp<BodyComponent>(bodyPart.Body, out var body))
             return;
