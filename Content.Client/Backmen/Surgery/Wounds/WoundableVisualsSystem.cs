@@ -154,7 +154,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             return;
 
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
-        foreach (var comp in wounds.GroupList.Select(GetEntity).Select(Comp<WoundComponent>))
+        foreach (var comp in wounds.GroupList.Select(GetEntity).Where(ent => !TerminatingOrDeleted(ent)).Select(Comp<WoundComponent>))
         {
             if (comp.DamageGroup == null)
                 continue;

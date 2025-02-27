@@ -221,7 +221,7 @@ public partial class WoundSystem
          FixedPoint2 severity,
          string damageGroup,
          WoundableComponent? woundable = null,
-         IEnumerable<TraumaType>? traumaList = null)
+         List<TraumaType>? traumaList = null)
     {
         if (!IsWoundPrototypeValid(woundProtoId))
             return false;
@@ -760,10 +760,10 @@ public partial class WoundSystem
         string damageGroup,
         WoundableComponent? woundableComponent = null,
         WoundComponent? woundComponent = null,
-        IEnumerable<TraumaType>? traumaList = null)
+        List<TraumaType>? traumaList = null)
     {
-        if (!Resolve(target, ref woundableComponent, false)
-            || !Resolve(wound, ref woundComponent, false)
+        if (!Resolve(target, ref woundableComponent)
+            || !Resolve(wound, ref woundComponent)
             || woundableComponent.Wounds!.Contains(wound))
             return false;
 
@@ -921,9 +921,12 @@ public partial class WoundSystem
 
         Dirty(wound, component);
 
-        _appearance.SetData(component.HoldingWoundable,
-            WoundableVisualizerKeys.Wounds,
-            new WoundVisualizerGroupData(GetWoundableWounds(component.HoldingWoundable).Select(ent => GetNetEntity(ent.Item1)).ToList()));
+        if (!TerminatingOrDeleted(component.HoldingWoundable))
+        {
+            _appearance.SetData(component.HoldingWoundable,
+                WoundableVisualizerKeys.Wounds,
+                new WoundVisualizerGroupData(GetWoundableWounds(component.HoldingWoundable).Select(ent => GetNetEntity(ent.Item1)).ToList()));
+        }
     }
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
