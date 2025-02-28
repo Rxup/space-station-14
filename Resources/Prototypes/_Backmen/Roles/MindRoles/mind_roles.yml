@@ -114,3 +114,18 @@
   components:
   - type: MindRole
   - type: BankMemory
+
+# Heretic
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleHeretic
+  name: Heretic Role
+#  description:
+  components:
+  - type: MindRole
+    antagPrototype: Heretic
+    roleType: SoloAntagonist
+    exclusiveAntag: true
+  - type: HereticRole
+  - type: RoleBriefing
+    briefing: heretic-role-briefing
