@@ -108,6 +108,7 @@
         enum.SurgeryUIKey.Key:
           type: SurgeryBui
     # end-backmen: surgery
+    - type: Fauna # Lavaland Change
 
 - type: entity
   parent: BaseMobCarp
