@@ -23,12 +23,3 @@
   copyright: "Original sound by https://voicebot.su/ - cut out clip fade in and out, converted to ogg."
   source: "https://voicebot.su/ru/category/lisa/"
 
-- files: ["foxcry02.ogg"]
-  license: "CC-BY-4.0"
-  copyright: "Original sound by https://quicksounds.com/library/sounds/ - cut out clip cleaned up, and converted to ogg."
-  source: "https://quicksounds.com/library/sounds/fox"
-
-- files: ["foxgrowl01.ogg"]
-  license: "CC-BY-4.0"
-  copyright: "Original sound by https://youtu.be/ - cut out clip cleaned up, and converted to ogg."
-  source: "https://youtu.be/FQ4wvGPy0uc"

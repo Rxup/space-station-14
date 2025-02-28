@@ -10,12 +10,6 @@
   id: FoxesCry
   files:
   - /Audio/Backmen/Voice/Foxes/foxcry01.ogg
-  - /Audio/Backmen/Voice/Foxes/foxcry02.ogg
-
-- type: soundCollection
-  id: FoxesGrowl
-  files:
-  - /Audio/Backmen/Voice/Foxes/foxgrowl01.ogg
 
 - type: soundCollection
   id: FoxesPurrs
