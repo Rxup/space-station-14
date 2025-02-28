@@ -32,7 +32,8 @@ public sealed class LavalandGenerationTest
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
         var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
-        pair.Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "Secret");
+        var gameMode = pair.Server.CfgMan.GetCVar(CCVars.GameLobbyDefaultPreset);
+        pair.Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);
@@ -87,6 +88,7 @@ public sealed class LavalandGenerationTest
         await pair.RunTicksSync(10);
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, gameMap);
+        pair.Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, gameMode);
         pair.ClearModifiedCvars();
         await pair.CleanReturnAsync();
     }
