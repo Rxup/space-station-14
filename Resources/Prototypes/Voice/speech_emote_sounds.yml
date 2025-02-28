@@ -40,6 +40,8 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FemaleHuman
@@ -82,6 +84,8 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: MaleReptilian
@@ -106,6 +110,8 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -130,6 +136,8 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: MaleSlime
@@ -174,6 +182,8 @@
       collection: MaleDeathGasp
   params:
     variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FemaleSlime
@@ -218,6 +228,8 @@
       collection: FemaleDeathGasp
   params:
     variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexVox
@@ -235,6 +247,8 @@
   params:
     variation: 0.125
     # We need vox sounds for the other emotes
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexDiona
@@ -257,6 +271,8 @@
       collection: DeathGasp
   params:
     variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexArachnid
@@ -281,6 +297,8 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -324,6 +342,8 @@
   params:
     variation: 0.125
     pitch: 0.75
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FemaleDwarf
@@ -367,6 +387,8 @@
   params:
     variation: 0.125
     pitch: 0.75
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexMoth
@@ -393,6 +415,8 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MothDeathGasp
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexSilicon
@@ -489,6 +513,8 @@
     collection: ZombieScreams
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Skeleton
@@ -503,6 +529,8 @@
     path: /Audio/Animals/mouse_squeak.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Cluwne
@@ -510,6 +538,8 @@
     collection: CluwneScreams
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Bear
@@ -517,6 +547,8 @@
     path: /Audio/Animals/bear.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FleshPudgeEmote
@@ -524,6 +556,8 @@
     path: /Audio/Animals/Flesh/flesh_pudge_dead.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FleshWormEmote
@@ -531,6 +565,8 @@
     path: /Audio/Animals/Flesh/flesh_worm_scream.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: FleshAbomEmote
@@ -538,6 +574,8 @@
     path: /Audio/Animals/Flesh/abom_scream.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Cerberus
@@ -545,6 +583,8 @@
     path: /Audio/Animals/cerberus.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Kangaroo
@@ -552,12 +592,16 @@
     path: /Audio/Animals/kangaroo_grunt.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Nymph
   sounds:
     Chirp:
       path: /Audio/Animals/nymph_chirp.ogg
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Parrot
@@ -565,6 +609,8 @@
     path: /Audio/Animals/parrot_raught.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow
 
 - type: emoteSounds
   id: Goat
@@ -572,3 +618,5 @@
     path: /Audio/Animals/goat_bah.ogg
     params:
       variation: 0.125
+    BCatMeow:
+      collection: BCatMeow

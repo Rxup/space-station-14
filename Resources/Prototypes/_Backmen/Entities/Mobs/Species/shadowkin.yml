@@ -118,7 +118,11 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
-
+  - type: Vocal
+    sounds:
+      Male: MaleShadowkin
+      Female: FemaleShadowkin
+      Unsexed: MaleShadowkin
 
 - type: entity
   save: false
