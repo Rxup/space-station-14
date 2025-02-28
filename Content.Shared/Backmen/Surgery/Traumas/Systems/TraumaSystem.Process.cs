@@ -195,7 +195,7 @@ public partial class TraumaSystem
                         -0.4f);
                 }
 
-                _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: NerveDamage.");
+                _sawmill.Debug( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: NerveDamage.");
             }
         }
 
@@ -217,7 +217,7 @@ public partial class TraumaSystem
                     _pain.TryAddPainModifier(nerveSys.Value, target, "Dismemberment", 25f, time: TimeSpan.FromSeconds(40f));
 
                 _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
-                _sawmill.Info( $"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
+                _sawmill.Debug($"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
             }
         }
     }

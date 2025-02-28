@@ -223,7 +223,7 @@ public partial class WoundSystem
          WoundableComponent? woundable = null,
          List<TraumaType>? traumaList = null)
     {
-        if (!IsWoundPrototypeValid(woundProtoId))
+        if (!IsWoundPrototypeValid(woundProtoId) || _net.IsClient)
             return false;
 
         if (!Resolve(uid, ref woundable))
