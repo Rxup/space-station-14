@@ -524,30 +524,33 @@
 
 - type: emoteSounds
   id: Mouse
-  sound:
-    path: /Audio/Animals/mouse_squeak.ogg
+  sounds:
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Cluwne
-  sound:
-    collection: CluwneScreams
+  sounds:
+    Scream:
+      path: /Audio/Voice/Cluwne/cluwnelaugh1.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Bear
-  sound:
-    path: /Audio/Animals/bear.ogg
+  sounds:
+    Scream:
+      path: /Audio/Animals/bear.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: FleshPudgeEmote
@@ -572,21 +575,23 @@
 
 - type: emoteSounds
   id: Cerberus
-  sound:
-    path: /Audio/Animals/cerberus.ogg
+  sounds:
+    Scream:
+      path: /Audio/Animals/cerberus.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Kangaroo
-  sound:
-    path: /Audio/Animals/kangaroo_grunt.ogg
+  sounds:
+    Scream:
+      path: /Audio/Animals/kangaroo_grunt.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Nymph
@@ -594,22 +599,24 @@
     Chirp:
       path: /Audio/Animals/nymph_chirp.ogg
     BCatMeow:
-      collection: BCatMeow
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
 
 - type: emoteSounds
   id: Parrot
-  sound:
-    path: /Audio/Animals/parrot_raught.ogg
+  sounds:
+    Scream:
+      path: /Audio/Animals/parrot_raught.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Goat
-  sound:
-    path: /Audio/Animals/goat_bah.ogg
+  sounds:
+    Scream:
+      path: /Audio/Animals/goat_bah.ogg
     BCatMeow:
-      collection: BCatMeowSound
-    params:
-      variation: 0.125
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
