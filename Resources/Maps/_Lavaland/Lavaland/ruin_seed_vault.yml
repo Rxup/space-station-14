@@ -30,7 +30,7 @@ entities:
     - type: MetaData
       name: grid
     - type: Transform
-      pos: -2.1063113,-1.4520701
+      pos: -0.5,-0.5
       parent: invalid
     - type: MapGrid
       chunks:

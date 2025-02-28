@@ -35,5 +35,5 @@ see_own_notes = true
 [net]
 tickrate = 20
 
-[lavaland] # Lavaland Change
-enabled = false
+#[lavaland] # Lavaland Change
+#enabled = false

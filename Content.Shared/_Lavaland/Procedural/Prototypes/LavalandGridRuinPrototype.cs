@@ -7,7 +7,7 @@ namespace Content.Shared._Lavaland.Procedural.Prototypes;
 /// Contains information about Lavaland ruin configuration.
 /// </summary>
 [Prototype]
-public sealed partial class LavalandRuinPrototype : IPrototype
+public sealed partial class LavalandGridRuinPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;
 
