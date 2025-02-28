@@ -9,6 +9,22 @@
   equipment:
     head: ClothingHeadCapSecurityPilot
     
+- type: loadout
+  id: SecurityPilotEngineerBeret
+  equipment:
+    head: ClothingHeadHatBeretEngineering
+    
+# Eyes 
+- type: loadout
+  id: SecurityPilotTechVisor
+  equipment:
+    eyes: ClothingEyesSecEngineerVisors
+
+- type: loadout
+  id: SecurityGlasses
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
 # Jumpsuit
 - type: loadout
   id: SecurityPilotJumpsuit
@@ -21,6 +37,11 @@
   equipment:
     outerClothing: ClothingOuterCoatBomber
 
+- type: loadout
+  id: Hi-Viz
+  equipment:
+    outerClothing: ClothingOuterSecurityVestHazard
+
 # Shoes
 - type: loadout
   id: SecurityMagBoots
@@ -31,3 +52,9 @@
   id: Laceup
   equipment:
     shoes: ClothingShoesBootsLaceup
+    
+# Belt
+- type: loadout
+  id: EngiBelt
+  equipment:
+    belt: ClothingBeltUtilityEngineering

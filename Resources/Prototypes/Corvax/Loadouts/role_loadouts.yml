@@ -23,7 +23,8 @@
   - SecurityBackpack
   - SecurityOuterClothingPilot #backmen
   - SecurityHeadPilot #backmen
-  - SecurityBelt
+  - SecurityClothingBeltPilot #backmen
+  - SecurityEyesPilot #backmen
   - SecurityShoesPilot #backmen
   - SurvivalSecurity
   - Trinkets
