@@ -27,7 +27,7 @@
     Weh:
       collection: Weh
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -57,7 +57,7 @@
     Weh:
       collection: Weh
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 # species
 - type: emoteSounds
@@ -112,7 +112,7 @@
     Weh:
       collection: Weh
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: MaleFoxes

@@ -64,7 +64,7 @@
   - /Audio/Items/bikehorn.ogg
 
 - type: soundCollection
-  id: BCatMeow
+  id: BCatMeowSound
   files:
   - /Audio/Corvax/Effects/Growl/growl1.ogg
   - /Audio/Corvax/Effects/Growl/growl2.ogg

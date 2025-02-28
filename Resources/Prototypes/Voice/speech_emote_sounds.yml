@@ -41,7 +41,8 @@
     DefaultDeathgasp:
       collection: MaleDeathGasp
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
+
 
 - type: emoteSounds
   id: FemaleHuman
@@ -85,7 +86,7 @@
     DefaultDeathgasp:
       collection: FemaleDeathGasp
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: MaleReptilian
@@ -111,7 +112,7 @@
     DefaultDeathgasp:
       collection: DeathGasp
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -137,7 +138,7 @@
     DefaultDeathgasp:
       collection: FemaleDeathGasp
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: MaleSlime
@@ -180,10 +181,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: FemaleSlime
@@ -226,10 +227,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexVox
@@ -244,11 +245,11 @@
       collection: Weh
     Hew:
       collection: Hew
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
     # We need vox sounds for the other emotes
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexDiona
@@ -269,10 +270,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexArachnid
@@ -298,7 +299,7 @@
     DefaultDeathgasp:
       collection: DeathGasp
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -339,11 +340,11 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
     pitch: 0.75
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: FemaleDwarf
@@ -384,11 +385,11 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
     pitch: 0.75
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: UnisexMoth
@@ -416,7 +417,7 @@
     DefaultDeathgasp:
       collection: MothDeathGasp
     BCatMeow:
-      collection: BCatMeow
+      collection: BCatMeowSound
 
 - type: emoteSounds
   id: UnisexSilicon
@@ -513,8 +514,6 @@
     collection: ZombieScreams
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Skeleton
@@ -527,28 +526,28 @@
   id: Mouse
   sound:
     path: /Audio/Animals/mouse_squeak.ogg
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Cluwne
   sound:
     collection: CluwneScreams
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Bear
   sound:
     path: /Audio/Animals/bear.ogg
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: FleshPudgeEmote
@@ -556,8 +555,6 @@
     path: /Audio/Animals/Flesh/flesh_pudge_dead.ogg
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: FleshWormEmote
@@ -565,8 +562,6 @@
     path: /Audio/Animals/Flesh/flesh_worm_scream.ogg
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: FleshAbomEmote
@@ -574,26 +569,24 @@
     path: /Audio/Animals/Flesh/abom_scream.ogg
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Cerberus
   sound:
     path: /Audio/Animals/cerberus.ogg
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Kangaroo
   sound:
     path: /Audio/Animals/kangaroo_grunt.ogg
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Nymph
@@ -607,16 +600,16 @@
   id: Parrot
   sound:
     path: /Audio/Animals/parrot_raught.ogg
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
 
 - type: emoteSounds
   id: Goat
   sound:
     path: /Audio/Animals/goat_bah.ogg
+    BCatMeow:
+      collection: BCatMeowSound
     params:
       variation: 0.125
-    BCatMeow:
-      collection: BCatMeow
