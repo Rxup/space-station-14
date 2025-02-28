@@ -4669,18 +4669,6 @@ entities:
     - type: Transform
       pos: 33.405064,12.760937
       parent: 2
-- proto: TorsoBorg
-  entities:
-  - uid: 807
-    components:
-    - type: Transform
-      pos: 42.660984,19.533558
-      parent: 2
-  - uid: 835
-    components:
-    - type: Transform
-      pos: 47.640297,19.235235
-      parent: 2
 - proto: VendingMachineChapel
   entities:
   - uid: 146

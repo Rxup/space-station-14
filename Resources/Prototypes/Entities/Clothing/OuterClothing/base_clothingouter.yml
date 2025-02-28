@@ -118,12 +118,20 @@
   - type: Item
     size: Huge
   - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    dismembermentChanceDeduction: 0.2 # having a suit on saves your limbs
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.95
-        Heat: 0.90
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.7
         Radiation: 0.25
   - type: ToggleableClothing
     slot: head

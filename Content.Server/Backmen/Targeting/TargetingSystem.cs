@@ -1,11 +1,12 @@
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
 
 namespace Content.Server.Backmen.Targeting;
 public sealed class TargetingSystem : SharedTargetingSystem
 {
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly WoundSystem _woundSystem = default!;
 
     public override void Initialize()
     {
@@ -32,22 +33,20 @@ public sealed class TargetingSystem : SharedTargetingSystem
         {
             foreach (var part in GetValidParts())
             {
-                component.BodyStatus[part] = TargetIntegrity.Dead;
+                component.BodyStatus[part] = WoundableSeverity.Loss;
                 changed = true;
             }
-            // I love groin shitcode.
-            component.BodyStatus[TargetBodyPart.Groin] = TargetIntegrity.Dead;
         }
-        else if (args.OldMobState == MobState.Dead && (args.NewMobState == MobState.Alive || args.NewMobState == MobState.Critical))
+        else if (args is { OldMobState: MobState.Dead, NewMobState: MobState.Alive or MobState.Critical })
         {
-            component.BodyStatus = _bodySystem.GetBodyPartStatus(uid);
+            component.BodyStatus = _woundSystem.GetWoundableStatesOnBodyPainFeels(uid);
             changed = true;
         }
 
-        if (changed)
-        {
-            Dirty(uid, component);
-            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(uid)), uid);
-        }
+        if (!changed)
+            return;
+
+        Dirty(uid, component);
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(uid)), uid);
     }
 }

@@ -3,7 +3,11 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 
 namespace Content.Shared.Chat;
 
@@ -11,6 +15,7 @@ public sealed class SharedSuicideSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
 
     /// <summary>
     /// Applies lethal damage spread out across the damage types given.
@@ -64,5 +69,24 @@ public sealed class SharedSuicideSystem : EntitySystem
 
         var damage = new DamageSpecifier(damagePrototype, lethalAmountOfDamage);
         _damageableSystem.TryChangeDamage(target, damage, true, origin: target, targetPart: TargetBodyPart.Head); // backmen
+    }
+
+    /// <summary>
+    /// kills a consciousness. lol
+    /// </summary>
+    public void KillConsciousness(Entity<ConsciousnessComponent> target)
+    {
+        foreach (var modifier in target.Comp.Modifiers)
+        {
+            _consciousness.RemoveConsciousnessModifer(target, modifier.Key.Item1, modifier.Key.Item2);
+        }
+
+        foreach (var multiplier in target.Comp.Multipliers)
+        {
+            _consciousness.RemoveConsciousnessMultiplier(target, multiplier.Key.Item1, multiplier.Key.Item2, target);
+        }
+
+        _consciousness.AddConsciousnessModifier(target, target, -target.Comp.Cap, target, "Suicide", ConsciousnessModType.Pain);
+        _consciousness.AddConsciousnessMultiplier(target, target, 0f, "Suicide", target, ConsciousnessModType.Pain);
     }
 }
