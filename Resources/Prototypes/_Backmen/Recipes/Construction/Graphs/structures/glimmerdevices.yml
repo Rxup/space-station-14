@@ -31,36 +31,9 @@
           conditions:
             - !type:EntityAnchored {}
           steps:
-            - tag: NormalityCrystal
-              icon:
-                sprite: Backmen/Objects/Materials/materials.rsi
-                state: bluespace
-              name: a normality crystal
-              doAfter: 1
-            - tag: NormalityCrystal
-              icon:
-                sprite: Backmen/Objects/Materials/materials.rsi
-                state: bluespace
-              name: a normality crystal
-              doAfter: 1
-            - tag: NormalityCrystal
-              icon:
-                sprite: Backmen/Objects/Materials/materials.rsi
-                state: bluespace
-              name: a normality crystal
-              doAfter: 1
-            - tag: NormalityCrystal
-              icon:
-                sprite: Backmen/Objects/Materials/materials.rsi
-                state: bluespace
-              name: a normality crystal
-              doAfter: 1
-            - tag: NormalityCrystal
-              icon:
-                sprite: Backmen/Objects/Materials/materials.rsi
-                state: bluespace
-              name: a normality crystal
-              doAfter: 1
+            - material: NormalityCrystal
+              amount: 5
+              doAfter: 5
             - tool: Welding
               doAfter: 5
 

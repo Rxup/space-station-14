@@ -1,5 +1,6 @@
 - type: stack
   id: Telecrystal
   name: telecrystal
-  icon: Objects/Specific/Syndicate/telecrystal.rsi
+  icon:  { sprite: Objects/Specific/Syndicate/telecrystal.rsi, state: telecrystal } # Backmen
   spawn: Telecrystal1
+  maxCount: 30 # Backmen
