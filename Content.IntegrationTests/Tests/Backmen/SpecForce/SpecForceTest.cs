@@ -81,7 +81,7 @@ public sealed class SpecForceTest
                 var ghostRoles = entMan.EntityQuery<GhostRoleComponent>().ToList();
                 foreach (var ghostRoleComp in ghostRoles)
                 {
-                    if (!entMan.Deleted(ghostRoleComp.Owner) || !entMan.HasComponent<SpecForceComponent>(ghostRoleComp.Owner))
+                    if (!ghostRoleComp.Owner.Valid)
                         continue;
 
                     await server.WaitPost(() =>

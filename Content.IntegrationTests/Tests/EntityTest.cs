@@ -246,6 +246,7 @@ namespace Content.IntegrationTests.Tests
                 "FugitiveCountdown", // Fugitive.
                 "ShipyardConsole", // Shipyard Console
                 "Eftpos", // attach to bank account on mapinit
+                "HierophantFieldGenerator", // Lavaland Change
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
             };
@@ -280,7 +281,7 @@ namespace Content.IntegrationTests.Tests
             {
                 // TODO fix ninja
                 // Currently ninja fails to equip their own loadout.
-                if (protoId == "MobHumanSpaceNinja" || protoId == "LavalandHierophantTelepad") // TODO Lavaland Change: fix telepad
+                if (protoId == "MobHumanSpaceNinja")
                     continue;
                 if (protoId == "MobHumanRXBZZFlamer") // TODO fix MobHumanRXBZZFlamer
                     continue;
