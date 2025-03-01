@@ -476,19 +476,10 @@ public sealed partial class ExplosionSystem
                 if (TryComp<BodyComponent>(entity, out var body) && HasComp<ConsciousnessComponent>(entity))
                 {
                     var bodyParts = _body.GetBodyChildren(entity, body).ToList();
-                    _robustRandom.Shuffle(bodyParts);
-                //_damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true);
-
-                    var targeted = bodyParts.FirstOrDefault();
-                    _damageableSystem.TryChangeDamage(targeted.Id, damage, ignoreResistances: true);
-
-                    bodyParts.Remove(targeted);
-
-                    var rest = damage / 2;
                     foreach (var bodyPart in bodyParts)
                     {
                         // Distribute the last damage on the other parts... for the cinematic effect :3
-                        _damageableSystem.TryChangeDamage(bodyPart.Id, rest / bodyParts.Count, ignoreResistances: true);
+                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count, ignoreResistances: true);
                     }
                 }
                 else

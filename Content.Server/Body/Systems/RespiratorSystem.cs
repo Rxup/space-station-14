@@ -359,7 +359,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             if (modifier.Value.Change < ent.Comp.DamageRecovery.GetTotal())
             {
-                _consciousness.RemoveConsciousnessModifer(ent, nerveSys.Value, "Suffocation");
+                _consciousness.RemoveConsciousnessModifier(ent, nerveSys.Value, "Suffocation");
             }
             else
             {

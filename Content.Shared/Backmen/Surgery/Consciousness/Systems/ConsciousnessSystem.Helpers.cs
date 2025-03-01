@@ -55,13 +55,13 @@ public partial class ConsciousnessSystem
         if (!Resolve(target, ref consciousness, ref mobState, false))
             return false;
 
-        var shouldBeUnconscious =
-            consciousness.Consciousness > consciousness.Threshold || consciousness is { ForceUnconscious: true, ForceConscious: false };
+        var shouldBeConscious =
+            consciousness.Consciousness > consciousness.Threshold || consciousness is { ForceUnconscious: false, ForceConscious: true };
 
-        SetConscious(target, shouldBeUnconscious, consciousness);
+        SetConscious(target, shouldBeConscious, consciousness);
         UpdateMobState(target, consciousness, mobState);
 
-        return shouldBeUnconscious;
+        return shouldBeConscious;
     }
 
     /// <summary>
@@ -136,17 +136,16 @@ public partial class ConsciousnessSystem
     /// <param name="consciousness">consciousness component</param>
     private void SetConscious(EntityUid target, bool isConscious, ConsciousnessComponent? consciousness = null)
     {
-        if (!Resolve(target,ref consciousness))
+        if (!Resolve(target, ref consciousness))
             return;
 
         consciousness.IsConscious = isConscious;
-
         Dirty(target, consciousness);
     }
 
     private void UpdateMobState(EntityUid target, ConsciousnessComponent? consciousness = null, MobStateComponent? mobState = null)
     {
-        if (TerminatingOrDeleted(target) || !Resolve(target, ref consciousness, ref mobState))
+        if (TerminatingOrDeleted(target) || !Resolve(target, ref consciousness, ref mobState) || _net.IsClient)
             return;
 
         var newMobState = consciousness.IsConscious
@@ -309,7 +308,7 @@ public partial class ConsciousnessSystem
     /// <param name="consciousness">Consciousness component</param>
     /// <param name="identifier">Identifier of the modifier to remove</param>
     /// <returns>Successful</returns>
-    public bool RemoveConsciousnessModifer(EntityUid target,
+    public bool RemoveConsciousnessModifier(EntityUid target,
         EntityUid modifierOwner,
         string identifier,
         ConsciousnessComponent? consciousness = null)

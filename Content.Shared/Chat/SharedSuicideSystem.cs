@@ -78,7 +78,7 @@ public sealed class SharedSuicideSystem : EntitySystem
     {
         foreach (var modifier in target.Comp.Modifiers)
         {
-            _consciousness.RemoveConsciousnessModifer(target, modifier.Key.Item1, modifier.Key.Item2);
+            _consciousness.RemoveConsciousnessModifier(target, modifier.Key.Item1, modifier.Key.Item2);
         }
 
         foreach (var multiplier in target.Comp.Multipliers)

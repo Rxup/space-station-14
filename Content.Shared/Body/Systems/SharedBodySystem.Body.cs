@@ -59,7 +59,7 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, IsEquippingAttemptEvent>(OnBeingEquippedAttempt);
 
         // to prevent people from falling immediately as rejuvenated
-        SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
     private void OnBodyInserted(Entity<BodyComponent> ent, ref EntInsertedIntoContainerMessage args)

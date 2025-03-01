@@ -24,6 +24,8 @@ public partial class TraumaSystem
     // In seconds
     private const float NerveDamageMultiplierTime = 8f;
 
+    private const float NerveDamageSeverityThreshold = 9f;
+
     #region Public API
 
     public IEnumerable<TraumaType> RandomTraumaChance(EntityUid target, EntityUid woundInflicter, FixedPoint2 severity, WoundableComponent? woundable = null)
@@ -109,6 +111,9 @@ public partial class TraumaSystem
         // dawg how
         if (woundable.WoundableIntegrity <= 0)
             return false;
+
+        if (severity < NerveDamageSeverityThreshold)
+            return false; // to prevent shit like disablers from killing people
 
         // literally dismemberment chance, but lower by default
         var chance =
@@ -212,10 +217,6 @@ public partial class TraumaSystem
         {
             if (!_wound.IsWoundableRoot(target, woundable) && woundable.ParentWoundable.HasValue)
             {
-                var bodyPart = Comp<BodyPartComponent>(target);
-                if (bodyPart.Body.HasValue && _consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
-                    _pain.TryAddPainModifier(nerveSys.Value, target, "Dismemberment", 25f, time: TimeSpan.FromSeconds(40f));
-
                 _wound.AmputateWoundable(woundable.ParentWoundable.Value, target, woundable);
                 _sawmill.Debug($"A new trauma (Caused by {severity} damage) was created on target: {target}. Type: Dismemberment.");
             }
