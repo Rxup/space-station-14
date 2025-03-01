@@ -12,6 +12,7 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -26,9 +27,9 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
@@ -154,7 +155,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
         _shuttle.FTLToDock(shuttle, Comp<ShuttleComponent>(shuttle), grid, priorityTag: docking.DockTag);
     }
 
-    private readonly ResPath _miningShuttlePath = new ResPath("/Maps/_Lavaland/mining.yml");
+    private readonly ResPath _miningShuttlePath = new("/Maps/_Lavaland/mining.yml");
 
     /// <summary>
     /// Load a new mining shuttle if it still doesn't exist
@@ -164,28 +165,35 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
         if (ent.Comp.Shuttle != null || UpdateShuttle(ent) || HasComp<DockingShuttleComponent>(ent.Comp.Shuttle))
             return;
 
-        _mapSystem.CreateMap(out var dummyMap);
-        _mapLoader.TryLoadGrid(dummyMap, _miningShuttlePath, out _);
-
         // Find the target
         var targetMap = Transform(ent).MapID;
         if (FindLargestGrid(targetMap) is not {} grid)
             return;
 
-        // Find the mining shuttle
-        var shuttle = _mapMan.GetAllGrids(dummyMap).FirstOrNull(x => HasComp<DockingShuttleComponent>(x));
-        if (!TryComp<DockingShuttleComponent>(shuttle, out var docking))
+        // Get called station
+        var station = _station.GetOwningStation(grid);
+        if (station == null)
+        {
+            return;
+        }
+
+        // Load grid
+        _mapSystem.CreateMap(out var dummyMap);
+        if (!_mapLoader.TryLoadGrid(dummyMap, _miningShuttlePath, out var shuttle))
         {
             Log.Error("Failed to call Mining shuttle since it failed to load.");
             return;
         }
 
-        // Add the station of the calling console
-        var station = _station.GetOwningStation(grid);
-        if (station != null)
+        // Find the mining shuttle
+        if (!TryComp<DockingShuttleComponent>(shuttle, out var docking))
         {
-            _station.AddGridToStation(station.Value, shuttle.Value);
+            Log.Error("Loaded mining shuttle had no DockingShuttleComponent!");
+            return;
         }
+
+        // Add the station of the calling console
+        _station.AddGridToStation(station.Value, shuttle.Value);
 
         // Finally FTL
         _shuttle.FTLToDock(shuttle.Value, Comp<ShuttleComponent>(shuttle.Value), grid, priorityTag: docking.DockTag);
@@ -193,8 +201,8 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
         UpdateUI(ent);
         Dirty(ent);
 
-        // shitcode because funny
-        Timer.Spawn(TimeSpan.FromSeconds(15), () => _mapMan.DeleteMap(dummyMap));
+        // shitcode because FTL takes time
+        Timer.Spawn(TimeSpan.FromSeconds(15), () => _mapSystem.DeleteMap(dummyMap));
     }
 
     private EntityUid? FindLargestGrid(MapId map)
