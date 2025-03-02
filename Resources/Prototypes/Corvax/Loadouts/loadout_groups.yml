@@ -46,6 +46,7 @@
   - TrooperHat
   - SecurityPilotHelmet
   - SecurityPilotCap
+  - SecurityPilotEngineerBeret
   
 - type: loadoutGroup
   id: SecurityOuterClothingPilot
@@ -57,4 +58,20 @@
   - ClothingOuterCoatSecurityOfficerOvercoat
   - SecurityOfficerWintercoat
   - CoatBomber
+  - Hi-Viz
+  
+- type: loadoutGroup
+  id: SecurityClothingBeltPilot
+  name: loadout-group-security-pilot-belt
+  loadouts:
+  - SecurityBelt
+  - SecurityWebbing
+  - EngiBelt
+  
+- type: loadoutGroup
+  id: SecurityEyesPilot
+  name: loadout-group-security-pilot-eyes
+  loadouts:
+  - SecurityPilotTechVisor
+  - SecurityGlasses
 #backmen end
