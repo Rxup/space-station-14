@@ -207,18 +207,12 @@ namespace Content.Server.Atmos.EntitySystems
 
             _timer -= UpdateTimer;
 
-            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent>();
-            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable))
+            var enumerator = EntityQueryEnumerator<BarotraumaComponent>();
+            while (enumerator.MoveNext(out var uid, out var barotrauma))
             {
-                var totalDamage = FixedPoint2.Zero;
-                foreach (var (barotraumaDamageType, _) in barotrauma.Damage.DamageDict)
-                {
-                    if (!damageable.Damage.DamageDict.TryGetValue(barotraumaDamageType, out var damage))
-                        continue;
-                    totalDamage += damage;
-                }
-                if (totalDamage >= barotrauma.MaxDamage)
-                    continue;
+                // TODO: bring it back. might be bad, but well
+                //if (totalDamage >= barotrauma.MaxDamage)
+                //    continue;
 
                 var pressure = 1f;
 
@@ -238,7 +232,7 @@ namespace Content.Server.Atmos.EntitySystems
                 if (pressure <= Atmospherics.HazardLowPressure)
                 {
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * Atmospherics.LowPressureDamage, true, false, canSever: false, partMultiplier: 0.5f); // backmen
+                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * Atmospherics.LowPressureDamage, true, false, partMultiplier: 0.5f); // backmen
                     if (!barotrauma.TakingDamage)
                     {
                         barotrauma.TakingDamage = true;
@@ -252,7 +246,7 @@ namespace Content.Server.Atmos.EntitySystems
                     var damageScale = MathF.Min(((pressure / Atmospherics.HazardHighPressure) - 1) * Atmospherics.PressureDamageCoefficient, Atmospherics.MaxHighPressureDamage);
 
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * damageScale, true, false, canSever: false, partMultiplier: 0.5f); // backmen
+                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * damageScale, true, false, partMultiplier: 0.5f); // backmen
                     RaiseLocalEvent(uid, new MoodEffectEvent("MobHighPressure")); // backmen: mood
 
                     if (!barotrauma.TakingDamage)

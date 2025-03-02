@@ -188,7 +188,7 @@
   - type: Projectile
     damage:
       types:
-        Heat: 5
+        Heat: 1
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
     forceSound: true
@@ -234,7 +234,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 5
+        Heat: 1
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -1020,7 +1020,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 2
+        Heat: 1
     soundHit:
       collection: WeakHit
     forceSound: true

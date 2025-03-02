@@ -23,6 +23,8 @@
     - type: Clothing
       sprite: Corvax/Sponsor/Clothing/Mask/atmosian.rsi
     - type: Armor
+      coverage:
+      - Head
       modifiers:
         coefficients:
           Heat: 0.80
@@ -156,6 +158,13 @@
     - type: Clothing
       sprite: Corvax/Sponsor/NEKISH/Clothing/OuterClothing/Coats/hos_overcoat.rsi
     - type: Armor
+      coverage:
+      - Chest
+      - Groin
+      - Arm
+      - Tail
+      - Other
+      dismembermentChanceDeduction: 0.14
       modifiers:
         coefficients:
           Blunt: 0.7
