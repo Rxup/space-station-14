@@ -124,7 +124,7 @@ public sealed class OracleSystem : EntitySystem
     };
 
     [ValidatePrototypeId<EntityTablePrototype>]
-    private const string ResearchDisk5000 = "MaintToolsTable";
+    private const string ResearchDisk5000 = "OraculStandartTable";
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string CrystalNormality = "CrystalNormality";

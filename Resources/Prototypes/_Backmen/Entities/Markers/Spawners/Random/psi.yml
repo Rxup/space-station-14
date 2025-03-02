@@ -1,0 +1,12 @@
+- type: entityTable
+  id: OraculStandartTable
+  table: !type:AllSelector
+    children:
+    - id: TechnologyDiskRare
+      prob: 0.10
+      weight: 0.5
+    - id: ResearchDisk5000
+    - id: MaterialBluespace1
+      prob: 0.50
+      amount: !type:RangeNumberSelector
+        range: 1, 4
