@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:41:03
-  entityCount: 3372
+  time: 03/02/2025 19:02:46
+  entityCount: 3367
 maps: []
 grids:
 - 2
@@ -2145,7 +2145,7 @@ entities:
       pos: 25.5,0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -9745.599
+      secondsUntilStateChange: -9827.165
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2238,7 +2238,7 @@ entities:
       pos: 18.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -23578.021
+      secondsUntilStateChange: -23659.588
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4267,6 +4267,16 @@ entities:
       parent: 2
 - proto: CableHV
   entities:
+  - uid: 12
+    components:
+    - type: Transform
+      pos: 26.5,-17.5
+      parent: 2
+  - uid: 13
+    components:
+    - type: Transform
+      pos: 28.5,-17.5
+      parent: 2
   - uid: 503
     components:
     - type: Transform
@@ -4736,11 +4746,6 @@ entities:
     components:
     - type: Transform
       pos: 27.5,-18.5
-      parent: 2
-  - uid: 597
-    components:
-    - type: Transform
-      pos: 27.5,-17.5
       parent: 2
 - proto: CableMV
   entities:
@@ -5831,11 +5836,17 @@ entities:
       parent: 2
 - proto: CableTerminal
   entities:
-  - uid: 815
+  - uid: 11
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 27.5,-17.5
+      pos: 26.5,-17.5
+      parent: 2
+  - uid: 14
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 28.5,-17.5
       parent: 2
 - proto: Catwalk
   entities:
@@ -6063,41 +6074,6 @@ entities:
     components:
     - type: Transform
       pos: 29.5,-21.5
-      parent: 2
-  - uid: 862
-    components:
-    - type: Transform
-      pos: 31.5,-14.5
-      parent: 2
-  - uid: 863
-    components:
-    - type: Transform
-      pos: 30.5,-12.5
-      parent: 2
-  - uid: 864
-    components:
-    - type: Transform
-      pos: 30.5,-14.5
-      parent: 2
-  - uid: 865
-    components:
-    - type: Transform
-      pos: 30.5,-13.5
-      parent: 2
-  - uid: 866
-    components:
-    - type: Transform
-      pos: 31.5,-12.5
-      parent: 2
-  - uid: 867
-    components:
-    - type: Transform
-      pos: 30.5,-11.5
-      parent: 2
-  - uid: 868
-    components:
-    - type: Transform
-      pos: 29.5,-11.5
       parent: 2
 - proto: Chair
   entities:
@@ -7353,7 +7329,7 @@ entities:
       pos: 16.5,-11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -29781.766
+      secondsUntilStateChange: -29863.332
       state: Closing
     - type: DeviceNetwork
       deviceLists:
