@@ -11,7 +11,6 @@
   id: PsiBackmenEventsTable
   table: !type:AllSelector
     children:
-    - id: GlimmerWispSpawn
     - id: NoosphericZap
     - id: NoosphericFry
     - id: PsionicCatGotYourTongue
@@ -19,6 +18,7 @@
     - id: GlimmerWispSpawn
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
+    - id: GlimmerBreaker
     - id: NoosphericStorm
     - !type:NestedSelector
       tableId: FreeProberEventsTable
@@ -244,7 +244,7 @@
     - type: FreeProberRule
 
 - type: entity
-  id: GlimmerBreak
+  id: GlimmerBreaker
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
@@ -252,9 +252,9 @@
     weight: 12
     earliestStart: 1
     reoccurrenceDelay: 1
-    minimumPlayers: 10
+    minimumPlayers: 5
   - type: GlimmerEvent
-    minimumGlimmer: 50
+    minimumGlimmer: 30
     maximumGlimmer: 500
     report: glimmer-event-breaker
   - type: GlimmerBreakerRule
