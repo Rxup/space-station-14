@@ -185,23 +185,27 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
             return;
         }
 
-        // Find the mining shuttle
-        if (!TryComp<DockingShuttleComponent>(shuttle, out var docking))
-        {
-            Log.Error("Loaded mining shuttle had no DockingShuttleComponent!");
+        // Add the station of the calling console
+        if (!TryComp<DockingShuttleComponent>(shuttle, out var shuttleComp))
             return;
+
+        if (shuttleComp.Station == null)
+        {
+            var targetUid = Transform(ent).MapUid;
+
+            if (targetUid == null)
+                return;
+
+            RaiseLocalEvent(shuttle.Value, new ShuttleAddStationEvent(targetUid.Value, targetMap), false);
         }
 
-        // Add the station of the calling console
-        _station.AddGridToStation(station.Value, shuttle.Value);
-
         // Finally FTL
-        _shuttle.FTLToDock(shuttle.Value, Comp<ShuttleComponent>(shuttle.Value), grid, priorityTag: docking.DockTag);
+        _shuttle.FTLToDock(shuttle.Value, Comp<ShuttleComponent>(shuttle.Value), grid, priorityTag: shuttleComp.DockTag);
         UpdateShuttle(ent);
         UpdateUI(ent);
         Dirty(ent);
 
-        // shitcode because FTL takes time
+        // shitcode because funny
         Timer.Spawn(TimeSpan.FromSeconds(15), () => _mapSystem.DeleteMap(dummyMap));
     }
 
