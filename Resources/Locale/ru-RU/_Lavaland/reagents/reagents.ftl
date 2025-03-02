@@ -1,2 +1,2 @@
-reagent-name-minerssalve = Minerslavine
-reagent-desc-minerssalve = A powerful mixture of stimulants intended for use by lavaland shaft miners.
+reagent-name-minerssalve = Утилеславин
+reagent-desc-minerssalve = Мощная смесь стимуляторов, предназначенная для пользования утилизаторов и шахтёров.
