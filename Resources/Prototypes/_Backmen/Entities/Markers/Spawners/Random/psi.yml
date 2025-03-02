@@ -10,3 +10,64 @@
       prob: 0.50
       amount: !type:RangeNumberSelector
         range: 1, 4
+
+- type: entityTable
+  id: AltarStandartTable
+  table: !type:AllSelector
+    children:
+    - id: MaterialBluespace1
+      prob: 0.50
+      amount: !type:RangeNumberSelector
+        range: 1, 4
+    - id: ClothingHandsDispelGloves
+    - id: ClothingEyesTelegnosisSpectacles
+    - id: ClothingHandsGlovesColorYellowUnsulated
+    - !type:GroupSelector
+      prob: 0.5
+      children:
+      - id: PonderingOrbTelepathic
+      - id: ClothingShoesBootsMagBlinding
+      - id: BedsheetInvisibilityCloak
+    - !type:GroupSelector
+      prob: 0.01
+      children:
+      - id: SpawnSpellbook
+        prob: 0.025
+      - id: ForceWallSpellbook
+        prob: 0.025
+      - id: BlinkBook
+        prob: 0.025
+      - id: SmiteBook
+        prob: 0.00025
+      - id: KnockSpellbook
+        prob: 0.025
+      - id: FireballSpellbook
+
+- type: entityTable
+  id: AltarHolyTable
+  table: !type:AllSelector
+    children:
+    - id: MaterialBluespace1
+      amount: !type:RangeNumberSelector
+        range: 2, 4
+    - id: ClothingHandsDispelGloves
+    - id: ClothingEyesTelegnosisSpectacles
+    - id: ClothingHandsGlovesColorYellowUnsulated
+    - !type:GroupSelector
+      children:
+      - id: PonderingOrbTelepathic
+      - id: ClothingShoesBootsMagBlinding
+      - id: BedsheetInvisibilityCloak
+    - !type:AllSelector
+      children:
+      - id: SpawnSpellbook
+        prob: 0.025
+      - id: ForceWallSpellbook
+        prob: 0.025
+      - id: BlinkBook
+        prob: 0.025
+      - id: SmiteBook
+        prob: 0.00025
+      - id: KnockSpellbook
+        prob: 0.025
+      - id: FireballSpellbook
