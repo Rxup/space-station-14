@@ -1,25 +1,29 @@
 ﻿- type: body
   id: Diona
   name: diona
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadDiona
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganDionaBrainNymph
-    torso:
-      part: TorsoDiona
+    chest:
+      part: ChestDiona
       connections:
+      - groin
       - right arm
       - left arm
+      organs:
+        lungs: OrganDionaLungsNymph
+    groin:
+      part: GroinDiona
+      connections:
       - right leg
       - left leg
-      - head
       organs:
         stomach: OrganDionaStomachNymph
-        lungs: OrganDionaLungsNymph
     right arm:
       part: RightArmDiona
       connections:

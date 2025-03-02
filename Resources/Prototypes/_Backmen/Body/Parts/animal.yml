@@ -27,11 +27,23 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseCarpPart
-  id: TorsoCarp
-  name: carp torso
+  id: ChestCarp
+  name: carp chest
   components:
   - type: Sprite
     layers:
-    - state: torso
+    - state: chest
   - type: BodyPart
-    partType: Torso
+    partType: Chest
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseCarpPart
+  id: GroinCarp
+  name: carp groin
+  components:
+  - type: Sprite
+    layers:
+    - state: groin
+  - type: BodyPart
+    partType: Groin

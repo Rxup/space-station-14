@@ -4285,14 +4285,6 @@ entities:
     - type: Transform
       pos: 6.5,17.5
       parent: 1
-- proto: TorsoBorg
-  entities:
-  - uid: 368
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 12.391638,6.3357706
-      parent: 1
 - proto: ToyFigurineScientist
   entities:
   - uid: 298
