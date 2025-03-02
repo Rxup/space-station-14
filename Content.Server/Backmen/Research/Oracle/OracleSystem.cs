@@ -15,6 +15,7 @@ using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.EntityTable;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Materials;
 using Robust.Server.GameObjects;
@@ -36,12 +37,13 @@ public sealed class OracleSystem : EntitySystem
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
 
     [ValidatePrototypeId<ReagentPrototype>]
     public readonly IReadOnlyList<ProtoId<ReagentPrototype>> RewardReagents = new ProtoId<ReagentPrototype>[]
     {
-        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor", "SlermQueenPlus"
+        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor"
     };
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -121,14 +123,11 @@ public sealed class OracleSystem : EntitySystem
         "MechEquipmentGrabber",
     };
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string ResearchDisk5000 = "ResearchDisk5000";
+    [ValidatePrototypeId<EntityTablePrototype>]
+    private const string ResearchDisk5000 = "OraculStandartTable";
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string CrystalNormality = "CrystalNormality";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string MaterialBluespace1 = "MaterialBluespace1";
 
     public override void Update(float frameTime)
     {
@@ -259,18 +258,15 @@ public sealed class OracleSystem : EntitySystem
         }
 
         QueueDel(args.Used);
+        var pos = Transform(args.User).Coordinates;
 
-        Spawn(ResearchDisk5000, Transform(args.User).Coordinates);
+        foreach (var item in _entityTable
+                     .GetSpawns(_prototypeManager.Index<EntityTablePrototype>(ResearchDisk5000).Table))
+        {
+            Spawn(item, pos);
+        }
 
         DispenseLiquidReward(uid);
-
-        var i = _random.Next(1, 4);
-
-        while (i != 0)
-        {
-            EntityManager.SpawnEntity(MaterialBluespace1, Transform(args.User).Coordinates);
-            i--;
-        }
 
         if (nextItem)
             NextItem(component);

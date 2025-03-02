@@ -18,18 +18,18 @@
   minTemp: 400
   reactants:
     Ash:
-      amount: 10
+      amount: 5
     Water:
-      amount: 10
+      amount: 5
     Blood:
-      amount: 10
+      amount: 5
     Ectoplasm:
-      amount: 10
+      amount: 5
     Plasma:
-      amount: 10
+      amount: 5
       catalyst: true
   effects:
     - !type:CreateEntityReactionEffect
-      entity: CrystalNormality
+      entity: CrystalNormality1
     - !type:ChangeGlimmerReactionEffect
       count: -10

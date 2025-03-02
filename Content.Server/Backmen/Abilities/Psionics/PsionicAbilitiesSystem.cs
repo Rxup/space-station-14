@@ -46,7 +46,7 @@ public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
         RemCompDeferred<PsionicAwaitingPlayerComponent>(uid);
     }
 
-    public void AddPsionics(EntityUid uid, bool warn = true)
+    public void AddPsionics(EntityUid uid, bool warn = false)
     {
         if (Deleted(uid))
             return;
