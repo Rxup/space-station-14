@@ -33,6 +33,7 @@ glimmer-change-notification = Уровень сияния изменился с 
 glimmer-report = Текущий уровень сияния: { $level }Ψ.
 glimmer-event-report-generic = Ноосферический разряд не обнаружен. Уровень сияния снизился на { $decrease } до { $level }Ψ.
 glimmer-event-report-signatures = Проявились новые псионические сигнатуры. Уровень сияния снизился на { $decrease } до { $level }Ψ.
+glimmer-event-breaker = Псионическое напряжение вызывает сбои в электронных системах станции и связанных с ней шаттлами.
 glimmer-event-awakened-prefix = пробудившийся { $entity }
 noospheric-zap-seize = Тебя схватили!
 noospheric-zap-seize-potential-regained = Ты захвачен! Какой-то ментальный блок, похоже, тоже снялся.
