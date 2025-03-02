@@ -353,3 +353,18 @@
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
     - ExtendedThief
+
+- type: gamePreset
+  id: Heretic
+  alias:
+    - heretic
+  name: heretic-title
+  minPlayers: 25
+  showInVote: true
+  description: heretic-desc
+  rules:
+    - HereticGameRule
+    - BasicRoundstartVariation
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
