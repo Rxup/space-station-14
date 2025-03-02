@@ -1,7 +1,7 @@
 namespace Content.Server.Backmen.StationEvents.Components;
 
 [RegisterComponent]
-public sealed class GlimmerBreakerRuleComponent : Component
+public sealed partial class GlimmerBreakerRuleComponent : Component
 {
 
 }
