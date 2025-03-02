@@ -20,7 +20,7 @@ namespace Content.Client.Lobby.UI
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
             SetAnchorPreset(Background, LayoutPreset.Wide);
 
-            LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
+
 
             OptionsButton.OnPressed += _ => _userInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
             // BACKMEN Edit Start
