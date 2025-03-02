@@ -27,3 +27,5 @@ sponsor-win-manager-tier-12 = Приоритетный Вход
 sponsor-win-manager-tier-23 = Администрация
 sponsor-win-manager-tier-24 = Старший состав
 sponsor-win-manager-tier-25 = Совет
+sponsor-win-manager-ghost-Veta = Вета
+sponsor-win-manager-ghost-Boroven = Кор
