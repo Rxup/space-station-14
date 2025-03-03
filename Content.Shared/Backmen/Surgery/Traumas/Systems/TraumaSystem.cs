@@ -32,5 +32,6 @@ public sealed partial class TraumaSystem : EntitySystem
         _sawmill = Logger.GetSawmill("traumas");
 
         InitBones();
+        InitOrgans();
     }
 }
