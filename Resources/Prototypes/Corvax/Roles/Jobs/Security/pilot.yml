@@ -18,6 +18,7 @@
   wage: 500
   #end-backmen: currency
   access:
+  - SecurityTechnician #backmen
   - Security
   - Brig
   - Maintenance
@@ -40,5 +41,5 @@
   storage:
     back:
     - Flash
-    - SecPilotSetLoadouts #backmen
+    - securityTechnicianRCD    #backmen
    #- MagazinePistol  (backmen)
