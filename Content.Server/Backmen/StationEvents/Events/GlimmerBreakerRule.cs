@@ -1,15 +1,12 @@
 using System.Linq;
 using Content.Server.Backmen.StationEvents.Components;
+using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Events;
-using Content.Shared.Backmen.Psionics.Glimmer;
-using Content.Shared.Construction.EntitySystems;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Station.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.StationEvents.Events;
@@ -17,10 +14,8 @@ namespace Content.Server.Backmen.StationEvents.Events;
 public sealed class GlimmerBreakerRule : StationEventSystem<GlimmerBreakerRuleComponent>
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly AnchorableSystem _anchorable = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly EmpSystem _emp = default!;
 
     protected override void Started(EntityUid uid,
         GlimmerBreakerRuleComponent component,
@@ -35,6 +30,8 @@ public sealed class GlimmerBreakerRule : StationEventSystem<GlimmerBreakerRuleCo
             .ToHashSet();
 
         var query = EntityQueryEnumerator<ApcComponent, TransformComponent>();
+        var shuttleQuery = GetEntityQuery<ShuttleComponent>();
+
         List<Entity<ApcComponent>> inShuttle = [];
         List<Entity<ApcComponent>> notInShuttle = [];
 
@@ -46,13 +43,12 @@ public sealed class GlimmerBreakerRule : StationEventSystem<GlimmerBreakerRuleCo
                 continue;
             }
 
-            var isShuttle = HasComp<ShuttleComponent>(gridUid.Value);
             if (!apc.MainBreakerEnabled)
             {
                 continue;
             }
 
-            if (isShuttle)
+            if (shuttleQuery.HasComp(gridUid.Value))
             {
                 inShuttle.Add((owner, apc));
             }
@@ -69,8 +65,6 @@ public sealed class GlimmerBreakerRule : StationEventSystem<GlimmerBreakerRuleCo
         }
 
         var item = _robustRandom.Pick(inShuttle.Count > 0 ? inShuttle : notInShuttle);
-        item.Comp.MainBreakerEnabled = false;
-        item.Comp.NeedStateUpdate = true;
-        return;
+        _emp.DoEmpEffects(item, 1000, 10);
     }
 }
