@@ -20,6 +20,7 @@ using Content.Shared.Backmen.Chapel;
 using Content.Shared.Backmen.Chapel.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Backmen.Soul;
+using Content.Shared.EntityTable;
 using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Players;
@@ -45,6 +46,7 @@ public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
     public override void Initialize()
     {
@@ -54,8 +56,12 @@ public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
 
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string MaterialBluespace = "MaterialBluespace1";
+    [ValidatePrototypeId<EntityTablePrototype>]
+    private const string DropTable = "AltarStandartTable";
+
+    [ValidatePrototypeId<EntityTablePrototype>]
+    private const string DropChapelTable = "AltarHolyTable";
+
     private void OnDoAfter(EntityUid uid, SacrificialAltarComponent component, SacrificeDoAfterEvent args)
     {
         _audioSystem.Stop(component.SacrificeStingStream,component.SacrificeStingStream);
@@ -69,21 +75,14 @@ public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Args.User):player} sacrificed {ToPrettyString(target):target} on {ToPrettyString(uid):altar}");
 
-        var pool = _prototypeManager.Index(component.RewardPool);
-
-        var chance = HasComp<BibleUserComponent>(args.Args.User) ? component.RewardPoolChanceBibleUser : component.RewardPoolChance;
+        var pool = HasComp<BibleUserComponent>(args.Args.User) ? DropChapelTable : DropTable;
 
         var pos = Transform(uid).Coordinates;
 
-        if (_robustRandom.Prob(chance))
-            Spawn(pool.Pick(), pos);
-
-        var i = _robustRandom.Next(component.BluespaceRewardMin, component.BlueSpaceRewardMax);
-
-        while (i > 0)
+        foreach (var item in _entityTable
+                     .GetSpawns(_prototypeManager.Index<EntityTablePrototype>(pool).Table))
         {
-            Spawn(MaterialBluespace, pos);
-            i--;
+            Spawn(item, pos);
         }
 
         int reduction = _robustRandom.Next(component.GlimmerReductionMin, component.GlimmerReductionMax);
