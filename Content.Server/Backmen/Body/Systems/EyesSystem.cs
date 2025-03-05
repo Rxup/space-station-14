@@ -55,7 +55,6 @@ namespace Content.Server.Backmen.Body.Systems
 
             var adjustment = (int)(organ.IntegrityCap - organ.OrganIntegrity);
 
-            Logger.Debug($"Adjusting eye damage by {adjustment} based off organ {uid} with integrity {organ.OrganIntegrity} and integrity cap {organ.IntegrityCap}");
             if (adjustment == 0)
                 return;
 
