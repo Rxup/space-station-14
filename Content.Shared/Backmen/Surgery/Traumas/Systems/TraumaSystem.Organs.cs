@@ -21,16 +21,36 @@ public partial class TraumaSystem
 
     private void SomeShitHappensHere(EntityUid organ, OrganComponent comp, OrganDamageSeverityChanged args)
     {
+
         // TODO: Make those actually handled. and also make undamaged organs fall out when a woundable gets destroyed, for the funnies :3
     }
 
     private void SomeOtherShitHappensHere(EntityUid organ, OrganComponent comp, OrganDamagePointChangedEvent args)
     {
+
     }
 
     #endregion
 
     #region Public API
+
+    public bool ApplyDamageToOrgan(EntityUid organ, FixedPoint2 severity, OrganComponent? organComp = null)
+    {
+        if (!Resolve(organ, ref organComp) || _net.IsClient)
+            return false;
+
+        var newIntegrity = FixedPoint2.Clamp(organComp.OrganIntegrity - severity, 0, organComp.IntegrityCap);
+        if (organComp.OrganIntegrity == newIntegrity)
+            return false;
+
+        organComp.OrganIntegrity = newIntegrity;
+        var ev = new OrganDamagePointChangedEvent(organ, organComp.OrganIntegrity, severity);
+        RaiseLocalEvent(organ, ref ev, true);
+
+        UpdateOrganIntegrity(organ, organComp);
+        Dirty(organ, organComp);
+        return true;
+    }
 
     public bool TryCreateOrganDamageModifier(EntityUid uid,
         FixedPoint2 severity,
@@ -131,11 +151,14 @@ public partial class TraumaSystem
     private void UpdateOrganIntegrity(EntityUid uid, OrganComponent organ)
     {
         var oldIntegrity = organ.OrganIntegrity;
-        organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
-            .Aggregate((FixedPoint2) 0,
-                (current, modifier) => current + modifier.Value),
-            0,
-            organ.IntegrityCap);
+
+        // Makes more sense for this to just multiply the value no?
+        if (organ.IntegrityModifiers.Count > 0)
+            organ.OrganIntegrity *= FixedPoint2.Clamp(organ.IntegrityModifiers
+                .Aggregate((FixedPoint2) 0,
+                    (current, modifier) => current + modifier.Value),
+                0,
+                organ.IntegrityCap);
 
         if (oldIntegrity != organ.OrganIntegrity)
         {
@@ -159,11 +182,9 @@ public partial class TraumaSystem
         {
             var ev = new OrganDamageSeverityChanged(uid, organ.OrganSeverity, nearestSeverity);
             RaiseLocalEvent(uid, ref ev, true);
-
             // TODO: might want also to raise the event on the woundable.
         }
         organ.OrganSeverity = nearestSeverity;
-
         Dirty(uid, organ);
     }
 

@@ -51,8 +51,13 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     /// <summary>
     ///     The name's self-explanatory, thresholds. for states. of integrity. of this god fucking damn organ.
     /// </summary>
-    [DataField(required: true)]
-    public Dictionary<OrganSeverity, FixedPoint2> IntegrityThresholds = new();
+    //[DataField(required: true)] TEMPORARY: REMOVE WHEN EVERY YML HAS THESE.
+    public Dictionary<OrganSeverity, FixedPoint2> IntegrityThresholds = new()
+    {
+        { OrganSeverity.Normal, 15 },
+        { OrganSeverity.Damaged, 10 },
+        { OrganSeverity.Destroyed, 0 },
+    };
 
     /// <summary>
     /// Shitcodey solution to not being able to know what name corresponds to each organ's slot ID
