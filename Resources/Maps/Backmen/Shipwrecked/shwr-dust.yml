@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:53
+  entityCount: 850
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   1: FloorArcadeBlue
@@ -23,12 +34,12 @@ entities:
       name: map 14
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 2
     components:
     - type: MetaData
@@ -331,6 +342,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14996
           moles:
@@ -346,11 +365,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.14975
           moles:
           - 20.078888
           - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -641,27 +676,6 @@ entities:
     components:
     - type: Transform
       pos: 1.4555857,2.3939943
-      parent: 2
-- proto: BookPaperworkP1
-  entities:
-  - uid: 637
-    components:
-    - type: Transform
-      pos: 5.2319536,-7.5004935
-      parent: 2
-- proto: BookPaperworkP2
-  entities:
-  - uid: 636
-    components:
-    - type: Transform
-      pos: 5.3100786,-7.5786185
-      parent: 2
-- proto: BookPassionsP1
-  entities:
-  - uid: 675
-    components:
-    - type: Transform
-      pos: 9.669454,-7.453619
       parent: 2
 - proto: BookRandom
   entities:
@@ -2040,51 +2054,12 @@ entities:
     - type: Transform
       pos: 4.6075935,-16.385202
       parent: 2
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 715
-    components:
-    - type: Transform
-      pos: 9.336002,-7.4339604
-      parent: 2
 - proto: ClothingNeckDonkPin
   entities:
   - uid: 368
     components:
     - type: Transform
       pos: 8.8742,1.0809159
-      parent: 2
-- proto: ClothingNeckIntersexPin
-  entities:
-  - uid: 106
-    components:
-    - type: Transform
-      pos: 10.264825,0.73716587
-      parent: 2
-  - uid: 369
-    components:
-    - type: Transform
-      pos: 10.2492,1.4715409
-      parent: 2
-  - uid: 371
-    components:
-    - type: Transform
-      pos: 9.9367,0.92466587
-      parent: 2
-  - uid: 373
-    components:
-    - type: Transform
-      pos: 9.921075,1.2684159
-      parent: 2
-  - uid: 374
-    components:
-    - type: Transform
-      pos: 9.6242,1.0652909
-      parent: 2
-  - uid: 378
-    components:
-    - type: Transform
-      pos: 10.2492,1.1121659
       parent: 2
 - proto: ClothingUnderSocksCoder
   entities:
@@ -2129,6 +2104,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -2880,17 +2863,25 @@ entities:
   - uid: 663
     components:
     - type: Transform
+      anchored: False
       rot: 1.5707963267948966 rad
       pos: 4.5,-3.5
       parent: 2
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 664
     components:
     - type: Transform
+      anchored: False
       rot: 1.5707963267948966 rad
       pos: 5.5,-3.5
       parent: 2
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 705
@@ -3641,6 +3632,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3741,7 +3740,7 @@ entities:
     - type: Transform
       pos: 0.5,-10.5
       parent: 2
-- proto: MagazinePistol
+- proto: MagazinePistol9x17
   entities:
   - uid: 536
     components:

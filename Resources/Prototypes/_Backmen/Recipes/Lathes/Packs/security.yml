@@ -1,0 +1,58 @@
+# Shared between secfab and emagged autolathe
+- type: latheRecipePack
+  id: BackmenAmmoStatic
+  recipes:
+    # Backmen-ammonation-start
+    - MagazinePistolSubMachineGun57x28
+    - MagazinePistolSubMachineGunVector45ACP
+    - MagazinePistolSubMachineGun9x17
+    - MagazinePistolTopSubMachineGun
+    - MagazineRifleFamas556UEG
+    - MagazineRifle556UEG
+    - MagazineRifle762UEG
+    - MagazinePistol45ACP
+    - MagazinePistol57x28
+    - MagazinePistol9x17
+    - MagazinePistol57x28Extd
+    - MagazineBoxHeavyRifle
+    - MagazinePacketRifle762x39
+    - MagazinePacketRifle762UEG
+    - MagazinePacketPistolACP
+    - MagazinePacketPistol57x28
+    - MagazinePacketPistol50AE
+    # Backmen-ammonation-end
+    - MagazineBoxMagnum
+
+# Shared between secfab and emagged protolathe
+- type: latheRecipePack
+  id: BackmenAmmo
+  recipes:
+  - MagazineBoxMagnumIncendiary
+  # Backmen-ammonation-start
+  - MagazinePacketPistol50AEAP
+  - MagazinePacketRifle762x39AP
+  - MagazinePacketRifle556UEGAP
+  - MagazinePacketRifle762UEGAP
+  - MagazinePacketPistolACPIncendiary
+  - MagazinePacketPistol9x17Incendiary
+  - MagazinePacketRifle762x39Incendiary
+  - MagazinePacketRifle556UEGIncendiary
+  - MagazinePacketRifle762UEGIncendiary
+  - MagazinePacketPistol57x28Incendiary
+  - MagazineRifle762UEGIncendiary
+  - MagazineRifleFamas556UEGIncendiary
+  - MagazineRifle556UEGIncendiary
+  - MagazinePistol45ACPincendiary
+  - MagazinePistol57x28Incendiary
+  - MagazinePistol9x17Incendiary
+  # Backmen-ammonation-end
+  - MagazineShotgunBeanbag
+  - MagazineShotgunIncendiary
+  - BoxShotgunIncendiary
+  - SpeedLoaderMagnumIncendiary
+  - BoxShellTranquilizer
+  - BoxBeanbag
+  - ShellSoulbreaker
+  - SpeedLoaderMagnumUranium
+  - BoxShotgunUranium
+  - WeaponLaserPistol

@@ -605,6 +605,7 @@ GunSafeShotgunEnforcer: GunSafeShotgunShotgun39
 GunSafeShotgunKammerer: GunSafeShotgunTrenchgun
 GunSafeSubMachineGunWt550: GunSafeSubMachineGunMP5
 GunSafeLaserCarbine: GunSafeLaserCarbineUEG
+GunSafePistolMk58: GunSafePistolGlock
 ShotGunCabinetFilled: ShotGunCabinetFilledBackmen
 ShotGunCabinetFilledOpen: ShotGunCabinetFilledOpenBackmen
 
@@ -715,6 +716,10 @@ LightTree04: LightTree
 LightTree05: LightTree
 LightTree06: LightTree
 
+# 2024-12-12 - Corvax-next
+NTFlag: FlagNanoTrasen
+SyndieFlag: FlagSyndicate
+
 #2024-12-28
 DrinkIrishCarBomb: DrinkIrishSlammer
 
@@ -786,3 +791,48 @@ MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
 #WeaponSubMachineGunVectorRubber: null
 MagazineBoxCaselessRifleBig: MagazineBoxCaselessRifle
 MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
+
+#2025-02-06 backmen: no pride
+LGBTQFlag: null
+LGBTQHandyFlag: null
+ClothingNeckLGBTPin: null
+ClothingNeckAromanticPin: null
+ClothingNeckAsexualPin: null
+ClothingNeckBisexualPin: null
+ClothingNeckGayPin: null
+ClothingNeckIntersexPin: null
+ClothingNeckLesbianPin: null
+ClothingNeckNonBinaryPin: null
+ClothingNeckPansexualPin: null
+ClothingNeckOmnisexualPin: null
+ClothingNeckTransPin: null
+ClothingNeckAutismPin: null
+ClothingNeckGoldAutismPin: null
+ClothingNeckScarfStripedAce: null
+ClothingNeckScarfStripedAro: null
+ClothingNeckScarfStripedBiSexual: null
+ClothingNeckScarfStripedGay: null
+ClothingNeckScarfStripedInter: null
+ClothingNeckScarfStripedLesbian: null
+ClothingNeckScarfStripedPan: null
+ClothingNeckScarfStripedNonBinary: null
+ClothingNeckScarfStripedRainbow: null
+ClothingNeckScarfStripedTrans: null
+ClothingNeckCloakAce: null
+ClothingNeckCloakAro: null
+ClothingNeckCloakBi: null
+ClothingNeckCloakIntersex: null
+ClothingNeckCloakLesbian: null
+ClothingNeckCloakTrans: null
+ClothingNeckCloakGay: null
+ClothingNeckCloakEnby: null
+ClothingNeckCloakPan: null
+VendingMachinePride: null
+#WeaponSubMachineGunVector: null
+#WeaponSubMachineGunVectorRubber: null
+
+# 2025-02-20
+#MagazineBoxAntiMaterielBig: null
+MagazineBoxCaselessRifle10x24: null
+#MagazineBoxCaselessRifleBig: null
+#MagazinePistolHighCapacityRubber: null

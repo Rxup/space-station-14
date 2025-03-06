@@ -33,6 +33,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+    fireOnDropChance: 0.3 # Corvax-Next-FireOnDrop
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
@@ -60,10 +61,10 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
   - type: AmmoCounter
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
+  #- type: MagazineVisuals
+  #  magState: mag
+  #  steps: 1
+  #  zeroVisible: true
   - type: Appearance
   - type: StaticPrice
     price: 500
@@ -186,7 +187,7 @@
 
 - type: entity
   name: mk 58
-  parent: [BaseWeaponPistol, BaseRestrictedContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolMk58
   description: A cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Uses .35 auto ammo.
   components:
@@ -208,7 +209,7 @@
 
 - type: entity
   name: N1984
-  parent: [BaseWeaponPistol, BaseRestrictedContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolN1984 # the spaces in description are for formatting.
   description: The sidearm of any self respecting officer.     Comes in .45 magnum, the lord's caliber.
   components:

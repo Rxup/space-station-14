@@ -19,11 +19,11 @@
   name: uplink-revolver-python-name
   description: uplink-revolver-python-desc
   productEntity: WeaponRevolverPythonAP
-  discountCategory: usualDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 2
   cost:
-    Telecrystal: 8 # Originally was 13 TC but was not used due to high cost
+    Telecrystal: 4 # Originally was 13 and then 8 TC but was not used due to high cost
   categories:
   - UplinkWeaponry
 
@@ -263,10 +263,10 @@
   - UplinkExplosives
 
 - type: listing
-  id: UplinkSupermatterGrenade
-  name: uplink-supermatter-grenade-name
-  description: uplink-supermatter-grenade-desc
-  productEntity: SupermatterGrenade
+  id: UplinkSingularityGrenade
+  name: uplink-singularity-grenade-name
+  description: uplink-singularity-grenade-desc
+  productEntity: SingularityGrenade
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -462,28 +462,28 @@
 
 # Ammo
 
-- type: listing
-  id: UplinkPistol9mmMagazine
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol9x17 #backmen-ammonation
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkPistol9mmMagazine
+#  name: uplink-pistol-magazine-name
+#  description: uplink-pistol-magazine-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+#  productEntity: MagazinePistol9x17 #backmen-ammonation
+#  cost:
+#    Telecrystal: 1
+#  categories:
+#  - UplinkAmmo
 
 # For the C20R
-- type: listing
-  id: UplinkMagazinePistolSubMachineGun
-  name: uplink-pistol-magazine-c20r-name
-  description: uplink-pistol-magazine-c20r-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkMagazinePistolSubMachineGun
+#  name: uplink-pistol-magazine-c20r-name
+#  description: uplink-pistol-magazine-c20r-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
+#  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
+#  cost:
+#    Telecrystal: 2
+#  categories:
+#  - UplinkAmmo
 
 # For the Cobra
 - type: listing
@@ -510,26 +510,26 @@
   - UplinkAmmo
 
 # For the mosin
-- type: listing
-  id: UplinkMosinAmmo
-  name: uplink-mosin-ammo-name
-  description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxHeavyRifle762 #backmen-ammonation
-  cost:
-    Telecrystal: 4 #backmen-ammonation
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkMosinAmmo
+#  name: uplink-mosin-ammo-name
+#  description: uplink-mosin-ammo-desc
+#  productEntity: MagazineBoxHeavyRifle762 #backmen-ammonation
+#  cost:
+#    Telecrystal: 4 #backmen-ammonation
+#  categories:
+#  - UplinkAmmo
 
 # for the hristov
-- type: listing
-  id: UplinkHristovAmmo
-  name: uplink-sniper-ammo-name
-  description: uplink-sniper-ammo-desc
-  productEntity: MagazinePacketHeavyRifle50BMG #backmen-ammonation
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkHristovAmmo
+#  name: uplink-sniper-ammo-name
+#  description: uplink-sniper-ammo-desc
+#  productEntity: MagazinePacketHeavyRifle50BMG #backmen-ammonation
+#  cost:
+#    Telecrystal: 2
+#  categories:
+#  - UplinkAmmo
 
 - type: listing
   id: UplinkAmmoBundle
@@ -1965,11 +1965,11 @@
   name: uplink-revolver-cap-gun-fake-name
   description: uplink-revolver-cap-gun-fake-desc
   productEntity: RevolverCapGunFake
-  discountCategory: usualDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 3
   cost:
-    Telecrystal: 9
+    Telecrystal: 5
   categories:
   - UplinkJob
   conditions:
@@ -2138,8 +2138,11 @@
   description: uplink-combat-bakery-desc
   icon: { sprite:  Objects/Consumable/Food/Baked/bread.rsi, state: baguette}
   productEntity: CombatBakeryKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
-    Telecrystal: 6
+    Telecrystal: 4
   categories:
   - UplinkJob
   conditions:

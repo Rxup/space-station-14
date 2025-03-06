@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:04:12
+  entityCount: 7088
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -35,7 +46,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 2
     components:
     - type: MetaData
@@ -4518,11 +4528,6 @@ entities:
     - type: ArrivalsProtect
 - proto: BackmenVendingMachineChang
   entities:
-  - uid: 207
-    components:
-    - type: Transform
-      pos: -2.5,1.5
-      parent: 2
   - uid: 208
     components:
     - type: Transform
@@ -18414,8 +18419,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.151331,-12.650532
       parent: 2
-    - type: Physics
-      sleepTime: 0.48333287
   - uid: 2868
     components:
     - type: Transform
@@ -21775,6 +21778,13 @@ entities:
     - type: Transform
       pos: -14.5,12.5
       parent: 2
+- proto: ComputerWage
+  entities:
+  - uid: 207
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 2
 - proto: ConveyorBelt
   entities:
   - uid: 3463
@@ -23533,6 +23543,8 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 2
+    - type: Pullable
+      prevFixedRotation: True
   - uid: 3746
     components:
     - type: Transform
@@ -24072,6 +24084,23 @@ entities:
     components:
     - type: Transform
       pos: -23.5,12.5
+      parent: 2
+- proto: FlagNanoTrasen
+  entities:
+  - uid: 4499
+    components:
+    - type: Transform
+      pos: 15.5,7.5
+      parent: 2
+  - uid: 4500
+    components:
+    - type: Transform
+      pos: -5.5,-38.5
+      parent: 2
+  - uid: 4501
+    components:
+    - type: Transform
+      pos: 4.5,-38.5
       parent: 2
 - proto: Flash
   entities:
@@ -28314,7 +28343,7 @@ entities:
     - type: AccessReader
       access:
       - - CCSecurity
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 4390
     components:
@@ -28532,15 +28561,15 @@ entities:
     - type: Transform
       pos: 14.5,4.5
       parent: 2
-- proto: HolopadCentCommLongRange
+- proto: HolopadCentCommUnlimitedRange
   entities:
   - uid: 7060
     components:
     - type: Transform
       pos: -0.5,-0.5
       parent: 2
-- proto: HolopadCentCommUnlimitedRange
-  entities:
+    - type: Label
+      currentLabel: ЦК - Оператор
   - uid: 7066
     components:
     - type: MetaData
@@ -29180,23 +29209,6 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
-- proto: NTFlag
-  entities:
-  - uid: 4499
-    components:
-    - type: Transform
-      pos: 15.5,7.5
-      parent: 2
-  - uid: 4500
-    components:
-    - type: Transform
-      pos: -5.5,-38.5
-      parent: 2
-  - uid: 4501
-    components:
-    - type: Transform
-      pos: 4.5,-38.5
-      parent: 2
 - proto: NTHandyFlag
   entities:
   - uid: 4502
@@ -34375,7 +34387,7 @@ entities:
   - uid: 7057
     components:
     - type: Transform
-      pos: -20.513174,6.188437
+      pos: -20.471672,6.1512794
       parent: 2
 - proto: RubberStampDenied
   entities:

@@ -11,7 +11,7 @@
 - type: entity
   parent: HolopadLongRange
   id: HolopadCentCommLongRange
-  suffix: Centcomm, Operator
+  suffix: Centcomm
   components:
   - type: Label
     currentLabel: holopad-centomm-base
@@ -19,7 +19,7 @@
 - type: entity
   parent: HolopadUnlimitedRange
   id: HolopadCentCommUnlimitedRange
-  suffix: CentComm
+  suffix: CentComm, Operator
   components:
   - type: Label
     currentLabel: holopad-centomm-base

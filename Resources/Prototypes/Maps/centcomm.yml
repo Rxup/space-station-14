@@ -1,5 +1,6 @@
 - type: gameMap
   id: CentComm
+  isGrid: false # backmen
   mapName: 'Central Command'
   mapPath: /Maps/centcomm.yml
   minPlayers: 10
@@ -26,6 +27,7 @@
   mapName: 'Central Command'
   mapPath: /Maps/Backmen/corvax_centcomm_bkm.yml
   minPlayers: 20
+  isGrid: false # backmen
   stations:
     centcomm:
       stationProto: NanotrasenCentralCommand

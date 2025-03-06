@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:49
+  entityCount: 247
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   92: FloorSteel
@@ -103,6 +114,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -124,8 +143,6 @@ entities:
       - 122
       - 124
       - 125
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 3
@@ -133,15 +150,11 @@ entities:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 4
     components:
     - type: Transform
       pos: 2.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockCommandGlassLocked
   entities:
   - uid: 5
@@ -871,8 +884,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeBend
   entities:
   - uid: 134
@@ -974,8 +985,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPressurePump
   entities:
   - uid: 151
@@ -985,8 +994,6 @@ entities:
       parent: 1
     - type: GasPressurePump
       targetPressure: 4500
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentPump
   entities:
   - uid: 152
@@ -995,15 +1002,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 153
     components:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentScrubber
   entities:
   - uid: 154
@@ -1011,22 +1014,16 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 155
     components:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 156
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 159

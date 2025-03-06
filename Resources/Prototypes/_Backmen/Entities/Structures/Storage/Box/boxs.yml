@@ -84,18 +84,16 @@
           box2: ""
   - type: StorageFill
     contents:
-      - id: MagazineRifle
-        amount: 10
-        maxAmount: 35
-      - id: MagazineRifleLightSniper
-        amount: 5
-        maxAmount: 10
-      - id: MagazineLightRifle
-        amount: 10
-        maxAmount: 35
+      - id: MagazineRifle556UEG
+        amount: 40
+      - id: MagazineRifle762UEG
+        amount: 40
+      - id: MagazineRifleFamas556UEG
+        amount: 20
+      - id: MagazineRifleLight762x39
+        amount: 48
       - id: MagazineHeavyRifleBR64
-        amount: 5
-        maxAmount: 18
+        amount: 20
 
 - type: entity
   id: ArmyStorageBoxFillWeaponRifle
@@ -109,39 +107,25 @@
   - type: StorageFill
     contents:
       - id: WeaponRifleAR18
-        prob: 0.8
-        amount: 1
-        maxAmount: 4
+        amount: 2
       - id: WeaponRifleM28
-        prob: 0.8
-        amount: 1
-        maxAmount: 2
+        amount: 2
+      - id: WeaponRifleSCARAB
+        amount: 4
       - id: WeaponRifleG36
-        amount: 1
-        maxAmount: 2
+        amount: 2
       - id: WeaponRifleM16A4
-        amount: 1
-        maxAmount: 4
+        amount: 4
+      - id: WeaponRifleAUG
+        amount: 2
       - id: WeaponRifleFamas
-        prob: 0.8
-        amount: 1
-        maxAmount: 2
-      - id: WeaponRifleDragunov
-        amount: 1
-        maxAmount: 2
-      - id: WeaponRifleSR127
-        amount: 1
-        maxAmount: 2
+        amount: 4
       - id: WeaponRifleBR64
-        amount: 1
-        maxAmount: 2
-      - id: WeaponRifleAKSU
-        prob: 0.8
-        amount: 1
-        maxAmount: 6
+        amount: 2
+      - id: WeaponRifleSTG44
+        amount: 2
       - id: WeaponAKMSRifle
-        amount: 1
-        maxAmount: 4
+        amount: 4
 
 - type: entity
   id: ArmyStorageBoxFillAmmoSMG
@@ -160,12 +144,16 @@
           box2: ""
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGun
-        amount: 10
-        maxAmount: 50
-      - id: MagazinePistolTopSubMachineGun
-        amount: 5
-        maxAmount: 10
+      - id: MagazinePistolSubMachineGun9x17
+        amount: 40
+      - id: MagazinePistolSubMachineGun57x28
+        amount: 28
+      - id: MagazinePistolBoxSubMachineGun
+        amount: 28
+      - id: MagazinePistolSubMachineGunVector45ACP
+        amount: 28
+      - id: MagazinePistolDrumSubMachineGun
+        amount: 16
 
 - type: entity
   id: ArmyStorageBoxFillWeaponSMG
@@ -179,20 +167,17 @@
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunMP5
-        amount: 5
-        maxAmount: 15
+        amount: 10
       - id: WeaponSubMachineGunMP7
-        prob: 0.8
-        amount: 1
-        maxAmount: 10
+        amount: 7
       - id: WeaponSubMachineGunVectorSpecial
-        prob: 0.5
-        amount: 1
-        maxAmount: 10
+        amount: 7
       - id: WeaponSubMachineGunP90
-        prob: 0.5
-        amount: 1
-        maxAmount: 3
+        amount: 7
+      - id: WeaponSubMachineGunMP38
+        amount: 7
+      - id: WeaponSubMachineGunPPSH41
+        amount: 4
 
 - type: entity
   id: ArmyStorageBoxFillAmmoShotgun

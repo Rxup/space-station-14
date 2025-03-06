@@ -15,15 +15,19 @@
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
   - type: Gun
-    projectileSpeed: 75
+    projectileSpeed: 40
+    soundGunshot:
+      path: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
+      params:
+          volume: -2
   - type: Item
     size: SmallNormal
   - type: ProjectileBatteryAmmoProvider
-    proto: X01Attack
+    proto: BulletEnergyGunLaserMk2
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: X01Attack
+    - proto: BulletEnergyGunLaserMk2
       fireCost: 100
     - proto: BulletDisabler
       fireCost: 75
@@ -37,7 +41,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 5750
-
+    
 - type: entity
   name: лазерная пуля
   id: X01Attack
@@ -54,6 +58,53 @@
       types:
         Heat: 22
 
+- type: entity
+  name: лазерная пуля
+  id: BulletEnergyGunLaserMk2
+  parent: EmitterBolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: red
+  - type: Projectile
+    impactEffect: BulletImpactEffectRedDisabler
+    damage:
+      types:
+        Heat: 20 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
+    soundHit:
+      collection: MeatLaserImpact
+
+- type: entity
+  id: BulletImpactEffectRedDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: impact_laser_greyscale
+      color: red
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
+    
 - type: entity
   name: 45MW.TRG
   parent: BaseWeaponBatterySmall

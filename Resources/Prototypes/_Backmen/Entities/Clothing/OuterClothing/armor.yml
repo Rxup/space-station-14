@@ -182,6 +182,7 @@
         Blunt: 0.4
         Slash: 0.4
         Piercing: 0.4
+        ArmorPiercing: 0.6
         Heat: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.7
@@ -207,7 +208,7 @@
         Blunt: 0.2
         Slash: 0.2
         Piercing: 0.2
-        ArmorPiercing: 0.7
+        ArmorPiercing: 0.4
         Heat: 0.3
   - type: ExplosionResistance
     damageCoefficient: 0.5
@@ -292,7 +293,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseRestrictedContraband]
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseCommandContraband]
   id: ClothingOuterArmorCentcom
   name: бронежилет Центком
   description: Бронежилет бренда "Центком".

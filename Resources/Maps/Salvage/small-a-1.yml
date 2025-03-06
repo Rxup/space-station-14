@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:36
+  entityCount: 93
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   7: FloorAsteroidSand
@@ -103,6 +114,14 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -488,22 +507,18 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
-- proto: FloraTree01
-  entities:
-  - uid: 79
-    components:
-    - type: Transform
-      pos: -5.007074,-2.168077
-      parent: 1
-- proto: FloraTree03
+- proto: FloraTree
   entities:
   - uid: 78
     components:
     - type: Transform
       pos: 6.711676,0.019423127
       parent: 1
-- proto: FloraTree06
-  entities:
+  - uid: 79
+    components:
+    - type: Transform
+      pos: -5.007074,-2.168077
+      parent: 1
   - uid: 80
     components:
     - type: Transform

@@ -19,12 +19,13 @@
   - Werx #backmen
   - Niz #backmen
   - Socks #backmen
-  - SecurityJumpsuit
+  - SecurityJumpsuitPilot #backmen
   - SecurityBackpack
-  - SecurityOuterClothing
+  - SecurityOuterClothingPilot #backmen
+  - SecurityHeadPilot #backmen
   - SecurityBelt
-  - SecurityShoes
-  - Survival
+  - SecurityShoesPilot #backmen
+  - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts

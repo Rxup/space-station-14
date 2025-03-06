@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:09:55
+  entityCount: 839
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   11: FloorAsteroidTile
@@ -1337,11 +1348,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -2414,7 +2441,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 16.5,30.5
       parent: 1
-- proto: CartridgePistol
+- proto: CartridgePistol9x17
   entities:
   - uid: 775
     components:
@@ -2508,7 +2535,7 @@ entities:
     - type: Transform
       pos: 11.499335,17.900156
       parent: 1
-- proto: CartridgeRifle
+- proto: CartridgeRifleLight556UEG
   entities:
   - uid: 758
     components:
@@ -3067,6 +3094,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -3875,7 +3910,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,1.5
       parent: 1
-- proto: MagazineRifle
+- proto: MagazineRifle556UEG
   entities:
   - uid: 756
     components:
@@ -6086,7 +6121,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.058037,4.960562
       parent: 1
-- proto: WeaponRifleLecter
+- proto: WeaponRifleAR18
   entities:
   - uid: 318
     components:

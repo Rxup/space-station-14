@@ -1,0 +1,25 @@
+﻿- files: ["foxhowl01.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Original sound by https://quicksounds.com/sound/ - cut out clips cleaned up, and converted to ogg."
+  source: "https://quicksounds.com/sound/3496/fox-howl"
+
+- files: ["foxscream01.ogg", "foxscream02.ogg", "foxscream03.ogg", "foxscream04.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Original sound by https://www.zapsplat.com/sound-effect-category/ - cut out four clips of cat meowing, cleaned up, and converted to ogg."
+  source: "https://www.zapsplat.com/sound-effect-category/fox/"
+
+- files: ["foxcry01.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Original sound by https://voicebot.su/ - cut out clip cleaned up, and converted to ogg."
+  source: "https://voicebot.su/ru/category/lisa/"
+
+- files: ["foxpurrs01.ogg", "foxpurrs02.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Original sound by https://zvukipro.com/ - cut out two clips, fade in and out, converted to ogg."
+  source: "https://zvukipro.com/jivotnie/218-zvuki-lisy.html"
+
+- files: ["foxlaugh01.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Original sound by https://voicebot.su/ - cut out clip fade in and out, converted to ogg."
+  source: "https://voicebot.su/ru/category/lisa/"
+

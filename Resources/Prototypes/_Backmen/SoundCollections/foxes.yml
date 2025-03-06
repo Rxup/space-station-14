@@ -1,0 +1,27 @@
+- type: soundCollection
+  id: FoxesScream
+  files:
+  - /Audio/Backmen/Voice/Foxes/foxscream01.ogg
+  - /Audio/Backmen/Voice/Foxes/foxscream02.ogg
+  - /Audio/Backmen/Voice/Foxes/foxscream03.ogg
+  - /Audio/Backmen/Voice/Foxes/foxscream04.ogg
+
+- type: soundCollection
+  id: FoxesCry
+  files:
+  - /Audio/Backmen/Voice/Foxes/foxcry01.ogg
+
+- type: soundCollection
+  id: FoxesPurrs
+  files:
+  - /Audio/Backmen/Voice/Foxes/foxpurrs01.ogg
+
+- type: soundCollection
+  id: FoxesLaugh
+  files:
+  - /Audio/Backmen/Voice/Foxes/foxlaugh01.ogg
+
+- type: soundCollection
+  id: FoxesHowl
+  files:
+  - /Audio/Backmen/Voice/Foxes/foxhowl01.ogg

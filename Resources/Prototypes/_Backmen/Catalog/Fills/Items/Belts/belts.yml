@@ -37,6 +37,7 @@
           amount: 2
         - id: MagazineShotgun
           amount: 4
+        - id: ExGrenade
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -49,10 +50,10 @@
       - 0,0,3,3
     - type: StorageFill
       contents:
-        - id: SheetSteel
-          amount: 2
-        - id: SheetRGlass
-        - id: MagazinePistol
+        - id: C4
+          amount: 4
+        - id: RCD
+        - id: RCDAmmo
           amount: 2
 
 - type: entity
@@ -62,10 +63,11 @@
   components:
     - type: StorageFill
       contents:
-        - id: MagazineRifle556UEG
-          amount: 3
-        - id: MagazinePistol
+        - id: TearGasGrenade
           amount: 2
+        - id: MagazinePistol45ACP
+          amount: 2
+        - id: WeaponPistolACP14
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -84,6 +86,34 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: ClothingPounchMTF
+  id: ClothingPounchMTFBattleSMGMP5Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: BattleSpaceMedipen
+          amount: 2
+        - id: MagazinePistolSubMachineGun9x17
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFBattleSMGFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: BattleSpaceMedipen
+          amount: 2
+        - id: MagazinePistolTopSubMachineGun
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingPounchMTF
   id: ClothingPounchMTFMedicalFilled
   components:
     - type: StorageFill
@@ -94,8 +124,24 @@
           amount: 3
         - id: SyringeBluespace
         - id: HandheldHealthAnalyzer
-        - id: MagazinePistol
-          amount: 2
+        - id: OmnimedTool
+
+- type: entity
+  id: ClothingBeltMedicalEps11Filled
+  parent: ClothingBeltMedical
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedicatedSuture
+        amount: 3
+      - id: RegenerativeMesh
+        amount: 1
+      - id: Bloodpack
+        amount: 2
+      - id: Gauze
+      - id: EmergencyMedipen
+        amount: 2
 
 - type: entity
   parent: Medkit

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/19/2025 11:10:08
+  entityCount: 143
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   92: FloorSteel
@@ -270,10 +281,18 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockExternalEasyPry
+- proto: AirlockExternal
   entities:
   - uid: 39
     components:
@@ -287,7 +306,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
-- proto: AirlockGlassShuttleEasyPry
+- proto: AirlockGlassShuttle
   entities:
   - uid: 87
     components:
@@ -598,6 +617,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -639,6 +666,14 @@ entities:
         immutable: False
         temperature: 75.31249
         moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1034,18 +1069,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 142
   - uid: 20
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 141
 - proto: ShuttleWindow
   entities:
   - uid: 18

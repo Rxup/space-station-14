@@ -108,7 +108,7 @@
 
 #Cargo EVA Helmet
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCargoEVA
   categories: [ HideSpawnMenu ]
   name: EVA cargo helmet
@@ -410,3 +410,18 @@
         Heat: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.8
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadSecurityPilotHelmet
+  name: security pilot helmet
+  description: Standard security pilot gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmet-sec-pilot.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmet-sec-pilot.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet

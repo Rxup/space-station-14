@@ -23,3 +23,42 @@
     layers:
       - state: p03
         shader: unshaded
+
+- type: ghostTheme
+  id: Astronaut
+  name: sponsor-win-manager-ghost-astronaut
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/astronaut.rsi
+    layers:
+      - state: astronaut
+        shader: unshaded
+
+- type: ghostTheme
+  id: Boroven
+  name: sponsor-win-manager-ghost-Boroven
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/Boroven-ghost.rsi
+    layers:
+    - state: animated-Boroven
+      shader: unshaded
+
+- type: ghostTheme
+  id: Vetochka
+  name: sponsor-win-manager-ghost-Veta
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/Vetochka-ghost.rsi
+    layers:
+    - state: animated-Veta
+      shader: unshaded
