@@ -114,7 +114,7 @@
   id: HumanHairCotton
   bodyPart: Hair
   markingCategory: Hair
-  sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: false # Corvax-Sponsors
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: cotton

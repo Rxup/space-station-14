@@ -1,7 +1,7 @@
 - type: species
   id: HumanoidFoxes
   name: species-name-foxes
-  roundStart: true
+  roundStart: false
   prototype: MobHumanoidFox
   sprites: MobHumanoidFoxSprites
   defaultSkinTone: "#FFBBC3"

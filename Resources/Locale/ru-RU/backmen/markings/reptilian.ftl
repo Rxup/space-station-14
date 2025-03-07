@@ -1,22 +1,22 @@
 # ГОЛОВА
-marking-LizardHeadGuilmon= Ящер, гилмон
+marking-LizardHeadGuilmon= Унатх, гилмон
 marking-LizardHeadGuilmon-guilmon = Основная часть
 
-marking-LizardShoutEasternDragon= Ящер, восточный дракон
+marking-LizardShoutEasternDragon= Унатх, восточный дракон
 marking-LizardShoutEasternDragon-cobra_hood_with_ears = Внешняя часть
 marking-LizardShoutEasternDragon-cobra_hood_with_ears_overlay = Внутреняя часть
 
-marking-LizardShoutEasternDragonUsiki= Ящер, восточный дракон (Усики)
+marking-LizardShoutEasternDragonUsiki= Унатх, восточный дракон (Усики)
 marking-LizardShoutEasternDragonUsiki-eastern_dragon = Внешняя часть
 marking-LizardShoutEasternDragonUsiki-eastern_dragon_overlay = Внутреняя часть
 marking-LizardShoutEasternDragonUsiki-eastern_dragon_usiki = Усики
 
-marking-LizardShoutNoodle= Ящер, крокодил
+marking-LizardShoutNoodle= Унатх, крокодил
 marking-LizardShoutNoodle-noodle = Основная часть
 marking-LizardShoutNoodle-noodle_overlay_1 = Внешняя часть
 marking-LizardShoutNoodle-noodle_overlay_2 = Внутреняя часть
 
-marking-LizardHeadCobraHood = Ящер, воротник с ушами (Кобра)
+marking-LizardHeadCobraHood = Унатх, воротник с ушами (Кобра)
 marking-LizardHeadCobraHood-cobra_hood_with_ears = Внешняя часть
 marking-LizardHeadCobraHood-cobra_hood_with_ears_overlay = Внутреняя часть
 
@@ -48,29 +48,29 @@ marking-LizardHornsBighorn-horns_bighorn_l = Левый рог
 marking-LizardHornsBighorn-horns_bighorn_r = Правый рог
 
 # ХВОСТЫ
-marking-SnakeLargeTail = Ящер, большой змеиный хвост
+marking-SnakeLargeTail = Унатх, большой змеиный хвост
 marking-SnakeLargeTail-tail_snakelarge = Верняя часть
 marking-SnakeLargeTail-tail_snakelarge_overlay = Нижняя часть
 
-marking-WesternDragonTail = Ящер, хвост западного дракона
+marking-WesternDragonTail = Унатх, хвост западного дракона
 marking-WesternDragonTail-tail_westerndragon = Верняя часть
 marking-WesternDragonTail-tail_westerndragon_overlay = Нижняя часть
 
-marking-KangarooTail = Ящер, хвост кенгуру
+marking-KangarooTail = Унатх, хвост кенгуру
 marking-KangarooTail-tail_kangaroo = Верняя часть
 
 # ШИПЫ
-marking-LizardChestSpinesAquaticWithoutTail = Ящер, грудь, шипы на спине (Водный, без хвоста)
+marking-LizardChestSpinesAquaticWithoutTail = Унатх, грудь, шипы на спине (Водный, без хвоста)
 marking-LizardChestSpinesAquaticWithoutTail-spines_aquatic = Шипы
 
-marking-LizardChestSpinesLongWithoutTail = Ящер, грудь, шипы на спине (Длинные, без хвоста)
+marking-LizardChestSpinesLongWithoutTail = Унатх, грудь, шипы на спине (Длинные, без хвоста)
 marking-LizardChestSpinesLongWithoutTail-spines_long = Шипы
 
-marking-LizardChestSpinesLongMembraneWithoutTail = Ящер, грудь, шипы на спине (Длинные, Мембрана, без хвоста)
+marking-LizardChestSpinesLongMembraneWithoutTail = Унатх, грудь, шипы на спине (Длинные, Мембрана, без хвоста)
 marking-LizardChestSpinesLongMembraneWithoutTail-spines_longmembrane = Шипы
 
-marking-LizardChestSpinesShortWithoutTail = Ящер, грудь, шипы на спине (Короткие, без хвоста)
+marking-LizardChestSpinesShortWithoutTail = Унатх, грудь, шипы на спине (Короткие, без хвоста)
 marking-LizardChestSpinesShortWithoutTail-spines_short = Шипы
 
-marking-LizardChestSpinesShortMembraneWithoutTail = Ящер, грудь, шипы на спине (Короткие, Мембрана, без хвоста)
+marking-LizardChestSpinesShortMembraneWithoutTail = Унатх, грудь, шипы на спине (Короткие, Мембрана, без хвоста)
 marking-LizardChestSpinesShortMembraneWithoutTail-spines_short = Шипы
