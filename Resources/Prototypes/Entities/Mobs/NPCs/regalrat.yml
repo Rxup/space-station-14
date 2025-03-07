@@ -126,7 +126,7 @@
       gender: male
   - type: Sharp
   - type: TTS # Corvax-TTS
-    voice: Npc1
+    voice: Monolith2
   - type: LanguageKnowledge
     speaks:
     - TauCetiBasic

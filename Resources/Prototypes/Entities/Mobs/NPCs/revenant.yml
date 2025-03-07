@@ -24,7 +24,7 @@
     damageContainer: ManifestedSpirit
     damageModifierSet: ManifestedSpirit
   - type: TTS # Corvax-TTS
-    voice: Kelthuzad
+    voice: Monolith2
   - type: NoSlip
   - type: Eye
     drawFov: false
@@ -67,7 +67,7 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       enum.VoiceMaskUIKey.Key:
-        type: VoiceMaskBoundUserInterface # Backmen 
+        type: VoiceMaskBoundUserInterface # Backmen
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Store

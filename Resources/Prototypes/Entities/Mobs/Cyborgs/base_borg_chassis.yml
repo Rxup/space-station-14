@@ -236,7 +236,7 @@
     - CanPilot
   - type: Emoting
   - type: TTS # Corvax-TTS
-    voice: Borgs
+    voice: Glados
   - type: LayingDown # backmen: LayingDown
   - type: GuideHelp
     guides:
