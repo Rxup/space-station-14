@@ -11,7 +11,7 @@ namespace Content.Shared.Backmen.Targeting;
 public enum TargetBodyPart : ushort
 {
     Head = 1,
-    Torso = 1 << 1,
+    Chest = 1 << 1,
     Groin = 1 << 2,
     LeftArm = 1 << 3,
     LeftHand = 1 << 4,
@@ -35,7 +35,8 @@ public enum TargetBodyPart : ushort
     FullArms = Arms | Hands,
     FullLegs = Feet | Legs,
 
-    BodyMiddle = Torso | Groin | FullArms,
+    BodyMiddle = Chest | Groin | FullArms,
+    FullLegsGroin = FullLegs | Groin,
 
-    All = Head | Torso | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
+    All = Head | Chest | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
 }
