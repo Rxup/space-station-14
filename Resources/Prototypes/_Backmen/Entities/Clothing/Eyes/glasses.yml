@@ -52,3 +52,30 @@
     sprite: Backmen/Clothing/Eyes/Glasses/blueeyes.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Eyes/Glasses/blueeyes.rsi
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesSecEngineerVisors
+  name: security technician visors
+  description: It is a combination of several types of polarized scanners. It shows the status of various borgs and mechs, ID card statuses and provides eye protection from welding. It does not have flash protection.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Eyes/Glasses/security-technician-visor.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: Backmen/Clothing/Eyes/Glasses/security-technician-visor.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
