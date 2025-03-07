@@ -28,15 +28,14 @@
                     <Control VerticalExpand="True" />
                     <RichTextLabel Name="LabelName" Access="Public" HorizontalAlignment="Left"
                                    VerticalAlignment="Center" Margin="20 0 0 450" />
-                    <!-- Left Panel  -->
-
-                        <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True"  VerticalAlignment="Bottom">
-                            <controls:HLine Color="#404040" Thickness="1" Margin="0 1"/>
-                            <lobbyUi:ServerListBox Name="ServerListBox" Access="Public" MinSize="0 30" VerticalExpand="True" HorizontalExpand="False"  HorizontalAlignment="Stretch"/>
-
-                        </BoxContainer>
-
-
+                    <!-- Left Bot Panel -->
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3" />
+                        <PanelContainer StyleClasses="AngleRect">
+                            <RichTextLabel Name="LobbySong" StyleClasses="LobbyBackground" Access="Public" HorizontalAlignment="Center" />
+                        </PanelContainer>
+                    </BoxContainer>
+                    <!-- Left Panel -->
                     <PanelContainer HorizontalAlignment="Left" Name="Center" VerticalAlignment="Center">
                         <BoxContainer Orientation="Vertical" HorizontalAlignment="Center"
                                       VerticalAlignment="Center" Margin="40 0 0 150">
