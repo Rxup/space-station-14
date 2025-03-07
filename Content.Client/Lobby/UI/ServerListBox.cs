@@ -41,7 +41,7 @@ public sealed class ServerListBox : BoxContainer
 
     private void AddServers(BoxContainer container)
     {
-        AddServerInfo(container, "Фобос", "Сервер с всегда большим онлайном", "ss14://f1.deadspace14.net:1212", null);
+        AddServerInfo(container, "Фобос", "Сервер с упором на массовость", "ss14://f1.deadspace14.net:1212", null);
         AddServerInfo(container, "Титан", "Сервер с упором на высокий уровень РП", "ss14://f2.deadspace14.net:1212", null);
         AddServerInfo(container, "Деймос", "Сервер с сбалансированным геймплеем", "ss14://f3.deadspace14.net:1213", null);
         AddServerInfo(container, "Союз-1", "Сервер в сеттинге станции СССП", "ss14://s1.deadspace14.net:1213", null);
