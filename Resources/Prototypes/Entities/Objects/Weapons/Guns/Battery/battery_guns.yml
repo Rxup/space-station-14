@@ -778,7 +778,7 @@
     zeroVisible: false
   - type: Appearance
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
   - type: Gun
     fireRate: 2
     soundGunshot:
