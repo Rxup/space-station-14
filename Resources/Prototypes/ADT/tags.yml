@@ -1,0 +1,89 @@
+- type: Tag
+  id: ADTMothFriendlyFood
+
+- type: Tag
+  id: Patch
+
+- type: Tag
+  id: Defibrillator
+
+- type: Tag
+  id: ADTLasgunRevolverCell
+
+- type: Tag
+  id: PhantomEctoplasm
+
+- type: Tag
+  id: PhantomEctoplasmBattery
+
+- type: Tag
+  id: PhantomEctoplasmPistolBattery
+
+- type: Tag
+  id: PhantomFreedom
+
+- type: Tag
+  id: PlushieSharkBlack
+
+- type: Tag
+  id: ADTSteelSheet
+
+- type: Tag
+  id: ADTCartridgeBibis
+
+- type: Tag
+  id: ADTMagazineRifleBibis
+
+- type: Tag
+  id: ADTBorgUse
+
+- type: Tag
+  id: ADTBorgModuleSecurity
+
+- type: Tag
+  id: ADTBorgSecurityHead
+
+- type: Tag
+  id: ADTBorgSecurityLArm
+
+- type: Tag
+  id: ADTBorgSecurityLLeg
+
+- type: Tag
+  id: ADTBorgSecurityRArm
+
+- type: Tag
+  id: ADTBorgSecurityRLeg
+
+- type: Tag
+  id: ADTBorgSecurityTorso
+
+- type: Tag
+  id: ADTBorgKerfusNTTorso
+
+- type: Tag
+  id: ADTBorgKerfusNTHead
+
+- type: Tag
+  id: GasMask
+
+- type: Tag
+  id: Mask
+
+- type: Tag
+  id: Stunbaton
+
+- type: Tag
+  id: Table
+
+- type: Tag
+  id: Tongue
+
+- type: Tag
+  id: Lungs
+
+- type: Tag
+  id: Stomach
+
+- type: Tag
+  id: Kidneys
