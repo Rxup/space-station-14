@@ -14,24 +14,6 @@ public enum TraumaType
     Dismemberment,
 }
 
-#region Organs
-
-[Serializable, NetSerializable]
-public enum OrganSeverity
-{
-    Normal,
-    Damaged,
-    Destroyed, // obliterated
-}
-
-[ByRefEvent]
-public record struct OrganDamagePointChangedEvent(EntityUid Organ, FixedPoint2 CurrentSeverity, FixedPoint2 SeverityDelta);
-
-[ByRefEvent]
-public record struct OrganDamageSeverityChanged(EntityUid Organ, OrganSeverity OldSeverity, OrganSeverity NewSeverity);
-
-#endregion
-
 #region Bones
 
 [Serializable, NetSerializable]

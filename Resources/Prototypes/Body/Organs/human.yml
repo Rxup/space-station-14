@@ -6,10 +6,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
-    integrityThresholds:
-      Normal: 15
-      Damaged: 6
-      Destroyed: 0
   - type: Food
   - type: Extractable
     grindableSolutionName: organ
@@ -48,12 +44,6 @@
     state: brain
   - type: Organ
     slotId: brain # backmen: surgery
-    intCap: 28
-    integrity: 28
-    integrityThresholds:
-      Normal: 28
-      Damaged: 16
-      Destroyed: 0
   - type: Input
     context: "ghost"
   - type: NerveSystem
