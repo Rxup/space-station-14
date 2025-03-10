@@ -1601,3 +1601,17 @@
   id: 105
   time: '2025-03-06T16:53:07.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1065
+- author: CatBackGround
+  changes:
+  - message: "\u041A\u043E\u0440\u043F\u043E\u0440\u0430\u0446\u0438\u044F NanoTrasen\
+      \ \u043F\u0435\u0440\u0435\u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0430 \u043F\
+      \u0440\u043E\u0435\u043A\u0442 \"\"\u042D\u043D\u0435\u0440\u0433\u0435\u0442\
+      \u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0414\u0440\u043E\u0431\u043E\u0432\
+      \u0438\u043A\" \u0438 \u0438\u0437\u043C\u0435\u043D\u0438\u043B\u0430 \u043F\
+      \u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0438\u0442\u043E\u0433\u043E\
+      \u0432\u044B\u0439 \u0432\u043D\u0435\u0448\u043D\u0438\u0439 \u0432\u0438\u0434\
+      ."
+    type: Tweak
+  id: 106
+  time: '2025-03-10T17:02:33.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1092
