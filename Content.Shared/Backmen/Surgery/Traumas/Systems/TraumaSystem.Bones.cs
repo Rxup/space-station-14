@@ -12,6 +12,8 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public partial class TraumaSystem
 {
+    private const float BoneDamageSeverityThreshold = 9f;
+
     private void InitBones()
     {
         SubscribeLocalEvent<BoneComponent, BoneSeverityChangedEvent>(OnBoneSeverityChanged);
@@ -84,12 +86,15 @@ public partial class TraumaSystem
         return true;
     }
 
-    public bool RandomBoneTraumaChance(WoundableComponent woundableComp, EntityUid woundInflicter)
+    public bool RandomBoneTraumaChance(WoundableComponent woundableComp, EntityUid woundInflicter, FixedPoint2 severity)
     {
         var wound = Comp<WoundComponent>(woundInflicter);
         var bone = Comp<BoneComponent>(woundableComp.Bone!.ContainedEntities[0]);
         if (woundableComp.WoundableIntegrity <= 0 || bone.BoneIntegrity <= 0)
             return true;
+
+        if (severity < BoneDamageSeverityThreshold)
+            return false;
 
         // We do complete random to get the chance for trauma to happen,
         // We combine multiple parameters and do some math, to get the chance.

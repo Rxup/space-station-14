@@ -413,7 +413,7 @@ public sealed partial class WoundSystem
         {
             var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.HoldingWoundable, uid, severity);
             wound.WoundType =
-                _trauma.TryApplyTrauma(wound.HoldingWoundable, severity, traumasToApply)
+                _trauma.TryApplyTrauma(wound.HoldingWoundable, severity, traumasToApply.ToList())
                     ? WoundType.Internal
                     : WoundType.External;
         }
@@ -782,7 +782,7 @@ public sealed partial class WoundSystem
         {
             var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(target, wound, woundSeverity, woundableComponent);
             woundComponent.WoundType =
-                _trauma.TryApplyTrauma(target, woundSeverity, traumasToApply)
+                _trauma.TryApplyTrauma(target, woundSeverity, traumasToApply.ToList())
                     ? WoundType.Internal
                     : WoundType.External;
         }

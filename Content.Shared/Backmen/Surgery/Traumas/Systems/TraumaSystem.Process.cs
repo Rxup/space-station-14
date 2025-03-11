@@ -31,18 +31,18 @@ public partial class TraumaSystem
     public IEnumerable<TraumaType> RandomTraumaChance(EntityUid target, EntityUid woundInflicter, FixedPoint2 severity, WoundableComponent? woundable = null)
     {
         var traumaList = new HashSet<TraumaType>();
-        if (!Resolve(target, ref woundable) || _net.IsClient)
+        if (!Resolve(target, ref woundable))
             return traumaList;
 
-        if (RandomBoneTraumaChance(woundable, woundInflicter))
+        if (RandomBoneTraumaChance(woundable, woundInflicter, severity))
             traumaList.Add(TraumaType.BoneDamage);
 
         if (RandomNerveDamageChance(target, woundInflicter, woundable, severity))
             traumaList.Add(TraumaType.NerveDamage);
 
-        //if (RandomOrganTraumaChance(woundable))
-        //    traumaList.Add(TraumaType.OrganDamage);
-        //
+        if (RandomOrganTraumaChance(target, woundInflicter, woundable, severity))
+            traumaList.Add(TraumaType.OrganDamage);
+
         //if (RandomVeinsTraumaChance(woundable))
         //    traumaList.Add(TraumaType.VeinsDamage);
 
@@ -52,9 +52,9 @@ public partial class TraumaSystem
         return traumaList;
     }
 
-    public bool TryApplyTrauma(EntityUid target, FixedPoint2 severity, IEnumerable<TraumaType> traumas, WoundableComponent? woundable = null)
+    public bool TryApplyTrauma(EntityUid target, FixedPoint2 severity, List<TraumaType> traumas, WoundableComponent? woundable = null)
     {
-        if (!Resolve(target, ref woundable) || _net.IsClient)
+        if (!Resolve(target, ref woundable))
             return false;
 
         if (severity <= 0)
@@ -106,11 +106,7 @@ public partial class TraumaSystem
     {
         var bodyPart = Comp<BodyPartComponent>(target);
         if (!bodyPart.Body.HasValue)
-            return false; // No body entity to apply pain to
-
-        // dawg how
-        if (woundable.WoundableIntegrity <= 0)
-            return false;
+            return false; // No entity to apply pain to
 
         if (severity < NerveDamageSeverityThreshold)
             return false; // to prevent shit like disablers from killing people
@@ -212,6 +208,21 @@ public partial class TraumaSystem
         //        ? $"A new trauma (Raw Severity: {severity}) was created on target: {target} of type Vein damage"
         //        : $"Tried to create a trauma on target: {target}, but no trauma was applied. Type: Vein damage.");
         //}
+
+        if (traumaList.Contains(TraumaType.OrganDamage))
+        {
+            var organs = _body.GetPartOrgans(target).ToList();
+            _random.Shuffle(organs);
+
+            var chosenOrgan = organs.FirstOrDefault();
+            if (!TryChangeOrganDamageModifier(chosenOrgan.Id, severity, target, "WoundableDamage"))
+            {
+                TryCreateOrganDamageModifier(chosenOrgan.Id, severity, target, "WoundableDamage");
+                // Do not apply pain for organ damage is already supposed to be deadly; Unless it is NOT enough.
+            }
+
+            _sawmill.Debug( $"A new trauma (Caused by {severity} damage) was created on target: {target}; organ: {chosenOrgan}. Type: OrganDamage.");
+        }
 
         if (traumaList.Contains(TraumaType.Dismemberment))
         {
