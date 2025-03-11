@@ -72,7 +72,7 @@
   #    Burn:
   #      sprite: Mobs/Effects/burn_damage.rsi
   - type: Consciousness
-    threshold: 35
+    threshold: 90
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
