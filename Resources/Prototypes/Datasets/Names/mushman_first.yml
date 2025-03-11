@@ -1,4 +1,4 @@
-- type: dataset
+- type: localizedDataset
   id: names_mushman_first
   values:
   - Плероцибелла
@@ -54,3 +54,5 @@
   - Волвариэлла
   - Гифолома
   - Лактарий
+  prefix: names-mushman-first-dataset-
+  count: 53

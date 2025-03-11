@@ -1,5 +1,5 @@
-- type: dataset
-  id: DionaFirst
+- type: localizedDataset
+  id: NamesDionaFirst
   values:
   - Мох
   - Гриб
@@ -90,9 +90,11 @@
   - Муссон
   - Пасмурность
   - Шторм
+  prefix: names-diona-first-dataset-
+  count: 89
 
-- type: dataset
-  id: DionaLast
+- type: localizedDataset
+  id: NamesDionaLast
   values:
 # Positive
   - Мира
@@ -220,3 +222,5 @@
   - Безумия
   - Хаоса
   - Страха
+  prefix: names-diona-last-dataset-
+  count: 122

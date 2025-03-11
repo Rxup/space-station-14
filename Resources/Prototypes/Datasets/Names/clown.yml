@@ -1,5 +1,5 @@
-﻿- type: dataset
-  id: names_clown
+﻿- type: localizedDataset
+  id: NamesClown
   values:
   - Смешкитон
   - Хонкел III
@@ -76,4 +76,5 @@
   - Чики Чопс
   - Стинко
   - Вонючка
-  
+  prefix: names-clown-dataset-
+  count: 75

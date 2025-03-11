@@ -1,5 +1,5 @@
-- type: dataset
-  id: RevenantType
+- type: localizedDataset
+  id: NamesRevenantType
   values:
   - сущность
   - привидение
@@ -9,9 +9,11 @@
   - душа
   - тень
   - дух
+  prefix: names-revenant-type-dataset-
+  count: 8
 
-- type: dataset
-  id: RevenantAdjective
+- type: localizedDataset
+  id: NamesRevenantAdjective
   values:
   - адской
   - бездонной
@@ -29,9 +31,11 @@
   - жгучей
   - тихой
   - злорадной
+  prefix: names-revenant-adjective-dataset-
+  count: 16
 
-- type: dataset
-  id: RevenantTheme
+- type: localizedDataset
+  id: NamesRevenantTheme
   values:
   - агонии
   - злости
@@ -53,3 +57,5 @@
   #- laughter
   #- screams
   #- suffering
+  prefix: names-revenant-theme-dataset-
+  count: 13

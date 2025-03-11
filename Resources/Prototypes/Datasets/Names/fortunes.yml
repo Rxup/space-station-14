@@ -1,5 +1,5 @@
-- type: dataset
-  id: CookieFortuneDescriptions
+- type: localizedDataset
+  id: DescriptionsCookieFortune
   values:
   - Конец близок... и это всё ТВОЯ вина.
   - Мы знаем что ты сделал.
@@ -80,3 +80,5 @@
   - А вы знали, что более 70% сотрудников Nanotrasen исчезают в первые пару лет своего контракта? Теперь знаете!
   - На этой смене вы покажете им всем какой вы робаст.
   - Быть робастным это не только иметь хорошие навыки, но и быть хорошей персоной.
+  prefix: descriptions-cookie-fortune-dataset-
+  count: 79

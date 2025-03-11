@@ -1,5 +1,5 @@
-- type: dataset
-  id: skeletonNamesFirst
+- type: localizedDataset
+  id: NamesSkeletonFirst
   values:
   - Стернум
   - Рибс
@@ -28,3 +28,5 @@
   - Тарсус
   - Лакрмаль
   - Бон
+  prefix: names-skeleton-first-dataset-
+  count: 27

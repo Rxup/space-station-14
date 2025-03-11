@@ -1,5 +1,5 @@
-- type: dataset
-  id: names_vox
+- type: localizedDataset
+  id: NamesVox
   values:
   - Бакабепа
   - Бабапир
@@ -2763,3 +2763,5 @@
   - Ксиксаксекака
   - Ксиксекра
   - Ксиксиче
+  prefix: names-vox-dataset-
+  count: 2762

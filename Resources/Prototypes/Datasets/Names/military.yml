@@ -1,4 +1,4 @@
-- type: dataset
+- type: localizedDataset
   id: NamesFirstMilitaryLeader
   values:
   - Коммандер
@@ -6,8 +6,10 @@
   - Подполковник
   - Майор
   - Лейтенант
+  prefix: names-military-leader-first-dataset-
+  count: 5
 
-- type: dataset
+- type: localizedDataset
   id: NamesFirstMilitary
   values:
   - Прапорщик
@@ -15,9 +17,11 @@
   - Сержант
   - Капрал
   - Ефрейтор
+  prefix: names-military-first-dataset-
+  count: 5
 
-- type: dataset
-  id: NamesLastMilitary
+- type: localizedDataset
+  id: NamesMilitaryFirst
   values:
   - Антарес
   - Андромеда
@@ -62,4 +66,6 @@
   - Шедар
   - Шаула
   - Электра
+  prefix: names-military-first-dataset-
+  count: 43
 

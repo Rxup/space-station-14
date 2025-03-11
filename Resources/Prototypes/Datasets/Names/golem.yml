@@ -1,5 +1,5 @@
-﻿- type: dataset
-  id: names_golem
+﻿- type: localizedDataset
+  id: NamesGolem
   values:
   - Абенакиит
   - Абернатиит
@@ -1336,3 +1336,5 @@
   - Зунит
   - Цуссманит
   - Зикаит
+  prefix: names-golem-dataset-
+  count: 1335

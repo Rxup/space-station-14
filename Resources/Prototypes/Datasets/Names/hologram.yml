@@ -1,5 +1,5 @@
-﻿- type: dataset
-  id: names_hologram
+﻿- type: localizedDataset
+  id: NamesHologram
   values:
   - Аполлон
   - Дата
@@ -15,3 +15,5 @@
   - Процессор
   - Прометей
   - Тесей
+  prefix: names-hologram-dataset-
+  count: 14

@@ -1,5 +1,5 @@
-- type: dataset
-  id: names_reptilian_male
+- type: localizedDataset
+  id: NamesReptilianMale
   values:
   - Абиджу
   - Ах
@@ -332,4 +332,5 @@
   - Лякуша
   - Дзухаллаг
   - Ге'на
-  
+  prefix: names-reptilian-male-dataset-
+  count: 331

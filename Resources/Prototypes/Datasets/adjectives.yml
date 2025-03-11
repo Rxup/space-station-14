@@ -1,5 +1,5 @@
-﻿- type: dataset
-  id: adjectives
+﻿- type: localizedDataset
+  id: Adjectives
   values:
   - новый
   - хороший
@@ -957,3 +957,5 @@
   - уральский
   - неудачный
   - лунный
+  prefix: adjectives-dataset-
+  count: 956

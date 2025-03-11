@@ -1,5 +1,5 @@
-﻿- type: dataset
-  id: names_ninja
+﻿- type: localizedDataset
+  id: NamesNinja
   values:
   - Тень
   - Сарутоби
@@ -40,3 +40,6 @@
   - Пожиратель
   - Рю
   - Райден
+  prefix: names-ninja-dataset-
+  count: 39
+

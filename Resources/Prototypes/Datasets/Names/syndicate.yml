@@ -1,5 +1,5 @@
-- type: dataset
-  id: SyndicateNamesNormal
+- type: localizedDataset
+  id: NamesSyndicateNormal
   values:
   - Альфа
   - Браво
@@ -26,9 +26,11 @@
   - Виски
   - Иксрей
   - Зулу
+  prefix: names-syndicate-normal-dataset-
+  count: 25
 
-- type: dataset
-  id: SyndicateNamesElite
+- type: localizedDataset
+  id: NamesSyndicateElite
   values:
   - Альфа
   - Бета
@@ -53,9 +55,13 @@
   - Хи
   - Пси
   - Омега
+  prefix: names-syndicate-elite-dataset-
+  count: 23
 
-- type: dataset
-  id: SyndicateNamesPrefix
+- type: localizedDataset
+  id: NamesSyndicatePrefix
   values:
   - Оперативник
   - Агент
+  prefix: names-syndicate-prefix-dataset-
+  count: 2

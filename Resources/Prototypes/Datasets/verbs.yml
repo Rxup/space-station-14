@@ -1,5 +1,5 @@
-- type: dataset
-  id: verbs
+- type: localizedDataset
+  id: Verbs
   values:
   - сказать
   - говорить
@@ -992,3 +992,5 @@
   - осваивать
   - разбудить
   - заболеть
+  prefix: verbs-dataset-
+  count: 991
