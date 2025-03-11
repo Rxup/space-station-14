@@ -179,9 +179,9 @@
   id: FreeProberEventsTable
   table: !type:AllSelector
     children:
-    - id: FreeProberEarlyLowPop
-    - id: FreeProberEarlyMedPop
-    - id: FreeProberEarlyHiPop
+    #- id: FreeProberEarlyLowPop
+    #- id: FreeProberEarlyMedPop
+    #- id: FreeProberEarlyHiPop
     - id: FreeProberLowPop
     - id: FreeProberMedPop
     - id: FreeProberHiPop
