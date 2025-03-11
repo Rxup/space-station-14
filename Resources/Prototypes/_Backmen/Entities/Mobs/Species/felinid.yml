@@ -15,8 +15,8 @@
     - TauCetiBasic
     - Nekomimetic
   - type: Consciousness
-    cap: 85
-    threshold: 25
+    cap: 160
+    threshold: 85
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance

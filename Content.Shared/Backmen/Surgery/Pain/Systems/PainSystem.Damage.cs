@@ -450,7 +450,7 @@ public partial class PainSystem
                 PlayPainSound(body, nerveSys.Comp, nerveSys.Comp.PainScreams[sex]);
 
                 _popup.PopupPredicted(Loc.GetString("screams-and-flinches-pain", ("entity", body)), body, null, PopupType.MediumCaution);
-                _jitter.DoJitter(body, TimeSpan.FromSeconds(0.9), true, 24f, 1f);
+                _jitter.DoJitter(body, TimeSpan.FromSeconds(0.9f), true, 24f, 1f);
 
                 break;
             case PainThresholdTypes.Agony:
@@ -481,7 +481,6 @@ public partial class PainSystem
                 // This shit is NOT helpful. It breaks the multipliers, and every 21 seconds the multiplier ends, you fall into fucking crit
                 // and stand up AGAIN due to adrenaline. Thus trapping you in an endless cycle of pain, not funny
                 // TryAddPainMultiplier(nerveSys, "PainShockAdrenaline", 0.5f, nerveSys, TimeSpan.FromSeconds(21f));
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainRattles, AudioParams.Default.WithVolume(-6f));
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)
@@ -499,12 +498,33 @@ public partial class PainSystem
                 nerveSys.Comp.LastThresholdType = PainThresholdTypes.None;
 
                 break;
-            case PainThresholdTypes.PainPassout:
+            case PainThresholdTypes.PainShockAndAgony:
                 CleanupSounds(nerveSys);
 
-                _popup.PopupPredicted(Loc.GetString("passes-out-pain", ("entity", body)), body, null, PopupType.MediumCaution);
-                _consciousness.ForcePassout(body, nerveSys.Comp.ForcePassoutTime);
+                var agonySpecifier = nerveSys.Comp.AgonyScreams[sex];
+                var agony = PlayPainSound(body, nerveSys, agonySpecifier, AudioParams.Default.WithVolume(12f));
+                if (agony.HasValue)
+                {
+                    var sound = nerveSys.Comp.PainShockWhimpers[sex];
+                    PlayPainSound(body,
+                        nerveSys,
+                        sound,
+                        _IHaveNoMouthAndIMustScream.GetAudioLength(_IHaveNoMouthAndIMustScream.GetSound(agonySpecifier)) - TimeSpan.FromSeconds(2),
+                        AudioParams.Default.WithVolume(-12f));
+                }
 
+                _popup.PopupPredicted(
+                    _standing.IsDown(body)
+                        ? Loc.GetString("screams-in-pain", ("entity", body))
+                        : Loc.GetString("screams-and-falls-pain", ("entity", body)),
+                    body,
+                    null,
+                    PopupType.MediumCaution);
+
+                _stun.TryParalyze(body, nerveSys.Comp.PainShockStunTime * 1.4, true);
+                _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime * 1.4, true, 20f, 7f);
+
+                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime * 1.4);
                 nerveSys.Comp.LastThresholdType = PainThresholdTypes.None;
 
                 break;
@@ -530,7 +550,7 @@ public partial class PainSystem
         if (nearestReflex == PainThresholdTypes.None)
             return;
 
-        if (nerveSys.LastThresholdType == nearestReflex || _timing.CurTime < nerveSys.UpdateTime)
+        if (nerveSys.LastThresholdType == nearestReflex || _timing.CurTime > nerveSys.UpdateTime)
             return;
 
         if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
