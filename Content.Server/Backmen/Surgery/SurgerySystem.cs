@@ -47,7 +47,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryStepDamageEvent>(OnSurgeryStepDamage);
         // You might be wondering "why aren't we using StepEvent for these two?" reason being that StepEvent fires off regardless of success on the previous functions
         // so this would heal entities even if you had a used or incorrect organ.
-        SubscribeLocalEvent<SurgerySpecialDamageChangeEffectComponent, SurgeryStepDamageChangeEvent>(OnSurgerySpecialDamageChange);
         SubscribeLocalEvent<SurgeryDamageChangeEffectComponent, SurgeryStepDamageChangeEvent>(OnSurgeryDamageChange);
         SubscribeLocalEvent<SurgeryStepEmoteEffectComponent, SurgeryStepEvent>(OnStepScreamComplete);
         SubscribeLocalEvent<SurgeryStepSpawnEffectComponent, SurgeryStepEvent>(OnStepSpawnComplete);
@@ -97,7 +96,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
             damage,
             true,
             origin: user,
-            canSever: false,
             partMultiplier: partMultiplier,
             targetPart: _body.GetTargetBodyPart(partComp));
     }
@@ -150,17 +148,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         SetDamage(args.Body, damageChange, 0.5f, args.User, args.Part);
     }
-
-    private void OnSurgerySpecialDamageChange(Entity<SurgerySpecialDamageChangeEffectComponent> ent, ref SurgeryStepDamageChangeEvent args)
-    {
-        if (ent.Comp.DamageType == "Rot")
-            _rot.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(2147483648)); // BEHOLD, SHITCODE THAT I JUST COPY PASTED. I'll redo it at some point, pinky swear :)
-        else if (ent.Comp.DamageType == "Eye"
-            && TryComp(ent, out BlindableComponent? blindComp)
-            && blindComp.EyeDamage > 0)
-            _blindableSystem.AdjustEyeDamage((args.Body, blindComp), -blindComp!.EyeDamage);
-    }
-
     private void OnStepScreamComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (HasComp<ForcedSleepingComponent>(args.Body))

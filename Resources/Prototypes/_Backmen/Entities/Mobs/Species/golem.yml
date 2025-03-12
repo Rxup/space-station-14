@@ -313,7 +313,11 @@
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
       color: "#e8b59b"
       sprite: Mobs/Species/Diona/parts.rsi
-      state: torso_m
+      state: chest_m
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
+      color: "#e8b59b"
+      sprite: Mobs/Species/Diona/parts.rsi
+      state: groin_m
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
       sprite: Backmen/Mobs/Species/Golem/wood.rsi

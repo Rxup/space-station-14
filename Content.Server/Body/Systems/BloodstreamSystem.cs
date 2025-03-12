@@ -4,12 +4,19 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Drunk;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forensics;
@@ -23,6 +30,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using BleedInflicterComponent = Content.Shared.Backmen.Surgery.Traumas.Components.BleedInflicterComponent;
 
 namespace Content.Server.Body.Systems;
 
@@ -41,6 +49,14 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
+
+    // balanced, trust me
+    private const float BleedsSeverityTrade = 0.15f;
+    private const float BleedsScalingTimeDefault = 7f;
 
     public override void Initialize()
     {
@@ -57,6 +73,9 @@ public sealed class BloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
+
+        SubscribeLocalEvent<BleedInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityUpdate);
+        SubscribeLocalEvent<BleedInflicterComponent, WoundAddedEvent>(OnWoundAdded);
     }
 
     private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
@@ -144,8 +163,7 @@ public sealed class BloodstreamSystem : EntitySystem
                 // bloodloss damage is based on the base value, and modified by how low your blood level is.
                 var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
 
-                _damageableSystem.TryChangeDamage(uid, amt,
-                    ignoreResistances: false, interruptsDoAfters: false);
+                _damageableSystem.TryChangeDamage(uid, amt, ignoreResistances: false, interruptsDoAfters: false);
 
                 // Apply dizziness as a symptom of bloodloss.
                 // The effect is applied in a way that it will never be cleared without being healthy.
@@ -156,7 +174,7 @@ public sealed class BloodstreamSystem : EntitySystem
                     applySlur: false);
                 _stutteringSystem.DoStutter(uid, bloodstream.UpdateInterval * 2, refresh: false);
 
-                // storing the drunk and stutter time so we can remove it independently from other effects additions
+                // storing the drunk and stutter time so we can remove it independently of other effects additions
                 bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
             }
             else if (!_mobStateSystem.IsDead(uid))
@@ -165,7 +183,8 @@ public sealed class BloodstreamSystem : EntitySystem
                 _damageableSystem.TryChangeDamage(
                     uid,
                     bloodstream.BloodlossHealDamage * bloodPercentage,
-                    ignoreResistances: true, interruptsDoAfters: false);
+                    ignoreResistances: true,
+                    interruptsDoAfters: false);
 
                 // Remove the drunk effect when healthy. Should only remove the amount of drunk and stutter added by low blood level
                 _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
@@ -173,6 +192,60 @@ public sealed class BloodstreamSystem : EntitySystem
                 // Reset the drunk and stutter time to zero
                 bloodstream.StatusTime = TimeSpan.Zero;
             }
+
+            if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys))
+                continue;
+
+            var total = (FixedPoint2) 0;
+            foreach (var (bodyPart, _) in _body.GetBodyChildren(uid))
+            {
+                foreach (var (wound, _) in _wound.GetWoundableWounds(bodyPart))
+                {
+                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
+                        continue;
+
+                    total += bleeds.BleedingAmount;
+                }
+            }
+
+            if (!_consciousness.SetConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain))
+            {
+                _consciousness.AddConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain);
+            }
+        }
+
+        var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, WoundComponent>();
+        while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var wound))
+        {
+            if (bleeds is { IsBleeding: false, BleedingScales: false })
+            {
+                if (!TryComp<BodyPartComponent>(wound.HoldingWoundable, out var holder) || !holder.Body.HasValue)
+                    continue;
+
+                wound.CanBeHealed = true;
+            }
+
+            var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
+            var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
+
+            if (totalTime <= currentTime || bleeds.ScalingLimit == bleeds.Scaling)
+                continue;
+
+            var newBleeds = FixedPoint2.Clamp(
+                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
+                0,
+                bleeds.ScalingLimit);
+
+            if (TryComp<BodyPartComponent>(wound.HoldingWoundable, out var bodyPart) && bodyPart.Body.HasValue)
+            {
+                TryModifyBleedAmount(bodyPart.Body.Value, (float) bleeds.BleedingAmount / 1.6f);
+            }
+            bleeds.Scaling = newBleeds;
+
+            if (bleeds.Scaling >= bleeds.ScalingLimit || _gameTiming.CurTime > bleeds.ScalingFinishesAt)
+                bleeds.BleedingScales = false;
+
+            Dirty(ent, bleeds);
         }
     }
 
@@ -215,7 +288,7 @@ public sealed class BloodstreamSystem : EntitySystem
         }
 
         // TODO probably cache this or something. humans get hurt a lot
-        if (!_prototypeManager.TryIndex<DamageModifierSetPrototype>(ent.Comp.DamageBleedModifiers, out var modifiers))
+        if (!_prototypeManager.TryIndex(ent.Comp.DamageBleedModifiers, out var modifiers))
             return;
 
         var bloodloss = DamageSpecifier.ApplyModifierSet(args.DamageDelta, modifiers);
@@ -229,11 +302,9 @@ public sealed class BloodstreamSystem : EntitySystem
         var totalFloat = total.Float();
         TryModifyBleedAmount(ent, totalFloat, ent);
 
-        /// <summary>
-        ///     Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
-        ///     The crit chance is currently the bleed rate modifier divided by 25.
-        ///     Higher damage weapons have a higher chance to crit!
-        /// </summary>
+        // Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
+        // The crit chance is currently the bleed rate modifier divided by 25.
+        // Higher damage weapons have a higher chance to crit!
         var prob = Math.Clamp(totalFloat / 25, 0, 1);
         if (totalFloat > 0 && _robustRandom.Prob(prob))
         {
@@ -249,8 +320,7 @@ public sealed class BloodstreamSystem : EntitySystem
 
             // We'll play a special sound and popup for feedback.
             _audio.PlayPvs(ent.Comp.BloodHealedSound, ent);
-            _popupSystem.PopupEntity(Loc.GetString("bloodstream-component-wounds-cauterized"), ent,
-                ent, PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString("bloodstream-component-wounds-cauterized"), ent, ent, PopupType.Medium);
         }
     }
     /// <summary>
@@ -505,7 +575,8 @@ public sealed class BloodstreamSystem : EntitySystem
         if (TryComp<DnaComponent>(uid, out var donorComp))
         {
             dnaData.DNA = donorComp.DNA;
-        } else
+        }
+        else
         {
             dnaData.DNA = Loc.GetString("forensics-dna-unknown");
         }
@@ -513,5 +584,45 @@ public sealed class BloodstreamSystem : EntitySystem
         bloodData.Add(dnaData);
 
         return bloodData;
+    }
+
+    private void OnWoundAdded(EntityUid uid, BleedInflicterComponent component, ref WoundAddedEvent args)
+    {
+        if (!args.Component.CanBleed)
+            return;
+
+        // wounds that BLEED will not HEAL.
+        component.BleedingAmountRaw = args.Component.WoundSeverityPoint * BleedsSeverityTrade;
+
+        var formula = (float) (args.Component.WoundSeverityPoint / BleedsScalingTimeDefault * args.Component.BleedingScalingMultiplier);
+        component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
+        component.ScalingStartsAt = _gameTiming.CurTime;
+
+        args.Component.CanBeHealed = false;
+        component.IsBleeding = true;
+    }
+
+    private void OnWoundSeverityUpdate(EntityUid uid, BleedInflicterComponent component, ref WoundSeverityPointChangedEvent args)
+    {
+        if (!args.Component.CanBleed)
+            return;
+
+        var oldBleedsAmount = args.OldSeverity * BleedsSeverityTrade;
+        component.BleedingAmountRaw = args.NewSeverity * BleedsSeverityTrade;
+        component.BleedingScales = true;
+
+        var severityPenalty = component.BleedingAmountRaw - oldBleedsAmount / BleedsScalingTimeDefault;
+        component.SeverityPenalty += severityPenalty;
+
+        var formula = (float) (args.Component.WoundSeverityPoint / BleedsScalingTimeDefault * args.Component.BleedingScalingMultiplier);
+        component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
+        component.ScalingStartsAt = _gameTiming.CurTime;
+
+        if (!component.IsBleeding && args.NewSeverity > args.OldSeverity)
+        {
+            component.ScalingLimit += 0.6;
+            component.IsBleeding = true;
+            // When bleeding is reopened, the severity is increased
+        }
     }
 }

@@ -272,7 +272,7 @@ public sealed class FleshHeartSystem : EntitySystem
                 if (part.Component.PartType == BodyPartType.Head)
                     continue;
 
-                if (part.Component.PartType == BodyPartType.Torso)
+                if (part.Component.PartType == BodyPartType.Chest)
                 {
                     foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                     {

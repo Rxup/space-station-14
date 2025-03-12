@@ -17,6 +17,7 @@ using Content.Shared.Temperature;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 
 namespace Content.Server.Nutrition.EntitySystems
 {
