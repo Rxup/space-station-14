@@ -81,6 +81,10 @@
     damage:
       types:
         Slash: 5
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - FurryVirus
+    - FurryVirusPlus
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulpkanin

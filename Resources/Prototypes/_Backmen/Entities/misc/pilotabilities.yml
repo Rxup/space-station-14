@@ -1,0 +1,222 @@
+#-------------временные турели для спавна--------------#
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecBase
+  name: pistol security turret
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolACP
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 60
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+    
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecRifle
+  name: rifle security turret
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    drawdepth: Mobs
+    layers:
+      - state: temp-rifle
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleLight762x39
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 60
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+    
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecDisabler
+  name: disabler security turret
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    drawdepth: Mobs
+    layers:
+      - state: temp-disabler
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: BallisticAmmoProvider
+    proto: BulletDisablerSmg
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 60
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+    
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretSecLaser
+  name: laser security turret
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    drawdepth: Mobs
+    layers:
+      - state: temp-laser
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
+  - type: BallisticAmmoProvider
+    proto: BulletEnergyGunLaserMk2
+    capacity: 500
+  - type: TimedDespawn
+    lifetime: 60
+  - type: SpawnOnDespawn
+    prototype: EffectFlashBluespace
+
+#--------------------мина для спавна-------------------#
+- type: entity
+  name: explosive mine
+  parent: BaseLandMine
+  id: LandMineWeakExplosive
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 100 
+    canCreateVacuum: false
+    
+#------------------------РСУ СБ------------------------#
+- type: entity
+  id: securityTechnicianRCD
+  parent: [ RCD, BaseSecurityContraband ]
+  name: security technician RCD
+  description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function. This model has the ability to place turrets and mines, all of these structures are in the electronics section.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - WallSolid
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - ReinforcedWindow
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    - Deconstruct
+    - BaseTurretSpawn
+    - RifleTurretSpawn
+    - DisablerTurretSpawn
+    - LaserTurretSpawn
+    - LandMineWeakExplosiveSpawn
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/sec-tech-RCD.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Objects/Tools/sec-tech-RCD.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["SecurityTechnician"]]
+    
+- type: rcd
+  id: BaseTurretSpawn
+  category: Electrical
+  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-base.png
+  mode: ConstructObject
+  prototype: WeaponTurretSecBase 
+  cost: 10
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct4
+  
+- type: rcd
+  id: RifleTurretSpawn
+  category: Electrical
+  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-rifle.png
+  mode: ConstructObject
+  prototype: WeaponTurretSecRifle 
+  cost: 10
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: DisablerTurretSpawn
+  category: Electrical
+  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-disabler.png
+  mode: ConstructObject
+  prototype: WeaponTurretSecDisabler
+  cost: 10
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct4
+  
+- type: rcd
+  id: LaserTurretSpawn
+  category: Electrical
+  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-laser.png
+  mode: ConstructObject
+  prototype: WeaponTurretSecLaser
+  cost: 10
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: LandMineWeakExplosiveSpawn
+  category: Electrical
+  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-landmine.png
+  mode: ConstructObject
+  prototype: LandMineWeakExplosive
+  cost: 5
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct4
