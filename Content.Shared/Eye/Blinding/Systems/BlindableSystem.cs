@@ -1,3 +1,7 @@
+using Content.Shared.Body.Systems;
+using Content.Shared.Body.Components;
+using Content.Shared.Backmen.Surgery.Body.Organs;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
@@ -9,7 +13,8 @@ public sealed class BlindableSystem : EntitySystem
 {
     [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
     [Dependency] private readonly EyeClosingSystem _eyelids = default!;
-
+    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -17,6 +22,7 @@ public sealed class BlindableSystem : EntitySystem
         SubscribeLocalEvent<BlindableComponent, EyeDamageChangedEvent>(OnDamageChanged);
     }
 
+    // Might need to keep this one because of slimes since their eyes arent an organ, so they wouldnt get rejuvenated.
     private void OnRejuvenate(Entity<BlindableComponent> ent, ref RejuvenateEvent args)
     {
         AdjustEyeDamage((ent.Owner, ent.Comp), -ent.Comp.EyeDamage);
@@ -63,7 +69,25 @@ public sealed class BlindableSystem : EntitySystem
 
         blindable.Comp.EyeDamage += amount;
         UpdateEyeDamage(blindable, true);
+
+        // If the entity has eye organs, then we also damage those.
+        if (TryComp(blindable, out BodyComponent? body)
+            && _body.TryGetBodyOrganEntityComps<EyesComponent>((blindable, body), out var eyes))
+            foreach (var eye in eyes)
+                _trauma.ApplyDamageToOrgan(eye, amount, eye.Comp2);
     }
+
+    // Alternative version of the method intended to be used with Eye Organs, so that you can just pass in
+    // the severity and set that.
+    public void SetEyeDamage(Entity<BlindableComponent?> blindable, int amount)
+    {
+        if (!Resolve(blindable, ref blindable.Comp, false))
+            return;
+
+        blindable.Comp.EyeDamage = amount;
+        UpdateEyeDamage(blindable, true);
+    }
+
     private void UpdateEyeDamage(Entity<BlindableComponent?> blindable, bool isDamageChanged)
     {
         if (!Resolve(blindable, ref blindable.Comp, false))
@@ -87,19 +111,6 @@ public sealed class BlindableSystem : EntitySystem
         blindable.Comp.MinDamage = amount;
         UpdateEyeDamage(blindable, false);
     }
-
-    // Shitmed Change Start
-    public void TransferBlindness(BlindableComponent newSight, BlindableComponent oldSight, EntityUid newEntity)
-    {
-        newSight.IsBlind = oldSight.IsBlind;
-        newSight.EyeDamage = oldSight.EyeDamage;
-        newSight.LightSetup = oldSight.LightSetup;
-        newSight.GraceFrame = oldSight.GraceFrame;
-        newSight.MinDamage = oldSight.MinDamage;
-        newSight.MaxDamage = oldSight.MaxDamage;
-        UpdateEyeDamage((newEntity, newSight), true);
-    }
-    // Shitmed Change End
 }
 
 /// <summary>
