@@ -6,6 +6,12 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/organs.rsi
   - type: Organ
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: Food
   - type: Extractable
     grindableSolutionName: organ

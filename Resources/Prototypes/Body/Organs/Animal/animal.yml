@@ -30,6 +30,7 @@
   components:
   - type: Gibbable
 
+
 - type: entity
   id: OrganAnimalLungs
   parent: BaseAnimalOrgan
@@ -42,6 +43,12 @@
     - state: lung-r
   - type: Organ
     slotId: lungs
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: Lung
   - type: Metabolizer
     removeEmpty: true
@@ -75,6 +82,12 @@
     state: stomach
   - type: Organ
     slotId: stomach
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -119,6 +132,12 @@
     state: liver
   - type: Organ
     slotId: liver
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: Liver
   - type: Metabolizer
     maxReagents: 1
@@ -145,6 +164,12 @@
     state: heart-on
   - type: Organ
     slotId: heart # Shitmed
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
@@ -173,6 +198,12 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
     slotId: kidneys # Shitmed
   - type: Metabolizer
     maxReagents: 5
@@ -192,6 +223,12 @@
     state: brain
   - type: Organ
     slotId: brain # backmen: surgery
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: NerveSystem # backmen: wounding
   - type: ConsciousnessRequired
     identifier: "nerveSystem"
@@ -202,7 +239,6 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
-  - type: BadFood
   - type: Tag
     tags:
       - Meat
@@ -237,6 +273,12 @@
   # start-backmen: surgery
   - type: Organ
     slotId: eyes
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: Eyes
   # end-backmen: surgery
   - type: Sprite
