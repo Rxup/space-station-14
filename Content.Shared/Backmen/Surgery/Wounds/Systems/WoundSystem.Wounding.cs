@@ -162,9 +162,16 @@ public sealed partial class WoundSystem
                 var originTransform = _transform.GetWorldPosition(args.Origin.Value);
 
                 var distance = (originTransform - bodyTransform).Length();
-                var additionalChance = distance / _cfg.GetCVar(SurgeryCvars.DodgeDistanceChance) * _cfg.GetCVar(SurgeryCvars.DodgeDistanceChange);
+                if (distance < _cfg.GetCVar(SurgeryCvars.DodgeDistanceChance) * 2)
+                {
+                    chance = 0;
+                }
+                else
+                {
+                    var additionalChance = distance / _cfg.GetCVar(SurgeryCvars.DodgeDistanceChance) * _cfg.GetCVar(SurgeryCvars.DodgeDistanceChange);
 
-                chance += additionalChance;
+                    chance += additionalChance;
+                }
             }
         }
 
@@ -172,7 +179,13 @@ public sealed partial class WoundSystem
             return;
 
         if (bodyPart.Body.HasValue)
+        {
+            // Critted or dead people of course can't dodge for shit.
+            if (!_mobState.IsAlive(bodyPart.Body.Value))
+                return;
+
             _popup.PopupEntity(Loc.GetString("woundable-dodged", ("entity", bodyPart.Body.Value)), bodyPart.Body.Value, PopupType.Medium);
+        }
 
         args.Cancelled = true;
     }
@@ -543,7 +556,28 @@ public sealed partial class WoundSystem
         return false;
     }
 
-        /// <summary>
+    private void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)
+    {
+        if (!Resolve(woundable, ref woundableComp))
+            return;
+
+        foreach (var organ in _body.GetPartOrgans(woundable))
+        {
+            if (organ.Component.OrganSeverity == OrganSeverity.Normal)
+            {
+                // TODO: SFX for organs getting not destroyed, but thrown out
+                _body.RemoveOrgan(organ.Id, organ.Component);
+                _throwing.TryThrow(organ.Id, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+            }
+            else
+            {
+                // Destroy it
+                _trauma.ApplyDamageToOrgan(organ.Id, organ.Component.OrganIntegrity, organ.Component);
+            }
+        }
+    }
+
+    /// <summary>
     /// Destroys an entity's body part if conditions are met.
     /// </summary>
     /// <param name="parentWoundableEntity">Parent of the woundable entity. Yes.</param>
@@ -555,6 +589,7 @@ public sealed partial class WoundSystem
         if (bodyPart.Body == null)
         {
             QueueDel(woundableEntity);
+            DropWoundableOrgans(woundableEntity, woundableComp);
             // TODO: Some cool effect when the limb gets destroyed
         }
         else
@@ -584,6 +619,8 @@ public sealed partial class WoundSystem
 
             if (IsWoundableRoot(woundableEntity, woundableComp))
             {
+                DropWoundableOrgans(woundableEntity, woundableComp);
+
                 DestroyWoundableChildren(woundableEntity, woundableComp);
                 _body.GibBody(bodyPart.Body.Value);
 
@@ -606,6 +643,7 @@ public sealed partial class WoundSystem
                 }
                 var bodyPartId = container.ID;
 
+                DropWoundableOrgans(woundableEntity, woundableComp);
                 DestroyWoundableChildren(woundableEntity, woundableComp);
 
                 _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);

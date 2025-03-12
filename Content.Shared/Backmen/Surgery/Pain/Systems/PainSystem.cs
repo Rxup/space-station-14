@@ -149,7 +149,7 @@ public sealed partial class PainSystem : EntitySystem
                 CleanupSounds(nerveSys);
                 PlayPainSound(args.Target, nerveSys, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f));
                 break;
-            default:
+            case MobState.Dead:
                 CleanupSounds(nerveSys);
                 break;
         }

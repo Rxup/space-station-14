@@ -39,7 +39,7 @@ public sealed partial class NerveSystemComponent : Component
     public PainThresholdTypes LastThresholdType = PainThresholdTypes.None;
 
     [DataField("thresholdUpdate")]
-    public TimeSpan ThresholdUpdateTime = TimeSpan.FromSeconds(2f);
+    public TimeSpan ThresholdUpdateTime = TimeSpan.FromSeconds(1.2f);
 
     [DataField("accumulated", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan UpdateTime = TimeSpan.Zero;

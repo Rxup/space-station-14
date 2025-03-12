@@ -13,21 +13,33 @@ public partial class TraumaSystem
 
     private void InitOrgans()
     {
-        SubscribeLocalEvent<OrganComponent, OrganDamageSeverityChanged>(SomeShitHappensHere);
+        SubscribeLocalEvent<OrganComponent, OrganDamageSeverityChanged>(OnOrganSeverityChanged);
         SubscribeLocalEvent<OrganComponent, OrganDamagePointChangedEvent>(SomeOtherShitHappensHere);
     }
 
     #region Event handling
 
-    private void SomeShitHappensHere(EntityUid organ, OrganComponent comp, OrganDamageSeverityChanged args)
+    private void OnOrganSeverityChanged(EntityUid organ, OrganComponent comp, OrganDamageSeverityChanged args)
     {
+        if (args.NewSeverity != OrganSeverity.Destroyed)
+            return;
 
-        // TODO: Make those actually handled. and also make undamaged organs fall out when a woundable gets destroyed, for the funnies :3
+        if (comp.Body != null && _consciousness.TryGetNerveSystem(comp.Body.Value, out var nerveSys))
+        {
+            // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
+            _pain.TryAddPainModifier(nerveSys.Value, nerveSys.Value, "OrganDestroyed", 20f, time: TimeSpan.FromSeconds(12f));
+
+            // TODO: Organ remover sfx
+            //_pain.PlayPainSound(comp.Body.Value, nerveSys.Value.Comp, comp.OrganDestroyedSound);
+        }
+
+        _body.RemoveOrgan(organ, comp);
+        QueueDel(organ);
     }
 
     private void SomeOtherShitHappensHere(EntityUid organ, OrganComponent comp, OrganDamagePointChangedEvent args)
     {
-
+        // When we get to this, make some organs work worse based on their state (of course you won't be able to breathe THAT good when your lung is pierced by a .50cal)
     }
 
     #endregion

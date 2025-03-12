@@ -3,6 +3,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
@@ -28,6 +29,7 @@ public partial class WoundSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;

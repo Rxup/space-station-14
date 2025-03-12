@@ -550,7 +550,7 @@ public partial class PainSystem
         if (nearestReflex == PainThresholdTypes.None)
             return;
 
-        if (nerveSys.LastThresholdType == nearestReflex || _timing.CurTime > nerveSys.UpdateTime)
+        if (nerveSys.LastThresholdType == nearestReflex && _timing.CurTime < nerveSys.UpdateTime)
             return;
 
         if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
