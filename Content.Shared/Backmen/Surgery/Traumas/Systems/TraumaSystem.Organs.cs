@@ -153,10 +153,8 @@ public partial class TraumaSystem
         var oldIntegrity = organ.OrganIntegrity;
 
         // Makes more sense for this to just multiply the value no?
-        if (organ.IntegrityModifiers.Count > 0)
-            organ.OrganIntegrity *= FixedPoint2.Clamp(organ.IntegrityModifiers
-                .Aggregate((FixedPoint2) 0,
-                    (current, modifier) => current + modifier.Value),
+        organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
+                .Aggregate((FixedPoint2) 0, (current, modifier) => current + modifier.Value),
                 0,
                 organ.IntegrityCap);
 
