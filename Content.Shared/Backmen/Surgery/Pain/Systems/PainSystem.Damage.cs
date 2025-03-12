@@ -524,7 +524,7 @@ public partial class PainSystem
                 _stun.TryParalyze(body, nerveSys.Comp.PainShockStunTime * 1.4, true);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime * 1.4, true, 20f, 7f);
 
-                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime * 1.4);
+                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime * 2);
                 nerveSys.Comp.LastThresholdType = PainThresholdTypes.None;
 
                 break;
