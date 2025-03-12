@@ -47,7 +47,7 @@ public sealed class CloningSystem : EntitySystem
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.
     /// </summary>
-    public bool TryCloning(EntityUid original, MapCoordinates? coords, ProtoId<CloningSettingsPrototype> settingsId, [NotNullWhen(true)] out EntityUid? clone)
+    public bool TryCloning(EntityUid original, MapCoordinates? coords, ProtoId<CloningSettingsPrototype> settingsId, Entity<CloningPodComponent>? clonePod, [NotNullWhen(true)] out EntityUid? clone)
     {
         clone = null;
         if (!_prototype.TryIndex(settingsId, out var settings))
@@ -65,7 +65,7 @@ public sealed class CloningSystem : EntitySystem
             return false; // cannot clone, for example due to the unrevivable trait
 
         // start-backmen: cloning
-        var genetics = new CloningSpawnEvent((uid,clonePod),bodyToClone)
+        var genetics = new CloningSpawnEvent(clonePod,original)
         {
             Proto = speciesPrototype.Prototype
         };
@@ -76,7 +76,7 @@ public sealed class CloningSystem : EntitySystem
             _humanoidSystem.CloneAppearance(original, clone.Value);
         }
         // end-backmen: cloning
-        
+
         var componentsToCopy = settings.Components;
 
         // don't make status effects permanent

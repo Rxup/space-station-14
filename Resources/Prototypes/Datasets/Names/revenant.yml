@@ -1,61 +1,17 @@
 - type: localizedDataset
   id: NamesRevenantType
   values:
-  - сущность
-  - привидение
-  - фантом
-  - полтергейст
-  - ревенант
-  - душа
-  - тень
-  - дух
-  prefix: names-revenant-type-dataset-
-  count: 8
+    prefix: names-revenant-type-dataset-
+    count: 8
 
 - type: localizedDataset
   id: NamesRevenantAdjective
   values:
-  - адской
-  - бездонной
-  - жестокой
-  - тёмной
-  - бесконечной
-  - вечной
-  - огненной
-  - ненавистной
-  - отвратительной
-  - весёлой
-  - равнодушной
-  - злобной
-  - мирной
-  - жгучей
-  - тихой
-  - злорадной
-  prefix: names-revenant-adjective-dataset-
-  count: 16
+    prefix: names-revenant-adjective-dataset-
+    count: 16
 
 - type: localizedDataset
   id: NamesRevenantTheme
   values:
-  - агонии
-  - злости
-  - смерти
-  - болезни
-  - скорби
-  - ненависти
-  - жалости
-  - порчи
-  - токсичности
-  - мести
-  - муки
-  - тоски
-  - боли
-  #- despair
-  #- desperation
-  #- destruction
-  #- hellfire
-  #- laughter
-  #- screams
-  #- suffering
-  prefix: names-revenant-theme-dataset-
-  count: 13
+    prefix: names-revenant-theme-dataset-
+    count: 13

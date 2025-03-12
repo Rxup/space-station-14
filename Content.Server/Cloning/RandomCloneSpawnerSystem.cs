@@ -42,6 +42,6 @@ public sealed class RandomCloneSpawnerSystem : EntitySystem
         var bodyToClone = _random.Pick(allHumans).Comp.OwnedEntity;
 
         if (bodyToClone != null)
-            _cloning.TryCloning(bodyToClone.Value, _transformSystem.GetMapCoordinates(ent.Owner), settings, out _);
+            _cloning.TryCloning(bodyToClone.Value, _transformSystem.GetMapCoordinates(ent.Owner), settings, null, out _);
     }
 }

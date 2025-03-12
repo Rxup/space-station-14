@@ -1,12 +1,5 @@
 - type: localizedDataset
   id: NamesCargoShuttle
   values:
-  - Большой Денежный Шаттл
-  - Замена Двигателя
-  - Доставляющий-Грузы
-  - Шуттель
-  - Шаттл МакШаттлфейс
-  - ШаттлШаттл
-  - Урист МакШаттл
-  prefix: names-cargo-shuttle-dataset-
-  count: 7
+    prefix: names-cargo-shuttle-dataset-
+    count: 7

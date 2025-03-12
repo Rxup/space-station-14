@@ -56,7 +56,7 @@ public sealed class FakeFingerprint : IConsoleCommand
         }
 
         var f = _entityManager.EnsureComponent<ForensicsComponent>(item.Value);
-        if (_entityManager.TryGetComponent<DnaComponent>(playerUid, out var dna))
+        if (_entityManager.TryGetComponent<DnaComponent>(playerUid, out var dna) && !string.IsNullOrEmpty(dna.DNA))
         {
             f.DNAs.Add(dna.DNA);
         }

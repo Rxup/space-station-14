@@ -94,7 +94,8 @@
   parent: BaseWeaponRecipeLong
   id: WeaponLaserCannon
   result: WeaponEarthGovLaserSniper
-  category: Weapons
+  categories:
+  - Weapons
   completetime: 5
   materials:
     Steel: 1250
@@ -113,7 +114,8 @@
   parent: BaseWeaponRecipeLong
   id: WeaponXrayCannon
   result: WeaponEarthGovXRay
-  category: Weapons
+  categories:
+    - Weapons
   completetime: 5
   materials:
     Steel: 1500

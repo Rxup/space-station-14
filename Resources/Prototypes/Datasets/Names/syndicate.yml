@@ -1,67 +1,17 @@
 - type: localizedDataset
   id: NamesSyndicateNormal
   values:
-  - Альфа
-  - Браво
-  - Чарли
-  - Дельта
-  - Эхо
-  - Фокстрот
-  - Гольф
-  - Хоутел
-  - Индиа
-  - Джулиет
-  - Кило
-  - Лима
-  - Майк
-  - Новэмбэр
-  - Оскар
-  - Папа
-  - Квебек
-  - Ромео
-  - Сьера
-  - Танго
-  - Юниформ
-  - Виктор
-  - Виски
-  - Иксрей
-  - Зулу
-  prefix: names-syndicate-normal-dataset-
-  count: 25
+    prefix: names-syndicate-normal-dataset-
+    count: 25
 
 - type: localizedDataset
   id: NamesSyndicateElite
   values:
-  - Альфа
-  - Бета
-  - Гамма
-  - Дельта
-  - Эпсилон
-  - Дзета
-  - Эта
-  - Фита
-  - Йота
-  - Лямбда
-  - Мю
-  - Ню
-  - Кси
-  - Омикрон
-  - Пи
-  - Ро
-  - Сигма
-  - Тау
-  - Ипсилон
-  - Фи
-  - Хи
-  - Пси
-  - Омега
-  prefix: names-syndicate-elite-dataset-
-  count: 23
+    prefix: names-syndicate-elite-dataset-
+    count: 23
 
 - type: localizedDataset
   id: NamesSyndicatePrefix
   values:
-  - Оперативник
-  - Агент
-  prefix: names-syndicate-prefix-dataset-
-  count: 2
+    prefix: names-syndicate-prefix-dataset-
+    count: 2
