@@ -20,6 +20,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.IoC;
+using Robust.Shared.Map.Events;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
 
@@ -328,7 +329,15 @@ namespace Content.IntegrationTests.Tests
                 return false;
             }
 
-            var reader = new EntityDeserializer(deps, data, DeserializationOptions.Default);
+            var ev = new BeforeEntityReadEvent();
+            deps.Resolve<EntityManager>().EventBus.RaiseEvent(EventSource.Local, ev);
+
+            var reader = new EntityDeserializer(deps,
+                data,
+                DeserializationOptions.Default,
+                ev.RenamedPrototypes,
+                ev.DeletedPrototypes);
+
             if (!reader.TryProcessData())
             {
                 Assert.Fail($"Failed to process {map}");
