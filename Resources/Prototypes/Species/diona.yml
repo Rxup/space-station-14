@@ -8,10 +8,10 @@
   markingLimits: MobDionaMarkingLimits
   dollPrototype: MobDionaDummy
   skinColoration: Hues
-  maleFirstNames: DionaFirst
-  femaleFirstNames: DionaFirst
-  maleLastNames: DionaLast # Corvax-LastnameGender
-  femaleLastNames: DionaLast # Corvax-LastnameGender
+  maleFirstNames: NamesDionaFirst
+  femaleFirstNames: NamesDionaFirst
+  maleLastNames: NamesDionaLast # Corvax-LastnameGender
+  femaleLastNames: NamesDionaLast # Corvax-LastnameGender
   naming: TheFirstofLast
 
 - type: speciesBaseSprites
