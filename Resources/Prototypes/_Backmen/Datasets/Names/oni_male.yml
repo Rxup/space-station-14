@@ -1,20 +1,5 @@
-- type: dataset
-  id: names_oni_male
+- type: localizedDataset
+  id: NamesOniMale
   values:
-  - Киеси #陽
-  - Сатоши #明
-  - Теру #光
-  - Хироси
-  - Такаши #天
-  - Иичи #永一
-  - Эйчироу #永一朗
-  - Кесабуро
-  - Цутому
-  - Цуеси
-  - Кенши
-  - Кэндзи
-  - Кеничи
-  - Сусуму
-  - Кеуносуке
-  - Суисей #Mars
-  - Шутен #Reference
+    prefix: names-male-oni-
+    count: 17

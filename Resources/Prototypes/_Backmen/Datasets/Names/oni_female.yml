@@ -1,21 +1,5 @@
-- type: dataset
-  id: names_oni_female
+- type: localizedDataset
+  id: NamesOniFemale
   values:
-  - Акари #星
-  - Кира
-  - Кирамеки
-  - Аки #陽
-  - Акихо
-  - Акими
-  - Акаши #明
-  - Сая
-  - Апоро #月
-  - Арут
-  - Мегуру
-  - Тиара #天
-  - Суйсей
-  - Ио #水
-  - Аой
-  - Мизу
-  - Шутен #epic references
-  - Суйка
+    prefix: names-female-oni-
+    count: 18

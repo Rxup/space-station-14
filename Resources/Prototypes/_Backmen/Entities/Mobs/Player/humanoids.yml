@@ -181,9 +181,10 @@
       factions:
         - SimpleHostile
     - type: BibleUser
+    - type: Psionic
+      removable: false
     - type: RandomHumanoidAppearance # Removes random names :(
       randomizeName: false
-
     - type: DispelPower
     - type: MassSleepPower
     - type: MetapsionicPower

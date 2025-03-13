@@ -42,6 +42,7 @@
   hostile:
   - PetsNT
   - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: Passive
@@ -59,6 +60,7 @@
   - SpecialForce
   - CombineForce
   - AllHostile
+  - Wizard
 
 - type: npcFaction
   id: SimpleHostile
@@ -182,7 +184,11 @@
   hostile:
   - NanoTrasen
   - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
   - SimpleHostile
+  - SimpleNeutral
   - Syndicate
   - Xeno
   - Zombie

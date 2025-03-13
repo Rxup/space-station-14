@@ -406,6 +406,7 @@
     - SecurityExplosives
     - BackmenAmmo # backmen
     - SecurityWeapons
+    - SecurityDisablers
   - type: MaterialStorage
     whitelist:
       tags:
