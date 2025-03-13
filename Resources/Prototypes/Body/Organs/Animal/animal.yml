@@ -43,11 +43,11 @@
     - state: lung-r
   - type: Organ
     slotId: lungs
-    intCap: 28
-    integrity: 28
+    intCap: 25
+    integrity: 25
     integrityThresholds:
-      Normal: 28
-      Damaged: 16
+      Normal: 25
+      Damaged: 15
       Destroyed: 0
   - type: Lung
   - type: Metabolizer
@@ -164,11 +164,11 @@
     state: heart-on
   - type: Organ
     slotId: heart # Shitmed
-    intCap: 28
-    integrity: 28
+    intCap: 30
+    integrity: 30
     integrityThresholds:
-      Normal: 28
-      Damaged: 16
+      Normal: 30
+      Damaged: 15
       Destroyed: 0
   - type: Metabolizer
     maxReagents: 2
@@ -223,11 +223,11 @@
     state: brain
   - type: Organ
     slotId: brain # backmen: surgery
-    intCap: 28
-    integrity: 28
+    intCap: 40
+    integrity: 40
     integrityThresholds:
-      Normal: 28
-      Damaged: 16
+      Normal: 40
+      Damaged: 20
       Destroyed: 0
   - type: NerveSystem # backmen: wounding
   - type: ConsciousnessRequired

@@ -6,6 +6,12 @@
   - type: Sprite
     sprite: Mobs/Species/Diona/organs.rsi
   - type: Organ
+    intCap: 24
+    integrity: 24
+    integrityThresholds:
+      Normal: 24
+      Damaged: 15
+      Destroyed: 0
   - type: Food
   - type: Extractable
     grindableSolutionName: organ
