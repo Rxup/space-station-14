@@ -74,10 +74,11 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         {
 
             // Goobstation Change Start
-            if (!_prototypeManager.Index<EntityPrototype>(material.StackEntity).TryGetComponent<PhysicalCompositionComponent>(out var composition, EntityManager.ComponentFactory))
+            var proto = _prototypeManager.Index<EntityPrototype>(material.StackEntity);
+            if (!proto.TryGetComponent<PhysicalCompositionComponent>(out var composition, EntityManager.ComponentFactory))
                 return;
 
-            if (proto.TryGetComponent<TagComponent>(out var tag)
+            if (proto.TryGetComponent<TagComponent>(out var tag, EntityManager.ComponentFactory)
                 && component.DisallowOreEjection
                 && _tag.HasTag(tag, OreTag))
                 return;

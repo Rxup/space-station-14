@@ -1,6 +1,8 @@
 using Content.Server.Advertise;
 using Content.Server.Advertise.Components;
+using Content.Server.Advertise.EntitySystems;
 using Content.Shared._DV.VendingMachines;
+using Content.Shared.Advertise.Components;
 
 namespace Content.Server._DV.VendingMachines;
 
