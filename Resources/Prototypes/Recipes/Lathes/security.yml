@@ -3,7 +3,8 @@
 - type: latheRecipe
   abstract: true
   id: BaseWeaponRecipe
-  category: Weapons
+  categories:
+  - Weapons
   completetime: 2
   materials:
     Steel: 300
@@ -18,7 +19,8 @@
 - type: latheRecipe
   abstract: true
   id: BaseAmmoRecipe
-  category: Ammo
+  categories:
+  - Ammo
   completetime: 5
 
 - type: latheRecipe
@@ -92,7 +94,8 @@
   parent: BaseWeaponRecipeLong
   id: WeaponLaserCannon
   result: WeaponEarthGovLaserSniper
-  category: Weapons
+  categories:
+  - Weapons
   completetime: 5
   materials:
     Steel: 1250
@@ -111,7 +114,8 @@
   parent: BaseWeaponRecipeLong
   id: WeaponXrayCannon
   result: WeaponEarthGovXRay
-  category: Weapons
+  categories:
+    - Weapons
   completetime: 5
   materials:
     Steel: 1500
