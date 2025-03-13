@@ -1615,3 +1615,12 @@
   id: 106
   time: '2025-03-10T17:02:33.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1092
+- author: KieriFand
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0451\u043D \u0441\u043F\u0440\u0430\u0439\
+      \u0442 \u0440\u0443\u0447\u043D\u043E\u0433\u043E \u043C\u043E\u043D\u0438\u0442\
+      \u043E\u0440\u0430 \u043A\u0430\u043C\u0435\u0440."
+    type: Tweak
+  id: 107
+  time: '2025-03-13T03:18:12.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1095
