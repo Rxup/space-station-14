@@ -3,11 +3,7 @@
   id: PsiScheduler
   components:
   - type: GameRule
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 0
-    minMaxEventTiming:
-      min: 240 # 4 min
-      max: 480 # 8 min
+  - type: GlimmerStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: PsiBackmenEventsTable
 
@@ -15,17 +11,17 @@
   id: PsiBackmenEventsTable
   table: !type:AllSelector
     children:
-    - id: GlimmerWispSpawn
     - id: NoosphericZap
     - id: NoosphericFry
     - id: PsionicCatGotYourTongue
     - id: MassMindSwap
     - id: GlimmerWispSpawn
-    - id: FreeProberEarly
-    - id: FreeProber
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
+    - id: GlimmerBreaker
     - id: NoosphericStorm
+    - !type:NestedSelector
+      tableId: FreeProberEventsTable
 
 
 - type: entityTable
@@ -116,10 +112,9 @@
   abstract: true
   components:
     - type: StationEvent
-      # Favor glimmer events just a little more than regular events.
       weight: 12
       earliestStart: 1
-      reoccurrenceDelay: 1
+      reoccurrenceDelay: 5
     - type: GlimmerEvent
 
 ## Glimmer events
@@ -129,6 +124,8 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
+      minimumGlimmer: 500
+      maximumGlimmer: 1000
     - type: NoosphericZapRule
 
 - type: entity
@@ -138,7 +135,7 @@
   components:
     - type: GlimmerEvent
       minimumGlimmer: 300
-      maximumGlimmer: 900
+      maximumGlimmer: 1000
     - type: NoosphericFryRule
 
 
@@ -161,8 +158,8 @@
   components:
     - type: GlimmerEvent
       minimumGlimmer: 400
-      glimmerBurnLower: 20
-      glimmerBurnUpper: 70
+      glimmerBurnLower: 50
+      glimmerBurnUpper: 200
     - type: MassMindSwapRule
 
 - type: entity
@@ -173,14 +170,32 @@
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
+      glimmerBurnLower: 90
+      glimmerBurnUpper: 120
       report: glimmer-event-report-signatures
     - type: GlimmerWispRule
 
+- type: entityTable
+  id: FreeProberEventsTable
+  table: !type:AllSelector
+    children:
+    #- id: FreeProberEarlyLowPop
+    #- id: FreeProberEarlyMedPop
+    #- id: FreeProberEarlyHiPop
+    - id: FreeProberLowPop
+    - id: FreeProberMedPop
+    - id: FreeProberHiPop
+
 - type: entity
-  id: FreeProberEarly
+  id: FreeProberEarlyHiPop
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 1
+    minimumPlayers: 40
   - type: GlimmerEvent
     minimumGlimmer: 0
     maximumGlimmer: 100
@@ -190,15 +205,82 @@
     afterGlimmerExtra: 0
 
 - type: entity
-  id: FreeProber
+  id: FreeProberEarlyMedPop
+  parent: FreeProberEarlyHiPop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 10
+    minimumPlayers: 20
+    maxPlayers: 40
+
+- type: entity
+  id: FreeProberEarlyLowPop
+  parent: FreeProberEarlyHiPop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 20
+    maxPlayers: 20
+
+- type: entity
+  id: FreeProberHiPop
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+    - type: StationEvent
+      weight: 12
+      earliestStart: 1
+      reoccurrenceDelay: 1
+      minimumPlayers: 40
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
       report: glimmer-event-report-signatures
     - type: FreeProberRule
+
+- type: entity
+  id: GlimmerBreaker
+  parent: BaseGlimmerEvent
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 1
+    minimumPlayers: 5
+  - type: GlimmerEvent
+    minimumGlimmer: 30
+    maximumGlimmer: 500
+    report: glimmer-event-breaker
+  - type: GlimmerBreakerRule
+
+- type: entity
+  id: FreeProberMedPop
+  parent: FreeProberHiPop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 10
+    minimumPlayers: 20
+    maxPlayers: 40
+
+- type: entity
+  id: FreeProberLowPop
+  parent: FreeProberHiPop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 12
+    earliestStart: 1
+    reoccurrenceDelay: 20
+    maxPlayers: 20
 
 ## converted upstream events
 - type: entity
@@ -217,6 +299,12 @@
   parent: BaseGlimmerEvent
   categories: [ HideSpawnMenu ]
   components:
+    - type: StationEvent
+      weight: 5
+      duration: 1
+      earliestStart: 50
+      minimumPlayers: 20
+      maxOccurrences: 2
     - type: GlimmerEvent
       minimumGlimmer: 500
       maximumGlimmer: 900

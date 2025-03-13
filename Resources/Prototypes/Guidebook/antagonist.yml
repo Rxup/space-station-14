@@ -4,14 +4,15 @@
   text: "/ServerInfo/Guidebook/Antagonist/Antagonists.xml"
   children:
   - Traitors
-  - Changelings
-  - NuclearOperatives
-  - Zombies
-  - Revolutionaries
-  - MinorAntagonists
-  - SpaceNinja
-  - Blob # backmen
   - Thieves
+  - Revolutionaries
+  - NuclearOperatives
+  - SpaceNinja
+  - Wizard
+  - Zombies
+  - MinorAntagonists
+  - Changelings # backmen
+  - Blob # backmen
   - superpsi # backmen
 
 - type: guideEntry
@@ -48,3 +49,8 @@
   id: Thieves
   name: guide-entry-thieves
   text: "/ServerInfo/Guidebook/Antagonist/Thieves.xml"
+
+- type: guideEntry
+  id: Wizard
+  name: guide-entry-wizard
+  text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"

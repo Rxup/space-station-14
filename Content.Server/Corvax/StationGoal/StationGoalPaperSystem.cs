@@ -2,12 +2,9 @@ using System.Linq;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Fax;
 using Content.Server.GameTicking.Events;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Fax.Components;
-using Content.Shared.GameTicking;
-using Content.Shared.Paper;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -28,10 +25,8 @@ namespace Content.Server.Corvax.StationGoal
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly CentcommSystem _centcomm = default!;
 
-
         public override void Initialize()
         {
-            base.Initialize();
             SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
         }
 
@@ -73,7 +68,7 @@ namespace Content.Server.Corvax.StationGoal
             }
         }
 
-        public bool SendStationGoal(EntityUid? ent, ProtoId<StationGoalPrototype> goal)
+        public bool SendStationGoal(EntityUid ent, ProtoId<StationGoalPrototype> goal)
         {
             return SendStationGoal(ent, _proto.Index(goal));
         }
@@ -82,48 +77,32 @@ namespace Content.Server.Corvax.StationGoal
         ///     Send a station goal on selected station to all faxes which are authorized to receive it.
         /// </summary>
         /// <returns>True if at least one fax received paper</returns>
-        public bool SendStationGoal(EntityUid? ent, StationGoalPrototype goal)
+        public bool SendStationGoal(EntityUid ent, StationGoalPrototype goal)
         {
-            if (ent is null)
-                return false;
-
-            if (!TryComp<StationDataComponent>(ent, out var stationData))
-                return false;
-
             var printout = new FaxPrintout(
-                Loc.GetString(goal.Text, ("station", MetaData(ent.Value).EntityName)),
+                Loc.GetString(goal.Text, ("station", MetaData(ent).EntityName)),
                 Loc.GetString("station-goal-fax-paper-name"),
                 null,
                 null,
                 "paper_stamp-centcom",
-                new List<StampDisplayInfo>
-                {
-                    new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#006600") },
-                });
+                [new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#006600") }]
+            );
 
             var wasSent = false;
             var query = EntityQueryEnumerator<FaxMachineComponent>();
             while (query.MoveNext(out var faxUid, out var fax))
             {
-                if (!fax.ReceiveStationGoal)
-                    continue;
-
-                var largestGrid = _station.GetLargestGrid(stationData);
-                var grid = Transform(faxUid).GridUid;
-
-                if (grid is null)
-                    continue;
-
-                if(!(largestGrid == grid.Value || _centcomm.CentComGrid == largestGrid))
+                if (!fax.ReceiveAllStationGoals && !(fax.ReceiveStationGoal && _station.GetOwningStation(faxUid) == ent))
                     continue;
 
                 _fax.Receive(faxUid, printout, null, fax);
+
                 foreach (var spawnEnt in goal.Spawns)
-                {
                     SpawnAtPosition(spawnEnt, Transform(faxUid).Coordinates);
-                }
-                wasSent = true;
+
+                wasSent |= fax.ReceiveStationGoal;
             }
+
             return wasSent;
         }
     }

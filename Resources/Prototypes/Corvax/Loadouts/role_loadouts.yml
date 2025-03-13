@@ -23,9 +23,10 @@
   - SecurityBackpack
   - SecurityOuterClothingPilot #backmen
   - SecurityHeadPilot #backmen
-  - SecurityBelt
+  - SecurityClothingBeltPilot #backmen
+  - SecurityEyesPilot #backmen
   - SecurityShoesPilot #backmen
-  - Survival
+  - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts

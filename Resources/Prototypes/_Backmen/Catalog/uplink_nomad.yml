@@ -1,5 +1,125 @@
 ﻿#no_mad shit
 
+#Ammo
+- type: listing
+  id: UplinkMosinAmmo
+  name: uplink-mosin-ammo-name
+  description: uplink-mosin-ammo-desc
+  productEntity: MagazineBoxHeavyRifle762
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkAKAmmo
+  name: пакет патронов (7.62х39)
+  description: Картонная коробка с 60 патронов калибра 7.62х39, которыми пользуються автоматы серии калашникова.
+  productEntity: MagazinePacketRifle762x39
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: Uplink308winAmmo
+  name: коробка патронов (.308 win)
+  description: Цинк с 60 патронов калибра .308 winchester, крайне эффективен против живой силы с толстой кожей.
+  productEntity: MagazineBoxHeavyRifle
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkFuelTankFirethrower
+  name: Топливный бак
+  description: Топливный бак для огнемёта.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi, state: base }
+  productEntity: FuelTankFirethrower
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineMagnumPistol
+  name: пистолетный магазин (.50 AE)
+  description: Магазин для того самого пустынного орла.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi, state: base }
+  productEntity: MagazinePistol50AE
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazine50BMGMag
+  name: магазин (.50 BMG)
+  description: Магазин калибра 50 BMG, обычно с таким патроном идут на крупный рогатый скот.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi, state: base }
+  productEntity: MagazineAntiMaterielRifleSR
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazine9x17
+  name: магазин (9x17 mm)
+  description: Магазин калибра 9x17 для ПП.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGun9x17
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazinePistol9x17
+  name: пистолетный магазин (9x17 mm)
+  description: Магазин калибра 9x17 для пистолетов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
+  productEntity: MagazinePistol9x17
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazinePistol57x28
+  name: пистолетный магазин (5,7x28)
+  description: Магазин калибра 55,7x28 для пистолетов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi, state: base }
+  productEntity: MagazinePistol57x28
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineSMG57x28
+  name: магазин (5,7x28)
+  description: Магазин калибра 55,7x28 для ПП.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_mp7.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGun57x28
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineSMGVector45ACP
+  name: магазин (.45 Auto)
+  description: Магазин калибра .45 Auto для Вектора.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGunVector45ACP
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+#Bundles
 - type: listing
   id: UplinkP90Bundle
   name: набор "P90"
@@ -132,6 +252,17 @@
     - id: MagazinePistolSubMachineGunVector45ACPExt
     - id: MagazinePistolSubMachineGunVector45ACPExt
 
+- type: listing
+  id: UplinkMP7Bundle
+  name: набор "MP7"
+  description: Модель SMG7 с архаичным дизайном, насчитывающим сотни лет, была распространена в свое время. Сегодня он находит ограниченное применение в качестве дешевых компьютерных копий или семейных реликвий, хотя каким-то образом попал в руки колониальных повстанцев. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledMP7
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkBundles
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateFilledMP7
@@ -196,17 +327,6 @@
     Telecrystal: 10
   categories:
   - UplinkWeaponry
-
-- type: listing
-  id: UplinkMagazineMagnumPistol
-  name: магазин (.45 магнум)
-  description: Магазин для того самого пустынного орла.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi, state: base }
-  productEntity: MagazinePistol50AE
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
 
 - type: listing
   id: UplinkZauerBundle
@@ -425,17 +545,6 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkFuelTankFirethrower
-  name: Топливный бак
-  description: Топливный бак для огнемёта.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi, state: base }
-  productEntity: FuelTankFirethrower
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
-
-- type: listing
   id: UplinkNightVisionDevice
   name: прибор ночного видения
   description: Ты можешь смотреть в темноте...
@@ -488,16 +597,16 @@
   - type: StorageFill
     contents:
       - id: MagazinePistolDrumSubMachineGun # For PPSH
-        amount: 1
+        amount: 2
       - id: MagazinePistolTopSubMachineGun # For P90
-        amount: 1
+        amount: 2
       - id: MagazineLightMachineGun762x39 # For RPD
         amount: 2
       - id: MagazinePistolSubMachineGun57x28
+        amount: 4
+      - id: MagazinePistolSubMachineGunVector45ACPExt
         amount: 2
-      - id: MagazinePistolSubMachineGunVector45ACP
-        amount: 2
-      - id: MagazineRifleLight762x39 # For AKMS, AKSU and STG44
+      - id: MagazineRifleLight762x39Ext # For AKMS, AKSU and STG44
         amount: 3
       - id: MagazineRifleLightSniper # For Dragunov
         amount: 1

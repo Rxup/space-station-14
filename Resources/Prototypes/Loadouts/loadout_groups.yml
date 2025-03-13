@@ -760,6 +760,7 @@
 - type: loadoutGroup
   id: StationEngineerHead
   name: loadout-group-station-engineer-head
+  minLimit: 0
   loadouts:
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
@@ -1089,6 +1090,7 @@
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
   loadouts:
+  - ArmorVestSec # Corvax
   - ArmorVest
   - ArmorVestSlim
   - ClothingOuterCoatSecurityOvercoat #Backmen
@@ -1173,8 +1175,8 @@
   id: SecurityCadetJumpsuit
   name: loadout-group-security-cadet-jumpsuit
   loadouts:
-  - SecurityJumpsuitGrey #Backmen
-  - SecurityJumpskirtGrey #Backmen
+  - SecurityJumpsuitGrey # Corvax-Resprite
+  - SecurityJumpskirtGrey # Corvax-Resprite
 
 - type: loadoutGroup
   id: SurvivalSecurity

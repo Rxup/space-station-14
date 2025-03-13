@@ -406,6 +406,7 @@
     - SecurityExplosives
     - BackmenAmmo # backmen
     - SecurityWeapons
+    - SecurityDisablers
   - type: MaterialStorage
     whitelist:
       tags:
@@ -520,6 +521,7 @@
     - Scarves
     - Carpets
     - Bedsheets
+    - CorvaxClothing # Corvax-Clothing
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm

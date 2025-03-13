@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/tgstation/tgstation/commit/42e0275d860551197687c571c689c270ff423288, colorized variants sprited by Agronomist-NN(github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "temp-disabler",
+      "directions": 8
+    },
+    {
+      "name": "temp-laser",
+      "directions": 8
+    },
+    {
+      "name": "temp-rifle",
+      "directions": 8
+    }
+  ]
+}

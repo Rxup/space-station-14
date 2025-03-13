@@ -129,6 +129,6 @@
   - type: Prayable
   - type: SpriteFade
   - type: TTS
-    voice: Npc1
+    voice: Monolith2
   - type: Tag
     tags: []
