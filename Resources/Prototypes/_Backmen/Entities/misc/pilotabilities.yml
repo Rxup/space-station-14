@@ -20,7 +20,10 @@
     lifetime: 60
   - type: SpawnOnDespawn
     prototype: EffectFlashBluespace
-    
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponTurretSecRifle
@@ -47,7 +50,10 @@
     lifetime: 60
   - type: SpawnOnDespawn
     prototype: EffectFlashBluespace
-    
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponTurretSecDisabler
@@ -74,7 +80,10 @@
     lifetime: 60
   - type: SpawnOnDespawn
     prototype: EffectFlashBluespace
-    
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponTurretSecLaser
@@ -101,6 +110,9 @@
     lifetime: 60
   - type: SpawnOnDespawn
     prototype: EffectFlashBluespace
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
 
 #--------------------мина для спавна-------------------#
 - type: entity
@@ -113,9 +125,9 @@
     explosionType: Default
     maxIntensity: 10
     intensitySlope: 3
-    totalIntensity: 100 
+    totalIntensity: 100
     canCreateVacuum: false
-    
+
 #------------------------РСУ СБ------------------------#
 - type: entity
   id: securityTechnicianRCD
@@ -160,25 +172,25 @@
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
     access: [["SecurityTechnician"]]
-    
+
 - type: rcd
   id: BaseTurretSpawn
   category: Electrical
   sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-base.png
   mode: ConstructObject
-  prototype: WeaponTurretSecBase 
+  prototype: WeaponTurretSecBase
   cost: 10
   delay: 4
   collisionMask: FullTileMask
   rotation: Fixed
   fx: EffectRCDConstruct4
-  
+
 - type: rcd
   id: RifleTurretSpawn
   category: Electrical
   sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-rifle.png
   mode: ConstructObject
-  prototype: WeaponTurretSecRifle 
+  prototype: WeaponTurretSecRifle
   cost: 10
   delay: 4
   collisionMask: FullTileMask
@@ -196,7 +208,7 @@
   collisionMask: FullTileMask
   rotation: Fixed
   fx: EffectRCDConstruct4
-  
+
 - type: rcd
   id: LaserTurretSpawn
   category: Electrical

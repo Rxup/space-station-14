@@ -435,7 +435,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         var data = new TransformData
         {
             Name = metadata.EntityName,
-            DNA = dna.DNA,
+            DNA = dna.DNA ?? "",
             Appearance = (target,appearance),
             TTS = appearance.Voice
         };

@@ -159,7 +159,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: TTS # Corvax-TTS
-    voice: Npc3
+    voice: Aidar
 
 - type: entity
   name: blue slime
