@@ -103,6 +103,7 @@ namespace Content.IntegrationTests.Tests
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust",
+            "BackmenTortuga",
             "BackmenHive",
 			"BackmenShoukou",
 			"BackmenAspid",
