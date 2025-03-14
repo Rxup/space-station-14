@@ -80,6 +80,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: InnateMiningScannerViewer # Frontier
+    pingSound: null
+    viewRange: 3 # Goob value
 
 - type: entity
   parent: BaseSpeciesDummy
