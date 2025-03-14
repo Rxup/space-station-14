@@ -3588,13 +3588,6 @@ entities:
     - type: Transform
       pos: 10.5,-3.5
       parent: 1
-- proto: SpawnMobMonkey
-  entities:
-  - uid: 839
-    components:
-    - type: Transform
-      pos: 10.5,14.5
-      parent: 1
 - proto: SteelOre1
   entities:
   - uid: 893

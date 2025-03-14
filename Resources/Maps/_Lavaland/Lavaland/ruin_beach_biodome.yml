@@ -3145,18 +3145,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.6136475,26.559305
       parent: 2
-- proto: SpawnMobCrab
-  entities:
-  - uid: 450
-    components:
-    - type: Transform
-      pos: -0.5,11.5
-      parent: 2
-  - uid: 451
-    components:
-    - type: Transform
-      pos: 11.5,8.5
-      parent: 2
 - proto: StairStageWood
   entities:
   - uid: 452

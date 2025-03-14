@@ -1471,28 +1471,6 @@ entities:
     - type: Transform
       pos: 1.5,15.5
       parent: 2
-- proto: SalvageSpawnerMobMiningAsteroid
-  entities:
-  - uid: 161
-    components:
-    - type: Transform
-      pos: 3.5,14.5
-      parent: 2
-  - uid: 162
-    components:
-    - type: Transform
-      pos: 1.5,6.5
-      parent: 2
-  - uid: 163
-    components:
-    - type: Transform
-      pos: -3.5,10.5
-      parent: 2
-  - uid: 164
-    components:
-    - type: Transform
-      pos: 8.5,10.5
-      parent: 2
 - proto: ScrapAirlock1
   entities:
   - uid: 165

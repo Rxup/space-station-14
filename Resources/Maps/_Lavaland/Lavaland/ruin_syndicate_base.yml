@@ -19174,35 +19174,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,-17.5
       parent: 2
-- proto: SpawnMobMedibot
-  entities:
-  - uid: 1762
-    components:
-    - type: Transform
-      pos: 22.5,-16.5
-      parent: 2
-- proto: SpawnMobMonkey
-  entities:
-  - uid: 1763
-    components:
-    - type: Transform
-      pos: -0.5,-1.5
-      parent: 2
-  - uid: 1764
-    components:
-    - type: Transform
-      pos: -0.5,-0.5
-      parent: 2
-  - uid: 1765
-    components:
-    - type: Transform
-      pos: 1.5,-1.5
-      parent: 2
-  - uid: 1766
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 2
 - proto: SpawnMobSyndicateFootsoldierPilot
   entities:
   - uid: 1743
