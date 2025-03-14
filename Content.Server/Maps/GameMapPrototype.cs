@@ -23,7 +23,7 @@ public sealed partial class GameMapPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField]
-    public float MaxRandomOffset = 1000f;
+    public float MaxRandomOffset = 0f; // backmen: remove random offset
 
     /// <summary>
     /// Turns out some of the map files are actually secretly grids. Excellent. I love map loading code.
@@ -31,7 +31,7 @@ public sealed partial class GameMapPrototype : IPrototype
     [DataField] public bool IsGrid;
 
     [DataField]
-    public bool RandomRotation = true;
+    public bool RandomRotation = false; // backmen: remove random rotation
 
     /// <summary>
     /// Name of the map to use in generic messages, like the map vote.
