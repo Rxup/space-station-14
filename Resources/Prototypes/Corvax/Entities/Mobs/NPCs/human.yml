@@ -21,7 +21,7 @@
       nameSegments:
       - NamesFakeHumanFirst
       - corvax_names_syndie_smuggler
-      - namesLast
+      - NamesLast
     - type: GhostTakeoverAvailable
     - type: GhostRole
       name: ghost-role-information-syndicate-smuggler-name
