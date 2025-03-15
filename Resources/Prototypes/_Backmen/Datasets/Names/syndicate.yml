@@ -42,3 +42,15 @@
   values:
     prefix: names-Syndicate-Prefix-dataset-
     count: 4
+
+- type: localizedDataset
+  id: NamesMilitaryLast
+  values:
+    prefix: names-military-last-dataset-
+    count: 42
+
+- type: localizedDataset
+  id: NamesMilitaryFirstLeader
+  values:
+    prefix: names-military-leader-first-dataset-
+    count: 5

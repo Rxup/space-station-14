@@ -21,7 +21,7 @@
     prototypes: [SyndicateOperativeGearExtremelyBasic]
     roleLoadout: [ RoleSurvivalSyndicate ]
   - type: RandomMetadata
-    nameSegments: [names_first_male, names_last_male] # Corvax-MRP
+    nameSegments: NamesFirstMale, names_last_male] # Corvax-MRP
   - type: NpcFactionMember
     factions:
     - Syndicate
