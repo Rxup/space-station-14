@@ -1,3 +1,5 @@
+golem-default-name = Голем
+
 names-golem-dataset-1 = Абенакиит
 names-golem-dataset-2 = Абернатиит
 names-golem-dataset-3 = Абхурит
