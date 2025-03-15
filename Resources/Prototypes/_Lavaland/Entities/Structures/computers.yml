@@ -44,6 +44,6 @@
       - MiningShuttle
   - type: Computer
     board: LavalandShuttleConsoleCircuitboard
-  - type: AccessReader
-    access:
-    - [ Salvage ]
+#  - type: AccessReader # Uncomment if you want to prevent Tiders on Lavaland
+#    access:
+#    - [ Salvage ]
