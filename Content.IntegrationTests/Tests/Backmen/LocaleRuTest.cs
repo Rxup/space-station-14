@@ -29,7 +29,15 @@ public sealed partial class LocaleRu
         {
             foreach (var entProto in proto.EnumeratePrototypes<EntityPrototype>())
             {
-                if(entProto.ID is "BorgChassisGeneric" or "BorgChassisMedical" or "PlayerBorgDerelict" or "FoodCookieFortune")
+                if(entProto.ID is
+                   "BorgChassisGeneric"
+                   or "BorgChassisMedical"
+                   or "PlayerBorgDerelict"
+                   or "FoodCookieFortune"
+                   or "BorgChassisService"
+                   or "BorgChassisEngineer"
+                   or "BorgChassisJanitor"
+                   )
                     continue;
                 if (!entProto.TryGetComponent<RandomMetadataComponent>(out var component, compFactory))
                 {
