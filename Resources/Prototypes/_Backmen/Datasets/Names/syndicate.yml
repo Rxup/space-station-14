@@ -36,3 +36,9 @@
   id: SyndicateZvanieSuperNormalAgent
   values:
   - Агент
+
+- type: localizedDataset
+  id: SyndicateNamesPrefix
+  values:
+    prefix: names-Syndicate-Prefix-dataset-
+    count: 4
