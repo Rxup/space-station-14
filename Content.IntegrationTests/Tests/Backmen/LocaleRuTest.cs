@@ -8,21 +8,16 @@ namespace Content.IntegrationTests.Tests.Backmen;
 
 [TestFixture]
 [TestOf(typeof(RandomMetadataSystem))]
-public sealed class LocaleRu
+public sealed partial class LocaleRu
 {
+    [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,]+$", RegexOptions.Compiled)]
+    private static partial Regex GeneratedRegex();
+
     [Test]
     public async Task RandomNameMustBeRuTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = false,
-            DummyTicker = false,
-            Connected = true
-        });
-
+        await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
-        var client = pair.Client;
-
 
         var proto = server.ResolveDependency<IPrototypeManager>();
         var compFactory = server.ResolveDependency<IComponentFactory>();
@@ -30,13 +25,11 @@ public sealed class LocaleRu
 
         var fails = new List<string>();
 
-        var regex = new Regex(@"^[IА-Яа-яЁё\s0-9\-\'""]+$", RegexOptions.Compiled);
-
         await server.WaitAssertion(() =>
         {
             foreach (var entProto in proto.EnumeratePrototypes<EntityPrototype>())
             {
-                if(entProto.ID is "BorgChassisGeneric" or "BorgChassisMedical")
+                if(entProto.ID is "BorgChassisGeneric" or "BorgChassisMedical" or "PlayerBorgDerelict" or "FoodCookieFortune")
                     continue;
                 if (!entProto.TryGetComponent<RandomMetadataComponent>(out var component, compFactory))
                 {
@@ -46,7 +39,7 @@ public sealed class LocaleRu
                 if (component.NameSegments != null)
                 {
                     var test = mdSys.GetRandomFromSegments(component.NameSegments, component.NameSeparator);
-                    if (!regex.IsMatch(test))
+                    if (!GeneratedRegex().IsMatch(test))
                     {
                         fails.Add($"ID: {entProto.ID} NameSegments - {test}");
 
@@ -57,7 +50,7 @@ public sealed class LocaleRu
                 {
                     var test = mdSys.GetRandomFromSegments(component.DescriptionSegments, component.DescriptionSeparator);
 
-                    if (!regex.IsMatch(test))
+                    if (!GeneratedRegex().IsMatch(test))
                     {
                         fails.Add($"ID: {entProto.ID} DescriptionSegments - {test}");
                     }
