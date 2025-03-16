@@ -404,7 +404,7 @@ public partial class PainSystem
                     PlayPainSound(body.Value,
                         nerveSys,                    // Pained or normal
                         _random.Prob(0.34f) ? nerveSys.PainShockWhimpers[sex] : nerveSys.CritWhimpers[sex],
-                        AudioParams.Default.WithVolume(12f));
+                        AudioParams.Default.WithVolume(-12f));
                 }
 
                 nerveSys.NextCritScream = _timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);

@@ -509,7 +509,7 @@ namespace Content.Shared.Damage
                     // lol bozo
                     var spec = new DamageSpecifier
                     {
-                        DamageDict = damageDict,
+                        DamageDict = damageSpecifier.DamageDict,
                     };
 
                     damageSpecifier = DamageSpecifier.ApplyModifierSet(spec, modifierSet);

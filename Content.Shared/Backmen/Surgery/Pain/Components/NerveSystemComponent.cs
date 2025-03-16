@@ -58,10 +58,10 @@ public sealed partial class NerveSystemComponent : Component
     public TimeSpan NextCritScream = TimeSpan.Zero;
 
     [DataField]
-    public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(8f);
+    public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(13f);
 
     [DataField]
-    public TimeSpan CritScreamsIntervalMax = TimeSpan.FromSeconds(21f);
+    public TimeSpan CritScreamsIntervalMax = TimeSpan.FromSeconds(32f);
 
     [DataField]
     public SoundSpecifier PainRattles = new SoundCollectionSpecifier("PainRattles");
