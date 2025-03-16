@@ -351,7 +351,7 @@
     clothingPrototype: ClothingHeadHelmetInteQDarkTemplarAlt
 
 - type: entity
-  parent: [ClothingOuterArmorBasic, BaseMajorContraband]
+  parent: [ClothingOuterArmorBasic, ClothingOuterBaseToggleable, BaseMajorContraband]
   id: ClothingOuterArmorInteQInfiltrator
   name: armored infiltrator cape
   description: High-quality raincoat with an armored plate made of multilayer plasteel. It combines lightness and durability, has a buffer lining and fits perfectly to the body without making unnecessary sounds when worn.
@@ -376,7 +376,7 @@
     clothingPrototype: ClothingHeadHelmetInteQInfiltrator
 
 - type: entity
-  parent: [ClothingOuterArmorRaid, BaseMajorContraband]
+  parent: [ClothingOuterArmorRaid, ClothingOuterBaseToggleable, BaseMajorContraband]
   id: ClothingOuterArmorInteQIronTombstone
   name: Iron Tombstone armor suit
   description: Ancient, but no less formidable suit of armor. It provides incredible protection from bullets and shrapnel, but it hinders movement. Or so it was before the technical department attached a passive exoskeleton to the base.
