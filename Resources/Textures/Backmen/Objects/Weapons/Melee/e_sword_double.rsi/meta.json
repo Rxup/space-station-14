@@ -21,6 +21,26 @@
             "name": "e_sword_double"
         },
         {
+            "name": "overlay_handle",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "overlay_blade",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
             "name": "e_sword_double_blade",
             "delays": [
                 [
