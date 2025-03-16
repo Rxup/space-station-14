@@ -1,0 +1,68 @@
+# BASE
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxInteQ
+  name: ammunition box
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 80
+  - type: Item
+    size: Normal
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Storage/inteq_ammobox.rsi
+    layers:
+      - state: icon
+  - type: Appearance
+
+# AMMO
+
+- type: entity
+  parent: BaseMagazineBoxInteQ
+  id: MagazineBoxLightRifleInteQ
+  name: ammunition box (.30 rifle)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+    whitelist:
+      tags:
+      - CartridgeRifle
+  - type: Sprite
+    layers:
+      - state: icon
+      - state: rifle
+
+- type: entity
+  parent: BaseMagazineBoxInteQ
+  id: MagazineBoxPistolInteQ
+  name: ammunition box (.35 pistol)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: icon
+      - state: pistol
+
+- type: entity
+  parent: BaseMagazineBoxInteQ
+  id: MagazineBoxShotgunInteQ
+  name: ammunition box (.50 pellet)
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+    whitelist:
+      tags:
+      - ShellShotgun
+  - type: Sprite
+    layers:
+      - state: icon
+      - state: shotgun

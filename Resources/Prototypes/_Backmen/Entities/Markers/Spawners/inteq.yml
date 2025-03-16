@@ -1,0 +1,85 @@
+- type: entity
+  name: InteQ vanguard leader spawner
+  id: SpawnMobInteQVanguardLeader
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardLeader
+
+- type: entity
+  name: InteQ vanguard operative spawner
+  id: SpawnMobInteQVanguardOperative
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardOperative
+
+- type: entity
+  name: InteQ vanguard solder spawner
+  id: SpawnMobInteQVanguardSolder
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardSolder
+
+- type: entity
+  name: InteQ vanguard medic spawner
+  id: SpawnMobInteQVanguardMedic
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardMedic
+
+# MOBS
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobInteQAgent
+  name: InteQ agent spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+        state: alive
+  - type: ConditionalSpawner
+    prototypes:
+      - MobInteQAgent
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCarpBrownInteQ
+  name: InteQ carp spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Pets/inteq_carp.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCarpBrownInteQ

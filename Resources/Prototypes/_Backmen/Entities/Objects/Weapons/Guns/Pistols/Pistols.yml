@@ -485,3 +485,39 @@
     soundEmpty: /Audio/Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/uzi.ogg
+
+- type: entity
+  parent: [BaseWeaponPistol, BaseMajorContraband]
+  id: WeaponPistolInteQCommissar
+  name: Commissar
+  suffix: Pistol
+  description: Small, easily concealable, but somewhat underpowered gun. Retrofitted with a fully automatic receiver. Uses .35 auto ammo. It is painted in the InteQ brand color.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Pistols/inteq_commissar.rsi
+    availableModes:
+    - FullAuto
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

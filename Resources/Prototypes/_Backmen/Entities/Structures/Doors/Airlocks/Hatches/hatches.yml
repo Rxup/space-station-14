@@ -29,3 +29,27 @@
     sprite: Backmen/Structures/Doors/Airlocks/Hatches/hatch.rsi
   - type: Weldable
     time: 10
+
+- type: entity
+  parent: Airlock
+  id: AirlockHatchInteQ
+  suffix: InteQ
+  name: brown hatch
+  description: Protects, pretty good.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Doors/Airlocks/Hatches/hatch_inteq.rsi
+  - type: Weldable
+    time: 10
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockHatchInteQGlass
+  suffix: InteQ
+  name: brown glass hatch
+  description: Protects, pretty good.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Doors/Airlocks/Hatches/hatch_glass_inteq.rsi
+  - type: Weldable
+    time: 10

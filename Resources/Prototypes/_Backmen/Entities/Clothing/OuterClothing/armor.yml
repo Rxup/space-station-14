@@ -312,3 +312,79 @@
         Heat: 0.55
   - type: ExplosionResistance
     damageCoefficient: 0.80
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseMajorContraband]
+  id: ClothingOuterArmorInteQDarkTemplar
+  name: dark crusader armor
+  suffix: InteQ
+  description: Anti-eretic armor.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetInteQDarkTemplar
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.9
+        Heat: 0.5
+
+- type: entity
+  parent: ClothingOuterArmorInteQDarkTemplar
+  id: ClothingOuterArmorInteQDarkTemplarAlt
+  name: brown crusader armor
+  suffix: InteQ
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_alt_dark_templar.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_alt_dark_templar.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetInteQDarkTemplarAlt
+
+- type: entity
+  parent: [ClothingOuterArmorBasic, BaseMajorContraband]
+  id: ClothingOuterArmorInteQInfiltrator
+  name: armored infiltrator cape
+  description: High-quality raincoat with an armored plate made of multilayer plasteel. It combines lightness and durability, has a buffer lining and fits perfectly to the body without making unnecessary sounds when worn.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.7
+        Piercing: 0.6
+        Radiation: 0.9
+        Caustic: 0.9
+        Heat: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetInteQInfiltrator
+
+- type: entity
+  parent: [ClothingOuterArmorRaid, BaseMajorContraband]
+  id: ClothingOuterArmorInteQIronTombstone
+  name: Iron Tombstone armor suit
+  description: Ancient, but no less formidable suit of armor. It provides incredible protection from bullets and shrapnel, but it hinders movement. Or so it was before the technical department attached a passive exoskeleton to the base.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_tombstone.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_tombstone.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetInteQIronTombstone
+  - type: PointLight
+    color: "#FF8C00"

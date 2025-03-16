@@ -1,0 +1,14 @@
+- type: dataset
+  id: InteQVanguardLeaderNamesPrefix
+  values:
+  - Коммандер
+
+- type: dataset
+  id: InteQVanguardNamesPrefix
+  values:
+  - Авангард
+
+- type: dataset
+  id: InteQAgentNamesPrefix
+  values:
+  - Агент

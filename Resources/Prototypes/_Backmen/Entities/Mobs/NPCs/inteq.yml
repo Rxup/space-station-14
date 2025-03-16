@@ -1,0 +1,136 @@
+- type: entity
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  - MobAtmosStandard
+  id: MobInteQAgent
+  name: InteQ agent
+  description: UGH!? AGH!! BREAK THINGS!!!
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowSpeech: true
+    allowMovement: true
+    name: Агент Интек
+    description: КРУШИ ЧЕРЕПА, ТЫ ЕБАНУТЫЙ, УБИВАЙ, ЛОМАЙ!!!
+    rules: Нельзя гибать. Нельзя гибать!!! ДАЖЕ НЕ ПЫТАЙСЯ!!!!!!
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: RandomMetadata
+    nameSegments:
+    - InteQAgentNamesPrefix
+    - SyndicateNamesSuperNormal
+  - type: Advertise
+    pack: InteQAgent
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - OldFastCodes
+    understands:
+    - TauCetiBasic
+    - OldFastCodes
+  - type: ActiveRadio
+    channels:
+    - InteQ
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+      - InteQHostile
+  - type: Body
+    prototype: Animal
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: MobPrice
+    price: 1000
+  - type: Speech
+    speechVerb: LargeMob
+  - type: Perishable
+  - type: Reflect
+    reflectProb: 0.7
+    reflects:
+      - Energy
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      420: Dead
+  - type: Butcherable
+    spawned:
+      - id: ClothingHeadHelmetSwatInteQ
+      - id: ClothingBeltInteQWebbing
+      - id: Sledgehammer
+  - type: MeleeWeapon
+    attackRate: 0.6
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/star_hit.ogg
+    damage:
+      types:
+        Blunt: 80
+        Structural: 62
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepThud
+
+- type: entity
+  parent: BaseMobCarp
+  id: MobCarpBrownInteQ
+  name: InteQ carp
+  description: Seriously, a brown carp, in a jacket and a beret?!
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Pets/inteq_carp.rsi
+  - type: RandomMetadata
+    nameSegments:
+    - InteQVanguardLeaderNamesPrefix
+    - sweet_carp
+  - type: NpcFactionMember
+    factions:
+      - InteQ
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - SpaceMob
+    - Carp
+    understands:
+    - SpaceMob
+    - Carp
+    - Dragon
+    - TauCetiBasic
+    - OldFastCodes
+  - type: ActiveRadio
+    channels:
+    - InteQ

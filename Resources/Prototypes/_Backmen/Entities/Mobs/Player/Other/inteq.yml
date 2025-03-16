@@ -1,0 +1,157 @@
+# Settings
+- type: randomHumanoidSettings
+  id: InteQVanguardLeader
+  randomizeName: false
+  speciesBlacklist:
+    - Diona
+    - SlimePerson
+    - Vox
+  components:
+  - type: Loadout
+    prototypes: [ InteQVanguardLeaderGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - InteQVanguardLeaderNamesPrefix
+    - SyndicateNamesSuperNormal
+  - type: NpcFactionMember
+    factions:
+      - InteQ
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - OldFastCodes
+    understands:
+    - TauCetiBasic
+    - OldFastCodes
+
+- type: randomHumanoidSettings
+  id: InteQVanguardOperative
+  randomizeName: false
+  speciesBlacklist:
+    - Diona
+    - SlimePerson
+    - Vox
+  components:
+  - type: Loadout
+    prototypes: [ InteQVanguardOperativeGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - InteQVanguardNamesPrefix
+    - SyndicateNamesSuperNormal
+  - type: NpcFactionMember
+    factions:
+      - InteQ
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - OldFastCodes
+    understands:
+    - TauCetiBasic
+    - OldFastCodes
+
+- type: randomHumanoidSettings
+  id: InteQVanguardSolder
+  randomizeName: false
+  speciesBlacklist:
+    - Diona
+    - SlimePerson
+    - Vox
+  components:
+  - type: Loadout
+    prototypes: [ InteQVanguardSolderGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - InteQVanguardNamesPrefix
+    - SyndicateNamesSuperNormal
+  - type: NpcFactionMember
+    factions:
+      - InteQ
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - OldFastCodes
+    understands:
+    - TauCetiBasic
+    - OldFastCodes
+
+- type: randomHumanoidSettings
+  id: InteQVanguardMedic
+  randomizeName: false
+  speciesBlacklist:
+    - Diona
+    - SlimePerson
+    - Vox
+  components:
+  - type: Loadout
+    prototypes: [ InteQMedicGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - InteQVanguardNamesPrefix
+    - SyndicateNamesSuperNormal
+  - type: NpcFactionMember
+    factions:
+      - InteQ
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - OldFastCodes
+    understands:
+    - TauCetiBasic
+    - OldFastCodes
+
+# Spawners
+- type: entity
+  id: RandomHumanoidSpawnerInteQVanguardLeader
+  name: InteQ vanguard leader spawner
+  components:
+    - type: Sprite
+      sprite: Backmen/Icons/inteq.rsi
+      state: logo
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardLeaderNamesPrefix
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: InteQVanguardLeader
+
+- type: entity
+  id: RandomHumanoidSpawnerInteQVanguardOperative
+  name: InteQ vanguard operative spawner
+  components:
+    - type: Sprite
+      sprite: Backmen/Icons/inteq.rsi
+      state: logo
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: InteQVanguardOperative
+
+- type: entity
+  id: RandomHumanoidSpawnerInteQVanguardSolder
+  name: InteQ vanguard solder spawner
+  components:
+    - type: Sprite
+      sprite: Backmen/Icons/inteq.rsi
+      state: logo
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: InteQVanguardSolder
+
+- type: entity
+  id: RandomHumanoidSpawnerInteQVanguardMedic
+  name: InteQ vanguard medic spawner
+  components:
+    - type: Sprite
+      sprite: Backmen/Icons/inteq.rsi
+      state: logo
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: InteQVanguardMedic
