@@ -1,14 +1,17 @@
-- type: dataset
+- type: localizedDataset
   id: InteQVanguardLeaderNamesPrefix
   values:
-  - Коммандер
+    prefix: inteq-vanguard-leader-prefix-
+    count: 1
 
-- type: dataset
+- type: localizedDataset
   id: InteQVanguardNamesPrefix
   values:
-  - Авангард
+    prefix: inteq-vanguard-prefix-
+    count: 1
 
-- type: dataset
+- type: localizedDataset
   id: InteQAgentNamesPrefix
   values:
-  - Агент
+    prefix: inteq-agent-prefix-
+    count: 1
