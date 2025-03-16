@@ -24,33 +24,63 @@
 
 - type: entity
   parent: BaseMagazineBoxInteQ
-  id: MagazineBoxLightRifleInteQ
-  name: ammunition box (.30 rifle)
+  id: MagazineBoxLight57x28InteQ
+  name: ammunition box (5.7x28)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
+    proto: CartridgePistol57x28
     whitelist:
       tags:
-      - CartridgeRifle
+      - CartridgePistol57x28
   - type: Sprite
     layers:
       - state: icon
-      - state: rifle
+      - state: 57x28
 
 - type: entity
   parent: BaseMagazineBoxInteQ
-  id: MagazineBoxPistolInteQ
-  name: ammunition box (.35 pistol)
+  id: MagazineBoxLight762x39InteQ
+  name: ammunition box (7.62x39)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol
+    proto: CartridgeRifleLight762x39
     whitelist:
       tags:
-      - CartridgePistol
+      - CartridgeRifle762x39
   - type: Sprite
     layers:
       - state: icon
-      - state: pistol
+      - state: 762x39
+
+#- type: entity
+#  parent: BaseMagazineBoxInteQ
+#  id: MagazineBoxLightRifleInteQ
+#  name: ammunition box (.30 rifle)
+#  components:
+#  - type: BallisticAmmoProvider
+#    proto: CartridgeLightRifle
+#    whitelist:
+#      tags:
+#      - CartridgeRifle
+#  - type: Sprite
+#    layers:
+#      - state: icon
+#      - state: rifle
+
+#- type: entity
+#  parent: BaseMagazineBoxInteQ
+#  id: MagazineBoxPistolInteQ
+#  name: ammunition box (.35 pistol)
+#  components:
+#  - type: BallisticAmmoProvider
+#    proto: CartridgePistol
+#    whitelist:
+#      tags:
+#      - CartridgePistol
+#  - type: Sprite
+#    layers:
+#      - state: icon
+#      - state: pistol
 
 - type: entity
   parent: BaseMagazineBoxInteQ

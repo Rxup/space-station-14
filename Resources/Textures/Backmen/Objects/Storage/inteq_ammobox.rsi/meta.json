@@ -11,13 +11,19 @@
       "name": "icon"
     },
     {
-      "name": "rifle"
+      "name": "30"
     },
     {
-      "name": "pistol"
+      "name": "35"
     },
     {
-      "name": "shotgun"
+      "name": "50"
+    },
+    {
+      "name": "57x28"
+    },
+    {
+      "name": "762x39"
     }
   ]
 }

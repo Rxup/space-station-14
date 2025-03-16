@@ -215,7 +215,7 @@
       collection: GuardianShot
 
 - type: entity
-  parent: [WeaponShotgunBulldog, BaseMajorContraband]
+  parent: [WeaponShotgunZauer, BaseMajorContraband]
   id: WeaponShotgunInteQBulldog
   name: Bulldog
   suffix: Shothun
