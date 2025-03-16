@@ -110,7 +110,7 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardLeaderNamesPrefix
-      - NamesLastMilitary
+      - SyndicateNamesSuperNormal
     - type: RandomHumanoidSpawner
       settings: InteQVanguardLeader
 
@@ -124,7 +124,7 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - NamesLastMilitary
+      - SyndicateNamesSuperNormal
     - type: RandomHumanoidSpawner
       settings: InteQVanguardOperative
 
@@ -138,7 +138,7 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - NamesLastMilitary
+      - SyndicateNamesSuperNormal
     - type: RandomHumanoidSpawner
       settings: InteQVanguardSolder
 
@@ -152,6 +152,6 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - NamesLastMilitary
+      - SyndicateNamesSuperNormal
     - type: RandomHumanoidSpawner
       settings: InteQVanguardMedic
