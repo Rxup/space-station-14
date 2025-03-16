@@ -5,6 +5,13 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Backmen.Surgery.Pain;
 
 [Serializable, NetSerializable]
+public enum PainDamageTypes
+{
+    WoundPain,
+    TraumaticPain,
+}
+
+[Serializable, NetSerializable]
 public enum PainThresholdTypes
 {
     None,

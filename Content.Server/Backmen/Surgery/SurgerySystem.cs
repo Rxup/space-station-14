@@ -19,9 +19,12 @@ using System.Linq;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Medical.Surgery;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Server.Backmen.Surgery;
 
@@ -34,8 +37,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly RottingSystem _rot = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
 
     private readonly List<EntProtoId> _surgeries = new();
 
@@ -83,6 +85,12 @@ public sealed class SurgerySystem : SharedSurgerySystem
         */
         _ui.ServerSendUiMessage(body, SurgeryUIKey.Key, new SurgeryBuiRefreshMessage());
     }
+
+    private string GetDamageGroupByType(string id)
+    {
+        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
+    }
+
     private void SetDamage(EntityUid body,
         DamageSpecifier damage,
         float partMultiplier,
@@ -92,12 +100,26 @@ public sealed class SurgerySystem : SharedSurgerySystem
         if (!TryComp<BodyPartComponent>(part, out var partComp))
             return;
 
-        _damageable.TryChangeDamage(body,
-            damage,
-            true,
-            origin: user,
-            partMultiplier: partMultiplier,
-            targetPart: _body.GetTargetBodyPart(partComp));
+        // kinda funky but still works
+        if (damage.GetTotal() < 0)
+        {
+            foreach (var (type, amount) in damage.DamageDict.ToList())
+            {
+                // TODO: We'd want to make stopping bleeds a surgery step, or a separate surgery.. But for now, just for sake of my sanity we do this.
+                // TODO: Also the scar treating surgery too, fuck. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
+                _wounds.TryHaltAllBleeding(part, force: true);
+                _wounds.TryHealWoundsOnWoundable(part, -amount, out _, damageGroup: GetDamageGroupByType(type));
+            }
+        }
+        else
+        {
+            _damageable.TryChangeDamage(body,
+                damage,
+                true,
+                origin: user,
+                partMultiplier: partMultiplier,
+                targetPart: _body.GetTargetBodyPart(partComp));
+        }
     }
 
     private void AttemptStartSurgery(Entity<SurgeryToolComponent> ent, EntityUid user, EntityUid target)

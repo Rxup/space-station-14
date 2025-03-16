@@ -9,6 +9,7 @@
   - type: BodyPart
   # start-backmen: surgery
   - type: Woundable
+    damageContainer: Biological
     integrity: 65
     integrityCap: 65
     thresholds:

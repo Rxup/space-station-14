@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
@@ -42,6 +43,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!;
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
 
@@ -282,6 +284,35 @@ public partial class SharedBodySystem
                     if (container.ContainedEntities.Count > 0)
                     {
                         cameFromEntities[connection] = container.ContainedEntities[0];
+
+                        foreach (var organ in connectionSlot.Organs)
+                        {
+                            if (Containers.TryGetContainer(parentEntity, GetOrganContainerId(organ.Key), out var organContainer))
+                            {
+                                var organEnt = organContainer.ContainedEntities[0];
+                                if (organEnt.Valid)
+                                {
+                                    foreach (var modifier in Comp<OrganComponent>(organEnt).IntegrityModifiers)
+                                    {
+                                        _trauma.TryRemoveOrganDamageModifier(organEnt, modifier.Key.Item2, modifier.Key.Item1);
+                                    }
+                                }
+                                else
+                                {
+                                    SpawnInContainerOrDrop(organ.Value, parentEntity, GetOrganContainerId(organ.Key));
+                                }
+                            }
+                            else
+                            {
+                                var slot = CreateOrganSlot((parentEntity, parentPartComponent), organ.Key);
+                                SpawnInContainerOrDrop(organ.Value, parentEntity, GetOrganContainerId(organ.Key));
+
+                                if (slot is null)
+                                {
+                                    Log.Error($"Could not create organ for slot {organ.Key} in {ToPrettyString(ent)}");
+                                }
+                            }
+                        }
                     }
                     else
                     {

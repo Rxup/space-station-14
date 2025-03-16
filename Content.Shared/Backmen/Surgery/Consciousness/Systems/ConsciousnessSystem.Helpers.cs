@@ -145,7 +145,7 @@ public partial class ConsciousnessSystem
 
     private void UpdateMobState(EntityUid target, ConsciousnessComponent? consciousness = null, MobStateComponent? mobState = null)
     {
-        if (TerminatingOrDeleted(target) || !Resolve(target, ref consciousness, ref mobState) || _net.IsClient)
+        if (TerminatingOrDeleted(target) || !Resolve(target, ref consciousness, ref mobState))
             return;
 
         var newMobState = consciousness.IsConscious

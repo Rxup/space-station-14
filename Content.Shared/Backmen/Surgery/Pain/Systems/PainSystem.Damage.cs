@@ -4,7 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Popups;
@@ -12,6 +14,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
@@ -128,6 +131,8 @@ public partial class PainSystem
         if (!nerve.PainFeelingModifiers.TryAdd((effectOwner, identifier), modifier))
             return false;
 
+        UpdatePainFeels(nerveUid);
+
         Dirty(nerveUid, nerve);
         return true;
     }
@@ -186,6 +191,8 @@ public partial class PainSystem
             new PainFeelingModifier(Change: change, Time: time ?? modifier.Time);
         nerve.PainFeelingModifiers[(nerveUid, identifier)] = modifierToSet;
 
+        UpdatePainFeels(nerveUid);
+
         Dirty(nerveUid, nerve);
         return true;
     }
@@ -203,8 +210,12 @@ public partial class PainSystem
         if (!Resolve(nerveUid, ref nerve, false))
             return false;
 
+        nerve.PainFeelingModifiers.Remove((effectOwner, identifier));
+
+        UpdatePainFeels(nerveUid);
         Dirty(nerveUid, nerve);
-        return nerve.PainFeelingModifiers.Remove((effectOwner, identifier));
+
+        return true;
     }
 
     /// <summary>
@@ -217,7 +228,7 @@ public partial class PainSystem
     /// <returns>Returns true, if the pain modifier was removed.</returns>
     public bool TryRemovePainModifier(EntityUid uid, EntityUid nerveUid, string identifier, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false))
             return false;
 
         if (!nerveSys.Modifiers.Remove((nerveUid, identifier)))
@@ -247,7 +258,7 @@ public partial class PainSystem
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false))
             return false;
 
         var modifier = new PainMultiplier(change, identifier, _timing.CurTime + time);
@@ -271,7 +282,7 @@ public partial class PainSystem
     /// <returns>Returns true, if the multiplier was changed.</returns>
     public bool TryChangePainMultiplier(EntityUid uid, string identifier, FixedPoint2 change, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false))
             return false;
 
         if (!nerveSys.Multipliers.TryGetValue(identifier, out var multiplier))
@@ -296,7 +307,7 @@ public partial class PainSystem
     /// <returns>Returns true, if the multiplier was removed.</returns>
     public bool TryRemovePainMultiplier(EntityUid uid, string identifier, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys, false) || _net.IsClient)
+        if (!Resolve(uid, ref nerveSys, false))
             return false;
 
         if (!nerveSys.Multipliers.Remove(identifier))
@@ -306,6 +317,11 @@ public partial class PainSystem
         Dirty(uid, nerveSys);
 
         return true;
+    }
+
+    public Entity<AudioComponent>? PlayPainSound(EntityUid body, SoundSpecifier specifier, AudioParams? audioParams = null)
+    {
+        return _IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
     }
 
     public Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
@@ -350,10 +366,50 @@ public partial class PainSystem
         }
     }
 
+    private void UpdatePainFeels(EntityUid nerveUid)
+    {
+        var bodyPart = Comp<BodyPartComponent>(nerveUid);
+        if (bodyPart.Body == null || !TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+            return;
+
+        targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
+        Dirty(bodyPart.Body.Value, targeting);
+
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+    }
+
     private void UpdateDamage(EntityUid nerveSysEnt, NerveSystemComponent nerveSys)
     {
         if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
             nerveSys.LastPainThreshold = nerveSys.Pain;
+
+        if (_timing.CurTime > nerveSys.NextCritScream)
+        {
+            var body = Comp<OrganComponent>(nerveSysEnt).Body;
+            if (body != null && _mobState.IsCritical(body.Value))
+            {
+                var sex = Sex.Unsexed;
+                if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
+                    sex = humanoid.Sex;
+
+                CleanupSounds(nerveSys);
+                if (_random.Prob(0.34f))
+                {
+                    // Play screaming with less chance
+                    PlayPainSound(body.Value, nerveSys, nerveSys.PainShockScreams[sex], AudioParams.Default.WithVolume(12f));
+                }
+                else
+                {
+                    // Whimpering
+                    PlayPainSound(body.Value,
+                        nerveSys,                    // Pained or normal
+                        _random.Prob(0.34f) ? nerveSys.PainShockWhimpers[sex] : nerveSys.CritWhimpers[sex],
+                        AudioParams.Default.WithVolume(12f));
+                }
+
+                nerveSys.NextCritScream = _timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
+            }
+        }
 
         foreach (var (key, value) in nerveSys.PainSoundsToPlay)
         {

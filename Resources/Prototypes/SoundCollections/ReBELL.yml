@@ -8,6 +8,14 @@
   - /Audio/_Shitmed/ReBELL/Bone/BoneGone4.ogg
   - /Audio/_Shitmed/ReBELL/Bone/BoneGone5.ogg
 
+- type: soundCollection
+  id: OrganDestroyed
+  files:
+  - /Audio/_Shitmed/ReBELL/Organs/OrganDestroyed1.ogg
+  - /Audio/_Shitmed/ReBELL/Organs/OrganDestroyed2.ogg
+  - /Audio/_Shitmed/ReBELL/Organs/OrganDestroyed3.ogg
+  - /Audio/_Shitmed/ReBELL/Organs/OrganDestroyed4.ogg
+
 # Dismemberment
 - type: soundCollection
   id: WoundableDestroyed

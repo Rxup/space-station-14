@@ -22,6 +22,7 @@ using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Shared.Backmen.Surgery;
@@ -247,6 +248,11 @@ public abstract partial class SharedSurgerySystem
         return metaData.EntityPrototype?.ID;
     }
 
+    private string GetDamageGroupByType(string id)
+    {
+        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
+    }
+
     // I wonder if theres not a function that can do this already.
     private bool HasDamageGroup(EntityUid entity, string[] group, out DamageableComponent? damageable)
     {
@@ -257,8 +263,13 @@ public abstract partial class SharedSurgerySystem
         }
 
         damageable = damageableComp;
-        return group.Any(damageType => damageableComp.Damage.DamageDict.TryGetValue(damageType, out var value) && value > 0);
+        if (TryComp<WoundableComponent>(entity, out var woundable))
+        {
+            return _wounds.GetWoundableWounds(entity, woundable)
+                .Any(wounds => GetDamageGroupByType(group.FirstOrDefault()!) == wounds.Item2.DamageGroup);
+        }
 
+        return group.Any(damageType => damageableComp.Damage.DamageDict.TryGetValue(damageType, out var value) && value > 0);
     }
 
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
@@ -374,7 +385,7 @@ public abstract partial class SharedSurgerySystem
         if (targetPart != default)
         {
             // We reward players for properly affixing the parts by healing a little bit of damage, and enabling the part temporarily.
-            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _);
+            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _, damageGroup: "Brute");
             RemComp<BodyPartReattachedComponent>(targetPart.Id);
         }
     }

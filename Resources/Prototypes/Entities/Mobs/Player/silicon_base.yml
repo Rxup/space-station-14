@@ -160,7 +160,7 @@
       canResistFire: true
       damage:
         types:
-          Heat: 0.75 #per second, scales with number of fire 'stacks'
+          Heat: 0.5 #per second, scales with number of fire 'stacks'
     # - type: Barotrauma # Not particularly modifiable. In the future, some response to pressure changes would be nice.
     #   damage:
     #     types:

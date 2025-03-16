@@ -4,6 +4,12 @@
   abstract: true
   components:
   - type: Organ
+    intCap: 13
+    integrity: 13
+    integrityThresholds:
+      Normal: 13
+      Damaged: 6
+      Destroyed: 0
   - type: Food
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
@@ -43,11 +49,11 @@
     - state: lung-r
   - type: Organ
     slotId: lungs
-    intCap: 25
-    integrity: 25
+    intCap: 17 # animal lungs are less tuff than human's one
+    integrity: 17
     integrityThresholds:
-      Normal: 25
-      Damaged: 15
+      Normal: 17
+      Damaged: 8
       Destroyed: 0
   - type: Lung
   - type: Metabolizer
@@ -132,11 +138,11 @@
     state: liver
   - type: Organ
     slotId: liver
-    intCap: 28
-    integrity: 28
+    intCap: 17
+    integrity: 17
     integrityThresholds:
-      Normal: 28
-      Damaged: 16
+      Normal: 17
+      Damaged: 8
       Destroyed: 0
   - type: Liver
   - type: Metabolizer
@@ -164,11 +170,11 @@
     state: heart-on
   - type: Organ
     slotId: heart # Shitmed
-    intCap: 30
-    integrity: 30
+    intCap: 14
+    integrity: 14
     integrityThresholds:
-      Normal: 30
-      Damaged: 15
+      Normal: 14
+      Damaged: 6
       Destroyed: 0
   - type: Metabolizer
     maxReagents: 2
@@ -198,11 +204,11 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
-    intCap: 28
-    integrity: 28
+    intCap: 17
+    integrity: 17
     integrityThresholds:
-      Normal: 28
-      Damaged: 16
+      Normal: 17
+      Damaged: 8
       Destroyed: 0
     slotId: kidneys # Shitmed
   - type: Metabolizer
@@ -223,11 +229,11 @@
     state: brain
   - type: Organ
     slotId: brain # backmen: surgery
-    intCap: 40
-    integrity: 40
+    intCap: 28
+    integrity: 28
     integrityThresholds:
-      Normal: 40
-      Damaged: 20
+      Normal: 28
+      Damaged: 16
       Destroyed: 0
   - type: NerveSystem # backmen: wounding
   - type: ConsciousnessRequired
@@ -273,11 +279,11 @@
   # start-backmen: surgery
   - type: Organ
     slotId: eyes
-    intCap: 28
-    integrity: 28
+    intCap: 12
+    integrity: 12
     integrityThresholds:
-      Normal: 28
-      Damaged: 16
+      Normal: 12
+      Damaged: 6
       Destroyed: 0
   - type: Eyes
   # end-backmen: surgery

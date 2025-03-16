@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Conditions;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Body.Systems;
@@ -116,8 +117,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (!TryComp(args.Body, out DamageableComponent? damageable)
             || !TryComp(args.Part, out DamageableComponent? partDamageable)
+            || !TryComp(args.Part, out WoundableComponent? partWoundable)
             || damageable.TotalDamage <= 0
             && partDamageable.TotalDamage <= 0
+            && partWoundable.Wounds!.Count == 0
             && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;
     }

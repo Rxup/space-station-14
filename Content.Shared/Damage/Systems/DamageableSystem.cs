@@ -263,75 +263,106 @@ namespace Content.Shared.Damage
                 if (possibleTargets.Count == 0)
                     return null;
 
-                var damageDict = new Dictionary<string, FixedPoint2>();
-                foreach (var (type, severity) in damage.DamageDict)
-                {
-                    // some wounds like Asphyxiation and Bloodloss aren't supposed to be created.
-                    if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
-                        || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
-                        continue;
-
-                    damageDict.Add(type, severity * partMultiplier);
-                }
-
                 var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleTargets);
-                if (targetPart == TargetBodyPart.All && damage.GetTotal() < 0)
-                {
-                    if (_wounds.TryGetWoundableWithMostDamage(
-                            uid.Value,
-                            out var damageWoundable,
-                            GetDamageGroupByType(damageDict.FirstOrDefault().Key)))
-                    {
-                        chosenTarget = (damageWoundable.Value.Owner, Comp<BodyPartComponent>(damageWoundable.Value.Owner));
-                    }
-                }
+                var damageDict = DamageSpecifierToWoundList(
+                    uid.Value,
+                    origin,
+                    target!.Value, // god forgib me
+                    damage,
+                    damageable,
+                    ignoreResistances,
+                    partMultiplier);
 
-                var beforePart = new BeforeDamageChangedEvent(damage, origin);
+                var beforeDamage = new BeforeDamageChangedEvent(damage, origin);
                 RaiseLocalEvent(chosenTarget.Id, ref before);
 
-                if (beforePart.Cancelled)
+                if (beforeDamage.Cancelled)
                     return null;
 
                 if (damageDict.Count == 0)
                     return null;
 
-                if (!ignoreResistances)
+                switch (targetPart)
                 {
-                    if (damageable.DamageModifierSetId != null &&
-                        _prototypeManager.TryIndex(damageable.DamageModifierSetId, out var modifierSet))
+                    // I kinda hate it, but it's needed to allow healing and all-around damage
+                    case TargetBodyPart.All when damage.GetTotal() < 0:
                     {
-                        // lol bozo
-                        var spec = new DamageSpecifier
+                        if (!_wounds.TryGetWoundableWithMostDamage(
+                                uid.Value,
+                                out var damageWoundable,
+                                GetDamageGroupByType(damageDict.FirstOrDefault().Key)))
+                            return null; // No damage at all or a bug. anomalous
+
+                        foreach (var (damageType, severity) in damageDict)
                         {
-                            DamageDict = damageDict,
-                        };
+                            if (!_wounds.TryContinueWound(damageWoundable.Value.Owner, damageType, severity))
+                                _wounds.TryCreateWound(damageWoundable.Value.Owner, damageType, severity, GetDamageGroupByType(damageType));
+                        }
 
-                        damage = DamageSpecifier.ApplyModifierSet(spec, modifierSet);
-                    }
-
-                    var ev = new DamageModifyEvent(damage, origin, targetPart);
-                    RaiseLocalEvent(uid.Value, ev);
-                    damage = ev.Damage;
-
-                    if (damage.Empty)
-                    {
                         return damage;
                     }
-
-                    foreach (var (type, _) in damageDict)
+                    case TargetBodyPart.All when damage.GetTotal() > 0:
                     {
-                        if (damage.DamageDict.TryGetValue(type, out var value))
-                            damageDict[type] = value;
+                        var pieces = _body.GetBodyChildren(uid).ToList();
+                        var damagePerPiece = DamageSpecifierToWoundList(
+                            uid.Value,
+                            origin,
+                            target.Value,
+                            damage / pieces.Count,
+                            damageable,
+                            ignoreResistances,
+                            partMultiplier);
+
+                        var doneDamage = new DamageSpecifier();
+                        doneDamage.DamageDict.EnsureCapacity(damage.DamageDict.Capacity);
+
+                        foreach (var bodyPart in pieces)
+                        {
+                            var beforePartAll = new BeforeDamageChangedEvent(damage, origin);
+                            RaiseLocalEvent(bodyPart.Id, ref before);
+
+                            if (beforePartAll.Cancelled)
+                                continue;
+
+                            foreach (var (damageType, severity) in damagePerPiece)
+                            {
+                                // Might cause some bullshit behaviour in the future. let's hope all goes right...
+                                if (doneDamage.DamageDict.TryGetValue(damageType, out var exSeverity))
+                                {
+                                    doneDamage.DamageDict[damageType] = exSeverity + severity;
+                                }
+                                else
+                                {
+                                    doneDamage.DamageDict[damageType] = severity;
+                                }
+
+                                if (!_wounds.TryContinueWound(bodyPart.Id, damageType, severity))
+                                    _wounds.TryCreateWound(bodyPart.Id, damageType, severity, GetDamageGroupByType(damageType));
+                            }
+                        }
+
+                        return doneDamage;
+                    }
+                    default:
+                    {
+                        var beforePart = new BeforeDamageChangedEvent(damage, origin);
+                        RaiseLocalEvent(chosenTarget.Id, ref before);
+
+                        if (beforePart.Cancelled)
+                            return null;
+
+                        if (damageDict.Count == 0)
+                            return null;
+
+                        foreach (var (damageType, severity) in damageDict)
+                        {
+                            if (!_wounds.TryContinueWound(chosenTarget.Id, damageType, severity))
+                                _wounds.TryCreateWound(chosenTarget.Id, damageType, severity, GetDamageGroupByType(damageType));
+                        }
+
+                        return damage;
                     }
                 }
-
-                foreach (var (damageType, severity) in damageDict)
-                {
-                    if (!_wounds.TryContinueWound(chosenTarget.Id, damageType, severity))
-                        _wounds.TryCreateWound(chosenTarget.Id, damageType, severity, GetDamageGroupByType(damageType));
-                }
-
-                return damage;
             }
 
             // Apply resistances
@@ -454,6 +485,56 @@ namespace Content.Shared.Damage
                 }
             }
             // Shitmed Change End
+        }
+
+        public Dictionary<string, FixedPoint2> DamageSpecifierToWoundList(
+            EntityUid uid,
+            EntityUid? origin,
+            TargetBodyPart targetPart,
+            DamageSpecifier damageSpecifier,
+            DamageableComponent damageable,
+            bool ignoreResistances = false,
+            float partMultiplier = 1.00f)
+        {
+            var damageDict = new Dictionary<string, FixedPoint2>();
+
+            damageSpecifier = ApplyUniversalAllModifiers(damageSpecifier);
+
+            // some wounds like Asphyxiation and Bloodloss aren't supposed to be created.
+            if (!ignoreResistances)
+            {
+                if (damageable.DamageModifierSetId != null &&
+                    _prototypeManager.TryIndex(damageable.DamageModifierSetId, out var modifierSet))
+                {
+                    // lol bozo
+                    var spec = new DamageSpecifier
+                    {
+                        DamageDict = damageDict,
+                    };
+
+                    damageSpecifier = DamageSpecifier.ApplyModifierSet(spec, modifierSet);
+                }
+
+                var ev = new DamageModifyEvent(damageSpecifier, origin, targetPart);
+                RaiseLocalEvent(uid, ev);
+                damageSpecifier = ev.Damage;
+
+                if (damageSpecifier.Empty)
+                {
+                    return damageDict;
+                }
+            }
+
+            foreach (var (type, severity) in damageSpecifier.DamageDict)
+            {
+                if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
+                    || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
+                    continue;
+
+                damageDict.Add(type, severity * partMultiplier);
+            }
+
+            return damageDict;
         }
 
         public void SetDamageModifierSetId(EntityUid uid, string damageModifierSetId, DamageableComponent? comp = null)

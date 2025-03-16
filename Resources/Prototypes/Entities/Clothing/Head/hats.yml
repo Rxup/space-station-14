@@ -1108,7 +1108,7 @@
     canExtinguish: true
     damage:
       types:
-        Heat: 1
+        Heat: 0.5
   - type: Damageable
     damageModifierSet: Wood
   - type: Appearance

@@ -383,7 +383,7 @@
     canResistFire: true
     damage:
       types:
-        Heat: 1.2 #per second, scales with number of fire 'stacks'
+        Heat: 0.8 #per second, scales with number of fire 'stacks'
   - type: PlantHolder
   - type: PlantHolderVisuals
   - type: SolutionContainerManager

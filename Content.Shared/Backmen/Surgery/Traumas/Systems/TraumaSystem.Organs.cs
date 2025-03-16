@@ -29,8 +29,7 @@ public partial class TraumaSystem
             // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
             _pain.TryAddPainModifier(nerveSys.Value, nerveSys.Value, "OrganDestroyed", 20f, time: TimeSpan.FromSeconds(12f));
 
-            // TODO: Organ remover sfx
-            //_pain.PlayPainSound(comp.Body.Value, nerveSys.Value.Comp, comp.OrganDestroyedSound);
+            _audio.PlayPvs(comp.OrganDestroyedSound, comp.Body.Value);
         }
 
         _body.RemoveOrgan(organ, comp);
@@ -48,7 +47,7 @@ public partial class TraumaSystem
 
     public bool ApplyDamageToOrgan(EntityUid organ, FixedPoint2 severity, OrganComponent? organComp = null)
     {
-        if (!Resolve(organ, ref organComp) || _net.IsClient)
+        if (!Resolve(organ, ref organComp))
             return false;
 
         var newIntegrity = FixedPoint2.Clamp(organComp.OrganIntegrity - severity, 0, organComp.IntegrityCap);

@@ -22,6 +22,14 @@ public sealed partial class NerveSystemComponent : Component
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 PainCap = 200f;
 
+    /// <summary>
+    /// TODO: Implement traumatic and wound pain differences when organs are made properly, so it looks more realistic.
+    /// Currently isn't even working. wait for the rework very soon!
+    /// How much of typical wound pain this nerve system hold?
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 SoftPainCap = 90f;
+
     // Don't change, OR I will break your knees, filled up upon initialization.
     public Dictionary<EntityUid, NerveComponent> Nerves = new();
 
@@ -44,8 +52,16 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("accumulated", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan UpdateTime = TimeSpan.Zero;
 
-    [DataField("painShockStun")]
+    [DataField("painShockStun", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan PainShockStunTime = TimeSpan.FromSeconds(7f);
+
+    public TimeSpan NextCritScream = TimeSpan.Zero;
+
+    [DataField]
+    public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(8f);
+
+    [DataField]
+    public TimeSpan CritScreamsIntervalMax = TimeSpan.FromSeconds(21f);
 
     [DataField]
     public SoundSpecifier PainRattles = new SoundCollectionSpecifier("PainRattles");

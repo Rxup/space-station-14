@@ -10,6 +10,12 @@
       - state: lung-r
   - type: Lung
   - type: Organ
+    intCap: 21
+    integrity: 21
+    integrityThresholds:
+      Normal: 21
+      Damaged: 12
+      Destroyed: 0
     slotId: lungs
   - type: Metabolizer
     updateInterval: 2.0

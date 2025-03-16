@@ -25,6 +25,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 
@@ -144,13 +145,6 @@ public sealed class HealingSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        /*if (healing.DamageContainers is not null &&
-            entity.Comp.DamageContainerID is not null &&
-            !healing.DamageContainers.Contains(entity.Comp.DamageContainerID))
-        {
-            return;
-        }*/ // TODO: Lowkey.. We wanna introduce something similar for woundables, if we wanna make borgs and other shi
-
         var stuffToHeal = new Dictionary<string, FixedPoint2>();
         var targetedWoundable = EntityUid.Invalid;
         if (TryComp<TargetingComponent>(args.User, out var targeting))
@@ -176,6 +170,19 @@ public sealed class HealingSystem : EntitySystem
             return;
         }
 
+        var woundableDamageContainer = Comp<WoundableComponent>(targetedWoundable).DamageContainerID;
+        if (healing.DamageContainers is not null &&
+            woundableDamageContainer is not null &&
+            !healing.DamageContainers.Contains(woundableDamageContainer))
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("cant-heal-damage-container-rebell", ("target", ent), ("used", args.Used)),
+                ent,
+                args.User,
+                PopupType.MediumCaution);
+            return;
+        }
+
         // Heal some bleeds
         if (healing.BloodlossModifier != 0)
         {
@@ -187,6 +194,7 @@ public sealed class HealingSystem : EntitySystem
 
                 if (bleedStopAbility > bleeds.BleedingAmount)
                 {
+                    bleedStopAbility -= bleeds.BleedingAmountRaw;
                     bleeds.BleedingAmountRaw = 0;
                     bleeds.IsBleeding = false;
 
@@ -201,7 +209,7 @@ public sealed class HealingSystem : EntitySystem
             }
             _bloodstreamSystem.TryModifyBleedAmount(ent, healing.ModifyBloodLevel);
 
-            if (bleedStopAbility != healing.BloodlossModifier)
+            if (bleedStopAbility != -healing.BloodlossModifier)
             {
                 _popupSystem.PopupEntity(bleedStopAbility > 0
                         ? Loc.GetString("rebell-medical-item-stop-bleeding-fully")

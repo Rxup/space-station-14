@@ -3,6 +3,7 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -44,6 +45,12 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     public OrganSeverity OrganSeverity = OrganSeverity.Normal;
 
     /// <summary>
+    ///     Sound played when this organ gets turned into a blood mush.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier OrganDestroyedSound = new SoundCollectionSpecifier("OrganDestroyed");
+
+    /// <summary>
     ///     All the modifiers that are currently modifying the OrganIntegrity
     /// </summary>
     public Dictionary<(string, EntityUid), FixedPoint2> IntegrityModifiers = new();
@@ -51,7 +58,8 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     /// <summary>
     ///     The name's self-explanatory, thresholds. for states. of integrity. of this god fucking damn organ.
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
+    // TODO: Not "required" for now, and can break some shit BECAUSE I AM NOT reworking the entirety of ShitSurgerySystem to work properly without breaking the linter
     public Dictionary<OrganSeverity, FixedPoint2> IntegrityThresholds = new();
 
     /// <summary>
