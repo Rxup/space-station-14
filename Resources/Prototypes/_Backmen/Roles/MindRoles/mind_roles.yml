@@ -7,6 +7,7 @@
   - type: MindRole
     antagPrototype: XenoAgent
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: XenoAgentRole
 
 # Blob
@@ -19,6 +20,7 @@
   - type: MindRole
     antagPrototype: Blob
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: BlobRole
 
 # Flesh Cultists
@@ -31,6 +33,7 @@
   - type: MindRole
     antagPrototype: FleshCultist
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: FleshCultistRole
 
 - type: entity
@@ -42,6 +45,7 @@
   - type: MindRole
     antagPrototype: FleshCultistLeader
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: FleshCultistRole
     isLeader: true
 
@@ -55,6 +59,7 @@
   - type: MindRole
     antagPrototype: Bloodsucker
     exclusiveAntag: true
+    roleType: SoloAntagonist
   - type: VampireRole
 
 # Changeling
@@ -67,6 +72,7 @@
   - type: MindRole
     antagPrototype: Changeling
     exclusiveAntag: true
+    roleType: FreeAgent
   - type: ChangelingRole
 
 # EvilTwin
@@ -79,6 +85,7 @@
   - type: MindRole
     antagPrototype: EvilTwin
     exclusiveAntag: true
+    roleType: Neutral
   - type: EvilTwinRole
 
 # SuperPsi
@@ -91,6 +98,7 @@
   - type: MindRole
     antagPrototype: SuperPsi
     exclusiveAntag: true
+    roleType: SoloAntagonist
   - type: SuperPsiRole
 
 # Fugitive
@@ -103,6 +111,7 @@
   - type: MindRole
     antagPrototype: Fugitive
     exclusiveAntag: true
+    roleType: Neutral
   - type: FugitiveRole
 
 # Bank

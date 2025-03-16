@@ -2,6 +2,7 @@ using Content.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
+using Content.Client.VendingMachines.UI;
 using Content.Shared.Backmen.Medical.SmartFridge;
 using SmartFridgeMenu = Content.Client.Backmen.Medical.SmartFridge.UI.SmartFridgeMenu;
 

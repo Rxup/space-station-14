@@ -411,9 +411,9 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             pr -= 0.6F;
         }
 
-        if (!TryComp<DnaComponent>(victim, out var dnaComponent))
+        if (!TryComp<DnaComponent>(victim, out var dnaComponent) || string.IsNullOrEmpty(dnaComponent.DNA))
         {
-            pr -= 0.6F;
+            pr -= 0.8F;
         }
         else
         {

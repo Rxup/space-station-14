@@ -95,7 +95,7 @@ public sealed class TransformInFleshPudgeOnDeathSystem : EntitySystem
 
                 if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid))
                 {
-                    if (TryComp<DnaComponent>(uid, out var dna))
+                    if (TryComp<DnaComponent>(uid, out var dna) && !string.IsNullOrEmpty(dna.DNA))
                     {
                         var comp = EnsureComp<ForensicsComponent>(puddleUid);
                         comp.DNAs.Add(dna.DNA);

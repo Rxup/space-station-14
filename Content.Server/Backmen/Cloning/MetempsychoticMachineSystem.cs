@@ -5,6 +5,7 @@ using Content.Server.Speech.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Cloning;
+using Content.Shared.Cloning.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -18,12 +19,12 @@ namespace Content.Server.Backmen.Cloning;
 [ByRefEvent]
 public struct CloningSpawnEvent
 {
-    public readonly Entity<CloningPodComponent> Device;
+    public readonly Entity<CloningPodComponent>? Device;
     public readonly EntityUid Source;
     public string? Proto;
     public bool IsHandleAppearance = false;
 
-    public CloningSpawnEvent(Entity<CloningPodComponent> device, EntityUid source)
+    public CloningSpawnEvent(Entity<CloningPodComponent>? device, EntityUid source)
     {
         Source = source;
         Device = device;
@@ -46,33 +47,34 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<Server.Backmen.Cloning.CloningSpawnEvent>(OnCloning);
-        SubscribeLocalEvent<CloningEvent>(OnCloningApply);
+        SubscribeLocalEvent<PotentialPsionicComponent, CloningEvent>(OnCloningApply);
     }
 
-    private void OnCloningApply(ref CloningEvent ev)
+    private void OnCloningApply(Entity<PotentialPsionicComponent> ent, ref CloningEvent ev)
     {
-        EnsureComp<PotentialPsionicComponent>(ev.Target);
-        if (!TryComp<HumanoidAppearanceComponent>(ev.Source, out var humanoid) || !_prototypeManager.TryIndex(humanoid.Species, out var oldSpecies))
+
+        EnsureComp<PotentialPsionicComponent>(ev.CloneUid);
+        if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid) || !_prototypeManager.TryIndex(humanoid.Species, out var oldSpecies))
         {
             return;
         }
 
-        if (!TryComp<HumanoidAppearanceComponent>(ev.Target, out var newHumanoid) || !_prototypeManager.TryIndex(newHumanoid.Species, out var newSpecies)) //non human fix
+        if (!TryComp<HumanoidAppearanceComponent>(ev.CloneUid, out var newHumanoid) || !_prototypeManager.TryIndex(newHumanoid.Species, out var newSpecies)) //non human fix
         {
-            RemComp<ReplacementAccentComponent>(ev.Target);
-            RemComp<MonkeyAccentComponent>(ev.Target);
-            RemComp<SentienceTargetComponent>(ev.Target);
-            RemComp<GhostTakeoverAvailableComponent>(ev.Target);
+            RemComp<ReplacementAccentComponent>(ev.CloneUid);
+            RemComp<MonkeyAccentComponent>(ev.CloneUid);
+            RemComp<SentienceTargetComponent>(ev.CloneUid);
+            RemComp<GhostTakeoverAvailableComponent>(ev.CloneUid);
             return;
         }
 
-        TryComp<MetempsychosisKarmaComponent>(ev.Source, out var oldKarma);
+        TryComp<MetempsychosisKarmaComponent>(ent, out var oldKarma);
 
         var applyKarma = false;
 
-        var switchingSpecies = Prototype(ev.Source)?.ID != Prototype(ev.Target)?.ID;
+        var switchingSpecies = Prototype(ent)?.ID != Prototype(ev.CloneUid)?.ID;
 
-        if (switchingSpecies || HasComp<MetempsychosisKarmaComponent>(ev.Source))
+        if (switchingSpecies || HasComp<MetempsychosisKarmaComponent>(ent))
         {
             var pref = HumanoidCharacterProfile.RandomWithSpecies(newHumanoid.Species);
             if (oldSpecies.Sexes.Contains(humanoid.Sex))
@@ -82,13 +84,13 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
             pref = pref.WithAge(humanoid.Age);
 
 
-            _humanoidSystem.LoadProfile(ev.Target, pref);
+            _humanoidSystem.LoadProfile(ev.CloneUid, pref);
             applyKarma = true;
         }
 
         if (applyKarma)
         {
-            var karma = EnsureComp<MetempsychosisKarmaComponent>(ev.Target);
+            var karma = EnsureComp<MetempsychosisKarmaComponent>(ev.CloneUid);
             karma.Score++;
             if (oldKarma != null)
                 karma.Score += oldKarma.Score;
@@ -110,7 +112,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
             return;
         }
 
-        var proto = GetSpawnEntity(args.Device, metem.KarmaBonus, speciesPrototype, oldKarma?.Score, metem);
+        var proto = GetSpawnEntity(args.Device.Value, metem.KarmaBonus, speciesPrototype, oldKarma?.Score, metem);
         if (args.Proto != proto)
         {
             args.IsHandleAppearance = true;

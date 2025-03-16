@@ -36,59 +36,20 @@
   - Ефрейтор
   - Ефрейтор
 
-- type: dataset
+- type: localizedDataset
   id: NameSpets
   values:
-  - DipCol
-  - BitCop
-  - Jazz
-  - Yololo
-  - Baycon
-  - Quest
-  - Pod
-  - Nail
-  - Pesok
-  - QSP
-  - Fiery
-  - Limo
-  - Maxvel
-  - Wield
-  - Nompad
-  - Henry
-  - Stick
-  - Crazy
-  - Diamond
-  - Jojo
-  - Isaac
-  - Klark
-  - Burn
-  - Jakarta
-  - Normandy
-  - Aquamarine
-  - Albatross
-  - Barracuda
-  - Curly
-  - Fighting Bob
-  - Robust
-  - Walter
-  - Angel
-  - Atkins
-  - Attila
-  - Kraut
-  - Balthazar
-  - Joker
-  - Doctor
-  - Patriot
-  - Professor
-  - Gomes
-  - Phoenix
+    prefix: name-spets-dataset-
+    count: 43
 
-- type: dataset
+- type: localizedDataset
   id: NameSpetsCommander
   values:
-  - Commander
+    prefix: name-spets-commander-dataset-
+    count: 1
 
-- type: dataset
+- type: localizedDataset
   id: NameSpetsOperative
   values:
-  - Operative
+    prefix: name-spets-operative-dataset-
+    count: 1

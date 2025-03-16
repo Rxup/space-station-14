@@ -1615,3 +1615,35 @@
   id: 106
   time: '2025-03-10T17:02:33.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1092
+- author: KieriFand
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0451\u043D \u0441\u043F\u0440\u0430\u0439\
+      \u0442 \u0440\u0443\u0447\u043D\u043E\u0433\u043E \u043C\u043E\u043D\u0438\u0442\
+      \u043E\u0440\u0430 \u043A\u0430\u043C\u0435\u0440."
+    type: Tweak
+  id: 107
+  time: '2025-03-13T03:18:12.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1095
+- author: Rouden, Jonh Shitcode, deltanedas, Aineias1, Mocho
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u041B\u0430\u0432\u0430\
+      \u043B\u0435\u043D\u0434."
+    type: Add
+  - message: "\u0410 \u0435\u0449\u0451 \u043E\u0447\u0435\u043D\u044C, \u043E\u0447\
+      \u0435\u043D\u044C \u043C\u043D\u043E\u0433\u043E \u043A\u043E\u043D\u0442\u0435\
+      \u043D\u0442\u0430 \u0434\u043B\u044F \u043D\u0435\u0433\u043E, \u0438 \u043D\
+      \u0435 \u0441\u0432\u044F\u0437\u0430\u043D\u043D\u043E \u0441 \u043D\u0438\u043C"
+    type: Add
+  id: 108
+  time: '2025-03-14T10:39:14.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1067
+- author: Rouden
+  changes:
+  - message: "\u0428\u0430\u0445\u0442\u0451\u0440\u0441\u043A\u0438\u0439 \u0448\u0430\
+      \u0442\u0442\u043B \u0442\u0435\u043F\u0435\u0440\u044C \u043F\u0440\u0430\u0432\
+      \u0438\u043B\u044C\u043D\u043E \u0441\u0442\u044B\u043A\u0443\u0435\u0442\u0441\
+      \u044F \u0441\u043E \u0441\u0442\u0430\u043D\u0446\u0438\u0435\u0439."
+    type: Fix
+  id: 109
+  time: '2025-03-15T17:07:19.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1101

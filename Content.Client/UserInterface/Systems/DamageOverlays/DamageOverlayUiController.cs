@@ -71,7 +71,7 @@ public sealed class DamageOverlayUiController : UIController
     {
         _overlay.DeadLevel = 0f;
         _overlay.CritLevel = 0f;
-        _overlay.BruteLevel = 0f;
+        _overlay.PainLevel = 0f;
         _overlay.OxygenLevel = 0f;
     }
 

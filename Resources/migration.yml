@@ -836,3 +836,10 @@ VendingMachinePride: null
 MagazineBoxCaselessRifle10x24: null
 #MagazineBoxCaselessRifleBig: null
 #MagazinePistolHighCapacityRubber: null
+
+# 2024-12-22 # Lavaland Change: Migrations
+VendingMachineRestockSalvageEquipment: null
+CrateVendingMachineRestockSalvageEquipmentFilled: null
+ComputerSalvageExpedition: ComputerShuttleMiningLavaland
+SalvageExpeditionsComputerCircuitboard: LavalandShuttleConsoleCircuitboard
+WallRockBasaltBSCrystal: WallRockBasalt
