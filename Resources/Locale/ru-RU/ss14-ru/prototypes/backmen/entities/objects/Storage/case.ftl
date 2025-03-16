@@ -2,7 +2,7 @@ ent-BaseCase = кейс
     .desc = Интересно, что там внутри?
 
 ent-CaseInteQ = коричневый кейс
-    .desc = Белый кейс с эмблемой альянса, интересно, что же там?
+    .desc = Коричневый кейс с эмблемой щита, интересно, что же там?
     .suffix = Интек, Пустой
 ent-CaseInteQInfiltrator = { ent-CaseInteQ }
     .desc = { ent-CaseInteQ.desc }

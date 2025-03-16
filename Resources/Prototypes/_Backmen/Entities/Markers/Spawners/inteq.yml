@@ -1,5 +1,5 @@
 - type: entity
-  name: InteQ vanguard leader spawner
+  name: InteQ Vanguard Leader spawner
   id: SpawnMobInteQVanguardLeader
   parent: MarkerBase
   components:
@@ -13,7 +13,7 @@
       - RandomHumanoidSpawnerInteQVanguardLeader
 
 - type: entity
-  name: InteQ vanguard operative spawner
+  name: InteQ Vanguard Operative spawner
   id: SpawnMobInteQVanguardOperative
   parent: MarkerBase
   components:
@@ -27,7 +27,7 @@
       - RandomHumanoidSpawnerInteQVanguardOperative
 
 - type: entity
-  name: InteQ vanguard solder spawner
+  name: InteQ Vanguard Solder spawner
   id: SpawnMobInteQVanguardSolder
   parent: MarkerBase
   components:
@@ -41,7 +41,7 @@
       - RandomHumanoidSpawnerInteQVanguardSolder
 
 - type: entity
-  name: InteQ vanguard medic spawner
+  name: InteQ Vanguard Medic spawner
   id: SpawnMobInteQVanguardMedic
   parent: MarkerBase
   components:
