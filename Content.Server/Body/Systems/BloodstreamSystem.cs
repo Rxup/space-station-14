@@ -47,10 +47,8 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
 
     // balanced, trust me
