@@ -26,9 +26,6 @@
   id: IgnoreBalanceChecks
 
 - type: Tag
-  id: SpaceCash
-
-- type: Tag
   id: PlushieSharkBlack
 
 - type: Tag
@@ -74,28 +71,16 @@
   id: ADTTelescopicBaton
 
 - type: Tag
-  id: Eyes
-
-- type: Tag
   id: GasMask
 
 - type: Tag
-  id: Heart
-
-- type: Tag
   id: Kidneys
-
-- type: Tag
-  id: Liver
 
 - type: Tag
   id: Lungs
 
 - type: Tag
   id: Mask
-
-- type: Tag
-  id: Organ
 
 - type: Tag
   id: Stomach
