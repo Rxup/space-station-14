@@ -478,11 +478,11 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - BackmenMedfabStatic # backmen
-    - AdvancedBodybagsStatic # Backmen
     dynamicPacks:
     - Chemistry
     - BackmenMedfab # backmen
     - BackmenSurgery # backmen
+    - AdvancedBodybagsStatic # Backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
