@@ -23,6 +23,12 @@ using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared._Goobstation.Weapons.Ranged; // GoobStation - NoWieldNeeded
+// Lavaland Change
+using Content.Shared.StatusEffect;
+using Content.Shared.Stunnable;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Wieldable;
 
@@ -39,6 +45,8 @@ public abstract class SharedWieldableSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly UseDelaySystem _delay = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!; // Lavaland Change
+    [Dependency] private readonly SharedStunSystem _stun = default!; // Lavaland Change
 
     public override void Initialize()
     {
@@ -70,8 +78,20 @@ public abstract class SharedWieldableSystem : EntitySystem
         if (TryComp<WieldableComponent>(uid, out var wieldable) &&
             !wieldable.Wielded)
         {
+            // Lavaland Change: If the weapon can fumble, the player will get knocked down if they try to use the weapon without wielding it.
+            if (component.FumbleOnAttempt)
+            {
+                args.Message = Loc.GetString("wieldable-component-requires-fumble", ("item", uid));
+                var playSound = !_statusEffects.HasStatusEffect(args.User, "KnockedDown");
+                _stun.TryKnockdown(args.User, TimeSpan.FromSeconds(1.5f), true);
+                if (playSound)
+                    _audio.PlayPredicted(new SoundPathSpecifier("/Audio/Effects/slip.ogg"), args.User, args.User);
+            }
+            else
+            {
+                args.Message = Loc.GetString("wieldable-component-requires", ("item", uid));
+            }
             args.Cancelled = true;
-            args.Message = Loc.GetString("wieldable-component-requires", ("item", uid));
         }
     }
 
@@ -126,14 +146,12 @@ public abstract class SharedWieldableSystem : EntitySystem
 
     private void OnSpeedModifierWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemWieldedEvent args)
     {
-        if (args.User != null)
-            _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
     }
 
     private void OnSpeedModifierUnwielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemUnwieldedEvent args)
     {
-        if (args.User != null)
-            _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
     }
 
     private void OnRefreshSpeedWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ref HeldRelayedEvent<RefreshMovementSpeedModifiersEvent> args)

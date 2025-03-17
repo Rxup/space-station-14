@@ -406,6 +406,7 @@
     - SecurityExplosives
     - BackmenAmmo # backmen
     - SecurityWeapons
+    - SecurityDisablers
   - type: MaterialStorage
     whitelist:
       tags:
@@ -596,10 +597,17 @@
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
+      ignoreMaterialWhiteList: true # Goob edit
+      connectToSilo: true # Goob edit
+      disconnectSiloOffMap: true # Goob edit
+      disallowOreEjection: false # Goob edit
       ignoreColor: true
       whitelist:
         tags:
           - Ore
+          - Sheet
+          - RawMaterial
+          - Ingot
     - type: Lathe
       idleState: icon
       runningState: building
@@ -607,6 +615,9 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
+    - type: MiningPoints # DeltaV - Source of mining points for miners
+    - type: MiningPointsLathe # DeltaV
+
 
 - type: entity
   parent: OreProcessor

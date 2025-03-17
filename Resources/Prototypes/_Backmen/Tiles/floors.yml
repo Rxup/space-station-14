@@ -1,0 +1,162 @@
+- type: tile
+  id: FloorDarkPavementAlt
+  name: tiles-dark-floor-pavement-alt
+  sprite: /Textures/Backmen/Tiles/dark_pavement.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemDark
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorDarkPavementVerticalAlt
+  name: tiles-dark-floor-pavement-vertical-alt
+  sprite: /Textures/Backmen/Tiles/dark_pavement_vertical.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemDark
+  heatCapacity: 10000
+  
+
+- type: tile
+  id: FloorDarkHerringboneAlt
+  name: tiles-dark-floor-herringbone-alt
+  sprite: /Textures/Backmen/Tiles/dark_herringbone.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemDark
+  heatCapacity: 10000
+  
+- type: tile
+  id: FloorSteelHerringboneAlt
+  name: tiles-steel-floor-herringbone-alt
+  sprite: /Textures/Backmen/Tiles/steel_herringbone.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemSteel
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorSteelPavementAlt
+  name: tiles-steel-floor-pavement-alt
+  sprite: /Textures/Backmen/Tiles/steel_pavement.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemSteel
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorSteelPavementVerticalAlt
+  name: tiles-steel-floor-pavement-vertical-alt
+  sprite: /Textures/Backmen/Tiles/steel_pavement_vertical.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemSteel
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorWhiteHerringboneAlt
+  name: tiles-white-floor-herringbone-alt
+  sprite: /Textures/Backmen/Tiles/white_herringbone.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemWhite
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorWhitePavementAlt
+  name: tiles-white-floor-pavement-alt
+  sprite: /Textures/Backmen/Tiles/white_pavement.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemWhite
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorWhitePavementVerticalAlt
+  name: tiles-white-floor-pavement-vertical-alt
+  sprite: /Textures/Backmen/Tiles/white_pavement_vertical.png
+  variants: 4
+  placementVariants:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemWhite
+  heatCapacity: 10000
