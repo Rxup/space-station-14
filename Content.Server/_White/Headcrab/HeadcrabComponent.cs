@@ -28,7 +28,7 @@ public sealed partial class HeadcrabComponent : Component
     public DamageSpecifier Damage = default!;
 
     [DataField]
-    public DamageSpecifier HealOnEqupped = default!;
+    public DamageSpecifier HealOnEquipped = default!;
 
     public EntityUid EquippedOn;
 

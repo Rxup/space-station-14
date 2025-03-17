@@ -36,7 +36,7 @@
     damage:
       types:
         Piercing: 5
-    healOnEqupped:
+    healOnEquipped:
       types:
         Brute: -5.25
         Burn: -5.25
