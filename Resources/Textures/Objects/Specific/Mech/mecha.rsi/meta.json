@@ -485,7 +485,18 @@
     },
     {
       "name": "vim-broken",
-      "directions": 4
+      "directions": 4,
+
+    },
+      {
+          "name": "paddy",
+          "directions": 4
+      },
+      {
+          "name": "paddy-open"
+      },
+      {
+          "name": "paddy-broken"
     }
   ]
 }
