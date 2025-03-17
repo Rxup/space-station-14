@@ -20,7 +20,7 @@ public sealed partial class MechPhazeComponent : Component
     /// The change in energy per second.
     /// </summary>
     [DataField("energyDelta")]
-    public float EnergyDelta = -20;
+    public float EnergyDelta = -40; 
 
     /// <summary>
     /// The sound played when a mech is entered phaze
