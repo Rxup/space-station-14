@@ -28,10 +28,3 @@
   materials:
     Plastic: 300
     Uranium: 30
-
-- type: latheRecipe
-  id: SyndicateBodyBag
-  result: BodyBagSyndicateFolded
-  completetime: 6
-  materials:
-    Plastic: 150
