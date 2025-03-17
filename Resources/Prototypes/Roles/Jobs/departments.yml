@@ -107,6 +107,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - BkmVirologist #backmen
   accountNumber: 1319 #backmen: currency
 
 - type: department

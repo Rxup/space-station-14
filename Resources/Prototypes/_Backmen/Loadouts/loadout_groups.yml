@@ -156,3 +156,25 @@
   - ClothingMedalBronzesol
   - ClothingMedalGoldenStar
   - ClothingMedalIronStar
+
+# Virologist
+- type: loadoutGroup
+  id: BkmVirologistJumpsuit
+  name: loadout-group-virologist-jumpsuit
+  loadouts:
+  - VirologistJumpsuit
+  - VirologistJumpskirt
+
+- type: loadoutGroup
+  id: VirologistOuterClothing
+  name: loadout-group-virologist-outerclothing
+  loadouts:
+  - VirologistLabCoat
+  
+- type: loadoutGroup
+  id: VirologistBackpack
+  name: loadout-group-virologist-backpack
+  loadouts:
+  - VirologistBackpack
+  - VirologistSatchel
+  - VirologistDuffel

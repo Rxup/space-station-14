@@ -562,3 +562,16 @@
           state: idblueshield
     - type: PresetIdCard
       job: BlueShield
+
+- type: entity
+  parent: IDCardStandard
+  id: VirologistIDCard
+  name: virologist ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - sprite: Backmen/Objects/Misc/id_cards.rsi
+          state: idvirologist
+    - type: PresetIdCard
+      job: BkmVirologist

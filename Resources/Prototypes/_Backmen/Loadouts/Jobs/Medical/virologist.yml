@@ -1,0 +1,32 @@
+#jumpsuit
+- type: loadout
+  id: VirologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+
+- type: loadout
+  id: VirologistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtVirology
+
+#Back
+- type: loadout
+  id: VirologistBackpack
+  equipment:
+    back: ClothingBackpackMedical
+
+- type: loadout
+  id: VirologistSatchel
+  equipment:
+    back: ClothingBackpackSatchelMedical
+
+- type: loadout
+  id: VirologistDuffel
+  equipment:
+    back: ClothingBackpackDuffelMedical
+
+#OuterClothing
+- type: loadout
+  id: VirologistLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabViro

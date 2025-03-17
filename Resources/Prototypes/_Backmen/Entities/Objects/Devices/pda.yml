@@ -162,3 +162,42 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-blue
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VirologistPDA
+  name: virologist PDA
+  description: Shiny and sterile.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+        state: "pda-virology"
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-virology
+    - type: PdaBorderColor
+      borderColor: "#d7d7d0"
+      accentVColor: "#90EE90"
+    - type: Pda
+      id: VirologistIDCard
+      penSlot:
+        startingItem: Pen
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: Icon
+      sprite: Objects/Devices/pda.rsi
+      state: pda-virology
