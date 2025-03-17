@@ -101,11 +101,10 @@
     - PetWearable
   - type: LanguageKnowledge
     speaks:
-    - Hissing
+    - Xeno
     understands:
     - Xeno
-    - Hissing
-    - Draconic
+    - Dragon
     - TauCetiBasic
   - type: GuideHelp
     guides:
