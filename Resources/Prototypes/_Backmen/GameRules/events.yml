@@ -126,6 +126,8 @@
     - type: GlimmerEvent
       minimumGlimmer: 500
       maximumGlimmer: 1000
+      glimmerBurnLower: 120
+      glimmerBurnUpper: 150
     - type: NoosphericZapRule
 
 - type: entity
@@ -136,6 +138,8 @@
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
+      glimmerBurnLower: 120
+      glimmerBurnUpper: 150
     - type: NoosphericFryRule
 
 
@@ -158,8 +162,8 @@
   components:
     - type: GlimmerEvent
       minimumGlimmer: 400
-      glimmerBurnLower: 50
-      glimmerBurnUpper: 200
+      glimmerBurnLower: 150
+      glimmerBurnUpper: 300
     - type: MassMindSwapRule
 
 - type: entity
@@ -239,7 +243,7 @@
       minimumPlayers: 40
     - type: GlimmerEvent
       minimumGlimmer: 300
-      maximumGlimmer: 1000
+      maximumGlimmer: 450
       report: glimmer-event-report-signatures
     - type: FreeProberRule
 
@@ -256,6 +260,8 @@
   - type: GlimmerEvent
     minimumGlimmer: 30
     maximumGlimmer: 500
+    glimmerBurnLower: 90
+    glimmerBurnUpper: 120
     report: glimmer-event-breaker
   - type: GlimmerBreakerRule
 

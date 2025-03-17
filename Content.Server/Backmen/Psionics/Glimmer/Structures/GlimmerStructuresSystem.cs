@@ -47,15 +47,6 @@ public sealed class GlimmerStructuresSystem : EntitySystem
 
     private void OnArtifactActivated(Entity<GlimmerSourceComponent> ent, ref ArtifactActivatedEvent args)
     {
-        if (ent.Comp.AddToGlimmer)
-        {
-            _glimmerSystem.Glimmer += 10;
-        }
-        else
-        {
-            _glimmerSystem.Glimmer -= 10;
-        }
-
         if (args.Activator != null &&
             !HasComp<PsionicInsulationComponent>(args.Activator) &&
             TryComp<PotentialPsionicComponent>(args.Activator, out var potentialPsionicComponent))
@@ -81,7 +72,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
         if (HasComp<PsionicComponent>(target))
         {
             _popupSystem.PopupEntity(Loc.GetString("noospheric-zap-seize"), target, target, Shared.Popups.PopupType.LargeCaution);
-            _glimmerSystem.Glimmer += 50;
+            _glimmerSystem.Glimmer += 25;
         }
         else
         {
