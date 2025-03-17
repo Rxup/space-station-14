@@ -1,23 +1,30 @@
 using System.Linq;
 using Content.Server.Actions;
-using Content.Server.NPC.Components;
-using Content.Server.Nutrition.Components;
+using Content.Server.Chat;
+using Content.Server.Chat.Systems;
+using Content.Server.Mind;
+using Content.Server.NPC;
+using Content.Server.NPC.HTN;
 using Content.Server.Popups;
+using Content.Server.NPC.Systems;
+using Content.Server.Nutrition.Components;
 using Content.Shared.Zombies;
 using Content.Shared.CombatMode;
 using Content.Shared.Ghost;
 using Content.Shared.Damage;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared._White.Headcrab;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
@@ -38,9 +45,15 @@ public sealed partial class HeadcrabSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly NPCSystem _npc = default!;
+    [Dependency] private readonly HTNSystem _htn = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
 
     public override void Initialize()
     {
@@ -69,10 +82,48 @@ public sealed partial class HeadcrabSystem : EntitySystem
         if (args.Slot != "mask")
             return;
 
+        if (!_mobState.IsAlive(uid))
+            return;
+
+        EnsureComp<AutoEmoteComponent>(args.Equipee);
+        _autoEmote.AddEmote(args.Equipee, "ZombieGroan");
+        _tagSystem.AddTag(args.Equipee, "CannotSuicide");
+
         component.EquippedOn = args.Equipee;
-        EnsureComp<PacifiedComponent>(uid);
-        RemComp<NPCMeleeCombatComponent>(uid);
-        _npcFaction.AddFaction(args.Equipee, "Zombie");
+        RemComp<CombatModeComponent>(uid);
+        RemComp<HTNComponent>(uid);
+//        _action.RemoveAction(uid, component.JumpActionEntity, component.JumpAction); // Skill issue
+        var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.Equipee);
+        component.OldFactions.Clear();
+        component.OldFactions.UnionWith(npcFaction.Factions);
+        _npcFaction.ClearFactions((args.Equipee, npcFaction), false);
+        _npcFaction.AddFaction((args.Equipee, npcFaction), component.HeadcrabFaction);
+
+        component.HasNpc = !EnsureComp<HTNComponent>(args.Equipee, out var htn);
+        htn.RootTask = new HTNCompoundTask { Task = component.TakeoverTask };
+        htn.Blackboard.SetValue(NPCBlackboard.Owner, args.Equipee);
+        _npc.WakeNPC(args.Equipee, htn);
+        _htn.Replan(htn);
+
+        var mindlostMessage = Loc.GetString(component.MindLostMessageSelf);
+
+        if (TryComp<ActorComponent>(args.Equipee, out var actor))
+        {
+            var headcrabHasMind = _mindSystem.TryGetMind(uid, out var hostMindId, out var hostMind);
+            var entityHasMind = _mindSystem.TryGetMind(args.Equipee, out var mindId, out var mind);
+
+            if (!entityHasMind && !headcrabHasMind)
+                return;
+
+            if (headcrabHasMind)
+                _mindSystem.TransferTo(hostMindId, args.Equipee, mind: hostMind);
+
+            if (entityHasMind)
+                _mindSystem.TransferTo(mindId, uid, mind: mind);
+
+            _popup.PopupPredicted(mindlostMessage,
+                args.Equipee, args.Equipee, PopupType.LargeCaution);
+        }
 
         if (_mobState.IsDead(uid))
             return;
@@ -84,8 +135,9 @@ public sealed partial class HeadcrabSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("headcrab-eat-other-entity-face",
             ("entity", args.Equipee)), args.Equipee, Filter.PvsExcept(uid), true, PopupType.Large);
 
-        _stunSystem.TryParalyze(args.Equipee, TimeSpan.FromSeconds(component.ParalyzeTime), true);
-        _damageableSystem.TryChangeDamage(args.Equipee, component.Damage, origin: uid);
+        _stunSystem.TryParalyze(args.Equipee, component.ParalyzeTime, true);
+        _damageableSystem.TryChangeDamage(args.Equipee, component.Damage, origin: uid); // Damage Entity
+        _damageableSystem.TryChangeDamage(uid, component.HealOnEqupped, true); // Heal headcrab
     }
 
     private void OnUnequipAttempt(EntityUid uid, HeadcrabComponent component, BeingUnequippedAttemptEvent args)
@@ -119,18 +171,45 @@ public sealed partial class HeadcrabSystem : EntitySystem
         if (args.Slot != "mask")
             return;
 
+        if (Terminating(args.Equipee))
+            return;
+
+        if (Terminating(uid))
+            return;
+
+        _autoEmote.RemoveEmote(args.Equipee, "ZombieGroan");
+        _tagSystem.RemoveTag(args.Equipee, "CannotSuicide");
+
         component.EquippedOn = EntityUid.Invalid;
-        RemCompDeferred<PacifiedComponent>(uid);
         var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);
-        EnsureComp<NPCMeleeCombatComponent>(uid);
-        _npcFaction.RemoveFaction(args.Equipee, "Zombie");
+        EnsureComp<HTNComponent>(uid, out var htn);
+        htn.RootTask = new HTNCompoundTask { Task = component.TakeoverTask };
+
+        if (component.HasNpc)
+            RemComp<HTNComponent>(args.Equipee);
+
+        var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.Equipee);
+        _npcFaction.RemoveFaction((args.Equipee, npcFaction), component.HeadcrabFaction, false);
+        _npcFaction.AddFactions((args.Equipee, npcFaction), component.OldFactions);
+
+        component.OldFactions.Clear();
+
+        var headcrabHasMind = _mindSystem.TryGetMind(uid, out var mindId, out var mind);
+        var hostHasMind = _mindSystem.TryGetMind(args.Equipee, out var hostMindId, out var hostMind);
+
+        if (headcrabHasMind && hostHasMind)
+        {
+            _mindSystem.TransferTo(mindId, args.Equipee, mind: mind);
+            _mindSystem.TransferTo(hostMindId, uid, mind: hostMind);
+        }
+
+//        _action.AddAction(uid, ref component.JumpActionEntity, component.JumpAction, uid); // Skill issue
     }
 
     private void OnMeleeHit(EntityUid uid, HeadcrabComponent component, MeleeHitEvent args)
     {
-        if (!args.HitEntities.Any()
-            || _random.Next(1, 101) <= component.ChancePounce)
+        if (!args.HitEntities.Any() || !_random.Prob(component.ChancePounce / 100f))
             return;
 
         TryEquipHeadcrab(uid, args.HitEntities.First(), component);
@@ -146,9 +225,15 @@ public sealed partial class HeadcrabSystem : EntitySystem
         var mapCoords = _transform.ToMapCoordinates(args.Target);
         var direction = mapCoords.Position - _transform.GetMapCoordinates(xform).Position;
 
+        if (direction.LengthSquared() == 0)
+        {
+            return;
+        }
+
+        direction = direction.Normalized() * 5f;
+
         _throwing.TryThrow(uid, direction, 7F, uid, 10F);
-        if (component.JumpSound != null)
-            _audioSystem.PlayPvs(component.JumpSound, uid, component.JumpSound.Params);
+        _audioSystem.PlayPvs(component.JumpSound, uid, component.JumpSound?.Params);
     }
 
     public override void Update(float frameTime)
@@ -185,7 +270,7 @@ public sealed partial class HeadcrabSystem : EntitySystem
         }
     }
 
-        private bool TryEquipHeadcrab(EntityUid uid, EntityUid target, HeadcrabComponent component)
+    private bool TryEquipHeadcrab(EntityUid uid, EntityUid target, HeadcrabComponent component)
     {
         if (_mobState.IsDead(uid)
             || !_mobState.IsAlive(target)
@@ -195,6 +280,6 @@ public sealed partial class HeadcrabSystem : EntitySystem
 
         _inventory.TryGetSlotEntity(target, "head", out var headItem);
         return !HasComp<IngestionBlockerComponent>(headItem)
-            && !_inventory.TryEquip(target, uid, "mask", true);
+            && _inventory.TryEquip(target, uid, "mask", true);
     }
 }
