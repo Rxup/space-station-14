@@ -62,7 +62,7 @@
     - id: AntiPsychicKnife  # backmen
     - id: ClothingHeadCage # backmen
     - id: HandheldReinforcementCentCom # backmen
-    - id: ClothingEyesGlassesCommand
+#    - id: ClothingEyesGlassesCommand # Backmen - Because dublicate (56)???
 
 # No laser table + Laser table
 - type: entityTable
