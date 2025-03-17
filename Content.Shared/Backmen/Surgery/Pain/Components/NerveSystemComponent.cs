@@ -23,9 +23,7 @@ public sealed partial class NerveSystemComponent : Component
     public FixedPoint2 PainCap = 200f;
 
     /// <summary>
-    /// TODO: Implement traumatic and wound pain differences when organs are made properly, so it looks more realistic.
-    /// Currently isn't even working. wait for the rework very soon!
-    /// How much of typical wound pain this nerve system hold?
+    /// How much of typical wound pain can this nerve system hold?
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 SoftPainCap = 90f;

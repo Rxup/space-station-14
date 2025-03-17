@@ -32,13 +32,13 @@ public sealed class NerveComponentState : ComponentState
 }
 
 [Serializable, DataRecord]
-public record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", TimeSpan? Time = null);
+public record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", PainDamageTypes PainDamageType = PainDamageTypes.WoundPain, TimeSpan? Time = null);
 
 [Serializable, DataRecord]
 public record struct PainFeelingModifier(FixedPoint2 Change, TimeSpan? Time = null);
 
 [Serializable, DataRecord]
-public record struct PainModifier(FixedPoint2 Change, string Identifier = "Unspecified", TimeSpan? Time = null); // Easier to manage pain with modifiers.
+public record struct PainModifier(FixedPoint2 Change, string Identifier = "Unspecified", PainDamageTypes PainDamageType = PainDamageTypes.WoundPain, TimeSpan? Time = null); // Easier to manage pain with modifiers.
 
 [ByRefEvent]
 public record struct PainThresholdTriggered(EntityUid NerveSystem, NerveSystemComponent Component, PainThresholdTypes ThresholdType, FixedPoint2 PainInput, bool Cancelled = false);

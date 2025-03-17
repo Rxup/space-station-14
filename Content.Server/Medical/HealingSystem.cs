@@ -28,6 +28,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Medical;
 
@@ -219,9 +220,9 @@ public sealed class HealingSystem : EntitySystem
             }
         }
 
-        if (targetedWoundable == EntityUid.Invalid || stuffToHeal.Count == 0 && healing.BloodlossModifier == 0)
+        if (targetedWoundable == EntityUid.Invalid || stuffToHeal.Count == 0 || healing.BloodlossModifier <= 0)
         {
-            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use", ("item", args.User)), ent, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User);
             return;
         }
 
@@ -256,9 +257,7 @@ public sealed class HealingSystem : EntitySystem
 
         if (healedTotal <= 0)
         {
-            if (healing.BloodlossModifier == 0)
-                _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User, PopupType.MediumCaution);
-
+            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use", ("item", args.Used)), ent, args.User);
             return;
         }
 
@@ -273,7 +272,7 @@ public sealed class HealingSystem : EntitySystem
                 $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {healedTotal:damage} damage");
         }
 
-        _audio.PlayPvs(healing.HealingEndSound, ent, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(healing.HealingEndSound, ent, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
         // Logic to determine whether or not to repeat the healing action
         args.Repeat = IsBodyDamaged((ent, comp), args.User, healing);

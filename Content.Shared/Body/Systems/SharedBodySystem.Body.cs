@@ -254,9 +254,28 @@ public partial class SharedBodySystem
         if (rootPart == null)
             return;
 
+        var rootSlot = prototype.Root;
+        foreach (var organ in prototype.Slots[rootSlot].Organs)
+        {
+            if (Containers.TryGetContainer(rootPart.Value.Entity, GetOrganContainerId(organ.Key), out var organContainer))
+            {
+                var organEnt = organContainer.ContainedEntities.FirstOrNull();
+                if (organEnt != null)
+                {
+                    foreach (var modifier in Comp<OrganComponent>(organEnt.Value).IntegrityModifiers)
+                    {
+                        _trauma.TryRemoveOrganDamageModifier(organEnt.Value, modifier.Key.Item2, modifier.Key.Item1);
+                    }
+                }
+                else
+                {
+                    SpawnInContainerOrDrop(organ.Value, rootPart.Value.Entity, GetOrganContainerId(organ.Key));
+                }
+            }
+        }
+
         Dirty(rootPart.Value.Entity, rootPart.Value.BodyPart);
 
-        var rootSlot = prototype.Root;
         var frontier = new Queue<string>();
         frontier.Enqueue(rootSlot);
 
@@ -283,29 +302,31 @@ public partial class SharedBodySystem
                 {
                     if (container.ContainedEntities.Count > 0)
                     {
-                        cameFromEntities[connection] = container.ContainedEntities[0];
+                        var containedEnt = container.ContainedEntities[0];
+                        var containedPartComp = Comp<BodyPartComponent>(containedEnt);
+                        cameFromEntities[connection] = containedEnt;
 
                         foreach (var organ in connectionSlot.Organs)
                         {
-                            if (Containers.TryGetContainer(parentEntity, GetOrganContainerId(organ.Key), out var organContainer))
+                            if (Containers.TryGetContainer(containedEnt, GetOrganContainerId(organ.Key), out var organContainer))
                             {
-                                var organEnt = organContainer.ContainedEntities[0];
-                                if (organEnt.Valid)
+                                var organEnt = organContainer.ContainedEntities.FirstOrNull();
+                                if (organEnt != null)
                                 {
-                                    foreach (var modifier in Comp<OrganComponent>(organEnt).IntegrityModifiers)
+                                    foreach (var modifier in Comp<OrganComponent>(organEnt.Value).IntegrityModifiers)
                                     {
-                                        _trauma.TryRemoveOrganDamageModifier(organEnt, modifier.Key.Item2, modifier.Key.Item1);
+                                        _trauma.TryRemoveOrganDamageModifier(organEnt.Value, modifier.Key.Item2, modifier.Key.Item1);
                                     }
                                 }
                                 else
                                 {
-                                    SpawnInContainerOrDrop(organ.Value, parentEntity, GetOrganContainerId(organ.Key));
+                                    SpawnInContainerOrDrop(organ.Value, containedEnt, GetOrganContainerId(organ.Key));
                                 }
                             }
                             else
                             {
-                                var slot = CreateOrganSlot((parentEntity, parentPartComponent), organ.Key);
-                                SpawnInContainerOrDrop(organ.Value, parentEntity, GetOrganContainerId(organ.Key));
+                                var slot = CreateOrganSlot((containedEnt, containedPartComp), organ.Key);
+                                SpawnInContainerOrDrop(organ.Value, containedEnt, GetOrganContainerId(organ.Key));
 
                                 if (slot is null)
                                 {
