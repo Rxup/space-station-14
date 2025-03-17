@@ -28,8 +28,6 @@
         - !type:PlaySoundBehavior
           sound:
             collection: MetalBreak
-  - type: StaticPrice
-    price: 10
   - type: Construction
     graph: SmallWorldRoads
     node: SmallWorldRoadFourWay
@@ -99,8 +97,6 @@
         - !type:PlaySoundBehavior
           sound:
             collection: MetalBreak
-  - type: StaticPrice
-    price: 10
   - type: Construction
     graph: SmallWorldBuilding
     node: SmallWorldBuildingSmallBusiness
