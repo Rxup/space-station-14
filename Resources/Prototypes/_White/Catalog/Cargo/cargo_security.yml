@@ -1,7 +1,7 @@
 - type: cargoProduct
   id: SecurityGrenadeBarrier
   icon:
-    sprite: Objects/Weapons/Grenades/flashbang.rsi
+    sprite: Backmen/Objects/Weapons/Grenades/barrier.rsi
     state: icon
   product: CrateSecurityGrenadeBarrier
   cost: 2000
