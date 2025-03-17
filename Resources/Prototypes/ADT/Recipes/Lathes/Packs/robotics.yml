@@ -1,0 +1,133 @@
+- type: latheRecipePack
+  id: ADTSecBorgPack
+  recipes:
+  - ADTBorgModuleDisabler #ADT secborg
+  - ADTBorgModuleDetention #ADT secborg
+  - ADTBorgModuleHarm
+
+- type: latheRecipePack
+  id: ADTModsuitPack
+  recipes:
+  - ADTModsuitHelmet
+  - ADTModsuitGauntlets
+  - ADTModsuitChestplate
+  - ADTModsuitBoots
+  - ADTModsuitPlateAtmospheric
+  - ADTModsuitPlateCosmohonk
+  - ADTModsuitPlateEngineering
+  - ADTModsuitPlateMedical
+  - ADTModsuitPlateSecurity
+  - ADTModsuitPlateStandard
+  - ADTModsuitPlateCience
+  - ADTModsuitPlateMining
+  - ADTModsuitAssembly
+  - ADTModsuitModDrill
+  - ADTModsuitModAntigrav
+  - ADTModsuitModApparatus
+  - ADTModsuitModJetpack
+  - ADTModsuitModMagboot
+  - ADTModsuitModNightVision
+  - ADTModsuitModStun
+  - ADTModsuitModPowerKick
+  - ADTModsuitModSechud
+  - ADTModsuitModStorage
+  - ADTModsuitModWelding
+  - ADTModsuitModArmor
+  - ADTModsuitModStorageLarge
+  - ADTModsuitModTray
+  - ADTModsuitModIsulation
+  - ADTModsuitModJump
+  - ADTModsuitModNoslip
+
+- type: latheRecipePack
+  id: ADTGygaxPack
+  recipes:
+  - ADTGygaxHarness
+  - ADTGygaxLArm
+  - ADTGygaxRArm
+  - ADTGygaxLLeg
+  - ADTGygaxRLeg
+  - ADTGygaxArmorPlates
+  - ADTGygaxHead
+  - ADTGygaxCentralElectronics
+  - ADTGygaxPeripheralsElectronics
+
+- type: latheRecipePack
+  id: ADTOdysseusPack
+  recipes:
+  - ADTOdysseusHarness
+  - ADTOdysseusLArm
+  - ADTOdysseusRArm
+  - ADTOdysseusLLeg
+  - ADTOdysseusRLeg
+  - ADTOdysseusHead
+  - ADTMechGunMedigun
+  - ADTOdysseusCentralElectronics
+  - ADTOdysseusPeripheralsElectronics
+
+- type: latheRecipePack
+  id: ADTClarkePack
+  recipes:
+  - ADTClarkeHarness
+  - ADTClarkeLArm
+  - ADTClarkeRArm
+  - ADTClarkeLTread
+  - ADTClarkeRTread
+  - ADTClarkeHead
+  - ADTClarkeCentralElectronics
+  - ADTClarkePeripheralsElectronics
+
+- type: latheRecipePack
+  id: ADTDurandPack
+  recipes:
+  - ADTDurandHarness
+  - ADTDurandLArm
+  - ADTDurandRArm
+  - ADTDurandLLeg
+  - ADTDurandRLeg
+  - ADTDurandHead
+  - ADTDurandArmorPlates
+  - ADTDurandCentralElectronics
+  - ADTDurandPeripheralsElectronics
+
+- type: latheRecipePack
+  id: ADTPhazonPack
+  recipes:
+  - ADTPhazonHarness
+  - ADTPhazonLArm
+  - ADTPhazonRArm
+  - ADTPhazonLLeg
+  - ADTPhazonRLeg
+  - ADTPhazonHead
+  - ADTPhazonArmorPlates
+  - ADTPhazonCentralElectronics
+  - ADTPhazonPeripheralsElectronics
+  - ADTPhazonWeaponControlElectronics
+
+- type: latheRecipePack
+  id: ADTMechEquipmentPack
+  recipes:
+  - MechEquipmentDiamondDrill
+  - MechEquipmentDrill
+  - MechEquipmentArmorMelee
+  - MechEquipmentArmorRange
+  - ADTMechWeaponCutter
+  - MechEquipmentHumanSleeper
+  - MechEquipmentHumanGrabber
+  - ADTMechGunImmolatorLaser
+  - ADTMechGunPeacemakerDisabler
+  - ADTMechGunSolarisLaserCannon
+  - ADTMechGunTeslaCannon
+  - ADTMechGunScattershot
+  - ADTMechGunUltraAC2
+  - ADTMechGunFNX99Hades
+  - ADTMechGunMHAR21
+  - ADTMechGunSGL6
+  - ADTMechGunBRM6
+#  - ADTMechGunSRM8 Вырезано ради баланса
+  - ADTBoxAmmoAC2Ultra
+  - ADTBoxAmmoScattershot
+  - ADTBoxAmmoHades
+  - ADTBoxAmmoSniper
+  - ADTBoxAmmoGranade
+  - ADTBoxPlasmaBox
