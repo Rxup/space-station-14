@@ -331,3 +331,17 @@
     - state: ai
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
+
+- type: entity
+  id: SpawnPointBkmSurgeon
+  parent: SpawnPointJobBase
+  name: spawn point surgeon
+  components:
+  - type: SpawnPoint
+    job_id: BkmSurgeon
+  - type: Sprite
+    layers:
+    - state: green
+    - state: surgeon
+    - state: jobicon
+      sprite: Backmen/Markers/jobs.rsi
