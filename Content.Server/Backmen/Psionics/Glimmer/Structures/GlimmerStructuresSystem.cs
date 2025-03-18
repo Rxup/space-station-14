@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stunnable;
+using Content.Server.Xenoarchaeology.XenoArtifacts;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
@@ -31,6 +32,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private EntityQuery<ApcPowerReceiverComponent> _apcPower;
+    private EntityQuery<ArtifactComponent> _artQuery;
 
     public override void Initialize()
     {
@@ -43,6 +45,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
         SubscribeLocalEvent<GlimmerSourceComponent, ArtifactActivatedEvent>(OnArtifactActivated);
 
         _apcPower = GetEntityQuery<ApcPowerReceiverComponent>();
+        _artQuery = GetEntityQuery<ArtifactComponent>();
     }
 
     private void OnArtifactActivated(Entity<GlimmerSourceComponent> ent, ref ArtifactActivatedEvent args)
@@ -135,10 +138,16 @@ public sealed class GlimmerStructuresSystem : EntitySystem
             if (source.Accumulator <= source.SecondsPerGlimmer)
                 continue;
 
+            source.Accumulator -= source.SecondsPerGlimmer;
+
+            if (_artQuery.TryComp(owner, out var artifactComponent) && artifactComponent.IsSuppressed)
+            {
+                // art is IsSuppressed = true, so skip!
+                continue;
+            }
+
             if (_apcPower.TryComp(owner, out var powerReceiverComponent) && !_powerReceiverSystem.IsPowered(owner,powerReceiverComponent))
                 continue;
-
-            source.Accumulator -= source.SecondsPerGlimmer;
 
             if (source.AddToGlimmer)
             {
