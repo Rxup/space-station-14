@@ -31,7 +31,7 @@ public sealed partial class DecalGrenadeComponent : Component
     [DataField]
     public float DecalRadius = 3f;
 
-    public EntProtoId? GetRandomDecal()
+    public string? GetRandomDecal()
     {
         if (DecalPrototypes == null || DecalPrototypes.Count == 0)
             return null;
@@ -39,6 +39,6 @@ public sealed partial class DecalGrenadeComponent : Component
         if (_random == null)
             return DecalPrototypes[0];
 
-        return _random.Pick(DecalPrototypes);
+        return DecalPrototypes[_random.Next(DecalPrototypes.Count)];
     }
 }
