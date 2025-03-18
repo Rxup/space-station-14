@@ -64,6 +64,7 @@
   - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
 
+- type: roleLoadout
   id: JobBkmVirologist
   groups:
   - Werx #backmen
