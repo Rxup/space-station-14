@@ -569,10 +569,10 @@
   name: surgeon ID Card
   components:
     - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
         - state: black
-        - sprite: Backmen/Objects/Misc/id_cards.rsi
-          state: idsurgeon
+        - state: idsurgeon
     - type: PresetIdCard
       job: BkmSurgeon
 
@@ -581,9 +581,9 @@
   name: virologist ID Card
   components:
     - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
         - state: default
-        - sprite: Backmen/Objects/Misc/id_cards.rsi
-          state: idvirologist
+        - state: idvirologist
     - type: PresetIdCard
       job: BkmVirologist
