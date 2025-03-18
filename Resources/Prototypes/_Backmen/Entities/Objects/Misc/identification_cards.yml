@@ -576,6 +576,7 @@
     - type: PresetIdCard
       job: BkmSurgeon
 
+- type: entity
   id: VirologistIDCard
   name: virologist ID Card
   components:
