@@ -342,7 +342,6 @@
   - type: Sprite
     layers:
     - state: green
-    - state: surgeon
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
 
