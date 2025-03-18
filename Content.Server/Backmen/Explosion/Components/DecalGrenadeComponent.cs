@@ -1,9 +1,9 @@
-using Content.Server.Explosion.EntitySystems;
+using Content.Server.Backmen.Explosion.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Explosion.Components;
+namespace Content.Server.Backmen.Explosion.Components;
 
 /// <summary>
 /// Grenades that, when triggered, explode into decals.
@@ -12,8 +12,6 @@ namespace Content.Server.Explosion.Components;
 public sealed partial class DecalGrenadeComponent : Component
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-
-    public Container Container = default!;
 
     /// <summary>
     /// The kinds of decals to spawn on explosion.
@@ -25,7 +23,7 @@ public sealed partial class DecalGrenadeComponent : Component
     /// The number of decals to spawn upon explosion.
     /// </summary>
     [DataField]
-    public int DecalCount = 10;
+    public int DecalCount = 25;
 
     /// <summary>
     /// The radius in which decals will spawn around the explosion center.
@@ -37,6 +35,9 @@ public sealed partial class DecalGrenadeComponent : Component
     {
         if (DecalPrototypes == null || DecalPrototypes.Count == 0)
             return null;
+
+        if (_random == null)
+            return DecalPrototypes[0];
 
         return _random.Pick(DecalPrototypes);
     }
