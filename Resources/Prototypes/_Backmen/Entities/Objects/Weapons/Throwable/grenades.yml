@@ -1,5 +1,5 @@
 - type: entity
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase]
   id: ConfettiGrenade
   name: confetti grenade
   description: Grenade that creates a small but devastating confetti explosion.
