@@ -151,21 +151,3 @@
 
 - type: Tag
   id: ADTMechEquipmentClown
-- type: Tag
-  id: ADTMagazineRifleExtended
-  id: ADTMagazineHristov
-
-
-- type: Tag
-- type: Tag
-  id: MaskBlocker
-  id: GlassesBlocker
-
-
-- type: Tag
-
-- type: Tag
-- type: Tag
-  id: ADTSocks
-  id: ADTMedipen
-
