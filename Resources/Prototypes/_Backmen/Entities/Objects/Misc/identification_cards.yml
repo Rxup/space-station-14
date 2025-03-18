@@ -562,3 +562,16 @@
           state: idblueshield
     - type: PresetIdCard
       job: BlueShield
+
+- type: entity
+  parent: IDCardStandard
+  id: SurgeonIDCard
+  name: surgeon ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: black
+        - sprite: Backmen/Objects/Misc/id_cards.rsi
+          state: idsurgeon
+    - type: PresetIdCard
+      job: BkmSurgeon
