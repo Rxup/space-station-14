@@ -333,6 +333,19 @@
       sprite: Backmen/Markers/jobs.rsi
 
 - type: entity
+  id: SpawnPointBkmSurgeon
+  parent: SpawnPointJobBase
+  name: spawn point surgeon
+  components:
+  - type: SpawnPoint
+    job_id: BkmSurgeon
+  - type: Sprite
+    layers:
+    - state: green
+    - state: jobicon
+      sprite: Backmen/Markers/jobs.rsi
+
+- type: entity
   id: SpawnJobBkmVirologist
   parent: SpawnPointJobBase
   name: spawn point virologist

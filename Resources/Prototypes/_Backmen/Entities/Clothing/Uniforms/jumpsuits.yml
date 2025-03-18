@@ -902,3 +902,14 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/sec_pilot.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/sec_pilot.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSurgeon
+  name: surgeon jumpsuit
+  description: A jumpsuit specifically for a station surgeon.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/surgeon_jumpsuit.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/surgeon_jumpsuit.rsi

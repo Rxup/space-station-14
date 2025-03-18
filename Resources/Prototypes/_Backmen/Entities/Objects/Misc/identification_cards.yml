@@ -565,13 +565,25 @@
 
 - type: entity
   parent: IDCardStandard
+  id: SurgeonIDCard
+  name: surgeon ID Card
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: black
+        - state: idsurgeon
+    - type: PresetIdCard
+      job: BkmSurgeon
+
+- type: entity
   id: VirologistIDCard
   name: virologist ID Card
   components:
     - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
         - state: default
-        - sprite: Backmen/Objects/Misc/id_cards.rsi
-          state: idvirologist
+        - state: idvirologist
     - type: PresetIdCard
       job: BkmVirologist

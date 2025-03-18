@@ -156,3 +156,14 @@
     sprite: Backmen/Clothing/Uniforms/Jumpskirt/pinktutu.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/Jumpskirt/pinktutu.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDressSurgeon
+  name: surgeon jumpskirt
+  description: There are some red spots on this skirt...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/surgeon_jumpskirt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/surgeon_jumpskirt.rsi
