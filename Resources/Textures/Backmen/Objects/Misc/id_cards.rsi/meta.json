@@ -75,6 +75,9 @@
     },
     {
         "name": "iduegofficer"
+    },
+    {
+        "name": "idsurgeon"
     }
   ]
 }
