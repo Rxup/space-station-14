@@ -31,6 +31,9 @@
     sound:
       path: /Audio/Ambience/Objects/fireplace.ogg
   - type: AlwaysHot
+  - type: Construction # Backmen
+    graph: Bonfires
+    node: Bonfire
 
 - type: entity
   id: LegionnaireBonfire
@@ -43,3 +46,6 @@
       - state: legionnaire_bonfire
   - type: PointLight
     color: "#FF5601"
+  - type: Construction # Backmen
+    graph: Bonfires
+    node: LegionnaireBonfire

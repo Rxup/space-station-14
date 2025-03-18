@@ -37,6 +37,7 @@ public sealed partial class LocaleRu
                    or "BorgChassisService"
                    or "BorgChassisEngineer"
                    or "BorgChassisJanitor"
+                   or "PlayerBorgDerelictGhostRole"
                    )
                     continue;
                 if (!entProto.TryGetComponent<RandomMetadataComponent>(out var component, compFactory))
