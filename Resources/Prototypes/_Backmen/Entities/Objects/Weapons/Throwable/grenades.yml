@@ -12,7 +12,6 @@
     - Confetti2
     - Confetti3
     - Confetti4
-    decalCount: 10
     decalCount: 25
     decalRadius: 3
   - type: DeleteOnTrigger
