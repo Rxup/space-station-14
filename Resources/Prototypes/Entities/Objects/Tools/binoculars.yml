@@ -13,9 +13,10 @@
   - type: UseDelay
     delay: 1.0
   - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
+#  - type: EyeCursorOffset
+#    maxOffset: 5
+#    pvsIncrease: 0.5
+  - type: Telescope # backmen: immersive
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
