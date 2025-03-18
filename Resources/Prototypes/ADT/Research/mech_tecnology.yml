@@ -4,7 +4,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: gygax
-  discipline: Mech
+  discipline: Arsenal
   tier: 2
   cost: 15000
   recipeUnlocks:
@@ -17,9 +17,6 @@
   - ADTGygaxHead
   - ADTGygaxCentralElectronics
   - ADTGygaxPeripheralsElectronics
-  position: 3,0
-  requiredTech:
-  - ADTOdysseusTechnology
 
 - type: technology
   id: ADTOdysseusTechnology
@@ -27,7 +24,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: odysseus
-  discipline: Mech
+  discipline: CivilianServices
   tier: 2
   cost: 15000
   recipeUnlocks:
@@ -39,9 +36,6 @@
   - ADTOdysseusHead
   - ADTOdysseusCentralElectronics
   - ADTOdysseusPeripheralsElectronics
-  position: 2,0
-  requiredTech:
-  - ADTClarkeTechnology
 
 # - type: technology
 #   id: ADTMedgunTechnology
@@ -61,7 +55,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: clarke
-  discipline: Mech
+  discipline: Industrial
   tier: 2
   cost: 10000
   recipeUnlocks:
@@ -73,9 +67,6 @@
   - ADTClarkeHead
   - ADTClarkeCentralElectronics
   - ADTClarkePeripheralsElectronics
-  position: 1,0
-  requiredTech:
-  - RipleyAPLU
 
 - type: technology
   id: ADTDurandTechnology
@@ -83,9 +74,9 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: durand
-  discipline: Mech
+  discipline: Arsenal
   tier: 2
-  cost: 12500
+  cost: 20000
   recipeUnlocks:
   - ADTDurandHarness
   - ADTDurandLArm
@@ -96,9 +87,6 @@
   - ADTDurandArmorPlates
   - ADTDurandCentralElectronics
   - ADTDurandPeripheralsElectronics
-  position: 4,1
-  requiredTech:
-  - ADTMechTechnologyArmor
 
 - type: technology
   id: ADTPhazonTechnology
@@ -106,9 +94,9 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: phazon
-  discipline: Mech
+  discipline: Arsenal
   tier: 3
-  cost: 25000
+  cost: 30000
   recipeUnlocks:
   - ADTPhazonHarness
   - ADTPhazonLArm
@@ -120,10 +108,18 @@
   - ADTPhazonCentralElectronics
   - ADTPhazonPeripheralsElectronics
   - ADTPhazonWeaponControlElectronics
-  position: 4,0
-  requiredTech:
-  - ADTDurandTechnology
-  - ADTGygaxTechnology
+
+# - type: technology
+#   id: ADTRileyMk2Technology
+#   name: research-technology-mech-ripleymk2
+#   icon:
+#     sprite: ADT/Objects/Specific/Mech/modification_kits.rsi
+#     state: ripley_mkii
+#   discipline: Industrial
+#   tier: 2
+#   cost: 5000
+#   recipeUnlocks:
+#   - ADTRipleyMk2ModificationKit
 
 #technologies
 - type: technology
@@ -132,14 +128,11 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_humanstealer
-  discipline: Mech
+  discipline: CivilianServices
   tier: 1
   cost: 3500
   recipeUnlocks:
   - MechEquipmentHumanGrabber
-  position: 2,-1
-  requiredTech:
-  - ADTOdysseusTechnology
 
 - type: technology
   id: ADTMechTechnologySleeper
@@ -147,14 +140,11 @@
   icon:
     sprite: Structures/cryostorage.rsi
     state: sleeper_0
-  discipline: Mech
+  discipline: CivilianServices
   tier: 2
   cost: 3500
   recipeUnlocks:
   - MechEquipmentHumanSleeper
-  position: 2,-2
-  requiredTech:
-  - ADTOdysseusTechnology
 
 - type: technology
   id: ADTMechTechnologyMedigun
@@ -162,14 +152,11 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_medigun
-  discipline: Mech
+  discipline: CivilianServices
   tier: 2
   cost: 7500
   recipeUnlocks:
   - ADTMechGunMedigun
-  position: 2,1
-  requiredTech:
-  - ADTOdysseusTechnology
 
 - type: technology
   id: ADTMechTechnologyCutters
@@ -177,15 +164,12 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_plasmacutter
-  discipline: Mech
+  discipline: Industrial
   tier: 2
   cost: 3500
   recipeUnlocks:
   - ADTMechWeaponCutter
   - ADTBoxPlasmaBox
-  position: 1,1
-  requiredTech:
-  - ADTClarkeTechnology
 
 - type: technology
   id: ADTMechTechnologyDrill
@@ -193,14 +177,11 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_drill
-  discipline: Mech
+  discipline: Industrial
   tier: 1
   cost: 3500
   recipeUnlocks:
   - MechEquipmentDrill
-  position: 1,-1
-  requiredTech:
-  - ADTClarkeTechnology
 
 - type: technology
   id: ADTMechTechnologyDrillDiamond
@@ -208,14 +189,11 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_diamond_drill
-  discipline: Mech
+  discipline: Industrial
   tier: 2
   cost: 7500
   recipeUnlocks:
   - MechEquipmentDiamondDrill
-  position: 1,-2
-  requiredTech:
-  - ADTMechTechnologyDrill
 
 - type: technology
   id: ADTMechTechnologyArmor
@@ -223,15 +201,52 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_abooster_proj
-  discipline: Mech
+  discipline: Industrial
   tier: 2
   cost: 5000
   recipeUnlocks:
   - MechEquipmentArmorMelee
   - MechEquipmentArmorRange
-  position: 3,1
-  requiredTech:
-  - ADTGygaxTechnology
+
+# - type: technology
+#   id: ADTMechTechnologyCatapult
+#   name: research-technology-mech-catapult
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#     state: mecha_teleport
+#   discipline: Industrial
+#   tier: 2
+#   cost: 5000
+#   recipeUnlocks:
+#   - MechEquipmentGravipult
+
+#Технологии оружия
+
+- type: technology
+  id: ADTMechEnergyGunSmallTechnology
+  name: research-technology-mech-energy-gun-small
+  icon:
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_laser
+  discipline: Arsenal
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - ADTMechGunImmolatorLaser
+  - ADTMechGunPeacemakerDisabler
+
+- type: technology
+  id: ADTMechEnergyGunHeavyTechnology
+  name: research-technology-mech-energy-gun-heavy
+  icon:
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_pulse
+  discipline: Arsenal
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - ADTMechGunSolarisLaserCannon
+  - ADTMechGunTeslaCannon
 
 - type: technology
   id: ADTMechGunSmallTechnology
@@ -239,7 +254,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_scatter
-  discipline: Mech
+  discipline: Arsenal
   tier: 2
   cost: 15000
   recipeUnlocks:
@@ -249,9 +264,6 @@
   - ADTBoxAmmoAC2Ultra
   - ADTMechGunFNX99Hades
   - ADTBoxAmmoHades
-  position: 3,-1
-  requiredTech:
-  - ADTGygaxTechnology
 
 - type: technology
   id: ADTMechGunHeavyTechnology
@@ -259,16 +271,13 @@
   icon:
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack_six
-  discipline: Mech
+  discipline: Arsenal
   tier: 3
   cost: 15000
   recipeUnlocks:
   - ADTMechGunMHAR21
   - ADTMechGunSGL6
-#  - ADTMechGunSRM8 Вырезано ради баланса
+  - ADTMechGunSRM8
   - ADTMechGunBRM6
   - ADTBoxAmmoSniper
   - ADTBoxAmmoGranade
-  position: 3,-2
-  requiredTech:
-  - ADTMechGunSmallTechnology

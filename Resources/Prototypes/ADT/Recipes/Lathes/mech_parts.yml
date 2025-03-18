@@ -1,13 +1,4 @@
 # Гайгэкс
-- type: latheRecipe
-  id: ADTGygaxHarness
-  result: ADTGygaxHarness
-  category: ADTMechGygax
-  completetime: 4
-  materials:
-    Steel: 3000
-    Glass: 1400
-    Plasma: 500
 
 - type: latheRecipe
   id: ADTGygaxLArm
