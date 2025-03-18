@@ -237,8 +237,8 @@
 - type: entity
   parent: ClothingMaskGasERT
   id: ClothingMaskTacticalGas
-  name: tactical gas mask
-  description: A military-grade gas mask that can be connected to an air supply.
+  name: тактический противогаз
+  description: Противогаз армейского газа, который можно подключить к баллону для дыхания.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Mask/millitary.rsi
