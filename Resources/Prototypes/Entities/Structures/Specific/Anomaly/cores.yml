@@ -131,7 +131,6 @@
   - type: Tag
     tags:
     - ForceableFollow
-    - ADTBluespaceAnomalyCore # ADT tweak
 
 - type: entity
   parent: BaseAnomalyCore
@@ -312,7 +311,6 @@
   - type: Tag
     tags:
     - ForceableFollow
-    - ADTBluespaceAnomalyCore # ADT tweak
 
 - type: entity
   parent: BaseAnomalyInertCore

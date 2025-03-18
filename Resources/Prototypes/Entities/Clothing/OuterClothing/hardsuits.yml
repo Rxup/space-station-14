@@ -175,7 +175,6 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-    - ADTHardsuitSalvage  # ADT tweak
 
 #Goliath Hardsuit
 - type: entity
