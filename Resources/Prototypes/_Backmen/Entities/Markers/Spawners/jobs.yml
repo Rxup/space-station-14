@@ -345,3 +345,16 @@
     - state: surgeon
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
+
+  id: SpawnJobBkmVirologist
+  parent: SpawnPointJobBase
+  name: spawn point virologist
+  components:
+  - type: SpawnPoint
+    job_id: BkmVirologist
+  - type: Sprite
+    layers:
+    - state: green
+    - state: virologist
+    - state: jobicon
+      sprite: Backmen/Markers/jobs.rsi

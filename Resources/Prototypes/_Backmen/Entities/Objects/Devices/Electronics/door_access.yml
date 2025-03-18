@@ -137,3 +137,12 @@
   components:
   - type: AccessReader
     access: [["EarthGovCommand"]]
+
+#----viro
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVirology
+  suffix: Virology, Locked
+  components:
+  - type: AccessReader
+    access: [["Virology"]]
