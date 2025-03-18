@@ -346,6 +346,7 @@
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
 
+- type: entity
   id: SpawnJobBkmVirologist
   parent: SpawnPointJobBase
   name: spawn point virologist
