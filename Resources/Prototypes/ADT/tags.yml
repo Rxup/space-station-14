@@ -105,6 +105,9 @@
   id: ADTPhazonCentralControlModule
 
 - type: Tag
+  id: ADTPhazonPeripheralsElectronics
+
+- type: Tag
   id: ADTPhazonPeripheralsControlModule
 
 - type: Tag
