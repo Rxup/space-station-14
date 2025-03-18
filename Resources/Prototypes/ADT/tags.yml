@@ -108,6 +108,9 @@
   id: ADTMechGunMHAR21
 
 - type: Tag
+  id: ADTBoxAmmoSniper
+
+- type: Tag
   id: ADTPhazonPeripheralsElectronics
 
 - type: Tag
