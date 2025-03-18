@@ -12,3 +12,29 @@
   id: superpsi
   name: guide-entry-superpsi
   text: "/ServerInfo/_Backmen/Guidebook/Antagonist/superpsi.xml"
+
+# Headcrab
+
+- type: guideEntry
+  id: Headcrabs
+  name: antagonist-name-headcrabs
+  text: "/ServerInfo/_Backmen/Guidebook/Antagonist/Headcrab/Headcrabs.xml"
+  children:
+    - Headcrab
+    - HeadcrabFast
+    - HeadcrabPoison
+
+- type: guideEntry
+  id: Headcrab
+  name: antagonist-name-headcrab
+  text: "/ServerInfo/_Backmen/Guidebook/Antagonist/Headcrab/Headcrabs/Headcrab.xml"
+
+- type: guideEntry
+  id: HeadcrabFast
+  name: antagonist-name-headcrab-fast
+  text: "/ServerInfo/_Backmen/Guidebook/Antagonist/Headcrab/Headcrabs/HeadcrabFast.xml"
+
+- type: guideEntry
+  id: HeadcrabPoison
+  name: antagonist-name-headcrab-poison
+  text: "/ServerInfo/_Backmen/Guidebook/Antagonist/Headcrab/Headcrabs/HeadcrabPoison.xml"
