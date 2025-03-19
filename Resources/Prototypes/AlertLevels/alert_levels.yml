@@ -68,7 +68,7 @@
       announcement: alert-level-delta-announcement
       selectable: false
       sound:
-        path: /Uploaded/AdvancedStationCodes/delta_code_new_style.ogg
+        path: /Audio/Backmen/Misc/new-style-alerts/delta_code_new_style.ogg
         params:
           volume: -4
       disableSelection: true
