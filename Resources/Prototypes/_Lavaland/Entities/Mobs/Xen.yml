@@ -601,7 +601,6 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Tool
-    speed: 2.8
     qualities:
       - Prying
   - type: Prying

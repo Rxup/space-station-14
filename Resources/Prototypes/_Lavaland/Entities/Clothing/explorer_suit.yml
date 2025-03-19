@@ -222,11 +222,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.3
     sprintModifier: 1.0
-  - type: UpgradeableGun
-    maxUpgradeCapacity: 60
-    whitelist:
-      tags:
-      - SuitUpgrade
   - type: Insulated
   - type: Geiger
     showControl: true

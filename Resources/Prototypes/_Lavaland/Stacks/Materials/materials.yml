@@ -72,21 +72,21 @@
 - type: stack
   id: StrapALICE
   name: strap ALICE
-  icon: { sprite: /Textures/_Lavaland/Salvages/XenLoot.rsi, state: alicemini }
+  icon: { sprite: /Textures/_Lavaland/Objects/Salvages/XenLoot.rsi, state: alicemini }
   spawn: MaterialStraps1
   maxCount: 30
 
 - type: stack
   id: GunMaterial
   name: gun material
-  icon: { sprite: /Textures/_Lavaland/Salvages/XenLoot.rsi, state: gunsling }
+  icon: { sprite: /Textures/_Lavaland/Objects/Salvages/XenLoot.rsi, state: gunsling }
   spawn: MaterialGunMaterial1
   maxCount: 5
 
 - type: stack
   id: M9Steel
   name: M9 steel
-  icon: { sprite: /Textures/_Lavaland/Salvages/XenLoot.rsi, state: M9 }
+  icon: { sprite: /Textures/_Lavaland/Objects/Salvages/XenLoot.rsi, state: M9 }
   spawn: MaterialM9Steel1
   maxCount: 30
 

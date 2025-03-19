@@ -12,8 +12,6 @@
     quickEquip: false
     equipDelay: 5
     unequipDelay: 2
-  - type: TemperatureProtection
-    coefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
