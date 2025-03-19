@@ -1,0 +1,21 @@
+- type: soundCollection
+  id: HeadcrabAttack
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/headcrab/attack1.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/headcrab/attack2.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/headcrab/attack3.ogg
+
+- type: soundCollection
+  id: VortigauntShot
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/attack_shoot1.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/attack_shoot2.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/attack_shoot3.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/attack_shoot4.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/attack_shoot5.ogg
+
+- type: soundCollection
+  id: ShotgunCombineShot
+  files:
+  - /Audio/Backmen/test/base/ogg/combine/shotgun_fire6.ogg
+  - /Audio/Backmen/test/base/ogg/combine/shotgun_fire7.ogg

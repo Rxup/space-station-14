@@ -5,3 +5,37 @@
   - /Audio/Corvax/Effects/Footsteps/combine/die2.ogg
   - /Audio/Corvax/Effects/Footsteps/combine/die3.ogg
   - /Audio/Corvax/Effects/Footsteps/combine/die4.ogg
+
+- type: soundCollection
+  id: HeadcrabDeath
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/headcrab/die1.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/headcrab/die2.ogg
+
+- type: soundCollection
+  id: HEVDeath
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv1.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv2.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv3.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv4.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv5.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv6.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv7.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv8.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv9.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv10.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv11.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv12.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv13.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/zombies/hzv14.ogg
+
+- type: soundCollection
+  id: VortigauntDeath
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death01.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death02.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death03.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death04.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death05.ogg
+
