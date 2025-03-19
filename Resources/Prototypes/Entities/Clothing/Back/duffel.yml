@@ -156,6 +156,9 @@
   components:
     - type: Sprite
       sprite: Clothing/Back/Duffels/salvage.rsi
+    - type: Construction # Backmen-edit
+      graph: DuffelSalvage
+      node: start
 
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
