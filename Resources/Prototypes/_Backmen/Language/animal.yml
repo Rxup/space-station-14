@@ -2,7 +2,7 @@
 - type: language
   id: Cat
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -17,7 +17,7 @@
 - type: language
   id: Dog
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -34,7 +34,7 @@
 - type: language
   id: Fox
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -51,7 +51,7 @@
 - type: language
   id: SpaceMob
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -64,7 +64,7 @@
 - type: language
   id: Monkey
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -77,7 +77,7 @@
 - type: language
   id: Mouse
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -95,7 +95,7 @@
 - type: language
   id: Chicken
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -109,7 +109,7 @@
 - type: language
   id: Duck
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -123,7 +123,7 @@
 - type: language
   id: Cow
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -136,7 +136,7 @@
 - type: language
   id: Sheep
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -150,7 +150,7 @@
 - type: language
   id: Kangaroo
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -165,7 +165,7 @@
 - type: language
   id: Pig
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -177,7 +177,7 @@
 - type: language
   id: Crab
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
@@ -194,7 +194,7 @@
 - type: language
   id: Kobold
   speech:
-    fontId: Tolkiecyr
+    fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
