@@ -1,0 +1,89 @@
+- type: startingGear
+  id: NPCBlackOps
+  equipment:
+    pocket1: BlackOpsLoot
+
+- type: entity
+  id: BlackOpsLoot
+  parent: BaseItem
+  name: сумка снаряжение спец-войск
+  components:
+  - type: Sprite
+    sprite: Corvax/Back/Backpacks/deathsquad-backpack.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+    items:
+    - id: ClothingHandsGlovesCombat
+      prob: 0.3
+    - id: MagazineRifle556UEG
+      prob: 0.5
+    - id: MagazineRifle556UEG
+      prob: 0.5
+    - id: MagazineRifle556UEG
+      prob: 0.3
+    - id: MagazineRifle556UEG
+      prob: 0.2
+    - id: WeaponRifleM16A4
+      prob: 0.6
+    - id: ClothingOuterMVDVest
+      prob: 0.05
+      orGroup: Armor
+    - id: ClothingOuterMVDVestLight
+      prob: 0.6
+      orGroup: Armor
+    - id: ClothingHeadHelmetBasic
+      prob: 0.4
+    - id: ClothingUniformJumpsuitOperative
+      prob: 0.3
+    - id: ClothingShoesBootsJack
+      prob: 0.4
+    - id: ClothingMaskNeckGaiter
+      prob: 0.4
+    - id: BruteAutoInjector
+      prob: 0.5
+    - id: BurnAutoInjector
+      prob: 0.5
+
+- type: startingGear
+  id: NPCBlackOpsMelee
+  equipment:
+    pocket1: BlackOpsMeleeLoot
+
+- type: entity
+  id: BlackOpsMeleeLoot
+  parent: BaseItem
+  name: сумка снаряжение спец-войск
+  components:
+  - type: Sprite
+    sprite: Corvax/Back/Backpacks/deathsquad-backpack.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+    items:
+    - id: ClothingHandsGlovesCombat
+      prob: 0.3
+    - id: CombatKnifeSpetsnaz
+      prob: 0.3
+    - id: ClothingOuterMVDVest
+      prob: 0.05
+      orGroup: Armor
+    - id: ClothingOuterMVDVestLight
+      prob: 0.6
+      orGroup: Armor
+    - id: ClothingHeadHelmetBasic
+      prob: 0.4
+    - id: ClothingUniformJumpsuitOperative
+      prob: 0.3
+    - id: ClothingShoesBootsJack
+      prob: 0.4
+    - id: ClothingMaskNeckGaiter
+      prob: 0.4
+    - id: BruteAutoInjector
+      prob: 0.5
+    - id: BurnAutoInjector
+      prob: 0.5
