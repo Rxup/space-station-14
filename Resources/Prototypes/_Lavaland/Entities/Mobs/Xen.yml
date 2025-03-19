@@ -182,9 +182,6 @@
       Male: ZombieHeadcrabed
       Female: ZombieHeadcrabed
       Unsexed: ZombieHeadcrabed
-  - type: Speech
-    speechSounds: ZombieScreemAlert
-    soundCooldownTime: 0.1
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
