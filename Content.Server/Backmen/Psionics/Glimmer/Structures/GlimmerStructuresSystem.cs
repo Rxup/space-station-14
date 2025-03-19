@@ -1,8 +1,12 @@
+using System.Linq;
 using Content.Server.Anomaly.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
+using Content.Server.Xenoarchaeology.XenoArtifacts;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
@@ -22,15 +26,15 @@ public sealed class GlimmerStructuresSystem : EntitySystem
 {
     [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly PsionicsSystem _psionicsSystem = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private EntityQuery<ApcPowerReceiverComponent> _apcPower;
+    private EntityQuery<ArtifactComponent> _artQuery;
 
     public override void Initialize()
     {
@@ -43,6 +47,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
         SubscribeLocalEvent<GlimmerSourceComponent, ArtifactActivatedEvent>(OnArtifactActivated);
 
         _apcPower = GetEntityQuery<ApcPowerReceiverComponent>();
+        _artQuery = GetEntityQuery<ArtifactComponent>();
     }
 
     private void OnArtifactActivated(Entity<GlimmerSourceComponent> ent, ref ArtifactActivatedEvent args)
@@ -121,8 +126,15 @@ public sealed class GlimmerStructuresSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var q = EntityQueryEnumerator<GlimmerSourceComponent, MetaDataComponent>();
-        while (q.MoveNext(out var owner, out var source, out var md))
+
+        var stationGrids = _stationSystem.GetStations()
+            .Where(x => x.Valid)
+            .Where(HasComp<StationEventEligibleComponent>)
+            .SelectMany(x => Comp<StationDataComponent>(x).Grids)
+            .ToArray();
+
+        var q = EntityQueryEnumerator<GlimmerSourceComponent, MetaDataComponent, TransformComponent>();
+        while (q.MoveNext(out var owner, out var source, out var md, out var xform))
         {
             if(Paused(owner, md))
                 continue;
@@ -130,15 +142,24 @@ public sealed class GlimmerStructuresSystem : EntitySystem
             if (!source.Active)
                 continue;
 
+            if(xform.GridUid == null || !stationGrids.Contains(xform.GridUid.Value))
+                continue;
+
             source.Accumulator += frameTime;
 
             if (source.Accumulator <= source.SecondsPerGlimmer)
                 continue;
 
+            source.Accumulator -= source.SecondsPerGlimmer;
+
+            if (_artQuery.TryComp(owner, out var artifactComponent) && artifactComponent.IsSuppressed)
+            {
+                // art is IsSuppressed = true, so skip!
+                continue;
+            }
+
             if (_apcPower.TryComp(owner, out var powerReceiverComponent) && !_powerReceiverSystem.IsPowered(owner,powerReceiverComponent))
                 continue;
-
-            source.Accumulator -= source.SecondsPerGlimmer;
 
             if (source.AddToGlimmer)
             {
