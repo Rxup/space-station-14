@@ -1,5 +1,4 @@
 using Content.Server.Backmen.Explosion.EntitySystems;
-using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -17,7 +16,7 @@ public sealed partial class DecalGrenadeComponent : Component
     /// The kinds of decals to spawn on explosion.
     /// </summary>
     [DataField]
-    public List<EntProtoId> DecalPrototypes = new();
+    public List<string> DecalPrototypes = new();
 
     /// <summary>
     /// The number of decals to spawn upon explosion.
@@ -35,9 +34,6 @@ public sealed partial class DecalGrenadeComponent : Component
     {
         if (DecalPrototypes == null || DecalPrototypes.Count == 0)
             return null;
-
-        if (_random == null)
-            return DecalPrototypes[0];
 
         return DecalPrototypes[_random.Next(DecalPrototypes.Count)];
     }

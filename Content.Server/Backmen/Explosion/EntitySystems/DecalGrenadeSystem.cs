@@ -3,9 +3,9 @@ using Content.Server.Decals;
 using Content.Server.Backmen.Explosion.Components;
 using Content.Server.Explosion.EntitySystems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Random;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Explosion.EntitySystems
 {
@@ -59,7 +59,7 @@ namespace Content.Server.Backmen.Explosion.EntitySystems
 
                 EntityCoordinates decalPosition = grenadePosition.Offset(offset);
 
-                var decalPrototype = component.GetRandomDecal();
+                string? decalPrototype = component.GetRandomDecal();
 
                 if (decalPrototype != null)
                 {
