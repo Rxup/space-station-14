@@ -5,3 +5,8 @@
   components:
   - type: Lock
     locked: true
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Dynamic
+    canCollide: true

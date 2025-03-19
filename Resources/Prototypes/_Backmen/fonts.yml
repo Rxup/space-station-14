@@ -49,3 +49,7 @@
 - type: font
   id: ZektonRg
   path: /Fonts/ZektonRg.ttf
+
+- type: font
+  id: Tolkiecyr
+  path: /Fonts/Backmen/tolkiecyr.ttf

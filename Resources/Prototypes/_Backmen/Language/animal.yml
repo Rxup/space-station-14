@@ -1,6 +1,9 @@
 # Languages spoken by various critters.
 - type: language
   id: Cat
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -13,6 +16,9 @@
 
 - type: language
   id: Dog
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -27,6 +33,9 @@
 
 - type: language
   id: Fox
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -41,6 +50,9 @@
 
 - type: language
   id: SpaceMob
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -51,6 +63,9 @@
 
 - type: language
   id: Monkey
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -61,6 +76,9 @@
 
 - type: language
   id: Mouse
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 2
@@ -76,6 +94,9 @@
 
 - type: language
   id: Chicken
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -87,6 +108,9 @@
 
 - type: language
   id: Duck
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -98,6 +122,9 @@
 
 - type: language
   id: Cow
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -108,6 +135,9 @@
 
 - type: language
   id: Sheep
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -119,6 +149,9 @@
 
 - type: language
   id: Kangaroo
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -131,6 +164,9 @@
 
 - type: language
   id: Pig
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -140,6 +176,9 @@
 
 - type: language
   id: Crab
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -154,6 +193,9 @@
 
 - type: language
   id: Kobold
+  speech:
+    fontId: Tolkiecyr
+    color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 2
