@@ -149,3 +149,77 @@
   - type: Construction
     graph: AncientTool
     node: start
+
+# Request
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: PCVHelmet
+    node: helmet
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: PCVHelmet
+    node: repair
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: PCVHelmetPNV
+    node: Wires
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: PCVHelmetPNV
+    node: repair
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: AncientWeapon
+    node: Unload
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: AncientTool
+    node: Unload
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: PCVArmor
+    node: Unload
+
+- type: entity
+  parent: BaseItem
+  id: BaseConstructionPCVHelmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: HEVArmor
+    node: Unload
