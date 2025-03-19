@@ -1,3 +1,12 @@
+- type: entity
+  id: BasePacketWithLoot
+  parent: BaseItem
+  suffix: Loot
+  components:
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
 - type: startingGear
   id: NPCMarine
   equipment:
@@ -5,7 +14,7 @@
 
 - type: entity
   id: HecuMarineLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение хеку
   components:
   - type: Sprite
@@ -13,8 +22,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: SalvagePCV
       prob: 0.5
@@ -52,7 +59,7 @@
 
 - type: entity
   id: ScienceLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение ученого
   components:
   - type: Sprite
@@ -60,8 +67,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: SyringeAmbuzol
       prob: 0.01
@@ -123,7 +128,7 @@
 
 - type: entity
   id: SecurityLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение охраны
   components:
   - type: Sprite
@@ -131,8 +136,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: SalvageAncientWeapon
       prob: 0.7
@@ -146,7 +149,7 @@
 
 - type: entity
   id: SecurityRangerLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение охраны
   components:
   - type: Sprite
@@ -154,8 +157,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: SalvageBeltALICE
       prob: 0.7
@@ -173,7 +174,7 @@
 
 - type: entity
   id: SecurityHeavyLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение охраны
   components:
   - type: Sprite
@@ -181,8 +182,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: SalvageBeltALICE
     - id: SalvageAncientWeapon
@@ -198,7 +197,7 @@
 
 - type: entity
   id: HEVLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение экспедитора
   components:
   - type: Sprite
@@ -206,8 +205,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: Stimpack
       prob: 0.3

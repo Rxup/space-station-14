@@ -261,23 +261,6 @@
   chatTriggers:
    - pain
 
-- type: soundCollection
-  id: ZombiePain
-  files:
-    - /Audio/Backmen/test/base/ogg/pain1.ogg
-    - /Audio/Backmen/test/base/ogg/pain2.ogg
-    - /Audio/Backmen/test/base/ogg/pain3.ogg
-    - /Audio/Backmen/test/base/ogg/pain4.ogg
-    - /Audio/Backmen/test/base/ogg/pain5.ogg
-    - /Audio/Backmen/test/base/ogg/pain6.ogg
-
-- type: soundCollection
-  id: ZombieScreemAlert
-  files:
-    - /Audio/Backmen/test/base/ogg/alert1.ogg
-    - /Audio/Backmen/test/base/ogg/alert2.ogg
-    - /Audio/Backmen/test/base/ogg/alert3.ogg
-
 - type: damageModifierSet
   id: HEVArmor
   coefficients:

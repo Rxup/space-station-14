@@ -5,7 +5,7 @@
 
 - type: entity
   id: BlackOpsLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение спец-войск
   components:
   - type: Sprite
@@ -13,8 +13,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: ClothingHandsGlovesCombat
       prob: 0.3
@@ -54,7 +52,7 @@
 
 - type: entity
   id: BlackOpsMeleeLoot
-  parent: BaseItem
+  parent: BasePacketWithLoot
   name: сумка снаряжение спец-войск
   components:
   - type: Sprite
@@ -62,8 +60,6 @@
     layers:
       - state: icon
   - type: SpawnItemsOnUse
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
     items:
     - id: ClothingHandsGlovesCombat
       prob: 0.3
