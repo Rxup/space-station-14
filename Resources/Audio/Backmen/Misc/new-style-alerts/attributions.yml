@@ -6,7 +6,7 @@
 - files: ["amber_code_new_style.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made by Agronomist-NN"
-  source: "---"
+  source: ---
 
 - files: ["red_code_new_style.ogg"]
   license: "CC-BY-SA-3.0"
@@ -31,7 +31,7 @@
 - files: ["delta_code_new_style.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Edited by Agronomist-NN"
-  source: "???"
+  source: ???
 
 - files: ["epsilon_code_new_style.ogg"]
   license: "CC-BY-SA-3.0"
@@ -41,4 +41,4 @@
 - files: ["white_code_new_style.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made by Agronomist-NN"
-  source: "???"
+  source: ???
