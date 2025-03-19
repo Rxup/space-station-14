@@ -1,0 +1,209 @@
+- type: entity
+  parent: MaterialBase
+  id: MaterialHEVPiece
+  name: piece of HEV suit
+  description: Pieces of a HEV suit, if find more this, we can made a brand new HEV.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Materials/pieces.rsi
+    layers:
+    - state: hev_piece
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1500
+  - type: Appearance
+  - type: Stack
+    stackType: HEVPiece
+    baseLayer: base
+    layerStates:
+    - hev_piece
+    - hev_piece_2
+    - hev_piece_3
+    - hev_piece_4
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: MaterialHEVPiece
+  id: MaterialHEVPiece1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialStraps
+  name: straps ALICE
+  description: Straps of ALICE belt.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    layers:
+    - state: alicemini
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1500
+  - type: Appearance
+  - type: Stack
+    stackType: StrapALICE
+    baseLayer: base
+    layerStates:
+    - alicemini
+    - alicemini_2
+    - alicemini_3
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: MaterialStraps
+  id: MaterialStraps1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialGunMaterial
+  name: gun material
+  description: Parts of ancient weapon.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    layers:
+    - state: gunsling
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1500
+  - type: Appearance
+  - type: Stack
+    count: 5
+    stackType: GunMaterial
+    baseLayer: base
+    layerStates:
+    - gunsling
+    - gunsling_2
+    - gunsling_3
+    - gunsling_4
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: MaterialGunMaterial
+  id: MaterialGunMaterial1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialM9Steel
+  name: M9 steel
+  description: M9 steel alloy, looks more like scrap than tiles.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    layers:
+    - state: M9
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1500
+  - type: Appearance
+  - type: Stack
+    stackType: M9Steel
+    baseLayer: base
+    layerStates:
+    - M9
+    - M9_2
+    - M9_3
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: MaterialM9Steel
+  id: MaterialM9Steel1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialCableGold
+  name: high speed wire
+  suffix: Full
+  description: Cables of ancient Empire, probraly.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/cable-coils.rsi
+    state: coilmv-30
+    layers:
+    - state: coilmv-30
+      map: ["base"]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1500
+  - type: Appearance
+  - type: Stack
+    stackType: CableGold
+    baseLayer: base
+    layerStates:
+    - coilmv-10
+    - coilmv-20
+    - coilmv-30
+  - type: Item
+    heldPrefix: coilmv
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: MaterialCableGold
+  id: MaterialCableGold1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: SalvagePCVPlate
+  name: PCV plate
+  description: PCV!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: plate
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,0,1
+  - type: Tag
+    tags:
+    - SalvagePCVPlate
+
+- type: Tag
+  id: SalvagePCVPlate

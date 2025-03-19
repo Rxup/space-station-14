@@ -61,3 +61,38 @@
   icon: { sprite: /Textures/Objects/Materials/ore.rsi, state: coal }
   spawn: Coal1Unprocessed
   maxCount: 30
+
+- type: stack
+  id: HEVPiece
+  name: piece of HEV suit
+  icon: { sprite: /Textures/_Lavaland/Objects/Materials/pieces.rsi, state: hev_piece }
+  spawn: MaterialHEVPiece1
+  maxCount: 30
+
+- type: stack
+  id: StrapALICE
+  name: strap ALICE
+  icon: { sprite: /Textures/_Lavaland/Salvages/XenLoot.rsi, state: alicemini }
+  spawn: MaterialStraps1
+  maxCount: 30
+
+- type: stack
+  id: GunMaterial
+  name: gun material
+  icon: { sprite: /Textures/_Lavaland/Salvages/XenLoot.rsi, state: gunsling }
+  spawn: MaterialGunMaterial1
+  maxCount: 5
+
+- type: stack
+  id: M9Steel
+  name: M9 steel
+  icon: { sprite: /Textures/_Lavaland/Salvages/XenLoot.rsi, state: M9 }
+  spawn: MaterialM9Steel1
+  maxCount: 30
+
+- type: stack
+  id: CableGold
+  name: gold cable
+  icon: { sprite: "/Textures/Objects/Tools/cable-coils.rsi", state: coilmv-30 }
+  spawn: CableMVStack1
+  maxCount: 30
