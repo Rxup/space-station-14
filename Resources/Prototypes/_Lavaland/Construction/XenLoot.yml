@@ -88,6 +88,21 @@
             doAfter: 1
 
 - type: constructionGraph
+  id: AncientTool
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 2
+        steps:
+          - tool: Screwing
+            doAfter: 1
+
+- type: constructionGraph
   id: PCVArmor
   start: start
   graph:
