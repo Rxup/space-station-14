@@ -75,7 +75,7 @@
     - type: MobPrice
       price: 50
     - type: Puller
-      needsHands: true
+      needsHands: false
     - type: Food
     - type: Hunger
       thresholds:
