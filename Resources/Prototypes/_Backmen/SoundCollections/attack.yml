@@ -19,3 +19,10 @@
   files:
   - /Audio/Backmen/test/base/ogg/combine/shotgun_fire6.ogg
   - /Audio/Backmen/test/base/ogg/combine/shotgun_fire7.ogg
+
+- type: soundCollection
+  id: ZombieScreemAlert
+  files:
+    - /Audio/Backmen/test/base/ogg/alert1.ogg
+    - /Audio/Backmen/test/base/ogg/alert2.ogg
+    - /Audio/Backmen/test/base/ogg/alert3.ogg

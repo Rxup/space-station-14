@@ -39,3 +39,13 @@
   - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death04.ogg
   - /Audio/Backmen/test/base/ogg/blackmesa/vortigaunt/death05.ogg
 
+- type: soundCollection
+  id: ZombiePain
+  files:
+    - /Audio/Backmen/test/base/ogg/pain1.ogg
+    - /Audio/Backmen/test/base/ogg/pain2.ogg
+    - /Audio/Backmen/test/base/ogg/pain3.ogg
+    - /Audio/Backmen/test/base/ogg/pain4.ogg
+    - /Audio/Backmen/test/base/ogg/pain5.ogg
+    - /Audio/Backmen/test/base/ogg/pain6.ogg
+

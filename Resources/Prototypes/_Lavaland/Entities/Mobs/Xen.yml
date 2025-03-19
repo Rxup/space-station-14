@@ -189,7 +189,6 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Tool
-    speed: 0.8
     qualities:
       - Prying
   - type: Prying
@@ -233,6 +232,17 @@
     damageCap: 0
   - type: ReplacementAccent
     accent: zombie
+
+- type: entity
+  name: random headcrab spawner
+  id: RandomHeadcrabSpawner
+  parent: MarkerBase
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MobHeadcrab
+    chance: 0.6
+    offset: 0
 
 - type: emoteSounds
   id: ZombieHeadcrabed
@@ -543,7 +553,6 @@
     rootTask:
       task: SimpleRangedHostileCompound
   - type: Tool
-    speed: 2.8
     qualities:
       - Prying
   - type: Prying
