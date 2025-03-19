@@ -12,7 +12,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.0
-  - type: CursorOffsetRequiresWield
+#  - type: CursorOffsetRequiresWield
 #  - type: EyeCursorOffset
 #    maxOffset: 5
 #    pvsIncrease: 0.5
