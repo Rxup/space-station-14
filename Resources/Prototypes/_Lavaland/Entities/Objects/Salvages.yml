@@ -154,7 +154,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionPCVHelmethelmet
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -163,7 +163,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionPCVHelmetrepair
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -172,7 +172,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionPCVHelmetPNVWires
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -181,7 +181,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionPCVHelmetPNVrepair
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -190,7 +190,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionAncientWeaponUnload
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -199,7 +199,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionncientToolUnload
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -208,7 +208,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionPCVArmorUnload
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
@@ -217,7 +217,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseConstructionPCVHelmet
+  id: BaseConstructionHEVArmorUnload
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
