@@ -16,7 +16,7 @@ alert-level-amber-announcement = A code Amber has been declared. Command declare
 alert-level-amber-instructions = The crew must obey lawful orders of the Security Service. Switch your suit mode to "Coordinates" and be in your department.
 
 alert-level-red = Red
-alert-level-red-announcement = A code Red has been declared. Command declares martial law and emergency. All station or sector threats confirmed. Security personnel are to strictly follow reinforcement procedures to further eliminate the threat. Authorized personnel are required to comply with all instructions issued by the current authority. MILITIA AUTHORIZED
+alert-level-red-announcement = A code Red has been declared. Command declares martial law and emergency. All station or sector threats confirmed. Security personnel are to strictly follow reinforcement procedures to further eliminate the threat. Authorized personnel are required to comply with all instructions issued by the current authority. MILITIA AUTHORIZED.
 alert-level-red-instructions = The crew has the right to ignore most of the bureaucratic procedures. The arming of civilian personnel is permitted. All combat-ready crew members must contact their command.
 
 alert-level-violet = Violet
