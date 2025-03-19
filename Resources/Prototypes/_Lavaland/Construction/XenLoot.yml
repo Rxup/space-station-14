@@ -25,6 +25,8 @@
           - material: M9Steel
             amount: 5
             doAfter: 2
+    - node: helmet
+    - node: repair
 
 - type: constructionGraph
   id: PCVHelmetPNV
@@ -63,6 +65,8 @@
             doAfter: 2
           - tag: SalvagePCVPlate
             doAfter: 1
+    - node: Wires
+    - node: repair
 
 - type: constructionGraph
   id: AncientWeapon
@@ -86,6 +90,7 @@
             doAfter: 1
           - tool: Screwing
             doAfter: 1
+    - node: Unload
 
 - type: constructionGraph
   id: AncientTool
@@ -101,6 +106,7 @@
         steps:
           - tool: Screwing
             doAfter: 1
+    - node: Unload
 
 - type: constructionGraph
   id: PCVArmor
@@ -129,6 +135,7 @@
             doAfter: 1
           - tool: Screwing
             doAfter: 1
+    - node: Unload
 
 - type: constructionGraph
   id: HEVArmor
@@ -154,6 +161,7 @@
             doAfter: 1
           - tool: Screwing
             doAfter: 1
+    - node: Unload
 
 - type: constructionGraph
   id: SatchelSalvage
