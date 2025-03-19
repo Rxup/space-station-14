@@ -6,6 +6,8 @@
   - type: SpawnItemsOnUse
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
+    items:
+    - id: BasePacketWithLoot
 
 - type: startingGear
   id: NPCMarine
