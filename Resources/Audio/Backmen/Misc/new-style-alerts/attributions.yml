@@ -1,0 +1,44 @@
+- files: ["blue_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Citadel Station 13 and edited by Agronomist-NN"
+  source: "https://github.com/Skyrat-SS13/Skyrat13/commit/2d4f2d1b489590b559e4073f41b126cef56f4c50"
+
+- files: ["amber_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by Agronomist-NN"
+  source: "---"
+
+- files: ["red_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Citadel Station 13 and edited by Agronomist-NN"
+  source: "https://github.com/Skyrat-SS13/Skyrat13/commit/2d4f2d1b489590b559e4073f41b126cef56f4c50"
+
+- files: ["yellow_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Edited by Agronomist-NN"
+  source: "https://youtu.be/OJtmtgCwSbI?si=YCp9wjqoIitvFuKp"
+
+- files: ["purple_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Edited by Agronomist-NN"
+  source: "https://youtu.be/ndXivxFqkAM?si=K4gLisSo8cg-xc9y"
+
+- files: ["sigma_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from MOLOT-BlueMoon-Station"
+  source: "https://github.com/BlueMoon-Labs/MOLOT-BlueMoon-Station/commit/4dacd7b6ba91e31dfa496b394a20d6fba6bb5550#diff-2965dcdac8ae55c4d4178c336dd707dc1c38bc63cda5c364864cb7f50de3bf4c"
+
+- files: ["delta_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Edited by Agronomist-NN"
+  source: "???"
+
+- files: ["epsilon_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by dj-34 (https://github.com/dj-34) and edited by Agronomist-NN"
+  source: "https://github.com/ss220-space/Paradise/blob/05043bcfb35c2e7bcf1efbdbfbf976e1a2504bc2/sound/effects/epsilon.ogg"
+
+- files: ["white_code_new_style.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by Agronomist-NN"
+  source: "???"
