@@ -10,28 +10,28 @@
   path: /Maps/_Lavaland/Lavaland/ruin_syndicate_base.yml
   priority: -1 # highest priority
 
-- type: lavalandGridRuin
-  id: BiodomeSnow
-  name: lavaland-ruin-biodome
-  path: /Maps/_Lavaland/Lavaland/ruin_snow_biodome.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaResearchFacility
+  name: lavaland-ruin-station
+  path: /Maps/Backmen/Lavaland/researchfacility.yml
   priority: 1
 
-- type: lavalandGridRuin
-  id: BiodomeBeach
-  name: lavaland-ruin-biodome
-  path: /Maps/_Lavaland/Lavaland/ruin_beach_biodome.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaOutpost
+  name: lavaland-ruin-station
+  path: /Maps/Backmen/Lavaland/xenoutpost.yml
   priority: 2
 
-- type: lavalandGridRuin
-  id: GolemShuttle
-  name: lavaland-ruin-big-shuttle
-  path: /Maps/_Lavaland/Lavaland/ruin_golem_shuttle.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaSpot
+  name: lavaland-ruin-station
+  path: /Maps/Backmen/Lavaland/researchspot.yml
   priority: 3
 
-- type: lavalandGridRuin
-  id: ToyShop
-  name: lavaland-ruin-wooden
-  path: /Maps/_Lavaland/Lavaland/ruin_toyshop.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaSpot2
+  name: lavaland-ruin-station
+  path: /Maps/Backmen/Lavaland/researchspot2.yml
   priority: 4
 
 - type: lavalandGridRuin
@@ -117,3 +117,27 @@
   name: lavaland-ruin-cargo
   path: /Maps/_Lavaland/Lavaland/ruin_cargo_debris.yml
   priority: 18
+
+- type: lavalandGridRuin
+  id: BiodomeSnow
+  name: lavaland-ruin-biodome
+  path: /Maps/_Lavaland/Lavaland/ruin_snow_biodome.yml
+  priority: 19
+
+- type: lavalandGridRuin
+  id: BiodomeBeach
+  name: lavaland-ruin-biodome
+  path: /Maps/_Lavaland/Lavaland/ruin_beach_biodome.yml
+  priority: 20
+
+- type: lavalandGridRuin
+  id: GolemShuttle
+  name: lavaland-ruin-big-shuttle
+  path: /Maps/_Lavaland/Lavaland/ruin_golem_shuttle.yml
+  priority: 21
+
+- type: lavalandGridRuin
+  id: ToyShop
+  name: lavaland-ruin-wooden
+  path: /Maps/_Lavaland/Lavaland/ruin_toyshop.yml
+  priority: 22
