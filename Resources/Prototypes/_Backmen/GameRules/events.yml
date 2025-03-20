@@ -330,3 +330,20 @@
           prob: 0.02
         - id: MobGiantSpiderVampireBoss
           prob: 0.001
+
+- type: entity
+  parent: BaseGameRule
+  id: InteQAgentInvasion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-inteqagent-start-announcement
+    startAudio:
+      path: /Audio/Effects/metal_break1.ogg
+    weight: 6
+    duration: 1
+    minimumPlayers: 15
+    earliestStart: 30
+    reoccurrenceDelay: 50
+  - type: RandomSpawnRule
+    prototype: SpawnMobInteQAgent

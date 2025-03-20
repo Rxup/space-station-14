@@ -1,0 +1,14 @@
+- type: entity
+  parent: [BoxCardboard, BaseMinorContraband]
+  id: BoxInteQ
+  name: brown box
+  suffix: InteQ, Empty
+  description: Brown box with a golden shield on its lid.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Storage/inteq_box.rsi
+    state: icon
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,3

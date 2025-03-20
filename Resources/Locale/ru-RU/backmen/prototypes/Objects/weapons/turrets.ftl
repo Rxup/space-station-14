@@ -6,3 +6,7 @@ ent-WeaponTurretLaserOnestar = { ent-WeaponTurretBaseLaser }
     .desc = { ent-WeaponTurretBaseLaser.desc }
 ent-WeaponTurretLaserNanoTrasenAI = { ent-WeaponTurretBaseLaser } 
     .desc = { ent-WeaponTurretBaseLaser.desc }
+
+ent-WeaponTurretInteQ = { ent-BaseWeaponTurret }
+    .desc = { ent-BaseWeaponTurret.desc }
+    .suffix = Интек

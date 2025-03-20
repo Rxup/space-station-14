@@ -79,3 +79,17 @@
     damageContainers:
     - Inorganic
     - Silicon
+
+- type: entity
+  parent: [ClothingEyesBase, BaseMinorContraband]
+  id: ClothingEyesGogglessInteQ
+  name: yellow goggles
+  description: Used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Eyes/inteq_goggles.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Eyes/inteq_goggles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowJobIcons

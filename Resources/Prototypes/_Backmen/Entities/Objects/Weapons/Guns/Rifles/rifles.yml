@@ -913,3 +913,15 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1
+
+- type: entity
+  parent: [WeaponAKMSRifle, BaseMajorContraband]
+  id: WeaponRifleInteQAKM
+  name: AKM
+  suffix: Rifle
+  description: Iconic weapon of war. Uses 7.62x39 ammo. It is painted in the InteQ brand color.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Rifles/inteq_akm.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Guns/Rifles/inteq_akm.rsi

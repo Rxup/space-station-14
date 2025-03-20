@@ -7,3 +7,5 @@ ent-ClothingEyesVision = очки ночного видения
 ent-ClothingEyesVisionNuki = { ent-ClothingEyesVision }
     .desc = { ent-ClothingEyesVision.desc }
     .suffix = Ядерные Оперативники
+ent-ClothingEyesGogglessInteQ = жёлтый визор
+    .desc = Используется для защиты глаз. Улучшенное покрытие блокирует множество вспышек.
