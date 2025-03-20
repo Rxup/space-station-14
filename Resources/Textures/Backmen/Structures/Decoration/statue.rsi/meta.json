@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/BlueMoon-Labs/MOLOT-BlueMoon-Station/commit/16fddbb1401993856d9360f08303ea263eacf237 | Edited by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "human_male",
+      "directions": 4
+    },
+    {
+      "name": "human_female"
+    },
+    {
+      "name": "monkey"
+    },
+    {
+      "name": "corgi"
+    },
+    {
+      "name": "ai1"
+    },
+    {
+      "name": "eng"
+    },
+    {
+      "name": "ai2"
+    },
+    {
+      "name": "assist"
+    },
+    {
+      "name": "cap"
+    },
+    {
+      "name": "ce"
+    },
+    {
+      "name": "clown"
+    },
+    {
+      "name": "cmo"
+    },
+    {
+      "name": "sci"
+    },
+    {
+      "name": "hop"
+    },
+    {
+      "name": "hos"
+    },
+    {
+      "name": "jani"
+    },
+    {
+      "name": "md"
+    },
+    {
+      "name": "medborg"
+    },
+    {
+      "name": "nuke"
+    },
+    {
+      "name": "rd"
+    },
+    {
+      "name": "xeno"
+    },
+    {
+      "name": "secborg"
+    },
+    {
+      "name": "sec"
+    },
+    {
+      "name": "snowman"
+    },
+    {
+      "name": "snowlegion"
+    },
+    {
+      "name": "snowlegion_alive",
+      "delays": [
+        [
+          0.2,
+          0.1,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "bust"
+    },
+    {
+      "name": "hippocratic"
+    },
+    {
+      "name": "marx"
+    },
+    {
+      "name": "base"
+    },
+    {
+      "name": "block"
+    }
+  ]
+}

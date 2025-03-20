@@ -11,3 +11,10 @@
   icon:
     sprite: Backmen/Interface/Misc/job_icons.rsi
     state: stationAI
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconInteQ
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/job_icons.rsi
+    state: InteQ

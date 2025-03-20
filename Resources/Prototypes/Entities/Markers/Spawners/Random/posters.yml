@@ -93,6 +93,13 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
+      - PosterContrabandInteQRecruitment # BACKMEN-START
+      - PosterContrabandInteQWorkship
+      - PosterContrabandInteQWorkship2
+      - PosterContrabandInteQ
+      - PosterContrabandInteQNoSex
+      - PosterContrabandInteQVulp
+      - PosterContrabandInteQJulie # BACKMEN-END
     chance: 0.99 # Сorvax-Next-EDIT
       # Сorvax-Next-START
     rarePrototypes:

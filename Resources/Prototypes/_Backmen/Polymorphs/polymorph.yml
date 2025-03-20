@@ -92,6 +92,18 @@
     allowRepeatedMorphs: true
 
 - type: polymorph
+  id: BArachneMorph
+  configuration:
+    entity: MobArachneClassic
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: false
+    revertOnCrit: false
+    revertOnDeath: false
+    inventory: Transfer
+    allowRepeatedMorphs: true
+
+- type: polymorph
   id: BChicken
   configuration:
     entity: MobChicken

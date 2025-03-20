@@ -1,0 +1,24 @@
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CentralCommandTeleporter
+  suffix: cryogenic sleep unit
+  name: centcomm teleporter
+  description: Tired of the shift? Thats reason to teleport out of here and forget about all the problems.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Structures/Machines/centcommteleporter.rsi
+    layers:
+    - state: teleport
+      map: ["base"]
+  - type: PointLight
+    color: Lime
+    radius: 1.5
+    energy: 0.5
+    castShadows: false
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: teleport_on }
+          False: { state: teleport }

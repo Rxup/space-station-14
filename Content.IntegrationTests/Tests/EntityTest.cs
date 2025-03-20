@@ -246,6 +246,7 @@ namespace Content.IntegrationTests.Tests
                 "FugitiveCountdown", // Fugitive.
                 "ShipyardConsole", // Shipyard Console
                 "Eftpos", // attach to bank account on mapinit
+                "HierophantFieldGenerator", // Lavaland Change
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
             };

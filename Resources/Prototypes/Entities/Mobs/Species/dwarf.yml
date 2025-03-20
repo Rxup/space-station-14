@@ -25,7 +25,7 @@
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
+    sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: Respirator
     damage:
@@ -69,7 +69,7 @@
   - type: Speech
     speechSounds: Bass
   - type: HumanoidAppearance
-    species: Human
+    species: Dwarf
     hideLayersOnEquip:
     - Hair
     - Snout
@@ -80,6 +80,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: InnateMiningScannerViewer # Frontier
+    pingSound: null
+    viewRange: 3 # Goob value
 
 - type: entity
   parent: BaseSpeciesDummy

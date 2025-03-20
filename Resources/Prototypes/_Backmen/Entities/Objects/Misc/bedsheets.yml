@@ -1,0 +1,11 @@
+- type: entity
+  parent: BedsheetBase
+  id: BedsheetInteQ
+  name: InteQ bedsheet
+  description: It's decorated with a gold emblem.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/inteq_bedsheet.rsi
+    state: sheetinteq
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Bedsheets/inteq_bedsheet.rsi

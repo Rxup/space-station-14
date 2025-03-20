@@ -6,7 +6,7 @@
   abstract: true
   components:
     - type: TTS
-      voice: Npc1
+      voice: Xenia
     - type: HTN
       rootTask:
         task: SimpleHostileCompound

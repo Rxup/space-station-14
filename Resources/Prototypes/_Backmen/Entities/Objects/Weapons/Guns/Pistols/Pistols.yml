@@ -485,3 +485,18 @@
     soundEmpty: /Audio/Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/uzi.ogg
+
+- type: entity
+  parent: [WeaponPistolHIB88M4, BaseMajorContraband]
+  id: WeaponPistolInteQCommissar
+  name: Commissar
+  suffix: Pistol
+  description: Small, easily concealable, but somewhat underpowered gun. Retrofitted with a fully automatic receiver. Uses 5.7x28 ammo. It is painted in the InteQ brand color.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Pistols/inteq_commissar.rsi
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto

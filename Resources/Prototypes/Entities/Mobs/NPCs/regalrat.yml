@@ -115,8 +115,8 @@
     price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
-    - RegalRatNameKingdom
-    - RegalRatNameTitle
+    - NamesRegalratKingdom
+    - NamesRegalratTitle
   - type: GuideHelp
     guides:
     - MinorAntagonists
@@ -126,7 +126,7 @@
       gender: male
   - type: Sharp
   - type: TTS # Corvax-TTS
-    voice: Npc1
+    voice: Monolith2
   - type: LanguageKnowledge
     speaks:
     - TauCetiBasic

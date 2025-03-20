@@ -10,7 +10,7 @@
     <PanelContainer StyleClasses="WindowPanel">
         <BoxContainer Name="MainContainer" Orientation="Vertical" Margin="10">
             <BoxContainer Orientation="Vertical" Margin="0 0 0 8">
-                <Label Text="{Loc 'smart-fridge-search'}:" Margin="0 0 0 5" HorizontalAlignment="Center"/>
+                <Label Text="{Loc 'smart-fridge-search'}" Margin="0 0 0 5" HorizontalAlignment="Center"/>
                 <LineEdit Name="SearchBar" PlaceHolder="{Loc 'vending-machine-component-search-filter'}" HorizontalExpand="True"/>
             </BoxContainer>
 

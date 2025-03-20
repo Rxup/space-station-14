@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: InteQAgent
+  values:
+    prefix: inteq-agent-say-
+    count: 7

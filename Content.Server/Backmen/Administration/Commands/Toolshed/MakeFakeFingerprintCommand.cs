@@ -34,7 +34,7 @@ public sealed class MakeFakeFingerprintCommand : ToolshedCommand
 
 
         var f = EntityManager.EnsureComponent<ForensicsComponent>(target);
-        if (EntityManager.TryGetComponent<DnaComponent>(playerUid, out var dna))
+        if (EntityManager.TryGetComponent<DnaComponent>(playerUid, out var dna) && !string.IsNullOrEmpty(dna.DNA))
         {
             f.DNAs.Add(dna.DNA);
         }
