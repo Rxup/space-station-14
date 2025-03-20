@@ -1,5 +1,5 @@
 - type: entity
-  id: MobHeadcrab
+  id: MobHeadcrabNPC
   name: headcrab
   suffix: Xen suppa AI
   parent: SimpleSpaceMobBase
