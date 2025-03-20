@@ -4,7 +4,7 @@ meta:
   engineVersion: 247.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/20/2025 11:20:23
+  time: 03/20/2025 11:56:25
   entityCount: 10237
 maps:
 - 6696
@@ -9868,6 +9868,8 @@ entities:
           - 0
         chunkSize: 4
     - type: NavMap
+    - type: BecomesStation
+      id: CentCommv4
   - uid: 6696
     components:
     - type: MetaData
@@ -11061,7 +11063,7 @@ entities:
       pos: 16.5,75.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5192.5557
+      secondsUntilStateChange: -7316.6387
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11259,7 +11261,7 @@ entities:
       pos: 68.5,79.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7378.12
+      secondsUntilStateChange: -9502.203
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29655,7 +29657,7 @@ entities:
       pos: 1.5,62.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7782.9863
+      secondsUntilStateChange: -9907.069
       state: Opening
   - uid: 3463
     components:
@@ -69083,12 +69085,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 42.5,94.5
       parent: 1
-  - uid: 8752
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 51.5,86.5
-      parent: 1
   - uid: 8760
     components:
     - type: Transform
@@ -69120,6 +69116,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 14.5,94.5
+      parent: 1
+  - uid: 8025
+    components:
+    - type: Transform
+      pos: 51.5,86.5
       parent: 1
   - uid: 8728
     components:
