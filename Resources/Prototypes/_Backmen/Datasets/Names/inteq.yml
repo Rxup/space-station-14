@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: InteQVanguardLeaderNamesPrefix
+  values:
+    prefix: inteq-vanguard-leader-prefix-
+    count: 1
+
+- type: localizedDataset
+  id: InteQVanguardNamesPrefix
+  values:
+    prefix: inteq-vanguard-prefix-
+    count: 1
+
+- type: localizedDataset
+  id: InteQAgentNamesPrefix
+  values:
+    prefix: inteq-agent-prefix-
+    count: 1

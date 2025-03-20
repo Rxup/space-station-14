@@ -303,6 +303,7 @@
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackOracle # backmen
     - id: FlatpackSophie # backmen
+    - id: BoxBodyBagRadiation # Backmen-AdvancedBodyBags
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

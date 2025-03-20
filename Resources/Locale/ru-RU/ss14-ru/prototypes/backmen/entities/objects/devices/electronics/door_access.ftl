@@ -45,3 +45,10 @@ ent-DoorElectronicsUEG = { ent-DoorElectronics }
 ent-DoorElectronicsUEGCommand = { ent-DoorElectronics }
     .suffix = EarthGov, Командный, Закрыт
     .desc = { ent-DoorElectronics.desc }
+
+ent-DoorElectronicsInteQVanguard = { ent-DoorElectronics }
+    .desc = { ent-DoorElectronics.desc }
+    .suffix = Интек, Авангард, Закрыт
+ent-DoorElectronicsInteQVanguardLeader = { ent-DoorElectronics }
+    .desc = { ent-DoorElectronics.desc }
+    .suffix = Интек, Коммандер Авангарда, Закрыт

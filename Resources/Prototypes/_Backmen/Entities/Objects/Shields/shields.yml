@@ -83,3 +83,20 @@
         sound:
           collection: MetalBreak
 
+# InteQ
+- type: entity
+  parent: [RiotLaserShield, BaseMinorContraband]
+  id: InteQLaserShield
+  name: InteQ laser shield
+  description: InteQ shield built for withstanding lasers, but not much else.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Weapons/Melee/inteq_shield.rsi
+      state: inteq_icon
+    - type: Item
+      sprite: Backmen/Objects/Weapons/Melee/inteq_shield.rsi
+      heldPrefix: inteq
+    - type: Reflect
+      reflectProb: 0.95
+      reflects:
+        - Energy

@@ -174,3 +174,19 @@
       types:
         Slash: -1.5
         Piercing: -1.5
+
+- type: entity
+  parent: EnergyDomeBase
+  id: EnergyDomeSmallOrange
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#E97E0C"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#E97E0C"
