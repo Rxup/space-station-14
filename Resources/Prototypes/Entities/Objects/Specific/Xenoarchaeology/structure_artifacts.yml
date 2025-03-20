@@ -6,6 +6,7 @@
   abstract: true
   components:
   - type: GlimmerSource
+    secondsPerGlimmer: 60
   - type: Sprite
     drawdepth: SmallObjects
     sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi
