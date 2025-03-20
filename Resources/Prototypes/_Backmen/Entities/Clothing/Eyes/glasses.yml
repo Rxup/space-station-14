@@ -21,7 +21,6 @@
     sprite: Clothing/Eyes/Glasses/weldglasses.rsi
   - type: FlashImmunity
   - type: EyeProtection
-    protectionTime: 5
   - type: Tag
     tags:
     - HamsterWearable
