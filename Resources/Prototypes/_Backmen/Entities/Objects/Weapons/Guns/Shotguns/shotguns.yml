@@ -213,3 +213,15 @@
     cameraRecoilScalar: 1
     soundGunshot:
       collection: GuardianShot
+
+- type: entity
+  parent: [WeaponShotgunZauer, BaseMajorContraband]
+  id: WeaponShotgunInteQBulldog
+  name: Bulldog
+  suffix: Shothun
+  description: Magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells. It is painted in the InteQ brand color.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Shotguns/inteq_bulldog.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Guns/Shotguns/inteq_bulldog.rsi

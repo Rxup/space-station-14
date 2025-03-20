@@ -20,6 +20,7 @@
       - id: FoodPacketSusTrash
       - id: FoodPacketSyndiTrash
       - id: BrokenBottle
+      - id: FoodPacketInteQCookiesTrash # Backmen
     - !type:GroupSelector
       weight: 5
       children:

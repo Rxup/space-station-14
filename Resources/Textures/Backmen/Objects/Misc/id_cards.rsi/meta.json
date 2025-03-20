@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e idcluwne made by brainfood1183 (github) for ss14, idbrigmedic resprited by catbg(Discord), @Vordenburg",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e idcluwne made by brainfood1183 (github) for ss14, idbrigmedic resprited by catbg(Discord), @Vordenburg | brown by PuroSlavKing (Github)",
   "size": {
     "x": 32,
     "y": 32
@@ -21,6 +21,9 @@
     },
     {
       "name": "default"
+    },
+    {
+      "name": "brown"
     },
     {
       "name": "silver"
@@ -75,6 +78,9 @@
     },
     {
         "name": "idueg"
+    },
+    {
+        "name": "sword"
     },
     {
         "name": "iduegofficer"

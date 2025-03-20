@@ -588,3 +588,42 @@
         - state: idvirologist
     - type: PresetIdCard
       job: BkmVirologist
+
+- type: entity
+  parent: IDCardStandard
+  id: InteQVanguardLeaderIDCard
+  name: InteQ ID card
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Backmen/Objects/Misc/id_cards.rsi
+      state: brown
+    - sprite: Backmen/Objects/Misc/id_cards.rsi
+      state: sword
+  - type: IdCard
+    jobTitle: job-title-vanguard-leader
+    jobIcon: JobIconInteQ
+  - type: Access
+    tags:
+    - InteQVanguardLeader
+    - InteQVanguard
+    - Maintenance
+
+- type: entity
+  parent: IDCardStandard
+  id: InteQVanguardIDCard
+  name: InteQ ID card
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Backmen/Objects/Misc/id_cards.rsi
+      state: brown
+    - sprite: Backmen/Objects/Misc/id_cards.rsi
+      state: sword
+  - type: IdCard
+    jobTitle: job-title-vanguard
+    jobIcon: JobIconInteQ
+  - type: Access
+    tags:
+    - InteQVanguard
+    - Maintenance

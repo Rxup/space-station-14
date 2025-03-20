@@ -182,3 +182,19 @@
     layers:
     - state: crypt_blue
     - state: nano_label
+
+- type: entity
+  parent: [EncryptionKey, BaseMinorContraband]
+  id: EncryptionKeyInteQ
+  name: InteQ encryption key
+  description: An encryption key used by InteQ.
+  components:
+    - type: EncryptionKey
+      channels:
+      - InteQ
+      defaultChannel: InteQ
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/encryption_keys.rsi
+      layers:
+      - state: crypt_brown
+      - state: inteq_label

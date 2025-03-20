@@ -785,3 +785,41 @@
     ClothingHeadHelmetTGMCwhiteMed: 2 # backmen
     ClothingNeckCloakTGMCwhite: 2 # backmen
     ClothingBeltTGMCwhite: 2 # backmen
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineInteQDrobe
+  name: InteQDrobe
+  description: Wardrobe machine encoded by the InteQ, contains elite outfits for various operations.
+  components:
+  - type: VendingMachine
+    pack: InteQDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: InteQDrobeAds
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/inteqdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#FF8C00"
+  - type: AccessReader
+    access: [["InteQVanguardLeader"], ["InteQVanguard"]]
+
+- type: entity
+  parent: VendingMachineInteQDrobe
+  id: VendingMachineInteQDrobeNerf
+  suffix: For station hiden places
+  components:
+  - type: VendingMachine
+    pack: InteQDrobeNerfInventory
