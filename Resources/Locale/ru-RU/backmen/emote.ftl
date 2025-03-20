@@ -29,9 +29,12 @@ chat-emote-msg-mew = мяв
 chat-emote-name-purrs = Purrs
 chat-emote-msg-purrs = мурчит!
 
+chat-emote-name-flip = Сделать кувырок
+chat-emote-name-spin = Покрутиться
+chat-emote-name-jump = Прыгнуть
+chat-emote-name-tweak = Потрясти задом
 
-
-
-
-
-
+chat-emote-msg-flip = делает кувырок!
+chat-emote-msg-spin = крутится!
+chat-emote-msg-jump = прыгает!
+chat-emote-msg-tweak = трясёт задом!
