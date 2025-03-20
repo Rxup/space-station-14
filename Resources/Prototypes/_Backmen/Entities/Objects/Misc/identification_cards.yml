@@ -577,6 +577,7 @@
       job: BkmSurgeon
 
 - type: entity
+  parent: IDCardStandard
   id: VirologistIDCard
   name: virologist ID Card
   components:
