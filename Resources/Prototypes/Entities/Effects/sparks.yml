@@ -13,6 +13,10 @@
       sprite: Effects/sparks.rsi
       state: sparks
   - type: EffectVisuals
+  - type: PointLight # Backmen
+    enabled: true
+    radius: 5
+    energy: 6
   - type: Tag
     tags:
     - HideContextMenu
@@ -33,6 +37,10 @@
       sprite: Effects/atmospherics.rsi
       state: frezon_old
   - type: EffectVisuals
+  - type: PointLight # Backmen
+    enabled: true
+    radius: 12
+    energy: 8
   - type: Tag
     tags:
     - HideContextMenu

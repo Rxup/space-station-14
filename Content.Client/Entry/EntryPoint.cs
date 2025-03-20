@@ -20,7 +20,9 @@ using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
-using Content.Client.Backmen.Explosion; // Ataraxia
+using Content.Client.Backmen.Explosion; // Backmen
+using Content.Client._Backmen.Overlays; // Backmen
+using Content.Client.Overlays;
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
@@ -178,7 +180,8 @@ namespace Content.Client.Entry
             _parallaxManager.LoadDefaultParallax();
 
             _overlayManager.AddOverlay(new SingularityOverlay());
-            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay()); // Ataraxia
+            _overlayManager.AddOverlay(new BasePostProcessOverlay()); // Backmen
+            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay()); // Backmen
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();

@@ -3,7 +3,10 @@
   id: ExplosionLight
   name: explosion light
   components:
-  - type: PointLight
+  - type: PointLight # Backmen-EDIT
+    enabled: true
+    radius: 12
+    energy: 8
   - type: Tag
     tags:
     - HideContextMenu

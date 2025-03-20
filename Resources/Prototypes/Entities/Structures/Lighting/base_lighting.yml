@@ -38,6 +38,8 @@
     radius: 10
     softness: 1
     offset: "0, -0.5"
+    mask: /Textures/Backmen/Effects/LightMasks/lighter_cone.png # Backmen
+    autoRot: true # Backmen
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic

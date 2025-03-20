@@ -94,7 +94,7 @@
     - type: PointLight
       enabled: true
       radius: 5
-      energy: 8
+      energy: 12 # Backmen-EDIT
       netsync: false
     - type: LightFade
       duration: 0.5

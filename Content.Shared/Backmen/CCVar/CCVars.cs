@@ -115,4 +115,14 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> StrictPipeStacking =
         CVarDef.Create("atmos.strict_pipe_stacking", false, CVar.SERVERONLY);
+
+        /*
+         * GRAPHICS
+         */
+
+        /// <summary>
+        /// Toggle for non-gameplay-affecting or otherwise status indicative post-process effects, such additive lighting.
+        /// </summary>
+        public static readonly CVarDef<bool> PostProcess =
+            CVarDef.Create("graphics.post_process", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
