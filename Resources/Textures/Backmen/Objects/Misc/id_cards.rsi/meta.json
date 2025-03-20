@@ -1,48 +1,463 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e idcluwne made by brainfood1183 (github) for ss14, idbrigmedic resprited by catbg(Discord), @Vordenburg | brown by PuroSlavKing (Github)",
+  "copyright": "Taken from https://github.com/Bubberstation/Bubberstation/commit/c539a469d59849c15a115b319ec5953904863321 | Sprited, resprited and edited by PuroSlavKing (Github)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "idcardmog"
+      "name": "sub_department"
     },
     {
-      "name": "idcardiog"
+      "name": "card_default"
     },
     {
-      "name": "idblueshield"
+      "name": "card_carp"
     },
     {
-      "name": "default"
+      "name": "card_green"
     },
     {
-      "name": "brown"
+      "name": "card_gold"
     },
     {
-      "name": "silver"
+      "name": "card_silver"
     },
     {
-      "name": "black"
+      "name": "card_centcom"
     },
     {
-      "name": "idcardro"
+      "name": "card_orange"
+    },
+    {
+      "name": "card_black"
+    },
+    {
+      "name": "card_red"
+    },
+    {
+      "name": "card_brown"
+    },
+    {
+      "name": "card_flame",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "card_rainbow"
+    },
+    {
+      "name": "card_unknown"
+    },
+    {
+      "name": "frame_default"
+    },
+    {
+      "name": "frame_head"
+    },
+    {
+      "name": "assigned"
+    },
+    {
+      "name": "assigned_centcom"
+    },
+    {
+      "name": "assigned_gold"
+    },
+    {
+      "name": "assigned_silver"
+    },
+    {
+      "name": "assigned_syndicate"
+    },
+    {
+      "name": "assigned_inteq"
+    },
+    {
+      "name": "assigned_weh"
+    },
+    {
+      "name": "idassistant"
+    },
+    {
+      "name": "idbotanist"
+    },
+    {
+      "name": "idcurator"
+    },
+    {
+      "name": "idchaplain"
+    },
+    {
+      "name": "idbartender"
+    },
+    {
+      "name": "idcook"
+    },
+    {
+      "name": "idiaa"
+    },
+    {
+      "name": "idpilot"
+    },
+    {
+      "name": "idboxer"
+    },
+    {
+      "name": "idreporter"
+    },
+    {
+      "name": "idpassenger"
+    },
+    {
+      "name": "idintern-service"
+    },
+    {
+      "name": "idintern-sci"
+    },
+    {
+      "name": "idintern-med"
+    },
+    {
+      "name": "idintern-tech"
+    },
+    {
+      "name": "idintern-cadet"
+    },
+    {
+      "name": "idmusician"
+    },
+    {
+      "name": "idcluwne"
+    },
+    {
+      "name": "idzookeeper"
+    },
+    {
+      "name": "idlawyer"
+    },
+    {
+      "name": "idjanitor"
+    },
+    {
+      "name": "idclown"
+    },
+    {
+      "name": "idmime"
+    },
+    {
+      "name": "idquartermaster"
+    },
+    {
+      "name": "idcargotechnician"
+    },
+    {
+      "name": "idshaftminer"
+    },
+    {
+      "name": "idatmospherictechnician"
+    },
+    {
+      "name": "idstationengineer"
+    },
+    {
+      "name": "idvirologist"
+    },
+    {
+      "name": "idchemist"
+    },
+    {
+      "name": "idparamedic"
+    },
+    {
+      "name": "idpsychologist"
+    },
+    {
+      "name": "idmedicaldoctor"
+    },
+    {
+      "name": "idgeneticist"
+    },
+    {
+      "name": "idscientist"
+    },
+    {
+      "name": "idroboticist"
+    },
+    {
+      "name": "idexpeditor"
+    },
+    {
+      "name": "idwarden"
     },
     {
       "name": "idbrigmedic"
     },
     {
-      "name": "iddelivery"
+      "name": "iddetective"
     },
     {
-      "name": "black-inhand-left",
+      "name": "idsecurityofficer"
+    },
+    {
+      "name": "idheadofsecurity"
+    },
+    {
+      "name": "idheadofpersonnel"
+    },
+    {
+      "name": "idchiefengineer"
+    },
+    {
+      "name": "idresearchdirector"
+    },
+    {
+      "name": "idchiefmedicalofficer"
+    },
+    {
+      "name": "idratqueen"
+    },
+    {
+      "name": "idbluespacetechnic"
+    },
+    {
+      "name": "idcaptain"
+    },
+    {
+      "name": "idcentcom"
+    },
+    {
+      "name": "idprisoner"
+    },
+    {
+      "name": "idpirate"
+    },
+    {
+      "name": "idwizard"
+    },
+    {
+      "name": "idseniorengineer"
+    },
+    {
+      "name": "idseniorresearcher"
+    },
+    {
+      "name": "idseniorphysician"
+    },
+    {
+      "name": "idseniorofficer"
+    },
+    {
+      "name": "idinspector"
+    },
+    {
+      "name": "idsolgov"
+    },
+    {
+      "name": "idnri"
+    },
+    {
+      "name": "trim_ds2admiral"
+    },
+    {
+      "name": "trim_ds2miningofficer"
+    },
+    {
+      "name": "trim_ds2masteratarms"
+    },
+    {
+      "name": "trim_ds2brigofficer"
+    },
+    {
+      "name": "trim_ds2corporateliaison"
+    },
+    {
+      "name": "trim_ds2medicalofficer"
+    },
+    {
+      "name": "trim_ds2enginetech"
+    },
+    {
+      "name": "trim_ds2researcher"
+    },
+    {
+      "name": "trim_ds2generalstaff"
+    },
+    {
+      "name": "trim_ds2prisoner"
+    },
+    {
+      "name": "trim_veteranadventurer"
+    },
+    {
+      "name": "trim_veteranadvisor"
+    },
+    {
+      "name": "trim_thiefcatcher"
+    },
+    {
+      "name": "trim_undertaker"
+    },
+    {
+      "name": "trim_unknown"
+    },
+    {
+      "name": "trim_syndicate"
+    },
+    {
+      "name": "trim_tavernkeeper"
+    },
+    {
+      "name": "trim_tavernstationhand"
+    },
+    {
+      "name": "trim_royalguard"
+    },
+    {
+      "name": "trim_snakeoilsalesman"
+    },
+    {
+      "name": "trim_starduke"
+    },
+    {
+      "name": "trim_steward"
+    },
+    {
+      "name": "trim_thaumaturgist"
+    },
+    {
+      "name": "trim_recluse"
+    },
+    {
+      "name": "trim_royaladvisor"
+    },
+    {
+      "name": "trim_prisoner_1"
+    },
+    {
+      "name": "trim_prisoner_2"
+    },
+    {
+      "name": "trim_prisoner_3"
+    },
+    {
+      "name": "trim_prisoner_4"
+    },
+    {
+      "name": "trim_prisoner_5"
+    },
+    {
+      "name": "trim_prisoner_6"
+    },
+    {
+      "name": "trim_prisoner_7"
+    },
+    {
+      "name": "trim_lout"
+    },
+    {
+      "name": "trim_magistrate"
+    },
+    {
+      "name": "trim_merchantman"
+    },
+    {
+      "name": "trim_necromancer"
+    },
+    {
+      "name": "trim_paladin"
+    },
+    {
+      "name": "trim_jester"
+    },
+    {
+      "name": "trim_guard"
+    },
+    {
+      "name": "trim_guardleader"
+    },
+    {
+      "name": "trim_guildquestgiver"
+    },
+    {
+      "name": "trim_headcrystallomancer"
+    },
+    {
+      "name": "trim_highcleric"
+    },
+    {
+      "name": "trim_jailor"
+    },
+    {
+      "name": "trim_fool"
+    },
+    {
+      "name": "trim_gardener"
+    },
+    {
+      "name": "trim_genemancer"
+    },
+    {
+      "name": "trim_groundskeeper"
+    },
+    {
+      "name": "trim_crystallomancer"
+    },
+    {
+      "name": "trim_deathcommando"
+    },
+    {
+      "name": "trim_ert_commander"
+    },
+    {
+      "name": "trim_bitrunner"
+    },
+    {
+      "name": "trim_cleric"
+    },
+    {
+      "name": "trim_coroner"
+    },
+    {
+      "name": "trim_corpserunner"
+    },
+    {
+      "name": "trim_adventurer"
+    },
+    {
+      "name": "trim_aeromancer"
+    },
+    {
+      "name": "trim_alchemist"
+    },
+    {
+      "name": "trim_archmagister"
+    },
+    {
+      "name": "trim_bitavatar",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gold-inhand-left",
       "directions": 4
     },
     {
-      "name": "black-inhand-right",
+      "name": "gold-inhand-right",
       "directions": 4
     },
     {
@@ -54,33 +469,36 @@
       "directions": 4
     },
     {
-      "name": "idexplorer"
-    },
-    {
-      "name": "idfreelancer"
-    },
-    {
-      "name": "idstudent"
-    },
-    {
-      "name": "unaffiliated"
-    },
-    {
-      "name": "unaffiliated-inhand-left",
+      "name": "silver-inhand-left",
       "directions": 4
     },
     {
-      "name": "unaffiliated-inhand-right",
+      "name": "silver-inhand-right",
       "directions": 4
     },
     {
-        "name": "idueg"
+      "name": "orange-inhand-left",
+      "directions": 4
     },
     {
-        "name": "sword"
+      "name": "orange-inhand-right",
+      "directions": 4
     },
     {
-        "name": "iduegofficer"
+      "name": "blue-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "blue-inhand-right",
+      "directions": 4
+    }
+    {
+      "name": "green-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "green-inhand-right",
+      "directions": 4
     }
   ]
 }
