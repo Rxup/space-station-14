@@ -15,6 +15,8 @@
     - SpecialForce
     - CombineForce
     - CentralCommand
+    - InteQ
+    - InteQHostile
 
 - type: npcFaction
   id: Blob
@@ -38,6 +40,8 @@
     - SpecialForce
     - CombineForce
     - CentralCommand
+    - InteQ
+    - InteQHostile
 
 - type: npcFaction
   id: Flesh
@@ -56,6 +60,8 @@
     - SpecialForce
     - CombineForce
     - CentralCommand
+    - InteQ
+    - InteQHostile
 
 - type: npcFaction
   id: GlimmerMonster # Crew hostile psionic
@@ -89,6 +95,8 @@
     - SpecialForce
     - CombineForce
     - CentralCommand
+    - InteQ
+    - InteQHostile
 
 - type: npcFaction
   id: ShadowkinDarkHostile
@@ -125,6 +133,8 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - InteQ
+  - InteQHostile
 
 - type: npcFaction
   id: Spanish
@@ -161,6 +171,8 @@
     - SuperZloy
     - CombineForce
     - CentralCommand
+    - InteQ
+    - InteQHostile
 
 - type: npcFaction
   id: CombineForce
@@ -180,6 +192,8 @@
     - SuperZloy
     - SpecialForce
     - CentralCommand
+    - InteQ
+    - InteQHostile
 
 - type: npcFaction
   id: CentralCommand
@@ -198,6 +212,8 @@
   - SpecialForce
   - CombineForce
   - AiEnemy
+  - InteQ
+  - InteQHostile
 
 - type: npcFaction
   id: Changeling
@@ -206,4 +222,43 @@
   - Syndicate
   - Zombie
   - Revolutionary
+  - InteQ
+  - InteQHostile
 
+- type: npcFaction
+  id: InteQ
+  hostile:
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - MalfunctioningRobot # Backmen-Factions-START
+  - Blob
+  - Flesh
+  - GlimmerMonster
+  - SuperZloy
+  - ShadowkinDarkHostile
+  - Britan
+  - Spanish # Backmen-Factions-END
+
+- type: npcFaction
+  id: InteQHostile
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - MalfunctioningRobot # Backmen-Factions-START
+  - Blob
+  - Flesh
+  - GlimmerMonster
+  - SuperZloy
+  - ShadowkinDarkHostile
+  - AiTurret
+  - Britan
+  - Spanish
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
+  - Changeling # Backmen-Factions-END

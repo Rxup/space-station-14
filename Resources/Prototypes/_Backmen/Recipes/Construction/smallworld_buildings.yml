@@ -1,0 +1,128 @@
+- type: construction
+  name: маленькое здание бизнеса
+  description: НЕ для твоих ног!!!
+  id: SmallWorldBuildingSmallBusiness
+  graph: SmallWorldBuilding
+  startNode: start
+  targetNode: SmallWorldBuildingSmallBusiness
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/buildings.rsi
+    state: "smallbusiness"
+
+- type: construction
+  name: маленькое здание домики
+  description: НЕ для твоих ног!!!
+  id: SmallWorldBuildingSmallHouses
+  graph: SmallWorldBuilding
+  startNode: start
+  targetNode: SmallWorldBuildingSmallHouses
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/buildings.rsi
+    state: "smallhouses"
+
+- type: construction
+  name: маленькое здание музея
+  description: НЕ для твоих ног!!!
+  id: SmallWorldBuildingSmallMuseum
+  graph: SmallWorldBuilding
+  startNode: start
+  targetNode: SmallWorldBuildingSmallMuseum
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/buildings.rsi
+    state: "smallmuseum"
+
+- type: construction
+  name: маленькое здание склада
+  description: НЕ для твоих ног!!!
+  id: SmallWorldBuildingSmallWarehouse
+  graph: SmallWorldBuilding
+  startNode: start
+  targetNode: SmallWorldBuildingSmallWarehouse
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/buildings.rsi
+    state: "warehouse"
+
+- type: constructionGraph
+  id: SmallWorldBuilding
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: SmallWorldBuildingSmallBusiness
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: SmallWorldBuildingSmallHouses
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: SmallWorldBuildingSmallMuseum
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: SmallWorldBuildingSmallWarehouse
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+
+    - node: SmallWorldBuildingSmallBusiness
+      entity: SmallWorldBuildingSmallBusiness
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: SmallWorldBuildingSmallHouses
+      entity: SmallWorldBuildingSmallHouses
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: SmallWorldBuildingSmallMuseum
+      entity: SmallWorldBuildingSmallMuseum
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: SmallWorldBuildingSmallWarehouse
+      entity: SmallWorldBuildingSmallWarehouse
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
