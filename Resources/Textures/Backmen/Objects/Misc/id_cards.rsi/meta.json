@@ -91,6 +91,12 @@
       "name": "idbotanist"
     },
     {
+      "name": "idbouncer"
+    },
+    {
+      "name": "idblueshield"
+    },
+    {
       "name": "idcurator"
     },
     {
@@ -109,7 +115,13 @@
       "name": "idpilot"
     },
     {
+      "name": "idpeacekeeper"
+    },
+    {
       "name": "idboxer"
+    },
+    {
+      "name": "idbridgeofficer"
     },
     {
       "name": "idreporter"
@@ -163,6 +175,9 @@
       "name": "idshaftminer"
     },
     {
+      "name": "idstudent"
+    },
+    {
       "name": "idatmospherictechnician"
     },
     {
@@ -194,6 +209,12 @@
     },
     {
       "name": "idexpeditor"
+    },
+    {
+      "name": "idexplorer"
+    },
+    {
+      "name": "identertainer"
     },
     {
       "name": "idwarden"
@@ -265,184 +286,166 @@
       "name": "idnri"
     },
     {
-      "name": "trim_ds2admiral"
+      "name": "idnanotrasenrepresentative"
     },
     {
-      "name": "trim_ds2miningofficer"
+      "name": "idvisitor"
     },
     {
-      "name": "trim_ds2masteratarms"
+      "name": "idveteranadventurer"
     },
     {
-      "name": "trim_ds2brigofficer"
+      "name": "idveteranadvisor"
     },
     {
-      "name": "trim_ds2corporateliaison"
+      "name": "idthiefcatcher"
     },
     {
-      "name": "trim_ds2medicalofficer"
+      "name": "idundertaker"
     },
     {
-      "name": "trim_ds2enginetech"
+      "name": "idunknown"
     },
     {
-      "name": "trim_ds2researcher"
+      "name": "idsyndicate"
     },
     {
-      "name": "trim_ds2generalstaff"
+      "name": "idtavernkeeper"
     },
     {
-      "name": "trim_ds2prisoner"
+      "name": "idtavernstationhand"
     },
     {
-      "name": "trim_veteranadventurer"
+      "name": "idroyalguard"
     },
     {
-      "name": "trim_veteranadvisor"
+      "name": "idsnakeoilsalesman"
     },
     {
-      "name": "trim_thiefcatcher"
+      "name": "idstarduke"
     },
     {
-      "name": "trim_undertaker"
+      "name": "idsteward"
     },
     {
-      "name": "trim_unknown"
+      "name": "idthaumaturgist"
     },
     {
-      "name": "trim_syndicate"
+      "name": "idrecluse"
     },
     {
-      "name": "trim_tavernkeeper"
+      "name": "idroyaladvisor"
     },
     {
-      "name": "trim_tavernstationhand"
+      "name": "idprisoner_1"
     },
     {
-      "name": "trim_royalguard"
+      "name": "idprisoner_2"
     },
     {
-      "name": "trim_snakeoilsalesman"
+      "name": "idprisoner_3"
     },
     {
-      "name": "trim_starduke"
+      "name": "idprisoner_4"
     },
     {
-      "name": "trim_steward"
+      "name": "idprisoner_5"
     },
     {
-      "name": "trim_thaumaturgist"
+      "name": "idprisoner_6"
     },
     {
-      "name": "trim_recluse"
+      "name": "idprisoner_7"
     },
     {
-      "name": "trim_royaladvisor"
+      "name": "idlout"
     },
     {
-      "name": "trim_prisoner_1"
+      "name": "idmagistrate"
     },
     {
-      "name": "trim_prisoner_2"
+      "name": "idmerchantman"
     },
     {
-      "name": "trim_prisoner_3"
+      "name": "idnecromancer"
     },
     {
-      "name": "trim_prisoner_4"
+      "name": "idpaladin"
     },
     {
-      "name": "trim_prisoner_5"
+      "name": "idjester"
     },
     {
-      "name": "trim_prisoner_6"
+      "name": "idguard"
     },
     {
-      "name": "trim_prisoner_7"
+      "name": "idguardleader"
     },
     {
-      "name": "trim_lout"
+      "name": "idguildquestgiver"
     },
     {
-      "name": "trim_magistrate"
+      "name": "idhighcleric"
     },
     {
-      "name": "trim_merchantman"
+      "name": "idjailor"
     },
     {
-      "name": "trim_necromancer"
+      "name": "idfool"
     },
     {
-      "name": "trim_paladin"
+      "name": "idfreelancer"
     },
     {
-      "name": "trim_jester"
+      "name": "idgardener"
     },
     {
-      "name": "trim_guard"
+      "name": "idgenemancer"
     },
     {
-      "name": "trim_guardleader"
+      "name": "idgroundskeeper"
     },
     {
-      "name": "trim_guildquestgiver"
+      "name": "idcrystallomancer"
     },
     {
-      "name": "trim_headcrystallomancer"
+      "name": "iddeathcommando"
     },
     {
-      "name": "trim_highcleric"
+      "name": "iddelivery"
     },
     {
-      "name": "trim_jailor"
+      "name": "idert_commander"
     },
     {
-      "name": "trim_fool"
+      "name": "idearth"
     },
     {
-      "name": "trim_gardener"
+      "name": "idbitrunner"
     },
     {
-      "name": "trim_genemancer"
+      "name": "idcleric"
     },
     {
-      "name": "trim_groundskeeper"
+      "name": "idcoroner"
     },
     {
-      "name": "trim_crystallomancer"
+      "name": "idcorpserunner"
     },
     {
-      "name": "trim_deathcommando"
+      "name": "idadventurer"
     },
     {
-      "name": "trim_ert_commander"
+      "name": "idaeromancer"
     },
     {
-      "name": "trim_bitrunner"
+      "name": "idalchemist"
     },
     {
-      "name": "trim_cleric"
+      "name": "idarchmagister"
     },
     {
-      "name": "trim_coroner"
-    },
-    {
-      "name": "trim_corpserunner"
-    },
-    {
-      "name": "trim_adventurer"
-    },
-    {
-      "name": "trim_aeromancer"
-    },
-    {
-      "name": "trim_alchemist"
-    },
-    {
-      "name": "trim_archmagister"
-    },
-    {
-      "name": "trim_bitavatar",
+      "name": "idbitavatar",
       "delays": [
         [
           0.1,
