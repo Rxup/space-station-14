@@ -1,12 +1,12 @@
-- type: entity
-  id: ActionHeadcrabJump
-  name: Headcrab Jump
-  description: Jump into mouse target
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: WorldTargetAction
-      icon: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi/headcrab.png
-      itemIconStyle: NoItem
-      event: !type:FleshWormJumpActionEvent
-      useDelay: 3
-      range: 160
+#- type: entity
+#  id: ActionHeadcrabJump
+#  name: Headcrab Jump
+#  description: Jump into mouse target
+#  categories: [ HideSpawnMenu ]
+#  components:
+#    - type: WorldTargetAction
+#      icon: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi/headcrab.png
+#      itemIconStyle: NoItem
+#      event: !type:FleshWormJumpActionEvent
+#      useDelay: 3
+#      range: 160

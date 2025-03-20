@@ -12,26 +12,50 @@
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaResearchFacility
-  name: lavaland-ruin-station
+  name: lavaland-ruin-bmc-research-facility
   path: /Maps/Backmen/Lavaland/researchfacility.yml
   priority: 1
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaOutpost
-  name: lavaland-ruin-station
+  name: lavaland-ruin-bmc-research-outpost
   path: /Maps/Backmen/Lavaland/xenoutpost.yml
   priority: 2
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaSpot
-  name: lavaland-ruin-station
+  name: lavaland-ruin-bmc-research-spot
   path: /Maps/Backmen/Lavaland/researchspot.yml
   priority: 3
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaSpot2
-  name: lavaland-ruin-station
+  name: lavaland-ruin-bmc-research-spot
   path: /Maps/Backmen/Lavaland/researchspot2.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaMet
+  name: lavaland-ruin-bmc-oblom-met
+  path: /Maps/Backmen/Lavaland/ZENoblomMet2.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaResearchOblom
+  name: lavaland-ruin-bmc-research-station
+  path: /Maps/Backmen/Lavaland/ZENrndOblom.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaResearchShuttleCrush
+  name: lavaland-ruin-bmc-military-shuttle
+  path: /Maps/Backmen/Lavaland/ZENshuttle1.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaTelega
+  name: lavaland-ruin-bmc-evacuation-shuttle
+  path: /Maps/Backmen/Lavaland/ZENtelega2.yml
   priority: 4
 
 - type: lavalandGridRuin

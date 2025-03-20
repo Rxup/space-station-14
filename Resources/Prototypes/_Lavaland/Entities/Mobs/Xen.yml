@@ -662,6 +662,9 @@
     proto: BulletAcid
     capacity: 1
     count: 1
+  - type: Bloodstream
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
   - type: Gun
     fireRate: 0.75
     useKey: false
