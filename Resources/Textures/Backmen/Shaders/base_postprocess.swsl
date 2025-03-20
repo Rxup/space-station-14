@@ -1,10 +1,7 @@
-// Boilerplate
 uniform sampler2D SCREEN_TEXTURE;
 uniform sampler2D LIGHT_TEXTURE;
-
 uniform highp float Zoom;
 
-// Variables for controlling the falloff of the additive lighting effect.
 uniform highp float CircleRadius;
 uniform highp float CircleMinDist;
 uniform highp float CirclePow;
@@ -16,20 +13,31 @@ uniform highp float FalloffStrength;
 uniform highp float FalloffPow;
 uniform highp float MaxBrightness;
 
+highp float calculateCircleGradient(highp vec2 aspect, highp vec2 uv, highp float circleMax, highp float radius, highp float minDist, highp float power) {
+    highp vec2 center = vec2(0.5, 0.5); // Assuming screen center is (0.5, 0.5)
+    highp vec2 uv_centered = (uv * aspect) - (center * aspect);
+    highp float dist = length(uv_centered);
+    highp float gradient = clamp((dist - minDist) / (radius - minDist), 0.0, 1.0);
+    return circleMax * pow(1.0 - gradient, power);
+}
+
+highp float calculateLuminance(highp vec3 color) {
+    return dot(color, vec3(0.299, 0.587, 0.114));
+}
+
+
 void fragment() {
     COLOR = zTextureSpec(SCREEN_TEXTURE, Pos);
     highp vec2 aspect = vec2(1.0 / SCREEN_PIXEL_SIZE.x, 1.0 / SCREEN_PIXEL_SIZE.y);
     highp float actualZoom = Zoom;
 
-    highp float totalCircleIntensity = 0.0;
-
-    highp float circle = zCircleGradient(aspect, FRAGCOORD.xy, CircleMax, CircleRadius / actualZoom, CircleMinDist / actualZoom, CirclePow);
+    highp float circle = calculateCircleGradient(aspect, Pos, CircleMax, CircleRadius / actualZoom, CircleMinDist / actualZoom, CirclePow);
     circle *= CircleMult;
-
-    totalCircleIntensity += clamp(circle, FalloffClampMin, FalloffClampMax);
+    highp float totalCircleIntensity = clamp(circle, FalloffClampMin, FalloffClampMax);
 
     highp vec3 lightsampleraw = texture2D(LIGHT_TEXTURE, Pos).rgb;
-    highp float graylight = max(zGrayscale(lightsampleraw) - max((1.0 - totalCircleIntensity) * FalloffStrength, 0.0), 0.0);
+
+    highp float graylight = max(calculateLuminance(lightsampleraw) - (totalCircleIntensity * FalloffStrength), 0.0);  //Simplified, more direct calculation
     graylight = pow(graylight, FalloffPow);
 
     highp vec3 lightsample = lightsampleraw * vec3(graylight);
