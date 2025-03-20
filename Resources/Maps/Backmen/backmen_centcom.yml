@@ -9869,7 +9869,7 @@ entities:
         chunkSize: 4
     - type: NavMap
     - type: BecomesStation
-      id: CentCommv4
+      id: centcomm
   - uid: 6696
     components:
     - type: MetaData
