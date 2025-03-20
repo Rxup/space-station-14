@@ -11,6 +11,6 @@
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-red
-  - type: ClothingGrantComponent
+  - type: ClothingGrant
     component:
     - type: KravMaga
