@@ -64,7 +64,6 @@ public sealed class BasePostProcessOverlay : Overlay
 
         _basePostProcessShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         _basePostProcessShader.SetParameter("LIGHT_TEXTURE", args.Viewport.LightRenderTarget.Texture);
-
         _basePostProcessShader.SetParameter("Zoom", args.Viewport.Eye.Zoom.X);
 
         worldHandle.UseShader(_basePostProcessShader);

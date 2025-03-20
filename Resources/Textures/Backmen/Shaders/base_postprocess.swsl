@@ -12,6 +12,7 @@ uniform highp float FalloffClampMax;
 uniform highp float FalloffStrength;
 uniform highp float FalloffPow;
 uniform highp float MaxBrightness;
+uniform highp float SunBrightnessCap;
 
 highp float calculateCircleGradient(highp vec2 aspect, highp vec2 uv, highp float circleMax, highp float radius, highp float minDist, highp float power) {
     highp vec2 center = vec2(0.5, 0.5); // Assuming screen center is (0.5, 0.5)
@@ -37,8 +38,9 @@ void fragment() {
 
     highp vec3 lightsampleraw = texture2D(LIGHT_TEXTURE, Pos).rgb;
 
-    highp float graylight = max(calculateLuminance(lightsampleraw) - (totalCircleIntensity * FalloffStrength), 0.0);  //Simplified, more direct calculation
-    graylight = pow(graylight, FalloffPow);
+    highp float graylight = max(calculateLuminance(lightsampleraw) - (totalCircleIntensity * FalloffStrength), 0.0);
+
+    graylight = min(graylight, SunBrightnessCap);
 
     highp vec3 lightsample = lightsampleraw * vec3(graylight);
 

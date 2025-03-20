@@ -26,11 +26,12 @@
   params:
     CircleRadius: 420.0
     CircleMinDist: 0.1
-    CirclePow: 1.0
-    CircleMax: 3.0
+    CirclePow: 0.5
+    CircleMax: 2.0
     CircleMult: 0.05
     FalloffClampMin: 0.6
     FalloffClampMax: 0.8
     FalloffStrength: 1.25
-    FalloffPow: 3.0
-    MaxBrightness: 0.7
+    FalloffPow: 7.5
+    MaxBrightness: 0.15
+    SunBrightnessCap: 0.15
