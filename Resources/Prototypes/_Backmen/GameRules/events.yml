@@ -126,8 +126,6 @@
     - type: GlimmerEvent
       minimumGlimmer: 500
       maximumGlimmer: 1000
-      glimmerBurnLower: 120
-      glimmerBurnUpper: 150
     - type: NoosphericZapRule
 
 - type: entity
@@ -138,8 +136,6 @@
     - type: GlimmerEvent
       minimumGlimmer: 300
       maximumGlimmer: 1000
-      glimmerBurnLower: 120
-      glimmerBurnUpper: 150
     - type: NoosphericFryRule
 
 
@@ -183,9 +179,9 @@
   id: FreeProberEventsTable
   table: !type:AllSelector
     children:
-    #- id: FreeProberEarlyLowPop
-    #- id: FreeProberEarlyMedPop
-    #- id: FreeProberEarlyHiPop
+    - id: FreeProberEarlyLowPop
+    - id: FreeProberEarlyMedPop
+    - id: FreeProberEarlyHiPop
     - id: FreeProberLowPop
     - id: FreeProberMedPop
     - id: FreeProberHiPop
@@ -243,7 +239,7 @@
       minimumPlayers: 40
     - type: GlimmerEvent
       minimumGlimmer: 300
-      maximumGlimmer: 450
+      maximumGlimmer: 1000
       report: glimmer-event-report-signatures
     - type: FreeProberRule
 
@@ -260,8 +256,6 @@
   - type: GlimmerEvent
     minimumGlimmer: 30
     maximumGlimmer: 500
-    glimmerBurnLower: 90
-    glimmerBurnUpper: 120
     report: glimmer-event-breaker
   - type: GlimmerBreakerRule
 
@@ -336,3 +330,20 @@
           prob: 0.02
         - id: MobGiantSpiderVampireBoss
           prob: 0.001
+
+- type: entity
+  parent: BaseGameRule
+  id: InteQAgentInvasion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-inteqagent-start-announcement
+    startAudio:
+      path: /Audio/Effects/metal_break1.ogg
+    weight: 6
+    duration: 1
+    minimumPlayers: 15
+    earliestStart: 30
+    reoccurrenceDelay: 50
+  - type: RandomSpawnRule
+    prototype: SpawnMobInteQAgent

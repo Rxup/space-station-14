@@ -78,3 +78,57 @@
     stateBaseClosed: sec
     stateDoorOpen: sec_open
     stateDoorClosed: sec_pilot_door
+
+- type: entity
+  parent: LockerBaseSecure
+  id: LockerInteQVanguard
+  name: InteQ vanguard locker
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Structures/Storage/inteq.rsi
+    noRot: true
+    layers:
+    - state: inteq
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: vanguard_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: inteq
+    stateDoorOpen: open
+    stateDoorClosed: vanguard_door
+  - type: AccessReader
+    access: [["InteQVanguardLeader"], ["InteQVanguard"]]
+
+- type: entity
+  parent: LockerBaseSecure
+  id: LockerInteQVanguardLeader
+  name: InteQ vanguard leader locker
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Structures/Storage/inteq.rsi
+    noRot: true
+    layers:
+    - state: inteq
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: vanguard_leader_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: inteq
+    stateDoorOpen: open
+    stateDoorClosed: vanguard_leader_door
+  - type: AccessReader
+    access: [["InteQVanguardLeader"]]

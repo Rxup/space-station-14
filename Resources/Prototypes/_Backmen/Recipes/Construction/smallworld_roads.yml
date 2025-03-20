@@ -1,0 +1,128 @@
+- type: construction
+  name: дорога перекрёсток
+  description: Для твоих ног?...
+  id: SmallWorldRoadFourWay
+  graph: SmallWorldRoads
+  startNode: start
+  targetNode: SmallWorldRoadFourWay
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
+    state: "roadfourway"
+
+- type: construction
+  name: дорога прямая
+  description: Для твоих ног?...
+  id: SmallWorldRoadStraight
+  graph: SmallWorldRoads
+  startNode: start
+  targetNode: SmallWorldRoadStraight
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
+    state: "roadstraight"
+
+- type: construction
+  name: дорога развилка
+  description: Для твоих ног?...
+  id: SmallWorldRoadThreeWay
+  graph: SmallWorldRoads
+  startNode: start
+  targetNode: SmallWorldRoadThreeWay
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
+    state: "roadthreeway"
+
+- type: construction
+  name: дорога поворот
+  description: Для твоих ног?...
+  id: SmallWorldRoadTurn
+  graph: SmallWorldRoads
+  startNode: start
+  targetNode: SmallWorldRoadTurn
+  category: construction-category-misc
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
+    state: "roadturn"
+
+- type: constructionGraph
+  id: SmallWorldRoads
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: SmallWorldRoadFourWay
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: SmallWorldRoadStraight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: SmallWorldRoadThreeWay
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: SmallWorldRoadTurn
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+
+    - node: SmallWorldRoadFourWay
+      entity: SmallWorldRoadFourWay
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: SmallWorldRoadStraight
+      entity: SmallWorldRoadStraight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: SmallWorldRoadThreeWay
+      entity: SmallWorldRoadThreeWay
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: SmallWorldRoadTurn
+      entity: SmallWorldRoadTurn
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+          steps:
+            - tool: Screwing
+              doAfter: 1

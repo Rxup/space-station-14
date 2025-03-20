@@ -1,0 +1,8 @@
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelInteQ
+  name: combat satchel
+  description: The bag looks like a mail bag and has brown-yellow inserts.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Satchels/inteq_satchel.rsi

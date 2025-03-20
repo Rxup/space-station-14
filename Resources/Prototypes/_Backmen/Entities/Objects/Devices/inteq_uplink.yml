@@ -1,0 +1,23 @@
+- type: entity
+  parent: [BaseItem, BaseMajorContraband]
+  id: BaseInteQUplinkRadio
+  name: InteQ uplink
+  description: Suspiciously looking radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/inteq_uplink.rsi
+    layers:
+    - state: inteq-uplink
+  - type: Item
+    sprite: Backmen/Objects/Devices/inteq_uplink.rsi
+    heldPrefix: inteq-uplink
+#  - type: UserInterface
+#    interfaces:
+#      enum.StoreUiKey.Key:
+#        type: StoreBoundUserInterface
+#  - type: ActivatableUI
+#    key: enum.StoreUiKey.Key
+#  - type: Store
+#    balance:
+#      Telecrystal: 0

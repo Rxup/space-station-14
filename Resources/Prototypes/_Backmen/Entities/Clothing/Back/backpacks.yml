@@ -38,3 +38,12 @@
     - 0,0,7,4
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/centcom_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackInteQ
+  name: combat backpack
+  description: Comfortable and stylish backpack.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/inteq_backpack.rsi
