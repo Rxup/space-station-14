@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseItem
+  id: ItemFlagMiniInteQ
+  name: InteQ mini flag
+  description: Thats looks cool, shut up and take my money.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Fun/inteq_flag_mini.rsi
+      state: icon

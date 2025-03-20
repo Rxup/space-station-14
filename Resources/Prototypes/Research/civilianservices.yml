@@ -130,6 +130,9 @@
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
+  - NTBodyBag # Backmen-AdvancedBodyBags
+  - PrisonerBodyBag # Backmen-AdvancedBodyBags
+  - RadiationBodyBag # Backmen-AdvancedBodyBags
 
 - type: technology
   id: AdvancedCleaning
@@ -229,3 +232,4 @@
   - BluespaceBeaker
   - SyringeBluespace
   - BluespacePillCanister # backmen
+  - BluespaceBodyBag # Backmen-AdvancedBodyBags

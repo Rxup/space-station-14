@@ -1,0 +1,26 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelInteQ
+  name: combat duffel bag
+  description: A large duffel bag for holding weapons and supplies.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Duffels/inteq_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelInteQ
+  id: ClothingBackpackDuffelInteQAmmo
+  name: combat duffel bag
+  description: A large duffel bag for holding weapons and ammunition.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Duffels/inteq_duffel_ammo.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelInteQ
+  id: ClothingBackpackDuffelInteQMedical
+  name: combat duffel bag
+  description: A large duffel bag for holding weapons and medical things.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Duffels/inteq_duffel_med.rsi

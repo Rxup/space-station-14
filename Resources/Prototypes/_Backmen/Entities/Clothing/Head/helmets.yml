@@ -425,3 +425,60 @@
     tags:
     - WhitelistChameleon
     - SecurityHelmet
+
+- type: entity
+  parent: [ClothingHeadHelmetSwat, BaseMinorContraband]
+  id: ClothingHeadHelmetSwatInteQ
+  name: SWAT helmet
+  suffix: InteQ
+  description: An extremely robust helmet, commonly used by paramilitary forces. It is adorned in a nefarious orange and black stripe pattern.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/inteq_swat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/inteq_swat.rsi
+
+- type: entity
+  parent: [ClothingHeadHelmetBasic, BaseMajorContraband]
+  id: ClothingHeadHelmetInteQDarkTemplar
+  name: brown crusader helmet
+  description: Anti-eretic.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/inteq_dark_templar.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/inteq_dark_templar.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetInteQDarkTemplar
+  id: ClothingHeadHelmetInteQDarkTemplarAlt
+  name: dark crusader helmet
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/inteq_alt_dark_templar.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/inteq_alt_dark_templar.rsi
+
+- type: entity
+  parent: [ClothingHeadHelmetSwat, BaseMajorContraband]
+  id: ClothingHeadHelmetInteQInfiltrator
+  name: infiltrator helmet
+  description: Lightweight helmet with panoramic visor. It is covered with a protective film that protects the wearer from bright flashes, and the reinforced visor can withstand more than one bullet during your stealth mission.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/inteq_infiltrator
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/inteq_infiltrator
+  - type: FlashImmunity
+
+- type: entity
+  parent: [ClothingHeadHelmetSwat, BaseMajorContraband]
+  id: ClothingHeadHelmetInteQIronTombstone
+  name: Iron Tombstone helmet
+  description: Heavy.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/inteq_tombstone.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/inteq_tombstone.rsi
+  - type: FlashImmunity
