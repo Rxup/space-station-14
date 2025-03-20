@@ -1,0 +1,304 @@
+- type: entity
+  parent: BaseStructure
+  id: StatueBaseDecoration
+  abstract: true
+  name: statue
+  description: Piece of art.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Structures/Decoration/statue.rsi
+    state: base
+    drawdepth: Mobs
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+  - type: StaticPrice
+    price: 200
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueAIDecoration
+  name: AI statue
+  description: Statue dedicated to the smartest AI.
+  components:
+  - type: Sprite
+    state: ai1
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueAICoreDecoration
+  name: AI core statue
+  description: Statue dedicated to the smartest AI Core.
+  components:
+  - type: Sprite
+    state: ai2
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueAssistaintDecoration
+  name: assistaint statue
+  description: Statue dedicated to the smartest assisataint.
+  components:
+  - type: Sprite
+    state: assist
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueBlockDecoration
+  name: block statue
+  description: Block.
+  components:
+  - type: Sprite
+    state: block
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueCaptainDecoration
+  name: captain statue
+  description: Statue dedicated to the smartest captain.
+  components:
+  - type: Sprite
+    state: cap
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueChiefEngineerDecoration
+  name: chief engineer statue
+  description: Statue dedicated to the smartest chief engineer.
+  components:
+  - type: Sprite
+    state: ce
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueClownDecoration
+  name: clown statue
+  description: Statue dedicated to the smartest clown.
+  components:
+  - type: Sprite
+    state: clown
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueChiefMedicalOfficerDecoration
+  name: chief medical officer statue
+  description: Statue dedicated to the smartest chief medical officer.
+  components:
+  - type: Sprite
+    state: cmo
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueCorgiDecoration
+  name: corgi statue
+  description: Statue dedicated to the smartest corgi.
+  components:
+  - type: Sprite
+    state: corgi
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueEngineerDecoration
+  name: engineer statue
+  description: Statue dedicated to the smartest engineer.
+  components:
+  - type: Sprite
+    state: eng
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueHeadOfPersonalDecoration
+  name: head of personal statue
+  description: Statue dedicated to the smartest head of personal.
+  components:
+  - type: Sprite
+    state: hop
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueHeadOfSecurityDecoration
+  name: head of security statue
+  description: Statue dedicated to the smartest head of security.
+  components:
+  - type: Sprite
+    state: hos
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueHumanFemaleDecoration
+  name: female statue
+  description: Statue dedicated to the smartest female.
+  components:
+  - type: Sprite
+    state: human_female
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueHumanMaleDecoration
+  name: male statue
+  description: Statue dedicated to the smartest male.
+  components:
+  - type: Sprite
+    state: human_male
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueJanitorDecoration
+  name: janitor statue
+  description: Statue dedicated to the smartest janitor.
+  components:
+  - type: Sprite
+    state: jani
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueMedicDecoration
+  name: medic statue
+  description: Statue dedicated to the smartest medic.
+  components:
+  - type: Sprite
+    state: md
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueMedborgDecoration
+  name: medical borg statue
+  description: Statue dedicated to the smartest medical borg.
+  components:
+  - type: Sprite
+    state: medborg
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueMonkeyDecoration
+  name: monkey statue
+  description: Statue dedicated to the smartest monkey.
+  components:
+  - type: Sprite
+    state: monkey
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueNukeDecoration
+  name: nuke statue
+  description: Statue dedicated to the smartest nuke.
+  components:
+  - type: Sprite
+    state: nuke
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueResearchDirectorDecoration
+  name: research director statue
+  description: Statue dedicated to the smartest research director.
+  components:
+  - type: Sprite
+    state: rd
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueScientistDecoration
+  name: scientist statue
+  description: Statue dedicated to the smartest scientist.
+  components:
+  - type: Sprite
+    state: sci
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueSecurityDecoration
+  name: security statue
+  description: Statue dedicated to the smartest security.
+  components:
+  - type: Sprite
+    state: sec
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueSecurityBorgDecoration
+  name: security borg statue
+  description: Statue dedicated to the smartest security borg.
+  components:
+  - type: Sprite
+    state: secborg
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueSnowLegionDecoration
+  name: snow legion statue
+  description: Statue dedicated to the fearest snow legion.
+  components:
+  - type: Sprite
+    state: snowlegion
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueSnowLegionAliveDecoration
+  name: alive snow legion statue
+  description: Alive statue dedicated to the fearest snow legion.
+  components:
+  - type: Sprite
+    state: snowlegion_alive
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueSnowmanDecoration
+  name: snowman statue
+  description: Statue dedicated to the snowman.
+  components:
+  - type: Sprite
+    state: snowman
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueXenomorphDecoration
+  name: xenomorph statue
+  description: Statue dedicated to the fearest xenomorph.
+  components:
+  - type: Sprite
+    state: xeno
+
+# BUST
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueBustDecoration
+  name: bust
+  description: Just someone bust.
+  components:
+  - type: Sprite
+    state: bust
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueHippocraticBustDecoration
+  name: hippocrat bust
+  description: Bust dedicated to the Hippocrat.
+  components:
+  - type: Sprite
+    state: hippocratic
+
+- type: entity
+  parent: StatueBaseDecoration
+  id: StatueMarxBustDecoration
+  name: marx bust
+  description: Bust dedicated to the Marx.
+  components:
+  - type: Sprite
+    state: marx

@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseFigurineMech
+  id: ToyAres
+  name: Ares toy
+  description: Mini-Mecha action figure! 'Mecha InteQ. 1/2' is written on the back.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Fun/inteq_mech_figurines.rsi
+      state: ares
+
+- type: entity
+  parent: BaseFigurineMech
+  id: ToyHermes
+  name: Hermes toy
+  description: Mini-Mecha action figure! 'Mecha InteQ. 2/2' is written on the back.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Fun/inteq_mech_figurines.rsi
+      state: hermes

@@ -22,7 +22,7 @@
       types:
         Heat: 5
   - type: TimedDespawn
-    lifetime: 0.2
+    lifetime: 0.27
   - type: PointLight
     radius: 2
     color: purple

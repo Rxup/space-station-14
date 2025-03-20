@@ -1,0 +1,83 @@
+- type: startingGear
+  id: InteQVanguardLeaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitInteQHonorable
+    back: ClothingBackpackInteQ
+    head: ClothingHeadInteQHonorableBeret
+    neck: ClothinNeckCloakInteQ
+    mask: ClothingMaskNeckGaiter
+    eyes: ClothingEyesGogglessInteQ
+    ears: ClothingHeadsetAltInteQ
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterCoatInteQHonorableBattle
+    shoes: ClothingShoesBootsCombatFilled
+    id: InteQVanguardLeaderIDCard
+    pocket1: CigPackInteQ
+    pocket2: WeaponPistolInteQCommissar
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltInteQShieldBelt
+#  innerclothingskirt: ClothingUniformJumpsuitInteQHonorable
+#  satchel: ClothingBackpackSatchelInteQ
+#  duffelbag: ClothingBackpackDuffelInteQ
+
+- type: startingGear
+  id: InteQVanguardOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitInteQOperative
+    back: ClothingBackpackInteQ
+    mask: ClothingMaskNeckGaiter
+    eyes: ClothingEyesGogglessInteQ
+    ears: ClothingHeadsetAltInteQ
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitInteQ
+    shoes: ClothingShoesBootsCombatFilled
+    id: InteQVanguardIDCard
+    pocket1: CigPackInteQ
+    pocket2: WeaponPistolInteQCommissar
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltInteQWebbing
+#  innerclothingskirt: ClothingUniformJumpskirtInteQOperative
+#  satchel: ClothingBackpackSatchelInteQ
+#  duffelbag: ClothingBackpackDuffelInteQ
+
+- type: startingGear
+  id: InteQVanguardSolderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitInteQFormal
+    back: ClothingBackpackInteQ
+    head: ClothingHeadHelmetSwatInteQ
+    mask: ClothingMaskNeckGaiter
+    eyes: ClothingEyesGogglessInteQ
+    ears: ClothingHeadsetInteQ
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    shoes: ClothingShoesBootsCombatFilled
+    id: InteQVanguardIDCard
+    pocket1: CigPackInteQ
+    pocket2: WeaponPistolInteQCommissar
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltInteQWebbing
+#  innerclothingskirt: ClothingUniformJumpskirtInteQFormalDress
+#  satchel: ClothingBackpackSatchelInteQ
+#  duffelbag: ClothingBackpackDuffelInteQ
+
+- type: startingGear
+  id: InteQMedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitInteQMedical
+    back: ClothingBackpackInteQ
+    head: ClothingHeadInteQBeret
+    mask: ClothingMaskBreathMedicalSecurity
+    eyes: ClothingEyesHudMedical
+    ears: ClothingHeadsetInteQ
+    gloves: ClothingHandsGlovesNitrile
+    outerClothing: ClothingOuterCoatInteQMedical
+    shoes: ClothingShoesBootsCombatFilled
+    id: InteQVanguardIDCard
+    pocket1: HandheldHealthAnalyzer
+    pocket2: WeaponPistolInteQCommissar
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltInteQDropPouch
+#  innerclothingskirt: ClothingUniformJumpskirtInteQMedical
+#  satchel: ClothingBackpackSatchelInteQ
+#  duffelbag: ClothingBackpackDuffelInteQMedical
