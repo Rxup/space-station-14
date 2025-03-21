@@ -1,0 +1,77 @@
+# todo: make it differ from baseasteroidmob... somehow???
+- type: entity
+  id: LavalandMobBase
+  parent:
+  - BaseMob
+  - MobDamageable
+  - MobAtmosExposed
+  - MobCombat
+  abstract: true
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch, Ingestion ]
+  - type: Climbing
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - TemporaryBlindness
+    - RadiationProtection
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  id: MobBaseNpcDungeon
+  parent:
+  - MobBaseNpcSalvage
+  - StripableInventoryBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Body
+    prototype: AnimalHuman
+    requiredLegs: 2
+  - type: LayingDown
+    standingUpTime: 5
+  - type: HTN
+    blackboard:
+      VisionRadius: !type:Single
+        36
+      AggroVisionRadius: !type:Single
+        30
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: MeleeWeapon
+    range: 1.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+      fix2:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1
+        hard: false
+        mask:
+        - HighImpassable
+        layer:
+        - MobLayer
+  - type: Inventory
+    templateId: carman

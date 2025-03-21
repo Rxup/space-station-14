@@ -294,3 +294,63 @@
     color: blue
     radius: 7
     energy: 3
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMajorContraband]
+  id: ClothingHeadHelmetHardsuitInteQElite
+  name: elite InteQ hardsuit helmet
+  description: A variant of the syndicate helmet designed by the InteQ to be exceptionally fireproof and pressure proof.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/elite_inteq_hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/elite_inteq_hardsuit.rsi
+  - type: PointLight
+    radius: 6
+    energy: 3
+    color: "#FF8C00"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FlashImmunity
+  - type: EyeProtection
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMajorContraband]
+  id: ClothingHeadHelmetHardsuitInteQ
+  name: InteQ hardsuit helmet
+  description: A variant of the syndicate helmet designed by the InteQ to be exceptionally fireproof and pressure proof.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/inteq_hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/inteq_hardsuit.rsi
+  - type: PointLight
+    radius: 6
+    energy: 3
+    color: "#FF8C00"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FlashImmunity
+  - type: EyeProtection
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMajorContraband]
+  id: ClothingHeadHelmetHardsuitSyndicateInteQ
+  name: InteQ hardsuit helmet
+  description: A variant of the syndicate helmet designed by the InteQ to be exceptionally fireproof and pressure proof.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/inteq_syn_hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/inteq_syn_hardsuit.rsi
+  - type: PointLight
+    radius: 5
+    energy: 3
+    color: "#FF8C00"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FlashImmunity
+  - type: EyeProtection

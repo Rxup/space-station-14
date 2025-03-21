@@ -26,6 +26,7 @@
     - BaseStationSiliconLawNTDefault # Corvax-NTDefault
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
+    - BaseStationDeliveries
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform
@@ -36,10 +37,10 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-    - BaseStationCargo #Backmen
+  #  - BaseStationCargo #Backmen
     - BaseStationJobsSpawning #Backmen
     - BaseStationRecords #Backmen
-    - BaseStationShuttles #Backmen
+  #  - BaseStationShuttles #Backmen
     - BaseStationExpeditions #Backmen
     - BaseStationMagnet #Backmen
   categories: [ HideSpawnMenu ]

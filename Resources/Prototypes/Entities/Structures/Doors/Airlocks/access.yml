@@ -256,7 +256,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsMedical ]
+      board: [ DoorElectronicsVirology ] #backmen
 
 - type: entity
   parent: AirlockChemistry
@@ -668,7 +668,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsMedical ]
+      board: [ DoorElectronicsVirology ] #backmen
 
 - type: entity
   parent: AirlockScienceGlass

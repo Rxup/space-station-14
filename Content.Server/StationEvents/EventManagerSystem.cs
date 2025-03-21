@@ -21,6 +21,7 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!; // backmen: glimmer
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -210,7 +211,7 @@ public sealed class EventManagerSystem : EntitySystem
             if (prototype.Abstract)
                 continue;
 
-            if (!prototype.TryGetComponent<StationEventComponent>(out var stationEvent))
+            if (!prototype.TryGetComponent<StationEventComponent>(out var stationEvent, EntityManager.ComponentFactory))
                 continue;
 
             allEvents.Add(prototype, stationEvent);
@@ -252,7 +253,8 @@ public sealed class EventManagerSystem : EntitySystem
 
         // start-backmen: Glimmer
         if (prototype.TryGetComponent<Backmen.StationEvents.Components.GlimmerEventComponent>(
-                out var glimmerEventComponent))
+                out var glimmerEventComponent,
+                _componentFactory))
         {
             var glimmer = EntityManager.SystemOrNull<Shared.Backmen.Psionics.Glimmer.GlimmerSystem>()?.Glimmer ?? 0;
             var glimmerOn = _configurationManager.GetCVar(Shared.Backmen.CCVar.CCVars.GlimmerEnabled);
@@ -270,6 +272,13 @@ public sealed class EventManagerSystem : EntitySystem
         {
             return false;
         }
+
+        // start-backmen: MaxPlayers
+        if (stationEvent.MaxPlayers.HasValue && playerCount > stationEvent.MaxPlayers.Value)
+        {
+            return false;
+        }
+        // end-backmen: MaxPlayers
 
         if (currentTime != TimeSpan.Zero && currentTime.TotalMinutes < stationEvent.EarliestStart)
         {

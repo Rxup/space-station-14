@@ -224,7 +224,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 2.5
-  - type: Telescope # Ataraxia
+  - type: Telescope # backmen: immersive
 
 - type: entity
   name: EarthGov Experemental X-Ray

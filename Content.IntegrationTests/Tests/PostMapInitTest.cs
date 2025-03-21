@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
@@ -19,6 +20,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.IoC;
+using Robust.Shared.Map.Events;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
 
@@ -41,6 +43,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
+            AdminTestArenaSystem.ArenaMapPath
         };
 
         private static readonly string[] DoNotMapWhitelist =
@@ -56,6 +59,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
             "/Maps/Backmen/corvax_centcomm_bkm.yml",
             "/Maps/Backmen/CentComBackmen.yml",
+            "/Maps/Backmen/backmen_centcom.yml",
             "/Maps/Shuttles/ert_corvaxcentcomm.yml",
             "/Maps/Backmen/ForSale/teamA1.yml",
             "/Maps/Backmen/ForSale/teamB1.yml",
@@ -97,9 +101,11 @@ namespace Content.IntegrationTests.Tests
             //start-backmen
             "CentCommv2",
             "CentCommv3",
+            "CentCommv4",
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust",
+            "BackmenTortuga",
             "BackmenHive",
 			"BackmenShoukou",
 			"BackmenAspid",
@@ -119,7 +125,8 @@ namespace Content.IntegrationTests.Tests
             "Plasma",
             "Elkridge",
             "Convex",
-            "Relic"
+            "Relic",
+            "Lavatest", // Lavaland Change
         };
 
         /// <summary>
@@ -326,7 +333,15 @@ namespace Content.IntegrationTests.Tests
                 return false;
             }
 
-            var reader = new EntityDeserializer(deps, data, DeserializationOptions.Default);
+            var ev = new BeforeEntityReadEvent();
+            deps.Resolve<EntityManager>().EventBus.RaiseEvent(EventSource.Local, ev);
+
+            var reader = new EntityDeserializer(deps,
+                data,
+                DeserializationOptions.Default,
+                ev.RenamedPrototypes,
+                ev.DeletedPrototypes);
+
             if (!reader.TryProcessData())
             {
                 Assert.Fail($"Failed to process {map}");

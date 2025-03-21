@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseStructure
+  id: BoneRibDecoration
+  name: bone rib
+  description: Someones rib, would it be nice to return it to the owner?...
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Structures/Decoration/bone_large.rsi
+    state: rib
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialBones1:
+              min: 1
+              max: 5
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+
+- type: entity
+  parent: BoneRibDecoration
+  id: BoneSkullHalfDecoration
+  name: bone skull
+  description: Someones skull, would it be nice to return it to the owner?...
+  components:
+  - type: Sprite
+    state: skull-half
+
+- type: entity
+  parent: BoneRibDecoration
+  id: BoneSkullDecoration
+  components:
+  - type: Sprite
+    state: skull

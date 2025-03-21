@@ -177,3 +177,19 @@
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/centcom.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseMinorContraband]
+  id: ClothingHeadsetInteQ
+  name: InteQ headset
+  description: Headset used by InteQ forces.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyInteQ
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Backmen/Clothing/Ears/inteq_headset.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Ears/inteq_headset.rsi

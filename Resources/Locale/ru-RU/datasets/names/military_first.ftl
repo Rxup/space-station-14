@@ -1,0 +1,54 @@
+names-military-first-dataset-1 = Прапорщик
+names-military-first-dataset-2 = Старшина
+names-military-first-dataset-3 = Сержант
+names-military-first-dataset-4 = Капрал
+names-military-first-dataset-5 = Ефрейтор
+
+
+name-spets-commander-dataset-1 = Командир
+
+name-spets-operative-dataset-1 = Оперативник
+
+name-spets-dataset-1 = ДипКол
+name-spets-dataset-2 = БитКоп
+name-spets-dataset-3 = Джаз
+name-spets-dataset-4 = Йололо
+name-spets-dataset-5 = Бэйкон
+name-spets-dataset-6 = Квест
+name-spets-dataset-7 = Под
+name-spets-dataset-8 = Нэйл
+name-spets-dataset-9 = Песок
+name-spets-dataset-10 = КьюЭсПи
+name-spets-dataset-11 = Огненный
+name-spets-dataset-12 = Лимo
+name-spets-dataset-13 = Максвел
+name-spets-dataset-14 = Вилд
+name-spets-dataset-15 = Номпад
+name-spets-dataset-16 = Генри
+name-spets-dataset-17 = Стик
+name-spets-dataset-18 = Крейзи
+name-spets-dataset-19 = Даймонд
+name-spets-dataset-20 = Джоджо
+name-spets-dataset-21 = Айзек
+name-spets-dataset-22 = Кларк
+name-spets-dataset-23 = Бёрн
+name-spets-dataset-24 = Джакарта
+name-spets-dataset-25 = Нормандия
+name-spets-dataset-26 = Аквамарин
+name-spets-dataset-27 = Альбатрос
+name-spets-dataset-28 = Барракуда
+name-spets-dataset-29 = Кёрли
+name-spets-dataset-30 = Боб
+name-spets-dataset-31 = Робаст
+name-spets-dataset-32 = Уолтер
+name-spets-dataset-33 = Энджел
+name-spets-dataset-34 = Аткинс
+name-spets-dataset-35 = Аттила
+name-spets-dataset-36 = Краут
+name-spets-dataset-37 = Бальтазар
+name-spets-dataset-38 = Джокер
+name-spets-dataset-39 = Доктор
+name-spets-dataset-40 = Патриот
+name-spets-dataset-41 = Профессор
+name-spets-dataset-42 = Гомес
+name-spets-dataset-43 = Феникс

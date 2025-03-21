@@ -42,6 +42,7 @@
   components:
   - type: Tag
     tags:
+    - Cartridge
     - CartridgePistol9x17
   - type: CartridgeAmmo
     proto: BulletPistol9x17
@@ -68,6 +69,7 @@
   components:
   - type: Tag
     tags:
+    - Cartridge
     - CartridgePistol45ACP
   - type: CartridgeAmmo
     proto: BulletPistolACP
@@ -95,6 +97,7 @@
   components:
   - type: Tag
     tags:
+    - Cartridge
     - CartridgePistol57x28
   - type: CartridgeAmmo
     proto: BulletPistol57x28
@@ -122,6 +125,7 @@
   components:
   - type: Tag
     tags:
+    - Cartridge
     - CartridgePistol50AE
   - type: CartridgeAmmo
     proto: BulletPistol50AE

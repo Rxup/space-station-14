@@ -49,3 +49,11 @@
 - type: font
   id: ZektonRg
   path: /Fonts/ZektonRg.ttf
+
+- type: font
+  id: Tolkiencyr
+  path: /Fonts/_Backmen/tolkiencyr.ttf
+
+- type: font
+  id: Supernatural
+  path: /Fonts/_Backmen/supernatural.ttf

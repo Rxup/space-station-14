@@ -43,7 +43,8 @@
 - type: latheRecipe
   id: SecurityCyberneticEyes
   result: SecurityCyberneticEyes
-  category: Robotics
+  categories:
+  -  Robotics
   completetime: 5
   materials:
     Steel: 1000
@@ -51,6 +52,13 @@
     Plastic: 500
     Gold: 300
     Silver: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol9x17
+  result: MagazinePistol9x17
+  materials:
+    Steel: 200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -68,8 +76,29 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGun9x17
+  result: MagazinePistolSubMachineGun9x17
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolTopSubMachineGun
+  result: MagazinePistolTopSubMachineGun
+  materials:
+    Steel: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazineRifleFamas556UEG
   result: MagazineRifleFamas556UEG
+  materials:
+    Steel: 475
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle556UEG
+  result: MagazineRifle556UEG
   materials:
     Steel: 475
 
@@ -98,6 +127,14 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazineRifle556UEGIncendiary
+  result: MagazineRifle556UEGIncendiary
+  materials:
+    Steel: 25
+    Plastic: 450
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePistol45ACP
   result: MagazinePistol45ACP
   materials:
@@ -110,6 +147,14 @@
   materials:
     Steel: 25
     Plastic: 120
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistol9x17Incendiary
+  result: MagazinePistol9x17Incendiary
+  materials:
+    Steel: 20
+    Plastic: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -174,6 +219,54 @@
   result: MagazinePacketPistol50AE
   materials:
     Steel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistolACPIncendiary
+  result: MagazinePacketPistolACPIncendiary
+  materials:
+    Steel: 100
+    Plastic: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistol9x17Incendiary
+  result: MagazinePacketPistol9x17Incendiary
+  materials:
+    Steel: 100
+    Plastic: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketPistol57x28Incendiary
+  result: MagazinePacketPistol57x28Incendiary
+  materials:
+    Steel: 100
+    Plastic: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle762x39Incendiary
+  result: MagazinePacketRifle762x39Incendiary
+  materials:
+    Steel: 1000
+    Plastic: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle762UEGIncendiary
+  result: MagazinePacketRifle762UEGIncendiary
+  materials:
+    Steel: 1000
+    Plastic: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRifle556UEGIncendiary
+  result: MagazinePacketRifle556UEGIncendiary
+  materials:
+    Steel: 1000
+    Plastic: 1000
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

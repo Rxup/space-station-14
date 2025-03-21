@@ -8,6 +8,7 @@
   - Revolutionaries
   - NuclearOperatives
   - SpaceNinja
+  - Wizard
   - Zombies
   - MinorAntagonists
   - Changelings # backmen
@@ -48,3 +49,8 @@
   id: Thieves
   name: guide-entry-thieves
   text: "/ServerInfo/Guidebook/Antagonist/Thieves.xml"
+
+- type: guideEntry
+  id: Wizard
+  name: guide-entry-wizard
+  text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"

@@ -1,0 +1,26 @@
+- type: entity
+  parent: [ClothingOuterStorageBase, BaseSecurityContraband]
+  id: ClothingOuterSecurityVestHazard
+  name: hi-viz security vest
+  description: A high-visibility vest used in work zones. It has a layer of dense fabric that provides a little protection.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Vests/hazard-sec-vest.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/hazard.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: unshaded
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

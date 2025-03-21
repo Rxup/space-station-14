@@ -706,3 +706,40 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsUEGCommand]
+
+#InteQ
+- type: entity
+  parent: AirlockHatchInteQ
+  id: AirlockHatchInteQVanguardLocked
+  suffix: InteQ, Vanguard, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInteQVanguard ]
+
+- type: entity
+  parent: AirlockHatchInteQ
+  id: AirlockHatchInteQVanguardLeaderLocked
+  suffix: InteQ, Vanguard Leader, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInteQVanguardLeader ]
+
+- type: entity
+  parent: AirlockHatchInteQGlass
+  id: AirlockHatchInteQGlassVanguardLocked
+  suffix: InteQ, Vanguard, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInteQVanguard ]
+
+- type: entity
+  parent: AirlockHatchInteQGlass
+  id: AirlockHatchInteQGlassVanguardLeaderLocked
+  suffix: InteQ, Vanguard Leader, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInteQVanguardLeader ]

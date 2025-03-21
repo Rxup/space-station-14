@@ -97,7 +97,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/TGMCcloak.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakPoncho
@@ -106,7 +106,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/poncho.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakGreenMantie
@@ -115,7 +115,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/mantie.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakBlackCloak
@@ -124,8 +124,8 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/black.rsi
-    
-    
+
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakWhiteCloak
@@ -134,7 +134,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/white.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakSanabi
@@ -143,7 +143,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/sanabi.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakTGMCwhite
@@ -152,3 +152,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/tgmcwhite.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothinNeckCloakInteQ
+  name: InteQ cloak
+  description: Cloak of the members of the InteQ, with a gold lining inside and a stylish gold shield on the back.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Neck/Cloaks/inteq_cloak.rsi

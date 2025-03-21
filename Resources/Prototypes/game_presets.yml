@@ -13,6 +13,7 @@
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: KesslerSyndrome
@@ -30,6 +31,7 @@
     - RampingStationEventScheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: AllAtOnce
@@ -55,6 +57,7 @@
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: AllerAtOnce
@@ -88,6 +91,7 @@
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Extended
@@ -104,6 +108,7 @@
   - MeteorSwarmScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Greenshift
@@ -117,6 +122,7 @@
   - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
   - WageScheduler #backmen: currency
+  - LavalandStormScheduler # Lavaland Change
   - PsiScheduler #backmen: psi
 
 - type: gamePreset
@@ -129,6 +135,7 @@
   description: secret-description
   rules:
     - Secret
+    - BasicStationEventScheduler
 
 - type: gamePreset
   id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
@@ -144,6 +151,7 @@
     - MeteorSwarmScheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
@@ -157,6 +165,7 @@
   - PsiScheduler #backmen: psi
   - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Sandbox
@@ -186,6 +195,7 @@
     - MeteorSwarmScheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Deathmatch
@@ -218,6 +228,7 @@
     - CalmMeteorSwarmScheduler #backmen: calm-scheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Revolutionary
@@ -236,7 +247,23 @@
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - WageScheduler #backmen: currency
+    - LavalandStormScheduler # Lavaland Change
     - PsiScheduler #backmen: psi
+
+- type: gamePreset
+  id: Wizard
+  alias:
+  - wizard
+  name: wizard-title
+  description: wizard-description
+  showInVote: false
+  rules:
+  - Wizard
+  - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Zombie
@@ -257,6 +284,7 @@
   - MeteorSwarmScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Zombieteors
@@ -275,3 +303,4 @@
   - KesslerSyndromeScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change

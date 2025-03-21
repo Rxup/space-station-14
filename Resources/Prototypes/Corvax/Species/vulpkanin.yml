@@ -11,8 +11,8 @@
   skinColoration: Hues
   maleFirstNames: names_vulp_first_male
   femaleFirstNames: names_vulp_first_female
-  maleLastNames: names_vulp_last # Corvax-LastnameGender
-  femaleLastNames: names_vulp_last # Corvax-LastnameGender
+  maleLastNames: names_vulp_last
+  femaleLastNames: names_vulp_last
 
 - type: speciesBaseSprites
   id: MobVulpkaninSprites
