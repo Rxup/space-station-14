@@ -14469,18 +14469,6 @@ entities:
     - type: Transform
       pos: -1.5,2.5
       parent: 1
-- proto: RubberStampInteQ
-  entities:
-  - uid: 2317
-    components:
-    - type: Transform
-      pos: -11.5,-11.5
-      parent: 1
-  - uid: 2318
-    components:
-    - type: Transform
-      pos: 2.7636735,-8.969211
-      parent: 1
 - proto: SalvageHumanCorpseSpawner
   entities:
   - uid: 2319
