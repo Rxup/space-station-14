@@ -99,32 +99,36 @@ public sealed partial class HeadcrabSystem : EntitySystem
         _npcFaction.ClearFactions((args.Equipee, npcFaction), false);
         _npcFaction.AddFaction((args.Equipee, npcFaction), component.HeadcrabFaction);
 
-        component.HasNpc = !EnsureComp<HTNComponent>(args.Equipee, out var htn);
-        htn.RootTask = new HTNCompoundTask { Task = component.TakeoverTask };
-        htn.Blackboard.SetValue(NPCBlackboard.Owner, args.Equipee);
-        _npc.WakeNPC(args.Equipee, htn);
-        _htn.Replan(htn);
+//        component.HasNpc = !EnsureComp<HTNComponent>(args.Equipee, out var htn);
+//        htn.RootTask = new HTNCompoundTask { Task = component.TakeoverTask };
+//        htn.Blackboard.SetValue(NPCBlackboard.Owner, args.Equipee);
+//        _npc.WakeNPC(args.Equipee, htn);
+//        _htn.Replan(htn);
 
         var mindlostMessage = Loc.GetString(component.MindLostMessageSelf);
 
+        var headcrabHasMind = _mindSystem.TryGetMind(uid, out var hostMindId, out var hostMind);
+        var entityHasMind = _mindSystem.TryGetMind(args.Equipee, out var mindId, out var mind);
+
+        if (!entityHasMind && !headcrabHasMind)
+            goto AfterMindTransfer;
+
         if (TryComp<ActorComponent>(args.Equipee, out var actor))
         {
-            var headcrabHasMind = _mindSystem.TryGetMind(uid, out var hostMindId, out var hostMind);
-            var entityHasMind = _mindSystem.TryGetMind(args.Equipee, out var mindId, out var mind);
-
-            if (!entityHasMind && !headcrabHasMind)
+            if (!headcrabHasMind && entityHasMind)
                 return;
 
-            if (headcrabHasMind)
+            if (headcrabHasMind && entityHasMind)
+            {
                 _mindSystem.TransferTo(hostMindId, args.Equipee, mind: hostMind);
-
-            if (entityHasMind)
                 _mindSystem.TransferTo(mindId, uid, mind: mind);
+            }
 
             _popup.PopupPredicted(mindlostMessage,
                 args.Equipee, args.Equipee, PopupType.LargeCaution);
         }
 
+        AfterMindTransfer:
         if (_mobState.IsDead(uid))
             return;
 
@@ -182,12 +186,11 @@ public sealed partial class HeadcrabSystem : EntitySystem
 
         component.EquippedOn = EntityUid.Invalid;
         var combatMode = EnsureComp<CombatModeComponent>(uid);
+//        EnsureComp<HTNComponent>(args.Equipee);
         _combat.SetInCombatMode(uid, true, combatMode);
-        EnsureComp<HTNComponent>(uid, out var htn);
-        htn.RootTask = new HTNCompoundTask { Task = component.TakeoverTask };
 
-        if (component.HasNpc)
-            RemComp<HTNComponent>(args.Equipee);
+//        if (component.HasNpc)
+//            RemComp<HTNComponent>(args.Equipee);
 
         var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.Equipee);
         _npcFaction.RemoveFaction((args.Equipee, npcFaction), component.HeadcrabFaction, false);
