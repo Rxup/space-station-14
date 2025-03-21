@@ -1,4 +1,4 @@
-﻿- type: roleLoadout
+- type: roleLoadout
   id: JobBKCCCargo
   groups:
   - Werx #backmen
@@ -41,4 +41,46 @@
   - Trinkets
   - Survival
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobBkmSurgeon
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
+  - SurgeonHead
+  - MedicalMask
+  - SurgeonJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - SurgeonOuterClothing
+  - MedicalShoes
+  - Glasses
+  - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobBkmVirologist
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - BkmVirologistJumpsuit
+  - MedicalGloves
+  - VirologistOuterClothing
+  - VirologistBackpack
+  - MedicalShoes
+  - Glasses
+  - Medals #backmen
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts

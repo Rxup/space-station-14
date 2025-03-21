@@ -14,6 +14,9 @@
       "name": "idcardiog"
     },
     {
+      "name": "idvirologist"
+    },
+    {
       "name": "idblueshield"
     },
     {
@@ -81,6 +84,9 @@
     },
     {
         "name": "iduegofficer"
+    },
+    {
+        "name": "idsurgeon"
     }
   ]
 }
