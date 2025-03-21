@@ -72,7 +72,6 @@
 
 - type: gameMap
   id: CentCommv4
-  isGrid: false
   mapName: 'Central Command'
   mapPath: /Maps/Backmen/backmen_centcom.yml
   minPlayers: 10
