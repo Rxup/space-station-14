@@ -1,5 +1,5 @@
 - type: entity
-  name: Солдат Синдиката
+  name: syndicate solder
   parent: BaseMobHuman
   suffix: AI
   id: MobPMCSindy
@@ -96,3 +96,202 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
+
+- type: entity
+  parent: MobBaseNpc
+  id: MobSimpleSyndicateBlade
+  name: syndicate solder
+  suffix: AI, Энергетический меч
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - state: male_template
+          sprite: Backmen/Mobs/Npc/Base.rsi
+        - state: alive
+          sprite: Backmen/Mobs/Npc/simple_syndicate/blade.rsi
+    - type: NpcFactionMember
+      factions:
+        - SuperZloy
+    - type: RandomMetadata
+      nameSegments:
+      - SyndicateZvanieSuperNormalAgent
+      - names_last_male
+    - type: Damageable
+      damageModifierSet: NPCLightArmor
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: InnateTool
+      tools:
+        - id: EnergySword
+    - type: Reflect
+      reflectProb: 0.95
+      reflects:
+        - Energy
+    - type: MeleeWeapon
+      angle: 0
+      animation: WeaponArcSmash
+      soundHit:
+          path: /Audio/Weapons/eblade1.ogg
+      damage:
+          types:
+            Heat: 12
+
+- type: entity
+  parent: MobBaseNpc
+  id: MobSimpleSyndicateKnife
+  name: syndicate solder
+  suffix: AI, Ножик
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - state: male_template
+          sprite: Backmen/Mobs/Npc/Base.rsi
+        - state: alive
+          sprite: Backmen/Mobs/Npc/simple_syndicate/knife.rsi
+    - type: NpcFactionMember
+      factions:
+        - SuperZloy
+    - type: RandomMetadata
+      nameSegments:
+      - SyndicateZvanieSuperNormalAgent
+      - names_last_male
+    - type: Damageable
+      damageModifierSet: NPCLightArmor
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: InnateTool
+      tools:
+        - id: CombatKnife
+    - type: MeleeWeapon
+      angle: 0
+      animation: WeaponArcSmash
+      soundHit:
+          path: /Audio/Weapons/bladeslice.ogg
+      damage:
+          types:
+            Blunt: 5
+            Piercing: 5
+
+- type: entity
+  parent: MobBaseNpc
+  id: MobSimpleSyndicatePistol
+  name: syndicate solder
+  suffix: AI, Пистолет
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - state: male_template
+          sprite: Backmen/Mobs/Npc/Base.rsi
+        - state: alive
+          sprite: Backmen/Mobs/Npc/simple_syndicate/pistol.rsi
+    - type: NpcFactionMember
+      factions:
+        - SuperZloy
+    - type: RandomMetadata
+      nameSegments:
+      - SyndicateZvanieSuperNormalAgent
+      - names_last_male
+    - type: Damageable
+      damageModifierSet: NPCLightArmor
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: InnateTool
+      tools:
+        - id: WeaponPistolViper
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistol
+      capacity: 60
+      count: 60
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns64/Pistols/vp70_shot.ogg
+
+- type: entity
+  parent: MobBaseNpc
+  id: MobSimpleSyndicateShotgun
+  name: syndicate solder
+  suffix: AI, Дробовик
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - state: male_template
+          sprite: Backmen/Mobs/Npc/Base.rsi
+        - state: alive
+          sprite: Backmen/Mobs/Npc/simple_syndicate/shotgun.rsi
+    - type: NpcFactionMember
+      factions:
+        - SuperZloy
+    - type: RandomMetadata
+      nameSegments:
+      - SyndicateZvanieSuperNormalAgent
+      - names_last_male
+    - type: Damageable
+      damageModifierSet: NPCLightArmor
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: InnateTool
+      tools:
+        - id: WeaponShotgunKammerer # No bulldog
+    - type: BasicEntityAmmoProvider
+      proto: PelletShotgunSlug
+      capacity: 60
+      count: 60
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns64/Shotguns/t35.ogg
+
+- type: entity
+  parent: MobBaseNpc
+  id: MobSimpleSyndicateSMG
+  name: syndicate solder
+  suffix: AI, СМГ
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - state: male_template
+          sprite: Backmen/Mobs/Npc/Base.rsi
+        - state: alive
+          sprite: Backmen/Mobs/Npc/simple_syndicate/smg.rsi
+    - type: NpcFactionMember
+      factions:
+        - SuperZloy
+    - type: RandomMetadata
+      nameSegments:
+      - SyndicateZvanieSuperNormalAgent
+      - names_last_male
+    - type: Damageable
+      damageModifierSet: NPCLightArmor
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: InnateTool
+      tools:
+        - id: WeaponSubMachineGunAtreides # No C-20
+    - type: BasicEntityAmmoProvider
+      proto: BulletLightRifle
+      capacity: 60
+      count: 60
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns64/SMGs/mp7.ogg

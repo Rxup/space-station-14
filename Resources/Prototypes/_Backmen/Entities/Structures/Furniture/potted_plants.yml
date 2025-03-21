@@ -24,6 +24,8 @@
     state: hedge
   - type: SpriteFade
   - type: Anchorable
+  - type: Physics
+    canCollide: false
   - type: Transform
     noRot: true
     anchored: true
