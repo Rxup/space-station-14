@@ -170,7 +170,7 @@
   icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi, state: dart-syringe-gun }
   productEntity: DartSyringeGun
   cost:
-    Telecrystal: 30 # goob
+    Telecrystal: 7
   categories:
   - UplinkChemicals
   conditions:
@@ -181,3 +181,27 @@
     - Psychologist
     - Chemist
     - Paramedic
+
+- type: listing
+  id: UplinkCQCManual
+  name: uplink-cqc-name
+  description: uplink-cqc-desc
+  productEntity: CQCManual
+  cost:
+    Telecrystal: 6
+  discountDownTo:
+    Telecrystal: 4
+  categories:
+    - UplinkDisruption
+
+- type: listing
+  id: UplinkSleepingCarp
+  name: uplink-sleeping-carp-name
+  description: uplink-sleeping-carp-desc
+  productEntity: SleepingCarpScroll
+  cost:
+    Telecrystal: 12
+  discountDownTo:
+    Telecrystal: 9
+  categories:
+    - UplinkDisruption

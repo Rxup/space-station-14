@@ -36,6 +36,7 @@
         - id: MagazineRifle762UEG
           amount: 5
         - id: BoxHandcuff
+        - id: BSOManual
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -155,6 +156,7 @@
         - id: WeaponRifleLecterPan
         - id: MagazineRiflePan
           amount: 4
+        - id: BSOManual
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -253,6 +255,7 @@
         - id: WeaponShotgunAA12
         - id: MagazineShotgunMagnum12
           amount: 6
+        - id: BSOManual
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -277,6 +280,7 @@
         - id: BoxHandcuff
         - id: C4
           amount: 4
+        - id: BSOManual
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -297,6 +301,7 @@
         - id: MedkitCombatFilled
           amount: 3
         - id: BoxHandcuff
+        - id: BSOManual
 
 - type: entity
   categories: [ HideSpawnMenu ]
