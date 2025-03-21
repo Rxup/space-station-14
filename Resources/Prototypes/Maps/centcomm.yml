@@ -70,3 +70,25 @@
 #          BKCCAssistant: [ 2, 4]
 #          BKCCAdmiral: [ 0, 0]
 
+- type: gameMap
+  id: CentCommv4
+  mapName: 'Central Command'
+  mapPath: /Maps/Backmen/backmen_centcom.yml
+  minPlayers: 10
+  stations:
+    centcomm:
+      stationProto: NanotrasenCentralCommand
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Central Command {1}'
+          nameGenerator:
+            !type:NanotrasenCentComNameGenerator
+            prefixCreator: 'TG'
+        - type: StationJobs
+          availableJobs:
+            BKCCOperator: [ 0, 0]
+            BKCCSecGavna: [ 0, 0]
+            BKCCCargo: [ 0, 0]
+            BKCCSecOfficer: [ 0, 0]
+            BKCCAssistant: [ 0, 1]
+            BKCCAdmiral: [ 0, 0]
