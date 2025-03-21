@@ -201,3 +201,166 @@
         Piercing: 0.90
         Heat: 0.70
         Caustic: 0.90
+
+- type: entity
+  parent: LavalandEquipmentExplorerSuit
+  id: LavalandEquipmentExplorerSuitReinforcedHEV
+  suffix: Reinforced HEV
+  name: H.E.V. Mark - 1
+  description: Explorer suit enhanced with HEV suit pieces.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Equipment/explorer_suit.rsi
+    state: hev1-icon
+  - type: Clothing
+    sprite: _Lavaland/Equipment/explorer_suit.rsi
+    equippedState: hev1-equipped-OUTERCLOTHING
+    equipSound: /Audio/Backmen/test/base/ogg/blackmesa/hev/01_hev_logon.ogg
+    quickEquip: false
+    equipDelay: 10
+    unequipDelay: 10
+  - type: ClothingSpeedModifier
+    walkModifier: 1.3
+    sprintModifier: 1.0
+  - type: Insulated
+  - type: Geiger
+    showControl: true
+    showExamine: true
+    isEnabled: true
+  - type: RadiationReceiver
+  - type: ToggleableClothing
+    clothingPrototype: LavalandEquipmentExplorerHoodReinforcedHEV
+  - type: Construction
+    graph: ExplorerSuit
+    node: reinforcedhev
+
+- type: entity
+  parent: LavalandEquipmentExplorerHood
+  id: LavalandEquipmentExplorerHoodReinforcedHEV
+  suffix: Reinforced HEV
+  name: H.E.V. Helmet
+  description: An armoured hood for exploring harsh environments. Modified by HEV pieces.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Equipment/explorer_suit.rsi
+    state: icon_head
+  - type: Clothing
+    sprite: _Lavaland/Equipment/explorer_suit.rsi
+    equippedState: hev1-equipped-HELMET
+  - type: EyeProtection
+  - type: FlashImmunity
+
+- type: entity
+  parent: LavalandEquipmentExplorerSuitReinforcedHEV
+  id: LavalandEquipmentExplorerSuitReinforcedHEV2
+  suffix: Reinforced HEV2
+  name: H.E.V. Mark - 2
+  description: Explorer suit with many elements of the HEV suit.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Equipment/explorer_suit.rsi
+    state: hev2-icon
+  - type: Clothing
+    sprite: _Lavaland/Equipment/explorer_suit.rsi
+    equippedState: hev2-equipped-OUTERCLOTHING
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.75
+        Heat: 0.2
+        Cold: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+        Stun: 0.7
+  - type: ClothingGrant
+    component:
+    - type: FleshWorm
+      paralyzeTime: 0
+      soundWormJump:
+        path: /Audio/Backmen/test/base/ogg/blackmesa/hev/longjump_pick.ogg
+      chansePounce: 0
+      damage:
+        types:
+          Piercing: 0
+      actionWormJump: ActionLongjumpModule
+  - type: PreventChasmFalling
+    deleteOnUse: false
+  - type: ToggleableClothing
+    clothingPrototype: LavalandEquipmentExplorerHoodReinforcedHEV2
+  - type: Construction
+    graph: ExplorerSuit
+    node: reinforcedhev2
+
+- type: entity
+  id: ActionLongjumpModule
+  name: Longjump module
+  description: Jump into mouse target
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: WorldTargetAction
+      icon: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi/icon.png
+      itemIconStyle: NoItem
+      event: !type:FleshWormJumpActionEvent
+      useDelay: 15
+      range: 160
+
+- type: entity
+  parent: LavalandEquipmentExplorerHoodReinforcedHEV
+  id: LavalandEquipmentExplorerHoodReinforcedHEV2
+  name: защитный шлем H.E.V.
+  description: Hazardous Environment Suit — закрывающий всё тело защитный костюм, разработанный в Чёрной Мезе для защиты учёных, работающих в опасных условиях.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
+    equippedState: equipped-HELMET
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.7
+        Cold: 0.7
+        Radiation: 0.1
+        Caustic: 0.1
+
+- type: entity
+  parent: LavalandEquipmentExplorerSuitReinforcedHEV2
+  id: LavalandEquipmentExplorerSuitReinforcedHEV3
+  suffix: Reinforced HEV3
+  name: H.E.V. Mark - 3
+  description: Explorer suit with many elements of the HEV suit.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
+    equippedState: equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: LavalandEquipmentExplorerHoodReinforcedHEV3
+  - type: Construction
+    graph: ExplorerSuit
+    node: reinforcedhev3
+
+- type: entity
+  parent: LavalandEquipmentExplorerHoodReinforcedHEV2
+  id: LavalandEquipmentExplorerHoodReinforcedHEV3
+  name: защитный шлем H.E.V.
+  description: Hazardous Environment Suit — закрывающий всё тело защитный костюм, разработанный в Чёрной Мезе для защиты учёных, работающих в опасных условиях.
+  components:
+  - type: ClothingGrant
+    component:
+    - type: SolutionRegeneration
+      solution: chemicals
+      generated:
+        reagents:
+        - ReagentId: TranexamicAcidPlus
+          Quantity: 0.2
