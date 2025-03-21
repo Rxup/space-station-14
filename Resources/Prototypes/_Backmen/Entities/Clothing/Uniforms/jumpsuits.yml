@@ -905,6 +905,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSurgeon
+  name: surgeon jumpsuit
+  description: A jumpsuit specifically for a station surgeon.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/surgeon_jumpsuit.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/surgeon_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitInteQFormal
   name: InteQ formal suit
   description: The InteQ uniform is made in an elegant style, it's even a pity to do badass tricks in this.
