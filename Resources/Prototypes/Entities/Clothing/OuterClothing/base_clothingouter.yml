@@ -125,7 +125,12 @@
     - Hand
     - Leg
     - Foot
-    dismembermentChanceDeduction: 0.2 # having a suit on saves your limbs
+    traumaDeductions:
+      Dismemberment: 0.21 # hardsuits hold your limbs tightly and intact, thus is harder to dismember;
+      OrganDamage: 0
+      BoneDamage: -0.14 # Therefore, to balance this out, civilian hardsuits not having good weight distribution hurt your bones and make them easier to damage with kinetic force
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.7

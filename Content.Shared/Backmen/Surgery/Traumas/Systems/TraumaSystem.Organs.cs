@@ -1,20 +1,15 @@
 ﻿using System.Linq;
-using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public partial class TraumaSystem
 {
-    private const float OrganDamageSeverityThreshold = 12f;
-
     private void InitOrgans()
     {
         SubscribeLocalEvent<OrganComponent, OrganDamageSeverityChanged>(OnOrganSeverityChanged);
-        SubscribeLocalEvent<OrganComponent, OrganDamagePointChangedEvent>(SomeOtherShitHappensHere);
+        SubscribeLocalEvent<OrganComponent, OrganIntegrityChangedEvent>(SomeOtherShitHappensHere);
     }
 
     #region Event handling
@@ -36,7 +31,7 @@ public partial class TraumaSystem
         QueueDel(organ);
     }
 
-    private void SomeOtherShitHappensHere(EntityUid organ, OrganComponent comp, OrganDamagePointChangedEvent args)
+    private void SomeOtherShitHappensHere(EntityUid organ, OrganComponent comp, OrganIntegrityChangedEvent args)
     {
         // When we get to this, make some organs work worse based on their state (of course you won't be able to breathe THAT good when your lung is pierced by a .50cal)
     }
@@ -54,12 +49,14 @@ public partial class TraumaSystem
         if (organComp.OrganIntegrity == newIntegrity)
             return false;
 
-        organComp.OrganIntegrity = newIntegrity;
-        var ev = new OrganDamagePointChangedEvent(organ, organComp.OrganIntegrity, severity);
+        var ev = new OrganIntegrityChangedEvent((organ, organComp), organComp.OrganIntegrity, newIntegrity);
         RaiseLocalEvent(organ, ref ev, true);
+
+        organComp.OrganIntegrity = newIntegrity;
 
         UpdateOrganIntegrity(organ, organComp);
         Dirty(organ, organComp);
+
         return true;
     }
 
@@ -126,35 +123,6 @@ public partial class TraumaSystem
         return true;
     }
 
-    public bool RandomOrganTraumaChance(EntityUid target, EntityUid woundInflicter, WoundableComponent woundable, FixedPoint2 severity)
-    {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // No entity to apply pain to
-
-        if (severity < OrganDamageSeverityThreshold)
-            return false;
-
-        var totalIntegrity =
-            _body.GetPartOrgans(target, bodyPart)
-                .Aggregate((FixedPoint2)0, (current, organ) => current + organ.Component.OrganIntegrity);
-
-        if (totalIntegrity <= 0) // No surviving organs
-            return false;
-
-        // organ damage is like, very deadly, but not yet
-        // so like, like, yeah, we don't want a disabler to induce some EVIL ASS organ damage with a 0,000001% chance and ruin your round
-        // Very unlikely to happen if your woundables are in a good condition
-        var chance =
-            FixedPoint2.Clamp(
-                woundable.WoundableIntegrity / woundable.IntegrityCap / totalIntegrity
-                + Comp<WoundComponent>(woundInflicter).TraumasChances[TraumaType.OrganDamage],
-                0,
-                1);
-
-        return _random.Prob((float) chance);
-    }
-
     #endregion
 
     #region Private API
@@ -162,8 +130,6 @@ public partial class TraumaSystem
     private void UpdateOrganIntegrity(EntityUid uid, OrganComponent organ)
     {
         var oldIntegrity = organ.OrganIntegrity;
-
-        // Makes more sense for this to just multiply the value no?
         organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
                 .Aggregate((FixedPoint2) 0, (current, modifier) => current + modifier.Value),
                 0,
@@ -171,7 +137,7 @@ public partial class TraumaSystem
 
         if (oldIntegrity != organ.OrganIntegrity)
         {
-            var ev = new OrganDamagePointChangedEvent(uid, organ.OrganIntegrity, organ.OrganIntegrity - oldIntegrity);
+            var ev = new OrganIntegrityChangedEvent((uid, organ), oldIntegrity, organ.OrganIntegrity);
             RaiseLocalEvent(uid, ref ev, true);
 
             // TODO: might want also to raise the event on the woundable.
@@ -189,8 +155,9 @@ public partial class TraumaSystem
 
         if (nearestSeverity != organ.OrganSeverity)
         {
-            var ev = new OrganDamageSeverityChanged(uid, organ.OrganSeverity, nearestSeverity);
+            var ev = new OrganDamageSeverityChanged((uid, organ), organ.OrganSeverity, nearestSeverity);
             RaiseLocalEvent(uid, ref ev, true);
+
             // TODO: might want also to raise the event on the woundable.
         }
         organ.OrganSeverity = nearestSeverity;

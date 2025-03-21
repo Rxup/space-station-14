@@ -19,7 +19,7 @@ namespace Content.Server.Backmen.Body.Systems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<EyesComponent, OrganDamagePointChangedEvent>(OnOrganDamagePointChanged);
+            SubscribeLocalEvent<EyesComponent, OrganIntegrityChangedEvent>(OnOrganDamagePointChanged);
             SubscribeLocalEvent<EyesComponent, OrganEnabledEvent>(OnOrganEnabled);
             SubscribeLocalEvent<EyesComponent, OrganDisabledEvent>(OnOrganDisabled);
             SubscribeLocalEvent<EyesComponent, EntGotRemovedFromContainerMessage>(OnEyesRemoved);
@@ -44,9 +44,9 @@ namespace Content.Server.Backmen.Body.Systems
         }
 
         // Too much shit would break if I were to nuke blindablecomponent rn. Guess we shitcoding this one.
-        private void OnOrganDamagePointChanged(EntityUid uid, EyesComponent component, OrganDamagePointChangedEvent args)
+        private void OnOrganDamagePointChanged(EntityUid uid, EyesComponent component, OrganIntegrityChangedEvent args)
         {
-            if (args.CurrentSeverity <= 0
+            if (args.NewIntegrity <= 0
                 || !TryComp(uid, out OrganComponent? organ)
                 || !organ.Body.HasValue
                 || !TryComp(organ.Body.Value, out BlindableComponent? blindable)

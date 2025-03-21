@@ -824,7 +824,12 @@
     - Hand
     - Leg
     - Foot
-    dismembermentChanceDeduction: 1
+    traumaDeductions:
+      Dismemberment: 1 # laughs in armour
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.1

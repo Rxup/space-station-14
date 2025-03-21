@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -388,6 +389,12 @@ public partial class SharedBodySystem
         {
             if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
                 continue;
+
+            var bone = woundable.Bone!.ContainedEntities.FirstOrNull();
+            if (TryComp<BoneComponent>(bone, out var boneComp))
+            {
+                _trauma.SetBoneIntegrity(bone.Value, boneComp.IntegrityCap, boneComp);
+            }
 
             _woundSystem.TryHaltAllBleeding(bodyPart.Id, woundable);
             _woundSystem.ForceHealWoundsOnWoundable(bodyPart.Id, out _);

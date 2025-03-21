@@ -806,7 +806,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: -1
+    traumaDeductions:
+      Dismemberment: -1 # -(-1) = 1; AKA, 100% chance to gib someone's head
+      OrganDamage: -1 # :fort:
+      BoneDamage: -1
+      VeinsDamage: -1
+      NerveDamage: -1
     modifiers:
       coefficients:
         Caustic: 0.9

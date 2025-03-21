@@ -68,7 +68,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.07 # kinda saves you
+    traumaDeductions:
+      Dismemberment: 0.07
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -155,10 +160,15 @@
   - type: Armor #Copied from the sec helmet, as it's hard to give these sane values without locational damage existing.
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.2
+    traumaDeductions:
+      Dismemberment: 0.17
+      OrganDamage: 0.34
+      BoneDamage: 0.34 # Designed to protect your skull and the brain. kinda, at least from shrapnel
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.75
+        Blunt: 0.5
+        Slash: 0.55
         Piercing: 0.75
-        Heat: 0.7
+        Heat: 0.65

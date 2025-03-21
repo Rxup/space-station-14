@@ -422,15 +422,6 @@ public sealed partial class WoundSystem
         }
 
         // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
-        if (wound.CanApplyTrauma && severity > 0)
-        {
-            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(wound.HoldingWoundable, uid, severity);
-            wound.WoundType =
-                _trauma.TryApplyTrauma(wound.HoldingWoundable, severity, traumasToApply.ToList())
-                    ? WoundType.Internal
-                    : WoundType.External;
-        }
-        // wounds that cause traumas are separated from those that don't.
 
         var holdingWoundable = wound.HoldingWoundable;
         CheckSeverityThresholds(uid, wound);
@@ -573,7 +564,12 @@ public sealed partial class WoundSystem
             else
             {
                 // Destroy it
-                _trauma.ApplyDamageToOrgan(organ.Id, organ.Component.OrganIntegrity, organ.Component);
+                _trauma.TrySetOrganDamageModifier(
+                    organ.Id,
+                    organ.Component.OrganIntegrity * 100,
+                    woundable,
+                    "LETMETELLYOUHOWMUCHIVECOMETOHATEYOUSINCEIBEGANTOLIVE",
+                    organ.Component);
             }
         }
     }
@@ -840,14 +836,6 @@ public sealed partial class WoundSystem
             return false;
 
         SetWoundSeverity(wound, woundSeverity, woundComponent);
-        if (woundComponent.CanApplyTrauma)
-        {
-            var traumasToApply = traumaList ?? _trauma.RandomTraumaChance(target, wound, woundSeverity, woundableComponent);
-            woundComponent.WoundType =
-                _trauma.TryApplyTrauma(target, woundSeverity, traumasToApply.ToList())
-                    ? WoundType.Internal
-                    : WoundType.External;
-        }
 
         var woundMeta = MetaData(wound);
         var targetMeta = MetaData(target);

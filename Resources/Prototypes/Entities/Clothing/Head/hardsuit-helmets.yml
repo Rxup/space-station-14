@@ -392,7 +392,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -439,7 +444,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42 # equivalent to HoS trauma protection
+      OrganDamage: 0.42
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients: # this should protect you REALLY weeell
         Blunt: 0.4
@@ -468,7 +478,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0.14
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -504,7 +519,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -533,7 +553,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -562,7 +587,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 1
+    traumaDeductions:
+      Dismemberment: 1 # prevents traumas at all (kinda)
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.25
@@ -591,7 +621,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 1
+    traumaDeductions:
+      Dismemberment: 0.27
+      OrganDamage: 0.27
+      BoneDamage: 0.16
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -664,7 +699,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -702,7 +742,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.27 # Designed to protect you from most incidents, hence has more trauma protection, trading them for dismemberment protection
+      OrganDamage: 0.27
+      BoneDamage: 0.42
+      VeinsDamage: 0
+      NerveDamage: 0.42
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -740,7 +785,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -796,7 +846,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 0.4
+    traumaDeductions:
+      Dismemberment: 0.21
+      OrganDamage: 0.21
+      BoneDamage: 0.21
+      VeinsDamage: 0
+      NerveDamage: 0.42 # To protect you from fire
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -828,7 +883,12 @@
   - type: Armor
     coverage:
     - Head
-    dismembermentChanceDeduction: 1
+    traumaDeductions:
+      Dismemberment: 1 # self-explanatory
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.3

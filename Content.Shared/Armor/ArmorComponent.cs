@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
@@ -45,7 +46,14 @@ public sealed partial class ArmorComponent : Component
     public List<BodyPartType> ArmorCoverage = new();
 
     [DataField]
-    public FixedPoint2 DismembermentChanceDeduction = 0;
+    public Dictionary<TraumaType, FixedPoint2> TraumaDeductions = new()
+    {
+        { TraumaType.Dismemberment, 0 },
+        { TraumaType.BoneDamage, 0 },
+        { TraumaType.OrganDamage, 0 },
+        { TraumaType.VeinsDamage, 0 },
+        { TraumaType.NerveDamage, 0 },
+    };
 }
 
 /// <summary>
