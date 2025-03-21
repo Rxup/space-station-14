@@ -1087,8 +1087,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
   - uid: 3
-    mapInit: true
-    paused: true
     components:
     - type: MetaData
       name: solution - food
@@ -12967,8 +12965,6 @@ entities:
 - proto: Paper
   entities:
   - uid: 2
-    mapInit: true
-    paused: true
     components:
     - type: MetaData
       desc: Официальная бумага.
