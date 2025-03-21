@@ -394,6 +394,17 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadDarkSurgeonHat
+  name: dark surgeon hat
+  description: The surgeon's black headdress also has a small mirror. 
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/surgeon_hat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/surgeon_hat.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseMinorContraband]
   id: ClothingHeadInteQBeret
   name: InteQ beret
   description: Brown beret with a gold emblem on it.
