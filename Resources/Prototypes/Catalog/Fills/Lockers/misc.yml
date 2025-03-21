@@ -169,6 +169,10 @@
     - !type:NestedSelector
       tableId: BackmenMaintLoot
       prob: 0.2
+    # InteQ Loot | Backmen
+    - !type:NestedSelector
+      tableId: InteQMaintLoot
+      prob: 0.05
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.01

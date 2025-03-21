@@ -10,7 +10,7 @@ namespace Content.IntegrationTests.Tests.Backmen;
 [TestOf(typeof(RandomMetadataSystem))]
 public sealed partial class LocaleRu
 {
-    [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,]+$", RegexOptions.Compiled)]
+    [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,!]+$", RegexOptions.Compiled)]
     private static partial Regex GeneratedRegex();
 
     [Test]
@@ -31,12 +31,14 @@ public sealed partial class LocaleRu
             {
                 if(entProto.ID is
                    "BorgChassisGeneric"
+                   or "BorgChassisSelectable"
                    or "BorgChassisMedical"
                    or "PlayerBorgDerelict"
                    or "FoodCookieFortune"
                    or "BorgChassisService"
                    or "BorgChassisEngineer"
                    or "BorgChassisJanitor"
+                   or "PlayerBorgDerelictGhostRole"
                    )
                     continue;
                 if (!entProto.TryGetComponent<RandomMetadataComponent>(out var component, compFactory))

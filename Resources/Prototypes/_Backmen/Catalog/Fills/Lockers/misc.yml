@@ -1,0 +1,47 @@
+- type: entityTable
+  id: InteQMaintLoot
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: ClothingBackpackInteQ
+      - id: ClothingBackpackDuffelInteQ
+      - id: ClothingBackpackSatchelInteQ
+    - !type:GroupSelector
+      children:
+      - id: ClothingHeadHatInteQSoft
+      - id: ClothingHeadHatInteQMAA
+      - id: ClothingHeadInteQHonorableBeret
+      - id: ClothingHeadInteQBeret
+    - !type:GroupSelector
+      children:
+      - id: ClothingUniformJumpsuitInteQFormal
+      - id: ClothingUniformJumpskirtInteQFormalDress
+      - id: ClothingUniformJumpsuitInteQHonorable
+    - !type:GroupSelector
+      children:
+      - id: ClothingUniformJumpsuitInteQMedical
+      - id: ClothingUniformJumpskirtInteQMedical
+    - !type:GroupSelector
+      children:
+      - id: ClothingUniformJumpsuitInteQOperative
+      - id: ClothingUniformJumpskirtInteQOperative
+    - !type:GroupSelector
+      children:
+      - id: ClothingOuterCoatInteQBattle
+      - id: ClothingOuterCoatInteQMedical
+      - id: ClothingOuterWinterInteQ
+      - id: ClothingOuterHoodieInteQ
+    - !type:GroupSelector
+      children:
+      - id: ClothingBeltInteQWebbing
+        prob: 0.005
+      - id: ClothingBeltInteQDropPouch
+        prob: 0.005
+    - id: ItemFlagMiniInteQ
+    - id: FoodSnackInteQCookies
+    - id: CigPackInteQ
+    - id: ClothinNeckCloakInteQ
+      prob: 0.005
+    - id: BoxInteQEVA
+      prob: 0.005

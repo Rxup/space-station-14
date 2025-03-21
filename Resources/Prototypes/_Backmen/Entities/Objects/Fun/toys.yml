@@ -565,3 +565,21 @@
       sprite: Objects/Weapons/Melee/Throngler-in-hand.rsi
     - type: DisarmMalus
       malus: 0
+
+- type: entity
+  parent: BaseItem
+  id: BalloonInteQ
+  name: InteQ balloon
+  description: Merch, it looks cool.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Fun/inteq_balloon.rsi
+    state: inteq
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Fun/inteq_balloon.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Tag
+    tags:
+    - Balloon

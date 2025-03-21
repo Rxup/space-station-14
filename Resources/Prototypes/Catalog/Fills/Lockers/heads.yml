@@ -42,27 +42,27 @@
       prob: 0.25
     - id: ClothingBeltSheathFilled
     - id: ClothingHeadsetAltCommand
-    - id: ClothingOuterArmorCaptainCarapace
+#    - id: ClothingOuterArmorCaptainCarapace # Backmen-CaptainDrobe
     - id: CommsComputerCircuitboard
     - id: DoorRemoteCommand
-    - id: MedalCase
+#    - id: MedalCase # Backmen-CaptainDrobe
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: PlushieNuke
       prob: 0.1
-    - id: RubberStampCaptain
+#    - id: RubberStampCaptain # Backmen-CaptainDrobe
     - id: SpaceCash1000
     - id: WeaponDisabler
-    - id: ClothingEyesGlassesCommand
+#    - id: ClothingEyesGlassesCommand # Backmen-CaptainDrobe
     - id: Eftpos # backmen
     # Corvax-Resprite-Start
-    - id: ClothingHeadCaptainHat
-    - id: ClothingOuterCoatCaptain
+#    - id: ClothingHeadCaptainHat # Backmen-CaptainDrobe
+#    - id: ClothingOuterCoatCaptain # Backmen-CaptainDrobe
     # Corvax-Resprite-End
     - id: AntiPsychicKnife  # backmen
     - id: ClothingHeadCage # backmen
     - id: HandheldReinforcementCentCom # backmen
-    - id: ClothingEyesGlassesCommand
+#    - id: ClothingEyesGlassesCommand # Backmen - Because dublicate (56)???
 
 # No laser table + Laser table
 - type: entityTable
@@ -303,6 +303,7 @@
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackOracle # backmen
     - id: FlatpackSophie # backmen
+    - id: BoxBodyBagRadiation # Backmen-AdvancedBodyBags
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
