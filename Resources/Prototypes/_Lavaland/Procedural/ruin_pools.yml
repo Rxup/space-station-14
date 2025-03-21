@@ -11,7 +11,7 @@
     BiodomeBeach: 2
     BiodomeSnow: 2
     GolemShuttle: 2
-    ToyShop: 1    
+    ToyShop: 1
     Chemistry: 2
     LavaLake: 3
     Graveyard: 1
@@ -25,6 +25,16 @@
     Shelter: 4
     OwOLab: 1
     MiningPost: 3
-    InteQSizo: 1 # Backmen
+    #Backmen-edit-start
+    InteQSizo: 1
+    BlackMesaResearchFacility: 1
+    BlackMesaOutpost: 2
+    BlackMesaSpot: 4
+    BlackMesaSpot2: 4
+    BlackMesaMet: 2
+    BlackMesaResearchOblom: 2
+    BlackMesaResearchShuttleCrush: 4
+    BlackMesaTelega: 4
+    #Backmen-edit-end
   dungeonRuins:
     CommonRuin5x5: 60

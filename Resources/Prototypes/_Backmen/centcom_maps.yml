@@ -2,6 +2,7 @@
 - type: weightedRandom
   id: DefaultCentcomPool
   weights:
-    CentComm: 0.5
+#    CentComm: 0.5
 #    CentCommv2: 0.35
 #    CentCommv3: 0.7
+    CentCommv4: 1.0

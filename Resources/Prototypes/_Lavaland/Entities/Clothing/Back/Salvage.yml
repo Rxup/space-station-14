@@ -1,0 +1,58 @@
+- type: entity
+  parent: ClothingBackpackSatchelSalvage
+  id: ClothingBackpackSatchelSalvageUpgraded
+  suffix: Upgraded
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,7,4
+
+- type: entity
+  parent: ClothingBackpackSatchelSalvageUpgraded
+  id: ClothingBackpackSatchelSalvageUpgraded2
+  suffix: Upgraded2
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,9,5
+
+- type: entity
+  parent: ClothingBackpackSalvage
+  id: ClothingBackpackSalvageUpgraded
+  suffix: Upgraded
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,7,4
+
+- type: entity
+  parent: ClothingBackpackSalvageUpgraded
+  id: ClothingBackpackSalvageUpgraded2
+  suffix: Upgraded2
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,9,5
+
+- type: entity
+  parent: ClothingBackpackDuffelSalvage
+  id: ClothingBackpackDuffelSalvageUpgraded
+  suffix: Upgraded
+  components:
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
+
+- type: entity
+  parent: ClothingBackpackDuffelSalvageUpgraded
+  id: ClothingBackpackDuffelSalvageUpgraded2
+  suffix: Upgraded2
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,9,5

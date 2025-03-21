@@ -1,0 +1,151 @@
+- type: entity
+  parent: BaseItem
+  id: SalvageBeltALICE
+  name: torn unloading ALICE
+  description: ALICE straps.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: ALICE
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Butcherable
+    butcheringType: Knife
+    butcherDelay: 2
+    spawned:
+    - id: MaterialStraps1
+      prob: 0.5
+    - id: MaterialStraps1
+      prob: 0.5
+    - id: MaterialStraps1
+      prob: 0.5
+
+- type: entity
+  parent: BaseItem
+  id: SalvagePCVHelmet
+  name: destroyed PCV helmet
+  description: Piece of steel.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: Helmet
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Construction
+    graph: PCVHelmet
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvagePCVHelmetPNV
+  name: destroyed PCV helmet
+  description: Piece of steel with wire.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: HelmetPNV
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Construction
+    graph: PCVHelmetPNV
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageAncientWeapon
+  name: ancient weapon
+  description: Ancient weapon, you dont know how this work, but know how destroy this!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    layers:
+    - state: m16
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          m16: ""
+      - enum.DamageStateVisualLayers.Base:
+          m162: ""
+      - enum.DamageStateVisualLayers.Base:
+          m163: ""
+      - enum.DamageStateVisualLayers.Base:
+          m164: ""
+      - enum.DamageStateVisualLayers.Base:
+          m165: ""
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Construction
+    graph: AncientWeapon
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvagePCV
+  name: PCV
+  description: PCV!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: PCV
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Construction
+    graph: PCVArmor
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageHEV
+  name: HEV
+  description: Not a PCV!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: HEV
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Construction
+    graph: HEVArmor
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageAncientTool
+  name: ancient research tool
+  description: Ancient research tool, you dont know how this work, but know how destroy this!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    layers:
+    - state: research
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          research: ""
+      - enum.DamageStateVisualLayers.Base:
+          research2: ""
+      - enum.DamageStateVisualLayers.Base:
+          research3: ""
+      - enum.DamageStateVisualLayers.Base:
+          research4: ""
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,0,1
+  - type: Construction
+    graph: AncientTool
+    node: start
