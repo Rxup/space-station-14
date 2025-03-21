@@ -1,0 +1,43 @@
+- type: entity
+  parent: PottedPlantBase
+  id: PottedPlantPlasmaPlant
+  name: plastic potted plasma plant
+  description: Pretty plant, it seems safe? Considering what it's made of.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    state: plasma_plant
+  - type: AlwaysHot # Funny
+  - type: PointLight
+    radius: 2
+    color: "#8A2BE2"
+
+- type: entity
+  parent: BaseStructure
+  id: Hedge
+  name: hedge
+  description: Large bushy hedge
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    state: hedge
+  - type: SpriteFade
+  - type: Anchorable
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/plant_rustle.ogg

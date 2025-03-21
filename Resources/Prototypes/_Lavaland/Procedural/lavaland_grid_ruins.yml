@@ -117,3 +117,9 @@
   name: lavaland-ruin-cargo
   path: /Maps/_Lavaland/Lavaland/ruin_cargo_debris.yml
   priority: 18
+
+- type: lavalandGridRuin # Backmen
+  id: InteQSizo
+  name: lavaland-inteq-sizo
+  path: /Maps/Backmen/Lavaland/InteQ_Sizo.yml
+  priority: 19
