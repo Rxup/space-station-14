@@ -68,8 +68,8 @@
       right:
       - state: inhand-right-blade
         shader: unshaded
-  - type: Reflect # Goob edit
-    reflectProb: .5
+  - type: Reflect
+    reflectProb: .25
     otherTypeReflectProb: .1
     reflects:
       - Energy
@@ -406,7 +406,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect # Goob edit
-    reflectProb: 1
+    reflectProb: 0.7
     otherTypeReflectProb: .2
     spread: 75
   - type: FlipOnHit # WD EDIT

@@ -4,8 +4,8 @@
   graph:
   - node: esword
     edges:
-      - to: desword
-        steps:
-          - tag: EnergySword
+    - to: desword
+      steps:
+      - tag: EnergySword
   - node: desword
     entity: EnergySwordDouble

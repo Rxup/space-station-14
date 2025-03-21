@@ -15,4 +15,4 @@ public sealed partial class SleepingCarpCrashingWavesPerformedEvent : EntityEven
 public sealed class SleepingCarpSaying(LocId saying) : EntityEventArgs
 {
     public LocId Saying = saying;
-};
+}

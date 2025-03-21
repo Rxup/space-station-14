@@ -37,6 +37,9 @@ public partial class SharedMartialArtsSystem
 
     private void OnRemoveCorporateJudo(Entity<GrantCorporateJudoComponent> ent, ref ClothingGotUnequippedEvent args)
     {
+        if (!_netManager.IsServer)
+            return;
+
         var user = args.Wearer;
         if (!TryComp<MartialArtsKnowledgeComponent>(user, out var martialArtsKnowledge))
             return;

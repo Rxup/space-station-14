@@ -122,9 +122,10 @@ public partial class SharedMartialArtsSystem
             || !downed)
             return;
 
-        if (TryComp<StaminaComponent>(target, out var stamina) && stamina.Critical)
+        if (TryComp<StaminaComponent>(target, out var stamina) && stamina.Critical
+            && !_status.HasStatusEffect(target, "ForcedSleep")) // backmen: cannot stack
         {
-            _status.TryAddStatusEffect<ForcedSleepingComponent>(target, "ForcedSleep", TimeSpan.FromSeconds(10), true);
+            _status.TryAddStatusEffect<ForcedSleepingComponent>(target, "ForcedSleep", TimeSpan.FromSeconds(5), true); // backmen: only 5 seconds instead of 10
         }
 
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out var damage, TargetBodyPart.Head);

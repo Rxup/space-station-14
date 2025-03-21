@@ -34,7 +34,7 @@
 - type: entity
   id: ActionLungPunch
   name: Lung Punch
-  description: Deals 30 stamina damage and prevents breathing for ten seconds. Four of those will incapacitate a target less-than-lethally, but beware of the loss of breath you cause.
+  description: Deals 40 stamina damage and prevents breathing for ten seconds. Four of those will incapacitate a target less-than-lethally, but beware of the loss of breath you cause.
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
