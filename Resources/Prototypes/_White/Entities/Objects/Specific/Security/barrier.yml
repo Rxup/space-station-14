@@ -9,4 +9,3 @@
     anchored: true
   - type: Physics
     bodyType: Dynamic
-    canCollide: true
