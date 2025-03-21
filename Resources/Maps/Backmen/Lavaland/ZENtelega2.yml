@@ -4,7 +4,7 @@ meta:
   engineVersion: 248.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/19/2025 14:47:20
+  time: 03/21/2025 09:53:46
   entityCount: 60
 maps: []
 grids:
@@ -69,6 +69,70 @@ entities:
     - type: GridAtmosphere
       version: 2
       data:
+        tiles:
+          0,0:
+            0: 9215
+            1: 56320
+          0,-1:
+            0: 56832
+            1: 8496
+          -1,0:
+            1: 206
+            0: 3104
+          1,0:
+            0: 511
+          1,-1:
+            0: 61696
+          -1,-1:
+            1: 8256
+            0: 52128
+        uniqueMixes:
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
