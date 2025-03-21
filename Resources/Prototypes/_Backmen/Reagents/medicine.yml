@@ -70,3 +70,50 @@
             Immaterial: -10
           types:
             Bloodloss: -10
+
+- type: reagent
+  id: TranexamicAcidPlus
+  name: reagent-name-tranexamic-acid
+  group: Medicine
+  desc: reagent-desc-tranexamic-acid
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: medicine
+  color: "#ba7d7d"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyBleedAmount
+        amount: -1
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          groups:
+            Brute: -5
+            Burn: -5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
+            Bloodloss: -2
+            Radiation: -1
+          groups:
+            Brute: -0.3
+            Burn: -0.3
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove

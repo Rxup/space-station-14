@@ -10,28 +10,58 @@
   path: /Maps/_Lavaland/Lavaland/ruin_syndicate_base.yml
   priority: -1 # highest priority
 
-- type: lavalandGridRuin
-  id: BiodomeSnow
-  name: lavaland-ruin-biodome
-  path: /Maps/_Lavaland/Lavaland/ruin_snow_biodome.yml
+- type: lavalandGridRuin # Backmen
+  id: InteQSizo
+  name: lavaland-inteq-sizo
+  path: /Maps/Backmen/Lavaland/InteQ_Sizo.yml
+  priority: 19
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaResearchFacility
+  name: lavaland-ruin-bmc-research-facility
+  path: /Maps/Backmen/Lavaland/researchfacility.yml
   priority: 1
 
-- type: lavalandGridRuin
-  id: BiodomeBeach
-  name: lavaland-ruin-biodome
-  path: /Maps/_Lavaland/Lavaland/ruin_beach_biodome.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaOutpost
+  name: lavaland-ruin-bmc-research-outpost
+  path: /Maps/Backmen/Lavaland/xenoutpost.yml
   priority: 2
 
-- type: lavalandGridRuin
-  id: GolemShuttle
-  name: lavaland-ruin-big-shuttle
-  path: /Maps/_Lavaland/Lavaland/ruin_golem_shuttle.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaSpot
+  name: lavaland-ruin-bmc-research-spot
+  path: /Maps/Backmen/Lavaland/researchspot.yml
   priority: 3
 
-- type: lavalandGridRuin
-  id: ToyShop
-  name: lavaland-ruin-wooden
-  path: /Maps/_Lavaland/Lavaland/ruin_toyshop.yml
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaSpot2
+  name: lavaland-ruin-bmc-research-spot
+  path: /Maps/Backmen/Lavaland/researchspot2.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaMet
+  name: lavaland-ruin-bmc-oblom-met
+  path: /Maps/Backmen/Lavaland/ZENoblomMet2.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaResearchOblom
+  name: lavaland-ruin-bmc-research-station
+  path: /Maps/Backmen/Lavaland/ZENrndOblom.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaResearchShuttleCrush
+  name: lavaland-ruin-bmc-military-shuttle
+  path: /Maps/Backmen/Lavaland/ZENshuttle1.yml
+  priority: 4
+
+- type: lavalandGridRuin # backmen-edit
+  id: BlackMesaTelega
+  name: lavaland-ruin-bmc-evacuation-shuttle
+  path: /Maps/Backmen/Lavaland/ZENtelega2.yml
   priority: 4
 
 - type: lavalandGridRuin
@@ -118,8 +148,26 @@
   path: /Maps/_Lavaland/Lavaland/ruin_cargo_debris.yml
   priority: 18
 
-- type: lavalandGridRuin # Backmen
-  id: InteQSizo
-  name: lavaland-inteq-sizo
-  path: /Maps/Backmen/Lavaland/InteQ_Sizo.yml
+- type: lavalandGridRuin
+  id: BiodomeSnow
+  name: lavaland-ruin-biodome
+  path: /Maps/_Lavaland/Lavaland/ruin_snow_biodome.yml
   priority: 19
+
+- type: lavalandGridRuin
+  id: BiodomeBeach
+  name: lavaland-ruin-biodome
+  path: /Maps/_Lavaland/Lavaland/ruin_beach_biodome.yml
+  priority: 20
+
+- type: lavalandGridRuin
+  id: GolemShuttle
+  name: lavaland-ruin-big-shuttle
+  path: /Maps/_Lavaland/Lavaland/ruin_golem_shuttle.yml
+  priority: 21
+
+- type: lavalandGridRuin
+  id: ToyShop
+  name: lavaland-ruin-wooden
+  path: /Maps/_Lavaland/Lavaland/ruin_toyshop.yml
+  priority: 22

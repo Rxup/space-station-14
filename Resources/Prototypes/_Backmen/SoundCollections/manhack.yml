@@ -1,0 +1,12 @@
+- type: soundCollection
+  id: Manhackloop
+  files:
+  - /Audio/Backmen/test/base/ogg/combine/manhack/engine_loop1.ogg
+  - /Audio/Backmen/test/base/ogg/combine/manhack/engine_loop2.ogg
+
+- type: soundCollection
+  id: Manhackattack
+  files:
+  - /Audio/Backmen/test/base/ogg/combine/manhack/grind_flesh1.ogg
+  - /Audio/Backmen/test/base/ogg/combine/manhack/grind_flesh2.ogg
+  - /Audio/Backmen/test/base/ogg/combine/manhack/grind_flesh3.ogg

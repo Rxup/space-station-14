@@ -185,6 +185,26 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
 
 - type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabSurgeon
+  name: surgeon lab coat
+  description: A suit that protects against bacteria and viruses. Has an black stripe on the shoulder.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/surgeon-lab-coat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/surgeon-lab-coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSurgeon]
+  id: ClothingOuterCoatLabSurgeonOpened
+  name: surgeon lab coat
+
+- type: entity
   parent: [ClothingOuterCoatHoSTrench, BaseMinorContraband]
   id: ClothingOuterCoatInteQBattle
   name: InteQ battle coat

@@ -188,11 +188,11 @@
         100: Dead
 
 - type: entity
-  parent: BaseWeaponTurret
+  parent: BaseWeaponBallisticTurret
   id: WeaponTurretInteQ
   suffix: InteQ
   components:
-  - type: NpcFactionMember
-    factions:
-    - InteQ
-    - InteQHostile
+    - type: NpcFactionMember
+      factions:
+      - InteQ
+      - InteQHostile

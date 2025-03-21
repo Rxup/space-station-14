@@ -180,6 +180,9 @@
   components:
     - type: Sprite
       sprite: Clothing/Back/Backpacks/salvage.rsi
+    - type: Construction # Backmen-edit
+      graph: BackpackSalvage
+      node: start
 
 - type: entity
   parent: ClothingBackpack

@@ -59,6 +59,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
             "/Maps/Backmen/corvax_centcomm_bkm.yml",
             "/Maps/Backmen/CentComBackmen.yml",
+            "/Maps/Backmen/backmen_centcom.yml",
             "/Maps/Shuttles/ert_corvaxcentcomm.yml",
             "/Maps/Backmen/ForSale/teamA1.yml",
             "/Maps/Backmen/ForSale/teamB1.yml",
@@ -100,6 +101,7 @@ namespace Content.IntegrationTests.Tests
             //start-backmen
             "CentCommv2",
             "CentCommv3",
+            "CentCommv4",
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust",
