@@ -215,7 +215,7 @@ public partial class SharedBodySystem
             var (targetType, targetSymmetry) = ConvertTargetBodyPart(target);
             if (GetBodyChildrenOfType(entity, targetType, symmetry: targetSymmetry) is { } part)
             {
-                if (canEvade && TryEvadeDamage(part.FirstOrDefault().Id, GetEvadeChance(targetType)))
+                if (canEvade && TryEvadeDamage(entity, GetEvadeChance(targetType)))
                     continue;
 
                 var damageResult = _damageable.TryChangeDamage(part.FirstOrDefault().Id, damage * partMultiplier, canSever: canSever);

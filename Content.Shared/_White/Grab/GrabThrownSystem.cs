@@ -62,17 +62,16 @@ public sealed class GrabThrownSystem : EntitySystem
         var kineticEnergyDamage = new DamageSpecifier();
         kineticEnergyDamage.DamageDict.Add("Blunt", 1);
         kineticEnergyDamage *= Math.Floor(kineticEnergy / 100) / 2 + 3;
-        _damageable.TryChangeDamage(args.OtherEntity, kineticEnergyDamage);
 
+        _damageable.TryChangeDamage(args.OtherEntity, kineticEnergyDamage, partMultiplier: 0.2f);
         _layingDown.TryLieDown(args.OtherEntity, behavior: DropHeldItemsBehavior.AlwaysDrop);
-
         _color.RaiseEffect(Color.Red, new List<EntityUid>() { ent }, Filter.Pvs(ent, entityManager: EntityManager));
     }
 
     private void OnStopThrow(EntityUid uid, GrabThrownComponent comp, StopThrowEvent args)
     {
         if (comp.DamageOnCollide != null)
-            _damageable.TryChangeDamage(uid, comp.DamageOnCollide);
+            _damageable.TryChangeDamage(uid, comp.DamageOnCollide, partMultiplier: 0.2f);
 
         if (HasComp<GrabThrownComponent>(uid))
             RemComp<GrabThrownComponent>(uid);

@@ -56,8 +56,7 @@ public sealed partial class ComboPrototype : IPrototype
     /// Name of the move
     /// </summary>
     [DataField(required: true)]
-    public string Name = string.Empty;
-
+    public LocId Name;
 }
 
 [Prototype("comboList")]
