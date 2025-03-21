@@ -369,8 +369,8 @@
         variation: 0.250
     activatedDamage:
         types:
-            Slash: 17   #Goob Station rebalance, was originally 12
-            Heat: 17    #Goob Station rebalance, was originally 12
+            Slash: 12
+            Heat: 12
             Structural: 40 # Goob edit
   - type: ItemToggleActiveSound
     activeSound:
