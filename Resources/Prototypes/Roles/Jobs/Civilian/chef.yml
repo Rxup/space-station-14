@@ -23,6 +23,11 @@
   wageDepartment: Civilian
   wage: 50
   #end-backmen: currency
+  special: # Goobstation - Martial Arts
+  - !type:AddComponentSpecial # Goobstation - Martial Arts
+    components: # Goobstation - Martial Arts
+      - type: GrantCqc # Goobstation - Martial Arts
+        isBlocked: true # Goobstation - Martial Arts
 
 - type: startingGear
   id: ChefGear
