@@ -34,3 +34,8 @@
 
     MagazinePacketPistol9x17: 6
 
+    MagazineBoxRifle: 6
+    MagazineBoxRiflePractice: 3
+
+    BoxLethalshot: 6
+    BoxShotgunPractice: 3

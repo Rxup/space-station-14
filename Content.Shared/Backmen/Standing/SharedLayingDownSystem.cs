@@ -351,7 +351,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             _buckle.IsBuckled(uid))
         {
             if (behavior == DropHeldItemsBehavior.AlwaysDrop)
-                RaiseLocalEvent(uid, new DropHandItemsEvent());
+            {
+                var ev = new DropHandItemsEvent();
+                RaiseLocalEvent(uid, ref ev);
+            }
 
             return false;
         }

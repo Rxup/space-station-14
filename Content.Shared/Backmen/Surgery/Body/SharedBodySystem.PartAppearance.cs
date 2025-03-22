@@ -118,7 +118,7 @@ public partial class SharedBodySystem
 
             var marking = new Marking(markingId, markingColors);
 
-            _humanoid.SetLayerVisibility(uid, targetLayer, true, true, bodyAppearance);
+            _humanoid.SetLayerVisibility(uid, targetLayer, true);
             _humanoid.AddMarking(uid, markingId, markingColors, true, true, bodyAppearance);
             if (!partAppearance.Comp.Markings.ContainsKey(targetLayer))
                 partAppearance.Comp.Markings[targetLayer] = new List<Marking>();
@@ -172,13 +172,15 @@ public partial class SharedBodySystem
         if (component.Color != null)
             _humanoid.SetBaseLayerColor(target, component.Type, component.Color, true, bodyAppearance);
 
-        _humanoid.SetLayerVisibility(target, component.Type, true, true, bodyAppearance);
+        _humanoid.SetLayerVisibility(target, component.Type, true);
 
         foreach (var (visualLayer, markingList) in component.Markings)
         {
-            _humanoid.SetLayerVisibility(target, visualLayer, true, true, bodyAppearance);
+            _humanoid.SetLayerVisibility(target, visualLayer, true);
             foreach (var marking in markingList)
+            {
                 _humanoid.AddMarking(target, marking.MarkingId, marking.MarkingColors, false, true, bodyAppearance);
+            }
         }
 
         Dirty(target, bodyAppearance);
@@ -191,7 +193,7 @@ public partial class SharedBodySystem
 
         foreach (var (visualLayer, markingList) in component.Markings)
         {
-            _humanoid.SetLayerVisibility(entity, visualLayer, false, true, bodyAppearance);
+            _humanoid.SetLayerVisibility(entity, visualLayer, false);
         }
         RemoveBodyMarkings(entity, component, bodyAppearance);
     }
