@@ -11,6 +11,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Server.Revolutionary.Components;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -25,6 +26,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly ProtoId<DepartmentPrototype> _ccDep = "CentCom";
 
