@@ -6541,27 +6541,6 @@ entities:
       parent: 1
 - proto: FlashlightSeclite
   entities:
-  - uid: 55
-    components:
-    - type: Transform
-      parent: 51
-    - type: HandheldLight
-      toggleActionEntity: invalid
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - invalid
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: InsideEntityStorage
   - uid: 61
     components:
     - type: Transform
