@@ -205,7 +205,7 @@
   name: surgeon lab coat
 
 - type: entity
-  parent: [ClothingOuterCoatHoSTrench, BaseMinorContraband]
+  parent: [ClothingOuterArmorBasic, BaseMinorContraband]
   id: ClothingOuterCoatInteQBattle
   name: InteQ battle coat
   description: InteQ armored coat is made of durable fabric, with gilded patterns.

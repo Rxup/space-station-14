@@ -21,7 +21,7 @@
     ClothingUniformJumpskirtInteQMedical: 3
     ClothingUniformJumpsuitInteQHonorable: 1
     ClothingOuterCoatInteQBattle: 3
-    ClothingOuterCoatInteQHonorableBattle: 1
+#    ClothingOuterCoatInteQHonorableBattle: 1 # Because OP
     ClothingOuterCoatInteQMedical: 3
     ClothingOuterWinterInteQ: 5
     ClothingOuterHoodieInteQ: 5
