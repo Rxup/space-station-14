@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.GameTicking;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
@@ -174,7 +175,7 @@ public sealed class LavalandPlanetSystem : EntitySystem
         if (!SetupOutpost(lavalandMap, lavalandMapId, prototype.OutpostPath, out var outpost))
             return false;
 
-        var loadBox = Box2.CentredAroundZero(new Vector2(prototype.RestrictedRange, prototype.RestrictedRange));
+        var loadBox = Box2.CentredAroundZero(new Vector2(prototype.RestrictedRange * 2, prototype.RestrictedRange * 2));
 
         mapComp.Outpost = outpost;
         mapComp.Seed = seed.Value;
@@ -247,6 +248,13 @@ public sealed class LavalandPlanetSystem : EntitySystem
         };
         AddComp(lavalandMap, restricted);
 
+        var preloadDiameter = new Vector2(prototype.RestrictedRange * 2, prototype.RestrictedRange * 2);
+        RemComp<ShipwreckMapGridComponent>(lavalandMap);
+        var comp = new ShipwreckMapGridComponent()
+        {
+            Area = Box2.CentredAroundZero(preloadDiameter), // Центр (0,0), диаметр = 2 * RestrictedRange
+        };
+        AddComp(lavalandMap, comp);
     }
 
     private bool SetupOutpost(EntityUid lavaland, MapId lavalandMapId, ResPath path, out EntityUid outpost)
