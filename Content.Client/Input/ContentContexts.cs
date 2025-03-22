@@ -90,7 +90,8 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.LookUp); // BACKMEN EDIT
             human.AddFunction(CMKeyFunctions.CMUniqueAction); // BACKMEN EDIT
             human.AddFunction(ContentKeyFunctions.TargetHead);
-            human.AddFunction(ContentKeyFunctions.TargetTorso);
+            human.AddFunction(ContentKeyFunctions.TargetChest);
+            human.AddFunction(ContentKeyFunctions.TargetGroin);
             human.AddFunction(ContentKeyFunctions.TargetLeftArm);
             human.AddFunction(ContentKeyFunctions.TargetLeftHand);
             human.AddFunction(ContentKeyFunctions.TargetRightArm);

@@ -15,13 +15,29 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoMonkey
-  name: "monkey torso"
-  parent: [PartMonkey, BaseTorso]
+  id: ChestMonkey
+  name: "monkey chest"
+  parent: [BaseChest, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
-    state: "torso_m"
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinMonkey
+  name: "monkey groin"
+  parent: [BaseGroin, PartMonkey]
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/monkey.rsi
+    state: "groin_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -33,7 +49,7 @@
 - type: entity
   id: HeadMonkey
   name: "monkey head"
-  parent: [PartMonkey, BaseHead]
+  parent: [BaseHead, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -49,7 +65,7 @@
 - type: entity
   id: LeftArmMonkey
   name: "left monkey arm"
-  parent: [PartMonkey, BaseLeftArm]
+  parent: [BaseLeftArm, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -58,7 +74,7 @@
 - type: entity
   id: RightArmMonkey
   name: "right monkey arm"
-  parent: [PartMonkey, BaseRightArm]
+  parent: [BaseRightArm, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -67,7 +83,7 @@
 - type: entity
   id: LeftHandMonkey
   name: "left monkey hand"
-  parent: [PartMonkey, BaseLeftHand]
+  parent: [BaseLeftHand, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -76,7 +92,7 @@
 - type: entity
   id: RightHandMonkey
   name: "right monkey hand"
-  parent: [PartMonkey, BaseRightHand]
+  parent: [BaseRightHand, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -85,7 +101,7 @@
 - type: entity
   id: LeftLegMonkey
   name: "left monkey leg"
-  parent: [PartMonkey, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -94,7 +110,7 @@
 - type: entity
   id: RightLegMonkey
   name: "right monkey leg"
-  parent: [PartMonkey, BaseRightLeg]
+  parent: [BaseRightLeg, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -103,7 +119,7 @@
 - type: entity
   id: LeftFootMonkey
   name: "left monkey foot"
-  parent: [PartMonkey, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi
@@ -112,7 +128,7 @@
 - type: entity
   id: RightFootMonkey
   name: "right monkey foot"
-  parent: [PartMonkey, BaseRightFoot]
+  parent: [BaseRightFoot, PartMonkey]
   components:
   - type: Sprite
     sprite: Mobs/Animals/monkey.rsi

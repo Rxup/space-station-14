@@ -15,6 +15,7 @@ using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;

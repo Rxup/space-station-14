@@ -15,13 +15,29 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoKobold
-  name: "Kobold torso"
-  parent: [PartKobold, BaseTorso]
+  id: ChestKobold
+  name: "Kobold chest"
+  parent: [BaseChest, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
-    state: "torso_m"
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinKobold
+  name: "Kobold groin"
+  parent: [BaseGroin, PartKobold]
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/kobold.rsi
+    state: "groin_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -33,7 +49,7 @@
 - type: entity
   id: HeadKobold
   name: "Kobold head"
-  parent: [PartKobold, BaseHead]
+  parent: [BaseHead, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -49,7 +65,7 @@
 - type: entity
   id: LeftArmKobold
   name: "left Kobold arm"
-  parent: [PartKobold, BaseLeftArm]
+  parent: [BaseLeftArm, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -58,7 +74,7 @@
 - type: entity
   id: RightArmKobold
   name: "right Kobold arm"
-  parent: [PartKobold, BaseRightArm]
+  parent: [BaseRightArm, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -67,7 +83,7 @@
 - type: entity
   id: LeftHandKobold
   name: "left Kobold hand"
-  parent: [PartKobold, BaseLeftHand]
+  parent: [BaseLeftHand, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -76,7 +92,7 @@
 - type: entity
   id: RightHandKobold
   name: "right Kobold hand"
-  parent: [PartKobold, BaseRightHand]
+  parent: [BaseRightHand, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -85,7 +101,7 @@
 - type: entity
   id: LeftLegKobold
   name: "left Kobold leg"
-  parent: [PartKobold, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -94,7 +110,7 @@
 - type: entity
   id: RightLegKobold
   name: "right Kobold leg"
-  parent: [PartKobold, BaseRightLeg]
+  parent: [BaseRightLeg, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -103,7 +119,7 @@
 - type: entity
   id: LeftFootKobold
   name: "left Kobold foot"
-  parent: [PartKobold, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi
@@ -112,7 +128,7 @@
 - type: entity
   id: RightFootKobold
   name: "right Kobold foot"
-  parent: [PartKobold, BaseRightFoot]
+  parent: [BaseRightFoot, PartKobold]
   components:
   - type: Sprite
     sprite: Mobs/Animals/kobold.rsi

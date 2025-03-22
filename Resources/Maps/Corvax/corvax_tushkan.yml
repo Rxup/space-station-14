@@ -73309,13 +73309,6 @@ entities:
     - type: Transform
       pos: -9.5,12.5
       parent: 2
-- proto: TorsoBorg
-  entities:
-  - uid: 1216
-    components:
-    - type: Transform
-      pos: -36.5,1.5
-      parent: 2
 - proto: TowelColorWhite
   entities:
   - uid: 9975

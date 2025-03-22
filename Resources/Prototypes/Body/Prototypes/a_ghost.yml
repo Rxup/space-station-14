@@ -1,10 +1,10 @@
 ﻿- type: body
   id: Aghost
   name: "aghost"
-  root: torso
+  root: chest
   slots:
-    torso:
-      part: TorsoHuman
+    chest:
+      part: ChestHuman
       connections:
       - right arm
       - left arm

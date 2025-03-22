@@ -27,7 +27,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 1.5 # burn more
+        Heat: 0.75 # burn more
   - type: MobState
   - type: MobThresholds
     thresholds: # Weak

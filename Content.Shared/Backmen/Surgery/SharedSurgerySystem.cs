@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Conditions;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Body.Systems;
 using Content.Shared.Medical.Surgery.Steps;
@@ -20,6 +22,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -45,6 +48,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 
@@ -112,8 +117,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (!TryComp(args.Body, out DamageableComponent? damageable)
             || !TryComp(args.Part, out DamageableComponent? partDamageable)
+            || !TryComp(args.Part, out WoundableComponent? partWoundable)
             || damageable.TotalDamage <= 0
             && partDamageable.TotalDamage <= 0
+            && partWoundable.Wounds!.Count == 0
             && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;
     }
