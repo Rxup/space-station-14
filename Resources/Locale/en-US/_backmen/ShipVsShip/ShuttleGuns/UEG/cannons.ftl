@@ -1,0 +1,9 @@
+ent-ShuttleGunUEGSmall = UEG small ship gun
+    .desc = United Earth Government ship laser gun. It has an extremely high rate of fire but mediocre destructive capabilities.
+    .suffix = DO NOT MAP
+ent-ShuttleGunUEGMedium = UEG medium ship gun
+    .desc = United Earth Government ship medium laser. It has a medium rate of fire and moderate destructive capabilities. There is a slight limitation on reloading.
+    .suffix = DO NOT MAP
+ent-ShuttleGunUEGLarge = UEG large ship gun
+    .desc = United Earth Government ship large laser gun. It has a low rate of fire and impressive destructive capabilities. Slow reload.
+    .suffix = DO NOT MAP
