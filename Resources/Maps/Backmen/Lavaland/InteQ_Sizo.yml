@@ -6635,6 +6635,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+  - uid: 72
+    components:
+    - type: Transform
+      parent: 62
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
   - uid: 71
     components:
     - type: Transform
