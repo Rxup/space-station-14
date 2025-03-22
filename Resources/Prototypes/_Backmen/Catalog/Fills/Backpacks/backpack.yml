@@ -138,7 +138,7 @@
   components:
     - type: Storage
       grid:
-      - 0,0,9,5 # TODO: Change this
+      - 0,0,9,6 # TODO: Change this
       maxItemSize: Huge
     - type: StorageFill
       contents:
