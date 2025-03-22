@@ -105,6 +105,8 @@
     - id: ClownRecorder
     - id: ClothingBeltSuspendersRed
     - id: ClothingBeltSuspendersBlack
+    - id: ConfettiGrenade # Backmen
+      amount: 3
 
 - type: entity
   id: CrateServiceCustomSmokable
