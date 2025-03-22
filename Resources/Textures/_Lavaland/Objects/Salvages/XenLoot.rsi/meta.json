@@ -1,0 +1,86 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by no_mad.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ALICE"
+        },
+        {
+            "name": "alicemini"
+        },
+        {
+            "name": "alicemini_2"
+        },
+        {
+            "name": "alicemini_3"
+        },
+        {
+            "name": "gunsling"
+        },
+        {
+            "name": "gunsling_2"
+        },
+        {
+            "name": "gunsling_3"
+        },
+        {
+            "name": "gunsling_4"
+        },
+        {
+            "name": "Helmet"
+        },
+        {
+            "name": "HelmetPNV"
+        },
+        {
+            "name": "M9"
+        },
+        {
+            "name": "M9_2"
+        },
+        {
+            "name": "M9_3"
+        },
+        {
+            "name": "m16"
+        },
+        {
+            "name": "m162"
+        },
+        {
+            "name": "m163"
+        },
+        {
+            "name": "m164"
+        },
+        {
+            "name": "m165"
+        },
+        {
+            "name": "PCV"
+        },
+        {
+            "name": "HEV"
+        },
+        {
+            "name": "plate"
+        },
+        {
+            "name": "research"
+        },
+        {
+            "name": "research2"
+        },
+        {
+            "name": "research3"
+        },
+        {
+            "name": "research4"
+        }
+    ]
+}

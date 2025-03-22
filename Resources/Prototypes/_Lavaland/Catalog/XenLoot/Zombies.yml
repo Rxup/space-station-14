@@ -1,0 +1,219 @@
+- type: entity
+  id: BasePacketWithLoot
+  parent: BaseItem
+  suffix: Loot
+  abstract: true
+  components:
+  - type: SpawnItemsOnUse
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: startingGear
+  id: NPCMarine
+  equipment:
+    pocket1: HecuMarineLoot
+
+- type: entity
+  id: HecuMarineLoot
+  parent: BasePacketWithLoot
+  name: сумка снаряжение хеку
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SalvagePCV
+      prob: 0.5
+    - id: SalvageAncientWeapon
+      prob: 0.6
+    - id: SalvageAncientWeapon
+      prob: 0.4
+    - id: ExGrenade
+      prob: 0.2
+    - id: ClothingUniformJumpsuitHECUURBAN
+      prob: 0.7
+    - id: SalvageBeltALICE
+      prob: 0.5
+    - id: SalvageBeltALICE
+      prob: 0.5
+    - id: SalvagePCVHelmet
+      prob: 0.6
+      orGroup: Helmet
+    - id: SalvagePCVHelmetPNV
+      prob: 0.4
+      orGroup: Helmet
+    - id: SalvageBeltALICE
+      prob: 0.3
+    - id: CombatMedipen
+      prob: 0.3
+    - id: BruteAutoInjector
+      prob: 0.5
+    - id: BurnAutoInjector
+      prob: 0.5
+
+- type: startingGear
+  id: NPCScience
+  equipment:
+    pocket1: ScienceLoot
+
+- type: entity
+  id: ScienceLoot
+  parent: BasePacketWithLoot
+  name: сумка снаряжение ученого
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/science.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SyringeAmbuzol
+      prob: 0.01
+      orGroup: Syringe
+    - id: SyringeDermaline
+      prob: 0.5
+    - id: SyringeBicaridine
+      prob: 0.5
+    - id: SyringeHyronalin
+      prob: 0.5
+      orGroup: Syringe
+    - id: SyringeEphedrine
+      prob: 0.5
+      orGroup: Syringe
+    - id: ClothingOuterExplorerCoat
+      prob: 0.6
+    - id: ClothingMaskGasSEVA
+      prob: 0.6
+    - id: MedicatedSuture
+      prob: 0.1
+      orGroup: Suture
+    - id: RegenerativeMesh
+      prob: 0.1
+      orGroup: Mesh
+    - id: Brutepack
+      prob: 0.5
+      orGroup: Suture
+    - id: Ointment
+      prob: 0.5
+      orGroup: Mesh
+    - id: Gauze
+      prob: 0.5
+    - id: SalvageAncientTool
+      prob: 0.4
+    - id: SalvageAncientTool
+      prob: 0.2
+    - id: BoneGel
+      prob: 0.5
+    - id: TechnologyDiskRare
+      prob: 0.05
+      orGroup: Disc
+    - id: TechnologyDisk
+      prob: 0.3
+      orGroup: Disc
+    - id: ResearchDisk10000
+      prob: 0.05
+      orGroup: ResearchDisk
+    - id: ResearchDisk5000
+      prob: 0.1
+      orGroup: ResearchDisk
+    - id: ResearchDisk
+      prob: 0.5
+      orGroup: ResearchDisk
+
+- type: startingGear
+  id: NPCSecurity
+  equipment:
+    pocket1: SecurityLoot
+
+- type: entity
+  id: SecurityLoot
+  parent: BasePacketWithLoot
+  name: сумка снаряжение охраны
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/security.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SalvageAncientWeapon
+      prob: 0.7
+    - id: SalvageBeltALICE
+      prob: 0.6
+
+- type: startingGear
+  id: NPCSecurityRanger
+  equipment:
+    pocket1: SecurityRangerLoot
+
+- type: entity
+  id: SecurityRangerLoot
+  parent: BasePacketWithLoot
+  name: сумка снаряжение охраны
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/security.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SalvageBeltALICE
+      prob: 0.7
+    - id: SalvageAncientWeapon
+      prob: 0.6
+    - id: SalvageBeltALICE
+      prob: 0.4
+    - id: SalvageAncientWeapon
+      prob: 0.4
+
+- type: startingGear
+  id: NPCSecurityHeavy
+  equipment:
+    pocket1: SecurityHeavyLoot
+
+- type: entity
+  id: SecurityHeavyLoot
+  parent: BasePacketWithLoot
+  name: сумка снаряжение охраны
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/security.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SalvageBeltALICE
+    - id: SalvageAncientWeapon
+    - id: SalvageBeltALICE
+      prob: 0.8
+    - id: SalvageAncientWeapon
+      prob: 0.5
+
+- type: startingGear
+  id: NPCHEV
+  equipment:
+    pocket1: HEVLoot
+
+- type: entity
+  id: HEVLoot
+  parent: BasePacketWithLoot
+  name: сумка снаряжение экспедитора
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/salvage.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: Stimpack
+      prob: 0.3
+    - id: CombatMedipen
+      prob: 0.5
+    - id: SalvageHEV
+      prob: 0.7
+    - id: SalvageAncientTool
+      prob: 0.4
+    - id: SalvageAncientTool
+      prob: 0.2

@@ -159,6 +159,17 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDressSurgeon
+  name: surgeon jumpskirt
+  description: There are some red spots on this skirt...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/surgeon_jumpskirt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/surgeon_jumpskirt.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtInteQFormalDress
   name: InteQ formal dress
   description: The InteQ uniform is made in an elegant style, it's even a pity to do badass tricks in this.

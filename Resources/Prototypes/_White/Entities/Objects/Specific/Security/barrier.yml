@@ -5,3 +5,7 @@
   components:
   - type: Lock
     locked: true
+#  - type: Transform # Skill Issue
+#    anchored: true
+#  - type: Physics
+#    bodyType: Dynamic

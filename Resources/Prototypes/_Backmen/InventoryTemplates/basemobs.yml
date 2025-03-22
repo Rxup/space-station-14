@@ -1,0 +1,10 @@
+- type: inventoryTemplate
+  id: carman
+  slots:
+    - name: pocket1
+      slotTexture: pocket
+      slotFlags: POCKET
+      stripTime: 5
+      uiWindowPos: 1,0
+      strippingWindowPos: 0,0
+      displayName: Pocket 1

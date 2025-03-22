@@ -442,6 +442,13 @@
   parent: AlwaysPoweredWallLight
   suffix: ""
   components:
+# backmen edit
+  - type: AmbientSound
+    range: 2
+    volume: -12
+    sound:
+      path: /Audio/Machines/alarm.ogg
+# backmen edit
   - type: PointLight
     enabled: false
     radius: 5
