@@ -17,3 +17,21 @@
   id: ShockWave
   kind: source
   path: "/Textures/Backmen/Shaders/shock_wave.swsl"
+
+# Base post-processing
+- type: shader
+  id: BasePostProcess
+  kind: source
+  path: "/Textures/Backmen/Shaders/base_postprocess.swsl"
+  params:
+    CircleRadius: 420.0
+    CircleMinDist: 0.1
+    CirclePow: 0.5
+    CircleMax: 2.0
+    CircleMult: 0.05
+    FalloffClampMin: 0.6
+    FalloffClampMax: 0.8
+    FalloffStrength: 1.25
+    FalloffPow: 7.5
+    MaxBrightness: 0.15
+    SunBrightnessCap: 0.15

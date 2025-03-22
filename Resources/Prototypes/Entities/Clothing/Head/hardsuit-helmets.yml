@@ -302,7 +302,7 @@
   - type: PointLight               #Backmen edit
     color: cyan
     radius: 7
-    energy: 3
+    energy: 2
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
