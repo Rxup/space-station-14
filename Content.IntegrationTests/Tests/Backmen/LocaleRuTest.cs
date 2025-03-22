@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.RandomMetadata;
 using Robust.Shared.GameObjects;
@@ -10,8 +11,13 @@ namespace Content.IntegrationTests.Tests.Backmen;
 [TestOf(typeof(RandomMetadataSystem))]
 public sealed partial class LocaleRu
 {
-    [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,!]+$", RegexOptions.Compiled)]
+    [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,!\ ]+$", RegexOptions.Compiled)]
     private static partial Regex GeneratedRegex();
+
+    private static readonly string[] IgnoreList =
+    [
+        "NamesBorg"
+    ];
 
     [Test]
     public async Task RandomNameMustBeRuTest()
@@ -30,17 +36,7 @@ public sealed partial class LocaleRu
             foreach (var entProto in proto.EnumeratePrototypes<EntityPrototype>())
             {
                 if(entProto.ID is
-                   "BorgChassisGeneric"
-                   or "BorgChassisSelectable"
-                   or "BorgChassisMedical"
-                   or "PlayerBorgDerelict"
-                   or "FoodCookieFortune"
-                   or "BorgChassisService"
-                   or "BorgChassisEngineer"
-                   or "BorgChassisJanitor"
-                   or "PlayerBorgDerelictGhostRole"
-                   or "BorgChassisMining"
-
+                   "FoodCookieFortune"
                    )
                     continue;
                 if (!entProto.TryGetComponent<RandomMetadataComponent>(out var component, compFactory))
@@ -48,7 +44,8 @@ public sealed partial class LocaleRu
                     continue;
                 }
 
-                if (component.NameSegments != null)
+                if (component.NameSegments != null &&
+                    !component.NameSegments.Any(x=>IgnoreList.Contains(x, StringComparer.OrdinalIgnoreCase)))
                 {
                     var test = mdSys.GetRandomFromSegments(component.NameSegments, component.NameSeparator);
                     if (!GeneratedRegex().IsMatch(test))
@@ -58,7 +55,8 @@ public sealed partial class LocaleRu
                     }
                 }
 
-                if (component.DescriptionSegments != null)
+                if (component.DescriptionSegments != null &&
+                    !component.DescriptionSegments.Any(x=>IgnoreList.Contains(x, StringComparer.OrdinalIgnoreCase)))
                 {
                     var test = mdSys.GetRandomFromSegments(component.DescriptionSegments, component.DescriptionSeparator);
 
