@@ -6,7 +6,7 @@
   - type: PointLight # Backmen-EDIT
     enabled: true
     radius: 12
-    energy: 8
+    energy: 2
   - type: Tag
     tags:
     - HideContextMenu
