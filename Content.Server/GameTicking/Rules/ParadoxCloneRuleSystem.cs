@@ -61,7 +61,7 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
         var playerToClone = _random.Pick(allHumans);
         var bodyToClone = playerToClone.Comp.OwnedEntity;
 
-        if (bodyToClone == null || !_cloning.TryCloning(bodyToClone.Value, _transform.GetMapCoordinates(spawner), ent.Comp.Settings, out var clone))
+        if (bodyToClone == null || !_cloning.TryCloning(bodyToClone.Value, _transform.GetMapCoordinates(spawner), ent.Comp.Settings, null, out var clone))
         {
             Log.Error($"Unable to make a paradox clone of entity {ToPrettyString(bodyToClone)}");
             return;
