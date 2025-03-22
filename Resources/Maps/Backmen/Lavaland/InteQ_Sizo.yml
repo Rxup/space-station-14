@@ -6646,22 +6646,8 @@ entities:
     components:
     - type: Transform
       parent: 69
-    - type: HandheldLight
-      toggleActionEntity: 72
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 72
     - type: Physics
       canCollide: False
-    - type: ActionsContainer
     - type: InsideEntityStorage
 - proto: FlippoLighter
   entities:
