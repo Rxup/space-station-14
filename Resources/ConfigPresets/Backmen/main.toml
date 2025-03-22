@@ -70,7 +70,7 @@ easy_mode = false
 [atmos]
 space_wind = true
 space_wind_max_velocity = 22.0
-max_explosion_range = 10.0
+max_explosion_range = 5
 
 [physics]
 target_minimum_tickrate = 30
