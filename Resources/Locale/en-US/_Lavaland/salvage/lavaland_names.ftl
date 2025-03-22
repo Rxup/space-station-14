@@ -19,3 +19,13 @@ lavaland-ruin-big-shuttle = Huge ruined shuttle
 lavaland-ruin-biodome = Biodome
 lavaland-ruin-syndicate = Syndicate base
 lavaland-ruin-hierophant = Interdimensional signal
+
+# backmen-edit-start = бакмен редактирование начало
+lavaland-ruin-bmc-research-facility = Black Mesa Research Facility
+lavaland-ruin-bmc-research-outpost = Black Mesa Outpost
+lavaland-ruin-bmc-research-spot = Black Mesa Researching Spot
+lavaland-ruin-bmc-oblom-met = Black Mesa Ruined Chemistery
+lavaland-ruin-bmc-research-station = Black Mesa Station
+lavaland-ruin-bmc-military-shuttle = Black Mesa Shuttle
+lavaland-ruin-bmc-evacuation-shuttle = Black Mesa Evacuation
+# backmen-edit-end = бакмен редактирование конец

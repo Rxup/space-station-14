@@ -100,6 +100,7 @@
     - GROUPS_8
     - GROUPS_9
     - GROUPS_0
+    - InteQ # Backmen
     globalReceive: true
   - type: Tag
     tags:

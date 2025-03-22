@@ -28,3 +28,43 @@
             doAfter: 2
     - node: reinforced3
       entity: LavalandEquipmentExplorerSuitReinforced3
+    # HEV
+    - node: start
+      entity: LavalandEquipmentExplorerSuit
+      edges:
+      - to: reinforcedhev
+        steps:
+          - material: HEVPiece
+            amount: 10
+            doAfter: 5
+          - material: CableGold
+            amount: 4
+            doAfter: 2
+    - node: reinforcedhev
+      entity: LavalandEquipmentExplorerSuitReinforcedHEV
+      edges:
+      - to: reinforcedhev2
+        steps:
+          - material: HEVPiece
+            amount: 20
+            doAfter: 5
+          - material: CableGold
+            amount: 10
+            doAfter: 2
+          - tag: SalvagePCVPlate
+            doAfter: 1
+    - node: reinforcedhev2
+      entity: LavalandEquipmentExplorerSuitReinforcedHEV2
+      edges:
+      - to: reinforcedhev3
+        steps:
+          - material: HEVPiece
+            amount: 30
+            doAfter: 5
+          - material: CableGold
+            amount: 20
+            doAfter: 2
+          - tag: SalvagePCVPlate
+            doAfter: 1
+    - node: reinforcedhev3
+      entity: LavalandEquipmentExplorerSuitReinforcedHEV3

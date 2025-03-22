@@ -165,3 +165,39 @@
     Heat: 0.9    # Небольшая устойчивость к огню
     Poison: 0.8  # Устойчивость к ядам
     Radiation: 1.1 # Небольшая уязвимость к радиации
+
+- type: damageModifierSet
+  id: CombineArmor
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Piercing: 0.5
+    Shock: 0.8
+    Heat: 0.1
+    Radiation: 0.1
+    Caustic: 0.1
+    Stun: 0.1
+
+- type: damageModifierSet
+  id: CombineArmorCP
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 0.8
+    Shock: 0.9
+    Heat: 0.3
+    Radiation: 0.1
+    Caustic: 0.1
+    Stun: 0.1
+
+- type: damageModifierSet
+  id: CombineArmorElite
+  coefficients:
+    Blunt: 0.3
+    Slash: 0.3
+    Piercing: 0.3
+    Shock: 0.3
+    Heat: 0.01
+    Radiation: 0.1
+    Caustic: 0.1
+    Stun: 0.1

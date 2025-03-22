@@ -12,3 +12,17 @@
   - /Audio/Weapons/Guns64/Shotguns/v51_2.ogg
   - /Audio/Weapons/Guns64/Shotguns/v51_3.ogg
   - /Audio/Weapons/Guns64/Shotguns/v51_4.ogg
+
+- type: soundCollection
+  id: ShotgunReloadSpas12
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/hl2/weapon/shotgun_reload1.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/hl2/weapon/shotgun_reload2.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/hl2/weapon/shotgun_reload3.ogg
+
+- type: soundCollection
+  id: ShellShotgunOnLand
+  files:
+  - /Audio/Backmen/test/base/ogg/blackmesa/hl2/weapon/shotgun_shell1.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/hl2/weapon/shotgun_shell2.ogg
+  - /Audio/Backmen/test/base/ogg/blackmesa/hl2/weapon/shotgun_shell3.ogg
