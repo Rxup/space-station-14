@@ -247,7 +247,6 @@
     - DummyNonAntagChance
     - Revolutionary
     - SubGamemodesRule
-    - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -266,7 +265,6 @@
   - Wizard
   - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
-  - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
@@ -284,7 +282,6 @@
   showInVote: false
   rules:
   - Zombie
-  - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - MeteorSwarmScheduler
