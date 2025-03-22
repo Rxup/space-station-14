@@ -179,6 +179,7 @@
     name: ghost-role-information-inteq-vanguard-leader
     description: ghost-role-information-inteq-vanguard-leader-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
 
 - type: entity
   parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
@@ -191,6 +192,7 @@
     name: ghost-role-information-inteq-vanguard-operative
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
   - type: CloningAppearance
     gear: InteQVanguardOperativeGear
 
@@ -205,6 +207,7 @@
     name: ghost-role-information-inteq-vanguard-solder
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
   - type: CloningAppearance
     gear: InteQVanguardSolderGear
 
@@ -219,5 +222,6 @@
     name: ghost-role-information-inteq-vanguard-medic
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
   - type: CloningAppearance
     gear: InteQMedicGear
