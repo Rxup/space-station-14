@@ -66,6 +66,8 @@ public sealed partial class ThirstComponent : Component
         {ThirstThreshold.Parched, "Parched"},
         {ThirstThreshold.Dead, "Parched"},
     };
+
+    public override bool SendOnlyToOwner => true; // backmen
 }
 
 [Flags]

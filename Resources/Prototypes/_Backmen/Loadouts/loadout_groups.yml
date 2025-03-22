@@ -156,3 +156,51 @@
   - ClothingMedalBronzesol
   - ClothingMedalGoldenStar
   - ClothingMedalIronStar
+
+# Surgeon
+- type: loadoutGroup
+  id: SurgeonHead
+  name: loadout-group-surgeon-head
+  loadouts:
+  - SurgeonHat
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+
+- type: loadoutGroup
+  id: SurgeonJumpsuit
+  name: loadout-group-surgeon-jumpsuit
+  loadouts:
+  - SurgeonJumpsuit
+  - SurgeonJumpskirt
+  - MedicalBlueScrubs
+  - MedicalGreenScrubs
+  - MedicalPurpleScrubs
+
+- type: loadoutGroup
+  id: SurgeonOuterClothing
+  name: loadout-group-surgeon-outerclothing
+  loadouts:
+  - SurgeonLabCoat
+
+# Virologist
+- type: loadoutGroup
+  id: BkmVirologistJumpsuit
+  name: loadout-group-virologist-jumpsuit
+  loadouts:
+  - VirologistJumpsuit
+  - VirologistJumpskirt
+
+- type: loadoutGroup
+  id: VirologistOuterClothing
+  name: loadout-group-virologist-outerclothing
+  loadouts:
+  - VirologistLabCoat
+  
+- type: loadoutGroup
+  id: VirologistBackpack
+  name: loadout-group-virologist-backpack
+  loadouts:
+  - VirologistBackpack
+  - VirologistSatchel
+  - VirologistDuffel

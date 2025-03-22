@@ -38,6 +38,9 @@
     damage:
       types:
         Blunt: 10
+  - type: Construction
+    graph: PKAUpgradeDamage
+    node: start
 
 - type: entity
   id: PKAUpgradeRange
@@ -58,6 +61,9 @@
     examineText: gun-upgrade-examine-text-range
   - type: GunUpgradeSpeed
     coefficient: 1.5
+  - type: Construction
+    graph: PKAUpgradeRange
+    node: start
 
 - type: entity
   id: PKAUpgradeFireRate
@@ -79,6 +85,9 @@
     examineText: gun-upgrade-examine-text-reload
   - type: GunUpgradeFireRate
     coefficient: 1.5
+  - type: Construction
+    graph: PKAUpgradeFireRate
+    node: start
 
 - type: entity
   id: PKAUpgradeLight
@@ -105,3 +114,45 @@
       color: "#ffeead"
       enabled: false
       radius: 4
+
+# Tier 2
+
+- type: entity
+  id: PKAUpgradeDamageTier2
+  parent: PKAUpgradeDamage
+  name: PKA modkit (damage)
+  suffix: Tier 2
+  components:
+  - type: GunUpgrade
+    capacityCost: 40
+    tags: [ GunUpgradeDamage ]
+    examineText: gun-upgrade-examine-text-damage
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: PKAUpgradeRangeTier2
+  parent: PKAUpgradeRange
+  name: PKA modkit (range)
+  suffix: Tier 2
+  components:
+  - type: GunUpgrade
+    tags: [ GunUpgradeRange ]
+    examineText: gun-upgrade-examine-text-range
+  - type: GunUpgradeSpeed
+    coefficient: 3
+
+- type: entity
+  id: PKAUpgradeFireRateTier2
+  parent: PKAUpgradeFireRate
+  name: PKA modkit (fire rate)
+  suffix: Tier 2
+  components:
+  - type: GunUpgrade
+    tags: [ GunUpgradeReloadSpeed ]
+    capacityCost: 20
+    examineText: gun-upgrade-examine-text-reload
+  - type: GunUpgradeFireRate
+    coefficient: 3

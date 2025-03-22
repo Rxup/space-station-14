@@ -83,3 +83,145 @@
   - type: ConditionalSpawner
     prototypes:
       - MobCarpBrownInteQ
+
+# Ghost Roles with Player Apperance
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase ]
+  id: SpawnPointInteQVanguardLeader
+  name: InteQ Vanguard Leader sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-leader
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+    raffle:
+      settings: short
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardLeaderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardLeaderNamesPrefix
+      - SyndicateNamesSuperNormal
+    - type: NpcFactionMember
+      factions:
+        - InteQ
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - TauCetiBasic
+      - OldFastCodes
+      understands:
+      - TauCetiBasic
+      - OldFastCodes
+  - type: Sprite
+    layers:
+      - sprite: Structures/cryostorage.rsi
+        state: sleeper_1
+        map: ["base"]
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardOperative
+  name: InteQ Vanguard Operative sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-operative
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+  - type: CloningAppearance
+    gear: InteQVanguardOperativeGear
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardSolder
+  name: InteQ Vanguard Solder sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-solder
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+  - type: CloningAppearance
+    gear: InteQVanguardSolderGear
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardMedic
+  name: InteQ Vanguard Medic sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-medic
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+  - type: CloningAppearance
+    gear: InteQMedicGear
+
+# Ghost Roles with Player Apperance (SIZO-37)
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardLeaderSizo37
+  name: InteQ Vanguard Leader sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-leader
+    description: ghost-role-information-inteq-vanguard-leader-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardOperativeSizo37
+  name: InteQ Vanguard Operative sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-operative
+    description: ghost-role-information-inteq-vanguard-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+  - type: CloningAppearance
+    gear: InteQVanguardOperativeGear
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardSolderSizo37
+  name: InteQ Vanguard Solder sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-solder
+    description: ghost-role-information-inteq-vanguard-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+  - type: CloningAppearance
+    gear: InteQVanguardSolderGear
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  id: SpawnPointInteQVanguardMedicSizo37
+  name: InteQ Vanguard Medic sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-medic
+    description: ghost-role-information-inteq-vanguard-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+  - type: CloningAppearance
+    gear: InteQMedicGear
