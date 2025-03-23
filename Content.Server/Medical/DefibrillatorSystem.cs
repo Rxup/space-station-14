@@ -8,6 +8,8 @@ using Content.Server.Popups;
 using Content.Server.PowerCell;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Backmen.Chat;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -48,6 +50,7 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -204,7 +207,20 @@ public sealed class DefibrillatorSystem : EntitySystem
         else
         {
             if (_mobState.IsDead(target, mob))
-                _damageable.TryChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
+            {
+                if (HasComp<ConsciousnessComponent>(target) && _consciousness.TryGetNerveSystem(target, out var nerveSys))
+                {
+                    _consciousness.EditConsciousnessModifier(
+                        target,
+                        nerveSys.Value,
+                        component.ZapHeal.GetTotal(),
+                        "Suffocation");
+                }
+                else
+                {
+                    _damageable.TryChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
+                }
+            }
 
             if (_mobThreshold.TryGetThresholdForState(target, MobState.Dead, out var threshold) &&
                 TryComp<DamageableComponent>(target, out var damageableComponent) &&

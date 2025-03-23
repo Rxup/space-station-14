@@ -13,6 +13,12 @@
         damage:
           types:
             Cold: -4
+      - !type:AdjustConsciousness
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 3
+        time: 12
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature

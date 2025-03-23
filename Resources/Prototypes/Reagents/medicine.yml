@@ -252,6 +252,15 @@
             Cold: 2
           groups:
             Brute: 0.5
+      - !type:AdjustConsciousness
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        allowNewModifiers: true
+        modifierType: Pain
+        identifier: Suffocation
+        amount: -1.2
+        time: 12
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
@@ -271,6 +280,12 @@
       - !type:SuppressPain
         amount: 2.4
         time: 12
+      - !type:AdjustConsciousness
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 1.7
+        time: 12
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
@@ -289,6 +304,12 @@
           types:
             Asphyxiation: 3
             Cold: 1
+      - !type:AdjustConsciousness
+        allowNewModifiers: true
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 1.7
+        time: 12
 
 - type: reagent
   id: DexalinPlus
@@ -309,6 +330,12 @@
         - !type:ReagentThreshold
           min: 25
         amount: 0.1
+      - !type:AdjustConsciousness
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 4
+        time: 12
       - !type:HealthChange
         damage:
           types:
@@ -329,6 +356,12 @@
           types:
             Asphyxiation: 5
             Cold: 3
+      - !type:AdjustConsciousness
+        allowNewModifiers: true
+        modifierType: Pain
+        identifier: Suffocation
+        amount: -5
+        time: 12
 
 # this ones a doozy
 - type: reagent
@@ -380,6 +413,15 @@
           types:
             Asphyxiation: 1
             Poison: 1
+      - !type:AdjustConsciousness
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: -1.2
+        time: 12
       - !type:AdjustReagent
         reagent: HeartbreakerToxin
         amount: -2
@@ -476,6 +518,12 @@
         damage:
           types:
             Asphyxiation: -5
+      - !type:AdjustConsciousness
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 6
+        time: 20
       - !type:ModifyBleedAmount
         amount: -0.25
 
@@ -648,6 +696,12 @@
             Brute: -3.5
           types:
             Asphyxiation: -2.5
+      - !type:AdjustConsciousness
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 4
+        time: 12
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -655,6 +709,15 @@
         damage:
           types:
             Asphyxiation: 3.5
+      - !type:AdjustConsciousness
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        allowNewModifiers: true
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 4
+        time: 12
       - !type:ModifyBleedAmount
         amount: -0.25
 
