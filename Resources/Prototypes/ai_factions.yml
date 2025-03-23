@@ -17,6 +17,8 @@
     - CentralCommand
     - AllHostile
     - Wizard
+    - InteQ # Backmen
+    - InteQHostile # Backmen
 
 - type: npcFaction
   id: NanoTrasen
@@ -61,6 +63,7 @@
   - CombineForce
   - AllHostile
   - Wizard
+  - Dragon
 
 - type: npcFaction
   id: SimpleHostile
@@ -81,6 +84,9 @@
   - CentralCommand
   - AllHostile
   - Wizard
+  - InteQ # Backmen
+  - InteQHostile # Backmen
+  - Dragon
 
 - type: npcFaction
   id: SimpleNeutral
@@ -123,6 +129,9 @@
   - CentralCommand
   - AllHostile
   - Wizard
+  - InteQ # Backmen
+  - InteQHostile # Backmen
+  - Dragon
 
 - type: npcFaction
   id: Zombie
@@ -144,6 +153,9 @@
   - CentralCommand
   - AllHostile
   - Wizard
+  - InteQ # Backmen
+  - InteQHostile # Backmen
+  - Dragon
 
 - type: npcFaction
   id: Revolutionary
@@ -178,6 +190,8 @@
   - Zombie
   - Revolutionary
   - Wizard
+  - InteQ # Backmen
+  - InteQHostile # Backmen
 
 - type: npcFaction
   id: Wizard
@@ -194,3 +208,5 @@
   - Zombie
   - Revolutionary
   - AllHostile
+  - InteQ # Backmen
+  - InteQHostile # Backmen

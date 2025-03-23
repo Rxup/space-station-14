@@ -117,6 +117,9 @@ public sealed class GolemSystem : SharedGolemSystem
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string AdminObserver = "AdminObserver";
+
+    [ValidatePrototypeId<LocalizedDatasetPrototype>]
+    private const string GolemNames = "NamesGolem";
     private void OnAfterInteract(EntityUid uid, SoulCrystalComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach)
@@ -136,8 +139,8 @@ public sealed class GolemSystem : SharedGolemSystem
 
         golem.PotentialCrystal = uid;
 
-        var golemName = "golem";
-        if (_prototypes.TryIndex<DatasetPrototype>("names_golem", out var names))
+        var golemName = Loc.GetString("golem-default-name");
+        if (_prototypes.TryIndex<LocalizedDatasetPrototype>(GolemNames, out var names))
             golemName = _robustRandom.Pick(names.Values);
 
         golem.GolemName = golemName;
@@ -228,7 +231,7 @@ public sealed class GolemSystem : SharedGolemSystem
         }
         else
         {
-            if (_prototypes.TryIndex<DatasetPrototype>("names_golem", out var names))
+            if (_prototypes.TryIndex<DatasetPrototype>(GolemNames, out var names))
             {
                 _metaDataSystem.SetEntityName(uid, _robustRandom.Pick(names.Values));
             }

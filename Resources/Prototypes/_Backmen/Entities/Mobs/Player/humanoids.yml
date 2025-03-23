@@ -75,8 +75,8 @@
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
       nameSegments:
-        - names_wizard_first
-        - names_wizard_last
+        - NamesWizardFirst
+        - NamesWizardLast
     - type: SlowOnDamage
       speedModifierThresholds:
         60: 0.8
@@ -158,8 +158,8 @@
         settings: default
     - type: RandomMetadata
       nameSegments:
-        - names_wizard_first
-        - names_wizard_last
+        - NamesWizardFirst
+        - NamesWizardLast
     - type: SlowOnDamage
       speedModifierThresholds:
         60: 0.8

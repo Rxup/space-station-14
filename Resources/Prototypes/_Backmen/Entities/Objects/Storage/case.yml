@@ -1,0 +1,28 @@
+# BASE
+
+- type: entity
+  parent: BoxCardboard
+  id: BaseCase
+  abstract: true
+  name: case
+  description: I wonder what's in it?
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+
+# CASES
+
+- type: entity
+  parent: [BaseCase, BaseMinorContraband]
+  id: CaseInteQ
+  name: brown case
+  suffix: InteQ, Empty
+  description: Brown briefcase with a gold logo, I wonder what's in there?
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Storage/inteq_case.rsi
+    state: icon

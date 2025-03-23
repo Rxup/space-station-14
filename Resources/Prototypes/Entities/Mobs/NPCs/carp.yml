@@ -108,6 +108,7 @@
         enum.SurgeryUIKey.Key:
           type: SurgeryBui
     # end-backmen: surgery
+    - type: Fauna # Lavaland Change
 
 - type: entity
   parent: BaseMobCarp
@@ -194,7 +195,7 @@
       description: ghost-role-information-sentient-carp-description
       rules: ghost-role-information-space-dragon-summoned-carp-rules
       mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+      - MindRoleGhostRoleTeamAntagonistFlock
       raffle:
         settings: short
     - type: GhostTakeoverAvailable

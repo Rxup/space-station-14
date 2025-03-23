@@ -613,6 +613,9 @@ ShotGunCabinetFilledOpen: ShotGunCabinetFilledOpenBackmen
 SheetPrinter: SheetPaper
 SheetPrinter1: SheetPaper1
 
+# 2024-11-14 - # Backmen
+DresserCaptainFilled: CaptainDrobe
+
 # 2024-10-09
 # Removal of separate borg chassis parts, replace them with generic borg parts.
 LeftArmBorgEngineer: LeftArmBorg
@@ -836,3 +839,10 @@ VendingMachinePride: null
 MagazineBoxCaselessRifle10x24: null
 #MagazineBoxCaselessRifleBig: null
 #MagazinePistolHighCapacityRubber: null
+
+# 2024-12-22 # Lavaland Change: Migrations
+VendingMachineRestockSalvageEquipment: null
+CrateVendingMachineRestockSalvageEquipmentFilled: null
+ComputerSalvageExpedition: ComputerShuttleMiningLavaland
+SalvageExpeditionsComputerCircuitboard: LavalandShuttleConsoleCircuitboard
+WallRockBasaltBSCrystal: WallRockBasalt

@@ -58,3 +58,14 @@
     sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
+
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatInteQSoft
+  name: InteQ cap
+  description: A truly.. badass accessory.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/inteq_softhat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/inteq_softhat.rsi

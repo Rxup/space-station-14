@@ -28,6 +28,7 @@
   - SubGamemodesRule
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Blob
@@ -38,12 +39,12 @@
   showInVote: false
   rules:
   - BlobGameMode
-  - CalmStationEventScheduler
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
   - SubGamemodesRule
   - CalmMeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: XenoAgent
@@ -59,6 +60,7 @@
   - BasicRoundstartVariation
   - SubGamemodesRule
   - CalmMeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: FleshCult
@@ -76,6 +78,7 @@
   - BasicRoundstartVariation
   - SubGamemodesRule
   - CalmMeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: FleshCultAndTraitor
@@ -93,6 +96,7 @@
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: NukeopsFleshCult
@@ -110,6 +114,7 @@
     - PsiScheduler #backmen: psi
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: RevolutionaryTraitor
@@ -129,6 +134,7 @@
     - PsiScheduler #backmen: psi
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: RevolutionaryNukeops
@@ -148,6 +154,7 @@
     - PsiScheduler #backmen: psi
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: ZombieTraitor
@@ -169,6 +176,7 @@
   - Traitor
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: ZombieNukeops
@@ -190,6 +198,7 @@
   - Nukeops
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: NukeopsFleshCultTraitor
@@ -209,6 +218,7 @@
     - Traitor
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: SurvivalNukeops
@@ -226,7 +236,7 @@
     - Nukeops
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
-
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Changeling
@@ -245,6 +255,7 @@
   - BasicStationEventScheduler
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Traitorling
@@ -260,9 +271,9 @@
   - Changeling
   - Traitor
   - SubGamemodesRule
-  - BasicStationEventScheduler
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: ExtendedThief
@@ -280,6 +291,7 @@
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Criminal
@@ -298,6 +310,7 @@
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: SuperKessler
@@ -323,6 +336,7 @@
   - RampingStationEventScheduler
 #  - SpaceTrafficControlEventScheduler
 #  - SpaceTrafficControlFriendlyEventScheduler
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Calm
@@ -335,7 +349,7 @@
   - PsiScheduler #backmen: psi
   - CalmMeteorSwarmScheduler
   - BasicRoundstartVariation
-
+  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: BabelTower
@@ -353,3 +367,4 @@
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
     - ExtendedThief
+    - LavalandStormScheduler # Lavaland Change

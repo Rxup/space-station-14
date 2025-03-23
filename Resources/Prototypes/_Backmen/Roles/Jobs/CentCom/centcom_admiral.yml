@@ -82,7 +82,12 @@
   components:
     - type: Sprite
       layers:
-      - state: gold
+      - state: card_gold # Backmen
+      - state: sub_department # Backmen
+        color: "#1b67a5"
+      - state: frame_head # Backmen
+        color: "#1b67a5"
+      - state: assigned_centcom # Backmen
       - state: idiaa
       - state: idcentcom
     - type: Item

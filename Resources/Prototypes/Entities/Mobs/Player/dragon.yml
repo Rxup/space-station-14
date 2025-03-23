@@ -177,12 +177,16 @@
   components:
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
+  - type: GhostRole
+    mindRoles:
+    - MindRoleDragon
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
   - type: GuideHelp
     guides:
     - MinorAntagonists
+  - type: Fauna # Lavaland Change
 
 - type: entity
   categories: [ HideSpawnMenu ]

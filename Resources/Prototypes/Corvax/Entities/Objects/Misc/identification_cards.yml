@@ -5,7 +5,12 @@
   components:
     - type: Sprite
       layers:
-        - state: silver
+        - state: card_silver # Backmen
+        - state: sub_department # Backmen
+          color: "#1b67a5"
+        - state: frame_head # Backmen
+          color: "#1b67a5"
+        - state: assigned_centcom # Backmen
         - state: idiaa
     - type: PresetIdCard
       job: IAA
@@ -17,7 +22,12 @@
   components:
     - type: Sprite
       layers:
-        - state: default
+        - state: card_default # Backmen
+        - state: sub_department # Backmen
+          color: "#cb0000"
+        - state: frame_default # Backmen
+          color: "#cb0000"
+        - state: assigned # Backmen
         - state: idpilot
     - type: PresetIdCard
       job: Pilot

@@ -20,3 +20,13 @@ loadout-group-blueshield-jumpsuit = Одежда
 loadout-group-BlueShield-hat = Головной убор
 loadout-group-BlueShield-outer = Верхняя одежда
 loadout-group-BlueShield-eyes = Очки
+
+# Virilogist
+loadout-group-virologist-jumpsuit = Вирусолог, комбинезон
+loadout-group-virologist-outerclothing = Вирусолог, верхняя одежда
+loadout-group-virologist-backpack = Вирусолог, рюкзак
+
+# Surgeon
+loadout-group-surgeon-head = Хирург, голово
+loadout-group-surgeon-jumpsuit = Хирург, комбинезон
+loadout-group-surgeon-outerclothing = Хирург, верхняя одежда

@@ -1,0 +1,49 @@
+- type: entity
+  id: ChanceSpawnerItemM9Steel
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MaterialM9Steel1
+    chance: 0.7
+
+- type: entity
+  id: ChanceSpawnerItemMaterialCableGold
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MaterialCableGold1
+    chance: 0.6
+
+- type: entity
+  id: ChanceSpawnerItemMaterialMaterialGunMaterial
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MaterialGunMaterial1
+    chance: 0.5
+
+- type: entity
+  id: ChanceSpawnerItemSalvagePCVPlate
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - SalvagePCVPlate
+    chance: 0.5
+
+- type: entity
+  id: ChanceSpawnerItemMaterialHEVPiece
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MaterialHEVPiece1
+    chance: 0.5

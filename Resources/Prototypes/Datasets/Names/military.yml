@@ -13,6 +13,6 @@
 - type: localizedDataset
   id: NamesMilitaryFirst
   values:
-    prefix: names-military-first1-dataset-
-    count: 43
+    prefix: names-military-last-dataset-
+    count: 42
 
