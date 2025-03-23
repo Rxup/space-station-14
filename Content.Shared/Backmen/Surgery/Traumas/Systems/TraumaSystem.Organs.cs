@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
 
@@ -8,57 +10,61 @@ public partial class TraumaSystem
 {
     private void InitOrgans()
     {
-        SubscribeLocalEvent<OrganComponent, OrganDamageSeverityChanged>(OnOrganSeverityChanged);
-        SubscribeLocalEvent<OrganComponent, OrganIntegrityChangedEvent>(SomeOtherShitHappensHere);
+        SubscribeLocalEvent<WoundableComponent, OrganIntegrityChangedEventOnWoundable>(OnOrganIntegrityChanged);
+        SubscribeLocalEvent<WoundableComponent, OrganDamageSeverityChangedOnWoundable>(OnOrganSeverityChanged);
     }
 
     #region Event handling
 
-    private void OnOrganSeverityChanged(EntityUid organ, OrganComponent comp, OrganDamageSeverityChanged args)
+    private void OnOrganIntegrityChanged(Entity<WoundableComponent> bodyPart, ref OrganIntegrityChangedEventOnWoundable args)
     {
+        if (args.Organ.Comp.Body == null)
+            return;
+
+        if (!_consciousness.TryGetNerveSystem(args.Organ.Comp.Body.Value, out var nerveSys))
+            return;
+
+        var organs = _body.GetPartOrgans(args.Organ.Comp.Body.Value).ToList();
+
+        var totalIntegrity = organs.Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.OrganIntegrity);
+        var totalIntegrityCap = organs.Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.IntegrityCap);
+
+        // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
+        if (!_pain.TryChangePainModifier(
+                nerveSys.Value,
+                bodyPart.Owner,
+                "OrganDamage",
+                totalIntegrityCap - totalIntegrity,
+                nerveSys.Value.Comp))
+        {
+            _pain.TryAddPainModifier(
+                nerveSys.Value,
+                bodyPart.Owner,
+                "OrganDamage",
+                totalIntegrityCap - totalIntegrity,
+                PainDamageTypes.TraumaticPain,
+                nerveSys.Value.Comp);
+        }
+    }
+
+    private void OnOrganSeverityChanged(Entity<WoundableComponent> bodyPart, ref OrganDamageSeverityChangedOnWoundable args)
+    {
+        if (args.Organ.Comp.Body == null)
+            return;
+
         if (args.NewSeverity != OrganSeverity.Destroyed)
             return;
 
-        if (comp.Body != null && _consciousness.TryGetNerveSystem(comp.Body.Value, out var nerveSys))
-        {
-            // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
-            _pain.TryAddPainModifier(nerveSys.Value, nerveSys.Value, "OrganDestroyed", 20f, time: TimeSpan.FromSeconds(12f));
+        _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, args.Organ.Comp.Body.Value);
+        _body.RemoveOrgan(args.Organ, args.Organ.Comp);
 
-            _audio.PlayPvs(comp.OrganDestroyedSound, comp.Body.Value);
-        }
-
-        _body.RemoveOrgan(organ, comp);
-        QueueDel(organ);
-    }
-
-    private void SomeOtherShitHappensHere(EntityUid organ, OrganComponent comp, OrganIntegrityChangedEvent args)
-    {
-        // When we get to this, make some organs work worse based on their state (of course you won't be able to breathe THAT good when your lung is pierced by a .50cal)
+        if (_net.IsServer)
+            QueueDel(args.Organ);
     }
 
     #endregion
 
     #region Public API
-
-    public bool ApplyDamageToOrgan(EntityUid organ, FixedPoint2 severity, OrganComponent? organComp = null)
-    {
-        if (!Resolve(organ, ref organComp))
-            return false;
-
-        var newIntegrity = FixedPoint2.Clamp(organComp.OrganIntegrity - severity, 0, organComp.IntegrityCap);
-        if (organComp.OrganIntegrity == newIntegrity)
-            return false;
-
-        var ev = new OrganIntegrityChangedEvent((organ, organComp), organComp.OrganIntegrity, newIntegrity);
-        RaiseLocalEvent(organ, ref ev, true);
-
-        organComp.OrganIntegrity = newIntegrity;
-
-        UpdateOrganIntegrity(organ, organComp);
-        Dirty(organ, organComp);
-
-        return true;
-    }
 
     public bool TryCreateOrganDamageModifier(EntityUid uid,
         FixedPoint2 severity,
@@ -137,11 +143,16 @@ public partial class TraumaSystem
 
         if (oldIntegrity != organ.OrganIntegrity)
         {
-            var ev = new OrganIntegrityChangedEvent((uid, organ), oldIntegrity, organ.OrganIntegrity);
+            var ev = new OrganIntegrityChangedEvent(oldIntegrity, organ.OrganIntegrity);
             RaiseLocalEvent(uid, ref ev, true);
 
-            // TODO: might want also to raise the event on the woundable.
+            if (_container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
+            {
+                var ev1 = new OrganIntegrityChangedEventOnWoundable((uid, organ), oldIntegrity, organ.OrganIntegrity);
+                RaiseLocalEvent(container.Owner, ref ev1, true);
+            }
         }
+
 
         var nearestSeverity = organ.OrganSeverity;
         foreach (var (severity, value) in organ.IntegrityThresholds.OrderByDescending(kv => kv.Value))
@@ -155,11 +166,16 @@ public partial class TraumaSystem
 
         if (nearestSeverity != organ.OrganSeverity)
         {
-            var ev = new OrganDamageSeverityChanged((uid, organ), organ.OrganSeverity, nearestSeverity);
+            var ev = new OrganDamageSeverityChanged(organ.OrganSeverity, nearestSeverity);
             RaiseLocalEvent(uid, ref ev, true);
 
-            // TODO: might want also to raise the event on the woundable.
+            if (_container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
+            {
+                var ev1 = new OrganDamageSeverityChangedOnWoundable((uid, organ), organ.OrganSeverity, nearestSeverity);
+                RaiseLocalEvent(container.Owner, ref ev1, true);
+            }
         }
+
         organ.OrganSeverity = nearestSeverity;
         Dirty(uid, organ);
     }

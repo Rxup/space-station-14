@@ -4,7 +4,6 @@ using Content.Server.Medical.Components;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Audio;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -21,7 +20,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -39,7 +37,6 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StackSystem _stacks = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
@@ -127,7 +124,7 @@ public sealed class HealingSystem : EntitySystem
                 $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {total:damage} damage");
         }
 
-        _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
         // Logic to determine whether or not to repeat the healing action
         args.Repeat = HasDamage(entity, healing) && !dontRepeat;
@@ -190,7 +187,7 @@ public sealed class HealingSystem : EntitySystem
             var bleedStopAbility = -(FixedPoint2) healing.BloodlossModifier;
             foreach (var wound in _wounds.GetWoundableWounds(targetedWoundable))
             {
-                if (!TryComp<BleedInflicterComponent>(wound.Item1, out var bleeds) || !bleeds.IsBleeding)
+                if (!TryComp<BleedInflicterComponent>(wound, out var bleeds) || !bleeds.IsBleeding)
                     continue;
 
                 if (bleedStopAbility > bleeds.BleedingAmount)
@@ -199,7 +196,7 @@ public sealed class HealingSystem : EntitySystem
                     bleeds.BleedingAmountRaw = 0;
                     bleeds.IsBleeding = false;
 
-                    wound.Item2.CanBeHealed = true;
+                    wound.Comp.CanBeHealed = true;
                 }
                 else
                 {
@@ -331,7 +328,7 @@ public sealed class HealingSystem : EntitySystem
         {
             foreach (var wound in _wounds.GetWoundableWounds(targetedBodyPart.Id))
             {
-                if (!TryComp<BleedInflicterComponent>(wound.Item1, out var bleeds) || !bleeds.IsBleeding)
+                if (!TryComp<BleedInflicterComponent>(wound, out var bleeds) || !bleeds.IsBleeding)
                     continue;
 
                 return true;
@@ -392,7 +389,7 @@ public sealed class HealingSystem : EntitySystem
             return false;
         }
 
-        _audio.PlayPvs(component.HealingBeginSound, uid, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(component.HealingBeginSound, uid, AudioParams.Default.WithVariation(.125f).WithVolume(1f));
 
         var isNotSelf = user != target;
         if (isNotSelf)

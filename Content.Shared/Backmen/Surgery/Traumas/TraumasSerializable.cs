@@ -36,10 +36,17 @@ public enum OrganSeverity
 }
 
 [ByRefEvent]
-public record struct OrganIntegrityChangedEvent(Entity<OrganComponent> Organ, FixedPoint2 OldIntegrity, FixedPoint2 NewIntegrity);
+public record struct OrganIntegrityChangedEvent(FixedPoint2 OldIntegrity, FixedPoint2 NewIntegrity);
 
 [ByRefEvent]
-public record struct OrganDamageSeverityChanged(Entity<OrganComponent> Organ, OrganSeverity OldSeverity, OrganSeverity NewSeverity);
+public record struct OrganDamageSeverityChanged(OrganSeverity OldSeverity, OrganSeverity NewSeverity);
+
+[ByRefEvent]
+public record struct OrganIntegrityChangedEventOnWoundable(Entity<OrganComponent> Organ, FixedPoint2 OldIntegrity, FixedPoint2 NewIntegrity);
+
+[ByRefEvent]
+public record struct OrganDamageSeverityChangedOnWoundable(Entity<OrganComponent> Organ, OrganSeverity OldSeverity, OrganSeverity NewSeverity);
+
 
 #endregion
 

@@ -14,8 +14,6 @@ using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
-using Content.Shared.Mind.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
@@ -43,7 +41,6 @@ namespace Content.Shared.Damage
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<BodyComponent> _bodyQuery;
         private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
-        private EntityQuery<MindContainerComponent> _mindContainerQuery;
         private EntityQuery<WoundableComponent> _woundableQuery;
 
         public float UniversalAllDamageModifier { get; private set; } = 1f;
@@ -70,7 +67,6 @@ namespace Content.Shared.Damage
             _bodyQuery = GetEntityQuery<BodyComponent>();
             _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
             _woundableQuery = GetEntityQuery<WoundableComponent>();
-            _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
 
             // Damage modifier CVars are updated and stored here to be queried in other systems.
             // Note that certain modifiers requires reloading the guidebook.

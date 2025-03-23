@@ -79,12 +79,6 @@ public sealed partial class WoundComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CanBeHealed = true;
 
-    /// <summary>
-    /// Should this bleed?
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool CanBleed = true;
-
     [DataField("bleedsScaling"), ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 BleedingScalingMultiplier = 1f;
 }

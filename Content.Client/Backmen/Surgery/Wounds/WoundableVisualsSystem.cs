@@ -117,6 +117,30 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             bodySprite.LayerMapRemove(bleeds);
         }
 
+        foreach (var part in _body.GetBodyPartChildren(uid))
+        {
+            if (!TryComp<WoundableVisualsComponent>(part.Id, out var woundableVisuals))
+                continue;
+
+            foreach (var (group, _) in component.DamageOverlayGroups!)
+            {
+                if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}{group}", out var layer))
+                    continue;
+
+                bodySprite.LayerSetVisible(layer, false);
+                bodySprite.LayerMapRemove(layer);
+            }
+
+            if (bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out var childBleeds))
+            {
+                bodySprite.LayerSetVisible(childBleeds, false);
+                bodySprite.LayerMapRemove(childBleeds);
+            }
+
+            if (TryComp(uid, out SpriteComponent? pieceSprite))
+                UpdateWoundableVisuals(part.Id, woundableVisuals, pieceSprite);
+        }
+
         if (TryComp(uid, out SpriteComponent? partSprite))
             UpdateWoundableVisuals(uid, component, partSprite);
     }

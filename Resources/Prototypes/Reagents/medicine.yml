@@ -139,7 +139,7 @@
       effects:
       - !type:SuppressPain
         amount: 1.2
-        time: 30 # it REFRESHES. Not accumulates
+        time: 30 # it accumulated 1.2*quantity and then exists for 30 seconds.
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
@@ -230,7 +230,7 @@
       effects:
       - !type:SuppressPain
         amount: 2
-        time: 7 # it REFRESHES. Not accumulates
+        time: 7
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
@@ -270,7 +270,7 @@
       effects:
       - !type:SuppressPain
         amount: 2.4
-        time: 12 # it REFRESHES. Not accumulates
+        time: 12
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
@@ -303,7 +303,7 @@
       effects:
       - !type:SuppressPain
         amount: 3.7
-        time: 12 # it REFRESHES. Not accumulates
+        time: 12
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
@@ -346,8 +346,17 @@
         conditions:
         - !type:MobStateCondition
           mobstate: Critical
-        amount: 2
-        time: 2 # very little because it's supposed to suppress pain while you're in crit
+        amount: 5
+        time: 10 # very little because it's supposed to suppress pain while you're in crit
+      - !type:AdjustConsciousness
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        allowNewModifiers: false
+        modifierType: Pain
+        identifier: Suffocation
+        amount: 2 # Does not let the entity suffocate while the pain is suppressed
+        time: 10
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -857,7 +866,7 @@
       effects:
       - !type:SuppressPain
         amount: 2
-        time: 14 # it REFRESHES. Not accumulates
+        time: 14
       - !type:HealthChange
         damage:
           groups:
@@ -1178,7 +1187,7 @@
       effects:
       - !type:SuppressPain
         amount: 4 # To prevent people from dying while being healed
-        time: 5
+        time: 7
       - !type:HealthChange
         damage:
           types:

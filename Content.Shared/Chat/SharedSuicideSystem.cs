@@ -86,7 +86,7 @@ public sealed class SharedSuicideSystem : EntitySystem
             _consciousness.RemoveConsciousnessMultiplier(target, multiplier.Key.Item1, multiplier.Key.Item2, target);
         }
 
-        _consciousness.AddConsciousnessModifier(target, target, -target.Comp.Cap, target, "Suicide", ConsciousnessModType.Pain);
-        _consciousness.AddConsciousnessMultiplier(target, target, 0f, "Suicide", target, ConsciousnessModType.Pain);
+        _consciousness.AddConsciousnessModifier(target, target, -target.Comp.Cap, "Suicide", ConsciousnessModType.Pain, consciousness: target);
+        _consciousness.AddConsciousnessMultiplier(target, target, 0f, "Suicide", ConsciousnessModType.Pain, consciousness: target);
     }
 }

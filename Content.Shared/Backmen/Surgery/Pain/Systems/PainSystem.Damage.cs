@@ -53,7 +53,7 @@ public partial class PainSystem
             return false;
 
         var modifierToSet =
-            modifier with {Change = change, Time = time ?? modifier.Time, PainDamageType = painType ?? modifier.PainDamageType};
+            modifier with {Change = change, Time = _timing.CurTime + time ?? modifier.Time, PainDamageType = painType ?? modifier.PainDamageType};
         nerveSys.Modifiers[(nerveUid, identifier)] = modifierToSet;
 
         var ev = new PainModifierChangedEvent(uid, nerveUid, modifier.Change);
@@ -540,20 +540,33 @@ public partial class PainSystem
         }
     }
 
-    private void UpdatePainFeels(EntityUid nerveUid)
+    private void UpdatePainFeels(EntityUid nerveUid, NerveComponent? nerveComp = null)
     {
+        if (!Resolve(nerveUid, ref nerveComp))
+            return;
+
         var bodyPart = Comp<BodyPartComponent>(nerveUid);
-        if (bodyPart.Body == null || !TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+        if (bodyPart.Body == null)
+            return;
+
+        var ev = new PainFeelsChangedEvent(nerveComp.ParentedNerveSystem, nerveUid, nerveComp.PainFeels);
+        RaiseLocalEvent(nerveUid, ref ev);
+
+        if (!TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
             return;
 
         targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
         Dirty(bodyPart.Body.Value, targeting);
 
-        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+        if (_net.IsServer)
+            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
     }
 
     private void UpdateDamage(EntityUid nerveSysEnt, NerveSystemComponent nerveSys)
     {
+        if (_timing.ApplyingState || TerminatingOrDeleted(nerveSysEnt))
+            return;
+
         if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
             nerveSys.LastPainThreshold = nerveSys.Pain;
 
@@ -789,13 +802,13 @@ public partial class PainSystem
         if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
             return;
 
-        var ev1 = new PainThresholdTriggered(uid, nerveSys, nearestReflex, painInput);
+        var ev1 = new PainThresholdTriggered((uid, nerveSys), nearestReflex, painInput);
         RaiseLocalEvent(organ.Body.Value, ref ev1);
 
         if (ev1.Cancelled || _mobState.IsDead(organ.Body.Value))
             return;
 
-        var ev2 = new PainThresholdEffected(uid, nerveSys, nearestReflex, painInput);
+        var ev2 = new PainThresholdEffected((uid, nerveSys), nearestReflex, painInput);
         RaiseLocalEvent(organ.Body.Value, ref ev2);
 
         nerveSys.UpdateTime = _timing.CurTime + nerveSys.ThresholdUpdateTime;

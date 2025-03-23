@@ -5,7 +5,6 @@ using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -29,6 +28,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 using BleedInflicterComponent = Content.Shared.Backmen.Surgery.Traumas.Components.BleedInflicterComponent;
 
 namespace Content.Server.Body.Systems;
@@ -214,12 +214,14 @@ public sealed class BloodstreamSystem : EntitySystem
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, WoundComponent>();
         while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var wound))
         {
-            if (bleeds is { IsBleeding: false, BleedingScales: false })
+            bleeds.IsBleeding = CanWoundBleed(ent, bleeds);
+            if (!bleeds.IsBleeding)
             {
                 if (!TryComp<BodyPartComponent>(wound.HoldingWoundable, out var holder) || !holder.Body.HasValue)
                     continue;
 
                 wound.CanBeHealed = true;
+                continue;
             }
 
             var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
@@ -576,11 +578,140 @@ public sealed class BloodstreamSystem : EntitySystem
         return bloodData;
     }
 
+    public bool ChangeBleedsModifierMetadata(
+        EntityUid wound,
+        string identifier,
+        int priority,
+        bool? canBleed,
+        BleedInflicterComponent? bleeds = null)
+    {
+        if (!Resolve(wound, ref bleeds))
+            return false;
+
+        if (!bleeds.BleedingModifiers.TryGetValue(identifier, out var pair))
+            return false;
+
+        bleeds.BleedingModifiers[identifier] = (Priority: priority, CanBleed: canBleed ?? pair.CanBleed);
+        return true;
+    }
+
+    public bool ChangeBleedsModifierMetadata(
+        EntityUid wound,
+        string identifier,
+        bool canBleed,
+        int? priority,
+        BleedInflicterComponent? bleeds = null)
+    {
+        if (!Resolve(wound, ref bleeds))
+            return false;
+
+        if (!bleeds.BleedingModifiers.TryGetValue(identifier, out var pair))
+            return false;
+
+        bleeds.BleedingModifiers[identifier] = (Priority: priority ?? pair.Priority, CanBleed: canBleed);
+        return true;
+    }
+
+
+    public bool TryAddBleedModifier(
+        EntityUid woundable,
+        string identifier,
+        int priority,
+        bool canBleed,
+        bool force = false,
+        WoundableComponent? woundableComp = null)
+    {
+        if (!Resolve(woundable, ref woundableComp))
+            return false;
+
+        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
+        {
+            if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleedsComp))
+                continue;
+
+            if (TryAddBleedModifier(woundEnt, identifier, priority, canBleed, bleedsComp))
+                continue;
+
+            if (!force)
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool TryAddBleedModifier(
+        EntityUid uid,
+        string identifier,
+        int priority,
+        bool canBleed,
+        BleedInflicterComponent? comp = null)
+    {
+        return Resolve(uid, ref comp) && comp.BleedingModifiers.TryAdd(identifier, (priority, canBleed));
+    }
+
+    public bool TryRemoveBleedModifier(
+        EntityUid uid,
+        string identifier,
+        bool force = false,
+        WoundableComponent? woundable = null)
+    {
+        if (!Resolve(uid, ref woundable))
+            return false;
+
+        foreach (var woundEnt in _wound.GetWoundableWounds(uid, woundable))
+        {
+            if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleedsComp))
+                continue;
+
+            if (TryRemoveBleedModifier(woundEnt, identifier, bleedsComp))
+                continue;
+
+            if (!force)
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool TryRemoveBleedModifier(
+        EntityUid uid,
+        string identifier,
+        BleedInflicterComponent? comp = null)
+    {
+        return Resolve(uid, ref comp) && comp.BleedingModifiers.Remove(identifier);
+    }
+
+    /// <summary>
+    /// Self-explanatory
+    /// </summary>
+    /// <param name="uid">Wound entity</param>
+    /// <param name="comp">Bleeds Inflicter Component </param>
+    /// <returns></returns>
+    public bool CanWoundBleed(EntityUid uid, BleedInflicterComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        var nearestModifier = comp.BleedingModifiers.FirstOrNull();
+        if (nearestModifier == null)
+            return true; // No modifiers. return true
+
+        var lastCanBleed = true;
+        var lastPriority = 0;
+        foreach (var (_, pair) in comp.BleedingModifiers)
+        {
+            if (pair.Priority <= lastPriority)
+                continue;
+
+            lastPriority = pair.Priority;
+            lastCanBleed = pair.CanBleed;
+        }
+
+        return lastCanBleed;
+    }
+
     private void OnWoundAdded(EntityUid uid, BleedInflicterComponent component, ref WoundAddedEvent args)
     {
-        if (!args.Component.CanBleed)
-            return;
-
         // wounds that BLEED will not HEAL.
         component.BleedingAmountRaw = args.Component.WoundSeverityPoint * BleedsSeverityTrade;
 
@@ -594,7 +725,7 @@ public sealed class BloodstreamSystem : EntitySystem
 
     private void OnWoundSeverityUpdate(EntityUid uid, BleedInflicterComponent component, ref WoundSeverityPointChangedEvent args)
     {
-        if (!args.Component.CanBleed)
+        if (!CanWoundBleed(uid, component))
             return;
 
         var oldBleedsAmount = args.OldSeverity * BleedsSeverityTrade;

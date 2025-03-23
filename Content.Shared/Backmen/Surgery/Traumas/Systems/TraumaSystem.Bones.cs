@@ -31,12 +31,26 @@ public partial class TraumaSystem
 
         switch (args.NewSeverity)
         {
+            case BoneSeverity.Normal:
+                if (bodyComp.PartType == BodyPartType.Hand)
+                {
+                    _virtual.DeleteInHandsMatching(bodyComp.Body.Value, bone);
+                }
+
+                break;
+
             case BoneSeverity.Damaged:
                 _audio.PlayPvs(bone.Comp.BoneBreakSound, bodyComp.Body.Value, AudioParams.Default.WithVolume(-8f));
                 break;
 
             case BoneSeverity.Broken:
                 // TODO: _audio.PlayPvs(bone.Comp.BoneDestroyedSound, bodyComp.Body.Value, AudioParams.Default.WithVolume(12f));
+
+                if (bodyComp.PartType == BodyPartType.Hand)
+                {
+                    _virtual.TrySpawnVirtualItemInHand(bone, bodyComp.Body.Value);
+                }
+
                 break;
         }
     }
@@ -55,14 +69,6 @@ public partial class TraumaSystem
             case BodyPartType.Leg:
             case BodyPartType.Foot:
                 ProcessLegsState(bodyComp.Body.Value);
-
-                break;
-
-            case BodyPartType.Hand:
-                // thresholds, healing and etc checks are handled by trauma inflicter stuff; So we are fine to just do it this way
-
-                _hands.TryDrop(bodyComp.Body.Value, bone.Comp.BoneWoundable.Value);
-                // TODO: Put in a virtual entity blocking the hand if your bone is broken
 
                 break;
         }

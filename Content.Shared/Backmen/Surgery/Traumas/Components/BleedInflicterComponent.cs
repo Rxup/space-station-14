@@ -33,4 +33,7 @@ public sealed partial class BleedInflicterComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 ScalingLimit = 1.4;
+
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public Dictionary<string, (int Priority, bool CanBleed)> BleedingModifiers = new();
 }

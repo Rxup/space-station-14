@@ -11,6 +11,7 @@
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
+    - Dismemberment
     - OrganDamage
     - BoneDamage
     - VeinsDamage
@@ -19,8 +20,8 @@
     - VeinsDamage
     - NerveDamage
     traumasChances:
-      Dismemberment: 0
-      OrganDamage: 0.34
+      Dismemberment: -0.17
+      OrganDamage: 0.17
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0
@@ -49,7 +50,7 @@
     allowArmourDeduction:
     - Dismemberment
     traumasChances:
-      Dismemberment: 0
+      Dismemberment: -0.17
       OrganDamage: 0.34
       BoneDamage: 0.34
       VeinsDamage: -0.4 # goes through rather easy.
@@ -76,7 +77,7 @@
     - VeinsDamage
     - NerveDamage
     traumasChances:
-      Dismemberment: 0
+      Dismemberment: -0.34 # Bullets go THROUGH people
       OrganDamage: 0.34
       BoneDamage: 0.34
       VeinsDamage: -0.4
@@ -123,6 +124,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: BurnScar
+    bleedsScaling: 0
     integrityMultiplier: 0.34 # boiling people
   - type: TraumaInflicter
     severityThreshold: 17
@@ -142,6 +144,7 @@
       NerveDamage: 0.34
   - type: PainInflicter
     multiplier: 1.1
+  - type: BleedInflicter
 
 - type: entity
   id: Cold
@@ -186,7 +189,6 @@
       BoneDamage: 0
       VeinsDamage: 0.5
       NerveDamage: 0.5
-  - type: PainInflicter
   - type: PainInflicter
     multiplier: 0.12
 

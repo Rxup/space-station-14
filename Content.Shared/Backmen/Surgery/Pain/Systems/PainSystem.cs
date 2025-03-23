@@ -105,9 +105,6 @@ public sealed partial class PainSystem : EntitySystem
 
     private void OnBodyPartAdded(EntityUid uid, NerveComponent nerve, ref BodyPartAddedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         var bodyPart = Comp<BodyPartComponent>(uid);
         if (!bodyPart.Body.HasValue)
             return;
@@ -121,9 +118,6 @@ public sealed partial class PainSystem : EntitySystem
 
     private void OnBodyPartRemoved(EntityUid uid, NerveComponent nerve, ref BodyPartRemovedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         var bodyPart = Comp<BodyPartComponent>(uid);
         if (!bodyPart.Body.HasValue)
             return;
@@ -146,9 +140,13 @@ public sealed partial class PainSystem : EntitySystem
 
                 CleanupSounds(nerveSys);
                 PlayPainSound(args.Target, nerveSys, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f));
+
+                nerveSys.NextCritScream = _timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
+
                 break;
             case MobState.Dead:
                 CleanupSounds(nerveSys);
+
                 break;
         }
     }
