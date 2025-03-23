@@ -4,7 +4,8 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
-using Content.Shared.CombatMode; // Goobstation
+using Content.Shared.CombatMode;
+using Content.Shared.CombatMode.Pacification; // Goobstation
 using Content.Shared.Cuffs.Components; // Goobstation
 using Content.Shared.Damage; // Goobstation
 using Content.Shared.Damage.Systems; // Goobstation
@@ -797,6 +798,9 @@ public sealed class PullingSystem : EntitySystem
             return false;
 
         if (!Resolve(puller.Owner, ref puller.Comp))
+            return false;
+
+        if (HasComp<PacifiedComponent>(puller))
             return false;
 
         // prevent you from grabbing someone else while being grabbed
