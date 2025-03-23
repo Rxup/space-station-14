@@ -6,8 +6,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Content.Shared.Atmos;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 
 namespace Content.Shared.Backmen.Audio;
 [Serializable, NetSerializable]
@@ -20,38 +18,27 @@ public sealed class EchoEffectEvent : EntityEventArgs
 
 public sealed class EchoEffectsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly INetManager _net = default!;
-
     public override void Initialize()
     {
+
         base.Initialize();
         SubscribeNetworkEvent<EchoEffectEvent>(OnApplyEffect);
     }
     private void OnApplyEffect(EchoEffectEvent ev)
     {
-        if (TryGetEntity(ev.Target, out var sound) && TryGetEntity(ev.Effect, out var effect) )
+        if (TryGetEntity(ev.Target, out var sound) && TryGetEntity(ev.Effect, out var effect))
         {
-            var xForm = Transform(sound.Value);
-
-            if (xForm.GridUid == null)
-            {
-                _audio.SetVolume(sound.Value, 0);
-                return;
-            }
-
             _audio.SetAuxiliary(sound.Value, Comp<AudioComponent>(sound.Value), effect);
         }
-
     }
 
     private static readonly Dictionary<ProtoId<AudioPresetPrototype>, EntityUid> CachedEffects = new ();
 
     public bool TryAddEffect(Entity<AudioComponent> sound, ProtoId<AudioPresetPrototype> preset)
     {
-
 
         if (!CachedEffects.TryGetValue(preset, out var effect) && !TryCreateEffect(preset, out effect))
             return false;
