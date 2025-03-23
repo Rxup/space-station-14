@@ -187,13 +187,14 @@
   description: traitor-description
   showInVote: false
   rules:
+    - DummyNonAntagChance
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - MeteorSwarmScheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -221,11 +222,15 @@
   minPlayers: 15
   rules:
     - Nukeops
+    - DummyNonAntagChance
     - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - CalmStationEventScheduler #backmen: calm-scheduler
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - CalmMeteorSwarmScheduler #backmen: calm-scheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -239,10 +244,11 @@
   description: rev-description
   showInVote: false
   rules:
+    - DummyNonAntagChance
     - Revolutionary
     - SubGamemodesRule
     - MeteorSwarmScheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - WageScheduler #backmen: currency
     - LavalandStormScheduler # Lavaland Change
@@ -257,6 +263,7 @@
   showInVote: false
   rules:
   - Wizard
+  - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
