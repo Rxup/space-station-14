@@ -25,13 +25,13 @@
 
 # Static robofab
 - type: latheRecipePack
-  id: BackmenShitmedModulesStatic
+  id: BackmenModulesStatic
   recipes:
   - BorgModuleSurgery
 
 # Dynamic robofab
 - type: latheRecipePack
-  id: BackmenShitmedModules
+  id: BackmenModules
   recipes:
   - BorgModuleAdvancedSurgery
   - JawsOfLifeLeftArm
@@ -39,6 +39,7 @@
   - SpeedLeftLeg
   - SpeedRightLeg
   - BasicCyberneticEyes
+  - BorgModuleAdvancedMining
 
 - type: latheRecipePack
   id: BackmenSynthBodyParts

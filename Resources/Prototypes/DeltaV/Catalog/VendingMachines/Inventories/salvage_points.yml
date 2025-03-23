@@ -49,8 +49,6 @@
     cost: 750
   - id: WeaponProtoKineticAccelerator
     cost: 750
-  - id: SurvivalMedipen
-    cost: 800
   - id: PKAUpgradeRange
     cost: 900
   - id: Fulton
@@ -79,11 +77,15 @@
     cost: 1250
   - id: ClothingBackpackDuffelSalvageConscription
     cost: 1250
-  - id: ShelterCapsule
+  - id: WeaponProtoKineticShotgun
     cost: 1500
+  - id: LuxuryMedipen
+    cost: 1600
   - id: WeaponPlasmaCutter
     cost: 1700
   - id: SpaceCash1000
+    cost: 2000
+  - id: BorgModuleAdvancedMining
     cost: 2000
   # TODO: super resonator for 2500
   - id: ClothingOuterHardsuitSalvage

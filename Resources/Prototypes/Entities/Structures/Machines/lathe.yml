@@ -315,13 +315,13 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    - BackmenShitmedModulesStatic # backmen
+    - BackmenModulesStatic # backmen
     dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
-    - BackmenShitmedModules # backmen
+    - BackmenModules # backmen
   - type: MaterialStorage
     whitelist:
       tags:

@@ -88,6 +88,9 @@
   - Supply
   - Science
 
+  addComponents: # Goobstation
+  - type: NoWieldNeeded
+
   # Visual
   inventoryTemplateId: borgTall
   spriteBodyState: miner

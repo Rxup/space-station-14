@@ -280,7 +280,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
 
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
-            fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
+            fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRateModified);  // Goobstation edit
 
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
@@ -362,7 +362,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 
             gun.BurstActivated = false;
             gun.BurstShotsCount = 0;
-            gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
+            gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldownModified); // Goobstation edit
 
             // Play empty gun sounds if relevant
             // If they're firing an existing clip then don't play anything.
@@ -393,7 +393,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             gun.BurstShotsCount += shots;
             if (gun.BurstShotsCount >= gun.ShotsPerBurstModified)
             {
-                gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
+                gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldownModified); // Goobstation edit
+                if (!gun.LockOnTargetBurst || gun.ShootCoordinates == null) // Goobstation
+                    gun.Target = null;
                 gun.BurstActivated = false;
                 gun.BurstShotsCount = 0;
             }
@@ -559,7 +561,10 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.MinAngle,
             comp.ShotsPerBurst,
             comp.FireRate,
-            comp.ProjectileSpeed
+            comp.ProjectileSpeed,
+            comp.BurstFireRate, // Goobstation
+            comp.BurstCooldown, // Goobstation
+            User // GoobStation change - User for NoWieldNeeded
         );
 
         RaiseLocalEvent(gun, ref ev);
@@ -617,6 +622,18 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.ProjectileSpeedModified = ev.ProjectileSpeed;
             DirtyField(gun, nameof(GunComponent.ProjectileSpeedModified));
         }
+
+        if (!MathHelper.CloseTo(comp.BurstFireRateModified, ev.BurstFireRate)) // Goobstation - start
+        {
+            comp.BurstFireRateModified = ev.BurstFireRate;
+            DirtyField(gun, nameof(GunComponent.BurstFireRateModified));
+        }
+
+        if (!MathHelper.CloseTo(comp.BurstCooldownModified, ev.BurstCooldown))
+        {
+            comp.BurstCooldownModified = ev.BurstCooldown;
+            DirtyField(gun, nameof(GunComponent.BurstCooldownModified));
+        }  // Goobstation - end
     }
 
     protected abstract void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null);
