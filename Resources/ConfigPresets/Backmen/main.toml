@@ -69,7 +69,9 @@ easy_mode = false
 
 [atmos]
 space_wind = true
-space_wind_max_velocity = 22.0
+#space_wind_max_velocity = 22.0
+#tickrate = 7
+monstermos_rip_tiles = true
 max_explosion_range = 5
 
 [physics]
@@ -150,4 +152,4 @@ timermap = 60
 
 [hub]
 advertise = true
-tags = "lang:ru,rp:med,region:eu_e,tts"
+tags = "lang:ru,region:eu_e,rp:med"

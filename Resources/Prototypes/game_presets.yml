@@ -222,6 +222,7 @@
   rules:
     - Nukeops
     - SubGamemodesRule
+    - CalmStationEventScheduler #backmen: calm-scheduler
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - CalmMeteorSwarmScheduler #backmen: calm-scheduler
@@ -241,6 +242,7 @@
   rules:
     - Revolutionary
     - SubGamemodesRule
+    - BasicStationEventScheduler
     - MeteorSwarmScheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -258,6 +260,7 @@
   rules:
   - Wizard
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
@@ -275,6 +278,7 @@
   showInVote: false
   rules:
   - Zombie
+  - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - MeteorSwarmScheduler

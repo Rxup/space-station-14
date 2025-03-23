@@ -40,9 +40,9 @@
     children:
     - !type:NestedSelector
       tableId: BasicBackmenEventsTable
+    - id: EvilTwinSpawn
     - id: BlobSpawn
     - id: SpiderSpiderVampireSpawn
-    - id: VampireOutbreak
 
 
 - type: entityTable
@@ -320,10 +320,9 @@
       startAnnouncement: station-event-vent-creatures-start-announcement
       startAudio:
         path: /Audio/Announcements/attention.ogg
+      earliestStart: 20
       minimumPlayers: 15
-      earliestStart: 30
-      reoccurrenceDelay: 50
-      weight: 6
+      weight: 2
       duration: 60
     - type: VentCrittersRule
       entries:

@@ -39,6 +39,7 @@
   showInVote: false
   rules:
   - BlobGameMode
+  - CalmStationEventScheduler
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
@@ -271,6 +272,7 @@
   - Changeling
   - Traitor
   - SubGamemodesRule
+  - BasicStationEventScheduler
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
   - LavalandStormScheduler # Lavaland Change
@@ -336,7 +338,7 @@
   - RampingStationEventScheduler
 #  - SpaceTrafficControlEventScheduler
 #  - SpaceTrafficControlFriendlyEventScheduler
-  - LavalandStormScheduler # Lavaland Change
+  - LavalandStormScheduler # Lavaland Change  
 
 - type: gamePreset
   id: Calm
