@@ -266,3 +266,75 @@
   - type: ConditionalSpawner
     prototypes:
     - MobGuardPoliceUEGShotgun
+
+# ---- Syndicate Simple Mobs ----
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSimpleSyndicateBlade
+  name: spawner Simple Syndicate Blade
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: alive
+      sprite: Backmen/Mobs/Npc/simple_syndicate/blade.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSimpleSyndicateBlade
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSimpleSyndicateKnife
+  name: spawner Simple Syndicate Knife
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: alive
+      sprite: Backmen/Mobs/Npc/simple_syndicate/knife.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSimpleSyndicateKnife
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSimpleSyndicatePistol
+  name: spawner Simple Syndicate Pistol
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: alive
+      sprite: Backmen/Mobs/Npc/simple_syndicate/pistol.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSimpleSyndicatePistol
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSimpleSyndicateShotgun
+  name: spawner Simple Syndicate Shotgun
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: alive
+      sprite: Backmen/Mobs/Npc/simple_syndicate/shotgun.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSimpleSyndicateShotgun
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSimpleSyndicateSMG
+  name: spawner Simple Syndicate SMG
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: alive
+      sprite: Backmen/Mobs/Npc/simple_syndicate/smg.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSimpleSyndicateSMG

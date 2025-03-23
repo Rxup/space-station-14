@@ -1,0 +1,802 @@
+- type: entity
+  id: MobHeadcrabNPC
+  name: headcrab
+  suffix: Xen suppa AI
+  parent: SimpleSpaceMobBase
+  components:
+    - type: ZombieImmune
+    - type: TriggerOnMobstateChange
+      mobState:
+        - Dead
+    - type: EmitSoundOnTrigger
+      sound:
+        collection: HeadcrabDeath
+        params:
+          volume: 3
+    - type: Clothing
+      quickEquip: false
+      sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
+      equippedState: equipped-HELMET
+      slots:
+        - HEAD
+        - MASK
+    - type: Tag
+      tags:
+        - HidesHair
+        - BlobMob
+    - type: ClothingSpeedModifier
+      walkModifier: 0.6
+      sprintModifier: 0.6
+    - type: BlobPod
+    - type: IngestionBlocker
+    - type: IdentityBlocker
+    - type: DoAfter
+    - type: Physics
+      bodyType: KinematicController
+    - type: InteractionOutline
+    - type: Actions
+    - type: Alerts
+    - type: InputMover
+    - type: Examiner
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: HeadCrabCompound
+      blackboard:
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/Backmen/test/base/ogg/blackmesa/headcrab/alert1.ogg
+    - type: ReplacementAccent
+      accent: genericAggressive
+    - type: CombatMode
+    - type: NpcFactionMember
+      factions:
+        - Blob
+    - type: MeleeWeapon
+      hidden: true
+      soundHit:
+        path: /Audio/Backmen/test/base/ogg/blackmesa/headcrab/headbite.ogg
+      angle: 0
+      animation: WeaponArcSmash
+      damage:
+        types:
+          Piercing: 5
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 100
+          mask:
+          - SmallMobMask
+          layer:
+          - SmallMobLayer
+    - type: BadFood
+    - type: MobPrice
+      price: 50
+    - type: Puller
+      needsHands: false
+    - type: Food
+    - type: Hunger
+      thresholds:
+        Overfed: 35
+        Okay: 25
+        Peckish: 15
+        Starving: 10
+        Dead: 0
+      baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
+    - type: Extractable
+      grindableSolutionName: food
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          reagents:
+          - ReagentId: UncookedAnimalProteins
+            Quantity: 3
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 300
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Butcherable
+      butcheringType: Knife
+      spawned:
+      - id: FoodMeatChicken
+        amount: 2
+    - type: DamageStateVisuals
+      rotate: false
+      states:
+        Alive:
+          Base: headcrab
+        Dead:
+          Base: headcrab_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        50: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 4
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
+      layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: headcrab
+    - type: FleshWorm
+      paralyzeTime: 3
+      soundWormJump:
+        collection: HeadcrabAttack
+      chansePounce: 33
+      damage:
+        types:
+          Piercing: 10
+      actionWormJump: ActionHeadcrabJump
+
+- type: entity
+  id: MobHeadcrabPlayer
+  name: headcrab
+  suffix: Xen suppa Player
+  parent: MobHeadcrab
+  components:
+    - type: GhostRole
+      allowMovement: true
+      name: Headcrab
+      description: Monster from Xen
+    - type: GhostTakeoverAvailable
+    - type: HTN
+      rootTask:
+        task: HeadCrabCompound
+
+- type: htnCompound
+  id: HeadCrabCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FoodCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: entity
+  name: зомбированный
+  id: MobHeadcrabZombie
+  parent: MobBaseNpcDungeon
+  suffix: Xen suppa Zombie Base
+  description: Zombie.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmoteOnDamage
+    emotes:
+    - Pain
+    emoteChance: 1
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Male: ZombieHeadcrabed
+      Female: ZombieHeadcrabed
+      Unsexed: ZombieHeadcrabed
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Tool
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Reactive
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+        path: /Audio/Backmen/test/base/ogg/blackmesa/zombies/claw_strike.ogg
+        params:
+          volume: 5
+    damage:
+        types:
+          Slash: 7
+          Structural: 15
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: NpcFactionMember
+    factions:
+      - Blob
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: HeadcrabDeath
+      params:
+        volume: 3
+  - type: SpawnOnTrigger
+    proto: RandomHeadcrabSpawner
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: ReplacementAccent
+    accent: zombie
+
+- type: entity
+  name: random headcrab spawner
+  id: RandomHeadcrabSpawner
+  parent: MarkerBase
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MobHeadcrab
+    chance: 0.6
+    offset: 0
+
+- type: emoteSounds
+  id: ZombieHeadcrabed
+  params:
+    variation: 0.125
+  sounds:
+    Pain:
+      collection: ZombiePain
+      params:
+        volume: -10
+
+- type: emote
+  id: Pain
+  name: pain
+  chatMessages: ["chat-emote-msg-gasp"]
+  chatTriggers:
+   - pain
+
+- type: damageModifierSet
+  id: HEVArmor
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.5
+    Shock: 0.8
+    Heat: 0.05
+    Radiation: 0
+    Caustic: 0
+    Stun: 0
+
+- type: entity
+  name: US marine
+  id: MobHeadcrabZombieHecu
+  parent: MobHeadcrabZombie
+  suffix: Xen suppa Zombie HECU
+  description: Infected United State marine, he is equipped with PCV and it seems that the infection has pretty much battered the equipment.
+  components:
+  - type: MeleeWeapon
+    damage:
+        types:
+          Slash: 12
+          Structural: 35
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: hecu_zombie
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      210: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      210: 1
+  - type: Damageable
+    damageModifierSet: CombineArmor
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5
+  - type: Loadout
+    prototypes: [NPCMarine]
+
+- type: entity
+  name: science
+  id: MobHeadcrabZombieScience
+  parent: MobHeadcrabZombie
+  suffix: Xen suppa ZombieSCIENCE
+  description: Infected, judging by the access card, a scientist from some research complex, his clothes are already gradually rotting, and his body is disfigured, but no traces of decomposition are visible.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: scientist_zombie
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Loadout
+    prototypes: [NPCScience]
+
+- type: entity
+  name: security
+  id: MobHeadcrabZombieSecurity
+  parent: MobHeadcrabZombie
+  suffix: Xen suppa Zombie Security
+  description: Infected, judging by the inscription on the remainder of the body armor, a security guard, a closed-type holster can be seen on his belt, green blisters can be seen from holes in his clothes.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: male_template
+      sprite: Backmen/Mobs/Npc/Base.rsi
+    - state: equipped-INNERCLOTHING
+      sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
+    - state: equipped-HAND
+      sprite: Clothing/Hands/Gloves/Color/black.rsi
+    - state: equipped-FEET
+      sprite: Clothing/Shoes/Boots/combatboots.rsi
+    - state: equipped-OUTERCLOTHING
+      sprite: Clothing/OuterClothing/Armor/security.rsi
+    - state: headcrab_zombie
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Damageable
+    damageModifierSet: CombineArmorCP
+  - type: Loadout
+    prototypes: [NPCSecurity]
+
+- type: entity
+  name: security officer
+  id: MobHeadcrabZombieSecurityRanger
+  parent: MobHeadcrabZombieSecurity
+  suffix: Xen suppa Zombie Security Ranger
+  description: Infected, judging by the badge, he is from the black mesa guard division, he holds a revolver in his hand, clutching it with a death grip, if you look closely, as if it was stuck to the remains of his hand...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: male_template
+      sprite: Backmen/Mobs/Npc/Base.rsi
+    - state: equipped-INNERCLOTHING
+      sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
+    - state: equipped-HAND
+      sprite: Clothing/Hands/Gloves/Color/black.rsi
+    - state: equipped-FEET
+      sprite: Clothing/Shoes/Boots/combatboots.rsi
+    - state: equipped-OUTERCLOTHING
+      sprite: Clothing/OuterClothing/Armor/security.rsi
+    - state: headcrab_zombie
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    - state: inhand-right
+      sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagnum
+    capacity: 1
+    count: 1
+  - type: Gun
+    minAngle: 20
+    maxAngle: 22
+    fireRate: 0.5
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: Loadout
+    prototypes: [NPCSecurityRanger]
+
+- type: entity
+  name: security
+  id: MobHeadcrabZombieSecurityHeavy
+  parent: MobHeadcrabZombieSecurity
+  suffix: Xen suppa Zombie Security Heavy
+  description: The infected one, judging by the inscription on the armored suit, is from the black mesa guard; the armored suit completely covers his body, which greatly changed his appearance compared to the rest of the infected.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: male_template
+      sprite: Backmen/Mobs/Npc/Base.rsi
+    - state: equipped-INNERCLOTHING
+      sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
+    - state: equipped-HAND
+      sprite: Clothing/Hands/Gloves/Color/black.rsi
+    - state: equipped-FEET
+      sprite: Clothing/Shoes/Boots/combatboots.rsi
+    - state: equipped-OUTERCLOTHING
+      sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
+    - state: headcrab_zombie
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: Damageable
+    damageModifierSet: CombineArmorElite
+  - type: Loadout
+    prototypes: [NPCSecurityHeavy]
+
+- type: entity
+  name: H.E.V. unit
+  id: MobHeadcrabZombieHEV
+  parent: MobHeadcrabZombie
+  suffix: Xen suppa ZombieHEV
+  description: Infected in a HEV suit, the armor appears to still protect its wearer from most types of threats and attempts to reanimate him, the suit's drives aid in movement, which greatly helps the infected catch up with their victims.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: hev_zombie
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+        types:
+          Slash: 4
+          Structural: 25
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      140: 0.5
+      149: 0.5
+      150: 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          OrganAnimalHeart:
+            min: 1
+            max: 1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: HEVDeath
+      params:
+        volume: 3
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: NoSlip
+  - type: Damageable
+    damageModifierSet: HEVArmor
+  - type: Loadout
+    prototypes: [NPCHEV]
+
+- type: entity
+  name: зомбированный гражданский
+  id: MobHeadcrabZombieCivilianOld
+  parent: MobHeadcrabZombie
+  suffix: Xen suppa Zombie
+  description: Гражданский, просто существует.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    layers:
+    - state: civ1
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: headcrab_zombie
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          civ1: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ2: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ3: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ4: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ5: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ6: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ7: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ8: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ9: ""
+
+- type: entity
+  name: BlackOps Operator
+  id: MobBlackOpsOperator
+  parent: MobBaseNpcDungeon
+  suffix: Xen suppa БлэкОпс дальник
+  components:
+  - type: Damageable
+    damageModifierSet: HEVArmor
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Tool
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.45
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifle
+    capacity: 3
+    count: 3
+  - type: Gun
+    minAngle: 1
+    maxAngle: 22
+    angleIncrease: 12
+    angleDecay: 20
+    fireRate: 3
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns64/Rifles/m16.ogg
+  - type: NpcFactionMember
+    factions:
+      - SpecialForce
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: blackops_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: NoSlip
+  - type: Loadout
+    prototypes: [NPCBlackOps]
+
+- type: entity
+  name: BlackOps Operator
+  id: MobBlackOpsOperatorMelee
+  parent: MobBaseNpcDungeon
+  suffix: Xen suppa БлэкОпс ближник
+  components:
+  - type: Damageable
+    damageModifierSet: HEVArmor
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Tool
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: NpcFactionMember
+    factions:
+      - SpecialForce
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: blackops
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 6
+    baseWalkSpeed: 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.6
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: NoSlip
+  - type: Loadout
+    prototypes: [NPCBlackOpsMelee]
+
+- type: entity
+  name: bullsquid
+  id: MobBullSquid
+  suffix: Xen suppa Player
+  parent: MobXeno
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: bullsquid
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    soundHit:
+     path: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/attack1.ogg
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 12
+  - type: DamageStateVisuals
+    rotate: false
+    states:
+      Alive:
+        Base: bullsquid
+      Dead:
+        Base: bullsquid_dead
+  - type: GhostRole
+    name: bullsquid
+    description: Monster from Xen
+    rules: ghost-role-information-xeno-rules
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
+  - type: Bloodstream
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/goo_attack3.ogg
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: Damageable
+    damageModifierSet: CombineArmor
+
+- type: entity
+  name: bullsquid
+  id: MobBullSquidGhostless
+  suffix: Xen suppa AI
+  parent: MobBullSquid
+  components:
+  - type: GhostRole
+    name: bullsquid
+    description: Monster from Xen
+    rules: ghost-role-information-xeno-rules
+    prob: 0
+
+- type: entity
+  name: Vortigaunt
+  id: MobVortigauntGhostless
+  parent: MobBaseNpcDungeon
+  suffix: Xen suppa AI
+  description: They mostly come at night. Mostly.
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: vortigaunt
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          vortigaunt: ""
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: DamageStateVisuals
+    rotate: false
+    states:
+      Alive:
+        Base: vortigaunt
+      Dead:
+        Base: vortigaunt
+  - type: HitscanBatteryAmmoProvider
+    proto: Lightning
+    fireCost: 50
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Gun
+    fireRate: 0.40
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: VortigauntShot
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: VortigauntDeath
+      params:
+        volume: 3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          OrganAnimalHeart:
+            min: 1
+            max: 1
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: Damageable
+    damageModifierSet: CombineArmor
+
+- type: entity
+  name: Vortigaunt
+  id: MobVortigaunt
+  parent: MobVortigauntGhostless
+  suffix: Xen Suppa Player
+  description: They mostly come at night. Mostly.
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Vortigaunt
+    description: Monster from Xen
+  - type: GhostTakeoverAvailable
+
+- type: hitscan
+  maxLength: 7
+  id: Lightning
+  damage:
+    groups:
+      Brute: 5
+      Burn: 20
+  muzzleFlash:
+    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+    state: blue_lightning
+  travelFlash:
+    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+    state: blue_lightning
+  impactFlash:
+    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+    state: blue_lightning

@@ -9,7 +9,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
-    - HeadTop
+#    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
@@ -119,7 +119,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
-    - HeadTop
+#    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Inventory

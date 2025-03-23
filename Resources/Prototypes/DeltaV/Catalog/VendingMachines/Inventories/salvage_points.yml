@@ -1,6 +1,8 @@
 - type: shopInventory
   id: SalvageVendorInventory
   listings:
+  - id: Flare
+    cost: 50
   - id: DrinkWhiskeyBottleFull
     cost: 100
   - id: DrinkAbsintheBottleFull
@@ -9,20 +11,28 @@
     cost: 150
   - id: Soap
     cost: 200
+  - id: PlushieLizard
+    cost: 220 # CURSE
   - id: SeismicCharge
     cost: 250
-  - id: WeaponGrapplingGun
+  - id: WeaponGrapplingGun # TODO rework grappling gun to ss13 style
     cost: 300
   # TODO: laser pointer 300, toy facehugger 300
   # TODO: stabilizing serum for 400
   - id: FultonBeacon
     cost: 400
+  - id: Binoculars
+    cost: 450
   - id: ClothingEyesGlassesGarMeson
     cost: 500
   - id: ClothingBeltSalvageWebbing
     cost: 500
-  - id: PKAUpgradeLight
+  - id: LavalandJaunter
     cost: 500
+  - id: PKAUpgradeLight
+    cost: 510
+  - id: Floodlight
+    cost: 510
   - id: DoubleEmergencyOxygenTank
     cost: 550
   - id: ClothingShoesBootsJack
@@ -33,22 +43,28 @@
     cost: 600
   - id: MedkitBurnFilled
     cost: 600
-  - id: LavalandJaunter
-    cost: 750
+  - id: PowerCellHigh
+    cost: 650
   - id: WeaponCrusher
     cost: 750
   - id: WeaponProtoKineticAccelerator
     cost: 750
   - id: SurvivalMedipen
     cost: 800
-  - id: Fulton
-    cost: 1000
   - id: PKAUpgradeRange
+    cost: 900
+  - id: Fulton
     cost: 1000
   - id: PKAUpgradeFireRate
     cost: 1000
   - id: AdvancedMineralScanner
     cost: 1100
+  - id: WeaponProtoKineticShotgun
+    cost: 1150
+  - id: WeaponProtoKineticRepeater
+    cost: 1150
+  - id: WeaponProtoKineticPistol
+    cost: 1150
   - id: PKAUpgradeDamage
     cost: 1200
   - id: LavalandEquipmentExplorerSuit
@@ -60,12 +76,6 @@
   - id: LavalandWeaponKineticSpear
     cost: 1250
   - id: LavalandWeaponKineticClaws
-    cost: 1250
-  - id: WeaponProtoKineticShotgun
-    cost: 1250
-  - id: WeaponProtoKineticRepeater
-    cost: 1250
-  - id: WeaponProtoKineticPistol
     cost: 1250
   - id: ClothingBackpackDuffelSalvageConscription
     cost: 1250

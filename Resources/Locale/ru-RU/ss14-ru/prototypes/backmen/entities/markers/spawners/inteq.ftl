@@ -1,13 +1,39 @@
-ent-SpawnMobInteQVanguardLeader = спавнер Интек авангард лидер 
+ent-SpawnMobInteQVanguardLeader = спавнер Интек Коммандер Авангарда 
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobInteQVanguardOperative = спавнер Интек авангард оперативник
+ent-SpawnMobInteQVanguardOperative = спавнер Интек Авангард Оперативник
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobInteQVanguardSolder = спавнер Интек авангард солдат
+ent-SpawnMobInteQVanguardSolder = спавнер Интек Авангард Солдат
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobInteQVanguardMedic = спавнер Интек авангард медик
+ent-SpawnMobInteQVanguardMedic = спавнер Интек Авангард Медик
     .desc = { ent-MarkerBase.desc }
 
 ent-SpawnMobInteQAgent = спавнер агент Интек
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobCarpBrownInteQ = спавнер карп Интек
     .desc = { ent-MarkerBase.desc }
+
+ent-SpawnPointInteQVanguardLeader = капсула Коммандера Авангарда Интек
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, Гост Роль, Персонаж игрока
+ent-SpawnPointInteQVanguardOperative = капсула Оперативника Авангарда Интек
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, Гост Роль, Персонаж игрока
+ent-SpawnPointInteQVanguardSolder = капсула Солдата Авангарда Интек
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, Гост Роль, Персонаж игрока
+ent-SpawnPointInteQVanguardMedic = капсула Медика Авангарда Интек
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, Гост Роль, Персонаж игрока
+
+ent-SpawnPointInteQVanguardLeaderSizo37 = { ent-SpawnPointInteQVanguardLeader }
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, СИЗО-37 Гост Роль, Персонаж игрока
+ent-SpawnPointInteQVanguardOperativeSizo37 = { ent-SpawnPointInteQVanguardOperative }
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, СИЗО-37 Гост Роль, Персонаж игрока
+ent-SpawnPointInteQVanguardSolderSizo37 = { ent-SpawnPointInteQVanguardSolder }
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, СИЗО-37 Гост Роль, Персонаж игрока
+ent-SpawnPointInteQVanguardMedicSizo37 = { ent-SpawnPointInteQVanguardMedic }
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Спавнер, СИЗО-37 Гост Роль, Персонаж игрока
