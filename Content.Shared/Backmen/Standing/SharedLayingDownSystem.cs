@@ -286,7 +286,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         {
             foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, Comp<MapGridComponent>(xform.GridUid.Value), xform.Coordinates))
             {
-                if (!_tag.HasTag(ent, "Structure") || !TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var phys))
+                if (!TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var phys))
                     continue;
 
                 if(!phys.CanCollide|| (phys.CollisionMask & (int) CollisionGroup.MidImpassable) == 0x0)
