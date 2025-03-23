@@ -262,7 +262,7 @@
     guides:
     - AltarsGolemancy
   - type: TTS
-    voice: Dude
+    voice: Oleg
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge

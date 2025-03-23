@@ -74,7 +74,7 @@
     selectedBorgType: medical
   - type: SurgeryTarget
   - type: TTS # Corvax-TTS
-    voice: Glados
+    voice: TrainingRobot
   - type: Sanitized
 
 - type: entity

@@ -40,7 +40,7 @@
     guides:
     - Psionics
   - type: TTS
-    voice: Monolith2
+    voice: Npc1
   - type: Tag
     tags: []
 

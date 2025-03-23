@@ -25,7 +25,7 @@
       location: Катя
       follow: true
     - type: TTS
-      voice: Glados
+      voice: Npc1
 
 - type: entity
   id: MobQuestHecateShipwrecked
@@ -36,7 +36,7 @@
     - type: NPCConversation
       tree: ShipwreckedPsychopompHecate
     - type: TTS
-      voice: Glados
+      voice: Npc1
       # aliases:
       #   - hekate
       #   - katey
