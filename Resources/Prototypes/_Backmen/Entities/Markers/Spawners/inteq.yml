@@ -101,6 +101,7 @@
     - MindRoleGhostRoleTeamAntagonist
   - type: CloningAppearance
     components:
+    - type: AntagImmune
     - type: NpcFactionMember
       factions:
         - InteQ
