@@ -89,6 +89,7 @@
     - NamesOperationPrefix
     - NamesOperationSuffix
   - type: NukeopsRule
+    warDeclarationMinOps: 3 #Backmen terror
   - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
