@@ -19,7 +19,6 @@
             BKCCCargo: [ 0, 0]
             BKCCSecOfficer: [ 0, 0]
             BKCCAssistant: [ 0, 1]
-            BKCCAdmiral: [ 0, 0]
 
 - type: gameMap
   id: CentCommv2
@@ -87,4 +86,3 @@
             BKCCCargo: [ 1, 1]
             BKCCSecOfficer: [ 1, 1]
             BKCCAssistant: [ 1, 1]
-            BKCCAdmiral: [ 1, 1]
