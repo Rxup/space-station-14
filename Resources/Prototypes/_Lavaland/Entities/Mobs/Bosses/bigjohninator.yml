@@ -374,9 +374,8 @@
         acts: ["Destruction"]
 
 - type: entity
-  suffix: Activated
-  parent: GrenadeBase
   id: ExplosionBigJohn
+  parent: AdminInstantEffectBase
   categories: [ HideSpawnMenu ]
   components:
   - type: ExplodeOnTrigger
