@@ -33,6 +33,7 @@
 
 - type: entity
   id: NanotrasenCentralCommand
+  save: false
   parent:
     - BaseStation
     - BaseStationAlertLevels
