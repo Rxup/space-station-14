@@ -1,0 +1,419 @@
+#Big John Spawner
+
+- type: entity
+  id: DropPodMarkerBigJohn
+  parent: DropPodMarker
+  suffix: Босс, Big Johninator
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationBigJohn
+
+- type: entity
+  id: DropPodLaunchAnimationBigJohn
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodBigJohn
+
+- type: entity
+  id: SupplyDropPodBigJohn
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: supplypod
+  - type: ConditionalSpawner
+    prototypes:
+    - MobBigJohninator
+
+#John
+
+- type: entity
+  name: Big Johninator
+  description: Большой Джонни уже тут! Ха-ха!
+  parent: BaseJohninator
+  id: MobBigJohninator
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          ExplosionBigJohn:
+            min: 1
+            max: 1
+          NotSalvagePCV:
+            min: 1
+            max: 1
+          SalvagePCVHelmetPNV:
+            min: 1
+            max: 1
+          MaterialStraps1:
+            min: 2
+            max: 5
+          SalvageAncientSuperWeapon:
+            min: 1
+            max: 1
+  - type: ReplacementAccent
+    accent: BigJohn
+  - type: Advertise
+    minimumWait: 3
+    maximumWait: 5
+    pack: DiscountDansAds
+  - type: Speech
+    speechSounds: BigJohn
+    audioParams:
+      volume: 150
+      rolloffFactor: 0
+      variation: 0
+    soundCooldownTime: 0.1
+  - type: Sprite
+    scale: 1.5, 1.5
+    sprite: Backmen/Mobs/Npc/big_john.rsi
+    layers:
+    - state: bigjohn
+    - state: bigjohn_unshaded
+      shader: unshaded
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.05
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: NPCUseActionOnTarget
+    actionId: ActionSpawnMine
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifleBigJohn
+    capacity: 20
+    count: 20
+  - type: Gun
+    fireRate: 4
+    burstFireRate: 7
+    burstCooldown: 1.5
+    projectileSpeed: 5
+    shotsPerBurst: 12
+    useKey: false
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    soundGunshot: /Audio/Weapons/Guns64/Rifles/ak47.ogg
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - ProjectilePolyboltFly
+    chance: 0.7
+    intervalSeconds: 10
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Polymorphable
+    innatePolymorphs:
+    - SwoopFly
+  - type: Loadout
+    prototypes: [BigJohn]
+  - type: Tag
+    tags:
+      - BigJohninator
+
+- type: Tag
+  id: BigJohninator
+
+- type: entity
+  id: ProjectilePolyboltFly
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: true
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: PolymorphOnTrigger
+    polymorph: SwoopFly
+  - type: TriggerWhitelist
+    whitelist:
+      tags:
+      - BigJohninator
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-5.5,-5.5,5.5,5.5"
+        mask:
+        - Impassable
+        - BulletImpassable
+        hard: false
+
+- type: accent
+  id: BigJohn
+  fullReplacements:
+  - Ха-ха, сделай это, давай!
+  - Убей меня, я здесь!
+  - Это все, что у тебя есть?
+  - Убей меня, давай.
+  - Давай, я тут!
+  - Guten tag! Haha!
+  - Ты мерзкий сукин сын.
+  - Йахаха! Большой Джон! Хаха!
+
+- type: speechSounds
+  id: BigJohn
+  variation: 0
+  saySound:
+    collection: BigJohnSound
+  askSound:
+    collection: BigJohnSoundAsk
+  exclaimSound:
+    collection: BigJohnSoundexclaim
+
+- type: soundCollection
+  id: BigJohnSound
+  files:
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_4.ogg
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_7.ogg
+
+- type: soundCollection
+  id: BigJohnSoundexclaim
+  files:
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_1.ogg
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_2.ogg
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_5.ogg
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_6.ogg
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_8.ogg
+
+- type: soundCollection
+  id: BigJohnSoundAsk
+  files:
+  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_3.ogg
+
+- type: entity
+  id: BulletRifleBigJohn
+  name: пуля
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  id: ActionSpawnMine
+  name: "[color=red]Спавн мин[/color]"
+  description: Используй свою всевышнию силу и уничтожь врагов!
+  components:
+  - type: EntityWorldTargetAction
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    event: !type:GoliathSummonTentacleAction
+      entityId: MissileDropMarkerBigJohn
+      extraSpawns: 0
+    useDelay: 5
+    range: 30
+
+- type: entity
+  id: MissileDropMarkerBigJohn
+  parent: DropPodMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  MissileDropLaunchAnimationBigJohn
+    intervalSeconds: 1
+  - type: TimedDespawn
+    lifetime: 1.1
+
+- type: entity
+  id: MissileDropLaunchAnimationBigJohn
+  parent: MissileDropLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawnerBigJohn
+    intervalSeconds: 2
+
+- type: entity
+  id: MissileDropRandomSpawnerBigJohn
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MissileDropBigJohn
+    chance: 1
+
+- type: entity
+  id: MissileDropBigJohn
+  parent: MissileDrop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnOnDespawn
+    prototype: ExplosionInstantBigJohn
+  - type: ConditionalSpawner
+    prototypes:
+    - ExplosionBigJohn
+
+- type: polymorph
+  id: SwoopFly
+  configuration:
+    entity: MobJohninatorSwoop
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 4
+
+- type: entity
+  id: MobJohninatorSwoop
+  parent: BaseJohninator
+  name: "Полёт"
+  description:
+  components:
+  - type: Sprite
+    scale: 1.5, 1.5
+    layers:
+    - state: bigjohn
+      color: "#000000"
+    - state: bigjohn_unshaded
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 8
+  - type: MeleeWeapon
+    range: 0.00001
+    damage:
+      types:
+        Structural: 1
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MovementIgnoreGravity
+  - type: RepeatingTrigger
+    delay: 3.9
+  - type: SpawnOnTrigger
+    proto: ShockWaveBigJohn
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - ActivatedGrenadeBigJohn
+    chance: 0.2
+    intervalSeconds: 0
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  name: grenade
+  suffix: Activated
+  parent: BaseItem
+  id: ActivatedGrenadeBigJohn
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/hlstaff/MK3A2.rsi
+    layers:
+    - state: primed
+  - type: SpamEmitSound
+    minInterval: 0.5
+    maxInterval: 0.5
+    sound:
+      path: "/Audio/Backmen/test/base/ogg/blackmesa/grenade/grenade_tick1.ogg"
+      params:
+        volume: 5
+  - type: SpawnOnDespawn
+    prototype: ExplosionBigJohn
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  suffix: Activated
+  parent: GrenadeBase
+  id: ExplosionBigJohn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 4
+    intensitySlope: 1
+    maxIntensity: 0.5
+    canCreateVacuum: false
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: ExplosionInstantBigJohn
+  name: instant explosion
+  description: KA BOOOOM!
+  parent: AdminInstantEffectBase
+  components:
+  - type: Transform
+    anchored: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20
+    intensitySlope: 0.3
+    maxIntensity: 5
+    canCreateVacuum: false
+
+- type: entity
+  id: ShockWaveBigJohn
+  components:
+    - type: Sprite
+      sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+      layers:
+        - state: NoId
+    - type: RMCExplosionShockWave
+    - type: GravityWell
+      baseRadialAcceleration: -100
+      maxRange: 20
+    - type: TimedDespawn
+      lifetime: 0.5

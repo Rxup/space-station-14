@@ -1,0 +1,80 @@
+- type: entity
+  id: BaseBossMob
+  parent: [ BaseSimpleMob, FlyingMobBase, MobBloodstream ]
+  components:
+  - type: TTS
+    voice: Kelthuzadd
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+
+- type: entity
+  id: BaseJohninator
+  parent:
+  - BaseBossMob
+  - StripableInventoryBase
+  abstract: true
+  description:
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Damageable
+    damageModifierSet: HolyArmorAngels
+  - type: Sprite
+    scale: 1.5, 1.5
+    sprite: Backmen/Mobs/Npc/big_john.rsi
+    layers:
+    - state: bigjohn
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodlossThreshold: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: NpcFactionMember
+    factions:
+    - MalfunctioningRobot
+  - type: Inventory
+    templateId: carman
+
+- type: startingGear
+  id: BigJohn
+  equipment:
+    pocket1: BigJohnFightMusic
+
+- type: entity
+  id: BigJohnFightMusic
+  parent: BaseItem
+  components:
+  - type: AmbientSound
+    volume: 5
+    range: 50
+    sound:
+      path: /Audio/Backmen/Bosses/ThemeOfCancer.ogg
