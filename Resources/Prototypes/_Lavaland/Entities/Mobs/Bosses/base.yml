@@ -2,8 +2,6 @@
   id: BaseBossMob
   parent: [ BaseSimpleMob, FlyingMobBase, MobBloodstream ]
   components:
-  - type: TTS
-    voice: Kelthuzadd
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: HTN
@@ -21,6 +19,15 @@
     - TauCetiBasic
     understands:
     - TauCetiBasic
+
+- type: damageModifierSet
+  id: HolyArmor
+  coefficients:
+    Piercing: 0.3
+    Heat: 0.1
+    Radiation: 0.1
+    Caustic: 0.1
+    Stun: 0.1
 
 - type: entity
   id: BaseJohninator
@@ -40,7 +47,7 @@
         acts: ["Destruction"]
       - !type:ExplodeBehavior
   - type: Damageable
-    damageModifierSet: HolyArmorAngels
+    damageModifierSet: HolyArmor
   - type: Sprite
     scale: 1.5, 1.5
     sprite: Backmen/Mobs/Npc/big_john.rsi
