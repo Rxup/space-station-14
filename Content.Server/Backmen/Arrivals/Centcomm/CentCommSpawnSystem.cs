@@ -47,7 +47,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
             : ent.Comp.SetupHighAvailableJobs;
 
 
-        foreach (var job in ent.Comp.SetupHighAvailableJobs) //availableJobs)
+        foreach (var job in availableJobs)
         {
             stationDict[job.Key] = job.Value;
         }
