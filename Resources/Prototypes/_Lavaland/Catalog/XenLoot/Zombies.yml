@@ -26,6 +26,8 @@
     items:
     - id: SalvagePCV
       prob: 0.5
+    - id: SalvageAncientCommunicator
+      prob: 0.6
     - id: SalvageAncientWeapon
       prob: 0.6
     - id: SalvageAncientWeapon
@@ -159,6 +161,8 @@
       - state: icon
   - type: SpawnItemsOnUse
     items:
+    - id: SalvageAncientCommunicator
+      prob: 0.3
     - id: SalvageBeltALICE
       prob: 0.7
     - id: SalvageAncientWeapon
@@ -184,6 +188,8 @@
       - state: icon
   - type: SpawnItemsOnUse
     items:
+    - id: SalvageAncientCommunicator
+      prob: 0.3
     - id: SalvageBeltALICE
     - id: SalvageAncientWeapon
     - id: SalvageBeltALICE
