@@ -2018,3 +2018,12 @@
   id: 131
   time: '2025-03-23T21:01:20.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1141
+- author: PuroSlavKing
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E \u0432\u0441\
+      \u044F\u043A\u043E\u0435 \u0440\u0430\u0437\u043D\u043E\u0435 \u043D\u0430 \u0421\
+      \u0438\u0437\u043E-37."
+    type: Fix
+  id: 132
+  time: '2025-03-24T20:36:03.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1142
