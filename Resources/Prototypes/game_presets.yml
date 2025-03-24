@@ -218,8 +218,8 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: false
-  minPlayers: 15
+  showInVote: true #backmen terror
+  minPlayers: 30 #backmen terror
   rules:
     - Nukeops
     - DummyNonAntagChance
