@@ -75,15 +75,6 @@ public sealed class CentCommSpawnSystem : EntitySystem
 
         switch (args.EventId)
         {
-            case CentComEventId.Noop:
-                args.Handled = true;
-                var point = FindSpawnPoint(args.Station);
-                if (point == null)
-                {
-                    Log.Error($"Can't find spawn point for {EntityManager.ToPrettyString(args.Station)}");
-                }
-                break;
-
             case CentComEventId.AddWorker:
                 args.Handled = true;
 
@@ -142,7 +133,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
 
     private void AddCargo(EntityUid station) => SpawnEntity(station, CargoProto);
 
-    private EntityCoordinates? FindSpawnPoint(EntityUid station)
+    public EntityCoordinates? FindSpawnPoint(EntityUid station)
     {
         var stationData = CompOrNull<StationDataComponent>(station);
         if (stationData == null)
