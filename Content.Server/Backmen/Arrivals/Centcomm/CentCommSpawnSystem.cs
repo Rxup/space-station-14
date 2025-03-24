@@ -75,6 +75,15 @@ public sealed class CentCommSpawnSystem : EntitySystem
 
         switch (args.EventId)
         {
+            case CentComEventId.Noop:
+                args.Handled = true;
+                var point = FindSpawnPoint(args.Station);
+                if (point == null)
+                {
+                    Log.Error($"Can't find spawn point for {EntityManager.ToPrettyString(args.Station)}");
+                }
+                break;
+
             case CentComEventId.AddWorker:
                 args.Handled = true;
 
@@ -106,7 +115,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
         var point = FindSpawnPoint(station);
         if (point == null)
         {
-            Log.Warning($"Can't find spawn point for {station}");
+            Log.Warning($"Can't find spawn point for {EntityManager.ToPrettyString(station)}");
             return;
         }
 
