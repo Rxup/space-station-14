@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.1.0
+  engineVersion: 249.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/20/2025 11:56:25
-  entityCount: 10237
+  time: 03/24/2025 15:42:48
+  entityCount: 10275
 maps:
 - 6696
 grids:
@@ -11063,7 +11063,7 @@ entities:
       pos: 16.5,75.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7316.6387
+      secondsUntilStateChange: -7756.6567
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11261,7 +11261,7 @@ entities:
       pos: 68.5,79.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9502.203
+      secondsUntilStateChange: -9942.222
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29657,7 +29657,7 @@ entities:
       pos: 1.5,62.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9907.069
+      secondsUntilStateChange: -10347.088
       state: Opening
   - uid: 3463
     components:
@@ -64822,6 +64822,220 @@ entities:
     components:
     - type: Transform
       pos: 65.5,78.5
+      parent: 1
+- proto: SpawnPointBKCCAssistant
+  entities:
+  - uid: 8037
+    components:
+    - type: Transform
+      pos: 62.5,69.5
+      parent: 1
+  - uid: 8666
+    components:
+    - type: Transform
+      pos: 22.5,61.5
+      parent: 1
+  - uid: 10256
+    components:
+    - type: Transform
+      pos: 12.5,68.5
+      parent: 1
+- proto: SpawnPointBKCCCargo
+  entities:
+  - uid: 8032
+    components:
+    - type: Transform
+      pos: 76.5,48.5
+      parent: 1
+- proto: SpawnPointBKCCOfficial
+  entities:
+  - uid: 8029
+    components:
+    - type: Transform
+      pos: 76.5,62.5
+      parent: 1
+  - uid: 8035
+    components:
+    - type: Transform
+      pos: 89.5,58.5
+      parent: 1
+- proto: SpawnPointBKCCOperator
+  entities:
+  - uid: 8030
+    components:
+    - type: Transform
+      pos: 84.5,71.5
+      parent: 1
+- proto: SpawnPointBKCCSecGavna
+  entities:
+  - uid: 10275
+    components:
+    - type: Transform
+      pos: 33.5,95.5
+      parent: 1
+- proto: SpawnPointBKCCSecOfficer
+  entities:
+  - uid: 10257
+    components:
+    - type: Transform
+      pos: 31.5,98.5
+      parent: 1
+  - uid: 10258
+    components:
+    - type: Transform
+      pos: 31.5,99.5
+      parent: 1
+  - uid: 10259
+    components:
+    - type: Transform
+      pos: 30.5,98.5
+      parent: 1
+  - uid: 10260
+    components:
+    - type: Transform
+      pos: 30.5,99.5
+      parent: 1
+  - uid: 10261
+    components:
+    - type: Transform
+      pos: 36.5,98.5
+      parent: 1
+  - uid: 10262
+    components:
+    - type: Transform
+      pos: 36.5,99.5
+      parent: 1
+  - uid: 10263
+    components:
+    - type: Transform
+      pos: 35.5,99.5
+      parent: 1
+  - uid: 10264
+    components:
+    - type: Transform
+      pos: 35.5,98.5
+      parent: 1
+- proto: SpawnPointCMBKCCAssistant
+  entities:
+  - uid: 8038
+    components:
+    - type: Transform
+      pos: 64.5,66.5
+      parent: 1
+  - uid: 8040
+    components:
+    - type: Transform
+      pos: 47.5,65.5
+      parent: 1
+  - uid: 8043
+    components:
+    - type: Transform
+      pos: 45.5,73.5
+      parent: 1
+  - uid: 8664
+    components:
+    - type: Transform
+      pos: 47.5,73.5
+      parent: 1
+  - uid: 8665
+    components:
+    - type: Transform
+      pos: 23.5,62.5
+      parent: 1
+  - uid: 8752
+    components:
+    - type: Transform
+      pos: 13.5,69.5
+      parent: 1
+- proto: SpawnPointCMBKCCCargo
+  entities:
+  - uid: 8033
+    components:
+    - type: Transform
+      pos: 77.5,49.5
+      parent: 1
+  - uid: 8034
+    components:
+    - type: Transform
+      pos: 82.5,49.5
+      parent: 1
+- proto: SpawnPointCMBKCCOperator
+  entities:
+  - uid: 8031
+    components:
+    - type: Transform
+      pos: 80.5,70.5
+      parent: 1
+- proto: SpawnPointCMBKCCSecOfficer
+  entities:
+  - uid: 10265
+    components:
+    - type: Transform
+      pos: 37.5,98.5
+      parent: 1
+  - uid: 10266
+    components:
+    - type: Transform
+      pos: 37.5,99.5
+      parent: 1
+  - uid: 10267
+    components:
+    - type: Transform
+      pos: 37.5,100.5
+      parent: 1
+  - uid: 10268
+    components:
+    - type: Transform
+      pos: 36.5,100.5
+      parent: 1
+  - uid: 10269
+    components:
+    - type: Transform
+      pos: 35.5,100.5
+      parent: 1
+  - uid: 10270
+    components:
+    - type: Transform
+      pos: 31.5,100.5
+      parent: 1
+  - uid: 10271
+    components:
+    - type: Transform
+      pos: 29.5,100.5
+      parent: 1
+  - uid: 10272
+    components:
+    - type: Transform
+      pos: 30.5,100.5
+      parent: 1
+  - uid: 10273
+    components:
+    - type: Transform
+      pos: 29.5,99.5
+      parent: 1
+  - uid: 10274
+    components:
+    - type: Transform
+      pos: 29.5,98.5
+      parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 8026
+    components:
+    - type: Transform
+      pos: 37.5,10.5
+      parent: 1
+  - uid: 8027
+    components:
+    - type: Transform
+      pos: 57.5,10.5
+      parent: 1
+- proto: SpawnPointObserver
+  entities:
+  - uid: 8028
+    components:
+    - type: Transform
+      pos: 47.5,59.5
       parent: 1
 - proto: SpeedLoaderMagnum
   entities:

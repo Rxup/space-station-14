@@ -33,6 +33,7 @@
 
 - type: entity
   id: NanotrasenCentralCommand
+  save: false
   parent:
     - BaseStation
     - BaseStationAlertLevels
@@ -56,6 +57,18 @@
       - 1: AddSecurity
       - 1: AddSecurity
       - 600: AddCargo
+      availableMedJobs:
+        BKCCOperator: [ 1, 1 ]
+        BKCCCargo: [ 0, 1 ]
+        BKCCSecOfficer: [ 1, 2 ]
+        BKCCAssistant: [ 2, 2 ]
+      availableHighJobs:
+        BKCCOperator: [ 1, 1 ]
+        BKCCCargo: [ 1, 2 ]
+        BKCCSecOfficer: [ 2, 4 ]
+        BKCCAssistant: [ 2, 5 ]
+
+
 
 - type: entity
   id: StandardStationArena

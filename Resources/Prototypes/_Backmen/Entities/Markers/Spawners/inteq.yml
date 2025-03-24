@@ -1,4 +1,13 @@
 - type: entity
+  parent: [ BaseMindRoleAntag, MindRoleGhostRoleNeutral ]
+  id: MindRoleGhostRoleInteQAntagonist
+  name: Ghost Role (InteQ Antagonist)
+  components:
+  - type: MindRole
+    roleType: InteQ
+    antagPrototype: GenericTeamAntagonist
+
+- type: entity
   name: InteQ Vanguard Leader spawner
   id: SpawnMobInteQVanguardLeader
   parent: MarkerBase
@@ -100,7 +109,7 @@
     raffle:
       settings: short
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardLeaderGear
     components:
@@ -135,6 +144,8 @@
     name: ghost-role-information-inteq-vanguard-operative
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardOperativeGear
 
@@ -149,6 +160,8 @@
     name: ghost-role-information-inteq-vanguard-solder
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardSolderGear
 
@@ -163,6 +176,8 @@
     name: ghost-role-information-inteq-vanguard-medic
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQMedicGear
 
@@ -180,6 +195,8 @@
     description: ghost-role-information-inteq-vanguard-leader-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
 
 - type: entity
   parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
@@ -193,6 +210,8 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardOperativeGear
 
@@ -208,6 +227,8 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardSolderGear
 
@@ -223,5 +244,7 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQMedicGear
