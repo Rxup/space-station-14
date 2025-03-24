@@ -1,0 +1,15 @@
+﻿- type: reaction
+  id: SheetPlastic
+  impact: Low
+  quantized: true
+  minTemp: 400
+  reactants:
+    Hydrogen:
+      amount: 1
+    Benzene:
+      amount: 2
+    Chlorine:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: SheetPlastic1
