@@ -18,6 +18,13 @@
     - id: MaterialStraps1
       prob: 0.5
     - id: MaterialStraps1
+      amount: 3
+      prob: 0.2
+    - id: MaterialStraps1
+      prob: 0.5
+    - id: MaterialStraps1
+      prob: 0.5
+    - id: MaterialStraps1
       prob: 0.5
     - id: MaterialStraps1
       prob: 0.5
@@ -90,8 +97,8 @@
 - type: entity
   parent: BaseItem
   id: SalvagePCV
-  name: PCV
-  description: PCV!
+  name: salvaged PCV
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
     sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
@@ -106,9 +113,26 @@
 
 - type: entity
   parent: BaseItem
+  id: NotSalvagePCV
+  name: almost not salvaged PCV
+  description: not so badly damaged PCV body armor, but you are still too stupid to fix it, but at least its components are in perfect order!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    state: PCV
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Construction
+    graph: PCVArmor
+    node: almostnot
+
+- type: entity
+  parent: BaseItem
   id: SalvageHEV
-  name: HEV
-  description: Not a PCV!
+  name: salvaged HEV
+  description: The HEV suit is badly damaged, it's unlikely to be repaired, but you can pick out a few pieces.
   components:
   - type: Sprite
     sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
@@ -149,3 +173,60 @@
   - type: Construction
     graph: AncientTool
     node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageAncientToolRepaired
+  name: repaired ancient research tool
+  description: Looking from the outside at what you managed to fix, it even looks good, although everything still doesn’t work, but does that matter to anyone?
+  components:
+  - type: Sprite
+    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,0,1
+  - type: Construction
+    graph: AncientTool
+    node: repair
+  - type: Tag
+    tags:
+    - SalvageResearchTool
+
+- type: entity
+  parent: BaseItem
+  id: SalvageAncientCommunicator
+  name: ancient communication device
+  description: An ancient communication device that looks like it could be fixed, but you have to have a drink first!
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLoot.rsi
+    layers:
+    - state: radio
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,0,1
+  - type: Construction
+    graph: AncientTool
+    node: radio
+
+- type: entity
+  parent: BaseItem
+  id: SalvageAncientSuperWeapon
+  name: ancient super-powerful weapon
+  description: super weapon of the ancestors, used in humanitarian missions. Most likely.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Objects/Salvages/XenLootBig.rsi
+    layers:
+    - state: madeuce
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,2
+  - type: Construction
+    graph: AncientWeapon
+    node: superweapon

@@ -9,7 +9,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 2
+            amount: 3
           - !type:DeleteEntity
         steps:
           - tool: Screwing
@@ -39,7 +39,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
-            amount: 1
+            amount: 2
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
             amount: 2
@@ -78,7 +78,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 1
+            amount: 2
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialMaterialGunMaterial
             amount: 2
@@ -90,6 +90,32 @@
             doAfter: 1
           - tool: Screwing
             doAfter: 1
+    - node: superweapon
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 30
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialMaterialGunMaterial
+            amount: 20
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 15
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemSalvagePCVPlate
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 4
+          - tool: Screwing
+            doAfter: 4
+          - tool: Anchoring
+            doAfter: 4
+          - tool: Screwing
+            doAfter: 4
     - node: Unload
 
 - type: constructionGraph
@@ -103,10 +129,51 @@
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
             amount: 2
+          - !type:DeleteEntity
         steps:
           - tool: Screwing
             doAfter: 1
+      - to: repair
+        completed:
+          - !type:SpawnPrototype
+            prototype: SalvageAncientToolRepaired
+          - !type:DeleteEntity
+        steps:
+          - material: M9Steel
+            amount: 5
+            doAfter: 2
+          - material: CableGold
+            amount: 5
+            doAfter: 2
+    - node: radio
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 5
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+      - to: repair
+        completed:
+          - !type:SpawnPrototype
+            prototype: SalvageAncientCommunicatorSummonerBigJohninator
+          - !type:DeleteEntity
+        steps:
+          - material: M9Steel
+            amount: 5
+            doAfter: 2
+          - material: CableGold
+            amount: 5
+            doAfter: 2
+          - tag: SalvageResearchTool
+            doAfter: 1
     - node: Unload
+    - node: repair
 
 - type: constructionGraph
   id: PCVArmor
@@ -124,6 +191,29 @@
             amount: 5
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemSalvagePCVPlate
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+    - node: almostnot
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: MaterialM9Steel1
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: MaterialCableGold1
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: SalvagePCVPlate
             amount: 1
           - !type:DeleteEntity
         steps:

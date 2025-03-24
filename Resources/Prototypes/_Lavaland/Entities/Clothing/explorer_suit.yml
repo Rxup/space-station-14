@@ -305,7 +305,7 @@
       icon: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi/icon.png
       itemIconStyle: NoItem
       event: !type:FleshWormJumpActionEvent
-      useDelay: 15
+      useDelay: 5
       range: 160
 
 - type: entity
