@@ -471,7 +471,7 @@ namespace Content.IntegrationTests.Tests
 
                     Assert.That(jobs, Is.Empty, $"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
 
-                    if (entManager.TryGetComponent<StationCentcommComponent>(station, out var centcomm))
+                    if (entManager.TryGetComponent<StationCentCommDirectorComponent>(station, out var centcomm))
                     {
                         Assert.That(
                             entManager.System<CentCommSpawnSystem>().FindSpawnPoint(station), Is.Not.Null,
