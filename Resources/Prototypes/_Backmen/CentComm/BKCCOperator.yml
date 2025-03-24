@@ -21,7 +21,7 @@
       department: CentCom
       time: 14400
     - !type:DepartmentTimeRequirement
-      department: Silicons
+      department: Silicon
       time: 6000
     job: BKCCOperator
     whitelistRequired: true

@@ -36,3 +36,7 @@
   name: role-type-silicon-antagonist-name
   color: '#c832e6'
 
+- type: roleType
+  id: InteQ
+  name: role-type-inteq-name
+  color: '#d82000'

@@ -103,7 +103,7 @@
         state: random_anything
   - type: RandomSpawner
     prototypes:
-      - MobHeadcrab
+      - MobHeadcrabNPC
       - MobHeadcrabZombieScience
       - MobHeadcrabZombieSecurityHeavy
       - MobHeadcrabZombieSecurity

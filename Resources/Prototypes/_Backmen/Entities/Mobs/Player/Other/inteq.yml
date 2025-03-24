@@ -50,6 +50,7 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: AntagImmune
 
 - type: randomHumanoidSettings
   id: InteQVanguardSolder
@@ -76,6 +77,7 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: AntagImmune
 
 - type: randomHumanoidSettings
   id: InteQVanguardMedic
@@ -102,6 +104,7 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: AntagImmune
 
 # Spawners
 - type: entity
