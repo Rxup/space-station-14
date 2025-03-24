@@ -13,33 +13,16 @@
     color: "#8A2BE2"
 
 - type: entity
-  parent: BaseStructure
+  parent: PottedPlantBase
   id: Hedge
   name: hedge
   description: Large bushy hedge
   components:
   - type: Sprite
-    noRot: true
     sprite: Backmen/Structures/Furniture/potted_plants.rsi
     state: hedge
-  - type: SpriteFade
+  - type: Transform
+    anchored: true
   - type: Anchorable
   - type: Physics
-    canCollide: false
-  - type: Transform
-    noRot: true
-    anchored: true
-  - type: InteractionOutline
-  - type: Damageable
-    damageContainer: StructuralInorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/plant_rustle.ogg
+    bodyType: Static

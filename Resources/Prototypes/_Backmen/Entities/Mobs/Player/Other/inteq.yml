@@ -7,6 +7,7 @@
     - SlimePerson
     - Vox
   components:
+  - type: AntagImmune
   - type: Loadout
     prototypes: [ InteQVanguardLeaderGear ]
   - type: RandomMetadata
@@ -32,6 +33,7 @@
     - SlimePerson
     - Vox
   components:
+  - type: AntagImmune
   - type: Loadout
     prototypes: [ InteQVanguardOperativeGear ]
   - type: RandomMetadata
@@ -48,7 +50,6 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
-  - type: AntagImmune
 
 - type: randomHumanoidSettings
   id: InteQVanguardSolder
@@ -58,6 +59,7 @@
     - SlimePerson
     - Vox
   components:
+  - type: AntagImmune
   - type: Loadout
     prototypes: [ InteQVanguardSolderGear ]
   - type: RandomMetadata
@@ -74,7 +76,6 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
-  - type: AntagImmune
 
 - type: randomHumanoidSettings
   id: InteQVanguardMedic
@@ -84,6 +85,7 @@
     - SlimePerson
     - Vox
   components:
+  - type: AntagImmune
   - type: Loadout
     prototypes: [ InteQMedicGear ]
   - type: RandomMetadata
@@ -100,7 +102,6 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
-  - type: AntagImmune
 
 # Spawners
 - type: entity

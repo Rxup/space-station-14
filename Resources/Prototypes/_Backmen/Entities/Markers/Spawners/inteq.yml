@@ -97,26 +97,20 @@
 
 - type: entity
   parent: [ BaseStructure, MarkerBase ]
-  id: SpawnPointInteQVanguardLeader
-  name: InteQ Vanguard Leader sleeper
+  abstract: true
+  id: SpawnPointInteQ
+  name: InteQ sleeper
   suffix: Spawner, Ghost Role, Player Appearance
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: ghost-role-information-inteq-vanguard-leader
-    description: ghost-role-information-inteq-vanguard-description
-    rules: ghost-role-information-rules-team-antagonist
     raffle:
-      settings: short
+      settings: default
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQVanguardLeaderGear
     components:
-    - type: RandomMetadata
-      nameSegments:
-      - InteQVanguardLeaderNamesPrefix
-      - SyndicateNamesSuperNormal
+    - type: AntagImmune
     - type: NpcFactionMember
       factions:
         - InteQ
@@ -134,7 +128,26 @@
         map: ["base"]
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardLeader
+  name: InteQ Vanguard Leader sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-leader
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+  - type: CloningAppearance
+    gear: InteQVanguardLeaderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardLeaderNamesPrefix
+      - SyndicateNamesSuperNormal
+
+- type: entity
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardOperative
   name: InteQ Vanguard Operative sleeper
   suffix: Spawner, Ghost Role, Player Appearance
@@ -148,9 +161,14 @@
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardOperativeGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardSolder
   name: InteQ Vanguard Solder sleeper
   suffix: Spawner, Ghost Role, Player Appearance
@@ -164,9 +182,14 @@
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardSolderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardMedic
   name: InteQ Vanguard Medic sleeper
   suffix: Spawner, Ghost Role, Player Appearance
@@ -180,11 +203,16 @@
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQMedicGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
 
-# Ghost Roles with Player Apperance (SIZO-37)
+# Ghost Roles with Player Apperance (SIZO-37 | WhiteList )
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardLeaderSizo37
   name: InteQ Vanguard Leader sleeper
   suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
@@ -197,9 +225,17 @@
     whitelistRequired: true
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardLeaderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardLeaderNamesPrefix
+      - SyndicateNamesSuperNormal
+
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardOperativeSizo37
   name: InteQ Vanguard Operative sleeper
   suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
@@ -214,9 +250,14 @@
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardOperativeGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardSolderSizo37
   name: InteQ Vanguard Solder sleeper
   suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
@@ -231,9 +272,14 @@
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardSolderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
 
 - type: entity
-  parent: [ BaseStructure, MarkerBase, SpawnPointInteQVanguardLeader ]
+  parent: SpawnPointInteQ
   id: SpawnPointInteQVanguardMedicSizo37
   name: InteQ Vanguard Medic sleeper
   suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
@@ -248,3 +294,8 @@
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQMedicGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
