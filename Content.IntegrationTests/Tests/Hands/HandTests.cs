@@ -52,6 +52,10 @@ public sealed class HandTests
             player = playerMan.Sessions.First().AttachedEntity!.Value;
             var xform = entMan.GetComponent<TransformComponent>(player);
             item = entMan.SpawnEntity("Crowbar", tSys.GetMapCoordinates(player, xform: xform));
+            Assert.That(
+                entMan.HasComponent<HandsComponent>(player),
+                Is.True,
+                $"player {entMan.ToPrettyString(player)} does not have hands component");
             hands = entMan.GetComponent<HandsComponent>(player);
             sys.TryPickup(player, item, hands.ActiveHand!);
         });

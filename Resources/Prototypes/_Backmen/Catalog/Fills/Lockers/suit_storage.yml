@@ -23,6 +23,54 @@
         - id: ClothingMaskBreath
 
 - type: entity
+  parent: SuitStorageBase
+  id: SuitStorageInteQEVA
+  suffix: InteQ EVA
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingOuterEVASuitInteQ
+        - id: ClothingHeadHelmetEVAInteQ
+
+- type: entity
+  parent: SuitStorageBase
+  id: SuitStorageInteQEliteHardsuit
+  suffix: InteQ Elite
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitInteQElite
+        - id: ClothingMaskBreath
+
+- type: entity
+  parent: SuitStorageBase
+  id: SuitStorageInteQHardsuit
+  suffix: InteQ
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitInteQ
+        - id: ClothingMaskBreath
+
+- type: entity
+  parent: SuitStorageBase
+  id: SuitStorageInteQSyndicateHardsuit
+  suffix: InteQ (Syndicate)
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitSyndicateInteQ
+        - id: ClothingMaskBreath
+
+- type: entity
   id: LockerBlueShieldFilled
   parent: LockerBlueShield
   suffix: Filled
