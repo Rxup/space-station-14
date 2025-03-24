@@ -52,11 +52,9 @@ public sealed class StandingStateSystem : EntitySystem
         // and ultimately this is just to avoid boilerplate in Down callers + keep their behavior consistent.
         if (dropHeldItems && hands != null)
         {
-            RaiseLocalEvent(uid, new DropHandItemsEvent(), false);
+            var ev = new DropHandItemsEvent();
+            RaiseLocalEvent(uid, ref ev, false);
         }
-
-        //if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle)) // WD EDIT
-        //    return false;
 
         if (!force)
         {
@@ -94,7 +92,7 @@ public sealed class StandingStateSystem : EntitySystem
 
         if (playSound)
         {
-            _audio.PlayPredicted(standingState.DownSound, uid, null);
+            _audio.PlayPredicted(standingState.DownSound, uid, uid);
         }
 
         _movement.RefreshMovementSpeedModifiers(uid); // BACKMEN EDIT
@@ -115,9 +113,6 @@ public sealed class StandingStateSystem : EntitySystem
 
         if (standingState.Standing)
             return true;
-
-        //if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle)) // WD EDIT
-        //    return false;
 
         if (!force)
         {
@@ -149,9 +144,8 @@ public sealed class StandingStateSystem : EntitySystem
     }
 }
 
-public sealed class DropHandItemsEvent : EventArgs
-{
-}
+[ByRefEvent]
+public record struct DropHandItemsEvent();
 
 /// <summary>
 /// Subscribe if you can potentially block a down attempt.
@@ -180,3 +174,24 @@ public sealed class StoodEvent : EntityEventArgs
 public sealed class DownedEvent : EntityEventArgs
 {
 }
+
+/// <summary>
+/// Raised after an entity falls down.
+/// </summary>
+public sealed class FellDownEvent : EntityEventArgs
+{
+    public EntityUid Uid { get; }
+
+    public FellDownEvent(EntityUid uid)
+    {
+        Uid = uid;
+    }
+}
+
+/// <summary>
+/// Raised on the entity being thrown due to the holder falling down.
+/// </summary>
+[ByRefEvent]
+public record struct FellDownThrowAttemptEvent(EntityUid Thrower, bool Cancelled = false);
+
+
