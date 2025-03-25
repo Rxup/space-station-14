@@ -10,7 +10,7 @@ namespace Content.Shared.Shuttles.BUIStates;
 [Serializable, NetSerializable]
 public sealed class DetectablePointState
 {
-    public string Name = string.Empty;
+    public string? Name;
 
     public DetectableDrawType DrawType;
     public float DetectableSize;
