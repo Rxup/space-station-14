@@ -20,18 +20,25 @@ public sealed class NavInterfaceState
 
     public Dictionary<NetEntity, List<DockingPortState>> Docks;
 
+    /// <summary>
+    /// All the detected entities this one interface can see
+    /// </summary>
+    public List<DetectablePointState> Detectables;
+
     public bool RotateWithEntity = true;
 
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
         Angle? angle,
-        Dictionary<NetEntity, List<DockingPortState>> docks)
+        Dictionary<NetEntity, List<DockingPortState>> docks,
+        List<DetectablePointState> detectables)
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
         Angle = angle;
         Docks = docks;
+        Detectables = detectables;
     }
 }
 
