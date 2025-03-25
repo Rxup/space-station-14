@@ -188,7 +188,6 @@
     containers:
       key_slots:
       - EncryptionKeyInteQ
-      - EncryptionKeyCommon
   - type: Sprite
     sprite: Backmen/Clothing/Ears/inteq_headset.rsi
   - type: Clothing

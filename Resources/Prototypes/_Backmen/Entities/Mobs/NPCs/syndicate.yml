@@ -1,5 +1,5 @@
 - type: entity
-  name: syndicate solder
+  name: syndicate soldier
   parent: BaseMobHuman
   suffix: AI
   id: MobPMCSindy
@@ -100,7 +100,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateBlade
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Энергетический меч
   components:
     - type: Sprite
@@ -141,7 +141,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateKnife
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Ножик
   components:
     - type: Sprite
@@ -179,7 +179,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicatePistol
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Пистолет
   components:
     - type: Sprite
@@ -219,7 +219,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateShotgun
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Дробовик
   components:
     - type: Sprite
@@ -259,7 +259,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateSMG
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, СМГ
   components:
     - type: Sprite

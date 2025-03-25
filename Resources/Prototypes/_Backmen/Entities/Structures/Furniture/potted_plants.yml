@@ -20,6 +20,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    offset: "0.0,0.0"
     state: hedge
   - type: Transform
     anchored: true

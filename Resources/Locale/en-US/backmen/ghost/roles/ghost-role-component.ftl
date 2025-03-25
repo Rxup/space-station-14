@@ -7,7 +7,7 @@ ghost-role-information-canned-clown-rules = Get Help your Honk brothers! HONK!
 
 ghost-role-information-inteq-vanguard-leader = InteQ Leader
 ghost-role-information-inteq-vanguard-operative = InteQ Operative
-ghost-role-information-inteq-vanguard-solder = InteQ Vanguard
+ghost-role-information-inteq-vanguard-soldier = InteQ Vanguard
 ghost-role-information-inteq-vanguard-medic = InteQ Medic
 
 ghost-role-information-inteq-vanguard-description = Follow the orders of the InteQ Leader.
