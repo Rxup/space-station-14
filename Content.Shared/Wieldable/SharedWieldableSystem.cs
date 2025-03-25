@@ -23,12 +23,10 @@ using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using Content.Shared._Goobstation.Weapons.Ranged; // GoobStation - NoWieldNeeded
 // Lavaland Change
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Wieldable;
 

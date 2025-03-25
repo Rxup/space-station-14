@@ -563,8 +563,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.FireRate,
             comp.ProjectileSpeed,
             comp.BurstFireRate, // Goobstation
-            comp.BurstCooldown, // Goobstation
-            User // GoobStation change - User for NoWieldNeeded
+            comp.BurstCooldown // Goobstation
         );
 
         RaiseLocalEvent(gun, ref ev);
