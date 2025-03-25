@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio;
 
-[Prototype("radioChannel")]
+[Prototype]
 public sealed partial class RadioChannelPrototype : IPrototype
 {
     /// <summary>

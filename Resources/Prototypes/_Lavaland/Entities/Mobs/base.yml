@@ -73,5 +73,13 @@
         - HighImpassable
         layer:
         - MobLayer
+      fix3:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 300
+        layer:
+        - Opaque
+        - BulletImpassable
   - type: Inventory
     templateId: carman
