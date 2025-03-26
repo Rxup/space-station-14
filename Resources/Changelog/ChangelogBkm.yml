@@ -2039,3 +2039,12 @@
   id: 133
   time: '2025-03-26T04:04:01.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1158
+- author: KieriFand
+  changes:
+  - message: "\u0423\u0434\u0430\u043B\u0451\u043D \u0432\u0442\u043E\u0440\u043E\u0439\
+      \ \u0440\u0435\u0446\u0435\u043F\u0442 \u043F\u043B\u0430\u0441\u0442\u0438\u043A\
+      \u0430."
+    type: Remove
+  id: 134
+  time: '2025-03-26T08:13:34.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1157
