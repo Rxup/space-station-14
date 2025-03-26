@@ -29,6 +29,5 @@
     sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: Unremoveable
-  - type: ModifyDelayedKnockdown # Goobstation
     delayDelta: 2
     knockdownTimeDelta: -2

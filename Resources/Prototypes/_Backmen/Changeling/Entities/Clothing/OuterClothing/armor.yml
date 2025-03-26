@@ -26,6 +26,5 @@
     damageCoefficient: 0.5
   - type: GroupExamine
   - type: Unremoveable
-  - type: ModifyDelayedKnockdown # Goobstation
     delayDelta: 2
     knockdownTimeDelta: -2
