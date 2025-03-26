@@ -2309,7 +2309,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: Daiquiri 
+        - ReagentId: Daiquiri
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/daiquiri.rsi
@@ -2541,5 +2541,5 @@
         - ReagentId: BacchusBlessing
           Quantity: 30
   - type: Icon
-    sprite: Objects/Consumable/Drinks/bacchusblessing.rsi
+    sprite: Backmen/Objects/Consumable/Drinks/bacchus.rsi
     state: icon
