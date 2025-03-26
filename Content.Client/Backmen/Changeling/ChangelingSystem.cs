@@ -1,13 +1,12 @@
 using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
-using Content.Shared.Alert;
-using Content.Shared.Backmen.Changeling.Components;
+using Content.Shared.Changeling;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Backmen.Changeling;
+namespace Content.Client.Changeling;
 
-public sealed partial class ChangelingSystem : EntitySystem
+public sealed class ChangelingSystem : SharedChangelingSystem
 {
 
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -19,12 +18,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, GetStatusIconsEvent>(GetChanglingIcon);
     }
 
-    [ValidatePrototypeId<AlertPrototype>]
-    private const string ChangelingChemicals = "ChangelingChemicals";
-
-    [ValidatePrototypeId<AlertPrototype>]
-    private const string ChangelingBiomass = "ChangelingBiomass";
-
     private void OnUpdateAlert(EntityUid uid, ChangelingComponent comp, ref UpdateAlertSpriteEvent args)
     {
         var stateNormalized = 0f;
@@ -32,22 +25,23 @@ public sealed partial class ChangelingSystem : EntitySystem
         // hardcoded because uhh umm i don't know. send help.
         switch (args.Alert.AlertKey.AlertType)
         {
-            case ChangelingChemicals:
-                stateNormalized = (int)(comp.Chemicals / comp.MaxChemicals * 18);
+            case "ChangelingChemicals":
+                stateNormalized = (int) (comp.Chemicals / comp.MaxChemicals * 18);
                 break;
 
-            case ChangelingBiomass:
-                stateNormalized = (int)(comp.Biomass / comp.MaxBiomass * 16);
+            case "ChangelingBiomass":
+                stateNormalized = (int) (comp.Biomass / comp.MaxBiomass * 16);
                 break;
             default:
                 return;
         }
-        args.SpriteViewEnt.Comp.LayerSetState(AlertVisualLayers.Base, $"{stateNormalized}");
+        var sprite = args.SpriteViewEnt.Comp;
+        sprite.LayerSetState(AlertVisualLayers.Base, $"{stateNormalized}");
     }
 
     private void GetChanglingIcon(Entity<ChangelingComponent> ent, ref GetStatusIconsEvent args)
     {
-        if (ent.Comp.IsTransponder && _prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
+        if (HasComp<HivemindComponent>(ent) && _prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
             args.StatusIcons.Add(iconPrototype);
     }
 }

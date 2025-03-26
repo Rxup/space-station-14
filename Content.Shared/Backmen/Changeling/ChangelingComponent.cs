@@ -1,30 +1,30 @@
-using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Backmen.Changeling.Components;
+namespace Content.Shared.Changeling;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
 public sealed partial class ChangelingComponent : Component
 {
-    public override bool SendOnlyToOwner => true;
-
     #region Prototypes
 
-    [DataField] public List<SoundSpecifier?> SoundPool = new()
+    [DataField("soundMeatPool")]
+    public List<SoundSpecifier?> SoundPool = new()
     {
         new SoundPathSpecifier("/Audio/Effects/gib1.ogg"),
         new SoundPathSpecifier("/Audio/Effects/gib2.ogg"),
         new SoundPathSpecifier("/Audio/Effects/gib3.ogg"),
     };
 
-    [DataField] public SoundSpecifier ShriekSound = new SoundPathSpecifier("/Audio/Effects/changeling_shriek.ogg");
+    [DataField("soundShriek")]
+    public SoundSpecifier ShriekSound = new SoundPathSpecifier("/Audio/_Goobstation/Changeling/Effects/changeling_shriek.ogg");
 
-    [DataField] public float ShriekPower = 2.5f;
+    [DataField("shriekPower")]
+    public float ShriekPower = 2.5f;
 
     public readonly List<EntProtoId> BaseChangelingActions = new()
     {
@@ -34,7 +34,7 @@ public sealed partial class ChangelingComponent : Component
         "ActionChangelingTransformCycle",
         "ActionChangelingTransform",
         "ActionEnterStasis",
-        "ActionExitStasis",
+        "ActionExitStasis"
     };
 
     /// <summary>
@@ -42,7 +42,7 @@ public sealed partial class ChangelingComponent : Component
     /// </summary>
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
 
     #endregion
 
@@ -52,9 +52,9 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInLesserForm = false;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float VomitAmount { get; set; }= 15f;
+    public bool IsInLastResort = false;
 
+    public List<EntityUid>? ActiveArmor = null;
 
     public Dictionary<string, EntityUid?> Equipment = new();
 
@@ -62,7 +62,7 @@ public sealed partial class ChangelingComponent : Component
     ///     Amount of biomass changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Biomass = 30f;
+    public float Biomass = 60f;
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
@@ -73,7 +73,7 @@ public sealed partial class ChangelingComponent : Component
     /// <summary>
     ///     How much biomass should be removed per cycle.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float BiomassDrain = 1f;
 
     /// <summary>
@@ -91,7 +91,7 @@ public sealed partial class ChangelingComponent : Component
     /// <summary>
     ///     Bonus chemicals regeneration. In case
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float BonusChemicalRegen = 0f;
 
     /// <summary>
@@ -133,9 +133,6 @@ public sealed partial class ChangelingComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TransformData? SelectedForm;
-
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public bool IsTransponder = false;
 }
 
 [DataDefinition]
@@ -151,7 +148,7 @@ public sealed partial class TransformData
     ///     Entity's fingerprint, if it exists.
     /// </summary>
     [DataField]
-    public string Fingerprint;
+    public string? Fingerprint;
 
     /// <summary>
     ///     Entity's DNA.
@@ -159,12 +156,9 @@ public sealed partial class TransformData
     [DataField("dna")]
     public string DNA;
 
-    [DataField("tts")]
-    public ProtoId<TTSVoicePrototype> TTS;
-
     /// <summary>
     ///     Entity's humanoid appearance component.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), NonSerialized]
-    public Entity<HumanoidAppearanceComponent> Appearance;
+    public HumanoidAppearanceComponent Appearance;
 }

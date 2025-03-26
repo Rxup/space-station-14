@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Backmen.Changeling.Components;
+namespace Content.Shared.Changeling;
 
 
 /// <summary>

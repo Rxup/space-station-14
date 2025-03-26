@@ -13,7 +13,7 @@ using System.Text;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Roles;
 using Content.Server.GameTicking.Rules;
-using Content.Shared.Backmen.Changeling.Components;
+using Content.Shared.Changeling;
 using Content.Shared.Mind.Components;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
