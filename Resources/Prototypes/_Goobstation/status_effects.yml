@@ -1,0 +1,7 @@
+- type: statusEffect
+  id: Brainrotted
+
+- type: statusEffect
+  id: Centered
+  alert: Centered
+  alwaysAllowed: true
