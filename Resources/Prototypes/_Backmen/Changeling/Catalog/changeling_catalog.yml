@@ -257,22 +257,6 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuUtilityEyesight
-  name: evolutionmenu-utility-eyesight-name
-  description: evolutionmenu-utility-eyesight-desc
-  icon: { sprite: _Goobstation/Changeling/changeling_abilities.rsi, state: augmented_eyesight }
-  productAction: ActionAugmentedEyesight
-  productEvent: !type:AugmentedEyesightPurchasedEvent
-  raiseProductEventOnUser: true
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuUtilityBiodegrade
   name: evolutionmenu-utility-biodegrade-name
   description: evolutionmenu-utility-biodegrade-desc
