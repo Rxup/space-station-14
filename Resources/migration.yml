@@ -840,6 +840,9 @@ MagazineBoxCaselessRifle10x24: null
 #MagazineBoxCaselessRifleBig: null
 #MagazinePistolHighCapacityRubber: null
 
+# 2025-03-25 | Backmen
+SpawnPointInteQVanguardSolderSizo37: SpawnPointInteQVanguardSoldierSizo37
+
 # 2024-12-22 # Lavaland Change: Migrations
 VendingMachineRestockSalvageEquipment: null
 CrateVendingMachineRestockSalvageEquipmentFilled: null

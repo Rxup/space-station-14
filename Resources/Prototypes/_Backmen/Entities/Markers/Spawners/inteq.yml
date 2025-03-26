@@ -36,8 +36,8 @@
       - RandomHumanoidSpawnerInteQVanguardOperative
 
 - type: entity
-  name: InteQ Vanguard Solder spawner
-  id: SpawnMobInteQVanguardSolder
+  name: InteQ Vanguard Soldier spawner
+  id: SpawnMobInteQVanguardSoldier
   parent: MarkerBase
   components:
   - type: Sprite
@@ -47,7 +47,7 @@
         state: logo
   - type: ConditionalSpawner
     prototypes:
-      - RandomHumanoidSpawnerInteQVanguardSolder
+      - RandomHumanoidSpawnerInteQVanguardSoldier
 
 - type: entity
   name: InteQ Vanguard Medic spawner
@@ -169,19 +169,19 @@
 
 - type: entity
   parent: SpawnPointInteQ
-  id: SpawnPointInteQVanguardSolder
-  name: InteQ Vanguard Solder sleeper
+  id: SpawnPointInteQVanguardSoldier
+  name: InteQ Vanguard Soldier sleeper
   suffix: Spawner, Ghost Role, Player Appearance
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: ghost-role-information-inteq-vanguard-solder
+    name: ghost-role-information-inteq-vanguard-soldier
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQVanguardSolderGear
+    gear: InteQVanguardSoldierGear
     components:
     - type: RandomMetadata
       nameSegments:
@@ -258,20 +258,20 @@
 
 - type: entity
   parent: SpawnPointInteQ
-  id: SpawnPointInteQVanguardSolderSizo37
-  name: InteQ Vanguard Solder sleeper
+  id: SpawnPointInteQVanguardSoldierSizo37
+  name: InteQ Vanguard Soldier sleeper
   suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: ghost-role-information-inteq-vanguard-solder
+    name: ghost-role-information-inteq-vanguard-soldier
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQVanguardSolderGear
+    gear: InteQVanguardSoldierGear
     components:
     - type: RandomMetadata
       nameSegments:

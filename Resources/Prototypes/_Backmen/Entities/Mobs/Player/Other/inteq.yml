@@ -52,7 +52,7 @@
     - OldFastCodes
 
 - type: randomHumanoidSettings
-  id: InteQVanguardSolder
+  id: InteQVanguardSoldier
   randomizeName: false
   speciesBlacklist:
     - Diona
@@ -61,7 +61,7 @@
   components:
   - type: AntagImmune
   - type: Loadout
-    prototypes: [ InteQVanguardSolderGear ]
+    prototypes: [ InteQVanguardSoldierGear ]
   - type: RandomMetadata
     nameSegments:
     - InteQVanguardNamesPrefix
@@ -133,8 +133,8 @@
       settings: InteQVanguardOperative
 
 - type: entity
-  id: RandomHumanoidSpawnerInteQVanguardSolder
-  name: InteQ vanguard solder spawner
+  id: RandomHumanoidSpawnerInteQVanguardSoldier
+  name: InteQ vanguard soldier spawner
   components:
     - type: Sprite
       sprite: Backmen/Icons/inteq.rsi
@@ -144,7 +144,7 @@
       - InteQVanguardNamesPrefix
       - SyndicateNamesSuperNormal
     - type: RandomHumanoidSpawner
-      settings: InteQVanguardSolder
+      settings: InteQVanguardSoldier
 
 - type: entity
   id: RandomHumanoidSpawnerInteQVanguardMedic
