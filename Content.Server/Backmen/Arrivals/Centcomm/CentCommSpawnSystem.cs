@@ -15,22 +15,24 @@ public sealed class CentCommSpawnSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<StationCentCommDirectorComponent, CentCommEvent>(OnCentCommEvent);
-        SubscribeLocalEvent<RoundStartingEvent>(OnStartRound);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<StationCentCommDirectorComponent, ComponentStartup>(OnComponentStartup);
     }
 
     private void OnComponentStartup(Entity<StationCentCommDirectorComponent> ent, ref ComponentStartup args)
     {
 #if DEBUG
-        IsLowPop = false;
+        ent.Comp.isLowPop = false;
+#else
+        if (_playerManager.PlayerCount >= 20)
+        {
+            ent.Comp.isLowPop = false;
+        }
 #endif
         var stationJobs = CompOrNull<StationJobsComponent>(ent.Owner);
         if (stationJobs == null)
@@ -39,7 +41,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
         var stationDict = stationJobs.SetupAvailableJobs;
         stationDict.Clear();
 
-        if (IsLowPop)
+        if (ent.Comp.isLowPop)
             return;
 
         var availableJobs = _playerManager.PlayerCount is >= 20 and < 40
@@ -51,21 +53,6 @@ public sealed class CentCommSpawnSystem : EntitySystem
         {
             stationDict[job.Key] = job.Value;
         }
-    }
-
-    private void OnStartRound(RoundStartingEvent msg, EntitySessionEventArgs args)
-    {
-        if (_playerManager.PlayerCount >= 20)
-        {
-            IsLowPop = false;
-        }
-    }
-
-    private bool IsLowPop = true;
-
-    private void OnRoundCleanup(RoundRestartCleanupEvent msg, EntitySessionEventArgs args)
-    {
-        IsLowPop = true;
     }
 
     private void OnCentCommEvent(Entity<StationCentCommDirectorComponent> ent, ref CentCommEvent args)
@@ -82,7 +69,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
                 break;
             case CentComEventId.AddOperator:
                 args.Handled = true;
-                if (!IsLowPop)
+                if (!ent.Comp.isLowPop)
                     break;
                 AddOperator(args.Station);
                 break;
