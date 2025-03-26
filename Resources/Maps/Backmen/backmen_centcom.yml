@@ -4,8 +4,8 @@ meta:
   engineVersion: 249.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/24/2025 15:42:48
-  entityCount: 10275
+  time: 03/26/2025 07:51:18
+  entityCount: 10267
 maps:
 - 6696
 grids:
@@ -11063,7 +11063,7 @@ entities:
       pos: 16.5,75.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7756.6567
+      secondsUntilStateChange: -7858.925
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11261,7 +11261,7 @@ entities:
       pos: 68.5,79.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9942.222
+      secondsUntilStateChange: -10044.49
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29657,7 +29657,7 @@ entities:
       pos: 1.5,62.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10347.088
+      secondsUntilStateChange: -10449.356
       state: Opening
   - uid: 3463
     components:
@@ -64823,6 +64823,13 @@ entities:
     - type: Transform
       pos: 65.5,78.5
       parent: 1
+- proto: SpawnPointBKCCAdmiral
+  entities:
+  - uid: 10266
+    components:
+    - type: Transform
+      pos: 82.5,83.5
+      parent: 1
 - proto: SpawnPointBKCCAssistant
   entities:
   - uid: 8037
@@ -64865,6 +64872,105 @@ entities:
     components:
     - type: Transform
       pos: 84.5,71.5
+      parent: 1
+- proto: SpawnPointBKCCSecGavna
+  entities:
+  - uid: 10267
+    components:
+    - type: Transform
+      pos: 33.5,95.5
+      parent: 1
+- proto: SpawnPointBKCCSecOfficer
+  entities:
+  - uid: 8031
+    components:
+    - type: Transform
+      pos: 31.5,98.5
+      parent: 1
+  - uid: 8033
+    components:
+    - type: Transform
+      pos: 31.5,99.5
+      parent: 1
+  - uid: 8034
+    components:
+    - type: Transform
+      pos: 31.5,100.5
+      parent: 1
+  - uid: 8038
+    components:
+    - type: Transform
+      pos: 30.5,98.5
+      parent: 1
+  - uid: 8040
+    components:
+    - type: Transform
+      pos: 30.5,99.5
+      parent: 1
+  - uid: 8043
+    components:
+    - type: Transform
+      pos: 30.5,100.5
+      parent: 1
+  - uid: 8664
+    components:
+    - type: Transform
+      pos: 29.5,98.5
+      parent: 1
+  - uid: 8665
+    components:
+    - type: Transform
+      pos: 29.5,99.5
+      parent: 1
+  - uid: 8752
+    components:
+    - type: Transform
+      pos: 29.5,100.5
+      parent: 1
+  - uid: 10257
+    components:
+    - type: Transform
+      pos: 35.5,98.5
+      parent: 1
+  - uid: 10258
+    components:
+    - type: Transform
+      pos: 35.5,99.5
+      parent: 1
+  - uid: 10259
+    components:
+    - type: Transform
+      pos: 35.5,100.5
+      parent: 1
+  - uid: 10260
+    components:
+    - type: Transform
+      pos: 36.5,98.5
+      parent: 1
+  - uid: 10261
+    components:
+    - type: Transform
+      pos: 36.5,99.5
+      parent: 1
+  - uid: 10262
+    components:
+    - type: Transform
+      pos: 36.5,100.5
+      parent: 1
+  - uid: 10263
+    components:
+    - type: Transform
+      pos: 37.5,98.5
+      parent: 1
+  - uid: 10264
+    components:
+    - type: Transform
+      pos: 37.5,99.5
+      parent: 1
+  - uid: 10265
+    components:
+    - type: Transform
+      pos: 37.5,100.5
       parent: 1
 - proto: SpawnPointLatejoin
   entities:

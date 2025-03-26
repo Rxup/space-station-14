@@ -55,7 +55,11 @@ public sealed class FultonSystem : SharedFultonSystem
     protected override bool CanFulton(EntityUid uid)
     {
         var grid = Transform(uid).GridUid;
-        if (HasComp<LavalandMapComponent>(grid))
+        if (grid == null)
+        {
+            return true;
+        }
+        if (HasComp<LavalandMapComponent>(grid) || HasComp<LavalandMapComponent>(Transform(grid.Value).Coordinates.EntityId))
         {
             return false;
         }
