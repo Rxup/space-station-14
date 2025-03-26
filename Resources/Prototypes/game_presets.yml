@@ -135,7 +135,6 @@
   description: secret-description
   rules:
     - Secret
-    - BasicStationEventScheduler
 
 - type: gamePreset
   id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
