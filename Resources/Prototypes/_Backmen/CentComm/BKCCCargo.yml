@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: SpawnPointCMBKCCCargo
   name: Карго ЦК
-  suffix: Спавнер, Директор Событий
+  suffix: Спавнер, Директор Событий, DO NOT MAP
   parent: MarkerBase
   components:
   - type: GhostRole
@@ -38,7 +38,7 @@
 
 - type: entity
   name: Карго ЦК
-  suffix: Директор Событий
+  suffix: Директор Событий, DO NOT MAP
   parent: MobHumanCombine
   id: MobHumanCMBKCCCargo
   description: ""
