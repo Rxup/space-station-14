@@ -6,10 +6,6 @@
   - type: Objective
     difficulty: 1.5 # unused but necessary i guess
     issuer: objective-issuer-hivemind
-  - type: RoleRequirement
-    roles:
-      mindRoles:
-      - ChangelingRole
 
 - type: entity
   parent: [BaseChangelingObjective, BaseSurviveObjective]
@@ -19,7 +15,7 @@
   components:
   - type: Objective
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Goobstation/Changeling/changeling_abilities.rsi
       state: stasis_exit
 
 - type: entity
@@ -65,3 +61,4 @@
   - type: TargetObjective
     title: objective-condition-escape-identity-title
   - type: PickRandomPerson
+    needsOrganic: true # Don't pick IPCs.

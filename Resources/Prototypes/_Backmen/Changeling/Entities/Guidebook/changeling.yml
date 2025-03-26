@@ -5,5 +5,5 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      sprite: Backmen/Changeling/Guidebook/guidebook_changeling.rsi
+      sprite: _Goobstation/Changeling/Guidebook/guidebook_changeling.rsi
       state: icon

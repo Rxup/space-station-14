@@ -262,24 +262,6 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
 
-# Changeling
-- type: entity
-  parent: ClothingHeadHardsuitBase
-  id: ChangelingClothingHeadHelmetHardsuit
-  name: organic space helmet
-  description: A spaceworthy biomass of pressure and temperature resistant tissue.
-  suffix: Unremoveable
-  components:
-  - type: Item
-  - type: Sprite
-    sprite: Backmen/Changeling/ling_spacesuit_helmet.rsi
-  - type: Clothing
-    sprite: Backmen/Changeling/ling_spacesuit_helmet.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.225
-    lowPressureMultiplier: 1000
-  - type: Unremoveable
-
 - type: entity
   parent: ClothingHeadHelmetHardsuitSecurity
   id: ClothingHeadHelmetHardsuitSecurityPilot
