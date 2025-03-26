@@ -18,3 +18,9 @@
 
 - type: Tag
   id: LavalandInterior7x7
+
+- type: Tag
+  id: SalvagePCVPlate
+
+- type: Tag
+  id: SalvageResearchTool

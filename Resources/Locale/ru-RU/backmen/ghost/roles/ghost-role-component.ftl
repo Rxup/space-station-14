@@ -20,7 +20,7 @@ ghost-role-information-blob-description = Ты блоб, вы должны за�
 
 ghost-role-information-inteq-vanguard-leader = Коммандер Авангарда Интек
 ghost-role-information-inteq-vanguard-operative = Оперативник Интек
-ghost-role-information-inteq-vanguard-solder = Солдат Авангарда Интек
+ghost-role-information-inteq-vanguard-soldier = Солдат Авангарда Интек
 ghost-role-information-inteq-vanguard-medic = Медик Авангарда Интек
 
 ghost-role-information-inteq-vanguard-description = Следуйте приказам своего Коммандера.

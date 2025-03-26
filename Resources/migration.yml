@@ -847,6 +847,9 @@ HolofanProjectorEmpty: HolofanProjector
 HoloprojectorFieldEmpty: HoloprojectorField
 HoloprojectorSecurityEmpty: HoloprojectorSecurity
 
+# 2025-03-25 | Backmen
+SpawnPointInteQVanguardSolderSizo37: SpawnPointInteQVanguardSoldierSizo37
+
 # 2024-12-22 # Lavaland Change: Migrations
 VendingMachineRestockSalvageEquipment: null
 CrateVendingMachineRestockSalvageEquipmentFilled: null
