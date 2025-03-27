@@ -59,8 +59,6 @@
     cost: 1000
   - id: AdvancedMineralScanner
     cost: 1100
-  - id: WeaponProtoKineticShotgun
-    cost: 1150
   - id: WeaponProtoKineticRepeater
     cost: 1150
   - id: WeaponProtoKineticPistol
