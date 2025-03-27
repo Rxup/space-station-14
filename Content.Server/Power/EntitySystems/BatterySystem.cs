@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
@@ -5,6 +6,7 @@ using Content.Shared.Examine;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Timing;
 using JetBrains.Annotations;
+using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
 
@@ -14,6 +16,7 @@ namespace Content.Server.Power.EntitySystems
     public sealed class BatterySystem : EntitySystem
     {
         [Dependency] protected readonly IGameTiming Timing = default!;
+        [Dependency] private readonly SharedContainerSystem _containers = default!; // WD EDIT
 
         public override void Initialize()
         {
@@ -241,5 +244,33 @@ namespace Content.Server.Power.EntitySystems
             RaiseLocalEvent(uid, ref ev);
             return newValue;
         }
+
+        // WD EDIT START
+        public bool TryGetBatteryComponent(EntityUid uid, [NotNullWhen(true)] out BatteryComponent? battery,
+            [NotNullWhen(true)] out EntityUid? batteryUid)
+        {
+            if (TryComp(uid, out battery))
+            {
+                batteryUid = uid;
+                return true;
+            }
+
+            if (!_containers.TryGetContainer(uid, "cell_slot", out var container)
+                || container is not ContainerSlot slot)
+            {
+                battery = null;
+                batteryUid = null;
+                return false;
+            }
+
+            batteryUid = slot.ContainedEntity;
+
+            if (batteryUid != null)
+                return TryComp(batteryUid, out battery);
+
+            battery = null;
+            return false;
+        }
+        // WD EDIT END
     }
 }
