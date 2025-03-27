@@ -136,16 +136,13 @@ public sealed class LavalandPlanetSystem : EntitySystem
         return null;
     }
 
-    public List<Entity<LavalandMapComponent>> GetLavalands()
+    public IEnumerable<Entity<LavalandMapComponent>> GetLavalands()
     {
         var lavalandsQuery = EntityQueryEnumerator<LavalandMapComponent>();
-        var lavalands = new List<Entity<LavalandMapComponent>>();
         while (lavalandsQuery.MoveNext(out var uid, out var comp))
         {
-            lavalands.Add((uid, comp));
+            yield return (uid, comp);
         }
-
-        return lavalands;
     }
 
     /// <summary>

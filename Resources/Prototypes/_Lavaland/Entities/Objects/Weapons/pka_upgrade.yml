@@ -121,7 +121,7 @@
 - type: entity
   id: PKAUpgradeDamageTier2
   parent: PKAUpgradeDamage
-  name: PKA modkit (damage)
+  name: PKA modkit (damage t2)
   suffix: Tier 2
   components:
   - type: GunUpgrade
@@ -136,7 +136,7 @@
 - type: entity
   id: PKAUpgradeRangeTier2
   parent: PKAUpgradeRange
-  name: PKA modkit (range)
+  name: PKA modkit (range t2)
   suffix: Tier 2
   components:
   - type: GunUpgrade
@@ -148,7 +148,7 @@
 - type: entity
   id: PKAUpgradeFireRateTier2
   parent: PKAUpgradeFireRate
-  name: PKA modkit (fire rate)
+  name: PKA modkit (fire rate t2)
   suffix: Tier 2
   components:
   - type: GunUpgrade

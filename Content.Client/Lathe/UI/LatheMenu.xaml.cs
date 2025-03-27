@@ -76,6 +76,8 @@ public sealed partial class LatheMenu : DefaultWindow
             {
                 ServerListButton.Visible = false;
             }
+
+            AmountLineEdit.SetText(latheComponent.DefaultProductionAmount.ToString());
         }
 
         // Begin DeltaV Additions: Mining points UI

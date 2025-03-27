@@ -16,8 +16,8 @@
     - HamsterWearable
     - WhitelistChameleon
   - type: HideLayerClothing
-    slots:
-    - Snout
+    layers:
+      Snout: Mask
     hideOnToggle: true
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.1
@@ -592,6 +592,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: BreathMask # Backmen
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.1
 

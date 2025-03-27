@@ -18,4 +18,6 @@
   - type: StorageFill
     contents:
       - id: WeaponPistolInteQCommissar
+      - id: MagazinePistol57x28
+        amount: 2
       - id: MagazineBoxLight57x28InteQ

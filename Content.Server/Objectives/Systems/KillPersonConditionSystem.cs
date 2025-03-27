@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Objectives.Components;
-using Content.Server.Revolutionary.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
@@ -12,6 +11,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Server.Revolutionary.Components;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -22,11 +22,11 @@ public sealed class KillPersonConditionSystem : EntitySystem
 {
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly ProtoId<DepartmentPrototype> _ccDep = "CentCom";
 
@@ -35,10 +35,6 @@ public sealed class KillPersonConditionSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<KillPersonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
-
-        SubscribeLocalEvent<PickRandomPersonComponent, ObjectiveAssignedEvent>(OnPersonAssigned);
-
-        SubscribeLocalEvent<PickRandomHeadComponent, ObjectiveAssignedEvent>(OnHeadAssigned);
     }
 
     private void OnGetProgress(EntityUid uid, KillPersonConditionComponent comp, ref ObjectiveGetProgressEvent args)

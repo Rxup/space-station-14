@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Content.Server.Administration.Systems;
+using Content.Server.Backmen.Arrivals.CentComm;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
@@ -469,6 +470,13 @@ namespace Content.IntegrationTests.Tests
                     jobs.ExceptWith(spawnPoints);
 
                     Assert.That(jobs, Is.Empty, $"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
+
+                    if (entManager.TryGetComponent<StationCentCommDirectorComponent>(station, out var centcomm))
+                    {
+                        Assert.That(
+                            entManager.System<CentCommSpawnSystem>().FindSpawnPoint(station), Is.Not.Null,
+                            $"CentCommSpawnSystem can't find spawn point for {entManager.ToPrettyString(station)} on {mapProto}");
+                    }
                 }
 
                 try
