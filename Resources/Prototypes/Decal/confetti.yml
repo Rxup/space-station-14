@@ -1,0 +1,31 @@
+- type: decal
+  id: Confetti1
+  tags: ["station", "dirty"]
+  defaultCleanable: true
+  sprite:
+    sprite: Backmen/Decals/confetti.rsi
+    state: confetti1
+
+- type: decal
+  id: Confetti2
+  tags: ["station", "dirty"]
+  defaultCleanable: true
+  sprite:
+    sprite: Backmen/Decals/confetti.rsi
+    state: confetti2
+
+- type: decal
+  id: Confetti3
+  tags: ["station", "dirty"]
+  defaultCleanable: true
+  sprite:
+    sprite: Backmen/Decals/confetti.rsi
+    state: confetti3
+
+- type: decal
+  id: Confetti4
+  tags: ["station", "dirty"]
+  defaultCleanable: true
+  sprite:
+    sprite: Backmen/Decals/confetti.rsi
+    state: confetti4
