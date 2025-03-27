@@ -7,7 +7,6 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -49,16 +48,15 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
                 sprite.Color);
         }
 
-        if (Equals(component.OccupiedLayer, HumanoidVisualLayers.LHand)
-            || Equals(component.OccupiedLayer, HumanoidVisualLayers.RHand)
-            || Equals(component.OccupiedLayer, HumanoidVisualLayers.LFoot)
-            || Equals(component.OccupiedLayer, HumanoidVisualLayers.RFoot))
-            return;
+        if (component.BleedingOverlay != null)
+        {
+            AddDamageLayerToSprite(partSprite,
+                component.BleedingOverlay,
+                $"{component.OccupiedLayer}_Minor",
+                $"{component.OccupiedLayer}Bleeding");
+        }
 
-        AddDamageLayerToSprite(partSprite,
-            component.BleedingOverlay,
-            $"{component.OccupiedLayer}_Minor",
-            $"{component.OccupiedLayer}Bleeding");
+        UpdateWoundableVisuals(uid, component, partSprite);
     }
 
     private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, BodyPartAddedEvent args)
@@ -79,13 +77,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             }
         }
 
-        if (Equals(component.OccupiedLayer, HumanoidVisualLayers.LHand)
-            || Equals(component.OccupiedLayer, HumanoidVisualLayers.RHand)
-            || Equals(component.OccupiedLayer, HumanoidVisualLayers.LFoot)
-            || Equals(component.OccupiedLayer, HumanoidVisualLayers.RFoot))
-            return;
-
-        if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out _))
+        if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out _) && component.BleedingOverlay != null)
         {
             AddDamageLayerToSprite(bodySprite,
                 component.BleedingOverlay,
@@ -172,7 +164,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         spriteComponent.LayerSetVisible(newLayer, false);
     }
 
-    private void UpdateWoundableVisuals(EntityUid uid, WoundableVisualsComponent visuals, SpriteComponent bodySprite)
+    private void UpdateWoundableVisuals(EntityUid uid, WoundableVisualsComponent visuals, SpriteComponent sprite)
     {
         if (!_appearance.TryGetData<WoundVisualizerGroupData>(uid, WoundableVisualizerKeys.Wounds, out var wounds))
             return;
@@ -180,7 +172,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
         foreach (var comp in wounds.GroupList.Select(GetEntity).Where(ent => !TerminatingOrDeleted(ent)).Select(Comp<WoundComponent>))
         {
-            if (comp.DamageGroup == null)
+            if (comp.DamageGroup == null || visuals.DamageOverlayGroups!.ContainsKey(comp.DamageGroup))
                 continue;
 
             if (!damagePerGroup.TryAdd(comp.DamageGroup, comp.WoundSeverityPoint))
@@ -193,31 +185,26 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         {
             foreach (var damage in visuals.DamageOverlayGroups!)
             {
-                bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}{damage.Key}", out var damageLayer);
-
-                UpdateDamageLayerState(bodySprite, damageLayer, $"{visuals.OccupiedLayer}_{damage.Key}", 0);
+                if (sprite.LayerMapTryGet($"{visuals.OccupiedLayer}{damage.Key}", out var damageLayer))
+                    UpdateDamageLayerState(sprite, damageLayer, $"{visuals.OccupiedLayer}_{damage.Key}", 0);
             }
         }
 
         foreach (var (type, damage) in damagePerGroup)
         {
-            if (!visuals.DamageOverlayGroups!.ContainsKey(type))
-                continue;
-
-            bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}{type}", out var damageLayer);
-
-            UpdateDamageLayerState(bodySprite, damageLayer, $"{visuals.OccupiedLayer}_{type}", GetThreshold(damage, visuals));
+            if (sprite.LayerMapTryGet($"{visuals.OccupiedLayer}{type}", out var damageLayer))
+                UpdateDamageLayerState(sprite, damageLayer, $"{visuals.OccupiedLayer}_{type}", GetThreshold(damage, visuals));
         }
 
-        UpdateBleeding(uid, visuals, visuals.OccupiedLayer, bodySprite);
+        UpdateBleeding(uid, visuals, visuals.OccupiedLayer, sprite);
     }
 
     private void UpdateBleeding(EntityUid uid, WoundableVisualsComponent comp, Enum layer, SpriteComponent sprite)
     {
-        if (!TryComp<BodyPartComponent>(uid, out var bodyPart) || !bodyPart.Body.HasValue)
+        if (!TryComp<BodyPartComponent>(uid, out var bodyPart))
             return;
 
-        if (bodyPart.PartType is BodyPartType.Foot or BodyPartType.Hand)
+        if (comp.BleedingOverlay == null)
         {
             if (!_body.TryGetParentBodyPart(uid, out var parentUid, out _))
                 return;
@@ -244,8 +231,11 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
             sprite.LayerMapTryGet($"{part}Bleeding", out var parentBleedingLayer);
 
-            var color = GetBleedsColor(bodyPart.Body.Value);
-            sprite.LayerSetColor(parentBleedingLayer, color);
+            if (bodyPart.Body.HasValue)
+            {
+                var color = GetBleedsColor(bodyPart.Body.Value);
+                sprite.LayerSetColor(parentBleedingLayer, color);
+            }
 
             UpdateBleedingLayerState(
                 sprite,
@@ -268,8 +258,11 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
             sprite.LayerMapTryGet($"{layer}Bleeding", out var bleedingLayer);
 
-            var color = GetBleedsColor(bodyPart.Body.Value);
-            sprite.LayerSetColor(bleedingLayer, color);
+            if (bodyPart.Body.HasValue)
+            {
+                var color = GetBleedsColor(bodyPart.Body.Value);
+                sprite.LayerSetColor(bleedingLayer, color);
+            }
 
             UpdateBleedingLayerState(sprite,
                 bleedingLayer,
