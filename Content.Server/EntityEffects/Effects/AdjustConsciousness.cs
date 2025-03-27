@@ -27,7 +27,7 @@ public sealed partial class AdjustConsciousness : EntityEffect
     [JsonPropertyName("identifier")]
     public string Identifier = "ConsciousnessModifier";
 
-    [DataField]
+    [DataField("allowNewModifiers")]
     [JsonPropertyName("allowNewModifiers")]
     public bool AllowCreatingModifiers = true;
 

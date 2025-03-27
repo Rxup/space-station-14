@@ -3,6 +3,8 @@ using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
@@ -49,14 +51,31 @@ public partial class TraumaSystem
 
     private void OnOrganSeverityChanged(Entity<WoundableComponent> bodyPart, ref OrganDamageSeverityChangedOnWoundable args)
     {
-        if (args.Organ.Comp.Body == null)
+        var body = args.Organ.Comp.Body;
+        if (body == null)
             return;
 
         if (args.NewSeverity != OrganSeverity.Destroyed)
             return;
 
-        _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, args.Organ.Comp.Body.Value);
+        _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, body.Value);
         _body.RemoveOrgan(args.Organ, args.Organ.Comp);
+
+        if (_consciousness.TryGetNerveSystem(body.Value, out var nerveSys))
+        {
+            var sex = Sex.Unsexed;
+            if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
+                sex = humanoid.Sex;
+
+            //_pain.PlayPainSoundWithCleanup(
+            //    body.Value,
+            //    nerveSys.Value.Comp,
+            //    nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
+            //    AudioParams.Default.WithVolume(-12f));
+
+            _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
+            _stun.TrySlowdown(body.Value, nerveSys.Value.Comp.OrganDamageStunTime * 2, true, 0.6f, 0.6f); // haha dumbass
+        }
 
         if (_net.IsServer)
             QueueDel(args.Organ);

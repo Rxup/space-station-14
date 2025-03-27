@@ -7,6 +7,7 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -25,7 +26,7 @@ public sealed partial class TraumaSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
 
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
 
     [Dependency] private readonly WoundSystem _wound = default!;
     [Dependency] private readonly PainSystem _pain = default!;

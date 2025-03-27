@@ -53,6 +53,9 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("painShockStun", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan PainShockStunTime = TimeSpan.FromSeconds(7f);
 
+    [DataField("organDamageStun", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan OrganDamageStunTime = TimeSpan.FromSeconds(12f);
+
     public TimeSpan NextCritScream = TimeSpan.Zero;
 
     [DataField]
@@ -178,6 +181,29 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
     };
+
+    //[DataField]
+    //public Dictionary<Sex, SoundSpecifier> OrganDestructionReflexSounds = new()
+    //{
+    //    {
+    //        Sex.Male, new SoundCollectionSpecifier("OrganDestructionReflexMale")
+    //        {
+    //            Params = AudioParams.Default,
+    //        }
+    //   },
+    //   {
+    //        Sex.Female, new SoundCollectionSpecifier("OrganDestructionReflexFemale")
+    //        {
+    //            Params = AudioParams.Default,
+    //        }
+    //    },
+    //    {
+    //        Sex.Unsexed, new SoundCollectionSpecifier("OrganDestructionReflexMale") // yeah
+    //        {
+    //            Params = AudioParams.Default,
+    //        }
+    //    },
+    //};
 
     [DataField("reflexThresholds"), ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<PainThresholdTypes, FixedPoint2> PainThresholds = new()

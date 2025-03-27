@@ -508,6 +508,17 @@ public partial class PainSystem
         return sound.Value;
     }
 
+    public Entity<AudioComponent>? PlayPainSoundWithCleanup(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    {
+        CleanupSounds(nerveSys);
+        var sound = _IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
+        if (!sound.HasValue)
+            return null;
+
+        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
+        return sound.Value;
+    }
+
     public void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, TimeSpan delay, AudioParams? audioParams = null)
     {
         nerveSys.PainSoundsToPlay.Add(body, (specifier, audioParams, _timing.CurTime + delay));

@@ -245,7 +245,7 @@
         color: "#FF0000"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
-    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+    bleedingOverlay: null
   - type: BodyPart
     partType: Hand
     symmetry: Left
@@ -275,7 +275,7 @@
         color: "#FF0000"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
-    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+    bleedingOverlay: null
   - type: BodyPart
     partType: Hand
     symmetry: Right
@@ -349,7 +349,7 @@
         color: "#FF0000"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
-    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+    bleedingOverlay: null
   - type: BodyPart
     partType: Foot
     symmetry: Left
@@ -379,7 +379,7 @@
         color: "#FF0000"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
-    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+    bleedingOverlay: null
   - type: BodyPart
     partType: Foot
     symmetry: Right
