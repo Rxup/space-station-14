@@ -20,6 +20,7 @@ public sealed partial class RadarConsoleComponent : Component
     [DataField, AutoNetworkedField]
     public float MaxRange = 256f;
 
+    // backmen edit start
     /// <summary>
     /// "It's over" THE TIMER
     /// bleep..... bleep....... bleeep.... bleeeep..... bleeep....
@@ -35,6 +36,7 @@ public sealed partial class RadarConsoleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float SpottingMultiplier = 1f;
+    // backmen edit end
 
     /// <summary>
     /// If true, the radar will be centered on the entity. If not - on the grid on which it is located.

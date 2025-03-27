@@ -23,7 +23,7 @@ public sealed class NavInterfaceState
     /// <summary>
     /// All the detected entities this one interface can see
     /// </summary>
-    public List<DetectablePointState> Detectables;
+    public List<DetectablePointState> Detectables; // backmen edit
 
     public bool RotateWithEntity = true;
 
@@ -32,13 +32,13 @@ public sealed class NavInterfaceState
         NetCoordinates? coordinates,
         Angle? angle,
         Dictionary<NetEntity, List<DockingPortState>> docks,
-        List<DetectablePointState> detectables)
+        List<DetectablePointState> detectables) // backmen edit
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
         Angle = angle;
         Docks = docks;
-        Detectables = detectables;
+        Detectables = detectables; // backmen edit
     }
 }
 

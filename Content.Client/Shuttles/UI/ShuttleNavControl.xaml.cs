@@ -26,7 +26,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
 
-    private readonly Font _font;
+    private readonly Font _font; // backmen edit
 
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
@@ -41,11 +41,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Angle? _rotation;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
-    private List<DetectablePointState> _detectables = new();
+    private List<DetectablePointState> _detectables = new(); // backmen edit
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
-    public bool ShowDetectables { get; set; } = true;
+    public bool ShowDetectables { get; set; } = true; // backmen edit
     public bool RotateWithEntity { get; set; } = true;
 
     /// <summary>
@@ -132,7 +132,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         RotateWithEntity = state.RotateWithEntity;
 
         _docks = state.Docks;
-        _detectables = state.Detectables;
+        _detectables = state.Detectables; // backmen edit
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -178,7 +178,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             DrawGrid(handle, ourGridToView, (ourGridId.Value, ourGrid), color);
             DrawDocks(handle, ourGridId.Value, ourGridToView);
-            DrawDetectables(handle, ourGridToView);
+            DrawDetectables(handle, ourGridToView); // backmen edit
         }
 
         // Draw radar position on the station
@@ -343,6 +343,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         }
     }
 
+    // backmen edit start
     private void DrawDetectables(DrawingHandleScreen handle, Matrix3x2 gridToView)
     {
         if (!ShowDetectables)
@@ -428,6 +429,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
         }
     }
+    // backmen edit end
 
     private Vector2 InverseScalePosition(Vector2 value)
     {

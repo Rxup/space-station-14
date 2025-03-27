@@ -30,6 +30,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         UpdateState(uid, component);
     }
 
+    // backmen edit start
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -52,7 +53,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     public bool CanBeSpotted(EntityUid spotter,
         EntityUid spotted,
         RadarConsoleComponent? radarConsole = null,
-        RadarDetectableComponent? detectable = null)
+        BkmRadarDetectableComponent? detectable = null)
     {
         if (!Resolve(spotter, ref radarConsole)
             || !Resolve(spotted, ref detectable))
@@ -79,7 +80,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         return true;
     }
 
-    public void SetSpottableValue(EntityUid spottable, bool value, RadarDetectableComponent? detectable = null)
+    public void SetSpottableValue(EntityUid spottable, bool value, BkmRadarDetectableComponent? detectable = null)
     {
         if (!Resolve(spottable, ref detectable))
             return;
@@ -87,7 +88,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         detectable.Spottable = value;
     }
 
-    public void SetSpottableDrawType(EntityUid spottable, DetectableDrawType drawType, RadarDetectableComponent? detectable = null)
+    public void SetSpottableDrawType(EntityUid spottable, DetectableDrawType drawType, BkmRadarDetectableComponent? detectable = null)
     {
         if (!Resolve(spottable, ref detectable))
             return;
@@ -95,7 +96,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         detectable.DrawType = drawType;
     }
 
-    public void SetSpottableColor(EntityUid spottable, Color color, RadarDetectableComponent? detectable = null)
+    public void SetSpottableColor(EntityUid spottable, Color color, BkmRadarDetectableComponent? detectable = null)
     {
         if (!Resolve(spottable, ref detectable))
             return;
@@ -107,7 +108,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         EntityUid spottable,
         float size,
         string? name = null,
-        RadarDetectableComponent? detectable = null)
+        BkmRadarDetectableComponent? detectable = null)
     {
         if (!Resolve(spottable, ref detectable))
             return;
@@ -120,7 +121,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         EntityUid spottable,
         string name,
         float? size,
-        RadarDetectableComponent? detectable = null)
+        BkmRadarDetectableComponent? detectable = null)
     {
         if (!Resolve(spottable, ref detectable))
             return;
@@ -128,6 +129,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         detectable.DetectableSize = size ?? detectable.DetectableSize;
         detectable.RadarName = name;
     }
+    // backmen edit end
 
     private void UpdateUi(Entity<RadarConsoleComponent> radar)
     {
@@ -146,7 +148,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         {
             NavInterfaceState state;
             var docks = _console.GetAllDocks();
-            var detectables = _console.GetAllDetectables(radar).ToList();
+            var detectables = _console.GetAllDetectables(radar).ToList(); // backmen edit
 
             if (coordinates != null && angle != null)
             {

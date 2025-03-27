@@ -3,7 +3,7 @@ using Content.Shared.Shuttles.BUIStates;
 namespace Content.Server.Shuttles.Components;
 
 [RegisterComponent]
-public sealed partial class RadarDetectableComponent : Component
+public sealed partial class BkmRadarDetectableComponent : Component
 {
     /// <summary>
     /// The name the radar will see when this entity is spotted

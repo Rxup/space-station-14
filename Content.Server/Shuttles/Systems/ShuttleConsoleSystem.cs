@@ -211,6 +211,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
     }
 
+    // backmen edit start
     public IEnumerable<DetectablePointState> GetAllDetectables(EntityUid spotter, RadarConsoleComponent? radarComponent = null)
     {
         var result = new List<DetectablePointState>();
@@ -218,7 +219,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!Resolve(spotter, ref radarComponent))
             return result;
 
-        var query = EntityQueryEnumerator<RadarDetectableComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<BkmRadarDetectableComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var detectable, out var xform))
         {
             if (!_radar.CanBeSpotted(spotter, uid, radarComponent, detectable))
@@ -243,6 +244,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         return result;
     }
+    // backmen edit end
 
     /// <summary>
     /// Returns the position and angle of all dockingcomponents.
@@ -299,7 +301,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         if (shuttleGridUid != null && entity != null)
         {
-            navState = GetNavState(entity.Value, dockState.Docks, GetAllDetectables(consoleUid).ToList());
+            navState = GetNavState(entity.Value, dockState.Docks, GetAllDetectables(consoleUid).ToList()); // backmen edit: detectables
             mapState = GetMapState(shuttleGridUid.Value);
         }
         else
@@ -424,10 +426,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(
         Entity<RadarConsoleComponent?, TransformComponent?> entity,
         Dictionary<NetEntity, List<DockingPortState>> docks,
-        List<DetectablePointState> detectables)
+        List<DetectablePointState> detectables) // backmen edit
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, detectables);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, detectables); // backmen edit: detectables
 
         return GetNavState(
             entity,
@@ -440,12 +442,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(
         Entity<RadarConsoleComponent?, TransformComponent?> entity,
         Dictionary<NetEntity, List<DockingPortState>> docks,
-        List<DetectablePointState> detectables,
+        List<DetectablePointState> detectables, // backmen edit
         EntityCoordinates coordinates,
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, detectables);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, detectables); // backmen edit: detectables
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
