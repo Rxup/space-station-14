@@ -1,5 +1,3 @@
-using Content.Server._Goobstation.Wizard.Systems;
-using Content.Shared._Goobstation.Wizard;
 using Content.Shared._Goobstation.Wizard.EventSpells;
 using Content.Shared._Lavaland.Mobs.Components;
 using Content.Server.Administration.Logs;
@@ -13,6 +11,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.Audio;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -25,7 +24,6 @@ public sealed class GlobalTileMovementSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _log = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly WizardRuleSystem _wizardRuleSystem = default!;
     private static readonly EntProtoId GameRule = "GlobalTileMovement";
 
     public override void Initialize()
@@ -58,18 +56,15 @@ public sealed class GlobalTileMovementSystem : EntitySystem
         var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, Color.Red);
         _audio.PlayGlobal(ev.Sound, Filter.Broadcast(), true);
-        _log.Add(LogType.EventRan, LogImpact.Extreme, $"Tile movement has been globally toggled via wizard spellbook.");
+        _log.Add(LogType.EventRan, LogImpact.Extreme, $"Tile movement has been globally toggled.");
     }
 
     private void OnRuleStarted(Entity<GlobalTileMovementRuleComponent> ent, ref GameRuleStartedEvent args)
     {
-        var map = _wizardRuleSystem.GetTargetMap();
-
-        if (map == null)
-            return;
+        var map = _gameTicker.DefaultMap;
 
         var entities = new HashSet<Entity<MobStateComponent, MindContainerComponent>>();
-        _lookup.GetEntitiesOnMap<MobStateComponent, MindContainerComponent>(Transform(map.Value).MapID, entities);
+        _lookup.GetEntitiesOnMap(map, entities);
         foreach (var (uid, _, _) in entities)
         {
             if (TerminatingOrDeleted(uid))
@@ -96,4 +91,11 @@ public sealed class GlobalTileMovementSystem : EntitySystem
 
         EnsureComp<HierophantBeatComponent>(ev.Mob);
     }
+}
+
+[DataDefinition]
+public sealed partial class GlobalTileToggleEvent : EntityEventArgs
+{
+    [DataField]
+    public SoundSpecifier? Sound = new SoundPathSpecifier("/Audio/_Goobstation/Wizard/ghost.ogg");
 }

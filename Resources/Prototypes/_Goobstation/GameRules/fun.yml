@@ -1,0 +1,5 @@
+- type: entity
+  parent: BaseGameRule
+  id: GlobalTileMovement
+  components:
+  - type: GlobalTileMovementRule
