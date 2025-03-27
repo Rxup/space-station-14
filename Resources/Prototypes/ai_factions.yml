@@ -109,6 +109,8 @@
   - Dragon
   - AllHostile
   - Wizard
+  - InteQ
+  - InteQHostile
 
 - type: npcFaction
   id: Xeno
