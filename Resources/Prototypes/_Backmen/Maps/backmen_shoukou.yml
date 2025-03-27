@@ -42,6 +42,8 @@
             MedicalDoctor: [ 3, 3 ]
             Chemist: [ 1, 2 ]
             MedicalIntern: [ 2, 3 ]
+            BkmVirologist [1, 1] # backmen-Virologist
+            BkmSurgeon [1, 1] # backmen-Surgeon
           #Security
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 2, 4 ]
