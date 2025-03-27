@@ -102,7 +102,7 @@
   id: Friendly
   flavorType: Complex
   description: flavor-complex-friendly
-  
+
 - type: flavor
   id: Singularity
   flavorType: Complex
