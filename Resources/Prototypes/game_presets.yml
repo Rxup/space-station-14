@@ -225,7 +225,6 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
-    - CalmStationEventScheduler #backmen: calm-scheduler
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - CalmMeteorSwarmScheduler #backmen: calm-scheduler

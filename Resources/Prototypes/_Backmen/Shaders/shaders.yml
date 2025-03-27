@@ -17,8 +17,3 @@
   id: ShockWave
   kind: source
   path: "/Textures/Backmen/Shaders/shock_wave.swsl"
-
-- type: shader
-  id: Bloom
-  kind: source
-  path: "/Textures/_CorvaxNext/Shaders/bloom.swsl"
