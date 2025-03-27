@@ -2048,3 +2048,12 @@
   id: 134
   time: '2025-03-26T08:13:34.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1157
+- author: Rxup
+  changes:
+  - message: "\u0437\u0430 \u0440\u043E\u043B\u0438 \u0438\u043D\u0442\u0435\u043A\
+      \ \u0442\u0435\u043F\u0435\u0440\u044C \u0442\u0440\u0435\u0431\u0443\u0435\u0442\
+      \u0441\u044F \u0432\u0440\u0435\u043C\u044F."
+    type: Tweak
+  id: 135
+  time: '2025-03-27T10:42:57.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1168
