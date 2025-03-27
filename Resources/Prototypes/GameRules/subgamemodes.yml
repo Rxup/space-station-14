@@ -16,6 +16,7 @@
     maxDifficulty: 2.5
   - type: AntagSelection
     agentName: thief-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
       max: 3
@@ -24,8 +25,8 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-      components:
-      - type: Pacified
+      #components: # backmen: thief is not pacified
+      #- type: Pacified
       mindRoles:
       - MindRoleThief
       briefing:

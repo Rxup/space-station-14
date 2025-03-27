@@ -204,6 +204,3 @@
   - type: Tag
     tags:
     - SalvagePCVPlate
-
-- type: Tag
-  id: SalvagePCVPlate

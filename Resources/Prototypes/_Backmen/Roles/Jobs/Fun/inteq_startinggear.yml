@@ -12,8 +12,8 @@
     outerClothing: ClothingOuterCoatInteQHonorableBattle
     shoes: ClothingShoesBootsCombatFilled
     id: InteQVanguardLeaderIDCard
-    pocket1: CigPackInteQ
-    pocket2: WeaponPistolInteQCommissar
+    pocket1: WeaponPistolInteQCommissar
+    pocket2: MagazinePistol57x28
     suitstorage: OxygenTankFilled
     belt: ClothingBeltInteQShieldBelt
 #  innerclothingskirt: ClothingUniformJumpsuitInteQHonorable
@@ -32,8 +32,8 @@
     outerClothing: ClothingOuterHardsuitInteQ
     shoes: ClothingShoesBootsCombatFilled
     id: InteQVanguardIDCard
-    pocket1: CigPackInteQ
-    pocket2: WeaponPistolInteQCommissar
+    pocket1: WeaponPistolInteQCommissar
+    pocket2: MagazinePistol57x28
     suitstorage: OxygenTankFilled
     belt: ClothingBeltInteQWebbing
 #  innerclothingskirt: ClothingUniformJumpskirtInteQOperative
@@ -41,7 +41,7 @@
 #  duffelbag: ClothingBackpackDuffelInteQ
 
 - type: startingGear
-  id: InteQVanguardSolderGear
+  id: InteQVanguardSoldierGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitInteQFormal
     back: ClothingBackpackInteQ
@@ -53,8 +53,8 @@
     outerClothing: ClothingOuterArmorBasic
     shoes: ClothingShoesBootsCombatFilled
     id: InteQVanguardIDCard
-    pocket1: CigPackInteQ
-    pocket2: WeaponPistolInteQCommissar
+    pocket1: WeaponPistolInteQCommissar
+    pocket2: MagazinePistol57x28
     suitstorage: OxygenTankFilled
     belt: ClothingBeltInteQWebbing
 #  innerclothingskirt: ClothingUniformJumpskirtInteQFormalDress

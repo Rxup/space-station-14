@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseShelterCapsule
+  id: SalvageAncientCommunicatorSummonerBigJohninator
+  name: ancient communication device
+  description: On one of the pieces of the communicator you repaired, there is a call button, as you understand, it calls a signal to headquarters, if anyone will answer?
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: radio
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,0,1
+  - type: UseDelay
+    delay: 0
+  - type: ShelterCapsule # avoid spawn him on station
+    deployTime: 0
+    preloadedGrid: 1tileblockwithbossBigJohninator
+    boxSize: 1,1
+
+# Grids
+- type: preloadedGrid
+  id: 1tileblockwithbossBigJohninator
+  path: /Maps/Backmen/Lavaland/BigJohninator.yml
+  copies: 1

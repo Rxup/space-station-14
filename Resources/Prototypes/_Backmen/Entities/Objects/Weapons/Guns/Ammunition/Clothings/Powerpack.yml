@@ -97,3 +97,33 @@
   components:
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
+
+#- type: entity # потом, в пизду
+#  id: PowerpackGluon
+#  name: powerpack (gluon)
+#  parent:
+#  - BasePowerpackEnergy
+#  - ClothingSlotBase
+#  components:
+#  - type: HitscanBatteryAmmoProvider
+#    proto: Gluon
+#  - type: ItemSlots
+#    slots:
+#      item:
+#        startingItem: WeaponGluonGun
+#        priority: 2
+#        whitelist:
+#          tags:
+#          - GluonGun
+#  - type: Sprite
+#    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+#    state: icon
+#  - type: Clothing
+#    slots: BACK
+#    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+#  - type: ItemMapper
+#    mapLayers:
+#      icon-filled:
+#        whitelist:
+#          tags:
+#            - GluonGun
