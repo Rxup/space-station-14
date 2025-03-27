@@ -223,6 +223,13 @@
     description: ghost-role-information-inteq-vanguard-leader-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
@@ -246,6 +253,13 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
@@ -268,6 +282,13 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
@@ -290,6 +311,13 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
     mindRoles:
     - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
