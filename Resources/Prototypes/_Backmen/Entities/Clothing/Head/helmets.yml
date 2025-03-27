@@ -370,47 +370,6 @@
         Piercing: 0.9
         Heat: 0.60
 
-# Changeling
-- type: entity
-  parent: ClothingHeadBase
-  id: ChangelingClothingHeadHelmet
-  name: chitinous helmet
-  description: An all-consuming chitinous mass of armor.
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    sprite: Backmen/Changeling/ling_armor_helmet.rsi
-  - type: Clothing
-    sprite: Backmen/Changeling/ling_armor_helmet.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-  - type: Unremoveable
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHelmetCentcom
-  name: шлем службы безопасности Центком
-  description: Модифицированный шлем службы безопасности, предназначенный для нужд охраны станций Центрального командования.
-  components:
-  - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.9
-        Heat: 0.8
-  - type: ExplosionResistance
-    damageCoefficient: 0.8
-
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadSecurityPilotHelmet

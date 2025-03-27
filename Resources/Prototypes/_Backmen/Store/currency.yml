@@ -6,8 +6,3 @@
   canWithdraw: true
   currencySymbol: store-currency-spacecredits-currency-symbol
 
-- type: currency
-  id: EvolutionPoint
-  displayName: store-currency-display-evolutionpoints
-  canWithdraw: false
-
