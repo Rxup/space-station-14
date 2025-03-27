@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared.Armor;
 using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -179,6 +180,12 @@ public partial class TraumaSystem
         if (!bodyPart.Body.HasValue)
             return false; // No entity to apply pain to
 
+        if (!TryComp<NerveComponent>(target, out var nerve))
+            return false;
+
+        if (nerve.PainFeels < 0.2)
+            return false;
+
         var deduction = GetTraumaChanceDeduction(
             woundInflicter,
             bodyPart.Body.Value,
@@ -190,7 +197,7 @@ public partial class TraumaSystem
         // literally dismemberment chance, but lower by default
         var chance =
             FixedPoint2.Clamp(
-                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 4
+                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 12
                 - deduction + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage],
                 0,
                 1);
