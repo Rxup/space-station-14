@@ -1,5 +1,8 @@
 flavor-complex-RedOrdenDrinkFlavour = триумф красного ордена
 flavor-complex-bacchus-drink = нечто самое резкое и разрывное в вашем горле
+flavor-complex-singularity = сингулярность
+flavor-complex-friendly = дружелюбно
+flavor-complex-heavy = тяжело
 
 ## Nyano???
 

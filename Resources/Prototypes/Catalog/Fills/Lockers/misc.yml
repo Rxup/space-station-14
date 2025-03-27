@@ -196,6 +196,23 @@
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.01
+    # Slug donut | Backmen
+    - id: FoodJellySlugCreek
+      prob: 0.02
+    - id: JellySlugArtificer
+      prob: 0.02
+    - id: JellySlugGourmet
+      prob: 0.02
+    - id: JellySlugHunter
+      prob: 0.02
+    - id: JellySlugMonk
+      prob: 0.02
+    - id: FoodJellySlugSaint
+      prob: 0.02
+    - id: FoodJellySlugSpearMaster
+      prob: 0.02
+    - id: FoodJellySlugUwU
+      prob: 0.01
 
 - type: entity
   id: ClosetMaintenanceFilledRandom
