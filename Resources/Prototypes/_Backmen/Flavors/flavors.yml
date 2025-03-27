@@ -92,3 +92,18 @@
   id: BacchusDrinkFlavour
   flavorType: Complex
   description: flavor-complex-bacchus-drink
+
+- type: flavor
+  id: Heavy
+  flavorType: Complex
+  description: flavor-complex-heavy
+
+- type: flavor
+  id: Friendly
+  flavorType: Complex
+  description: flavor-complex-friendly
+  
+- type: flavor
+  id: Singularity
+  flavorType: Complex
+  description: flavor-complex-singularity

@@ -1,0 +1,179 @@
+- type: entity
+  name: Jelly slug creek
+  parent: FoodDonutBase
+  id: FoodJellySlugCreek
+  description: looks wet.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-creek
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  name: Jelly slug artificer
+  parent: FoodDonutBase
+  id: JellySlugArtificer
+  description: There's something hissing in it.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-artificer
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Potassium
+          Quantity: 2.5
+        - ReagentId: Water
+          Quantity: 2.5
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+        canReact: false
+
+- type: entity
+  name: Jelly slug gourmet
+  parent: FoodDonutBase
+  id: JellySlugGourmet
+  description: It seems heavy.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - Heavy
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-gourmet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+
+- type: entity
+  name: Jelly slug hunter
+  parent: FoodDonutBase
+  id: JellySlugHunter
+  description: Seems rotting.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - gfdgdglfdjgjlsjfg;ldg
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-hunter
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: UnstableMutagen
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  name: Jelly Slug Monk
+  parent: FoodDonutBase
+  id: JellySlugMonk
+  description: Looks friendly.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - Friendly
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-monk    
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Pax
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  name: Jelly slug saint
+  parent: FoodDonutBase
+  id: FoodJellySlugSaint
+  description: Ascension in one donut.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-saint
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: LotophagoiOil
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  name: Jelly slug spear master
+  parent: FoodDonutBase
+  id: FoodJellySlugSpearMaster
+  description: Does he have needles?
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-spear_master
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Razorium
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  name: Jelly slug UwU
+  parent: FoodDonutBase
+  id: FoodJellySlugUwU
+  description: ???
+  components:
+  - type: FlavorProfile
+    flavors:
+      - Singularity
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-slug-UwU
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Laughter
+          Quantity: 8
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
