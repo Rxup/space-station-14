@@ -69,9 +69,6 @@
   id: JellySlugHunter
   description: Seems rotting.
   components:
-  - type: FlavorProfile
-    flavors:
-      - gfdgdglfdjgjlsjfg;ldg
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-hunter
