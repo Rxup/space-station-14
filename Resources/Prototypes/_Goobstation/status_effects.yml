@@ -1,0 +1,4 @@
+- type: statusEffect
+  id: Centered
+  alert: Centered
+  alwaysAllowed: true

@@ -157,6 +157,8 @@ public abstract partial class SharedGunUpgradeSystem : EntitySystem
     private void OnFireRateRefresh(Entity<GunUpgradeFireRateComponent> ent, ref GunRefreshModifiersEvent args)
     {
         args.FireRate *= ent.Comp.Coefficient;
+        args.BurstFireRate *= ent.Comp.Coefficient;
+        args.BurstCooldown /= ent.Comp.Coefficient;
     }
 
     private void OnCompsRefresh(Entity<GunComponentUpgradeComponent> ent, ref GunRefreshModifiersEvent args)

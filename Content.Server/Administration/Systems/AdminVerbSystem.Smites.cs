@@ -18,6 +18,8 @@ using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Tabletop;
 using Content.Server.Tabletop.Components;
+using Content.Shared._Goobstation.Wizard.Components;
+using Content.Shared._Lavaland.Mobs.Components;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
 using Content.Shared.Body.Components;
@@ -965,5 +967,21 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", omniaccentName, Loc.GetString("admin-smite-omni-accent-description"))
         };
         args.Verbs.Add(omniaccent);
+
+        var byondCurseName = Loc.GetString("admin-smite-byond-curse").ToLowerInvariant();
+        Verb byond = new()
+        {
+            Text = byondCurseName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new ("/Textures/_Goobstation/Interface/Alerts/byond.rsi"), "byond"),
+            Act = () =>
+            {
+                EnsureComp<CurseOfByondComponent>(args.Target);
+                EnsureComp<HierophantBeatComponent>(args.Target);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", byondCurseName, Loc.GetString("admin-smite-byond-curse-description"))
+        };
+        args.Verbs.Add(byond);
     }
 }

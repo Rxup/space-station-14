@@ -23,11 +23,11 @@
     - id: Pickaxe
     - id: LavalandEquipmentExplorerSuit
     - id: ShelterCapsule
-    - id: ClothingMaskGasExplorer
     - id: MineralScanner
     - id: FlashlightSeclite
     - id: ClothingEyesGlassesMeson
     - id: SeismicCharge
+    - id: LavalandJaunter
     # Lavaland Change End
     - id: Flare
       prob: 0.3
