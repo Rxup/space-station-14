@@ -26,6 +26,7 @@ using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Backmen.Language;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning;
 using Content.Shared.Cloning.Events;
@@ -426,7 +427,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     if (part.Component.PartType == BodyPartType.Head)
                         continue;
 
-                    if (part.Component.PartType == BodyPartType.Torso)
+                    if (part.Component.PartType == BodyPartType.Chest)
                     {
                         foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                         {
