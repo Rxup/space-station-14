@@ -5,7 +5,7 @@
   outpostPath: /Maps/_Lavaland/Lavaland/outpost_lavaland.yml
   ruinPool: Lavaland
   temperature: 308.4523 # 35.3023 C
-  restrictedRange: 320 # backmen change
+  restrictedRange: 360 # backmen change
   planetColor: "#A34931"
   biome: LavaLand
   shuttleWhitelist:
