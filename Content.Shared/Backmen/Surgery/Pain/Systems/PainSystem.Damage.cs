@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
@@ -575,7 +576,7 @@ public partial class PainSystem
 
     private void UpdateDamage(EntityUid nerveSysEnt, NerveSystemComponent nerveSys)
     {
-        if (_timing.ApplyingState || TerminatingOrDeleted(nerveSysEnt))
+        if (!_timing.IsFirstTimePredicted || TerminatingOrDeleted(nerveSysEnt))
             return;
 
         if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
@@ -591,18 +592,29 @@ public partial class PainSystem
                     sex = humanoid.Sex;
 
                 CleanupSounds(nerveSys);
-                if (_random.Prob(0.34f))
+                if (_trauma.HasBodyTrauma(body.Value, TraumaType.OrganDamage))
                 {
-                    // Play screaming with less chance
-                    PlayPainSound(body.Value, nerveSys, nerveSys.PainShockScreams[sex], AudioParams.Default.WithVolume(12f));
+                    // If the person suffers organ damage, do funny gaggling sound :3
+                    PlayPainSound(body.Value,
+                        nerveSys,
+                        nerveSys.OrganDamageWhimpersSounds[sex],
+                        AudioParams.Default.WithVolume(-12f));
                 }
                 else
                 {
-                    // Whimpering
-                    PlayPainSound(body.Value,
-                        nerveSys,                    // Pained or normal
-                        _random.Prob(0.34f) ? nerveSys.PainShockWhimpers[sex] : nerveSys.CritWhimpers[sex],
-                        AudioParams.Default.WithVolume(-12f));
+                    if (_random.Prob(0.34f))
+                    {
+                        // Play screaming with less chance
+                        PlayPainSound(body.Value, nerveSys, nerveSys.PainShockScreams[sex], AudioParams.Default.WithVolume(12f));
+                    }
+                    else
+                    {
+                        // Whimpering
+                        PlayPainSound(body.Value,
+                            nerveSys,                    // Pained or normal
+                            _random.Prob(0.34f) ? nerveSys.PainShockWhimpers[sex] : nerveSys.CritWhimpers[sex],
+                            AudioParams.Default.WithVolume(-12f));
+                    }
                 }
 
                 nerveSys.NextCritScream = _timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);

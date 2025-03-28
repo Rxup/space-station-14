@@ -182,28 +182,51 @@ public sealed partial class NerveSystemComponent : Component
         },
     };
 
-    //[DataField]
-    //public Dictionary<Sex, SoundSpecifier> OrganDestructionReflexSounds = new()
-    //{
-    //    {
-    //        Sex.Male, new SoundCollectionSpecifier("OrganDestructionReflexMale")
-    //        {
-    //            Params = AudioParams.Default,
-    //        }
-    //   },
-    //   {
-    //        Sex.Female, new SoundCollectionSpecifier("OrganDestructionReflexFemale")
-    //        {
-    //            Params = AudioParams.Default,
-    //        }
-    //    },
-    //    {
-    //        Sex.Unsexed, new SoundCollectionSpecifier("OrganDestructionReflexMale") // yeah
-    //        {
-    //            Params = AudioParams.Default,
-    //        }
-    //    },
-    //};
+    [DataField]
+    public Dictionary<Sex, SoundSpecifier> OrganDestructionReflexSounds = new()
+    {
+        {
+            Sex.Male, new SoundCollectionSpecifier("OrganDamagePainedMale")
+            {
+                Params = AudioParams.Default,
+            }
+       },
+       {
+            Sex.Female, new SoundCollectionSpecifier("OrganDamagePainedMale") // TODO: FEMALE SOUNDS FOR THIS
+            {
+                Params = AudioParams.Default,
+            }
+        },
+        {
+            Sex.Unsexed, new SoundCollectionSpecifier("OrganDamagePainedMale")
+            {
+                Params = AudioParams.Default,
+            }
+        },
+    };
+
+    [DataField]
+    public Dictionary<Sex, SoundSpecifier> OrganDamageWhimpersSounds = new()
+    {
+        {
+            Sex.Male, new SoundCollectionSpecifier("OrganDamageWhimpersMale")
+            {
+                Params = AudioParams.Default,
+            }
+        },
+        {
+            Sex.Female, new SoundCollectionSpecifier("OrganDamageWhimpersMale") // TODO: FEMALE SOUNDS FOR THIS
+            {
+                Params = AudioParams.Default,
+            }
+        },
+        {
+            Sex.Unsexed, new SoundCollectionSpecifier("OrganDamageWhimpersMale")
+            {
+                Params = AudioParams.Default,
+            }
+        },
+    };
 
     [DataField("reflexThresholds"), ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<PainThresholdTypes, FixedPoint2> PainThresholds = new()

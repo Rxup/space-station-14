@@ -133,3 +133,17 @@
   id: PainShockWhimpersFemale
   files:
   - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale1.ogg
+
+# Organ damage gaggling
+- type: soundCollection
+  id: OrganDamagePainedMale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/OrganDamagePainedMale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamagePainedMale2.ogg
+
+- type: soundCollection
+  id: OrganDamageWhimpersMale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale2.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale3.ogg

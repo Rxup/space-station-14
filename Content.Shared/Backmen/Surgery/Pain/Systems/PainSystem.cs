@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
@@ -40,6 +41,7 @@ public sealed partial class PainSystem : EntitySystem
 
     [Dependency] private readonly WoundSystem _wound = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!;
 
     public override void Initialize()
     {
@@ -138,8 +140,7 @@ public sealed partial class PainSystem : EntitySystem
                 if (TryComp<HumanoidAppearanceComponent>(args.Target, out var humanoid))
                     sex = humanoid.Sex;
 
-                CleanupSounds(nerveSys);
-                PlayPainSound(args.Target, nerveSys, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f));
+                PlayPainSoundWithCleanup(args.Target, nerveSys, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f));
 
                 nerveSys.NextCritScream = _timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
 

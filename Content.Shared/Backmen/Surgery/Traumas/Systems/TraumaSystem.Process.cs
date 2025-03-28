@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Armor;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
@@ -51,6 +53,137 @@ public partial class TraumaSystem
     }
 
     #region Public API
+
+    public IEnumerable<Entity<TraumaComponent>> GetAllWoundTraumas(
+        EntityUid woundInflicter,
+        TraumaInflicterComponent? component = null)
+    {
+        if (!Resolve(woundInflicter, ref component))
+            yield break;
+
+        foreach (var trauma in component.TraumaContainer.ContainedEntities)
+        {
+            yield return (trauma, Comp<TraumaComponent>(trauma));
+        }
+    }
+
+    public bool HasAssociatedTrauma(
+        EntityUid woundInflicter,
+        TraumaType? traumaType = null,
+        TraumaInflicterComponent? component = null)
+    {
+        if (!Resolve(woundInflicter, ref component))
+            return false;
+
+        foreach (var trauma in GetAllWoundTraumas(woundInflicter, component))
+        {
+            if (trauma.Comp.TraumaTarget == null)
+                continue;
+
+            if (trauma.Comp.TraumaType != traumaType && traumaType != null)
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool TryGetAssociatedTrauma(
+        EntityUid woundInflicter,
+        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
+        TraumaType? traumaType = null,
+        TraumaInflicterComponent? component = null)
+    {
+        traumas = null;
+        if (!Resolve(woundInflicter, ref component))
+            return false;
+
+        traumas = new List<Entity<TraumaComponent>>();
+        foreach (var trauma in GetAllWoundTraumas(woundInflicter, component))
+        {
+            if (trauma.Comp.TraumaTarget == null)
+                continue;
+
+            if (trauma.Comp.TraumaType != traumaType && traumaType != null)
+                continue;
+
+            traumas.Add(trauma);
+        }
+
+        return true;
+    }
+
+    public bool HasWoundableTrauma(
+        EntityUid woundable,
+        TraumaType? traumaType = null,
+        WoundableComponent? woundableComp = null)
+    {
+        if (!Resolve(woundable, ref woundableComp))
+            return false;
+
+        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
+        {
+            if (!TryComp<TraumaInflicterComponent>(woundEnt, out var inflicterComp))
+                continue;
+
+            if (HasAssociatedTrauma(woundEnt, traumaType, inflicterComp))
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool TryGetWoundableTrauma(
+        EntityUid woundable,
+        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
+        TraumaType? traumaType = null,
+        WoundableComponent? woundableComp = null)
+    {
+        traumas = null;
+        if (!Resolve(woundable, ref woundableComp))
+            return false;
+
+        traumas = new List<Entity<TraumaComponent>>();
+        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
+        {
+            if (!TryComp<TraumaInflicterComponent>(woundEnt, out var inflicterComp))
+                continue;
+
+            if (TryGetAssociatedTrauma(woundEnt, out var traumasFound, traumaType, inflicterComp))
+                traumas.AddRange(traumasFound);
+        }
+
+        return traumas.Count > 0;
+    }
+
+    public bool HasBodyTrauma(
+        EntityUid body,
+        TraumaType? traumaType = null,
+        BodyComponent? bodyComp = null)
+    {
+        return Resolve(body, ref bodyComp) && _body.GetBodyChildren(body, bodyComp).Any(bodyPart => HasWoundableTrauma(bodyPart.Id, traumaType));
+    }
+
+    public bool TryGetBodyTraumas(
+        EntityUid body,
+        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
+        TraumaType? traumaType = null,
+        BodyComponent? bodyComp = null)
+    {
+        traumas = null;
+        if (!Resolve(body, ref bodyComp))
+            return false;
+
+        traumas = new List<Entity<TraumaComponent>>();
+        foreach (var bodyPart in _body.GetBodyChildren(body, bodyComp))
+        {
+            if (TryGetWoundableTrauma(bodyPart.Id, out var traumasFound, traumaType))
+                traumas.AddRange(traumasFound);
+        }
+
+        return traumas.Count > 0;
+    }
 
     public List<TraumaType> RandomTraumaChance(
         EntityUid target,

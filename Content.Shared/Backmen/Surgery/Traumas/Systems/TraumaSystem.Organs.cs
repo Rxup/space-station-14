@@ -67,11 +67,11 @@ public partial class TraumaSystem
             if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
                 sex = humanoid.Sex;
 
-            //_pain.PlayPainSoundWithCleanup(
-            //    body.Value,
-            //    nerveSys.Value.Comp,
-            //    nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
-            //    AudioParams.Default.WithVolume(-12f));
+            _pain.PlayPainSoundWithCleanup(
+                body.Value,
+                nerveSys.Value.Comp,
+                nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
+                AudioParams.Default.WithVolume(6f));
 
             _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
             _stun.TrySlowdown(body.Value, nerveSys.Value.Comp.OrganDamageStunTime * 2, true, 0.6f, 0.6f); // haha dumbass
