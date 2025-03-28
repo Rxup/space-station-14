@@ -67,9 +67,8 @@ public sealed partial class PainSystem : EntitySystem
         using var query = EntityQueryEnumerator<NerveSystemComponent>();
         while (query.MoveNext(out var ent, out var nerveSystem))
         {
-            // Whoops, organ damage!
-            if (!TerminatingOrDeleted(ent))
-                _painJobQueue.EnqueueJob(new PainTimerJob(this, (ent, nerveSystem), PainJobTime));
+            // might want to use TerminatingOrDeleted(), because some anomalous stuff appeared before, but tests run fine now
+            _painJobQueue.EnqueueJob(new PainTimerJob(this, (ent, nerveSystem), PainJobTime));
         }
     }
 

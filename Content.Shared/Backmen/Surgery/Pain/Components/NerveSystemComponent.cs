@@ -47,7 +47,7 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("thresholdUpdate")]
     public TimeSpan ThresholdUpdateTime = TimeSpan.FromSeconds(1.2f);
 
-    [DataField("accumulated", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [DataField("accumulated")]
     public TimeSpan UpdateTime = TimeSpan.Zero;
 
     [DataField("painShockStun", customTypeSerializer: typeof(TimeOffsetSerializer))]
@@ -58,10 +58,10 @@ public sealed partial class NerveSystemComponent : Component
 
     public TimeSpan NextCritScream = TimeSpan.Zero;
 
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(13f);
 
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan CritScreamsIntervalMax = TimeSpan.FromSeconds(32f);
 
     [DataField]
