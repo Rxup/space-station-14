@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 248.0.0
   forkId: backmen
-  forkVersion: bdfecc5d6fdb2fc0482c6e8da68e030cc51f755e
-  time: 03/15/2025 11:02:58
-  entityCount: 29356
+  forkVersion: b4954ce3ce3c43d6fc7c57b5a40317b42ad22179
+  time: 03/22/2025 14:32:18
+  entityCount: 29358
 maps:
 - 780
 grids:
@@ -15686,24 +15686,24 @@ entities:
           id: docking46345
           localAnchorB: -0.5,-1
           localAnchorA: -66.5,22
-          damping: 42.40084
-          stiffness: 380.58908
+          damping: 42.400814
+          stiffness: 380.58884
         docking41285: !type:WeldJoint
           bodyB: 29148
           bodyA: 8364
           id: docking41285
           localAnchorB: 4,2.5
           localAnchorA: -23,24.5
-          damping: 845.6215
-          stiffness: 7590.2812
+          damping: 845.61127
+          stiffness: 7590.1885
         docking41284: !type:WeldJoint
           bodyB: 29148
           bodyA: 8364
           id: docking41284
           localAnchorB: 4,-1.5
           localAnchorA: -23,20.5
-          damping: 845.6215
-          stiffness: 7590.2812
+          damping: 845.61127
+          stiffness: 7590.1885
     - type: OccluderTree
     - type: Shuttle
     - type: RadiationGridResistance
@@ -19263,7 +19263,7 @@ entities:
         DoorStatus: True
         DockStatus: True
     - type: Door
-      secondsUntilStateChange: -24043.41
+      secondsUntilStateChange: -24097.535
       changeAirtight: False
       state: Opening
   - uid: 12469
@@ -19394,7 +19394,7 @@ entities:
       pos: 28.5,10.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -46685.055
+      secondsUntilStateChange: -46739.18
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19405,7 +19405,7 @@ entities:
       pos: 24.5,16.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -186864.81
+      secondsUntilStateChange: -186918.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -20903,7 +20903,7 @@ entities:
       pos: 9.5,25.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -100121.33
+      secondsUntilStateChange: -100175.45
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -68653,6 +68653,13 @@ entities:
     - type: Transform
       pos: 74.631615,-20.414675
       parent: 8364
+- proto: CaptainDrobe
+  entities:
+  - uid: 10538
+    components:
+    - type: Transform
+      pos: 6.5,-20.5
+      parent: 8364
 - proto: CaptainIDCard
   entities:
   - uid: 4704
@@ -93953,13 +93960,6 @@ entities:
     - type: Transform
       pos: 20.5,4.5
       parent: 8364
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 10538
-    components:
-    - type: Transform
-      pos: 6.5,-20.5
-      parent: 8364
 - proto: DresserChiefEngineerFilled
   entities:
   - uid: 5638
@@ -97761,7 +97761,7 @@ entities:
       pos: -34.5,-14.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -181053.36
+      secondsUntilStateChange: -181107.48
       state: Closing
   - uid: 15010
     components:
@@ -161123,6 +161123,18 @@ entities:
       parent: 8364
     - type: SpamEmitSound
       enabled: False
+- proto: SpawnJobBkmVirologist
+  entities:
+  - uid: 14161
+    components:
+    - type: Transform
+      pos: 35.5,-53.5
+      parent: 8364
+  - uid: 14162
+    components:
+    - type: Transform
+      pos: 39.5,-58.5
+      parent: 8364
 - proto: SpawnMechRipley
   entities:
   - uid: 16610
@@ -161637,11 +161649,6 @@ entities:
     - type: Transform
       pos: 45.5,-28.5
       parent: 8364
-  - uid: 26734
-    components:
-    - type: Transform
-      pos: 42.5,-28.5
-      parent: 8364
 - proto: SpawnPointMedicalIntern
   entities:
   - uid: 5262
@@ -161946,6 +161953,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-56.5
+      parent: 8364
+- proto: SpawnPointSurgeon
+  entities:
+  - uid: 14163
+    components:
+    - type: Transform
+      pos: 22.5,-33.5
       parent: 8364
 - proto: SpawnPointTechnicalAssistant
   entities:

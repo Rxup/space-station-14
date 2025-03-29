@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 248.0.0
   forkId: backmen
-  forkVersion: 4e3afdf6a36ba04d1af5bbae1165c1a9cbbb5992
-  time: 03/13/2025 12:41:49
-  entityCount: 13480
+  forkVersion: b4954ce3ce3c43d6fc7c57b5a40317b42ad22179
+  time: 03/22/2025 14:40:22
+  entityCount: 13482
 maps:
 - 35
 grids:
@@ -5722,7 +5722,7 @@ entities:
       pos: 13.5,12.5
       parent: 34
     - type: Door
-      secondsUntilStateChange: -22863.756
+      secondsUntilStateChange: -22881.035
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24391,6 +24391,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 45.44309,-6.5046253
       parent: 34
+- proto: CaptainDrobe
+  entities:
+  - uid: 2728
+    components:
+    - type: Transform
+      pos: 24.5,-28.5
+      parent: 34
 - proto: Carpet
   entities:
   - uid: 1810
@@ -34395,13 +34402,6 @@ entities:
           occludes: True
           ents:
           - 3624
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 2728
-    components:
-    - type: Transform
-      pos: 24.5,-28.5
-      parent: 34
 - proto: DresserChiefEngineerFilled
   entities:
   - uid: 3635
@@ -71184,6 +71184,13 @@ entities:
     - type: Transform
       pos: 40.50937,-38.527203
       parent: 34
+- proto: SpawnJobBkmVirologist
+  entities:
+  - uid: 13482
+    components:
+    - type: Transform
+      pos: -0.5,-36.5
+      parent: 34
 - proto: SpawnMobAlexander
   entities:
   - uid: 2548
@@ -71991,6 +71998,13 @@ entities:
     components:
     - type: Transform
       pos: -30.5,-35.5
+      parent: 34
+- proto: SpawnPointSurgeon
+  entities:
+  - uid: 13481
+    components:
+    - type: Transform
+      pos: 9.5,-27.5
       parent: 34
 - proto: SpawnPointTechnicalAssistant
   entities:

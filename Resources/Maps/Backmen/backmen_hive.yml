@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 02/19/2025 11:06:29
-  entityCount: 25932
+  engineVersion: 248.0.0
+  forkId: backmen
+  forkVersion: b4954ce3ce3c43d6fc7c57b5a40317b42ad22179
+  time: 03/22/2025 14:33:22
+  entityCount: 25934
 maps:
 - 8
 grids:
@@ -47540,6 +47540,13 @@ entities:
     - type: Transform
       pos: 6.301897,-17.943306
       parent: 1
+- proto: CaptainDrobe
+  entities:
+  - uid: 3538
+    components:
+    - type: Transform
+      pos: 106.5,-2.5
+      parent: 1
 - proto: CarbonDioxideCanister
   entities:
   - uid: 266
@@ -54184,11 +54191,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 86.51583,-3.3200355
       parent: 1
-  - uid: 7703
-    components:
-    - type: Transform
-      pos: 91.02607,-8.2087555
-      parent: 1
   - uid: 9112
     components:
     - type: Transform
@@ -54264,6 +54266,11 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 87.621124,-27.224382
+      parent: 1
+  - uid: 25933
+    components:
+    - type: Transform
+      pos: 91.52788,-9.505417
       parent: 1
 - proto: ChairPilotSeat
   entities:
@@ -67388,13 +67395,6 @@ entities:
     components:
     - type: Transform
       pos: -19.5,19.5
-      parent: 1
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 3538
-    components:
-    - type: Transform
-      pos: 106.5,-2.5
       parent: 1
 - proto: DresserChiefEngineerFilled
   entities:
@@ -104713,8 +104713,6 @@ entities:
       parent: 1
     - type: GasThermoMachine
       targetTemperature: 249.8167
-    - type: ApcPowerReceiver
-      powerDisabled: True
     - type: AtmosPipeColor
       color: '#E5CCFFFF'
 - proto: GasValve
@@ -114826,7 +114824,7 @@ entities:
     - type: Transform
       pos: 84.5,10.5
       parent: 1
-- proto: GunSafePistolMk58
+- proto: GunSafePistolGlock
   entities:
   - uid: 9634
     components:
@@ -137507,6 +137505,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 91.5,13.5
       parent: 1
+- proto: SpawnJobBkmVirologist
+  entities:
+  - uid: 25932
+    components:
+    - type: Transform
+      pos: 91.5,-9.5
+      parent: 1
 - proto: SpawnMobAlexander
   entities:
   - uid: 1181
@@ -138678,6 +138683,13 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-48.5
+      parent: 1
+- proto: SpawnPointSurgeon
+  entities:
+  - uid: 7703
+    components:
+    - type: Transform
+      pos: 85.5,-3.5
       parent: 1
 - proto: SpawnPointTechnicalAssistant
   entities:
