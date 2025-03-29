@@ -87,8 +87,6 @@
         color: "#1b67a5"
       - state: frame_head # Backmen
         color: "#1b67a5"
-      - state: assigned_centcom # Backmen
-      - state: idiaa
       - state: idcentcom
     - type: Item
       heldPrefix: gold

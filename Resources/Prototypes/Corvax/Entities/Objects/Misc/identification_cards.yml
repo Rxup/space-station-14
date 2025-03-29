@@ -10,7 +10,6 @@
           color: "#1b67a5"
         - state: frame_head # Backmen
           color: "#1b67a5"
-        - state: assigned_centcom # Backmen
         - state: idiaa
     - type: PresetIdCard
       job: IAA
@@ -27,7 +26,6 @@
           color: "#cb0000"
         - state: frame_default # Backmen
           color: "#cb0000"
-        - state: assigned # Backmen
         - state: idpilot
     - type: PresetIdCard
       job: Pilot

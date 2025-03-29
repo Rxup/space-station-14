@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/Bubberstation/Bubberstation/commit/c539a469d59849c15a115b319ec5953904863321 | Sprited, resprited and edited by PuroSlavKing (Github)",
+  "copyright": "ALL resprited by CatBackGround(Github) | catbg(Discord)",
   "size": {
     "x": 32,
     "y": 32
@@ -62,21 +62,6 @@
     },
     {
       "name": "frame_head"
-    },
-    {
-      "name": "assigned"
-    },
-    {
-      "name": "assigned_centcom"
-    },
-    {
-      "name": "assigned_gold"
-    },
-    {
-      "name": "assigned_silver"
-    },
-    {
-      "name": "assigned_syndicate"
     },
     {
       "name": "assigned_inteq"
@@ -505,6 +490,12 @@
     {
       "name": "green-inhand-right",
       "directions": 4
+    },
+    {
+      "name": "wizard"
+    },
+    {
+      "name": "idadmin"
     }
   ]
 }

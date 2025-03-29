@@ -107,7 +107,6 @@
         color: "#0F4162"
       - state: frame_head # Backmen
         color: "#0F4162"
-      - state: assigned_centcom # Backmen
       - state: idintern-service
     - type: PresetIdCard
       job: BKCCAssistant
