@@ -1,4 +1,4 @@
-# Security 
+# Security
 - type: entity
   name: security loot spawner
   suffix: Gear, Simple
@@ -52,7 +52,7 @@
         - SecurityWhistle
         - Tourniquet
       chance: 0.85
- 
+
 # Armory loot spawner
 # Automatics are a complete mess right now, so the AK-MS And WT-550 have been commented out for consistency's sake. I have no idea what role these guns are supposed to fufill.
 - type: entity
@@ -71,7 +71,8 @@
     - type: RandomSpawner
       rarePrototypes:
         - ClothingHeadHelmetSwat
-        - WeaponShotgunEnforcer
+        - WeaponShotgun12 #Backmen-weapons
+#        - WeaponShotgunEnforcer #Backmen-weapons
 #        - WeaponRifleAk
       rareChance: 0.05
       prototypes:
@@ -86,10 +87,16 @@
 #        - WeaponSubMachineGunWt550
         - WeaponDisabler
         - WeaponPistolMk58
-        - WeaponRifleLecter
-        - WeaponSubMachineGunDrozd
-        - WeaponLaserCarbine
-        - WeaponShotgunKammerer
+#        - WeaponRifleLecter
+#        - WeaponSubMachineGunDrozd
+#        - WeaponLaserCarbine
+#        - WeaponShotgunKammerer
+        #Backmen-weapons-start
+        - WeaponShotgunPaladin12
+        - WeaponSubMachineGunMP5
+        - WeaponRifleAR18
+        - WeaponRifleFamas
+        #Backmen-weapons-end
       chance: 0.95
       offset: 0.0
 
@@ -106,17 +113,24 @@
           state: icon
     - type: RandomSpawner
       rarePrototypes:
-        - WeaponShotgunEnforcer
+        - WeaponShotgun12 #Backmen-weapons
+#        - WeaponShotgunEnforcer #Backmen-weapons
 #        - WeaponRifleAk
       rareChance: 0.05
       prototypes:
 #        - WeaponSubMachineGunWt550
         - WeaponDisabler
         - WeaponPistolMk58
-        - WeaponRifleLecter
-        - WeaponSubMachineGunDrozd
-        - WeaponLaserCarbine
-        - WeaponShotgunKammerer
+#        - WeaponRifleLecter
+#        - WeaponSubMachineGunDrozd
+#        - WeaponLaserCarbine
+#        - WeaponShotgunKammerer
+        #Backmen-weapons-start
+        - WeaponShotgunPaladin12
+        - WeaponSubMachineGunMP5
+        - WeaponRifleAR18
+        - WeaponRifleFamas
+        #Backmen-weapons-end
       chance: 0.95
       offset: 0.0
 

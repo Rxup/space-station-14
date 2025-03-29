@@ -70,6 +70,7 @@
   id: WeaponLightMachineGunL6
   parent: [BaseWeaponLightMachineGun, BaseSyndicateContraband]
   description: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. Uses .30 rifle ammo.
+  categories: [ HideSpawnMenu ] #Backmen-weapons
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/LMGs/l6.rsi
