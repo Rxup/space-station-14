@@ -58,8 +58,8 @@
             Paramedic: [ 1, 1 ]
             # backmen
             Prisoner: [ 3, 3]
-            BkmVirologist [1, 1] # backmen-Virologist
-            BkmSurgeon [1, 1] # backmen-Surgeon
+            BkmVirologist: [1, 1] # backmen-Virologist
+            BkmSurgeon: [1, 1] # backmen-Surgeon
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BlueShield: [1, 1] # backmen-BlueShield
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons

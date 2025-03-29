@@ -61,8 +61,8 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 2 ]
-            BkmVirologist [1, 1] # backmen-Virologist
-            BkmSurgeon [1, 1] # backmen-Surgeon
+            BkmVirologist: [1, 1] # backmen-Virologist
+            BkmSurgeon: [1, 1] # backmen-Surgeon
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
