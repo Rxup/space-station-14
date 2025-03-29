@@ -1,5 +1,5 @@
 - type: entity
-  name: syndicate solder
+  name: syndicate soldier
   parent: BaseMobHuman
   suffix: AI
   id: MobPMCSindy
@@ -100,7 +100,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateBlade
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Энергетический меч
   components:
     - type: Sprite
@@ -118,7 +118,7 @@
       - SyndicateZvanieSuperNormalAgent
       - names_last_male
     - type: Damageable
-      damageModifierSet: NPCLightArmor
+      damageModifierSet: NPCArmor
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
@@ -141,7 +141,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateKnife
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Ножик
   components:
     - type: Sprite
@@ -179,7 +179,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicatePistol
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Пистолет
   components:
     - type: Sprite
@@ -209,7 +209,7 @@
       capacity: 60
       count: 60
     - type: Gun
-      fireRate: 0.75
+      fireRate: 1.25
       useKey: false
       selectedMode: FullAuto
       availableModes:
@@ -219,7 +219,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateShotgun
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, Дробовик
   components:
     - type: Sprite
@@ -259,7 +259,7 @@
 - type: entity
   parent: MobBaseNpc
   id: MobSimpleSyndicateSMG
-  name: syndicate solder
+  name: syndicate soldier
   suffix: AI, СМГ
   components:
     - type: Sprite
@@ -283,13 +283,13 @@
         task: SimpleRangedHostileCompound
     - type: InnateTool
       tools:
-        - id: WeaponSubMachineGunAtreides # No C-20
+        - id: WeaponSubMachineGunMP7 # No C-20
     - type: BasicEntityAmmoProvider
       proto: BulletLightRifle
       capacity: 60
       count: 60
     - type: Gun
-      fireRate: 0.75
+      fireRate: 1.50
       useKey: false
       selectedMode: FullAuto
       availableModes:

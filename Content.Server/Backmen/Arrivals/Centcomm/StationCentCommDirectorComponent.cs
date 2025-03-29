@@ -1,4 +1,6 @@
-﻿using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+﻿using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Backmen.Arrivals.CentComm;
 
@@ -12,10 +14,19 @@ public sealed partial class StationCentCommDirectorComponent : Component
     [DataField("nextEventTick", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextEventTick;
 
+    [DataField("availableMedJobs", required: false)]
+    public Dictionary<ProtoId<JobPrototype>, int[]> SetupMedAvailableJobs = [];
+
+    [DataField("availableHighJobs", required: false)]
+    public Dictionary<ProtoId<JobPrototype>, int[]> SetupHighAvailableJobs = [];
+
     /// <summary>
     /// The schedule of events to occur.
     /// </summary>
     [ViewVariables]
     [DataField("eventSchedule")]
     public List<(TimeSpan timeOffset, CentComEventId eventId)> EventSchedule = new();
+
+    [ViewVariables]
+    public bool isLowPop = false;
 }

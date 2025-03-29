@@ -76,8 +76,8 @@ public sealed class LavalandGenerationTest
 
         await pair.RunTicksSync(10);
 
-        var lavalands = lavaSystem.GetLavalands();
-        Assert.That(planets, Has.Count.EqualTo(lavalands.Count));
+        var lavalands = lavaSystem.GetLavalands().ToArray();
+        Assert.That(planets, Has.Count.EqualTo(lavalands.Length));
 
         // Cleanup
         foreach (var lavaland in lavalands)

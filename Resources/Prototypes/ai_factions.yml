@@ -63,6 +63,7 @@
   - CombineForce
   - AllHostile
   - Wizard
+  - Dragon
 
 - type: npcFaction
   id: SimpleHostile
@@ -85,6 +86,7 @@
   - Wizard
   - InteQ # Backmen
   - InteQHostile # Backmen
+  - Dragon
 
 - type: npcFaction
   id: SimpleNeutral
@@ -107,6 +109,8 @@
   - Dragon
   - AllHostile
   - Wizard
+  - InteQ
+  - InteQHostile
 
 - type: npcFaction
   id: Xeno
@@ -129,6 +133,7 @@
   - Wizard
   - InteQ # Backmen
   - InteQHostile # Backmen
+  - Dragon
 
 - type: npcFaction
   id: Zombie
@@ -152,6 +157,7 @@
   - Wizard
   - InteQ # Backmen
   - InteQHostile # Backmen
+  - Dragon
 
 - type: npcFaction
   id: Revolutionary

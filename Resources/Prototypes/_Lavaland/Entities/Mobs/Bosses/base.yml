@@ -1,0 +1,91 @@
+- type: entity
+  id: BaseBossMob
+  parent: [ BaseSimpleMob, FlyingMobBase, MobBloodstream ]
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+
+- type: damageModifierSet
+  id: HolyArmor
+  coefficients:
+    Piercing: 0.3
+    Heat: 0.1
+    Radiation: 0.1
+    Caustic: 0.1
+    Stun: 0.1
+
+- type: entity
+  id: BaseJohninator
+  parent:
+  - BaseBossMob
+  - StripableInventoryBase
+  abstract: true
+  description:
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Damageable
+    damageModifierSet: HolyArmor
+  - type: Sprite
+    scale: 1.5, 1.5
+    sprite: Backmen/Mobs/Npc/big_john.rsi
+    layers:
+    - state: bigjohn
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodlossThreshold: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: NpcFactionMember
+    factions:
+    - MalfunctioningRobot
+  - type: Inventory
+    templateId: carman
+
+- type: startingGear
+  id: BigJohn
+  equipment:
+    pocket1: BigJohnFightMusic
+
+- type: entity
+  id: BigJohnFightMusic
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    layers:
+      - state: NoId
+  - type: AmbientSound
+    volume: 5
+    range: 50
+    sound:
+      path: /Audio/Backmen/Bosses/ThemeOfCancer.ogg

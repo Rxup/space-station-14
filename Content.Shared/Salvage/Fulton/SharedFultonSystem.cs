@@ -183,7 +183,7 @@ public abstract partial class SharedFultonSystem : EntitySystem
         return true;
     }
 
-    protected bool CanFulton(EntityUid uid)
+    protected virtual bool CanFulton(EntityUid uid)
     {
         var xform = Transform(uid);
 

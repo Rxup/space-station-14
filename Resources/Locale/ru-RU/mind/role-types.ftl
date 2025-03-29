@@ -6,3 +6,6 @@ role-type-familiar-name = Фамильяр
 role-type-silicon-name = Синтетик
 role-type-silicon-antagonist-name = Изменённый синтетик
 role-type-update-message = Ваша роль: [color = { $color }]{ $role }[/color]
+
+
+role-type-inteq-name = InteQ

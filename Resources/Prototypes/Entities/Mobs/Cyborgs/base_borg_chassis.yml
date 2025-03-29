@@ -73,6 +73,8 @@
       # Only used for NT borgs that can switch type, defined here to avoid copy-pasting the rest of this component.
       enum.BorgSwitchableTypeUiKey.SelectBorgType:
         type: BorgSelectTypeUserInterface
+      enum.SurgeryUIKey.Key: # Backmen
+        type: SurgeryBui
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
@@ -156,6 +158,7 @@
     sounds:
       Unsexed: UnisexSilicon
     screamAction: null
+  - type: DamagedSiliconAccent
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -257,6 +260,8 @@
     understands:
     - Binary
     - TauCetiBasic
+  - type: Immersive # Backmen
+  - type: Targeting # Backmen
 
 - type: entity
   abstract: true
