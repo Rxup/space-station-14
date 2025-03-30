@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using Content.Server._Lavaland.Procedural;
 using Content.Server.Access.Systems;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.Backmen.NPC.Systems;
-using Content.Server.Backmen.Shipwrecked.Biome;
 using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Server.Body.Components;
@@ -176,7 +176,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckMapGridComponent, UnLoadChunkEvent>(OnChunkUnLoaded);
         SubscribeLocalEvent<ShipwreckMapGridComponent, MapInitEvent>(OnChunkLoad);
-
 
         SubscribeLocalEvent<ShipwreckPinPointerComponent, MapInitEvent>(OnPinPointerSpawn);
         SubscribeLocalEvent<ShipwreckPinPointerComponent, GetVerbsEvent<Verb>>(GetVerbsPinPointer);
