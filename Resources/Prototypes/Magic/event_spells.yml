@@ -27,39 +27,39 @@
       state: base
     event: !type:RandomGlobalSpawnSpellEvent
       makeSurvivorAntagonist: true
-      spawns:
+      spawns: #Backmen-weapon-upstream
       - id: WeaponPistolViper
         orGroup: Guns
       - id: WeaponPistolCobra
         orGroup: Guns
       - id: WeaponPistolMk58
         orGroup: Guns
-      - id: WeaponPistolN1984
-        orGroup: Guns
+#      - id: WeaponPistolN1984
+#        orGroup: Guns
       - id: WeaponRevolverDeckard
         orGroup: Guns
       - id: WeaponRevolverInspector
         orGroup: Guns
-      - id: WeaponRevolverMateba
-        orGroup: Guns
+#      - id: WeaponRevolverMateba
+#        orGroup: Guns
       - id: WeaponRevolverPython
         orGroup: Guns
       - id: WeaponRevolverPirate
         orGroup: Guns
-      - id: WeaponRifleAk
-        orGroup: Guns
-      - id: WeaponRifleM90GrenadeLauncher
-        orGroup: Guns
-      - id: WeaponRifleLecter
-        orGroup: Guns
-      - id: WeaponShotgunBulldog
-        orGroup: Guns
+#      - id: WeaponRifleAk
+#        orGroup: Guns
+#      - id: WeaponRifleM90GrenadeLauncher
+#        orGroup: Guns
+#      - id: WeaponRifleLecter
+#        orGroup: Guns
+#      - id: WeaponShotgunBulldog
+#        orGroup: Guns
       - id: WeaponShotgunDoubleBarreled
         orGroup: Guns
-      - id: WeaponShotgunEnforcer
-        orGroup: Guns
-      - id: WeaponShotgunKammerer
-        orGroup: Guns
+#      - id: WeaponShotgunEnforcer
+#        orGroup: Guns
+#      - id: WeaponShotgunKammerer
+#        orGroup: Guns
       - id: WeaponShotgunSawn
         orGroup: Guns
       - id: WeaponShotgunHandmade
@@ -68,60 +68,60 @@
         orGroup: Guns
       - id: WeaponShotgunImprovised
         orGroup: Guns
-      - id: WeaponSubMachineGunAtreides
-        orGroup: Guns
-      - id: WeaponSubMachineGunC20r
-        orGroup: Guns
-      - id: WeaponSubMachineGunDrozd
-        orGroup: Guns
-      - id: WeaponSubMachineGunWt550
-        orGroup: Guns
+#      - id: WeaponSubMachineGunAtreides
+#        orGroup: Guns
+#      - id: WeaponSubMachineGunC20r
+#        orGroup: Guns
+#      - id: WeaponSubMachineGunDrozd
+#        orGroup: Guns
+#      - id: WeaponSubMachineGunWt550
+#        orGroup: Guns
       - id: WeaponSniperMosinNew
         orGroup: Guns
-      - id: WeaponSniperHristov
-        orGroup: Guns
-      - id: Musket
-        orGroup: Guns
-      - id: WeaponPistolFlintlock
-        orGroup: Guns
-      - id: WeaponLauncherChinaLake
-        orGroup: Guns
-      - id: WeaponLauncherRocket
-        orGroup: Guns
-      - id: WeaponLauncherPirateCannon
-        orGroup: Guns
+#      - id: WeaponSniperHristov
+#        orGroup: Guns
+#      - id: Musket
+#        orGroup: Guns
+#      - id: WeaponPistolFlintlock
+#        orGroup: Guns
+#      - id: WeaponLauncherChinaLake
+#        orGroup: Guns
+#      - id: WeaponLauncherRocket
+#        orGroup: Guns
+#      - id: WeaponLauncherPirateCannon
+#        orGroup: Guns
       - id: WeaponTetherGun
         orGroup: Guns
       - id: WeaponForceGun
         orGroup: Guns
       - id: WeaponGrapplingGun
         orGroup: Guns
-      - id: WeaponLightMachineGunL6
-        orGroup: Guns
-      - id: WeaponLaserSvalinn
-        orGroup: Guns
-      - id: WeaponLaserGun
-        orGroup: Guns
+#      - id: WeaponLightMachineGunL6
+#        orGroup: Guns
+#      - id: WeaponLaserSvalinn
+#        orGroup: Guns
+#      - id: WeaponLaserGun
+#        orGroup: Guns
       - id: WeaponMakeshiftLaser
         orGroup: Guns
       - id: WeaponTeslaGun
         orGroup: Guns
       - id: WeaponLaserCarbinePractice
         orGroup: Guns
-      - id: WeaponLaserCarbine
-        orGroup: Guns
+#      - id: WeaponLaserCarbine
+#        orGroup: Guns
       - id: WeaponPulsePistol
         orGroup: Guns
       - id: WeaponPulseCarbine
         orGroup: Guns
-      - id: WeaponPulseRifle
-        orGroup: Guns
-      - id: WeaponLaserCannon
-        orGroup: Guns
+#      - id: WeaponPulseRifle
+#        orGroup: Guns
+#      - id: WeaponLaserCannon
+#        orGroup: Guns
       - id: WeaponParticleDecelerator
         orGroup: Guns
-      - id: WeaponXrayCannon
-        orGroup: Guns
+#      - id: WeaponXrayCannon
+#        orGroup: Guns
       - id: WeaponDisablerPractice
         orGroup: Guns
       - id: WeaponDisabler
@@ -140,10 +140,10 @@
         orGroup: Guns
       - id: WeaponEnergyShotgun
         orGroup: Guns
-      - id: WeaponMinigun
-        orGroup: Guns
-      - id: BowImprovised
-        orGroup: Guns
+#      - id: WeaponMinigun
+#        orGroup: Guns
+#      - id: BowImprovised
+#        orGroup: Guns
       - id: WeaponFlareGun
         orGroup: Guns
       - id: WeaponImprovisedPneumaticCannon
@@ -158,6 +158,168 @@
         orGroup: Guns
       - id: RevolverCapGunFake
         orGroup: Guns
+#Backmen-weapon-start
+      - id: WeaponDominatorNT
+        orGroup: Guns
+      - id: WeaponPistolRivet
+        orGroup: Guns
+      - id: WeaponAKMSRifle
+        orGroup: Guns
+      - id: WeaponPulseRifleAP12
+        orGroup: Guns
+      - id: WeaponRifleAUG
+        orGroup: Guns
+      - id: WeaponShotgunAA12
+        orGroup: Guns
+      - id: WeaponPistolACP14
+        orGroup: Guns
+      - id: WeaponAKMSTacticalRifle
+        orGroup: Guns
+      - id: WeaponRifleAR18
+        orGroup: Guns
+      - id: WeaponRifleBR64
+        orGroup: Guns
+      - id: WeaponRifleAKSU
+        orGroup: Guns
+      - id: WeaponRifleAKSUTactical
+        orGroup: Guns
+      - id: WeaponRifleG36
+        orGroup: Guns
+      - id: WeaponRevolverRebota
+        orGroup: Guns
+      - id: WeaponRevolverCMB
+        orGroup: Guns
+      - id: WeaponPistolDivet2
+        orGroup: Guns
+      - id: WeaponPistolG22
+        orGroup: Guns
+      - id: WeaponLauncherGL70
+        orGroup: Guns
+      - id: WeaponShotgunGuardian
+        orGroup: Guns
+      - id: WeaponPulseShotgunHellHammer
+        orGroup: Guns
+      - id: WeaponPistolM1911
+        orGroup: Guns
+      - id: WeaponRifleM28
+        orGroup: Guns
+      - id: WeaponRifleM28Tactical
+        orGroup: Guns
+      - id: WeaponRifleM41
+        orGroup: Guns
+      - id: WeaponSniperGarand
+        orGroup: Guns
+      - id: WeaponRifleM16A4
+        orGroup: Guns
+      - id: WeaponLightMachineGunMG42
+        orGroup: Guns
+      - id: WeaponLightMachineGunMG60
+        orGroup: Guns
+      - id: WeaponSubMachineGunMP38
+        orGroup: Guns
+      - id: WeaponSubMachineGunMP5
+        orGroup: Guns
+      - id: WeaponSubMachineGunMP5Tactical
+        orGroup: Guns
+      - id: WeaponSubMachineGunMP7
+        orGroup: Guns
+      - id: WeaponRevolverNY
+        orGroup: Guns
+      - id: WeaponSubMachineGunP90
+        orGroup: Guns
+      - id: WeaponSubMachineGunP90Tactical
+        orGroup: Guns
+      - id: WeaponSubMachineGunPPSH41
+        orGroup: Guns
+      - id: WeaponRevolverR44
+        orGroup: Guns
+      - id: WeaponLauncherRL5
+        orGroup: Guns
+      - id: WeaponLightMachineGunRPD
+        orGroup: Guns
+      - id: WeaponLightMachineGunRPDTactical
+        orGroup: Guns
+      - id: WeaponRifleSCARAB
+        orGroup: Guns
+      - id: WeaponRifleSTG44
+        orGroup: Guns
+      - id: WeaponRifleSWS
+        orGroup: Guns
+      - id: WeaponPulseSMGTritonM3
+        orGroup: Guns
+      - id: WeaponPistolUCS
+        orGroup: Guns
+      - id: WeaponRifleUTAPM1
+        orGroup: Guns
+      - id: WeaponSubMachineGunVectorSpecialTactical
+        orGroup: Guns
+      - id: WeaponPulseRifleXMLG
+        orGroup: Guns
+      - id: WeaponShotgun39
+        orGroup: Guns
+      - id: WeaponShotgun39Tactical
+        orGroup: Guns
+      - id: WeaponRifleInteQAKM
+        orGroup: Guns
+      - id: WeaponShotgunInteQBulldog
+        orGroup: Guns
+      - id: WeaponSubMachineGunVectorSpecial
+        orGroup: Guns
+      - id: WeaponRifleDragunov
+        orGroup: Guns
+      - id: WeaponShotgunPaladin12
+        orGroup: Guns
+      - id: WeaponRifleSR127
+        orGroup: Guns
+      - id: WeaponShotgunZauer
+        orGroup: Guns
+      - id: WeaponPistolInteQCommissar
+        orGroup: Guns
+      - id: WeaponPistolDEagle
+        orGroup: Guns
+      - id: WeaponRevolverMatebaNew
+        orGroup: Guns
+      - id: WeaponSubMachineGunSkorpion
+        orGroup: Guns
+      - id: WeaponSubMachineGunInteQSMG
+        orGroup: Guns
+      - id: WeaponSubMachineGunUzi
+        orGroup: Guns
+      - id: WeaponPistolVP78
+        orGroup: Guns
+      - id: WeaponShotgun12
+        orGroup: Guns
+      - id: WeaponShotguntrenchgun4034
+        orGroup: Guns
+      - id: WeaponEarthGovLaserSniper
+        orGroup: Guns
+      - id: WeaponSubMachineGunUzi
+        orGroup: Guns
+      - id: WeaponPistolHIB88M4
+        orGroup: Guns
+      - id: WeaponRifleV31
+        orGroup: Guns
+      - id: WeaponEarthGovXRay
+        orGroup: Guns
+      - id: WeaponEarthGovLaserRifle
+        orGroup: Guns
+      - id: WeaponEarthGovLaserCarbine
+        orGroup: Guns
+      - id: WeaponEarthGovLaserPistol
+        orGroup: Guns
+      - id: WeaponEarthGovLaserMG
+        orGroup: Guns
+      - id: WeaponMultiphaseEnergyGun
+        orGroup: Guns
+      - id: WeaponPistolMakarovsssp
+        orGroup: Guns
+      - id: WeaponPlasmaCutter
+        orGroup: Guns
+      - id: WeaponPistolG23
+        orGroup: Guns
+      - id: WeaponRifleFamas
+        orGroup: Guns
+#Backmen-weapon-end
       speech: action-speech-spell-summon-guns
 
 - type: entity
