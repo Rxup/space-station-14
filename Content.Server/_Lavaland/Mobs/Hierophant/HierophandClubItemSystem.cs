@@ -112,10 +112,19 @@ public sealed class HierophandClubItemSystem : EntitySystem
             return;
         }
 
+        var xform = Transform(ent);
+        var markerXform = Transform(ent.Comp.TeleportMarker.Value);
+
+        if (xform.MapID != markerXform.MapID)
+        {
+            _popup.PopupClient("Marker is too far away!", args.Performer, PopupType.MediumCaution);
+            return;
+        }
+
         var user = args.Performer;
 
         AddImmunity(user);
-        _xform.SetCoordinates(user, Transform(ent.Comp.TeleportMarker.Value).Coordinates); // CROSS MAP TP!!!
+        _xform.SetCoordinates(user, markerXform.Coordinates);
         _hierophant.Blink(user, ent.Comp.TeleportMarker);
         args.Handled = true;
     }
