@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, further modified by ps3moira (github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "jelly-slug-artificer"
+        },
+        {
+            "name": "jelly-slug-creek"
+        },
+        {
+            "name": "jelly-slug-gourmet"
+        },
+        {
+            "name": "jelly-slug-hunter"
+        },
+        {
+            "name": "jelly-slug-monk"
+        },
+        {
+            "name": "jelly-slug-saint"
+        },
+        {
+            "name": "jelly-slug-spear_master"
+        },
+        {
+            "name": "jelly-slug-UwU"
+        }
+    ]
+}
