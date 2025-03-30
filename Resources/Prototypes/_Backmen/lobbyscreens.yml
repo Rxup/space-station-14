@@ -25,3 +25,19 @@
 - type: animatedLobbyScreen
   id: GachiLobbyScreen
   path: /Textures/Backmen/LobbyScreens/Gachi.rsi
+
+- type: animatedLobbyScreen
+  id: PortalLobbyScreen
+  path: /Textures/Backmen/LobbyScreens/Portal.rsi
+
+- type: animatedLobbyScreen
+  id: AzunaLobbyScreen
+  path: /Textures/Backmen/LobbyScreens/Azuna.rsi
+
+- type: animatedLobbyScreen
+  id: FleetLobbyScreen
+  path: /Textures/Backmen/LobbyScreens/Fleet.rsi
+
+- type: animatedLobbyScreen
+  id: FleetLobbyScreen
+  path: /Textures/Backmen/LobbyScreens/HellDude.rsi
