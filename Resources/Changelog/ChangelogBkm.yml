@@ -2098,3 +2098,13 @@
   id: 137
   time: '2025-03-30T15:49:06.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1177
+- author: Rouden
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D \u0442\u0443\u043C\
+      \u0430\u043D \u043D\u0430 \u043B\u0430\u0432\u0430\u043B\u0435\u043D\u0434\u0435\
+      , \u0442\u0435\u043F\u0435\u0440\u044C \u043E\u043D \u043D\u0435 \u043F\u043E\
+      \u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u0440\u0443\u0438\u043D\u044B."
+    type: Fix
+  id: 138
+  time: '2025-03-30T16:07:40.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1173
