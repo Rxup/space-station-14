@@ -39,5 +39,5 @@
   path: /Textures/Backmen/LobbyScreens/Fleet.rsi
 
 - type: animatedLobbyScreen
-  id: FleetLobbyScreen
+  id: HellDudeLobbyScreen
   path: /Textures/Backmen/LobbyScreens/HellDude.rsi
