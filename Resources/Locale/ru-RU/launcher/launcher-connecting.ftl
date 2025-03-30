@@ -1,6 +1,6 @@
 ### Connecting dialog when you start up the game
 
-connecting-title = Backmen Station 14
+connecting-title = CONFEDERATION 14
 connecting-exit = Выйти
 connecting-retry = Повторить
 connecting-reconnect = Переподключиться
@@ -11,7 +11,7 @@ connecting-in-progress = Подключение к серверу...
 connecting-disconnected = Отключён от сервера:
 connecting-tip = В космосе тебя никто не услышит.
 connecting-window-tip = Совет { $numberTip }
-connecting-version = версия 6.9
+connecting-version = версия 7.1
 connecting-fail-reason =
     Не удалось подключиться к серверу:
     { $reason }

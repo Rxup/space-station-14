@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: SpawnPointCMBKCCSecOfficer
   name: Охраник ЦК
-  suffix: Спавнер, Директор Событий
+  suffix: Спавнер, Директор Событий, DO NOT MAP
   parent: MarkerBase
   components:
   - type: GhostRole
@@ -32,7 +32,7 @@
 
 - type: entity
   name: Охраник ЦК
-  suffix: Директор Событий
+  suffix: Директор Событий, DO NOT MAP
   parent: MobHumanCombine
   description: A highly trained Central Command Security Officer equipped with specialized gear and implants.
   id: MobHumanCMBKCCSecOfficer

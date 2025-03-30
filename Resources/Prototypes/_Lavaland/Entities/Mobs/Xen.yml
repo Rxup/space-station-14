@@ -13,21 +13,9 @@
         collection: HeadcrabDeath
         params:
           volume: 3
-    - type: Clothing
-      quickEquip: false
-      sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
-      equippedState: equipped-HELMET
-      slots:
-        - HEAD
-        - MASK
-    - type: Tag
-      tags:
-        - HidesHair
-        - BlobMob
     - type: ClothingSpeedModifier
       walkModifier: 0.6
       sprintModifier: 0.6
-    - type: BlobPod
     - type: IngestionBlocker
     - type: IdentityBlocker
     - type: DoAfter
@@ -50,7 +38,7 @@
     - type: CombatMode
     - type: NpcFactionMember
       factions:
-        - Blob
+        - Zombie
     - type: MeleeWeapon
       hidden: true
       soundHit:
@@ -136,21 +124,6 @@
           Piercing: 10
       actionWormJump: ActionHeadcrabJump
 
-- type: entity
-  id: MobHeadcrabPlayer
-  name: headcrab
-  suffix: Xen suppa Player
-  parent: MobHeadcrab
-  components:
-    - type: GhostRole
-      allowMovement: true
-      name: Headcrab
-      description: Monster from Xen
-    - type: GhostTakeoverAvailable
-    - type: HTN
-      rootTask:
-        task: HeadCrabCompound
-
 - type: htnCompound
   id: HeadCrabCompound
   branches:
@@ -213,7 +186,7 @@
       100: Dead
   - type: NpcFactionMember
     factions:
-      - Blob
+      - Zombie
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
@@ -237,7 +210,7 @@
   components:
   - type: RandomSpawner
     prototypes:
-      - MobHeadcrab
+      - MobHeadcrabNPC
     chance: 0.6
     offset: 0
 
