@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
@@ -58,10 +59,7 @@ public partial class TraumaSystem
         if (args.NewSeverity != OrganSeverity.Destroyed)
             return;
 
-        _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, body.Value);
-        _body.RemoveOrgan(args.Organ, args.Organ.Comp);
-
-        if (_consciousness.TryGetNerveSystem(body.Value, out var nerveSys))
+        if (_consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !_mobState.IsDead(body.Value))
         {
             var sex = Sex.Unsexed;
             if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
@@ -77,6 +75,20 @@ public partial class TraumaSystem
             _stun.TrySlowdown(body.Value, nerveSys.Value.Comp.OrganDamageStunTime * 2, true, 0.6f, 0.6f); // haha dumbass
         }
 
+        if (TryGetWoundableTrauma(bodyPart, out var traumas, TraumaType.OrganDamage, bodyPart))
+        {
+            foreach (var trauma in traumas)
+            {
+                if (trauma.Comp.TraumaTarget != args.Organ)
+                    continue;
+
+                RemoveTrauma(trauma);
+            }
+        }
+
+        _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, body.Value);
+        _body.RemoveOrgan(args.Organ, args.Organ.Comp);
+
         if (_net.IsServer)
             QueueDel(args.Organ);
     }
@@ -91,6 +103,9 @@ public partial class TraumaSystem
         string identifier,
         OrganComponent? organ = null)
     {
+        if (severity == 0)
+            return false;
+
         if (!Resolve(uid, ref organ))
             return false;
 
@@ -106,6 +121,9 @@ public partial class TraumaSystem
         string identifier,
         OrganComponent? organ = null)
     {
+        if (severity == 0)
+            return false;
+
         if (!Resolve(uid, ref organ))
             return false;
 
@@ -121,6 +139,9 @@ public partial class TraumaSystem
         string identifier,
         OrganComponent? organ = null)
     {
+        if (change == 0)
+            return false;
+
         if (!Resolve(uid, ref organ))
             return false;
 
@@ -154,6 +175,16 @@ public partial class TraumaSystem
 
     private void UpdateOrganIntegrity(EntityUid uid, OrganComponent organ)
     {
+        foreach (var modifier in organ.IntegrityModifiers.Where(modifier => modifier.Value <= 0))
+        {
+            if (!TryComp<TraumaComponent>(modifier.Key.Item2, out var trauma))
+                continue;
+
+            // If the modifier isn't applied by a trauma, it might be some healing thingy; So we don't obliterate it
+            RemoveTrauma((modifier.Key.Item2, trauma));
+            organ.IntegrityModifiers.Remove(modifier.Key); // Clean up traumas and modifiers
+        }
+
         var oldIntegrity = organ.OrganIntegrity;
         organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
                 .Aggregate((FixedPoint2) 0, (current, modifier) => current + modifier.Value),
@@ -171,7 +202,6 @@ public partial class TraumaSystem
                 RaiseLocalEvent(container.Owner, ref ev1, true);
             }
         }
-
 
         var nearestSeverity = organ.OrganSeverity;
         foreach (var (severity, value) in organ.IntegrityThresholds.OrderByDescending(kv => kv.Value))

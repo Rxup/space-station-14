@@ -193,7 +193,7 @@ public partial class SharedBodySystem
                 cameFromEntities[connection] = childPart;
 
                 var childPartComponent = Comp<BodyPartComponent>(childPart);
-                var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, parentPartComponent);
+                var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, childPartComponent.Symmetry, parentPartComponent);
                 childPartComponent.ParentSlot = partSlot;
                 Dirty(childPart, childPartComponent);
                 var cont = Containers.GetContainer(parentEntity, GetPartSlotContainerId(connection));
@@ -343,7 +343,7 @@ public partial class SharedBodySystem
 
                         var childPartComponent = Comp<BodyPartComponent>(childPart);
 
-                        var partSlot = new BodyPartSlot(connection, childPartComponent.PartType);
+                        var partSlot = new BodyPartSlot(connection, childPartComponent.PartType, childPartComponent.Symmetry);
                         childPartComponent.ParentSlot = partSlot;
                         parentPartComponent.Children.TryAdd(connection, partSlot);
 
@@ -362,7 +362,7 @@ public partial class SharedBodySystem
 
                     var childPartComponent = Comp<BodyPartComponent>(childPart);
 
-                    var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, parentPartComponent);
+                    var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, childPartComponent.Symmetry, parentPartComponent);
                     childPartComponent.ParentSlot = partSlot;
 
                     Dirty(parentEntity, parentPartComponent);

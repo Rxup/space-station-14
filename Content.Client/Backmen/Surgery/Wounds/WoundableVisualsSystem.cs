@@ -94,36 +94,21 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         if (!TryComp(body, out SpriteComponent? bodySprite))
             return;
 
-        foreach (var (group, _) in component.DamageOverlayGroups!)
-        {
-            if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}{group}", out var layer))
-                continue;
-
-            bodySprite.LayerSetVisible(layer, false);
-            bodySprite.LayerMapRemove(layer);
-        }
-
-        if (bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out var bleeds))
-        {
-            bodySprite.LayerSetVisible(bleeds, false);
-            bodySprite.LayerMapRemove(bleeds);
-        }
-
         foreach (var part in _body.GetBodyPartChildren(uid))
         {
             if (!TryComp<WoundableVisualsComponent>(part.Id, out var woundableVisuals))
                 continue;
 
-            foreach (var (group, _) in component.DamageOverlayGroups!)
+            foreach (var (group, _) in woundableVisuals.DamageOverlayGroups!)
             {
-                if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}{group}", out var layer))
+                if (!bodySprite.LayerMapTryGet($"{woundableVisuals.OccupiedLayer}{group}", out var layer))
                     continue;
 
                 bodySprite.LayerSetVisible(layer, false);
                 bodySprite.LayerMapRemove(layer);
             }
 
-            if (bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out var childBleeds))
+            if (bodySprite.LayerMapTryGet($"{woundableVisuals.OccupiedLayer}Bleeding", out var childBleeds))
             {
                 bodySprite.LayerSetVisible(childBleeds, false);
                 bodySprite.LayerMapRemove(childBleeds);
@@ -132,9 +117,6 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             if (TryComp(uid, out SpriteComponent? pieceSprite))
                 UpdateWoundableVisuals(part.Id, woundableVisuals, pieceSprite);
         }
-
-        if (TryComp(uid, out SpriteComponent? partSprite))
-            UpdateWoundableVisuals(uid, component, partSprite);
     }
 
     protected override void OnAppearanceChange(EntityUid uid, WoundableVisualsComponent component, ref AppearanceChangeEvent args)
@@ -170,7 +152,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             return;
 
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
-        foreach (var comp in wounds.GroupList.Select(GetEntity).Select(Comp<WoundComponent>))
+        foreach (var comp in wounds.GroupList.Select(GetEntity).Where(ent => !TerminatingOrDeleted(ent)).Select(Comp<WoundComponent>))
         {
             if (comp.DamageGroup == null || !visuals.DamageOverlayGroups!.ContainsKey(comp.DamageGroup))
                 continue;

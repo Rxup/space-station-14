@@ -100,6 +100,12 @@ public record struct WoundableIntegrityChangedEvent(EntityUid Woundable, FixedPo
 [ByRefEvent]
 public record struct WoundableSeverityChangedEvent(EntityUid Woundable, WoundableSeverity NewSeverity);
 
+[ByRefEvent]
+public record struct WoundHealAttemptEvent(Entity<WoundableComponent> Woundable, bool Cancelled = false);
+
+[ByRefEvent]
+public record struct WoundHealAttemptOnWoundableEvent(Entity<WoundComponent> Wound, bool Cancelled = false);
+
 [Serializable, DataRecord]
 public record struct WoundableSeverityMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");
 

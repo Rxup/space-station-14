@@ -655,7 +655,7 @@ public partial class PainSystem
 
     private void UpdateNerveSystemPain(EntityUid uid, NerveSystemComponent? nerveSys = null)
     {
-        if (!Resolve(uid, ref nerveSys, false))
+        if (!Resolve(uid, ref nerveSys))
             return;
 
         if (!TryComp<OrganComponent>(uid, out var organ) || organ.Body == null)

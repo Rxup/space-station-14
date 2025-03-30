@@ -59,6 +59,38 @@
     part: Chest
     inverse: true
 
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryMendBones
+  name: Mend Bones
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepMendBones
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryTraumaPresentCondition
+    trauma: BoneDamage
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryHealOrgans
+  name: Heal Organs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepHealOrgans
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryTraumaPresentCondition
+    trauma: OrganDamage
+
 # I fucking hate hardcoding all of this shit to accomodate for surgery BUI.
 # If anyone can give me pointers on how to make it better I'd be incredibly grateful.
 

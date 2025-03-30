@@ -216,11 +216,13 @@ public partial struct BodyPartSlot
 {
     public string Id;
     public BodyPartType Type;
+    public BodyPartSymmetry Symmetry;
 
-    public BodyPartSlot(string id, BodyPartType type)
+    public BodyPartSlot(string id, BodyPartType type, BodyPartSymmetry symmetry)
     {
         Id = id;
         Type = type;
+        Symmetry = symmetry;
     }
 };
 

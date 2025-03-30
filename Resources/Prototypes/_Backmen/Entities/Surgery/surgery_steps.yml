@@ -82,6 +82,54 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepMendBones
+  name: Mend Bones
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: BoneGel
+    remove:
+    - type: RibcageSawed
+    - type: BleedersClamped
+    - type: InternalBleedersClamped
+    duration: 7
+  - type: SurgeryAffixPartStep
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryRepeatableStep
+  - type: SurgeryTraumaTreatmentStep
+    traumaType: BoneDamage
+    amount: 12
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepHealOrgans
+  name: Heal Organs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Tending
+    remove:
+    - type: RibcageSawed
+    - type: BleedersClamped
+    - type: InternalBleedersClamped
+    duration: 7
+  - type: SurgeryAffixOrganStep
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryRepeatableStep
+  - type: SurgeryTraumaTreatmentStep
+    traumaType: OrganDamage
+    amount: 12
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepPriseOpenBones
   name: Prise the bones open
   categories: [ HideSpawnMenu ]

@@ -325,13 +325,14 @@ public partial class SharedBodySystem
         EntityUid partUid,
         string slotId,
         BodyPartType partType,
+        BodyPartSymmetry symmetry = BodyPartSymmetry.None,
         BodyPartComponent? part = null)
     {
         if (!Resolve(partUid, ref part, logMissing: false))
             return null;
 
         Containers.EnsureContainer<ContainerSlot>(partUid, GetPartSlotContainerId(slotId));
-        var partSlot = new BodyPartSlot(slotId, partType);
+        var partSlot = new BodyPartSlot(slotId, partType, symmetry);
         part.Children.Add(slotId, partSlot);
         Dirty(partUid, part);
         return partSlot;
@@ -346,6 +347,7 @@ public partial class SharedBodySystem
         string slotId,
         BodyPartType partType,
         [NotNullWhen(true)] out BodyPartSlot? slot,
+        BodyPartSymmetry symmetry = BodyPartSymmetry.None,
         BodyPartComponent? part = null)
     {
         slot = null;
@@ -357,7 +359,7 @@ public partial class SharedBodySystem
         }
 
         Containers.EnsureContainer<ContainerSlot>(partId.Value, GetPartSlotContainerId(slotId));
-        slot = new BodyPartSlot(slotId, partType);
+        slot = new BodyPartSlot(slotId, partType, symmetry);
 
         if (!part.Children.TryAdd(slotId, slot.Value))
             return false;
@@ -371,10 +373,11 @@ public partial class SharedBodySystem
         string slotId,
         EntityUid childId,
         BodyPartType partType,
+        BodyPartSymmetry symmetry = BodyPartSymmetry.None,
         BodyPartComponent? parent = null,
         BodyPartComponent? child = null)
     {
-        return TryCreatePartSlot(parentId, slotId, partType, out _, parent)
+        return TryCreatePartSlot(parentId, slotId, partType, out _, symmetry, parent)
                && AttachPart(parentId, slotId, childId, parent, child);
     }
 

@@ -19,10 +19,12 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 public partial class TraumaSystem
 {
     private const string TraumaContainerId = "Traumas";
+    public static readonly TraumaType[] TraumasBlockingHealing = { TraumaType.BoneDamage, TraumaType.OrganDamage, TraumaType.Dismemberment };
 
     private void InitProcess()
     {
         SubscribeLocalEvent<TraumaInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityPointChanged);
+        SubscribeLocalEvent<TraumaInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
         SubscribeLocalEvent<TraumaInflicterComponent, ComponentInit>(OnTraumaInflicterInit);
     }
 
@@ -50,6 +52,16 @@ public partial class TraumaSystem
         var woundable = args.Component.HoldingWoundable;
         var woundableComp = Comp<WoundableComponent>(args.Component.HoldingWoundable);
         ApplyTraumas((woundable, woundableComp), woundEnt, traumasToInduce, args.NewSeverity);
+    }
+
+    private void OnWoundHealAttempt(Entity<TraumaInflicterComponent> inflicter, ref WoundHealAttemptEvent args)
+    {
+        foreach (var trauma in GetAllWoundTraumas(inflicter, inflicter))
+        {
+            // Custom handling for optimisation
+            if (TraumasBlockingHealing.Contains(trauma.Comp.TraumaType))
+                args.Cancelled = true;
+        }
     }
 
     #region Public API
@@ -463,6 +475,40 @@ public partial class TraumaSystem
         return traumaEnt;
     }
 
+    private void RemoveTrauma(
+        Entity<TraumaComponent> trauma)
+    {
+        if (!_container.TryGetContainingContainer((trauma.Owner, Transform(trauma.Owner), MetaData(trauma.Owner)), out var traumaContainer))
+            return;
+
+        if (!TryComp<TraumaInflicterComponent>(traumaContainer.Owner, out var traumaInflicter))
+            return;
+
+        RemoveTrauma(trauma, (traumaContainer.Owner, traumaInflicter));
+    }
+
+    private void RemoveTrauma(
+        Entity<TraumaComponent> trauma,
+        Entity<TraumaInflicterComponent> inflicterWound)
+    {
+        _container.Remove(trauma.Owner, inflicterWound.Comp.TraumaContainer, reparent: false, force: true);
+
+        if (trauma.Comp.TraumaTarget != null)
+        {
+            var ev = new TraumaBeingRemovedEvent(trauma, trauma.Comp.TraumaTarget.Value, trauma.Comp.TraumaSeverity, trauma.Comp.TraumaType);
+            RaiseLocalEvent(inflicterWound, ref ev);
+
+            if (trauma.Comp.HoldingWoundable != null)
+            {
+                var ev1 = new TraumaBeingRemovedEvent(trauma, trauma.Comp.TraumaTarget.Value, trauma.Comp.TraumaSeverity, trauma.Comp.TraumaType);
+                RaiseLocalEvent(trauma.Comp.HoldingWoundable.Value, ref ev1);
+            }
+        }
+
+        if (_net.IsServer)
+            QueueDel(trauma);
+    }
+
     private void ApplyTraumas(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> inflicter, List<TraumaType> traumas, FixedPoint2 severity)
     {
         var bodyPart = Comp<BodyPartComponent>(target);
@@ -518,7 +564,7 @@ public partial class TraumaSystem
                         _pain.TryAddPainModifier(
                             nerveSys.Value.Owner,
                                 target.Owner,
-                                "BoneDamageTrauma",
+                                "BoneDamage",
                                 severity * 1.4f,
                                 PainDamageTypes.TraumaticPain,
                                 nerveSys.Value.Comp);
@@ -527,9 +573,10 @@ public partial class TraumaSystem
                     break;
 
                 case TraumaType.OrganDamage:
-                    if (!TryChangeOrganDamageModifier(targetChosen.Value, severity, target, "WoundableDamage"))
+                    var traumaEnt = AddTrauma(targetChosen.Value, target, inflicter, TraumaType.OrganDamage, severity);
+                    if (!TryChangeOrganDamageModifier(targetChosen.Value, severity, traumaEnt, "WoundableDamage"))
                     {
-                        TryCreateOrganDamageModifier(targetChosen.Value, severity, target, "WoundableDamage");
+                        TryCreateOrganDamageModifier(targetChosen.Value, severity, traumaEnt, "WoundableDamage");
                     }
 
                     break;

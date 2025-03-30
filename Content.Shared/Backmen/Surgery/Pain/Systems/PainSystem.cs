@@ -1,4 +1,5 @@
-﻿using Content.Shared.Backmen.Surgery.Body.Events;
+﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -127,6 +128,13 @@ public sealed partial class PainSystem : EntitySystem
 
         if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
+
+        foreach (var modifier in brainUid.Value.Comp.Modifiers
+                     .Where(modifier => modifier.Key.Item1 == uid))
+        {
+            // Clean up pain of separated woundables
+            brainUid.Value.Comp.Modifiers.Remove((modifier.Key.Item1, modifier.Key.Item2));
+        }
 
         UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }

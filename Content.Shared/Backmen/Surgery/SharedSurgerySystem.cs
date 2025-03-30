@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Conditions;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Medical.Surgery.Conditions;
@@ -49,7 +50,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly WoundSystem _wounds = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 
@@ -68,6 +69,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryWoundedConditionComponent, SurgeryValidEvent>(OnWoundedValid);
         SubscribeLocalEvent<SurgeryPartRemovedConditionComponent, SurgeryValidEvent>(OnPartRemovedConditionValid);
         SubscribeLocalEvent<SurgeryPartPresentConditionComponent, SurgeryValidEvent>(OnPartPresentConditionValid);
+        SubscribeLocalEvent<SurgeryTraumaPresentConditionComponent, SurgeryValidEvent>(OnTraumaPresentConditionValid);
         SubscribeLocalEvent<SurgeryMarkingConditionComponent, SurgeryValidEvent>(OnMarkingPresentValid);
         //SubscribeLocalEvent<SurgeryRemoveLarvaComponent, SurgeryCompletedEvent>(OnRemoveLarva);
 
@@ -211,6 +213,12 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (args.Part == EntityUid.Invalid
             || !HasComp<BodyPartComponent>(args.Part))
+            args.Cancelled = true;
+    }
+
+    private void OnTraumaPresentConditionValid(Entity<SurgeryTraumaPresentConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType))
             args.Cancelled = true;
     }
 

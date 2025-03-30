@@ -25,6 +25,9 @@ public record struct BeforeTraumaInducedEvent(FixedPoint2 TraumaSeverity, Entity
 [ByRefEvent]
 public record struct TraumaInducedEvent(Entity<TraumaComponent> Trauma, EntityUid TraumaTarget, FixedPoint2 TraumaSeverity, TraumaType TraumaType);
 
+[ByRefEvent]
+public record struct TraumaBeingRemovedEvent(Entity<TraumaComponent> Trauma, EntityUid TraumaTarget, FixedPoint2 TraumaSeverity, TraumaType TraumaType);
+
 #region Organs
 
 [Serializable, NetSerializable]

@@ -28,6 +28,8 @@ public sealed partial class TraumaSystem : EntitySystem
 
     [Dependency] private readonly SharedStunSystem _stun = default!;
 
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+
     [Dependency] private readonly WoundSystem _wound = default!;
     [Dependency] private readonly PainSystem _pain = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;

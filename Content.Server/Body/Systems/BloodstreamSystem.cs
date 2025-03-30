@@ -72,6 +72,7 @@ public sealed class BloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
 
         SubscribeLocalEvent<BleedInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityUpdate);
+        SubscribeLocalEvent<BleedInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
         SubscribeLocalEvent<BleedInflicterComponent, WoundAddedEvent>(OnWoundAdded);
     }
 
@@ -215,14 +216,6 @@ public sealed class BloodstreamSystem : EntitySystem
         while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var wound))
         {
             bleeds.IsBleeding = CanWoundBleed(ent, bleeds);
-            if (!bleeds.IsBleeding)
-            {
-                if (!TryComp<BodyPartComponent>(wound.HoldingWoundable, out var holder) || !holder.Body.HasValue)
-                    continue;
-
-                wound.CanBeHealed = true;
-                continue;
-            }
 
             var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
             var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
@@ -719,8 +712,13 @@ public sealed class BloodstreamSystem : EntitySystem
         component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
         component.ScalingStartsAt = _gameTiming.CurTime;
 
-        args.Component.CanBeHealed = false;
         component.IsBleeding = true;
+    }
+
+    private void OnWoundHealAttempt(EntityUid uid, BleedInflicterComponent component, ref WoundHealAttemptEvent args)
+    {
+        if (component.IsBleeding)
+            args.Cancelled = true;
     }
 
     private void OnWoundSeverityUpdate(EntityUid uid, BleedInflicterComponent component, ref WoundSeverityPointChangedEvent args)

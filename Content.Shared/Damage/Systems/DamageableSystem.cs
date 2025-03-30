@@ -271,7 +271,7 @@ namespace Content.Shared.Damage
                     ignoreResistances,
                     partMultiplier);
 
-                var beforeDamage = new BeforeDamageChangedEvent(damage, origin);
+                var beforeDamage = new BeforeDamageChangedEvent(damage, origin, canBeCancelled);
                 RaiseLocalEvent(chosenTarget.Id, ref beforeDamage);
 
                 if (beforeDamage.Cancelled)
@@ -316,7 +316,7 @@ namespace Content.Shared.Damage
 
                         foreach (var bodyPart in pieces)
                         {
-                            var beforePartAll = new BeforeDamageChangedEvent(damage, origin);
+                            var beforePartAll = new BeforeDamageChangedEvent(damage, origin, canBeCancelled);
                             RaiseLocalEvent(bodyPart.Id, ref beforePartAll);
 
                             if (beforePartAll.Cancelled)
@@ -343,7 +343,7 @@ namespace Content.Shared.Damage
                     }
                     default:
                     {
-                        var beforePart = new BeforeDamageChangedEvent(damage, origin);
+                        var beforePart = new BeforeDamageChangedEvent(damage, origin, canBeCancelled);
                         RaiseLocalEvent(chosenTarget.Id, ref beforePart);
 
                         if (beforePart.Cancelled)
