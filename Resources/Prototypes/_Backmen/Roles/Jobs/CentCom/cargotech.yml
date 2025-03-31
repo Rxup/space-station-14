@@ -91,7 +91,6 @@
           color: "#b18644"
         - state: frame_default # Backmen
           color: "#b18644"
-        - state: assigned_centcom # Backmen
         - state: idcargotechnician
     - type: PresetIdCard
       job: BKCCCargo
