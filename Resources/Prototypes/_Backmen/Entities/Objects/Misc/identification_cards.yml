@@ -5,7 +5,10 @@
   components:
     - type: Sprite
       layers:
-        - state: orange
+        - state: card_orange
+        - state: frame_default
+          color: "#000000"
+        - state: idprisoner
     - type: PresetIdCard
       job: Prisoner
 
@@ -16,7 +19,11 @@
   components:
     - type: Sprite
       layers:
-        - state: default
+        - state: card_default
+        - state: sub_department
+          color: "#793482"
+        - state: frame_default
+          color: "#793482"
         - state: idroboticist
     - type: PresetIdCard
       job: Roboticist
@@ -28,13 +35,6 @@
   description: A card displaying a name and other identifying details.
   # maybe make this not abstract when this is more developed
   abstract: true
-  components:
-    - type: Sprite
-      sprite: Backmen/Objects/Misc/id_cards.rsi
-      layers:
-        - state: unaffiliated
-    - type: Clothing
-      sprite: Backmen/Objects/Misc/id_cards.rsi
 
 - type: entity
   parent: UnaffiliatedIDCard
@@ -43,7 +43,11 @@
   components:
     - type: Sprite
       layers:
-        - state: unaffiliated
+        - state: card_default
+        - state: sub_department
+          color: "#40E0D0"
+        - state: frame_default
+          color: "#40E0D0"
         - state: idexplorer
     - type: PresetIdCard
       job: Explorer
@@ -55,7 +59,11 @@
   components:
     - type: Sprite
       layers:
-        - state: unaffiliated
+        - state: card_default
+        - state: sub_department
+          color: "#b18644"
+        - state: frame_default
+          color: "#b18644"
         - state: idstudent
     - type: PresetIdCard
       job: Student
@@ -67,7 +75,11 @@
   components:
     - type: Sprite
       layers:
-        - state: unaffiliated
+        - state: card_default
+        - state: sub_department
+          color: "#4682B4"
+        - state: frame_default
+          color: "#4682B4"
         - state: idfreelancer
     - type: PresetIdCard
       job: Freelancer
@@ -80,8 +92,12 @@
   - type: Sprite
     sprite: Backmen/Objects/Misc/id_cards.rsi
     layers:
-    - state: black
-    - state: idcardmog
+    - state: card_black
+    - state: sub_department
+      color: "#8F242E"
+    - state: frame_default
+      color: "#8F242E"
+    - state: iddeathcommando
   - type: Item
     heldPrefix: black
   - type: IdCard
@@ -95,8 +111,12 @@
   - type: Sprite
     sprite: Backmen/Objects/Misc/id_cards.rsi
     layers:
-    - state: black
-    - state: idcardiog
+    - state: card_black
+    - state: sub_department
+      color: "#800080"
+    - state: frame_default
+      color: "#800080"
+    - state: iddeathcommando
   - type: Item
     heldPrefix: black
   - type: IdCard
@@ -110,8 +130,12 @@
   - type: Sprite
     sprite: Backmen/Objects/Misc/id_cards.rsi
     layers:
-    - state: black
-    - state: idcardro
+    - state: card_black
+    - state: sub_department
+      color: "#B22222"
+    - state: frame_default
+      color: "#B22222"
+    - state: iddeathcommando
   - type: Item
     heldPrefix: black
   - type: IdCard
@@ -125,7 +149,11 @@
     - type: Sprite
       sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
-        - state: default
+        - state: card_default
+        - state: sub_department
+          color: "#58c800"
+        - state: frame_default
+          color: "#58c800"
         - state: iddelivery
     - type: PresetIdCard
       job: Deliveryman
@@ -138,8 +166,12 @@
     - type: Sprite
       sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
-        - state: default
-        - state: idueg
+        - state: card_green
+        - state: sub_department
+          color: "#2E8B57"
+        - state: frame_default
+          color: "#2E8B57"
+        - state: idearth
     - type: Access
       groups:
         - AllAccess
@@ -155,8 +187,12 @@
     - type: Sprite
       sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
-        - state: default
-        - state: iduegofficer
+        - state: card_brown
+        - state: sub_department
+          color: "#2E8B57"
+        - state: frame_default
+          color: "#2E8B57"
+        - state: idsecurityofficer
     - type: Access
       groups:
         - AllAccess
@@ -234,7 +270,11 @@
     fullName: Командир отделения
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_black
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idcaptain
   - type: Item
     heldPrefix: black
@@ -250,7 +290,11 @@
     fullName: Оперативник отделения
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_black
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idseniorofficer
   - type: Item
     heldPrefix: black
@@ -266,7 +310,11 @@
     fullName: Лидер отделения
   - type: Sprite
     layers:
-    - state: ert_medic
+    - state: card_centcom
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idchiefmedicalofficer
   - type: Item
     heldPrefix: blue
@@ -298,9 +346,12 @@
   components:
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_black
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idcaptain
-    - state: idcentcom
   - type: Item
     heldPrefix: blue
   - type: IdCard
@@ -320,9 +371,12 @@
   components:
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_black
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idcaptain
-    - state: idcentcom
   - type: Item
     heldPrefix: blue
   - type: IdCard
@@ -343,8 +397,11 @@
   components:
   - type: Sprite
     layers:
-    - state: gold
-    - state: idintern-cadet
+    - state: card_gold
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idcentcom
   - type: Item
     heldPrefix: gold
@@ -375,7 +432,11 @@
   components:
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_gold
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idgeneticist
   - type: Item
     heldPrefix: blue
@@ -400,7 +461,11 @@
   components:
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_gold
+    - state: sub_department
+      color: "#1b67a5"
+    - state: frame_head
+      color: "#1b67a5"
     - state: idgeneticist
   - type: Item
     heldPrefix: blue
@@ -424,7 +489,12 @@
   components:
   - type: Sprite
     layers:
-    - state: ert_security
+    - state: card_centcom
+    - state: sub_department
+      color: "#cb0000"
+    - state: frame_head
+      color: "#0F4162"
+    - state: idheadofsecurity
   - type: Item
     heldPrefix: blue
   - type: IdCard
@@ -447,7 +517,12 @@
   components:
   - type: Sprite
     layers:
-    - state: ert_medic
+    - state: card_centcom
+    - state: sub_department
+      color: "#2ab0d9"
+    - state: frame_head
+      color: "#0F4162"
+    - state: idchiefmedicalofficer
   - type: IdCard
     jobTitle: job-title-theta_9
     fullName: Медик отделения
@@ -468,7 +543,12 @@
   components:
   - type: Sprite
     layers:
-    - state: ert_engineer
+    - state: card_centcom
+    - state: sub_department
+      color: "#ffa005"
+    - state: frame_head
+      color: "#0F4162"
+    - state: idchiefengineer
   - type: IdCard
     jobTitle: job-title-theta_9
     fullName: Инженер отделения
@@ -489,7 +569,12 @@
   components:
   - type: Sprite
     layers:
-    - state: ert_janitor
+    - state: card_centcom
+    - state: sub_department
+      color: "#793482"
+    - state: frame_head
+      color: "#0F4162"
+    - state: idjanitor
   - type: IdCard
     jobTitle: job-title-theta_9
     fullName: Уборщик отделения
@@ -510,9 +595,12 @@
   components:
   - type: Sprite
     layers:
-    - state: silver
+    - state: card_silver
+    - state: sub_department
+      color: "#0F4162"
+    - state: frame_head
+      color: "#0F4162"
     - state: idcaptain
-    - state: idcentcom
   - type: Item
     heldPrefix: silver
   - type: IdCard
@@ -535,9 +623,12 @@
   components:
   - type: Sprite
     layers:
-    - state: syndie
+    - state: card_black
+    - state: sub_department
+      color: "#8F242E"
+    - state: frame_default
+      color: "#8F242E"
     - state: idcaptain
-    - state: idcentcom
   - type: Item
     heldPrefix: blue
   - type: IdCard
@@ -557,8 +648,91 @@
   components:
     - type: Sprite
       layers:
-        - state: silver
+        - state: card_silver
+        - state: sub_department
+          color: "#1b67a5"
+        - state: frame_head
+          color: "#1b67a5"
         - sprite: Backmen/Objects/Misc/id_cards.rsi
           state: idblueshield
     - type: PresetIdCard
       job: BlueShield
+
+- type: entity
+  parent: IDCardStandard
+  id: SurgeonIDCard
+  name: surgeon ID Card
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: card_black
+        - state: sub_department
+          color: "#2ab0d9"
+        - state: frame_default
+          color: "#2ab0d9"
+        - state: idsurgeon
+    - type: PresetIdCard
+      job: BkmSurgeon
+
+- type: entity
+  parent: IDCardStandard
+  id: VirologistIDCard
+  name: virologist ID Card
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: card_default
+        - state: sub_department
+          color: "#2ab0d9"
+        - state: frame_default
+          color: "#2ab0d9"            
+        - state: idvirologist
+    - type: PresetIdCard
+      job: BkmVirologist
+
+- type: entity
+  parent: IDCardStandard
+  id: InteQVanguardLeaderIDCard
+  name: InteQ ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: card_brown
+    - state: sub_department
+      color: "#9c4300"
+    - state: frame_default
+      color: "#9c4300"
+    - state: assigned_inteq
+    - state: idcaptain
+  - type: IdCard
+    jobTitle: job-title-vanguard-leader
+    jobIcon: JobIconInteQ
+  - type: Access
+    tags:
+    - InteQVanguardLeader
+    - InteQVanguard
+    - Maintenance
+
+- type: entity
+  parent: IDCardStandard
+  id: InteQVanguardIDCard
+  name: InteQ ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: card_brown
+    - state: sub_department
+      color: "#9c4300"
+    - state: frame_default
+      color: "#9c4300"
+    - state: assigned_inteq
+    - state: iddeathcommando
+  - type: IdCard
+    jobTitle: job-title-vanguard
+    jobIcon: JobIconInteQ
+  - type: Access
+    tags:
+    - InteQVanguard
+    - Maintenance

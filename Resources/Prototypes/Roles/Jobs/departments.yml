@@ -107,6 +107,8 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - BkmSurgeon #backmen
+  - BkmVirologist #backmen
   accountNumber: 1319 #backmen: currency
 
 - type: department
@@ -145,6 +147,9 @@
   roles:
   - Borg
   - StationAi
+  - BKBPLATech
+  - BKBPLAMED
+  accountNumber: 1351  #backmen: currency
 
 - type: department
   id: Specific

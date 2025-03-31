@@ -109,3 +109,10 @@
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: blueshield
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSurgeon
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: surgeon

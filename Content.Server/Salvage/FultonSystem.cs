@@ -1,6 +1,6 @@
 using System.Numerics;
+using Content.Server._Lavaland.Procedural.Components;
 using Content.Shared.Salvage.Fulton;
-using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -50,6 +50,22 @@ public sealed class FultonSystem : SharedFultonSystem
             Fulton(uid, comp);
         }
     }
+
+    // start-backmen: fix
+    protected override bool CanFulton(EntityUid uid)
+    {
+        var grid = Transform(uid).GridUid;
+        if (grid == null)
+        {
+            return true;
+        }
+        if (HasComp<LavalandMapComponent>(grid) || HasComp<LavalandMapComponent>(Transform(grid.Value).Coordinates.EntityId))
+        {
+            return false;
+        }
+        return base.CanFulton(uid);
+    }
+    // end-backmen: fix
 
     private void Fulton(EntityUid uid, FultonedComponent component)
     {

@@ -1,0 +1,69 @@
+- type: vendingMachineInventory
+  id: InteQDrobeInventory
+  startingInventory:
+    ClothingBackpackInteQ: 5
+    ClothingBackpackDuffelInteQ: 5
+    ClothingBackpackSatchelInteQ: 5
+    ClothingHeadHatInteQSoft: 5
+    ClothingHeadHelmetSwatInteQ: 5
+    ClothingEyesGogglessInteQ: 5
+    ClothingHeadInteQBeret: 5
+    ClothingHeadInteQHonorableBeret: 1
+    ClothingHeadHatInteQMAA: 1
+    ClothinNeckCloakInteQ: 1
+    ClothingHeadHelmetEVAInteQ: 2
+    ClothingOuterEVASuitInteQ: 2
+    ClothingUniformJumpsuitInteQFormal: 5
+    ClothingUniformJumpskirtInteQFormalDress: 5
+    ClothingUniformJumpsuitInteQOperative: 5
+    ClothingUniformJumpskirtInteQOperative: 5
+    ClothingUniformJumpsuitInteQMedical: 3
+    ClothingUniformJumpskirtInteQMedical: 3
+    ClothingUniformJumpsuitInteQHonorable: 1
+    ClothingOuterCoatInteQBattle: 3
+#    ClothingOuterCoatInteQHonorableBattle: 1 # Because OP
+    ClothingOuterCoatInteQMedical: 3
+    ClothingOuterWinterInteQ: 5
+    ClothingOuterHoodieInteQ: 5
+    ItemFlagMiniInteQ: 5
+    FoodSnackInteQCookies: 20
+    CigPackInteQ: 10
+    HandledBoomBox: 1
+  contrabandInventory:
+    ClothingHeadHatInteQTacticalMaidHeadband: 5
+    ClothingUniformJumpskirtInteQTacticalMaid: 5
+    ClothingHandsInteQTacticalMaidGloves: 5
+
+- type: vendingMachineInventory
+  id: InteQDrobeNerfInventory
+  startingInventory:
+    ClothingBackpackInteQ: 2
+    ClothingBackpackDuffelInteQ: 2
+    ClothingBackpackSatchelInteQ: 2
+    ClothingHeadHatInteQSoft: 3
+#    ClothingHeadHelmetSwatInteQ: 5
+#    ClothingEyesGogglessInteQ: 5
+    ClothingHeadInteQBeret: 3
+#    ClothingHeadInteQHonorableBeret: 1
+#    ClothingHeadHatInteQMAA: 1
+#    ClothingHeadHelmetEVAInteQ: 2
+#    ClothingOuterEVASuitInteQ: 2
+    ClothingUniformJumpsuitInteQFormal: 2
+    ClothingUniformJumpskirtInteQFormalDress: 2
+    ClothingUniformJumpsuitInteQOperative: 3
+    ClothingUniformJumpskirtInteQOperative: 3
+    ClothingUniformJumpsuitInteQMedical: 3
+    ClothingUniformJumpskirtInteQMedical: 3
+#    ClothingUniformJumpsuitInteQHonorable: 1
+    ClothingOuterCoatInteQBattle: 1
+#    ClothingOuterCoatInteQHonorableBattle: 1
+    ClothingOuterCoatInteQMedical: 2
+    ClothingOuterWinterInteQ: 5
+    ClothingOuterHoodieInteQ: 5
+    ItemFlagMiniInteQ: 5
+    FoodSnackInteQCookies: 20
+    CigPackInteQ: 10
+  contrabandInventory:
+    ClothingHeadHatInteQTacticalMaidHeadband: 1
+    ClothingUniformJumpskirtInteQTacticalMaid: 1
+    ClothingHandsInteQTacticalMaidGloves: 1

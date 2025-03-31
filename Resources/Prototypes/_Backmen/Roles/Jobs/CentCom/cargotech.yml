@@ -86,7 +86,11 @@
   components:
     - type: Sprite
       layers:
-        - state: centcom
+        - state: card_centcom # Backmen
+        - state: sub_department # Backmen
+          color: "#b18644"
+        - state: frame_default # Backmen
+          color: "#b18644"
         - state: idcargotechnician
     - type: PresetIdCard
       job: BKCCCargo

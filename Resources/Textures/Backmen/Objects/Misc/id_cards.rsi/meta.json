@@ -1,45 +1,454 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e idcluwne made by brainfood1183 (github) for ss14, idbrigmedic resprited by catbg(Discord), @Vordenburg",
+  "copyright": "ALL resprited by CatBackGround(Github) | catbg(Discord)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "idcardmog"
+      "name": "sub_department"
     },
     {
-      "name": "idcardiog"
+      "name": "card_default"
+    },
+    {
+      "name": "card_carp"
+    },
+    {
+      "name": "card_green"
+    },
+    {
+      "name": "card_gold"
+    },
+    {
+      "name": "card_silver"
+    },
+    {
+      "name": "card_centcom"
+    },
+    {
+      "name": "card_orange"
+    },
+    {
+      "name": "card_black"
+    },
+    {
+      "name": "card_red"
+    },
+    {
+      "name": "card_brown"
+    },
+    {
+      "name": "card_flame",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "card_rainbow"
+    },
+    {
+      "name": "card_unknown"
+    },
+    {
+      "name": "frame_default"
+    },
+    {
+      "name": "frame_head"
+    },
+    {
+      "name": "assigned_inteq"
+    },
+    {
+      "name": "assigned_weh"
+    },
+    {
+      "name": "idassistant"
+    },
+    {
+      "name": "idbotanist"
+    },
+    {
+      "name": "idbouncer"
     },
     {
       "name": "idblueshield"
     },
     {
-      "name": "default"
+      "name": "idcurator"
     },
     {
-      "name": "silver"
+      "name": "idchaplain"
     },
     {
-      "name": "black"
+      "name": "idbartender"
     },
     {
-      "name": "idcardro"
+      "name": "idcook"
+    },
+    {
+      "name": "idiaa"
+    },
+    {
+      "name": "idpilot"
+    },
+    {
+      "name": "idpeacekeeper"
+    },
+    {
+      "name": "idboxer"
+    },
+    {
+      "name": "idbridgeofficer"
+    },
+    {
+      "name": "idreporter"
+    },
+    {
+      "name": "idpassenger"
+    },
+    {
+      "name": "idintern-service"
+    },
+    {
+      "name": "idintern-sci"
+    },
+    {
+      "name": "idintern-med"
+    },
+    {
+      "name": "idintern-tech"
+    },
+    {
+      "name": "idintern-cadet"
+    },
+    {
+      "name": "idmusician"
+    },
+    {
+      "name": "idcluwne"
+    },
+    {
+      "name": "idzookeeper"
+    },
+    {
+      "name": "idlawyer"
+    },
+    {
+      "name": "idjanitor"
+    },
+    {
+      "name": "idclown"
+    },
+    {
+      "name": "idmime"
+    },
+    {
+      "name": "idquartermaster"
+    },
+    {
+      "name": "idcargotechnician"
+    },
+    {
+      "name": "idshaftminer"
+    },
+    {
+      "name": "idstudent"
+    },
+    {
+      "name": "idatmospherictechnician"
+    },
+    {
+      "name": "idstationengineer"
+    },
+    {
+      "name": "idvirologist"
+    },
+    {
+      "name": "idchemist"
+    },
+    {
+      "name": "idparamedic"
+    },
+    {
+      "name": "idpsychologist"
+    },
+    {
+      "name": "idmedicaldoctor"
+    },
+    {
+      "name": "idgeneticist"
+    },
+    {
+      "name": "idsurgeon"
+    },
+    {
+      "name": "idscientist"
+    },
+    {
+      "name": "idroboticist"
+    },
+    {
+      "name": "idexpeditor"
+    },
+    {
+      "name": "idexplorer"
+    },
+    {
+      "name": "identertainer"
+    },
+    {
+      "name": "idwarden"
     },
     {
       "name": "idbrigmedic"
     },
     {
+      "name": "iddetective"
+    },
+    {
+      "name": "idsecurityofficer"
+    },
+    {
+      "name": "idheadofsecurity"
+    },
+    {
+      "name": "idheadofpersonnel"
+    },
+    {
+      "name": "idchiefengineer"
+    },
+    {
+      "name": "idresearchdirector"
+    },
+    {
+      "name": "idchiefmedicalofficer"
+    },
+    {
+      "name": "idratqueen"
+    },
+    {
+      "name": "idbluespacetechnic"
+    },
+    {
+      "name": "idcaptain"
+    },
+    {
+      "name": "idcentcom"
+    },
+    {
+      "name": "idprisoner"
+    },
+    {
+      "name": "idpirate"
+    },
+    {
+      "name": "idwizard"
+    },
+    {
+      "name": "idseniorengineer"
+    },
+    {
+      "name": "idseniorresearcher"
+    },
+    {
+      "name": "idseniorphysician"
+    },
+    {
+      "name": "idseniorofficer"
+    },
+    {
+      "name": "idinspector"
+    },
+    {
+      "name": "idsolgov"
+    },
+    {
+      "name": "idnri"
+    },
+    {
+      "name": "idnanotrasenrepresentative"
+    },
+    {
+      "name": "idvisitor"
+    },
+    {
+      "name": "idveteranadventurer"
+    },
+    {
+      "name": "idveteranadvisor"
+    },
+    {
+      "name": "idthiefcatcher"
+    },
+    {
+      "name": "idundertaker"
+    },
+    {
+      "name": "idunknown"
+    },
+    {
+      "name": "idsyndicate"
+    },
+    {
+      "name": "idtavernkeeper"
+    },
+    {
+      "name": "idtavernstationhand"
+    },
+    {
+      "name": "idroyalguard"
+    },
+    {
+      "name": "idsnakeoilsalesman"
+    },
+    {
+      "name": "idstarduke"
+    },
+    {
+      "name": "idsteward"
+    },
+    {
+      "name": "idthaumaturgist"
+    },
+    {
+      "name": "idrecluse"
+    },
+    {
+      "name": "idroyaladvisor"
+    },
+    {
+      "name": "idprisoner_1"
+    },
+    {
+      "name": "idprisoner_2"
+    },
+    {
+      "name": "idprisoner_3"
+    },
+    {
+      "name": "idprisoner_4"
+    },
+    {
+      "name": "idprisoner_5"
+    },
+    {
+      "name": "idprisoner_6"
+    },
+    {
+      "name": "idprisoner_7"
+    },
+    {
+      "name": "idlout"
+    },
+    {
+      "name": "idmagistrate"
+    },
+    {
+      "name": "idmerchantman"
+    },
+    {
+      "name": "idnecromancer"
+    },
+    {
+      "name": "idpaladin"
+    },
+    {
+      "name": "idjester"
+    },
+    {
+      "name": "idguard"
+    },
+    {
+      "name": "idguardleader"
+    },
+    {
+      "name": "idguildquestgiver"
+    },
+    {
+      "name": "idhighcleric"
+    },
+    {
+      "name": "idjailor"
+    },
+    {
+      "name": "idfool"
+    },
+    {
+      "name": "idfreelancer"
+    },
+    {
+      "name": "idgardener"
+    },
+    {
+      "name": "idgenemancer"
+    },
+    {
+      "name": "idgroundskeeper"
+    },
+    {
+      "name": "idcrystallomancer"
+    },
+    {
+      "name": "iddeathcommando"
+    },
+    {
       "name": "iddelivery"
     },
     {
-      "name": "black-inhand-left",
+      "name": "idert_commander"
+    },
+    {
+      "name": "idearth"
+    },
+    {
+      "name": "idbitrunner"
+    },
+    {
+      "name": "idcleric"
+    },
+    {
+      "name": "idcoroner"
+    },
+    {
+      "name": "idcorpserunner"
+    },
+    {
+      "name": "idadventurer"
+    },
+    {
+      "name": "idaeromancer"
+    },
+    {
+      "name": "idalchemist"
+    },
+    {
+      "name": "idarchmagister"
+    },
+    {
+      "name": "idbitavatar",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gold-inhand-left",
       "directions": 4
     },
     {
-      "name": "black-inhand-right",
+      "name": "gold-inhand-right",
       "directions": 4
     },
     {
@@ -51,30 +460,42 @@
       "directions": 4
     },
     {
-      "name": "idexplorer"
-    },
-    {
-      "name": "idfreelancer"
-    },
-    {
-      "name": "idstudent"
-    },
-    {
-      "name": "unaffiliated"
-    },
-    {
-      "name": "unaffiliated-inhand-left",
+      "name": "silver-inhand-left",
       "directions": 4
     },
     {
-      "name": "unaffiliated-inhand-right",
+      "name": "silver-inhand-right",
       "directions": 4
     },
     {
-        "name": "idueg"
+      "name": "orange-inhand-left",
+      "directions": 4
     },
     {
-        "name": "iduegofficer"
+      "name": "orange-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "blue-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "blue-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "green-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "green-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "wizard"
+    },
+    {
+      "name": "idadmin"
     }
   ]
 }

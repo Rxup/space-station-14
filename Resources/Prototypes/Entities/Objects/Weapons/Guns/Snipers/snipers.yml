@@ -54,6 +54,7 @@
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponSniperHristov
   description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo.
+  categories: [ HideSpawnMenu ] #Backmen-weapons
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
@@ -77,9 +78,10 @@
     walkModifier: 0.25
     sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+#  - type: EyeCursorOffset
+#    maxOffset: 3
+#    pvsIncrease: 0.3
+  - type: Telescope # backmen: immersive
 
 - type: entity
   name: musket

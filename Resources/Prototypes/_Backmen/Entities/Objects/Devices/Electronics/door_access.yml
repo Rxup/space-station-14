@@ -137,3 +137,28 @@
   components:
   - type: AccessReader
     access: [["EarthGovCommand"]]
+
+#----viro
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVirology
+  suffix: Virology, Locked
+  components:
+  - type: AccessReader
+    access: [["Virology"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsInteQVanguard
+  suffix: InteQ, Vanguard, Locked
+  components:
+  - type: AccessReader
+    access: [["InteQVanguard"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsInteQVanguardLeader
+  suffix: InteQ, Vanguard Leader, Locked
+  components:
+  - type: AccessReader
+    access: [["InteQVanguardLeader"]]

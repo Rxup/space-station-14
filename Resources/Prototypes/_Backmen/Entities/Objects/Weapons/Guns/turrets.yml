@@ -186,3 +186,13 @@
       thresholds:
         0: Alive
         100: Dead
+
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretInteQ
+  suffix: InteQ
+  components:
+    - type: NpcFactionMember
+      factions:
+      - InteQ
+      - InteQHostile

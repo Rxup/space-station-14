@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseGameRule
+  id: HeadcrabInvasion
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StationEvent
+      startAnnouncement: station-event-headcrab-invasion-announcement
+      startAudio:
+        path: /Audio/Announcements/attention.ogg
+      weight: 8
+      duration: 1
+      minimumPlayers: 15
+      earliestStart: 15
+      reoccurrenceDelay: 25
+    - type: RandomSpawnRule
+      prototype: SpawnHeadcrabNest

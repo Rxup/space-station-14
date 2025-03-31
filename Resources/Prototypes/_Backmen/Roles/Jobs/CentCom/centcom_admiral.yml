@@ -82,8 +82,11 @@
   components:
     - type: Sprite
       layers:
-      - state: gold
-      - state: idiaa
+      - state: card_gold # Backmen
+      - state: sub_department # Backmen
+        color: "#1b67a5"
+      - state: frame_head # Backmen
+        color: "#1b67a5"
       - state: idcentcom
     - type: Item
       heldPrefix: gold

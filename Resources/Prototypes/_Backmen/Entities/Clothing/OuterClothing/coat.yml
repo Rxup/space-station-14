@@ -183,3 +183,78 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabSurgeon
+  name: surgeon lab coat
+  description: A suit that protects against bacteria and viruses. Has an black stripe on the shoulder.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/surgeon-lab-coat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/surgeon-lab-coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSurgeon]
+  id: ClothingOuterCoatLabSurgeonOpened
+  name: surgeon lab coat
+
+- type: entity
+  parent: [ClothingOuterArmorBasic, BaseMinorContraband]
+  id: ClothingOuterCoatInteQBattle
+  name: InteQ battle coat
+  description: InteQ armored coat is made of durable fabric, with gilded patterns.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_battle_coat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_battle_coat.rsi
+
+- type: entity
+  parent: [ClothingOuterCoatHoSTrench, BaseMinorContraband]
+  id: ClothingOuterCoatInteQHonorableBattle
+  name: InteQ honorable battle coat
+  description: InteQ honorable armored coat is made of durable fabric, with gilded patterns.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_honorable_battle_coat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_honorable_battle_coat.rsi
+
+- type: entity
+  parent: ClothingOuterCoatAMG
+  id: ClothingOuterCoatInteQMedical
+  name: InteQ medical coat
+  description: The version of the medical coat, with elements of a bulletproof vest, but your heart is protected.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_med_coat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_med_coat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterWinterInteQ
+  name: InteQ winter coat
+  description: Insulated winter coat, looks like a merch.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterHoodieInteQ
+  name: InteQ hoodie
+  description: Insulated hoodie, looks like a merch.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_hoodie.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/inteq_hoodie.rsi

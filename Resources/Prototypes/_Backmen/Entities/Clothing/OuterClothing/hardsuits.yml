@@ -490,3 +490,42 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityPilot
+
+- type: entity
+  parent: [ClothingOuterHardsuitSyndieElite, BaseMajorContraband]
+  id: ClothingOuterHardsuitInteQElite
+  name: elite InteQ hardsuit
+  description: An upgraded version of the syndicate hardsuit that features enhanced fireproofing, pressure resist, and superior armor.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/elite_inteq_hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/elite_inteq_hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitInteQElite
+
+- type: entity
+  parent: [ClothingOuterHardsuitSyndie, BaseMajorContraband]
+  id: ClothingOuterHardsuitInteQ
+  name: InteQ hardsuit
+  description: An upgraded version of the syndicate hardsuit that features enhanced fireproofing, pressure resist, and superior armor.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitInteQ
+
+- type: entity
+  parent: [ClothingOuterHardsuitSyndie, BaseMajorContraband]
+  id: ClothingOuterHardsuitSyndicateInteQ
+  name: InteQ hardsuit
+  description: An upgraded version of the syndicate hardsuit that features enhanced fireproofing, pressure resist, and superior armor.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_syn_hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_syn_hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndicateInteQ

@@ -1,0 +1,329 @@
+- type: entity
+  parent: [ BaseMindRoleAntag, MindRoleGhostRoleNeutral ]
+  id: MindRoleGhostRoleInteQAntagonist
+  name: Ghost Role (InteQ Antagonist)
+  components:
+  - type: MindRole
+    roleType: InteQ
+    antagPrototype: GenericTeamAntagonist
+
+- type: entity
+  name: InteQ Vanguard Leader spawner
+  id: SpawnMobInteQVanguardLeader
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardLeader
+
+- type: entity
+  name: InteQ Vanguard Operative spawner
+  id: SpawnMobInteQVanguardOperative
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardOperative
+
+- type: entity
+  name: InteQ Vanguard Soldier spawner
+  id: SpawnMobInteQVanguardSoldier
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardSoldier
+
+- type: entity
+  name: InteQ Vanguard Medic spawner
+  id: SpawnMobInteQVanguardMedic
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Icons/inteq.rsi
+        state: logo
+  - type: ConditionalSpawner
+    prototypes:
+      - RandomHumanoidSpawnerInteQVanguardMedic
+
+# MOBS
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobInteQAgent
+  name: InteQ agent spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+        state: alive
+  - type: ConditionalSpawner
+    prototypes:
+      - MobInteQAgent
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCarpBrownInteQ
+  name: InteQ carp spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Pets/inteq_carp.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCarpBrownInteQ
+
+# Ghost Roles with Player Apperance
+
+- type: entity
+  parent: [ BaseStructure, MarkerBase ]
+  abstract: true
+  id: SpawnPointInteQ
+  name: InteQ sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    components:
+    - type: AntagImmune
+    - type: NpcFactionMember
+      factions:
+        - InteQ
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - TauCetiBasic
+      - OldFastCodes
+      understands:
+      - TauCetiBasic
+      - OldFastCodes
+  - type: Sprite
+    layers:
+      - sprite: Structures/cryostorage.rsi
+        state: sleeper_1
+        map: ["base"]
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardLeader
+  name: InteQ Vanguard Leader sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-leader
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+  - type: CloningAppearance
+    gear: InteQVanguardLeaderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardLeaderNamesPrefix
+      - SyndicateNamesSuperNormal
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardOperative
+  name: InteQ Vanguard Operative sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-operative
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardOperativeGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardSoldier
+  name: InteQ Vanguard Soldier sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-soldier
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardSoldierGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardMedic
+  name: InteQ Vanguard Medic sleeper
+  suffix: Spawner, Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-medic
+    description: ghost-role-information-inteq-vanguard-description
+    rules: ghost-role-information-rules-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQMedicGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
+
+# Ghost Roles with Player Apperance (SIZO-37 | WhiteList )
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardLeaderSizo37
+  name: InteQ Vanguard Leader sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-leader
+    description: ghost-role-information-inteq-vanguard-leader-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardLeaderGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardLeaderNamesPrefix
+      - SyndicateNamesSuperNormal
+
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardOperativeSizo37
+  name: InteQ Vanguard Operative sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-operative
+    description: ghost-role-information-inteq-vanguard-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardOperativeGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardSoldierSizo37
+  name: InteQ Vanguard Soldier sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-soldier
+    description: ghost-role-information-inteq-vanguard-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQVanguardSoldierGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal
+
+- type: entity
+  parent: SpawnPointInteQ
+  id: SpawnPointInteQVanguardMedicSizo37
+  name: InteQ Vanguard Medic sleeper
+  suffix: Spawner, Sizo-37 Ghost Role, Player Appearance
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-inteq-vanguard-medic
+    description: ghost-role-information-inteq-vanguard-SIZO-description
+    rules: ghost-role-information-inteq-SIZO-rules
+    whitelistRequired: true
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 36000
+    mindRoles:
+    - MindRoleGhostRoleInteQAntagonist
+  - type: CloningAppearance
+    gear: InteQMedicGear
+    components:
+    - type: RandomMetadata
+      nameSegments:
+      - InteQVanguardNamesPrefix
+      - SyndicateNamesSuperNormal

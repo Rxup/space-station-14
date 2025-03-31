@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/shiptest-ss13/Shiptest | Edited by PuroSlavKing (Github) | inteq_poster7 sprited by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "inteq_poster1"
+    },
+    {
+      "name": "inteq_poster2"
+    },
+    {
+      "name": "inteq_poster3"
+    },
+    {
+      "name": "inteq_poster4"
+    },
+    {
+      "name": "inteq_poster5"
+    },
+    {
+      "name": "inteq_poster6"
+    },
+    {
+      "name": "inteq_poster7"
+    }
+  ]
+}

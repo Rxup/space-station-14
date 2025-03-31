@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edited by PuroSlavKing (Github)",
+  "states": [
+    {
+      "name": "inteq"
+    },
+    {
+      "name": "vanguard_door"
+    },
+    {
+      "name": "vanguard_leader_door"
+    },
+    {
+      "name": "open"
+    },
+    {
+      "name": "welded"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "locked"
+    }
+  ]
+}

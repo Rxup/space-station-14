@@ -135,6 +135,10 @@
     - !type:NestedSelector
       tableId: AllPlushiesTable
       weight: 0.4
+    # InteQ Loot | Backmen
+    - !type:NestedSelector
+      tableId: InteQMaintLoot
+      weight: 0.2
     # Weapons
     - !type:NestedSelector
       tableId: MaintWeaponTable

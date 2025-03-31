@@ -1,0 +1,226 @@
+- type: entity
+  name: портал Зена
+  id: TriggerSpawnerXEN
+  suffix: Xen Marker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: /Textures/Effects/portal.rsi
+    layers:
+    - state: portal-red
+      color: Green
+  - type: TriggerOnProximity
+    enabled: true
+    requiresAnchored: false
+    repeating: false
+    shape:
+      !type:PhysShapeCircle
+        radius: 25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 380
+  - type: Appearance
+  - type: SpawnOnTrigger
+    proto: AITimedSpawnerXEN
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: портал Зен
+  id: AITimedSpawnerXEN
+  suffix: Xen Portal
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: /Textures/Effects/portal.rsi
+    layers:
+    - state: portal-red
+      color: Green
+  - type: PointLight
+    color: Green
+    radius: 3
+    energy: 1
+    netsync: false
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - MobVortigaunt
+      - MobBullSquid
+    chance: 0.5
+    intervalSeconds: 2
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 10
+
+# Zombies
+
+- type: entity
+  id: TriggerSpawnerXENZombie
+  suffix: Xen Marker Random Zombie
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: AITimedSpawnerXENZombie
+
+- type: entity
+  name: портал Зен
+  id: AITimedSpawnerXENZombie
+  suffix: Xen Portal Zombie!
+  parent: AITimedSpawnerXEN
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - RandomZombieSpawnerXen
+    chance: 0.3
+    intervalSeconds: 1
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
+  parent: MarkerBase
+  id: RandomZombieSpawnerXen
+  name: Random Zombie Spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Wallmounts/posters.rsi
+        state: random_anything
+  - type: RandomSpawner
+    prototypes:
+      - MobHeadcrabNPC
+      - MobHeadcrabZombieScience
+      - MobHeadcrabZombieSecurityHeavy
+      - MobHeadcrabZombieSecurity
+    chance: 1
+    rarePrototypes:
+      - MobHeadcrabZombieHecu
+      - MobHeadcrabZombieHEV
+      - MobHeadcrabZombieSecurityRanger
+    rareChance: 0.4
+
+- type: entity
+  id: TriggerSpawnerXENBlackMesa
+  suffix: Xen Marker Random BlackMesa Guard Team Zombies
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: AITimedSpawnerXENBlackMesa
+
+- type: entity
+  name: портал Зен
+  id: AITimedSpawnerXENBlackMesa
+  suffix: Xen Guard Team zombies!
+  parent: AITimedSpawnerXEN
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - RandomBlackMesaSpawner
+    chance: 1
+    intervalSeconds: 3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
+  parent: MarkerBase
+  id: RandomBlackMesaSpawner
+  name: Random Guard Team Zombie Spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Wallmounts/posters.rsi
+        state: random_anything
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - MobHeadcrabZombieSecurity
+    chance: 1
+    rarePrototypes:
+      - MobHeadcrabZombieSecurityRanger
+      - MobHeadcrabZombieSecurityHeavy
+    rareChance: 0.5
+
+- type: entity
+  id: TriggerSpawnerXENScienceTeam
+  suffix: Xen Marker Random ScienceTeam
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: AITimedSpawnerXENScienceTeam
+
+- type: entity
+  name: портал Зен
+  id: AITimedSpawnerXENScienceTeam
+  suffix: Xen Science Team zombies!
+  parent: AITimedSpawnerXEN
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MobHeadcrabZombieScience
+    chance: 1
+    intervalSeconds: 3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+# Instant spawner
+
+- type: entity
+  name: портал марин
+  id: TriggerInstantSpawnerXENMarine
+  suffix: Xen Instant USA Marine Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: MobHeadcrabZombieHecu
+
+- type: entity
+  name: портал хев
+  id: TriggerInstantSpawnerXENHEV
+  suffix: Xen Instant HEV Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: MobHeadcrabZombieHEV
+
+- type: entity
+  name: портал халат
+  id: TriggerInstantSpawnerXENScience
+  suffix: Xen Instant Science Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: MobHeadcrabZombieScience
+
+- type: entity
+  name: портал стража
+  id: TriggerInstantSpawnerXENGuard
+  suffix: Xen Instant Guard Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: RandomBlackMesaSpawner
+
+- type: entity
+  name: портал булсквид
+  id: TriggerInstantSpawnerXENBullSquid
+  suffix: Xen Instant BullSquid Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: MobBullSquid
