@@ -23,7 +23,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -117,13 +116,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnWoundedValid(Entity<SurgeryWoundedConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!TryComp(args.Body, out DamageableComponent? damageable)
-            || !TryComp(args.Part, out DamageableComponent? partDamageable)
-            || !TryComp(args.Part, out WoundableComponent? partWoundable)
-            || damageable.TotalDamage <= 0
-            && partDamageable.TotalDamage <= 0
-            && partWoundable.Wounds!.Count == 0
-            && !HasComp<IncisionOpenComponent>(args.Part))
+        if (!TryComp(args.Part, out WoundableComponent? partWoundable)
+            || _wounds.GetWoundableSeverityPoint(args.Part, partWoundable, healable: true) <= 0)
             args.Cancelled = true;
     }
 

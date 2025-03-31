@@ -1534,9 +1534,6 @@
     name: ghost-role-information-monkey-name
     description: ghost-role-information-monkey-description
     rules: ghost-role-information-nonantagonist-rules
-  - type: Consciousness
-    threshold: 30
-    cap: 90
   - type: GhostTakeoverAvailable
   - type: Clumsy
     gunShootFailDamage:

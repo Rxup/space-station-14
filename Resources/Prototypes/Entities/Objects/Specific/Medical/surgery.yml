@@ -44,6 +44,24 @@
   - type: Cautery
   # end-backmen: surgery
 
+- type: entity
+  name: medical stitches
+  description: Is this a GRAVE/DIGGER reference?
+  parent: BaseHealingItem
+  id: MedicalStitches
+  components:
+  - type: Sprite
+    state: medicated-suture
+  - type: Item
+    heldPrefix: medicated-suture
+    storedRotation: -90
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/saw.ogg # TODO: SOUND
+  #- type: Stitches
+  - type: StackPrice
+    price: 40
+
 # Drill
 
 - type: entity
@@ -87,7 +105,7 @@
   - type: Tool
     qualities:
     - Slicing
-    speedModifier: 0.66 # pretend the sixes go on forever :)
+    speedModifier: 0.67 # pretend the sixes go on forever :) no nigga
   - type: Utensil
     types:
       - Knife

@@ -41,11 +41,7 @@
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
-  - type: SurgeryDamageChangeEffect
-    damage:
-      types:
-        Bloodloss: -5
-    sleepModifier: 2
+  - type: RepeatableStep
 
 - type: entity
   parent: SurgeryStepBase
@@ -89,10 +85,6 @@
   - type: SurgeryStep
     tool:
     - type: BoneGel
-    remove:
-    - type: RibcageSawed
-    - type: BleedersClamped
-    - type: InternalBleedersClamped
     duration: 7
   - type: SurgeryAffixPartStep
   - type: Sprite
@@ -113,10 +105,6 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    remove:
-    - type: RibcageSawed
-    - type: BleedersClamped
-    - type: InternalBleedersClamped
     duration: 7
   - type: SurgeryAffixOrganStep
   - type: Sprite

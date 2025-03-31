@@ -127,7 +127,7 @@ public partial class WoundSystem
             return false;
 
         var healNumba = healAmount / woundsToHeal.Count;
-        var actualHeal = (FixedPoint2) 0;
+        var actualHeal = FixedPoint2.New(0);
         foreach (var wound in woundsToHeal)
         {
             var heal = ignoreMultipliers
@@ -276,7 +276,7 @@ public partial class WoundSystem
         var ev1 = new WoundHealAttemptEvent((holdingWoundable, Comp<WoundableComponent>(holdingWoundable)));
         RaiseLocalEvent(wound, ref ev1);
 
-        return ev1.Cancelled;
+        return !ev1.Cancelled;
     }
 
     #endregion

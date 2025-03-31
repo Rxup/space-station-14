@@ -12,7 +12,19 @@
     steps:
     - SurgeryStepOpenIncisionScalpel
     - SurgeryStepRetractSkin
+  - type: SurgeryPartPresentCondition
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryStopBloodOutput
+  name: Stop Constant Blood Output
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
     - SurgeryStepClampBleeders
+    - SurgeryStepCloseBloodOutputs
   - type: SurgeryPartPresentCondition
 
 - type: entity
@@ -36,7 +48,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryStopBloodOutput
     steps:
     - SurgeryStepSawBones
     - SurgeryStepPriseOpenBones
@@ -66,11 +78,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryStopBloodOutput
     steps:
     - SurgeryStepSawBones
     - SurgeryStepClampInternalBleeders
     - SurgeryStepMendBones
+    - SurgeryStepSealTendWound
   - type: SurgeryPartPresentCondition
   - type: SurgeryTraumaPresentCondition
     trauma: BoneDamage
@@ -82,11 +95,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryStopBloodOutput
     steps:
-    - SurgeryStepClampBleeders
     - SurgeryStepClampInternalBleeders
     - SurgeryStepHealOrgans
+    - SurgeryStepSealTendWound
   - type: SurgeryPartPresentCondition
   - type: SurgeryTraumaPresentCondition
     trauma: OrganDamage

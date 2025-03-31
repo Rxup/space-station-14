@@ -576,6 +576,9 @@ public sealed partial class WoundSystem
     /// <param name="woundableComp">Woundable component of woundableEntity.</param>
     public void DestroyWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
     {
+        if (_timing.ApplyingState)
+            return;
+
         var bodyPart = Comp<BodyPartComponent>(woundableEntity);
         if (bodyPart.Body == null)
         {
@@ -601,6 +604,11 @@ public sealed partial class WoundSystem
                 RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
             }
 
+            _audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyPart.Body.Value);
+            _appearance.SetData(woundableEntity,
+                WoundableVisualizerKeys.Wounds,
+                new WoundVisualizerGroupData(GetWoundableWounds(woundableEntity).Select(ent => GetNetEntity(ent)).ToList()));
+
             foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
             {
                 TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
@@ -616,11 +624,6 @@ public sealed partial class WoundSystem
             }
 
             Dirty(woundableEntity, woundableComp);
-
-            _audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyPart.Body.Value);
-            _appearance.SetData(woundableEntity,
-                WoundableVisualizerKeys.Wounds,
-                new WoundVisualizerGroupData(GetWoundableWounds(woundableEntity).Select(ent => GetNetEntity(ent)).ToList()));
 
             if (IsWoundableRoot(woundableEntity, woundableComp))
             {
@@ -682,7 +685,6 @@ public sealed partial class WoundSystem
             return;
 
         _audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyPart.Body.Value);
-        _throwing.TryThrow(woundableEntity, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
 
         foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
         {
@@ -698,6 +700,7 @@ public sealed partial class WoundSystem
         }
 
         AmputateWoundableSafely(parentWoundableEntity, woundableEntity);
+        _throwing.TryThrow(woundableEntity, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
     }
 
     /// <summary>

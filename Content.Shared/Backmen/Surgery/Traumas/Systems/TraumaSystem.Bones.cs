@@ -36,6 +36,14 @@ public partial class TraumaSystem
                 {
                     _virtual.DeleteInHandsMatching(bodyComp.Body.Value, bone);
                 }
+
+                if (TryGetWoundableTrauma(bone.Comp.BoneWoundable.Value, out var traumas, TraumaType.BoneDamage))
+                {
+                    foreach (var trauma in traumas.Where(trauma => trauma.Comp.TraumaTarget == bone))
+                    {
+                        RemoveTrauma(trauma);
+                    }
+                }
                 break;
 
             case BoneSeverity.Damaged:
@@ -57,33 +65,6 @@ public partial class TraumaSystem
     {
         if (bone.Comp.BoneWoundable == null)
             return;
-
-        // Clean up dead traumas and other stuff
-        if (TryGetWoundableTrauma(bone.Comp.BoneWoundable.Value, out var traumas, TraumaType.BoneDamage))
-        {
-            // Bone traumas aren't handled exclusively, soooooooooo...
-            var traumaSeverityTotal =
-                traumas.Where(trauma => trauma.Comp.TraumaTarget == bone)
-                    .Aggregate(FixedPoint2.New(0), (current, trauma) => current + trauma.Comp.TraumaSeverity);
-            var boneIntegrityDelta = bone.Comp.IntegrityCap - bone.Comp.BoneIntegrity;
-
-            var traumaIntegrityDelta = boneIntegrityDelta - traumaSeverityTotal;
-            if (traumaIntegrityDelta <= 0)
-            {
-                foreach (var trauma in traumas)
-                {
-                    if (trauma.Comp.TraumaSeverity <= traumaIntegrityDelta)
-                    {
-                        traumaIntegrityDelta -= trauma.Comp.TraumaSeverity;
-                        RemoveTrauma(trauma);
-                    }
-                    else
-                    {
-                        trauma.Comp.TraumaSeverity += traumaIntegrityDelta;
-                    }
-                }
-            }
-        }
 
         var bodyComp = Comp<BodyPartComponent>(bone.Comp.BoneWoundable.Value);
         if (!bodyComp.Body.HasValue)

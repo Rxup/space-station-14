@@ -239,6 +239,7 @@
   id: BoneDamage
   categories: [ HideSpawnMenu ]
   components:
+  - type: MetaData
   - type: Trauma
     traumaType: BoneDamage
 
@@ -246,6 +247,7 @@
   id: OrganDamage
   categories: [ HideSpawnMenu ]
   components:
+  - type: MetaData
   - type: Trauma
     traumaType: OrganDamage
 
@@ -253,6 +255,7 @@
   id: VeinsDamage
   categories: [ HideSpawnMenu ]
   components:
+  - type: MetaData
   - type: Trauma
     traumaType: VeinsDamage
 
@@ -260,6 +263,7 @@
   id: NerveDamage
   categories: [ HideSpawnMenu ]
   components:
+  - type: MetaData
   - type: Trauma
     traumaType: NerveDamage
 
@@ -267,5 +271,6 @@
   id: Dismemberment
   categories: [ HideSpawnMenu ]
   components:
+  - type: MetaData
   - type: Trauma
     traumaType: Dismemberment

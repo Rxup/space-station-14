@@ -11,6 +11,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -26,6 +27,35 @@ public partial class TraumaSystem
         SubscribeLocalEvent<TraumaInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityPointChanged);
         SubscribeLocalEvent<TraumaInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
         SubscribeLocalEvent<TraumaInflicterComponent, ComponentInit>(OnTraumaInflicterInit);
+
+        SubscribeLocalEvent<TraumaComponent, ComponentGetState>(OnComponentGet);
+        SubscribeLocalEvent<TraumaComponent, ComponentHandleState>(OnComponentHandleState);
+    }
+
+    private void OnComponentHandleState(EntityUid uid, TraumaComponent component, ref ComponentHandleState args)
+    {
+        if (args.Current is not TraumaComponentState state)
+            return;
+
+        component.TraumaTarget = GetEntity(state.TraumaTarget);
+        component.HoldingWoundable = GetEntity(state.HoldingWoundable);
+
+        component.TraumaType = state.TraumaType;
+        component.TraumaSeverity = state.TraumaSeverity;
+    }
+
+    private void OnComponentGet(EntityUid uid, TraumaComponent comp, ref ComponentGetState args)
+    {
+        var state = new TraumaComponentState
+        {
+            TraumaTarget = GetNetEntity(comp.TraumaTarget),
+            HoldingWoundable = GetNetEntity(comp.HoldingWoundable),
+
+            TraumaType = comp.TraumaType,
+            TraumaSeverity = comp.TraumaSeverity,
+        };
+
+        args.State = state;
     }
 
     private void OnTraumaInflicterInit(
@@ -396,6 +426,9 @@ public partial class TraumaSystem
 
         var parentWoundable = target.Comp.ParentWoundable;
         if (!parentWoundable.HasValue)
+            return false;
+
+        if (bodyPart.PartType == BodyPartType.Groin && Comp<WoundableComponent>(parentWoundable.Value).WoundableSeverity != WoundableSeverity.Critical)
             return false;
 
         var deduction = GetTraumaChanceDeduction(

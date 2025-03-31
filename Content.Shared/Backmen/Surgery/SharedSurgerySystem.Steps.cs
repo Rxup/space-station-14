@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Medical.Surgery.Steps;
 using Content.Shared.Humanoid;
@@ -243,21 +244,8 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
-    private EntProtoId? GetProtoId(EntityUid entityUid)
-    {
-        if (!TryComp<MetaDataComponent>(entityUid, out var metaData))
-            return null;
-
-        return metaData.EntityPrototype?.ID;
-    }
-
-    private string GetDamageGroupByType(string id)
-    {
-        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
-    }
-
     // I wonder if theres not a function that can do this already.
-    private bool HasDamageGroup(EntityUid entity, string[] group, out DamageableComponent? damageable)
+    private bool HasDamageGroup(EntityUid entity, string group, [NotNullWhen(true)] out DamageableComponent? damageable)
     {
         if (!TryComp<DamageableComponent>(entity, out var damageableComp))
         {
@@ -269,31 +257,31 @@ public abstract partial class SharedSurgerySystem
         if (TryComp<WoundableComponent>(entity, out var woundable))
         {
             return _wounds.GetWoundableWounds(entity, woundable)
-                .Any(wounds => GetDamageGroupByType(group.FirstOrDefault()!) == wounds.Comp.DamageGroup);
+                    .Where(wound => _wounds.CanHealWound(wound))
+                    .Any(wound => wound.Comp.DamageGroup == group);
         }
 
-        return group.Any(damageType => damageableComp.Damage.DamageDict.TryGetValue(damageType, out var value) && value > 0);
+        return false;
     }
 
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
     {
         var group = ent.Comp.MainGroup == "Brute" ? BruteDamageTypes : BurnDamageTypes;
 
-        if (!HasDamageGroup(args.Body, group, out var damageable)
-            && !HasDamageGroup(args.Part, group, out var _)
-            || damageable == null) // This shouldnt be possible but the compiler doesn't shut up.
+        if (!HasDamageGroup(args.Part, ent.Comp.MainGroup, out _)) // This shouldnt be possible but the compiler doesn't shut up.
             return;
 
-
         // Right now the bonus is based off the body's total damage, maybe we could make it based off each part in the future.
-        var bonus = ent.Comp.HealMultiplier * damageable.DamagePerGroup[ent.Comp.MainGroup];
+        var bonus = ent.Comp.HealMultiplier * _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup);
         if (_mobState.IsDead(args.Body))
             bonus *= 1.2;
 
         var adjustedDamage = new DamageSpecifier(ent.Comp.Damage);
 
         foreach (var type in group)
+        {
             adjustedDamage.DamageDict[type] -= bonus;
+        }
 
         var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 1.5f);
         RaiseLocalEvent(args.Body, ref ev);
@@ -301,10 +289,8 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        var group = ent.Comp.MainGroup == "Brute" ? BruteDamageTypes : BurnDamageTypes;
-
-        if (HasDamageGroup(args.Body, group, out var _)
-            || HasDamageGroup(args.Part, group, out var _))
+        if (HasDamageGroup(args.Body, ent.Comp.MainGroup, out _)
+            || HasDamageGroup(args.Part, ent.Comp.MainGroup, out _))
             args.Cancelled = true;
     }
 
@@ -619,21 +605,17 @@ public abstract partial class SharedSurgerySystem
             case TraumaType.OrganDamage:
                 foreach (var organ in _body.GetBodyOrgans(args.Body))
                 {
-                    if (organ.Component.OrganIntegrity == organ.Component.IntegrityCap)
-                        continue;
-
                     foreach (var modifier in organ.Component.IntegrityModifiers)
                     {
                         var delta = healAmount - modifier.Value;
                         if (delta > 0)
                         {
-                            _trauma.TryChangeOrganDamageModifier(
+                            healAmount -= modifier.Value;
+                            _trauma.TryRemoveOrganDamageModifier(
                                 organ.Id,
-                                -modifier.Value,
                                 modifier.Key.Item2,
                                 modifier.Key.Item1,
                                 organ.Component);
-                            healAmount -= modifier.Value;
                         }
                         else
                         {

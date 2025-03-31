@@ -13,13 +13,29 @@ public partial class TraumaSystem
 {
     private void InitOrgans()
     {
-        SubscribeLocalEvent<WoundableComponent, OrganIntegrityChangedEventOnWoundable>(OnOrganIntegrityChanged);
+        SubscribeLocalEvent<OrganComponent, OrganIntegrityChangedEvent>(OnOrganIntegrityChanged);
+
+        SubscribeLocalEvent<WoundableComponent, OrganIntegrityChangedEventOnWoundable>(OnOrganIntegrityOnWoundableChanged);
         SubscribeLocalEvent<WoundableComponent, OrganDamageSeverityChangedOnWoundable>(OnOrganSeverityChanged);
     }
 
     #region Event handling
 
-    private void OnOrganIntegrityChanged(Entity<WoundableComponent> bodyPart, ref OrganIntegrityChangedEventOnWoundable args)
+    private void OnOrganIntegrityChanged(Entity<OrganComponent> organ, ref OrganIntegrityChangedEvent args)
+    {
+        if (organ.Comp.Body == null)
+            return;
+
+        if (args.NewIntegrity < organ.Comp.IntegrityCap || !TryGetBodyTraumas(organ.Comp.Body.Value, out var traumas, TraumaType.OrganDamage))
+            return;
+
+        foreach (var trauma in traumas.Where(trauma => trauma.Comp.TraumaTarget == organ))
+        {
+            RemoveTrauma(trauma);
+        }
+    }
+
+    private void OnOrganIntegrityOnWoundableChanged(Entity<WoundableComponent> bodyPart, ref OrganIntegrityChangedEventOnWoundable args)
     {
         if (args.Organ.Comp.Body == null)
             return;
@@ -165,6 +181,11 @@ public partial class TraumaSystem
         if (!organ.IntegrityModifiers.Remove((identifier, effectOwner)))
             return false;
 
+        if (TryComp<TraumaComponent>(effectOwner, out var traumaComp))
+        {
+            RemoveTrauma((effectOwner, traumaComp));
+        }
+
         UpdateOrganIntegrity(uid, organ);
         return true;
     }
@@ -175,16 +196,6 @@ public partial class TraumaSystem
 
     private void UpdateOrganIntegrity(EntityUid uid, OrganComponent organ)
     {
-        foreach (var modifier in organ.IntegrityModifiers.Where(modifier => modifier.Value <= 0))
-        {
-            if (!TryComp<TraumaComponent>(modifier.Key.Item2, out var trauma))
-                continue;
-
-            // If the modifier isn't applied by a trauma, it might be some healing thingy; So we don't obliterate it
-            RemoveTrauma((modifier.Key.Item2, trauma));
-            organ.IntegrityModifiers.Remove(modifier.Key); // Clean up traumas and modifiers
-        }
-
         var oldIntegrity = organ.OrganIntegrity;
         organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
                 .Aggregate((FixedPoint2) 0, (current, modifier) => current + modifier.Value),
@@ -194,19 +205,19 @@ public partial class TraumaSystem
         if (oldIntegrity != organ.OrganIntegrity)
         {
             var ev = new OrganIntegrityChangedEvent(oldIntegrity, organ.OrganIntegrity);
-            RaiseLocalEvent(uid, ref ev, true);
+            RaiseLocalEvent(uid, ref ev);
 
             if (_container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
             {
                 var ev1 = new OrganIntegrityChangedEventOnWoundable((uid, organ), oldIntegrity, organ.OrganIntegrity);
-                RaiseLocalEvent(container.Owner, ref ev1, true);
+                RaiseLocalEvent(container.Owner, ref ev1);
             }
         }
 
         var nearestSeverity = organ.OrganSeverity;
         foreach (var (severity, value) in organ.IntegrityThresholds.OrderByDescending(kv => kv.Value))
         {
-            if (organ.OrganIntegrity < value)
+            if (organ.OrganIntegrity > value)
                 continue;
 
             nearestSeverity = severity;
@@ -216,12 +227,12 @@ public partial class TraumaSystem
         if (nearestSeverity != organ.OrganSeverity)
         {
             var ev = new OrganDamageSeverityChanged(organ.OrganSeverity, nearestSeverity);
-            RaiseLocalEvent(uid, ref ev, true);
+            RaiseLocalEvent(uid, ref ev);
 
             if (_container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
             {
                 var ev1 = new OrganDamageSeverityChangedOnWoundable((uid, organ), organ.OrganSeverity, nearestSeverity);
-                RaiseLocalEvent(container.Owner, ref ev1, true);
+                RaiseLocalEvent(container.Owner, ref ev1);
             }
         }
 
