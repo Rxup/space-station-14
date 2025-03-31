@@ -6,11 +6,8 @@
     - type: Sprite
       layers:
         - state: card_orange
-        - state: sub_department
-          color: "#FFA500"
         - state: frame_default
-          color: "#FFA500"
-        - state: assigned
+          color: "#000000"
         - state: idprisoner
     - type: PresetIdCard
       job: Prisoner
@@ -24,10 +21,9 @@
       layers:
         - state: card_default
         - state: sub_department
-          color: "#1b67a5"
+          color: "#793482"
         - state: frame_default
-          color: "#1b67a5"
-        - state: assigned
+          color: "#793482"
         - state: idroboticist
     - type: PresetIdCard
       job: Roboticist
@@ -101,7 +97,6 @@
       color: "#8F242E"
     - state: frame_default
       color: "#8F242E"
-    - state: assigned_centcom
     - state: iddeathcommando
   - type: Item
     heldPrefix: black
@@ -121,7 +116,6 @@
       color: "#800080"
     - state: frame_default
       color: "#800080"
-    - state: assigned_centcom
     - state: iddeathcommando
   - type: Item
     heldPrefix: black
@@ -141,7 +135,6 @@
       color: "#B22222"
     - state: frame_default
       color: "#B22222"
-    - state: assigned_centcom
     - state: iddeathcommando
   - type: Item
     heldPrefix: black
@@ -161,7 +154,6 @@
           color: "#58c800"
         - state: frame_default
           color: "#58c800"
-        - state: assigned
         - state: iddelivery
     - type: PresetIdCard
       job: Deliveryman
@@ -179,7 +171,6 @@
           color: "#2E8B57"
         - state: frame_default
           color: "#2E8B57"
-        - state: assigned
         - state: idearth
     - type: Access
       groups:
@@ -201,7 +192,6 @@
           color: "#2E8B57"
         - state: frame_default
           color: "#2E8B57"
-        - state: assigned_centcom
         - state: idsecurityofficer
     - type: Access
       groups:
@@ -285,7 +275,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idcaptain
   - type: Item
     heldPrefix: black
@@ -306,7 +295,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idseniorofficer
   - type: Item
     heldPrefix: black
@@ -327,7 +315,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idchiefmedicalofficer
   - type: Item
     heldPrefix: blue
@@ -364,7 +351,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idcaptain
   - type: Item
     heldPrefix: blue
@@ -390,7 +376,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idcaptain
   - type: Item
     heldPrefix: blue
@@ -417,8 +402,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
-    - state: idintern-cadet
     - state: idcentcom
   - type: Item
     heldPrefix: gold
@@ -454,7 +437,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idgeneticist
   - type: Item
     heldPrefix: blue
@@ -484,7 +466,6 @@
       color: "#1b67a5"
     - state: frame_head
       color: "#1b67a5"
-    - state: assigned_centcom
     - state: idgeneticist
   - type: Item
     heldPrefix: blue
@@ -510,10 +491,9 @@
     layers:
     - state: card_centcom
     - state: sub_department
-      color: "#0F4162"
+      color: "#cb0000"
     - state: frame_head
       color: "#0F4162"
-    - state: assigned_centcom
     - state: idheadofsecurity
   - type: Item
     heldPrefix: blue
@@ -539,10 +519,9 @@
     layers:
     - state: card_centcom
     - state: sub_department
-      color: "#0F4162"
+      color: "#2ab0d9"
     - state: frame_head
       color: "#0F4162"
-    - state: assigned_centcom
     - state: idchiefmedicalofficer
   - type: IdCard
     jobTitle: job-title-theta_9
@@ -566,10 +545,9 @@
     layers:
     - state: card_centcom
     - state: sub_department
-      color: "#0F4162"
+      color: "#ffa005"
     - state: frame_head
       color: "#0F4162"
-    - state: assigned_centcom
     - state: idchiefengineer
   - type: IdCard
     jobTitle: job-title-theta_9
@@ -593,10 +571,9 @@
     layers:
     - state: card_centcom
     - state: sub_department
-      color: "#0F4162"
+      color: "#793482"
     - state: frame_head
       color: "#0F4162"
-    - state: assigned_centcom
     - state: idjanitor
   - type: IdCard
     jobTitle: job-title-theta_9
@@ -623,8 +600,7 @@
       color: "#0F4162"
     - state: frame_head
       color: "#0F4162"
-    - state: assigned_centcom
-    - state: idert_commander
+    - state: idcaptain
   - type: Item
     heldPrefix: silver
   - type: IdCard
@@ -652,9 +628,7 @@
       color: "#8F242E"
     - state: frame_default
       color: "#8F242E"
-    - state: assigned_gold
     - state: idcaptain
-    - state: idcentcom
   - type: Item
     heldPrefix: blue
   - type: IdCard
@@ -679,7 +653,6 @@
           color: "#1b67a5"
         - state: frame_head
           color: "#1b67a5"
-        - state: assigned_centcom
         - sprite: Backmen/Objects/Misc/id_cards.rsi
           state: idblueshield
     - type: PresetIdCard
@@ -698,7 +671,6 @@
           color: "#2ab0d9"
         - state: frame_default
           color: "#2ab0d9"
-        - state: assigned
         - state: idsurgeon
     - type: PresetIdCard
       job: BkmSurgeon
@@ -715,8 +687,7 @@
         - state: sub_department
           color: "#2ab0d9"
         - state: frame_default
-          color: "#2ab0d9"
-        - state: assigned
+          color: "#2ab0d9"            
         - state: idvirologist
     - type: PresetIdCard
       job: BkmVirologist

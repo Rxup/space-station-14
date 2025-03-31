@@ -4,8 +4,8 @@
 
 - type: lavalandRuinPool
   id: Lavaland
-  maxDistance: 240 # backmen change
-  ruinDistance: 18
+  maxDistance: 208 # backmen change
+  ruinDistance: 16
   gridRuins:
     SyndicateBase: 1
     HierophantArena: 1
@@ -14,7 +14,7 @@
     BiodomeSnow: 1
     GolemShuttle: 1
     ToyShop: 1
-    Chemistry: 2
+    Chemistry: 1
     LavaLake: 1
     Graveyard: 1
     SeedVault: 1
