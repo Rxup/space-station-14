@@ -47,7 +47,7 @@ entities:
     - type: MetaData
       name: ""
     - type: Transform
-      pos: -13,-11
+      pos: -0.5,-0.5
       parent: invalid
     - type: MapGrid
       chunks:

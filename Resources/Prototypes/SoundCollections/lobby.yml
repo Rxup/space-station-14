@@ -18,9 +18,21 @@
     - /Audio/Lobby/SpacedMusic.ogg
     - /Audio/Lobby/HumanMusic.ogg
     - /Audio/Lobby/NexMusic.ogg
-    - /Audio/Lobby/space_oddity.ogg
+#    - /Audio/Lobby/space_oddity.ogg # Backmen-REMOVE
     - /Audio/Corvax/Lobby/title2.ogg # Corvax-LobbyMusic
     - /Audio/Lobby/atomicamnesiammx.ogg
     - /Audio/Lobby/Get-Up-N-FIGHT.ogg
     - /Audio/Lobby/Changed-berserk-ost-level-1-fight-music-_Extend_-Trim.ogg
     - /Audio/Corvax/Lobby/service.ogg # Corvax-LobbyMusic
+    # Backmen-Start
+    - /Audio/Backmen/Jukebox/BritishSeaPower/BritishSeaPower_EcstaticVibrations.ogg
+    - /Audio/Backmen/Jukebox/ChrisHadfield/ChrisHadfield_SpaceOddity.ogg
+    - /Audio/Backmen/Jukebox/DavidBowie/DavidBowie_Starman.ogg
+    - /Audio/Backmen/Jukebox/DavidBowie/DavidBowie_TheManWhoSoldTheWorld.ogg
+    - /Audio/Backmen/Jukebox/KarenO/KarenO_Drown.ogg
+    - /Audio/Backmen/Jukebox/Plamenev/Plamenev_BigLove.ogg
+    - /Audio/Backmen/Jukebox/SurfCurse/SurfCurse_Freaks.ogg
+    - /Audio/Backmen/Jukebox/TheCaretaker/TheCaretaker_ItsJustBurningMemory.ogg
+    - /Audio/Backmen/Jukebox/TheRareOccasions/TheRareOccasions_Notion.ogg
+    - /Audio/Backmen/Jukebox/Ween/Ween_OceanMan.ogg
+    # Backmen-End
