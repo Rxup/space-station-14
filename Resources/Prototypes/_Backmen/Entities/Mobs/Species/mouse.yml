@@ -1,0 +1,130 @@
+- type: entity
+  name: оперативник мышь
+  parent: [SimpleMobBase, StripableInventoryBase]
+  id: MobNyrMouseOps
+  description: ЭТО ЯДЕРНАЯ МЫШЬ ОНА ПРИШЛА ЗА СЫРОМ!
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: красная мышь!
+    description: "Вы оперативник мышь! Ваша цель украсть сыр! Помните когти ваше единственное оружие, все остальное под запретом!"
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 12
+        Heat: 10
+        Structural: 15
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Backmen/Mobs/Species/mouseops.rsi
+    state: base
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: EyeProtection
+  - type: InventorySlots
+  - type: InteractionOutline
+  - type: ComplexInteraction
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+  - type: Puller
+    needsHands: false
+  - type: Hands
+    showInHands: false
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 2
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      100: Dead
+  - type: Stamina
+    critThreshold: 200
+  - type: Body
+    prototype: SindSiliconMouseops
+    requiredLegs: 2
+  - type: Inventory
+    templateId: InvMouseops
+  - type: IdExaminable
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+    - AnomalyHost
+  - type: Temperature
+    heatDamageThreshold: 423
+    coldDamageThreshold: 0
+  - type: MovementAlwaysTouching
+  - type: PressureImmunity
+  - type: ProtectedFromStepTriggers
+  - type: Stripping
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: Respirator 
+    minSaturation: 5.0
+  - type: NoSlip
+  - type: FlashImmunity
+  - type: Loadout
+    prototypes: [ GearNyrMouseOps ]
+  - type: NightVision
+    isToggle: true
+    playSoundOn: false
+    
+- type: startingGear #Пусть здесь будет :/
+  id: GearNyrMouseOps
+  equipment:
+    outerClothingpin: ClothingOuterHardsuitSyndieMouseOps
+    earspin: ClothingHeadsetAltSyndicate
+    idmouse: AgentIDCard
+    glovespin: ClothingHandsGlovesCombatmous
+    backpin: ClothingBackpackDuffelSyndicateAmmoMouse
