@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    sprite: Backmen/Clothing/Back/Messengers/color.rsi
   - type: Storage
     grid:
     - 0,0,7,0
@@ -22,7 +22,7 @@
   description: A robust bag for keeping small stuff.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/messenger.rsi
+    sprite: Backmen/Clothing/Back/Messengers/messenger.rsi
 
 # DEPARTMENTAL
 # Command
@@ -142,7 +142,7 @@
   description: A robust bag made of fire resistant fibers. Smells like plasma.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/atmospherics.rsi
+    sprite: Backmen/Clothing/Back/Messengers/atmospherics.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -268,7 +268,7 @@
   description: A robust bag for transportation of letters and parcels.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/mailman.rsi
+    sprite: Backmen/Clothing/Back/Messengers/mailman.rsi
 
 # Medical
 - type: entity
@@ -278,7 +278,7 @@
   description: A robust bag for keeping extra medicine.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/medical.rsi
+    sprite: Backmen/Clothing/Back/Messengers/medical.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -287,7 +287,7 @@
   description: A robust bag for keeping extra beakers and vials.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/chemistry.rsi
+    sprite: Backmen/Clothing/Back/Messengers/chemistry.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -296,7 +296,7 @@
   description: A robust bag made of hypo-allergenic fibers to prevent the spread of disease.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/virology.rsi
+    sprite: Backmen/Clothing/Back/Messengers/virology.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -305,7 +305,7 @@
   description: A robust sterile bag with geneticist colours.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/genetics.rsi
+    sprite: Backmen/Clothing/Back/Messengers/genetics.rsi
 
 ## Science
 - type: entity
@@ -315,7 +315,7 @@
   description: A robust bag for holding research materials.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/science.rsi
+    sprite: Backmen/Clothing/Back/Messengers/science.rsi
 
 # Civilian
 - type: entity
@@ -325,7 +325,7 @@
   description: A robust bag for keeping extra pies.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/clown.rsi
+    sprite: Backmen/Clothing/Back/Messengers/clown.rsi
   - type: Storage
     storageOpenSound:
       collection: BikeHorn
@@ -337,7 +337,7 @@
   description: A robust bag for keeping the vow of silence.
   components:
     - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/mime.rsi
+      sprite: Backmen/Clothing/Back/Messengers/mime.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -436,14 +436,14 @@
   description: A messenger bag that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/holding.rsi
+    sprite: Backmen/Clothing/Back/Messengers/holding.rsi
     state: icon
     layers:
     - state: icon
     - state: icon-unlit
       shader: unshaded
   - type: Clothing
-    sprite: _NF/Clothing/Back/Messenger/holding.rsi
+    sprite: Backmen/Clothing/Back/Messengers/holding.rsi
     clothingVisuals:
       back:
       - state: holding-equipped-BACKPACK

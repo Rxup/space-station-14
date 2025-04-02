@@ -201,7 +201,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
-  - ClothingBackpackMessengerHolding # Frontier
+  - ClothingBackpackMessengerHolding # Backmen
 
 - type: technology
   id: PortableFission
