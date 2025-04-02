@@ -64,6 +64,11 @@
     back: ClothingBackpackMessengerChemistry
 
 - type: loadout
+  id: VirologistMessenger
+  equipment:
+    back: ClothingBackpackMessengerVirology
+
+- type: loadout
   id: NanotrasenRepresentativeMessenger
   equipment:
     back: ClothingBackpackMessengerCentcomm
