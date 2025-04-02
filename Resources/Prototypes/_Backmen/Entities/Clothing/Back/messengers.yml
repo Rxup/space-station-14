@@ -509,31 +509,31 @@
   - type: Sprite
     layers:
     - state: icon-base
-      color: "#553022"
+      color: "#484b4f"
     - state: icon-sling
-      color: "#42241b"
+      color: "#e0940f"
     - state: icon-clasp
-      color: "#381d17"
+      color: "#aa6600"
   - type: Clothing
     clothingVisuals:
       back:
       - state: base-equipped-BACKPACK
-        color: "#553022"
+        color: "#484b4f"
       - state: sling-equipped-BACKPACK
-        color: "#42241b"
+        color: "#e0940f"
       - state: clasp-equipped-BACKPACK
-        color: "#381d17"
+        color: "#aa6600"
   - type: Item
     inhandVisuals:
       left:
       - state: base-inhand-left
-        color: "#553022"
+        color: "#484b4f"
       - state: clasp-inhand-left
-        color: "#381d17"
+        color: "#aa6600"
       right:
       - state: base-inhand-right
-        color: "#553022"
+        color: "#484b4f"
       - state: clasp-inhand-right
-        color: "#381d17"
+        color: "#aa6600"
   - type: ExplosionResistance
     damageCoefficient: 0.1
