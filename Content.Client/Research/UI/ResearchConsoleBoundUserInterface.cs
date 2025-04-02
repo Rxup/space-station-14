@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Client._Goobstation.Research.UI;
+using Content.Client.Backmen.Research.UI;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
