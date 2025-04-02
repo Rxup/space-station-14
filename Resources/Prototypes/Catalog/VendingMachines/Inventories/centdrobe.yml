@@ -1,7 +1,7 @@
 - type: vendingMachineInventory
   id: CentDrobeInventory
   startingInventory:
-    ClothingBackpackMessengerCentcomm: 2 # Frontier
+    ClothingBackpackMessengerCentcomm: 2 # Backmen
     ClothingShoesBootsLaceup: 3
     ClothingShoesBootsJack: 3
     ClothingHandsGlovesCombat: 3
