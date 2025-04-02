@@ -205,6 +205,11 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
+    # Goobstation R&D Console rework start
+  position: 6,0
+  technologyPrerequisites:
+  - WeaponizedLaserManipulation
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: BasicShuttleArmament

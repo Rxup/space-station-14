@@ -9,6 +9,9 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
+  # Goobstation R&D Console rework start
+  position: 7,0
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: ArmorPiercingAmmo
@@ -24,3 +27,8 @@
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
+  # Goobstation R&D Console rework start
+  position: 3,3
+  technologyPrerequisites:
+  - SalvageWeapons
+  # Goobstation R&D Console rework end

@@ -20,6 +20,9 @@
   - DwarvenTranslator
   - ShadokinTranslator
   - ValyrianStandardTranslator
+  # Goobstation R&D Console rework start
+  position: 3,0
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: AdvancedTranslation
@@ -45,6 +48,11 @@
   - DwarvenStandardTranslatorImplanter
   - ShadokinStandardTranslatorImplanter
   - ValyrianStandardTranslatorImplanter
+  # Goobstation R&D Console rework start
+  position: 3,1
+  technologyPrerequisites:
+  - BasicTranslation
+  # Goobstation R&D Console rework end
 
 # Tier 1
 
@@ -66,6 +74,9 @@
   - EnergyCautery
   - AdvancedRetractor
   - BorgModuleAdvancedSurgery
+  # Goobstation R&D Console rework start
+  position: 4,0
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: CyberneticEnhancements
@@ -84,6 +95,9 @@
   - BasicCyberneticEyes
   - SecurityCyberneticEyes
   - MedicalCyberneticEyes
+  # Goobstation R&D Console rework start
+  position: 4,1
+  # Goobstation R&D Console rework end
 
 # Tier 3
 
@@ -98,3 +112,6 @@
   cost: 10000
   recipeUnlocks:
   - OmnimedTool
+  # Goobstation R&D Console rework start
+  position: 4,2
+  # Goobstation R&D Console rework end

@@ -13,6 +13,11 @@
     - ClothingHeadHelmetInsulated
     - InsulativeHeadcage
     - ShellSoulbreaker
+  # Goobstation R&D Console rework start
+  position: -6,0
+  technologyPrerequisites:
+  - BasicAnomalousResearch
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: Metempsychosis
@@ -28,6 +33,11 @@
     - CloningConsoleComputerCircuitboard
     - MedicalScannerMachineCircuitboard
     # - MetempsychoticMachineCircuitboard
+  # Goobstation R&D Console rework start
+  position: -6,1
+  technologyPrerequisites:
+  - BasicAnomalousResearch
+  # Goobstation R&D Console rework end
 
 # Tier 3
 
@@ -44,3 +54,8 @@
     - CoreSilver
     - HandTeleporter1
 #    - QSI
+  # Goobstation R&D Console rework start
+  position: -5,2
+  technologyPrerequisites:
+  - BasicAnomalousResearch
+  # Goobstation R&D Console rework end
