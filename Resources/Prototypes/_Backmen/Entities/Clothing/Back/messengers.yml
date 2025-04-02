@@ -498,3 +498,42 @@
         color: "#c60200"
   - type: ExplosionResistance
     damageCoefficient: 0.1
+
+# InteQ
+- type: entity
+  parent: ClothingBackpackMessengerBase
+  id: ClothingBackpackMessengerInteQ
+  name: InteQ messenger bag
+  description: A robust bag for storing extra cartridges and explosives.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#553022"
+    - state: icon-sling
+      color: "#42241b"
+    - state: icon-clasp
+      color: "#381d17"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#553022"
+      - state: sling-equipped-BACKPACK
+        color: "#42241b"
+      - state: clasp-equipped-BACKPACK
+        color: "#381d17"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#553022"
+      - state: clasp-inhand-left
+        color: "#381d17"
+      right:
+      - state: base-inhand-right
+        color: "#553022"
+      - state: clasp-inhand-right
+        color: "#381d17"
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
