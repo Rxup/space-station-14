@@ -4,13 +4,13 @@
   icon:
     sprite: _Lavaland/Objects/Weapons/upgrade.rsi
     state: display
-  discipline: Industrial
+  discipline: Shaft # Backmen-EDIT
   tier: 2
   cost: 10000
   recipeUnlocks:
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
-  position: 0,-7
+  position: 12,1 # Backmen-EDIT
   technologyPrerequisites:
-  - MassExcavation
+  - SalvageWeapons # Backmen-EDIT

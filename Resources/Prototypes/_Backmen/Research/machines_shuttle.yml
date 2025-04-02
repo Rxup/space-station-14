@@ -1,0 +1,67 @@
+- type: technology
+  id: SalvageWeaponsMachines
+  name: research-technology-salvage-weapons-machines
+  icon:
+    sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
+    state: ptk-800
+  discipline: Shaft
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ShuttleGunKineticCircuitboard
+  technologyPrerequisites:
+  - SalvageWeapons
+  position: 10,-1
+
+- type: technology
+  id: ShuttleWeaponMachines
+  name: research-technology-shuttle-weapon-machines
+  icon:
+    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
+    state: exp-320g
+  discipline: Arsenal
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+   - PowerCageRechargerCircuitboard
+   - ShuttleGunSvalinnMachineGunCircuitboard
+   - ShuttleGunPerforatorCircuitboard
+   - ShuttleGunFriendshipCircuitboard
+  technologyPrerequisites:
+  - SalvageWeapons
+  - ShuttleWeapon
+  position: 11,-1
+
+- type: technology
+  id: ShuttleWeaponAdvancedMachines
+  name: research-technology-shuttle-weapon-advanced-machines
+  icon:
+    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
+    state: exp-2100g
+  discipline: Arsenal
+  tier: 1
+  cost: 9500
+  recipeUnlocks:
+  - ShuttleGunDusterCircuitboard
+  technologyPrerequisites:
+  - ShuttleWeaponMachines
+  - ShuttleWeaponAdvanced
+  position: 11,-2
+
+- type: technology
+  id: ShuttlecraftMachines
+  name: research-technology-shuttlecraft-machines
+  icon:
+    sprite: Structures/Shuttles/gyroscope.rsi
+    state: base
+  discipline: Engineering
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+   - ShuttleConsoleCircuitboard
+   - ThrusterMachineCircuitboard
+   - GyroscopeMachineCircuitboard
+   - MiniGravityGeneratorCircuitboard
+  technologyPrerequisites:
+  - PowerGenerationMachines
+  position: -2,5

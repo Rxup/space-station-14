@@ -1,0 +1,89 @@
+- type: technology
+  id: Security
+  name: research-technology-security
+  icon:
+    sprite: Objects/Weapons/Melee/stunbaton.rsi
+    state: stunbaton_off
+  discipline: Security
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+   - Stunbaton
+   - CombatKnife
+   - Flash
+   - ForensicPad
+   - Handcuffs
+   - WeaponDisablerPractice
+   - WeaponLaserCarbinePractice
+   - Zipties
+   - ModularReceiver
+  position: 1,-3
+
+- type: technology
+  id: Targets
+  name: research-technology-targets
+  icon:
+    sprite: Objects/Specific/Security/target.rsi
+    state: target_c
+  discipline: Security
+  tier: 1
+  cost: 1200
+  recipeUnlocks:
+   - TargetClown
+   - TargetHuman
+   - TargetSyndicate
+  technologyPrerequisites:
+  - Security
+  position: 1,-4
+
+- type: technology
+  id: RiotControl
+  name: research-technology-riot-control
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+    state: base
+  discipline: Security
+  tier: 1
+  cost: 4500
+  recipeUnlocks:
+  - WeaponDisabler
+  - HoloprojectorField
+  - RiotShield
+  technologyPrerequisites:
+  - Security
+  position: 1,-2
+
+- type: technology
+  id: RiotControlAdvanced
+  name: research-technology-riot-control-advanced
+  icon:
+    sprite: Objects/Weapons/Melee/truncheon.rsi
+    state: icon
+  discipline: Security
+  tier: 1
+  cost: 8000
+  recipeUnlocks:
+  - Truncheon
+  - TelescopicShield
+  - HoloprojectorSecurity
+  - WeaponDisablerSMG
+  - PortableRecharger
+  technologyPrerequisites:
+  - RiotControl
+  position: 2,-2
+
+- type: technology
+  id: WarCrimes
+  name: research-technology-war-crimes
+  icon:
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  discipline: Security
+  tier: 1
+  cost: 7000
+  recipeUnlocks:
+  - ClothingBackpackElectropack
+  - WeaponParticleDecelerator
+  technologyPrerequisites:
+  - RiotControlAdvanced
+  position: 2,-3

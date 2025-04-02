@@ -1,0 +1,30 @@
+- type: technology
+  id: SalvageEquipmentMachines
+  name: research-technology-salvage-equipment-machines
+  icon:
+    sprite: Structures/Machines/ore_processor_industrial.rsi
+    state: inserting
+  discipline: Shaft
+  tier: 1
+  cost: 5200
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+  - ShipyardCircuitboard # backmen: salvage
+  technologyPrerequisites:
+  - SalvageEquipment
+  position: 11,2
+
+- type: technology
+  id: SpaceScanningMachines
+  name: research-technology-space-scanning-machines
+  icon:
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+  discipline: Shaft
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - RadarConsoleCircuitboard
+  technologyPrerequisites:
+  - SpaceScanning
+  position: 11,3

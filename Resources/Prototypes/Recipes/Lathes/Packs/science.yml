@@ -29,6 +29,8 @@
   - HoloprojectorField
   - SignallerAdvanced
   - DeviceQuantumSpinInverter
+  - ClothingEyesHudDiagnostic # Backmen
+  - PersonalAI # Backmen
 
 - type: latheRecipePack
   id: ScienceClothing

@@ -1,0 +1,262 @@
+- type: technology
+  id: Lightning
+  name: research-technology-lightning
+  icon:
+    sprite: Objects/Power/light_bulb.rsi
+    state: normal
+  discipline: Service
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - LightTube
+   - LightBulb
+  position: -1,6
+
+- type: technology
+  id: LightningAdvanced
+  name: research-technology-lightning-advanced
+  icon:
+    sprite: Objects/Power/light_tube.rsi
+    state: normal
+  discipline: Service
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+   - LedLightTube
+   - SodiumLightTube
+   - ExteriorLightTube
+   - LedLightBulb
+   - DimLightBulb
+  technologyPrerequisites:
+   - Lightning
+  position: -1,7
+
+- type: technology
+  id: Bootlegging
+  name: research-technology-bootlegging
+  icon:
+    sprite: Objects/Consumable/Drinks/generic_jug.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - DrinkMug
+   - DrinkMugMetal
+   - DrinkGlass
+   - DrinkShotGlass
+   - DrinkGlassCoupeShaped
+   - CustomDrinkJug
+  position: 0,6
+
+- type: technology
+  id: Kitchen
+  name: research-technology-kitchen
+  icon:
+    sprite: Objects/Consumable/Food/bowl.rsi
+    state: bowl
+  discipline: Service
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - FoodPlate
+   - FoodPlateSmall
+   - FoodPlatePlastic
+   - FoodPlateSmallPlastic
+   - FoodBowlBig
+   - FoodPlateTin
+   - FoodPlateMuffinTin
+   - FoodKebabSkewer
+  position: 1,6
+
+- type: technology
+  id: Hydroponics
+  name: research-technology-hydroponics
+  icon:
+    sprite: Objects/Tools/bucket.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - Bucket
+  position: 2,6
+
+- type: technology
+  id: Entertainment
+  name: research-technology-entertainment
+  icon:
+    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+   - SynthesizerInstrument
+   - HandheldStationMap
+  position: 3,6
+
+- type: technology
+  id: FauxAstroTiles
+  name: research-technology-faux-astro-tiles
+  icon:
+    sprite: Objects/Tiles/tile.rsi
+    state: astroice
+  discipline: Service
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - FauxTileAstroGrass
+  - FauxTileMowedAstroGrass
+  - FauxTileJungleAstroGrass
+  - FauxTileAstroIce
+  - FauxTileAstroSnow
+  technologyPrerequisites:
+  - Entertainment
+  position: 3,8
+
+- type: technology
+  id: Cleaning
+  name: research-technology-cleaning
+  icon:
+    sprite: Objects/Specific/Janitorial/mop.rsi
+    state: mop
+  discipline: Service
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - MopItem
+   - TrashBag
+   - LightReplacer
+   - Holoprojector
+   - WetFloorSign
+   - ClothingHeadHatCone
+  position: 4,6
+
+- type: technology
+  id: CleaningAdvanced
+  name: research-technology-cleaning-advanced
+  icon:
+    sprite: Objects/Specific/Janitorial/advmop.rsi
+    state: advmop
+  discipline: Service
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+   - AdvMopItem
+  technologyPrerequisites:
+  - Cleaning
+  position: 4,7
+
+- type: technology
+  id: Spray
+  name: research-technology-spray
+  icon:
+    sprite: Objects/Specific/Janitorial/janitorial.rsi
+    state: cleaner
+  discipline: Service
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - SprayBottle
+  technologyPrerequisites:
+  - Cleaning
+  position: 5,6
+
+- type: technology
+  id: SprayAdvanced
+  name: research-technology-spray-advanced
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+   - WeaponSprayNozzle
+   - ClothingBackpackWaterTank
+   - MegaSprayBottle
+  technologyPrerequisites:
+  - Spray
+  position: 5,7
+
+- type: technology
+  id: TranslationDevice
+  name: research-technology-translation-device
+  icon:
+    sprite: Backmen/Objects/Devices/translator.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - CanilunztTranslator
+  - BubblishTranslator
+  - NekomimeticTranslator
+  - DraconicTranslator
+  - SolCommonTranslator
+  - RootSpeakTranslator
+  - MofficTranslator
+  - ElvishTranslator
+  - DwarvenTranslator
+  - ShadokinTranslator
+  - ValyrianStandardTranslator
+  position: 7,6
+
+- type: technology
+  id: TranslationImplanter
+  name: research-technology-translation-implanter
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  discipline: Service
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - BasicGalaticCommonTranslatorImplanter
+  technologyPrerequisites:
+  - TranslationDevice
+  position: 8,6
+
+- type: technology
+  id: TranslationDeviceAdvanced
+  name: research-technology-translation-device-advanced
+  icon:
+    sprite: Backmen/Objects/Devices/translator.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+  - XenoTranslator
+  - AnimalTranslator
+  technologyPrerequisites:
+  - TranslationDevice
+  position: 7,7
+
+- type: technology
+  id: TranslationImplanterAdvanced
+  name: research-technology-translation-implanter-advanced
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  discipline: Service
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - AdvancedGalaticCommonTranslatorImplanter
+  - BubblishTranslatorImplanter
+  - NekomimeticTranslatorImplanter
+  - DraconicTranslatorImplanter
+  - CanilunztTranslatorImplanter
+  - SolCommonTranslatorImplanter
+  - RootSpeakTranslatorImplanter
+  - MofficTranslatorImplanter
+  - ElvishStandardTranslatorImplanter
+  - DwarvenStandardTranslatorImplanter
+  - ShadokinStandardTranslatorImplanter
+  - ValyrianStandardTranslatorImplanter
+  technologyPrerequisites:
+  - TranslationImplanter
+  - TranslationDeviceAdvanced
+  position: 8,7

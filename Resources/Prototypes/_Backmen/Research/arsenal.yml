@@ -1,17 +1,81 @@
 - type: technology
-  id: EnergyBarriers
-  name: research-technology-energy_barriers
+  id: NonlethalAmmunition
+  name: research-technology-nonlethal-ammunition
   icon:
-    sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
-    state: icon
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: beanbag
   discipline: Arsenal
-  tier: 2
-  cost: 6000
+  tier: 1
+  cost: 5000
   recipeUnlocks:
-  - EnergyDomeDirectionalTurtle
-  # Goobstation R&D Console rework start
-  position: 7,0
-  # Goobstation R&D Console rework end
+  - MagazineShotgunBeanbag
+  - BoxShellTranquilizer
+  - BoxBeanbag
+#  technologyPrerequisites:
+#  - RiotControl
+  position: -1,-1
+
+- type: technology
+  id: DraconicAmmunition
+  name: research-technology-draconic-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: incendiarydisplay
+  discipline: Arsenal
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - BoxShotgunIncendiary
+#  - MagazineRifleIncendiary
+#  - MagazinePistolIncendiary
+#  - MagazinePistolSubMachineGunIncendiary
+#  - MagazineLightRifleIncendiary
+  - MagazinePacketPistolACPIncendiary
+  - MagazinePacketPistol9x17Incendiary
+  - MagazinePacketRifle762x39Incendiary
+  - MagazinePacketRifle556UEGIncendiary
+  - MagazinePacketRifle762UEGIncendiary
+  - MagazinePacketPistol57x28Incendiary
+  - MagazineRifle762UEGIncendiary
+  - MagazineRifleFamas556UEGIncendiary
+  - MagazineRifle556UEGIncendiary
+  - MagazinePistol45ACPincendiary
+  - MagazinePistol57x28Incendiary
+  - MagazinePistol9x17Incendiary
+  - SpeedLoaderMagnumIncendiary
+  - MagazineShotgunIncendiary
+#  - MagazineBoxPistolIncendiary
+  - MagazineBoxMagnumIncendiary
+#  - MagazineBoxLightRifleIncendiary
+#  - MagazineBoxRifleIncendiary
+  technologyPrerequisites:
+  - RiotControl
+  - NonlethalAmmunition
+  position: 0,0
+
+- type: technology
+  id: UraniumAmmunition
+  name: research-technology-uranium-ammunition
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: uranium
+  discipline: Arsenal
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+#  - MagazineRifleUranium
+#  - MagazinePistolUranium
+#  - MagazineLightRifleUranium
+  - SpeedLoaderMagnumUranium
+#  - MagazineBoxPistolUranium
+#  - MagazineBoxMagnumUranium
+#  - MagazineBoxLightRifleUranium
+#  - MagazineBoxRifleUranium
+  - BoxShotgunUranium
+  technologyPrerequisites:
+  - RiotControl
+  - NonlethalAmmunition
+  position: -2,0
 
 - type: technology
   id: ArmorPiercingAmmo
@@ -27,8 +91,118 @@
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
-  # Goobstation R&D Console rework start
-  position: 3,3
   technologyPrerequisites:
-  - SalvageWeapons
-  # Goobstation R&D Console rework end
+  - RiotControl
+  - NonlethalAmmunition
+  position: -1,0
+
+- type: technology
+  id: Explosive
+  name: research-technology-explosive
+  icon:
+    sprite: Objects/Devices/payload.rsi
+    state: payload-explosive-armed
+  discipline: Arsenal
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - SignallerAdvanced
+  - SignalTrigger
+  - VoiceTrigger
+  - TimerTrigger
+  - FlashPayload
+  - ExplosivePayload
+  - ChemicalPayload
+  position: -2,-2
+
+- type: technology
+  id: CombatLaser
+  name: research-technology-combat-laser
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - WeaponLaserCarbine
+  technologyPrerequisites:
+  - RiotControl
+  - NonlethalAmmunition
+  position: -1,-2
+
+- type: technology
+  id: CombatLaserAdvanced
+  name: research-technology-combat-laser-advanced
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - WeaponAdvancedLaser
+  technologyPrerequisites:
+  - CombatLaser
+  - CombatLaserConcentrated
+  position: 0,-4
+
+- type: technology
+  id: CombatLaserConcentrated
+  name: research-technology-combat-laser-concentrated
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - WeaponLaserCannon
+  technologyPrerequisites:
+  - CombatLaser
+  position: 0,-3
+
+- type: technology
+  id: CombatLaserWaveHarnessing
+  name: research-technology-combat-laser-wave-harnessing
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - WeaponXrayCannon
+  technologyPrerequisites:
+  - CombatLaser
+  position: -2,-3
+
+- type: technology
+  id: CombatLaserExperimental
+  name: research-technology-combat-laser-experimental
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - WeaponLaserSvalinn
+  technologyPrerequisites:
+  - CombatLaser
+  position: -2,-4
+
+- type: technology
+  id: EnergyBarriers
+  name: research-technology-energy_barriers
+  icon:
+    sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 6000
+  recipeUnlocks:
+  - EnergyDomeDirectionalTurtle
+  technologyPrerequisites:
+  - RiotControlAdvanced
+  position: 2,-1

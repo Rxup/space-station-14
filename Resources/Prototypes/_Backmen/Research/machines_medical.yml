@@ -1,0 +1,15 @@
+- type: technology
+  id: BiochemicalStasisMachines
+  name: research-technology-biochemical-stasis-machines
+  icon:
+    sprite: Structures/Machines/stasis_bed.rsi
+    state: icon
+  discipline: Medical
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - StasisBedMachineCircuitboard
+  - CryoPodMachineCircuitboard
+  technologyPrerequisites:
+  - BiochemicalStasis
+  position: 5,-6
