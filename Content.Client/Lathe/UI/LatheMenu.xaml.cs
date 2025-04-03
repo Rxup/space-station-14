@@ -14,8 +14,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing; // DeltaV
-
+using Robust.Shared.Timing;
 namespace Content.Client.Lathe.UI;
 
 [GenerateTypedNameReferences]
@@ -29,7 +28,6 @@ public sealed partial class LatheMenu : DefaultWindow
     private readonly LatheSystem _lathe;
     private readonly MaterialStorageSystem _materialStorage;
     private readonly MiningPointsSystem _miningPoints; // DeltaV
-
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
     public event Action? OnClaimMiningPoints; // DeltaV
@@ -85,11 +83,15 @@ public sealed partial class LatheMenu : DefaultWindow
         // Begin DeltaV Additions: Mining points UI
         MiningPointsContainer.Visible = _entityManager.TryGetComponent<MiningPointsComponent>(Entity, out var points);
         MiningPointsClaimButton.OnPressed += _ => OnClaimMiningPoints?.Invoke();
+
         if (points != null)
+        {
             UpdateMiningPoints(points.Points);
-        // End DeltaV Additions
+            MiningPointsNoConnectionWarning.Visible = true;
+        }
 
         MaterialsList.SetOwner(Entity);
+        // End DeltaV Additions
     }
 
     /// <summary>
@@ -98,7 +100,7 @@ public sealed partial class LatheMenu : DefaultWindow
     private void UpdateMiningPoints(uint points)
     {
         MiningPointsClaimButton.Disabled = points == 0 ||
-            _player.LocalSession?.AttachedEntity is not {} player ||
+            _player.LocalSession?.AttachedEntity is not { } player ||
             _miningPoints.TryFindIdCard(player) == null;
         if (points == _lastMiningPoints)
             return;

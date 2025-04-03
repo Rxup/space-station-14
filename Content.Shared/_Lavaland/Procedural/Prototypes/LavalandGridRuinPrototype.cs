@@ -17,8 +17,14 @@ public sealed partial class LavalandGridRuinPrototype : IPrototype
     public ResPath Path { get; } = default!;
 
     [DataField]
-    public int SpawnAttemps = 8;
+    public int SpawnAttemps = 16;
 
     [DataField(required: true)]
     public int Priority = int.MinValue;
+
+    /// <summary>
+    /// List of components to grant to entities that enter the ruin.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry ComponentsToGrant = new();
 }
