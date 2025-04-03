@@ -748,7 +748,6 @@ MagazinePistolUranium: MagazinePistol9x17
 MagazinePistolHighCapacityEmpty: null
 MagazinePistolHighCapacity: MagazinePistol57x28Extd
 MagazinePistolHighCapacityPractice: MagazinePistol57x28Extd
-MagazinePistolHighCapacityRubber: MagazinePistol57x28Extd
 MagazinePistolSubMachineGun: MagazinePistolSubMachineGun9x17
 MagazinePistolSubMachineGunEmpty: null
 MagazinePistolSubMachineGunPractice: MagazinePistolSubMachineGun9x17
@@ -792,7 +791,6 @@ MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
 #2025-02-05
 #WeaponSubMachineGunVector: null
 #WeaponSubMachineGunVectorRubber: null
-MagazineBoxCaselessRifleBig: MagazineBoxCaselessRifle
 MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
 
 #2025-02-06 backmen: no pride

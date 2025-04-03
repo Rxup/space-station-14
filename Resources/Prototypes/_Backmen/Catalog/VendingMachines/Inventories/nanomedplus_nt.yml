@@ -4,7 +4,7 @@
     HandheldHealthAnalyzer: 20
     Brutepack: 40
     Ointment: 40
-    EpinephrineChemistryBottle: 20
-    OmnizineChemistryBottle: 20
-    EphedrineChemistryBottle: 20
+    ChemistryBottleEpinephrine: 20
+    ChemistryBottleOmnizine: 20
+    ChemistryBottleEphedrine: 20
     Hypospray: 5

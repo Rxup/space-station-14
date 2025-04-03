@@ -4,6 +4,8 @@
   id: MobOniBase
   abstract: true
   components:
+  - type: Hunger
+  - type: Thirst
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages
