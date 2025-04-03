@@ -77,7 +77,6 @@
   - WeaponGauntletGorilla
   technologyPrerequisites:
   - GravityManipulation
-  - AnomalousResearchAdvanced
   position: 5,3
 
 - type: technology
@@ -176,7 +175,6 @@
 #    - QSI
   technologyPrerequisites:
   - QuantumLeaping
-  - AnomalousResearchAdvanced
   position: 3,5
 
 - type: technology
@@ -196,5 +194,4 @@
   - QuantumLeaping
   - PortableFission
   - SalvageEquipmentAdvanced
-  - AnomalousResearchAdvanced
   position: 5,5
