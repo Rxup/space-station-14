@@ -9,4 +9,5 @@
   cost: 500
   recipeUnlocks:
   - ConveyorBeltAssembly
+  - AppraisalTool
   position: 12,2

@@ -16,3 +16,5 @@ research-technology-translation-implanter-advanced = Advanced translation implan
 research-technology-hydroponics-machines = Hydroponics machines
 research-technology-entertainment-machines = Entertainment machines
 research-technology-kitchen-machines = Kitchen machines
+research-technology-bar-machines = Bar machines
+research-technology-uniform-machines = Uniform machines

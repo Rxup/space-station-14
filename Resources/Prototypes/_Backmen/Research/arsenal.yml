@@ -25,27 +25,27 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-   - BoxLethalshot
-   - BoxShotgunSlug
-   - MagazineBoxLightRifle
-   - MagazineBoxMagnum
-   - MagazineBoxPistol
-   - MagazineBoxRifle
-   - MagazineLightRifle
-   - MagazineLightRifleEmpty
-   - MagazinePistol
-   - MagazinePistolEmpty
-   - MagazineRifle
-   - MagazineRifleEmpty
-   - MagazinePistolSubMachineGun
-   - MagazinePistolSubMachineGunEmpty
-   - MagazinePistolSubMachineGunTopMounted
-   - MagazinePistolSubMachineGunTopMountedEmpty
-   - MagazineShotgun
-   - MagazineShotgunEmpty
-   - MagazineShotgunSlug
-   - SpeedLoaderMagnum
-   - SpeedLoaderMagnumEmpty
+  - BoxLethalshot
+  - BoxShotgunSlug
+  - MagazineBoxLightRifle
+  - MagazineBoxMagnum
+  - MagazineBoxPistol
+  - MagazineBoxRifle
+  - MagazineLightRifle
+  - MagazineLightRifleEmpty
+  - MagazinePistol
+  - MagazinePistolEmpty
+  - MagazinePistolSubMachineGun
+  - MagazinePistolSubMachineGunEmpty
+  - MagazinePistolSubMachineGunTopMounted
+  - MagazinePistolSubMachineGunTopMountedEmpty
+  - MagazineRifle
+  - MagazineRifleEmpty
+  - MagazineShotgun
+  - MagazineShotgunEmpty
+  - MagazineShotgunSlug
+  - SpeedLoaderMagnum
+  - SpeedLoaderMagnumEmpty
   technologyPrerequisites:
   - RiotControl
   - NonlethalAmmunition

@@ -11,6 +11,7 @@
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - BiogeneratorMachineCircuitboard
   technologyPrerequisites:
   - Hydroponics
   position: 2,7
@@ -25,10 +26,10 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-   - ComputerTelevisionCircuitboard
-   - DawInstrumentMachineCircuitboard
-   - MassMediaCircuitboard
-   - JukeboxCircuitBoard
+  - ComputerTelevisionCircuitboard
+  - DawInstrumentMachineCircuitboard
+  - MassMediaCircuitboard
+  - JukeboxCircuitBoard
   technologyPrerequisites:
    - Entertainment
   position: 3,7
@@ -43,10 +44,42 @@
   tier: 1
   cost: 7500
   recipeUnlocks:
-   - FatExtractorMachineCircuitboard
-   - FreezerElectronics
-   - BiofabricatorMachineCircuitboard
-   - BiomassReclaimerMachineCircuitboard
+  - FatExtractorMachineCircuitboard
+  - FreezerElectronics
+  - BiofabricatorMachineCircuitboard
+  - BiomassReclaimerMachineCircuitboard
+  - MicrowaveMachineCircuitboard
+  - ReagentGrinderMachineCircuitboard
+  - ElectricGrillMachineCircuitboard
   technologyPrerequisites:
    - Kitchen
   position: 1,7
+
+- type: technology
+  id: BarMachines
+  name: research-technology-bar-machines
+  icon:
+    sprite: Structures/smalldispensers.rsi
+    state: booze
+  discipline: Service
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BoozeDispenserMachineCircuitboard
+  - SodaDispenserMachineCircuitboard
+  technologyPrerequisites:
+   - Bootlegging
+  position: 0,7
+
+- type: technology
+  id: UniformMachines
+  name: research-technology-uniform-machines
+  icon:
+    sprite: Structures/Machines/uniform_printer.rsi
+    state: icon
+  discipline: Service
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - UniformPrinterMachineCircuitboard
+  position: 3,9

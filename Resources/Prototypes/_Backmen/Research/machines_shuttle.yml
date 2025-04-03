@@ -58,10 +58,10 @@
   tier: 1
   cost: 10000
   recipeUnlocks:
-   - ShuttleConsoleCircuitboard
-   - ThrusterMachineCircuitboard
-   - GyroscopeMachineCircuitboard
-   - MiniGravityGeneratorCircuitboard
+  - ShuttleConsoleCircuitboard
+  - ThrusterMachineCircuitboard
+  - GyroscopeMachineCircuitboard
+  - MiniGravityGeneratorCircuitboard
   technologyPrerequisites:
   - PowerGenerationMachines
   position: -2,5

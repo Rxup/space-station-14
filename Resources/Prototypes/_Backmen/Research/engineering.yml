@@ -1,4 +1,18 @@
-# <-- POWER CELLS -->
+- type: technology
+  id: MachineParts
+  name: research-technology-machine-parts
+  icon:
+    sprite: Objects/Misc/stock_parts.rsi
+    state: matter_bin
+  discipline: Engineering
+  tier: 1
+  cost: 500
+  recipeUnlocks:
+   - MicroManipulatorStockPart
+   - MatterBinStockPart
+   - CapacitorStockPart
+  position: -3,2
+
 - type: technology
   id: Powercells
   name: research-technology-powercells
@@ -43,7 +57,6 @@
   - PowercellsAdvanced
   position: 0,1
 
-# <-- STRUCTURE DEVICES -->
 #- type: technology
 #  id: EngineeringDevices
 #  name: research-technology-engineering-devices
@@ -70,7 +83,6 @@
 #  - RapidPipeDispenserRecipe
 #  position: -2,-2
 
-# <-- TOOLS -->
 - type: technology
   id: EngineeringTools
   name: research-engineering-tools
@@ -81,26 +93,23 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-   - Wirecutter
-   - Igniter
-   - Signaller
-   - Screwdriver
-   - Welder
-   - Wrench
-   - CrowbarGreen
-   - Multitool
-   - NetworkConfigurator
-   - SprayPainter
-   - FlashlightLantern
-   - CableStack
-   - CableMVStack
-   - CableHVStack
-   - TRayScanner
-   - GasAnalyzer
-   - UtilityBelt
-   - AppraisalTool
-   - AirTank
-   - ClothingHeadHatWelding
+  - Wirecutter
+  - Screwdriver
+  - Welder
+  - Wrench
+  - CrowbarGreen
+  - Multitool
+  - NetworkConfigurator
+  - Signaller
+  - SprayPainter
+  - FlashlightLantern
+  - TRayScanner
+  - UtilityBelt
+  - AirTank
+  - GasAnalyzer
+  - CableStack
+  - CableMVStack
+  - CableHVStack
   position: -2,1
 
 - type: technology
@@ -118,7 +127,7 @@
     - JawsOfLife
   technologyPrerequisites:
   - EngineeringTools
-  position: -3,2
+  position: -2,0
 
 - type: technology
   id: AtmosphericTools

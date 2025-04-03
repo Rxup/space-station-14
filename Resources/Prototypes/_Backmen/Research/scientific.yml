@@ -8,9 +8,9 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-   - AnomalyScanner
-   - AnomalyLocator
-   - NodeScanner
+  - AnomalyScanner
+  - AnomalyLocator
+  - NodeScanner
   position: 4,1
 
 - type: technology
@@ -23,8 +23,9 @@
   tier: 1
   cost: 8000
   recipeUnlocks:
-   - AnomalyLocatorWide
-   - WeaponPistolCHIMP
+  - AnomalyLocatorWide
+  - WeaponPistolCHIMP
+  - SignallerAdvanced
   technologyPrerequisites:
   - AnomalousResearch
   position: 4,2

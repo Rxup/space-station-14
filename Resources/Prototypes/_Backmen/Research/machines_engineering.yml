@@ -8,20 +8,26 @@
   tier: 1
   cost: 800
   recipeUnlocks:
-   - IntercomElectronics
-   - FirelockElectronics
-   - DoorElectronics
-   - AirAlarmElectronics
-   - StationMapElectronics
-   - FireAlarmElectronics
-   - MailingUnitElectronics
-   - SignalTimerElectronics
-   - APCElectronics
-   - SMESMachineCircuitboard
-   - SubstationMachineCircuitboard
-   - WallmountSubstationElectronics
-   - CellRechargerCircuitboard
-   - WeaponCapacitorRechargerCircuitboard
+  - IntercomElectronics
+  - FirelockElectronics
+  - DoorElectronics
+  - AirAlarmElectronics
+  - StationMapElectronics
+  - FireAlarmElectronics
+  - MailingUnitElectronics
+  - SignalTimerElectronics
+  - APCElectronics
+  - SMESMachineCircuitboard
+  - SubstationMachineCircuitboard
+  - WallmountSubstationElectronics
+  - CellRechargerCircuitboard
+  - WeaponCapacitorRechargerCircuitboard
+  - CutterMachineCircuitboard
+  - ProtolatheMachineCircuitboard
+  - AutolatheMachineCircuitboard
+  - CircuitImprinterMachineCircuitboard
+  technologyPrerequisites:
+  - MachineParts
   position: -3,3
 
 - type: technology

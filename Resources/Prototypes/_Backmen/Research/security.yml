@@ -8,15 +8,15 @@
   tier: 1
   cost: 3500
   recipeUnlocks:
-   - Stunbaton
-   - CombatKnife
-   - Flash
-   - ForensicPad
-   - Handcuffs
-   - WeaponDisablerPractice
-   - WeaponLaserCarbinePractice
-   - Zipties
-   - ModularReceiver
+  - Stunbaton
+  - CombatKnife
+  - Flash
+  - ForensicPad
+  - Handcuffs
+  - WeaponDisablerPractice
+  - WeaponLaserCarbinePractice
+  - Zipties
+  - ModularReceiver
   position: 1,-3
 
 - type: technology
@@ -29,9 +29,9 @@
   tier: 1
   cost: 1200
   recipeUnlocks:
-   - TargetClown
-   - TargetHuman
-   - TargetSyndicate
+  - TargetClown
+  - TargetHuman
+  - TargetSyndicate
   technologyPrerequisites:
   - Security
   position: 1,-4

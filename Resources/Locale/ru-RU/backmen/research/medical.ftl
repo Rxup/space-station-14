@@ -8,4 +8,6 @@ research-technology-bodybags = Мешки для тел
 research-technology-bodybags-bluespace = Блюспейс мешки для тел
 research-technology-chemistry-bluespace = Блюспейс химия
 
+research-technology-chemistry-machines = Химическое оборудования
+research-technology-biomass-machines = Оборудование манипуляции массой
 research-technology-biochemical-stasis-machines = Оборудование биохимического стазиса

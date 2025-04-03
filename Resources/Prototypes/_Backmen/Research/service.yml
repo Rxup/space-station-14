@@ -41,12 +41,12 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-   - DrinkMug
-   - DrinkMugMetal
-   - DrinkGlass
-   - DrinkShotGlass
-   - DrinkGlassCoupeShaped
-   - CustomDrinkJug
+  - DrinkMug
+  - DrinkMugMetal
+  - DrinkGlass
+  - DrinkShotGlass
+  - DrinkGlassCoupeShaped
+  - CustomDrinkJug
   position: 0,6
 
 - type: technology
@@ -59,14 +59,14 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-   - FoodPlate
-   - FoodPlateSmall
-   - FoodPlatePlastic
-   - FoodPlateSmallPlastic
-   - FoodBowlBig
-   - FoodPlateTin
-   - FoodPlateMuffinTin
-   - FoodKebabSkewer
+  - FoodPlate
+  - FoodPlateSmall
+  - FoodPlatePlastic
+  - FoodPlateSmallPlastic
+  - FoodBowlBig
+  - FoodPlateTin
+  - FoodPlateMuffinTin
+  - FoodKebabSkewer
   position: 1,6
 
 - type: technology

@@ -117,7 +117,7 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ToolsStatic
     - PartsStatic
     - AtmosStatic
@@ -189,10 +189,10 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ChemistryStatic
     - SurgeryStatic
-    dynamicPacks:
+#    dynamicPacks: # Backmen-EDIT
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -252,14 +252,15 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - CircuitFloorsStatic
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ScienceBoardsStatic
     - ServiceBoardsStatic
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     - BackmenBoardsStatic # backmen
-    dynamicPacks:
+#    dynamicPacks: # Backmen-EDIT
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -311,12 +312,12 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
     - BackmenShitmedModulesStatic # backmen
-    dynamicPacks:
+#    dynamicPacks: # Backmen-EDIT
     - Robotics
     - BorgModules
     - MechParts
@@ -395,12 +396,12 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
     - BackmenAmmoStatic # backmen
     - SecurityWeaponsStatic
-    dynamicPacks:
+#    dynamicPacks: # Backmen-EDIT
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
@@ -469,7 +470,7 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
@@ -478,7 +479,7 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - BackmenMedfabStatic # backmen
-    dynamicPacks:
+#    dynamicPacks: # Backmen-EDIT
     - Chemistry
     - BackmenMedfab # backmen
     - BackmenSurgery # backmen

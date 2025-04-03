@@ -16,3 +16,5 @@ research-technology-translation-implanter-advanced = Продвинутые им
 research-technology-hydroponics-machines = Оборудование гидропоники
 research-technology-entertainment-machines = Оборудование развлечений
 research-technology-kitchen-machines = Кухонное оборудование
+research-technology-bar-machines = Барное оборудование
+research-technology-uniform-machines = Швейное оборудование
