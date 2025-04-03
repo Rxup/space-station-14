@@ -111,7 +111,7 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi
     state: omnimed
   discipline: Medical
-  tier: 3
+  tier: 1
   cost: 10000
   recipeUnlocks:
   - OmnimedTool

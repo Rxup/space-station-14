@@ -3,7 +3,7 @@
   name: research-technology-shuttle-weapon
   icon:
     sprite: Objects/Power/power_cages.rsi
-    state: medium
+    state: small
   discipline: Arsenal
   tier: 1
   cost: 5000
@@ -22,7 +22,7 @@
   name: research-technology-shuttle-weapon-advanced
   icon:
     sprite: Objects/Power/power_cages.rsi
-    state: small
+    state: high
   discipline: Arsenal
   tier: 1
   cost: 6000
