@@ -1,4 +1,3 @@
-research-technology-anomaly-harnessing = Аномальное воздействие
 research-technology-anomalous-research = Исследование аномалий
 research-technology-anomalous-research-advanced = Продвинутое исследование аномалий
 research-technology-integrated-huds = Интегрированные интерфейсы

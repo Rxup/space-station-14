@@ -1,4 +1,3 @@
-research-technology-salvage-weapons = Шахтёрское вооружение
 research-technology-salvage-equipment-advanced = Продвинутое шахтёрское снаряжение
 research-technology-grappling = Устройство захвата
 

@@ -1,4 +1,3 @@
-research-technology-anomaly-harnessing = Anomaly harnessing
 research-technology-anomalous-research = Anomalous research
 research-technology-anomalous-research-advanced = Advanced anomalous research
 research-technology-integrated-huds = Integrated HUDs

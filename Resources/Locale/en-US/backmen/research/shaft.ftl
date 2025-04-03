@@ -1,4 +1,3 @@
-research-technology-salvage-weapons = Salvage weapons
 research-technology-salvage-equipment-advanced = Advanced salvage equipment
 research-technology-grappling = Grappling
 

@@ -1,7 +1,6 @@
 research-technology-machine-parts = Machine parts
 research-technology-powercells = Powercells
 research-technology-powercells-advanced = Advanced powercells
-research-technology-portable-fission = Portable fission
 research-technology-engineering-devices = Engineering devices
 research-technology-atmospheric-devices = Atmosphetic devices
 research-engineering-tools = Basic tools
