@@ -1,12 +1,18 @@
 ﻿using Content.Server.Antag;
 using Content.Server.Backmen.Vampiric.Objective;
 using Content.Server.Backmen.Vampiric.Role;
+using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Vampiric.Rule;
 
@@ -15,12 +21,33 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
     [Dependency] private readonly BloodSuckerSystem _bloodSuckerSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<BloodsuckerRuleComponent, AfterAntagEntitySelectedEvent>(AfterAntagSelected);
+        SubscribeLocalEvent<BloodsuckerRuleComponent, AntagSelectCheckEvent>(OnSelectEntity);
+    }
+
+    private void OnSelectEntity(Entity<BloodsuckerRuleComponent> ent, ref AntagSelectCheckEvent args)
+    {
+        if (args.Session?.AttachedEntity is not {} plr || !TryComp<HumanoidAppearanceComponent>(plr, out var humComp))
+        {
+            args.Canceled = true;
+            return;
+        }
+
+        if (humComp.Species.Id is "Monkey" or "Kobold")
+        {
+            args.Canceled = true;
+            return;
+        }
+
+        args.Canceled = !_bloodSuckerSystem.CanBeVampire(plr);
     }
 
     private void AfterAntagSelected(EntityUid uid, BloodsuckerRuleComponent component, AfterAntagEntitySelectedEvent args)

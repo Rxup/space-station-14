@@ -6,7 +6,7 @@ namespace Content.Server.NPC.Components;
 /// Entities with this component will retaliate against those who physically attack them.
 /// It has an optional "memory" specification wherein it will only attack those entities for a specified length of time.
 /// </summary>
-[RegisterComponent, Access(typeof(NPCRetaliationSystem))]
+[RegisterComponent, Access(typeof(NPCRetaliationSystem), typeof(Backmen.Vampiric.BloodSuckerSystem))]
 public sealed partial class NPCRetaliationComponent : Component
 {
     /// <summary>

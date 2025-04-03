@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Vampiric;
 using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Backmen.Vampiric.Rule;
+using Content.Server.Bible.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
@@ -25,15 +26,21 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Vampiric;
@@ -58,6 +65,9 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly BkmVampireLevelingSystem _leveling = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly NPCRetaliationSystem _retaliationSystem = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
     [ValidatePrototypeId<EntityPrototype>] private const string BloodsuckerMindRole = "MindRoleBloodsucker";
@@ -240,6 +250,32 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         args.Handled = TrySucc(uid, args.Args.Target.Value);
     }
 
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Blood = "Blood";
+    public bool CanBeVampire(Entity<BloodstreamComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        if(HasComp<BibleUserComponent>(ent))
+            return false;
+
+        return ent.Comp.BloodReagent == Blood && ent.Comp.BloodSolution != null;
+    }
+
+    public bool TryRetaliate(Entity<NPCRetaliationComponent> ent, EntityUid target)
+    {
+        // don't retaliate against inanimate objects.
+        if (!HasComp<MobStateComponent>(target))
+            return false;
+
+        _npcFaction.AggroEntity(ent.Owner, target);
+        if (ent.Comp.AttackMemoryLength is {} memoryLength)
+            ent.Comp.AttackMemories[target] = _timing.CurTime + memoryLength;
+
+        return true;
+    }
+
     public void StartSuccDoAfter(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodSuckerComponent = null, BloodstreamComponent? stream = null, bool doChecks = true)
     {
         if (!Resolve(bloodsucker, ref bloodSuckerComponent))
@@ -270,13 +306,13 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             }
         }
 
-        if (stream.BloodReagent != "Blood" || stream.BloodSolution == null)
+        if (!CanBeVampire((victim,stream)))
         {
             _popups.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
             return;
         }
 
-        if (stream.BloodSolution.Value.Comp.Solution.Volume <= 1)
+        if (stream.BloodSolution!.Value.Comp.Solution.Volume <= 1)
         {
             if (HasComp<BloodSuckedComponent>(victim))
                 _popups.PopupEntity(Loc.GetString("bloodsucker-fail-no-blood-bloodsucked", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
@@ -291,7 +327,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
         if (TryComp<NPCRetaliationComponent>(victim, out var npcRetaliationComponent))
         {
-            _retaliationSystem.TryRetaliate((victim, npcRetaliationComponent), bloodsucker);
+            if (TryComp<CuffableComponent>(victim, out var victimCuff) && _cuffableSystem.IsCuffed((victim, victimCuff)))
+            {
+                _cuffableSystem.Uncuff(victim, bloodsucker, victimCuff.LastAddedCuffs, victimCuff);
+            }
+            TryRetaliate((victim, npcRetaliationComponent), bloodsucker);
         }
 
         var ev = new BloodSuckDoAfterEvent();
@@ -389,7 +429,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
         // Add a little pierce
         DamageSpecifier damage = new();
-        damage.DamageDict.Add("Piercing", 1); // Slowly accumulate enough to gib after like half an hour
+        damage.DamageDict.Add("Piercing", 10); // Slowly accumulate enough to gib after like half an hour
 
         _damageableSystem.TryChangeDamage(victim, damage, true, true, origin: bloodsucker);
 
@@ -397,7 +437,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         {
             _solutionSystem.TryAddReagent(chemical.Value, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
         }
-
+        _npcFaction.AggroEntity(victim, bloodsucker);
 
         return true;
     }
