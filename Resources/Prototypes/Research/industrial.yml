@@ -201,6 +201,7 @@
 #  - ClothingBackpackHolding
 #  - ClothingBackpackSatchelHolding
 #  - ClothingBackpackDuffelHolding
+#  - ClothingBackpackMessengerHolding # Backmen
 
 #- type: technology
 #  id: PortableFission

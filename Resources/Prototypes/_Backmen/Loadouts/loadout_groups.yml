@@ -24,6 +24,7 @@
   - BKCCCargoBackpack
   - BKCCCargoSatchel
   - BKCCCargoDuffel
+  - CommonMessenger
 
 # Security
 
@@ -105,6 +106,7 @@
   - ClothingBackpackBrigmedic
   - ClothingBackpackDuffelBrigmedic
   - ClothingBackpackSatchelBrigmedic
+  - SecurityMessenger
 
 - type: loadoutGroup
   id: ClothingHeadHatBrigmedic
@@ -204,3 +206,4 @@
   - VirologistBackpack
   - VirologistSatchel
   - VirologistDuffel
+  - VirologistMessenger
