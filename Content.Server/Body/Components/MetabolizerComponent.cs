@@ -1,5 +1,4 @@
 using Content.Server.Body.Systems;
-using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;

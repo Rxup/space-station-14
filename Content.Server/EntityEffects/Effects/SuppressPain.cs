@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.Server.EntityEffects.Effects;
 
 [UsedImplicitly]
-public sealed partial class SuppressPain : EntityEffect
+public sealed partial class SuppressPain : EntityEffect // backmen effect
 {
     [DataField(required: true)]
     [JsonPropertyName("amount")]

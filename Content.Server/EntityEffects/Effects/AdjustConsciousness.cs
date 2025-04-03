@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 namespace Content.Server.EntityEffects.Effects;
 
 [UsedImplicitly]
-public sealed partial class AdjustConsciousness : EntityEffect
+public sealed partial class AdjustConsciousness : EntityEffect // backmen effect
 {
     [DataField(required: true)]
     [JsonPropertyName("amount")]

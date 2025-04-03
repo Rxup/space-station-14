@@ -13,7 +13,6 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.StatusEffect;
 using Robust.Server.Audio;
 using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 

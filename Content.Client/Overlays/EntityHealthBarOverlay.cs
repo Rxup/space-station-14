@@ -128,6 +128,7 @@ public sealed class EntityHealthBarOverlay : Overlay
     /// </summary>
     private (float ratio, bool inCrit)? CalcProgress(EntityUid uid, MobStateComponent component, DamageableComponent dmg, MobThresholdsComponent thresholds)
     {
+        // backmen edit start
         if (_entManager.TryGetComponent<ConsciousnessComponent>(uid, out var consciousness))
         {
             if (_mobStateSystem.IsAlive(uid, component))
@@ -142,8 +143,9 @@ public sealed class EntityHealthBarOverlay : Overlay
                 return (ratio, true);
             }
         }
-        else
+        else // backmen edit end
         {
+            // Typical management
             if (_mobStateSystem.IsAlive(uid, component))
             {
                 if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds))

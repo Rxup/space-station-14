@@ -12,11 +12,11 @@ namespace Content.Server.Administration.Commands
 
         public string Command => "addbodypart";
         public string Description => "Adds a given entity to a containing body.";
-        public string Help => "Usage: addbodypart <entity uid> <body uid> <part slot> <part type> <part symmetry>";
+        public string Help => "Usage: addbodypart <entity uid> <body uid> <part slot> <part type> <part symmetry>"; // backmen edit: part symmetry
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (args.Length != 4)
+            if (args.Length != 4) // backmen edit: part symmetry (originally 3 arguments)
             {
                 shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
                 return;
@@ -41,7 +41,7 @@ namespace Content.Server.Administration.Commands
 
 
             if (Enum.TryParse<BodyPartType>(args[3], out var partType)
-                && Enum.TryParse<BodyPartSymmetry>(args[4], out var symmetry)
+                && Enum.TryParse<BodyPartSymmetry>(args[4], out var symmetry) // backmen edit: part symmetry
                 && bodySystem.TryCreatePartSlotAndAttach(parentId, args[2], childId, partType, symmetry))
             {
                 shell.WriteLine($@"Added {childId} to {parentId}.");

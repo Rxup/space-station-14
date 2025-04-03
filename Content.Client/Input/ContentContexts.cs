@@ -86,11 +86,11 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
-            human.AddFunction(ContentKeyFunctions.ToggleStanding); // Ataraxia
+            human.AddFunction(ContentKeyFunctions.ToggleStanding); // Backmen
             human.AddFunction(ContentKeyFunctions.LookUp); // BACKMEN EDIT
             human.AddFunction(CMKeyFunctions.CMUniqueAction); // BACKMEN EDIT
             human.AddFunction(ContentKeyFunctions.TargetHead);
-            human.AddFunction(ContentKeyFunctions.TargetChest);
+            human.AddFunction(ContentKeyFunctions.TargetChest); // backmen: chest, groin separation
             human.AddFunction(ContentKeyFunctions.TargetGroin);
             human.AddFunction(ContentKeyFunctions.TargetLeftArm);
             human.AddFunction(ContentKeyFunctions.TargetLeftHand);

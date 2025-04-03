@@ -21,6 +21,7 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
+using Content.Server.Body.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -38,7 +39,7 @@ public sealed class HealingSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!; // backmen edit
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -48,8 +49,10 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    // backmen edit start
     [Dependency] private readonly WoundSystem _wounds = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
+    // backmen edit end
 
     public override void Initialize()
     {
@@ -57,14 +60,14 @@ public sealed class HealingSystem : EntitySystem
         SubscribeLocalEvent<HealingComponent, UseInHandEvent>(OnHealingUse);
         SubscribeLocalEvent<HealingComponent, AfterInteractEvent>(OnHealingAfterInteract);
         SubscribeLocalEvent<DamageableComponent, HealingDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<BodyComponent, HealingDoAfterEvent>(OnBodyDoAfter);
+        SubscribeLocalEvent<BodyComponent, HealingDoAfterEvent>(OnBodyDoAfter); // backmen edit
     }
 
     private void OnDoAfter(Entity<DamageableComponent> entity, ref HealingDoAfterEvent args)
     {
         var dontRepeat = false;
 
-        // Consciousness check because some body entities don't have Consciousness
+        // Consciousness check because some body entities don't have Consciousness; Backmen
         if (!TryComp(args.Used, out HealingComponent? healing) || HasComp<BodyComponent>(entity) && HasComp<ConsciousnessComponent>(entity))
             return;
 
@@ -139,6 +142,7 @@ public sealed class HealingSystem : EntitySystem
         args.Handled = true;
     }
 
+    // backmen edit start
     private void OnBodyDoAfter(EntityUid ent, BodyComponent comp, ref HealingDoAfterEvent args)
     {
         var dontRepeat = false;
@@ -292,6 +296,7 @@ public sealed class HealingSystem : EntitySystem
         if (bleedStopAbility != -healing.BloodlossModifier)
             _popupSystem.PopupEntity(Loc.GetString("medical-item-finished-using", ("item", args.Used)), ent, args.User, PopupType.Medium);
     }
+    // backmen edit end
 
     private bool HasDamage(Entity<DamageableComponent> ent, HealingComponent healing)
     {
@@ -325,6 +330,7 @@ public sealed class HealingSystem : EntitySystem
         return false;
     }
 
+    // backmen edit start
     private string? GetDamageGroupByType(string id)
     {
         return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault();
@@ -370,6 +376,7 @@ public sealed class HealingSystem : EntitySystem
 
         return false;
     }
+    // backmen edit end
 
     private void OnHealingUse(Entity<HealingComponent> entity, ref UseInHandEvent args)
     {
@@ -409,7 +416,7 @@ public sealed class HealingSystem : EntitySystem
 
         var anythingToDo =
             HasDamage((target, targetDamage), component) ||
-            (TryComp<BodyComponent>(target, out var bodyComp) && // I'm paranoid, sorry.
+            (TryComp<BodyComponent>(target, out var bodyComp) && // I'm paranoid, sorry; Backmen
              IsBodyDamaged((target, bodyComp), user, component)) ||
             component.ModifyBloodLevel > 0 // Special case if healing item can restore lost blood...
                 && TryComp<BloodstreamComponent>(target, out var bloodstream)
@@ -468,7 +475,7 @@ public sealed class HealingSystem : EntitySystem
             percentDamage = (float) (damageable.TotalDamage / amount);
         else if (TryComp<ConsciousnessComponent>(uid, out var consciousness))
         {
-            percentDamage = (float) (consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness));
+            percentDamage = (float) (consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness)); // backmen edit; consciousness
         }
 
         //basically make it scale from 1 to the multiplier.

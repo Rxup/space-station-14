@@ -22,6 +22,14 @@ public sealed class SharedSuicideSystem : EntitySystem
     /// </summary>
     public void ApplyLethalDamage(Entity<DamageableComponent> target, DamageSpecifier damageSpecifier)
     {
+        // backmen edit start
+        if (TryComp<ConsciousnessComponent>(target, out var victimConsciousness))
+        {
+            KillConsciousness((target, victimConsciousness));
+            return;
+        }
+        // backmen edit end
+
         // Create a new damageSpecifier so that we don't make alterations to the original DamageSpecifier
         // Failing  to do this will permanently change a weapon's damage making it insta-kill people
         var appliedDamageSpecifier = new DamageSpecifier(damageSpecifier);
@@ -52,6 +60,15 @@ public sealed class SharedSuicideSystem : EntitySystem
     /// </summary>
     public void ApplyLethalDamage(Entity<DamageableComponent> target, ProtoId<DamageTypePrototype>? damageType)
     {
+        // backmen edit start
+        if (TryComp<ConsciousnessComponent>(target, out var victimConsciousness))
+        {
+            // redirect suicide to consciousness
+            KillConsciousness((target, victimConsciousness));
+            return;
+        }
+        // backmen edit end
+
         if (!TryComp<MobThresholdsComponent>(target, out var mobThresholds))
             return;
 
@@ -72,7 +89,8 @@ public sealed class SharedSuicideSystem : EntitySystem
     }
 
     /// <summary>
-    /// kills a consciousness. lol
+    /// kills a consciousness. lol.
+    /// backmen edit
     /// </summary>
     public void KillConsciousness(Entity<ConsciousnessComponent> target)
     {

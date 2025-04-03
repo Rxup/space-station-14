@@ -132,6 +132,7 @@ public sealed class SuicideCommandTests
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
 
+        // backmen edit
         if (entManager.HasComponent<ConsciousnessComponent>(player))
             return; // Consciousness entities don't use damage to die
 

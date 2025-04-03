@@ -97,7 +97,7 @@ public sealed partial class WoundSystem
         var ev2 = new WoundRemovedEvent(wound, oldParentWoundable, oldWoundableRoot);
         RaiseLocalEvent(wound.HoldingWoundable, ref ev2);
 
-        if (!TerminatingOrDeleted(woundableEntity))
+        if (_net.IsServer && !TerminatingOrDeleted(woundableEntity))
             QueueDel(woundableEntity);
     }
 

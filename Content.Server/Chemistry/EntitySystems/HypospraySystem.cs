@@ -14,7 +14,6 @@ using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Server.Body.Components;
 using System.Linq;
-using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Robust.Server.Audio;
 
 namespace Content.Server.Chemistry.EntitySystems;

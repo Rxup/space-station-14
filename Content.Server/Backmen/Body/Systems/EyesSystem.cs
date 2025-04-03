@@ -25,6 +25,7 @@ namespace Content.Server.Backmen.Body.Systems
             SubscribeLocalEvent<EyesComponent, EntGotRemovedFromContainerMessage>(OnEyesRemoved);
         }
 
+        // backmen edit start
         private void CheckMissingEyes(EntityUid body, EntityUid eye)
         {
             if (TerminatingOrDeleted(body) || TerminatingOrDeleted(eye))
@@ -60,6 +61,7 @@ namespace Content.Server.Backmen.Body.Systems
 
             _blindableSystem.SetEyeDamage((organ.Body.Value, blindable), adjustment);
         }
+        // backmen edit end
 
         private void OnOrganEnabled(EntityUid uid, EyesComponent component, OrganEnabledEvent args)
         {

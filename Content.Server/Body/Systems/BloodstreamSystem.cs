@@ -29,7 +29,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
 
-public sealed class BloodstreamSystem : SharedBloodstreamSystem
+public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloodstream: backmen edit
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -43,9 +43,12 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+
+    // backmen edit start
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
+    // backmen edit end
 
     public override void Initialize()
     {
@@ -179,6 +182,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
                 bloodstream.StatusTime = TimeSpan.Zero;
             }
 
+            // backmen edit start
             if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys))
                 continue;
 
@@ -198,6 +202,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
             {
                 _consciousness.AddConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain);
             }
+            // backmen edit end
         }
     }
 

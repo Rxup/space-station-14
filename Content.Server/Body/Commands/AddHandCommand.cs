@@ -138,6 +138,7 @@ namespace Content.Server.Body.Commands
             part.SlotId = part.GetHashCode().ToString();
             // Shitmed Change End
 
+            // backmen edit: symmetry
             if (!bodySystem.TryCreatePartSlotAndAttach(attachAt.Id, slotId, hand, BodyPartType.Hand, BodyPartSymmetry.Right, attachAt.Component, part))
             {
                 shell.WriteError($"Couldn't create a slot with id {slotId} on entity {_entManager.ToPrettyString(entity)}");

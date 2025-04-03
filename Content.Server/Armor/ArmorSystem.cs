@@ -22,6 +22,7 @@ public sealed class ArmorSystem : SharedArmorSystem
         foreach (var modifier in component.Modifiers.Coefficients)
         {
             var damageType = _protoManager.Index<DamageTypePrototype>(modifier.Key);
+            // backmen edit: 45 instead of 100; Due to locational damage, all armour got buffed and thus risen the price. Haha
             args.Price += component.PriceMultiplier * damageType.ArmorPriceCoefficient * 45 * (1 - modifier.Value);
         }
 

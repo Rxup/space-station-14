@@ -258,7 +258,7 @@ namespace Content.Client.Options.UI.Tabs
 
             AddHeader("ui-options-header-targeting");
             AddButton(ContentKeyFunctions.TargetHead);
-            AddButton(ContentKeyFunctions.TargetChest);
+            AddButton(ContentKeyFunctions.TargetChest); // backmen: chest, groin separation
             AddButton(ContentKeyFunctions.TargetGroin);
             AddButton(ContentKeyFunctions.TargetLeftArm);
             AddButton(ContentKeyFunctions.TargetLeftHand);

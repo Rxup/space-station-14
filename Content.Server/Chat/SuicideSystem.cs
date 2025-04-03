@@ -148,7 +148,7 @@ public sealed class SuicideSystem : EntitySystem
     /// </summary>
     private void OnDamageableSuicide(Entity<DamageableComponent> victim, ref SuicideEvent args)
     {
-        if (args.Handled || HasComp<ConsciousnessComponent>(victim))
+        if (args.Handled || HasComp<ConsciousnessComponent>(victim)) // backmen edit: consciousness
             return;
 
         var othersMessage = Loc.GetString("suicide-command-default-text-others", ("name", victim));
@@ -169,6 +169,7 @@ public sealed class SuicideSystem : EntitySystem
         args.Handled = true;
     }
 
+    // backmen edit start
     private void OnConsciousnessSuicide(Entity<ConsciousnessComponent> theOneToLeave, ref SuicideEvent args)
     {
         if (args.Handled)
@@ -183,4 +184,5 @@ public sealed class SuicideSystem : EntitySystem
         _suicide.KillConsciousness(theOneToLeave);
         args.Handled = true;
     }
+    // backmen edit end
 }

@@ -50,7 +50,7 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // backmen edit:
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -208,6 +208,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         {
             if (_mobState.IsDead(target, mob))
             {
+                // backmen edit start
                 if (HasComp<ConsciousnessComponent>(target) && _consciousness.TryGetNerveSystem(target, out var nerveSys))
                 {
                     _consciousness.EditConsciousnessModifier(
@@ -216,7 +217,7 @@ public sealed class DefibrillatorSystem : EntitySystem
                         component.ZapHeal.GetTotal(),
                         "Suffocation");
                 }
-                else
+                else // backmen edit end
                 {
                     _damageable.TryChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
                 }

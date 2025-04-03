@@ -29,6 +29,7 @@ public sealed partial class ArmorComponent : Component
     [DataField]
     public float PriceMultiplier = 1;
 
+    // backmen edit start
     /// <summary>
     /// If true, you can examine the armor to see the protection. If false, the verb won't appear.
     /// </summary>
@@ -60,6 +61,7 @@ public sealed partial class ArmorComponent : Component
         { TraumaType.VeinsDamage, 0 },
         { TraumaType.NerveDamage, 0 },
     };
+    // backmen edit end
 }
 
 /// <summary>

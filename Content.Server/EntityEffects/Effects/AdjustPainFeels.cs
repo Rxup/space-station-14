@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 namespace Content.Server.EntityEffects.Effects;
 
 [UsedImplicitly]
-public sealed partial class AdjustPainFeels : EntityEffect
+public sealed partial class AdjustPainFeels : EntityEffect // backmen effect
 {
     [DataField(required: true)]
     [JsonPropertyName("amount")]

@@ -210,7 +210,7 @@ namespace Content.Server.Atmos.EntitySystems
             var enumerator = EntityQueryEnumerator<BarotraumaComponent>();
             while (enumerator.MoveNext(out var uid, out var barotrauma))
             {
-                // TODO: bring it back. might be bad, but well
+                // backmen edit: handled by wounding
                 //if (totalDamage >= barotrauma.MaxDamage)
                 //    continue;
 

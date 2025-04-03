@@ -41,8 +41,10 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
 
+        // backmen edit start
         private readonly WoundSystem _wound;
         private readonly SharedAppearanceSystem _appearance;
+        // backmen edit end
 
         // Start-backmen: surgery
         public event Action<TargetBodyPart?, EntityUid>? OnBodyPartSelected;
@@ -65,13 +67,13 @@ namespace Content.Client.HealthAnalyzer.UI
             _spriteSystem = _entityManager.System<SpriteSystem>();
             _prototypes = dependencies.Resolve<IPrototypeManager>();
             _cache = dependencies.Resolve<IResourceCache>();
-            _wound = _entityManager.System<WoundSystem>();
-            _appearance = _entityManager.System<SharedAppearanceSystem>();
+            _wound = _entityManager.System<WoundSystem>(); // backmen: wounding
+            _appearance = _entityManager.System<SharedAppearanceSystem>(); // backmen: wounding
             // Start-backmen: surgery
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
                 { TargetBodyPart.Head, HeadButton },
-                { TargetBodyPart.Chest, ChestButton },
+                { TargetBodyPart.Chest, ChestButton }, // backmen: cheat, groin separation
                 { TargetBodyPart.Groin, GroinButton },
                 { TargetBodyPart.LeftArm, LeftArmButton },
                 { TargetBodyPart.LeftHand, LeftHandButton },

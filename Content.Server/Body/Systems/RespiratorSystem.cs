@@ -17,7 +17,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body;
-using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness; // backmen
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -40,7 +40,7 @@ public sealed class RespiratorSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // backmen edit
 
     private static readonly ProtoId<MetabolismGroupPrototype> GasId = new("Gas");
 
@@ -312,6 +312,7 @@ public sealed class RespiratorSystem : EntitySystem
             RaiseLocalEvent(ent, new MoodEffectEvent("Suffocating")); // backmen: mood
         }
 
+        // backmen edit start
         if (_consciousness.TryGetNerveSystem(ent, out var nerveSys))
         {
             if (!_consciousness.TryGetConsciousnessModifier(ent, nerveSys.Value, out var modifier, "Suffocation"))
@@ -335,6 +336,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             return;
         }
+        // backmen edit end
 
         _damageableSys.TryChangeDamage(ent, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, interruptsDoAfters: false);
     }

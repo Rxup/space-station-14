@@ -473,6 +473,7 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
+                // backmen edit start
                 if (TryComp<BodyComponent>(entity, out var body) && HasComp<ConsciousnessComponent>(entity))
                 {
                     var bodyParts = _body.GetBodyChildren(entity, body).ToList();
@@ -486,6 +487,7 @@ public sealed partial class ExplosionSystem
                 {
                     _damageableSystem.TryChangeDamage(entity, damage, ignoreResistances: true);
                 }
+                // backmen edit end
             }
         }
 
