@@ -41,3 +41,11 @@
 - type: animatedLobbyScreen
   id: HellDudeLobbyScreen
   path: /Textures/Backmen/LobbyScreens/HellDude.rsi
+
+- type: animatedLobbyScreen
+  id: LongExpeditionLobbyScreen
+  path: /Textures/Backmen/LobbyScreens/LongExpedition.rsi
+
+- type: animatedLobbyScreen
+  id: SpaceCombatLobbyScreen
+  path: /Textures/Backmen/LobbyScreens/SpaceCombat.rsi
