@@ -38,8 +38,6 @@ public sealed class ClothingGrantingSystem : EntitySystem
             if (HasComp(args.Equipee, newComp.GetType()))
                 continue;
 
-            newComp.Owner = args.Equipee;
-
             var temp = (object) newComp;
             _serializationManager.CopyTo(data.Component, ref temp);
             EntityManager.AddComponent(args.Equipee, (Component)temp!);
