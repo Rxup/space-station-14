@@ -132,10 +132,6 @@ public sealed class SuicideCommandTests
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
 
-        // backmen edit
-        if (entManager.HasComponent<ConsciousnessComponent>(player))
-            return; // Consciousness entities don't use damage to die
-
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
         MobThresholdsComponent mobThresholdsComp = default;
@@ -166,7 +162,10 @@ public sealed class SuicideCommandTests
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                Assert.That(damageableComp.Damage.GetTotal(), Is.EqualTo(lethalDamageThreshold));
+
+                // backmen edit; Consciousness entities do not use damage to, thus this check will always be false
+                if (!entManager.HasComponent<ConsciousnessComponent>(player))
+                    Assert.That(damageableComp.Damage.GetTotal(), Is.EqualTo(lethalDamageThreshold));
             });
         });
 

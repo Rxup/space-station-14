@@ -25,7 +25,7 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
 
-        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit, after: [typeof(MobStateSystem)]); // whoops
+        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
     }
 
     private const string NerveSystemIdentifier = "nerveSystem";
