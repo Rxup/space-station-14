@@ -8,7 +8,6 @@ using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Client.GameObjects;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -19,7 +18,6 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     [Dependency] private readonly SharedBodySystem _body = default!;
 
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
@@ -212,13 +210,6 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             var part = symmetry + partType;
 
             sprite.LayerMapTryGet($"{part}Bleeding", out var parentBleedingLayer);
-
-            if (bodyPart.Body.HasValue)
-            {
-                var color = GetBleedsColor(bodyPart.Body.Value);
-                sprite.LayerSetColor(parentBleedingLayer, color);
-            }
-
             UpdateBleedingLayerState(
                 sprite,
                 parentBleedingLayer,
@@ -239,28 +230,12 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             }
 
             sprite.LayerMapTryGet($"{layer}Bleeding", out var bleedingLayer);
-
-            if (bodyPart.Body.HasValue)
-            {
-                var color = GetBleedsColor(bodyPart.Body.Value);
-                sprite.LayerSetColor(bleedingLayer, color);
-            }
-
             UpdateBleedingLayerState(sprite,
                 bleedingLayer,
                 layer.ToString(),
                 totalBleeds,
                 GetBleedingThreshold(totalBleeds, comp));
         }
-    }
-
-    private Color GetBleedsColor(EntityUid body)
-    {
-        // return dark red.. If for some reason there is no blood in this entity.
-        if (!TryComp<BloodstreamComponent>(body, out var bloodstream))
-            return Color.DarkRed;
-
-        return _protoMan.Index(bloodstream.BloodReagent).SubstanceColor;
     }
 
     private FixedPoint2 GetThreshold(FixedPoint2 threshold, WoundableVisualsComponent comp)
