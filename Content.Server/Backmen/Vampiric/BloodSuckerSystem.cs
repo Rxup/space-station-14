@@ -346,6 +346,9 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         _doAfter.TryStartDoAfter(args);
     }
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float BasePoints = 1f;
+
     public bool TrySucc(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodsuckerComp = null, BloodstreamComponent? bloodstream = null)
     {
         // Is bloodsucker a bloodsucker?
@@ -403,12 +406,17 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
                 if (TryComp<BkmVampireComponent>(bloodsucker, out var bkmVampireComponent))
                 {
                     _leveling.AddCurrency((bloodsucker,bkmVampireComponent),
-
-                        (1 * (vpm.Tier + 1)) // 1 * (Тир + 1) * коэффицент
-
-                        * BloodPrice((bloodsucker,bkmVampireComponent), victim, unitsToDrain)
-
-                        , "укус");
+                        // Базовая формула с учётом баланса
+                        (
+                            BasePoints *                          // 1. Константа для настройки
+                            MathF.Pow(1.5f, vpm.Tier) *           // 2. Экспоненциальный рост от тира
+                            BloodPrice(                           // 3. Модификатор от "ценности" крови для вампира
+                                (bloodsucker, bkmVampireComponent),
+                                victim,
+                                unitsToDrain
+                            )
+                            // * VictimLevelMultiplier(victim) // тип крови жертвы
+                        ), "укус");
                     doNotify = false;
                 }
             }
@@ -443,31 +451,54 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         return true;
     }
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SuckFromBloodSucker = 0.75f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SuckFromNoneDna = 0.5f;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SuckDnaPenaltyFrom1 = 0.85f;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SuckDnaMaxPenalty = 0.2f;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SuckUnitDivisionCoef = 15f;
+    /// <summary>
+    /// Resolve multiplier
+    /// </summary>
     private float BloodPrice(Entity<BkmVampireComponent> vamp, EntityUid victim, float unitsToDrain)
     {
-        var pr = 1f;
+        float pr = 1f;
+
+        // Штраф за питьё у других вампиров (-75%)
         if (HasComp<BloodSuckerComponent>(victim))
         {
-            pr -= 0.6F;
+            pr -= SuckFromBloodSucker;
         }
 
+        // Штраф за отсутствие ДНК (-50% вместо -80%)
         if (!TryComp<DnaComponent>(victim, out var dnaComponent) || string.IsNullOrEmpty(dnaComponent.DNA))
         {
-            pr -= 0.8F;
+            pr -= SuckFromNoneDna;
         }
         else
         {
             vamp.Comp.DNA.TryAdd(dnaComponent.DNA, 0);
 
-            var blood = vamp.Comp.DNA[dnaComponent.DNA];
-            vamp.Comp.DNA[dnaComponent.DNA] += unitsToDrain;
+            // Новый расчёт: экспоненциальный штраф за каждые 5 единиц крови
+            float bloodDrained = vamp.Comp.DNA[dnaComponent.DNA].Float();
+            float dnaPenalty = MathF.Pow(SuckDnaPenaltyFrom1, bloodDrained / 5f); // Каждые 5 ед. -15%
+            pr *= dnaPenalty;
 
-            var factor = (float)Math.Pow(1 - 0.03, blood.Double());
-            pr -= 0.6F * (1 - factor);
+            // Обновляем счётчик ДНК
+            vamp.Comp.DNA[dnaComponent.DNA] += unitsToDrain;
         }
 
-        pr *= unitsToDrain / 20;
+        // Максимальный штраф за ДНК (не менее 20% от базового)
+        pr = Math.Max(pr, SuckDnaMaxPenalty);
 
-        return Math.Max(0F,pr);
+        // Учёт объёма крови
+        pr *= unitsToDrain / SuckUnitDivisionCoef;
+
+        return Math.Max(0f, pr);
     }
 }
