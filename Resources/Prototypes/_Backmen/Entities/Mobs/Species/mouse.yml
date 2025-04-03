@@ -1,6 +1,6 @@
 - type: entity
   name: оперативник мышь
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [ SimpleMobBase, StripableInventoryBase ]
   id: MobNyrMouseOps
   description: ЭТО ЯДЕРНАЯ МЫШЬ ОНА ПРИШЛА ЗА СЫРОМ!
   components:
@@ -18,7 +18,7 @@
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob
-    allowedEmotes: ['Squeak']
+    allowedEmotes: [ 'Squeak' ]
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -61,8 +61,8 @@
     visuals:
       enum.CreamPiedVisuals.Creamed:
         clownedon:
-          True: {visible: true}
-          False: {visible: false}
+          True: { visible: true }
+          False: { visible: false }
   - type: Puller
     needsHands: false
   - type: Hands
@@ -110,7 +110,7 @@
         type: StrippableBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-  - type: Respirator 
+  - type: Respirator
     minSaturation: 5.0
   - type: NoSlip
   - type: FlashImmunity
@@ -119,12 +119,18 @@
   - type: NightVision
     isToggle: true
     playSoundOn: false
-    
+
+- type: entity
+  parent: [ ClothingHeadsetAltSyndicate ]
+  id: ClothingHeadsetAltSyndicateMouseOps
+  components:
+  - type: Unremoveable
+
 - type: startingGear #Пусть здесь будет :/
   id: GearNyrMouseOps
   equipment:
     outerClothingpin: ClothingOuterHardsuitSyndieMouseOps
-    earspin: ClothingHeadsetAltSyndicate
+    earspin: ClothingHeadsetAltSyndicateMouseOps
     idmouse: AgentIDCard
-    glovespin: ClothingHandsGlovesCombatmous
-    backpin: ClothingBackpackDuffelSyndicateAmmoMouse
+    glovespin: ClothingHandsGlovesCombatMouseOps
+    backpin: ClothingBackpackDuffelSyndicateAmmoMouseOps

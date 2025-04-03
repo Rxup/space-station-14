@@ -1,14 +1,14 @@
 - type: entity
   parent: ClothingHandsGlovesCombat
-  id: ClothingHandsGlovesCombatmous
+  id: ClothingHandsGlovesCombatMouseOps
   name: мыфыные неснимайки!
   description: от мышей для мышей!
   components:
   - type: Unremoveable
-  
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
-  id: ClothingBackpackDuffelSyndicateAmmoMouse
+  id: ClothingBackpackDuffelSyndicateAmmoMouseOps
   name: мышкачная неснимайка!
   components:
   - type: Sprite
@@ -22,7 +22,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
-    
+
 - type: entity
   parent: ClothingOuterHardsuitSyndie
   id: ClothingOuterHardsuitSyndieMouseOps
