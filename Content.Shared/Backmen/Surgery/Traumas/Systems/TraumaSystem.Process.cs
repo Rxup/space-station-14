@@ -26,7 +26,7 @@ public partial class TraumaSystem
     {
         SubscribeLocalEvent<TraumaInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityPointChanged);
         SubscribeLocalEvent<TraumaInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
-        SubscribeLocalEvent<TraumaInflicterComponent, ComponentInit>(OnTraumaInflicterInit);
+        SubscribeLocalEvent<TraumaInflicterComponent, MapInitEvent>(OnTraumaInflicterInit);
 
         SubscribeLocalEvent<TraumaComponent, ComponentGetState>(OnComponentGet);
         SubscribeLocalEvent<TraumaComponent, ComponentHandleState>(OnComponentHandleState);
@@ -60,7 +60,7 @@ public partial class TraumaSystem
 
     private void OnTraumaInflicterInit(
         Entity<TraumaInflicterComponent> woundEnt,
-        ref ComponentInit args)
+        ref MapInitEvent args)
     {
         woundEnt.Comp.TraumaContainer = _container.EnsureContainer<Container>(woundEnt, TraumaContainerId);
     }
