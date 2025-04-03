@@ -399,6 +399,14 @@ public partial class SharedBodySystem
             _woundSystem.TryHaltAllBleeding(bodyPart.Id, woundable);
             _woundSystem.ForceHealWoundsOnWoundable(bodyPart.Id, out _);
         }
+
+        if (!_trauma.TryGetBodyTraumas(ent, out var traumas, bodyComp: body))
+            return;
+
+        foreach (var trauma in traumas)
+        {
+            _trauma.RemoveTrauma(trauma);
+        }
     }
     // backmen edit end
 

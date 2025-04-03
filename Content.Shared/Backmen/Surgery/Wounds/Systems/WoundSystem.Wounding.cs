@@ -28,7 +28,7 @@ public sealed partial class WoundSystem
 
     private void InitWounding()
     {
-        SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
+        SubscribeLocalEvent<WoundableComponent, ComponentStartup>(OnWoundableStartup);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -47,17 +47,17 @@ public sealed partial class WoundSystem
 
     #region Event Handling
 
-    private void OnWoundableInit(EntityUid uid, WoundableComponent comp, ComponentInit args)
+    private void OnWoundableStartup(EntityUid uid, WoundableComponent comp, ComponentStartup args)
     {
         // Set root to itself.
-        comp.RootWoundable = uid;
+        comp.RootWoundable ??= uid;
 
         // Create container for wounds.
         comp.Wounds = _container.EnsureContainer<Container>(uid, WoundContainerId);
         comp.Bone = _container.EnsureContainer<Container>(uid, BoneContainerId);
 
         // anomalous bone behaviour on client?? Might need fixes
-        if (_timing.IsFirstTimePredicted)
+        if (_timing.IsFirstTimePredicted && comp.Bone.Count == 0)
             InsertBoneIntoWoundable(uid, comp);
     }
 
@@ -67,7 +67,8 @@ public sealed partial class WoundSystem
             return;
 
         var parentWoundable = Comp<WoundableComponent>(comp.HoldingWoundable);
-        var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
+        if (!TryComp<WoundableComponent>(parentWoundable.RootWoundable, out var woundableRoot))
+            return;
 
         var ev = new WoundAddedEvent(comp, parentWoundable, woundableRoot);
         RaiseLocalEvent(uid, ref ev);
@@ -918,7 +919,8 @@ public sealed partial class WoundSystem
 
         FixWoundableRoots(childEntity, childWoundable);
 
-        var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
+        if (!TryComp<WoundableComponent>(parentWoundable.RootWoundable, out var woundableRoot))
+            return;
         var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
 
         RaiseLocalEvent(childEntity, ref woundableAttached, true);
@@ -954,7 +956,8 @@ public sealed partial class WoundSystem
 
         FixWoundableRoots(childEntity, childWoundable);
 
-        var oldWoundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
+        if (!TryComp<WoundableComponent>(parentWoundable.RootWoundable, out var oldWoundableRoot))
+            return;
         var woundableDetached = new WoundableDetachedEvent(parentEntity, parentWoundable);
 
         RaiseLocalEvent(childEntity, ref woundableDetached);
@@ -965,7 +968,7 @@ public sealed partial class WoundSystem
             RaiseLocalEvent(woundId, ref ev);
 
             var ev2 = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
-            RaiseLocalEvent(childWoundable.RootWoundable, ref ev2);
+            RaiseLocalEvent(childWoundable.RootWoundable.Value, ref ev2);
         }
 
         Dirty(childEntity, childWoundable);
