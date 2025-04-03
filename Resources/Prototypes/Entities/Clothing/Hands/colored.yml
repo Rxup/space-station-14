@@ -337,6 +337,10 @@
     spawned:
     - id: ClothingHandsGlovesFingerlessInsulated
   - type: Insulated
+  - type: Armor #Backmen-armorstun
+    modifiers:
+      coefficients:
+        Stun: 0.9
   - type: Fiber
     fiberMaterial: fibers-insulative
     fiberColor: fibers-yellow

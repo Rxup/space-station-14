@@ -87,7 +87,7 @@
     sprintModifier: 0.85
 
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: ClothingOuterArmorBulletproof
   id: ClothingOuterArmorBulletproofwhite
   name: бронежилет
   description: Тяжелый пуленепробиваемый жилет III типа, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
@@ -96,16 +96,6 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.4
-        ArmorPiercing: 0.8
-        Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.80
 
 - type: entity
   parent: ClothingOuterArmorBasic
@@ -122,7 +112,7 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.5
+        Piercing: 0.4
         ArmorPiercing: 0.9
         Heat: 0.8
 
@@ -141,8 +131,8 @@
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.5
-        ArmorPiercing: 0.9
+        Piercing: 0.4
+        ArmorPiercing: 0.8
         Heat: 0.8
 
 - type: entity
@@ -181,7 +171,7 @@
       coefficients:
         Blunt: 0.4
         Slash: 0.4
-        Piercing: 0.4
+        Piercing: 0.3
         ArmorPiercing: 0.6
         Heat: 0.5
   - type: ExplosionResistance
@@ -367,7 +357,7 @@
       coefficients:
         Blunt: 0.75
         Slash: 0.65
-        Piercing: 0.6
+        Piercing: 0.5
         ArmorPiercing: 0.8
         Radiation: 0.9
         Caustic: 0.9
