@@ -55,7 +55,6 @@
     state: "cultgolem_head"
   - type: BodyPart
     partType: Head
-    vital: true
   - type: Input
     context: "ghost"
   - type: Tag

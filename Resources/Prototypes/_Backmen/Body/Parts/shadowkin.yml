@@ -56,7 +56,6 @@
   - type: BodyPart
     partType: Head
     toolName: "a head"
-    vital: true
   - type: Input
     context: "ghost"
   - type: MovementSpeedModifier

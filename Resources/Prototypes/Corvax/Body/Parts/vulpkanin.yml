@@ -152,7 +152,6 @@
     state: "head_m"
   - type: BodyPart
     partType: Head
-    vital: true
     toolName: "a head" # Shitmed Change
   - type: Input
     context: "ghost"

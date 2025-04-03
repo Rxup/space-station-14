@@ -163,7 +163,6 @@
   - type: BodyPart
     partType: Head
     toolName: "a head" # backmen: surgery
-    vital: true
   - type: Input
     context: "ghost"
   # backmen edit start
