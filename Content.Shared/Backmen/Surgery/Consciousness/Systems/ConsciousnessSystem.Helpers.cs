@@ -52,7 +52,7 @@ public partial class ConsciousnessSystem
     /// <param name="mobState">MobStateComponent</param>
     public bool CheckConscious(EntityUid target, ConsciousnessComponent? consciousness = null, MobStateComponent? mobState = null)
     {
-        if (!Resolve(target, ref consciousness, ref mobState))
+        if (!Resolve(target, ref consciousness, ref mobState, false))
             return false;
 
         var shouldBeConscious =

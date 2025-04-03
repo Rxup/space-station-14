@@ -40,12 +40,12 @@ public partial class ConsciousnessSystem
             consciousness.NextConsciousnessUpdate = _timing.CurTime + consciousness.ConsciousnessUpdateTime;
 
             // thread damnation!!!
-            foreach (var modifier in consciousness.Modifiers.AsParallel().Where(modifier => modifier.Value.Time < _timing.CurTime))
+            foreach (var modifier in consciousness.Modifiers.Where(modifier => modifier.Value.Time < _timing.CurTime))
             {
                 RemoveConsciousnessModifier(ent, modifier.Key.Item1, modifier.Key.Item2, consciousness);
             }
 
-            foreach (var multiplier in consciousness.Multipliers.AsParallel().Where(multiplier => multiplier.Value.Time < _timing.CurTime))
+            foreach (var multiplier in consciousness.Multipliers.Where(multiplier => multiplier.Value.Time < _timing.CurTime))
             {
                 RemoveConsciousnessMultiplier(ent, multiplier.Key.Item1, multiplier.Key.Item2, consciousness);
             }

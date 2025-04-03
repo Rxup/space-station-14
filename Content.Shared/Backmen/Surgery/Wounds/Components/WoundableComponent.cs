@@ -20,7 +20,7 @@ public sealed partial class WoundableComponent : Component
     /// UID of the root woundable entity.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public EntityUid? RootWoundable;
+    public EntityUid RootWoundable;
 
     /// <summary>
     /// Set of UIDs representing child woundable entities.
@@ -109,11 +109,11 @@ public sealed partial class WoundableComponent : Component
     /// Container potentially holding wounds.
     /// </summary>
     [ViewVariables]
-    public Container? Wounds;
+    public Container Wounds;
 
     /// <summary>
     /// Container holding this woundables bone.
     /// </summary>
     [ViewVariables]
-    public Container? Bone;
+    public Container Bone;
 }
