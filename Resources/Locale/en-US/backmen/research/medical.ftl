@@ -1,5 +1,6 @@
 research-technology-medicine = Basic medicine
 research-technology-surgery = Basic surgery
+research-technology-surgery-advanced = Advanced surgery
 research-technology-chemistry = Basic chemistry
 research-technology-medical-defense = Medical Defense
 research-technology-crew-monitoring = Crew monitoring

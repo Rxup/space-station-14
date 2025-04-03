@@ -17,7 +17,7 @@
 
 - type: technology
   id: LethalAmmunition
-  name: next-research-technology-lethal-ammunition
+  name: research-technology-lethal-ammunition
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: slug
