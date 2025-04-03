@@ -53,14 +53,14 @@ public partial class TraumaSystem
                 nerveSys.Value,
                 bodyPart.Owner,
                 "OrganDamage",
-                totalIntegrityCap - totalIntegrity,
+                (totalIntegrityCap - totalIntegrity) / 2,
                 nerveSys.Value.Comp))
         {
             _pain.TryAddPainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
                 "OrganDamage",
-                totalIntegrityCap - totalIntegrity,
+                (totalIntegrityCap - totalIntegrity) / 2,
                 PainDamageTypes.TraumaticPain,
                 nerveSys.Value.Comp);
         }

@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class BleedInflicterComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
@@ -14,9 +14,6 @@ public sealed partial class BleedInflicterComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 BleedingAmountRaw = 0;
-
-    [DataField("canGrow"), ViewVariables(VVAccess.ReadOnly)]
-    public bool BleedingScales = true;
 
     // it's calculated when a wound is spawned.
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]

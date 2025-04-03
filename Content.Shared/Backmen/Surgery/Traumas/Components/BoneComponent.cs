@@ -11,10 +11,10 @@ public sealed partial class BoneComponent : Component
     public EntityUid? BoneWoundable;
 
     [DataField, AutoNetworkedField, ViewVariables]
-    public FixedPoint2 IntegrityCap = 40;
+    public FixedPoint2 IntegrityCap = 60f;
 
     [DataField, AutoNetworkedField, ViewVariables]
-    public FixedPoint2 BoneIntegrity = 40;
+    public FixedPoint2 BoneIntegrity = 60f;
 
     [DataField, AutoNetworkedField, ViewVariables]
     public BoneSeverity BoneSeverity = BoneSeverity.Normal;

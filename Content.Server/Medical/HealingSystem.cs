@@ -468,7 +468,7 @@ public sealed class HealingSystem : EntitySystem
             percentDamage = (float) (damageable.TotalDamage / amount);
         else if (TryComp<ConsciousnessComponent>(uid, out var consciousness))
         {
-            percentDamage = (float) (consciousness.Threshold / consciousness.Cap - consciousness.Consciousness);
+            percentDamage = (float) (consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness));
         }
 
         //basically make it scale from 1 to the multiplier.

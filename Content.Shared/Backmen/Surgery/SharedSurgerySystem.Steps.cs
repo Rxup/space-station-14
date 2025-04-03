@@ -57,6 +57,7 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryAddMarkingStepComponent>(OnAddMarkingStep, OnAddMarkingCheck);
         SubSurgery<SurgeryRemoveMarkingStepComponent>(OnRemoveMarkingStep, OnRemoveMarkingCheck);
         SubSurgery<SurgeryTraumaTreatmentStepComponent>(OnTraumaTreatmentStep, OnTraumaTreatmentCheck);
+        SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
@@ -268,7 +269,7 @@ public abstract partial class SharedSurgerySystem
     {
         var group = ent.Comp.MainGroup == "Brute" ? BruteDamageTypes : BurnDamageTypes;
 
-        if (!HasDamageGroup(args.Part, ent.Comp.MainGroup, out _)) // This shouldnt be possible but the compiler doesn't shut up.
+        if (!HasDamageGroup(args.Part, ent.Comp.MainGroup, out _))
             return;
 
         // Right now the bonus is based off the body's total damage, maybe we could make it based off each part in the future.
@@ -642,6 +643,17 @@ public abstract partial class SharedSurgerySystem
 
                 _trauma.ApplyDamageToBone(bone.Value, -healAmount, boneComp);
                 break;
+
+            case TraumaType.Dismemberment:
+                if (_trauma.TryGetWoundableTrauma(args.Part, out var traumas, TraumaType.Dismemberment))
+                {
+                    foreach (var trauma in traumas)
+                    {
+                        // yeah, that simple
+                        _trauma.RemoveTrauma(trauma);
+                    }
+                }
+                break;
         }
     }
 
@@ -649,6 +661,42 @@ public abstract partial class SharedSurgerySystem
     {
         if (_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType))
             args.Cancelled = true;
+    }
+
+    private void OnBleedsTreatmentStep(Entity<SurgeryBleedsTreatmentStepComponent> ent, ref SurgeryStepEvent args)
+    {
+        var healAmount = ent.Comp.Amount;
+        foreach (var woundEnt in _wounds.GetWoundableWounds(args.Part))
+        {
+            if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleeds))
+                continue;
+
+            if (bleeds.Scaling > healAmount)
+            {
+                bleeds.Scaling -= healAmount;
+            }
+            else
+            {
+                bleeds.BleedingAmountRaw = 0;
+                bleeds.Scaling = 0;
+
+                bleeds.IsBleeding = false; // Won't bleed as long as it's not reopened
+
+                healAmount -= bleeds.Scaling;
+            }
+        }
+    }
+
+    private void OnBleedsTreatmentCheck(Entity<SurgeryBleedsTreatmentStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
+    {
+        foreach (var woundEnt in _wounds.GetWoundableWounds(args.Part))
+        {
+            if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleedsInflicter) || !bleedsInflicter.IsBleeding)
+                continue;
+
+            args.Cancelled = true;
+            break;
+        }
     }
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)

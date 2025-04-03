@@ -23,9 +23,26 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepClampBleeders
     - SurgeryStepCloseBloodOutputs
+    - SurgeryStepClampBleeders
+  - type: SurgeryBleedsPresentCondition
   - type: SurgeryPartPresentCondition
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryFixDismemberment
+  name: Fix Dismemberment Leftovers
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryStopBloodOutput
+    steps:
+    - SurgeryStepRemoveSeveredSkin
+    - SurgeryStepRemoveLeftoverBones
+    - SurgeryStepSealDismembermentWound
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryTraumaPresentCondition
+    trauma: Dismemberment
 
 - type: entity
   parent: SurgeryBase
@@ -114,7 +131,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -131,7 +148,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -149,7 +166,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -167,7 +184,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -185,7 +202,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -203,7 +220,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -222,7 +239,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -241,7 +258,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
@@ -260,7 +277,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenIncision
+    requirement: SurgeryFixDismemberment
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds

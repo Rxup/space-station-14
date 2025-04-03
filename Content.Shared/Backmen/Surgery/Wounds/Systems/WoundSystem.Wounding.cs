@@ -94,14 +94,11 @@ public sealed partial class WoundSystem
 
         wound.HoldingWoundable = EntityUid.Invalid;
 
-        var ev = new WoundRemovedEvent(args.Entity, wound, oldParentWoundable, oldWoundableRoot);
-        RaiseLocalEvent(args.Entity, ref ev);
-
-        var ev2 = new WoundRemovedEvent(args.Entity, wound, oldParentWoundable, oldWoundableRoot);
+        var ev2 = new WoundRemovedEvent(wound, oldParentWoundable, oldWoundableRoot);
         RaiseLocalEvent(wound.HoldingWoundable, ref ev2);
 
         if (!TerminatingOrDeleted(woundableEntity))
-            Del(woundableEntity);
+            QueueDel(woundableEntity);
     }
 
     private void OnWoundableInserted(EntityUid parentEntity, WoundableComponent parentWoundable, EntInsertedIntoContainerMessage args)
@@ -209,7 +206,7 @@ public sealed partial class WoundSystem
             return;
 
         TryMakeScar(woundComponent);
-        RemoveWound(wound);
+        RemoveWound(wound, woundComponent);
     }
 
     #endregion
@@ -576,14 +573,13 @@ public sealed partial class WoundSystem
     /// <param name="woundableComp">Woundable component of woundableEntity.</param>
     public void DestroyWoundable(EntityUid parentWoundableEntity, EntityUid woundableEntity, WoundableComponent woundableComp)
     {
-        if (_timing.ApplyingState)
-            return;
-
         var bodyPart = Comp<BodyPartComponent>(woundableEntity);
         if (bodyPart.Body == null)
         {
-            QueueDel(woundableEntity);
             DropWoundableOrgans(woundableEntity, woundableComp);
+            if (_net.IsServer)
+                QueueDel(woundableEntity);
+
             // TODO: Some cool effect when the limb gets destroyed
         }
         else
@@ -612,6 +608,26 @@ public sealed partial class WoundSystem
             foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
             {
                 TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
+            }
+
+            // Sliiightly hardcoded but oh well; What won't you do for the funny effects?
+            if (!TryContinueWound(parentWoundableEntity, "Blunt", 15f))
+            {
+                TryCreateWound(parentWoundableEntity, "Blunt", 15f, "Brute");
+            }
+
+            foreach (var wound in GetWoundableWounds(parentWoundableEntity))
+            {
+                if (MetaData(wound.Owner).EntityPrototype!.ID != "Blunt")
+                    continue;
+
+                _trauma.AddTrauma(
+                    parentWoundableEntity,
+                    (parentWoundableEntity, Comp<WoundableComponent>(parentWoundableEntity)),
+                    (wound.Owner, EnsureComp<TraumaInflicterComponent>(wound.Owner)),
+                    TraumaType.Dismemberment,
+                    15f);
+                break;
             }
 
             foreach (var wound in GetWoundableWounds(parentWoundableEntity))
@@ -829,7 +845,7 @@ public sealed partial class WoundSystem
         component.WoundableIntegrity = newIntegrity;
         Dirty(uid, component);
 
-        var ev = new WoundableIntegrityChangedEvent(uid, component.WoundableIntegrity);
+        var ev = new WoundableIntegrityChangedEvent(component.WoundableIntegrity);
         RaiseLocalEvent(uid, ref ev);
     }
 
@@ -871,7 +887,10 @@ public sealed partial class WoundSystem
 
     private bool RemoveWound(EntityUid woundEntity, WoundComponent? wound = null)
     {
-        if (!Resolve(woundEntity, ref wound, false)
+        if (_timing.ApplyingState)
+            return false;
+
+        if (!Resolve(woundEntity, ref wound)
             || !TryComp(wound.HoldingWoundable, out WoundableComponent? woundable)
             || woundable.Wounds == null)
             return false;
@@ -881,9 +900,10 @@ public sealed partial class WoundSystem
         UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
         CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);
 
-        Dirty(wound.HoldingWoundable, woundable);
+        if (_net.IsServer)
+            _container.Remove(woundEntity, woundable.Wounds!, false, true);
 
-        return _container.Remove(woundEntity, woundable.Wounds);
+        return true;
     }
 
     protected void InternalAddWoundableToParent(
@@ -937,15 +957,15 @@ public sealed partial class WoundSystem
         var oldWoundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
         var woundableDetached = new WoundableDetachedEvent(parentEntity, parentWoundable);
 
-        RaiseLocalEvent(childEntity, ref woundableDetached, true);
+        RaiseLocalEvent(childEntity, ref woundableDetached);
 
         foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
         {
-            var ev = new WoundRemovedEvent(woundId, wound, childWoundable, oldWoundableRoot);
+            var ev = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
             RaiseLocalEvent(woundId, ref ev);
 
-            var ev2 = new WoundRemovedEvent(woundId, wound, childWoundable, oldWoundableRoot);
-            RaiseLocalEvent(childWoundable.RootWoundable, ref ev2, true);
+            var ev2 = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
+            RaiseLocalEvent(childWoundable.RootWoundable, ref ev2);
         }
 
         Dirty(childEntity, childWoundable);
@@ -985,8 +1005,8 @@ public sealed partial class WoundSystem
 
         if (nearestSeverity != component.WoundSeverity)
         {
-            var ev = new WoundSeverityChangedEvent(wound, nearestSeverity);
-            RaiseLocalEvent(wound, ref ev, true);
+            var ev = new WoundSeverityChangedEvent(nearestSeverity);
+            RaiseLocalEvent(wound, ref ev);
         }
         component.WoundSeverity = nearestSeverity;
 
@@ -1023,7 +1043,7 @@ public sealed partial class WoundSystem
 
         if (nearestSeverity != component.WoundableSeverity)
         {
-            var ev = new WoundableSeverityChangedEvent(woundable, nearestSeverity);
+            var ev = new WoundableSeverityChangedEvent(nearestSeverity);
             RaiseLocalEvent(woundable, ref ev, true);
         }
         component.WoundableSeverity = nearestSeverity;

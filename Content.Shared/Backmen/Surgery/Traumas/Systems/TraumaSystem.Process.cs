@@ -338,12 +338,6 @@ public partial class TraumaSystem
             0,
             1);
 
-        // Some examples of how this works:
-        // 81 / (81 + 20) * 0.1 (Moderate) = 0.08. Or 8%:
-        // 57 / (57 + 12) * 0.5 (Severe) = 0.41~. Or 41%;
-        // 57 / (57 + 0) * 0.5 (Severe) = 0.5. Or 50%;
-        // Yeah lol having your bone already messed up makes the chance of it damaging again higher
-
         return _random.Prob((float) chance);
     }
 
@@ -372,7 +366,7 @@ public partial class TraumaSystem
         // literally dismemberment chance, but lower by default
         var chance =
             FixedPoint2.Clamp(
-                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 12
+                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 20
                 - deduction + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage],
                 0,
                 1);
@@ -467,7 +461,7 @@ public partial class TraumaSystem
 
     #region Private API
 
-    private EntityUid AddTrauma(
+    public EntityUid AddTrauma(
         EntityUid target,
         Entity<WoundableComponent> holdingWoundable,
         Entity<TraumaInflicterComponent> inflicter,
@@ -508,7 +502,7 @@ public partial class TraumaSystem
         return traumaEnt;
     }
 
-    private void RemoveTrauma(
+    public void RemoveTrauma(
         Entity<TraumaComponent> trauma)
     {
         if (!_container.TryGetContainingContainer((trauma.Owner, Transform(trauma.Owner), MetaData(trauma.Owner)), out var traumaContainer))
@@ -520,7 +514,7 @@ public partial class TraumaSystem
         RemoveTrauma(trauma, (traumaContainer.Owner, traumaInflicter));
     }
 
-    private void RemoveTrauma(
+    public void RemoveTrauma(
         Entity<TraumaComponent> trauma,
         Entity<TraumaInflicterComponent> inflicterWound)
     {
@@ -598,7 +592,7 @@ public partial class TraumaSystem
                             nerveSys.Value.Owner,
                                 target.Owner,
                                 "BoneDamage",
-                                severity * 1.4f,
+                                severity / 1.4f,
                                 PainDamageTypes.TraumaticPain,
                                 nerveSys.Value.Comp);
                     }
@@ -646,7 +640,28 @@ public partial class TraumaSystem
 
                 case TraumaType.Dismemberment:
                     if (!_wound.IsWoundableRoot(target))
+                    {
+                        if (!_wound.TryContinueWound(targetChosen.Value, "Blunt", 10f))
+                        {
+                            _wound.TryCreateWound(targetChosen.Value, "Blunt", 10f, "Brute");
+                        }
+
+                        foreach (var woundEnt in _wound.GetWoundableWounds(targetChosen.Value))
+                        {
+                            if (MetaData(woundEnt).EntityPrototype!.ID != "Blunt")
+                                continue;
+
+                            // Stored in the parent woundable because if the child one gets destroyed it is over
+                            AddTrauma(
+                                targetChosen.Value,
+                                (targetChosen.Value, Comp<WoundableComponent>(targetChosen.Value)),
+                                (woundEnt, EnsureComp<TraumaInflicterComponent>(woundEnt)),
+                                TraumaType.Dismemberment,
+                                severity);
+                        }
+
                         _wound.AmputateWoundable(targetChosen.Value, target, target);
+                    }
 
                     break;
             }

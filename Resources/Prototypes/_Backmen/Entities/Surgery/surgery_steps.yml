@@ -35,13 +35,30 @@
   - type: SurgeryStep
     tool:
     - type: Hemostat
-    add:
-    - type: BleedersClamped
-    duration: 2
+    duration: 4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
-  - type: RepeatableStep
+  - type: SurgeryRepeatableStep
+  - type: SurgeryBleedsTreatmentStep
+    amount: 2
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCloseBloodOutputs
+  name: Stitch up destroyed tissues
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Stitches
+    add:
+    - type: BleedersClamped
+    duration: 5
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/stitches.rsi
+    state: stitches
+  - type: SurgeryStepEmoteEffect
 
 - type: entity
   parent: SurgeryStepBase
@@ -61,6 +78,23 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepRemoveSeveredSkin
+  name: Remove the dead skin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Scalpel
+    add:
+    - type: BodyPartSawed
+    duration: 4
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: SurgeryStepEmoteEffect
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepSawBones
   name: Saw through bones
   categories: [ HideSpawnMenu ]
@@ -75,6 +109,22 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
     state: circular-saw
   - type: SurgeryStepEmoteEffect
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveLeftoverBones
+  name: Clear up bone leftovers
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: BoneSaw
+    add:
+    - type: RibcageOpen
+    duration: 5
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
+    state: circular-saw
 
 - type: entity
   parent: SurgeryStepBase
@@ -410,6 +460,25 @@
       types:
         Heat: -5
     sleepModifier: 2
+  - type: SurgeryStepEmoteEffect
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSealDismembermentWound
+  name: Stitch up the dismemberment wound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Stitches
+    remove:
+    - type: IncisionOpen
+    duration: 8
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/stitches.rsi
+    state: stitches
+  - type: SurgeryTraumaTreatmentStep
+    traumaType: Dismemberment
   - type: SurgeryStepEmoteEffect
 
 # Cavity Implanting

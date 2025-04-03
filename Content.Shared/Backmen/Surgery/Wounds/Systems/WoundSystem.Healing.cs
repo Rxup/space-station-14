@@ -73,7 +73,6 @@ public partial class WoundSystem
             if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
                 continue;
 
-            bleeds.BleedingScales = false;
             bleeds.IsBleeding = false;
         }
 
@@ -97,7 +96,7 @@ public partial class WoundSystem
         foreach (var wound in woundsToHeal)
         {
             healed += wound.Comp.WoundSeverityPoint;
-            RemoveWound(wound);
+            RemoveWound(wound, wound);
         }
 
         UpdateWoundableIntegrity(woundable, component);

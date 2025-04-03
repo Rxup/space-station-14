@@ -77,7 +77,7 @@ public record struct WoundAddedEvent(WoundComponent Component, WoundableComponen
 public record struct WoundAddedOnBodyEvent(EntityUid WoundEntity, WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
 
 [ByRefEvent]
-public record struct WoundRemovedEvent(EntityUid WoundEntity, WoundComponent Component, WoundableComponent OldWoundable, WoundableComponent OldRootWoundable);
+public record struct WoundRemovedEvent(WoundComponent Component, WoundableComponent OldWoundable, WoundableComponent OldRootWoundable);
 
 [ByRefEvent]
 public record struct WoundableAttachedEvent(EntityUid ParentWoundableEntity, WoundableComponent Component);
@@ -92,13 +92,13 @@ public record struct WoundSeverityPointChangedEvent(WoundComponent Component, Fi
 public record struct WoundSeverityPointChangedOnBodyEvent(EntityUid WoundEntity, WoundComponent Component, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
 
 [ByRefEvent]
-public record struct WoundSeverityChangedEvent(EntityUid WoundEntity, WoundSeverity NewSeverity);
+public record struct WoundSeverityChangedEvent(WoundSeverity NewSeverity);
 
 [ByRefEvent]
-public record struct WoundableIntegrityChangedEvent(EntityUid Woundable, FixedPoint2 CurrentIntegrity);
+public record struct WoundableIntegrityChangedEvent(FixedPoint2 CurrentIntegrity);
 
 [ByRefEvent]
-public record struct WoundableSeverityChangedEvent(EntityUid Woundable, WoundableSeverity NewSeverity);
+public record struct WoundableSeverityChangedEvent(WoundableSeverity NewSeverity);
 
 [ByRefEvent]
 public record struct WoundHealAttemptEvent(Entity<WoundableComponent> Woundable, bool Cancelled = false);

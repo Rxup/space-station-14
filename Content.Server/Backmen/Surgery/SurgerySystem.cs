@@ -105,8 +105,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
         {
             foreach (var (type, amount) in damage.DamageDict.ToList())
             {
-                // TODO: We'd want to make stopping bleeds a surgery step, or a separate surgery.. But for now, just for sake of my sanity we do this.
-                // TODO: Also the scar treating surgery too, fuck. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
+                // TODO: the scar treating surgery. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
                 _wounds.TryHaltAllBleeding(part, force: true);
                 _wounds.TryHealWoundsOnWoundable(part, -amount, out _, damageGroup: GetDamageGroupByType(type));
             }
