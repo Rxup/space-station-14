@@ -184,6 +184,7 @@
       - PosterLegitSafetyMothHardhat
       - PosterLegitSafetyMothSSD
       - PosterLegitOppenhopper
+      - PosterLegitTyrone
     chance: 0.99 # Сorvax-Next-EDIT
       # Сorvax-Next-START
     rarePrototypes:
