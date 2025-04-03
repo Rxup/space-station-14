@@ -10,7 +10,7 @@
       organs:
         lungs: OrganSpaceAnimalLungs # Immunity to airloss
         heart: OrganSpaceAnimalHeart # Immunity to cold
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinAnimal
       connections:
       - tail

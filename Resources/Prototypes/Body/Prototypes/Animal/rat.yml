@@ -10,7 +10,7 @@
       organs:
         lungs: OrganRatLungs
         heart: OrganAnimalHeart
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinAnimal
       connections:
       - legs

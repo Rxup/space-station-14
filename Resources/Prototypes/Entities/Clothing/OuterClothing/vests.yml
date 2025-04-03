@@ -10,7 +10,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Chest
     - Groin
     - Arm
@@ -39,7 +39,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Chest
     - Groin
     modifiers:

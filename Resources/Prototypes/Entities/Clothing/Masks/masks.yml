@@ -35,7 +35,7 @@
   - type: Clothing
     sprite: Clothing/Mask/gassecurity.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -57,7 +57,7 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -79,7 +79,7 @@
   - type: Clothing
     sprite: Clothing/Mask/gasatmos.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -122,7 +122,7 @@
   - type: Clothing
     sprite: Clothing/Mask/gasexplorer.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -165,7 +165,7 @@
   - type: Clothing
     sprite: Clothing/Mask/medicalsecurity.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -259,7 +259,7 @@
   - type: Clothing
     sprite: Clothing/Mask/clown_security.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -398,7 +398,7 @@
     - Snout
     hideOnToggle: true
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -418,7 +418,7 @@
   - type: Clothing
     sprite: Clothing/Mask/merc.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -448,7 +448,7 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -470,7 +470,7 @@
   - type: Clothing
     sprite: Clothing/Mask/squadron.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:

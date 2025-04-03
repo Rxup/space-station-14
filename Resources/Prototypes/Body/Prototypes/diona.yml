@@ -17,7 +17,7 @@
       - left arm
       organs:
         lungs: OrganDionaLungsNymph
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinDiona
       connections:
       - right leg

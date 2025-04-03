@@ -30,7 +30,7 @@
     HeadSide: MobShadowkinAnyMarkingFollowSkin
     Tail: MobShadowkinAnyMarkingFollowSkin
     Chest: MobShadowkinChest
-    Groin: MobShadowkinGroin
+    Groin: MobShadowkinGroin # Backmen edit: chest, groin separation
     Eyes: MobShadowkinEyes
     LArm: MobShadowkinLArm
     RArm: MobShadowkinRArm

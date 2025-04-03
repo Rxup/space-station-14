@@ -20,7 +20,7 @@
       organs:
         heart: OrganAnimalHeart
         lungs: OrganAnimalLungs
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinMonkey
       connections:
       - right leg

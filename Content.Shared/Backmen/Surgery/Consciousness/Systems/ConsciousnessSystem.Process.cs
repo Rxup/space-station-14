@@ -5,6 +5,7 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
@@ -24,7 +25,7 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
 
-        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
+        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit, after: [typeof(MobStateSystem)]); // whoops
     }
 
     private const string NerveSystemIdentifier = "nerveSystem";
@@ -34,15 +35,17 @@ public partial class ConsciousnessSystem
         var query = EntityQueryEnumerator<ConsciousnessComponent>();
         while (query.MoveNext(out var ent, out var consciousness))
         {
-            if (consciousness.ForceDead)
+            if (consciousness.ForceDead || _timing.CurTime < consciousness.NextConsciousnessUpdate)
                 continue;
+            consciousness.NextConsciousnessUpdate = _timing.CurTime + consciousness.ConsciousnessUpdateTime;
 
-            foreach (var modifier in consciousness.Modifiers.Where(modifier => modifier.Value.Time < _timing.CurTime))
+            // thread damnation!!!
+            foreach (var modifier in consciousness.Modifiers.AsParallel().Where(modifier => modifier.Value.Time < _timing.CurTime))
             {
                 RemoveConsciousnessModifier(ent, modifier.Key.Item1, modifier.Key.Item2, consciousness);
             }
 
-            foreach (var multiplier in consciousness.Multipliers.Where(multiplier => multiplier.Value.Time < _timing.CurTime))
+            foreach (var multiplier in consciousness.Multipliers.AsParallel().Where(multiplier => multiplier.Value.Time < _timing.CurTime))
             {
                 RemoveConsciousnessMultiplier(ent, multiplier.Key.Item1, multiplier.Key.Item2, consciousness);
             }

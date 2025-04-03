@@ -16,7 +16,7 @@
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
     Chest: MobSlimeChest
-    Groin: MobSlimeGroin
+    Groin: MobSlimeGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking # Corvax Sponsors

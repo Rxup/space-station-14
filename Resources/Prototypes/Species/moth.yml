@@ -19,7 +19,7 @@
     Head: MobMothHead
     Snout: MobHumanoidAnyMarking
     Chest: MobMothChest
-    Groin: MobMothGroin
+    Groin: MobMothGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking

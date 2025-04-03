@@ -28,8 +28,7 @@ public sealed partial class BurnBodyBehavior : IThresholdBehavior
 
         if (system.EntityManager.TryGetComponent<BodyPartComponent>(bodyId, out var bodyPart))
         {
-            if (bodyPart.CanSever
-                && system.BodySystem.BurnPart(bodyId, bodyPart))
+            if (system.BodySystem.BurnPart(bodyId, bodyPart))
                 sharedPopupSystem.PopupCoordinates(Loc.GetString("bodyburn-text-others", ("name", bodyId)), transformSystem.GetMoverCoordinates(bodyId), PopupType.LargeCaution);
         }
         else

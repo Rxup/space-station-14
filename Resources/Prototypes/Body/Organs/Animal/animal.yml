@@ -4,6 +4,7 @@
   abstract: true
   components:
   - type: Organ
+    # backmen edit
     intCap: 13
     integrity: 13
     integrityThresholds:
@@ -50,6 +51,7 @@
   - type: Organ
     slotId: lungs
     intCap: 17 # animal lungs are less tuff than human's one
+    # backmen edit
     integrity: 17
     integrityThresholds:
       Normal: 17
@@ -88,6 +90,7 @@
     state: stomach
   - type: Organ
     slotId: stomach
+    # backmen edit
     intCap: 28
     integrity: 28
     integrityThresholds:
@@ -138,6 +141,7 @@
     state: liver
   - type: Organ
     slotId: liver
+    # backmen edit
     intCap: 17
     integrity: 17
     integrityThresholds:
@@ -170,6 +174,7 @@
     state: heart-on
   - type: Organ
     slotId: heart # Shitmed
+    # backmen edit
     intCap: 14
     integrity: 14
     integrityThresholds:
@@ -204,6 +209,7 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
+    # backmen edit
     intCap: 17
     integrity: 17
     integrityThresholds:
@@ -228,6 +234,7 @@
   - type: Sprite
     state: brain
   - type: Organ
+    # backmen edit
     slotId: brain # backmen: surgery
     intCap: 28
     integrity: 28

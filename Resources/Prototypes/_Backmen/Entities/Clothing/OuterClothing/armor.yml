@@ -2,13 +2,21 @@
   parent: ClothingOuterBaseLarge
   id: ClothingOuterArmorCrusader
   name: Crusader Armor
-  description: An armored vest with heavy padding to protect against melee attacks, perfect for fighting delinquents around the station.
+  description: An armored vest with heavy padding to protect against melee attacks, perfect for fighting delinquents around the station. For the Golden Empire!
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -32,6 +40,11 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -54,6 +67,14 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -78,6 +99,12 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -97,6 +124,12 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -118,6 +151,11 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/navy.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -137,6 +175,12 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -156,6 +200,12 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -177,6 +227,13 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -203,6 +260,14 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.2
@@ -252,6 +317,12 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -275,6 +346,14 @@
   - type: Clothing
     sprite: Backmen/Changeling/ling_armor.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -303,6 +382,12 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.55
@@ -318,7 +403,7 @@
   id: ClothingOuterArmorInteQDarkTemplar
   name: dark crusader armor
   suffix: InteQ
-  description: Anti-eretic armor.
+  description: Anti-heretic armour.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
@@ -330,6 +415,14 @@
     containers:
       toggleable-clothing: !type:ContainerSlot
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -363,6 +456,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.75

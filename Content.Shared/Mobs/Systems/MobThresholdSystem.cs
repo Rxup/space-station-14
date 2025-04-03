@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
@@ -19,9 +20,10 @@ public sealed class MobThresholdSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
 
+    // backmen edit start
     [Dependency] private readonly INetManager _net = default!;
-
     [Dependency] private readonly WoundSystem _wound = default!;
+    // backmen edit end
 
     public override void Initialize()
     {
@@ -31,7 +33,7 @@ public sealed class MobThresholdSystem : EntitySystem
         SubscribeLocalEvent<MobThresholdsComponent, ComponentShutdown>(MobThresholdShutdown);
         SubscribeLocalEvent<MobThresholdsComponent, ComponentStartup>(MobThresholdStartup);
         SubscribeLocalEvent<MobThresholdsComponent, DamageChangedEvent>(OnDamaged);
-        SubscribeLocalEvent<MobThresholdsComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundableDamage);
+        SubscribeLocalEvent<MobThresholdsComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundableDamage); // backmen edit
         SubscribeLocalEvent<MobThresholdsComponent, UpdateMobStateEvent>(OnUpdateMobState);
         SubscribeLocalEvent<MobThresholdsComponent, MobStateChangedEvent>(OnThresholdsMobState);
     }
@@ -327,6 +329,7 @@ public sealed class MobThresholdSystem : EntitySystem
             CheckThresholds(target, mobState, threshold, damageable);
         if (_net.IsServer)
         {
+            // backmen edit
             RaiseNetworkEvent(new MobThresholdChecked(GetNetEntity(target)), target);
         }
 
@@ -405,23 +408,23 @@ public sealed class MobThresholdSystem : EntitySystem
 
         if (alertPrototype.SupportsSeverity)
         {
+            // backmen edit start
             var totalDamage = (FixedPoint2) 0;
-            switch (body)
+            if (damageable != null && !HasComp<ConsciousnessComponent>(target))
             {
-                case null when damageable != null:
-                    totalDamage = damageable.TotalDamage;
-                    break;
-
-                case { RootContainer.ContainedEntity: not null }:
+                totalDamage = damageable.TotalDamage;
+            }
+            else
+            {
+                if (body is { RootContainer.ContainedEntity: not null })
                 {
                     foreach (var (_, wound) in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
                     {
                         totalDamage += wound.WoundSeverityPoint;
                     }
-
-                    break;
                 }
             }
+            // backmen edit end
 
             var severity = _alerts.GetMinSeverity(currentAlert);
 

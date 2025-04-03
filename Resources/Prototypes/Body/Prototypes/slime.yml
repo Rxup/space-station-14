@@ -16,7 +16,7 @@
       organs:
         core: SentientSlimeCore
         lungs: OrganSlimeLungs
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinHuman
       connections:
       - right leg

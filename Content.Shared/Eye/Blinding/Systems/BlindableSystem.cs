@@ -14,7 +14,7 @@ public sealed class BlindableSystem : EntitySystem
     [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
     [Dependency] private readonly EyeClosingSystem _eyelids = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!; // backmen edit
     public override void Initialize()
     {
         base.Initialize();
@@ -70,6 +70,7 @@ public sealed class BlindableSystem : EntitySystem
         blindable.Comp.EyeDamage += amount;
         UpdateEyeDamage(blindable, true);
 
+        // backmen edit start
         // If the entity has eye organs, then we also damage those.
         if (!TryComp(blindable, out BodyComponent? body)
             || !_body.TryGetBodyOrganEntityComps<EyesComponent>((blindable, body), out var eyes))
@@ -78,8 +79,10 @@ public sealed class BlindableSystem : EntitySystem
         foreach (var eye in eyes)
             // for now
             _trauma.TryCreateOrganDamageModifier(eye.Owner, amount, blindable.Owner, "BlindableDamage", eye.Comp2);
+        // backmen edit end
     }
 
+    // backmen edit start
     // Alternative version of the method intended to be used with Eye Organs, so that you can just pass in
     // the severity and set that.
     public void SetEyeDamage(Entity<BlindableComponent?> blindable, int amount)
@@ -90,6 +93,7 @@ public sealed class BlindableSystem : EntitySystem
         blindable.Comp.EyeDamage = amount;
         UpdateEyeDamage(blindable, true);
     }
+    // backmen edit end
 
     private void UpdateEyeDamage(Entity<BlindableComponent?> blindable, bool isDamageChanged)
     {

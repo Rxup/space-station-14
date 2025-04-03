@@ -21,7 +21,7 @@
     Head: MobArachnidHead
     Snout: MobHumanoidAnyMarking
     Chest: MobArachnidChest
-    Groin: MobArachnidGroin
+    Groin: MobArachnidGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking

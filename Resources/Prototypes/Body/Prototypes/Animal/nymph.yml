@@ -11,7 +11,7 @@
         brain: OrganDionaBrain
         lungs: OrganAnimalLungs
         heart: OrganAnimalHeart
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinAnimal
       connections:
       - legs
@@ -38,7 +38,7 @@
       organs:
         lungs: OrganDionaLungs
         heart: OrganAnimalHeart
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinAnimal
       connections:
       - legs
@@ -65,7 +65,7 @@
       organs:
         lungs: OrganAnimalLungs
         heart: OrganAnimalHeart
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinAnimal
       connections:
       - legs

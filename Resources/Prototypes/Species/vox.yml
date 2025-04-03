@@ -22,7 +22,7 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Chest: MobVoxChest
-    Groin: MobVoxGroin
+    Groin: MobVoxGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Eyes: MobVoxEyes

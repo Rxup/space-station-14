@@ -787,7 +787,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/melon.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -804,7 +804,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: -1 # -(-1) = 1; AKA, 100% chance to gib someone's head

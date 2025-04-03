@@ -91,7 +91,7 @@
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:

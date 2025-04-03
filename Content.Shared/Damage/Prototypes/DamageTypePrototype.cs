@@ -20,6 +20,7 @@ namespace Content.Shared.Damage.Prototypes
 
         /// <summary>
         /// Wounds with the said damage type will be having this multiplier
+        /// Backmen edit
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public FixedPoint2 WoundHealingMultiplier { get; set; } = 1;

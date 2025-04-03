@@ -15,7 +15,7 @@
     Special: MobKoboldAnyMarking
     Head: MobKoboldHead
     Chest: MobKoboldChest
-    Groin: MobKoboldGroin
+    Groin: MobKoboldGroin # Backmen edit: chest, groin separation
     Tail: MobKoboldTail
     Eyes: MobKoboldEyes
     HeadTop: MobKoboldHorns

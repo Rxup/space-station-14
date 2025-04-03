@@ -21,7 +21,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Chest: MobDionaChest
-    Groin: MobDionaGroin
+    Groin: MobDionaGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Eyes: MobDionaEyes

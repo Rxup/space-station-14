@@ -13,7 +13,7 @@
       - groin
       - right arm
       - left arm
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinSkeleton
       connections:
       - right leg

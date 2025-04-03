@@ -19,7 +19,7 @@
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinReptilian
       connections:
       - right leg

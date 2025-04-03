@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Body.Organ;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBodySystem), typeof(TraumaSystem))]
+[Access(typeof(SharedBodySystem), typeof(TraumaSystem))] // backmen edit: trauma system
 public sealed partial class OrganComponent : Component, ISurgeryToolComponent
 {
     /// <summary>
@@ -26,6 +26,7 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     [DataField]
     public EntityUid? OriginalBody;
 
+    // backmen edit start
     /// <summary>
     ///     Maximal organ integrity, do keep in mind that Organs are supposed to be VERY and VERY damage sensitive
     /// </summary>
@@ -61,6 +62,7 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     [DataField]
     // TODO: Not "required" for now, and can break some shit BECAUSE I AM NOT reworking the entirety of ShitSurgerySystem to work properly without breaking the linter
     public Dictionary<OrganSeverity, FixedPoint2> IntegrityThresholds = new();
+    // backmen edit end
 
     /// <summary>
     /// Shitcodey solution to not being able to know what name corresponds to each organ's slot ID

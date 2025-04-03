@@ -160,7 +160,7 @@
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -187,7 +187,7 @@
 - type: entity
   abstract: true
   # No parent since it isn't an item
-  # must parent both this and the desired helmet base when using 
+  # must parent both this and the desired helmet base when using
   id: ClothingHeadSuitWithLightBase
   name: base hardsuit helmet with light
   categories: [ HideSpawnMenu ]

@@ -6,6 +6,7 @@
   - type: Sprite
     sprite: Mobs/Species/Diona/organs.rsi
   - type: Organ
+    # backmen edit
     intCap: 24
     integrity: 24
     integrityThresholds:
@@ -43,6 +44,7 @@
   - type: Sprite
     state: brain
   - type: Organ # Shitmed
+    # backmen edit
     slotId: Brain
     intCap: 28
     integrity: 28
@@ -79,6 +81,7 @@
       - state: eyeball-l
       - state: eyeball-r
   - type: Organ # Shitmed
+    # backmen edit
     intCap: 17 # dionas will have better eyes. :fort:
     integrity: 17
     integrityThresholds:
@@ -101,6 +104,7 @@
   - type: Sprite
     state: stomach
   - type: Organ
+    # backmen edit
     intCap: 35
     integrity: 35
     integrityThresholds:
@@ -147,6 +151,7 @@
     heldPrefix: lungs
   - type: Lung
   - type: Organ
+    # backmen edit
     intCap: 21
     integrity: 21
     integrityThresholds:

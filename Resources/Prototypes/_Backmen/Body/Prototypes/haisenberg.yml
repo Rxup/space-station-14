@@ -12,7 +12,7 @@
       - right arm
       - left arm
       - groin
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinAnimal
       organs:
         stomach: OrganAnimalStomach

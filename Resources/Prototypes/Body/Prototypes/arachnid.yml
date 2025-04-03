@@ -19,7 +19,7 @@
       organs:
         heart: OrganArachnidHeart
         lungs: OrganAnimalLungs
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinArachnid
       connections:
       - right leg

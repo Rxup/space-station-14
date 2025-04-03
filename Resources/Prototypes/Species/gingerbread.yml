@@ -16,7 +16,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Chest: MobGingerbreadChest
-    Groin: MobGingerbreadGroin
+    Groin: MobGingerbreadGroin # Backmen edit: chest, groin separation
     Eyes: MobGingerbreadEyes
     LArm: MobGingerbreadLArm
     RArm: MobGingerbreadRArm

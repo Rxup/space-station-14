@@ -30,18 +30,25 @@ namespace Content.Shared.Damage
         [Dependency] private readonly INetManager _netMan = default!;
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
         [Dependency] private readonly SharedBodySystem _body = default!;
-        [Dependency] private readonly WoundSystem _wounds = default!;
-        [Dependency] private readonly IRobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
 
+        // backmen edit start
+        [Dependency] private readonly WoundSystem _wounds = default!;
+
+        [Dependency] private readonly IRobustRandom _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK = default!;
         [Dependency] private readonly IComponentFactory _factory = default!;
+        // backmen edit end
+
         [Dependency] private readonly IConfigurationManager _config = default!;
         [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
+
+        // backmen edit start
         private EntityQuery<BodyComponent> _bodyQuery;
         private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
         private EntityQuery<WoundableComponent> _woundableQuery;
+        // backmen edit end
 
         public float UniversalAllDamageModifier { get; private set; } = 1f;
         public float UniversalAllHealModifier { get; private set; } = 1f;
@@ -207,6 +214,7 @@ namespace Content.Shared.Damage
             if (!uid.HasValue)
                 return null;
 
+            // backmen edit start
             var before = new BeforeDamageChangedEvent(damage, origin, canBeCancelled); // heheheha
             RaiseLocalEvent(uid.Value, ref before);
 
@@ -362,6 +370,7 @@ namespace Content.Shared.Damage
                     }
                 }
             }
+            // backmen edit end
 
             // Apply resistances
             if (!ignoreResistances)
@@ -485,6 +494,7 @@ namespace Content.Shared.Damage
             // Shitmed Change End
         }
 
+        // backmen edit
         public Dictionary<string, FixedPoint2> DamageSpecifierToWoundList(
             EntityUid uid,
             EntityUid? origin,
@@ -544,7 +554,8 @@ namespace Content.Shared.Damage
             Dirty(uid, comp);
         }
 
-        private string GetDamageGroupByType(string id)
+        // backmen edit
+        public string GetDamageGroupByType(string id)
         {
             return (from @group in _prototypeManager.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
         }

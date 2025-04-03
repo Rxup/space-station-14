@@ -6,6 +6,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
+    # backmen edit
     intCap: 15
     integrity: 15
     integrityThresholds:
@@ -49,6 +50,7 @@
   - type: Sprite
     state: brain
   - type: Organ
+    # backmen edit
     slotId: brain # backmen: surgery
     intCap: 28
     integrity: 28
@@ -100,6 +102,7 @@
   components:
   # start-backmen: surgery
   - type: Organ
+    # backmen edit
     intCap: 12
     integrity: 12
     integrityThresholds:
@@ -162,6 +165,7 @@
     heldPrefix: lungs
   - type: Lung
   - type: Organ # backmen: surgery
+    # backmen edit
     intCap: 17
     integrity: 17
     integrityThresholds:
@@ -201,6 +205,7 @@
   # start-backmen: surgery
   - type: Heart
   - type: Organ
+    # backmen edit
     intCap: 17
     integrity: 17
     integrityThresholds:
@@ -247,6 +252,7 @@
           Quantity: 5
   - type: Stomach
   - type: Organ # backmen: surgery
+    # backmen edit
     intCap: 44 # consists of a lot of pieces, thus is incredibly hard to easily destroy
     integrity: 44 # but easily is getting damaged
     integrityThresholds:
@@ -274,6 +280,7 @@
   # start-backmen: surgery
   - type: Liver
   - type: Organ
+    # backmen edit
     intCap: 21
     integrity: 21
     integrityThresholds:
@@ -301,6 +308,7 @@
   description: "Filters toxins from the bloodstream."
   components:
   - type: Organ # Shitmed
+    # backmen edit
     intCap: 21
     integrity: 21
     integrityThresholds:

@@ -62,6 +62,12 @@ public sealed partial class ConsciousnessComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public Entity<NerveSystemComponent> NerveSystem = default;
 
+    [DataField] // whoops.
+    public TimeSpan ConsciousnessUpdateTime = TimeSpan.FromSeconds(0.8f);
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan NextConsciousnessUpdate;
+
     // Forceful control attributes, it's recommended not to use them directly.
     [ViewVariables(VVAccess.ReadWrite)]
     public bool PassedOut = false;

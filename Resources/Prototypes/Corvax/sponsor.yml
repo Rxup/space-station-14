@@ -23,7 +23,7 @@
     - type: Clothing
       sprite: Corvax/Sponsor/Clothing/Mask/atmosian.rsi
     - type: Armor
-      coverage:
+      coverage: # backmen: armour coverage
       - Head
       modifiers:
         coefficients:
@@ -158,7 +158,7 @@
     - type: Clothing
       sprite: Corvax/Sponsor/NEKISH/Clothing/OuterClothing/Coats/hos_overcoat.rsi
     - type: Armor
-      coverage:
+      coverage: # backmen: armour coverage
       - Chest
       - Groin
       - Arm

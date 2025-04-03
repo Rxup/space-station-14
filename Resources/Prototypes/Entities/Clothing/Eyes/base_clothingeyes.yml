@@ -11,7 +11,7 @@
     size: Small
     storedRotation: -90
   - type: Armor # provide minimal covering to your head
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:

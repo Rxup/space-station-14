@@ -19,7 +19,7 @@
       organs:
         heart: OrganShadowkinHeart
         lungs: OrganHumanLungs
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinShadowkin
       connections:
       - right leg

@@ -41,8 +41,4 @@ public sealed partial class BodyComponent : Component
     [ViewVariables]
     [DataField, AutoNetworkedField]
     public HashSet<EntityUid> LegEntities = new();
-
-    [ViewVariables]
-    [DataField, AutoNetworkedField]
-    public HashSet<EntityUid> DroppedBodyParts = new();
 }

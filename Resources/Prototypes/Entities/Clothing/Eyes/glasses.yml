@@ -171,7 +171,7 @@
   - type: EyeProtection
     protectionTime: 5
   - type: Armor # provide more coverage than default ones. you know, it's a sec one
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -226,7 +226,7 @@
     sprite: Clothing/Eyes/Glasses/mercglasses.rsi
   - type: FlashImmunity
   - type: Armor # the same as SEC
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -251,6 +251,7 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: Armor
+    # backmen: armour coverage
     coverage: # defends you well only against heat lol
     - Head
     modifiers:
@@ -289,7 +290,7 @@
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:

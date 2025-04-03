@@ -11,7 +11,7 @@
       - WhitelistChameleon
   - type: Armor
     modifiers: {}
-    coverage:
+    coverage: # backmen: armour coverage
       - Other
       - Chest
       - Groin
@@ -65,7 +65,7 @@
   # to show explosion resistance examine
   - type: GroupExamine
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Other
     modifiers: {}
 

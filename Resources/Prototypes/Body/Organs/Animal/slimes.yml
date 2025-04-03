@@ -9,6 +9,7 @@
       state: brain-slime
     - type: Stomach
     - type: Organ
+      # backmen edit
       intCap: 60 # to prevent slimes from getting oneshot
       integrity: 60
       integrityThresholds:
@@ -47,6 +48,7 @@
     - type: Lung
       alert: LowNitrogen
     - type: Organ
+      # backmen edit
       intCap: 28
       integrity: 28
       integrityThresholds:

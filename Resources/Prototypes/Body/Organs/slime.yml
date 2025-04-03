@@ -10,6 +10,7 @@
     - type: Stomach
     - type: Organ
       slotId: core
+      # backmen edit
       intCap: 60 # to prevent slimes from getting oneshot
       integrity: 60
       integrityThresholds:
@@ -59,7 +60,8 @@
       - state: lung-r-slime
   - type: Organ
     slotId: lungs
-    intCap: 21 #
+    # backmen edit
+    intCap: 21
     integrity: 21
     integrityThresholds:
       Normal: 21

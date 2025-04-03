@@ -23,7 +23,7 @@
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     Chest: MobHumanChest
-    Groin: MobHumanGroin
+    Groin: MobHumanGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking # Corvax-Sponsors

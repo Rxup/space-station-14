@@ -487,6 +487,7 @@ public partial class SharedBodySystem
                && parentPart.Children.ContainsKey(slotId);
     }
 
+    // backmen edit start
     /// <summary>
     /// Returns true if the partId can be detached from the parentId in the specified slot.
     /// </summary>
@@ -519,6 +520,7 @@ public partial class SharedBodySystem
                && Containers.TryGetContainer(parentId, GetPartSlotContainerId(slotId), out var container)
                && Containers.CanRemove(partId, container);
     }
+    // backmen edit end
 
     #endregion
 
@@ -575,6 +577,7 @@ public partial class SharedBodySystem
         return Containers.Insert(partId, container);
     }
 
+    // backmen edit start
     /// <summary>
     /// Detaches a body part from the specified body part parent.
     /// </summary>
@@ -626,6 +629,7 @@ public partial class SharedBodySystem
 
         return Containers.Remove(partId, container);
     }
+    // backmen edit end
 
     #endregion
 

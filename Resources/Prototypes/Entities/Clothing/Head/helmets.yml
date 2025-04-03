@@ -7,7 +7,7 @@
   abstract: true
   components:
   - type: Armor #Values seem to let the user survive one extra hit if attacked consistently.
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.2
@@ -69,7 +69,7 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/swat.rsi
   - type: Armor #This is intentionally not spaceproof, when the time comes to port the values from SS13 this should be buffed from what it was.
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -108,7 +108,7 @@
     sprite: Clothing/Head/Helmets/light_riot.rsi
   - type: IngestionBlocker
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -131,7 +131,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -172,7 +172,7 @@
     sprite: Clothing/Head/Helmets/cult.rsi
   - type: IngestionBlocker
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -320,7 +320,7 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/linghelmet.rsi
   - type: Armor #admeme item so it should be fine being overpowered while helmets are still intentionally kneecapped.
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.4
@@ -408,7 +408,7 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.34

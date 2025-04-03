@@ -18,7 +18,7 @@
     Head: MobReptilianHead
     Snout: MobHumanoidAnyMarking
     Chest: MobReptilianChest
-    Groin: MobReptilianGroin
+    Groin: MobReptilianGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking

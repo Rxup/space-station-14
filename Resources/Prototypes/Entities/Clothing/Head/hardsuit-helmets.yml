@@ -203,7 +203,7 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -229,7 +229,7 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -252,7 +252,7 @@
   - type: PointLight
     color: "#00FFFF"
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -283,7 +283,7 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
@@ -390,7 +390,7 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42
@@ -442,7 +442,7 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42 # equivalent to HoS trauma protection
@@ -476,7 +476,7 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42
@@ -517,7 +517,7 @@
   - type: FireProtection
     reduction: 0.2
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42
@@ -551,7 +551,7 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42
@@ -585,7 +585,7 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 1 # prevents traumas at all (kinda)
@@ -619,7 +619,7 @@
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.27
@@ -697,7 +697,7 @@
   - type: PointLight # Corvax-Resprite
     color: cyan
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42
@@ -740,7 +740,7 @@
   - type: PointLight
     color: "#f4ffad"
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.27 # Designed to protect you from most incidents, hence has more trauma protection, trading them for dismemberment protection
@@ -783,7 +783,7 @@
   - type: PointLight
     color: "#ffadc6"
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.42
@@ -844,7 +844,7 @@
     heatingCoefficient: 0.005
     coolingCoefficient: 0.005
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 0.21
@@ -881,7 +881,7 @@
   - type: FireProtection
     reduction: 0.2
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
       Dismemberment: 1 # self-explanatory

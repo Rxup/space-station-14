@@ -16,7 +16,7 @@
   sprites:
     Head: MobSkeletonHead
     Chest: MobSkeletonChest
-    Groin: MobSkeletonGroin
+    Groin: MobSkeletonGroin # Backmen edit: chest, groin separation
     LArm: MobSkeletonLArm
     RArm: MobSkeletonRArm
     LHand: MobSkeletonLHand

@@ -88,6 +88,7 @@
     partType: Chest
     toolName: "a сhest"
     containerName: "сhest_slot"
+  # backmen edit start
   - type: Woundable
     integrity: 100
     integrityCap: 100
@@ -110,6 +111,7 @@
   - type: ConsciousnessRequired
     identifier: "chest"
     causesDeath: true
+  # backmen edit end
   - type: ContainerContainer
     containers:
       сhest_slot: !type:ContainerSlot {}
@@ -124,6 +126,7 @@
     partType: Groin
     toolName: "a groin"
     containerName: "groin_slot"
+  # backmen edit start
   - type: Woundable
     integrity: 70
     integrityCap: 70
@@ -146,6 +149,7 @@
   - type: ConsciousnessRequired
     identifier: "groin"
     causesDeath: true
+  # backmen edit end
   - type: ContainerContainer
     containers:
       groin_slot: !type:ContainerSlot {}
@@ -162,6 +166,7 @@
     vital: true
   - type: Input
     context: "ghost"
+  # backmen edit start
   - type: Woundable
     integrity: 42
     integrityCap: 42
@@ -184,6 +189,7 @@
   - type: ConsciousnessRequired
     identifier: "head"
     causesDeath: true
+  # backmen edit end
   - type: Tag
     tags:
       - Head
@@ -194,6 +200,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.LArm"
@@ -204,6 +211,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  # backmen edit end
   - type: BodyPart
     partType: Arm
     symmetry: Left
@@ -215,6 +223,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.RArm"
@@ -225,6 +234,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  # backmen edit end
   - type: BodyPart
     partType: Arm
     symmetry: Right
@@ -236,6 +246,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.LHand"
@@ -259,6 +270,7 @@
       Severe: 26
       Critical: 15
       Loss: 0
+  # backmen edit end
 
 - type: entity
   id: BaseRightHand
@@ -266,6 +278,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.RHand"
@@ -289,6 +302,7 @@
       Severe: 26
       Critical: 15
       Loss: 0
+  # backmen edit end
 
 - type: entity
   id: BaseLeftLeg
@@ -296,6 +310,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.LLeg"
@@ -306,6 +321,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  # backmen edit end
   - type: BodyPart
     partType: Leg
     symmetry: Left
@@ -318,6 +334,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.RLeg"
@@ -333,6 +350,7 @@
     symmetry: Right
     toolName: "a right leg" # backmen: surgery
   - type: MovementBodyPart
+  # backmen edit end
 
 - type: entity
   id: BaseLeftFoot
@@ -340,6 +358,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.LFoot"
@@ -363,6 +382,7 @@
       Severe: 26
       Critical: 15
       Loss: 0
+    # backmen edit end
 
 - type: entity
   id: BaseRightFoot
@@ -370,6 +390,7 @@
   parent: BasePart
   abstract: true
   components:
+  # backmen edit start
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.RFoot"
@@ -393,3 +414,4 @@
       Severe: 26
       Critical: 15
       Loss: 0
+  # backmen edit end

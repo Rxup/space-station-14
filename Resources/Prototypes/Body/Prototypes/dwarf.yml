@@ -19,7 +19,7 @@
       organs:
         heart: OrganDwarfHeart
         lungs: OrganHumanLungs
-    groin:
+    groin: # Backmen edit: chest, groin separation
       part: GroinHuman
       connections:
       - right leg

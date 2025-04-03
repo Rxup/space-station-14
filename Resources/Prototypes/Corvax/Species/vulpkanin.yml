@@ -22,7 +22,7 @@
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     Chest: MobVulpkaninChest
-    Groin: MobVulpkaninGroin
+    Groin: MobVulpkaninGroin # Backmen edit: chest, groin separation
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking

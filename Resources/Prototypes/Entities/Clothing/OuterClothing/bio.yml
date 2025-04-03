@@ -13,7 +13,7 @@
     tags:
       - FullBodyOuter
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     - Chest
     - Groin
@@ -78,7 +78,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     - Chest
     - Groin

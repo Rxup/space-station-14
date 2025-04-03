@@ -38,12 +38,12 @@ public partial class SharedBodySystem
      * - Each "connection" is a body part (e.g. arm, hand, etc.) and each part can also contain organs.
      */
 
-    [Dependency] private readonly WoundSystem _woundSystem = default!;
+    [Dependency] private readonly WoundSystem _woundSystem = default!; // backmen edit
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!; // backmen edit
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
 
@@ -60,7 +60,7 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, ProfileLoadFinishedEvent>(OnProfileLoadFinished);
         SubscribeLocalEvent<BodyComponent, IsEquippingAttemptEvent>(OnBeingEquippedAttempt);
 
-        // to prevent people from falling immediately as rejuvenated
+        // to prevent people from falling immediately as rejuvenated; backmen edit
         SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
@@ -243,6 +243,7 @@ public partial class SharedBodySystem
         }
     }
 
+    // backmen edit start
     private void OnRejuvenate(EntityUid ent, BodyComponent body, ref RejuvenateEvent args)
     {
         if (body.Prototype == null)
@@ -399,6 +400,7 @@ public partial class SharedBodySystem
             _woundSystem.ForceHealWoundsOnWoundable(bodyPart.Id, out _);
         }
     }
+    // backmen edit end
 
     /// <summary>
     /// Gets all body containers on this entity including the root one.
@@ -558,7 +560,7 @@ public partial class SharedBodySystem
 
         if (part.Body is { } bodyEnt)
         {
-            if (IsPartRoot(bodyEnt, partId, part: part) || !part.CanSever)
+            if (IsPartRoot(bodyEnt, partId, part: part))
                 return gibs;
 
             DropSlotContents((partId, part));

@@ -15,7 +15,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Chest
     - Groin
     - Arm
@@ -222,6 +222,14 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5

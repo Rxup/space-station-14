@@ -4,6 +4,7 @@
   name: space animal lungs
   components:
   - type: Organ
+    # backmen edit
     intCap: 28
     integrity: 28
     integrityThresholds:
@@ -19,6 +20,7 @@
   name: space animal heart
   components:
   - type: Organ
+    # backmen edit
     intCap: 21
     integrity: 21
     integrityThresholds:

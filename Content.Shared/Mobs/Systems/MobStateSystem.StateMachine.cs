@@ -117,6 +117,7 @@ public partial class MobStateSystem
         OnStateChanged(target, component, oldState, newState);
         RaiseLocalEvent(target, ev, true);
 
+        // backmen edit start
         if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
         {
             var ev1 = new MobStateChangedEvent(target, component, oldState, newState, origin);
@@ -124,6 +125,7 @@ public partial class MobStateSystem
 
             // to handle consciousness related stuff. sorry
         }
+        // backmen edit end
 
         if (origin != null && HasComp<ActorComponent>(origin) && HasComp<ActorComponent>(target) && oldState < newState)
             _adminLogger.Add(LogType.Damaged, LogImpact.High, $"{ToPrettyString(origin):player} caused {ToPrettyString(target):player} state to change from {oldState} to {newState}");

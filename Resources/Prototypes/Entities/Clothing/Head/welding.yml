@@ -11,7 +11,7 @@
   - type: IdentityBlocker
   - type: EyeProtection
   - type: Armor
-    coverage:
+    coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
