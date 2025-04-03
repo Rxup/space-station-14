@@ -47,7 +47,7 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
             return;
         }
 
-        args.Canceled = !_bloodSuckerSystem.CanBeVampire(plr);
+        args.Canceled = !_bloodSuckerSystem.CanBeSucked(plr);
     }
 
     private void AfterAntagSelected(EntityUid uid, BloodsuckerRuleComponent component, AfterAntagEntitySelectedEvent args)

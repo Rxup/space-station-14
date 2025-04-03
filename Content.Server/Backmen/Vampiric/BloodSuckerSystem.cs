@@ -120,6 +120,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             _bsQuery.HasComp(uid) ||
             !TryComp<BodyComponent>(uid, out var bodyComponent) ||
             !TryComp<BodyPartComponent>(bodyComponent.RootContainer.ContainedEntity, out var bodyPartComponent)
+            || !CanBeSucked(uid)
             )
             return;
 
@@ -252,7 +253,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
     [ValidatePrototypeId<ReagentPrototype>]
     private const string Blood = "Blood";
-    public bool CanBeVampire(Entity<BloodstreamComponent?> ent)
+    public bool CanBeSucked(Entity<BloodstreamComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))
             return false;
@@ -306,7 +307,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             }
         }
 
-        if (!CanBeVampire((victim,stream)))
+        if (!CanBeSucked((victim,stream)))
         {
             _popups.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
             return;
