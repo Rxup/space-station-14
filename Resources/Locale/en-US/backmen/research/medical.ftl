@@ -7,4 +7,6 @@ research-technology-bodybags = Bodybags
 research-technology-bodybags-bluespace = Bluespace bodybags
 research-technology-chemistry-bluespace = Bluespace chemistry
 
+research-technology-chemistry-machines = Chemistry machines
+research-technology-biomass-machines = Biomass manipulation machines
 research-technology-biochemical-stasis-machines = Biochemical stasis machines
