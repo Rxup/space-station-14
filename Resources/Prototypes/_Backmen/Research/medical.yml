@@ -1,0 +1,223 @@
+- type: technology
+  id: Medicine
+  name: research-technology-medicine
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  discipline: Medical
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - Brutepack
+  - Ointment
+  - Gauze
+  - Defibrillator
+  - HandheldHealthAnalyzer
+  - ClothingHandsGlovesLatex
+  - ClothingHandsGlovesNitrile
+  - ClothingMaskSterile
+  - DiseaseSwab
+  - RollerBedSpawnFolded
+  - CheapRollerBedSpawnFolded
+  - EmergencyRollerBedSpawnFolded
+  - Medkit
+  - MedkitBurn
+  - MedkitToxin
+  - MedkitO2
+  - MedkitBrute
+  - MedkitAdvanced
+  - MedkitRadiation
+  - MedkitCombat
+  - WhiteCane
+  position: 4,-5
+
+- type: technology
+  id: MedicalDefense
+  name: research-technology-medical-defense
+  icon:
+    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe-gun
+  discipline: Medical
+  tier: 1
+  cost: 6500
+  recipeUnlocks:
+  - SyringeGun
+  technologyPrerequisites:
+  - Medicine
+  position: 4,-7
+
+- type: technology
+  id: MedicalDefenseAdvanced
+  name: research-technology-medical-defense-advanced
+  icon:
+    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: rapid-syringe-gun
+  discipline: Medical
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - RapidSyringeGun
+  technologyPrerequisites:
+  - MedicalDefense
+  position: 4,-8
+
+- type: technology
+  id: Surgery
+  name: research-technology-surgery
+  icon:
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  discipline: Medical
+  tier: 1
+  cost: 4000
+  recipeUnlocks:
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Drill
+  - Saw
+  - Hemostat
+  - Implanter
+  - BoneGel
+  technologyPrerequisites:
+  - Medicine
+  position: 4,-4
+
+- type: technology
+  id: SurgeryAdvanced
+  name: research-technology-surgery-advanced
+  icon:
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
+    state: e-scalpel-on
+  discipline: Medical
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - EnergyScalpel
+  - EnergyCautery
+  - AdvancedRetractor
+  technologyPrerequisites:
+  - Surgery
+  position: 4,-3
+
+- type: technology
+  id: CyberneticEnhancements
+  name: research-technology-cybernetic-enhancements
+  icon:
+    sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
+    state: eyes
+  discipline: Medical
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - JawsOfLifeLeftArm
+  - JawsOfLifeRightArm
+  - SpeedLeftLeg
+  - SpeedRightLeg
+  - BasicCyberneticEyes
+  - SecurityCyberneticEyes
+  - MedicalCyberneticEyes
+  technologyPrerequisites:
+  - SurgeryAdvanced
+  position: 5,-3
+
+- type: technology
+  id: HighEndSurgery
+  name: research-technology-high-end-surgery
+  icon:
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi
+    state: omnimed
+  discipline: Medical
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - OmnimedTool
+  technologyPrerequisites:
+  - SurgeryAdvanced
+  position: 4,-2
+
+- type: technology
+  id: Chemistry
+  name: research-technology-chemistry
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_large.rsi
+    state: beakerlarge
+  discipline: Medical
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - HandLabeler
+  - Beaker
+  - LargeBeaker
+  - Dropper
+  - Jug
+  - PillCanister
+  - ChemistryEmptyBottle01
+  - Syringe
+  position: 3,-4
+
+- type: technology
+  id: ChemistryBluespace
+  name: research-technology-chemistry-bluespace
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
+    state: beakerbluespace
+  discipline: Medical
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+  - BluespaceBeaker
+  - SyringeBluespace
+  - BluespacePillCanister # backmen
+  technologyPrerequisites:
+  - Chemistry
+  position: 3,-5
+
+- type: technology
+  id: BiochemicalStasis
+  name: research-technology-biochemical-stasis
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
+    state: beakernoreact
+  discipline: Medical
+  tier: 1
+  cost: 7200
+  recipeUnlocks:
+  - CryostasisBeaker
+  - SyringeCryostasis
+  technologyPrerequisites:
+  - Medicine
+  position: 5,-5
+
+- type: technology
+  id: BodyBags
+  name: research-technology-bodybags
+  icon:
+    sprite: _CorvaxNext/Objects/Specific/Medical/BodyBags/nanotrasen.rsi
+    state: ntbag_folded
+  discipline: Medical
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BodyBag
+  - NTBodyBag
+  - PrisonerBodyBag
+  - RadiationBodyBag
+  technologyPrerequisites:
+  - Medicine
+  position: 3,-6
+
+- type: technology
+  id: BodyBagsBluespace
+  name: research-technology-bodybags-bluespace
+  icon:
+    sprite: _CorvaxNext/Objects/Specific/Medical/BodyBags/bluespace.rsi
+    state: bluespacebag_folded
+  discipline: Medical
+  tier: 1
+  cost: 9500
+  recipeUnlocks:
+  - BluespaceBodyBag
+  technologyPrerequisites:
+  - BodyBags
+  position: 3,-7
