@@ -36,6 +36,21 @@
   name: research-technology-medical-defense
   icon:
     sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe-gun
+  discipline: Medical
+  tier: 1
+  cost: 6500
+  recipeUnlocks:
+  - SyringeGun
+  technologyPrerequisites:
+  - Medicine
+  position: 4,-7
+
+- type: technology
+  id: MedicalDefenseAdvanced
+  name: research-technology-medical-defense-advanced
+  icon:
+    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
     state: rapid-syringe-gun
   discipline: Medical
   tier: 1
@@ -43,8 +58,8 @@
   recipeUnlocks:
   - RapidSyringeGun
   technologyPrerequisites:
-  - Medicine
-  position: 4,-7
+  - MedicalDefense
+  position: 4,-8
 
 - type: technology
   id: Surgery
@@ -63,6 +78,7 @@
   - Saw
   - Hemostat
   - Implanter
+  - BoneGel
   technologyPrerequisites:
   - Medicine
   position: 4,-4

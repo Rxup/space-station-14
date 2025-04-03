@@ -10,7 +10,8 @@
   recipeUnlocks:
    - LightTube
    - LightBulb
-  position: -1,6
+   - WarmLightBulb
+  position: 1,6
 
 - type: technology
   id: LightningAdvanced
@@ -29,7 +30,7 @@
    - DimLightBulb
   technologyPrerequisites:
    - Lightning
-  position: -1,7
+  position: 1,7
 
 - type: technology
   id: Bootlegging
@@ -47,7 +48,9 @@
   - DrinkShotGlass
   - DrinkGlassCoupeShaped
   - CustomDrinkJug
-  position: 0,6
+  technologyPrerequisites:
+  - ServiceMachines
+  position: 2,9
 
 - type: technology
   id: Kitchen
@@ -67,7 +70,9 @@
   - FoodPlateTin
   - FoodPlateMuffinTin
   - FoodKebabSkewer
-  position: 1,6
+  technologyPrerequisites:
+  - ServiceMachines
+  position: 4,9
 
 - type: technology
   id: Hydroponics
@@ -80,7 +85,9 @@
   cost: 500
   recipeUnlocks:
    - Bucket
-  position: 2,6
+  technologyPrerequisites:
+  - ServiceMachines
+  position: 3,8
 
 - type: technology
   id: Entertainment
@@ -94,7 +101,9 @@
   recipeUnlocks:
    - SynthesizerInstrument
    - HandheldStationMap
-  position: 3,6
+  technologyPrerequisites:
+  - ServiceMachines
+  position: 3,10
 
 - type: technology
   id: FauxAstroTiles
@@ -111,9 +120,10 @@
   - FauxTileJungleAstroGrass
   - FauxTileAstroIce
   - FauxTileAstroSnow
+  - FauxTileAstroAsteroidSand
   technologyPrerequisites:
   - Entertainment
-  position: 3,8
+  position: 2,10
 
 - type: technology
   id: Cleaning
@@ -131,6 +141,8 @@
    - Holoprojector
    - WetFloorSign
    - ClothingHeadHatCone
+  technologyPrerequisites:
+  - ServiceMachines
   position: 4,6
 
 - type: technology

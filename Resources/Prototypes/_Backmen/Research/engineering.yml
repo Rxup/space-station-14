@@ -110,6 +110,8 @@
   - CableStack
   - CableMVStack
   - CableHVStack
+  - ClothingHeadHatWelding
+  - Igniter
   position: -2,1
 
 - type: technology

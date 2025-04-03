@@ -17,4 +17,4 @@ research-technology-hydroponics-machines = Оборудование гидроп
 research-technology-entertainment-machines = Оборудование развлечений
 research-technology-kitchen-machines = Кухонное оборудование
 research-technology-bar-machines = Барное оборудование
-research-technology-uniform-machines = Швейное оборудование
+research-technology-service-machines = Сервисное оборудование

@@ -117,13 +117,14 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+    staticPacks:
+    - MaterialsStatic
     dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ToolsStatic
     - PartsStatic
     - AtmosStatic
     - CablesStatic
     - CargoStatic
-    - MaterialsStatic
     - BasicChemistryStatic
     - RollerBedsStatic
     - LightsStatic

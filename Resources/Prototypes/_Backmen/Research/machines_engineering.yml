@@ -113,6 +113,7 @@
   recipeUnlocks:
    - ThermomachineFreezerMachineCircuitBoard
    - GasRecyclerMachineCircuitboard
+   - SpaceHeaterMachineCircuitBoard
   technologyPrerequisites:
   - EngineeringMachines
   - AtmosphericTools

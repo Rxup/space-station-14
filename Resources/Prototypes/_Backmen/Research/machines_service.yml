@@ -14,7 +14,7 @@
   - BiogeneratorMachineCircuitboard
   technologyPrerequisites:
   - Hydroponics
-  position: 2,7
+  position: 3,7
 
 - type: technology
   id: EntertainmentMachines
@@ -32,7 +32,7 @@
   - JukeboxCircuitBoard
   technologyPrerequisites:
    - Entertainment
-  position: 3,7
+  position: 3,11
 
 - type: technology
   id: KitchenMachines
@@ -53,7 +53,7 @@
   - ElectricGrillMachineCircuitboard
   technologyPrerequisites:
    - Kitchen
-  position: 1,7
+  position: 5,9
 
 - type: technology
   id: BarMachines
@@ -69,11 +69,11 @@
   - SodaDispenserMachineCircuitboard
   technologyPrerequisites:
    - Bootlegging
-  position: 0,7
+  position: 1,9
 
 - type: technology
-  id: UniformMachines
-  name: research-technology-uniform-machines
+  id: ServiceMachines
+  name: research-technology-service-machines
   icon:
     sprite: Structures/Machines/uniform_printer.rsi
     state: icon
@@ -82,4 +82,5 @@
   cost: 2500
   recipeUnlocks:
   - UniformPrinterMachineCircuitboard
+  - PrinterDocMachineCircuitboard
   position: 3,9

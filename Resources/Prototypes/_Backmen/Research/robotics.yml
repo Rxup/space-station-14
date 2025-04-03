@@ -130,14 +130,29 @@
    state: defib-module
   discipline: Robotics
   tier: 1
-  cost: 8000
+  cost: 7000
   recipeUnlocks:
+  - BorgModuleSurgery
   - BorgModuleAdvancedTreatment
   - BorgModuleDefibrillator
   technologyPrerequisites:
-  - RoboticsAdvanced
   - CyborgModules
   position: 7,-2
+
+- type: technology
+  id: AdvancedSurgeryModules
+  name: research-technology-advanced-surgery-modules
+  icon:
+   sprite: Interface/Actions/actions_borg.rsi
+   state: adv-surgery-module
+  discipline: Robotics
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedSurgery
+  technologyPrerequisites:
+  - MechanizedTreatmentModules
+  position: 8,-2
 
 - type: technology
   id: SpaceScanningModules
@@ -151,7 +166,6 @@
   recipeUnlocks:
   - BorgModuleGPS
   technologyPrerequisites:
-  - RoboticsAdvanced
   - CyborgModules
 #  - SpaceScanning
   position: 8,-3
@@ -168,10 +182,9 @@
   recipeUnlocks:
   - BorgModuleAdvancedTool
   technologyPrerequisites:
-  - RoboticsAdvanced
   - CyborgModules
 #  - EngineeringAdvancedTools
-  position: 8,-2
+  position: 9,-3
 
 - type: technology
   id: HydroponicsModules
@@ -186,7 +199,6 @@
   - BorgModuleGardening
   - BorgModuleHarvesting
   technologyPrerequisites:
-  - RoboticsAdvanced
   - CyborgModules
   position: 7,-3
 
@@ -202,7 +214,6 @@
   recipeUnlocks:
   - BorgModuleAdvancedCleaning
   technologyPrerequisites:
-  - RoboticsAdvanced
   - CyborgModules
 #  - CleaningAdvanced
   position: 7,-4
@@ -220,7 +231,6 @@
   - BorgModuleArtifact
   - BorgModuleAnomaly
   technologyPrerequisites:
-  - RoboticsAdvanced
   - CyborgModules
 #  - XenoArcheologyMachines
   position: 8,-4

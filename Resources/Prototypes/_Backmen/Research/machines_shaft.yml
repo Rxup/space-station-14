@@ -2,17 +2,34 @@
   id: SalvageEquipmentMachines
   name: research-technology-salvage-equipment-machines
   icon:
-    sprite: Structures/Machines/ore_processor_industrial.rsi
+    sprite: Structures/Machines/ore_processor.rsi
     state: inserting
   discipline: Shaft
   tier: 1
   cost: 5200
   recipeUnlocks:
-  - OreProcessorIndustrialMachineCircuitboard
+  - OreProcessorMachineCircuitboard
+  - SalvageMagnetMachineCircuitboard
   - ShipyardCircuitboard # backmen: salvage
+  - SalvageExpeditionsComputerCircuitboard
   technologyPrerequisites:
   - SalvageEquipment
   position: 11,2
+
+- type: technology
+  id: SalvageEquipmentAdvancedMachines
+  name: research-technology-salvage-equipment-advanced-machines
+  icon:
+    sprite: Structures/Machines/ore_processor_industrial.rsi
+    state: inserting
+  discipline: Shaft
+  tier: 1
+  cost: 7200
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+  technologyPrerequisites:
+  - SalvageEquipmentMachines
+  position: 12,2
 
 - type: technology
   id: SpaceScanningMachines

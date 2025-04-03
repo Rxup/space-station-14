@@ -4,6 +4,7 @@ research-technology-critter-mech = EXOSUIT: Critter
 research-technology-ripley-aplu-mech = EXOSUIT: Ripley APLU
 research-technology-cyborg-modules = Basic cyborg modules
 research-technology-mechanized-treatment-modules = Mechanized treatment modules
+research-technology-advanced-surgery-modules = Advanced surgery modules
 research-technology-space-scanning-modules = Space scanning modules
 research-technology-advanced-tools-modules = Advanced tools modules
 research-technology-hydroponics-modules = Hydroponics modules

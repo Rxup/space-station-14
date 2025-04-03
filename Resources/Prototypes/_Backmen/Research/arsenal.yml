@@ -11,6 +11,11 @@
   - MagazineShotgunBeanbag
   - BoxShellTranquilizer
   - BoxBeanbag
+  - BoxShotgunPractice
+  - MagazineBoxLightRiflePractice
+  - MagazineBoxMagnumPractice
+  - MagazineBoxPistolPractice
+  - MagazineBoxRiflePractice
 #  technologyPrerequisites:
 #  - RiotControl
   position: -2,-2
@@ -72,6 +77,10 @@
   - MagazinePistol45ACPincendiary
   - MagazinePistol57x28Incendiary
   - MagazinePistol9x17Incendiary
+  - MagazineBoxMagnumIncendiary
+  - MagazineShotgunIncendiary
+  - BoxShotgunIncendiary
+  - SpeedLoaderMagnumIncendiary
   technologyPrerequisites:
   - LethalAmmunition
   position: -4,-1
@@ -202,6 +211,7 @@
   cost: 5000
   recipeUnlocks:
   - WeaponLaserSvalinn
+  - WeaponLaserPistol
   technologyPrerequisites:
   - CombatLaser
   position: -2,-4
