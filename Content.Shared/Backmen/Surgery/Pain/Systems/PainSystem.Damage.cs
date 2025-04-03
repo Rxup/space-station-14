@@ -584,7 +584,10 @@ public partial class PainSystem
 
         if (_timing.CurTime > nerveSys.NextCritScream)
         {
-            var body = Comp<OrganComponent>(nerveSysEnt).Body;
+            if (!TryComp<OrganComponent>(nerveSysEnt, out var nerveSysOrgan))
+                return;
+
+            var body = nerveSysOrgan.Body;
             if (body != null && _mobState.IsCritical(body.Value))
             {
                 var sex = Sex.Unsexed;
