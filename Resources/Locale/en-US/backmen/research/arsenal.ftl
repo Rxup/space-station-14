@@ -1,4 +1,3 @@
-research-technology-nonlethal-ammunition = Nonlethal ammunition
 research-technology-lethal-ammunition = Lethal ammunition
 research-technology-draconic-ammunition = Draconic ammunition
 research-technology-uranium-ammunition = Uranium ammunition

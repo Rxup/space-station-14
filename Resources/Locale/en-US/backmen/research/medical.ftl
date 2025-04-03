@@ -4,7 +4,6 @@ research-technology-surgery-advanced = Advanced surgery
 research-technology-chemistry = Basic chemistry
 research-technology-medical-defense = Medical Defense
 research-technology-crew-monitoring = Crew monitoring
-research-technology-biochemical-stasis = Biochemical stasis
 research-technology-bodybags = Bodybags
 research-technology-bodybags-bluespace = Bluespace bodybags
 research-technology-chemistry-bluespace = Bluespace chemistry

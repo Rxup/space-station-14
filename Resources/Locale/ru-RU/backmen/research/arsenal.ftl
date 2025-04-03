@@ -1,4 +1,3 @@
-research-technology-nonlethal-ammunition = Нелетальные боеприпасы
 research-technology-lethal-ammunition = Летальные боеприпасы
 research-technology-draconic-ammunition = Поджигающие боеприпасы
 research-technology-uranium-ammunition = Урановые боеприпасы

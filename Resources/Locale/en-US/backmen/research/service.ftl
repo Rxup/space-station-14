@@ -4,7 +4,6 @@ research-technology-bootlegging = Bootlegging
 research-technology-kitchen = Kitchen
 research-technology-hydroponics = Hydroponics
 research-technology-entertainment = Entertainment
-research-technology-faux-astro-tiles = Astro tiles
 research-technology-cleaning = Basic cleaning
 research-technology-cleaning-advanced = Advanced cleaning
 research-technology-spray = Basic spray

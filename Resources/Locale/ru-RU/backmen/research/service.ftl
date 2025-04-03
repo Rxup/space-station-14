@@ -4,7 +4,6 @@ research-technology-bootlegging = Бутлегерство
 research-technology-kitchen = Сервировка
 research-technology-hydroponics = Гидропоника
 research-technology-entertainment = Развлечения
-research-technology-faux-astro-tiles = Эмитация природы
 research-technology-cleaning = Базовая уборка
 research-technology-cleaning-advanced = Продвинутая уборка
 research-technology-spray = Базовые распылители

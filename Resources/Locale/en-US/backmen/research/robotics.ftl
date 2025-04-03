@@ -1,7 +1,6 @@
 research-technology-robotics = Basic robotics
 research-technology-robotics-advanced = Advanced robotics
 research-technology-critter-mech = EXOSUIT: Critter
-research-technology-honk-mech = EXOSUIT: HONK
 research-technology-ripley-aplu-mech = EXOSUIT: Ripley APLU
 research-technology-cyborg-modules = Basic cyborg modules
 research-technology-mechanized-treatment-modules = Mechanized treatment modules
