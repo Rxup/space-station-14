@@ -62,6 +62,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         base.ExitedTree();
 
         Button.OnPressed -= Selected;
+        Button.OnDrawModeChanged -= UpdateColor;
     }
 
     private void Selected(BaseButton.ButtonEventArgs args)

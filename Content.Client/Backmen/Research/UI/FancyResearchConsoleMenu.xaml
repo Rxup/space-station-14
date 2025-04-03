@@ -4,7 +4,7 @@
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       xmlns:goob="clr-namespace:Content.Client.Backmen.Research.UI"
                       Title="{Loc 'research-console-menu-title'}"
-                      SetSize="1260 850">
+                      SetSize="1270 850">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -20,7 +20,7 @@
                 <!-- This is where we put all of the little graphics that display discipline tiers!-->
             </BoxContainer>
             <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Right">
-                <Button Name="ServerButton" Text="{Loc 'research-console-menu-server-selection-button'}" MinHeight="40"/>
+                <Button Name="ServerButton" Text="{Loc 'research-console-menu-server-selection-button'}" MinHeight="30"/>
             </BoxContainer>
         </BoxContainer>
         <BoxContainer Orientation="Horizontal"
@@ -47,7 +47,7 @@
                             <!-- There lives all of technologies -->
                         </goob:ResearchesContainerPanel>
                     </AnimatedTextureRect>
-                    <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
+                    <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
                 </PanelContainer>
             </BoxContainer>
             <PanelContainer SizeFlagsStretchRatio="2">
