@@ -1,0 +1,46 @@
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatMouseOps
+  name: мыфыные неснимайки!
+  description: от мышей для мышей!
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateAmmoMouseOps
+  name: мышкачная неснимайка!
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-ammo
+  - type: Item
+    heldPrefix: ammo
+  - type: Clothing
+    equippedPrefix: ammo
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieMouseOps
+  name: мыфыный красный скаф
+  description: от мышей для мышей!
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.65
+        Radiation: 0.65
+        Caustic: 0.65
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.25
+    sprintModifier: 1.25
