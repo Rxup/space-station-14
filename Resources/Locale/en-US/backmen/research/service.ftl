@@ -1,0 +1,19 @@
+research-technology-lightning = Basic lightning
+research-technology-lightning-advanced = Advanced lightning
+research-technology-bootlegging = Bootlegging
+research-technology-kitchen = Kitchen
+research-technology-hydroponics = Hydroponics
+research-technology-entertainment = Entertainment
+research-technology-faux-astro-tiles = Astro tiles
+research-technology-cleaning = Basic cleaning
+research-technology-cleaning-advanced = Advanced cleaning
+research-technology-spray = Basic spray
+research-technology-spray-advanced = Advanced spray
+research-technology-translation-device = Translation device
+research-technology-translation-implanter = Translation implanter
+research-technology-translation-device-advanced = Advanced translation device
+research-technology-translation-implanter-advanced = Advanced translation implanter
+
+research-technology-hydroponics-machines = Hydroponics machines
+research-technology-entertainment-machines = Entertainment machines
+research-technology-kitchen-machines = Kitchen machines

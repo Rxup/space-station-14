@@ -12,6 +12,6 @@ research-technology-power-generation-machines = Генераторы питан�
 research-technology-power-generation-advanced-machines = Продвинутые генераторы питания
 research-technology-mechanical-compression-machines = Компрессорное оборудование
 research-technology-engineering-machines = Базовое оборудование
-research-technology-engineering-advanced-machines = Высокопроизводительное оборудование
+research-technology-engineering-advanced-machines = Продвинутое оборудование
 research-technology-atmospheric-machines = Атмосферное оборудование
 research-technology-atmospheric-advanced-machines = Продвинутое атмосферное оборудование
