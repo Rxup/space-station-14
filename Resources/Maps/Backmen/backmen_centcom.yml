@@ -31665,7 +31665,7 @@ entities:
       pos: 3.5,68.5
       parent: 1
     - type: NavMapBeacon
-      text: Запасная стцковка
+      text: Запасная стыковка
     missingComponents:
     - WarpPoint
   - uid: 3486

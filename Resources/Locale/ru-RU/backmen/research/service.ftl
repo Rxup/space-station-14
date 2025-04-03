@@ -1,0 +1,20 @@
+research-technology-lightning = Базовое освещение
+research-technology-lightning-advanced = Продвинутое освещение
+research-technology-bootlegging = Бутлегерство
+research-technology-kitchen = Сервировка
+research-technology-hydroponics = Гидропоника
+research-technology-entertainment = Развлечения
+research-technology-cleaning = Базовая уборка
+research-technology-cleaning-advanced = Продвинутая уборка
+research-technology-spray = Базовые распылители
+research-technology-spray-advanced = Продвинутые распылители
+research-technology-translation-device = Устройства перевода
+research-technology-translation-implanter = Импланты перевода
+research-technology-translation-device-advanced = Продвинутые устройства перевода
+research-technology-translation-implanter-advanced = Продвинутые импланты перевода
+
+research-technology-hydroponics-machines = Оборудование гидропоники
+research-technology-entertainment-machines = Оборудование развлечений
+research-technology-kitchen-machines = Кухонное оборудование
+research-technology-bar-machines = Барное оборудование
+research-technology-service-machines = Сервисное оборудование

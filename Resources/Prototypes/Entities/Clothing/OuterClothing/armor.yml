@@ -83,7 +83,7 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.9
-        Piercing: 0.3
+        Piercing: 0.25
         ArmorPiercing: 0.70
         Heat: 0.9
   - type: ExplosionResistance
@@ -104,7 +104,7 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.9
-        Piercing: 0.9
+        Piercing: 0.8
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
   - type: Reflect
     reflectProb: 1
@@ -131,8 +131,8 @@
       coefficients:
         Blunt: 0.35
         Slash: 0.35
-        Piercing: 0.30
-        ArmorPiercing: 0.60
+        Piercing: 0.25
+        ArmorPiercing: 0.50
         Heat: 0.35
         Caustic: 0.5
         Stun: 0.3
