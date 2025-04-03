@@ -25,27 +25,26 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-  - BoxLethalshot
-  - BoxShotgunSlug
-  - MagazineBoxLightRifle
+  # Backmen-ammonation-start
+  - MagazinePistolSubMachineGun57x28
+  - MagazinePistolSubMachineGunVector45ACP
+  - MagazinePistolSubMachineGun9x17
+  - MagazinePistolTopSubMachineGun
+  - MagazineRifleFamas556UEG
+  - MagazineRifle556UEG
+  - MagazineRifle762UEG
+  - MagazinePistol45ACP
+  - MagazinePistol57x28
+  - MagazinePistol9x17
+  - MagazinePistol57x28Extd
+  - MagazineBoxHeavyRifle
+  - MagazinePacketRifle762x39
+  - MagazinePacketRifle762UEG
+  - MagazinePacketPistolACP
+  - MagazinePacketPistol57x28
+  - MagazinePacketPistol50AE
+  # Backmen-ammonation-end
   - MagazineBoxMagnum
-  - MagazineBoxPistol
-  - MagazineBoxRifle
-  - MagazineLightRifle
-  - MagazineLightRifleEmpty
-  - MagazinePistol
-  - MagazinePistolEmpty
-  - MagazinePistolSubMachineGun
-  - MagazinePistolSubMachineGunEmpty
-  - MagazinePistolSubMachineGunTopMounted
-  - MagazinePistolSubMachineGunTopMountedEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazineShotgun
-  - MagazineShotgunEmpty
-  - MagazineShotgunSlug
-  - SpeedLoaderMagnum
-  - SpeedLoaderMagnumEmpty
   technologyPrerequisites:
   - RiotControl
   - NonlethalAmmunition
@@ -61,11 +60,6 @@
   tier: 1
   cost: 10000
   recipeUnlocks:
-  - BoxShotgunIncendiary
-#  - MagazineRifleIncendiary
-#  - MagazinePistolIncendiary
-#  - MagazinePistolSubMachineGunIncendiary
-#  - MagazineLightRifleIncendiary
   - MagazinePacketPistolACPIncendiary
   - MagazinePacketPistol9x17Incendiary
   - MagazinePacketRifle762x39Incendiary
@@ -78,12 +72,6 @@
   - MagazinePistol45ACPincendiary
   - MagazinePistol57x28Incendiary
   - MagazinePistol9x17Incendiary
-  - SpeedLoaderMagnumIncendiary
-  - MagazineShotgunIncendiary
-#  - MagazineBoxPistolIncendiary
-  - MagazineBoxMagnumIncendiary
-#  - MagazineBoxLightRifleIncendiary
-#  - MagazineBoxRifleIncendiary
   technologyPrerequisites:
   - LethalAmmunition
   position: -4,-1
@@ -98,14 +86,7 @@
   tier: 1
   cost: 7500
   recipeUnlocks:
-#  - MagazineRifleUranium
-#  - MagazinePistolUranium
-#  - MagazineLightRifleUranium
   - SpeedLoaderMagnumUranium
-#  - MagazineBoxPistolUranium
-#  - MagazineBoxMagnumUranium
-#  - MagazineBoxLightRifleUranium
-#  - MagazineBoxRifleUranium
   - BoxShotgunUranium
   technologyPrerequisites:
   - LethalAmmunition
