@@ -1,10 +1,15 @@
-research-technology-medicine = Базовая медицина
-research-technology-surgery = Базовая хирургия
-research-technology-chemistry = Базовая химия
-research-technology-crew-monitoring = Мониторинг экипажа
-research-technology-biochemical-stasis = Биохимический стазис
-research-technology-bodybags = Мешки для тел
-research-technology-bodybags-bluespace = Блюспейс мешки для тел
-research-technology-chemistry-bluespace = Блюспейс химия
+research-technology-robotics = Базовая робототехника
+research-technology-robotics-advanced = Продвинутая робототехника
+research-technology-critter-mech = ЭКЗОКОСТЮМ: Животные
+research-technology-honk-mech = ЭКЗОКОСТЮМ: ХОНК
+research-technology-ripley-aplu-mech = ЭКЗОКОСТЮМ: Рипли
+research-technology-cyborg-modules = Базовые модули киборга
+research-technology-mechanized-treatment-modules = Модули медицины
+research-technology-space-scanning-modules = Модули сканирования
+research-technology-advanced-tools-modules = Модули продвинутых инструментов
+research-technology-hydroponics-modules = Модули гидропоники
+research-technology-salvage-equipment-modules = Модули утилизационного снаряжения
+research-technology-robotic-cleanliness-modules = Модули уборщика
+research-technology-xeno-archeology-modules = Модули ксеноархеологии
 
-research-technology-biochemical-stasis-machines = Оборудование биохимического стазиса
+research-technology-robotics-machines = Оборудование робототехники

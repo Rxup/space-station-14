@@ -13,7 +13,43 @@
   - BoxBeanbag
 #  technologyPrerequisites:
 #  - RiotControl
-  position: -1,-1
+  position: -2,-2
+
+- type: technology
+  id: LethalAmmunition
+  name: next-research-technology-lethal-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: slug
+  discipline: Arsenal
+  tier: 1
+  cost: 5500
+  recipeUnlocks:
+   - BoxLethalshot
+   - BoxShotgunSlug
+   - MagazineBoxLightRifle
+   - MagazineBoxMagnum
+   - MagazineBoxPistol
+   - MagazineBoxRifle
+   - MagazineLightRifle
+   - MagazineLightRifleEmpty
+   - MagazinePistol
+   - MagazinePistolEmpty
+   - MagazineRifle
+   - MagazineRifleEmpty
+   - MagazinePistolSubMachineGun
+   - MagazinePistolSubMachineGunEmpty
+   - MagazinePistolSubMachineGunTopMounted
+   - MagazinePistolSubMachineGunTopMountedEmpty
+   - MagazineShotgun
+   - MagazineShotgunEmpty
+   - MagazineShotgunSlug
+   - SpeedLoaderMagnum
+   - SpeedLoaderMagnumEmpty
+  technologyPrerequisites:
+  - RiotControl
+  - NonlethalAmmunition
+  position: -3,-2
 
 - type: technology
   id: DraconicAmmunition
@@ -49,9 +85,8 @@
 #  - MagazineBoxLightRifleIncendiary
 #  - MagazineBoxRifleIncendiary
   technologyPrerequisites:
-  - RiotControl
-  - NonlethalAmmunition
-  position: 0,0
+  - LethalAmmunition
+  position: -4,-1
 
 - type: technology
   id: UraniumAmmunition
@@ -73,9 +108,8 @@
 #  - MagazineBoxRifleUranium
   - BoxShotgunUranium
   technologyPrerequisites:
-  - RiotControl
-  - NonlethalAmmunition
-  position: -2,0
+  - LethalAmmunition
+  position: -4,-3
 
 - type: technology
   id: ArmorPiercingAmmo
@@ -92,9 +126,8 @@
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
   technologyPrerequisites:
-  - RiotControl
-  - NonlethalAmmunition
-  position: -1,0
+  - LethalAmmunition
+  position: -4,-2
 
 - type: technology
   id: Explosive
@@ -113,7 +146,7 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
-  position: -2,-2
+  position: 0,-1
 
 - type: technology
   id: CombatLaser
