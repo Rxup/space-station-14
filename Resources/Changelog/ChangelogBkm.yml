@@ -2213,3 +2213,29 @@
   id: 146
   time: '2025-04-03T21:53:02.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1181
+- author: Rxup
+  changes:
+  - message: "\u0441\u0432\u044F\u0449\u0435\u043D\u043D\u0438\u043A \u043D\u0435\
+      \ \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C \u0432\u0430\u043C\
+      \u043F\u0438\u0440\u043E\u043C (\u0438\u0437\u043D\u0430\u0447\u0430\u043B\u044C\
+      \u043D\u044B\u043C)"
+    type: Tweak
+  - message: "\u0442\u0435\u043F\u0435\u0440\u044C \u0432\u0441\u0435 \u0436\u0438\
+      \u0432\u043E\u0442\u043D\u044B\u0435 \u0430\u0433\u0440\u0435\u0441\u0441\u0438\
+      \u0432\u043D\u044B\u0435 \u043A \u0441\u043E\u0441\u0430\u043D\u0438\u044E."
+    type: Tweak
+  - message: "\u0442\u0435\u043F\u0435\u0440\u044C \u0436\u0438\u0432\u043E\u0442\u043D\
+      \u044B\u0435 \u0431\u0443\u0434\u0443\u0442 \u0440\u0430\u0441\u043A\u043E\u0432\
+      \u044B\u0432\u0430\u0442\u044C \u0441\u0435\u0431\u044F, \u043A\u043E\u0433\u0434\
+      \u0430 \u0441\u043E\u0441\u0451\u0448\u044C \u0443 \u043D\u0438\u0445"
+    type: Tweak
+  id: 147
+  time: '2025-04-03T22:32:56.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1188
+- author: KayzelW
+  changes:
+  - message: "\u0410\u043F\u0441\u0442\u0440\u0438\u043C 04.04.2025"
+    type: Tweak
+  id: 148
+  time: '2025-04-04T11:26:20.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1189

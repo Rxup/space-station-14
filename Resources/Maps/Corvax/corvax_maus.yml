@@ -63400,7 +63400,7 @@ entities:
       parent: 15789
     - type: Physics
       canCollide: False
-- proto: EpinephrineChemistryBottle
+- proto: ChemistryBottleEpinephrine
   entities:
   - uid: 6154
     components:
@@ -96378,7 +96378,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.8596802,-5.229553
       parent: 17265
-- proto: OmnizineChemistryBottle
+- proto: ChemistryBottleOmnizine
   entities:
   - uid: 2124
     components:
@@ -118399,7 +118399,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -71.2408,-73.347916
       parent: 2
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 377
     components:

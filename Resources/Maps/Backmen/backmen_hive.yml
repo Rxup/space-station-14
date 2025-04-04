@@ -133270,7 +133270,7 @@ entities:
     - type: Transform
       pos: 129.55777,7.5142198
       parent: 1
-- proto: RobustHarvestChemistryBottle
+- proto: ChemistryBottleRobustHarvest
   entities:
   - uid: 1208
     components:
@@ -144638,7 +144638,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 29.629953,48.680084
       parent: 1
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 12884
     components:

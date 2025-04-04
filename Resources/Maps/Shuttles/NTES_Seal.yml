@@ -3865,7 +3865,7 @@ entities:
     - type: PointLight
       enabled: True
     - type: ActiveEmergencyLight
-- proto: EphedrineChemistryBottle
+- proto: ChemistryBottleEphedrine
   entities:
   - uid: 955
     components:
