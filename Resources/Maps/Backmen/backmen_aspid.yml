@@ -104003,7 +104003,7 @@ entities:
         [bold]Приказ №2:[/bold]
 
 
-        Всем отрядам наёмников до 04.02.3025 вуступить в направлении ████████████████ и запустить протокол [bold][color=#3167bd]С.Т.Е.Н.А.[/color][/bold] 
+        Всем отрядам наёмников до 04.02.3025 вуступить в направлении ████████████████ и запустить протокол [bold][color=#3167bd]С.Т.Е.Н.А.[/color][/bold]
 
 
         [bold]Приказ №3:[/bold]
@@ -104284,7 +104284,7 @@ entities:
 
         [head=2]Должность[/head]
 
-        [bold]Имя:[/bold] 
+        [bold]Имя:[/bold]
 
 
         [bold]Отряд:[/bold]
@@ -104296,7 +104296,7 @@ entities:
 
         [head=2]Должность[/head]
 
-        [bold]Имя:[/bold] 
+        [bold]Имя:[/bold]
 
 
         [bold]Отряд:[/bold]
@@ -104308,7 +104308,7 @@ entities:
 
         [head=2]Должность[/head]
 
-        [bold]Имя:[/bold] 
+        [bold]Имя:[/bold]
 
 
         [bold]Отряд:[/bold]
@@ -113934,7 +113934,7 @@ entities:
     - type: Transform
       pos: -13.567444,6.478457
       parent: 1
-- proto: RobustHarvestChemistryBottle
+- proto: ChemistryBottleRobustHarvest
   entities:
   - uid: 19446
     components:

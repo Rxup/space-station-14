@@ -79228,7 +79228,7 @@ entities:
       parent: 25896
     - type: Physics
       canCollide: False
-- proto: EphedrineChemistryBottle
+- proto: ChemistryBottleEphedrine
   entities:
   - uid: 24186
     components:

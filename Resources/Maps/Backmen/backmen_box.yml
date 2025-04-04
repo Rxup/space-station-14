@@ -156327,7 +156327,7 @@ entities:
     - type: Transform
       pos: -2.4994454,-20.375242
       parent: 8364
-- proto: RobustHarvestChemistryBottle
+- proto: ChemistryBottleRobustHarvest
   entities:
   - uid: 13505
     components:

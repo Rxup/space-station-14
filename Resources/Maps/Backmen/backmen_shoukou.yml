@@ -75943,7 +75943,7 @@ entities:
     - type: Transform
       pos: -19.5,-16.5
       parent: 34
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 11382
     components:
