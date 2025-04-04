@@ -16190,11 +16190,6 @@ entities:
     - type: Transform
       pos: 51.5,29.5
       parent: 2
-  - uid: 6721
-    components:
-    - type: Transform
-      pos: 17.5,10.5
-      parent: 2
   - uid: 6751
     components:
     - type: Transform
@@ -18526,14 +18521,14 @@ entities:
     - type: Transform
       pos: 28.42001,14.909441
       parent: 2
-- proto: EphedrineChemistryBottle
+- proto: ChemistryBottleEphedrine
   entities:
   - uid: 7456
     components:
     - type: Transform
       pos: 12.5,13.5
       parent: 2
-- proto: EpinephrineChemistryBottle
+- proto: ChemistryBottleEpinephrine
   entities:
   - uid: 7304
     components:
@@ -36651,7 +36646,7 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: NocturineChemistryBottle
+- proto: ChemistryBottleNocturine
   entities:
   - uid: 2063
     components:
@@ -36689,7 +36684,7 @@ entities:
     - type: Transform
       pos: 30.5,51.5
       parent: 2
-- proto: OmnizineChemistryBottle
+- proto: ChemistryBottleOmnizine
   entities:
   - uid: 2369
     components:

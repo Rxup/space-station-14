@@ -36058,7 +36058,7 @@ entities:
       parent: 4142
     - type: Physics
       canCollide: False
-- proto: EpinephrineChemistryBottle
+- proto: ChemistryBottleEpinephrine
   entities:
   - uid: 4147
     components:
@@ -59534,7 +59534,7 @@ entities:
     - type: Transform
       pos: 90.5,58.5
       parent: 1
-- proto: OmnizineChemistryBottle
+- proto: ChemistryBottleOmnizine
   entities:
   - uid: 6843
     components:
@@ -66190,7 +66190,7 @@ entities:
     - type: Transform
       pos: 81.49663,63.5843
       parent: 1
-- proto: RobustHarvestChemistryBottle
+- proto: ChemistryBottleRobustHarvest
   entities:
   - uid: 7927
     components:
@@ -71933,7 +71933,7 @@ entities:
     - type: Transform
       pos: 72.5,62.5
       parent: 1
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 8668
     components:

@@ -42632,7 +42632,7 @@ entities:
     - type: Transform
       pos: -3.5,-9.5
       parent: 2
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 276
     components:

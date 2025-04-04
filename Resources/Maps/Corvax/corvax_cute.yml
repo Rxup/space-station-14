@@ -102689,7 +102689,7 @@ entities:
     - type: Transform
       pos: 407.5,414.5
       parent: 1
-- proto: OmnizineChemistryBottle
+- proto: ChemistryBottleOmnizine
   entities:
   - uid: 16115
     components:
@@ -124903,7 +124903,7 @@ entities:
     - type: Transform
       pos: 392.5,374.5
       parent: 1
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 17088
     components:
