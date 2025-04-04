@@ -26,7 +26,7 @@ public partial class TraumaSystem
     {
         SubscribeLocalEvent<TraumaInflicterComponent, WoundSeverityPointChangedEvent>(OnWoundSeverityPointChanged);
         SubscribeLocalEvent<TraumaInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
-        SubscribeLocalEvent<TraumaInflicterComponent, MapInitEvent>(OnTraumaInflicterInit);
+        SubscribeLocalEvent<TraumaInflicterComponent, ComponentStartup>(OnTraumaInflicterStartup);
 
         SubscribeLocalEvent<TraumaComponent, ComponentGetState>(OnComponentGet);
         SubscribeLocalEvent<TraumaComponent, ComponentHandleState>(OnComponentHandleState);
@@ -58,9 +58,9 @@ public partial class TraumaSystem
         args.State = state;
     }
 
-    private void OnTraumaInflicterInit(
+    private void OnTraumaInflicterStartup(
         Entity<TraumaInflicterComponent> woundEnt,
-        ref MapInitEvent args)
+        ref ComponentStartup args)
     {
         woundEnt.Comp.TraumaContainer = _container.EnsureContainer<Container>(woundEnt, TraumaContainerId);
     }
@@ -72,16 +72,17 @@ public partial class TraumaSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (args.NewSeverity < args.OldSeverity)
+        var delta = args.NewSeverity - args.OldSeverity;
+        if (delta <= 0 || delta < woundEnt.Comp.SeverityThreshold)
             return;
 
-        var traumasToInduce = RandomTraumaChance(args.Component.HoldingWoundable, woundEnt, args.NewSeverity);
+        var traumasToInduce = RandomTraumaChance(args.Component.HoldingWoundable, woundEnt, delta);
         if (traumasToInduce.Count <= 0)
             return;
 
         var woundable = args.Component.HoldingWoundable;
         var woundableComp = Comp<WoundableComponent>(args.Component.HoldingWoundable);
-        ApplyTraumas((woundable, woundableComp), woundEnt, traumasToInduce, args.NewSeverity);
+        ApplyTraumas((woundable, woundableComp), woundEnt, traumasToInduce, delta);
     }
 
     private void OnWoundHealAttempt(Entity<TraumaInflicterComponent> inflicter, ref WoundHealAttemptEvent args)
@@ -237,9 +238,6 @@ public partial class TraumaSystem
         if (!Resolve(target, ref woundable))
             return traumaList;
 
-        if (woundInflicter.Comp.SeverityThreshold > severity)
-            return traumaList;
-
         if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.BoneDamage) &&
             RandomBoneTraumaChance((target, woundable), woundInflicter))
             traumaList.Add(TraumaType.BoneDamage);
@@ -312,7 +310,7 @@ public partial class TraumaSystem
         if (!bodyPart.Body.HasValue)
             return false; // Can't sever if already severed
 
-        var bone = target.Comp.Bone!.ContainedEntities.FirstOrNull();
+        var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
         if (bone == null || !TryComp<BoneComponent>(bone, out var boneComp))
             return false;
 
@@ -436,7 +434,7 @@ public partial class TraumaSystem
         var bonePenalty = (FixedPoint2) 0.1f;
 
         // Broken bones increase the chance of your limb getting delimbed
-        var bone = target.Comp.Bone!.ContainedEntities.FirstOrNull();
+        var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
         if (bone != null && TryComp<BoneComponent>(bone, out var boneComp))
         {
             if (boneComp.BoneSeverity != BoneSeverity.Broken)
@@ -551,7 +549,7 @@ public partial class TraumaSystem
             switch (trauma)
             {
                 case TraumaType.BoneDamage:
-                    targetChosen = target.Comp.Bone!.ContainedEntities.FirstOrNull();
+                    targetChosen = target.Comp.Bone.ContainedEntities.FirstOrNull();
                     break;
 
                 case TraumaType.OrganDamage:

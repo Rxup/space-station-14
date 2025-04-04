@@ -210,15 +210,16 @@ public sealed class HealingSystem : EntitySystem
                 if (bleedStopAbility > bleeds.BleedingAmount)
                 {
                     bleedStopAbility -= bleeds.BleedingAmountRaw;
+
                     bleeds.BleedingAmountRaw = 0;
+                    bleeds.Scaling = 0;
+
                     bleeds.IsBleeding = false;
                 }
                 else
                 {
                     bleeds.BleedingAmountRaw -= bleedStopAbility;
                 }
-
-                bleedStopAbility -= bleeds.BleedingAmount;
             }
             _bloodstreamSystem.TryModifyBleedAmount(ent, healing.ModifyBloodLevel);
 
@@ -248,7 +249,7 @@ public sealed class HealingSystem : EntitySystem
             }
         }
 
-        if (healedTotal <= 0)
+        if (healedTotal <= 0 && bleedStopAbility == -healing.BloodlossModifier)
         {
             _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User);
             return;
@@ -350,17 +351,12 @@ public sealed class HealingSystem : EntitySystem
             return false;
         }
 
-        foreach (var damageKey in healing.Damage.DamageDict.Keys)
+        if (healing.Damage.DamageDict.Keys.Any(damageKey => _wounds.GetWoundableSeverityPoint(
+                targetedBodyPart.Value.Id,
+                damageGroup: GetDamageGroupByType(damageKey),
+                healable: true) > 0))
         {
-            if (_wounds.GetWoundableSeverityPoint(targetedBodyPart.Value.Id, damageGroup: damageKey, healable: true) > 0)
-                return true;
-
-            var groupByType = GetDamageGroupByType(damageKey);
-            if (groupByType == null)
-                continue;
-
-            if (_wounds.GetWoundableSeverityPoint(targetedBodyPart.Value.Id, damageGroup: groupByType, healable: true) > 0)
-                return true;
+            return true;
         }
 
         if (healing.BloodlossModifier == 0)

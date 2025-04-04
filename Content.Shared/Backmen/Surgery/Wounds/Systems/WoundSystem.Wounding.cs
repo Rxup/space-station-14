@@ -28,7 +28,7 @@ public sealed partial class WoundSystem
 
     private void InitWounding()
     {
-        SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableMapInit);
+        SubscribeLocalEvent<WoundableComponent, ComponentStartup>(OnWoundableStartup);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -47,14 +47,16 @@ public sealed partial class WoundSystem
 
     #region Event Handling
 
-    private void OnWoundableMapInit(EntityUid uid, WoundableComponent comp, MapInitEvent args)
+    private void OnWoundableStartup(EntityUid uid, WoundableComponent comp, ComponentStartup args)
     {
-        comp.RootWoundable = uid;
+        if (comp.RootWoundable == default)
+            comp.RootWoundable = uid;
 
         comp.Wounds = _container.EnsureContainer<Container>(uid, WoundContainerId);
         comp.Bone = _container.EnsureContainer<Container>(uid, BoneContainerId);
 
-        InsertBoneIntoWoundable(uid, comp);
+        if (comp.Bone.Count == 0)
+            InsertBoneIntoWoundable(uid, comp);
     }
 
     private void OnWoundInserted(EntityUid uid, WoundComponent comp, EntGotInsertedIntoContainerMessage args)

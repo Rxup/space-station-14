@@ -44,7 +44,7 @@ public partial class WoundSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        var healableWounds = ent.Comp.Wounds!.ContainedEntities.Count(wound => CanHealWound(wound));
+        var healableWounds = ent.Comp.Wounds.ContainedEntities.Count(wound => CanHealWound(wound));
         var healAmount = -ent.Comp.HealAbility / healableWounds;
 
         foreach (var wound in ent.Comp.Wounds!.ContainedEntities.ToList().Where(wound => CanHealWound(wound)))
