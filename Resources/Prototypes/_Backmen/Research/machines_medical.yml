@@ -16,7 +16,7 @@
   - HotplateMachineCircuitboard
   technologyPrerequisites:
   - Chemistry
-  position: 2,-4
+  position: 1,-5
 
 - type: technology
   id: BiomassMachines
@@ -62,5 +62,5 @@
   - VaccinatorMachineCircuitboard
   - DiagnoserMachineCircuitboard
   technologyPrerequisites:
-  - BiochemicalStasis
-  position: 5,-7
+  - Medicine
+  position: 3,-5
