@@ -9,4 +9,7 @@ public sealed partial class SurgeryTraumaPresentConditionComponent : Component
 {
     [DataField("trauma")]
     public TraumaType TraumaType = TraumaType.BoneDamage;
+
+    [DataField]
+    public bool Inverted = false;
 }

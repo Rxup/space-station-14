@@ -212,19 +212,31 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnTraumaPresentConditionValid(Entity<SurgeryTraumaPresentConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType))
-            args.Cancelled = true;
+        if (args.Cancelled)
+            return;
+
+        // inverted = not cancelled (no trauma present), not inverted = cancelled (trauma present)
+        args.Cancelled = !ent.Comp.Inverted;
+        if (_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType))
+            args.Cancelled = ent.Comp.Inverted;
+        // if trauma is present and inverted - cancelled; if trauma is NOT present and inverted - not cancelled
+        // if trauma is NOT present and NOT inverted = cancelled; if trauma is present and NOT inverted = not cancelled
     }
 
     private void OnBleedsPresentConditionValid(Entity<SurgeryBleedsPresentConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        args.Cancelled = true;
+        if (args.Cancelled)
+            return;
+
+        // inverted = not cancelled; not inverted = cancelled
+        args.Cancelled = !ent.Comp.Inverted;
         foreach (var woundEnt in _wounds.GetWoundableWounds(args.Part))
         {
             if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleeds) || !bleeds.IsBleeding)
                 continue;
 
-            args.Cancelled = false;
+            // if bleeds are present, and it's inverted... we cancel; Else we do not
+            args.Cancelled = ent.Comp.Inverted;
             break;
         }
     }

@@ -35,12 +35,14 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryStopBloodOutput
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepRemoveSeveredSkin
     - SurgeryStepRemoveLeftoverBones
     - SurgeryStepSealDismembermentWound
   - type: SurgeryPartPresentCondition
+  - type: SurgeryBleedsPresentCondition
+    inverted: true
   - type: SurgeryTraumaPresentCondition
     trauma: Dismemberment
 
@@ -65,7 +67,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryStopBloodOutput
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepSawBones
     - SurgeryStepPriseOpenBones
@@ -95,13 +97,14 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryStopBloodOutput
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepSawBones
     - SurgeryStepClampInternalBleeders
     - SurgeryStepMendBones
-    - SurgeryStepSealTendWound
   - type: SurgeryPartPresentCondition
+  - type: SurgeryBleedsPresentCondition
+    inverted: true
   - type: SurgeryTraumaPresentCondition
     trauma: BoneDamage
 
@@ -112,12 +115,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryStopBloodOutput
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepClampInternalBleeders
     - SurgeryStepHealOrgans
-    - SurgeryStepSealTendWound
   - type: SurgeryPartPresentCondition
+  - type: SurgeryBleedsPresentCondition
+    inverted: true
   - type: SurgeryTraumaPresentCondition
     trauma: OrganDamage
 
@@ -131,12 +135,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: head
     part: Head
@@ -148,12 +155,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left arm
     part: Arm
@@ -166,12 +176,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right arm
     part: Arm
@@ -184,12 +197,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Groin
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left leg
     part: Leg
@@ -202,12 +218,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Groin
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right leg
     part: Leg
@@ -220,13 +239,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Arm
     symmetry: Left
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left hand
     part: Hand
@@ -239,13 +261,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Arm
     symmetry: Right
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right hand
     part: Hand
@@ -258,13 +283,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Leg
     symmetry: Left
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left foot
     part: Foot
@@ -277,13 +305,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryFixDismemberment
+    requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Leg
     symmetry: Right
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right foot
     part: Foot

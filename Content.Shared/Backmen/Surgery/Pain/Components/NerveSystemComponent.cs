@@ -3,7 +3,6 @@ using Content.Shared.Humanoid;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Components;
 
@@ -192,7 +191,7 @@ public sealed partial class NerveSystemComponent : Component
             }
        },
        {
-            Sex.Female, new SoundCollectionSpecifier("OrganDamagePainedMale") // TODO: FEMALE SOUNDS FOR THIS
+            Sex.Female, new SoundCollectionSpecifier("OrganDamagePainedFemale")
             {
                 Params = AudioParams.Default,
             }
@@ -215,7 +214,7 @@ public sealed partial class NerveSystemComponent : Component
             }
         },
         {
-            Sex.Female, new SoundCollectionSpecifier("OrganDamageWhimpersMale") // TODO: FEMALE SOUNDS FOR THIS
+            Sex.Female, new SoundCollectionSpecifier("OrganDamageWhimpersFemale")
             {
                 Params = AudioParams.Default,
             }

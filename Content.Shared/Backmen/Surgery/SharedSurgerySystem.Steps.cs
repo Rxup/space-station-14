@@ -58,6 +58,7 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryRemoveMarkingStepComponent>(OnRemoveMarkingStep, OnRemoveMarkingCheck);
         SubSurgery<SurgeryTraumaTreatmentStepComponent>(OnTraumaTreatmentStep, OnTraumaTreatmentCheck);
         SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
+        SubSurgery<SurgeryStepPainInflicter>(OnPainInflicterStep, OnPainInflicterCheck);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
@@ -637,7 +638,7 @@ public abstract partial class SharedSurgerySystem
                 if (!TryComp<WoundableComponent>(args.Part, out var woundable))
                     return;
 
-                var bone = woundable.Bone!.ContainedEntities.FirstOrNull();
+                var bone = woundable.Bone.ContainedEntities.FirstOrNull();
                 if (bone == null || !TryComp<BoneComponent>(bone, out var boneComp))
                     return;
 
@@ -697,6 +698,16 @@ public abstract partial class SharedSurgerySystem
             args.Cancelled = true;
             break;
         }
+    }
+
+    private void OnPainInflicterStep(Entity<SurgeryStepPainInflicter> ent, ref SurgeryStepEvent args)
+    {
+        // TODO: implement this
+    }
+
+    private void OnPainInflicterCheck(Entity<SurgeryStepPainInflicter> ent, ref SurgeryStepCompleteCheckEvent args)
+    {
+        // is there really anything to check?
     }
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)

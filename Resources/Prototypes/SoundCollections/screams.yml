@@ -147,3 +147,16 @@
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale1.ogg
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale2.ogg
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale3.ogg
+
+- type: soundCollection
+  id: OrganDamagePainedFemale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/OrganDamagePainedFemale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamagePainedFemale2.ogg
+
+- type: soundCollection
+  id: OrganDamageWhimpersFemale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersFemale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersFemale2.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersFemale3.ogg
