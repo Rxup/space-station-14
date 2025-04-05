@@ -118,9 +118,9 @@
   components:
     - type: StorageFill
       contents:
-        - id: EpinephrineChemistryBottle
+        - id: ChemistryBottleEpinephrine
           amount: 2
-        - id: OmnizineChemistryBottle
+        - id: ChemistryBottleOmnizine
           amount: 3
         - id: SyringeBluespace
         - id: HandheldHealthAnalyzer
@@ -341,11 +341,11 @@
   components:
     - type: StorageFill
       contents:
-        - id: OmnizineChemistryBottle
+        - id: ChemistryBottleOmnizine
           amount: 4
-        - id: EpinephrineChemistryBottle
+        - id: ChemistryBottleEpinephrine
           amount: 4
-        - id: EphedrineChemistryBottle
+        - id: ChemistryBottleEphedrine
           amount: 4
         - id: Hypospray
         - id: EmergencyMedipen

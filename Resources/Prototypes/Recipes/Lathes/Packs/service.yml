@@ -41,6 +41,7 @@
 - type: latheRecipePack
   id: Janitor
   recipes:
+  - TrashBag # Backmen
   - AdvMopItem
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank

@@ -321,8 +321,8 @@
         Caustic: 0.7
         Stun: 0.3 # I hate this really much
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
@@ -354,12 +354,13 @@
         Blunt: 0.3
         Slash: 0.3
         Piercing: 0.3
+        ArmorPiercing: 0.5
         Heat: 0.5
         Caustic: 0.5
         Stun: 0.2
   - type: ClothingSpeedModifier # backmen brigmedic's hardsuit rebalance
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
@@ -393,6 +394,7 @@
         Blunt: 0.3
         Slash: 0.3
         Piercing: 0.3
+        ArmorPiercing: 0.4
         Heat: 0.5
         Caustic: 0.7
         Stun: 0.5
@@ -687,6 +689,7 @@
         Blunt: 0.3
         Slash: 0.3
         Piercing: 0.3
+        ArmorPiercing: 0.5
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5

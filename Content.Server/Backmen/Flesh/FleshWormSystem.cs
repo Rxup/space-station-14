@@ -48,6 +48,12 @@ public sealed partial class FleshWormSystem : EntitySystem
         SubscribeLocalEvent<FleshWormComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<FleshWormComponent, BeingUnequippedAttemptEvent>(OnUnequipAttempt);
         SubscribeLocalEvent<FleshWormComponent, FleshWormJumpActionEvent>(OnJumpWorm);
+        SubscribeLocalEvent<FleshWormComponent, ComponentShutdown>(OnShutdown);
+    }
+
+    private void OnShutdown(Entity<FleshWormComponent> ent, ref ComponentShutdown args)
+    {
+        _action.RemoveAction(ent.Owner, ent.Comp.WormJumpAction);
     }
 
     private void OnStartup(EntityUid uid, FleshWormComponent component, ComponentStartup args)

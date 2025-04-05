@@ -494,7 +494,7 @@ namespace Content.Shared.Damage
             // Shitmed Change End
         }
 
-        // backmen edit
+        // backmen edit start
         public Dictionary<string, FixedPoint2> DamageSpecifierToWoundList(
             EntityUid uid,
             EntityUid? origin,
@@ -544,8 +544,9 @@ namespace Content.Shared.Damage
 
             return damageDict;
         }
-
-        public void SetDamageModifierSetId(EntityUid uid, string damageModifierSetId, DamageableComponent? comp = null)
+        // backmen edit end
+        
+        public void SetDamageModifierSetId(EntityUid uid, string? damageModifierSetId, DamageableComponent? comp = null)
         {
             if (!_damageableQuery.Resolve(uid, ref comp))
                 return;
@@ -554,11 +555,12 @@ namespace Content.Shared.Damage
             Dirty(uid, comp);
         }
 
-        // backmen edit
+        // backmen edit start
         public string GetDamageGroupByType(string id)
         {
             return (from @group in _prototypeManager.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
         }
+        // backmen edit end
 
         private void DamageableGetState(EntityUid uid, DamageableComponent component, ref ComponentGetState args)
         {

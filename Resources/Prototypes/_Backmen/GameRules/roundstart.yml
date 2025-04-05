@@ -117,6 +117,7 @@
       blacklist:
         components:
         - AntagImmune
+        - BibleUser
       lateJoinAdditional: true
       briefing:
         text: vampire-role-greeting
@@ -143,6 +144,8 @@
   parent: BaseVampiresGameRule
   categories: [ HideSpawnMenu ]
   components:
+  - type: GameRule
+    minPlayers: 15
   - type: StationEvent
     earliestStart: 20
     minimumPlayers: 15

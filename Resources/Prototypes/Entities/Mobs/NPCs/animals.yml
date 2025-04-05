@@ -3148,6 +3148,8 @@
       amount: 3
 #  - type: ReplacementAccent
 #    accent: cat
+  - type: NPCRetaliation
+    attackMemoryLength: 30
   - type: LanguageSpeaker
     currentLanguage: Cat
   - type: LanguageKnowledge #backmen: languages
@@ -3180,6 +3182,9 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
 
 - type: entity
   name: calico cat
