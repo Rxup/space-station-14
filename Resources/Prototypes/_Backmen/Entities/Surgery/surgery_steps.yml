@@ -139,7 +139,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendBones
-  name: Mend Bones
+  name: Востановить кости
   categories: [ HideSpawnMenu ]
   components:
   - type: SurgeryStep
