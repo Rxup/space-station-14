@@ -76,7 +76,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
         }
         else
         {
-            Log.Error($"Drone {ToPrettyString(ent)} battery not found");
+            Log.Warning($"Drone {ToPrettyString(ent)} battery not found");
         }
     }
 

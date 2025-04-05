@@ -50,11 +50,9 @@
 
 - type: entity
   name: Blue Space Drone MED
-  id: BackmenDroneMED
+  id: DroneBPLAMED
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent:
-  - PlayerSiliconBase
-  - ShowMedicalIcons
+  parent: [ PlayerSiliconBase, ShowMedicalIcons ]
   components:
   - type: BatteryDrainer
   - type: BSSDrone

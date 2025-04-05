@@ -99,10 +99,9 @@
 
 - type: entity
   name: Blue Space Drone
-  id: BackmenDrone
+  id: DroneBPLA
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent:
-  - PlayerSiliconBase
+  parent: [ PlayerSiliconBase ]
   components:
   - type: NameIdentifier
     group: BSSDrone
@@ -129,6 +128,14 @@
   - type: ActionGrant
     actions:
     - ActionAIViewLaws
+    - ActionBPLAActionCableApcStack
+    - ActionBPLAActionCableMVStack
+    - ActionBPLAActionCableHVStack
+    - ActionBPLAActionSheetSteel
+    - ActionBPLAActionSheetPlasteel
+    - ActionBPLAActionSheetGlass
+    - ActionBPLAActionSheetRGlass
+    - ActionBPLAActionSheetPlastic
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots

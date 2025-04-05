@@ -9,5 +9,5 @@ ent-DefibrillatorINF = { ent-Defibrillator }
 ent-HandheldCrewMonitorINF = { ent-HandheldCrewMonitor }
     .desc = { ent-HandheldCrewMonitor.desc }
     .suffix = Backmen, INF
-ent-BackmenDroneMED = медицинский блюспейс дрон
+ent-DroneBPLAMED = медицинский блюспейс дрон
     .desc = Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
