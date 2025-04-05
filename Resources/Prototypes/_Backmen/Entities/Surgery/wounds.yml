@@ -234,7 +234,7 @@
     multiplier: 0.12
 
 - type: entity
-  id: Radiation
+  id: Poison
   parent: WoundBase
   categories: [ HideSpawnMenu ]
   components:
