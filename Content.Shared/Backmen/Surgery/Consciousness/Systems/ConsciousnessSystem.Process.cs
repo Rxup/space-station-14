@@ -5,7 +5,6 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
@@ -144,7 +143,7 @@ public partial class ConsciousnessSystem
 
         if (consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null && value.Item1 != uid)
         {
-            _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} added to a body:" +
+            _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} redacted on a body:" +
                         $" {args.Part.Comp.Body} this will result in unexpected behaviour!");
         }
 
@@ -182,7 +181,7 @@ public partial class ConsciousnessSystem
 
         if (consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null && value.Item1 != uid)
         {
-            _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} added to a body:" +
+            _sawmill.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} changed on a body:" +
                              $" {args.Body} this will result in unexpected behaviour! Old {component.Identifier} wielder: {value.Item1}");
         }
 
