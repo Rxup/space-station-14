@@ -10,7 +10,7 @@
       icon: Objects/Specific/Medical/medical.rsi/brutepack.png
       event: !type:DroneCraftActionEvent
         craftedItem: Brutepack
-        energy: 60
+        energy: 280
 
 - type: entity
   id: ActionBPLAMEDActionOintment
@@ -22,7 +22,7 @@
       icon: Objects/Specific/Medical/medical.rsi/ointment.png
       event: !type:DroneCraftActionEvent
         craftedItem: Ointment
-        energy: 60
+        energy: 200
 
 - type: entity
   id: ActionBPLAMEDActionBloodpack
@@ -34,7 +34,7 @@
       icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
       event: !type:DroneCraftActionEvent
         craftedItem: Bloodpack
-        energy: 60
+        energy: 500
 
 #BPLA
 
@@ -84,7 +84,7 @@
     icon: Objects/Materials/Sheets/metal.rsi/steel_3.png
     event: !type:DroneCraftActionEvent
       craftedItem: SheetSteel
-      energy: 120
+      energy: 200
 
 - type: entity
   id: ActionBPLAActionSheetPlasteel
@@ -96,7 +96,7 @@
     icon: Objects/Materials/Sheets/metal.rsi/plasteel_3.png
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlasteel
-      energy: 150
+      energy: 450
 
 - type: entity
   id: ActionBPLAActionSheetGlass
@@ -108,7 +108,7 @@
     icon: Objects/Materials/Sheets/glass.rsi/glass_3.png
     event: !type:DroneCraftActionEvent
       craftedItem: SheetGlass
-      energy: 100
+      energy: 150
 
 - type: entity
   id: ActionBPLAActionSheetRGlass
@@ -120,7 +120,7 @@
     icon: Objects/Materials/Sheets/glass.rsi/rglass_3.png
     event: !type:DroneCraftActionEvent
       craftedItem: SheetRGlass
-      energy: 50
+      energy: 450
 
 - type: entity
   id: ActionBPLAActionSheetPlastic
@@ -132,4 +132,4 @@
     icon: Objects/Materials/Sheets/other.rsi/plastic_3.png
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlastic
-      energy: 90
+      energy: 200
