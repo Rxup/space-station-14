@@ -6,7 +6,9 @@
     - type: InstantAction
       useDelay: 300
       icon: Objects/Specific/Medical/medical.rsi/brutepack.png
-      event: !type:brutepackCraftActionEvent
+      event: !type:DroneCraftActionEvent
+        craftedItem: Brutepack
+        energy: 20
 
 - type: entity
   id: ActionBPLAMEDActionOintment
@@ -16,7 +18,9 @@
     - type: InstantAction
       useDelay: 300
       icon: Objects/Specific/Medical/medical.rsi/ointment.png
-      event: !type:ointmentCraftActionEvent
+      event: !type:DroneCraftActionEvent
+        craftedItem: Ointment
+        energy: 20
 
 - type: entity
   id: ActionBPLAMEDActionBloodpack
@@ -26,5 +30,7 @@
     - type: InstantAction
       useDelay: 300
       icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
-      event: !type:bloodpackCraftActionEvent
+      event: !type:DroneCraftActionEvent
+        craftedItem: Bloodpack
+        energy: 20
 

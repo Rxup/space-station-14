@@ -56,8 +56,9 @@
   - PlayerSiliconBase
   - ShowMedicalIcons
   components:
+  - type: BatteryDrainer
   - type: BSSDrone
-    droneType: MED
+    noPowerPopup: ninja-no-power
   - type: NameIdentifier
     group: BSSDroneMED
   - type: MetaData
@@ -80,12 +81,31 @@
     templateId: drone
   - type: InventorySlots
   - type: Strippable
+  - type: ActionGrant
+    actions:
+    - ActionAIViewLaws
+    - ActionBPLAMEDActionBrutepack
+    - ActionBPLAMEDActionOintment
+    - ActionBPLAMEDActionBloodpack
   - type: UserInterface
     interfaces:
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
   - type: GhostRole
     whitelistRequired: false
     makeSentient: true
