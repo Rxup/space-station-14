@@ -109,9 +109,9 @@
         - id: MedkitFilled
         - id: SyringeInaprovaline
           amount: 2
-        - id: EpinephrineChemistryBottle
+        - id: ChemistryBottleEpinephrine
           amount: 2
-        - id: OmnizineChemistryBottle
+        - id: ChemistryBottleOmnizine
         - id: Hypospray
 
 - type: entity

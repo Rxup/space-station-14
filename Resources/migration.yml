@@ -748,7 +748,6 @@ MagazinePistolUranium: MagazinePistol9x17
 MagazinePistolHighCapacityEmpty: null
 MagazinePistolHighCapacity: MagazinePistol57x28Extd
 MagazinePistolHighCapacityPractice: MagazinePistol57x28Extd
-MagazinePistolHighCapacityRubber: MagazinePistol57x28Extd
 MagazinePistolSubMachineGun: MagazinePistolSubMachineGun9x17
 MagazinePistolSubMachineGunEmpty: null
 MagazinePistolSubMachineGunPractice: MagazinePistolSubMachineGun9x17
@@ -792,7 +791,6 @@ MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
 #2025-02-05
 #WeaponSubMachineGunVector: null
 #WeaponSubMachineGunVectorRubber: null
-MagazineBoxCaselessRifleBig: MagazineBoxCaselessRifle
 MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
 
 #2025-02-06 backmen: no pride
@@ -837,8 +835,8 @@ VendingMachinePride: null
 # 2025-02-20
 #MagazineBoxAntiMaterielBig: null
 MagazineBoxCaselessRifle10x24: null
-#MagazineBoxCaselessRifleBig: null
-#MagazinePistolHighCapacityRubber: null
+MagazineBoxCaselessRifleBig: null
+MagazinePistolHighCapacityRubber: null
 
 # 2025-03-25 | Backmen
 SpawnPointInteQVanguardSolderSizo37: SpawnPointInteQVanguardSoldierSizo37
@@ -849,3 +847,24 @@ CrateVendingMachineRestockSalvageEquipmentFilled: null
 ComputerSalvageExpedition: ComputerShuttleMiningLavaland
 SalvageExpeditionsComputerCircuitboard: LavalandShuttleConsoleCircuitboard
 WallRockBasaltBSCrystal: WallRockBasalt
+
+
+# 2025-03-18
+EpinephrineChemistryBottle: ChemistryBottleEpinephrine
+RobustHarvestChemistryBottle: ChemistryBottleRobustHarvest
+EZNutrientChemistryBottle: ChemistryBottleEZNutrient
+Left4ZedChemistryBottle: ChemistryBottleLeft4Zed
+UnstableMutagenChemistryBottle: ChemistryBottleUnstableMutagen
+PotassiumChemistryBottle: ChemistryBottlePotassium
+NocturineChemistryBottle: ChemistryBottleNocturine
+NitrogenChemistryBottle: ChemistryBottleNitrogen
+EphedrineChemistryBottle: ChemistryBottleEphedrine
+PhosphorusChemistryBottle: ChemistryBottlePhosphorus
+OmnizineChemistryBottle: ChemistryBottleOmnizine
+HydrogenChemistryBottle: ChemistryBottleHydrogen
+CognizineChemistryBottle: ChemistryBottleCognizine
+EthanolChemistryBottle: ChemistryBottleEthanol
+PaxChemistryBottle: ChemistryBottlePax
+MuteToxinChemistryBottle: ChemistryBottleMuteToxin
+LeadChemistryBottle: ChemistryBottleLead
+ToxinChemistryBottle: ChemistryBottleToxin

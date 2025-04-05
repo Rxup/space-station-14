@@ -1,0 +1,34 @@
+- type: technology
+  id: ShuttleWeapon
+  name: research-technology-shuttle-weapon
+  icon:
+    sprite: Objects/Power/power_cages.rsi
+    state: small
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+   - PowerCageSmall
+   - PowerCageMedium
+   - MagazineGrenadeEmpty
+   - GrenadeFlash
+   - GrenadeBlast
+  technologyPrerequisites:
+  - SalvageWeapons
+  position: 13,-1
+
+- type: technology
+  id: ShuttleWeaponAdvanced
+  name: research-technology-shuttle-weapon-advanced
+  icon:
+    sprite: Objects/Power/power_cages.rsi
+    state: high
+  discipline: Arsenal
+  tier: 1
+  cost: 6000
+  recipeUnlocks:
+   - GrenadeEMP
+   - PowerCageHigh
+  technologyPrerequisites:
+  - ShuttleWeapon
+  position: 13,-2

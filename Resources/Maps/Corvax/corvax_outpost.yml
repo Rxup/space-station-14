@@ -53625,7 +53625,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 15.49149,35.452545
       parent: 2
-- proto: EphedrineChemistryBottle
+- proto: ChemistryBottleEphedrine
   entities:
   - uid: 2034
     components:
@@ -83870,7 +83870,7 @@ entities:
 
         Откуда у меня Оппорозидон и как я узнал его рецепт?
 
-        Всё очень просто! 
+        Всё очень просто!
 
                   [head=2]ГЛУПЕНЬКИЙ ХОНК-ХОООНК!!![/head]
     - type: SolutionContainerManager
@@ -100603,7 +100603,7 @@ entities:
     - type: Transform
       pos: 10.5170765,50.50378
       parent: 2
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 11921
     components:

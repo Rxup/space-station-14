@@ -236,6 +236,7 @@
     modifiers:
       coefficients:
         Radiation: 0.8
+        Stun: 1.1 #Backmen-edit
 
 - type: entity
   parent: ClothingUniformBase

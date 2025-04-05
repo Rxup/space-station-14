@@ -307,6 +307,19 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             {
                 if (!ent.Comp.PreSelectedSessions.TryGetValue(def, out var set))
                     ent.Comp.PreSelectedSessions.Add(def, set = new HashSet<ICommonSession>());
+
+                // start-backmen: antag
+                {
+                    var ev = new AntagSelectCheckEvent(session, def);
+                    RaiseLocalEvent(ent, ref ev, true);
+                    if (ev.Canceled)
+                    {
+                        Log.Debug($"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)} (skipped)");
+                        continue;
+                    }
+                }
+                // end-bakcmen: antag
+
                 set.Add(session); // Selection done!
                 Log.Debug($"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
                 _adminLogger.Add(LogType.AntagSelection, $"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
@@ -631,3 +644,11 @@ public record struct AntagSelectLocationEvent(ICommonSession? Session, Entity<An
 /// </summary>
 [ByRefEvent]
 public readonly record struct AfterAntagEntitySelectedEvent(ICommonSession? Session, EntityUid EntityUid, Entity<AntagSelectionComponent> GameRule, AntagSelectionDefinition Def);
+
+// start-backmen: antag isCanBe
+[ByRefEvent]
+public record struct AntagSelectCheckEvent(ICommonSession? Session, AntagSelectionDefinition Def)
+{
+    public bool Canceled { get; set; } = false;
+}
+// end-bakcmen: antag isCanBe

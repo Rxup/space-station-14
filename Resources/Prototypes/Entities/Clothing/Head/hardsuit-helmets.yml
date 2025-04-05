@@ -317,8 +317,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: TinfoilHat               #Backmen edit
-    destroyOnFry: false
 
 #Chief Engineer's Hardsuit
 - type: entity
