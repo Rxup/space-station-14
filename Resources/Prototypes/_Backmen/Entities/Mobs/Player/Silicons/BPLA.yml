@@ -103,6 +103,7 @@
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
   parent: [ PlayerSiliconBase ]
   components:
+  - type: AntagImmune
   - type: NameIdentifier
     group: BSSDrone
   - type: MetaData

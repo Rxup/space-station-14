@@ -55,6 +55,7 @@
   parent: [ PlayerSiliconBase, ShowMedicalIcons ]
   components:
   - type: BatteryDrainer
+  - type: AntagImmune
   - type: BSSDrone
     noPowerPopup: ninja-no-power
   - type: NameIdentifier

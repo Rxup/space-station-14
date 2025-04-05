@@ -62,8 +62,8 @@
             BkmSurgeon: [1, 1] # backmen-Surgeon
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BlueShield: [1, 1] # backmen-BlueShield
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            BKBPLATech: [0, 1] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
         # backmen blob-config-start HUGE
         - type: StationBlobConfig
           stageBegin: 40

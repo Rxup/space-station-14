@@ -68,6 +68,6 @@
             Deliveryman: [ 2, 2 ]
           #silicon
             StationAi: [ 1, 1 ]
-            #BKBPLATech: [0, 3]
-            #BKBPLAMED: [0, 3]
+            BKBPLATech: [0, 1]
+            BKBPLAMED: [0, 1]
             Borg: [ 3, 3 ]
