@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server.Administration.Systems;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
+using Content.Server.Tools.Innate;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -13,6 +14,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Backmen.Body;
 
@@ -27,6 +29,60 @@ public sealed class BodySetupTest
         "Skeleton",
         "Monkey",
     };
+
+    [Test]
+    public async Task InnateToolTest()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Dirty = true,
+            Connected = true,
+            InLobby = false,
+        });
+
+        var server = pair.Server;
+
+        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+        var handsSys = server.EntMan.System<HandsSystem>();
+        var compFactory = server.ResolveDependency<IComponentFactory>();
+
+        var testMap = await pair.CreateTestMap();
+
+        //var ticker = server.System<GameTicker>();
+        //Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
+
+        foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
+        {
+            var skip = false;
+            InnateToolComponent toolComponent = null;
+            await server.WaitAssertion(() =>
+            {
+                if (!proto.TryGetComponent(out toolComponent, compFactory))
+                    skip = true;
+            });
+
+            if(skip)
+                continue;
+
+            var dummy = EntityUid.Invalid;
+            await server.WaitAssertion(() =>
+            {
+                dummy = server.EntMan.Spawn(proto.ID, testMap.MapCoords);
+            });
+            await server.WaitIdleAsync();
+            await server.WaitRunTicks(2);
+            await server.WaitAssertion(() =>
+            {
+                Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
+                var handCount = handsSys.EnumerateHands(dummy).Count();
+                Assert.That(handCount, Is.GreaterThanOrEqualTo(toolComponent.Tools.Count), $"hands {proto.ID}");
+                server.EntMan.DeleteEntity(dummy);
+            });
+        }
+
+
+        await pair.CleanReturnAsync();
+    }
 
     [Test]
     public async Task AllSpeciesHaveLegs()
