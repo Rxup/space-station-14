@@ -1,0 +1,9 @@
+ent-ShuttleGunUEGSmallCircuitboard = плата малого коабельного лазера ОПЗ
+    .desc = Печатная плата для малого лазера Объединенного правительства Земли.
+    .suffix = Machine Board
+ent-ShuttleGunUEGMediumCircuitboard = плата среднего коабельного лазера ОПЗ
+    .desc = Печатная плата для среднего лазера Объединённого Правительства Земли.
+    .suffix = Machine Board
+ent-ShuttleGunUEGLargeCircuitboard = плата тяжёлого коабельного лазера ОПЗ
+    .desc = Печатная плата для большого лазера Объединенного правительства Земли.
+    .suffix = Machine Board
