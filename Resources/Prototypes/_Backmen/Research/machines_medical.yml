@@ -16,7 +16,7 @@
   - HotplateMachineCircuitboard
   technologyPrerequisites:
   - Chemistry
-  position: 2,-4
+  position: 1,-5
 
 - type: technology
   id: BiomassMachines
@@ -48,3 +48,19 @@
   technologyPrerequisites:
   - BiochemicalStasis
   position: 5,-6
+
+- type: technology
+  id: VirologyMachines
+  name: research-technology-virology-machines
+  icon:
+    sprite: Structures/Machines/vaccinator.rsi
+    state: icon
+  discipline: Medical
+  tier: 1
+  cost: 6500
+  recipeUnlocks:
+  - VaccinatorMachineCircuitboard
+  - DiagnoserMachineCircuitboard
+  technologyPrerequisites:
+  - Medicine
+  position: 3,-5

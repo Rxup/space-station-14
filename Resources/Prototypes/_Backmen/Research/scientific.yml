@@ -136,30 +136,13 @@
   tier: 2
   cost: 7500
   recipeUnlocks:
-    - ClothingHeadHelmetInsulated
-    - InsulativeHeadcage
-    - ShellSoulbreaker
+  - ClothingHeadHelmetInsulated
+  - InsulativeHeadcage
+  - ShellSoulbreaker
+  - AntiPsychicKnife
   technologyPrerequisites:
   - AnomalousResearch
   position: 5,2
-
-- type: technology
-  id: Metempsychosis
-  name: research-technology-metempsychosis
-  icon:
-    sprite: Backmen/Structures/Machines/metempsychotic.rsi
-    state: pod_0
-  discipline: Scientific
-  tier: 2
-  cost: 15000
-  recipeUnlocks:
-    - BiomassReclaimerMachineCircuitboard
-    - CloningConsoleComputerCircuitboard
-    - MedicalScannerMachineCircuitboard
-    # - MetempsychoticMachineCircuitboard
-  technologyPrerequisites:
-  - PsionicCountermeasures
-  position: 6,2
 
 - type: technology
   id: Teleportation
@@ -171,9 +154,9 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-    - CoreSilver
-    - HandTeleporter1
-#    - QSI
+  - CoreSilver
+  - HandTeleporter1
+#  - QSI
   technologyPrerequisites:
   - QuantumLeaping
   position: 3,5
