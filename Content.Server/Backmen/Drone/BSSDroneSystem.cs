@@ -1,22 +1,33 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Backmen.Drone.Actions;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Hands.Systems;
+using Content.Server.Ninja.Events;
 using Content.Server.Popups;
+using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
+using Content.Server.PowerCell;
 using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Tools.Innate;
 using Content.Shared.Actions;
+using Content.Shared.Alert;
 using Content.Shared.Backmen.Drone;
 using Content.Shared.Body.Components;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Ninja.Systems;
 using Content.Shared.Popups;
+using Content.Shared.PowerCell.Components;
 using Content.Shared.Radio;
+using Content.Shared.Rounding;
 using Content.Shared.Throwing;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Drone;
@@ -30,6 +41,11 @@ public sealed class BSSDroneSystem : SharedDroneSystem
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
+    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedBatteryDrainerSystem _batteryDrainer = default!;
 
 
     [ValidatePrototypeId<RadioChannelPrototype>]
@@ -44,15 +60,96 @@ public sealed class BSSDroneSystem : SharedDroneSystem
         SubscribeLocalEvent<BSSDroneComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<BSSDroneComponent, EmoteAttemptEvent>(OnEmoteAttempt);
         SubscribeLocalEvent<BSSDroneComponent, ThrowAttemptEvent>(OnThrowAttempt);
-        SubscribeLocalEvent<BSSDroneComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<BSSDroneComponent, ComponentShutdown>(OnComponentShutdown);
-
-        SubscribeLocalEvent<BSSDroneComponent, bloodpackCraftActionEvent>(OnCraftBloodpack);
-        SubscribeLocalEvent<BSSDroneComponent, ointmentCraftActionEvent>(OnCraftOintment);
-        SubscribeLocalEvent<BSSDroneComponent, brutepackCraftActionEvent>(OnCraftBrutepack);
+        SubscribeLocalEvent<BSSDroneComponent, DroneCraftActionEvent>(OnCraft);
+        SubscribeLocalEvent<BSSDroneComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<BSSDroneComponent, MapInitEvent>(OnMapInit, after: [typeof(ItemSlotsSystem)]);
 
         //SubscribeLocalEvent<DroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
         SubscribeLocalEvent<BSSDroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
+    }
+
+    private void OnMapInit(Entity<BSSDroneComponent> ent, ref MapInitEvent args)
+    {
+        if (GetDroneBattery(ent, out var battery, out _))
+        {
+            _batteryDrainer.SetBattery(ent.Owner, battery);
+        }
+        else
+        {
+            Log.Warning($"Drone {ToPrettyString(ent)} battery not found");
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        var query = EntityQueryEnumerator<BSSDroneComponent>();
+        while (query.MoveNext(out var uid, out var droneComponent))
+        {
+            droneComponent.UpdateTimer += frameTime;
+            if (droneComponent.UpdateTimer > 3)
+            {
+                droneComponent.UpdateTimer = 0;
+                SetDronePowerAlert((uid, droneComponent));
+            }
+
+        }
+    }
+
+    public void SetDronePowerAlert(Entity<BSSDroneComponent> ent)
+    {
+        var (uid, comp) = ent;
+        if (comp.Deleted)
+        {
+            _alerts.ClearAlert(uid, comp.DronePowerAlert);
+            return;
+        }
+
+        if (GetDroneBattery(uid, out _, out var battery))
+        {
+            var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, battery.CurrentCharge), battery.MaxCharge, 8);
+            _alerts.ShowAlert(uid, comp.DronePowerAlert, (short) severity);
+        }
+        else
+        {
+            _alerts.ClearAlert(uid, comp.DronePowerAlert);
+        }
+    }
+
+    private void OnInsertAttempt(EntityUid uid, BSSDroneComponent comp, ContainerIsInsertingAttemptEvent args)
+    {
+        // this is for handling battery upgrading, not stopping actions from being added
+        // if another container like ActionsContainer is specified, don't handle it
+        if (TryComp<PowerCellSlotComponent>(uid, out var slot) && args.Container.ID != slot.CellSlotId)
+            return;
+
+        // no power cell for some reason??? allow it
+        if (!_powerCell.TryGetBatteryFromSlot(uid, out var batteryUid, out var battery))
+            return;
+
+        if (!TryComp<BatteryComponent>(args.EntityUid, out var inserting))
+        {
+            args.Cancel();
+            return;
+        }
+
+        _batteryDrainer.SetBattery(uid, args.EntityUid);
+    }
+
+    public bool GetDroneBattery(EntityUid user, [NotNullWhen(true)] out EntityUid? uid, [NotNullWhen(true)] out BatteryComponent? battery)
+    {
+        if (_powerCell.TryGetBatteryFromSlot(user, out uid, out battery))
+        {
+            return true;
+        }
+
+        uid = null;
+        battery = null;
+        return false;
+    }
+
+    public bool TryUseCharge(EntityUid user, float charge)
+    {
+        return GetDroneBattery(user, out var uid, out var battery) && _battery.TryUseCharge(uid.Value, charge, battery);
     }
 
     private void OnDroneSpeak(EntityUid uid, EntitySpokeEvent args, IntrinsicRadioTransmitterComponent? component = null)
@@ -128,74 +225,19 @@ public sealed class BSSDroneSystem : SharedDroneSystem
     }
     #endregion
 
-    #region Med Drone Actions
-
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionBPLAMEDActionBrutepack = "ActionBPLAMEDActionBrutepack";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionBPLAMEDActionOintment = "ActionBPLAMEDActionOintment";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionBPLAMEDActionBloodpack = "ActionBPLAMEDActionBloodpack";
-
-    private void OnComponentStartup(EntityUid uid, BSSDroneComponent component, ComponentStartup args)
-    {
-        if (component.DroneType != "MED")
-        {
-            return;
-        }
-
-        _action.AddAction(uid, ref component.ActionBPLAMEDActionBrutepack, ActionBPLAMEDActionBrutepack);
-        _action.AddAction(uid, ref component.ActionBPLAMEDActionOintment, ActionBPLAMEDActionOintment);
-        _action.AddAction(uid, ref component.ActionBPLAMEDActionBloodpack, ActionBPLAMEDActionBloodpack);
-    }
-
-    private void OnComponentShutdown(EntityUid uid, BSSDroneComponent component, ComponentShutdown args)
-    {
-        if (component.DroneType != "MED")
-        {
-            return;
-        }
-
-        _action.RemoveAction(uid, component.ActionBPLAMEDActionBrutepack);
-        _action.RemoveAction(uid, component.ActionBPLAMEDActionOintment);
-        _action.RemoveAction(uid, component.ActionBPLAMEDActionBloodpack);
-    }
-
-    private void OnCraftBrutepack(EntityUid uid, BSSDroneComponent component, brutepackCraftActionEvent args)
+    private void OnCraft(EntityUid uid, BSSDroneComponent component, DroneCraftActionEvent args)
     {
         if (args.Handled)
+            return;
+
+        args.Handled = true;
+        if (!TryUseCharge(args.Performer, args.Energy))
         {
+            _popup.PopupEntity(Loc.GetString(component.NoPowerPopup), args.Performer, args.Performer);
             return;
         }
 
-        var item = Spawn("Brutepack", Transform(args.Performer).Coordinates);
+        var item = Spawn(args.CraftedItem, Transform(args.Performer).Coordinates);
         _handsSystem.TryPickupAnyHand(args.Performer, item);
-
-        args.Handled = true;
     }
-
-    private void OnCraftOintment(EntityUid uid, BSSDroneComponent component, ointmentCraftActionEvent args)
-    {
-        if (args.Handled)
-        {
-            return;
-        }
-
-        var item = Spawn("Ointment", Transform(args.Performer).Coordinates);
-        _handsSystem.TryPickupAnyHand(args.Performer, item);
-
-        args.Handled = true;
-    }
-
-    private void OnCraftBloodpack(EntityUid uid, BSSDroneComponent component, bloodpackCraftActionEvent args)
-    {
-        if (args.Handled)
-        {
-            return;
-        }
-
-        var item = Spawn("Bloodpack", Transform(args.Performer).Coordinates);
-        _handsSystem.TryPickupAnyHand(args.Performer, item);
-
-        args.Handled = true;
-    }
-    #endregion
-
 }

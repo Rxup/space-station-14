@@ -12,3 +12,4 @@ research-technology-chemistry-bluespace = Блюспейс химия
 research-technology-chemistry-machines = Химическое оборудования
 research-technology-biomass-machines = Оборудование манипуляции массой
 research-technology-biochemical-stasis-machines = Оборудование биохимического стазиса
+research-technology-virology-machines = Вирусологическое оборудование

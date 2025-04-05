@@ -1078,6 +1078,13 @@ public partial class SharedBodySystem
         return !Resolve(bodyId, ref body, logMissing: false) ? 0 : GetBodyChildren(bodyId, body).Count(part => part.Component.PartType == partType);
     }
 
+    /// <summary>
+    /// ЕБАНЫЙ ПИЗДЕЦ
+    /// ФУНКЦИЯ ГОВНА!
+    /// </summary>
+    /// <param name="part"></param>
+    /// <returns></returns>
+    [Obsolete]
     public string GetSlotFromBodyPart(BodyPartComponent? part)
     {
         var slotName = "";

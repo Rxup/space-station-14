@@ -214,7 +214,6 @@
     raffle:
       settings: default
   - type: Body
-    prototype: Xeno5hand
   - type: InnateTool
     tools:
       - id: WeaponXenoQueenStun
@@ -570,7 +569,6 @@
     raffle:
       settings: default
   - type: Body
-    prototype: Xeno5hand
   - type: HTN
     rootTask:
       task: SimpleHumanoidHostileCompound

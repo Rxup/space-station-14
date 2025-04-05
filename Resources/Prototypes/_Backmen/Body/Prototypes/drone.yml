@@ -6,24 +6,27 @@
     chest:
       part: ChestDrone
       connections:
-      - left arm 1
-      - left arm 2
-      - left arm 3
-      - left arm 4
-      - right arm 5
-      - right arm 6
-    left arm 1:
-      part: LeftArmBorg
-    left arm 2:
-      part: LeftArmBorg
-    left arm 3:
-      part: LeftArmBorg
-    left arm 4:
-      part: LeftArmBorg
-    right arm 5:
-      part: RightArmBorg
-    right arm 6:
-      part: RightArmBorg
+      - hand 1
+      - hand 2
+    hand 1:
+      part: DroneArm
+    hand 2:
+      part: DroneArm
+
+- type: entity
+  id: DroneArm
+  name: "кость дрона"
+  parent: PartSilicon
+  components:
+  - type: BodyPart
+    partType: Hand
+    symmetry: None
+  - type: Sprite
+    sprite: Mobs/Silicon/drone.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: Mobs/Silicon/drone.rsi
+    state: "l_hand"
 
 - type: entity
   parent: BaseItem

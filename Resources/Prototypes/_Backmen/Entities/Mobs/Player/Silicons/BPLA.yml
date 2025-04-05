@@ -99,15 +99,17 @@
 
 - type: entity
   name: Blue Space Drone
-  id: BackmenDrone
+  id: DroneBPLA
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent:
-  - PlayerSiliconBase
+  parent: [ PlayerSiliconBase ]
   components:
+  - type: AntagImmune
   - type: NameIdentifier
     group: BSSDrone
   - type: MetaData
+  - type: BatteryDrainer
   - type: BSSDrone
+    noPowerPopup: ninja-no-power
   - type: InnateTool
     tools:
       - id: BSSClothingBackpackSatchelDrone
@@ -124,6 +126,27 @@
         type: StrippableBoundUserInterface
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
+  - type: ActionGrant
+    actions:
+    - ActionAIViewLaws
+    - ActionBPLAActionCableApcStack
+    - ActionBPLAActionCableMVStack
+    - ActionBPLAActionCableHVStack
+    - ActionBPLAActionSheetSteel
+    - ActionBPLAActionSheetPlasteel
+    - ActionBPLAActionSheetGlass
+    - ActionBPLAActionSheetRGlass
+    - ActionBPLAActionSheetPlastic
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
   - type: GhostRole
     whitelistRequired: false
     makeSentient: true
