@@ -560,7 +560,7 @@ namespace Content.Server.Database
             if (_playtimeServerEnabled)
             {
                 var requestUrl = $"{_playtimeServerUrl}?playerId={WebUtility.UrlEncode(player.ToString())}";
-                var response = await _httpClient.PostAsync(requestUrl, null, cancel);
+                var response = await _httpClient.GetAsync(requestUrl, cancel);
                 if (!response.IsSuccessStatusCode)
                 {
                     return [];
