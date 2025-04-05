@@ -1,4 +1,3 @@
-using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Objectives.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
@@ -11,7 +10,6 @@ using Content.Shared.Popups;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Prototypes;
-using Content.Server.Objectives.Components;
 using Content.Server.Light.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
@@ -19,10 +17,10 @@ using Content.Server.Flash.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
-using Content.Server.Radio.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Changeling;
 using Content.Shared.Backmen.Changeling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 
 namespace Content.Server.Backmen.Changeling;
 
@@ -94,6 +92,14 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("changeling-absorb-fail-unabsorbable"), uid, uid);
             return;
+        }
+        if (TryComp<PullableComponent>(target, out var pullable)) // Agressive grab check
+        {
+            if (pullable.GrabStage <= GrabStage.Soft)
+            {
+                _popup.PopupEntity(Loc.GetString("changeling-absorb-fail-nograb"), uid, uid);
+                return;
+            }
         }
 
         if (!TryUseAbility(uid, comp, args))

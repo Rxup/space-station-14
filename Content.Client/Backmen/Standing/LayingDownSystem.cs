@@ -1,3 +1,4 @@
+using Content.Client._White.Animations;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Standing;
@@ -40,6 +41,12 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     {
         if(_animation.HasRunningAnimation(ent, "rotate"))
             return;
+
+        if (_animation.HasRunningAnimation(ent.Owner, FlippingComponent.AnimationKey))
+        {
+            RemComp<FlippingComponent>(ent);
+            _animation.Stop(ent.Owner, FlippingComponent.AnimationKey);
+        }
 
         if (!TryComp<SpriteComponent>(ent, out var sprite))
         {

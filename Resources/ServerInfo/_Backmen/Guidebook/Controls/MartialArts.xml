@@ -1,0 +1,204 @@
+<Document>
+# Ближний бой
+
+  На Космической Станции 14 вы можете как сражаться при помощи различных приёмов или даже боевых искусств.
+
+  ## Основные приёмы
+
+  Прежде всего, для того чтобы начать какие-либо агрессивные действия по отношению к другим живым существам или объектам, вы должны активировать Боевой режим на вашей панели действий.
+  Обычно это действие будет назначено на цифру 1, но вы всегда можете переместить его на панели, или заменить другой кнопкой зайдя в управление.
+
+  В ближнем бою вы можете использовать 3 приёма. Этими приёмами обладает каждый гуманоид на станции:
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+	  <GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+	  <GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+  </Box>
+
+  Нападение - прямой удар по врагу. В зависимости от вашей расы, просто нанесёт разное количество урона. Активируется при нажатии [color=yellow][bold][keybind="UILeftClick"][/bold][/color] по любой цели, даже структуре.
+
+  Толчок - нажимая [color=yellow][bold][keybind="UIRightClick"][/bold][/color] с некоторым шансом вы можете толкнуть, или даже обезоружить противника. Также наносит немного урона по выносливости, и если у цели её слишком мало, она упадёт на пол.
+
+  Захват - крепкая хватка по врагу при нажатии [color=yellow][bold][keybind="TryPullObject"][/bold][/color], чтобы он не мог двигаться. Имеет 3 стадии, которые прогрессируют каждый раз когда вы совершаете сам захват:
+
+  - Лёгкий захват ничем не отличается от обычного таскания.
+  - Крепкий захват не даёт противнику перемещаться. Он всё ещё может вырваться, если будет быстро кликать по иконке захвата на панели предупреждений.
+  - Захват удушения не даёт противнику дышать, в остальном точно такой же как и крепкий.
+
+  Вы можете бросить цели из крепкого или удушающего захвата к своему курсору, просто бросив его вдаль как вы бы сделали это с предметом.
+
+  # Боевые искусства
+
+  На станции вы можете выучить некоторые виды Боевых Искусств, которые позволят вам комбинировать выше указанные приёмы для создания совершенно новых с уникальными эффектами.
+
+  Тот, кто выучил боевое искусство, может моментально крепко хватать любые цели, а также в некоторых случаях наносит дополнительный урон от обычных ударов.
+
+  ## CQC (Техника тактического ближнего боя)
+
+  <Box>
+    <GuideEntityEmbed Entity="CQCManual" Caption="Мануал CQC"/>
+  </Box>
+
+  Распространена среди военных, предоставляет универсальные комбинации как для быстрого обездвиживания цели, так и для нанесения неплохого количества урона.
+  
+  Чтобы выучить CQC, нужно найти специальный мануал. К нему имеют доступы члены спецотрядов, ядерные оперативники и предатели.
+  
+  На станции данной техникой владеет шеф-повар, но только находясь в пределах кухни.
+
+  [bold]Швырок[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+    <GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+  </Box>
+
+  - Наносит повышенный урон цели, а также парализует её на 6 секунд.
+
+  [bold]Пинок[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+    <GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+  </Box>
+
+  - Работает только на лежачих целях. Отбрасывает противника на некоторое расстояние, наносит дополнительный урон и усыпляет в случае если у врага кончилась шкала выносливости.
+
+  [bold]Обезвреживание[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+  </Box>
+
+  - Обездвиживает цель на 6 секунд, нанося урон выносливости. В отличии от швырка не наносит физического вреда.
+
+  [bold]Давление[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+  </Box>
+
+  - Отнимает предмет в руке у противника, нанося ему значительный урон выносливости.
+
+  [bold]Следование[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+  </Box>
+
+  - Наносит повышенный урон и парализует врага.
+
+  ## Дзюдо
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingBeltCorporateJudo" Caption="Пояс Дзюдо"/>
+  </Box>
+
+  Данная техника боя преимущественно предназначена для подавления противника нелетальным методом.
+
+  Чаще всего используется службой безопасности при надевании специального пояса, однако боксёр знает его по умолчанию.
+  
+  [bold]Бросок[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+  </Box>
+  
+  - Бросает противника на пол, нанося неплохой урон по выносливости.
+
+  [bold]Подлокотник[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+  </Box>
+  
+  - Если цель стоит, то гарантированно заставит её выбросить предмет из своей активной руки. Если цель лежит, то парализует её и наносит урон по выносливости.
+
+  [bold]Вырвиглазие[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+  </Box>
+  
+  - Ослепляет противника и наносит ему немного дополнительного урона при ударе.
+  
+  ## Крав Мага
+
+  <Box>
+	<GuideEntityEmbed Entity="ClothingHandsGlovesKravMaga" Caption="Перчатки Крав Мага"/>
+  </Box>
+
+  Одно из самых уникальных боевых искусств, так как вместо обычных приёмов вы должны использовать действия на панели перед своими ударами.
+
+  Этим боевым искусством можно овладеть только надев специальные перчатки, которые есть в шкафу Смотрителя.
+
+  [bold]Подножка[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialLegSweep" Caption=""/>
+  </Box>
+  
+  - Обездвиживает цель на 4 секунды.
+
+  [bold]Сворот шеи[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialNeckChop" Caption=""/>
+  </Box>
+  
+  - Наносит урон и не даёт цели говорить в течении следующих 20-ти секунд.
+
+  [bold]Удар в лёгкие[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialLungPunch" Caption=""/>
+  </Box>
+  
+  - Не даёт цели дышать на протяжении 10 секунд после удара, а также наносит урон выносливости.
+
+  ## Спящий Карп
+
+  <Box>
+	<GuideEntityEmbed Entity="SleepingCarpScroll" Caption="Загадочный свиток"/>
+  </Box>
+
+  Самое сильное и уникальное искусство из всех. Пользователь этой техники приобретает полный иммунитет к любым пулям, выпущенным из огнестрельного оружия, однако сам он не может использовать пушки.
+
+  Данное искусство обладает исключительно агрессивными атаками, наносящими прямой вред.
+
+  [bold]Ошеломляющий укус[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+  </Box>
+  
+  - Наносит значительный урон порезами цели.
+
+  [bold]Перелом коленей[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+	<GuideEntityEmbed Entity="GuidebookMartialGrab" Caption="Захват"/>
+  </Box>
+  
+  - Наносит значительный урон цели, с каждым выполненным приёмом этого типа урон увеличивается.
+
+  [bold]Ударная волна[/bold]
+
+  <Box>
+	<GuideEntityEmbed Entity="GuidebookMartialHarm" Caption="Нападение"/>
+	<GuideEntityEmbed Entity="GuidebookMartialDisarm" Caption="Толчок"/>
+  </Box>
+  
+  - Наносит урон выносливости и отрбрасывает стоячю цель.
+
+</Document>
