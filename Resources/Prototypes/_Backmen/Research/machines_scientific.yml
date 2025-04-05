@@ -73,3 +73,21 @@
   technologyPrerequisites:
   - AnomalyResearchAdvancedMachines
   position: 3,-1
+
+- type: technology
+  id: Metempsychosis
+  name: research-technology-metempsychosis
+  icon:
+    sprite: Backmen/Structures/Machines/metempsychotic.rsi
+    state: pod_0
+  discipline: Scientific
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - BiomassReclaimerMachineCircuitboard
+  - CloningConsoleComputerCircuitboard
+  - MedicalScannerMachineCircuitboard
+#  - MetempsychoticMachineCircuitboard
+  technologyPrerequisites:
+  - PsionicCountermeasures
+  position: 6,2

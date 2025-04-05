@@ -64,8 +64,9 @@
   - type: UnpoweredFlashlight
   - type: ShadowkinLight
   - type: PointLight
+    mask: /Textures/Effects/LightMasks/cone.png # Backmen
     enabled: false
-    radius: 1.5
+    radius: 1.8 # Backmen-Edit
     softness: 5
     autoRot: true
   - type: Ringer

@@ -69,8 +69,8 @@
             # backmen
             Prisoner: [ 3, 3]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            BKBPLATech: [0, 1] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
             StationAi: [ 1, 1 ]
         - type: StationGoal
           goals:
