@@ -2239,3 +2239,29 @@
   id: 148
   time: '2025-04-04T11:26:20.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1189
+- author: PuroSlavKing
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E \u0438\u0437\u0443\
+      \u0447\u0435\u043D\u0438\u0435/\u043F\u0435\u0447\u0430\u0442\u044C \u043E\u0431\
+      \u043E\u0440\u0443\u0434\u043E\u0432\u0430\u043D\u0438\u044F \u0432\u0438\u0440\
+      \u0443\u0441\u043E\u043B\u043E\u0433\u0438\u0438."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E \u0438\u0437\u0443\
+      \u0447\u0435\u043D\u0438\u0435/\u043F\u0435\u0447\u0430\u0442\u044C \u0430\u043D\
+      \u0442\u0438-\u043F\u0441\u0438\u0445\u0438\u0447\u0435\u0441\u043A\u043E\u0433\
+      \u043E \u043D\u043E\u0436\u0430."
+    type: Add
+  id: 149
+  time: '2025-04-05T13:04:14.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1191
+- author: PuroSlavKing
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D \u0441\u0432\u0435\u0442\
+      \ \u043E\u0442 \u041F\u0414\u0410, \u0442\u0435\u043F\u0435\u0440\u044C \u043E\
+      \u043D \u043E\u0441\u0432\u0435\u0449\u0430\u0435\u0442 \u043F\u0435\u0440\u0435\
+      \u0434 \u0432\u0430\u043C\u0438, \u0430 \u043D\u0435 \u0432\u043E\u043A\u0440\
+      \u0443\u0433 \u0432\u0430\u0441."
+    type: Tweak
+  id: 150
+  time: '2025-04-05T13:03:56.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1190
