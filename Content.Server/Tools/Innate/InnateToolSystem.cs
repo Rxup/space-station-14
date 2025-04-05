@@ -1,4 +1,7 @@
 using System.Linq;
+using Content.Server.Body.Systems;
+using Content.Server.Hands.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Destructible;
 using Content.Shared.Hands;
@@ -8,7 +11,9 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Tools.Innate;
 
@@ -31,12 +36,35 @@ public sealed class InnateToolSystem : EntitySystem
         SubscribeLocalEvent<InnateToolComponent, DestructionEventArgs>(OnDestroyed);
     }
 
+    //start-backmen: fix
+
+    [ValidatePrototypeId<EntityPrototype>]
+    public const string DefaultHandPrototype = "LeftHandHuman";
+
+
+    private void AddHand(EntityUid entity, int handCounter, HandsComponent handsComponent)
+    {
+        var handId = $"it-{entity}-item{handCounter}";
+        _sharedHandsSystem.AddHand(entity, handId, HandLocation.Middle, handsComponent);
+    }
+
+    //end-backmen: fix
+
+
     private void OnMapInit(EntityUid uid, InnateToolComponent component, MapInitEvent args)
     {
         if (component.Tools.Count == 0)
             return;
 
         component.ToSpawn = EntitySpawnCollection.GetSpawns(component.Tools, _robustRandom);
+
+        //start-backmen: fix
+        var hands = EnsureComp<HandsComponent>(uid);
+        for (var i = 0; i < component.Tools.Count; i++)
+        {
+            AddHand(uid,i,hands);
+        }
+        //end-backmen: fix
     }
 
     private void OnHandCountChanged(EntityUid uid, InnateToolComponent component, HandCountChangedEvent args)

@@ -64,8 +64,8 @@
             Musician: [ 1, 1 ]
             #backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [ 0, 3 ] # backmen-BPLA-Silicons
-            #BKBPLAMED: [ 0, 3 ] # backmen-BPLAMED-Silicons
+            BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
+            BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 3 ]
             #silicon

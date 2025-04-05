@@ -63,8 +63,8 @@
             CargoTechnician: [ 2, 3 ]
           #silicon
             StationAi: [ 1, 1 ]
-            #BKBPLATech: [0, 2]
-            #BKBPLAMED: [0, 2]
+            BKBPLATech: [0, 1]
+            BKBPLAMED: [0, 1]
             Borg: [ 1, 2 ]
         # backmen blob-config-start LOW
         - type: StationBlobConfig
