@@ -61,7 +61,7 @@
     traumasChances:
       Dismemberment: -0.17
       OrganDamage: 0.34
-      BoneDamage: 0.34
+      BoneDamage: 0.14
       VeinsDamage: -0.4 # goes through rather easy.
       NerveDamage: -0.4
   - type: PainInflicter

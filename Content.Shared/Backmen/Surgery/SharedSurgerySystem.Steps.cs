@@ -58,7 +58,7 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryRemoveMarkingStepComponent>(OnRemoveMarkingStep, OnRemoveMarkingCheck);
         SubSurgery<SurgeryTraumaTreatmentStepComponent>(OnTraumaTreatmentStep, OnTraumaTreatmentCheck);
         SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
-        SubSurgery<SurgeryStepPainInflicter>(OnPainInflicterStep, OnPainInflicterCheck);
+        SubSurgery<SurgeryStepPainInflicterComponent>(OnPainInflicterStep, OnPainInflicterCheck);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
@@ -700,14 +700,41 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
-    private void OnPainInflicterStep(Entity<SurgeryStepPainInflicter> ent, ref SurgeryStepEvent args)
+    private void OnPainInflicterStep(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepEvent args)
     {
-        // TODO: implement this
+        if (!_consciousness.TryGetNerveSystem(args.Body, out var nerveSys))
+            return;
+
+        var painToInflict = ent.Comp.Amount;
+        if (HasComp<ForcedSleepingComponent>(args.Body))
+            painToInflict *= ent.Comp.SleepModifier;
+
+        if (!_pain.TryChangePainModifier(
+                nerveSys.Value.Owner,
+                args.Part,
+                "SurgeryPain",
+                painToInflict,
+                nerveSys,
+                ent.Comp.PainDuration,
+                ent.Comp.PainType))
+        {
+           _pain.TryAddPainModifier(nerveSys.Value.Owner,
+               args.Part,
+               "SurgeryPain",
+               painToInflict,
+               ent.Comp.PainType,
+               nerveSys,
+               ent.Comp.PainDuration);
+        }
     }
 
-    private void OnPainInflicterCheck(Entity<SurgeryStepPainInflicter> ent, ref SurgeryStepCompleteCheckEvent args)
+    private void OnPainInflicterCheck(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // is there really anything to check?
+        if (!_consciousness.TryGetNerveSystem(args.Part, out var nerveSys))
+            return;
+
+        if (!_pain.TryGetPainModifier(nerveSys.Value.Owner, args.Part, "SurgeryPain", out _, nerveSys))
+            args.Cancelled = true;
     }
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)

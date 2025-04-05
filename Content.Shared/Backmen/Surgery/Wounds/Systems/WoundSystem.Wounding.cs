@@ -55,7 +55,7 @@ public sealed partial class WoundSystem
         comp.Wounds = _container.EnsureContainer<Container>(uid, WoundContainerId);
         comp.Bone = _container.EnsureContainer<Container>(uid, BoneContainerId);
 
-        if (comp.Bone.Count == 0)
+        if (comp.Bone.Count == 0 && _timing.IsFirstTimePredicted)
             InsertBoneIntoWoundable(uid, comp);
     }
 

@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Conditions;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -49,6 +51,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly WoundSystem _wounds = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly PainSystem _pain = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 
