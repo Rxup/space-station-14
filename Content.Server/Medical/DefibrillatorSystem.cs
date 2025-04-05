@@ -216,6 +216,8 @@ public sealed class DefibrillatorSystem : EntitySystem
                         nerveSys.Value,
                         component.ZapHeal.GetTotal(),
                         "Suffocation");
+
+                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold");
                 }
                 else // backmen edit end
                 {

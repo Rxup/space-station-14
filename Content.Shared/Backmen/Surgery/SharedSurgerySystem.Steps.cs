@@ -685,6 +685,8 @@ public abstract partial class SharedSurgerySystem
 
                 healAmount -= bleeds.Scaling;
             }
+
+            Dirty(woundEnt, bleeds);
         }
     }
 

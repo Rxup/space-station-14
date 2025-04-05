@@ -31,21 +31,6 @@ public partial class TraumaSystem
 
         switch (args.NewSeverity)
         {
-            case BoneSeverity.Normal:
-                if (bodyComp.PartType == BodyPartType.Hand)
-                {
-                    _virtual.DeleteInHandsMatching(bodyComp.Body.Value, bone);
-                }
-
-                if (TryGetWoundableTrauma(bone.Comp.BoneWoundable.Value, out var traumas, TraumaType.BoneDamage))
-                {
-                    foreach (var trauma in traumas.Where(trauma => trauma.Comp.TraumaTarget == bone))
-                    {
-                        RemoveTrauma(trauma);
-                    }
-                }
-                break;
-
             case BoneSeverity.Damaged:
                 _audio.PlayPvs(bone.Comp.BoneBreakSound, bodyComp.Body.Value, AudioParams.Default.WithVolume(-8f));
                 break;
@@ -69,6 +54,22 @@ public partial class TraumaSystem
         var bodyComp = Comp<BodyPartComponent>(bone.Comp.BoneWoundable.Value);
         if (!bodyComp.Body.HasValue)
             return;
+
+        if (args.NewIntegrity == bone.Comp.IntegrityCap)
+        {
+            if (bodyComp.PartType == BodyPartType.Hand)
+            {
+                _virtual.DeleteInHandsMatching(bodyComp.Body.Value, bone);
+            }
+
+            if (TryGetWoundableTrauma(bone.Comp.BoneWoundable.Value, out var traumas, TraumaType.BoneDamage))
+            {
+                foreach (var trauma in traumas.Where(trauma => trauma.Comp.TraumaTarget == bone))
+                {
+                    RemoveTrauma(trauma);
+                }
+            }
+        }
 
         switch (bodyComp.PartType)
         {
