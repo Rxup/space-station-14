@@ -190,6 +190,7 @@ public sealed class BodySetupTest
                     Assert.That(entMan.HasComponent<ConsciousnessRequiredComponent>(dummyNerveSys), $"Failed species to pass the test: {speciesPrototype.ID}");
 
                     Assert.That(consciousness.Consciousness, Is.GreaterThan(consciousness.Threshold));
+                    Assert.That(consciousnessSystem.CheckConscious(dummy));
                 });
             }
         });
@@ -212,6 +213,7 @@ public sealed class BodySetupTest
         var entMan = server.ResolveDependency<IEntityManager>();
         var bodySystem = entMan.System<BodySystem>();
         var woundSystem = entMan.System<WoundSystem>();
+        var consciousnessSystem = entMan.System<ConsciousnessSystem>();
         var rejuvenateSystem = entMan.System<RejuvenateSystem>();
 
         await server.WaitAssertion(() =>
@@ -244,6 +246,8 @@ public sealed class BodySetupTest
 
                     Assert.That(woundSystem.GetWoundableSeverityPoint(parentPart.Value), Is.GreaterThanOrEqualTo(FixedPoint2.Zero), $"Failed species to pass the test: {speciesPrototype.ID}");
                     Assert.That(woundSystem.GetWoundableSeverityPoint(groinEntity.Id), Is.GreaterThanOrEqualTo(FixedPoint2.Zero), $"Failed species to pass the test: {speciesPrototype.ID}");
+
+                    Assert.That(consciousnessSystem.CheckConscious(dummy));
                 });
             }
         });
