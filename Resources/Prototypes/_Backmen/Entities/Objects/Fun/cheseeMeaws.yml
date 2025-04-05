@@ -1,0 +1,29 @@
+- type: entity
+  parent: FoodCheese
+  id: NyrFoodCheese1
+  name: Чумной сыыыр!
+
+- type: entity
+  parent: FoodCheese
+  id: NyrFoodCheese2
+  name: Инженерный сыр-работяга
+
+- type: entity
+  parent: FoodCheese
+  id: NyrFoodCheese3
+  name: Защитный сыр с корочкой!
+
+- type: entity
+  parent: FoodCheese
+  id: NyrFoodCheese4
+  name: Важный сыр!
+
+- type: entity
+  parent: FoodCheese
+  id: NyrFoodCheese5
+  name: Умный сыр!
+
+- type: entity
+  parent: FoodCheese
+  id: NyrFoodCheese6
+  name: Сыр на продажу

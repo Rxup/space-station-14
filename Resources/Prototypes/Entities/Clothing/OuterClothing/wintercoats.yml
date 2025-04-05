@@ -23,6 +23,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
     priceMultiplier: 0
   - type: Food
     requiresSpecialDigestion: true
@@ -247,6 +248,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.75
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -284,6 +286,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.75
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -354,6 +357,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -477,6 +481,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.9
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -514,6 +519,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -597,6 +603,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.75
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -658,6 +665,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -719,6 +727,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -779,6 +788,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Stun: 0.80 #Backmen-edit
         Caustic: 0.9
     priceMultiplier: 0.15
   - type: ToggleableClothing

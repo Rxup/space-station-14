@@ -1,0 +1,35 @@
+- type: body
+  id: SindSiliconMouseops
+  name: "handPing"
+  root: torso
+  slots:
+    torso:
+      part: TorsoMonkey
+      connections:
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+    left arm:
+      part: LeftArmMonkey
+      connections:
+      - left hand
+    left hand:
+      part: LeftHandMonkey
+    right leg:
+      part: RightLegMonkey
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegMonkey
+      connections:
+      - left foot
+    right foot:
+      part: RightFootMonkey
+    left foot:
+      part: LeftFootMonkey

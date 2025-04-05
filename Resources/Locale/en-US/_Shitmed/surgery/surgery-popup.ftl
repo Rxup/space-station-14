@@ -30,7 +30,6 @@ surgery-popup-step-SurgeryStepSealDismembermentWound = {$user} is stitching up t
 surgery-popup-step-SurgeryStepCloseBloodOutputs = {$user} is stitching up the blood output on {$target}'s {$part}.
 surgery-popup-step-SurgeryStepRemoveSeveredSkin = {$user} is removing dead skin from {$target}'s {$part}.
 surgery-popup-step-SurgeryStepRemoveLeftoverBones = {$user} is removing leftover dismemberment bones on {$target}'s {$part}.
-surgery-popup-step-SurgeryStepRemoveLeftoverBones
 surgery-popup-step-SurgeryStepHealOrgans = {$user} is fixing organ tissues inside of {$target}'s {$part}.
 surgery-popup-step-SurgeryStepMendBones = {$user} is mending bone tissues inside of {$target}'s {$part}.
 surgery-popup-step-SurgeryStepRepairBruteTissue = {$user} is repairing the damaged tissues on {$target}'s {$part}!

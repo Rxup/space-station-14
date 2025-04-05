@@ -1,0 +1,199 @@
+- type: technology
+  id: AnomalousResearch
+  name: research-technology-anomalous-research
+  icon:
+    sprite: Objects/Specific/Research/anomalyscanner.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - AnomalyScanner
+  - AnomalyLocator
+  - NodeScanner
+  position: 4,1
+
+- type: technology
+  id: AnomalousResearchAdvanced
+  name: research-technology-anomalous-research-advanced
+  icon:
+    sprite: Objects/Specific/Research/anomalylocatorwide.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 8000
+  recipeUnlocks:
+  - AnomalyLocatorWide
+  - WeaponPistolCHIMP
+  - SignallerAdvanced
+  technologyPrerequisites:
+  - AnomalousResearch
+  position: 4,2
+
+- type: technology
+  id: IntegratedHUDs
+  name: research-technology-integrated-huds
+  icon:
+    sprite: Clothing/Eyes/Hud/diag.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 1500
+  recipeUnlocks:
+   - ClothingEyesHudSecurity
+   - ClothingEyesGlassesChemical
+   - ClothingEyesHudDiagnostic
+#  technologyPrerequisites: # Because poxyu
+#  - Security
+#  - Chemistry
+#  - Robotics
+  position: 3,2
+
+- type: technology
+  id: GravityManipulation
+  name: research-technology-gravity-manipulation
+  icon:
+    sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
+    state: base
+  discipline: Scientific
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - WeaponForceGun
+  - WeaponTetherGun
+  technologyPrerequisites:
+  - AnomalousResearchAdvanced
+  position: 4,3
+
+- type: technology
+  id: AnomalyCoreHarnessing
+  name: research-technology-anomaly-harnessing
+  icon:
+    sprite: Objects/Weapons/Melee/gorilla.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - WeaponGauntletGorilla
+  technologyPrerequisites:
+  - GravityManipulation
+  position: 5,3
+
+- type: technology
+  id: QuantumLeaping
+  name: research-technology-quantum-leaping
+  icon:
+    sprite: Objects/Devices/swapper.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - DeviceQuantumSpinInverter
+  technologyPrerequisites:
+  - GravityManipulation
+  position: 3,3
+
+- type: technology
+  id: MagneticBoots
+  name: research-technology-magnetic-boots
+  icon:
+    sprite: Clothing/Shoes/Boots/magboots-science.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 5500
+  recipeUnlocks:
+  - ClothingShoesBootsMagSci
+  - ClothingShoesBootsMoon
+  position: 2,2
+
+- type: technology
+  id: QuantumMagneticBoots
+  name: research-technology-quantum-magnetic-boots
+  icon:
+    sprite: Clothing/Shoes/Boots/speedboots.rsi
+    state: icon
+  discipline: Scientific
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ClothingShoesBootsSpeed
+  technologyPrerequisites:
+  - MagneticBoots
+  - GravityManipulation
+  - QuantumLeaping
+  position: 2,3
+
+- type: technology
+  id: PsionicCountermeasures
+  name: research-technology-psionic-countermeasures
+  icon:
+    sprite: Backmen/Clothing/Head/Hats/cage.rsi
+    state: icon
+  discipline: Scientific
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+    - ClothingHeadHelmetInsulated
+    - InsulativeHeadcage
+    - ShellSoulbreaker
+  technologyPrerequisites:
+  - AnomalousResearch
+  position: 5,2
+
+- type: technology
+  id: Metempsychosis
+  name: research-technology-metempsychosis
+  icon:
+    sprite: Backmen/Structures/Machines/metempsychotic.rsi
+    state: pod_0
+  discipline: Scientific
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+    - BiomassReclaimerMachineCircuitboard
+    - CloningConsoleComputerCircuitboard
+    - MedicalScannerMachineCircuitboard
+    # - MetempsychoticMachineCircuitboard
+  technologyPrerequisites:
+  - PsionicCountermeasures
+  position: 6,2
+
+- type: technology
+  id: Teleportation
+  name: research-technology-teleportation
+  icon:
+    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+    state: icon
+  discipline: Scientific
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+    - CoreSilver
+    - HandTeleporter1
+#    - QSI
+  technologyPrerequisites:
+  - QuantumLeaping
+  position: 3,5
+
+- type: technology
+  id: BluespaceStorage
+  name: research-technology-bluespace-storage
+  icon:
+    sprite: Clothing/Back/Backpacks/holding.rsi
+    state: holding
+  discipline: Scientific
+  tier: 1
+  cost: 18000
+  recipeUnlocks:
+  - ClothingBackpackHolding
+  - ClothingBackpackSatchelHolding
+  - ClothingBackpackDuffelHolding
+  - ClothingBackpackMessengerHolding # Backmen
+  technologyPrerequisites:
+  - QuantumLeaping
+  - PortableFission
+  - SalvageEquipmentAdvanced
+  position: 5,5

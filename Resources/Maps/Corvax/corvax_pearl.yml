@@ -72284,7 +72284,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 49.5,128.5
       parent: 1
-- proto: EpinephrineChemistryBottle
+- proto: ChemistryBottleEpinephrine
   entities:
   - uid: 16960
     components:
@@ -122552,7 +122552,7 @@ entities:
 
         Откуда у меня Оппорозидон и как я узнал его рецепт?
 
-        Всё очень просто! 
+        Всё очень просто!
 
                   [head=2]ГЛУПЕНЬКИЙ ХОНК-ХОООНК!!![/head]
   - uid: 488

@@ -1,0 +1,14 @@
+- type: technology
+  id: BluespaceCargoTransportMachines
+  name: research-technology-bluespace-cargo-transport-machines
+  icon:
+    sprite: Structures/cargo_telepad.rsi
+    state: display
+  discipline: Cargo
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+  - CargoTelepadMachineCircuitboard
+  technologyPrerequisites:
+  - Factorio
+  position: 7,4

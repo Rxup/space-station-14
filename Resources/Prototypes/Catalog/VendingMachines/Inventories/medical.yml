@@ -6,7 +6,8 @@
     Ointment: 5
     Bloodpack: 5
     Tourniquet: 5 # Backmen
-    EpinephrineChemistryBottle: 3
+    EpinephrineChemistryBottle: 3 # Backmen
+    ChemistryBottleEpinephrine: 3
     Syringe: 5
     BoxBottle: 3
     ClothingEyesHudMedical: 2
