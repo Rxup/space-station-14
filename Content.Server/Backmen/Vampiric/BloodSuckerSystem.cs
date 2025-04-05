@@ -16,7 +16,6 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.DoAfter;
-using Content.Server.Forensics;
 using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;

@@ -148,6 +148,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/men.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -396,7 +398,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadDarkSurgeonHat
   name: dark surgeon hat
-  description: The surgeon's black headdress also has a small mirror. 
+  description: The surgeon's black headdress also has a small mirror.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Hats/surgeon_hat.rsi

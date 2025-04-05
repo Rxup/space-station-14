@@ -21,7 +21,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    Chest: MobVulpkaninTorso
+    Chest: MobVulpkaninChest
+    Groin: MobVulpkaninGroin # Backmen edit: chest, groin separation
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -79,22 +80,40 @@
     state: head_f
 
 - type: humanoidBaseSprite
-  id: MobVulpkaninTorso
+  id: MobVulpkaninChest
   baseSprite:
     sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobVulpkaninTorsoMale
+  id: MobVulpkaninChestMale
   baseSprite:
     sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobVulpkaninTorsoFemale
+  id: MobVulpkaninChestFemale
   baseSprite:
     sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
-    state: torso_f
+    state: chest_f
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninGroin
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninGroinMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobVulpkaninGroinFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: groin_f
 
 - type: humanoidBaseSprite
   id: MobVulpkaninLLeg

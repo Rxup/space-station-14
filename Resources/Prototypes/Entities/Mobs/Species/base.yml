@@ -12,6 +12,7 @@
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -57,21 +58,24 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  - type: DamageVisuals
-    thresholds: [ 10, 20, 30, 50, 70, 100 ]
-    targetLayers:
-    - "enum.HumanoidVisualLayers.Chest"
-    - "enum.HumanoidVisualLayers.Head"
-    - "enum.HumanoidVisualLayers.LArm"
-    - "enum.HumanoidVisualLayers.LLeg"
-    - "enum.HumanoidVisualLayers.RArm"
-    - "enum.HumanoidVisualLayers.RLeg"
-    damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#FF0000"
-      Burn:
-        sprite: Mobs/Effects/burn_damage.rsi
+  #- type: DamageVisuals
+  #  thresholds: [ 10, 20, 30, 50, 70, 100 ]
+  #  targetLayers:
+  #  - "enum.HumanoidVisualLayers.Chest"
+  #  - "enum.HumanoidVisualLayers.Head"
+  #  - "enum.HumanoidVisualLayers.LArm"
+  #  - "enum.HumanoidVisualLayers.LLeg"
+  #  - "enum.HumanoidVisualLayers.RArm"
+  #  - "enum.HumanoidVisualLayers.RLeg"
+  #  damageOverlayGroups:
+  #    Brute:
+  #      sprite: Mobs/Effects/brute_damage.rsi
+  #      color: "#FF0000"
+  #    Burn:
+  #      sprite: Mobs/Effects/burn_damage.rsi
+  - type: Consciousness
+    cap: 190
+    threshold: 95
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
@@ -257,15 +261,6 @@
       types:
         Blunt: 0.50 #per second, scales with pressure and other constants.
         Heat: 0.1
-  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
-    allowedStates:
-    - Alive
-    damageCap: 20
-    damage:
-      types:
-        Heat: -0.07
-      groups:
-        Brute: -0.07
   - type: Fingerprint
   - type: Blindable
   # Other
@@ -334,6 +329,7 @@
     # TODO BODY Turn these into individual body parts?
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]

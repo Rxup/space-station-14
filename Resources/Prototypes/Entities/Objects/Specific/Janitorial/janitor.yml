@@ -124,6 +124,8 @@
     sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
     size: Normal
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -204,7 +206,7 @@
         - Scientist
         - Borg
 # Corvax-HiddenDesc-End
-        
+
 - type: entity
   name: plunger
   id: Plunger

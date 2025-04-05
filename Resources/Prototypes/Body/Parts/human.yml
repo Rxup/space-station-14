@@ -15,13 +15,29 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoHuman
-  name: "human torso"
-  parent: [PartHuman, BaseTorso]
+  id: ChestHuman
+  name: "Грудная клетка"
+  parent: [BaseChest, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinHuman
+  name: "Тазовая область"
+  parent: [BaseGroin, PartHuman]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: "groin_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -33,7 +49,7 @@
 - type: entity
   id: HeadHuman
   name: "human head"
-  parent: [PartHuman, BaseHead]
+  parent: [BaseHead, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -49,7 +65,7 @@
 - type: entity
   id: LeftArmHuman
   name: "left human arm"
-  parent: [PartHuman, BaseLeftArm]
+  parent: [BaseLeftArm, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -58,7 +74,7 @@
 - type: entity
   id: RightArmHuman
   name: "right human arm"
-  parent: [PartHuman, BaseRightArm]
+  parent: [BaseRightArm, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -67,7 +83,7 @@
 - type: entity
   id: LeftHandHuman
   name: "left human hand"
-  parent: [PartHuman, BaseLeftHand]
+  parent: [BaseLeftHand, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -76,7 +92,7 @@
 - type: entity
   id: RightHandHuman
   name: "right human hand"
-  parent: [PartHuman, BaseRightHand]
+  parent: [BaseRightHand, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -85,7 +101,7 @@
 - type: entity
   id: LeftLegHuman
   name: "left human leg"
-  parent: [PartHuman, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -94,7 +110,7 @@
 - type: entity
   id: RightLegHuman
   name: "right human leg"
-  parent: [PartHuman, BaseRightLeg]
+  parent: [BaseRightLeg, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -103,7 +119,7 @@
 - type: entity
   id: LeftFootHuman
   name: "left human foot"
-  parent: [PartHuman, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -112,7 +128,7 @@
 - type: entity
   id: RightFootHuman
   name: "right human foot"
-  parent: [PartHuman, BaseRightFoot]
+  parent: [BaseRightFoot, PartHuman]
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi

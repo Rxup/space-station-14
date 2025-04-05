@@ -18,6 +18,12 @@
       - state: equipped-OUTERCLOTHING-unshaded
         shader: unshaded
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.9

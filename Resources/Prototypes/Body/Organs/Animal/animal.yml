@@ -4,6 +4,13 @@
   abstract: true
   components:
   - type: Organ
+    # backmen edit
+    intCap: 13
+    integrity: 13
+    integrityThresholds:
+      Normal: 13
+      Damaged: 6
+      Destroyed: 0
   - type: Food
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
@@ -30,6 +37,7 @@
   components:
   - type: Gibbable
 
+
 - type: entity
   id: OrganAnimalLungs
   parent: BaseAnimalOrgan
@@ -42,6 +50,13 @@
     - state: lung-r
   - type: Organ
     slotId: lungs
+    intCap: 17 # animal lungs are less tuff than human's one
+    # backmen edit
+    integrity: 17
+    integrityThresholds:
+      Normal: 17
+      Damaged: 8
+      Destroyed: 0
   - type: Lung
   - type: Metabolizer
     removeEmpty: true
@@ -75,6 +90,13 @@
     state: stomach
   - type: Organ
     slotId: stomach
+    # backmen edit
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -119,6 +141,13 @@
     state: liver
   - type: Organ
     slotId: liver
+    # backmen edit
+    intCap: 17
+    integrity: 17
+    integrityThresholds:
+      Normal: 17
+      Damaged: 8
+      Destroyed: 0
   - type: Liver
   - type: Metabolizer
     maxReagents: 1
@@ -145,6 +174,13 @@
     state: heart-on
   - type: Organ
     slotId: heart # Shitmed
+    # backmen edit
+    intCap: 14
+    integrity: 14
+    integrityThresholds:
+      Normal: 14
+      Damaged: 6
+      Destroyed: 0
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
@@ -173,6 +209,13 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
+    # backmen edit
+    intCap: 17
+    integrity: 17
+    integrityThresholds:
+      Normal: 17
+      Damaged: 8
+      Destroyed: 0
     slotId: kidneys # Shitmed
   - type: Metabolizer
     maxReagents: 5
@@ -191,14 +234,24 @@
   - type: Sprite
     state: brain
   - type: Organ
+    # backmen edit
     slotId: brain # backmen: surgery
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
+  - type: NerveSystem # backmen: wounding
+  - type: ConsciousnessRequired
+    identifier: "nerveSystem"
+    causesDeath: true
   - type: Input
     context: "ghost"
   - type: Brain
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
-  - type: BadFood
   - type: Tag
     tags:
       - Meat
@@ -233,6 +286,12 @@
   # start-backmen: surgery
   - type: Organ
     slotId: eyes
+    intCap: 12
+    integrity: 12
+    integrityThresholds:
+      Normal: 12
+      Damaged: 6
+      Destroyed: 0
   - type: Eyes
   # end-backmen: surgery
   - type: Sprite

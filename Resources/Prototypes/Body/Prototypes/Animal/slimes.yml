@@ -1,10 +1,10 @@
 ﻿- type: body
   id: Slimes
   name: "slimes"
-  root: torso
+  root: chest
   slots:
-    torso:
-      part: TorsoSlime
+    chest:
+      part: ChestSlime
       connections:
       - legs
       organs:

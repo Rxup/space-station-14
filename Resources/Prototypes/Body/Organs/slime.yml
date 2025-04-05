@@ -10,6 +10,13 @@
     - type: Stomach
     - type: Organ
       slotId: core
+      # backmen edit
+      intCap: 60 # to prevent slimes from getting oneshot
+      integrity: 60
+      integrityThresholds:
+        Normal: 60
+        Damaged: 27
+        Destroyed: 0
     - type: Metabolizer
       maxReagents: 6
       metabolizerTypes: [ Slime ]
@@ -53,6 +60,13 @@
       - state: lung-r-slime
   - type: Organ
     slotId: lungs
+    # backmen edit
+    intCap: 21
+    integrity: 21
+    integrityThresholds:
+      Normal: 21
+      Damaged: 14
+      Destroyed: 0
   - type: Lung
     alert: LowNitrogen
   - type: Metabolizer

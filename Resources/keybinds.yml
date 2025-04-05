@@ -609,9 +609,13 @@ binds:
 - function: TargetHead
   type: State
   key: NumpadNum8
-- function: TargetTorso
+- function: TargetChest
   type: State
   key: NumpadNum5
+- function: TargetGroin
+  type: State
+  key: NumpadNum5
+  mod1: NumpadNum5
 - function: TargetLeftArm
   type: State
   key: NumpadNum6

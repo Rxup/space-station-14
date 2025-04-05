@@ -74,6 +74,10 @@
   components:
   - type: Sprite
     state: advkit
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
   - type: Item
     heldPrefix: advkit
 

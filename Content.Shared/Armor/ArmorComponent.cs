@@ -1,4 +1,9 @@
-﻿using Content.Shared.Damage;
+using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Body.Part;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
+using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
@@ -8,7 +13,7 @@ namespace Content.Shared.Armor;
 /// <summary>
 /// Used for clothing that reduces damage when worn.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedArmorSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedArmorSystem), typeof(TraumaSystem))]
 public sealed partial class ArmorComponent : Component
 {
     /// <summary>
@@ -24,11 +29,39 @@ public sealed partial class ArmorComponent : Component
     [DataField]
     public float PriceMultiplier = 1;
 
+    // backmen edit start
     /// <summary>
     /// If true, you can examine the armor to see the protection. If false, the verb won't appear.
     /// </summary>
     [DataField]
     public bool ShowArmorOnExamine = true;
+
+    /// <summary>
+    /// If true, the coverage won't show.
+    /// </summary>
+    [DataField("coverageHidden")]
+    public bool ArmourCoverageHidden = false;
+
+    /// <summary>
+    /// If true, the modifiers won't show.
+    /// </summary>
+    [DataField("modifiersHidden")]
+    public bool ArmourModifiersHidden = false;
+
+    // thankfully all the armor in the game is symmetrical.
+    [DataField("coverage")]
+    public List<BodyPartType> ArmorCoverage = new();
+
+    [DataField]
+    public Dictionary<TraumaType, FixedPoint2> TraumaDeductions = new()
+    {
+        { TraumaType.Dismemberment, 0 },
+        { TraumaType.BoneDamage, 0 },
+        { TraumaType.OrganDamage, 0 },
+        { TraumaType.VeinsDamage, 0 },
+        { TraumaType.NerveDamage, 0 },
+    };
+    // backmen edit end
 }
 
 /// <summary>

@@ -51,3 +51,10 @@ surgery-popup-step-SurgeryStepInsertStomach = {$user} вставляет жел�
 
 surgery-popup-step-SurgeryStepSealOrganWound = {$user} лечит раны на {$part} {$target}.
 surgery-popup-step-SurgeryStepLobotomize = {$user} выполняет трепанацию на {$target} {$part}.
+
+surgery-popup-step-SurgeryStepSealDismembermentWound = {$user} зашивает точку разрыва на {$target} {$part}.
+surgery-popup-step-SurgeryStepCloseBloodOutputs = {$user} зашивает кровоточающую часть тела {$target} {$part}.
+surgery-popup-step-SurgeryStepRemoveSeveredSkin = {$user} убирает мёртвую кожу с {$target} {$part}.
+surgery-popup-step-SurgeryStepRemoveLeftoverBones = {$user} убирает оставшиеся кости с {$target} {$part}.
+surgery-popup-step-SurgeryStepHealOrgans = {$user} исправляет повреждения органов у {$target} {$part}.
+surgery-popup-step-SurgeryStepMendBones = {$user} залечивает кости у {$target} {$part}.

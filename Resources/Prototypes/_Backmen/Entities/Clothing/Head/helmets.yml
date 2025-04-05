@@ -10,6 +10,8 @@
     sprite: Backmen/Clothing/Head/Helmets/mog_helmet.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -25,6 +27,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -44,6 +48,8 @@
     sprite: Backmen/Clothing/Head/Helmets/altinbelov.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -63,6 +69,8 @@
     sprite: Backmen/Clothing/Head/Helmets/germanhelmetbelov.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.50
@@ -80,6 +88,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helmetssspbel.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -99,6 +109,8 @@
     sprite: Backmen/Clothing/Head/Helmets/ihscombathelmetbelsuper.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -121,6 +133,8 @@
   - type: PointLight
     color: "#ffdbad"
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Slash: 0.9
@@ -137,6 +151,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/motohelmetred.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -220,6 +236,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -243,6 +261,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/helmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -263,6 +283,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/helmetmvd.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -306,6 +328,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helm.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -325,6 +349,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.40
@@ -344,6 +370,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.30
@@ -363,6 +391,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.30
@@ -383,6 +413,8 @@
   - type: Clothing
     sprite: Backmen/Changeling/ling_armor_helmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -402,6 +434,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8

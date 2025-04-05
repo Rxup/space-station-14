@@ -8,6 +8,8 @@
   - type: Sprite
     sprite: Corvax/Clothing/Head/hardsuits/cburncommander.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
