@@ -11,7 +11,7 @@
   - OreProcessorMachineCircuitboard
   - SalvageMagnetMachineCircuitboard
   - ShipyardCircuitboard # backmen: salvage
-  - SalvageExpeditionsComputerCircuitboard
+  #- SalvageExpeditionsComputerCircuitboard
   technologyPrerequisites:
   - SalvageEquipment
   position: 11,2
