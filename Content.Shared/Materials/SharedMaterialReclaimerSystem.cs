@@ -210,6 +210,11 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
+        if (component.AlwaysGib) // Backmen
+        {
+               return true;
+        }
+
         return component.Powered &&
                component.Enabled &&
                !component.Broken &&
