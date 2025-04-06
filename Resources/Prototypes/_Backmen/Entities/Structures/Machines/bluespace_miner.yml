@@ -1,0 +1,69 @@
+﻿- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: BluespaceMiner
+  name: bluespace miner
+  description: Extracts resources from bluespace.
+  components:
+  - type: BluespaceMiner
+    entityTable:
+      - SheetSteel1
+      - SheetGlass1
+      - SheetPlasma1
+      - MaterialDiamond1
+      - IngotGold1
+      - IngotSilver1
+      - SheetPlastic1
+      - MaterialBananium1
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/bluespace_miner.rsi
+    layers:
+    - state: off
+      map: ["enum.BluespaceMinerVisuals.State"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: BluespaceMinerVisuals
+    offState: off
+    runningState: running
+  - type: ApcPowerReceiver
+    powerLoad: 1200
+    needsPower: true
+  - type: ExtensionCableReceiver
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Machine
+    board: ResearchAndDevelopmentServerMachineCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+  - type: Appearance
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: GuideHelp
+    guides:
+    - Science
