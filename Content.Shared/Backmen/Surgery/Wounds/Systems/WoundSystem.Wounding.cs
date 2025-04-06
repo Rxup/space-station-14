@@ -603,17 +603,6 @@ public sealed partial class WoundSystem
                 WoundableVisualizerKeys.Wounds,
                 new WoundVisualizerGroupData(GetWoundableWounds(woundableEntity).Select(ent => GetNetEntity(ent)).ToList()));
 
-            foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
-            {
-                TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
-            }
-
-            // Sliiightly hardcoded but oh well; What won't you do for the funny effects?
-            if (!TryContinueWound(parentWoundableEntity, "Blunt", 15f))
-            {
-                TryCreateWound(parentWoundableEntity, "Blunt", 15f, "Brute");
-            }
-
             foreach (var wound in GetWoundableWounds(parentWoundableEntity))
             {
                 if (MetaData(wound.Owner).EntityPrototype!.ID != "Blunt")
@@ -626,15 +615,6 @@ public sealed partial class WoundSystem
                     TraumaType.Dismemberment,
                     15f);
                 break;
-            }
-
-            foreach (var wound in GetWoundableWounds(parentWoundableEntity))
-            {
-                if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
-                    continue;
-
-                // Bleeding :3
-                bleeds.ScalingLimit += 6;
             }
 
             Dirty(woundableEntity, woundableComp);
@@ -674,6 +654,26 @@ public sealed partial class WoundSystem
 
                 DropWoundableOrgans(woundableEntity, woundableComp);
                 DestroyWoundableChildren(woundableEntity, woundableComp);
+
+                foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
+                {
+                    TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
+                }
+
+                // Sliiightly hardcoded but oh well; What won't you do for the funny effects?
+                if (!TryContinueWound(parentWoundableEntity, "Blunt", 15f))
+                {
+                    TryCreateWound(parentWoundableEntity, "Blunt", 15f, "Brute");
+                }
+
+                foreach (var wound in GetWoundableWounds(parentWoundableEntity))
+                {
+                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
+                        continue;
+
+                    // Bleeding :3
+                    bleeds.ScalingLimit += 6;
+                }
 
                 _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
 
@@ -757,6 +757,12 @@ public sealed partial class WoundSystem
             {
                 _inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
             }
+        }
+
+        if (bodyPart.PartType == BodyPartType.Hand)
+        {
+            // Prevent anomalous behaviour
+            _hands.TryDrop(bodyPart.Body!.Value, woundableEntity);
         }
 
         Dirty(woundableEntity, woundableComp);
