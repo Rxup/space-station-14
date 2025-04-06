@@ -152,7 +152,7 @@ public sealed class VaccineSystem : EntitySystem
 
     private void OnServerSelected(EntityUid uid, DiseaseVaccineCreatorComponent component, ResearchClientServerSelectedMessage args)
     {
-        if (!_research.TryGetServerById(args.ServerId, out var serverUid, out var serverComponent))
+        if (!_research.TryGetServerById(args.ServerId, Transform(uid).MapID, out var serverUid, out var serverComponent))
             return;
 
         if (!TryComp<DiseaseServerComponent>(serverUid, out var diseaseServer))

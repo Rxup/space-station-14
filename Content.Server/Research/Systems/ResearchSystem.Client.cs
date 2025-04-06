@@ -23,7 +23,7 @@ public sealed partial class ResearchSystem
 
     private void OnClientSelected(EntityUid uid, ResearchClientComponent component, ResearchClientServerSelectedMessage args)
     {
-        if (!TryGetServerById(args.ServerId, out var serveruid, out var serverComponent))
+        if (!TryGetServerById(args.ServerId, Transform(uid).MapID, out var serveruid, out var serverComponent))
             return;
 
         UnregisterClient(uid, component);
@@ -60,6 +60,11 @@ public sealed partial class ResearchSystem
         var query = AllEntityQuery<ResearchServerComponent>();
         while (query.MoveNext(out var serverUid, out var serverComp))
         {
+            // backmen edit: RnD servers are local for a map
+            if (Transform(serverUid).MapID != Transform(uid).MapID)
+                continue;
+            // backmen edit end
+
             allServers.Add((serverUid, serverComp));
         }
 
@@ -83,10 +88,15 @@ public sealed partial class ResearchSystem
             return;
 
         TryGetClientServer(uid, out _, out var serverComponent, component);
+        var mapId = Transform(uid).MapID;
 
-        var names = GetServerNames();
-        var state = new ResearchClientBoundInterfaceState(names.Length, names,
-            GetServerIds(), serverComponent?.Id ?? -1);
+        // backmen change start
+        var names = GetAvailableServerNames(mapId);
+        var state = new ResearchClientBoundInterfaceState(names.Length,
+            names,
+            GetAvailableServerIds(mapId),
+            serverComponent?.Id ?? -1);
+        // backmen change end
 
         _uiSystem.SetUiState(uid, ResearchClientUiKey.Key, state);
     }
