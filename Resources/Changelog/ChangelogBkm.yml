@@ -2306,3 +2306,13 @@
   id: 154
   time: '2025-04-06T11:57:26.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1198
+- author: Agronomist-NN
+  changes:
+  - message: "\u0423 \u041F\u041E\u0421\u0411\u0426\u041A \u0442\u0435\u043F\u0435\
+      \u0440\u044C \u0435\u0441\u0442\u044C \u0441\u043E\u043E\u0442\u0432\u0435\u0442\
+      \u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0435 \u0431\u043E\u0435\u043F\u0440\
+      \u0438\u043F\u0430\u0441\u044B."
+    type: Fix
+  id: 155
+  time: '2025-04-06T12:43:34.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1200
