@@ -109,7 +109,7 @@
     state: base
   discipline: Arsenal
   tier: 3
-  cost: 15000
+  cost: 30000
   recipeUnlocks:
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
