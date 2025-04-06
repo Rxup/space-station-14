@@ -1,0 +1,9 @@
+- type: latheRecipe
+  id: AntiPsychicKnife
+  result: AntiPsychicKnife
+  completetime: 4
+  materials:
+    Steel: 300
+    Glass: 300
+    Plastic: 200
+    Bluespace: 50

@@ -271,3 +271,40 @@
   - type: Wieldable
   - type: UseDelay
     delay: 2.5
+
+#- type: entity #потом норм спрайт, в пизду
+#  name: Gluon Gun
+#  parent: BaseItem
+#  id: WeaponGluonGun
+#  suffix: Пулемёт типо
+#  description: A gluon gun created in artisanal conditions, I would not recommend using this gun, and it also emits an unimaginable amount of radiation!
+#  components:
+#  - type: Sprite
+#    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
+#    state: icon
+#  - type: Item
+#    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+#    size: Normal
+#  - type: Gun
+#    minAngle: 1
+#    maxAngle: 1
+#    cameraRecoilScalar: 0 #no recoil
+#    fireRate: 7
+#    selectedMode: FullAuto
+#    availableModes:
+#    - FullAuto
+#    soundGunshot:
+#      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+#  - type: ClothingSlotAmmoProvider
+#    targetSlot: BACK
+#    providerWhitelist:
+#      tags:
+#      - PowerpackEnergy
+#  - type: Appearance
+#  - type: Wieldable
+#  - type: UseDelay
+#    delay: 2.3
+#  - type: GunRequiresWield
+#  - type: Tag
+#    tags:
+#    - GluonGun

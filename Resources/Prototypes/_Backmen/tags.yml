@@ -219,3 +219,6 @@
 
 - type: Tag
   id: MagazineLightMachineGunRPD
+
+- type: Tag
+  id: GluonGun

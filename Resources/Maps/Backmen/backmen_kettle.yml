@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 248.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 03/15/2025 10:03:00
-  entityCount: 26854
+  forkId: backmen
+  forkVersion: b4954ce3ce3c43d6fc7c57b5a40317b42ad22179
+  time: 03/22/2025 14:39:11
+  entityCount: 26856
 maps:
 - 84
 grids:
@@ -12990,7 +12990,7 @@ entities:
       pos: 16.5,-3.5
       parent: 82
     - type: Door
-      secondsUntilStateChange: -13721.526
+      secondsUntilStateChange: -13745.125
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -53439,6 +53439,13 @@ entities:
     - type: Transform
       pos: -63.308983,-42.342358
       parent: 82
+- proto: CaptainDrobe
+  entities:
+  - uid: 7548
+    components:
+    - type: Transform
+      pos: 10.5,-18.5
+      parent: 82
 - proto: CaptainIDCard
   entities:
   - uid: 11393
@@ -78151,13 +78158,6 @@ entities:
     - type: Transform
       pos: -15.5,-6.5
       parent: 82
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 7548
-    components:
-    - type: Transform
-      pos: 10.5,-18.5
-      parent: 82
 - proto: DresserChiefEngineerFilled
   entities:
   - uid: 20169
@@ -79228,7 +79228,7 @@ entities:
       parent: 25896
     - type: Physics
       canCollide: False
-- proto: EphedrineChemistryBottle
+- proto: ChemistryBottleEphedrine
   entities:
   - uid: 24186
     components:
@@ -144975,6 +144975,13 @@ entities:
     - type: Transform
       pos: 26.36865,7.053797
       parent: 82
+- proto: SpawnJobBkmVirologist
+  entities:
+  - uid: 18995
+    components:
+    - type: Transform
+      pos: -45.5,-25.5
+      parent: 82
 - proto: SpawnMobAlexander
   entities:
   - uid: 3142
@@ -145662,6 +145669,13 @@ entities:
     components:
     - type: Transform
       pos: -24.5,37.5
+      parent: 82
+- proto: SpawnPointSurgeon
+  entities:
+  - uid: 18994
+    components:
+    - type: Transform
+      pos: -33.5,-42.5
       parent: 82
 - proto: SpawnPointTechnicalAssistant
   entities:

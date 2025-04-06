@@ -35,10 +35,10 @@
       - to: reinforcedhev
         steps:
           - material: HEVPiece
-            amount: 10
+            amount: 5
             doAfter: 5
           - material: CableGold
-            amount: 4
+            amount: 10
             doAfter: 2
     - node: reinforcedhev
       entity: LavalandEquipmentExplorerSuitReinforcedHEV
@@ -46,12 +46,12 @@
       - to: reinforcedhev2
         steps:
           - material: HEVPiece
-            amount: 20
+            amount: 10
             doAfter: 5
           - material: CableGold
-            amount: 10
+            amount: 20
             doAfter: 2
-          - tag: SalvagePCVPlate
+          - tag: SalvageResearchTool
             doAfter: 1
     - node: reinforcedhev2
       entity: LavalandEquipmentExplorerSuitReinforcedHEV2
@@ -59,11 +59,15 @@
       - to: reinforcedhev3
         steps:
           - material: HEVPiece
-            amount: 30
+            amount: 15
             doAfter: 5
           - material: CableGold
-            amount: 20
+            amount: 30
             doAfter: 2
+          - tag: SalvageResearchTool
+            doAfter: 1
+          - tag: SalvageResearchTool
+            doAfter: 1
           - tag: SalvagePCVPlate
             doAfter: 1
     - node: reinforcedhev3

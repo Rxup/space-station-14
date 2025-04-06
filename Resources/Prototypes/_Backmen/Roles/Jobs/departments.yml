@@ -15,15 +15,3 @@
     - BKCCAdmiral
     - BlueShield
   accountNumber: 1350  #backmen: currency
-
-- type: department
-  id: Silicons
-  name: department-Silicons
-  description: department-Silicons-description
-  color: "#191e9e"
-  primary: true
-  weight: 10
-  roles:
-    - BKBPLATech
-    - BKBPLAMED
-  accountNumber: 1351  #backmen: currency

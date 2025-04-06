@@ -6,6 +6,7 @@
     ClothingBackpackDuffel: 5
     ClothingBackpackSatchel: 3
     ClothingBackpackSatchelLeather: 2
+    ClothingBackpackMessenger: 5 # Backmen
     ClothingRandomSpawner: 8
     ClothingHeadHatBeret: 4
     ClothingHeadBandBlack: 2
@@ -102,4 +103,5 @@
     ClothingUniformJumpskirtTacticool: 1
     ToyFigurinePassenger: 1
     ToyFigurineGreytider: 1
+    ClothingBackpackSatchelSmugglerUnanchored: 1
   # DO NOT ADD MORE, USE UNIFORM DYING

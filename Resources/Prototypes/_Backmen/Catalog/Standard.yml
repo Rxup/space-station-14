@@ -1,0 +1,179 @@
+- type: jukebox
+  id: PhantomLiberty
+  name: Adamczyk - PhantomLiberty
+  path:
+    path: /Audio/Backmen/Jukebox/Adamczyk/Adamczyk_PhantomLiberty.ogg
+
+- type: jukebox
+  id: TheRebelPath
+  name: Adamczyk - The Rebel Path
+  path:
+    path: /Audio/Backmen/Jukebox/Adamczyk/Adamczyk_TheRebelPath.ogg
+
+- type: jukebox
+  id: EcstaticVibrations
+  name: British Sea Power - Ecstatic Vibrations
+  path:
+    path: /Audio/Backmen/Jukebox/BritishSeaPower/BritishSeaPower_EcstaticVibrations.ogg
+
+- type: jukebox
+  id: SpaceOddity
+  name: Chris Hadfield - Space Oddity
+  path:
+    path: /Audio/Backmen/Jukebox/ChrisHadfield/ChrisHadfield_SpaceOddity.ogg
+
+- type: jukebox
+  id: Starman
+  name: David Bowie - Starman
+  path:
+    path: /Audio/Backmen/Jukebox/DavidBowie/DavidBowie_Starman.ogg
+
+- type: jukebox
+  id: TheManWhoSoldTheWorld
+  name: David Bowie - The Man Who Sold The World
+  path:
+    path: /Audio/Backmen/Jukebox/DavidBowie/DavidBowie_TheManWhoSoldTheWorld.ogg
+
+- type: jukebox
+  id: Drown
+  name: Karen O - Drown
+  path:
+    path: /Audio/Backmen/Jukebox/KarenO/KarenO_Drown.ogg
+
+- type: jukebox
+  id: Again
+  name: Plamenev - И опять сначала
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_Again.ogg
+
+- type: jukebox
+  id: BeforeExecution
+  name: Plamenev - Перед казнью
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_BeforeExecution.ogg
+
+- type: jukebox
+  id: BigLove
+  name: Plamenev - Вселенская большая любовь
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_BigLove.ogg
+
+- type: jukebox
+  id: BystroSgoraya
+  name: Plamenev - Быстро сгорая
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_BystroSgoraya.ogg
+
+- type: jukebox
+  id: ChutChut
+  name: Plamenev - Лишь меня не хватает чуть-чуть...
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_ChutChut.ogg
+
+- type: jukebox
+  id: DarkInfinity
+  name: Plamenev - Бесконечность тьмы
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_DarkInfinity.ogg
+
+- type: jukebox
+  id: DarkWaters
+  name: Plamenev - Зазеркалье тёмных вод
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_DarkWaters.ogg
+
+- type: jukebox
+  id: Geroy
+  name: Plamenev - Герой с тысячью лиц
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_Geroy.ogg
+
+- type: jukebox
+  id: IntoDarkness
+  name: Plamenev - Шаг в темноту
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_IntoDarkness.ogg
+
+- type: jukebox
+  id: Knife
+  name: Plamenev - Воля ножа
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_Knife.ogg
+
+- type: jukebox
+  id: KogdaToDavno
+  name: Plamenev - Когда-то давно...
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_KogdaToDavno.ogg
+
+- type: jukebox
+  id: KradushhajaSny
+  name: Plamenev - Девушка, крадущая сны
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_KradushhajaSny.ogg
+
+- type: jukebox
+  id: OurWorld
+  name: Plamenev - Наш мир
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_OurWorld.ogg
+
+- type: jukebox
+  id: SokrushitelVelikih
+  name: Plamenev - Сокрушить Великих!
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_SokrushitelVelikih.ogg
+
+- type: jukebox
+  id: Uhozhu
+  name: Plamenev - Ухожу
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_Uhozhu.ogg
+
+- type: jukebox
+  id: VneSmerti
+  name: Plamenev - Вне смерти
+  path:
+    path: /Audio/Backmen/Jukebox/Plamenev/Plamenev_VneSmerti.ogg
+
+- type: jukebox
+  id: DIAMANT
+  name: Rammstein - DIAMANT
+  path:
+    path: /Audio/Backmen/Jukebox/Rammstein/Rammstein_DIAMANT.ogg
+
+- type: jukebox
+  id: WhosReadyForTomorrow
+  name: Rat Boy - Whos Ready For Tomorrow
+  path:
+    path: /Audio/Backmen/Jukebox/RatBoy/RatBoy_WhosReadyForTomorrow.ogg
+
+- type: jukebox
+  id: Freaks
+  name: Surf Curse - Freaks
+  path:
+    path: /Audio/Backmen/Jukebox/SurfCurse/SurfCurse_Freaks.ogg
+
+- type: jukebox
+  id: ItsJustBurningMemory
+  name: The Caretaker - Its Just a Burning Memory
+  path:
+    path: /Audio/Backmen/Jukebox/TheCaretaker/TheCaretaker_ItsJustBurningMemory.ogg
+
+- type: jukebox
+  id: Notion
+  name: The Rare Occasions - Notion
+  path:
+    path: /Audio/Backmen/Jukebox/TheRareOccasions/TheRareOccasions_Notion.ogg
+
+- type: jukebox
+  id: UbersMeer
+  name: Till Lindermann - Ubers Meer
+  path:
+    path: /Audio/Backmen/Jukebox/TillLindermann/TillLindemann_UbersMeer.ogg
+
+- type: jukebox
+  id: OceanMan
+  name: Ween - Ocean Man
+  path:
+    path: /Audio/Backmen/Jukebox/Ween/Ween_OceanMan.ogg

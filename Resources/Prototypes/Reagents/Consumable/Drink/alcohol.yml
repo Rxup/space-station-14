@@ -531,6 +531,9 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
 
+#Antifreeze as a drink is a bright blue color while it is an orangish red otherwise.
+#As a result this sprite doesn't need changing.
+
 - type: reagent
   id: Antifreeze
   name: reagent-name-antifreeze
@@ -1399,7 +1402,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.2 
+        amount: 0.2
 
 - type: reagent
   id: PinaColada
@@ -1422,7 +1425,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.2  
+        amount: 0.2
 
 - type: reagent
   id: Sbiten
@@ -1975,7 +1978,7 @@
           time: 1.0
           type: Remove
   fizziness: 0.25
-  
+
 - type: reagent
   id: BlueHawaiian
   name: reagent-name-blue-hawaiian
@@ -2046,8 +2049,8 @@
         amount: 0.2
       - !type:AdjustReagent
         reagent: Copper
-        amount: 0.05        
-        
+        amount: 0.05
+
 - type: reagent
   id: Mimeosa
   name: reagent-name-mimeosa
@@ -2096,7 +2099,7 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.07
-        
+
 - type: reagent
   id: Mayojito
   name: reagent-name-mayojito
@@ -2197,7 +2200,7 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-        
+
 - type: reagent
   id: Daiquiri
   name: reagent-name-daiquiri
@@ -2220,7 +2223,7 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.1
-        
+
 - type: reagent
   id: TheSunAlsoRises
   name: reagent-name-the-sun-also-rises
@@ -2299,11 +2302,8 @@
   flavor: bacchusblessing
   color: "#331303"
   metamorphicSprite:
-    sprite: Objects/Consumable/Drinks/bacchusblessing.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 2
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
+    sprite: Backmen/Objects/Consumable/Drinks/bacchus.rsi
+    state: icon
   metabolisms:
     Drink:
       effects:

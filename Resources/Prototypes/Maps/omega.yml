@@ -64,8 +64,8 @@
             Musician: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            BKBPLATech: [0, 1] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
             Borg: [ 2, 2 ]
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 3]

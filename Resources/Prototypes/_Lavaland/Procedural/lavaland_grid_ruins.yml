@@ -14,7 +14,7 @@
   id: InteQSizo
   name: lavaland-inteq-sizo
   path: /Maps/Backmen/Lavaland/InteQ_Sizo.yml
-  priority: 19
+  priority: -1 # highest priority
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaResearchFacility

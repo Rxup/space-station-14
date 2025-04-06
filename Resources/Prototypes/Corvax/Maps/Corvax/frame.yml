@@ -54,8 +54,8 @@
 
             # backmen
             Brigmedic: [ 0, 3 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            BKBPLATech: [0, 1] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
         - type: StationGoal
           goals:
           - FrameRepair

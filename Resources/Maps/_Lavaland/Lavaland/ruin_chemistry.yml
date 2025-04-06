@@ -458,14 +458,14 @@ entities:
     - type: Transform
       pos: 5.3069735,7.250702
       parent: 2
-- proto: EphedrineChemistryBottle
+- proto: ChemistryBottleEphedrine
   entities:
   - uid: 77
     components:
     - type: Transform
       pos: 5.5725985,7.360077
       parent: 2
-- proto: EpinephrineChemistryBottle
+- proto: ChemistryBottleEpinephrine
   entities:
   - uid: 76
     components:

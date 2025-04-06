@@ -61,9 +61,11 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             #backmen
+            BkmVirologist: [1, 1] # backmen-Virologist
+            BkmSurgeon: [1, 1] # backmen-Surgeon
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            BKBPLATech: [0, 1] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
             Prisoner: [ 2, 3]
             BlueShield: [1, 1] # backmen-BlueShield
             StationAi: [ 1, 1 ]

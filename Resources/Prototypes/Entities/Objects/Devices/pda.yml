@@ -64,8 +64,9 @@
   - type: UnpoweredFlashlight
   - type: ShadowkinLight
   - type: PointLight
+    mask: /Textures/Effects/LightMasks/cone.png # Backmen
     enabled: false
-    radius: 1.5
+    radius: 1.8 # Backmen-Edit
     softness: 5
     autoRot: true
   - type: Ringer
@@ -131,6 +132,25 @@
     - TauCetiBasic
     understands:
     - TauCetiBasic
+
+- type: entity
+  parent: BasePDA
+  id: BaseWidePDA
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay_wide"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay_wide"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
 
 - type: entity
   parent: BasePDA
@@ -528,7 +548,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BasePDA
+  parent: BaseWidePDA
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -1479,7 +1499,7 @@
         type: ChameleonBoundUserInterface
 
 - type: entity
-  parent: BasePDA
+  parent: BaseWidePDA
   id: WizardPDA
   name: wizard PDA
   description: You hear faint whispers coming from it.
