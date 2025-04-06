@@ -85,6 +85,10 @@ namespace Content.Server.Backmen.BluespaceMining
                     miner.NextSpawnTime = _gameTiming.CurTime.Seconds + miner.SpawnInterval;
                     miner.NeedsResync = false;
                 }
+                else
+                {
+                    miner.NeedsResync = true;
+                }
                 UpdateAppearance(uid);
 
                 if (!miner.IsActive)
