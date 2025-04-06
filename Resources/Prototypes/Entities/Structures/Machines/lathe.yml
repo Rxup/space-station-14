@@ -317,7 +317,6 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    - BackmenShitmedModulesStatic # backmen
 #    dynamicPacks: # Backmen-EDIT
     - Robotics
     - BorgModules
