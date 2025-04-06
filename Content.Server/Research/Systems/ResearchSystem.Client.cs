@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Research.Components;
 
@@ -23,7 +24,8 @@ public sealed partial class ResearchSystem
 
     private void OnClientSelected(EntityUid uid, ResearchClientComponent component, ResearchClientServerSelectedMessage args)
     {
-        if (!TryGetServerById(args.ServerId, Transform(uid).MapID, out var serveruid, out var serverComponent))
+        var xform = Transform(uid);
+        if (!TryGetServerById(args.ServerId, xform.MapID, out var serveruid, out var serverComponent))
             return;
 
         UnregisterClient(uid, component);
@@ -56,12 +58,13 @@ public sealed partial class ResearchSystem
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
+        var xform = Transform(uid);
         var allServers = new List<Entity<ResearchServerComponent>>();
-        var query = AllEntityQuery<ResearchServerComponent>();
-        while (query.MoveNext(out var serverUid, out var serverComp))
+        var query = AllEntityQuery<ResearchServerComponent, TransformComponent>();
+        while (query.MoveNext(out var serverUid, out var serverComp, out var serverXform))
         {
             // backmen edit: RnD servers are local for a map
-            if (Transform(serverUid).MapID != Transform(uid).MapID)
+            if (serverXform.MapID != xform.MapID)
                 continue;
             // backmen edit end
 
@@ -91,10 +94,10 @@ public sealed partial class ResearchSystem
         var mapId = Transform(uid).MapID;
 
         // backmen change start
-        var names = GetAvailableServerNames(mapId);
+        var names = GetAvailableServerNames(mapId).ToArray();
         var state = new ResearchClientBoundInterfaceState(names.Length,
             names,
-            GetAvailableServerIds(mapId),
+            GetAvailableServerIds(mapId).ToArray(),
             serverComponent?.Id ?? -1);
         // backmen change end
 

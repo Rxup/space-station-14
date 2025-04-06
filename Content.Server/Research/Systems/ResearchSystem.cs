@@ -48,11 +48,11 @@ namespace Content.Server.Research.Systems
             serverUid = null;
             serverComponent = null;
 
-            var query = EntityQueryEnumerator<ResearchServerComponent>();
-            while (query.MoveNext(out var uid, out var server))
+            var query = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var server, out var xform))
             {
                 // backmen edit: RnD servers are local for a map
-                if (Transform(uid).MapID != mapId)
+                if (xform.MapID != mapId)
                     continue;
                 // backmen edit end
 
@@ -105,44 +105,43 @@ namespace Content.Server.Research.Systems
         /// <summary>
         /// Gets the names of all the servers.
         /// </summary>
-        /// <returns></returns>
-        public string[] GetAvailableServerNames(MapId mapId)
+        public IEnumerable<string> GetAvailableServerNames(MapId mapId)
         {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent>();
+            var allServers = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
             var list = new List<string>();
 
-            while (allServers.MoveNext(out var serverUid, out var server))
+            while (allServers.MoveNext(out var server, out var xform))
             {
                 // backmen edit: RnD servers are local for a map
-                if (Transform(serverUid).MapID != mapId)
+                if (xform.MapID != mapId)
                     continue;
                 // backmen edit end
 
                 list.Add(server.ServerName);
             }
 
-            return list.ToArray();
+            return list;
         }
 
         /// <summary>
         /// backmen change: Gets the ids of all the servers from a specified map.
         /// </summary>
-        public int[] GetAvailableServerIds(MapId mapId)
+        public IEnumerable<int> GetAvailableServerIds(MapId mapId)
         {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent>();
+            var allServers = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
             var list = new List<int>();
 
-            while (allServers.MoveNext(out var serverUid, out var server))
+            while (allServers.MoveNext(out var server, out var xform))
             {
                 // backmen edit: RnD servers are local for a map
-                if (Transform(serverUid).MapID != mapId)
+                if (xform.MapID != mapId)
                     continue;
                 // backmen edit end
 
                 list.Add(server.Id);
             }
 
-            return list.ToArray();
+            return list;
         }
         // backmen changes end
 
