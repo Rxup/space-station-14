@@ -105,43 +105,20 @@ namespace Content.Server.Research.Systems
         /// <summary>
         /// Gets the names of all the servers.
         /// </summary>
-        public IEnumerable<string> GetAvailableServerNames(MapId mapId)
+        public IEnumerable<Entity<ResearchServerComponent>> GetAvailableServers(MapId mapId)
         {
             var allServers = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
-            var list = new List<string>();
 
-            while (allServers.MoveNext(out var server, out var xform))
+            while (allServers.MoveNext(out var uid, out var server, out var xform))
             {
                 // backmen edit: RnD servers are local for a map
                 if (xform.MapID != mapId)
                     continue;
                 // backmen edit end
 
-                list.Add(server.ServerName);
+
+                yield return (uid, server);
             }
-
-            return list;
-        }
-
-        /// <summary>
-        /// backmen change: Gets the ids of all the servers from a specified map.
-        /// </summary>
-        public IEnumerable<int> GetAvailableServerIds(MapId mapId)
-        {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
-            var list = new List<int>();
-
-            while (allServers.MoveNext(out var server, out var xform))
-            {
-                // backmen edit: RnD servers are local for a map
-                if (xform.MapID != mapId)
-                    continue;
-                // backmen edit end
-
-                list.Add(server.Id);
-            }
-
-            return list;
         }
         // backmen changes end
 

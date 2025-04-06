@@ -94,10 +94,11 @@ public sealed partial class ResearchSystem
         var mapId = Transform(uid).MapID;
 
         // backmen change start
-        var names = GetAvailableServerNames(mapId).ToArray();
-        var state = new ResearchClientBoundInterfaceState(names.Length,
-            names,
-            GetAvailableServerIds(mapId).ToArray(),
+        var servers = GetAvailableServers(mapId).ToArray();
+
+        var state = new ResearchClientBoundInterfaceState(servers.Length,
+            servers.Select(x => x.Comp.ServerName).ToArray(),
+            servers.Select(x => x.Comp.Id).ToArray(),
             serverComponent?.Id ?? -1);
         // backmen change end
 
