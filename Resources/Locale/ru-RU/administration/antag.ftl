@@ -22,3 +22,6 @@ admin-verb-text-make-thief = Сделать вором
 admin-verb-text-make-changeling = Сделать генокрадом
 admin-verb-make-changeling = Превратить цель в генокрада.
 admin-overlay-antag-classic = АНТАГ
+
+admin-verb-make-paradox-clone = Создаёт парадокс клона как гость роль выбранной цели
+admin-verb-text-make-paradox-clone = Создать парадокс клона

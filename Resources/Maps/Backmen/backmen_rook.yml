@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 02/19/2025 11:06:40
-  entityCount: 7662
+  engineVersion: 248.0.0
+  forkId: backmen
+  forkVersion: b4954ce3ce3c43d6fc7c57b5a40317b42ad22179
+  time: 03/22/2025 14:39:53
+  entityCount: 7664
 maps:
 - 1
 grids:
@@ -3040,7 +3040,7 @@ entities:
       pos: 8.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -632.80804
+      secondsUntilStateChange: -657.42175
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13222,6 +13222,13 @@ entities:
     - type: Transform
       pos: 13.568616,2.541078
       parent: 2
+- proto: CaptainDrobe
+  entities:
+  - uid: 4566
+    components:
+    - type: Transform
+      pos: 4.5,-17.5
+      parent: 2
 - proto: CaptainIDCard
   entities:
   - uid: 6869
@@ -17207,19 +17214,19 @@ entities:
     - type: Transform
       pos: 24.5,-11.5
       parent: 2
-- proto: ComputerSalvageExpedition
-  entities:
-  - uid: 2733
-    components:
-    - type: Transform
-      pos: -14.5,-36.5
-      parent: 2
 - proto: ComputerShuttleCargo
   entities:
   - uid: 7435
     components:
     - type: Transform
       pos: -6.5,-35.5
+      parent: 2
+- proto: ComputerShuttleMiningLavaland
+  entities:
+  - uid: 2733
+    components:
+    - type: Transform
+      pos: -14.5,-36.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -20052,13 +20059,6 @@ entities:
     components:
     - type: Transform
       pos: 24.437788,-6.44703
-      parent: 2
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 4566
-    components:
-    - type: Transform
-      pos: 4.5,-17.5
       parent: 2
 - proto: DresserChiefEngineerFilled
   entities:
@@ -39892,6 +39892,13 @@ entities:
       parent: 2
     - type: SpamEmitSound
       enabled: False
+- proto: SpawnJobBkmVirologist
+  entities:
+  - uid: 7663
+    components:
+    - type: Transform
+      pos: 24.5,6.5
+      parent: 2
 - proto: SpawnMobAlexander
   entities:
   - uid: 7362
@@ -40416,6 +40423,13 @@ entities:
     components:
     - type: Transform
       pos: 16.5,-21.5
+      parent: 2
+- proto: SpawnPointSurgeon
+  entities:
+  - uid: 7664
+    components:
+    - type: Transform
+      pos: 21.5,-3.5
       parent: 2
 - proto: SpawnPointTechnicalAssistant
   entities:
@@ -42618,7 +42632,7 @@ entities:
     - type: Transform
       pos: -3.5,-9.5
       parent: 2
-- proto: UnstableMutagenChemistryBottle
+- proto: ChemistryBottleUnstableMutagen
   entities:
   - uid: 276
     components:

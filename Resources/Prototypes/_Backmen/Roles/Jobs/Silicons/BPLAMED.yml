@@ -16,5 +16,5 @@
   icon: JobIconUnknown
   supervisors: job-supervisors-human
   canBeAntag: false
-  jobEntity: BackmenDroneMED
+  jobEntity: DroneBPLAMED
   startingGear: RobotGear # for char preview only

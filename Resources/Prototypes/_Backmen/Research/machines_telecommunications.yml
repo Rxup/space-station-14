@@ -1,0 +1,21 @@
+- type: technology
+  id: AudioVisualCommunicationMachines
+  name: research-technology-audio-visual-communication-machines
+  icon:
+    sprite: Structures/Wallmounts/camera.rsi
+    state: cameracase
+  discipline: Engineering
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - SurveillanceCameraRouterCircuitboard
+  - SurveillanceCameraWirelessRouterCircuitboard
+  - SurveillanceWirelessCameraMovableCircuitboard
+  - SurveillanceWirelessCameraAnchoredCircuitboard
+  - SurveillanceCameraMonitorCircuitboard
+  - SurveillanceWirelessCameraMonitorCircuitboard
+  - TelecomServerCircuitboard
+  - HolopadMachineCircuitboard
+  technologyPrerequisites:
+  - EngineeringMachines
+  position: -4,3

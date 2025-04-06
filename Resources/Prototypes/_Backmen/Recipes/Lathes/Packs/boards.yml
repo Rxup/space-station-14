@@ -11,3 +11,5 @@
   - ShipyardCircuitboard # backmen
   - CloningConsoleComputerCircuitboard
   - MedicalScannerMachineCircuitboard
+  - VaccinatorMachineCircuitboard
+  - DiagnoserMachineCircuitboard

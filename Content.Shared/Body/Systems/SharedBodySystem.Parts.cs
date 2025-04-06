@@ -1071,6 +1071,13 @@ public partial class SharedBodySystem
         return count;
     }
 
+    /// <summary>
+    /// ЕБАНЫЙ ПИЗДЕЦ
+    /// ФУНКЦИЯ ГОВНА!
+    /// </summary>
+    /// <param name="part"></param>
+    /// <returns></returns>
+    [Obsolete]
     public string GetSlotFromBodyPart(BodyPartComponent? part)
     {
         var slotName = "";

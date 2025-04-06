@@ -8,7 +8,7 @@
     damage:
       types:
         Piercing: 12
-        ArmorPiercing: 7
+        ArmorPiercing: 10
 
 - type: entity
   id: BulletRifle762x39AP
@@ -19,7 +19,7 @@
   - type: Projectile
     damage:
       types:
-        ArmorPiercing: 15
+        ArmorPiercing: 20
         Piercing: 5
 
 - type: entity
@@ -67,7 +67,7 @@
     damage:
       types:
         Piercing: 9
-        ArmorPiercing: 5
+        ArmorPiercing: 10
 
 - type: entity
   id: BulletRifle762UEGAP
@@ -78,8 +78,8 @@
   - type: Projectile
     damage:
       types:
-        ArmorPiercing: 10
-        Piercing: 4
+        ArmorPiercing: 15
+        Piercing: 7
 
 - type: entity
   id: BulletRifle762UEGUranium
@@ -125,8 +125,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
-        ArmorPiercing: 2
+        Piercing: 20
+        ArmorPiercing: 5
 
 - type: entity
   id: BulletRifle556UEGAP
@@ -137,8 +137,8 @@
   - type: Projectile
     damage:
       types:
-        ArmorPiercing: 15
-        Piercing: 2
+        ArmorPiercing: 25
+        Piercing: 5
 
 - type: entity
   id: BulletRifle556UEGUranium
@@ -184,7 +184,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20
+        Piercing: 25
         ArmorPiercing: 10
 
 - type: entity
@@ -196,7 +196,7 @@
   - type: Projectile
     damage:
       types:
-        ArmorPiercing: 20
+        ArmorPiercing: 25
         Piercing: 10
 
 - type: entity
@@ -243,8 +243,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 29
-        ArmorPiercing: 10
+        Piercing: 24
+        ArmorPiercing: 15
 
 - type: entity
   id: BulletLight762AP
@@ -256,7 +256,7 @@
     damage:
       types:
         ArmorPiercing: 29
-        Piercing: 10
+        Piercing: 15
 
 - type: entity
   categories: [ HideSpawnMenu ]

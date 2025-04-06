@@ -184,8 +184,8 @@
       coefficients:
         Blunt: 0.3
         Slash: 0.2
-        Piercing: 0.3
-        ArmorPiercing: 0.6
+        Piercing: 0.2
+        ArmorPiercing: 0.5
         Heat: 0.3
         Radiation: 0.3
         Stun: 0.2
@@ -288,7 +288,7 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.7
+        Piercing: 0.6
         ArmorPiercing: 0.9
         Heat: 0.2
         Radiation: 0.01

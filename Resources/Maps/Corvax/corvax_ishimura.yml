@@ -92790,7 +92790,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -68.26538,15.428523
       parent: 2
-- proto: EpinephrineChemistryBottle
+- proto: ChemistryBottleEpinephrine
   entities:
   - uid: 11140
     components:

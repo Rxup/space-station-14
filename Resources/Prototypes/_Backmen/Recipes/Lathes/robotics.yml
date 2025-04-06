@@ -98,3 +98,22 @@
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedMining
   result: BorgModuleAdvancedMining
+
+- type: latheRecipe
+  id: PersonalAI
+  result: PersonalAI
+  categories:
+  -  Robotics
+  completetime: 2
+  materials:
+    Steel: 100
+    Glass: 150
+
+- type: latheRecipe
+  id: ClothingEyesHudDiagnostic
+  result: ClothingEyesHudDiagnostic
+  completetime: 2
+  materials:
+    Steel: 200
+    Plastic: 300
+    Glass: 500

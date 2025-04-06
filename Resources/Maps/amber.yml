@@ -126039,7 +126039,7 @@ entities:
     - type: Transform
       pos: -60.705425,-16.225351
       parent: 2
-- proto: RobustHarvestChemistryBottle
+- proto: ChemistryBottleRobustHarvest
   entities:
   - uid: 17487
     components:
