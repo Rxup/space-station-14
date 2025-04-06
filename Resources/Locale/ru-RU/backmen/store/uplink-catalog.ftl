@@ -19,7 +19,23 @@ uplink-psi-grenade-bundle-desc = Набор содержит вещмешок с
 uplink-anti-psi-grenade-bundle-name = набор анти-психических гранат
 uplink-anti-psi-grenade-bundle-desc = Полный вещмешок ани-психических гранат.
 
+uplink-ClothingHandsGlovesColorYellowUnsulated-name = изолированные перчатки
+uplink-ClothingHandsGlovesColorYellowUnsulated-desc = Позволяет взаимодействать с психическими зарядами в ноосфере
+
+uplink-BedsheetInvisibilityCloak-name = рваная простыня
+uplink-BedsheetInvisibilityCloak-desc = Позволяет искажать восприятие существ, чувствительных к ноосфере
+
+uplink-ClothingHandsDispelGloves-name = лоскутные перчатки
+uplink-ClothingHandsDispelGloves-desc = Позволяет нарушать связанность в ноосфере
+
+uplink-ClothingEyesTelegnosisSpectacles-name = странные очки
+uplink-ClothingEyesTelegnosisSpectacles-desc = Позволяет сменить точку зрения, блягодаря взаимодействию с ноосферой
+
+uplink-AntiPsychicKnife-name = Анти-психический нож
+uplink-AntiPsychicKnife-desc = Холодное оружие, позволяющее кратковременно нарушать связь с ноосферой связанных с ней существ. В противном случае будет отдача!!!
+
 store-category-bundles = Наборы
+store-category-psionic = Псионика
 
 # wizard
 
@@ -39,7 +55,7 @@ uplink-book-knok-name = Тук-тук
 uplink-book-knok-desc = Открывает все двери в большой области на некоторое время, короткая перезарядка.
 
 uplink-book-fireball-name = Фаерболл
-uplink-book-fireball-desc = Пускает огненный шар в цель, на которую вы навелись. 
+uplink-book-fireball-desc = Пускает огненный шар в цель, на которую вы навелись.
 
 uplink-book-heal-name = Книга Исцеления
 uplink-book-heal-desc = Нацелитесь на существо и мгновенно исцелите его от всех ран! (ВНИМАНИЕ - Использование на мертвецах может быть расценено как некромантия)
@@ -55,7 +71,7 @@ uplink-utility-spellbelt-desc = Пояс чтобы содержать в нем
 
 # Bundles
 uplink-bundles-wizardsurpluscrate30bs-name = ящик разных магических штук за 50БС
-uplink-bundles-wizardsurpluscrate30bs-desc = Ящик заполненный вещами мага, ценой от 30 до 50 БС. 
+uplink-bundles-wizardsurpluscrate30bs-desc = Ящик заполненный вещами мага, ценой от 30 до 50 БС.
 
 uplink-bundles-wizardoutfitbag-name = рюкзак с одеждой мага
 uplink-bundles-wizardoutfitbag-desc = Хороший набор содержащий одежду мага, одежда мага дает возможность использовать магию.

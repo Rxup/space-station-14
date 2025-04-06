@@ -129,7 +129,7 @@
   cost:
     Telecrystal: 1
   categories:
-  - UplinkAllies
+  - UplinkPsionic
 
 - type: listing
   id: UplinkAntiPsiGrenadeBundle
@@ -139,7 +139,57 @@
   cost:
     Telecrystal: 2
   categories:
-  - UplinkAllies
+  - UplinkPsionic
+
+- type: listing
+  id: Uplink
+  name: uplink-ClothingHandsGlovesColorYellowUnsulated-name
+  description: uplink-ClothingHandsGlovesColorYellowUnsulated-desc
+  productEntity: ClothingHandsGlovesColorYellowUnsulated
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkPsionic
+
+- type: listing
+  id: UplinkBedsheetInvisibilityCloak
+  name: uplink-BedsheetInvisibilityCloak-name
+  description: uplink-BedsheetInvisibilityCloak-desc
+  productEntity: BedsheetInvisibilityCloak
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkPsionic
+
+- type: listing
+  id: UplinkClothingHandsDispelGloves
+  name: uplink-ClothingHandsDispelGloves-name
+  description: uplink-ClothingHandsDispelGloves-desc
+  productEntity: ClothingHandsDispelGloves
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkPsionic
+
+- type: listing
+  id: UplinkClothingEyesTelegnosisSpectacles
+  name: uplink-ClothingEyesTelegnosisSpectacles-name
+  description: uplink-ClothingEyesTelegnosisSpectacles-desc
+  productEntity: ClothingEyesTelegnosisSpectacles
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkPsionic
+
+- type: listing
+  id: UplinkAntiPsychicKnife
+  name: uplink-AntiPsychicKnife-name
+  description: uplink-AntiPsychicKnife-desc
+  productEntity: AntiPsychicKnife
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkPsionic
 
 # Weapon and mask
 - type: listing
