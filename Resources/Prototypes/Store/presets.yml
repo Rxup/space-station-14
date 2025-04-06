@@ -17,6 +17,7 @@
     - UplinkJob
     - UplinkPointless
     - UplinkBundles
+    - UplinkPsionic
     currencyWhitelist:
     - Telecrystal
     balance:

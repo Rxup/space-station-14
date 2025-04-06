@@ -94,6 +94,11 @@
   name: store-category-bundles
   priority: 11
 
+- type: storeCategory
+  id: UplinkPsionic
+  name: store-category-psionic
+  priority: 12
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities
