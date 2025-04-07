@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Server._Lavaland.Procedural.Systems;
 using Content.Server.GameTicking;
+using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Parallax.Biomes;
