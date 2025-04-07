@@ -28,7 +28,7 @@ public sealed partial class GibOnCollideComponent : Component
     ///  If true, only alive entity will be gibbed. If false, everyone will be gibbed.
     /// </summary>
     [DataField("gibOnlyAlive")]
-    public bool GibOnlyAlive = true;
+    public bool GibOnlyAlive = false;
 
     public TimeSpan LastGibTime;
 }
