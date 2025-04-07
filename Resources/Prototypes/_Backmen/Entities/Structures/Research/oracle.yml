@@ -3,7 +3,7 @@
   - Oracle
   - Recycler
   id: OracleRecycler
-  name: Оракул
+  name: Oracle
   description: It asks for items in exchange for knowledge. No one knows how it works.
   suffix: Recycler
   components:
@@ -63,8 +63,12 @@
       state: oracle-0
     - map: ["enum.SolutionContainerLayers.Fill"]
       state: oracle-0
+  - type: ApcPowerReceiver
+    powerLoad: 0
+    needsPower: false
   - type: MaterialReclaimer
     enabled: true
+    alwaysGib: true # Backmen
     efficiency: 0.25
     scaleProcessSpeed: false #instant!
     minimumProcessDuration: 0
@@ -87,7 +91,7 @@
 - type: entity
   parent: BaseStructure
   id: Oracle
-  name: Оракул
+  name: Oracle
   description: It asks for items in exchange for knowledge. No one knows how it works.
   components:
   - type: Sprite
