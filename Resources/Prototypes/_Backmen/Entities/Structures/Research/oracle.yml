@@ -1,16 +1,16 @@
 - type: entity
-  parent:
-  - Oracle
-  - Recycler
-  id: OracleRecycler
+  parent: Oracle
+  id: OracleEvil
   name: Oracle
   description: It asks for items in exchange for knowledge. No one knows how it works.
-  suffix: Recycler
+  suffix: Evil
   components:
+  - type: GibOnCollide
+    gibSound: /Audio/Effects/Gasp/deathgasp_1.ogg
+    gibMessage: ↸╎ᒷ ʖᔑᓭℸ ̣ᔑ∷↸
+    gibOnlyAlive: true
   - type: Anchorable
     delay: 10000
-  - type: DeviceLinkSink
-  - type: Emagged
   - type: Destructible
   - type: RecyclerVisuals
     baseKey: oracle-
@@ -63,30 +63,6 @@
       state: oracle-0
     - map: ["enum.SolutionContainerLayers.Fill"]
       state: oracle-0
-  - type: ApcPowerReceiver
-    powerLoad: 0
-    needsPower: false
-  - type: MaterialReclaimer
-    enabled: true
-    alwaysGib: true # Backmen
-    efficiency: 0.25
-    scaleProcessSpeed: false #instant!
-    minimumProcessDuration: 0
-    whitelist:
-      components:
-      - MobState
-    blacklist:
-      components:
-      - Material
-      - Pda
-      - IdCard
-      tags:
-      - HighRiskItem
-    sound:
-      path: /Audio/Effects/saw.ogg
-      params:
-        volume: -3
-    cutOffSound: false
 
 - type: entity
   parent: BaseStructure
