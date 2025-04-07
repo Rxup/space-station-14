@@ -10,7 +10,7 @@ public sealed class GibOnCollideAttemptEvent : EntityEventArgs
     public EntityUid GibbedEntity { get; }
     public EntityUid GibberEntity { get; }
 
-    public GibOnTouchAttemptEvent(EntityUid gibbedEntity, EntityUid gibberEntity)
+    public GibOnCollideAttemptEvent(EntityUid gibbedEntity, EntityUid gibberEntity)
     {
         GibbedEntity = gibbedEntity;
         GibberEntity = gibberEntity;
