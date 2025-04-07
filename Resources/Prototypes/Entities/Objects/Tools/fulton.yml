@@ -15,6 +15,7 @@
   name: fulton beacon
   description: Beacon to receive fulton extractions.
   components:
+    - type: NoLavalandUsage
     - type: Physics
       bodyType: Dynamic
     - type: Fixtures
