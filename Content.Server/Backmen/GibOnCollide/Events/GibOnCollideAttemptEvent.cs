@@ -3,7 +3,7 @@ using Robust.Shared.GameObjects;
 namespace Content.Server.Backmen.GibOnCollide;
 
 /// <summary>
-///  Это событие вызывается, когда сущность гибнет через GibOnTouchSystem.
+///  Raise when entity gibbed from GibOnCollideSystem.
 /// </summary>
 public sealed class GibOnCollideAttemptEvent : EntityEventArgs
 {
