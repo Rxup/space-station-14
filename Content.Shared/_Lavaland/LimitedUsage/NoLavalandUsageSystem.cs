@@ -44,7 +44,7 @@ public sealed class NoLavalandUsageSystem : EntitySystem
 
     private void OnTryAnchor(ref ToolUserAttemptUseEvent msg)
     {
-        if (_query.HasComp(msg.Target))
+        if (_query.HasComp(msg.Target) && IsApply(msg.Target.Value))
         {
             msg.Cancelled = true;
         }
