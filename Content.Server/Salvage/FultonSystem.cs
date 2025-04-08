@@ -51,22 +51,6 @@ public sealed class FultonSystem : SharedFultonSystem
         }
     }
 
-    // start-backmen: fix
-    protected override bool CanFulton(EntityUid uid)
-    {
-        var grid = Transform(uid).GridUid;
-        if (grid == null)
-        {
-            return true;
-        }
-        if (HasComp<LavalandMapComponent>(grid) || HasComp<LavalandMapComponent>(Transform(grid.Value).Coordinates.EntityId))
-        {
-            return false;
-        }
-        return base.CanFulton(uid);
-    }
-    // end-backmen: fix
-
     private void Fulton(EntityUid uid, FultonedComponent component)
     {
         if (!Deleted(component.Beacon) &&

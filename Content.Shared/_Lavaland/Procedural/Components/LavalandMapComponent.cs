@@ -1,7 +1,7 @@
 ﻿using Content.Shared._Lavaland.Procedural.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Lavaland.Procedural.Components;
+namespace Content.Shared._Lavaland.Procedural.Components;
 
 [RegisterComponent]
 public sealed partial class LavalandMapComponent : Component

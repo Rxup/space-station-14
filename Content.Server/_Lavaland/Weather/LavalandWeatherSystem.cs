@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Server.Temperature.Systems;
 using Content.Server.Weather;
+using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Weather;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
