@@ -42,7 +42,8 @@
       collection: MaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
-
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleHuman
@@ -87,6 +88,8 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: MaleReptilian
@@ -113,6 +116,8 @@
       collection: DeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -139,6 +144,8 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: MaleSlime
@@ -185,6 +192,8 @@
       collection: BCatMeowSound
   params:
     variation: 0.125
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleSlime
@@ -231,6 +240,8 @@
       collection: BCatMeowSound
   params:
     variation: 0.125
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexVox
@@ -274,6 +285,8 @@
       collection: BCatMeowSound
   params:
     variation: 0.125
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexArachnid
@@ -300,6 +313,8 @@
       collection: DeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -345,6 +360,8 @@
   params:
     variation: 0.125
     pitch: 0.75
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleDwarf
@@ -390,6 +407,8 @@
   params:
     variation: 0.125
     pitch: 0.75
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexMoth
@@ -418,6 +437,8 @@
       collection: MothDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexSilicon

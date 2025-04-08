@@ -17,8 +17,8 @@ chat-emote-msg-rev = ревв..
 chat-emote-name-caw = Caw
 chat-emote-msg-caw = кавв...
 
-chat-emote-name-hiss = Hiss
-chat-emote-msg-hiss = ШШШШШШШ
+chat-emote-name-hiss = Шипеть
+chat-emote-msg-hiss = шипит!
 
 chat-emote-name-mews = Mews
 chat-emote-msg-meow = мя!
@@ -28,10 +28,3 @@ chat-emote-msg-mew = мяв
 
 chat-emote-name-purrs = Purrs
 chat-emote-msg-purrs = мурчит!
-
-
-
-
-
-
-
