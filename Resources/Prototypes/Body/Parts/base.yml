@@ -148,7 +148,7 @@
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: ConsciousnessRequired
     identifier: "groin"
-    causesDeath: true
+    causesDeath: false
   # backmen edit end
   - type: ContainerContainer
     containers:

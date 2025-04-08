@@ -95,7 +95,7 @@ public record struct WoundSeverityPointChangedOnBodyEvent(EntityUid WoundEntity,
 public record struct WoundSeverityChangedEvent(WoundSeverity NewSeverity);
 
 [ByRefEvent]
-public record struct WoundableIntegrityChangedEvent(FixedPoint2 CurrentIntegrity);
+public record struct WoundableIntegrityChangedEvent(FixedPoint2 OldIntegrity, FixedPoint2 NewIntegrity);
 
 [ByRefEvent]
 public record struct WoundableSeverityChangedEvent(WoundableSeverity NewSeverity);

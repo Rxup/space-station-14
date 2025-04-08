@@ -47,7 +47,7 @@ public partial class WoundSystem
         var healableWounds = ent.Comp.Wounds.ContainedEntities.Count(wound => CanHealWound(wound));
         var healAmount = -ent.Comp.HealAbility / healableWounds;
 
-        foreach (var wound in ent.Comp.Wounds!.ContainedEntities.ToList().Where(wound => CanHealWound(wound)))
+        foreach (var wound in ent.Comp.Wounds.ContainedEntities.ToList().Where(wound => CanHealWound(wound)))
         {
             ApplyWoundSeverity(wound, ApplyHealingRateMultipliers(wound, ent.Owner, healAmount, ent.Comp));
         }
@@ -59,7 +59,7 @@ public partial class WoundSystem
 
     public bool TryHaltAllBleeding(EntityUid woundable, WoundableComponent? component = null, bool force = false)
     {
-        if (!Resolve(woundable, ref component) || component.Wounds!.Count == 0)
+        if (!Resolve(woundable, ref component) || component.Wounds.Count == 0)
             return true;
 
         foreach (var wound in GetWoundableWounds(woundable, component))
@@ -81,7 +81,7 @@ public partial class WoundSystem
 
     public void ForceHealWoundsOnWoundable(EntityUid woundable,
         out FixedPoint2 healed,
-        string? damageGroup = null,
+        DamageGroupPrototype? damageGroup = null,
         WoundableComponent? component = null)
     {
         healed = 0;
@@ -107,7 +107,7 @@ public partial class WoundSystem
         FixedPoint2 healAmount,
         out FixedPoint2 healed,
         WoundableComponent? component = null,
-        string? damageGroup = null,
+        DamageGroupPrototype? damageGroup = null,
         bool ignoreMultipliers = false)
     {
         healed = 0;
@@ -115,7 +115,7 @@ public partial class WoundSystem
             return false;
 
         var woundsToHeal =
-            (from wound in component.Wounds!.ContainedEntities
+            (from wound in component.Wounds.ContainedEntities
                 let woundComp = Comp<WoundComponent>(wound)
                 where CanHealWound(wound)
                 where damageGroup == null || damageGroup == woundComp.DamageGroup
@@ -156,7 +156,7 @@ public partial class WoundSystem
             return false;
 
         var woundsToHeal =
-            (from wound in component.Wounds!.ContainedEntities
+            (from wound in component.Wounds.ContainedEntities
                 let woundComp = Comp<WoundComponent>(wound)
                 where CanHealWound(wound)
                 where damageType == MetaData(wound).EntityPrototype!.ID
@@ -188,7 +188,7 @@ public partial class WoundSystem
     public bool TryGetWoundableWithMostDamage(
         EntityUid body,
         [NotNullWhen(true)] out Entity<WoundableComponent>? woundable,
-        string? damageGroup = null,
+        DamageGroupPrototype? damageGroup = null,
         bool healable = false)
     {
         var biggestDamage = (FixedPoint2) 0;
@@ -221,7 +221,7 @@ public partial class WoundSystem
         EntityUid woundable,
         string damageGroup)
     {
-        return GetWoundableWounds(woundable).Any(wound => wound.Comp.DamageGroup == damageGroup);
+        return GetWoundableWounds(woundable).Any(wound => wound.Comp.DamageGroup?.ID == damageGroup);
     }
 
     public FixedPoint2 ApplyHealingRateMultipliers(EntityUid wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)

@@ -215,9 +215,9 @@ namespace Content.Client.HealthAnalyzer.UI
                         if (woundGroup == null)
                             continue;
 
-                        if (!damageGroups.TryAdd(woundGroup, wound.WoundSeverityPoint))
+                        if (!damageGroups.TryAdd(woundGroup.ID, wound.WoundSeverityPoint))
                         {
-                            damageGroups[woundGroup] += wound.WoundSeverityPoint;
+                            damageGroups[woundGroup.ID] += wound.WoundSeverityPoint;
                         }
                     }
                 }
@@ -252,9 +252,9 @@ namespace Content.Client.HealthAnalyzer.UI
                     if (woundGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(woundGroup, wound.WoundSeverityPoint))
+                    if (!damageGroups.TryAdd(woundGroup.ID, wound.WoundSeverityPoint))
                     {
-                        damageGroups[woundGroup] += wound.WoundSeverityPoint;
+                        damageGroups[woundGroup.ID] += wound.WoundSeverityPoint;
                     }
                 }
 

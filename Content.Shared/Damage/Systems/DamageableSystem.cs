@@ -545,7 +545,7 @@ namespace Content.Shared.Damage
             return damageDict;
         }
         // backmen edit end
-        
+
         public void SetDamageModifierSetId(EntityUid uid, string? damageModifierSetId, DamageableComponent? comp = null)
         {
             if (!_damageableQuery.Resolve(uid, ref comp))
@@ -556,9 +556,9 @@ namespace Content.Shared.Damage
         }
 
         // backmen edit start
-        public string GetDamageGroupByType(string id)
+        public DamageGroupPrototype GetDamageGroupByType(string id)
         {
-            return (from @group in _prototypeManager.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
+            return (from @group in _prototypeManager.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group).FirstOrDefault()!;
         }
         // backmen edit end
 

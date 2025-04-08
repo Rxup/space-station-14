@@ -246,7 +246,7 @@ public sealed class HealingSystem : EntitySystem
             }
 
             // Check for a group if it's not a type
-            if (_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, out var healedGroup, woundableComp, key))
+            if (_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, out var healedGroup, woundableComp, GetDamageGroupByType(key)))
             {
                 healedTotal += healedGroup;
             }
@@ -285,7 +285,7 @@ public sealed class HealingSystem : EntitySystem
         _audio.PlayPvs(healing.HealingEndSound, ent, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
         // Logic to determine whether or not to repeat the healing action
-        args.Repeat = IsBodyDamaged((ent, comp), args.User, healing);
+        args.Repeat = IsBodyDamaged((ent, comp), args.User, args.Used.Value, healing);
         args.Handled = true;
 
         if (args.Repeat || dontRepeat)
@@ -335,12 +335,12 @@ public sealed class HealingSystem : EntitySystem
     }
 
     // backmen edit start
-    private string? GetDamageGroupByType(string id)
+    private DamageGroupPrototype? GetDamageGroupByType(string id)
     {
-        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault();
+        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group).FirstOrDefault();
     }
 
-    private bool IsBodyDamaged(Entity<BodyComponent> target, EntityUid user, HealingComponent healing)
+    private bool IsBodyDamaged(Entity<BodyComponent> target, EntityUid user, EntityUid used, HealingComponent healing)
     {
         if (!TryComp<TargetingComponent>(user, out var targeting))
             return false;
@@ -358,19 +358,28 @@ public sealed class HealingSystem : EntitySystem
                 targetedBodyPart.Value.Id,
                 damageGroup: GetDamageGroupByType(damageKey),
                 healable: true) > 0))
-        {
             return true;
-        }
 
         if (healing.BloodlossModifier == 0)
-            return false;
-
-        foreach (var wound in _wounds.GetWoundableWounds(targetedBodyPart.Value.Id))
         {
-            if (!TryComp<BleedInflicterComponent>(wound, out var bleeds) || !bleeds.IsBleeding)
-                continue;
+            _popupSystem.PopupEntity(
+                TraumaSystem.TraumasBlockingHealing.Any(traumaType =>
+                    _trauma.HasWoundableTrauma(targetedBodyPart.Value.Id, traumaType))
+                    ? Loc.GetString("medical-item-requires-surgery-rebell", ("target", target))
+                    : Loc.GetString("medical-item-cant-use-rebell", ("item", used)),
+                target,
+                user,
+                PopupType.MediumCaution);
+        }
+        else
+        {
+            foreach (var wound in _wounds.GetWoundableWounds(targetedBodyPart.Value.Id))
+            {
+                if (!TryComp<BleedInflicterComponent>(wound, out var bleeds) || !bleeds.IsBleeding)
+                    continue;
 
-            return true;
+                return true;
+            }
         }
 
         return false;
@@ -416,17 +425,14 @@ public sealed class HealingSystem : EntitySystem
         var anythingToDo =
             HasDamage((target, targetDamage), component) ||
             (TryComp<BodyComponent>(target, out var bodyComp) && // I'm paranoid, sorry; Backmen
-             IsBodyDamaged((target, bodyComp), user, component)) ||
+             IsBodyDamaged((target, bodyComp), user, uid, component)) ||
             component.ModifyBloodLevel > 0 // Special case if healing item can restore lost blood...
                 && TryComp<BloodstreamComponent>(target, out var bloodstream)
                 && _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
                 && bloodSolution.Volume < bloodSolution.MaxVolume; // ...and there is lost blood to restore.
 
         if (!anythingToDo)
-        {
-            _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use", ("item", uid)), uid, user);
             return false;
-        }
 
         _audio.PlayPvs(component.HealingBeginSound, uid, AudioParams.Default.WithVariation(.125f).WithVolume(1f));
 

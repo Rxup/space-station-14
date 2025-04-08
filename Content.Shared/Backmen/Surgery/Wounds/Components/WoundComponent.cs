@@ -1,5 +1,7 @@
-﻿using Content.Shared.FixedPoint;
+﻿using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Components;
 
@@ -12,6 +14,11 @@ public sealed partial class WoundComponent : Component
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid HoldingWoundable;
+
+    /// <summary>
+    /// The damage this wound applies to it's woundable
+    /// </summary>
+    public FixedPoint2 WoundIntegrityDamage => WoundSeverityPoint * WoundableIntegrityMultiplier;
 
     /// <summary>
     /// Actually, severity of the wound. The more the worse.
@@ -41,7 +48,7 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public string? DamageGroup;
+    public DamageGroupPrototype? DamageGroup;
 
     /// <summary>
     /// Scar wound prototype, what will be spawned upon healing this wound.
@@ -49,7 +56,7 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public string? ScarWound;
+    public EntProtoId? ScarWound;
 
     /// <summary>
     /// Well, name speaks for this.
@@ -78,7 +85,4 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CanBeHealed = true;
-
-    [DataField("bleedsScaling"), ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 BleedingScalingMultiplier = 1f;
 }

@@ -8,6 +8,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Robust.Shared.Containers;
@@ -641,7 +642,7 @@ public partial class TraumaSystem
                     {
                         if (!_wound.TryContinueWound(targetChosen.Value, "Blunt", 10f))
                         {
-                            _wound.TryCreateWound(targetChosen.Value, "Blunt", 10f, "Brute");
+                            _wound.TryCreateWound(targetChosen.Value, "Blunt", 10f, _proto.Index<DamageGroupPrototype>("Brute"));
                         }
 
                         foreach (var woundEnt in _wound.GetWoundableWounds(targetChosen.Value))

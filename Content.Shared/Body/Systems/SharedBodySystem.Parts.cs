@@ -617,7 +617,6 @@ public partial class SharedBodySystem
             return false;
         }
 
-        // TODO: Might break something. but fixes surgery!
         //parentPart.Children.Remove(slot.Id);
 
         // start-backmen: surgery

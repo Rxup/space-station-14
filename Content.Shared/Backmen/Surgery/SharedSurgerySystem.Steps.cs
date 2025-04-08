@@ -260,7 +260,7 @@ public abstract partial class SharedSurgerySystem
         {
             return _wounds.GetWoundableWounds(entity, woundable)
                     .Where(wound => _wounds.CanHealWound(wound))
-                    .Any(wound => wound.Comp.DamageGroup == group);
+                    .Any(wound => wound.Comp.DamageGroup?.ID == group);
         }
 
         return false;
@@ -269,12 +269,14 @@ public abstract partial class SharedSurgerySystem
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
     {
         var group = ent.Comp.MainGroup == "Brute" ? BruteDamageTypes : BurnDamageTypes;
+        if (!_prototypes.TryIndex<DamageGroupPrototype>(ent.Comp.MainGroup, out var groupProto))
+            return;
 
         if (!HasDamageGroup(args.Part, ent.Comp.MainGroup, out _))
             return;
 
         // Right now the bonus is based off the body's total damage, maybe we could make it based off each part in the future.
-        var bonus = ent.Comp.HealMultiplier * _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup);
+        var bonus = ent.Comp.HealMultiplier * _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: groupProto);
         if (_mobState.IsDead(args.Body))
             bonus *= 1.2;
 
@@ -376,7 +378,7 @@ public abstract partial class SharedSurgerySystem
         if (targetPart != default)
         {
             // We reward players for properly affixing the parts by healing a little bit of damage, and enabling the part temporarily.
-            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _, damageGroup: "Brute");
+            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>("Brute"));
             RemComp<BodyPartReattachedComponent>(targetPart.Id);
         }
     }

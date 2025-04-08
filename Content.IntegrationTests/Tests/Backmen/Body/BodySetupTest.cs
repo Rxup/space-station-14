@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameObjects;
@@ -238,7 +239,7 @@ public sealed class BodySetupTest
 
                     // Destroy the head, and damage the groin so we can check.
                     woundSystem.DestroyWoundable(parentPart.Value, headEntity.Id, woundable);
-                    woundSystem.TryCreateWound(groinEntity.Id, "Blunt", 25f, "Brute");
+                    woundSystem.TryCreateWound(groinEntity.Id, "Blunt", 25f, server.ProtoMan.Index<DamageGroupPrototype>("Brute"));
 
                     rejuvenateSystem.PerformRejuvenate(dummy);
 

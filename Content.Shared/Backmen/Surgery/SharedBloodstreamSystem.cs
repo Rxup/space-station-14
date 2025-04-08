@@ -257,12 +257,21 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         return comp.Scaling > 0 && lastCanBleed;
     }
 
+    private void OnWoundHealAttempt(EntityUid uid, BleedInflicterComponent component, ref WoundHealAttemptEvent args)
+    {
+        if (component.IsBleeding)
+            args.Cancelled = true;
+    }
+
     private void OnWoundAdded(EntityUid uid, BleedInflicterComponent component, ref WoundAddedEvent args)
     {
+        if (!CanWoundBleed(uid, component) || args.Component.WoundSeverityPoint < component.SeverityThreshold)
+            return;
+
         // wounds that BLEED will not HEAL.
         component.BleedingAmountRaw = args.Component.WoundSeverityPoint * BleedsSeverityTrade;
 
-        var formula = (float) (args.Component.WoundSeverityPoint / BleedsScalingTimeDefault * args.Component.BleedingScalingMultiplier);
+        var formula = (float) (args.Component.WoundSeverityPoint / BleedsScalingTimeDefault * component.ScalingSpeed);
         component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
         component.ScalingStartsAt = _gameTiming.CurTime;
 
@@ -271,17 +280,11 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         Dirty(uid, component);
     }
 
-    private void OnWoundHealAttempt(EntityUid uid, BleedInflicterComponent component, ref WoundHealAttemptEvent args)
-    {
-        if (component.IsBleeding)
-            args.Cancelled = true;
-    }
-
     private void OnWoundSeverityUpdate(EntityUid uid,
         BleedInflicterComponent component,
         ref WoundSeverityPointChangedEvent args)
     {
-        if (!CanWoundBleed(uid, component))
+        if (!CanWoundBleed(uid, component) || args.NewSeverity < component.SeverityThreshold)
             return;
 
         var oldBleedsAmount = args.OldSeverity * BleedsSeverityTrade;
@@ -290,8 +293,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         var severityPenalty = component.BleedingAmountRaw - oldBleedsAmount / BleedsScalingTimeDefault;
         component.SeverityPenalty += severityPenalty;
 
-        var formula = (float)(args.Component.WoundSeverityPoint / BleedsScalingTimeDefault *
-                              args.Component.BleedingScalingMultiplier);
+        var formula = (float) (args.Component.WoundSeverityPoint / BleedsScalingTimeDefault * component.ScalingSpeed);
         component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
         component.ScalingStartsAt = _gameTiming.CurTime;
 

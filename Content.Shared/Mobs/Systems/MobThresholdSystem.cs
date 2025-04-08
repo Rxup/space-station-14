@@ -420,6 +420,9 @@ public sealed class MobThresholdSystem : EntitySystem
                 {
                     foreach (var (_, wound) in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
                     {
+                        if (wound.IsScar)
+                            continue;
+
                         totalDamage += wound.WoundSeverityPoint;
                     }
                 }

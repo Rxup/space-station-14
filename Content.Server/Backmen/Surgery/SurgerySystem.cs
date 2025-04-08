@@ -86,9 +86,9 @@ public sealed class SurgerySystem : SharedSurgerySystem
         _ui.ServerSendUiMessage(body, SurgeryUIKey.Key, new SurgeryBuiRefreshMessage());
     }
 
-    private string GetDamageGroupByType(string id)
+    private DamageGroupPrototype GetDamageGroupByType(string id)
     {
-        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group.ID).FirstOrDefault()!;
+        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group).FirstOrDefault()!;
     }
 
     private void SetDamage(EntityUid body,

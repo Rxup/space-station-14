@@ -152,12 +152,12 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         var damagePerGroup = new Dictionary<string, FixedPoint2>();
         foreach (var comp in wounds.GroupList.Select(GetEntity).Where(ent => !TerminatingOrDeleted(ent)).Select(Comp<WoundComponent>))
         {
-            if (comp.DamageGroup == null || !visuals.DamageOverlayGroups!.ContainsKey(comp.DamageGroup))
+            if (comp.DamageGroup == null || !visuals.DamageOverlayGroups!.ContainsKey(comp.DamageGroup.ID))
                 continue;
 
-            if (!damagePerGroup.TryAdd(comp.DamageGroup, comp.WoundSeverityPoint))
+            if (!damagePerGroup.TryAdd(comp.DamageGroup.ID, comp.WoundSeverityPoint))
             {
-                damagePerGroup[comp.DamageGroup] += comp.WoundSeverityPoint;
+                damagePerGroup[comp.DamageGroup.ID] += comp.WoundSeverityPoint;
             }
         }
 
@@ -209,13 +209,15 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
 
             var part = symmetry + partType;
 
-            sprite.LayerMapTryGet($"{part}Bleeding", out var parentBleedingLayer);
-            UpdateBleedingLayerState(
-                sprite,
-                parentBleedingLayer,
-                part,
-                totalBleeds,
-                GetBleedingThreshold(totalBleeds, comp));
+            if (sprite.LayerMapTryGet($"{part}Bleeding", out var parentBleedingLayer))
+            {
+                UpdateBleedingLayerState(
+                    sprite,
+                    parentBleedingLayer,
+                    part,
+                    totalBleeds,
+                    GetBleedingThreshold(totalBleeds, comp));
+            }
         }
         else
         {
@@ -229,12 +231,14 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
                     totalBleeds += bleeds.BleedingAmount;
             }
 
-            sprite.LayerMapTryGet($"{layer}Bleeding", out var bleedingLayer);
-            UpdateBleedingLayerState(sprite,
-                bleedingLayer,
-                layer.ToString(),
-                totalBleeds,
-                GetBleedingThreshold(totalBleeds, comp));
+            if (sprite.LayerMapTryGet($"{layer}Bleeding", out var bleedingLayer))
+            {
+                UpdateBleedingLayerState(sprite,
+                    bleedingLayer,
+                    layer.ToString(),
+                    totalBleeds,
+                    GetBleedingThreshold(totalBleeds, comp));
+            }
         }
     }
 
