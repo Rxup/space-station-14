@@ -6,7 +6,7 @@
     state: stunbaton_off
   discipline: Security
   tier: 1
-  cost: 3500
+  cost: 800
   recipeUnlocks:
   - Stunbaton
   - CombatKnife
@@ -28,7 +28,7 @@
     state: target_c
   discipline: Security
   tier: 1
-  cost: 1200
+  cost: 500
   recipeUnlocks:
   - TargetClown
   - TargetHuman

@@ -51,7 +51,7 @@
   # Backmen-ammonation-end
   - MagazineBoxMagnum
   technologyPrerequisites:
-  - RiotControl
+#  - RiotControl
   - NonlethalAmmunition
   position: -3,-2
 
