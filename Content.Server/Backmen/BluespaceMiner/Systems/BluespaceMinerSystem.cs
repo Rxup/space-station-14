@@ -4,6 +4,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Temperature;
 using Content.Server.Power.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Temperature.Components;
@@ -11,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Content.Shared.Examine;
 using Content.Shared.Backmen.BluespaceMining;
+using Content.Shared.Backmen.Chat;
 
 namespace Content.Server.Backmen.BluespaceMining
 {
@@ -25,6 +27,7 @@ namespace Content.Server.Backmen.BluespaceMining
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly MapSystem _mapSystem = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
+        [Dependency] private readonly ChatSystem _chat = default!;
 
         private readonly List<GasMixture> _environments = new();
 
@@ -39,7 +42,7 @@ namespace Content.Server.Backmen.BluespaceMining
 
         private void OnStartup(EntityUid uid, BluespaceMinerComponent component, ComponentStartup args)
         {
-            component.NextSpawnTime = (float)(_gameTiming.CurTime.TotalSeconds + miner.SpawnInterval);
+            component.NextSpawnTime = (float)(_gameTiming.CurTime.TotalSeconds + component.SpawnInterval);
         }
 
         private void OnTemperatureChange(EntityUid uid,
@@ -48,11 +51,11 @@ namespace Content.Server.Backmen.BluespaceMining
         {
             if (args.CurrentTemperature > component.MaxTemperature)
             {
-                _popupSystem.PopupEntity(Loc.GetString("bluespace-miner-too-hot"), uid);
+                _chat.TrySendInGameICMessage(uid, "bluespace-miner-too-hot", InGameICChatType.Speak, false);
             }
             else if (args.CurrentTemperature < component.MinTemperature)
             {
-                _popupSystem.PopupEntity(Loc.GetString("bluespace-miner-too-cold"), uid);
+                _chat.TrySendInGameICMessage(uid, "bluespace-miner-too-cold", InGameICChatType.Speak, false);
             }
         }
 
@@ -85,7 +88,7 @@ namespace Content.Server.Backmen.BluespaceMining
                     miner.NextSpawnTime = (float)(_gameTiming.CurTime.TotalSeconds + miner.SpawnInterval);
                     miner.NeedsResync = false;
                 }
-                
+
                 UpdateAppearance(uid);
 
                 if (!miner.IsActive)

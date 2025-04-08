@@ -58,6 +58,14 @@
             min: 1
             max: 2
   - type: Appearance
+  - type: Speech
+    speechSounds: Tenor
+  - type: TTS
+    voice: Glados
+  - type: Grammar
+    attributes:
+      gender: female
+      proper: true
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
