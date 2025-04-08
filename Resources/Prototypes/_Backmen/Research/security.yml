@@ -41,7 +41,7 @@
   id: RiotControl
   name: research-technology-riot-control
   icon:
-    sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
     state: base
   discipline: Security
   tier: 1
@@ -58,8 +58,8 @@
   id: RiotControlAdvanced
   name: research-technology-riot-control-advanced
   icon:
-    sprite: Objects/Weapons/Melee/truncheon.rsi
-    state: icon
+    sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
+    state: base
   discipline: Security
   tier: 1
   cost: 8000
