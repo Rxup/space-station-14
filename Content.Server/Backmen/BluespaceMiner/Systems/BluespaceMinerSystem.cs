@@ -39,7 +39,7 @@ namespace Content.Server.Backmen.BluespaceMining
 
         private void OnStartup(EntityUid uid, BluespaceMinerComponent component, ComponentStartup args)
         {
-            component.NextSpawnTime = _gameTiming.CurTime.Seconds + component.SpawnInterval;
+            component.NextSpawnTime = (float)(_gameTiming.CurTime.TotalSeconds + miner.SpawnInterval);
         }
 
         private void OnTemperatureChange(EntityUid uid,
@@ -82,21 +82,18 @@ namespace Content.Server.Backmen.BluespaceMining
 
                 if (miner.NeedsResync && miner.IsActive)
                 {
-                    miner.NextSpawnTime = _gameTiming.CurTime.Seconds + miner.SpawnInterval;
+                    miner.NextSpawnTime = (float)(_gameTiming.CurTime.TotalSeconds + miner.SpawnInterval);
                     miner.NeedsResync = false;
                 }
-                else
-                {
-                    miner.NeedsResync = true;
-                }
+                
                 UpdateAppearance(uid);
 
                 if (!miner.IsActive)
                     continue;
 
-                if (_gameTiming.CurTime.Seconds >= miner.NextSpawnTime)
+                if (_gameTiming.CurTime.TotalSeconds >= miner.NextSpawnTime)
                 {
-                    miner.NextSpawnTime = _gameTiming.CurTime.Seconds + miner.SpawnInterval;
+                    miner.NextSpawnTime = (float)(_gameTiming.CurTime.TotalSeconds + miner.SpawnInterval);
                     SpawnEntities(uid, miner, transform);
                 }
 
