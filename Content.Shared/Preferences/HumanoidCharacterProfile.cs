@@ -16,6 +16,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.SD;
+using System.Runtime.CompilerServices;
 
 namespace Content.Shared.Preferences
 {
@@ -72,6 +74,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public string FlavorText { get; set; } = string.Empty;
+        public EnumERPStatus ERPStatus { get; set; } // SD-ERPStatus
 
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
@@ -133,6 +136,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(
             string name,
             string flavortext,
+            int erpStatus, // SD-ERPStatus
             string species,
             string voice, // Corvax-TTS
             int age,
@@ -148,6 +152,7 @@ namespace Content.Shared.Preferences
         {
             Name = name;
             FlavorText = flavortext;
+            ERPStatus = (EnumERPStatus) erpStatus; // SD-ERPStatus
             Species = species;
             Voice = voice; // Corvax-TTS
             Age = age;
@@ -180,6 +185,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
                 other.FlavorText,
+                (int) other.ERPStatus, // SD-ERPStatus
                 other.Species,
                 other.Voice,
                 other.Age,
@@ -288,6 +294,12 @@ namespace Content.Shared.Preferences
         {
             return new(this) { FlavorText = flavorText };
         }
+        // SD-ERPStatus-Start
+        public HumanoidCharacterProfile WithERPStatus(EnumERPStatus state)
+        {
+            return new(this) { ERPStatus = state };
+        }
+        // SD-ERPStatus-End
 
         public HumanoidCharacterProfile WithAge(int age)
         {
