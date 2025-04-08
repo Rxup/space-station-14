@@ -190,10 +190,10 @@
       collection: MaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
-  params:
-    variation: 0.125
     Hiss: # Backmen
       collection: ReptilianHisses
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: FemaleSlime
@@ -238,10 +238,10 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
-  params:
-    variation: 0.125
     Hiss: # Backmen
       collection: ReptilianHisses
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: UnisexVox
@@ -283,10 +283,10 @@
       collection: DeathGasp
     BCatMeow:
       collection: BCatMeowSound
-  params:
-    variation: 0.125
     Hiss: # Backmen
       collection: ReptilianHisses
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: UnisexArachnid
@@ -357,11 +357,11 @@
       collection: MaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
     pitch: 0.75
-    Hiss: # Backmen
-      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleDwarf
@@ -404,11 +404,11 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
     pitch: 0.75
-    Hiss: # Backmen
-      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexMoth
