@@ -34468,7 +34468,7 @@ entities:
     - type: Transform
       pos: 5.5,2.5
       parent: 2
-- proto: OmnizineChemistryBottle
+- proto: ChemistryBottleOmnizine
   entities:
   - uid: 3562
     components:
@@ -39028,7 +39028,7 @@ entities:
     - type: Transform
       pos: -12.197205,21.39617
       parent: 2
-- proto: RobustHarvestChemistryBottle
+- proto: ChemistryBottleRobustHarvest
   entities:
   - uid: 4189
     components:

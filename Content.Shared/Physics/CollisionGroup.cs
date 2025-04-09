@@ -68,7 +68,7 @@ public enum CollisionGroup
 
     // Tables that SmallMobs can go under
     TableMask = Impassable | MidImpassable | BlobImpassable,
-    TableLayer = MidImpassable | BulletImpassable,
+    TableLayer = MidImpassable,
 
     // Tabletop machines, windoors, firelocks
     TabletopMachineMask = Impassable | HighImpassable | BlobImpassable,

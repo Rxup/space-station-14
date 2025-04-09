@@ -4,26 +4,39 @@
 
 - type: lavalandRuinPool
   id: Lavaland
+  maxDistance: 208 # backmen change
+  ruinDistance: 16
   gridRuins:
     SyndicateBase: 1
     HierophantArena: 1
     RougeAI: 1
-    BiodomeBeach: 2
-    BiodomeSnow: 2
-    GolemShuttle: 2
-    ToyShop: 1    
-    Chemistry: 2
-    LavaLake: 3
+    BiodomeBeach: 1
+    BiodomeSnow: 1
+    GolemShuttle: 1
+    ToyShop: 1
+    Chemistry: 1
+    LavaLake: 1
     Graveyard: 1
-    SeedVault: 2
-    Hermit: 5
-    WaffleCo: 2
+    SeedVault: 1
+    Hermit: 2
+    WaffleCo: 1
     ArrivalsBack: 1
     ArrivalsFront: 1
-    CargoDebris: 2
+    CargoDebris: 1
     VulpLab: 1
-    Shelter: 4
+    Shelter: 2
     OwOLab: 1
-    MiningPost: 3
+    MiningPost: 2
+    #Backmen-edit-start
+    InteQSizo: 1
+    BlackMesaResearchFacility: 1
+    BlackMesaOutpost: 2
+    BlackMesaSpot: 1
+    BlackMesaSpot2: 1
+    BlackMesaMet: 2
+    BlackMesaResearchOblom: 2
+    BlackMesaResearchShuttleCrush: 1
+    BlackMesaTelega: 1
+    #Backmen-edit-end
   dungeonRuins:
-    CommonRuin5x5: 60
+    CommonRuin5x5: 30

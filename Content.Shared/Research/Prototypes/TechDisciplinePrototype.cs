@@ -7,7 +7,7 @@ namespace Content.Shared.Research.Prototypes;
 /// This is a prototype for a research discipline, a category
 /// that governs how <see cref="TechnologyPrototype"/>s are unlocked.
 /// </summary>
-[Prototype("techDiscipline")]
+[Prototype]
 public sealed partial class TechDisciplinePrototype : IPrototype
 {
     /// <inheritdoc/>
@@ -45,4 +45,11 @@ public sealed partial class TechDisciplinePrototype : IPrototype
     /// </summary>
     [DataField("lockoutTier")]
     public int LockoutTier = 3;
+
+    /// <summary>
+    /// Goobstation R&D console rework field
+    /// Name that appears on this discipline's button in console
+    /// </summary>
+    [DataField(required: true)]
+    public string UiName = string.Empty;
 }

@@ -1,0 +1,93 @@
+- type: technology
+  id: AnomalousResearchMachines
+  name: research-technology-anomalous-research-machines
+  icon:
+    sprite: Structures/Machines/Anomaly/ape.rsi
+    state: base
+  discipline: Scientific
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - APECircuitboard
+  - AnomalyVesselCircuitboard
+  technologyPrerequisites:
+  - AnomalousResearch
+  position: 4,0
+
+- type: technology
+  id: AnomalyResearchAdvancedMachines
+  name: research-technology-anomaly-research-advanced-machines
+  icon:
+    sprite: Structures/Machines/anomaly_sync.rsi
+    state: base
+  discipline: Scientific
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - AnomalySynchronizerCircuitboard
+  - AnomalyVesselExperimentalCircuitboard
+  technologyPrerequisites:
+  - AnomalousResearch
+  - AnomalousResearchAdvanced
+  - AnomalousResearchMachines
+  position: 4,-1
+
+- type: technology
+  id: XenoArcheologyMachines
+  name: research-technology-xenoarcheology-machines
+  icon:
+    sprite: Structures/Machines/artifact_analyzer.rsi
+    state: display
+  discipline: Scientific
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - AnalysisComputerCircuitboard
+  - ArtifactAnalyzerMachineCircuitboard
+  position: 5,0
+
+- type: technology
+  id: AlternativeResearchMachines
+  name: research-technology-alternative-research-machines
+  icon:
+    sprite: Structures/Machines/tech_disk_printer.rsi
+    state: display
+  discipline: Scientific
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - TechDiskComputerCircuitboard
+  position: 5,1
+
+- type: technology
+  id: AbnormalArtifactManipulationMachines
+  name: research-technology-abnormal-artifact-manipulation-machines
+  icon:
+    sprite: Structures/Machines/traversal_distorter.rsi
+    state: display
+  discipline: Scientific
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ArtifactCrusherMachineCircuitboard
+  technologyPrerequisites:
+  - AnomalyResearchAdvancedMachines
+  position: 3,-1
+
+- type: technology
+  id: Metempsychosis
+  name: research-technology-metempsychosis
+  icon:
+    sprite: Backmen/Structures/Machines/metempsychotic.rsi
+    state: pod_0
+  discipline: Scientific
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - BiomassReclaimerMachineCircuitboard
+  - CloningConsoleComputerCircuitboard
+  - MedicalScannerMachineCircuitboard
+#  - MetempsychoticMachineCircuitboard
+  technologyPrerequisites:
+  - PsionicCountermeasures
+  position: 6,2

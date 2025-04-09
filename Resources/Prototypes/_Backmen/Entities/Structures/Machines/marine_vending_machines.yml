@@ -205,9 +205,9 @@
     MedicatedSuture: 40
     MedkitCombatFilled: 20
     MedkitAdvancedFilled: 20
-    EpinephrineChemistryBottle: 20
-    OmnizineChemistryBottle: 20
-    EphedrineChemistryBottle: 20
+    ChemistryBottleEpinephrine: 20
+    ChemistryBottleOmnizine: 20
+    ChemistryBottleEphedrine: 20
     Hypospray: 2
     PillCanisterBicaridine: 20
     PillCanisterDermaline: 20

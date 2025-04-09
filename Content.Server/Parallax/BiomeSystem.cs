@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Content.Server._Lavaland.Procedural;
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -449,6 +450,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         foreach (var chunk in active)
         {
+            // Lavaland Change: Chunks optimization
+            var ev = new BeforeLoadChunkEvent(chunk);
+            RaiseLocalEvent(gridUid, ev);
+            if (ev.Cancelled)
+                continue;
+            // Lavaland Change: Chunks optimization
+
             LoadChunkMarkers(component, gridUid, grid, chunk, seed);
 
             if (!component.LoadedChunks.Add(chunk))
@@ -887,12 +895,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         foreach (var chunk in component.LoadedChunks)
         {
-            // start-backmen: Shipwrecked
-            var ev = new Backmen.Shipwrecked.Biome.UnLoadChunkEvent(chunk);
+            // Lavaland Change: Chunks optimization
+            var ev = new UnLoadChunkEvent(chunk);
             RaiseLocalEvent(gridUid, ev);
             if(ev.Cancelled)
                 continue;
-            // end-backmen: Shipwrecked
+            // Lavaland Change: Chunks optimization
+
             if (active.Contains(chunk) || !component.LoadedChunks.Remove(chunk))
                 continue;
 

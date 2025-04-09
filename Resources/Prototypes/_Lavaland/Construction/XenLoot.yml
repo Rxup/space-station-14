@@ -1,0 +1,380 @@
+- type: constructionGraph
+  id: PCVHelmet
+  start: start
+  graph:
+    - node: start
+      entity: SalvagePCVHelmet
+      edges:
+      - to: helmet
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 3
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+      - to: repair
+        completed:
+          - !type:SpawnPrototype
+            prototype: ClothingHeadHelmetHECU
+          - !type:DeleteEntity
+        steps:
+          - material: M9Steel
+            amount: 5
+            doAfter: 2
+    - node: helmet
+    - node: repair
+
+- type: constructionGraph
+  id: PCVHelmetPNV
+  start: start
+  graph:
+    - node: start
+      entity: SalvagePCVHelmetPNV
+      edges:
+      - to: Wires
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 2
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 2
+          - !type:DeleteEntity
+        steps:
+          - tool: Cutting
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+      - to: repair
+        completed:
+          - !type:SpawnPrototype
+            prototype: ClothingHeadHelmetHECUNVG
+          - !type:DeleteEntity
+        steps:
+          - material: M9Steel
+            amount: 5
+            doAfter: 2
+          - material: CableGold
+            amount: 2
+            doAfter: 2
+          - tag: SalvagePCVPlate
+            doAfter: 1
+    - node: Wires
+    - node: repair
+
+- type: constructionGraph
+  id: AncientWeapon
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 2
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialMaterialGunMaterial
+            amount: 2
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+    - node: superweapon
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 30
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialMaterialGunMaterial
+            amount: 20
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 15
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemSalvagePCVPlate
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 4
+          - tool: Screwing
+            doAfter: 4
+          - tool: Anchoring
+            doAfter: 4
+          - tool: Screwing
+            doAfter: 4
+    - node: Unload
+
+- type: constructionGraph
+  id: AncientTool
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 2
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+      - to: repair
+        completed:
+          - !type:SpawnPrototype
+            prototype: SalvageAncientToolRepaired
+          - !type:DeleteEntity
+        steps:
+          - material: M9Steel
+            amount: 5
+            doAfter: 2
+          - material: CableGold
+            amount: 5
+            doAfter: 2
+    - node: radio
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 5
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+      - to: repair
+        completed:
+          - !type:SpawnPrototype
+            prototype: SalvageAncientCommunicatorSummonerBigJohninator
+          - !type:DeleteEntity
+        steps:
+          - material: M9Steel
+            amount: 5
+            doAfter: 2
+          - material: CableGold
+            amount: 5
+            doAfter: 2
+          - tag: SalvageResearchTool
+            doAfter: 1
+    - node: Unload
+    - node: repair
+
+- type: constructionGraph
+  id: PCVArmor
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemSalvagePCVPlate
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+    - node: almostnot
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: MaterialM9Steel1
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: MaterialCableGold1
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: SalvagePCVPlate
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: HEVArmor
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialHEVPiece
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 2
+          - !type:DeleteEntity
+        steps:
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: SatchelSalvage
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Upgraded
+        steps:
+          - material: StrapALICE
+            amount: 10
+            doAfter: 2
+    - node: Upgraded
+      entity: ClothingBackpackSatchelSalvageUpgraded
+      edges:
+      - to: Upgraded2
+        steps:
+          - material: StrapALICE
+            amount: 20
+            doAfter: 2
+    - node: Upgraded2
+      entity: ClothingBackpackSatchelSalvageUpgraded2
+
+- type: constructionGraph
+  id: BackpackSalvage
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Upgraded
+        steps:
+          - material: StrapALICE
+            amount: 10
+            doAfter: 2
+    - node: Upgraded
+      entity: ClothingBackpackSalvageUpgraded
+      edges:
+      - to: Upgraded2
+        steps:
+          - material: StrapALICE
+            amount: 20
+            doAfter: 2
+    - node: Upgraded2
+      entity: ClothingBackpackSalvageUpgraded2
+
+- type: constructionGraph
+  id: DuffelSalvage
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Upgraded
+        steps:
+          - material: StrapALICE
+            amount: 10
+            doAfter: 2
+    - node: Upgraded
+      entity: ClothingBackpackDuffelSalvageUpgraded
+      edges:
+      - to: Upgraded2
+        steps:
+          - material: StrapALICE
+            amount: 20
+            doAfter: 2
+    - node: Upgraded2
+      entity: ClothingBackpackDuffelSalvageUpgraded2
+
+- type: constructionGraph
+  id: PKAUpgradeDamage
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Upgraded
+        steps:
+          - material: M9Steel
+            amount: 4
+            doAfter: 2
+          - material: CableGold
+            amount: 2
+            doAfter: 2
+          - material: GunMaterial
+            amount: 5
+            doAfter: 2
+    - node: Upgraded
+      entity: PKAUpgradeDamageTier2
+
+- type: constructionGraph
+  id: PKAUpgradeRange
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Upgraded
+        steps:
+          - material: M9Steel
+            amount: 4
+            doAfter: 2
+          - material: CableGold
+            amount: 5
+            doAfter: 2
+          - material: GunMaterial
+            amount: 2
+            doAfter: 2
+    - node: Upgraded
+      entity: PKAUpgradeRangeTier2
+
+- type: constructionGraph
+  id: PKAUpgradeFireRate
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Upgraded
+        steps:
+          - material: M9Steel
+            amount: 4
+            doAfter: 2
+          - material: CableGold
+            amount: 5
+            doAfter: 2
+          - material: GunMaterial
+            amount: 5
+            doAfter: 2
+    - node: Upgraded
+      entity: PKAUpgradeFireRateTier2

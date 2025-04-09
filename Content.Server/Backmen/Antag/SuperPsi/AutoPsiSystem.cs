@@ -152,7 +152,7 @@ public sealed class AutoPsiSystem : EntitySystem
         {
             // do super psi?
             var rule = _antag.ForceGetGameRuleEnt<SuperPsiRuleComponent>(DefaultSuperPsiRule);
-            if (_antag.GetTargetAntagCount(rule) > rule.Comp.SelectedMinds.Count)
+            if (_antag.GetTargetAntagCount(rule) > rule.Comp.AssignedMinds.Count)
             {
                 args.SpawnResult = SpawnSuperPsi(
                     spawnLoc.Pos,

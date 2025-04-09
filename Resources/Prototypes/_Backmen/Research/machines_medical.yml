@@ -1,0 +1,66 @@
+- type: technology
+  id: ChemistryMachines
+  name: research-technology-chemistry-machines
+  icon:
+    sprite: Structures/dispensers.rsi
+    state: industrial-working
+  discipline: Medical
+  tier: 1
+  cost: 4500
+  recipeUnlocks:
+  - ElectrolysisUnitMachineCircuitboard
+  - CentrifugeMachineCircuitboard
+  - ChemDispenserMachineCircuitboard
+  - ChemMasterMachineCircuitboard
+  - CondenserMachineCircuitBoard
+  - HotplateMachineCircuitboard
+  technologyPrerequisites:
+  - Chemistry
+  position: 1,-5
+
+- type: technology
+  id: BiomassMachines
+  name: research-technology-biomass-machines
+  icon:
+    sprite: Structures/Machines/Medical/biomass_reclaimer.rsi
+    state: icon
+  discipline: Medical
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - BiomassReclaimerMachineCircuitboard
+  technologyPrerequisites:
+  - Medicine
+  position: 5,-4
+
+- type: technology
+  id: BiochemicalStasisMachines
+  name: research-technology-biochemical-stasis-machines
+  icon:
+    sprite: Structures/Machines/stasis_bed.rsi
+    state: icon
+  discipline: Medical
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - StasisBedMachineCircuitboard
+  - CryoPodMachineCircuitboard
+  technologyPrerequisites:
+  - BiochemicalStasis
+  position: 5,-6
+
+- type: technology
+  id: VirologyMachines
+  name: research-technology-virology-machines
+  icon:
+    sprite: Structures/Machines/vaccinator.rsi
+    state: icon
+  discipline: Medical
+  tier: 1
+  cost: 6500
+  recipeUnlocks:
+  - VaccinatorMachineCircuitboard
+  - DiagnoserMachineCircuitboard
+  technologyPrerequisites:
+  - Medicine
+  position: 3,-5

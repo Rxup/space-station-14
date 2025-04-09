@@ -4,6 +4,7 @@
     ClothingBackpackInteQ: 5
     ClothingBackpackDuffelInteQ: 5
     ClothingBackpackSatchelInteQ: 5
+    ClothingBackpackMessengerInteQ: 5
     ClothingHeadHatInteQSoft: 5
     ClothingHeadHelmetSwatInteQ: 5
     ClothingEyesGogglessInteQ: 5
@@ -21,14 +22,14 @@
     ClothingUniformJumpskirtInteQMedical: 3
     ClothingUniformJumpsuitInteQHonorable: 1
     ClothingOuterCoatInteQBattle: 3
-    ClothingOuterCoatInteQHonorableBattle: 1
+#    ClothingOuterCoatInteQHonorableBattle: 1 # Because OP
     ClothingOuterCoatInteQMedical: 3
     ClothingOuterWinterInteQ: 5
     ClothingOuterHoodieInteQ: 5
     ItemFlagMiniInteQ: 5
     FoodSnackInteQCookies: 20
     CigPackInteQ: 10
-#    HandledBoomBox: 1 # Port please!!!
+    HandledBoomBox: 1
   contrabandInventory:
     ClothingHeadHatInteQTacticalMaidHeadband: 5
     ClothingUniformJumpskirtInteQTacticalMaid: 5
@@ -40,6 +41,7 @@
     ClothingBackpackInteQ: 2
     ClothingBackpackDuffelInteQ: 2
     ClothingBackpackSatchelInteQ: 2
+    ClothingBackpackMessengerInteQ: 2
     ClothingHeadHatInteQSoft: 3
 #    ClothingHeadHelmetSwatInteQ: 5
 #    ClothingEyesGogglessInteQ: 5

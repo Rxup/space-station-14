@@ -28,6 +28,7 @@
   - type: Tag
     tags:
       - HideContextMenu
+  - type: BkmSupermatterImmune
 
 - type: entity
   name: lightning

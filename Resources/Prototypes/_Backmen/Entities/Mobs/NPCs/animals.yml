@@ -20,7 +20,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: MaterialBluespace
+    - id: MaterialBluespace10
   - type: Grammar
     attributes:
       gender: male

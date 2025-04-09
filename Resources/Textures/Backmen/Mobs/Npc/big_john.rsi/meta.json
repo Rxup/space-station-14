@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by no_mad",
+    "size": {
+      "x": 64,
+      "y": 64
+    },
+    "states": [
+    {
+        "name": "bigjohn",
+        "directions": 4
+    },
+    {
+        "name": "bigjohn_unshaded",
+        "directions": 4
+    }
+  ]
+}
+

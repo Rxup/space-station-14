@@ -10,9 +10,7 @@
             <BoxContainer Orientation="Horizontal" SeparationOverride="10" HorizontalExpand="True">
                 <!-- Name box-->
                 <BoxContainer Orientation="Vertical">
-                    <ui:HighlightedContainer>
                         <BoxContainer Orientation="Vertical">
-                            <ui:HighlightedContainer>
                                 <BoxContainer Orientation="Vertical">
                                     <BoxContainer Orientation="Horizontal" VerticalExpand="True">
                                         <Label Text="{Loc 'humanoid-profile-editor-name-label'}" />
@@ -26,13 +24,10 @@
                                                    VerticalExpand="True" MaxWidth="425"
                                                    HorizontalAlignment="Left" />
                                 </BoxContainer>
-                            </ui:HighlightedContainer>
                         </BoxContainer>
-                    </ui:HighlightedContainer>
                 </BoxContainer>
                 <!-- Import/Export -->
                 <BoxContainer Orientation="Vertical" MinSize="60 0" HorizontalExpand="True" HorizontalAlignment="Right">
-                    <ui:HighlightedContainer Name="ProfileHighlight">
                         <BoxContainer Orientation="Vertical">
                             <Button Name="SaveButton" Text="{Loc 'humanoid-profile-editor-save-button'}"/>
                             <Button Name="ResetButton" Disabled="True" Text="{Loc 'humanoid-profile-editor-reset-button'}"/>
@@ -41,7 +36,6 @@
                             <Button Name="ExportImageButton" Text="{Loc 'humanoid-profile-editor-export-image-button'}"/>
                             <Button Name="OpenImagesButton" Text="{Loc 'humanoid-profile-editor-open-image-button'}"/>
                         </BoxContainer>
-                    </ui:HighlightedContainer>
                 </BoxContainer>
             </BoxContainer>
             <Control MinHeight="10" />

@@ -1,12 +1,16 @@
-﻿- type: entity
+﻿#BPLA MED
+
+- type: entity
   id: ActionBPLAMEDActionBrutepack
   name: Brutepack-action-name
   description: Brutepack-action-description
   components:
     - type: InstantAction
-      useDelay: 300
+      useDelay: 90
       icon: Objects/Specific/Medical/medical.rsi/brutepack.png
-      event: !type:brutepackCraftActionEvent
+      event: !type:DroneCraftActionEvent
+        craftedItem: Brutepack
+        energy: 280
 
 - type: entity
   id: ActionBPLAMEDActionOintment
@@ -14,9 +18,11 @@
   description: Ointment-action-description
   components:
     - type: InstantAction
-      useDelay: 300
+      useDelay: 90
       icon: Objects/Specific/Medical/medical.rsi/ointment.png
-      event: !type:ointmentCraftActionEvent
+      event: !type:DroneCraftActionEvent
+        craftedItem: Ointment
+        energy: 200
 
 - type: entity
   id: ActionBPLAMEDActionBloodpack
@@ -24,7 +30,106 @@
   description: Bloodpack-action-description
   components:
     - type: InstantAction
-      useDelay: 300
+      useDelay: 180
       icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
-      event: !type:bloodpackCraftActionEvent
+      event: !type:DroneCraftActionEvent
+        craftedItem: Bloodpack
+        energy: 500
 
+#BPLA
+
+- type: entity
+  id: ActionBPLAActionCableApcStack
+  name: CableApcStack-action-name
+  description: CableApcStack-action-description
+  components:
+  - type: InstantAction
+    useDelay: 120
+    icon: Objects/Tools/cable-coils.rsi/coillv-30.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: CableApcStack
+      energy: 50
+
+- type: entity
+  id: ActionBPLAActionCableMVStack
+  name: CableMVStack-action-name
+  description: CableMVStack-action-description
+  components:
+  - type: InstantAction
+    useDelay: 120
+    icon: Objects/Tools/cable-coils.rsi/coilmv-30.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: CableMVStack
+      energy: 50
+
+- type: entity
+  id: ActionBPLAActionCableHVStack
+  name: CableHVStack-action-name
+  description: CableHVStack-action-description
+  components:
+  - type: InstantAction
+    useDelay: 120
+    icon: Objects/Tools/cable-coils.rsi/coilhv-30.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: CableHVStack
+      energy: 50
+
+- type: entity
+  id: ActionBPLAActionSheetSteel
+  name: SheetSteel-action-name
+  description: SheetSteel-action-description
+  components:
+  - type: InstantAction
+    useDelay: 90
+    icon: Objects/Materials/Sheets/metal.rsi/steel_3.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: SheetSteel
+      energy: 200
+
+- type: entity
+  id: ActionBPLAActionSheetPlasteel
+  name: SheetPlasteel-action-name
+  description: SheetPlasteel-action-description
+  components:
+  - type: InstantAction
+    useDelay: 120
+    icon: Objects/Materials/Sheets/metal.rsi/plasteel_3.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: SheetPlasteel
+      energy: 450
+
+- type: entity
+  id: ActionBPLAActionSheetGlass
+  name: SheetGlass-action-name
+  description: SheetGlass-action-description
+  components:
+  - type: InstantAction
+    useDelay: 90
+    icon: Objects/Materials/Sheets/glass.rsi/glass_3.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: SheetGlass
+      energy: 150
+
+- type: entity
+  id: ActionBPLAActionSheetRGlass
+  name: SheetRGlass-action-name
+  description: SheetRGlass-action-description
+  components:
+  - type: InstantAction
+    useDelay: 120
+    icon: Objects/Materials/Sheets/glass.rsi/rglass_3.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: SheetRGlass
+      energy: 450
+
+- type: entity
+  id: ActionBPLAActionSheetPlastic
+  name: SheetPlastic-action-name
+  description: SheetPlastic-action-description
+  components:
+  - type: InstantAction
+    useDelay: 180
+    icon: Objects/Materials/Sheets/other.rsi/plastic_3.png
+    event: !type:DroneCraftActionEvent
+      craftedItem: SheetPlastic
+      energy: 200

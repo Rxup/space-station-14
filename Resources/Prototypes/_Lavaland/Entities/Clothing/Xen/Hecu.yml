@@ -1,0 +1,134 @@
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorVestPCV
+  name: Энергетический боевой жилет P.C.V.
+  description: Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/PCV.rsi
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/PCV.rsi
+    equipSound: /Audio/Backmen/test/base/ogg/blackmesa/pcv/01_pcv_logon.ogg
+    quickEquip: false
+    equipDelay: 5
+    unequipDelay: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.3
+        ArmorPiercing: 0.6
+        Heat: 0.5
+        Radiation: 0.1
+        Caustic: 0.1
+        Stun: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.3
+    sprintModifier: 1.0
+  - type: ClothingGrant
+    component:
+    - type: SolutionRegeneration
+      solution: chemicals
+      generated:
+        reagents:
+        - ReagentId: TranexamicAcidPlus
+          Quantity: 0.2
+
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetHECU
+  name: защитный шлем от P.C.V.
+  description: Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.9
+        Radiation: 0.6
+        Caustic: 0.4
+
+- type: entity
+  parent: ClothingHeadHelmetHECU
+  id: ClothingHeadHelmetHECUNVG
+  name: защитный шлем от P.C.V. с прибором ночного зрения
+  description: Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+    state: icon-nvg
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+    equippedState: equipped-HELMET-nvg
+  - type: PNV
+
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingSathelHECU
+  name: сумка отряда H.E.C.U.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltHECU
+  name: пояс отряда H.E.C.U.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,3
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Gear/hecubelt.rsi
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Gear/hecubelt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHECUURBAN
+  name: H.E.C.U. marine uniform
+  description: Jumpsuit made of dense camouflage fabric. Doesn't make you invisible.
+  components:
+    - type: Sprite
+      sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/urbanCM.rsi
+    - type: Clothing
+      sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/urbanCM.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskHECUGasMask
+  name: H.E.C.U. gas mask
+  description: A military-grade gas mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Mask/hecu.rsi
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Mask/hecu.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasSEVA
+  name: seva gas mask
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Mask/seva.rsi
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Mask/seva.rsi

@@ -135,7 +135,6 @@
   description: secret-description
   rules:
     - Secret
-    - BasicStationEventScheduler
 
 - type: gamePreset
   id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
@@ -187,13 +186,14 @@
   description: traitor-description
   showInVote: false
   rules:
+    - DummyNonAntagChance
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - MeteorSwarmScheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -217,16 +217,18 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: false
-  minPlayers: 15
+  showInVote: true #backmen terror
+  minPlayers: 30 #backmen terror
   rules:
     - Nukeops
+    - DummyNonAntagChance
     - SubGamemodesRule
-    - CalmStationEventScheduler #backmen: calm-scheduler
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - CalmMeteorSwarmScheduler #backmen: calm-scheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -240,11 +242,11 @@
   description: rev-description
   showInVote: false
   rules:
+    - DummyNonAntagChance
     - Revolutionary
     - SubGamemodesRule
-    - BasicStationEventScheduler
     - MeteorSwarmScheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - WageScheduler #backmen: currency
     - LavalandStormScheduler # Lavaland Change
@@ -259,8 +261,8 @@
   showInVote: false
   rules:
   - Wizard
+  - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
-  - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
@@ -278,7 +280,6 @@
   showInVote: false
   rules:
   - Zombie
-  - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - MeteorSwarmScheduler

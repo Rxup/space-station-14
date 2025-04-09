@@ -100,6 +100,7 @@
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
 
+# nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
   id: GroupEVATank
   name: loadout-group-EVA-tank
@@ -107,6 +108,14 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
+
+# vox get a nitrogen tank, other species get nothing
+- type: loadoutGroup
+  id: GroupEVATankVox
+  name: loadout-group-vox-tank
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
   id: GroupPocketTankDouble
@@ -154,6 +163,7 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+  - CaptainMessenger # Backmen
 
 - type: loadoutGroup
   id: CaptainOuterClothing
@@ -195,6 +205,7 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+  - CommonMessenger # Backmen
   - HoPBackpackIan
 
 - type: loadoutGroup
@@ -235,6 +246,7 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+  - CommonMessenger # Backmen
 
 - type: loadoutGroup
   id: PassengerNeck
@@ -447,6 +459,7 @@
   - BotanistBackpack
   - BotanistSatchel
   - BotanistDuffel
+  - BotanistMessenger # Backmen
 
 - type: loadoutGroup
   id: BotanistOuterClothing
@@ -480,6 +493,7 @@
   - ClownBackpack
   - ClownSatchel
   - ClownDuffel
+  - ClownMessenger # Backmen
 
 - type: loadoutGroup
   id: ClownOuterClothing
@@ -537,6 +551,7 @@
   - MimeBackpack
   - MimeSatchel
   - MimeDuffel
+  - MimeMessenger # Backmen
 
 - type: loadoutGroup
   id: MimeOuterClothing
@@ -673,6 +688,7 @@
   - CargoTechnicianBackpack
   - CargoTechnicianSatchel
   - CargoTechnicianDuffel
+  - CargoTechnicianMessenger # Backmen
 
 - type: loadoutGroup
   id: CargoTechnicianOuterClothing
@@ -695,6 +711,7 @@
   - SalvageSpecialistBackpack
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
+  - SalvageSpecialistMessenger # Backmen
 
 - type: loadoutGroup
   id: SalvageSpecialistOuterClothing
@@ -784,6 +801,7 @@
   - StationEngineerBackpack
   - StationEngineerSatchel
   - StationEngineerDuffel
+  - StationEngineerMessenger # Backmen
 
 - type: loadoutGroup
   id: StationEngineerOuterClothing
@@ -829,6 +847,7 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
+  - AtmosphericTechnicianMessenger # Backmen
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes
@@ -923,6 +942,7 @@
   - ScientistBackpack
   - ScientistSatchel
   - ScientistDuffel
+  - ScientistMessenger # Backmen
 
 - type: loadoutGroup
   id: ScientistOuterClothing
@@ -1078,6 +1098,7 @@
   - SecurityBackpack
   - SecuritySatchel
   - SecurityDuffel
+  - SecurityMessenger # Backmen
 
 - type: loadoutGroup
   id: SecurityBelt
@@ -1277,6 +1298,7 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
+  - MedicalDoctorMessenger # Backmen
 
 - type: loadoutGroup
   id: MedicalShoes
@@ -1337,6 +1359,7 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
+  - ChemistMessenger # Backmen
 
 - type: loadoutGroup
   id: ParamedicHead

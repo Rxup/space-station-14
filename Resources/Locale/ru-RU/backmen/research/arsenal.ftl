@@ -1,0 +1,9 @@
+research-technology-lethal-ammunition = Летальные боеприпасы
+research-technology-draconic-ammunition = Поджигающие боеприпасы
+research-technology-uranium-ammunition = Урановые боеприпасы
+research-technology-explosive = Взрывные средства
+research-technology-combat-laser = Боевые лазеры
+research-technology-combat-laser-advanced = Продвинутые боевые лазеры
+research-technology-combat-laser-concentrated = Концентрированные боевые лазеры
+research-technology-combat-laser-wave-harnessing = Волновые боевые лазеры
+research-technology-combat-laser-experimental = Экспериментальные боевые лазеры

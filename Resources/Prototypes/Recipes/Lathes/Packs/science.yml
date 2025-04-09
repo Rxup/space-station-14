@@ -29,6 +29,8 @@
   - HoloprojectorField
   - SignallerAdvanced
   - DeviceQuantumSpinInverter
+  - ClothingEyesHudDiagnostic # Backmen
+  - PersonalAI # Backmen
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -39,6 +41,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - ClothingBackpackMessengerHolding # Backmen
 
 - type: latheRecipePack
   id: PowerCells

@@ -1,0 +1,136 @@
+- type: technology
+  id: EngineeringMachines
+  name: research-technology-engineering-machines
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: charger_APC
+  discipline: Engineering
+  tier: 1
+  cost: 800
+  recipeUnlocks:
+  - IntercomElectronics
+  - FirelockElectronics
+  - DoorElectronics
+  - AirAlarmElectronics
+  - StationMapElectronics
+  - FireAlarmElectronics
+  - MailingUnitElectronics
+  - SignalTimerElectronics
+  - APCElectronics
+  - SMESMachineCircuitboard
+  - SubstationMachineCircuitboard
+  - WallmountSubstationElectronics
+  - CellRechargerCircuitboard
+  - WeaponCapacitorRechargerCircuitboard
+  - CutterMachineCircuitboard
+  - ProtolatheMachineCircuitboard
+  - AutolatheMachineCircuitboard
+  - CircuitImprinterMachineCircuitboard
+  technologyPrerequisites:
+  - MachineParts
+  position: -3,3
+
+- type: technology
+  id: EngineeringAdvancedMachines
+  name: research-technology-engineering-advanced-machines
+  icon:
+    sprite: Structures/Machines/protolathe_hypercon.rsi
+    state: building
+  discipline: Engineering
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+   - AutolatheHyperConvectionMachineCircuitboard
+   - ProtolatheHyperConvectionMachineCircuitboard
+   - CircuitImprinterHyperConvectionMachineCircuitboard
+   - SheetifierMachineCircuitboard
+  technologyPrerequisites:
+  - EngineeringMachines
+  - PowerGenerationAdvancedMachines
+  position: -4,4
+
+- type: technology
+  id: PowerGenerationMachines
+  name: research-technology-power-generation-machines
+  icon:
+    sprite: Structures/Power/Generation/portable_generator.rsi
+    state: portgen0
+  discipline: Engineering
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - PortableGeneratorPacmanMachineCircuitboard
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - PortableGeneratorJrPacmanMachineCircuitboard
+  - SolarControlComputerCircuitboard
+  - SolarTrackerElectronics
+  - EmitterCircuitboard
+  technologyPrerequisites:
+  - EngineeringMachines
+  position: -3,5
+
+- type: technology
+  id: PowerGenerationAdvancedMachines
+  name: research-technology-power-generation-advanced-machines
+  icon:
+    sprite: Structures/Power/Generation/portable_generator.rsi
+    state: portgen0
+  discipline: Engineering
+  tier: 1
+  cost: 8500
+  recipeUnlocks:
+  - TurboItemRechargerCircuitboard
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - SMESAdvancedMachineCircuitboard
+  technologyPrerequisites:
+  - PowerGenerationMachines
+  position: -3,6
+
+- type: technology
+  id: MechanicalCompressionMachines
+  name: research-technology-mechanical-compression-machines
+  icon:
+    sprite: Structures/Machines/flatpacker.rsi
+    state: base
+  discipline: Engineering
+  tier: 1
+  cost: 8500
+  recipeUnlocks:
+  - FlatpackerMachineCircuitboard
+  technologyPrerequisites:
+  - EngineeringAdvancedMachines
+  position: -4,5
+
+- type: technology
+  id: AtmosphericMachines
+  name: research-technology-atmospheric-machines
+  icon:
+    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+    state: freezerOn
+  discipline: Engineering
+  tier: 1
+  cost: 5500
+  recipeUnlocks:
+   - ThermomachineFreezerMachineCircuitBoard
+   - GasRecyclerMachineCircuitboard
+   - SpaceHeaterMachineCircuitBoard
+  technologyPrerequisites:
+  - EngineeringMachines
+  - AtmosphericTools
+  position: -2,3
+
+- type: technology
+  id: AtmosphericAdvancedMachines
+  name: research-technology-atmospheric-advanced-machines
+  icon:
+    sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
+    state: freezerOn
+  discipline: Engineering
+  tier: 1
+  cost: 8500
+  recipeUnlocks:
+  - HellfireFreezerMachineCircuitBoard
+  - PortableScrubberMachineCircuitBoard
+  technologyPrerequisites:
+  - AtmosphericMachines
+  position: -2,4

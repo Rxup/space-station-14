@@ -1,0 +1,29 @@
+- type: entity
+  parent: PottedPlantBase
+  id: PottedPlantPlasmaPlant
+  name: plastic potted plasma plant
+  description: Pretty plant, it seems safe? Considering what it's made of.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    state: plasma_plant
+  - type: AlwaysHot # Funny
+  - type: PointLight
+    radius: 2
+    color: "#8A2BE2"
+
+- type: entity
+  parent: PottedPlantBase
+  id: Hedge
+  name: hedge
+  description: Large bushy hedge
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    offset: "0.0,0.0"
+    state: hedge
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Physics
+    bodyType: Static

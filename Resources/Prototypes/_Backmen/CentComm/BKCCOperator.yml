@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: SpawnPointCMBKCCOperator
   name: Оператор ЦК
-  suffix: Спавнер, Директор Событий
+  suffix: Спавнер, Директор Событий, DO NOT MAP
   parent: MarkerBase
   components:
   - type: GhostRole
@@ -21,7 +21,7 @@
       department: CentCom
       time: 14400
     - !type:DepartmentTimeRequirement
-      department: Silicons
+      department: Silicon
       time: 6000
     job: BKCCOperator
     whitelistRequired: true
@@ -36,7 +36,7 @@
 
 - type: entity
   name: Оператор ЦК
-  suffix: Директор Событий
+  suffix: Директор Событий, DO NOT MAP
   parent: MobHumanCombine
   description: Офисный клерк
   id: MobHumanCMBKCCOperator

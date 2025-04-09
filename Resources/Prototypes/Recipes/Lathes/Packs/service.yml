@@ -19,6 +19,7 @@
   - FoodPlateMuffinTin
   - FoodKebabSkewer
   - SprayBottle
+  - LightReplacer
   - MopItem
   - Holoprojector
   - WetFloorSign
@@ -40,6 +41,7 @@
 - type: latheRecipePack
   id: Janitor
   recipes:
+  - TrashBag # Backmen
   - AdvMopItem
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank

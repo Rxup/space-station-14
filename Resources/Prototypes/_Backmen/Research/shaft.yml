@@ -1,0 +1,94 @@
+- type: technology
+  id: SalvageWeapons
+  name: research-technology-salvage-weapons
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    state: icon
+  discipline: Shaft
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - WeaponProtoKineticAccelerator
+  position: 11,1
+
+- type: technology
+  id: SalvageEquipment
+  name: research-technology-salvage-equipment
+  icon:
+    sprite: Goobstation/Objects/Weapons/Guns/Battery/cutter.rsi
+    state: icon
+  discipline: Shaft
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - MiningDrill
+  - Pickaxe
+  - MineralScannerEmpty
+  - WeaponPlasmaCutter # Goobstation
+  - ClothingMaskWeldingGas
+  position: 10,1
+
+- type: technology
+  id: SalvageEquipmentAdvanced
+  name: research-technology-salvage-equipment-advanced
+  icon:
+    sprite: Objects/Specific/Mining/ore_bag_holding.rsi
+    state: orebag_on
+  discipline: Shaft
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+#   - WeaponPlasmaCutterAdvanced
+   - OreBagOfHolding
+   - AdvancedMineralScannerEmpty
+   - MiningDrillDiamond
+  technologyPrerequisites:
+  - SalvageEquipment
+  position: 10,4
+
+- type: technology
+  id: Fulton
+  name: research-technology-fulton
+  icon:
+    sprite: Objects/Tools/fulton.rsi
+    state: extraction_point
+  discipline: Shaft
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - Fulton
+  - FultonBeacon
+  technologyPrerequisites:
+  - SalvageEquipment
+  position: 9,1
+
+- type: technology
+  id: Grappling
+  name: research-technology-grappling
+  icon:
+    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+    state: base
+  discipline: Shaft
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+   - WeaponGrapplingGun
+  technologyPrerequisites:
+  - SalvageEquipment
+  position: 9,3
+
+- type: technology
+  id: SpaceScanning
+  name: research-technology-space-scanning
+  icon:
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+  discipline: Shaft
+  tier: 1
+  cost: 5500
+  recipeUnlocks:
+#   - HandHeldMassScanner # Removed by Lavaland
+   - HandheldGPSBasic
+  technologyPrerequisites:
+  - SalvageEquipment
+  position: 9,2

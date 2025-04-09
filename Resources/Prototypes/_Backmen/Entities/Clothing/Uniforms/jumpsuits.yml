@@ -957,3 +957,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/inteq_medical.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/inteq_medical.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitWhiteCapTurtleneck
+  name: white captain's turtleneck
+  description: True white captain's turtleneck.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/capwhite.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/capwhite.rsi
