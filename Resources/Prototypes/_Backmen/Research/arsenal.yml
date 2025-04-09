@@ -233,7 +233,7 @@
 
 - type: technology
   id: EarthArmoriesBase
-  name: Технологическое древо Earth Armories
+  name: research-technology-Earth-Armories
   icon:
     sprite: Backmen/Structures/Decoration/banner.rsi
     state: banner
@@ -255,7 +255,7 @@
 
 - type: technology
   id: WeaponRifleBase
-  name: Основы длинноствольного вооружения
+  name: research-technology-base-rifle
   icon:
     sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeStraight
@@ -269,7 +269,7 @@
 
 - type: technology
   id: LightAutoWeaponBase
-  name: Базовый отвод пороховых газов
+  name: research-technology-auto-poroh
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     state: icon
@@ -284,7 +284,7 @@
 
 - type: technology
   id: AdvancedAutoWeaponBase
-  name: Продвинутый отвод пороховых газов
+  name: research-technology-advancedauto-poroh
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     state: icon
@@ -298,7 +298,7 @@
 
 - type: technology
   id: ReinforcedBarrelBase
-  name: Укрепленные стволы
+  name: research-technology-reinforcedbarrel
   icon:
     sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
     state: icon
@@ -312,7 +312,7 @@
 
 - type: technology
   id: EarthArmoriesPistols
-  name: Короткоствольное оружие Earth Armories
+  name: research-technology-EarthArmories-pistols
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
     state: icon
@@ -330,7 +330,7 @@
 
 - type: technology
   id: EarthArmoriesLightAutoWeapons
-  name: Оружие с свободным затвором Earth Armories
+  name: research-technology-EarthArmories-lightautoweapons
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
     state: icon
@@ -349,7 +349,7 @@
 
 - type: technology
   id: EarthArmoriesReinforcedWeapons
-  name: Укрепленное короткоствольное оружие Earth Armories
+  name: research-technology-EarthArmories-reinforcedweapons
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
     state: icon
@@ -367,7 +367,7 @@
 
 - type: technology
   id: EarthArmoriesRiflesWeapons
-  name: Длинноствольное оружие Earth Armories
+  name: research-technology-EarthArmories-rifles
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
     state: icon
@@ -384,7 +384,7 @@
 
 - type: technology
   id: EarthArmoriesRiflesHeavyWeapons
-  name: Тяжелое длинноствольное оружие Earth Armories
+  name: research-technology-EarthArmories-heavyrifles
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi
     state: icon
@@ -402,7 +402,7 @@
 
 - type: technology
   id: EarthArmoriesRiflesAutoWeapons
-  name: Автоматическое оружие Earth Armories
+  name: research-technology-EarthArmories-autorifles
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
     state: icon
@@ -423,7 +423,7 @@
 
 - type: technology
   id: EarthArmoriesRiflesAutoHeavyWeapons
-  name: Тяжелое полу-автоматическое оружие Earth Armories
+  name: research-technology-EarthArmories-heavyautorifles
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
     state: icon
