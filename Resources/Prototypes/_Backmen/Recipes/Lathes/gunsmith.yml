@@ -1,0 +1,178 @@
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponSniperRemington700
+  result: WeaponSniperRemington700
+  completetime: 90
+  materials:
+    Steel: 2500
+    Plasteel: 1500
+    Plastic: 3500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRifleSR127
+  result: WeaponRifleSR127
+  completetime: 120
+  materials:
+    Steel: 2500
+    Plasteel: 3000
+    Plastic: 3500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponPistolG22
+  result: WeaponPistolG22
+  completetime: 30
+  materials:
+    Steel: 1500
+    Plasteel: 1500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponPistolG23
+  result: WeaponPistolG23
+  completetime: 30
+  materials:
+    Steel: 1500
+    Plasteel: 1500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponPistolACP14
+  result: WeaponPistolACP14
+  completetime: 30
+  materials:
+    Steel: 3000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponPistolVP78
+  result: WeaponPistolVP78
+  completetime: 60
+  materials:
+    Steel: 6000
+    Plasteel: 500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRevolverR44
+  result: WeaponRevolverR44
+  completetime: 60
+  materials:
+    Steel: 4000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRevolverMatebaNew
+  result: WeaponRevolverMatebaNew
+  completetime: 60
+  materials:
+    Steel: 5000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponSubMachineGunMP5
+  result: WeaponSubMachineGunMP5
+  completetime: 30
+  materials:
+    Steel: 2000
+    Plasteel: 500
+    Plastic: 3500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponShotgun12
+  result: WeaponShotgun12
+  completetime: 60
+  materials:
+    Steel: 5000
+    Plasteel: 1000
+    Plastic: 2000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponShotgun39
+  result: WeaponShotgun39
+  completetime: 60
+  materials:
+    Steel: 5000
+    Plasteel: 3000
+    Plastic: 2000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponShotgunPaladin12
+  result: WeaponShotgunPaladin12
+  completetime: 60
+  materials:
+    Steel: 6000
+    Plasteel: 1000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRifleG36
+  result: WeaponRifleG36
+  completetime: 80
+  materials:
+    Steel: 5000
+    Plasteel: 3000
+    Plastic: 2000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRifleFamas
+  result: WeaponRifleFamas
+  completetime: 80
+  materials:
+    Steel: 5000
+    Plasteel: 3000
+    Plastic: 2000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRifleM28
+  result: WeaponRifleM28
+  completetime: 80
+  materials:
+    Steel: 3000
+    Plasteel: 5000
+    Plastic: 2000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRifleAR18
+  result: WeaponRifleAR18
+  completetime: 80
+  materials:
+    Steel: 5000
+    Plasteel: 3000
+    Plastic: 2000
+
+- type: latheRecipe #non-used
+  parent: BaseWeaponRecipe
+  id: WeaponRifleBR64
+  result: WeaponRifleBR64
+  completetime: 120
+  materials:
+    Steel: 5000
+    Plasteel: 9000
+    Plastic: 6000
+
+- type: latheRecipe #non-used
+  parent: BaseWeaponRecipe
+  id: WeaponLightMachineGunMG60
+  result: WeaponLightMachineGunMG60
+  completetime: 230
+  materials:
+    Steel: 9000
+    Plasteel: 12000
+    Plastic: 6000
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponPistolRivet
+  result: WeaponPistolRivet
+  completetime: 30
+  materials:
+    Steel: 1500
+    Plasteel: 1500

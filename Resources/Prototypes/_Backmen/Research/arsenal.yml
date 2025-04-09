@@ -230,3 +230,213 @@
   technologyPrerequisites:
   - RiotControlAdvanced
   position: 2,-1
+
+- type: technology
+  id: EarthArmoriesBase
+  name: Технологическое древо Earth Armories
+  icon:
+    sprite: Backmen/Structures/Decoration/banner.rsi
+    state: banner
+  discipline: Arsenal
+  tier: 1
+  cost: 1000
+  position: -1,-5
+
+- type: technology
+  id: WeaponPistolBase
+  name: Основы короткоствольного вооружения
+  discipline: Arsenal
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
+    state: icon
+  tier: 1
+  cost: 1000
+  position: 2,-5
+
+- type: technology
+  id: WeaponRifleBase
+  name: Основы длинноствольного вооружения
+  icon:
+    sprite: Structures/Piping/Atmospherics/pipe.rsi
+    state: pipeStraight
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  technologyPrerequisites:
+  - LightAutoWeaponBase
+  - WeaponPistolBase
+  position: 2,-6
+
+- type: technology
+  id: LightAutoWeaponBase
+  name: Базовый отвод пороховых газов
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - WeaponPistolRivet
+  technologyPrerequisites:
+  - WeaponPistolBase
+  position: 1,-5
+
+- type: technology
+  id: AdvancedAutoWeaponBase
+  name: Продвинутый отвод пороховых газов
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 30000
+  technologyPrerequisites:
+  - LightAutoWeaponBase
+  - WeaponRifleBase
+  position: 1,-6
+
+- type: technology
+  id: ReinforcedBarrelBase
+  name: Укрепленные стволы
+  icon:
+    sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 40000
+  technologyPrerequisites:
+  - AdvancedAutoWeaponBase
+  - WeaponRifleBase
+  position: 2,-7
+
+- type: technology
+  id: EarthArmoriesPistols
+  name: Короткоствольное оружие Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - WeaponPistolG22
+  - WeaponPistolG23
+  - WeaponPistolACP14
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponPistolBase
+  position: -2,-6
+
+- type: technology
+  id: EarthArmoriesLightAutoWeapons
+  name: Оружие с свободным затвором Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+  - WeaponPistolVP78
+  - WeaponSubMachineGunMP5
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponPistolBase
+  - LightAutoWeaponBase
+  - EarthArmoriesPistols
+  position: -2,-7
+
+- type: technology
+  id: EarthArmoriesReinforcedWeapons
+  name: Укрепленное короткоствольное оружие Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - WeaponRevolverMatebaNew
+  - WeaponRevolverR44
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponPistolBase
+  - ReinforcedBarrelBase
+  position: -0,-6
+
+- type: technology
+  id: EarthArmoriesRiflesWeapons
+  name: Длинноствольное оружие Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 25000
+  recipeUnlocks:
+  - WeaponSniperRemington700
+  - WeaponShotgunPaladin12
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  position: -1,-8
+
+- type: technology
+  id: EarthArmoriesRiflesHeavyWeapons
+  name: Тяжелое длинноствольное оружие Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - WeaponShotgun12
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  - ReinforcedBarrelBase
+  - EarthArmoriesRiflesWeapons
+  position: -0,-9
+
+- type: technology
+  id: EarthArmoriesRiflesAutoWeapons
+  name: Автоматическое оружие Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 55000
+  recipeUnlocks:
+  - WeaponRifleG36
+  - WeaponRifleFamas
+  - WeaponRifleAR18
+  - WeaponRifleM28
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  - AdvancedAutoWeaponBase
+  - EarthArmoriesRiflesWeapons
+  position: -1,-9
+
+- type: technology
+  id: EarthArmoriesRiflesAutoHeavyWeapons
+  name: Тяжелое полу-автоматическое оружие Earth Armories
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 99000
+  recipeUnlocks:
+  - WeaponShotgun39
+  - WeaponRifleSR127
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  - AdvancedAutoWeaponBase
+  - ReinforcedBarrelBase
+  - EarthArmoriesRiflesWeapons
+  position: -2,-9

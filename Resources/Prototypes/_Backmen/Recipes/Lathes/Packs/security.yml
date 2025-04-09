@@ -18,6 +18,7 @@
     - MagazinePacketRifle762x39
     - MagazinePacketRifle762UEG
     - MagazinePacketPistolACP
+    - MagazinePacketPistol9x17
     - MagazinePacketPistol57x28
     - MagazinePacketPistol50AE
     # Backmen-ammonation-end
@@ -56,3 +57,34 @@
   - SpeedLoaderMagnumUranium
   - BoxShotgunUranium
   - WeaponLaserPistol
+
+- type: latheRecipePack
+  id: BackmenGunsmithStatic
+  recipes:
+    - WeaponDisablerPractice
+
+- type: latheRecipePack
+  id: BackmenGunsmithDynamic
+  recipes:
+    # Earth Armories
+    - WeaponSniperRemington700
+    - WeaponRifleSR127
+    - WeaponPistolG22
+    - WeaponPistolG23
+    - WeaponPistolACP14
+    - WeaponPistolVP78
+    - WeaponRevolverR44
+    - WeaponRevolverMatebaNew
+    - WeaponSubMachineGunMP5
+    - WeaponShotgun12
+    - WeaponShotgun39
+    - WeaponShotgunPaladin12
+    - WeaponRifleG36
+    - WeaponRifleFamas
+    - WeaponRifleM28
+    - WeaponRifleAR18
+
+- type: latheRecipePack
+  id: BackmenEngineerWeapon
+  recipes:
+    - WeaponPistolRivet

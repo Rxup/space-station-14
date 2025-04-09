@@ -208,6 +208,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePacketPistol9x17
+  result: MagazinePacketPistol9x17
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePacketPistol57x28
   result: MagazinePacketPistol57x28
   materials:
