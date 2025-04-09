@@ -1,6 +1,7 @@
 research-technology-armorpiercingammo = Бронебойные боеприпасы
 research-technology-energy_barriers = Энергетические барьеры
 research-technology-Earth-Armories = Технологическое древо Earth Armories
+research-technology-pistol-base = Основы короткоствольного вооружения
 research-technology-base-rifle = Основы длинноствольного вооружения
 research-technology-auto-poroh = Базовый отвод пороховых газов
 research-technology-advancedauto-poroh = Продвинутый отвод пороховых газов

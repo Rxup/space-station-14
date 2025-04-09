@@ -244,7 +244,7 @@
 
 - type: technology
   id: WeaponPistolBase
-  name: Основы короткоствольного вооружения
+  name: research-technology-pistol-base
   discipline: Arsenal
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
