@@ -12,10 +12,10 @@
   - BoxShellTranquilizer
   - BoxBeanbag
   - BoxShotgunPractice
-  - MagazineBoxLightRiflePractice
+#  - MagazineBoxLightRiflePractice #Backmen-ammunation
   - MagazineBoxMagnumPractice
-  - MagazineBoxPistolPractice
-  - MagazineBoxRiflePractice
+#  - MagazineBoxPistolPractice #Backmen-ammunation
+#  - MagazineBoxRiflePractice #Backmen-ammunation
 #  technologyPrerequisites:
 #  - RiotControl
   position: -2,-2
@@ -43,6 +43,7 @@
   - MagazinePistol9x17
   - MagazinePistol57x28Extd
   - MagazineBoxHeavyRifle
+  - MagazinePacketPistol9x17
   - MagazinePacketRifle762x39
   - MagazinePacketRifle762UEG
   - MagazinePacketPistolACP
