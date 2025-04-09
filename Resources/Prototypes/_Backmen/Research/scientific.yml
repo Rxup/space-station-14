@@ -25,7 +25,6 @@
   recipeUnlocks:
   - AnomalyLocatorWide
   - WeaponPistolCHIMP
-  - SignallerAdvanced
   technologyPrerequisites:
   - AnomalousResearch
   position: 4,2
@@ -47,7 +46,7 @@
 #  - Security
 #  - Chemistry
 #  - Robotics
-  position: 3,2
+  position: 2,4
 
 - type: technology
   id: GravityManipulation
@@ -107,7 +106,9 @@
   recipeUnlocks:
   - ClothingShoesBootsMagSci
   - ClothingShoesBootsMoon
-  position: 2,2
+  technologyPrerequisites:
+  - GravityManipulation
+  position: 4,4
 
 - type: technology
   id: QuantumMagneticBoots
@@ -122,9 +123,8 @@
   - ClothingShoesBootsSpeed
   technologyPrerequisites:
   - MagneticBoots
-  - GravityManipulation
   - QuantumLeaping
-  position: 2,3
+  position: 5,4
 
 - type: technology
   id: PsionicCountermeasures
@@ -159,7 +159,7 @@
 #  - QSI
   technologyPrerequisites:
   - QuantumLeaping
-  position: 3,5
+  position: 2,3
 
 - type: technology
   id: BluespaceStorage
