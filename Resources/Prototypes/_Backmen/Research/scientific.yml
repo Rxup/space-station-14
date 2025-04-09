@@ -169,7 +169,7 @@
     state: holding
   discipline: Scientific
   tier: 1
-  cost: 20000
+  cost: 30000
   recipeUnlocks:
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding

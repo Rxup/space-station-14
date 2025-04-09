@@ -55,6 +55,7 @@
    - PowerCellMicroreactor
   technologyPrerequisites:
   - PowercellsAdvanced
+  - PowerGenerationAdvancedMachines
   position: 0,1
 
 #- type: technology
