@@ -88,7 +88,7 @@
     state: icon
   discipline: Scientific
   tier: 1
-  cost: 10000
+  cost: 12000
   recipeUnlocks:
   - DeviceQuantumSpinInverter
   technologyPrerequisites:
@@ -117,7 +117,7 @@
     state: icon
   discipline: Scientific
   tier: 1
-  cost: 15000
+  cost: 25000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
   technologyPrerequisites:
@@ -152,7 +152,7 @@
     state: icon
   discipline: Scientific
   tier: 3
-  cost: 15000
+  cost: 18000
   recipeUnlocks:
   - CoreSilver
   - HandTeleporter1
@@ -169,7 +169,7 @@
     state: holding
   discipline: Scientific
   tier: 1
-  cost: 30000
+  cost: 32000
   recipeUnlocks:
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
