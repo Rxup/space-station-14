@@ -1,80 +1,80 @@
 - type: startingGear
-  id: RXBZZ
+  id: CBURN
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: ClothingBackpackDuffelRXBZZ
+    back: ClothingBackpackDuffelCBURN
     shoes: ClothingShoesBootsMagArmy
-    mask: ClothingMaskGasRXBZZ
+    mask: ClothingMaskGasCBURN
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    id: idcoinRXBZZ
+    id: idcoinCBURN
     ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
-    pocket2: ClothingMedicalPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchCBURNFilled
 
 - type: startingGear
-  id: RXBZZMedic
+  id: CBURNMedic
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: ClothingBackpackDuffelRXBZZMedic
+    back: ClothingBackpackDuffelCBURNMedic
     shoes: ClothingShoesBootsMagArmy
-    mask: ClothingMaskGasRXBZZ
+    mask: ClothingMaskGasCBURN
     eyes: ClothingEyesHudMedical
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    id: idcoinRXBZZMedic
+    id: idcoinCBURNMedic
     ears: ClothingHeadsetEarthGov
     belt: ClothingBeltMedicalMarineRxbzz
-    pocket2: ClothingMedicalPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchCBURNFilled
 
 - type: startingGear
-  id: RXBZZFlamer
+  id: CBURNFlamer
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     shoes: ClothingShoesBootsMagArmy
     back: ClothingBackpackDuffelMilitary
-    mask: ClothingMaskGasRXBZZ
+    mask: ClothingMaskGasCBURN
     eyes: ClothingEyesVision
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    id: idcoinRXBZZSpecialist
+    id: idcoinCBURNSpecialist
     ears: ClothingHeadsetEarthGov
-    pocket2: ClothingMedicalPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchCBURNFilled
   storage:
     back:
     - ArmySetLoadoutsSpecialist
     - ArmySetLoadoutsSpecialistSecondary
 
 - type: startingGear
-  id: RXBZZLeader
+  id: CBURNLeader
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: ClothingBackpackDuffelRXBZZ
+    back: ClothingBackpackDuffelCBURN
     shoes: ClothingShoesBootsMagArmy
-    mask: ClothingMaskGasRXBZZ
+    mask: ClothingMaskGasCBURN
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURNLeader
-    id: idcoinRXBZZSergant
+    id: idcoinCBURNSergant
     head: ClothingHeadHatERTLeaderBeret
     ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
-    pocket2: ClothingMedicalPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchCBURNFilled
   storage:
     back:
     - RadioMTFHandheld
 
 - type: startingGear
-  id: RXBZZBlobLeader
-  parent: RXBZZLeader
+  id: CBURNBlobLeader
+  parent: CBURNLeader
   storage:
     back:
     - NukeCodePaperStation
     - PinpointerNuclear
     - PinpointerNuclearBomb
-    - PaperOrderRXBZZ
+    - PaperOrderCBURN

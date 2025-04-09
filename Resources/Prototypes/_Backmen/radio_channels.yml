@@ -1,12 +1,4 @@
 - type: radioChannel
-  id: CSH
-  name: bkm-radio-csh
-  keycode: 'в'
-  frequency: 8118
-  color: "#8f09b0"
-  longRange: true
-
-- type: radioChannel
   id: Fleet
   name: bkm-radio-fleet
   keycode: 'х'

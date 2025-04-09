@@ -159,7 +159,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: ClothingBackpackDuffelMilitary
-  id: ClothingBackpackDuffelRXBZZ
+  id: ClothingBackpackDuffelCBURN
   components:
     - type: Storage
       maxItemSize: Huge
@@ -167,7 +167,7 @@
       - 0,0,6,5
     - type: StorageFill
       contents:
-        - id: MedkitAdvancedRXBZZ
+        - id: MedkitAdvancedCBURN
         - id: WeaponDominatorNT
         - id: BoxFlare
         - id: ArmySetLoadouts
@@ -175,12 +175,12 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: ClothingBackpackDuffelMilitary
-  id: ClothingBackpackDuffelRXBZZMedic
+  id: ClothingBackpackDuffelCBURNMedic
   components:
     - type: StorageFill
       contents:
         - id: ArmySetLoadouts
-        - id: MedkitAdvancedRXBZZ
+        - id: MedkitAdvancedCBURN
         - id: BoxFlare
         - id: MedkitCombatFilled
         - id: MedkitCombatFilled
@@ -219,7 +219,7 @@
 - type: entity
   name: продвинутая аптечка стимуляторов
   parent: MedkitAdvanced
-  id: MedkitAdvancedRXBZZ
+  id: MedkitAdvancedCBURN
   components:
     - type: Item
       size: Normal

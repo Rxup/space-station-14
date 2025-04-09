@@ -44,30 +44,6 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterBaseLarge
-  id: ClothingOuterArmorIOG
-  name: "Костюм биологической защиты ИОГ"
-  description: "Костюм биологической защиты ИОГ 3 класса. На груди виден бронежилет."
-  components:
-  - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Caustic: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.60
-  - type: GroupExamine
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.4
-
-- type: entity
   parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ClothingOuterArmorKendoBogu
   name: bogu
@@ -295,7 +271,7 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.55

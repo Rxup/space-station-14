@@ -1,11 +1,11 @@
 ent-CentComPrivateOfficerPDA = КПК приватного офицера ЦК
     .desc = { "Черный с зелеными линиями, знак ходячей охраны бюрократии." }
-ent-IDCardCentComPrivateOfficer = Id карта охраны ЦК
+ent-IDCardCentComPrivateOfficer = ID карта охраны ЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 
 ent-CentcomPDABackmen = КПК Центком
     .desc = Светло-зеленый знак ходячей бюрократии.
-ent-IDCardCentComOfficialCorvax = Id карта ПЦК
+ent-IDCardCentComOfficialCorvax = ID карта ПЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 
 ent-CCOfficerPDA = КПК начальника безопасности ЦК
@@ -15,7 +15,7 @@ ent-IDCardCentComGavnaOfficerSesurity = Id Начальника Безопасн
 
 ent-CCOperatorPDA = КПК Оператора ЦК
     .desc = { ent-CentcomPDABackmen.desc }
-ent-IDCardCentComGavnaOperator = Id карта оператора ЦК
+ent-IDCardCentComGavnaOperator = ID карта оператора ЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 
 ent-CCCargoPDA = КПК грузчика ЦК
@@ -25,10 +25,10 @@ ent-IDCardCentComCargoBackmen = ID карта ЦК Грузчика
 
 ent-CentcomInternPDABackmen = КПК Ассистента ЦК
     .desc = { ent-CentcomPDABackmen.desc }
-ent-IDCardCentComIntern = Id карта Ассистента ЦК
+ent-IDCardCentComIntern = ID карта Ассистента ЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 
 ent-CCAdmiralPDA = КПК адмирала НТ
     .desc = { ent-CentcomPDABackmen.desc }
-ent-IDCardCentComAdmiral = Id карта Адмирала ЦК
+ent-IDCardCentComAdmiral = ID карта Адмирала ЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }

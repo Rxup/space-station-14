@@ -127,7 +127,7 @@
 - type: entity
   parent: AirlockBlueShield
   id: AirlockBlueShieldLocked
-  suffix: Blue Shield, Locked
+  suffix: Синий Щит, Закрыт
   components:
   - type: ContainerFill
     containers:
@@ -136,7 +136,7 @@
 - type: entity
   parent: AirlockBlueShieldGlass
   id: AirlockBlueShieldGlassLocked
-  suffix: Blue Shield, Locked
+  suffix: Синий Щит, Закрыт
   components:
   - type: ContainerFill
     containers:

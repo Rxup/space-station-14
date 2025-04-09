@@ -155,8 +155,8 @@
 - type: entity
   parent: [ClothingOuterCoatHoSTrench, AllowSuitStorageClothing]
   id: ClothingOuterCoatArmorBlueShield
-  name: броне-плащ Синего Щита
-  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  name: бронеплащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
@@ -175,8 +175,8 @@
 - type: entity
   parent: ClothingOuterCoatArmorBlueShield
   id: ClothingOuterCoatArmorBlueShieldAlt
-  name: броне-плащ Синего Щита
-  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  name: бронеплащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi

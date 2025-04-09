@@ -19,7 +19,7 @@
           stageBegin: 40
           stageCritical: 450
           stageTheEnd: 900
-          specForceTeam: RXBZZBlobBig
+          specForceTeam: CBURNBlobBig
         # backmen blob-config-end
         - type: StationJobs
           availableJobs:

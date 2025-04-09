@@ -29,15 +29,15 @@
     - id: SpawnMobHumanERTMedicalEVAV2_1
     - id: SpawnMobHumanERTJunitorEVAV2_1
 
-# BaseRXBZZ
+# BaseCBURN
 - type: specForceTeam
-  id: BaseRXBZZ
+  id: BaseCBURN
   abstract: true
-  specForceName: spec-forces-system-RXBZZ-name
+  specForceName: spec-forces-system-CBURN-name
   shuttlePath: Maps/Backmen/Shuttles/SpecForces/NT-CC-SRV-013.yml
   spawnMarker: MarkerSpecforce
-  announcementText: spec-forces-system-RXBZZ-annonce
-  announcementTitle: spec-forces-system-RXBZZ-title
+  announcementText: spec-forces-system-CBURN-annonce
+  announcementTitle: spec-forces-system-CBURN-title
   maxRolesAmount: 8
   raffleConfig:
     settings: short
@@ -116,44 +116,44 @@
   specForceSpawn:
     - id: SpawnMobHumanERTSecurityTay39
 
-# RXBZZ teams
+# CBURN teams
 - type: specForceTeam
-  id: RXBZZ
-  parent: BaseRXBZZ
+  id: CBURN
+  parent: BaseCBURN
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZLeader
-    - id: SpawnMobHumanRXBZZFlamer
-    - id: SpawnMobHumanRXBZZMedic
+    - id: SpawnMobHumanCBURNLeader
+    - id: SpawnMobHumanCBURNFlamer
+    - id: SpawnMobHumanCBURNMedic
   specForceSpawn:
-    - id: SpawnMobHumanRXBZZ
+    - id: SpawnMobHumanCBURN
 
 - type: specForceTeam
-  id: RXBZZBlobLow
-  parent: BaseRXBZZ
+  id: CBURNBlobLow
+  parent: BaseCBURN
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZBlobLeader
-    - id: SpawnMobHumanRXBZZFlamer
-    - id: SpawnMobHumanRXBZZ
+    - id: SpawnMobHumanCBURNBlobLeader
+    - id: SpawnMobHumanCBURNFlamer
+    - id: SpawnMobHumanCBURN
       amount: 2
 
 - type: specForceTeam
-  id: RXBZZBlobDefault
-  parent: BaseRXBZZ
+  id: CBURNBlobDefault
+  parent: BaseCBURN
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZBlobLeader
-    - id: SpawnMobHumanRXBZZFlamer
-    - id: SpawnMobHumanRXBZZMedic
-    - id: SpawnMobHumanRXBZZ
+    - id: SpawnMobHumanCBURNBlobLeader
+    - id: SpawnMobHumanCBURNFlamer
+    - id: SpawnMobHumanCBURNMedic
+    - id: SpawnMobHumanCBURN
       amount: 4
 
 - type: specForceTeam
-  id: RXBZZBlobBig
-  parent: BaseRXBZZ
+  id: CBURNBlobBig
+  parent: BaseCBURN
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZBlobLeader
-    - id: SpawnMobHumanRXBZZMedic
+    - id: SpawnMobHumanCBURNBlobLeader
+    - id: SpawnMobHumanCBURNMedic
       amount: 2
-    - id: SpawnMobHumanRXBZZFlamer
+    - id: SpawnMobHumanCBURNFlamer
       amount: 2
-    - id: SpawnMobHumanRXBZZ
+    - id: SpawnMobHumanCBURN
       amount: 4

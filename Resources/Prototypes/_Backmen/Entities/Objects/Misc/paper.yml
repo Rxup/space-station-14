@@ -11,18 +11,6 @@
     state: stamp-redorden
 
 - type: entity
-  name: Stamp CSH
-  parent: RubberStampRd
-  id: RubberStampCSH
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-CSH
-    stampState: "paper_stamp-rd"
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/bureaucracyCSH.rsi
-    state: stamp-CSH
-
-- type: entity
   name: passenger manifest
   parent: Paper
   id: PaperManifestPassenger
@@ -95,7 +83,7 @@
       - Разрешение на применение всего арсенала особого отдела, для выполнения задачи.
 
 - type: entity
-  id: PaperOrderRXBZZ
+  id: PaperOrderCBURN
   name: приказ
   parent: Paper
   components:

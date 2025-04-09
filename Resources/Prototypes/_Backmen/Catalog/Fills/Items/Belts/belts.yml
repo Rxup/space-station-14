@@ -109,7 +109,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: ClothingBeltBandolier
-  id: ClothingBeltBandolierRXBZZ
+  id: ClothingBeltBandolierCBURN
   components:
     - type: Storage
       grid:
@@ -146,7 +146,7 @@
         - 0,0,5,2
     - type: StorageFill
       contents:
-        - id: MedkitAdvancedRXBZZ
+        - id: MedkitAdvancedCBURN
         - id: WeaponDisabler
         - id: WeaponLauncherM81
         - id: GrenadeFrag
@@ -156,7 +156,7 @@
 
 - type: entity
   parent: ClothingMedicalPounch
-  id: ClothingMedicalPounchRXBZZFilled
+  id: ClothingMedicalPounchCBURNFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -171,7 +171,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZFilled
+  id: ClothingPounchCBURNFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -181,7 +181,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZEnergyFilled
+  id: ClothingPounchCBURNEnergyFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -191,7 +191,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZBigEnergyFilled
+  id: ClothingPounchCBURNBigEnergyFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -201,7 +201,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZSRFilled
+  id: ClothingPounchCBURNSRFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -211,7 +211,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZPPFilled
+  id: ClothingPounchCBURNPPFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -221,7 +221,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZRifleFilled
+  id: ClothingPounchCBURNRifleFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -231,7 +231,7 @@
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing
-  id: ClothingBeltMilitaryWebbingRXBZZGrenadeFilled
+  id: ClothingBeltMilitaryWebbingCBURNGrenadeFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
@@ -263,7 +263,7 @@
 
 - type: entity
   parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZSpecialistFilled
+  id: ClothingPounchCBURNSpecialistFilled
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill

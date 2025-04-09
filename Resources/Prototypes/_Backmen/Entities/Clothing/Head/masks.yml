@@ -203,7 +203,7 @@
 
 - type: entity
   parent: [ClothingMaskGasExplorer,ShowSecurityIcons]
-  id: ClothingMaskGasRXBZZ
+  id: ClothingMaskGasCBURN
   name: армейский противогаз
   description: Противогаз армейского класса, который можно подключить к дыхательному баллону.
   components:

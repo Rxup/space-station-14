@@ -88,36 +88,6 @@
     jobTitle: job-title-mobile_group_employee
 
 - type: entity
-  parent: CentcomIDCardDeathsquad
-  id: IdCardIOG
-  name: ID карта ИОГ
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/id_cards.rsi
-    layers:
-    - state: black
-    - state: idcardiog
-  - type: Item
-    heldPrefix: black
-  - type: IdCard
-    jobTitle: job-title-research_group_employee
-
-- type: entity
-  parent: CentcomIDCardDeathsquad
-  id: IdCardRO
-  name: ID карта RO
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/id_cards.rsi
-    layers:
-    - state: black
-    - state: idcardro
-  - type: Item
-    heldPrefix: black
-  - type: IdCard
-    jobTitle: job-title-red_order_agent
-
-- type: entity
   parent: IDCardStandard
   id: DeliveryIDCard
   name: ID карта доставщика
@@ -163,25 +133,6 @@
         - CentCom
     - type: IdCard
       jobTitle: job-title-opz_officer
-
-- type: entity
-  name: ID карта Броне-Пехотного Оперативника Спецвойск
-  id: DedSquadronGavnaIDCardMarauder
-  parent: DedSquadronGavnaIDCard
-  components:
-  - type: IdCard
-    jobTitle: job-title-omicron_3
-    fullName: Броне-Пехотный Автономный-Бот Спецвойск
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  parent: OBRGavnaIDCard
-  id: OBRGavnaIDCard2
-  name: ID карта пехотинца ОБР
-  components:
-  - type: IdCard
-    jobTitle: job-title-epsilon_11
-    fullName: Пехотинец
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -316,7 +267,7 @@
 - type: entity
   parent: CentcomIDCard
   id: DedSquadronLeaderGavnaIDCard
-  name: ID карта Коммандера Специальных Операций
+  name: ID карта коммандера специальных операций
   components:
   - type: Sprite
     layers:
@@ -369,7 +320,7 @@
 
 - type: entity
   parent: CentcomIDCardDeathsquad
-  id: IdCardRXBZZLeader
+  id: IdCardCBURNLeader
   name: ID card leader CBURN
   categories: [ HideSpawnMenu ]
   components:
@@ -394,8 +345,8 @@
 
 - type: entity
   parent: CentcomIDCardDeathsquad
-  id: IdCardRXBZZ
-  name: ID карта Оперативника РХБЗЗ
+  id: IdCardCBURN
+  name: ID карта оперативника РХБЗЗ
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -529,31 +480,9 @@
     - CentralCommand
 
 - type: entity
-  parent: CentcomIDCardDeathsquad
-  id: ChronoGavnaIDCard
-  name: Id карта Chrono Legionnaire
-  components:
-  - type: Sprite
-    layers:
-    - state: syndie
-    - state: idcaptain
-    - state: idcentcom
-  - type: Item
-    heldPrefix: blue
-  - type: IdCard
-    jobTitle: job-title-chrono_legionnaire
-    fullName: Legionnaire
-    jobIcon: JobIconDeathSquadron
-  - type: Access
-    groups:
-    - MTFLeader
-    - AllAccess
-    - CentCom
-
-- type: entity
   parent: IDCardStandard
   id: BlueShieldIDCard
-  name: Blue Shield ID Card
+  name: ID карта синего щита
   components:
     - type: Sprite
       layers:

@@ -188,7 +188,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: JokerSuit
-  name: Костюм Джокера
+  name: костюм Джокера
   description: Тот самый костюм который носил преступник под псевдонимом Джокер
   components:
   - type: Sprite
@@ -199,8 +199,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: AgentfoursevenSuit
-  name: Деловой костюм агента синдиката
-  description: Костюм сделанный по специальному заказу, ранее пренадлежал агенту 47
+  name: деловой костюм агента синдиката
+  description: Костюм сделанный по специальному заказу. Для самых крутых говнюков.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/syndicatetactic.rsi
@@ -210,7 +210,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: MagistratUniformSuit
-  name: Костюм магистрата
+  name: костюм магистрата
   description: Увольте пару срочников!
   components:
   - type: Sprite
@@ -221,7 +221,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: BlueshieldUniformSuit
-  name: Костюм Блюшилд
+  name: костюм офицера Синего Щита
   description: Носитель данного костюма обязан защищать глав.
   components:
   - type: Sprite
@@ -232,8 +232,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCentcomVeryOfficial
-  name: Официальная рубашка сотрудника ЦК
-  description: Вот прелесть карпоративной жизни, стильные костюмы в тему!
+  name: официальная рубашка сотрудника ЦК
+  description: Вот прелесть корпоративной жизни, стильные костюмы в тему!
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-official.rsi
@@ -243,7 +243,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCentcomIntern
-  name: Форма ассистента ЦК
+  name: форма ассистента ЦК
   description: Носитель данного костюма обязан принести чащечку кофе.
   components:
   - type: Sprite

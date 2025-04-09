@@ -1,12 +1,12 @@
-ent-OBRIDCard = Id карта пехотинца ОБР
+ent-OBRIDCard = ID карта пехотинца ОБР
     .desc = { ent-CentcomIDCard.desc }
-ent-OBRMedicIDCard = Id карта медика ОБР
+ent-OBRMedicIDCard = ID карта медика ОБР
     .desc = { ent-OBRIDCard.desc }
-ent-OBREngineerIDCard = Id карта инженера ОБР
+ent-OBREngineerIDCard = ID карта инженера ОБР
     .desc = { ent-OBRIDCard.desc }
-ent-OBRJunitorIDCard = Id карта уборщика ОБР
+ent-OBRJunitorIDCard = ID карта уборщика ОБР
     .desc = { ent-OBRIDCard.desc }
-ent-OBRLeaderIDCard = Id карта командира ОБР
+ent-OBRLeaderIDCard = ID карта командира ОБР
     .desc = { ent-CentcomIDCard.desc }
 ent-MobHumanERTLeaderEVAV2_1 = лидер ОБР
     .suffix = corvax

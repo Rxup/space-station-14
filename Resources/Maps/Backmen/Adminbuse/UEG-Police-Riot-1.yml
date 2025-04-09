@@ -4047,7 +4047,7 @@ entities:
     - type: Transform
       pos: 2.6038785,-8.448662
       parent: 1
-- proto: MedkitAdvancedRXBZZ
+- proto: MedkitAdvancedCBURN
   entities:
   - uid: 359
     components:

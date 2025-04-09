@@ -1,7 +1,7 @@
 - type: loadoutGroup
-  id: Werx
+  id: UnderwearUpper
   name: loadout-group-werx
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
 #футболки/рубашки
@@ -108,9 +108,9 @@
 #---------------------------------------#
 
 - type: loadoutGroup
-  id: Niz
+  id: UnderwearBottom
   name: loadout-group-niz
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
 #муж
@@ -166,7 +166,7 @@
 - type: loadoutGroup
   id: Socks
   name: loadout-group-socks
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
   - ClothingUnderSocks_knee

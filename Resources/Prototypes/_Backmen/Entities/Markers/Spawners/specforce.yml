@@ -88,54 +88,54 @@
       prototype: MobHumanSFOfficer
 
 - type: entity
-  id: SpawnMobHumanRXBZZ
+  id: SpawnMobHumanCBURN
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
   name: РХБЗЗ Опер
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanRXBZZ
+      prototype: MobHumanCBURN
 
 - type: entity
-  id: SpawnMobHumanRXBZZLeader
+  id: SpawnMobHumanCBURNLeader
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
   name: РХБЗЗ лидер
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanRXBZZLeader
+      prototype: MobHumanCBURNLeader
 
 - type: entity
-  id: SpawnMobHumanRXBZZBlobLeader
+  id: SpawnMobHumanCBURNBlobLeader
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
   name: РХБЗЗ лидер
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanRXBZZBlobLeader
+      prototype: MobHumanCBURNBlobLeader
 
 - type: entity
-  id: SpawnMobHumanRXBZZFlamer
+  id: SpawnMobHumanCBURNFlamer
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
   name: РХБЗЗ специалист
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanRXBZZFlamer
+      prototype: MobHumanCBURNFlamer
 
 - type: entity
-  id: SpawnMobHumanRXBZZMedic
+  id: SpawnMobHumanCBURNMedic
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
   name: РХБЗЗ специалист
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanRXBZZMedic
+      prototype: MobHumanCBURNMedic
 
 - type: entity
   id: SpawnMobHumanERTOperativeAlpha1

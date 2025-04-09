@@ -363,7 +363,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBlueShieldCap
   name: фуражка Синего Щита
-  description: Фуражка офицера Синего Щита, имеет эмблему Blue Shield Security.
+  description: Фуражка офицера Синего Щита с присущей ему эмблемой.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Hats/bluecap.rsi

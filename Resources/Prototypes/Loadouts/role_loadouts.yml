@@ -2,8 +2,8 @@
 - type: roleLoadout
   id: JobCaptain
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - CaptainHead
   - CaptainNeck
@@ -20,8 +20,8 @@
 - type: roleLoadout
   id: JobHeadOfPersonnel
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - HoPHead
@@ -47,8 +47,8 @@
 - type: roleLoadout
   id: JobPassenger
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - PassengerJumpsuit
@@ -69,8 +69,8 @@
 - type: roleLoadout
   id: JobBartender
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - BartenderHead
@@ -88,8 +88,8 @@
 - type: roleLoadout
   id: JobServiceWorker
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - BartenderJumpsuit
@@ -105,8 +105,8 @@
 - type: roleLoadout
   id: JobChef
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ChefHead
@@ -125,8 +125,8 @@
 - type: roleLoadout
   id: JobLibrarian
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - LibrarianJumpsuit
@@ -142,8 +142,8 @@
 - type: roleLoadout
   id: JobLawyer
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - LawyerNeck
@@ -160,8 +160,8 @@
 - type: roleLoadout
   id: JobChaplain
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ChaplainHead
@@ -180,8 +180,8 @@
 - type: roleLoadout
   id: JobJanitor
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - JanitorHead
@@ -200,8 +200,8 @@
 - type: roleLoadout
   id: JobBotanist
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - BotanistHead
@@ -218,8 +218,8 @@
 - type: roleLoadout
   id: JobClown
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ClownHead
@@ -236,8 +236,8 @@
 - type: roleLoadout
   id: JobMime
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - MimeHead
@@ -255,8 +255,8 @@
 - type: roleLoadout
   id: JobMusician
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - MusicianJumpsuit
@@ -274,8 +274,8 @@
 - type: roleLoadout
   id: JobQuartermaster
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - QuartermasterHead
@@ -295,8 +295,8 @@
 - type: roleLoadout
   id: JobCargoTechnician
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - CargoTechnicianHead
@@ -314,8 +314,8 @@
 - type: roleLoadout
   id: JobSalvageSpecialist
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - SalvageSpecialistBackpack
@@ -332,8 +332,8 @@
 - type: roleLoadout
   id: JobChiefEngineer
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ChiefEngineerHead
@@ -352,8 +352,8 @@
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
@@ -368,8 +368,8 @@
 - type: roleLoadout
   id: JobStationEngineer
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - StationEngineerHead
@@ -388,8 +388,8 @@
 - type: roleLoadout
   id: JobAtmosphericTechnician
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - AtmosphericTechnicianJumpsuit
@@ -406,8 +406,8 @@
 - type: roleLoadout
   id: JobResearchDirector
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ResearchDirectorHead
@@ -428,8 +428,8 @@
 - type: roleLoadout
   id: JobScientist
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ScientistHead
@@ -450,8 +450,8 @@
 - type: roleLoadout
   id: JobResearchAssistant
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ResearchAssistantJumpsuit
@@ -467,8 +467,8 @@
 - type: roleLoadout
   id: JobHeadOfSecurity
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - HeadofSecurityHead
   - HeadofSecurityNeck
@@ -490,8 +490,8 @@
 - type: roleLoadout
   id: JobWarden
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - WardenHead
   - WardenJumpsuit
@@ -511,8 +511,8 @@
 - type: roleLoadout
   id: JobSecurityOfficer
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - SecurityHead
   - SecurityJumpsuit
@@ -533,8 +533,8 @@
 - type: roleLoadout
   id: JobDetective
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - DetectiveHead
@@ -554,8 +554,8 @@
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - SecurityCadetJumpsuit
   - SecurityBackpack
@@ -569,8 +569,8 @@
 - type: roleLoadout
   id: JobChiefMedicalOfficer
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ChiefMedicalOfficerHead
@@ -592,8 +592,8 @@
 - type: roleLoadout
   id: JobMedicalDoctor
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - MedicalDoctorHead
@@ -614,8 +614,8 @@
 - type: roleLoadout
   id: JobMedicalIntern
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - MedicalInternJumpsuit
@@ -630,8 +630,8 @@
 - type: roleLoadout
   id: JobChemist
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - MedicalMask
@@ -649,8 +649,8 @@
 - type: roleLoadout
   id: JobParamedic
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ParamedicHead
@@ -671,8 +671,8 @@
 - type: roleLoadout
   id: JobZookeeper
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - CommonBackpack
@@ -686,8 +686,8 @@
 - type: roleLoadout
   id: JobReporter
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - ReporterJumpsuit
@@ -702,8 +702,8 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - PsychologistJumpsuit #backmen
   - GroupTankHarness
@@ -720,8 +720,8 @@
 - type: roleLoadout
   id: JobBoxer
   groups:
-  - Werx #backmen
-  - Niz #backmen
+  - UnderwearUpper #backmen
+  - UnderwearBottom #backmen
   - Socks #backmen
   - GroupTankHarness
   - BoxerJumpsuit

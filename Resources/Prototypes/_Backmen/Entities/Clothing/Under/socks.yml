@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  description: "Did you know these things come in different colors??"
+  description: "Знаете ли вы, что эти штуки бывают разных цветов??"
   parent: Clothing
   id: ClothingUnderSocksBase
   components:
@@ -17,8 +17,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderAssBlastUSA_knee
-  name: american flag knee-highs
-  description: "A pair of American Flag knee-highs, perfect for showing off your patriotic side."
+  name: "гольфы с флагом США"
+  description: "Пара гольфов с флагом США, идеально подходит для демонстрации патриотизма."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -27,15 +27,15 @@
       sprite: Backmen/Clothing/Under/socks.rsi
       clothingVisuals:
         socks:
-          - state: assblastusa_knee
+        - state: assblastusa_knee
     - type: TemperatureProtection
       heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderAssBlastUSA_thigh
-  name: american flag thigh-highs
-  description: "A pair of American Flag thigh-highs, ready to wave the flag in style."
+  name: "чулки с флагом США"
+  description: "Пара чулок с флагом США — стильно и патриотично."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -51,8 +51,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderBee_knee
-  name: bee knee-highs
-  description: "A pair of bee knee-highs, adding some buzz to your style."
+  name: "пчелиные гольфы"
+  description: "Пара пчелиных гольфов, добавляющих жужжжжжащий стиль."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -68,8 +68,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderBee_norm
-  name: bee socks
-  description: "A pair of bee themed socks, perfect for making a statement with your footwear."
+  name: "пчелиные носки"
+  description: "Пчелиные носки, привлекающие внимание к вашей зззззавораживающей обуви."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -83,8 +83,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderBee_thigh
-  name: bee thigh-highs
-  description: "A pair of bee thigh-highs, sure to draw attention with their unique design."
+  name: "пчелиные чулки"
+  description: "Пчелиные чулки с уникальным диззззззайном, привлекающим внимание."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -100,8 +100,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCandyCaneg_knee
-  name: green striped knee-highs
-  description: "A pair of green striped knee-highs, perfect for spreading holiday cheer."
+  name: "зелёные полосатые гольфы"
+  description: "Пара зелёных полосатых гольфов для праздничного настроения."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -117,8 +117,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCandyCaneg_norm
-  name: green striped socks
-  description: "A pair of green striped socks, perfect for spreading holiday cheer one step at a time."
+  name: "зелёные полосатые носки"
+  description: "Зелёные полосатые носки для создания новогоднего уюта шаг за шагом."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -132,8 +132,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCandyCaneg_thigh
-  name: green striped thigh-highs
-  description: "A pair of green striped thigh-highs, perfect for spreading holiday cheer from your knees to your hips."
+  name: "зелёные полосатые чулки"
+  description: "Зелёные полосатые чулки, поднимающие праздничное настроение до самых бёдер."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -149,8 +149,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCandyCaner_knee
-  name: red striped knee-highs
-  description: "A pair of red striped knee-highs, perfect for getting in the holiday spirit."
+  name: "красные полосатые гольфы"
+  description: "Красные полосатые гольфы для новогоднего веселья."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -166,8 +166,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCandyCaner_norm
-  name: red striped socks
-  description: "A pair of candy cane socks, adding some sweetness to your step."
+  name: "красные полосатые носки"
+  description: "Носки в стиле леденца, добавляющие сладости в каждый шаг."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -181,8 +181,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCandyCaner_thigh
-  name: red striped thigh-highs
-  description: "A pair of red striped thigh-highs, perfect for striding with confidence and sass."
+  name: "красные полосатые чулки"
+  description: "Красные полосатые чулки — уверенность и стиль в каждом шаге."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -198,8 +198,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderChristmas_knee
-  name: christmas knee-highs
-  description: "A pair of festive knee-highs, perfect for spreading holiday cheer all year round."
+  name: "рождественские гольфы"
+  description: "Праздничные гольфы, создающие новогоднее настроение круглый год."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -215,8 +215,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderChristmas_norm
-  name: christmas socks
-  description: "A pair of cozy Christmas socks, perfect for wrapping your feet up in holiday warmth."
+  name: "рождественские носки"
+  description: "Уютные рождественские носки, согревающие ваши ноги праздничным теплом."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -230,8 +230,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderChristmas_thigh
-  name: christmas thigh-highs
-  description: "A pair of merry thigh-highs, perfect for getting in the holiday spirit from the toes up."
+  name: "рождественские чулки"
+  description: "Весёлые чулки для полного погружения в новогоднюю атмосферу."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -247,8 +247,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCommie_knee
-  name: commie knee-highs
-  description: "A pair of commie knee-highs, perfect for making a political statement."
+  name: "комми гольфы"
+  description: "Коммунистические гольфы — для яркого политического манифеста."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -264,8 +264,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderCommie_thigh
-  name: commie thigh-highs
-  description: "A pair of commie thigh-highs, perfect for showing your revolutionary spirit."
+  name: "комми чулки"
+  description: "Коммунистические чулки, отражающие ваш революционный дух."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -278,25 +278,25 @@
     - type: TemperatureProtection
       heatingCoefficient: 0.85
 
-# - type: entity
-#   parent: ClothingUnderSocksBase
-#   id: ClothingUnderFishnet
-#   name: fishnet
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/socks.rsi
-#       state: fishnet-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/socks.rsi
-#       clothingVisuals:
-#         socks:
-#           - state: fishnet
+- type: entity
+  parent: ClothingUnderSocksBase
+  id: ClothingUnderFishnet
+  name: "колготки в сеточку"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/socks.rsi
+      state: fishnet-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/socks.rsi
+      clothingVisuals:
+        socks:
+          - state: fishnet
 
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderGarter
-  name: garter
-  description: "A versatile garter, perfect for getting a leg up on style."
+  name: "подвязка"
+  description: "Универсальная подвязка, идеально подходящая для придания стильного вида."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -312,8 +312,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderRainbow_knee
-  name: rainbow knee-highs
-  description: "A pair of rainbow knee-highs, perfect for brightening up a dull day."
+  name: "радужные гольфы"
+  description: "Пара радужных гольфов, которые идеально подойдут для того, чтобы скрасить скучный день.."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -329,8 +329,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderRainbow_thigh
-  name: rainbow thigh-highs
-  description: "A pair of rainbow thigh-highs, perfect for showing off a little bit of color."
+  name: "радужные чулки"
+  description: "Пара радужных чулок, идеально подходящих для демонстрации ярких красок."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -346,8 +346,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderSocks_knee
-  name: knee-highs
-  description: "A pair of knee-highs, perfect for keeping your legs warm and looking stylish."
+  name: "гольфы"
+  description: "Пара гольф, которые отлично сохранят ваши ноги в тепле и позволят вам выглядеть стильно."
   suffix: uncolored
   components:
     - type: Sprite
@@ -365,8 +365,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderSocks_norm
-  name: socks
-  description: "A pair of basic socks, perfect for when you need to blend in with the crowd."
+  name: "носки"
+  description: "Пара простых носков, идеально подходящих для случаев, когда вам нужно слиться с толпой."
   suffix: uncolored
   components:
     - type: Sprite
@@ -381,8 +381,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderSocks_short
-  name: socks
-  description: "A pair of short socks, perfect for when you want to show off your footwear."
+  name: "носки"
+  description: "Пара коротких носков, идеально подходящих для случаев, когда вы хотите продемонстрировать свою обувь.."
   suffix: uncolored
   components:
     - type: Sprite
@@ -399,8 +399,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderSocks_thigh
-  name: thigh-highs
-  description: "A pair of thigh-highs, perfect for when you want to add a pop of color to your outfit."
+  name: "чулки"
+  description: "Пара чулок, идеально подходящих для случаев, когда вы хотите добавить яркости в свой образ."
   suffix: uncolored
   components:
     - type: Sprite
@@ -417,8 +417,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_blue
-  name: blue thigh-highs
-  description: "A pair of blue thigh-highs, perfect for a touch of sophistication."
+  name: "синие чулки"
+  description: "Пара синих чулок, идеально подходящих для создания изысканного образа."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -434,8 +434,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_cyan
-  name: cyan thigh-highs
-  description: "A pair of cyan thigh-highs, perfect for standing out in a sea of black."
+  name: "голубые чулки"
+  description: "Пара чулок голубого цвета, которые идеально выделятся на фоне черного моря."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -451,8 +451,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_dpink
-  name: dark pink thigh-highs
-  description: "A pair of dark pink thigh-highs, perfect for a night out on the town."
+  name: "темно-розовые чулки"
+  description: "Пара темно-розовых чулок, идеально подходящих для вечерних прогулок по городу."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -468,8 +468,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_green
-  name: green thigh-highs
-  description: "A pair of green thigh-highs, perfect for making everyone green with envy."
+  name: "зеленые чулки"
+  description: "Пара зеленых чулок, которые идеально подойдут для того, чтобы заставить всех позеленеть от зависти."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -486,8 +486,8 @@
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_lpink
   suffix: light pink thigh-highs
-  name: coder socks
-  description: "A pair of code-fix socks, perfect for geeks on the go."
+  name: "кодерские носки"
+  description: "Пара носков для исправления кода, идеально подходящих для мобильных гиков."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -503,8 +503,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_orange
-  name: orange thigh-highs
-  description: "A pair of colorful thigh-highs, perfect for the daring fashionista."
+  name: "оранжевые чулки"
+  description: "Пара ярких чулок, идеально подходящих для смелых модников."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -520,8 +520,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_purple
-  name: purple thigh-highs
-  description: "A pair of royal thigh-highs, perfect for feeling like royalty with every step."
+  name: "фиолетовые чулки"
+  description: "Пара королевских чулок, в которых можно чувствовать себя королевской особой при каждом шаге."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -537,8 +537,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStockings_yellow
-  name: yellow thigh-highs
-  description: "A pair of rainbow thigh-highs, perfect for bringing light wherever you go."
+  name: "жёлтые чулки"
+  description: "Пара жёлтых чулок, которые идеально подойдут для того, чтобы наполнить светом все ваше пространство."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -554,8 +554,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStriped_knee
-  name: striped knee-highs
-  description: "A pair of sailor stripe socks, perfect for the sailor in all of us."
+  name: "полосатые гольфы"
+  description: "Пара полосатых носков в матросском стиле, идеально подходящих для моряка, живущего в каждом из нас."
   suffix: uncolored
   components:
     - type: Sprite
@@ -572,8 +572,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderStriped_thigh
-  name: striped thigh-highs
-  description: "A pair of nautical and sassy stripe socks, perfect for the fashionista."
+  name: "полосатые чулки"
+  description: "Пара носков в морскую и дерзкую полоску, идеальная для модников."
   suffix: uncolored
   components:
     - type: Sprite
@@ -590,8 +590,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderThin_knee
-  name: thin knee-highs
-  description: "A pair of minimalist knee-highs, perfect for a touch of style without the bulk."
+  name: "тонкие гольфы"
+  description: "Пара минималистичных гольфов, идеально подходящих для создания стильного образа без излишнего объема."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -607,8 +607,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderThin_thigh
-  name: thin thigh-highs
-  description: "A pair of minimalist thigh-highs, perfect for a touch of style without the bulk, up higher."
+  name: "тонкие чулки"
+  description: "Пара минималистичных чулок, идеально подходящих для создания стильного образа без излишнего объема."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -624,8 +624,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderUK_knee
-  name: uk knee-highs
-  description: "A pair of Union Jack knee-highs, perfect for the Anglophile."
+  name: "королевские гольфы"
+  description: "Пара гольф с принтом «Юнион Джек» — идеальный вариант для англофилов."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi
@@ -641,8 +641,8 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderUK_thigh
-  name: uk thigh-highs
-  description: "A pair of Union Jack thigh-highs, perfect for the Anglophile who wants to show their love for Britain, head to toe."
+  name: "королевские чулки"
+  description: "Пара чулок с изображением британского флага, идеально подходящих для англофилов, желающих продемонстрировать свою любовь к Великобритании с головы до ног."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/socks.rsi

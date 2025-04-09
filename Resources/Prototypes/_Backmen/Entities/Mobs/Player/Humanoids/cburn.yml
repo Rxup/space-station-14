@@ -1,7 +1,7 @@
 - type: entity
   name:  РХБЗЗ Base
   parent: MobHuman
-  id: MobHumanRXBZZBase
+  id: MobHumanCBURNBase
   categories: [ HideSpawnMenu ]
   components:
   - type: GhostTakeoverAvailable
@@ -19,7 +19,7 @@
     name: Оперативник РХБЗЗ
   - type: RandomMetadata
     nameSegments:
-    - NameSpetsRXBZZ
+    - NameSpetsCBURN
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
@@ -38,9 +38,9 @@
 
 - type: entity
   name:  РХБЗЗ Реагент
-  parent: MobHumanRXBZZBase
+  parent: MobHumanCBURNBase
   suffix: ready
-  id: MobHumanRXBZZ
+  id: MobHumanCBURN
   components:
   - type: GhostRole
     name: Оперативник РХБЗЗ ОПЗ
@@ -54,13 +54,13 @@
       - !type:OverallPlaytimeRequirement
         time: 36000
   - type: Loadout
-    prototypes: [RXBZZ]
+    prototypes: [CBURN]
 
 - type: entity
   name:  РХБЗЗ Медик
-  parent: MobHumanRXBZZBase
+  parent: MobHumanCBURNBase
   suffix: ready
-  id: MobHumanRXBZZMedic
+  id: MobHumanCBURNMedic
   components:
   - type: GhostRole
     name: Медик РХБЗЗ
@@ -77,13 +77,13 @@
         department: Medical
         time: 18000
   - type: Loadout
-    prototypes: [RXBZZMedic]
+    prototypes: [CBURNMedic]
 
 - type: entity
   name:  РХБЗЗ Реагент Специалист
-  parent: MobHumanRXBZZBase
+  parent: MobHumanCBURNBase
   suffix: ready
-  id: MobHumanRXBZZFlamer
+  id: MobHumanCBURNFlamer
   components:
   - type: GhostRole
     name: Специалист РХБЗЗ
@@ -97,13 +97,13 @@
       - !type:OverallPlaytimeRequirement
         time: 36000
   - type: Loadout
-    prototypes: [RXBZZFlamer]
+    prototypes: [CBURNFlamer]
 
 - type: entity
   name:  РХБЗЗ Лидер
-  parent: MobHumanRXBZZBase
+  parent: MobHumanCBURNBase
   suffix: CentCom
-  id: MobHumanRXBZZLeader
+  id: MobHumanCBURNLeader
   components:
   - type: GhostRole
     name: Лидер РХБЗЗ
@@ -120,7 +120,7 @@
         department: Command
         time: 18000
   - type: Loadout
-    prototypes: [RXBZZLeader]
+    prototypes: [CBURNLeader]
   - type: RandomMetadata
     nameSegments:
     - NameSpetsCommander
@@ -128,9 +128,9 @@
 
 - type: entity
   name:  РХБЗЗ Лидер
-  parent: MobHumanRXBZZLeader
+  parent: MobHumanCBURNLeader
   suffix: Blob
-  id: MobHumanRXBZZBlobLeader
+  id: MobHumanCBURNBlobLeader
   components:
   - type: Loadout
-    prototypes: [RXBZZBlobLeader]
+    prototypes: [CBURNBlobLeader]

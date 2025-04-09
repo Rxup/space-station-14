@@ -12,7 +12,6 @@ bkm-radio-group9 = Группа 9
 
 
 
-bkm-radio-csh = CSH
 bkm-radio-fleet = Флот
 
 bkm-radio-flesh = Культ Плоти

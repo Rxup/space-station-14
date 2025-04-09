@@ -130,8 +130,8 @@
 - type: entity
   parent: BasePDA
   id: BlueShieldPDA
-  name: Blue Shield PDA
-  description: Standart PDA of Blue Shield officers.
+  name: КПК синего щита
+  description: Стандартный КПК для офицеров Синего Щита.
   components:
     - type: Sprite
       sprite: Backmen/Objects/Devices/pda.rsi

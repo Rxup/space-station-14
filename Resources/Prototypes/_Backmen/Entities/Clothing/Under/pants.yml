@@ -148,19 +148,19 @@
         underpants:
           - state: briefs
 
-# - type: entity
-#   parent: ClothingUnderPantsBase
-#   id: ClothingUnderfishnet_lower
-#   name: fishnet lower underwear
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       state: fishnet_lower-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       clothingVisuals:
-#         underpants:
-#           - state: fishnet_lower
+- type: entity
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderfishnet_lower
+  name: "нижнее белье в сеточку"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      state: fishnet_lower-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      clothingVisuals:
+        underpants:
+          - state: fishnet_lower
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -182,8 +182,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderljonb
-  name: long john pants
-  description: "A pair of Long John pants, to stay warm in these classic long underwear."
+  name: "брюки лонг джон"
+  description: "Пара брюк Long John, чтобы согреться в этом классическом длинном нижнем белье."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -258,19 +258,19 @@
         underpants:
           - state: panties_commie
 
-# - type: entity
-#   parent: ClothingUnderPantsBase
-#   id: ClothingUnderpanties_kinky
-#   name: kinky panties
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       state: panties_kinky-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       clothingVisuals:
-#         underpants:
-#           - state: panties_kinky
+- type: entity
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderpanties_kinky
+  name: "развратные трусики"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      state: panties_kinky-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      clothingVisuals:
+        underpants:
+          - state: panties_kinky
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -317,19 +317,19 @@
         underpants:
           - state: panties_swimming
 
-# - type: entity
-#   parent: ClothingUnderPantsBase
-#   id: ClothingUnderpanties_thin
-#   name: thin panties
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       state: panties_thin-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       clothingVisuals:
-#         underpants:
-#           - state: panties_thin
+- type: entity
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderpanties_thin
+  name: "тонкие трусики"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      state: panties_thin-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      clothingVisuals:
+        underpants:
+          - state: panties_thin
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -361,19 +361,19 @@
         underpants:
           - state: panties
 
-# - type: entity
-#   parent: ClothingUnderPantsBase
-#   id: ClothingUnderpantyhose_ripped
-#   name: ripped pantyhose
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       state: pantyhose_ripped-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       clothingVisuals:
-#         underpants:
-#           - state: pantyhose_ripped
+- type: entity
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderpantyhose_ripped
+  name: "рваные колготки"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      state: pantyhose_ripped-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      clothingVisuals:
+        underpants:
+          - state: pantyhose_ripped
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -405,19 +405,19 @@
         underpants:
           - state: striped_panties
 
-# - type: entity
-#   parent: ClothingUnderPantsBase
-#   id: ClothingUnderthong_babydoll
-#   name: thong babydoll
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       state: thong_babydoll-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/underpants.rsi
-#       clothingVisuals:
-#         underpants:
-#           - state: thong_babydoll
+- type: entity
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderthong_babydoll
+  name: "стринги бэбидолл"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      state: thong_babydoll-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/underpants.rsi
+      clothingVisuals:
+        underpants:
+          - state: thong_babydoll
 
 - type: entity
   parent: ClothingUnderPantsBase

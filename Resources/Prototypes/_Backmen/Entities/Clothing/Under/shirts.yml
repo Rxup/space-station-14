@@ -235,19 +235,19 @@
     - type: TemperatureProtection
       heatingCoefficient: 0.85
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUnderbra_kinky
-#   name: kinky bra
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: bra_kinky-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: bra_kinky
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderbra_kinky
+  name: "пикантный бюстгальтер"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: bra_kinky-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: bra_kinky
 
 - type: entity
   parent: ClothingUnderShirtBase
@@ -334,19 +334,19 @@
     - type: TemperatureProtection
       heatingCoefficient: 0.85
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUnderbra_thin
-#   name: thin bra
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: bra_thin-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: bra_thin
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderbra_thin
+  name: "тонкий бюстгальтер"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: bra_thin-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: bra_thin
 
 - type: entity
   parent: ClothingUnderShirtBase
@@ -502,53 +502,53 @@
         undershirt:
           - state: cowboyshirt
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUnderfishnet_body
-#   name: fishnet body
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: fishnet_body-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: fishnet_body
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderfishnet_body
+  name: "боди в сеточку"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: fishnet_body-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: fishnet_body
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUnderfishnet_gloves
-#   name: fishnet gloves
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: fishnet_gloves-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: fishnet_gloves
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderfishnet_gloves
+  name: "перчатки в сеточку"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: fishnet_gloves-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: fishnet_gloves
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUnderfishnet_sleeves
-#   name: fishnet sleeves
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: fishnet_sleeves-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: fishnet_sleeves
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderfishnet_sleeves
+  name: "рукава в сеточку"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: fishnet_sleeves-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: fishnet_sleeves
 
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndergreenshirtsport
-  name: sporty green shirt
-  description: "A sporty green shirt, ready for the gym or trails."
+  name: "спортивная зелёная футболка"
+  description: "Спортивная зеленая рубашка, подходящая для занятий в спортзале или пробежек."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -562,8 +562,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderhalterneck_bra
-  name: halterneck bra
-  description: "A daring halterneck bra, perfect for parties."
+  name: "бюстгальтер с бретельками через шею"
+  description: "Смелый бюстгальтер с американской проймой, идеальный для вечеринок."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -579,8 +579,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderian
-  name: ian shirt
-  description: "An Ian shirt, ready to look dapper for any occasion."
+  name: "футболка Иана"
+  description: "Футболка с изображением Иана, которая будет выглядеть стильно в любой ситуации."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -594,8 +594,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderilovent
-  name: nanotrasen shirt
-  description: "A Nanotrasen-themed shirt, showing off your love for the company."
+  name: "футболка НаноТрейзен"
+  description: "Футболка с тематикой НаноТрейзен, демонстрирующая вашу любовь к корпорации."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -609,8 +609,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderljont
-  name: long john shirt
-  description: "A Long John shirt, perfect for staying cozy in the cold."
+  name: "рубкашка лонг джон"
+  description: "Рубашка Long John идеально подходит для согрева в холодную погоду."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -626,8 +626,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderlongstripe_blue
-  name: blue stripe shirt
-  description: "A runway-inspired shirt, making you feel like you're always walking the runway."
+  name: "рубашка в синюю полоску"
+  description: "Рубашка в стиле подиума, в которой вы всегда будете чувствовать себя на подиуме."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -641,8 +641,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderlongstripe
-  name: stripe shirt
-  description: "A bold stripe undershirt, perfect for making a fashion statement."
+  name: "рубашка в полоску"
+  description: "Яркая полосатая майка, идеально подходящая для создания модного образа."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -656,8 +656,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderlover
-  name: lover shirt
-  description: "A sweet and sentimental undershirt, perfect for wearing your heart on your chest."
+  name: "футболка с сердечком"
+  description: "Милая и сентиментальная футболка, идеально подходящая для того, чтобы носить сердце на груди."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -671,8 +671,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndermatroska
-  name: matroska shirt
-  description: "A quirky and unique undershirt in the shape of a Russian doll."
+  name: "тельняжка"
+  description: "Необычная и уникальная майка в форме матрешки."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -686,8 +686,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderpeace
-  name: peace shirt
-  description: "An eye-catching undershirt with a peaceful message."
+  name: "футболка пацифиста"
+  description: "Привлекающая внимание футболка с мирным посланием."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -701,8 +701,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderpogoman
-  name: pogoman shirt
-  description: "A wild and funky undershirt, ready for any party."
+  name: "футболка с пакманом"
+  description: "Дикая и необычная футболка, готовая к любой вечеринке."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -716,8 +716,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderpolo
-  name: polo shirt
-  description: "A stylish polo shirt, perfect for golfing or a Little League game."
+  name: "рубашка-поло"
+  description: "Стильная рубашка-поло, идеально подходящая для игры в гольф или игры в Малой лиге."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -731,8 +731,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderredshirtsport
-  name: sporty red shirt
-  description: "A sporty red shirt, ready for the gym or couch time."
+  name: "спортивная красная футболка"
+  description: "Спортивная красная футболка, подходящая как для спортзала, так и для отдыха на диване."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -743,39 +743,39 @@
         undershirt:
           - state: redshirtsport
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUndershibari_sleeves
-#   name: shibari sleeves
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: shibari_sleeves-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: shibari_sleeves
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUndershibari_sleeves
+  name: "шибари рукава"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: shibari_sleeves-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: shibari_sleeves
 
-# - type: entity
-#   parent: ClothingUnderShirtBase
-#   id: ClothingUndershibari
-#   name: shibari
-#   components:
-#     - type: Sprite
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       state: shibari-ICON
-#     - type: Clothing
-#       sprite: Backmen/Clothing/Under/undershirts.rsi
-#       clothingVisuals:
-#         undershirt:
-#           - state: shibari
+- type: entity
+  parent: ClothingUnderShirtBase
+  id: ClothingUndershibari
+  name: "шибари"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      state: shibari-ICON
+    - type: Clothing
+      sprite: Backmen/Clothing/Under/undershirts.rsi
+      clothingVisuals:
+        undershirt:
+          - state: shibari
 
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_alien
-  name: alien shirt
-  description: "An out-of-this-world shirt for your love of extraterrestrial beings."
+  name: "футболка с пришельцем"
+  description: "Неземная футболка для вашей любви к внеземным существам."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -789,8 +789,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_assblastusa
-  name: american flag shirt
-  description: "A patriotic shirt, showing off your love for your country."
+  name: "футболка с американским флагом"
+  description: "Патриотическая футболка, демонстрирующая вашу любовь к своей стране."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -804,8 +804,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_bluejersey
-  name: blue jersey
-  description: "A blue jersey, making you feel like a sports star."
+  name: "синяя майка"
+  description: "Синяя майка, в которой вы почувствуете себя звездой спорта."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -819,8 +819,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_clown
-  name: clown shirt
-  description: "A clown shirt, ready to make everyone laugh."
+  name: "клоунская футболка"
+  description: "Клоунская футболка, готовая рассмешить всех."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -834,8 +834,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_commie
-  name: commie shirt
-  description: "A commie shirt, making a political statement."
+  name: "комми футболка"
+  description: "Футболка коммуниста, выражающая политическое заявление."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -849,8 +849,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_meat
-  name: meat shirt
-  description: "A shirt perfect for the meat and potatoes kind of person."
+  name: "футболка с мясом"
+  description: "Рубашка, идеально подходящая для любителей мяса и картошки."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -864,8 +864,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_nano
-  name: nano shirt
-  description: "A sleek and cool shirt, perfect for hacking or looking cool."
+  name: "футболка НаноТрейзен"
+  description: "Элегантная и стильная футболка, идеально подходящая для хакерства или просто для того, чтобы выглядеть круто."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -879,8 +879,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_question
-  name: question mark shirt
-  description: "A shirt with more questions than answers."
+  name: "футболка с вопросом"
+  description: "Футболка, у которой больше вопросов, чем ответов."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -894,8 +894,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_redjersey
-  name: red jersey
-  description: "A stylish red jersey, perfect for scoring style points."
+  name: "красная майка"
+  description: "Стильная красная майка, идеально подходящая для набора очков за стиль."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -909,8 +909,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_skull
-  name: skull shirt
-  description: "A shirt making a bold statement about mortality."
+  name: "футболка с черепом"
+  description: "Футболка, смело заявляющая о смертности."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -924,8 +924,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_ss13
-  name: ss13 shirt
-  description: "A shirt representing your favorite space-themed game."
+  name: "футболка кс13"
+  description: "Футболка с изображением вашей любимой игры про 2д космонавтиков."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -939,8 +939,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_stripes
-  name: striped shirt
-  description: "A striped shirt, perfect for getting in touch with your inner sailor."
+  name: "футболка в полосочку"
+  description: "Полосатая футболка, которая идеально подойдет для того, чтобы пробудить в себе внутреннего моряка."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -954,8 +954,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershirt_tiedye
-  name: tie-dye shirt
-  description: "A colorful and bold tie-dye shirt, making a statement."
+  name: "разноцветная футболка"
+  description: "Яркая и смелая рубашка в стиле тай-дай, которая заявит о себе."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -969,8 +969,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndershortsleeve
-  name: t-shirt
-  description: "A classic and casual shirt for everyday wear."
+  name: "футболка"
+  description: "Классическая и повседневная рубашка для повседневного ношения."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -984,8 +984,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndersports_bra_alt
-  name: sports bra
-  description: "A shirt suitable for high-intensity activities."
+  name: "спортивный бюстгальтер"
+  description: "Рубашка, подходящая для занятий высокой интенсивности."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1001,8 +1001,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndersports_bra
-  name: sports bra
-  description: "An undershirt for staying cool and dry during a workout."
+  name: "спортивный бюстгальтер"
+  description: "Майка для сохранения прохлады и сухости во время тренировки."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1018,8 +1018,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderstriped_bra
-  name: striped bra
-  description: "A sleek and stylish undergarment."
+  name: "полосатый бюстгальтер"
+  description: "Элегантное и стильное нижнее белье."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1035,8 +1035,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderswimming_black
-  name: black swimming shirt
-  description: "A swimsuit for a sleek and stylish swim."
+  name: "чёрный купальник"
+  description: "Купальник для элегантного и стильного плавания."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1052,8 +1052,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderswimming_blue
-  name: blue swimming shirt
-  description: "A swimsuit for a refreshing swim with a pop of color."
+  name: "синий купальник"
+  description: "Яркий купальник для освежающего купания."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1069,8 +1069,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderswimming_red
-  name: red swimming shirt
-  description: "A swimsuit for a bold and daring swim."
+  name: "красный купальник"
+  description: "Купальник для смелого и дерзкого заплыва."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1086,8 +1086,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertank_fire
-  name: fire tank top
-  description: "A swimsuit for bringing the heat."
+  name: "майка с огнём"
+  description: "Придаёт теплоту."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1103,8 +1103,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertank_midriff_alt
-  name: midriff tank top
-  description: "A swimsuit for showing off your summer tan."
+  name: "короткая майка"
+  description: "Короткая майка, демонстрирующая ваш летний загар."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1120,8 +1120,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertank_midriff
-  name: midriff tank top
-  description: "A swimsuit for a flirty and fun summer look."
+  name: "короткая майка"
+  description: "Короткая майка для кокетливого и веселого летнего образа."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1137,8 +1137,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertank_rainbow
-  name: rainbow tank top
-  description: "A tank top for spreading positivity and good vibes."
+  name: "радужная майка"
+  description: "Майка для распространения позитива и хорошего настроения."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1154,8 +1154,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertank_stripes
-  name: striped tank top
-  description: "A fashionable tank top with heads and stripes alike."
+  name: "майка в полоску"
+  description: "Модная майка с изображением голов и полосок."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1171,8 +1171,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertank_sun
-  name: sun tank top
-  description: "A sunny tank top, shining bright like a sun."
+  name: "майка с солнцем"
+  description: "Солнечная майка, сияющая как солнце."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1188,8 +1188,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertanktop_alt
-  name: tank top
-  description: "A classic and stylish tank top."
+  name: "майка"
+  description: "Классическая и стильная майка."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1205,8 +1205,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertanktop
-  name: tank top
-  description: "A comfortable and classic tank top."
+  name: "майка"
+  description: "Удобная и классическая майка."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1222,8 +1222,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUndertubetop
-  name: tubetop
-  description: "A trendy and flirty tubetop, ready to make waves."
+  name: "топик"
+  description: "Модный и кокетливый топик, готовый произвести фурор."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1239,8 +1239,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderuk
-  name: union jack shirt
-  description: "A patriotic undershirt, ready to wave the flag of style."
+  name: "королевская футболка"
+  description: "Патриотическая футболка, готовая развевать флаг стиля."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
@@ -1254,8 +1254,8 @@
 - type: entity
   parent: ClothingUnderShirtBase
   id: ClothingUnderundershirt
-  name: undershirt
-  description: "A basic undershirt for staying cozy and covered."
+  name: "футболка"
+  description: "Обычная футболка, обеспечивающая комфорт и защиту."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/undershirts.rsi
