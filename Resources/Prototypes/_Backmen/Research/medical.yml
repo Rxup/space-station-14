@@ -129,7 +129,7 @@
     state: omnimed
   discipline: Medical
   tier: 1
-  cost: 10000
+  cost: 15000
   recipeUnlocks:
   - OmnimedTool
   technologyPrerequisites:

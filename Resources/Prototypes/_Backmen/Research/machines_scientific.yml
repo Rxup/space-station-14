@@ -27,7 +27,6 @@
   - AnomalySynchronizerCircuitboard
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
-  - AnomalousResearch
   - AnomalousResearchAdvanced
   - AnomalousResearchMachines
   position: 4,-1
