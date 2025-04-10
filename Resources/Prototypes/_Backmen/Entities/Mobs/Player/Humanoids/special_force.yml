@@ -18,7 +18,7 @@
     allowSpeech: true
     makeSentient: true
     name: Оперативник спец войск
-    description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
+    description: Элитный солдат отряда Omega - 0, напичканные импланты и курсы космического спецназа сделали из него бесчувственную машину.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
     raffle:
       settings: short
@@ -29,6 +29,8 @@
       - !type:OverallPlaytimeRequirement
         time: 36000
     job: DeathSquad
+    mindRoles:
+    - MindRoleDeathSquad
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -53,7 +55,7 @@
   components:
   - type: GhostRole
     name: коммандер спец войск
-    description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
+    description: Элитный коммандер отряда Omega - 0, напичканные импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
     raffle:
       settings: short
@@ -67,6 +69,8 @@
         department: Command
         time: 18000
     job: DeathSquad
+    mindRoles:
+    - MindRoleDeathSquad
   - type: Loadout
     prototypes: [SpecialForceGearCommanderFull]
   - type: RandomMetadata
@@ -86,5 +90,7 @@
     description: Боец тяжелого вооружения отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
     job: DeathSquad
+    mindRoles:
+    - MindRoleDeathSquad
   - type: Loadout
     prototypes: [SpecialForceGearSpecialistFull]

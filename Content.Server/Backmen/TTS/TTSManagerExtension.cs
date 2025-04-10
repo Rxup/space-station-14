@@ -154,7 +154,7 @@ public static class TTSManagerExtension
             ApiToken = token,
             Text = text,
             Speaker = speaker,
-            Effect = "Echo"
+            // Effect = "Echo"
         };
 
         var reqTime = DateTime.UtcNow;

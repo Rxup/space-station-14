@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Smoking;
 using Content.Shared.Smoking;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;

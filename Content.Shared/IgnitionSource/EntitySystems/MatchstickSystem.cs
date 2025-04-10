@@ -1,9 +1,9 @@
 using Content.Shared.Interaction;
 using Content.Shared.Item;
+using Content.Shared.IgnitionSource.Components;
 using Content.Shared.Smoking;
 using Content.Shared.Temperature;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.IgnitionSource.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.IgnitionSource.EntitySystems;

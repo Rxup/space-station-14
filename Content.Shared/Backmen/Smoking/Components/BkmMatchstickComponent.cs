@@ -1,14 +1,15 @@
 // Shitmed Change Start
 
-using Content.Shared.Smoking.Systems;
+using Content.Shared.Backmen.Smoking.Systems;
+using Content.Shared.Smoking;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Smoking.Components;
+namespace Content.Shared.Backmen.Smoking.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedMatchstickSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(BkmSharedMatchstickSystem))]
 [AutoGenerateComponentState]
-public sealed partial class MatchstickComponent : Component
+public sealed partial class BkmMatchstickComponent : Component
 {
     /// <summary>
     /// Current state to matchstick. Can be <code>Unlit</code>, <code>Lit</code> or <code>Burnt</code>.

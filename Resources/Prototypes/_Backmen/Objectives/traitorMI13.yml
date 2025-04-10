@@ -5,8 +5,7 @@
   components:
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - TraitorRole
+    - TraitorRole
   - type: Objective
     issuer: issuer-MI13
   - type: ObjectiveBlacklistRequirement
