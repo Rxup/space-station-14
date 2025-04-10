@@ -1,0 +1,15 @@
+﻿- type: language
+  id: DemonLanguage
+  speech:
+    color: "#FFA500"  # Оранжевый приятного цвета
+    #fontId: UnderdogRegular
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    - näytä
+    - vitun
+    - katsoa
+    - suuntaan
+    - takaa

@@ -3,6 +3,15 @@
   id: BaseMobDemon
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - DemonLanguage
+    - Dwarven
+    understands:
+    - TauCetiBasic
+    - DemonLanguage
   - type: Icon
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: full_m
