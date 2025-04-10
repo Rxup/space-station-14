@@ -403,6 +403,8 @@
     - BackmenAmmoStatic # backmen
     - SecurityWeaponsStatic
 #    dynamicPacks: # Backmen-EDIT
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives

@@ -238,6 +238,7 @@
     - DoorBumpOpener
     - FootstepSound
     - CanPilot
+    - Unimplantable
   - type: Emoting
   - type: TTS # Corvax-TTS
     voice: Glados
