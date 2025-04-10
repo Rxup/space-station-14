@@ -50,7 +50,7 @@
     state: microreactor
   discipline: Engineering
   tier: 1
-  cost: 10000
+  cost: 25000
   recipeUnlocks:
    - PowerCellMicroreactor
   technologyPrerequisites:
