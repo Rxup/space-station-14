@@ -6,7 +6,7 @@
     state: beanbag
   discipline: Arsenal
   tier: 1
-  cost: 5000
+  cost: 500
   recipeUnlocks:
   - MagazineShotgunBeanbag
   - BoxShellTranquilizer
@@ -28,7 +28,7 @@
     state: slug
   discipline: Arsenal
   tier: 1
-  cost: 5500
+  cost: 2500
   recipeUnlocks:
   # Backmen-ammonation-start
   - MagazinePistolSubMachineGun57x28
@@ -109,7 +109,7 @@
     state: base
   discipline: Arsenal
   tier: 3
-  cost: 150000
+  cost: 30000
   recipeUnlocks:
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
@@ -146,7 +146,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 7500
+  cost: 5500
   recipeUnlocks:
   - WeaponLaserCarbine
   technologyPrerequisites:
@@ -178,7 +178,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 10000
+  cost: 8000
   recipeUnlocks:
   - WeaponLaserCannon
   technologyPrerequisites:
@@ -208,7 +208,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 5000
+  cost: 3200
   recipeUnlocks:
   - WeaponLaserSvalinn
   - WeaponLaserPistol
