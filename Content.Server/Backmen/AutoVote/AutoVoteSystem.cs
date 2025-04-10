@@ -19,6 +19,7 @@ public sealed class AutoVoteSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        IoCManager.InjectDependencies(this);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnReturnedToLobby);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
