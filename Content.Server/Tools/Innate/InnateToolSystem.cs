@@ -27,6 +27,8 @@ public sealed class InnateToolSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
+    private static readonly ProtoId<TagPrototype> InnateDontDeleteTag = "InnateDontDelete";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -105,7 +107,7 @@ public sealed class InnateToolSystem : EntitySystem
     {
         foreach (var tool in component.ToolUids)
         {
-            if (_tagSystem.HasTag(tool, "InnateDontDelete"))
+            if (_tagSystem.HasTag(tool, InnateDontDeleteTag))
             {
                 RemComp<UnremoveableComponent>(tool);
             }

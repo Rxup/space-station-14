@@ -68,7 +68,7 @@
   - type: TrashOnSolutionEmpty
     solution: beaker
   - type: StaticPrice
-    price: 100
+    price: 10
   - type: DamageOnLand
     damage:
       types:
@@ -149,7 +149,7 @@
         reagents:
           - ReagentId: Chlorine
             Quantity: 5
-            
+
 - type: entity
   id: PlasmaChemistryVial
   parent: BaseChemistryEmptyVial
