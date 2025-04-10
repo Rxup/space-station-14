@@ -1,7 +1,7 @@
 ﻿- type: language
   id: DemonLanguage
   speech:
-    color: "#FFA500"  # Оранжевый приятного цвета
+    color: "#7f4870"  # Оранжевый приятного цвета
     #fontId: UnderdogRegular
   obfuscation:
     !type:SyllableObfuscation
