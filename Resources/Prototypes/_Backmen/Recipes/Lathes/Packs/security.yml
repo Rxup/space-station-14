@@ -98,4 +98,4 @@
 - type: latheRecipePack
   id: BackmenCircuboardArsenal
   recipes:
-    - GunsmithPrinterMachines
+    - GunsmithTechFabCircuitboard
