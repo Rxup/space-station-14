@@ -48,6 +48,11 @@
   recipes:
   - PowerCellMicroreactor
   - PowerCellHigh
+  - PowerCellSuper # Backmen-Start
+  - PowerCellHyper
+  - PowerCellBluespace
+  - PowerCellBluespaceReactor
+  - PowerCellVortex # Backmen-End
 
 - type: latheRecipePack
   id: ScienceWeapons
