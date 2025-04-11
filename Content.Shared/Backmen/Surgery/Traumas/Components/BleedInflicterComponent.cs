@@ -13,13 +13,13 @@ public sealed partial class BleedInflicterComponent : Component
     ///     The severity it requires for the wound to have, so bleeds can be induced
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 SeverityThreshold = FixedPoint2.New(0);
+    public FixedPoint2 SeverityThreshold = FixedPoint2.Zero;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 BleedingAmount => BleedingAmountRaw * Scaling;
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public FixedPoint2 BleedingAmountRaw = FixedPoint2.New(0);
+    public FixedPoint2 BleedingAmountRaw = FixedPoint2.Zero;
 
     // these are calculated when wound is spawned.
     /// <summary>

@@ -41,6 +41,9 @@ public sealed partial class WoundableComponent : Component
     [DataField("damageContainer")]
     public ProtoId<DamageContainerPrototype>? DamageContainerID;
 
+    [DataField]
+    public EntProtoId BoneEntity = "Bone";
+
     /// <summary>
     /// Integrity points of this woundable.
     /// </summary>

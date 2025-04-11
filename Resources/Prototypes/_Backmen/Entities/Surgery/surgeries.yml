@@ -59,6 +59,7 @@
     - SurgeryStepMendRibcage
     - SurgeryStepCloseIncision
   - type: SurgeryPartPresentCondition
+  - type: SurgeryCloseIncisionCondition
 
 - type: entity
   parent: SurgeryBase
@@ -442,6 +443,7 @@
     - SurgeryStepRepairBruteTissue
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
+    damageGroup: Brute
 
 - type: entity
   parent: SurgeryBase
@@ -455,6 +457,7 @@
     - SurgeryStepRepairBurnTissue
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
+    damageGroup: Burn
 
 - type: entity
   parent: SurgeryBase

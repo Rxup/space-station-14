@@ -36,7 +36,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent>();
         while (bleedsQuery.MoveNext(out var ent, out var bleeds))
         {
-            var canBleed = CanWoundBleed(ent, bleeds);
+            var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
             if (canBleed != bleeds.IsBleeding)
                 Dirty(ent, bleeds);
 
@@ -241,7 +241,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
         var nearestModifier = comp.BleedingModifiers.FirstOrNull();
         if (nearestModifier == null)
-            return comp.Scaling > 0; // No modifiers. return true
+            return true; // No modifiers. return true
 
         var lastCanBleed = true;
         var lastPriority = 0;
@@ -254,7 +254,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             lastCanBleed = pair.CanBleed;
         }
 
-        return comp.Scaling > 0 && lastCanBleed;
+        return lastCanBleed;
     }
 
     private void OnWoundHealAttempt(EntityUid uid, BleedInflicterComponent component, ref WoundHealAttemptEvent args)

@@ -204,21 +204,14 @@ namespace Content.Client.HealthAnalyzer.UI
             if (!isPart && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body) && body.RootContainer.ContainedEntity.HasValue)
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
-                foreach (var child in _wound.GetAllWoundableChildren(body.RootContainer.ContainedEntity.Value))
+                foreach (var wound in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
                 {
-                    if (!_appearance.TryGetData<WoundVisualizerGroupData>(child, WoundableVisualizerKeys.Wounds, out var wounds))
+                    if (wound.Comp.DamageGroup == null)
                         continue;
 
-                    foreach (var wound in wounds.GroupList.Select(_entityManager.GetEntity).Select(_entityManager.GetComponent<WoundComponent>))
+                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundSeverityPoint))
                     {
-                        var woundGroup = wound.DamageGroup;
-                        if (woundGroup == null)
-                            continue;
-
-                        if (!damageGroups.TryAdd(woundGroup.ID, wound.WoundSeverityPoint))
-                        {
-                            damageGroups[woundGroup.ID] += wound.WoundSeverityPoint;
-                        }
+                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundSeverityPoint;
                     }
                 }
 
@@ -235,26 +228,22 @@ namespace Content.Client.HealthAnalyzer.UI
 
             if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
             {
-                if (!_appearance.TryGetData<WoundVisualizerGroupData>(part.Value, WoundableVisualizerKeys.Wounds, out var wounds))
-                    return;
-
-                var woundComps = wounds.GroupList
-                    .Select(_entityManager.GetEntity)
-                    .Select(_entityManager.GetComponent<WoundComponent>)
-                    .ToList();
-
-                DamageLabel.Text = woundComps.Aggregate((FixedPoint2) 0, (current, wound) => current + wound.WoundSeverityPoint).ToString();
+                var wounds = _wound.GetWoundableWounds(part.Value, woundable).ToList();
+                DamageLabel.Text =
+                    wounds
+                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint)
+                        .ToString();
 
                 var damageGroups = new Dictionary<string, FixedPoint2>();
-                foreach (var wound in woundComps)
+                foreach (var wound in wounds)
                 {
-                    var woundGroup = wound.DamageGroup;
+                    var woundGroup = wound.Comp.DamageGroup;
                     if (woundGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(woundGroup.ID, wound.WoundSeverityPoint))
+                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundSeverityPoint))
                     {
-                        damageGroups[woundGroup.ID] += wound.WoundSeverityPoint;
+                        damageGroups[woundGroup.ID] += wound.Comp.WoundSeverityPoint;
                     }
                 }
 

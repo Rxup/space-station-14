@@ -579,14 +579,20 @@ public partial class PainSystem
         if (!_timing.IsFirstTimePredicted || TerminatingOrDeleted(nerveSysEnt))
             return;
 
-        if (nerveSys.LastPainThreshold != nerveSys.Pain && _timing.CurTime > nerveSys.UpdateTime)
-            nerveSys.LastPainThreshold = nerveSys.Pain;
+        if (!TryComp<OrganComponent>(nerveSysEnt, out var nerveSysOrgan))
+            return;
+
+        if (nerveSys.LastPainThreshold != nerveSys.Pain)
+        {
+            if (_timing.CurTime > nerveSys.UpdateTime)
+                nerveSys.LastPainThreshold = nerveSys.Pain;
+
+            if (_timing.CurTime > nerveSys.ReactionUpdateTime)
+                UpdatePainThreshold(nerveSysEnt, nerveSys);
+        }
 
         if (_timing.CurTime > nerveSys.NextCritScream)
         {
-            if (!TryComp<OrganComponent>(nerveSysEnt, out var nerveSysOrgan))
-                return;
-
             var body = nerveSysOrgan.Body;
             if (body != null && _mobState.IsCritical(body.Value))
             {
@@ -675,9 +681,13 @@ public partial class PainSystem
             totalPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainDamageType);
         }
 
-        nerveSys.Pain = FixedPoint2.Clamp(woundPain, 0, nerveSys.SoftPainCap) + totalPain - woundPain;
+        var newPain = FixedPoint2.Clamp(woundPain, 0, nerveSys.SoftPainCap) + totalPain - woundPain;
 
-        UpdatePainThreshold(uid, nerveSys);
+        nerveSys.UpdateTime = _timing.CurTime + nerveSys.ThresholdUpdateTime;
+        if (nerveSys.Pain != newPain)
+            nerveSys.ReactionUpdateTime = _timing.CurTime + nerveSys.PainReactionTime;
+        nerveSys.Pain = newPain;
+
         if (!_consciousness.SetConsciousnessModifier(
                 organ.Body.Value,
                 uid,
@@ -736,6 +746,12 @@ public partial class PainSystem
                 _popup.PopupPredicted(Loc.GetString("screams-in-agony", ("entity", body)), body, null, PopupType.MediumCaution);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime / 1.4, true, 30f, 12f);
 
+                // They aren't put into Pain Sounds, because they aren't supposed to stop after an entity finishes jerking around in pain
+                _IHaveNoMouthAndIMustScream.PlayPvs(
+                    nerveSys.Comp.PainRattles,
+                    body,
+                    AudioParams.Default.WithVolume(-12f));
+
                 break;
             case PainThresholdTypes.PainShock:
                 CleanupSounds(nerveSys);
@@ -748,9 +764,14 @@ public partial class PainSystem
                     PlayPainSound(body,
                         nerveSys,
                         sound,
-                        _IHaveNoMouthAndIMustScream.GetAudioLength(_IHaveNoMouthAndIMustScream.ResolveSound(screamSpecifier)) - TimeSpan.FromSeconds(2),
+                        _IHaveNoMouthAndIMustScream.GetAudioLength(_IHaveNoMouthAndIMustScream.ResolveSound(screamSpecifier)) + TimeSpan.FromSeconds(2),
                         AudioParams.Default.WithVolume(-12f));
                 }
+
+                _IHaveNoMouthAndIMustScream.PlayPvs(
+                    nerveSys.Comp.PainRattles,
+                    body,
+                    AudioParams.Default.WithVolume(-12f));
 
                 // This shit is NOT helpful. It breaks the multipliers, and every 21 seconds the multiplier ends, you fall into fucking crit
                 // and stand up AGAIN due to adrenaline. Thus trapping you in an endless cycle of pain, not funny
@@ -785,6 +806,11 @@ public partial class PainSystem
                         _IHaveNoMouthAndIMustScream.GetAudioLength(_IHaveNoMouthAndIMustScream.ResolveSound(agonySpecifier)) - TimeSpan.FromSeconds(2),
                         AudioParams.Default.WithVolume(-12f));
                 }
+
+                _IHaveNoMouthAndIMustScream.PlayPvs(
+                    nerveSys.Comp.PainRattles,
+                    body,
+                    AudioParams.Default.WithVolume(-12f));
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)
@@ -837,7 +863,6 @@ public partial class PainSystem
         var ev2 = new PainThresholdEffected((uid, nerveSys), nearestReflex, painInput);
         RaiseLocalEvent(organ.Body.Value, ref ev2);
 
-        nerveSys.UpdateTime = _timing.CurTime + nerveSys.ThresholdUpdateTime;
         nerveSys.LastThresholdType = nearestReflex;
 
         ApplyPainReflexesEffects(organ.Body.Value, (uid, nerveSys), nearestReflex);

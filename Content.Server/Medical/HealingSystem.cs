@@ -161,9 +161,7 @@ public sealed class HealingSystem : EntitySystem
             var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(ent, partType, comp, symmetry).ToList().FirstOrDefault();
 
             foreach (var damage in
-                     healing.Damage.DamageDict.Where(damage =>
-                         _wounds.HasDamageOfGroup(targetedBodyPart.Id, damage.Key)
-                         || _wounds.HasDamageOfType(targetedBodyPart.Id, damage.Key)))
+                     healing.Damage.DamageDict.Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Id, damage.Key)))
             {
                 stuffToHeal.Add(damage.Key, damage.Value);
             }
@@ -181,7 +179,6 @@ public sealed class HealingSystem : EntitySystem
                 ent,
                 args.User,
                 PopupType.MediumCaution);
-
             return;
         }
 
@@ -239,17 +236,10 @@ public sealed class HealingSystem : EntitySystem
         var healedTotal = (FixedPoint2) 0;
         foreach (var (key, value) in stuffToHeal)
         {
-            if (_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, key, out var healed, woundableComp))
-            {
-                healedTotal += healed;
+            if (!_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, key, out var healed, woundableComp))
                 continue;
-            }
 
-            // Check for a group if it's not a type
-            if (_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, out var healedGroup, woundableComp, GetDamageGroupByType(key)))
-            {
-                healedTotal += healedGroup;
-            }
+            healedTotal += healed;
         }
 
         if (healedTotal <= 0 && bleedStopAbility == -healing.BloodlossModifier)
@@ -356,7 +346,7 @@ public sealed class HealingSystem : EntitySystem
 
         if (healing.Damage.DamageDict.Keys.Any(damageKey => _wounds.GetWoundableSeverityPoint(
                 targetedBodyPart.Value.Id,
-                damageGroup: GetDamageGroupByType(damageKey),
+                damageGroup: GetDamageGroupByType(damageKey)?.ID,
                 healable: true) > 0))
             return true;
 

@@ -126,7 +126,7 @@ public partial class WoundSystem
             return false;
 
         var healNumba = healAmount / woundsToHeal.Count;
-        var actualHeal = FixedPoint2.New(0);
+        var actualHeal = FixedPoint2.Zero;
         foreach (var wound in woundsToHeal)
         {
             var heal = ignoreMultipliers
@@ -188,7 +188,7 @@ public partial class WoundSystem
     public bool TryGetWoundableWithMostDamage(
         EntityUid body,
         [NotNullWhen(true)] out Entity<WoundableComponent>? woundable,
-        DamageGroupPrototype? damageGroup = null,
+        string? damageGroup = null,
         bool healable = false)
     {
         var biggestDamage = (FixedPoint2) 0;
@@ -212,15 +212,31 @@ public partial class WoundSystem
 
     public bool HasDamageOfType(
         EntityUid woundable,
-        string damageType)
+        string damageType,
+        bool healable = false)
     {
+        if (healable)
+        {
+            return GetWoundableWounds(woundable)
+                .Where(wound => CanHealWound(wound, wound))
+                .Any(wound => MetaData(wound).EntityPrototype!.ID == damageType);
+        }
+
         return GetWoundableWounds(woundable).Any(wound => MetaData(wound).EntityPrototype!.ID == damageType);
     }
 
     public bool HasDamageOfGroup(
         EntityUid woundable,
-        string damageGroup)
+        string damageGroup,
+        bool healable = false)
     {
+        if (healable)
+        {
+            return GetWoundableWounds(woundable)
+                .Where(wound => CanHealWound(wound, wound))
+                .Any(wound => wound.Comp.DamageGroup?.ID == damageGroup);
+        }
+
         return GetWoundableWounds(woundable).Any(wound => wound.Comp.DamageGroup?.ID == damageGroup);
     }
 
@@ -228,6 +244,9 @@ public partial class WoundSystem
     {
         if (!Resolve(woundable, ref component))
             return severity;
+
+        if (!Comp<WoundComponent>(wound).CanBeHealed)
+            return FixedPoint2.Zero;
 
         var woundHealingMultiplier =
             _prototype.Index<DamageTypePrototype>(MetaData(wound).EntityPrototype!.ID).WoundHealingMultiplier;

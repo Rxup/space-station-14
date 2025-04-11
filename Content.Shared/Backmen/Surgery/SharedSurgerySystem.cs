@@ -14,6 +14,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.GameTicking;
@@ -121,7 +122,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     private void OnWoundedValid(Entity<SurgeryWoundedConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!TryComp(args.Part, out WoundableComponent? partWoundable)
-            || _wounds.GetWoundableSeverityPoint(args.Part, partWoundable, healable: true) <= 0)
+            || _wounds.GetWoundableSeverityPoint(
+                args.Part,
+                partWoundable,
+                ent.Comp.DamageGroup,
+                healable: true) <= 0)
             args.Cancelled = true;
     }
 

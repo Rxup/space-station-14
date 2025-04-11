@@ -638,26 +638,15 @@ public partial class TraumaSystem
                     break;
 
                 case TraumaType.Dismemberment:
-                    if (!_wound.IsWoundableRoot(target))
+                    if (!_wound.IsWoundableRoot(target)
+                        && _wound.TryInduceWound(targetChosen.Value, "Blunt", 10f, out var woundInduced))
                     {
-                        if (!_wound.TryContinueWound(targetChosen.Value, "Blunt", 10f))
-                        {
-                            _wound.TryCreateWound(targetChosen.Value, "Blunt", 10f, _proto.Index<DamageGroupPrototype>("Brute"));
-                        }
-
-                        foreach (var woundEnt in _wound.GetWoundableWounds(targetChosen.Value))
-                        {
-                            if (MetaData(woundEnt).EntityPrototype!.ID != "Blunt")
-                                continue;
-
-                            // Stored in the parent woundable because if the child one gets destroyed it is over
-                            AddTrauma(
-                                targetChosen.Value,
+                        AddTrauma(
+                            targetChosen.Value,
                                 (targetChosen.Value, Comp<WoundableComponent>(targetChosen.Value)),
-                                (woundEnt, EnsureComp<TraumaInflicterComponent>(woundEnt)),
-                                TraumaType.Dismemberment,
-                                severity);
-                        }
+                            (woundInduced.Value.Owner, EnsureComp<TraumaInflicterComponent>(woundInduced.Value.Owner)),
+                            TraumaType.Dismemberment,
+                            severity);
 
                         _wound.AmputateWoundable(targetChosen.Value, target, target);
                     }

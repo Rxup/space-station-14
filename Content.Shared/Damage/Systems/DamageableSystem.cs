@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.CCVar;
@@ -226,28 +227,22 @@ namespace Content.Shared.Damage
 
             if (_woundableQuery.TryComp(uid.Value, out var woundable))
             {
-                var damageDict = new Dictionary<string, FixedPoint2>();
-                foreach (var (type, severity) in damage.DamageDict)
-                {
-                    // some wounds like Asphyxiation and Bloodloss aren't supposed to be created.
-                    if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
-                        || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
-                        continue;
-
-                    damageDict.Add(type, severity);
-                }
-
-                if (damageDict.Count == 0)
+                var woundsToInduce = new WoundSpecifier(damage, _prototypeManager);
+                if (!_wounds.TryInduceWounds(uid.Value, woundsToInduce, out var woundsInduced, woundable))
                     return null;
 
-                foreach (var (damageType, severity) in damageDict)
+                // Sadly I have to convert wounds back to damage. so I can return it back into the event
+                var specifierToReturn = new DamageSpecifier();
+                foreach (var wound in woundsInduced)
                 {
-                    var actualDamage = severity * partMultiplier;
-                    if (!_wounds.TryContinueWound(uid.Value, damageType, actualDamage, woundable))
-                        _wounds.TryCreateWound(uid.Value, damageType, actualDamage, GetDamageGroupByType(damageType));
+                    var woundId = MetaData(wound).EntityPrototype!.ID;
+                    if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
+                    {
+                        specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
+                    }
                 }
 
-                return null;
+                return specifierToReturn;
             }
 
             // I added a check for consciousness, because pain is directly hardwired into
@@ -270,7 +265,7 @@ namespace Content.Shared.Damage
                     return null;
 
                 var chosenTarget = _LETSGOGAMBLINGEXCLAMATIONMARKEXCLAMATIONMARK.PickAndTake(possibleTargets);
-                var damageDict = DamageSpecifierToWoundList(
+                damage = ApplyDamageModifiers(
                     uid.Value,
                     origin,
                     target!.Value, // god forgib me
@@ -285,7 +280,7 @@ namespace Content.Shared.Damage
                 if (beforeDamage.Cancelled)
                     return null;
 
-                if (damageDict.Count == 0)
+                if (damage.Empty)
                     return null;
 
                 switch (targetPart)
@@ -295,32 +290,32 @@ namespace Content.Shared.Damage
                     {
                         if (!_wounds.TryGetWoundableWithMostDamage(
                                 uid.Value,
-                                out var damageWoundable,
-                                GetDamageGroupByType(damageDict.FirstOrDefault().Key)))
+                                out var damageWoundable))
                             return null; // No damage at all or a bug. anomalous
 
-                        foreach (var (damageType, severity) in damageDict)
+                        var woundsToInduce = new WoundSpecifier(damage, _prototypeManager);
+                        if (!_wounds.TryInduceWounds(damageWoundable.Value, woundsToInduce, out var woundsInduced, damageWoundable.Value))
+                            return null;
+
+                        // Sadly I have to convert wounds back to damage. so I can return it back into the event
+                        var specifierToReturn = new DamageSpecifier();
+                        foreach (var wound in woundsInduced)
                         {
-                            if (!_wounds.TryContinueWound(damageWoundable.Value.Owner, damageType, severity))
-                                _wounds.TryCreateWound(damageWoundable.Value.Owner, damageType, severity, GetDamageGroupByType(damageType));
+                            var woundId = MetaData(wound).EntityPrototype!.ID;
+                            if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
+                            {
+                                specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
+                            }
                         }
 
-                        return damage;
+                        return specifierToReturn;
                     }
                     case TargetBodyPart.All when damage.GetTotal() > 0:
                     {
                         var pieces = _body.GetBodyChildren(uid).ToList();
-                        var damagePerPiece = DamageSpecifierToWoundList(
-                            uid.Value,
-                            origin,
-                            target.Value,
-                            damage / pieces.Count,
-                            damageable,
-                            ignoreResistances,
-                            partMultiplier);
+                        var damagePerPiece = damage / pieces.Count;
 
                         var doneDamage = new DamageSpecifier();
-                        doneDamage.DamageDict.EnsureCapacity(damage.DamageDict.Capacity);
 
                         foreach (var bodyPart in pieces)
                         {
@@ -330,21 +325,24 @@ namespace Content.Shared.Damage
                             if (beforePartAll.Cancelled)
                                 continue;
 
-                            foreach (var (damageType, severity) in damagePerPiece)
-                            {
-                                // Might cause some bullshit behaviour in the future. let's hope all goes right...
-                                if (doneDamage.DamageDict.TryGetValue(damageType, out var exSeverity))
-                                {
-                                    doneDamage.DamageDict[damageType] = exSeverity + severity;
-                                }
-                                else
-                                {
-                                    doneDamage.DamageDict[damageType] = severity;
-                                }
+                            if (damage.Empty)
+                                continue;
 
-                                if (!_wounds.TryContinueWound(bodyPart.Id, damageType, severity))
-                                    _wounds.TryCreateWound(bodyPart.Id, damageType, severity, GetDamageGroupByType(damageType));
+                            var woundsToInduce = new WoundSpecifier(damagePerPiece, _prototypeManager);
+                            if (!_wounds.TryInduceWounds(bodyPart.Id, woundsToInduce, out var woundsInduced, woundable))
+                                continue;
+
+                            var specifierToReturn = new DamageSpecifier();
+                            foreach (var wound in woundsInduced)
+                            {
+                                var woundId = MetaData(wound).EntityPrototype!.ID;
+                                if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
+                                {
+                                    specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
+                                }
                             }
+
+                            doneDamage += specifierToReturn;
                         }
 
                         return doneDamage;
@@ -357,16 +355,25 @@ namespace Content.Shared.Damage
                         if (beforePart.Cancelled)
                             return null;
 
-                        if (damageDict.Count == 0)
+                        if (damage.Empty)
                             return null;
 
-                        foreach (var (damageType, severity) in damageDict)
+                        var woundsToInduce = new WoundSpecifier(damage, _prototypeManager);
+                        if (!_wounds.TryInduceWounds(chosenTarget.Id, woundsToInduce, out var woundsInduced, woundable))
+                            return null;
+
+                        // Sadly I have to convert wounds back to damage. so I can return it back into the event
+                        var specifierToReturn = new DamageSpecifier();
+                        foreach (var wound in woundsInduced)
                         {
-                            if (!_wounds.TryContinueWound(chosenTarget.Id, damageType, severity))
-                                _wounds.TryCreateWound(chosenTarget.Id, damageType, severity, GetDamageGroupByType(damageType));
+                            var woundId = MetaData(wound).EntityPrototype!.ID;
+                            if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
+                            {
+                                specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
+                            }
                         }
 
-                        return damage;
+                        return specifierToReturn;
                     }
                 }
             }
@@ -485,17 +492,16 @@ namespace Content.Shared.Damage
                 if (!TryComp(part, out WoundableComponent? woundable))
                     continue;
 
-                foreach (var (type, severity) in component.Damage.DamageDict)
+                foreach (var wound in _wounds.GetWoundableWounds(part, woundable))
                 {
-                    if (!_wounds.TryContinueWound(part, type, severity, woundable))
-                        _wounds.TryCreateWound(part, type, severity, GetDamageGroupByType(type), woundable);
+                    _wounds.SetWoundSeverity(wound, newValue, wound);
                 }
             }
             // Shitmed Change End
         }
 
         // backmen edit start
-        public Dictionary<string, FixedPoint2> DamageSpecifierToWoundList(
+        public DamageSpecifier ApplyDamageModifiers(
             EntityUid uid,
             EntityUid? origin,
             TargetBodyPart targetPart,
@@ -504,11 +510,8 @@ namespace Content.Shared.Damage
             bool ignoreResistances = false,
             float partMultiplier = 1.00f)
         {
-            var damageDict = new Dictionary<string, FixedPoint2>();
-
             damageSpecifier = ApplyUniversalAllModifiers(damageSpecifier);
 
-            // some wounds like Asphyxiation and Bloodloss aren't supposed to be created.
             if (!ignoreResistances)
             {
                 if (damageable.DamageModifierSetId != null &&
@@ -529,20 +532,11 @@ namespace Content.Shared.Damage
 
                 if (damageSpecifier.Empty)
                 {
-                    return damageDict;
+                    return damageSpecifier;
                 }
             }
 
-            foreach (var (type, severity) in damageSpecifier.DamageDict)
-            {
-                if (!_prototypeManager.TryIndex<EntityPrototype>(type, out var woundPrototype)
-                    || !woundPrototype.TryGetComponent<WoundComponent>(out _, _factory))
-                    continue;
-
-                damageDict.Add(type, severity * partMultiplier);
-            }
-
-            return damageDict;
+            return damageSpecifier * partMultiplier;
         }
         // backmen edit end
 
