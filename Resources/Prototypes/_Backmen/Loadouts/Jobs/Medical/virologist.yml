@@ -13,17 +13,17 @@
 - type: loadout
   id: VirologistBackpack
   equipment:
-    back: ClothingBackpackMedical
+    back: ClothingBackpackVirology
 
 - type: loadout
   id: VirologistSatchel
   equipment:
-    back: ClothingBackpackSatchelMedical
+    back: ClothingBackpackSatchelVirology
 
 - type: loadout
   id: VirologistDuffel
   equipment:
-    back: ClothingBackpackDuffelMedical
+    back: ClothingBackpackDuffelVirology
 
 #OuterClothing
 - type: loadout

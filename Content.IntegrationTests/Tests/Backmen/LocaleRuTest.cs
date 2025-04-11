@@ -45,9 +45,9 @@ public sealed partial class LocaleRu
                 }
 
                 if (component.NameSegments != null &&
-                    !component.NameSegments.Any(x=>IgnoreList.Contains(x, StringComparer.OrdinalIgnoreCase)))
+                    !component.NameSegments.Any(x=> IgnoreList.Contains(x.Id, StringComparer.OrdinalIgnoreCase)))
                 {
-                    var test = mdSys.GetRandomFromSegments(component.NameSegments, component.NameSeparator);
+                    var test = mdSys.GetRandomFromSegments(component.NameSegments, component.NameFormat);
                     if (!GeneratedRegex().IsMatch(test))
                     {
                         fails.Add($"ID: {entProto.ID} NameSegments - {test}");
@@ -56,9 +56,9 @@ public sealed partial class LocaleRu
                 }
 
                 if (component.DescriptionSegments != null &&
-                    !component.DescriptionSegments.Any(x=>IgnoreList.Contains(x, StringComparer.OrdinalIgnoreCase)))
+                    !component.DescriptionSegments.Any(x=>IgnoreList.Contains(x.Id, StringComparer.OrdinalIgnoreCase)))
                 {
-                    var test = mdSys.GetRandomFromSegments(component.DescriptionSegments, component.DescriptionSeparator);
+                    var test = mdSys.GetRandomFromSegments(component.DescriptionSegments, component.DescriptionFormat);
 
                     if (!GeneratedRegex().IsMatch(test))
                     {

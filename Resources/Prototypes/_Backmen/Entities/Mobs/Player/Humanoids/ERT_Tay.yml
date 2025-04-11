@@ -21,6 +21,8 @@
         department: Command
         time: 18000
     job: ERTLeader
+    mindRoles:
+    - MindRoleERTLeader
   - type: Loadout
     prototypes: [ERTLeaderTay39Gear]
   - type: RandomMetadata
@@ -72,6 +74,8 @@
       - !type:OverallPlaytimeRequirement
         time: 36000
     job: ERTSecurity
+    mindRoles:
+    - MindRoleERTSecurity
   - type: Loadout
     prototypes: [ERTSecurityTay39Gear]
 

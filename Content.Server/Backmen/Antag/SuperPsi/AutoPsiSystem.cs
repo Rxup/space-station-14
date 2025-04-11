@@ -179,13 +179,13 @@ public sealed class AutoPsiSystem : EntitySystem
 
             if (component.NameSegments != null)
             {
-                _metaData.SetEntityName(ent, _randomMetadata.GetRandomFromSegments(component.NameSegments, component.NameSeparator), meta);
+                _metaData.SetEntityName(ent, _randomMetadata.GetRandomFromSegments(component.NameSegments, component.NameFormat), meta);
             }
 
             if (component.DescriptionSegments != null)
             {
                 _metaData.SetEntityDescription(ent,
-                    _randomMetadata.GetRandomFromSegments(component.DescriptionSegments, component.DescriptionSeparator), meta);
+                    _randomMetadata.GetRandomFromSegments(component.DescriptionSegments, component.DescriptionFormat), meta);
             }
             RemComp(ent, component);
         }

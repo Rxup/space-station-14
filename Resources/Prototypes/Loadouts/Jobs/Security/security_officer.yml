@@ -90,7 +90,7 @@
 
 - type: loadout
   id: TrooperUniform
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformSecurityTrooper
 
 - type: loadout
@@ -258,7 +258,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
   equipment:
-    pocket2: MagazinePistol
+    pocket2: MagazinePistol9x17
 
 - type: loadout
   id: MagazinePistolHighCapacity
@@ -266,15 +266,15 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
   equipment:
-    pocket2: MagazinePistolHighCapacity
+    pocket2: MagazinePistol57x28Extd
 
 - type: loadout
-  id: MagazineMagnumPistol
+  id: MagazinePistol50AE
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
   equipment:
-    pocket2: MagazineMagnumPistol
+    pocket2: MagazinePistol50AE
 
 # Misc
 - type: loadout

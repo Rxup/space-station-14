@@ -6,16 +6,16 @@
     state: beanbag
   discipline: Arsenal
   tier: 1
-  cost: 5000
+  cost: 500
   recipeUnlocks:
   - MagazineShotgunBeanbag
   - BoxShellTranquilizer
   - BoxBeanbag
   - BoxShotgunPractice
-  - MagazineBoxLightRiflePractice
+#  - MagazineBoxLightRiflePractice #Backmen-ammunation
   - MagazineBoxMagnumPractice
-  - MagazineBoxPistolPractice
-  - MagazineBoxRiflePractice
+#  - MagazineBoxPistolPractice #Backmen-ammunation
+#  - MagazineBoxRiflePractice #Backmen-ammunation
 #  technologyPrerequisites:
 #  - RiotControl
   position: -2,-2
@@ -28,7 +28,7 @@
     state: slug
   discipline: Arsenal
   tier: 1
-  cost: 5500
+  cost: 2500
   recipeUnlocks:
   # Backmen-ammonation-start
   - MagazinePistolSubMachineGun57x28
@@ -43,6 +43,7 @@
   - MagazinePistol9x17
   - MagazinePistol57x28Extd
   - MagazineBoxHeavyRifle
+  - MagazinePacketPistol9x17
   - MagazinePacketRifle762x39
   - MagazinePacketRifle762UEG
   - MagazinePacketPistolACP
@@ -50,8 +51,12 @@
   - MagazinePacketPistol50AE
   # Backmen-ammonation-end
   - MagazineBoxMagnum
+  - BoxLethalshot
+  - BoxShotgunSlug
+  - SpeedLoaderMagnum
+  - SpeedLoaderMagnumEmpty
   technologyPrerequisites:
-  - RiotControl
+#  - RiotControl
   - NonlethalAmmunition
   position: -3,-2
 
@@ -109,12 +114,13 @@
     state: base
   discipline: Arsenal
   tier: 3
-  cost: 150000
+  cost: 30000
   recipeUnlocks:
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
+  - MagazinePacketHeavyRifle50BMG #Becouse this is a very huge calibre
   technologyPrerequisites:
   - LethalAmmunition
   position: -4,-2
@@ -146,7 +152,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 7500
+  cost: 5500
   recipeUnlocks:
   - WeaponLaserCarbine
   technologyPrerequisites:
@@ -178,7 +184,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 10000
+  cost: 8000
   recipeUnlocks:
   - WeaponLaserCannon
   technologyPrerequisites:
@@ -208,7 +214,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 5000
+  cost: 3200
   recipeUnlocks:
   - WeaponLaserSvalinn
   - WeaponLaserPistol
@@ -230,3 +236,214 @@
   technologyPrerequisites:
   - RiotControlAdvanced
   position: 2,-1
+
+- type: technology
+  id: EarthArmoriesBase
+  name: research-technology-Earth-Armories
+  icon:
+    sprite: Backmen/Structures/Decoration/banner.rsi
+    state: banner
+  discipline: Arsenal
+  tier: 1
+  cost: 1000
+  position: -1,-5
+
+- type: technology
+  id: WeaponPistolBase
+  name: research-technology-pistol-base
+  discipline: Arsenal
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
+    state: icon
+  tier: 1
+  cost: 1000
+  position: 2,-5
+
+- type: technology
+  id: WeaponRifleBase
+  name: research-technology-base-rifle
+  icon:
+    sprite: Structures/Piping/Atmospherics/pipe.rsi
+    state: pipeStraight
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  technologyPrerequisites:
+  - LightAutoWeaponBase
+  - WeaponPistolBase
+  position: 2,-6
+
+- type: technology
+  id: LightAutoWeaponBase
+  name: research-technology-auto-poroh
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - WeaponPistolRivet
+  - MagazinePistolNail
+  technologyPrerequisites:
+  - WeaponPistolBase
+  position: 1,-5
+
+- type: technology
+  id: AdvancedAutoWeaponBase
+  name: research-technology-advancedauto-poroh
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 30000
+  technologyPrerequisites:
+  - LightAutoWeaponBase
+  - WeaponRifleBase
+  position: 1,-6
+
+- type: technology
+  id: ReinforcedBarrelBase
+  name: research-technology-reinforcedbarrel
+  icon:
+    sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 40000
+  technologyPrerequisites:
+  - AdvancedAutoWeaponBase
+  - WeaponRifleBase
+  position: 2,-7
+
+- type: technology
+  id: EarthArmoriesPistols
+  name: research-technology-EarthArmories-pistols
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - WeaponPistolG22
+  - WeaponPistolG23
+  - WeaponPistolACP14
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponPistolBase
+  position: -2,-6
+
+- type: technology
+  id: EarthArmoriesLightAutoWeapons
+  name: research-technology-EarthArmories-lightautoweapons
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+  - WeaponPistolVP78
+  - WeaponSubMachineGunMP5
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponPistolBase
+  - LightAutoWeaponBase
+  - EarthArmoriesPistols
+  position: -2,-7
+
+- type: technology
+  id: EarthArmoriesReinforcedWeapons
+  name: research-technology-EarthArmories-reinforcedweapons
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - WeaponRevolverMatebaNew
+  - WeaponRevolverR44
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponPistolBase
+  - ReinforcedBarrelBase
+  position: -0,-6
+
+- type: technology
+  id: EarthArmoriesRiflesWeapons
+  name: research-technology-EarthArmories-rifles
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 25000
+  recipeUnlocks:
+  - WeaponSniperRemington700
+  - WeaponShotgunPaladin12
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  position: -1,-8
+
+- type: technology
+  id: EarthArmoriesRiflesHeavyWeapons
+  name: research-technology-EarthArmories-heavyrifles
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - WeaponShotgun12
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  - ReinforcedBarrelBase
+  - EarthArmoriesRiflesWeapons
+  position: -0,-9
+
+- type: technology
+  id: EarthArmoriesRiflesAutoWeapons
+  name: research-technology-EarthArmories-autorifles
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 55000
+  recipeUnlocks:
+  - WeaponRifleG36
+  - WeaponRifleFamas
+  - WeaponRifleAR18
+  - WeaponRifleM28
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  - AdvancedAutoWeaponBase
+  - EarthArmoriesRiflesWeapons
+  position: -1,-9
+
+- type: technology
+  id: EarthArmoriesRiflesAutoHeavyWeapons
+  name: research-technology-EarthArmories-heavyautorifles
+  icon:
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 99000
+  recipeUnlocks:
+  - WeaponShotgun39
+  - WeaponRifleSR127
+  technologyPrerequisites:
+  - EarthArmoriesBase
+  - WeaponRifleBase
+  - AdvancedAutoWeaponBase
+  - ReinforcedBarrelBase
+  - EarthArmoriesRiflesWeapons
+  position: -2,-9
