@@ -46,7 +46,7 @@
 - type: latheRecipePack
   id: PowerCells
   recipes:
-  - PowerCellMicroreactor
+#  - PowerCellMicroreactor # Backmen-REMOVE
   - PowerCellHigh
   - PowerCellSuper # Backmen-Start
   - PowerCellHyper
