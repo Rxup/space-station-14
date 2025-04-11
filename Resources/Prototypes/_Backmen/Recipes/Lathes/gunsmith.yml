@@ -181,6 +181,6 @@
   parent: BaseWeaponRecipe
   id: MagazinePistolNail
   result: MagazinePistolNail
-  completetime: 30
+  completetime: 10
   materials:
     Steel: 1000
