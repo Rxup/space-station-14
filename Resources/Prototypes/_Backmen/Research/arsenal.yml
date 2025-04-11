@@ -120,6 +120,7 @@
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
   - MagazinePacketRifle762UEGAP
+  - MagazinePacketHeavyRifle50BMG #Becouse this is a very huge calibre
   technologyPrerequisites:
   - LethalAmmunition
   position: -4,-2

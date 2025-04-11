@@ -30,6 +30,7 @@
   recipes:
   - MagazineBoxMagnumIncendiary
   # Backmen-ammonation-start
+  - MagazinePacketHeavyRifle50BMG
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP

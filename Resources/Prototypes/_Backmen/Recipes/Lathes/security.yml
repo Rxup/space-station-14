@@ -310,3 +310,11 @@
     Steel: 1500
     Plasteel: 1100
     Diamond: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketHeavyRifle50BMG
+  result: MagazinePacketHeavyRifle50BMG
+  materials:
+    Steel: 2500
+    Plasteel: 1000
