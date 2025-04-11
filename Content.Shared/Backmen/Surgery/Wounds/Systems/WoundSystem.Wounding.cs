@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.Backmen.Surgery.CCVar;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -163,7 +163,7 @@ public sealed partial class WoundSystem
                 var originTransform = _transform.GetWorldPosition(args.Origin.Value);
 
                 var distance = (originTransform - bodyTransform).Length();
-                if (distance < _cfg.GetCVar(SurgeryCvars.DodgeDistanceChance) * 2)
+                if (distance < _cfg.GetCVar(CCVars.DodgeDistanceChance) * 2)
                 {
                     chance = 0;
                 }
@@ -171,8 +171,8 @@ public sealed partial class WoundSystem
                 {
                     var additionalChance =
                         distance
-                        / _cfg.GetCVar(SurgeryCvars.DodgeDistanceChance)
-                        * _cfg.GetCVar(SurgeryCvars.DodgeDistanceChange);
+                        / _cfg.GetCVar(CCVars.DodgeDistanceChance) // 1 letter difference
+                        * _cfg.GetCVar(CCVars.DodgeDistanceChange);
 
                     chance += additionalChance;
                 }
@@ -349,7 +349,7 @@ public sealed partial class WoundSystem
         if (!Resolve(wound, ref woundComponent))
             return false;
 
-        if (!_random.Prob(_cfg.GetCVar(SurgeryCvars.WoundScarChance)))
+        if (!_random.Prob(_cfg.GetCVar(CCVars.WoundScarChance)))
             return false;
 
         if (woundComponent.ScarWound == null || woundComponent.IsScar)
@@ -395,7 +395,7 @@ public sealed partial class WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint =
-            FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(SurgeryCvars.MaxWoundSeverity));
+            FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(CCVars.MaxWoundSeverity));
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -465,8 +465,8 @@ public sealed partial class WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = severity > 0
-            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(SurgeryCvars.MaxWoundSeverity))
-            : FixedPoint2.Clamp(old + severity, 0, _cfg.GetCVar(SurgeryCvars.MaxWoundSeverity));
+            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(CCVars.MaxWoundSeverity))
+            : FixedPoint2.Clamp(old + severity, 0, _cfg.GetCVar(CCVars.MaxWoundSeverity));
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -885,7 +885,7 @@ public sealed partial class WoundSystem
         TryInduceWound(
             parent,
             MetaData(wound).EntityPrototype!.ID,
-            woundComp.WoundSeverityPoint * _cfg.GetCVar(SurgeryCvars.WoundTransferPart),
+            woundComp.WoundSeverityPoint * _cfg.GetCVar(CCVars.WoundTransferPart),
             out _,
             woundableComp);
 
@@ -1416,6 +1416,36 @@ public sealed partial class WoundSystem
         return GetWoundableWounds(targetEntity, targetWoundable)
             .Where(wound => wound.Comp.DamageGroup?.ID == damageGroup || damageGroup == null)
             .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint);
+    }
+
+    /// <summary>
+    /// Returns you the integrity damage the woundable has
+    /// </summary>
+    /// <param name="targetEntity">The woundable uid</param>
+    /// <param name="targetWoundable">The component</param>
+    /// <param name="damageGroup">The damage group of wounds that induced the damage</param>
+    /// <param name="healable">Is the integrity damage healable</param>
+    /// <returns>The integrity damage</returns>
+    public FixedPoint2 GetWoundableIntegrityDamage(
+        EntityUid targetEntity,
+        WoundableComponent? targetWoundable = null,
+        string? damageGroup = null,
+        bool healable = false)
+    {
+        if (!Resolve(targetEntity, ref targetWoundable) || targetWoundable.Wounds.Count == 0)
+            return FixedPoint2.Zero;
+
+        if (healable)
+        {
+            return GetWoundableWounds(targetEntity, targetWoundable)
+                .Where(wound => wound.Comp.DamageGroup?.ID == damageGroup || damageGroup == null)
+                .Where(wound => CanHealWound(wound))
+                .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage);
+        }
+
+        return GetWoundableWounds(targetEntity, targetWoundable)
+            .Where(wound => wound.Comp.DamageGroup?.ID == damageGroup || damageGroup == null)
+            .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage);
     }
 
     #endregion

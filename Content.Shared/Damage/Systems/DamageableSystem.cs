@@ -549,13 +549,6 @@ namespace Content.Shared.Damage
             Dirty(uid, comp);
         }
 
-        // backmen edit start
-        public DamageGroupPrototype GetDamageGroupByType(string id)
-        {
-            return (from @group in _prototypeManager.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group).FirstOrDefault()!;
-        }
-        // backmen edit end
-
         private void DamageableGetState(EntityUid uid, DamageableComponent component, ref ComponentGetState args)
         {
             if (_netMan.IsServer)

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Surgery.CCVar;
+﻿using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Systems;
@@ -17,7 +17,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
-[Virtual]
 public partial class WoundSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -32,7 +31,6 @@ public partial class WoundSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -64,7 +62,7 @@ public partial class WoundSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        var timeToHeal = 1 / _cfg.GetCVar(SurgeryCvars.MedicalHealingTickrate);
+        var timeToHeal = 1 / _cfg.GetCVar(CCVars.MedicalHealingTickrate);
         using var query = EntityQueryEnumerator<WoundableComponent>();
         while (query.MoveNext(out var ent, out var woundable))
         {

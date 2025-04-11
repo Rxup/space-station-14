@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -11,6 +12,8 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public partial class TraumaSystem
 {
+    private const string OrganDamagePainIdentifier = "OrganDamage";
+
     private void InitOrgans()
     {
         SubscribeLocalEvent<OrganComponent, OrganIntegrityChangedEvent>(OnOrganIntegrityChanged);
@@ -52,14 +55,14 @@ public partial class TraumaSystem
         if (!_pain.TryChangePainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
-                "OrganDamage",
+                OrganDamagePainIdentifier,
                 (totalIntegrityCap - totalIntegrity) / 2,
                 nerveSys.Value.Comp))
         {
             _pain.TryAddPainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
-                "OrganDamage",
+                OrganDamagePainIdentifier,
                 (totalIntegrityCap - totalIntegrity) / 2,
                 PainDamageTypes.TraumaticPain,
                 nerveSys.Value.Comp);
@@ -88,7 +91,12 @@ public partial class TraumaSystem
                 AudioParams.Default.WithVolume(6f));
 
             _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
-            _stun.TrySlowdown(body.Value, nerveSys.Value.Comp.OrganDamageStunTime * 2, true, 0.6f, 0.6f); // haha dumbass
+            _stun.TrySlowdown(
+                body.Value,
+                nerveSys.Value.Comp.OrganDamageStunTime * _cfg.GetCVar(CCVars.OrganTraumaSlowdownTimeMultiplier),
+                true,
+                _cfg.GetCVar(CCVars.OrganTraumaWalkSpeedSlowdown),
+                _cfg.GetCVar(CCVars.OrganTraumaRunSpeedSlowdown));
         }
 
         if (TryGetWoundableTrauma(bodyPart, out var traumas, TraumaType.OrganDamage, bodyPart))

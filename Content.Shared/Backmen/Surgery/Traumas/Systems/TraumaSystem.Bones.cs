@@ -5,6 +5,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Components;
+using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 
@@ -85,6 +86,7 @@ public partial class TraumaSystem
 
     #region Public API
 
+    [PublicAPI]
     public bool ApplyBoneTrauma(
         EntityUid boneEnt,
         Entity<WoundableComponent> woundable,
@@ -101,6 +103,7 @@ public partial class TraumaSystem
         return true;
     }
 
+    [PublicAPI]
     public bool SetBoneIntegrity(EntityUid bone, FixedPoint2 integrity, BoneComponent? boneComp = null)
     {
         if (!Resolve(bone, ref boneComp))
@@ -120,6 +123,7 @@ public partial class TraumaSystem
         return true;
     }
 
+    [PublicAPI]
     public bool ApplyDamageToBone(EntityUid bone, FixedPoint2 severity, BoneComponent? boneComp = null)
     {
         if (severity == 0)
@@ -191,7 +195,7 @@ public partial class TraumaSystem
             if (!TryComp<WoundableComponent>(legEntity, out var legWoundable))
                 continue;
 
-            if (!TryComp<BoneComponent>(legWoundable.Bone!.ContainedEntities[0], out var boneComp))
+            if (!TryComp<BoneComponent>(legWoundable.Bone.ContainedEntities[0], out var boneComp))
                 continue;
 
             // get the foot penalty

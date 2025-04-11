@@ -9,6 +9,9 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
@@ -17,6 +20,7 @@ namespace Content.Server.Atmos.EntitySystems
     {
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly WoundSystem _wound = default!; // Backmen edit
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
@@ -207,12 +211,32 @@ namespace Content.Server.Atmos.EntitySystems
 
             _timer -= UpdateTimer;
 
-            var enumerator = EntityQueryEnumerator<BarotraumaComponent>();
-            while (enumerator.MoveNext(out var uid, out var barotrauma))
+            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent>();
+            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable))
             {
-                // backmen edit: handled by wounding
-                //if (totalDamage >= barotrauma.MaxDamage)
-                //    continue;
+                var totalDamage = FixedPoint2.Zero;
+                foreach (var (damageType, _) in barotrauma.Damage.DamageDict)
+                {
+                    if (!damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
+                        continue;
+
+                    totalDamage += damage;
+                }
+
+                // backmen edit start
+                if (TryComp<BodyComponent>(uid, out var body) && body.RootContainer.ContainedEntity.HasValue)
+                {
+                    foreach (var woundEnt in _wound.GetWoundableWounds(body.RootContainer.ContainedEntity.Value))
+                    {
+                        // TODO: a check for the damage type
+
+                        totalDamage += woundEnt.Comp.WoundIntegrityDamage;
+                    }
+                }
+                // backmen edit end
+
+                if (totalDamage >= barotrauma.MaxDamage)
+                    continue;
 
                 var pressure = 1f;
 

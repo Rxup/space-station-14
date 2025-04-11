@@ -4,6 +4,7 @@ using Content.Client.Message;
 using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -41,10 +42,7 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
 
-        // backmen edit start
-        private readonly WoundSystem _wound;
-        private readonly SharedAppearanceSystem _appearance;
-        // backmen edit end
+        private readonly WoundSystem _wound; // backmen edit
 
         // Start-backmen: surgery
         public event Action<TargetBodyPart?, EntityUid>? OnBodyPartSelected;
@@ -68,7 +66,6 @@ namespace Content.Client.HealthAnalyzer.UI
             _prototypes = dependencies.Resolve<IPrototypeManager>();
             _cache = dependencies.Resolve<IResourceCache>();
             _wound = _entityManager.System<WoundSystem>(); // backmen: wounding
-            _appearance = _entityManager.System<SharedAppearanceSystem>(); // backmen: wounding
             // Start-backmen: surgery
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
@@ -201,7 +198,10 @@ namespace Content.Client.HealthAnalyzer.UI
                 DrawDiagnosticGroups(damageSortedGroups, damagePerType);
             }
 
-            if (!isPart && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body) && body.RootContainer.ContainedEntity.HasValue)
+            if (!isPart
+                && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body)
+                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value)
+                && body.RootContainer.ContainedEntity.HasValue)
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
@@ -209,9 +209,9 @@ namespace Content.Client.HealthAnalyzer.UI
                     if (wound.Comp.DamageGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundSeverityPoint))
+                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundIntegrityDamage))
                     {
-                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundSeverityPoint;
+                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundIntegrityDamage;
                     }
                 }
 
@@ -231,7 +231,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 var wounds = _wound.GetWoundableWounds(part.Value, woundable).ToList();
                 DamageLabel.Text =
                     wounds
-                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint)
+                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage)
                         .ToString();
 
                 var damageGroups = new Dictionary<string, FixedPoint2>();
@@ -241,9 +241,9 @@ namespace Content.Client.HealthAnalyzer.UI
                     if (woundGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundSeverityPoint))
+                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundIntegrityDamage))
                     {
-                        damageGroups[woundGroup.ID] += wound.Comp.WoundSeverityPoint;
+                        damageGroups[woundGroup.ID] += wound.Comp.WoundIntegrityDamage;
                     }
                 }
 
