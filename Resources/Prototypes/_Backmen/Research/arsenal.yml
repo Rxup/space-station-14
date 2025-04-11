@@ -293,7 +293,7 @@
   id: AdvancedAutoWeaponBase
   name: research-technology-advancedauto-poroh
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
     state: icon
   discipline: Arsenal
   tier: 3
