@@ -176,3 +176,11 @@
   materials:
     Steel: 1500
     Plasteel: 1500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: MagazinePistolNail
+  result: MagazinePistolNail
+  completetime: 30
+  materials:
+    Steel: 1000

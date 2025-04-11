@@ -51,6 +51,10 @@
   - MagazinePacketPistol50AE
   # Backmen-ammonation-end
   - MagazineBoxMagnum
+  - BoxLethalshot
+  - BoxShotgunSlug
+  - SpeedLoaderMagnum
+  - SpeedLoaderMagnumEmpty
   technologyPrerequisites:
   - RiotControl
   - NonlethalAmmunition
@@ -279,6 +283,7 @@
   cost: 5000
   recipeUnlocks:
   - WeaponPistolRivet
+  - MagazinePistolNail
   technologyPrerequisites:
   - WeaponPistolBase
   position: 1,-5

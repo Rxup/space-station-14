@@ -1,0 +1,12 @@
+- type: technology
+  id: GunsmithPrinterMachines
+  name: research-technology-gunsmith-printer-machines
+  icon:
+    sprite: Structures/cargo_telepad.rsi
+    state: display
+  discipline: Arsenal
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+  - GunsmithTechFabCircuitboard
+  position: -1,-7

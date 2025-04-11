@@ -410,6 +410,7 @@
     - BackmenAmmo # backmen
 #    - SecurityWeapons #backmen-gumsmiths
     - SecurityDisablers
+    - BackmenCircuboardArsenal #backmen-gumsmiths
   - type: MaterialStorage
     whitelist:
       tags:
