@@ -42,7 +42,7 @@
   result: WeaponPistolACP14
   completetime: 30
   materials:
-    Steel: 3000
+    Steel: 4000
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
