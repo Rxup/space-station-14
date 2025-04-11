@@ -104,7 +104,7 @@
     autoRechargeRate: 30
 
 - type: entity
-  parent: PowerCellBluespace
+  parent: PowerCellVortex
   id: PowerCellVortexPrinted
   suffix: Empty
   components:
@@ -122,7 +122,7 @@
     sprite: Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: bluespace_reactor
+      state: interdyne
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
