@@ -205,7 +205,7 @@ namespace Content.Client.Lobby
             if (_gameTicker.ServerInfoBlob != null)
             {
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
-                Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20] Sirena [/font]"); // BACKMEN EDIT
+                Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20]   Sirena [18+] [/font]"); // BACKMEN EDIT
                     // Don't forget that you're the BACKMEN, that you've always gone against the system and made the best build.
                     // Don't forget that you're the Ataraxia, that you have always stood for the players to be happy and get what they deserve.
                     // Glory to BACKMEN, HOP on Ataraxia
