@@ -11,7 +11,7 @@
    - LightTube
    - LightBulb
    - WarmLightBulb
-  position: 1,6
+  position: 2,6
 
 - type: technology
   id: LightningAdvanced
@@ -30,7 +30,7 @@
    - DimLightBulb
   technologyPrerequisites:
    - Lightning
-  position: 1,7
+  position: 2,7
 
 - type: technology
   id: Bootlegging
@@ -97,7 +97,7 @@
     state: icon
   discipline: Service
   tier: 1
-  cost: 3500
+  cost: 500
   recipeUnlocks:
    - SynthesizerInstrument
    - HandheldStationMap
@@ -113,7 +113,7 @@
     state: astroice
   discipline: Service
   tier: 1
-  cost: 5000
+  cost: 2000
   recipeUnlocks:
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
@@ -153,7 +153,7 @@
     state: advmop
   discipline: Service
   tier: 1
-  cost: 10000
+  cost: 8000
   recipeUnlocks:
    - AdvMopItem
   technologyPrerequisites:
