@@ -28,14 +28,14 @@
   position: 0,3
 
 - type: technology
-  id: PowercellsAdvanced
-  name: research-technology-powercells-advanced
+  id: PowercellsUpgraded
+  name: research-technology-powercells-upgraded
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: high
   discipline: Engineering
   tier: 1
-  cost: 1500
+  cost: 2500
   recipeUnlocks:
    - PowerCellHigh
   technologyPrerequisites:
@@ -43,20 +43,84 @@
   position: 0,4
 
 - type: technology
-  id: PortableFission
-  name: research-technology-portable-fission
+  id: PowercellsPrototypes
+  name: research-technology-powercells-prototypes
   icon:
     sprite: Objects/Power/power_cells.rsi
-    state: microreactor
+    state: hyper
   discipline: Engineering
   tier: 1
-  cost: 25000
+  cost: 5500
   recipeUnlocks:
-   - PowerCellMicroreactor
+   - PowerCellSuper
+   - PowerCellHyper
   technologyPrerequisites:
-  - PowercellsAdvanced
-  - PowerGenerationAdvancedMachines
+  - PowercellsUpgraded
+  - PowerGenerationMachines
   position: 0,5
+
+- type: technology
+  id: PowercellsBluespace
+  name: research-technology-powercells-bluespace
+  icon:
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    state: bluespace
+  discipline: Engineering
+  tier: 1
+  cost: 18000
+  recipeUnlocks:
+   - PowerCellBluespace
+  technologyPrerequisites:
+  - PowercellsPrototypes
+  - PowerGenerationAdvancedMachines
+  position: 0,6
+
+- type: technology
+  id: PowercellsBluespaceReactor
+  name: research-technology-powercells-bluespace-reactor
+  icon:
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    state: bluespace_reactor
+  discipline: Engineering
+  tier: 1
+  cost: 55000
+  recipeUnlocks:
+   - PowerCellBluespaceReactor
+  technologyPrerequisites:
+  - PowercellsBluespace
+  position: 1,6
+
+- type: technology
+  id: PowercellsVortex
+  name: research-technology-powercells-vortex
+  icon:
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    state: vortex
+  discipline: Engineering
+  tier: 1
+  cost: 125000
+  recipeUnlocks:
+   - PowerCellVortex
+  technologyPrerequisites:
+  - PowercellsBluespaceReactor
+  - QuantumLeaping
+  position: 1,5
+
+#- type: technology
+#  id: PortableFission
+#  name: research-technology-portable-fission
+#  icon:
+#    sprite: Objects/Power/power_cells.rsi
+#    state: microreactor
+#  discipline: Engineering
+#  tier: 1
+#  cost: 25000
+#  recipeUnlocks:
+#   - PowerCellMicroreactor
+#  technologyPrerequisites:
+#  - PowercellsAdvanced
+#  - PowerGenerationAdvancedMachines
+#  position: 0,7
 
 #- type: technology
 #  id: EngineeringDevices

@@ -1,14 +1,128 @@
 - type: entity
   parent: BasePowerCell
+  id: PowerCellSuper
+  name: super-capacity power cell
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: super
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1250
+    startingCharge: 1250
+
+- type: entity
+  parent: PowerCellSuper
+  id: PowerCellSuperPrinted
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellBluespace
+  name: bluespace power cell
+  description: Rechargeable transdimensional power cell.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: bluespace
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 2200
+    startingCharge: 2200
+
+- type: entity
+  parent: PowerCellBluespace
+  id: PowerCellBluespacePrinted
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellBluespaceReactor
+  name: bluespace reactor power cell
+  description: Self charging transdimensional power cell, houses a miniature reactor within its bluespace power pocket. Suffers in terms of capacity as a result.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: bluespace_reactor
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1400
+    startingCharge: 1400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30
+
+- type: entity
+  parent: PowerCellBluespaceReactor
+  id: PowerCellBluespaceReactorPrinted
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellVortex
+  name: vortex power cell
+  description: Rechargeable transdimensional power cell.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Power/power_cells.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: vortex
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 2200
+    startingCharge: 2200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30
+
+- type: entity
+  parent: PowerCellBluespace
+  id: PowerCellVortexPrinted
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BasePowerCell
   id: PowerCellGigareactor
   name: gigareactor power cell
   description: A rechargeable microreactor cell with some upgrade from Interdyne corp.
   suffix: Full
   components:
   - type: Sprite
+    sprite: Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: microreactor
+      state: bluespace_reactor
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded

@@ -169,7 +169,7 @@
     state: holding
   discipline: Scientific
   tier: 1
-  cost: 32000
+  cost: 28000
   recipeUnlocks:
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
@@ -177,6 +177,6 @@
   - ClothingBackpackMessengerHolding # Backmen
   technologyPrerequisites:
   - QuantumLeaping
-  - PortableFission
+  - PowercellsBluespace
   - SalvageEquipmentAdvanced
   position: 5,5
