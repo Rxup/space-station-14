@@ -841,10 +841,6 @@ MagazinePistolHighCapacityRubber: null
 # 2025-03-25 | Backmen
 SpawnPointInteQVanguardSolderSizo37: SpawnPointInteQVanguardSoldierSizo37
 
-# 2025-04-11 | Backmen
-PowerCellMicroreactor: PowerCellBluespaceReactor
-PowerCellMicroreactorPrinted: PowerCellBluespaceReactorPrinted
-
 # 2024-12-22 # Lavaland Change: Migrations
 VendingMachineRestockSalvageEquipment: null
 CrateVendingMachineRestockSalvageEquipmentFilled: null
