@@ -27,12 +27,30 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoDemon
-  name: "demon torso"
-  parent: [PartDemon, BaseTorso]
+  id: ChestDemon
+  name: "demon chest"
+  parent: [PartDemon, BaseChest]
   components:
   - type: BodyPart #Backmen-Edit
-    partType: Torso
+    partType: Chest
+  - type: Sprite
+    sprite: _ADT/Mobs/Demon/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinDemon
+  name: "demon groin"
+  parent: [PartDemon, BaseGroin]
+  components:
+  - type: BodyPart #Backmen-Edit
+    partType: Groin
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "torso_m"

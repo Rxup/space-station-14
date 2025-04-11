@@ -1,26 +1,31 @@
 - type: body
   name: "demon"
   id: Demon
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadDemon
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoDemon
+    chest:
+      part: ChestDemon
       connections: # Goobstation - fix some species having their hands the wrong way around
       - right arm
       - left arm
+      - groin
+      - head
+      organs:
+        lungs: OrganAnimalLungs
+        heart: OrganAnimalHeart
+    groin: # Backmen edit: chest, groin separation
+      part: GroinAnimal
+      connections:
       - right leg
       - left leg
-      - head # Shitmed Change
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
         stomach: OrganDemonStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
