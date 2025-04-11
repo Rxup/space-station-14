@@ -92,9 +92,9 @@ namespace Content.Client.Stylesheets
 
         // BACKMEN-EDIT-COLOURS-START
         // Rebecca-Purple  - Наш цвет, Цвет бэкмена. Если вы хотите выделить обьект -рекомендуется использовать именно этот цвет
-        public static readonly Color NanoGold = Color.FromHex("#7d41be");
+        public static readonly Color NanoGold = Color.FromHex("#C71585");
 
-        public static readonly Color GoodGreenFore = Color.FromHex("#663399");
+        public static readonly Color GoodGreenFore = Color.FromHex("#C71585");
         public static readonly Color ConcerningOrangeFore = Color.FromHex("#A5762F");
         public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
         public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
@@ -117,7 +117,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorGoodDisabled = Color.FromHex("#421F6B");
 
         public static readonly Color PointRed = Color.FromHex("#BB3232");
-        public static readonly Color PointGreen = Color.FromHex("#663399");
+        public static readonly Color PointGreen = Color.FromHex("#C71585");
         public static readonly Color PointMagenta = Color.FromHex("#6E6E6E");
 
         public static readonly Color ButtonColorContext = Color.FromHex("#1E1E1E");
@@ -511,7 +511,7 @@ namespace Content.Client.Stylesheets
             var sliderFillBox = new StyleBoxTexture
             {
                 Texture = sliderFillTex,
-                Modulate = Color.FromHex("#663399")
+                Modulate = Color.FromHex("#C71585")
             };
 
             var sliderBackBox = new StyleBoxTexture
