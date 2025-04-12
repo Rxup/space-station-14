@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.1.0
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:29:21
-  entityCount: 79
+  time: 04/12/2025 01:12:25
+  entityCount: 80
 maps: []
 grids:
 - 1
@@ -322,6 +322,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,3.5
+      parent: 1
+- proto: TriggerInstantSpawnerXENHEV
+  entities:
+  - uid: 80
+    components:
+    - type: Transform
+      pos: 1.5,3.5
       parent: 1
 - proto: WallMining
   entities:

@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.1.0
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:40:24
-  entityCount: 563
+  time: 04/12/2025 01:19:07
+  entityCount: 570
 maps: []
 grids:
 - 1
@@ -2216,6 +2216,47 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,13.5
+      parent: 1
+- proto: TriggerInstantSpawnerXENHEV
+  entities:
+  - uid: 567
+    components:
+    - type: Transform
+      pos: 8.5,-0.5
+      parent: 1
+  - uid: 568
+    components:
+    - type: Transform
+      pos: -1.5,3.5
+      parent: 1
+- proto: TriggerInstantSpawnerXENMarine
+  entities:
+  - uid: 564
+    components:
+    - type: Transform
+      pos: -8.5,-1.5
+      parent: 1
+  - uid: 565
+    components:
+    - type: Transform
+      pos: -5.5,-5.5
+      parent: 1
+  - uid: 566
+    components:
+    - type: Transform
+      pos: 4.5,3.5
+      parent: 1
+- proto: TriggerInstantSpawnerXENScience
+  entities:
+  - uid: 569
+    components:
+    - type: Transform
+      pos: 1.5,9.5
+      parent: 1
+  - uid: 570
+    components:
+    - type: Transform
+      pos: -2.5,7.5
       parent: 1
 - proto: WallReinforced
   entities:

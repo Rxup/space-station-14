@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.1.0
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:22:35
-  entityCount: 646
+  time: 04/12/2025 01:19:51
+  entityCount: 651
 maps: []
 grids:
 - 2
@@ -3410,6 +3410,47 @@ entities:
       linearDamping: 0
       canCollide: False
     - type: InsideEntityStorage
+- proto: TriggerInstantSpawnerXENGuard
+  entities:
+  - uid: 451
+    components:
+    - type: Transform
+      pos: 1.5,21.5
+      parent: 2
+  - uid: 482
+    components:
+    - type: Transform
+      pos: 15.5,19.5
+      parent: 2
+- proto: TriggerInstantSpawnerXENHEV
+  entities:
+  - uid: 403
+    components:
+    - type: Transform
+      pos: 14.5,16.5
+      parent: 2
+  - uid: 450
+    components:
+    - type: Transform
+      pos: 4.5,13.5
+      parent: 2
+- proto: TriggerInstantSpawnerXENScience
+  entities:
+  - uid: 642
+    components:
+    - type: Transform
+      pos: 5.5,8.5
+      parent: 2
+  - uid: 643
+    components:
+    - type: Transform
+      pos: 12.5,8.5
+      parent: 2
+  - uid: 644
+    components:
+    - type: Transform
+      pos: 6.5,17.5
+      parent: 2
 - proto: UniformShortsRedWithTop
   entities:
   - uid: 208
