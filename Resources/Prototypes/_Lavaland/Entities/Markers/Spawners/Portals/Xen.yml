@@ -23,6 +23,8 @@
     shape:
       !type:PhysShapeCircle
         radius: 25
+    layer:
+    - MobMask
   - type: Fixtures
     fixtures:
       fix1:
