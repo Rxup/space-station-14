@@ -4,8 +4,8 @@ meta:
   engineVersion: 250.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/08/2025 12:27:26
-  entityCount: 1894
+  time: 04/12/2025 08:59:49
+  entityCount: 2030
 maps:
 - 962
 grids:
@@ -1438,6 +1438,36 @@ entities:
     - type: Transform
       pos: 11.5,-32.5
       parent: 179
+  - uid: 2026
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,-47.5
+      parent: 179
+  - uid: 2027
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,-47.5
+      parent: 179
+  - uid: 2028
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,-47.5
+      parent: 179
+  - uid: 2029
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,-47.5
+      parent: 179
+  - uid: 2030
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 20.5,-47.5
+      parent: 179
 - proto: AtmosFixBlockerMarker
   entities:
   - uid: 1582
@@ -1878,20 +1908,15 @@ entities:
       parent: 179
 - proto: Beaker
   entities:
-  - uid: 174
-    components:
-    - type: Transform
-      pos: 25.291822,10.667244
-      parent: 179
   - uid: 175
     components:
     - type: Transform
-      pos: 24.541822,10.635994
+      pos: 23.607525,7.010107
       parent: 179
   - uid: 176
     components:
     - type: Transform
-      pos: 26.416822,10.651619
+      pos: 23.357525,7.181982
       parent: 179
   - uid: 324
     components:
@@ -1972,6 +1997,40 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-14.5
+      parent: 179
+- proto: BlastDoorExterior3
+  entities:
+  - uid: 1895
+    components:
+    - type: Transform
+      pos: 16.5,-47.5
+      parent: 179
+  - uid: 1896
+    components:
+    - type: Transform
+      pos: 17.5,-47.5
+      parent: 179
+  - uid: 1897
+    components:
+    - type: Transform
+      pos: 18.5,-47.5
+      parent: 179
+  - uid: 1898
+    components:
+    - type: Transform
+      pos: 19.5,-47.5
+      parent: 179
+  - uid: 1899
+    components:
+    - type: Transform
+      pos: 20.5,-47.5
+      parent: 179
+- proto: BluespaceBeaker
+  entities:
+  - uid: 586
+    components:
+    - type: Transform
+      pos: 23.529991,5.5537095
       parent: 179
 - proto: BoozeDispenser
   entities:
@@ -3716,6 +3775,386 @@ entities:
     - type: Transform
       pos: 15.5,-14.5
       parent: 179
+  - uid: 1910
+    components:
+    - type: Transform
+      pos: 9.5,-25.5
+      parent: 179
+  - uid: 1911
+    components:
+    - type: Transform
+      pos: 9.5,-26.5
+      parent: 179
+  - uid: 1912
+    components:
+    - type: Transform
+      pos: 9.5,-27.5
+      parent: 179
+  - uid: 1913
+    components:
+    - type: Transform
+      pos: 9.5,-28.5
+      parent: 179
+  - uid: 1914
+    components:
+    - type: Transform
+      pos: 9.5,-29.5
+      parent: 179
+  - uid: 1915
+    components:
+    - type: Transform
+      pos: 9.5,-30.5
+      parent: 179
+  - uid: 1916
+    components:
+    - type: Transform
+      pos: 9.5,-31.5
+      parent: 179
+  - uid: 1917
+    components:
+    - type: Transform
+      pos: 9.5,-32.5
+      parent: 179
+  - uid: 1918
+    components:
+    - type: Transform
+      pos: 9.5,-33.5
+      parent: 179
+  - uid: 1919
+    components:
+    - type: Transform
+      pos: 9.5,-35.5
+      parent: 179
+  - uid: 1920
+    components:
+    - type: Transform
+      pos: 9.5,-34.5
+      parent: 179
+  - uid: 1921
+    components:
+    - type: Transform
+      pos: 9.5,-36.5
+      parent: 179
+  - uid: 1922
+    components:
+    - type: Transform
+      pos: 9.5,-37.5
+      parent: 179
+  - uid: 1923
+    components:
+    - type: Transform
+      pos: 9.5,-38.5
+      parent: 179
+  - uid: 1924
+    components:
+    - type: Transform
+      pos: 9.5,-39.5
+      parent: 179
+  - uid: 1925
+    components:
+    - type: Transform
+      pos: 9.5,-40.5
+      parent: 179
+  - uid: 1926
+    components:
+    - type: Transform
+      pos: 9.5,-41.5
+      parent: 179
+  - uid: 1927
+    components:
+    - type: Transform
+      pos: 9.5,-42.5
+      parent: 179
+  - uid: 1928
+    components:
+    - type: Transform
+      pos: 9.5,-43.5
+      parent: 179
+  - uid: 1929
+    components:
+    - type: Transform
+      pos: 9.5,-44.5
+      parent: 179
+  - uid: 1930
+    components:
+    - type: Transform
+      pos: 9.5,-45.5
+      parent: 179
+  - uid: 1931
+    components:
+    - type: Transform
+      pos: 10.5,-29.5
+      parent: 179
+  - uid: 1932
+    components:
+    - type: Transform
+      pos: 11.5,-29.5
+      parent: 179
+  - uid: 1933
+    components:
+    - type: Transform
+      pos: 12.5,-29.5
+      parent: 179
+  - uid: 1934
+    components:
+    - type: Transform
+      pos: 13.5,-29.5
+      parent: 179
+  - uid: 1935
+    components:
+    - type: Transform
+      pos: 14.5,-29.5
+      parent: 179
+  - uid: 1936
+    components:
+    - type: Transform
+      pos: 15.5,-29.5
+      parent: 179
+  - uid: 1937
+    components:
+    - type: Transform
+      pos: 16.5,-29.5
+      parent: 179
+  - uid: 1938
+    components:
+    - type: Transform
+      pos: 17.5,-29.5
+      parent: 179
+  - uid: 1939
+    components:
+    - type: Transform
+      pos: 18.5,-29.5
+      parent: 179
+  - uid: 1940
+    components:
+    - type: Transform
+      pos: 19.5,-29.5
+      parent: 179
+  - uid: 1941
+    components:
+    - type: Transform
+      pos: 20.5,-29.5
+      parent: 179
+  - uid: 1942
+    components:
+    - type: Transform
+      pos: 21.5,-29.5
+      parent: 179
+  - uid: 1943
+    components:
+    - type: Transform
+      pos: 22.5,-29.5
+      parent: 179
+  - uid: 1944
+    components:
+    - type: Transform
+      pos: 10.5,-34.5
+      parent: 179
+  - uid: 1945
+    components:
+    - type: Transform
+      pos: 11.5,-34.5
+      parent: 179
+  - uid: 1946
+    components:
+    - type: Transform
+      pos: 12.5,-34.5
+      parent: 179
+  - uid: 1947
+    components:
+    - type: Transform
+      pos: 14.5,-34.5
+      parent: 179
+  - uid: 1948
+    components:
+    - type: Transform
+      pos: 15.5,-34.5
+      parent: 179
+  - uid: 1949
+    components:
+    - type: Transform
+      pos: 16.5,-34.5
+      parent: 179
+  - uid: 1950
+    components:
+    - type: Transform
+      pos: 17.5,-34.5
+      parent: 179
+  - uid: 1951
+    components:
+    - type: Transform
+      pos: 18.5,-34.5
+      parent: 179
+  - uid: 1952
+    components:
+    - type: Transform
+      pos: 19.5,-34.5
+      parent: 179
+  - uid: 1953
+    components:
+    - type: Transform
+      pos: 20.5,-34.5
+      parent: 179
+  - uid: 1954
+    components:
+    - type: Transform
+      pos: 13.5,-34.5
+      parent: 179
+  - uid: 1955
+    components:
+    - type: Transform
+      pos: 21.5,-34.5
+      parent: 179
+  - uid: 1956
+    components:
+    - type: Transform
+      pos: 22.5,-34.5
+      parent: 179
+  - uid: 1957
+    components:
+    - type: Transform
+      pos: 10.5,-39.5
+      parent: 179
+  - uid: 1958
+    components:
+    - type: Transform
+      pos: 11.5,-39.5
+      parent: 179
+  - uid: 1959
+    components:
+    - type: Transform
+      pos: 12.5,-39.5
+      parent: 179
+  - uid: 1960
+    components:
+    - type: Transform
+      pos: 13.5,-39.5
+      parent: 179
+  - uid: 1961
+    components:
+    - type: Transform
+      pos: 14.5,-39.5
+      parent: 179
+  - uid: 1962
+    components:
+    - type: Transform
+      pos: 15.5,-39.5
+      parent: 179
+  - uid: 1963
+    components:
+    - type: Transform
+      pos: 16.5,-39.5
+      parent: 179
+  - uid: 1964
+    components:
+    - type: Transform
+      pos: 17.5,-39.5
+      parent: 179
+  - uid: 1965
+    components:
+    - type: Transform
+      pos: 18.5,-39.5
+      parent: 179
+  - uid: 1966
+    components:
+    - type: Transform
+      pos: 20.5,-39.5
+      parent: 179
+  - uid: 1967
+    components:
+    - type: Transform
+      pos: 19.5,-39.5
+      parent: 179
+  - uid: 1968
+    components:
+    - type: Transform
+      pos: 21.5,-39.5
+      parent: 179
+  - uid: 1969
+    components:
+    - type: Transform
+      pos: 22.5,-39.5
+      parent: 179
+  - uid: 1970
+    components:
+    - type: Transform
+      pos: 10.5,-44.5
+      parent: 179
+  - uid: 1971
+    components:
+    - type: Transform
+      pos: 12.5,-44.5
+      parent: 179
+  - uid: 1972
+    components:
+    - type: Transform
+      pos: 13.5,-44.5
+      parent: 179
+  - uid: 1973
+    components:
+    - type: Transform
+      pos: 14.5,-44.5
+      parent: 179
+  - uid: 1974
+    components:
+    - type: Transform
+      pos: 15.5,-44.5
+      parent: 179
+  - uid: 1975
+    components:
+    - type: Transform
+      pos: 16.5,-44.5
+      parent: 179
+  - uid: 1976
+    components:
+    - type: Transform
+      pos: 17.5,-44.5
+      parent: 179
+  - uid: 1977
+    components:
+    - type: Transform
+      pos: 18.5,-44.5
+      parent: 179
+  - uid: 1978
+    components:
+    - type: Transform
+      pos: 19.5,-44.5
+      parent: 179
+  - uid: 1979
+    components:
+    - type: Transform
+      pos: 21.5,-44.5
+      parent: 179
+  - uid: 1980
+    components:
+    - type: Transform
+      pos: 11.5,-44.5
+      parent: 179
+  - uid: 1981
+    components:
+    - type: Transform
+      pos: 22.5,-44.5
+      parent: 179
+  - uid: 1982
+    components:
+    - type: Transform
+      pos: 20.5,-44.5
+      parent: 179
+  - uid: 1983
+    components:
+    - type: Transform
+      pos: 9.5,-46.5
+      parent: 179
+  - uid: 1984
+    components:
+    - type: Transform
+      pos: 18.5,-45.5
+      parent: 179
+  - uid: 1985
+    components:
+    - type: Transform
+      pos: 18.5,-46.5
+      parent: 179
 - proto: CableApcStack
   entities:
   - uid: 70
@@ -4140,6 +4579,11 @@ entities:
     components:
     - type: Transform
       pos: 8.5,11.5
+      parent: 179
+  - uid: 2003
+    components:
+    - type: Transform
+      pos: 23.5,10.5
       parent: 179
 - proto: ChemMasterMachineCircuitboard
   entities:
@@ -4751,6 +5195,18 @@ entities:
     - type: Transform
       pos: -2.861032,-5.524786
       parent: 179
+- proto: CryostasisBeaker
+  entities:
+  - uid: 164
+    components:
+    - type: Transform
+      pos: 23.617798,6.619482
+      parent: 179
+  - uid: 174
+    components:
+    - type: Transform
+      pos: 23.374987,6.713232
+      parent: 179
 - proto: DebugBatteryDischarger
   entities:
   - uid: 711
@@ -4846,6 +5302,13 @@ entities:
     components:
     - type: Transform
       pos: -1.5,4.5
+      parent: 179
+- proto: DiseaseDiagnoser
+  entities:
+  - uid: 1998
+    components:
+    - type: Transform
+      pos: 25.5,-2.5
       parent: 179
 - proto: DisposalPipe
   entities:
@@ -5103,6 +5566,105 @@ entities:
     - type: Transform
       pos: 23.5,-19.5
       parent: 179
+  - uid: 1986
+    components:
+    - type: MetaData
+      name: газодобытчик водорода
+    - type: Transform
+      pos: 23.5,-25.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Hydrogen
+  - uid: 1987
+    components:
+    - type: MetaData
+      name: газодобытчик гелия
+    - type: Transform
+      pos: 23.5,-27.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Helium
+  - uid: 1988
+    components:
+    - type: MetaData
+      name: газодобытчик галона
+    - type: Transform
+      pos: 23.5,-29.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Halon
+  - uid: 1989
+    components:
+    - type: MetaData
+      name: газодобытчик плюоксиума
+    - type: Transform
+      pos: 23.5,-31.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Pluoxium
+  - uid: 1990
+    components:
+    - type: MetaData
+      name: газодобытчик хилиума
+    - type: Transform
+      pos: 23.5,-33.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Healium
+  - uid: 1991
+    components:
+    - type: MetaData
+      name: газодобытчик бз
+    - type: Transform
+      pos: 23.5,-35.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: BZ
+  - uid: 1992
+    components:
+    - type: MetaData
+      name: газодобытчик гипер-ноблия
+    - type: Transform
+      pos: 23.5,-37.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: HyperNoblium
+  - uid: 1993
+    components:
+    - type: MetaData
+      name: газодобытчик нитриума
+    - type: Transform
+      pos: 23.5,-39.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Nitrium
+  - uid: 1994
+    components:
+    - type: MetaData
+      name: газодобытчик заукера
+    - type: Transform
+      pos: 23.5,-41.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: Zauker
+  - uid: 1995
+    components:
+    - type: MetaData
+      name: газодобытчик анти-ноблия
+    - type: Transform
+      pos: 23.5,-43.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: AntiNoblium
+  - uid: 1996
+    components:
+    - type: MetaData
+      name: газодобытчик прото-нитрата
+    - type: Transform
+      pos: 23.5,-45.5
+      parent: 179
+    - type: GasMiner
+      spawnGas: ProtoNitrate
 - proto: GasMinerCarbonDioxide
   entities:
   - uid: 1205
@@ -5216,6 +5778,12 @@ entities:
     components:
     - type: Transform
       pos: 24.5,-13.5
+      parent: 179
+  - uid: 1907
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,-33.5
       parent: 179
 - proto: GasPassiveVent
   entities:
@@ -5344,6 +5912,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 22.5,-45.5
+      parent: 179
+  - uid: 1901
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,-48.5
       parent: 179
 - proto: GasPipeBend
   entities:
@@ -5889,6 +6463,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.5,-46.5
       parent: 179
+  - uid: 1902
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,-47.5
+      parent: 179
+  - uid: 1908
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 13.5,-33.5
+      parent: 179
+  - uid: 1909
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 13.5,-35.5
+      parent: 179
 - proto: GasPipeTJunction
   entities:
   - uid: 1479
@@ -6143,6 +6735,23 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 21.5,-29.5
       parent: 179
+  - uid: 1903
+    components:
+    - type: Transform
+      pos: 16.5,-46.5
+      parent: 179
+  - uid: 1904
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 14.5,-33.5
+      parent: 179
+  - uid: 1905
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,-35.5
+      parent: 179
 - proto: GasThermoMachineFreezer
   entities:
   - uid: 480
@@ -6193,6 +6802,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-22.5
       parent: 179
+  - uid: 1906
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,-35.5
+      parent: 179
 - proto: GeigerCounter
   entities:
   - uid: 759
@@ -6238,6 +6853,16 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 14.5,23.5
+      parent: 179
+  - uid: 587
+    components:
+    - type: Transform
+      pos: 22.5,10.5
+      parent: 179
+  - uid: 588
+    components:
+    - type: Transform
+      pos: 22.5,9.5
       parent: 179
   - uid: 986
     components:
@@ -6436,12 +7061,12 @@ entities:
   - uid: 253
     components:
     - type: Transform
-      pos: 23.494947,7.0422435
+      pos: 23.609772,7.322607
       parent: 179
   - uid: 402
     components:
     - type: Transform
-      pos: 23.510572,7.7141185
+      pos: 23.344147,7.588232
       parent: 179
   - uid: 737
     components:
@@ -6966,6 +7591,13 @@ entities:
     - type: Transform
       pos: -4.752078,10.904018
       parent: 179
+- proto: MiniChemDispenser
+  entities:
+  - uid: 2005
+    components:
+    - type: Transform
+      pos: 27.5,8.5
+      parent: 179
 - proto: ModularGrenade
   entities:
   - uid: 435
@@ -7436,6 +8068,108 @@ entities:
     - type: Transform
       pos: 19.5,-7.5
       parent: 179
+  - uid: 2006
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-22.5
+      parent: 179
+  - uid: 2007
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-26.5
+      parent: 179
+  - uid: 2008
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-30.5
+      parent: 179
+  - uid: 2009
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-34.5
+      parent: 179
+  - uid: 2010
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-38.5
+      parent: 179
+  - uid: 2011
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-42.5
+      parent: 179
+  - uid: 2012
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-46.5
+      parent: 179
+  - uid: 2013
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,-46.5
+      parent: 179
+  - uid: 2014
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,-46.5
+      parent: 179
+  - uid: 2015
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,-27.5
+      parent: 179
+  - uid: 2016
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,-31.5
+      parent: 179
+  - uid: 2017
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,-35.5
+      parent: 179
+  - uid: 2018
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,-39.5
+      parent: 179
+  - uid: 2019
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,-43.5
+      parent: 179
+  - uid: 2020
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 23.5,-46.5
+      parent: 179
+  - uid: 2021
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 10.5,-34.5
+      parent: 179
+  - uid: 2022
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 12.5,-34.5
+      parent: 179
 - proto: PoweredLightPostSmall
   entities:
   - uid: 1438
@@ -7443,6 +8177,24 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 15.5,-17.5
+      parent: 179
+  - uid: 2023
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,-25.5
+      parent: 179
+  - uid: 2024
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,-30.5
+      parent: 179
+  - uid: 2025
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,-40.5
       parent: 179
 - proto: PoweredSmallLight
   entities:
@@ -7774,6 +8526,16 @@ entities:
     - type: Transform
       pos: 9.5,-35.5
       parent: 179
+  - uid: 2001
+    components:
+    - type: Transform
+      pos: 22.5,10.5
+      parent: 179
+  - uid: 2002
+    components:
+    - type: Transform
+      pos: 22.5,9.5
+      parent: 179
 - proto: ResearchAndDevelopmentServer
   entities:
   - uid: 17
@@ -7982,6 +8744,14 @@ entities:
       linkedPorts:
         728:
         - Pressed: Trigger
+- proto: SignalButtonExt3
+  entities:
+  - uid: 1900
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,-47.5
+      parent: 179
 - proto: SignAtmos
   entities:
   - uid: 1301
@@ -8258,6 +9028,25 @@ entities:
     components:
     - type: Transform
       pos: 5.767191,9.787079
+      parent: 179
+  - uid: 2000
+    components:
+    - type: Transform
+      pos: 23.189297,6.1787095
+      parent: 179
+- proto: SyringeBluespace
+  entities:
+  - uid: 399
+    components:
+    - type: Transform
+      pos: 23.704922,6.1630845
+      parent: 179
+- proto: SyringeCryostasis
+  entities:
+  - uid: 1999
+    components:
+    - type: Transform
+      pos: 23.533047,6.2568345
       parent: 179
 - proto: Table
   entities:
@@ -8564,21 +9353,6 @@ entities:
     components:
     - type: Transform
       pos: 23.5,7.5
-      parent: 179
-  - uid: 586
-    components:
-    - type: Transform
-      pos: 25.5,10.5
-      parent: 179
-  - uid: 587
-    components:
-    - type: Transform
-      pos: 23.5,10.5
-      parent: 179
-  - uid: 588
-    components:
-    - type: Transform
-      pos: 24.5,10.5
       parent: 179
   - uid: 589
     components:
@@ -8918,6 +9692,20 @@ entities:
     components:
     - type: Transform
       pos: -7.5,4.5
+      parent: 179
+- proto: Vaccinator
+  entities:
+  - uid: 1997
+    components:
+    - type: Transform
+      pos: 25.5,-1.5
+      parent: 179
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 2004
+    components:
+    - type: Transform
+      pos: 25.5,10.5
       parent: 179
 - proto: VendingMachineEngivend
   entities:
@@ -9454,12 +10242,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,-0.5
-      parent: 179
-  - uid: 164
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 22.5,9.5
       parent: 179
   - uid: 165
     components:
@@ -10009,11 +10791,6 @@ entities:
     components:
     - type: Transform
       pos: 22.5,7.5
-      parent: 179
-  - uid: 399
-    components:
-    - type: Transform
-      pos: 22.5,10.5
       parent: 179
   - uid: 400
     components:
