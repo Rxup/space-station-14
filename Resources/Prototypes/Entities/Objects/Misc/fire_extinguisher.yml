@@ -92,6 +92,7 @@
   - type: VaporVisuals
     animationTime: 0.8
     animationState: extinguish
+  - type: BkmSupermatterImmune
 
 - type: entity
   name: pocket fire extinguisher

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/BlueMoon-Labs/MOLOT-BlueMoon-Station/commit/0ff93693449165b2df2b6a980763c4e4124275c3 | Edited by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bluespace_reactor"
+    },
+    {
+      "name": "bluespace"
+    },
+    {
+      "name": "super"
+    },
+    {
+      "name": "interdyne"
+    },
+    {
+      "name": "o1",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "o2",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "vortex",
+      "delays": [
+        [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ]
+      ]
+    }
+  ]
+}

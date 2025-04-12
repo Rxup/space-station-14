@@ -7,6 +7,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Prototypes;
 using Content.Shared.Atmos;
 using Content.Shared.CCVar;

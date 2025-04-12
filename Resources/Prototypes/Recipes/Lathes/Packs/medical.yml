@@ -16,6 +16,7 @@
   - PillCanister
   - HandLabeler
   - Dropper # Backmen
+  - BaseChemistryEmptyVial
 
 - type: latheRecipePack
   parent: BasicChemistryStatic

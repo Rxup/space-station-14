@@ -6,7 +6,7 @@
    state: pai-base
   discipline: Robotics
   tier: 1
-  cost: 1500
+  cost: 500
   recipeUnlocks:
   - ProximitySensor
   - PersonalAI
@@ -112,7 +112,7 @@
    state: generic
   discipline: Robotics
   tier: 1
-  cost: 2000
+  cost: 500
   recipeUnlocks:
    - BorgModuleCable
    - BorgModuleFireExtinguisher
@@ -130,7 +130,7 @@
    state: defib-module
   discipline: Robotics
   tier: 1
-  cost: 7000
+  cost: 2500
   recipeUnlocks:
   - BorgModuleSurgery
   - BorgModuleAdvancedTreatment
@@ -147,7 +147,7 @@
    state: adv-surgery-module
   discipline: Robotics
   tier: 1
-  cost: 5000
+  cost: 1500
   recipeUnlocks:
   - BorgModuleAdvancedSurgery
   technologyPrerequisites:
@@ -162,7 +162,7 @@
    state: gps-module
   discipline: Robotics
   tier: 1
-  cost: 6500
+  cost: 2500
   recipeUnlocks:
   - BorgModuleGPS
   technologyPrerequisites:
@@ -178,7 +178,7 @@
     state: adv-tools-module
   discipline: Robotics
   tier: 1
-  cost: 9000
+  cost: 3500
   recipeUnlocks:
   - BorgModuleAdvancedTool
   technologyPrerequisites:
@@ -194,7 +194,7 @@
     state: gardening-module
   discipline: Robotics
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - BorgModuleGardening
   - BorgModuleHarvesting
@@ -210,7 +210,7 @@
     state: adv-cleaning-module
   discipline: Robotics
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - BorgModuleAdvancedCleaning
   technologyPrerequisites:
@@ -226,7 +226,7 @@
     state: node-scanner-module
   discipline: Robotics
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - BorgModuleArtifact
   - BorgModuleAnomaly

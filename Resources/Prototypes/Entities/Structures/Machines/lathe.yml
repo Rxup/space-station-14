@@ -211,6 +211,7 @@
     - BackmenTranslators # backmen
     - BackmenProtolathe # backmen
     - BackmenSurgery # backmen
+    - BackmenEngineerWeapon # backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - BackmenAmmo # backmen
@@ -403,12 +404,15 @@
     - BackmenAmmoStatic # backmen
     - SecurityWeaponsStatic
 #    dynamicPacks: # Backmen-EDIT
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
     - BackmenAmmo # backmen
-    - SecurityWeapons
+#    - SecurityWeapons #backmen-gumsmiths
     - SecurityDisablers
+    - BackmenCircuboardArsenal #backmen-gumsmiths
   - type: MaterialStorage
     whitelist:
       tags:
@@ -621,6 +625,7 @@
     - type: MiningPoints # DeltaV - Source of mining points for miners
     - type: MiningPointsLathe # DeltaV
     - type: MaterialStorageMagnetPickup # Frontier
+    - type: NoLavalandUsage
 
 
 - type: entity

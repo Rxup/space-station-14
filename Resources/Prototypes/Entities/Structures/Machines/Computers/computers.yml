@@ -502,8 +502,16 @@
     powerLoad: 1000
   - type: Computer
     board: ResearchComputerCircuitboard
-  - type: AccessReader
-    access: [["Research"]]
+#  - type: AccessReader # Backmen-REMOVE
+#    access: [["Research"]]
+  - type: Speech # Backmen
+    speechSounds: Tenor
+  - type: TTS # Backmen
+    voice: Glados
+  - type: Grammar # Backmen
+    attributes:
+      gender: female
+      proper: true
   - type: PointLight
     radius: 1.5
     energy: 1.6

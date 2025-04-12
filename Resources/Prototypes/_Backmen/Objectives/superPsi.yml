@@ -7,8 +7,7 @@
     issuer: objective-issuer-superpsi
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - SuperPsiRole
+    - SuperPsiRole
 
 - type: entity
   parent: [ BaseSuperPsiObjective, BaseLivingObjective ]
