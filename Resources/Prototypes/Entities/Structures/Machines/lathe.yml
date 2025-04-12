@@ -211,6 +211,7 @@
     - BackmenTranslators # backmen
     - BackmenProtolathe # backmen
     - BackmenSurgery # backmen
+    - BackmenEngineerWeapon # backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - BackmenAmmo # backmen
@@ -409,8 +410,9 @@
     - SecurityBoards
     - SecurityExplosives
     - BackmenAmmo # backmen
-    - SecurityWeapons
+#    - SecurityWeapons #backmen-gumsmiths
     - SecurityDisablers
+    - BackmenCircuboardArsenal #backmen-gumsmiths
   - type: MaterialStorage
     whitelist:
       tags:

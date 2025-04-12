@@ -17,7 +17,7 @@ public sealed class PumpActionSystem : SharedPumpActionSystem
         if (!_input.TryGetKeyBinding(CMKeyFunctions.CMUniqueAction, out var bind))
             return;
 
-        args.PushMarkup($"[bold]Нажми на [color=cyan]необычное взаимодействие[/color] (по стандарту \"Пробел\") чтобы зарядить перед выстрелом.[/bold]", 1);
+        args.PushMarkup($"[bold]Нажми на [color=cyan]необычное взаимодействие[/color] (по стандарту \"R\") чтобы зарядить перед выстрелом.[/bold]", 1);
     }
 
     protected override void OnAttemptShoot(Entity<PumpActionComponent> ent, ref AttemptShootEvent args)
