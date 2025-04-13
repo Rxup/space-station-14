@@ -6048,6 +6048,11 @@ entities:
       parent: 1
 - proto: Chair
   entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: -2.5,-7.5
+      parent: 1
   - uid: 862
     components:
     - type: Transform
