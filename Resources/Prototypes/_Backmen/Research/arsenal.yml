@@ -246,7 +246,7 @@
   discipline: Arsenal
   tier: 1
   cost: 1000
-  position: -1,-5
+  position: -3,-5
 
 - type: technology
   id: WeaponPistolBase
@@ -257,7 +257,7 @@
     state: icon
   tier: 1
   cost: 1000
-  position: 2,-5
+  position: 0,-5
 
 - type: technology
   id: WeaponRifleBase
@@ -271,7 +271,7 @@
   technologyPrerequisites:
   - LightAutoWeaponBase
   - WeaponPistolBase
-  position: 2,-6
+  position: 0,-6
 
 - type: technology
   id: LightAutoWeaponBase
@@ -287,7 +287,7 @@
   - MagazinePistolNail
   technologyPrerequisites:
   - WeaponPistolBase
-  position: 1,-5
+  position: -1,-5
 
 - type: technology
   id: AdvancedAutoWeaponBase
@@ -301,7 +301,7 @@
   technologyPrerequisites:
   - LightAutoWeaponBase
   - WeaponRifleBase
-  position: 1,-6
+  position: -1,-6
 
 - type: technology
   id: ReinforcedBarrelBase
@@ -315,7 +315,7 @@
   technologyPrerequisites:
   - AdvancedAutoWeaponBase
   - WeaponRifleBase
-  position: 2,-7
+  position: 0,-7
 
 - type: technology
   id: EarthArmoriesPistols
@@ -333,7 +333,7 @@
   technologyPrerequisites:
   - EarthArmoriesBase
   - WeaponPistolBase
-  position: -2,-6
+  position: -4,-6
 
 - type: technology
   id: EarthArmoriesLightAutoWeapons
@@ -352,7 +352,7 @@
   - WeaponPistolBase
   - LightAutoWeaponBase
   - EarthArmoriesPistols
-  position: -2,-7
+  position: -4,-7
 
 - type: technology
   id: EarthArmoriesReinforcedWeapons
@@ -370,7 +370,7 @@
   - EarthArmoriesBase
   - WeaponPistolBase
   - ReinforcedBarrelBase
-  position: -0,-6
+  position: -2,-6
 
 - type: technology
   id: EarthArmoriesRiflesWeapons
@@ -387,7 +387,7 @@
   technologyPrerequisites:
   - EarthArmoriesBase
   - WeaponRifleBase
-  position: -1,-8
+  position: -3,-8
 
 - type: technology
   id: EarthArmoriesRiflesHeavyWeapons
@@ -405,7 +405,7 @@
   - WeaponRifleBase
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -0,-9
+  position: -2,-9
 
 - type: technology
   id: EarthArmoriesRiflesAutoWeapons
@@ -426,7 +426,7 @@
   - WeaponRifleBase
   - AdvancedAutoWeaponBase
   - EarthArmoriesRiflesWeapons
-  position: -1,-9
+  position: -3,-9
 
 - type: technology
   id: EarthArmoriesRiflesAutoHeavyWeapons
@@ -446,4 +446,4 @@
   - AdvancedAutoWeaponBase
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -2,-9
+  position: -4,-9
