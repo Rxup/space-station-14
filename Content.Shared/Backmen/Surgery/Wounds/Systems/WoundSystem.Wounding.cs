@@ -15,6 +15,7 @@ using Content.Shared.Gibbing.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -25,6 +26,8 @@ public sealed partial class WoundSystem
 {
     private const string WoundContainerId = "Wounds";
     private const string BoneContainerId = "Bone";
+
+    private const string WoundableDestroyalIdentifier = "WoundableDestroyal";
 
     private void InitWounding()
     {
@@ -141,7 +144,7 @@ public sealed partial class WoundSystem
 
     private void OnWoundableContentsGibAttempt(EntityUid uid, WoundableComponent comp, ref AttemptEntityContentsGibEvent args)
     {
-        args.ExcludedContainers = new List<string> { WoundContainerId, BoneContainerId };
+        args.ExcludedContainers?.AddRange(new List<string> { WoundContainerId, BoneContainerId });
     }
 
     private void DudeItsJustLikeMatrix(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)
@@ -213,6 +216,7 @@ public sealed partial class WoundSystem
 
     #region Public API
 
+    [PublicAPI]
     public bool TryInduceWounds(
         EntityUid uid,
         WoundSpecifier wounds,
@@ -234,6 +238,7 @@ public sealed partial class WoundSystem
         return true;
     }
 
+    [PublicAPI]
     public bool TryInduceWound(
         EntityUid uid,
         string woundId,
@@ -268,6 +273,7 @@ public sealed partial class WoundSystem
     /// <param name="woundCreated">The wound that was created</param>
     /// <param name="damageGroup">Damage group.</param>
     /// <param name="woundable">Woundable component.</param>
+    [PublicAPI]
     public bool TryCreateWound(
          EntityUid uid,
          string woundProtoId,
@@ -308,6 +314,7 @@ public sealed partial class WoundSystem
     /// <param name="woundContinued">The wound the severity was applied to, if any</param>
     /// <param name="woundable">Woundable for wound to add.</param>
     /// <returns>Returns true, if wound was continued.</returns>
+    [PublicAPI]
     public bool TryContinueWound(
         EntityUid uid,
         string id,
@@ -343,6 +350,7 @@ public sealed partial class WoundSystem
     /// <param name="wound">The wound entity, from which the scar will be made.</param>
     /// <param name="scarWound">The result scar wound, if created.</param>
     /// <param name="woundComponent">The WoundComponent representing a specific wound.</param>
+    [PublicAPI]
     public bool TryMakeScar(EntityUid wound, [NotNullWhen(true)] out Entity<WoundComponent>? scarWound, WoundComponent? woundComponent = null)
     {
         scarWound = null;
@@ -372,6 +380,7 @@ public sealed partial class WoundSystem
     /// <param name="uid">UID of the wound.</param>
     /// <param name="severity">Severity to set.</param>
     /// <param name="wound">Wound to which severity is applied.</param>
+    [PublicAPI]
     public void SetWoundSeverity(EntityUid uid, FixedPoint2 severity, WoundComponent? wound = null)
     {
         if (!Resolve(uid, ref wound))
@@ -439,6 +448,7 @@ public sealed partial class WoundSystem
     /// <param name="uid">UID of the wound.</param>
     /// <param name="severity">Severity to add.</param>
     /// <param name="wound">Wound to which severity is applied.</param>
+    [PublicAPI]
     public void ApplyWoundSeverity(
         EntityUid uid,
         FixedPoint2 severity,
@@ -506,6 +516,7 @@ public sealed partial class WoundSystem
         CheckWoundableSeverityThresholds(holdingWoundable);
     }
 
+    [PublicAPI]
     public FixedPoint2 ApplySeverityModifiers(
         EntityUid woundable,
         FixedPoint2 severity,
@@ -530,6 +541,7 @@ public sealed partial class WoundSystem
     /// <param name="change">The severity multiplier itself</param>
     /// <param name="identifier">A string to defy this multiplier from others.</param>
     /// <param name="component">Woundable to which severity multiplier is applied.</param>
+    [PublicAPI]
     public bool TryAddWoundableSeverityMultiplier(
         EntityUid uid,
         EntityUid owner,
@@ -560,6 +572,7 @@ public sealed partial class WoundSystem
     /// <param name="uid">UID of the woundable.</param>
     /// <param name="identifier">Identifier of the said multiplier.</param>
     /// <param name="component">Woundable to which severity multiplier is applied.</param>
+    [PublicAPI]
     public bool TryRemoveWoundableSeverityMultiplier(
         EntityUid uid,
         string identifier,
@@ -594,6 +607,7 @@ public sealed partial class WoundSystem
     /// <param name="identifier">Identifier of the said multiplier.</param>
     /// <param name="change">The new multiplier fixed point.</param>
     /// <param name="component">Woundable to which severity multiplier is applied.</param>
+    [PublicAPI]
     public bool TryChangeWoundableSeverityMultiplier(
         EntityUid uid,
         string identifier,
@@ -622,32 +636,6 @@ public sealed partial class WoundSystem
         }
 
         return false;
-    }
-
-    private void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)
-    {
-        if (!Resolve(woundable, ref woundableComp))
-            return;
-
-        foreach (var organ in _body.GetPartOrgans(woundable))
-        {
-            if (organ.Component.OrganSeverity == OrganSeverity.Normal)
-            {
-                // TODO: SFX for organs getting not destroyed, but thrown out
-                _body.RemoveOrgan(organ.Id, organ.Component);
-                _throwing.TryThrow(organ.Id, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
-            }
-            else
-            {
-                // Destroy it
-                _trauma.TrySetOrganDamageModifier(
-                    organ.Id,
-                    organ.Component.OrganIntegrity * 100,
-                    woundable,
-                    "LETMETELLYOUHOWMUCHIVECOMETOHATEYOUSINCEIBEGANTOLIVE",
-                    organ.Component);
-            }
-        }
     }
 
     /// <summary>
@@ -855,6 +843,32 @@ public sealed partial class WoundSystem
     #endregion
 
     #region Private API
+
+    private void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)
+    {
+        if (!Resolve(woundable, ref woundableComp))
+            return;
+
+        foreach (var organ in _body.GetPartOrgans(woundable))
+        {
+            if (organ.Component.OrganSeverity == OrganSeverity.Normal)
+            {
+                // TODO: SFX for organs getting not destroyed, but thrown out
+                _body.RemoveOrgan(organ.Id, organ.Component);
+                _throwing.TryThrow(organ.Id, _random.NextAngle().ToWorldVec() * 7f, _random.Next(8, 24));
+            }
+            else
+            {
+                // Destroy it
+                _trauma.TrySetOrganDamageModifier(
+                    organ.Id,
+                    organ.Component.OrganIntegrity * 100,
+                    woundable,
+                    WoundableDestroyalIdentifier,
+                    organ.Component);
+            }
+        }
+    }
 
     private void InsertBoneIntoWoundable(EntityUid uid, WoundableComponent? comp = null)
     {

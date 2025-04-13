@@ -186,6 +186,32 @@
     multiplier: 1.5 # it hurts
 
 - type: entity
+  id: Cellular
+  parent: WoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    woundType: Internal
+    woundVisibility: AdvancedScanner
+    scarWound: BurnScar
+    integrityMultiplier: 0.15
+  - type: TraumaInflicter
+    severityThreshold: 0
+    allowedTraumas:
+    - OrganDamage
+    - BoneDamage
+    - VeinsDamage
+    - NerveDamage
+    traumasChances:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0.17
+      NerveDamage: 0.17
+  - type: PainInflicter
+    multiplier: 0.67
+
+- type: entity
   id: Caustic
   parent: WoundBase
   categories: [ HideSpawnMenu ]
@@ -259,6 +285,53 @@
       NerveDamage: 0.12
   - type: PainInflicter
     multiplier: 2
+
+- type: entity
+  id: Holy
+  parent: WoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    woundType: Internal
+    woundVisibility: AdvancedScanner
+    integrityMultiplier: 0
+  - type: TraumaInflicter
+    severityThreshold: 0
+    allowedTraumas:
+    - NerveDamage
+    traumasChances:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0.777
+  - type: PainInflicter
+    multiplier: 1.777
+
+- type: entity
+  id: Shock
+  parent: WoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    woundType: Internal
+    woundVisibility: HandScanner
+    scarWound: BurnScar
+    integrityMultiplier: 0.07
+  - type: TraumaInflicter
+    severityThreshold: 9
+    allowedTraumas:
+    - OrganDamage
+    - VeinsDamage
+    - NerveDamage
+    traumasChances:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0.34 # People are great conductors
+      NerveDamage: 0.34
+  - type: PainInflicter
+    multiplier: 1.4
 
 - type: entity
   id: BoneDamage

@@ -8,9 +8,9 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
+using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
@@ -98,368 +98,6 @@ public partial class TraumaSystem
 
     #region Public API
 
-    public IEnumerable<Entity<TraumaComponent>> GetAllWoundTraumas(
-        EntityUid woundInflicter,
-        TraumaInflicterComponent? component = null)
-    {
-        if (!Resolve(woundInflicter, ref component))
-            yield break;
-
-        foreach (var trauma in component.TraumaContainer.ContainedEntities)
-        {
-            yield return (trauma, Comp<TraumaComponent>(trauma));
-        }
-    }
-
-    public bool HasAssociatedTrauma(
-        EntityUid woundInflicter,
-        TraumaType? traumaType = null,
-        TraumaInflicterComponent? component = null)
-    {
-        if (!Resolve(woundInflicter, ref component))
-            return false;
-
-        foreach (var trauma in GetAllWoundTraumas(woundInflicter, component))
-        {
-            if (trauma.Comp.TraumaTarget == null)
-                continue;
-
-            if (trauma.Comp.TraumaType != traumaType && traumaType != null)
-                continue;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool TryGetAssociatedTrauma(
-        EntityUid woundInflicter,
-        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
-        TraumaType? traumaType = null,
-        TraumaInflicterComponent? component = null)
-    {
-        traumas = null;
-        if (!Resolve(woundInflicter, ref component))
-            return false;
-
-        traumas = new List<Entity<TraumaComponent>>();
-        foreach (var trauma in GetAllWoundTraumas(woundInflicter, component))
-        {
-            if (trauma.Comp.TraumaTarget == null)
-                continue;
-
-            if (trauma.Comp.TraumaType != traumaType && traumaType != null)
-                continue;
-
-            traumas.Add(trauma);
-        }
-
-        return true;
-    }
-
-    public bool HasWoundableTrauma(
-        EntityUid woundable,
-        TraumaType? traumaType = null,
-        WoundableComponent? woundableComp = null)
-    {
-        if (!Resolve(woundable, ref woundableComp))
-            return false;
-
-        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
-        {
-            if (!TryComp<TraumaInflicterComponent>(woundEnt, out var inflicterComp))
-                continue;
-
-            if (HasAssociatedTrauma(woundEnt, traumaType, inflicterComp))
-                return true;
-        }
-
-        return false;
-    }
-
-    public bool TryGetWoundableTrauma(
-        EntityUid woundable,
-        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
-        TraumaType? traumaType = null,
-        WoundableComponent? woundableComp = null)
-    {
-        traumas = null;
-        if (!Resolve(woundable, ref woundableComp))
-            return false;
-
-        traumas = new List<Entity<TraumaComponent>>();
-        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
-        {
-            if (!TryComp<TraumaInflicterComponent>(woundEnt, out var inflicterComp))
-                continue;
-
-            if (TryGetAssociatedTrauma(woundEnt, out var traumasFound, traumaType, inflicterComp))
-                traumas.AddRange(traumasFound);
-        }
-
-        return traumas.Count > 0;
-    }
-
-    public bool HasBodyTrauma(
-        EntityUid body,
-        TraumaType? traumaType = null,
-        BodyComponent? bodyComp = null)
-    {
-        return Resolve(body, ref bodyComp) && _body.GetBodyChildren(body, bodyComp).Any(bodyPart => HasWoundableTrauma(bodyPart.Id, traumaType));
-    }
-
-    public bool TryGetBodyTraumas(
-        EntityUid body,
-        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
-        TraumaType? traumaType = null,
-        BodyComponent? bodyComp = null)
-    {
-        traumas = null;
-        if (!Resolve(body, ref bodyComp))
-            return false;
-
-        traumas = new List<Entity<TraumaComponent>>();
-        foreach (var bodyPart in _body.GetBodyChildren(body, bodyComp))
-        {
-            if (TryGetWoundableTrauma(bodyPart.Id, out var traumasFound, traumaType))
-                traumas.AddRange(traumasFound);
-        }
-
-        return traumas.Count > 0;
-    }
-
-    public List<TraumaType> RandomTraumaChance(
-        EntityUid target,
-        Entity<TraumaInflicterComponent> woundInflicter,
-        FixedPoint2 severity,
-        WoundableComponent? woundable = null)
-    {
-        var traumaList = new List<TraumaType>();
-        if (!Resolve(target, ref woundable))
-            return traumaList;
-
-        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.BoneDamage) &&
-            RandomBoneTraumaChance((target, woundable), woundInflicter))
-            traumaList.Add(TraumaType.BoneDamage);
-
-        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.NerveDamage) &&
-            RandomNerveDamageChance((target, woundable), woundInflicter))
-            traumaList.Add(TraumaType.NerveDamage);
-
-        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.OrganDamage) &&
-            RandomOrganTraumaChance((target, woundable), woundInflicter))
-            traumaList.Add(TraumaType.OrganDamage);
-
-        //if (RandomVeinsTraumaChance(woundable))
-        //    traumaList.Add(TraumaType.VeinsDamage);
-
-        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.Dismemberment) &&
-            RandomDismembermentTraumaChance((target, woundable), woundInflicter))
-            traumaList.Add(TraumaType.Dismemberment);
-
-        return traumaList;
-    }
-
-    public FixedPoint2 GetArmourChanceDeduction(EntityUid body, Entity<TraumaInflicterComponent> inflicter, TraumaType traumaType, BodyPartType coverage)
-    {
-        var deduction = (FixedPoint2) 0;
-
-        foreach (var ent in _inventory.GetHandOrInventoryEntities(body, SlotFlags.WITHOUT_POCKET))
-        {
-            if (!TryComp<ArmorComponent>(ent, out var armour))
-                continue;
-
-            if (!inflicter.Comp.AllowArmourDeduction.Contains(traumaType) && armour.TraumaDeductions[traumaType] >= 0)
-                continue;
-
-            if (armour.ArmorCoverage.Contains(coverage))
-            {
-                deduction += armour.TraumaDeductions[traumaType];
-            }
-        }
-
-        return deduction;
-    }
-
-    public FixedPoint2 GetTraumaChanceDeduction(
-        Entity<TraumaInflicterComponent> inflicter,
-        EntityUid body,
-        EntityUid traumaTarget,
-        FixedPoint2 severity,
-        TraumaType traumaType,
-        BodyPartType coverage)
-    {
-        var deduction = (FixedPoint2) 0;
-        deduction += GetArmourChanceDeduction(body, inflicter, traumaType, coverage);
-
-        var traumaDeductionEvent = new TraumaChanceDeductionEvent(severity, traumaType, 0);
-        RaiseLocalEvent(traumaTarget, ref traumaDeductionEvent);
-
-        deduction += traumaDeductionEvent.ChanceDeduction;
-
-        return deduction;
-    }
-
-    #endregion
-
-    #region Trauma Chance Randoming
-
-    public bool RandomBoneTraumaChance(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> woundInflicter)
-    {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // Can't sever if already severed
-
-        var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
-        if (bone == null || !TryComp<BoneComponent>(bone, out var boneComp))
-            return false;
-
-        if (boneComp.BoneSeverity == BoneSeverity.Broken)
-            return false;
-
-        var deduction = GetTraumaChanceDeduction(
-            woundInflicter,
-            bodyPart.Body.Value,
-            target,
-            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
-            TraumaType.BoneDamage,
-            bodyPart.PartType);
-
-        // We do complete random to get the chance for trauma to happen,
-        // We combine multiple parameters and do some math, to get the chance.
-        // Even if we get 0.1 damage there's still a chance for injury to be applied, but with the extremely low chance.
-        // The more damage, the bigger is the chance.
-        var chance = FixedPoint2.Clamp(
-            target.Comp.IntegrityCap / (target.Comp.WoundableIntegrity + boneComp.BoneIntegrity)
-             * _boneTraumaChanceMultipliers[target.Comp.WoundableSeverity]
-             - deduction + woundInflicter.Comp.TraumasChances[TraumaType.BoneDamage],
-            0,
-            1);
-
-        return _random.Prob((float) chance);
-    }
-
-    public bool RandomNerveDamageChance(
-        Entity<WoundableComponent> target,
-        Entity<TraumaInflicterComponent> woundInflicter)
-    {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // No entity to apply pain to
-
-        if (!TryComp<NerveComponent>(target, out var nerve))
-            return false;
-
-        if (nerve.PainFeels < 0.2)
-            return false;
-
-        var deduction = GetTraumaChanceDeduction(
-            woundInflicter,
-            bodyPart.Body.Value,
-            target,
-            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
-            TraumaType.NerveDamage,
-            bodyPart.PartType);
-
-        // literally dismemberment chance, but lower by default
-        var chance =
-            FixedPoint2.Clamp(
-                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 20
-                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage],
-                0,
-                1);
-
-        return _random.Prob((float) chance);
-    }
-
-    public bool RandomOrganTraumaChance(
-        Entity<WoundableComponent> target,
-        Entity<TraumaInflicterComponent> woundInflicter)
-    {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // No entity to apply pain to
-
-        var totalIntegrity =
-            _body.GetPartOrgans(target, bodyPart)
-                .Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.OrganIntegrity);
-
-        if (totalIntegrity <= 0) // No surviving organs
-            return false;
-
-        var deduction = GetTraumaChanceDeduction(
-            woundInflicter,
-            bodyPart.Body.Value,
-            target,
-            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
-            TraumaType.OrganDamage,
-            bodyPart.PartType);
-
-        // organ damage is like, very deadly, but not yet
-        // so like, like, yeah, we don't want a disabler to induce some EVIL ASS organ damage with a 0,000001% chance and ruin your round
-        // Very unlikely to happen if your woundables are in a good condition
-        var chance =
-            FixedPoint2.Clamp(
-                target.Comp.IntegrityCap / target.Comp.WoundableIntegrity / totalIntegrity
-                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.OrganDamage],
-                0,
-                1);
-
-        return _random.Prob((float) chance);
-    }
-
-    public bool RandomDismembermentTraumaChance(
-        Entity<WoundableComponent> target,
-        Entity<TraumaInflicterComponent> woundInflicter)
-    {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // Can't sever if already severed
-
-        var parentWoundable = target.Comp.ParentWoundable;
-        if (!parentWoundable.HasValue)
-            return false;
-
-        if (bodyPart.PartType == BodyPartType.Groin && Comp<WoundableComponent>(parentWoundable.Value).WoundableSeverity != WoundableSeverity.Critical)
-            return false;
-
-        var deduction = GetTraumaChanceDeduction(
-            woundInflicter,
-            bodyPart.Body.Value,
-            target,
-            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
-            TraumaType.Dismemberment,
-            bodyPart.PartType);
-
-        var bonePenalty = (FixedPoint2) 0.1f;
-
-        // Broken bones increase the chance of your limb getting delimbed
-        var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
-        if (bone != null && TryComp<BoneComponent>(bone, out var boneComp))
-        {
-            if (boneComp.BoneSeverity != BoneSeverity.Broken)
-            {
-                bonePenalty = boneComp.BoneIntegrity / boneComp.IntegrityCap;
-            }
-        }
-
-        // random-y but not so random-y like bones. Heavily depends on woundable state and damage
-        var chance =
-            FixedPoint2.Clamp(
-                1 - target.Comp.WoundableIntegrity / target.Comp.IntegrityCap * bonePenalty
-                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.Dismemberment],
-                0,
-                1);
-        // getting hit again increases the chance
-
-        return _random.Prob((float) chance);
-    }
-
-    #endregion
-
-    #region Private API
-
     public EntityUid AddTrauma(
         EntityUid target,
         Entity<WoundableComponent> holdingWoundable,
@@ -513,6 +151,7 @@ public partial class TraumaSystem
         RemoveTrauma(trauma, (traumaContainer.Owner, traumaInflicter));
     }
 
+    [PublicAPI]
     public void RemoveTrauma(
         Entity<TraumaComponent> trauma,
         Entity<TraumaInflicterComponent> inflicterWound)
@@ -534,6 +173,382 @@ public partial class TraumaSystem
         if (_net.IsServer)
             QueueDel(trauma);
     }
+
+    [PublicAPI]
+    public IEnumerable<Entity<TraumaComponent>> GetAllWoundTraumas(
+        EntityUid woundInflicter,
+        TraumaInflicterComponent? component = null)
+    {
+        if (!Resolve(woundInflicter, ref component))
+            yield break;
+
+        foreach (var trauma in component.TraumaContainer.ContainedEntities)
+        {
+            yield return (trauma, Comp<TraumaComponent>(trauma));
+        }
+    }
+
+    [PublicAPI]
+    public bool HasAssociatedTrauma(
+        EntityUid woundInflicter,
+        TraumaType? traumaType = null,
+        TraumaInflicterComponent? component = null)
+    {
+        if (!Resolve(woundInflicter, ref component))
+            return false;
+
+        foreach (var trauma in GetAllWoundTraumas(woundInflicter, component))
+        {
+            if (trauma.Comp.TraumaTarget == null)
+                continue;
+
+            if (trauma.Comp.TraumaType != traumaType && traumaType != null)
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    [PublicAPI]
+    public bool TryGetAssociatedTrauma(
+        EntityUid woundInflicter,
+        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
+        TraumaType? traumaType = null,
+        TraumaInflicterComponent? component = null)
+    {
+        traumas = null;
+        if (!Resolve(woundInflicter, ref component))
+            return false;
+
+        traumas = new List<Entity<TraumaComponent>>();
+        foreach (var trauma in GetAllWoundTraumas(woundInflicter, component))
+        {
+            if (trauma.Comp.TraumaTarget == null)
+                continue;
+
+            if (trauma.Comp.TraumaType != traumaType && traumaType != null)
+                continue;
+
+            traumas.Add(trauma);
+        }
+
+        return true;
+    }
+
+    [PublicAPI]
+    public bool HasWoundableTrauma(
+        EntityUid woundable,
+        TraumaType? traumaType = null,
+        WoundableComponent? woundableComp = null)
+    {
+        if (!Resolve(woundable, ref woundableComp))
+            return false;
+
+        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
+        {
+            if (!TryComp<TraumaInflicterComponent>(woundEnt, out var inflicterComp))
+                continue;
+
+            if (HasAssociatedTrauma(woundEnt, traumaType, inflicterComp))
+                return true;
+        }
+
+        return false;
+    }
+
+    [PublicAPI]
+    public bool TryGetWoundableTrauma(
+        EntityUid woundable,
+        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
+        TraumaType? traumaType = null,
+        WoundableComponent? woundableComp = null)
+    {
+        traumas = null;
+        if (!Resolve(woundable, ref woundableComp))
+            return false;
+
+        traumas = new List<Entity<TraumaComponent>>();
+        foreach (var woundEnt in _wound.GetWoundableWounds(woundable, woundableComp))
+        {
+            if (!TryComp<TraumaInflicterComponent>(woundEnt, out var inflicterComp))
+                continue;
+
+            if (TryGetAssociatedTrauma(woundEnt, out var traumasFound, traumaType, inflicterComp))
+                traumas.AddRange(traumasFound);
+        }
+
+        return traumas.Count > 0;
+    }
+
+    [PublicAPI]
+    public bool HasBodyTrauma(
+        EntityUid body,
+        TraumaType? traumaType = null,
+        BodyComponent? bodyComp = null)
+    {
+        return Resolve(body, ref bodyComp) && _body.GetBodyChildren(body, bodyComp).Any(bodyPart => HasWoundableTrauma(bodyPart.Id, traumaType));
+    }
+
+    [PublicAPI]
+    public bool TryGetBodyTraumas(
+        EntityUid body,
+        [NotNullWhen(true)] out List<Entity<TraumaComponent>>? traumas,
+        TraumaType? traumaType = null,
+        BodyComponent? bodyComp = null)
+    {
+        traumas = null;
+        if (!Resolve(body, ref bodyComp))
+            return false;
+
+        traumas = new List<Entity<TraumaComponent>>();
+        foreach (var bodyPart in _body.GetBodyChildren(body, bodyComp))
+        {
+            if (TryGetWoundableTrauma(bodyPart.Id, out var traumasFound, traumaType))
+                traumas.AddRange(traumasFound);
+        }
+
+        return traumas.Count > 0;
+    }
+
+    [PublicAPI]
+    public List<TraumaType> RandomTraumaChance(
+        EntityUid target,
+        Entity<TraumaInflicterComponent> woundInflicter,
+        FixedPoint2 severity,
+        WoundableComponent? woundable = null)
+    {
+        var traumaList = new List<TraumaType>();
+        if (!Resolve(target, ref woundable))
+            return traumaList;
+
+        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.BoneDamage) &&
+            RandomBoneTraumaChance((target, woundable), woundInflicter))
+            traumaList.Add(TraumaType.BoneDamage);
+
+        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.NerveDamage) &&
+            RandomNerveDamageChance((target, woundable), woundInflicter))
+            traumaList.Add(TraumaType.NerveDamage);
+
+        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.OrganDamage) &&
+            RandomOrganTraumaChance((target, woundable), woundInflicter))
+            traumaList.Add(TraumaType.OrganDamage);
+
+        //if (RandomVeinsTraumaChance(woundable))
+        //    traumaList.Add(TraumaType.VeinsDamage);
+
+        if (woundInflicter.Comp.AllowedTraumas.Contains(TraumaType.Dismemberment) &&
+            RandomDismembermentTraumaChance((target, woundable), woundInflicter))
+            traumaList.Add(TraumaType.Dismemberment);
+
+        return traumaList;
+    }
+
+    [PublicAPI]
+    public FixedPoint2 GetArmourChanceDeduction(EntityUid body, Entity<TraumaInflicterComponent> inflicter, TraumaType traumaType, BodyPartType coverage)
+    {
+        var deduction = (FixedPoint2) 0;
+
+        foreach (var ent in _inventory.GetHandOrInventoryEntities(body, SlotFlags.WITHOUT_POCKET))
+        {
+            if (!TryComp<ArmorComponent>(ent, out var armour))
+                continue;
+
+            if (!inflicter.Comp.AllowArmourDeduction.Contains(traumaType) && armour.TraumaDeductions[traumaType] >= 0)
+                continue;
+
+            if (armour.ArmorCoverage.Contains(coverage))
+            {
+                deduction += armour.TraumaDeductions[traumaType];
+            }
+        }
+
+        return deduction;
+    }
+
+    [PublicAPI]
+    public FixedPoint2 GetTraumaChanceDeduction(
+        Entity<TraumaInflicterComponent> inflicter,
+        EntityUid body,
+        EntityUid traumaTarget,
+        FixedPoint2 severity,
+        TraumaType traumaType,
+        BodyPartType coverage)
+    {
+        var deduction = (FixedPoint2) 0;
+        deduction += GetArmourChanceDeduction(body, inflicter, traumaType, coverage);
+
+        var traumaDeductionEvent = new TraumaChanceDeductionEvent(severity, traumaType, 0);
+        RaiseLocalEvent(traumaTarget, ref traumaDeductionEvent);
+
+        deduction += traumaDeductionEvent.ChanceDeduction;
+
+        return deduction;
+    }
+
+    #endregion
+
+    #region Trauma Chance Randoming
+
+    [PublicAPI]
+    public bool RandomBoneTraumaChance(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> woundInflicter)
+    {
+        var bodyPart = Comp<BodyPartComponent>(target);
+        if (!bodyPart.Body.HasValue)
+            return false; // Can't sever if already severed
+
+        var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
+        if (bone == null || !TryComp<BoneComponent>(bone, out var boneComp))
+            return false;
+
+        if (boneComp.BoneSeverity == BoneSeverity.Broken)
+            return false;
+
+        var deduction = GetTraumaChanceDeduction(
+            woundInflicter,
+            bodyPart.Body.Value,
+            target,
+            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
+            TraumaType.BoneDamage,
+            bodyPart.PartType);
+
+        // We do complete random to get the chance for trauma to happen,
+        // We combine multiple parameters and do some math, to get the chance.
+        // Even if we get 0.1 damage there's still a chance for injury to be applied, but with the extremely low chance.
+        // The more damage, the bigger is the chance.
+        var chance = FixedPoint2.Clamp(
+            target.Comp.IntegrityCap / (target.Comp.WoundableIntegrity + boneComp.BoneIntegrity)
+             * _boneTraumaChanceMultipliers[target.Comp.WoundableSeverity]
+             - deduction + woundInflicter.Comp.TraumasChances[TraumaType.BoneDamage],
+            0,
+            1);
+
+        return _random.Prob((float) chance);
+    }
+
+    [PublicAPI]
+    public bool RandomNerveDamageChance(
+        Entity<WoundableComponent> target,
+        Entity<TraumaInflicterComponent> woundInflicter)
+    {
+        var bodyPart = Comp<BodyPartComponent>(target);
+        if (!bodyPart.Body.HasValue)
+            return false; // No entity to apply pain to
+
+        if (!TryComp<NerveComponent>(target, out var nerve))
+            return false;
+
+        if (nerve.PainFeels < 0.2)
+            return false;
+
+        var deduction = GetTraumaChanceDeduction(
+            woundInflicter,
+            bodyPart.Body.Value,
+            target,
+            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
+            TraumaType.NerveDamage,
+            bodyPart.PartType);
+
+        // literally dismemberment chance, but lower by default
+        var chance =
+            FixedPoint2.Clamp(
+                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 20
+                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage],
+                0,
+                1);
+
+        return _random.Prob((float) chance);
+    }
+
+    [PublicAPI]
+    public bool RandomOrganTraumaChance(
+        Entity<WoundableComponent> target,
+        Entity<TraumaInflicterComponent> woundInflicter)
+    {
+        var bodyPart = Comp<BodyPartComponent>(target);
+        if (!bodyPart.Body.HasValue)
+            return false; // No entity to apply pain to
+
+        var totalIntegrity =
+            _body.GetPartOrgans(target, bodyPart)
+                .Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.OrganIntegrity);
+
+        if (totalIntegrity <= 0) // No surviving organs
+            return false;
+
+        var deduction = GetTraumaChanceDeduction(
+            woundInflicter,
+            bodyPart.Body.Value,
+            target,
+            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
+            TraumaType.OrganDamage,
+            bodyPart.PartType);
+
+        // organ damage is like, very deadly, but not yet
+        // so like, like, yeah, we don't want a disabler to induce some EVIL ASS organ damage with a 0,000001% chance and ruin your round
+        // Very unlikely to happen if your woundables are in a good condition
+        var chance =
+            FixedPoint2.Clamp(
+                target.Comp.IntegrityCap / target.Comp.WoundableIntegrity / totalIntegrity
+                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.OrganDamage],
+                0,
+                1);
+
+        return _random.Prob((float) chance);
+    }
+
+    [PublicAPI]
+    public bool RandomDismembermentTraumaChance(
+        Entity<WoundableComponent> target,
+        Entity<TraumaInflicterComponent> woundInflicter)
+    {
+        var bodyPart = Comp<BodyPartComponent>(target);
+        if (!bodyPart.Body.HasValue)
+            return false; // Can't sever if already severed
+
+        var parentWoundable = target.Comp.ParentWoundable;
+        if (!parentWoundable.HasValue)
+            return false;
+
+        if (bodyPart.PartType == BodyPartType.Groin && Comp<WoundableComponent>(parentWoundable.Value).WoundableSeverity != WoundableSeverity.Critical)
+            return false;
+
+        var deduction = GetTraumaChanceDeduction(
+            woundInflicter,
+            bodyPart.Body.Value,
+            target,
+            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
+            TraumaType.Dismemberment,
+            bodyPart.PartType);
+
+        var bonePenalty = (FixedPoint2) 0.1f;
+
+        // Broken bones increase the chance of your limb getting delimbed
+        var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
+        if (bone != null && TryComp<BoneComponent>(bone, out var boneComp))
+        {
+            if (boneComp.BoneSeverity != BoneSeverity.Broken)
+            {
+                bonePenalty = boneComp.BoneIntegrity / boneComp.IntegrityCap;
+            }
+        }
+
+        // random-y but not so random-y like bones. Heavily depends on woundable state and damage
+        var chance =
+            FixedPoint2.Clamp(
+                1 - target.Comp.WoundableIntegrity / target.Comp.IntegrityCap * bonePenalty
+                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.Dismemberment],
+                0,
+                1);
+        // getting hit again increases the chance
+
+        return _random.Prob((float) chance);
+    }
+
+    #endregion
+
+    #region Private API
 
     private void ApplyTraumas(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> inflicter, List<TraumaType> traumas, FixedPoint2 severity)
     {
