@@ -53,6 +53,4 @@
     - id: CrowbarOrange
     - id: MagazineBoxLight57x28InteQ
     - id: FlashlightSeclite
-    - id: VendingMachineRestockChemVend
-      amount: 6
     - id: MedkitCombatFilled
