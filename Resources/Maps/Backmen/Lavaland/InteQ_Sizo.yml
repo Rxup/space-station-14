@@ -1433,17 +1433,6 @@ entities:
     - type: ContainedSolution
       containerName: food
       container: 2
-- proto: ActionToggleLight
-  entities:
-  - uid: 5
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 4
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 4
 - proto: AirAlarm
   entities:
   - uid: 6
