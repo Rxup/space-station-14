@@ -22,7 +22,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
-public sealed partial class WoundSystem
+public partial class WoundSystem
 {
     private const string WoundContainerId = "Wounds";
     private const string BoneContainerId = "Bone";
