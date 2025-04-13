@@ -81,6 +81,22 @@
 
 - type: entity
   parent: MarkerBase
+  id: SpawnMobInteQAgentRandom
+  name: InteQ agent spawner
+  suffix: 20%
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+        state: alive
+  - type: RandomSpawner
+    prototypes:
+      - MobInteQAgent
+    chance: 0.2
+
+- type: entity
+  parent: MarkerBase
   id: SpawnMobCarpBrownInteQ
   name: InteQ carp spawner
   components:

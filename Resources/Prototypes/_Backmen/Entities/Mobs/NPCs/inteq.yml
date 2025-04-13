@@ -106,6 +106,9 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepThud
+  - type: Access
+    tags:
+    - InteQVanguard
 
 - type: entity
   parent: BaseMobCarp
@@ -136,3 +139,6 @@
   - type: ActiveRadio
     channels:
     - InteQ
+  - type: Access
+    tags:
+    - InteQVanguard
