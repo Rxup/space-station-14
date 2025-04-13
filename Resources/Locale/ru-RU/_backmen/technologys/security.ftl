@@ -1,2 +1,15 @@
 research-technology-armorpiercingammo = Бронебойные боеприпасы
 research-technology-energy_barriers = Энергетические барьеры
+research-technology-Earth-Armories = Технологическое древо Earth Armories
+research-technology-pistol-base = Основы короткоствольного вооружения
+research-technology-base-rifle = Основы длинноствольного вооружения
+research-technology-auto-poroh = Базовый отвод пороховых газов
+research-technology-advancedauto-poroh = Продвинутый отвод пороховых газов
+research-technology-reinforcedbarrel = Укрепленные стволы
+research-technology-EarthArmories-pistols = Короткоствольное оружие Earth Armories
+research-technology-EarthArmories-lightautoweapons = Оружие с свободным затвором Earth Armories
+research-technology-EarthArmories-reinforcedweapons = Укрепленное короткоствольное оружие Earth Armories
+research-technology-EarthArmories-rifles = Длинноствольное оружие Earth Armories
+research-technology-EarthArmories-heavyrifles = Тяжелое длинноствольное оружие Earth Armories
+research-technology-EarthArmories-autorifles = Автоматическое оружие Earth Armories
+research-technology-EarthArmories-heavyautorifles = Тяжелое полу-автоматическое оружие Earth Armories

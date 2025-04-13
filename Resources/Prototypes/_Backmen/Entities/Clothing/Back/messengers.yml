@@ -33,34 +33,7 @@
   description: A robust bag made exclusively for Nanotrasen officers.
   components:
   - type: Sprite
-    layers:
-    - state: icon-base
-      color: "#3c6381"
-    - state: icon-sling
-      color: "#d6a033"
-    - state: icon-clasp
-      color: "#f6d56a"
-  - type: Clothing
-    clothingVisuals:
-      back:
-      - state: base-equipped-BACKPACK
-        color: "#3c6381"
-      - state: sling-equipped-BACKPACK
-        color: "#d6a033"
-      - state: clasp-equipped-BACKPACK
-        color: "#f6d56a"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: base-inhand-left
-        color: "#3c6381"
-      - state: clasp-inhand-left
-        color: "#f6d56a"
-      right:
-      - state: base-inhand-right
-        color: "#3c6381"
-      - state: clasp-inhand-right
-        color: "#f6d56a"
+    sprite: Backmen/Clothing/Back/Messengers/captain.rsi
 
 - type: entity
   parent: [ BaseCentcommContraband , ClothingBackpackMessengerBase ]

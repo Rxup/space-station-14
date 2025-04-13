@@ -598,7 +598,7 @@ binds:
 # backmen keybinds-start
 - function: CMUniqueAction
   type: State
-  key: Space
+  key: R
 - function: LookUp
   type: State
   key: Space

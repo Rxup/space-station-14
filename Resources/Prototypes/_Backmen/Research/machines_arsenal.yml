@@ -1,0 +1,12 @@
+- type: technology
+  id: GunsmithPrinterMachines
+  name: research-technology-gunsmith-printer-machines
+  icon:
+    sprite: Structures/Machines/cuttermachine.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+  - GunsmithTechFabCircuitboard
+  position: -4,-5
