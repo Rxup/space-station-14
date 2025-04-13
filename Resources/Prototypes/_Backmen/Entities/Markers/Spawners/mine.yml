@@ -7,7 +7,7 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: objects/Misc/landmine.rsi
+    - sprite: Objects/Misc/landmine.rsi
       state: landmine
   - type: RandomSpawner
     prototypes:
