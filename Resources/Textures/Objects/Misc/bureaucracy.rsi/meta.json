@@ -10,6 +10,9 @@
     {
       "name": "envelope_closed"
     },
+	{
+	 "name": "paper_stamp-inteq"
+	},
     {
       "name": "envelope_open"
     },
