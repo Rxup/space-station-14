@@ -9,6 +9,7 @@
     - id: BaseInteQUplinkRadio
     - id: ClothingBackpackChameleonFill
     - id: SecurityTechFabCircuitboard
+    - id: AngleGrinder
   - type: AccessReader
     access: [["InteQVanguardLeader"]]
 
