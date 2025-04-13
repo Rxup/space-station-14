@@ -15,7 +15,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleBlob
   name: Blob Role
-#  description: mind-role-blob-description
+  #  description: mind-role-blob-description
   components:
   - type: MindRole
     antagPrototype: Blob
@@ -28,7 +28,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleFlesh
   name: Flesh Cultist Role
-#  description: mind-role-flesh-description
+  #  description: mind-role-flesh-description
   components:
   - type: MindRole
     antagPrototype: FleshCultist
@@ -40,7 +40,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleFleshLeader
   name: Flesh Cultist Leader Role
-#  description: mind-role-flesh-description
+  #  description: mind-role-flesh-description
   components:
   - type: MindRole
     antagPrototype: FleshCultistLeader
@@ -54,7 +54,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleBloodsucker
   name: Bloodsucker Role
-#  description: mind-role-bloodsucker-description
+  #  description: mind-role-bloodsucker-description
   components:
   - type: MindRole
     antagPrototype: Bloodsucker
@@ -67,7 +67,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleChangeling
   name: Changeling Role
-#  description: mind-role-changeling-description
+  #  description: mind-role-changeling-description
   components:
   - type: MindRole
     antagPrototype: Changeling
@@ -80,7 +80,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleEvilTwin
   name: Evil Twin Role
-#  description: mind-role-evil-twin-description
+  #  description: mind-role-evil-twin-description
   components:
   - type: MindRole
     antagPrototype: EvilTwin
@@ -93,7 +93,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleSuperPsi
   name: Super Psi Role
-#  description: mind-role-super-psi-description
+  #  description: mind-role-super-psi-description
   components:
   - type: MindRole
     antagPrototype: SuperPsi
@@ -106,7 +106,7 @@
   parent: BaseMindRoleAntag
   id: MindRoleFugitive
   name: Fugitive Role
-#  description: mind-role-fugitive-description
+  #  description: mind-role-fugitive-description
   components:
   - type: MindRole
     antagPrototype: Fugitive
@@ -123,3 +123,102 @@
   components:
   - type: MindRole
   - type: BankMemory
+
+
+#centcomm
+- type: entity
+  parent: BaseMindRole
+  id: BaseJobMindRole
+  abstract: true
+  components:
+  - type: JobRole
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleBKCCAssistant
+  name: Ассистент ЦК
+  components:
+  - type: MindRole
+    jobPrototype: BKCCAssistant
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleBKCCCargo
+  name: Карго ЦК
+  components:
+  - type: MindRole
+    jobPrototype: BKCCCargo
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleBKCCOperator
+  name: Оператор ЦК
+  components:
+  - type: MindRole
+    jobPrototype: BKCCOperator
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleBKCCSecOfficer
+  name: Охранник ЦК
+  components:
+  - type: MindRole
+    jobPrototype: BKCCSecOfficer
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleERTLeader
+  name: Лидер ОБР
+  components:
+  - type: MindRole
+    jobPrototype: ERTLeader
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleERTEngineer
+  name: Инженер ОБР
+  components:
+  - type: MindRole
+    jobPrototype: ERTEngineer
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleERTSecurity
+  name: Охранник ОБР
+  components:
+  - type: MindRole
+    jobPrototype: ERTSecurity
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleERTMedical
+  name: Медик ОБР
+  components:
+  - type: MindRole
+    jobPrototype: ERTMedical
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleERTJanitor
+  name: Уборщик ОБР
+  components:
+  - type: MindRole
+    jobPrototype: ERTJanitor
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleCBURN
+  name: РХБЗЗ
+  components:
+  - type: MindRole
+    jobPrototype: CBURN
+
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleDeathSquad
+  name: Деды
+  components:
+  - type: MindRole
+    jobPrototype: DeathSquad
+
+

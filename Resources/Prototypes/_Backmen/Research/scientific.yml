@@ -6,7 +6,7 @@
     state: icon
   discipline: Scientific
   tier: 1
-  cost: 5000
+  cost: 500
   recipeUnlocks:
   - AnomalyScanner
   - AnomalyLocator
@@ -25,7 +25,6 @@
   recipeUnlocks:
   - AnomalyLocatorWide
   - WeaponPistolCHIMP
-  - SignallerAdvanced
   technologyPrerequisites:
   - AnomalousResearch
   position: 4,2
@@ -47,7 +46,7 @@
 #  - Security
 #  - Chemistry
 #  - Robotics
-  position: 3,2
+  position: 2,4
 
 - type: technology
   id: GravityManipulation
@@ -88,7 +87,7 @@
     state: icon
   discipline: Scientific
   tier: 1
-  cost: 10000
+  cost: 12000
   recipeUnlocks:
   - DeviceQuantumSpinInverter
   technologyPrerequisites:
@@ -107,7 +106,9 @@
   recipeUnlocks:
   - ClothingShoesBootsMagSci
   - ClothingShoesBootsMoon
-  position: 2,2
+  technologyPrerequisites:
+  - GravityManipulation
+  position: 4,4
 
 - type: technology
   id: QuantumMagneticBoots
@@ -117,14 +118,13 @@
     state: icon
   discipline: Scientific
   tier: 1
-  cost: 10000
+  cost: 25000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
   technologyPrerequisites:
   - MagneticBoots
-  - GravityManipulation
   - QuantumLeaping
-  position: 2,3
+  position: 5,4
 
 - type: technology
   id: PsionicCountermeasures
@@ -134,7 +134,7 @@
     state: icon
   discipline: Scientific
   tier: 2
-  cost: 7500
+  cost: 4500
   recipeUnlocks:
   - ClothingHeadHelmetInsulated
   - InsulativeHeadcage
@@ -152,14 +152,14 @@
     state: icon
   discipline: Scientific
   tier: 3
-  cost: 15000
+  cost: 18000
   recipeUnlocks:
   - CoreSilver
   - HandTeleporter1
 #  - QSI
   technologyPrerequisites:
   - QuantumLeaping
-  position: 3,5
+  position: 2,3
 
 - type: technology
   id: BluespaceStorage
@@ -169,7 +169,7 @@
     state: holding
   discipline: Scientific
   tier: 1
-  cost: 18000
+  cost: 28000
   recipeUnlocks:
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
@@ -177,6 +177,6 @@
   - ClothingBackpackMessengerHolding # Backmen
   technologyPrerequisites:
   - QuantumLeaping
-  - PortableFission
+  - PowercellsBluespace
   - SalvageEquipmentAdvanced
   position: 5,5

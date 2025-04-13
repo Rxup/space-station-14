@@ -32,3 +32,21 @@
 #      requirements:
 #        MatterBin: 2
 #        Manipulator: 2
+
+- type: entity
+  id: GunsmithTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gunsmith techfab machine board
+  description: A machine printed circuit board for a gunsmith techfab.
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: GunsmithTechFab
+      stackRequirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker

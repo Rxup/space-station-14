@@ -34,7 +34,7 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
-    projectileSpeed: 10
+    projectileSpeed: 8
     clumsyProof: true
     fireRate: 3
     selectedMode: SemiAuto
@@ -68,7 +68,7 @@
     size: Small
   - type: Sprite
     netsync: false
-    sprite: Backmen/test/base/rsi/Textures/Weapons/Guns/Magazine/divet.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Misc/rivet.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -76,7 +76,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
@@ -94,9 +94,9 @@
       - CartridgeNail
   - type: Sprite
     netsync: false
-    sprite: Backmen/test/base/rsi/Textures/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/nail.rsi
     layers:
-    - state: 45fast #corvax-resprite
+    - state: base
       map: ["enum.AmmoVisualLayers.Base"]
   - type: CartridgeAmmo
     deleteOnSpawn: true
