@@ -203,7 +203,7 @@
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
   - type: CloningAppearance
-    gear: InteQMedicGear
+    gear: InteQVanguardMedicGear
     components:
     - type: RandomMetadata
       nameSegments:
