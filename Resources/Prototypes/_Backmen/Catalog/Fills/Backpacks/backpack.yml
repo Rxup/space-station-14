@@ -361,7 +361,6 @@
       prob: 0.50
     - id: CombatMedipen
       prob: 0.50
-    - id: ResearchAndDevelopmentServerMachineCircuitboard # Temporary solution
     - id: RubberStampInteQ
 
 - type: entity
