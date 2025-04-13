@@ -7,11 +7,11 @@
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages
     speaks:
-    - DemonLanguage
-    - Dwarven
+    - Demonic
+    - TauCetiBasic
     understands:
     - TauCetiBasic
-    - DemonLanguage
+    - Demonic
   - type: Icon
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: full_m

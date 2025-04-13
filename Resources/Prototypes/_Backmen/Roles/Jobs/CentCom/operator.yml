@@ -74,7 +74,7 @@
       state: pda-centcom
 
 - type: entity
-  parent: CentcomIDCardDeathsquad
+  parent: CentcomIDCard
   id: IDCardCentComGavnaOperator
   name: ID карта оператора ЦК
   components:
