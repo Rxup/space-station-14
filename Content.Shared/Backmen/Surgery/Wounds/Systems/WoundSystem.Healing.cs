@@ -164,7 +164,7 @@ public partial class WoundSystem
             (from wound in component.Wounds.ContainedEntities
                 let woundComp = Comp<WoundComponent>(wound)
                 where CanHealWound(wound)
-                where damageType == MetaData(wound).EntityPrototype!.ID
+                where damageType == woundComp.DamageType
                 select (wound, woundComp)).Select(dummy => (Entity<WoundComponent>) dummy)
             .ToList();
 
@@ -226,10 +226,10 @@ public partial class WoundSystem
         {
             return GetWoundableWounds(woundable)
                 .Where(wound => CanHealWound(wound, wound))
-                .Any(wound => MetaData(wound).EntityPrototype!.ID == damageType);
+                .Any(wound => wound.Comp.DamageType == damageType);
         }
 
-        return GetWoundableWounds(woundable).Any(wound => MetaData(wound).EntityPrototype!.ID == damageType);
+        return GetWoundableWounds(woundable).Any(wound => wound.Comp.DamageType == damageType);
     }
 
     [PublicAPI]
@@ -258,7 +258,7 @@ public partial class WoundSystem
             return FixedPoint2.Zero;
 
         var woundHealingMultiplier =
-            _prototype.Index<DamageTypePrototype>(MetaData(wound).EntityPrototype!.ID).WoundHealingMultiplier;
+            _prototype.Index<DamageTypePrototype>(Comp<WoundComponent>(wound).DamageType).WoundHealingMultiplier;
 
         if (component.HealingMultipliers.Count == 0)
             return severity * woundHealingMultiplier;

@@ -2,6 +2,7 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Components;
 
@@ -49,6 +50,13 @@ public sealed partial class WoundComponent : Component
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public DamageGroupPrototype? DamageGroup;
+
+    /// <summary>
+    /// Damage group of this wound.
+    /// </summary>
+    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<DamageTypePrototype>)), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string DamageType;
 
     /// <summary>
     /// Scar wound prototype, what will be spawned upon healing this wound.

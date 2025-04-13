@@ -332,7 +332,7 @@ public partial class WoundSystem
         var proto = _prototype.Index(id);
         foreach (var wound in GetWoundableWounds(uid, woundable))
         {
-            if (proto.ID != MetaData(wound).EntityPrototype!.ID)
+            if (proto.ID != wound.Comp.DamageType)
                 continue;
 
             ApplyWoundSeverity(wound, severity, wound);
@@ -693,20 +693,6 @@ public partial class WoundSystem
                 if (!_container.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
                     return;
 
-                foreach (var wound in GetWoundableWounds(parentWoundableEntity))
-                {
-                    if (MetaData(wound.Owner).EntityPrototype!.ID != "Blunt")
-                        continue;
-
-                    _trauma.AddTrauma(
-                        parentWoundableEntity,
-                        (parentWoundableEntity, Comp<WoundableComponent>(parentWoundableEntity)),
-                        (wound.Owner, EnsureComp<TraumaInflicterComponent>(wound.Owner)),
-                        TraumaType.Dismemberment,
-                        15f);
-                    break;
-                }
-
                 if (bodyPart.Body is not null
                     && TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
                     && _body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
@@ -733,7 +719,16 @@ public partial class WoundSystem
                     TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
                 }
 
-                TryInduceWound(parentWoundableEntity, "Blunt", 15f, out _);
+                if (TryInduceWound(parentWoundableEntity, "Blunt", 15f, out var woundEnt))
+                {
+                    _trauma.AddTrauma(
+                        parentWoundableEntity,
+                        (parentWoundableEntity, Comp<WoundableComponent>(parentWoundableEntity)),
+                        (woundEnt.Value.Owner, EnsureComp<TraumaInflicterComponent>(woundEnt.Value.Owner)),
+                        TraumaType.Dismemberment,
+                        15f);
+                }
+
                 foreach (var wound in GetWoundableWounds(parentWoundableEntity))
                 {
                     if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
@@ -898,7 +893,7 @@ public partial class WoundSystem
 
         TryInduceWound(
             parent,
-            MetaData(wound).EntityPrototype!.ID,
+            woundComp.DamageType,
             woundComp.WoundSeverityPoint * _cfg.GetCVar(CCVars.WoundTransferPart),
             out _,
             woundableComp);
@@ -906,7 +901,7 @@ public partial class WoundSystem
         var bodyPart = Comp<BodyPartComponent>(severed);
         foreach (var woundEnt in GetWoundableWounds(parent, woundableComp))
         {
-            if (MetaData(woundEnt).EntityPrototype!.ID != MetaData(wound).EntityPrototype!.ID)
+            if (woundEnt.Comp.DamageType != woundComp.DamageType)
                 continue;
 
             var tourniquetable = EnsureComp<TourniquetableComponent>(woundEnt);

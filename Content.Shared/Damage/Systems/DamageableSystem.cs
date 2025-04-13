@@ -235,7 +235,7 @@ namespace Content.Shared.Damage
                 var specifierToReturn = new DamageSpecifier();
                 foreach (var wound in woundsInduced)
                 {
-                    var woundId = MetaData(wound).EntityPrototype!.ID;
+                    var woundId = wound.Comp.DamageType;
                     if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
                     {
                         specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
@@ -301,7 +301,7 @@ namespace Content.Shared.Damage
                         var specifierToReturn = new DamageSpecifier();
                         foreach (var wound in woundsInduced)
                         {
-                            var woundId = MetaData(wound).EntityPrototype!.ID;
+                            var woundId = wound.Comp.DamageType;
                             if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
                             {
                                 specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
@@ -335,7 +335,7 @@ namespace Content.Shared.Damage
                             var specifierToReturn = new DamageSpecifier();
                             foreach (var wound in woundsInduced)
                             {
-                                var woundId = MetaData(wound).EntityPrototype!.ID;
+                                var woundId = wound.Comp.DamageType;
                                 if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
                                 {
                                     specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
@@ -366,7 +366,7 @@ namespace Content.Shared.Damage
                         var specifierToReturn = new DamageSpecifier();
                         foreach (var wound in woundsInduced)
                         {
-                            var woundId = MetaData(wound).EntityPrototype!.ID;
+                            var woundId = wound.Comp.DamageType;
                             if (!specifierToReturn.DamageDict.TryAdd(woundId, wound.Comp.WoundSeverityPoint))
                             {
                                 specifierToReturn.DamageDict[woundId] += wound.Comp.WoundSeverityPoint;
