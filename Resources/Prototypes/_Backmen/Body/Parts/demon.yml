@@ -29,7 +29,7 @@
 - type: entity
   id: ChestDemon
   name: "demon chest"
-  parent: [PartDemon, PartDemon]
+  parent: [BaseChest, PartDemon]
   components:
   - type: BodyPart #Backmen-Edit
     partType: Chest
