@@ -145,6 +145,7 @@
     - id: RubberStampDenied
     - id: RubberStampHop
     - id: WeaponDisabler
+    - id: BoxPhotocopierToners # DS14
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
     - id: ClothingOuterCoatHOP # Corvax-Resprite
