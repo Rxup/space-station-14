@@ -24,7 +24,8 @@
   - type: RandomMetadata
     nameSegments:
     - InteQAgentNamesPrefix
-    - SyndicateNamesSuperNormal
+    - NameSpets
+    nameFormat: name-format-standard
   - type: Advertise
     pack: InteQAgent
   - type: LanguageKnowledge #backmen: languages
@@ -118,6 +119,7 @@
     nameSegments:
     - InteQVanguardLeaderNamesPrefix
     - sweet_carp
+    nameFormat: name-format-standard
   - type: NpcFactionMember
     factions:
       - InteQ

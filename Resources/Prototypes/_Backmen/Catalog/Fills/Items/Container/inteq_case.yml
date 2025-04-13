@@ -6,7 +6,10 @@
   - type: StorageFill
     contents:
       - id: ClothingHeadHelmetInteQInfiltrator
+      - id: ClothingMaskInteQInfiltrator
+      - id: ClothingHandsGlovesInteQInfiltrator
       - id: ClothingOuterArmorInteQInfiltrator
+      - id: ClothingShoesBootsInteQInfiltrator
 
 - type: entity
   parent: CaseInteQ
