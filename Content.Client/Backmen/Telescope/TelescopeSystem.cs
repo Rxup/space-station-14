@@ -11,6 +11,7 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Backmen.Telescope;
@@ -28,6 +29,7 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
     private ScalingViewport? _viewport;
     private bool _holdLookUp;
     private bool _toggled;
+    private Vector2 _lastOffset = Vector2.Zero; // Храним последний отправленный offset
 
     public override void Initialize()
     {
@@ -40,6 +42,7 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
                 _input.SetInputCommand(ContentKeyFunctions.LookUp, input);
                 _holdLookUp = val;
                 _toggled = false;
+                _lastOffset = Vector2.Zero; // Сброс при изменении настроек
             },
             true);
     }
@@ -52,12 +55,12 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
             return;
 
         var player = _player.LocalEntity;
-
         var telescope = GetRightTelescope(player);
 
         if (telescope == null)
         {
             _toggled = false;
+            _lastOffset = Vector2.Zero; // Сброс при выходе из режима
             return;
         }
 
@@ -89,12 +92,9 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
             return;
 
         var centerPos = _eyeManager.WorldToScreen(eye.Eye.Position.Position + eye.Offset);
-
         var diff = mousePos.Position - centerPos;
         var len = diff.Length();
-
         var size = _viewport.PixelSize;
-
         var maxLength = Math.Min(size.X, size.Y) * 0.4f;
         var minLength = maxLength * 0.2f;
 
@@ -118,9 +118,12 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
 
     private void RaiseEvent(Vector2 offset)
     {
-        RaisePredictiveEvent(new EyeOffsetChangedEvent
-        {
-            Offset = offset
-        });
+        // Проверяем изменение offset с учётом погрешности
+        if (Vector2.DistanceSquared(offset, _lastOffset) < 0.0001f)
+            return;
+
+        //Log.Info($"EyeOffsetChangedEvent {offset}");
+        RaisePredictiveEvent(new EyeOffsetChangedEvent { Offset = offset });
+        _lastOffset = offset; // Обновляем последнее значение
     }
 }
