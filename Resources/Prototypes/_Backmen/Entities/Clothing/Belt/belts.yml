@@ -69,11 +69,11 @@
       item-2: !type:ContainerSlot
   - type: ItemMapper
     mapLayers:
-      wakizashi:
+      Wakizashi:
         whitelist:
           tags:
           - Wakizashi
-      katana:
+      Katana:
         whitelist:
           tags:
           - Katana
