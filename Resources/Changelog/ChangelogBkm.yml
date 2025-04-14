@@ -2422,3 +2422,13 @@
   id: 162
   time: '2025-04-13T23:03:53.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1219
+- author: KayzelW
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043F\u043E\u0434\
+      \u0434\u0435\u0440\u0436\u043A\u0430 \u0441\u0435\u0440\u0432\u0435\u0440\u0430\
+      \ \u043D\u0430\u0438\u0433\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u0432\u0440\
+      \u0435\u043C\u0435\u043D\u0438."
+    type: Add
+  id: 163
+  time: '2025-04-14T06:16:30.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1194
