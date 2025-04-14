@@ -445,3 +445,20 @@
         - id: SpeedLoaderMagnumAP
           amount: 4
         - id: PinpointerNuclear
+
+- type: entity
+  parent: ClothingBeltInteQDropPouch
+  id: ClothingBeltInteQDropPouchMedicFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 2
+      - id: Bloodpack
+      - id: Gauze
+      - id: EmergencyMedipen
+        amount: 3
+      - id: Stimpack

@@ -107,3 +107,20 @@
   - type: Clothing
     sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
   - type: NoSlip
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesBootsInteQInfiltrator
+  name: infiltrator sneakboots
+  description: Pair of insidious boots with special noise muffling soles which very slightly drown out your footsteps. They would be absolutely perfect for stealth operations were it not for the iconic Syndicate flairs.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
+  - type: NoSlip
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCatwalk
+      params:
+        volume: -25
