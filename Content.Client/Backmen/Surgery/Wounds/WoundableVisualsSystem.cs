@@ -33,7 +33,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         SubscribeLocalEvent<WoundableVisualsComponent, WoundableIntegrityChangedEvent>(OnWoundableIntegrityChanged);
     }
 
-    private void InitializeEntity(EntityUid uid, WoundableVisualsComponent component, ComponentInit args)
+    private void InitializeEntity(EntityUid uid, WoundableVisualsComponent component, ref ComponentInit args)
     {
         if (!TryComp(uid, out SpriteComponent? partSprite))
             return;
@@ -56,7 +56,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
     }
 
-    private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, BodyPartAddedEvent args)
+    private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, ref BodyPartAddedEvent args)
     {
         var bodyPart = args.Part.Comp;
         if (!bodyPart.Body.HasValue || !TryComp(bodyPart.Body.Value, out SpriteComponent? bodySprite))
@@ -83,7 +83,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
     }
 
-    private void WoundableRemoved(EntityUid uid, WoundableVisualsComponent component, BodyPartRemovedEvent args)
+    private void WoundableRemoved(EntityUid uid, WoundableVisualsComponent component, ref BodyPartRemovedEvent args)
     {
         var body = args.Part.Comp.Body;
         if (!TryComp(body, out SpriteComponent? bodySprite))
@@ -114,12 +114,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
     }
 
-    private void OnWoundableIntegrityChanged(EntityUid uid, WoundableVisualsComponent component, WoundableIntegrityChangedEvent args)
-    {
-
-    }
-
-    protected override void OnAppearanceChange(EntityUid uid, WoundableVisualsComponent component, ref AppearanceChangeEvent args)
+    private void OnWoundableIntegrityChanged(EntityUid uid, WoundableVisualsComponent component, ref WoundableIntegrityChangedEvent args)
     {
         var bodyPart = Comp<BodyPartComponent>(uid);
         if (!bodyPart.Body.HasValue)
@@ -129,7 +124,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             return;
         }
 
-        if (TryComp(bodyPart.Body.Value, out SpriteComponent? bodySprite))
+        if (TryComp(bodyPart.Body, out SpriteComponent? bodySprite))
             UpdateWoundableVisuals(uid, component, bodySprite);
     }
 

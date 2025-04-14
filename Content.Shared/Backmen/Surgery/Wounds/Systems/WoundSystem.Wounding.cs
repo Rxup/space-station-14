@@ -22,6 +22,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
+[Virtual]
 public partial class WoundSystem
 {
     private const string WoundContainerId = "Wounds";
@@ -98,7 +99,7 @@ public partial class WoundSystem
         var ev2 = new WoundRemovedEvent(wound, oldParentWoundable, oldWoundableRoot);
         RaiseLocalEvent(wound.HoldingWoundable, ref ev2);
 
-        if (_net.IsServer && !TerminatingOrDeleted(woundableEntity))
+        if (_net.IsServer && !IsClientSide(woundableEntity))
             QueueDel(woundableEntity);
     }
 
@@ -220,7 +221,7 @@ public partial class WoundSystem
     public bool TryInduceWounds(
         EntityUid uid,
         WoundSpecifier wounds,
-        [NotNullWhen(true)] out List<Entity<WoundComponent>>? woundsInduced,
+        out List<Entity<WoundComponent>> woundsInduced,
         WoundableComponent? woundable = null)
     {
         woundsInduced = new List<Entity<WoundComponent>>();
@@ -297,7 +298,7 @@ public partial class WoundSystem
         else
         {
             // The wound failed some important checks, and we cannot let an invalid wound to be spawned!
-            if (_net.IsServer)
+            if (_net.IsServer && !IsClientSide(wound))
                 QueueDel(wound);
             return false;
         }
@@ -507,8 +508,6 @@ public partial class WoundSystem
             }
         }
 
-        // if the said wound didn't open with a trauma-inducing effect, we can't make it inflict a trauma.. so yeah
-
         var holdingWoundable = wound.HoldingWoundable;
         CheckSeverityThresholds(uid, wound);
 
@@ -650,7 +649,7 @@ public partial class WoundSystem
         if (bodyPart.Body == null)
         {
             DropWoundableOrgans(woundableEntity, woundableComp);
-            if (_net.IsServer)
+            if (_net.IsServer && !IsClientSide(woundableEntity))
                 QueueDel(woundableEntity);
 
             // TODO: Some cool effect when the limb gets destroyed
@@ -682,11 +681,11 @@ public partial class WoundSystem
                 DropWoundableOrgans(woundableEntity, woundableComp);
                 DestroyWoundableChildren(woundableEntity, woundableComp);
 
+                if (_net.IsServer && !IsClientSide(woundableEntity))
+                    QueueDel(woundableEntity);
+
                 if (_net.IsServer)
-                {
-                    _body.GibBody(bodyPart.Body.Value);
-                    QueueDel(woundableEntity); // More blood for the blood God!
-                }
+                    _body.GibBody(bodyPart.Body.Value); // More blood for the Blood Gods!
             }
             else
             {
@@ -739,7 +738,7 @@ public partial class WoundSystem
                 }
 
                 _body.DetachPart(parentWoundableEntity, bodyPartId.Remove(0, 15), woundableEntity);
-                if (_net.IsServer)
+                if (_net.IsServer && !IsClientSide(woundableEntity))
                     QueueDel(woundableEntity);
             }
         }
@@ -1004,7 +1003,7 @@ public partial class WoundSystem
         var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
         var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
 
-        RaiseLocalEvent(childEntity, ref woundableAttached, true);
+        RaiseLocalEvent(childEntity, ref woundableAttached);
 
         foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
         {
@@ -1015,7 +1014,7 @@ public partial class WoundSystem
             if (bodyPart.Body.HasValue)
             {
                 var ev2 = new WoundAddedOnBodyEvent(woundId, wound, parentWoundable, woundableRoot);
-                RaiseLocalEvent(bodyPart.Body.Value, ref ev2, true);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
             }
         }
 
@@ -1120,7 +1119,7 @@ public partial class WoundSystem
         if (nearestSeverity != component.WoundableSeverity)
         {
             var ev = new WoundableSeverityChangedEvent(nearestSeverity);
-            RaiseLocalEvent(woundable, ref ev, true);
+            RaiseLocalEvent(woundable, ref ev);
         }
         component.WoundableSeverity = nearestSeverity;
 
