@@ -46,7 +46,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
-    damageType: Burn
+    damageType: Heat
     woundType: External
     woundVisibility: Always
     canBeHealed: false

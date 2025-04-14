@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
@@ -224,14 +225,14 @@ namespace Content.Server.Atmos.EntitySystems
                 }
 
                 // backmen edit start
-                if (TryComp<BodyComponent>(uid, out var body) && body.RootContainer.ContainedEntity.HasValue)
+                if (TryComp<BodyComponent>(uid, out var body)
+                    && HasComp<ConsciousnessComponent>(uid)
+                    && body.RootContainer.ContainedEntity.HasValue)
                 {
-                    foreach (var woundEnt in _wound.GetWoundableWounds(body.RootContainer.ContainedEntity.Value))
-                    {
-                        // TODO: a check for the damage type
-
-                        totalDamage += woundEnt.Comp.WoundIntegrityDamage;
-                    }
+                    totalDamage =
+                        _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value)
+                            .Where(woundEnt => barotrauma.Damage.DamageDict.ContainsKey(woundEnt.Comp.DamageType))
+                            .Aggregate(totalDamage, (current, woundEnt) => current + woundEnt.Comp.WoundIntegrityDamage);
                 }
                 // backmen edit end
 
