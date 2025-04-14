@@ -131,4 +131,4 @@
     startingCharge: 1200
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20 # takes 1 minute to charge itself back to full
+    autoRechargeRate: 25 # takes 1 minute to charge itself back to full
