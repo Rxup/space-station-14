@@ -927,9 +927,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         List<Vector2i> reservedTiles = new();
 
-        for (var y = -4; y <= 4; ++y)
+        for (var y = -1; y <= 1; ++y)
         {
-            for (var x = -4; x <= 4; ++x)
+            for (var x = -1; x <= 1; ++x)
             {
                 _tileSystem.ReplaceTile(grid.GetTileRef(center.GridIndices + new Vector2i(x, y)), sand);
             }
