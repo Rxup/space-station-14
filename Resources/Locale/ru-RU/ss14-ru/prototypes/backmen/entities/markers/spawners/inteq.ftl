@@ -9,6 +9,9 @@ ent-SpawnMobInteQVanguardMedic = спавнер Интек Авангард Ме
 
 ent-SpawnMobInteQAgent = спавнер агент Интек
     .desc = { ent-MarkerBase.desc }
+ent-SpawnMobInteQAgentRandom = { ent-SpawnMobInteQAgent }
+    .desc = { ent-MarkerBase.desc }
+    .suffix = 20%
 ent-SpawnMobCarpBrownInteQ = спавнер карп Интек
     .desc = { ent-MarkerBase.desc }
 

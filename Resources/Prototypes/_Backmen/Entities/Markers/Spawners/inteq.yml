@@ -81,6 +81,22 @@
 
 - type: entity
   parent: MarkerBase
+  id: SpawnMobInteQAgentRandom
+  name: InteQ agent spawner
+  suffix: 20%
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+        state: alive
+  - type: RandomSpawner
+    prototypes:
+      - MobInteQAgent
+    chance: 0.2
+
+- type: entity
+  parent: MarkerBase
   id: SpawnMobCarpBrownInteQ
   name: InteQ carp spawner
   components:
@@ -121,6 +137,10 @@
       understands:
       - TauCetiBasic
       - OldFastCodes
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameFormat: name-format-standard
   - type: Sprite
     layers:
       - sprite: Structures/cryostorage.rsi
@@ -144,7 +164,8 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardLeaderNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
 
 - type: entity
   parent: SpawnPointInteQ
@@ -157,15 +178,14 @@
     name: ghost-role-information-inteq-vanguard-operative
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardOperativeGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
 
 - type: entity
   parent: SpawnPointInteQ
@@ -178,15 +198,14 @@
     name: ghost-role-information-inteq-vanguard-soldier
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
     gear: InteQVanguardSoldierGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
 
 - type: entity
   parent: SpawnPointInteQ
@@ -199,15 +218,14 @@
     name: ghost-role-information-inteq-vanguard-medic
     description: ghost-role-information-inteq-vanguard-description
     rules: ghost-role-information-rules-team-antagonist
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQMedicGear
+    gear: InteQVanguardMedicGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
 
 # Ghost Roles with Player Apperance (SIZO-37 | WhiteList )
 
@@ -230,16 +248,17 @@
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 36000
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQVanguardLeaderGear
+    gear: InteQVanguardLeaderSizoGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardLeaderNamesPrefix
-      - SyndicateNamesSuperNormal
-
+      - NameSpets
+      nameFormat: name-format-standard
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantInteQ 
 
 - type: entity
   parent: SpawnPointInteQ
@@ -260,15 +279,17 @@
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 36000
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQVanguardOperativeGear
+    gear: InteQVanguardOperativeSizoGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantInteQ 
 
 - type: entity
   parent: SpawnPointInteQ
@@ -289,15 +310,17 @@
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 36000
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQVanguardSoldierGear
+    gear: InteQVanguardSoldierSizoGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantInteQ 
 
 - type: entity
   parent: SpawnPointInteQ
@@ -318,12 +341,14 @@
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 36000
-    mindRoles:
-    - MindRoleGhostRoleInteQAntagonist
   - type: CloningAppearance
-    gear: InteQMedicGear
+    gear: InteQVanguardMedicSizoGear
     components:
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantInteQ 

@@ -41,7 +41,7 @@
     - id: ItemFlagMiniInteQ
     - id: FoodSnackInteQCookies
     - id: CigPackInteQ
-    - id: ClothinNeckCloakInteQ
+    - id: ClothingNeckCloakInteQ
       prob: 0.005
     - id: BoxInteQEVA
       prob: 0.005
