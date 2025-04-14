@@ -44,6 +44,7 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
             true);
     }
 
+    private Vector2 _lastOffset = Vector2.Zero;
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
@@ -118,6 +119,9 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
 
     private void RaiseEvent(Vector2 offset)
     {
+        if(_lastOffset == offset)
+            return;
+        _lastOffset = offset;
         RaisePredictiveEvent(new EyeOffsetChangedEvent
         {
             Offset = offset

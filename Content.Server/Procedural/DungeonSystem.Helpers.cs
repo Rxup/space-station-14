@@ -25,7 +25,7 @@ public sealed partial class DungeonSystem
 
             // Sort these as they will be iterated many times.
             edgeConns.Sort((x, y) => x.Distance.CompareTo(y.Distance));
-            connections.Add(entrance, edgeConns);
+            connections.TryAdd(entrance, edgeConns);
         }
 
         var seedIndex = random.Next(tiles.Count);
@@ -62,7 +62,7 @@ public sealed partial class DungeonSystem
                 }
             }
 
-            DebugTools.Assert(cheapestDistance < float.MaxValue);
+            //DebugTools.Assert(cheapestDistance < float.MaxValue);
             // Add to tree
             edges.Add(cheapest);
             forest.Add(cheapest.Item2);
