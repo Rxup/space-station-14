@@ -122,7 +122,7 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
         if (Vector2.DistanceSquared(offset, _lastOffset) < 0.0001f)
             return;
 
-        Log.Info($"EyeOffsetChangedEvent {offset}");
+        //Log.Info($"EyeOffsetChangedEvent {offset}");
         RaisePredictiveEvent(new EyeOffsetChangedEvent { Offset = offset });
         _lastOffset = offset; // Обновляем последнее значение
     }
