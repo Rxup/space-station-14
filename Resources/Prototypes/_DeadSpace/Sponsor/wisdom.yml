@@ -1,8 +1,6 @@
 # Sponsor Loadout
-- type: sponsorLoadout
-  id: Wisdom
-  entity: ClothingBackpackWisdom
-  sponsorOnly: true
+- type: Loadout
+  id: WisdomLoadOutBkm
 
 # Backpack
 - type: entity
