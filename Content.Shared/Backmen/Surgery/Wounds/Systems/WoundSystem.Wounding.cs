@@ -412,8 +412,7 @@ public partial class WoundSystem
             var ev = new WoundSeverityPointChangedEvent(wound, old, wound.WoundSeverityPoint);
             RaiseLocalEvent(uid, ref ev);
 
-            var bodySeverity = (FixedPoint2) 0;
-
+            var bodySeverity = FixedPoint2.Zero;
             if (bodyPart.Body.HasValue)
             {
                 var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
@@ -484,8 +483,7 @@ public partial class WoundSystem
             var ev = new WoundSeverityPointChangedEvent(wound, old, wound.WoundSeverityPoint);
             RaiseLocalEvent(uid, ref ev);
 
-            var bodySeverity = (FixedPoint2) 0;
-
+            var bodySeverity = FixedPoint2.Zero;
             if (bodyPart.Body.HasValue)
             {
                 var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
