@@ -99,7 +99,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWisdom
   - type: Item
     size: Huge
-  - type: HardsuitIdentification
   - type: Armor
     modifiers:
       coefficients:
