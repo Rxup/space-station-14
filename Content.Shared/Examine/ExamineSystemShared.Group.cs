@@ -1,3 +1,4 @@
+using Content.Goobstation.Common.Examine; // Goobstation Change
 using Content.Shared.Ghost;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -153,7 +154,12 @@ namespace Content.Shared.Examine
 
             var examineVerb = new ExamineVerb()
             {
-                Act = act,
+                Act = () =>
+                {
+                    SendExamineTooltip(verbsEvent.User, verbsEvent.Target, formattedMessage, false, false);
+                    var examineCompletedEvent = new ExamineCompletedEvent(formattedMessage, verbsEvent.Target, verbsEvent.User, true);
+                    RaiseLocalEvent(verbsEvent.Target, examineCompletedEvent);
+                },
                 Text = verbText,
                 Message = hoverMessage,
                 Category = VerbCategory.Examine,

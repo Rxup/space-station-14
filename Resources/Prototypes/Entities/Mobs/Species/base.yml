@@ -237,6 +237,7 @@
   - type: Immersive # backmen: immersive
   - type: Targeting # backmen: surgery
   - type: SurgeryTarget # backmen: surgery
+  - type: ExaminableCharacter # Backmen
 
 - type: entity
   save: false

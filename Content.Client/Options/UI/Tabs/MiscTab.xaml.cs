@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Client.UserInterface.Screens;
 using Content.Shared.CCVar;
 using Content.Shared.HUD;
@@ -8,6 +8,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Prototypes;
+using Content.Goobstation.Common.CCVar;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -46,6 +47,9 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CVars.DiscordEnabled, DiscordRich);
         Control.AddOptionCheckBox(CCVars.ShowOocPatronColor, ShowOocPatronColor);
         Control.AddOptionCheckBox(CCVars.LoocAboveHeadShow, ShowLoocAboveHeadCheckBox);
+        Control.AddOptionCheckBox(GoobCVars.LogInChat, LogInChatCheckBox); // WD EDIT
+        Control.AddOptionCheckBox(GoobCVars.CoalesceIdenticalMessages, CoalesceIdenticalMessagesCheckBox); // WD EDIT
+        Control.AddOptionCheckBox(GoobCVars.DetailedExamine, DetailedExamineCheckBox); // Goobstation Change
         Control.AddOptionCheckBox(CCVars.HudHeldItemShow, ShowHeldItemCheckBox);
         Control.AddOptionCheckBox(CCVars.CombatModeIndicatorsPointShow, ShowCombatModeIndicatorsCheckBox);
         Control.AddOptionCheckBox(CCVars.OpaqueStorageWindow, OpaqueStorageWindowCheckBox);

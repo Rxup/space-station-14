@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Content.Goobstation.Common.Examine; // Goobstation Change
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
@@ -284,6 +285,9 @@ namespace Content.Shared.Examine
 
             var newMessage = examinedEvent.GetTotalMessage();
 
+            // Goobstation Change: I dont seem to have a way to get the event of examination to happen after EVERYTHING else, so fuck it.
+            var examineCompletedEvent = new ExamineCompletedEvent(newMessage, entity, examiner.Value);
+            RaiseLocalEvent(entity, examineCompletedEvent);
             // pop color tag
             newMessage.Pop();
 

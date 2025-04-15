@@ -1,3 +1,4 @@
+using Content.Goobstation.Common.Examine; // Goobstation Change
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
@@ -31,6 +32,8 @@ public sealed class HealthExaminableSystem : EntitySystem
             {
                 var markup = CreateMarkup(uid, component, damage);
                 _examineSystem.SendExamineTooltip(args.User, uid, markup, false, false);
+                var examineCompletedEvent = new ExamineCompletedEvent(markup, uid, args.User, true); // Goobstation
+                RaiseLocalEvent(uid, examineCompletedEvent); // Goobstation
             },
             Text = Loc.GetString("health-examinable-verb-text"),
             Category = VerbCategory.Examine,
