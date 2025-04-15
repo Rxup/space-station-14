@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Content.Goobstation.Common.Examine; // Goobstation Change
+using Content.Shared._Goobstation.Examine; // Goobstation Change
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;

@@ -5,7 +5,7 @@
 
 using Robust.Shared.Utility;
 
-namespace Content.Goobstation.Common.Examine;
+namespace Content.Shared._Goobstation.Examine;
 
 public sealed class ExamineCompletedEvent : EntityEventArgs
 {

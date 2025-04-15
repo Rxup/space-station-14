@@ -1,4 +1,4 @@
-using Content.Goobstation.Common.Examine; // Goobstation Change
+using Content.Shared._Goobstation.Examine; // Goobstation Change
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;

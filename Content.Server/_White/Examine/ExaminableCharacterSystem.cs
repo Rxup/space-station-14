@@ -6,9 +6,8 @@
 
 using Content.Server.Chat.Managers;
 using Content.Server.IdentityManagement;
-using Content.Goobstation.Common.Examine; // Goobstation Change
-using Content.Goobstation.Common.CCVar; // Goobstation Change
-using Content.Shared._Goobstation.Heretic.Components; // Goobstation Change
+using Content.Shared._Goobstation.Examine;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
@@ -38,7 +37,7 @@ namespace Content.Server._White.Examine
                 || !args.IsInDetailsRange)
                 return;
 
-            var showExamine = _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, GoobCVars.DetailedExamine);
+            var showExamine = _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, Shared.Backmen.CCVar.CCVars.DetailedExamine);
 
             var selfaware = args.Examiner == args.Examined;
             var logLines = new List<string>();
@@ -91,8 +90,7 @@ namespace Content.Server._White.Examine
                 if (!_inventorySystem.TryGetSlotEntity(uid, slotName, out var slotEntity))
                     continue;
 
-                if (_entityManager.TryGetComponent<MetaDataComponent>(slotEntity, out var metaData)
-                    && !HasComp<StripMenuInvisibleComponent>(slotEntity))
+                if (_entityManager.TryGetComponent<MetaDataComponent>(slotEntity, out var metaData))
                 {
                     var item = Loc.GetString(slotLabel, ("item", metaData.EntityName), ("ent", uid));
                     if (showExamine)
@@ -120,7 +118,7 @@ namespace Content.Server._White.Examine
 
             var combinedLog = string.Join("\n", logLines);
 
-            if (showExamine && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, GoobCVars.LogInChat))
+            if (showExamine && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, Shared.Backmen.CCVar.CCVars.LogInChat))
                 _chatManager.ChatMessageToOne(ChatChannel.Emotes, combinedLog, combinedLog, EntityUid.Invalid, false, actorComponent.PlayerSession.Channel, recordReplay: false);
         }
 
@@ -131,8 +129,8 @@ namespace Content.Server._White.Examine
                 return;
 
             if (TryComp<ActorComponent>(args.Examiner, out var actorComponent)
-                && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, GoobCVars.DetailedExamine)
-                && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, GoobCVars.LogInChat))
+                && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, Shared.Backmen.CCVar.CCVars.DetailedExamine)
+                && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, Shared.Backmen.CCVar.CCVars.LogInChat))
             {
                 var logLines = new List<string>();
 

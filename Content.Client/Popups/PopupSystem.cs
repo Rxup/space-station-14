@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Shared.Containers;
 using Content.Client.UserInterface.Systems.Chat;
-using Content.Goobstation.Common.CCVar; // Goobstation Change
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
@@ -75,8 +75,8 @@ namespace Content.Client.Popups
                     this));
 
             // WD EDIT START
-            _shouldLogInChat = _configManager.GetCVar(GoobCVars.LogInChat);
-            _configManager.OnValueChanged(GoobCVars.LogInChat, log => { _shouldLogInChat = log; });
+            _shouldLogInChat = _configManager.GetCVar(Shared.Backmen.CCVar.CCVars.LogInChat);
+            _configManager.OnValueChanged(Shared.Backmen.CCVar.CCVars.LogInChat, log => { _shouldLogInChat = log; });
             // WD EDIT END
         }
 

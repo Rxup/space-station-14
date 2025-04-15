@@ -1,5 +1,5 @@
 using Content.Client.UserInterface.Systems.Chat.Controls;
-using Content.Goobstation.Common.CCVar; // Goobstation Change
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Input;
 using Robust.Client.Audio;
@@ -55,8 +55,8 @@ public partial class ChatBox : UIWidget
 
         // WD EDIT START
         _cfg = IoCManager.Resolve<IConfigurationManager>();
-        _coalescence = _cfg.GetCVar(GoobCVars.CoalesceIdenticalMessages); // i am uncomfortable calling repopulate on chatbox in its ctor, even though it worked in testing i'll still err on the side of caution
-        _cfg.OnValueChanged(GoobCVars.CoalesceIdenticalMessages, UpdateCoalescence, false); // eplicitly false to underline the above comment
+        _coalescence = _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.CoalesceIdenticalMessages); // i am uncomfortable calling repopulate on chatbox in its ctor, even though it worked in testing i'll still err on the side of caution
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.CoalesceIdenticalMessages, UpdateCoalescence, false); // eplicitly false to underline the above comment
         // WD EDIT END
     }
 
@@ -246,6 +246,6 @@ public partial class ChatBox : UIWidget
         ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;
         ChatInput.Input.OnTextChanged -= OnTextChanged;
         ChatInput.ChannelSelector.OnChannelSelect -= OnChannelSelect;
-        _cfg.UnsubValueChanged(GoobCVars.CoalesceIdenticalMessages, UpdateCoalescence); // WD EDIT
+        _cfg.UnsubValueChanged(Shared.Backmen.CCVar.CCVars.CoalesceIdenticalMessages, UpdateCoalescence); // WD EDIT
     }
 }

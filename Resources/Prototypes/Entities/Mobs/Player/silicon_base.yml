@@ -298,7 +298,6 @@
     - type: LightningTarget
       priority: 1
       lightningExplode: false
-    - type: Targeting # Backmen
     - type: ExaminableCharacter # Backmen
 
 

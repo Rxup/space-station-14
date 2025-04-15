@@ -8,7 +8,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Prototypes;
-using Content.Goobstation.Common.CCVar;
+using Content.Shared.Backmen.CCVar;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -40,23 +40,23 @@ public sealed partial class MiscTab : Control
         // Channel can be null in replays so.
         // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
         ShowOocPatronColor.Visible = _playerManager.LocalSession?.Channel?.UserData.PatronTier is { };
-
+        // Backmen-Edit-START
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
-        Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
+        Control.AddOptionDropDown(Shared.CCVar.CCVars.UILayout, DropDownHudLayout, layoutEntries);
 
         Control.AddOptionCheckBox(CVars.DiscordEnabled, DiscordRich);
-        Control.AddOptionCheckBox(CCVars.ShowOocPatronColor, ShowOocPatronColor);
-        Control.AddOptionCheckBox(CCVars.LoocAboveHeadShow, ShowLoocAboveHeadCheckBox);
-        Control.AddOptionCheckBox(GoobCVars.LogInChat, LogInChatCheckBox); // WD EDIT
-        Control.AddOptionCheckBox(GoobCVars.CoalesceIdenticalMessages, CoalesceIdenticalMessagesCheckBox); // WD EDIT
-        Control.AddOptionCheckBox(GoobCVars.DetailedExamine, DetailedExamineCheckBox); // Goobstation Change
-        Control.AddOptionCheckBox(CCVars.HudHeldItemShow, ShowHeldItemCheckBox);
-        Control.AddOptionCheckBox(CCVars.CombatModeIndicatorsPointShow, ShowCombatModeIndicatorsCheckBox);
-        Control.AddOptionCheckBox(CCVars.OpaqueStorageWindow, OpaqueStorageWindowCheckBox);
-        Control.AddOptionCheckBox(CCVars.ChatEnableFancyBubbles, FancySpeechBubblesCheckBox);
-        Control.AddOptionCheckBox(CCVars.ChatFancyNameBackground, FancyNameBackgroundsCheckBox);
-        Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.ShowOocPatronColor, ShowOocPatronColor);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.LoocAboveHeadShow, ShowLoocAboveHeadCheckBox);
+        Control.AddOptionCheckBox(Shared.Backmen.CCVar.CCVars.LogInChat, LogInChatCheckBox); // Backmen
+        Control.AddOptionCheckBox(Shared.Backmen.CCVar.CCVars.CoalesceIdenticalMessages, CoalesceIdenticalMessagesCheckBox); // Backmen
+        Control.AddOptionCheckBox(Shared.Backmen.CCVar.CCVars.DetailedExamine, DetailedExamineCheckBox); // Backmen
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.HudHeldItemShow, ShowHeldItemCheckBox);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.CombatModeIndicatorsPointShow, ShowCombatModeIndicatorsCheckBox);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.OpaqueStorageWindow, OpaqueStorageWindowCheckBox);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.ChatEnableFancyBubbles, FancySpeechBubblesCheckBox);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.ChatFancyNameBackground, FancyNameBackgroundsCheckBox);
+        Control.AddOptionCheckBox(Shared.CCVar.CCVars.StaticStorageUI, StaticStorageUI);
         Control.AddOptionCheckBox(Shared.Backmen.CCVar.CCVars.OfferModeIndicatorsPointShow, ShowOfferModeIndicatorsCheckBox);
         Control.Initialize();
-    }
+    }   // Backmen-Edit-END
 }
