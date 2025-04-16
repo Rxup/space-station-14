@@ -25,6 +25,7 @@
 
 - type: reaction
   id: Bluespace
+  quantized: true
   minTemp: 520
   reactants:
     Bluespace:
