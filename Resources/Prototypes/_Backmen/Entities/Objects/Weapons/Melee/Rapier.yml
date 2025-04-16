@@ -1,6 +1,6 @@
 - type: entity
   name: Рапира
-  parent: BaseItem
+  parent: BaseSword
   id: Rapier
   description: Рапира выкована стариком Мифистофелем.
   components:
