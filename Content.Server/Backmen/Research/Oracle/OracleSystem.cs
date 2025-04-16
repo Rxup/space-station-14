@@ -23,6 +23,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
+using Content.Server.Backmen.GibOnCollide;
 
 namespace Content.Server.Backmen.Research.Oracle;
 
@@ -160,9 +161,21 @@ public sealed class OracleSystem : EntitySystem
         SubscribeLocalEvent<OracleComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<OracleComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<OracleComponent, SuicideEvent>(OnSuicide);
+        SubscribeLocalEvent<OracleComponent, GibOnCollideAttemptEvent>(OnGibOnCollide);
     }
 
     private void OnSuicide(Entity<OracleComponent> ent, ref SuicideEvent args)
+    {
+        HandleGibEvent(ent);
+    }
+
+    private void OnGibOnCollide(EntityUid uid, OracleComponent component, GibOnCollideAttemptEvent args)
+    {
+        var oracleEntity = new Entity<OracleComponent>(uid, component);
+        HandleGibEvent(oracleEntity);
+    }
+
+    private void HandleGibEvent(Entity<OracleComponent> ent)
     {
         var xform = Transform(ent);
         var spawnPos = new EntityCoordinates(xform.Coordinates.EntityId,
