@@ -145,7 +145,14 @@ public partial class WoundSystem
 
     private void OnWoundableContentsGibAttempt(EntityUid uid, WoundableComponent comp, ref AttemptEntityContentsGibEvent args)
     {
-        args.ExcludedContainers?.AddRange(new List<string> { WoundContainerId, BoneContainerId });
+        if (args.ExcludedContainers == null)
+        {
+            args.ExcludedContainers = new List<string> { WoundContainerId, BoneContainerId };
+        }
+        else
+        {
+            args.ExcludedContainers.AddRange(new List<string> { WoundContainerId, BoneContainerId });
+        }
     }
 
     private void DudeItsJustLikeMatrix(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)

@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using Content.Shared.Backmen.CCVar;
+﻿using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
@@ -98,7 +95,16 @@ public sealed partial class WoundSystem : EntitySystem
         var holdingWoundable = GetEntity(state.HoldingWoundable);
         if (holdingWoundable != component.HoldingWoundable)
         {
-            if (component.HoldingWoundable == EntityUid.Invalid)
+            if (holdingWoundable == EntityUid.Invalid)
+            {
+                if (TryComp(holdingWoundable, out WoundableComponent? oldParentWoundable) &&
+                    TryComp(oldParentWoundable.RootWoundable, out WoundableComponent? oldWoundableRoot))
+                {
+                    var ev2 = new WoundRemovedEvent(component, oldParentWoundable, oldWoundableRoot);
+                    RaiseLocalEvent(holdingWoundable, ref ev2);
+                }
+            }
+            else
             {
                 var parentWoundable = Comp<WoundableComponent>(holdingWoundable);
                 var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
@@ -114,15 +120,6 @@ public sealed partial class WoundSystem : EntitySystem
                 {
                     var ev2 = new WoundAddedOnBodyEvent(uid, component, parentWoundable, woundableRoot);
                     RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
-                }
-            }
-            else
-            {
-                if (TryComp(holdingWoundable, out WoundableComponent? oldParentWoundable) &&
-                    TryComp(oldParentWoundable.RootWoundable, out WoundableComponent? oldWoundableRoot))
-                {
-                    var ev2 = new WoundRemovedEvent(component, oldParentWoundable, oldWoundableRoot);
-                    RaiseLocalEvent(holdingWoundable, ref ev2);
                 }
             }
         }
