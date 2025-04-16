@@ -1,6 +1,6 @@
 ﻿- type: entity
   parent: MaterialBase
-  id: MaterialBluespace
+  id: MaterialBluespaceCrystal
   suffix: Full
   name: bluespace crystal
   components:
@@ -13,13 +13,13 @@
     - type: Material
     - type: PhysicalComposition
       materialComposition:
-        Bluespace: 100
+        BluespaceCrystal: 100
     - type: Tag
       tags:
         - BluespaceCrystal
         - RawMaterial
     - type: Stack
-      stackType: Bluespace
+      stackType: BluespaceCrystal
       baseLayer: base
       layerStates:
         - bluespace
@@ -28,34 +28,153 @@
       count: 30
     - type: Item
       size: Normal
+    - type: Extractable
+      grindableSolutionName: bluespace
+    - type: SolutionContainerManager
+      solutions:
+        bluespace:
+          maxVol: 20
+          reagents:
+          - ReagentId: Bluespace
+            Quantity: 20
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: desecration
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
 
 - type: entity
-  parent: MaterialBluespace
-  id: MaterialBluespace1
-  name: bluespace crystal
+  parent: MaterialBluespaceCrystal
+  id: MaterialBluespaceCrystal1
   suffix: 1
   components:
   - type: Stack
-    stackType: Bluespace
+    stackType: BluespaceCrystal
     count: 1
-  - type: Tag
-    tags:
-    - BluespaceCrystal
-    - RawMaterial
-    
+
 - type: entity
-  parent: MaterialBluespace
-  id: MaterialBluespace10
-  name: bluespace crystal
+  parent: MaterialBluespaceCrystal
+  id: MaterialBluespaceCrystal10
   suffix: 10
   components:
   - type: Stack
-    stackType: Bluespace
+    stackType: BluespaceCrystal
+    count: 10
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialBluespaceEssence
+  suffix: Full
+  name: bluespace essence
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Materials/materials.rsi
+      layers:
+        - state: bluespace_essence
+          color: "#4169E1"
+          map: ["base"]
+    - type: Appearance
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        BluespaceEssence: 100
+    - type: Tag
+      tags:
+        - BluespaceEssence
+        - RawMaterial
+    - type: Stack
+      stackType: BluespaceEssence
+      baseLayer: base
+      layerStates:
+        - bluespace_essence
+        - bluespace_essence_2
+        - bluespace_essence_3
+      count: 30
+    - type: Item
+      size: Normal
+
+- type: entity
+  parent: MaterialBluespaceEssence
+  id: MaterialBluespaceEssence1
+  suffix: 1
+  components:
+  - type: Stack
+    stackType: BluespaceEssence
+    count: 1
+
+- type: entity
+  parent: MaterialBluespaceEssence
+  id: MaterialBluespaceEssence10
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: BluespaceEssence
+    count: 10
+
+- type: entity
+  parent: MaterialBase
+  id: CrystalNormality
+  name: normality crystal
+  description: It looks... normal.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Materials/materials.rsi
+    layers:
+      - state: normalitycrystal_3
+        map: ["base"] 
+  - type: Appearance
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      NormalityCrystal: 100
+  - type: Stack
+    stackType: NormalityCrystal
+    baseLayer: base
+    layerStates:
+      - normalitycrystal
+      - normalitycrystal_2
+      - normalitycrystal_3
+    count: 30
+  - type: Tag
+    tags:
+      - NormalityCrystal
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: CrystalNormality
+  id: CrystalNormality1
+  name: normality crystal
+  suffix: 1
+  components:
+  - type: Stack
+    stackType: NormalityCrystal
+    count: 1
+  - type: Tag
+    tags:
+    - NormalityCrystal
+    - RawMaterial
+    
+- type: entity
+  parent: CrystalNormality
+  id: CrystalNormality10
+  name: normality crystal
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: NormalityCrystal
     count: 10
   - type: Tag
     tags:
-    - BluespaceCrystal
-    - RawMaterial
+    - NormalityCrystal  
 
 - type: entity
   parent: BaseItem

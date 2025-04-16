@@ -1,0 +1,8 @@
+- type: reagent
+  id: Bluespace
+  name: reagent-name-bluespace
+  desc: reagent-desc-bluespace
+  physicalDesc: reagent-physical-desc-crystalline
+  color: blue
+  boilingPoint: 4200.0
+  meltingPoint: 3550.0

@@ -22,3 +22,19 @@
       amount: 1
   products:
     StimulantsSuper: 3
+
+- type: reaction
+  id: Bluespace
+  minTemp: 520
+  reactants:
+    Bluespace:
+      amount: 80
+  effects:
+    - !type:AreaReactionEffect
+      duration: 1
+      prototypeId: Smoke
+      sound:
+        path: /Audio/Effects/smoke.ogg
+    - !type:FlashReactionEffect
+    - !type:CreateEntityReactionEffect
+      entity: AnomalyBluespace

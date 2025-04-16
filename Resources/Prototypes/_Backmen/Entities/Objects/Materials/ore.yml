@@ -1,0 +1,35 @@
+- type: entity
+  parent: MaterialBase
+  id: BluespaceCrystalUnprocessed
+  name: unprocessed bluespace crystal
+  suffix: Full
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Materials/materials.rsi
+      layers:
+        - state: bluespace_crystal_unprocessed
+          map: ["base"]
+    - type: Appearance
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        BluespaceCrystal: 100
+    - type: Tag
+      tags:
+#        - BluespaceCrystal
+        - RawMaterial
+    - type: Stack
+      stackType: BluespaceCrystalUnprocessed
+      count: 30
+    - type: Item
+      size: Normal
+    - type: UnclaimedOre
+      miningPoints: 1000
+
+- type: entity
+  parent: BluespaceCrystalUnprocessed
+  id: BluespaceCrystal1Unprocessed
+  suffix: 1
+  components:
+    - type: Stack
+      count: 1

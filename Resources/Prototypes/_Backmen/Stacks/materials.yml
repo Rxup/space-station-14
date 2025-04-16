@@ -1,13 +1,27 @@
 ﻿- type: stack
-  id: Bluespace
-  name: bluespace
+  id: BluespaceCrystal
+  name: bluespace crystal
   icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }
-  spawn: MaterialBluespace
+  spawn: MaterialBluespaceCrystal1
+  maxCount: 30
+
+- type: stack
+  id: BluespaceCrystalUnprocessed 
+  name: unprocessed bluespace crystal
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace_crystal_unprocessed }
+  spawn: BluespaceCrystal1Unprocessed
+  maxCount: 30
+
+- type: stack
+  id: BluespaceEssence
+  name: bluespace essence
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace_essence }
+  spawn: MaterialBluespaceEssence1
   maxCount: 30
 
 - type: stack
   id: NormalityCrystal
-  name: normalitycrystal
+  name: normality crystal
   icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: normalitycrystal }
-  spawn: CrystalNormality
+  spawn: CrystalNormality1
   maxCount: 30

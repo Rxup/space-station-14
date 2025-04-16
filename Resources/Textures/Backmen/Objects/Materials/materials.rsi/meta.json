@@ -17,6 +17,48 @@
             "name": "bluespace_3"
         },
         {
+            "name": "bluespace_crystal_unprocessed"
+        },
+        {
+            "name": "bluespace_essence",
+            "delays": [
+            [
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1
+            ]
+          ]
+        },
+        {
+            "name": "bluespace_essence_2",
+            "delays": [
+            [
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1
+            ]
+          ]
+        },
+        {
+            "name": "bluespace_essence_3",
+            "delays": [
+            [
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1
+            ]
+          ]
+        },
+        {
             "name": "normalitycrystal"
         },
         {

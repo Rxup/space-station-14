@@ -22,14 +22,14 @@
     state: base
   discipline: Scientific
   tier: 1
-  cost: 10000
+  cost: 15000
   recipeUnlocks:
   - AnomalySynchronizerCircuitboard
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - AnomalousResearchAdvanced
-  - AnomalousResearchMachines
-  position: 4,-1
+  - AbnormalArtifactManipulationMachines
+  position: 3,-1
 
 - type: technology
   id: XenoArcheologyMachines
@@ -74,8 +74,9 @@
   recipeUnlocks:
   - ArtifactCrusherMachineCircuitboard
   technologyPrerequisites:
-  - AnomalyResearchAdvancedMachines
-  position: 3,-1
+  - AnomalousResearchMachines
+  - XenoArcheologyMachines
+  position: 3,0
 
 - type: technology
   id: Metempsychosis

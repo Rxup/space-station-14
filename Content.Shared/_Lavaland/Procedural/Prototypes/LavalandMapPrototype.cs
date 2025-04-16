@@ -61,6 +61,7 @@ public sealed partial class LavalandMapPrototype : IPrototype
         "OreBananium",
         "OreArtifactFragment",
         "OreDiamond",
+        "OreBluespaceCrystal", // Backmen
     };
 
     [DataField("weather")]

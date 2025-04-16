@@ -131,6 +131,7 @@
     Silver: 750
     Plasma: 1500
     Uranium: 150
+    BluespaceCrystal: 200 # Backmen
 
 - type: latheRecipe
   parent: ClothingBackpackHolding
@@ -146,6 +147,12 @@
   parent: ClothingBackpackHolding
   id: OreBagOfHolding
   result: OreBagOfHolding
+  materials: # Backmen
+    Steel: 700
+    Silver: 150
+    Plasma: 1200
+    Uranium: 120
+    BluespaceCrystal: 20 # Backmen
 
 - type: latheRecipe
   id: ClothingMaskWeldingGas
@@ -174,6 +181,7 @@
     Steel: 700
     Glass: 100
     Uranium: 100
+    BluespaceCrystal: 100 # Backmen
 
 - type: latheRecipe
   id: WeaponProtoKineticAccelerator

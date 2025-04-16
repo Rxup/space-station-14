@@ -92,6 +92,7 @@
   - DeviceQuantumSpinInverter
   technologyPrerequisites:
   - GravityManipulation
+  - BluespaceTheory
   position: 3,3
 
 - type: technology
@@ -145,6 +146,21 @@
   position: 5,2
 
 - type: technology
+  id: BluespaceTheory
+  name: research-technology-bluespace-theory
+  icon:
+    sprite: Backmen/Objects/Materials/materials.rsi
+    state: bluespace 
+  discipline: Scientific
+  tier: 1
+  cost: 7000
+  recipeUnlocks:
+  - MaterialBluespaceCrystal
+  technologyPrerequisites:
+  - AnomalousResearchAdvanced
+  position: 3,5
+
+- type: technology
   id: Teleportation
   name: research-technology-teleportation
   icon:
@@ -176,7 +192,7 @@
   - ClothingBackpackDuffelHolding
   - ClothingBackpackMessengerHolding # Backmen
   technologyPrerequisites:
-  - QuantumLeaping
+  - BluespaceTheory
   - PowercellsBluespace
   - SalvageEquipmentAdvanced
   position: 5,5

@@ -72,6 +72,7 @@
    - PowerCellBluespace
   technologyPrerequisites:
   - PowercellsPrototypes
+  - BluespaceTheory
   - PowerGenerationAdvancedMachines
   position: 0,6
 
@@ -194,6 +195,7 @@
     - JawsOfLife
   technologyPrerequisites:
   - EngineeringTools
+  - EngineeringAdvancedMachines
   position: -2,0
 
 - type: technology

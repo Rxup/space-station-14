@@ -3,6 +3,7 @@ research-technology-anomalous-research-advanced = Advanced anomalous research
 research-technology-integrated-huds = Integrated HUDs
 research-technology-magnetic-boots = Magnetic boots
 research-technology-quantum-magnetic-boots = Quantum magnetic boots
+research-technology-bluespace-theory = Bluespace theory
 research-technology-teleportation = Teleportation
 research-technology-psionic-countermeasures = Psionic countermeasures
 
@@ -11,4 +12,4 @@ research-technology-anomaly-research-advanced-machines = Advanced research machi
 research-technology-xenoarcheology-machines = Xenoarcheology machines
 research-technology-alternative-research-machines = Alternative research machines
 research-technology-abnormal-artifact-manipulation-machines = Abnormal artifact manipulation machines
-research-technology-metempsychosis = Metempsychosis
+research-technology-metempsychosis = Metempsychosis machines
