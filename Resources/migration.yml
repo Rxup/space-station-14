@@ -849,6 +849,8 @@ ComputerSalvageExpedition: ComputerShuttleMiningLavaland
 SalvageExpeditionsComputerCircuitboard: LavalandShuttleConsoleCircuitboard
 WallRockBasaltBSCrystal: WallRockBasalt
 
+# 2025-04-07 | Backmen
+OracleRecycler: OracleEvil
 
 # 2025-03-18
 EpinephrineChemistryBottle: ChemistryBottleEpinephrine
