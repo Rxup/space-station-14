@@ -82,6 +82,6 @@
         variation: 0.250
         volume: -10
     activatedSoundOnSwing:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      path: /Audio/Weapons/punchmiss.ogg
       params:
         variation: 0.125

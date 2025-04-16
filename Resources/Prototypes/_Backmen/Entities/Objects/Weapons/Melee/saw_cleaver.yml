@@ -1,0 +1,101 @@
+- type: entity
+  parent: BaseSword
+  id: SawCleaver
+  name: saw cleaver
+  description: This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force.
+  components:
+  - type: SawCleaver
+    healOnHit:
+      types:
+        Slash: -2.5
+        Bloodloss: -4.5
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/saw_cleaver.rsi
+    layers:
+    - state: icon_off
+  - type: Appearance
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/saw_cleaver-inhands.rsi
+    size: Ginormous
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon_on}
+          False: {state: icon_off}
+  - type: ToggleableLightVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+        - state: on-inhand-left
+      right:
+        - state: on-inhand-right
+  - type: ItemToggleActiveSound
+    activeSound:
+      collection: BossFightMusic
+      params:
+        volume: -10
+        maxDistance: 8
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Backmen/Magic/Cults/ClockCult/fellowship_armory.ogg
+      params:
+        volume: -3
+    soundDeactivate:
+      path: /Audio/Backmen/Magic/Cults/ClockCult/fellowship_armory.ogg
+      params:
+        variation: 0.250
+        volume: -3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/bladeslice.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/bladeslice.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 16
+        Bloodloss: 3.5
+        Structural: 10
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.25
+    damage:
+      types:
+        Slash: 5
+        Bloodloss: 10
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Clothing
+    quickEquip: false
+    slots:
+      - Belt
+  - type: UseDelay
+    delay: 1
+  - type: Sharp
+  - type: Scalpel
+    speed: 1.25
+  - type: BoneSaw
+    speed: 1.25
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Weapons/bladeslice.ogg
+    endSound:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Tag
+    tags:
+    - SurgeryTool
+  - type: ComponentToggler
+    components:
+    - type: DisarmMalus
+      malus: 0.6
+    - type: Execution
+      doAfterDuration: 4.0

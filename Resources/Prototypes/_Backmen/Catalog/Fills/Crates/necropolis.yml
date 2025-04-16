@@ -1,0 +1,8 @@
+- type: entity
+  parent: LavalandCrateNecropolis
+  id: LavalandCrateNecropolisSawCleaver
+  suffix: Saw Cleaver
+  components:
+  - type: StorageFill
+    contents:
+      - id: SawCleaver
