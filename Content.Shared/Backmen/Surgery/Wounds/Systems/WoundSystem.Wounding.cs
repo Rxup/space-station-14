@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Pain.Components;
@@ -1395,7 +1396,7 @@ public partial class WoundSystem
         if (!Resolve(targetEntity, ref targetWoundable, false) || targetWoundable.Wounds.Count == 0)
             yield break;
 
-        foreach (var woundEntity in targetWoundable.Wounds.ContainedEntities)
+        foreach (var woundEntity in targetWoundable.Wounds.ContainedEntities.ToList())
         {
             yield return (woundEntity, Comp<WoundComponent>(woundEntity));
         }
