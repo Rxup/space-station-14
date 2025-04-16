@@ -23,19 +23,20 @@
   products:
     StimulantsSuper: 3
 
-- type: reaction
-  id: BluespaceAnomaly
-  quantized: true
-  minTemp: 520
-  reactants:
-    Bluespace:
-      amount: 80
-  effects:
-    - !type:AreaReactionEffect
-      duration: 1
-      prototypeId: Smoke
-      sound:
-        path: /Audio/Effects/smoke.ogg
-    - !type:FlashReactionEffect
-    - !type:CreateEntityReactionEffect
-      entity: AnomalyBluespace
+#- type: reaction # Build errors on tests
+#  id: BluespaceAnomaly
+#  impact: High
+#  quantized: true
+#  minTemp: 520
+#  reactants:
+#    Bluespace:
+#      amount: 80
+#  effects:
+#    - !type:AreaReactionEffect
+#      duration: 1
+#      prototypeId: Smoke
+#      sound:
+#        path: /Audio/Effects/smoke.ogg
+#    - !type:FlashReactionEffect
+#    - !type:CreateEntityReactionEffect
+#      entity: AnomalyBluespace
