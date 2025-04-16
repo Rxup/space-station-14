@@ -845,7 +845,7 @@ public partial class WoundSystem
 
     private void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)
     {
-        if (!Resolve(woundable, ref woundableComp))
+        if (!Resolve(woundable, ref woundableComp, false))
             return;
 
         foreach (var organ in _body.GetPartOrgans(woundable))
@@ -871,7 +871,7 @@ public partial class WoundSystem
 
     private void InsertBoneIntoWoundable(EntityUid uid, WoundableComponent? comp = null)
     {
-        if (!Resolve(uid, ref comp))
+        if (!Resolve(uid, ref comp, false))
             return;
 
         var bone = Spawn(comp.BoneEntity);
@@ -891,8 +891,8 @@ public partial class WoundSystem
         WoundableComponent? woundableComp = null,
         WoundComponent? woundComp = null)
     {
-        if (!Resolve(parent, ref woundableComp)
-            || !Resolve(wound, ref woundComp))
+        if (!Resolve(parent, ref woundableComp, false)
+            || !Resolve(wound, ref woundComp, false))
             return;
 
         TryInduceWound(
@@ -944,8 +944,8 @@ public partial class WoundSystem
         WoundableComponent? woundableComponent = null,
         WoundComponent? woundComponent = null)
     {
-        if (!Resolve(target, ref woundableComponent)
-            || !Resolve(wound, ref woundComponent)
+        if (!Resolve(target, ref woundableComponent, false)
+            || !Resolve(wound, ref woundComponent, false)
             || woundableComponent.Wounds.Contains(wound)
             || !_timing.IsFirstTimePredicted)
             return false;
@@ -981,7 +981,7 @@ public partial class WoundSystem
         if (!_timing.IsFirstTimePredicted)
             return false;
 
-        if (!Resolve(woundEntity, ref wound) || !TryComp(wound.HoldingWoundable, out WoundableComponent? woundable))
+        if (!Resolve(woundEntity, ref wound, false) || !TryComp(wound.HoldingWoundable, out WoundableComponent? woundable))
             return false;
 
         _sawmill.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
@@ -1074,7 +1074,7 @@ public partial class WoundSystem
 
     private void CheckSeverityThresholds(EntityUid wound, WoundComponent? component = null)
     {
-        if (!Resolve(wound, ref component))
+        if (!Resolve(wound, ref component, false))
             return;
 
         var nearestSeverity = component.WoundSeverity;
@@ -1102,7 +1102,7 @@ public partial class WoundSystem
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
     {
-        if (!Resolve(woundable, ref component))
+        if (!Resolve(woundable, ref component, false))
             return;
 
         var nearestSeverity = component.WoundableSeverity;
@@ -1163,7 +1163,7 @@ public partial class WoundSystem
 
     private void DestroyWoundableChildren(EntityUid woundableEntity, WoundableComponent? woundableComp = null)
     {
-        if (!Resolve(woundableEntity, ref woundableComp))
+        if (!Resolve(woundableEntity, ref woundableComp, false))
             return;
 
         foreach (var child in woundableComp.ChildWoundables)
@@ -1259,7 +1259,7 @@ public partial class WoundSystem
     /// <returns>true if the woundable is the root of the hierarchy</returns>
     public bool IsWoundableRoot(EntityUid woundableEntity, WoundableComponent? woundable = null)
     {
-        return Resolve(woundableEntity, ref woundable) && woundable.RootWoundable == woundableEntity;
+        return Resolve(woundableEntity, ref woundable, false) && woundable.RootWoundable == woundableEntity;
     }
 
     /// <summary>
@@ -1271,7 +1271,7 @@ public partial class WoundSystem
     public IEnumerable<Entity<WoundComponent>> GetAllWounds(EntityUid targetEntity,
         WoundableComponent? targetWoundable = null)
     {
-        if (!Resolve(targetEntity, ref targetWoundable))
+        if (!Resolve(targetEntity, ref targetWoundable, false))
             yield break;
 
         foreach (var (_, childWoundable) in GetAllWoundableChildren(targetEntity, targetWoundable))
@@ -1292,7 +1292,7 @@ public partial class WoundSystem
     public IEnumerable<Entity<WoundableComponent>> GetAllWoundableChildren(EntityUid targetEntity,
         WoundableComponent? targetWoundable = null)
     {
-        if (!Resolve(targetEntity, ref targetWoundable))
+        if (!Resolve(targetEntity, ref targetWoundable, false))
             yield break;
 
         foreach (var childEntity in targetWoundable.ChildWoundables)
@@ -1322,8 +1322,8 @@ public partial class WoundSystem
         WoundableComponent? parentWoundable = null,
         WoundableComponent? childWoundable = null)
     {
-        if (!Resolve(parentEntity, ref parentWoundable)
-            || !Resolve(childEntity, ref childWoundable) || childWoundable.ParentWoundable == null)
+        if (!Resolve(parentEntity, ref parentWoundable, false)
+            || !Resolve(childEntity, ref childWoundable, false) || childWoundable.ParentWoundable == null)
             return false;
 
         InternalAddWoundableToParent(parentEntity, childEntity, parentWoundable, childWoundable);
@@ -1344,8 +1344,8 @@ public partial class WoundSystem
         WoundableComponent? parentWoundable = null,
         WoundableComponent? childWoundable = null)
     {
-        if (!Resolve(parentEntity, ref parentWoundable)
-            || !Resolve(childEntity, ref childWoundable) || childWoundable.ParentWoundable == null)
+        if (!Resolve(parentEntity, ref parentWoundable, false)
+            || !Resolve(childEntity, ref childWoundable, false) || childWoundable.ParentWoundable == null)
             return false;
 
         InternalRemoveWoundableFromParent(parentEntity, childEntity, parentWoundable, childWoundable);
@@ -1363,7 +1363,7 @@ public partial class WoundSystem
     public IEnumerable<Entity<WoundableComponent, T>> GetAllWoundableChildrenWithComp<T>(EntityUid targetEntity,
         WoundableComponent? targetWoundable = null) where T: Component, new()
     {
-        if (!Resolve(targetEntity, ref targetWoundable))
+        if (!Resolve(targetEntity, ref targetWoundable, false))
             yield break;
 
         foreach (var childEntity in targetWoundable.ChildWoundables)
@@ -1392,7 +1392,7 @@ public partial class WoundSystem
     public IEnumerable<Entity<WoundComponent>> GetWoundableWounds(EntityUid targetEntity,
         WoundableComponent? targetWoundable = null)
     {
-        if (!Resolve(targetEntity, ref targetWoundable) || targetWoundable.Wounds.Count == 0)
+        if (!Resolve(targetEntity, ref targetWoundable, false) || targetWoundable.Wounds.Count == 0)
             yield break;
 
         foreach (var woundEntity in targetWoundable.Wounds.ContainedEntities)
@@ -1415,7 +1415,7 @@ public partial class WoundSystem
         string? damageGroup = null,
         bool healable = false)
     {
-        if (!Resolve(targetEntity, ref targetWoundable) || targetWoundable.Wounds.Count == 0)
+        if (!Resolve(targetEntity, ref targetWoundable, false) || targetWoundable.Wounds.Count == 0)
             return FixedPoint2.Zero;
 
         if (healable)
@@ -1445,7 +1445,7 @@ public partial class WoundSystem
         string? damageGroup = null,
         bool healable = false)
     {
-        if (!Resolve(targetEntity, ref targetWoundable) || targetWoundable.Wounds.Count == 0)
+        if (!Resolve(targetEntity, ref targetWoundable, false) || targetWoundable.Wounds.Count == 0)
             return FixedPoint2.Zero;
 
         if (healable)
