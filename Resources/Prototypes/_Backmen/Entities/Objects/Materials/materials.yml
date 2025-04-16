@@ -33,7 +33,6 @@
     - type: SolutionContainerManager
       solutions:
         bluespace:
-          maxVol: 20
           reagents:
           - ReagentId: Bluespace
             Quantity: 20
@@ -50,6 +49,11 @@
             collection: desecration
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+    - type: DamageOnHighSpeedImpact
+      minimumSpeed: 0.1
+      damage:
+        types:
+          Blunt: 1
 
 - type: entity
   parent: MaterialBluespaceCrystal

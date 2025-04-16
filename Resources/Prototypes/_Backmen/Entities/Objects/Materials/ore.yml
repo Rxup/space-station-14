@@ -25,6 +25,32 @@
       size: Normal
     - type: UnclaimedOre
       miningPoints: 1000
+    - type: Extractable
+      grindableSolutionName: bluespace
+    - type: SolutionContainerManager
+      solutions:
+        bluespace:
+          reagents:
+          - ReagentId: Bluespace
+            Quantity: 5
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 5
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: desecration
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: DamageOnHighSpeedImpact
+      minimumSpeed: 0.1
+      damage:
+        types:
+          Blunt: 1
 
 - type: entity
   parent: BluespaceCrystalUnprocessed
