@@ -15,7 +15,7 @@
     - NoConsoleSound
     - SilentStorageUser
     - PreventAccessLogging
-    - AllowBiomeLoading
+   # - AllowBiomeLoading BACKMEN-EDIT
   - type: Input
     context: "aghost"
   - type: Ghost
