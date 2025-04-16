@@ -18,7 +18,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
-[Virtual]
 public sealed partial class TraumaSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;

@@ -65,4 +65,20 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> OrganTraumaRunSpeedSlowdown =
         CVarDef.Create("traumas.organ_run_speed_slowdown", 0.6f, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * Bleeding CVars
+     */
+
+    /// <summary>
+    /// The rate at which severity (wound) points get exchanged into bleeding; e.g., 50 severity would be 7.5 bleeding points.
+    /// </summary>
+    public static readonly CVarDef<float> BleedingSeverityTrade =
+        CVarDef.Create("bleeds.wound_severity_trade", 0.15f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// How quick by default do bleeds grow to their full form?
+    /// </summary>
+    public static readonly CVarDef<float> BleedsScalingTime =
+        CVarDef.Create("bleeds.bleeding_scaling_time", 9f, CVar.SERVER | CVar.REPLICATED);
 }

@@ -57,7 +57,15 @@ public sealed class BodySetupTest
 
         foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
         {
-            if (!proto.TryGetComponent<InnateToolComponent>(out var toolComp, compFactory))
+            var skip = false;
+            InnateToolComponent toolComponent = null;
+            await server.WaitAssertion(() =>
+            {
+                if (!proto.TryGetComponent(out toolComponent, compFactory))
+                    skip = true;
+            });
+
+            if(skip)
                 continue;
 
             var dummy = EntityUid.Invalid;
@@ -71,7 +79,7 @@ public sealed class BodySetupTest
             {
                 Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
                 var handCount = handsSys.EnumerateHands(dummy).Count();
-                Assert.That(handCount, Is.GreaterThanOrEqualTo(toolComp.Tools.Count), $"hands {proto.ID}");
+                Assert.That(handCount, Is.GreaterThanOrEqualTo(toolComponent.Tools.Count), $"hands {proto.ID}");
                 server.EntMan.DeleteEntity(dummy);
             });
         }

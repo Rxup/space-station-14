@@ -4,6 +4,7 @@
   abstract: true
   components:
   - type: Wound
+    damageType: Blunt
 
 - type: entity
   id: Blunt
@@ -11,6 +12,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Blunt
     woundType: External
     woundVisibility: Always
     scarWound: BluntScar
@@ -44,6 +46,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Piercing
     woundType: External
     woundVisibility: Always
     scarWound: PiercingScar
@@ -76,6 +79,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: ArmorPiercing
     woundType: External
     woundVisibility: Always
     scarWound: PiercingScar
@@ -104,6 +108,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Slash
     woundType: External
     woundVisibility: Always
     scarWound: SlashScar
@@ -135,6 +140,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Heat
     woundType: External
     woundVisibility: Always
     scarWound: BurnScar
@@ -167,6 +173,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Cold
     woundType: External
     woundVisibility: Always
     scarWound: BurnScar
@@ -186,11 +193,40 @@
     multiplier: 1.5 # it hurts
 
 - type: entity
+  id: Cellular
+  parent: WoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    damageType: Cellular
+    woundType: Internal
+    woundVisibility: AdvancedScanner
+    scarWound: BurnScar
+    integrityMultiplier: 0.15
+  - type: TraumaInflicter
+    severityThreshold: 0
+    allowedTraumas:
+    - OrganDamage
+    - BoneDamage
+    - VeinsDamage
+    - NerveDamage
+    traumasChances:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0.17
+      NerveDamage: 0.17
+  - type: PainInflicter
+    painType: TraumaticPain
+    multiplier: 0.67
+
+- type: entity
   id: Caustic
   parent: WoundBase
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Caustic
     woundType: Internal
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
@@ -207,6 +243,7 @@
       VeinsDamage: 0.5
       NerveDamage: 0.5
   - type: PainInflicter
+    painType: TraumaticPain
     multiplier: 0.12
 
 - type: entity
@@ -215,6 +252,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Radiation
     woundType: Internal
     woundVisibility: HandScanner
     scarWound: RadiationScar
@@ -234,6 +272,7 @@
       VeinsDamage: 0.34
       NerveDamage: 0.34
   - type: PainInflicter
+    painType: TraumaticPain
     multiplier: 0.12
 
 - type: entity
@@ -242,6 +281,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Wound
+    damageType: Poison
     woundType: Internal
     woundVisibility: HandScanner
     integrityMultiplier: 0
@@ -259,6 +299,56 @@
       NerveDamage: 0.12
   - type: PainInflicter
     multiplier: 2
+
+- type: entity
+  id: Holy
+  parent: WoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    damageType: Holy
+    woundType: Internal
+    woundVisibility: AdvancedScanner
+    integrityMultiplier: 0
+  - type: TraumaInflicter
+    severityThreshold: 0
+    allowedTraumas:
+    - NerveDamage
+    traumasChances:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0.777
+  - type: PainInflicter
+    painType: TraumaticPain
+    multiplier: 1.777
+
+- type: entity
+  id: Shock
+  parent: WoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    damageType: Shock
+    woundType: Internal
+    woundVisibility: HandScanner
+    scarWound: BurnScar
+    integrityMultiplier: 0.07
+  - type: TraumaInflicter
+    severityThreshold: 9
+    allowedTraumas:
+    - OrganDamage
+    - VeinsDamage
+    - NerveDamage
+    traumasChances:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0
+      VeinsDamage: 0.34 # People are great conductors
+      NerveDamage: 0.34
+  - type: PainInflicter
+    multiplier: 1.4
 
 - type: entity
   id: BoneDamage
