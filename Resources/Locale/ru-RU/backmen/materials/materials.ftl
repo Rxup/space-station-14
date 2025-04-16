@@ -3,4 +3,4 @@ materials-bluespace-crystal-unprocessed = необработанный блюс�
 
 materials-bluespace-essence = блюспейс эссенция
 
-materials-normality-crystal = кристал нормальности
+materials-normality-crystal = кристалл нормальности

@@ -12,4 +12,4 @@ research-technology-anomaly-research-advanced-machines = Продвинутое 
 research-technology-xenoarcheology-machines = Оборудование ксеноархеологии
 research-technology-alternative-research-machines = Оборудование альтернативного исследования
 research-technology-abnormal-artifact-manipulation-machines = Оборудование манипуляции артефактами
-research-technology-metempsychosis = Оборудование Метемпсихоза
+research-technology-metempsychosis = Оборудование метемпсихоза
