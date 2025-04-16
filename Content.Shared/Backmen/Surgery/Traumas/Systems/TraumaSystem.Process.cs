@@ -348,8 +348,7 @@ public partial class TraumaSystem
     [PublicAPI]
     public FixedPoint2 GetArmourChanceDeduction(EntityUid body, Entity<TraumaInflicterComponent> inflicter, TraumaType traumaType, BodyPartType coverage)
     {
-        var deduction = (FixedPoint2) 0;
-
+        var deduction = FixedPoint2.Zero;
         foreach (var ent in _inventory.GetHandOrInventoryEntities(body, SlotFlags.WITHOUT_POCKET))
         {
             if (!TryComp<ArmorComponent>(ent, out var armour))
@@ -376,7 +375,7 @@ public partial class TraumaSystem
         TraumaType traumaType,
         BodyPartType coverage)
     {
-        var deduction = (FixedPoint2) 0;
+        var deduction = FixedPoint2.Zero;
         deduction += GetArmourChanceDeduction(body, inflicter, traumaType, coverage);
 
         var traumaDeductionEvent = new TraumaChanceDeductionEvent(severity, traumaType, 0);
@@ -472,7 +471,7 @@ public partial class TraumaSystem
 
         var totalIntegrity =
             _body.GetPartOrgans(target, bodyPart)
-                .Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.OrganIntegrity);
+                .Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
 
         if (totalIntegrity <= 0) // No surviving organs
             return false;
@@ -522,7 +521,7 @@ public partial class TraumaSystem
             TraumaType.Dismemberment,
             bodyPart.PartType);
 
-        var bonePenalty = (FixedPoint2) 0.1f;
+        var bonePenalty = FixedPoint2.New(0.1);
 
         // Broken bones increase the chance of your limb getting delimbed
         var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();

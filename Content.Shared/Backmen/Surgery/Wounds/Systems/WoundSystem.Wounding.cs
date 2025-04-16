@@ -33,7 +33,8 @@ public partial class WoundSystem
 
     private void InitWounding()
     {
-        SubscribeLocalEvent<WoundableComponent, ComponentStartup>(OnWoundableStartup);
+        SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
+        SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableMapInit);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -52,16 +53,17 @@ public partial class WoundSystem
 
     #region Event Handling
 
-    private void OnWoundableStartup(EntityUid uid, WoundableComponent comp, ComponentStartup args)
+    private void OnWoundableInit(Entity<WoundableComponent> woundable, ref ComponentInit args)
     {
-        if (comp.RootWoundable == default)
-            comp.RootWoundable = uid;
+        woundable.Comp.RootWoundable = woundable;
 
-        comp.Wounds = _container.EnsureContainer<Container>(uid, WoundContainerId);
-        comp.Bone = _container.EnsureContainer<Container>(uid, BoneContainerId);
+        woundable.Comp.Wounds = _container.EnsureContainer<Container>(woundable, WoundContainerId);
+        woundable.Comp.Bone = _container.EnsureContainer<Container>(woundable, BoneContainerId);
+    }
 
-        if (comp.Bone.Count == 0 && _timing.IsFirstTimePredicted)
-            InsertBoneIntoWoundable(uid, comp);
+    private void OnWoundableMapInit(Entity<WoundableComponent> woundable, ref MapInitEvent args)
+    {
+        InsertBoneIntoWoundable(woundable, woundable);
     }
 
     private void OnWoundInserted(EntityUid uid, WoundComponent comp, EntGotInsertedIntoContainerMessage args)
@@ -81,7 +83,7 @@ public partial class WoundSystem
         var bodyPart = Comp<BodyPartComponent>(comp.HoldingWoundable);
         if (bodyPart.Body.HasValue)
         {
-            var ev2 = new WoundAddedOnBodyEvent(uid, comp, parentWoundable, woundableRoot);
+            var ev2 = new WoundAddedOnBodyEvent((uid, comp), parentWoundable, woundableRoot);
             RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
         }
     }
@@ -395,21 +397,7 @@ public partial class WoundSystem
         if (!Resolve(uid, ref wound))
             return;
 
-        var oldBody = (FixedPoint2) 0;
-
         var bodyPart = Comp<BodyPartComponent>(wound.HoldingWoundable);
-        if (bodyPart.Body.HasValue)
-        {
-            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
-            if (rootPart.HasValue)
-            {
-                foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
-                {
-                    oldBody =
-                        woundable.Wounds.ContainedEntities.Aggregate(oldBody, (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
-                }
-            }
-        }
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint =
@@ -426,20 +414,16 @@ public partial class WoundSystem
                 var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
                 if (rootPart.HasValue)
                 {
-                    foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
-                    {
-                        bodySeverity =
-                            woundable.Wounds.ContainedEntities.Aggregate(
-                                bodySeverity,
-                                (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
-                    }
+                    bodySeverity =
+                        GetAllWoundableChildren(rootPart.Value)
+                            .Aggregate(bodySeverity, (current, woundable) => current + GetWoundableSeverityPoint(woundable, woundable));
                 }
 
-                if (bodySeverity != oldBody)
-                {
-                    var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, oldBody, bodySeverity);
-                    RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
-                }
+                var ev1 = new WoundSeverityPointChangedOnBodyEvent(
+                    (uid, wound),
+                    bodySeverity - (wound.WoundSeverityPoint - old),
+                    bodySeverity);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
             }
         }
 
@@ -465,21 +449,7 @@ public partial class WoundSystem
         if (!Resolve(uid, ref wound))
             return;
 
-        var oldBody = (FixedPoint2) 0;
-
         var bodyPart = Comp<BodyPartComponent>(wound.HoldingWoundable);
-        if (bodyPart.Body.HasValue)
-        {
-            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
-            if (rootPart.HasValue)
-            {
-                foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
-                {
-                    oldBody =
-                        woundable.Wounds.ContainedEntities.Aggregate(oldBody, (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
-                }
-            }
-        }
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = severity > 0
@@ -497,20 +467,17 @@ public partial class WoundSystem
                 var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
                 if (rootPart.HasValue)
                 {
-                    foreach (var (_, woundable) in GetAllWoundableChildren(rootPart.Value))
-                    {
-                        bodySeverity =
-                            woundable.Wounds.ContainedEntities.Aggregate(
-                                bodySeverity,
-                                (current, woundId) => current + Comp<WoundComponent>(woundId).WoundSeverityPoint);
-                    }
+                    bodySeverity =
+                        GetAllWoundableChildren(rootPart.Value)
+                            .Aggregate(bodySeverity,
+                                (current, woundable) => current + GetWoundableSeverityPoint(woundable, woundable));
                 }
 
-                if (bodySeverity != oldBody)
-                {
-                    var ev1 = new WoundSeverityPointChangedOnBodyEvent(uid, wound, oldBody, bodySeverity);
-                    RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
-                }
+                var ev1 = new WoundSeverityPointChangedOnBodyEvent(
+                    (uid, wound),
+                    bodySeverity - (wound.WoundSeverityPoint - old),
+                    bodySeverity);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
             }
         }
 
@@ -933,6 +900,26 @@ public partial class WoundSystem
         var ev = new WoundableIntegrityChangedEvent(component.WoundableIntegrity, newIntegrity);
         RaiseLocalEvent(uid, ref ev);
 
+        var bodySeverity = FixedPoint2.Zero;
+        var bodyPart = Comp<BodyPartComponent>(uid);
+
+        if (bodyPart.Body.HasValue)
+        {
+            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+            if (rootPart.HasValue)
+            {
+                bodySeverity =
+                    GetAllWoundableChildren(rootPart.Value)
+                        .Aggregate(bodySeverity, (current, woundable) => current + GetWoundableIntegrityDamage(woundable, woundable));
+            }
+
+            var ev1 = new WoundableIntegrityChangedOnBodyEvent(
+                (uid, component),
+                bodySeverity - (component.WoundableIntegrity - newIntegrity),
+                bodySeverity);
+            RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+        }
+
         component.WoundableIntegrity = newIntegrity;
         Dirty(uid, component);
     }
@@ -1019,7 +1006,7 @@ public partial class WoundSystem
             var bodyPart = Comp<BodyPartComponent>(childEntity);
             if (bodyPart.Body.HasValue)
             {
-                var ev2 = new WoundAddedOnBodyEvent(woundId, wound, parentWoundable, woundableRoot);
+                var ev2 = new WoundAddedOnBodyEvent((woundId, wound), parentWoundable, woundableRoot);
                 RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
             }
         }
@@ -1093,7 +1080,7 @@ public partial class WoundSystem
 
         if (nearestSeverity != component.WoundSeverity)
         {
-            var ev = new WoundSeverityChangedEvent(nearestSeverity);
+            var ev = new WoundSeverityChangedEvent(component.WoundSeverity, nearestSeverity);
             RaiseLocalEvent(wound, ref ev);
         }
         component.WoundSeverity = nearestSeverity;
@@ -1124,7 +1111,7 @@ public partial class WoundSystem
 
         if (nearestSeverity != component.WoundableSeverity)
         {
-            var ev = new WoundableSeverityChangedEvent(nearestSeverity);
+            var ev = new WoundableSeverityChangedEvent(component.WoundableSeverity, nearestSeverity);
             RaiseLocalEvent(woundable, ref ev);
         }
         component.WoundableSeverity = nearestSeverity;

@@ -115,7 +115,7 @@ public partial class ConsciousnessSystem
             return;
 
         var totalDamage
-            = consciousness.Modifiers.Aggregate((FixedPoint2) 0,
+            = consciousness.Modifiers.Aggregate(FixedPoint2.Zero,
                 (current, modifier) => current + modifier.Value.Change * consciousness.Multiplier);
 
         consciousness.RawConsciousness = consciousness.Cap + totalDamage;
@@ -129,7 +129,7 @@ public partial class ConsciousnessSystem
         if (!Resolve(uid, ref consciousness))
             return;
 
-        consciousness.Multiplier = consciousness.Multipliers.Aggregate((FixedPoint2) 0,
+        consciousness.Multiplier = consciousness.Multipliers.Aggregate(FixedPoint2.Zero,
             (current, multiplier) => current + multiplier.Value.Change) / consciousness.Multipliers.Count;
 
         UpdateConsciousnessModifiers(uid, consciousness);

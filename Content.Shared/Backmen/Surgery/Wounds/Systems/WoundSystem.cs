@@ -1,8 +1,11 @@
-﻿using Content.Shared.Backmen.CCVar;
+﻿using System.Linq;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
@@ -53,13 +56,16 @@ public sealed partial class WoundSystem : EntitySystem
 
         _sawmill = Logger.GetSawmill("wounds");
 
-        SubscribeLocalEvent<WoundComponent, ComponentGetState>(OnComponentGet);
-        SubscribeLocalEvent<WoundComponent, ComponentHandleState>(OnComponentHandleState);
+        SubscribeLocalEvent<WoundComponent, ComponentGetState>(OnWoundComponentGet);
+        SubscribeLocalEvent<WoundComponent, ComponentHandleState>(OnWoundComponentHandleState);
+
+        SubscribeLocalEvent<WoundableComponent, ComponentGetState>(OnWoundableComponentGet);
+        SubscribeLocalEvent<WoundableComponent, ComponentHandleState>(OnWoundableComponentHandleState);
 
         InitWounding();
     }
 
-    private void OnComponentGet(EntityUid uid, WoundComponent comp, ref ComponentGetState args)
+    private void OnWoundComponentGet(EntityUid uid, WoundComponent comp, ref ComponentGetState args)
     {
         var state = new WoundComponentState
         {
@@ -86,7 +92,7 @@ public sealed partial class WoundSystem : EntitySystem
         args.State = state;
     }
 
-    private void OnComponentHandleState(EntityUid uid, WoundComponent component, ref ComponentHandleState args)
+    private void OnWoundComponentHandleState(EntityUid uid, WoundComponent component, ref ComponentHandleState args)
     {
         if (args.Current is not WoundComponentState state)
             return;
@@ -118,7 +124,7 @@ public sealed partial class WoundSystem : EntitySystem
                 var bodyPart = Comp<BodyPartComponent>(holdingWoundable);
                 if (bodyPart.Body.HasValue)
                 {
-                    var ev2 = new WoundAddedOnBodyEvent(uid, component, parentWoundable, woundableRoot);
+                    var ev2 = new WoundAddedOnBodyEvent((uid, component), parentWoundable, woundableRoot);
                     RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
                 }
             }
@@ -151,8 +157,94 @@ public sealed partial class WoundSystem : EntitySystem
         component.ScarWound = state.ScarWound;
         component.IsScar = state.IsScar;
 
+        if (component.WoundSeverity != state.WoundSeverity)
+        {
+            var ev = new WoundSeverityChangedEvent(component.WoundSeverity, state.WoundSeverity);
+            RaiseLocalEvent(uid, ref ev);
+        }
+
+        component.WoundSeverity = state.WoundSeverity;
+
         component.WoundVisibility = state.WoundVisibility;
         component.CanBeHealed = state.CanBeHealed;
+    }
+
+    private void OnWoundableComponentGet(EntityUid uid, WoundableComponent comp, ref ComponentGetState args)
+    {
+        var state = new WoundableComponentState
+        {
+            ParentWoundable = GetNetEntity(comp.ParentWoundable),
+            RootWoundable = GetNetEntity(comp.RootWoundable),
+
+            ChildWoundables =
+                comp.ChildWoundables.Select(woundable => GetNetEntity(woundable)).ToHashSet(),
+            // Attached and Detached -Woundable events are handled on client with containers
+
+            AllowWounds = comp.AllowWounds,
+
+            DamageContainerID = comp.DamageContainerID,
+
+            DodgeChance = comp.DodgeChance,
+
+            WoundableIntegrity = comp.WoundableIntegrity,
+            HealAbility = comp.HealAbility,
+
+            SeverityMultipliers =
+                comp.SeverityMultipliers
+                    .Select(multiplier => (GetNetEntity(multiplier.Key), multiplier.Value))
+                    .ToDictionary(),
+            HealingMultipliers =
+                comp.HealingMultipliers
+                    .Select(multiplier => (GetNetEntity(multiplier.Key), multiplier.Value))
+                    .ToDictionary(),
+
+
+            WoundableSeverity = comp.WoundableSeverity,
+            HealingRateAccumulated = comp.HealingRateAccumulated,
+        };
+
+        args.State = state;
+    }
+
+    private void OnWoundableComponentHandleState(EntityUid uid, WoundableComponent component, ref ComponentHandleState args)
+    {
+        if (args.Current is not WoundableComponentState state)
+            return;
+
+        component.ParentWoundable = GetEntity(state.ParentWoundable);
+        component.RootWoundable = GetEntity(state.RootWoundable);
+
+        component.ChildWoundables = state.ChildWoundables.Select(GetEntity).ToHashSet();
+        // Attached and Detached -Woundable events are handled on client with containers
+
+        component.AllowWounds = state.AllowWounds;
+
+        component.DamageContainerID = state.DamageContainerID;
+
+        component.DodgeChance = state.DodgeChance;
+
+        if (MetaData(uid).Initialized
+            && component.RootWoundable != uid && !IsWoundableRoot(uid, component))
+            UpdateWoundableIntegrity(uid, component);
+
+        component.WoundableIntegrity = state.WoundableIntegrity;
+        component.HealAbility = state.HealAbility;
+
+        component.SeverityMultipliers =
+            state.SeverityMultipliers
+                .Select(multiplier => (GetEntity(multiplier.Key), multiplier.Value))
+                .ToDictionary();
+        component.HealingMultipliers =
+            state.HealingMultipliers
+                .Select(multiplier => (GetEntity(multiplier.Key), multiplier.Value))
+                .ToDictionary();
+
+        if (MetaData(uid).Initialized
+            && component.RootWoundable != uid && !IsWoundableRoot(uid, component))
+            CheckWoundableSeverityThresholds(uid, component);
+
+        component.WoundableSeverity = state.WoundableSeverity;
+        component.HealingRateAccumulated = state.HealingRateAccumulated;
     }
 
     public override void Update(float frameTime)

@@ -172,7 +172,7 @@ public partial class WoundSystem
             return false;
 
         var healNumba = healAmount / woundsToHeal.Count;
-        var actualHeal = (FixedPoint2) 0;
+        var actualHeal = FixedPoint2.Zero;
         foreach (var wound in woundsToHeal)
         {
             var heal = ignoreMultipliers
@@ -197,7 +197,7 @@ public partial class WoundSystem
         string? damageGroup = null,
         bool healable = false)
     {
-        var biggestDamage = (FixedPoint2) 0;
+        var biggestDamage = FixedPoint2.Zero;
 
         woundable = null;
         foreach (var bodyPart in _body.GetBodyChildren(body))

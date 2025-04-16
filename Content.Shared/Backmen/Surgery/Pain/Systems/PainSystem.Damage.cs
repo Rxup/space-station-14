@@ -670,8 +670,8 @@ public partial class PainSystem
         if (!TryComp<OrganComponent>(uid, out var organ) || organ.Body == null)
             return;
 
-        var totalPain = (FixedPoint2) 0;
-        var woundPain = (FixedPoint2) 0;
+        var totalPain = FixedPoint2.Zero;
+        var woundPain = FixedPoint2.Zero;
 
         foreach (var modifier in nerveSys.Modifiers)
         {
@@ -885,7 +885,7 @@ public partial class PainSystem
         var toMultiply =
             nerveSys.Multipliers
                 .Where(markiplier => markiplier.Value.PainDamageType == painType)
-                .Aggregate((FixedPoint2) 0, (current, markiplier) => current + markiplier.Value.Change);
+                .Aggregate(FixedPoint2.Zero, (current, markiplier) => current + markiplier.Value.Change);
 
         return modifiedPain * toMultiply / nerveSys.Multipliers.Count; // o(*^＠^*)o
     }

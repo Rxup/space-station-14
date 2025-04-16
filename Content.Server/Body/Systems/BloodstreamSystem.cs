@@ -186,7 +186,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
             if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys))
                 continue;
 
-            var total = (FixedPoint2) 0;
+            var total = FixedPoint2.Zero;
             foreach (var (bodyPart, _) in _body.GetBodyChildren(uid))
             {
                 foreach (var (wound, _) in _wound.GetWoundableWounds(bodyPart))

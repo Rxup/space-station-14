@@ -233,7 +233,7 @@ public sealed class HealingSystem : EntitySystem
             }
         }
 
-        var healedTotal = (FixedPoint2) 0;
+        var healedTotal = FixedPoint2.Zero;
         foreach (var (key, value) in stuffToHeal)
         {
             if (!_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, key, out var healed, woundableComp))

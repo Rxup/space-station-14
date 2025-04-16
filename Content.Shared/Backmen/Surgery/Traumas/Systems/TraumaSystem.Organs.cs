@@ -48,8 +48,8 @@ public partial class TraumaSystem
 
         var organs = _body.GetPartOrgans(args.Organ.Comp.Body.Value).ToList();
 
-        var totalIntegrity = organs.Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.OrganIntegrity);
-        var totalIntegrityCap = organs.Aggregate((FixedPoint2) 0, (current, organ) => current + organ.Component.IntegrityCap);
+        var totalIntegrity = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
+        var totalIntegrityCap = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.IntegrityCap);
 
         // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
         if (!_pain.TryChangePainModifier(
@@ -206,7 +206,7 @@ public partial class TraumaSystem
     {
         var oldIntegrity = organ.OrganIntegrity;
         organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
-                .Aggregate((FixedPoint2) 0, (current, modifier) => current + modifier.Value),
+                .Aggregate(FixedPoint2.Zero, (current, modifier) => current + modifier.Value),
                 0,
                 organ.IntegrityCap);
 

@@ -33,7 +33,7 @@ public sealed class MobThresholdSystem : EntitySystem
         SubscribeLocalEvent<MobThresholdsComponent, ComponentShutdown>(MobThresholdShutdown);
         SubscribeLocalEvent<MobThresholdsComponent, ComponentStartup>(MobThresholdStartup);
         SubscribeLocalEvent<MobThresholdsComponent, DamageChangedEvent>(OnDamaged);
-        SubscribeLocalEvent<MobThresholdsComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundableDamage); // backmen edit
+        SubscribeLocalEvent<MobThresholdsComponent, WoundableIntegrityChangedOnBodyEvent>(OnWoundableDamage); // backmen edit
         SubscribeLocalEvent<MobThresholdsComponent, UpdateMobStateEvent>(OnUpdateMobState);
         SubscribeLocalEvent<MobThresholdsComponent, MobStateChangedEvent>(OnThresholdsMobState);
     }
@@ -409,7 +409,7 @@ public sealed class MobThresholdSystem : EntitySystem
         if (alertPrototype.SupportsSeverity)
         {
             // backmen edit start
-            var totalDamage = (FixedPoint2) 0;
+            var totalDamage = FixedPoint2.Zero;
             if (damageable != null && !HasComp<ConsciousnessComponent>(target))
             {
                 totalDamage = damageable.TotalDamage;
@@ -473,7 +473,7 @@ public sealed class MobThresholdSystem : EntitySystem
         UpdateAlerts(target, mobState.CurrentState, thresholds, args.Damageable);
     }
 
-    private void OnWoundableDamage(EntityUid body, MobThresholdsComponent thresholds, WoundSeverityPointChangedOnBodyEvent args)
+    private void OnWoundableDamage(EntityUid body, MobThresholdsComponent thresholds, WoundableIntegrityChangedOnBodyEvent args)
     {
         if (!TryComp<MobStateComponent>(body, out var mobState))
             return;

@@ -385,12 +385,20 @@ public partial class SharedBodySystem
             }
         }
 
+        if (_trauma.TryGetBodyTraumas(ent, out var traumas, bodyComp: body))
+        {
+            foreach (var trauma in traumas)
+            {
+                _trauma.RemoveTrauma(trauma);
+            }
+        }
+
         foreach (var bodyPart in GetBodyChildren(ent, body))
         {
             if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
                 continue;
 
-            var bone = woundable.Bone!.ContainedEntities.FirstOrNull();
+            var bone = woundable.Bone.ContainedEntities.FirstOrNull();
             if (TryComp<BoneComponent>(bone, out var boneComp))
             {
                 _trauma.SetBoneIntegrity(bone.Value, boneComp.IntegrityCap, boneComp);
@@ -398,14 +406,6 @@ public partial class SharedBodySystem
 
             _woundSystem.TryHaltAllBleeding(bodyPart.Id, woundable);
             _woundSystem.ForceHealWoundsOnWoundable(bodyPart.Id, out _);
-        }
-
-        if (!_trauma.TryGetBodyTraumas(ent, out var traumas, bodyComp: body))
-            return;
-
-        foreach (var trauma in traumas)
-        {
-            _trauma.RemoveTrauma(trauma);
         }
     }
     // backmen edit end
