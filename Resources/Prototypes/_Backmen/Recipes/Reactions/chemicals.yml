@@ -24,7 +24,7 @@
     StimulantsSuper: 3
 
 - type: reaction
-  id: Bluespace
+  id: BluespaceAnomaly
   quantized: true
   minTemp: 520
   reactants:
