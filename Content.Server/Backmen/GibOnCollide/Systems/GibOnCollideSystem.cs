@@ -41,7 +41,7 @@ public sealed class GibOnCollideSystem : EntitySystem
             || !TryComp<MobStateComponent>(otherUid, out var mobState)
             || !_mobStateSystem.IsAlive(otherUid, mobState)
             || !TryComp<DamageableComponent>(otherUid, out var damageable)
-            || damageable.DamageContainerID != BiologicalDamageContainerPrototype)
+            || damageable.DamageContainerID!.Value != BiologicalDamageContainerPrototype)
         {
             return;
         }
