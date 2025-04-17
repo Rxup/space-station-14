@@ -789,10 +789,10 @@ public partial class WoundSystem
                 RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
 
-        if (bodyPart.Body is not null
-            && TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
+        var childBodyPart = Comp<BodyPartComponent>(woundableEntity);
+        if (TryComp<InventoryComponent>(bodyPart.Body, out var inventory)
             && _body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
-            && _body.TryGetPartSlotContainerName(bodyPart.PartType, out var containerNames))
+            && _body.TryGetPartSlotContainerName(childBodyPart.PartType, out var containerNames))
         {
             foreach (var containerName in containerNames)
             {
@@ -800,7 +800,7 @@ public partial class WoundSystem
             }
         }
 
-        if (bodyPart.PartType == BodyPartType.Hand)
+        if (childBodyPart.PartType is BodyPartType.Hand or BodyPartType.Arm)
         {
             // Prevent anomalous behaviour
             _hands.TryDrop(bodyPart.Body!.Value, woundableEntity);

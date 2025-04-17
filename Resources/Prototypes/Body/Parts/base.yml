@@ -119,6 +119,8 @@
   - type: ContainerContainer
     containers:
       сhest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {} # backmen edit: wounding and bones
+      Bone: !type:Container {}
 
 - type: entity
   id: BaseGroin
