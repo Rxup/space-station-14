@@ -12,7 +12,6 @@ using Content.Server.Body.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical;
 using Content.Server.Nutrition.Components;
-using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Chemistry.EntitySystems;

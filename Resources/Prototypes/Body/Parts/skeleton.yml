@@ -1,73 +1,48 @@
 - type: entity
   id: PartSkeleton
-  parent: BaseItem
+  parent: BasePart
   name: "skeleton body part"
   abstract: true
   components:
-  - type: Damageable
-    damageContainer: OrganicPart # backmen: surgery
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice
-    price: 20
-  - type: Tag
-    tags:
-      - Trash
-  # start-backmen: surgery
-  - type: Gibbable
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 120
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Slash
-        damage: 120
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
-  # end-backmen: surgery
+  # backmen edit
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#555555AA"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
 
 - type: entity
-  id: TorsoSkeleton
-  name: "skeleton torso"
-  parent: PartSkeleton
+  id: ChestSkeleton
+  name: "skeleton chest"
+  parent: [BaseChest, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "torso_m"
+      state: "chest_m"
     - type: Icon
       sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "torso_m"
-    - type: BodyPart
-      partType: Torso
+      state: "chest_m"
+
+- type: entity
+  id: GroinSkeleton
+  name: "skeleton groin"
+  parent: [BaseGroin, PartSkeleton]
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: "groin_m"
+    - type: Icon
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: "groin_m"
 
 - type: entity
   id: HeadSkeleton
   name: "skull"
   description: Alas poor Yorick...
-  parent: PartSkeleton
+  parent: [BaseHead, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -105,7 +80,7 @@
 - type: entity
   id: LeftArmSkeleton
   name: "left skeleton arm"
-  parent: PartSkeleton
+  parent: [BaseHead, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -120,7 +95,7 @@
 - type: entity
   id: RightArmSkeleton
   name: "right skeleton arm"
-  parent: PartSkeleton
+  parent: [BaseRightArm, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -135,7 +110,7 @@
 - type: entity
   id: LeftHandSkeleton
   name: "left skeleton hand"
-  parent: PartSkeleton
+  parent: [BaseLeftHand, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -150,7 +125,7 @@
 - type: entity
   id: RightHandSkeleton
   name: "right skeleton hand"
-  parent: PartSkeleton
+  parent: [BaseRightHand, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -165,7 +140,7 @@
 - type: entity
   id: LeftLegSkeleton
   name: "left skeleton leg"
-  parent: PartSkeleton
+  parent: [BaseLeftLeg, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -181,7 +156,7 @@
 - type: entity
   id: RightLegSkeleton
   name: "right skeleton leg"
-  parent: PartSkeleton
+  parent: [BaseRightLeg, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -197,7 +172,7 @@
 - type: entity
   id: LeftFootSkeleton
   name: "left skeleton foot"
-  parent: PartSkeleton
+  parent: [BaseLeftFoot, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -212,7 +187,7 @@
 - type: entity
   id: RightFootSkeleton
   name: "right skeleton foot"
-  parent: PartSkeleton
+  parent: [BaseRightFoot, PartSkeleton]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi

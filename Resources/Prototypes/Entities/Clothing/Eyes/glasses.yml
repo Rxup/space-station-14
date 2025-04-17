@@ -170,6 +170,15 @@
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: Armor # provide more coverage than default ones. you know, it's a sec one
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -216,6 +225,15 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/mercglasses.rsi
   - type: FlashImmunity
+  - type: Armor # the same as SEC
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
   - type: EyeProtection
     protectionTime: 5
   - type: IdentityBlocker
@@ -233,9 +251,15 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: Armor
+    # backmen: armour coverage
+    coverage: # defends you well only against heat lol
+    - Head
     modifiers:
       coefficients:
-        Heat: 0.95
+        Heat: 0.8
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
   - type: GroupExamine
   - type: IdentityBlocker
     coverage: EYES
@@ -265,3 +289,12 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
