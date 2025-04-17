@@ -2,10 +2,8 @@
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
@@ -198,7 +196,6 @@ public sealed partial class WoundSystem : EntitySystem
                     .Select(multiplier => (GetNetEntity(multiplier.Key), multiplier.Value))
                     .ToDictionary(),
 
-
             WoundableSeverity = comp.WoundableSeverity,
             HealingRateAccumulated = comp.HealingRateAccumulated,
         };
@@ -222,12 +219,6 @@ public sealed partial class WoundSystem : EntitySystem
         component.DamageContainerID = state.DamageContainerID;
 
         component.DodgeChance = state.DodgeChance;
-
-        if (MetaData(uid).Initialized
-            && component.RootWoundable != uid && !IsWoundableRoot(uid, component))
-            UpdateWoundableIntegrity(uid, component);
-
-        component.WoundableIntegrity = state.WoundableIntegrity;
         component.HealAbility = state.HealAbility;
 
         component.SeverityMultipliers =
@@ -239,11 +230,19 @@ public sealed partial class WoundSystem : EntitySystem
                 .Select(multiplier => (GetEntity(multiplier.Key), multiplier.Value))
                 .ToDictionary();
 
-        if (MetaData(uid).Initialized
-            && component.RootWoundable != uid && !IsWoundableRoot(uid, component))
-            CheckWoundableSeverityThresholds(uid, component);
+        var bodyPart = Comp<BodyPartComponent>(uid);
+        if (bodyPart.Body.HasValue && MetaData(uid).Initialized)
+        {
+            if (component.RootWoundable != uid || !_body.IsPartRoot(bodyPart.Body.Value, uid))
+            {
+                UpdateWoundableIntegrity(uid, component);
+                CheckWoundableSeverityThresholds(uid, component);
+            }
+        }
 
+        component.WoundableIntegrity = state.WoundableIntegrity;
         component.WoundableSeverity = state.WoundableSeverity;
+
         component.HealingRateAccumulated = state.HealingRateAccumulated;
     }
 
