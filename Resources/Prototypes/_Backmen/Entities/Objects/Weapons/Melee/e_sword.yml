@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseMeleeWeaponEnergy
   id: BaseMeleeWeaponPlasma
+  abstract: true
   components:
   - type: ItemToggle
     soundActivate:
