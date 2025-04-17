@@ -1,6 +1,6 @@
 - type: entity
   name: Рапира Мифистофеля
-  parent: BaseItem
+  parent: BaseSword
   id: MythistophelRapier
   description: Рапира выкована стариком Мифистофелем, чувствуется запах напалма
   components:

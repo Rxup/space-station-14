@@ -840,6 +840,7 @@ MagazinePistolHighCapacityRubber: null
 
 # 2025-03-25 | Backmen
 SpawnPointInteQVanguardSolderSizo37: SpawnPointInteQVanguardSoldierSizo37
+ClothinNeckCloakInteQ: ClothingNeckCloakInteQ
 
 # 2024-12-22 # Lavaland Change: Migrations
 VendingMachineRestockSalvageEquipment: null
@@ -848,6 +849,8 @@ ComputerSalvageExpedition: ComputerShuttleMiningLavaland
 SalvageExpeditionsComputerCircuitboard: LavalandShuttleConsoleCircuitboard
 WallRockBasaltBSCrystal: WallRockBasalt
 
+# 2025-04-07 | Backmen
+OracleRecycler: OracleEvil
 
 # 2025-03-18
 EpinephrineChemistryBottle: ChemistryBottleEpinephrine
@@ -868,6 +871,9 @@ PaxChemistryBottle: ChemistryBottlePax
 MuteToxinChemistryBottle: ChemistryBottleMuteToxin
 LeadChemistryBottle: ChemistryBottleLead
 ToxinChemistryBottle: ChemistryBottleToxin
+
+# 2025-04-14
+ClothingBeltMythistophelRapier: null
 
 # 2025-04-16 BACKMEN-EDIT
 PrinterDoc: PhotocopierCommand

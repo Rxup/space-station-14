@@ -1,0 +1,8 @@
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconInteQSizo37
+  suffix: InteQ, Sizo-37
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-sizo-37
+    color: "#8B4513"

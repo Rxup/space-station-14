@@ -12,7 +12,6 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Nutrition;
-using System.Threading;
 using Content.Shared.Atmos;
 
 /// <summary>

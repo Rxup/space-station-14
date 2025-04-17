@@ -23,6 +23,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
+using Content.Server.Backmen.GibOnCollide;
 
 namespace Content.Server.Backmen.Research.Oracle;
 
@@ -160,10 +161,24 @@ public sealed class OracleSystem : EntitySystem
         SubscribeLocalEvent<OracleComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<OracleComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<OracleComponent, SuicideEvent>(OnSuicide);
+        SubscribeLocalEvent<OracleComponent, GibOnCollideAttemptEvent>(OnGibOnCollide);
     }
 
     private void OnSuicide(Entity<OracleComponent> ent, ref SuicideEvent args)
     {
+        HandleGibEvent(ent);
+    }
+
+    private void OnGibOnCollide(EntityUid uid, OracleComponent component, GibOnCollideAttemptEvent args)
+    {
+        var oracleEntity = new Entity<OracleComponent>(uid, component);
+        HandleGibEvent(oracleEntity);
+    }
+
+    private void HandleGibEvent(Entity<OracleComponent> ent)
+    {
+        _appearance.SetData(ent.Owner, RecyclerVisuals.Bloody, true);
+
         var xform = Transform(ent);
         var spawnPos = new EntityCoordinates(xform.Coordinates.EntityId,
             xform.Coordinates.Position + xform.LocalRotation.ToWorldVec());
@@ -365,39 +380,5 @@ public sealed class OracleSystem : EntitySystem
         }
 
         return allProtos;
-    }
-
-    public bool GibBody(EntityUid uid, EntityUid item, OracleComponent? oracleComponent = null)
-    {
-        if (!Resolve(uid, ref oracleComponent, false))
-        {
-            return false;
-        }
-        _body.GibBody(item, false);
-        _appearance.SetData(uid, RecyclerVisuals.Bloody, true);
-
-        var xform = Transform(uid);
-        var spawnPos = new EntityCoordinates(xform.Coordinates.EntityId,
-            xform.Coordinates.Position + xform.LocalRotation.ToWorldVec());
-
-        foreach (var itemTable in _entityTable
-                     .GetSpawns(_prototypeManager.Index<EntityTablePrototype>(ResearchDisk5000).Table))
-        {
-            Spawn(itemTable, spawnPos);
-        }
-
-        DispenseLiquidReward(uid);
-
-        var i = _random.Next(1, 4);
-
-        while (i != 0)
-        {
-            EntityManager.SpawnEntity(CrystalNormality, spawnPos);
-            i--;
-        }
-
-        NextItem(oracleComponent);
-
-        return true;
     }
 }

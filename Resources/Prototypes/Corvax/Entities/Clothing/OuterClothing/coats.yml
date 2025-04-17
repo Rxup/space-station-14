@@ -104,6 +104,13 @@
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -124,6 +131,13 @@
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/hop.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.9

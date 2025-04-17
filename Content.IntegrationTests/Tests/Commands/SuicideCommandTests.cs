@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Execution;
@@ -161,7 +162,10 @@ public sealed class SuicideCommandTests
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                Assert.That(damageableComp.Damage.GetTotal(), Is.EqualTo(lethalDamageThreshold));
+
+                // backmen edit; Consciousness entities do not use damage to, thus this check will always be false
+                if (!entManager.HasComponent<ConsciousnessComponent>(player))
+                    Assert.That(damageableComp.Damage.GetTotal(), Is.EqualTo(lethalDamageThreshold));
             });
         });
 

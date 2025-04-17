@@ -57,6 +57,8 @@
     - state: secret_docs
   - type: Item
     size: Small
+  - type: StaticPrice # Literally Secret Docs
+    price: 10000
 
 - type: entity
   name: passenger manifest

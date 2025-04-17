@@ -77963,13 +77963,6 @@ entities:
     - type: Transform
       pos: 26.489439,14.7007885
       parent: 4812
-- proto: TorsoHuman
-  entities:
-  - uid: 12423
-    components:
-    - type: Transform
-      pos: -53.589386,-16.742252
-      parent: 4812
 - proto: ToyIan
   entities:
   - uid: 2503
