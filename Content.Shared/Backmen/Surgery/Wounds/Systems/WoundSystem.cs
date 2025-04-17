@@ -2,8 +2,10 @@
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
@@ -230,17 +232,42 @@ public sealed partial class WoundSystem : EntitySystem
                 .Select(multiplier => (GetEntity(multiplier.Key), multiplier.Value))
                 .ToDictionary();
 
-        var bodyPart = Comp<BodyPartComponent>(uid);
-        if (bodyPart.Body.HasValue && MetaData(uid).Initialized)
+        if (component.WoundableIntegrity != state.WoundableIntegrity)
         {
-            if (component.RootWoundable != uid || !_body.IsPartRoot(bodyPart.Body.Value, uid))
+            var bodyPart = Comp<BodyPartComponent>(uid);
+
+            // The first check is for the root (chest) part entities, the other one is for attached entities
+            var ev = new WoundableIntegrityChangedEvent(component.WoundableIntegrity, state.WoundableIntegrity);
+            RaiseLocalEvent(uid, ref ev);
+
+            var bodySeverity = FixedPoint2.Zero;
+            if (bodyPart.Body.HasValue)
             {
-                UpdateWoundableIntegrity(uid, component);
-                CheckWoundableSeverityThresholds(uid, component);
+                var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+                if (rootPart.HasValue)
+                {
+                    bodySeverity = GetAllWoundableChildren(rootPart.Value)
+                        .Where(woundable =>
+                            woundable.Comp.RootWoundable == rootPart
+                            || woundable.Comp.RootWoundable != woundable.Owner)
+                        .Aggregate(bodySeverity,
+                            (current, woundable) => current + GetWoundableIntegrityDamage(woundable, woundable));
+                }
+
+                var ev1 = new WoundableIntegrityChangedOnBodyEvent(
+                    (uid, component),
+                    bodySeverity - (component.WoundableIntegrity - state.WoundableIntegrity),
+                    bodySeverity);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
             }
         }
-
         component.WoundableIntegrity = state.WoundableIntegrity;
+
+        if (component.WoundableSeverity != state.WoundableSeverity)
+        {
+            var ev = new WoundableSeverityChangedEvent(component.WoundableSeverity, state.WoundableSeverity);
+            RaiseLocalEvent(uid, ref ev);
+        }
         component.WoundableSeverity = state.WoundableSeverity;
 
         component.HealingRateAccumulated = state.HealingRateAccumulated;

@@ -39,6 +39,10 @@
     containers:
       bodypart: !type:Container
         ents: []
+      Wounds: !type:Container
+        ents: []
+      Bone: !type:Container
+        ents: []
   - type: StaticPrice
     price: 100
   - type: Tag
