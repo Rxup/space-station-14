@@ -41,7 +41,7 @@
 - type: entity
   id: ChestVulpkanin
   name: "vulpkanin chest"
-  parent: PartVulpkanin
+  parent: [BaseChest, PartVulpkanin]
   components:
   - type: Sprite
     netsync: false
@@ -92,7 +92,7 @@
 - type: entity
   id: GroinVulpkanin
   name: "vulpkanin groin"
-  parent: PartVulpkanin
+  parent: [BaseGroin, PartVulpkanin]
   components:
   - type: Sprite
     netsync: false

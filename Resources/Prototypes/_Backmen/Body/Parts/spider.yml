@@ -48,7 +48,7 @@
 - type: entity
   id: RightLegSpider
   name: "right spider leg"
-  parent: [PartSpider, BaseRightLeg]
+  parent: [BaseRightLeg, PartSpider]
   components:
   - type: Sprite
     netsync: false
@@ -67,7 +67,7 @@
 - type: entity
   id: LeftLegSpider
   name: "left spider leg"
-  parent: [PartSpider, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartSpider]
   components:
   - type: Sprite
     netsync: false

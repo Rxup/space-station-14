@@ -120,7 +120,7 @@
 
 # Monkey head for borging/transplanting pun pun
 - type: entity
-  parent: [PartAnimal, BaseHead]
+  parent: [BaseHead, PartAnimal]
   id: HeadAnimal
   name: animal head
   categories: [ HideSpawnMenu ]

@@ -7,7 +7,7 @@
 - type: entity
   id: ChestHarpy
   name: "harpy chest"
-  parent: PartHarpy
+  parent: [BaseChest, PartHarpy]
   components:
   - type: Sprite
     netsync: false
@@ -58,7 +58,7 @@
 - type: entity
   id: GroinHarpy
   name: "harpy groin"
-  parent: PartHarpy
+  parent: [BaseGroin, PartHarpy]
   components:
   - type: Sprite
     netsync: false

@@ -13,7 +13,7 @@
 - type: entity
   id: ChestShadowkin
   name: "Shadowkin chest"
-  parent: PartShadowkin
+  parent: [BaseChest, PartShadowkin]
   components:
   - type: Sprite
     state: "chest_m"
@@ -30,7 +30,7 @@
 - type: entity
   id: GroinShadowkin
   name: "Shadowkin groin"
-  parent: PartShadowkin
+  parent: [BaseGroin, PartShadowkin]
   components:
   - type: Sprite
     state: "groin_m"
