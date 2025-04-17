@@ -1,12 +1,16 @@
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Systems;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Body.Organ;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBodySystem))]
+[Access(typeof(SharedBodySystem), typeof(TraumaSystem))] // backmen edit: trauma system
 public sealed partial class OrganComponent : Component, ISurgeryToolComponent
 {
     /// <summary>
@@ -21,6 +25,44 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     /// </summary>
     [DataField]
     public EntityUid? OriginalBody;
+
+    // backmen edit start
+    /// <summary>
+    ///     Maximal organ integrity, do keep in mind that Organs are supposed to be VERY and VERY damage sensitive
+    /// </summary>
+    [DataField("intCap"), AutoNetworkedField]
+    public FixedPoint2 IntegrityCap = 15;
+
+    /// <summary>
+    ///     Current organ HP, or integrity, whatever you prefer to say
+    /// </summary>
+    [DataField("integrity"), AutoNetworkedField]
+    public FixedPoint2 OrganIntegrity = 15;
+
+    /// <summary>
+    ///     Current Organ severity, dynamically updated based on organ integrity
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public OrganSeverity OrganSeverity = OrganSeverity.Normal;
+
+    /// <summary>
+    ///     Sound played when this organ gets turned into a blood mush.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier OrganDestroyedSound = new SoundCollectionSpecifier("OrganDestroyed");
+
+    /// <summary>
+    ///     All the modifiers that are currently modifying the OrganIntegrity
+    /// </summary>
+    public Dictionary<(string, EntityUid), FixedPoint2> IntegrityModifiers = new();
+
+    /// <summary>
+    ///     The name's self-explanatory, thresholds. for states. of integrity. of this god fucking damn organ.
+    /// </summary>
+    [DataField]
+    // TODO: Not "required" for now, and can break some shit BECAUSE I AM NOT reworking the entirety of ShitSurgerySystem to work properly without breaking the linter
+    public Dictionary<OrganSeverity, FixedPoint2> IntegrityThresholds = new();
+    // backmen edit end
 
     /// <summary>
     /// Shitcodey solution to not being able to know what name corresponds to each organ's slot ID

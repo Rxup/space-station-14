@@ -12,7 +12,8 @@ Normally a body has 10 main parts. Those being:
 <Box>
 <GuideEntityEmbed Entity="RightHandHuman" Caption="правая рука"/>
 <GuideEntityEmbed Entity="RightArmHuman" Caption="левая ладонь"/>
-<GuideEntityEmbed Entity="TorsoHuman" Caption="туловище"/>
+<GuideEntityEmbed Entity="ChestHuman" Caption="грудь"/>
+<GuideEntityEmbed Entity="GroinHuman" Caption="пах"/>
 <GuideEntityEmbed Entity="LeftArmHuman" Caption="левая рука"/>
 <GuideEntityEmbed Entity="LeftHandHuman" Caption="левая ладонь"/>
 </Box>

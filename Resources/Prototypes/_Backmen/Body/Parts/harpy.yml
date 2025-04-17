@@ -1,46 +1,49 @@
 - type: entity
   id: PartHarpy
-  parent: BaseItem
+  parent: BasePart
   name: "harpy body part"
   abstract: true
+
+- type: entity
+  id: ChestHarpy
+  name: "harpy chest"
+  parent: [BaseChest, PartHarpy]
   components:
-  - type: Damageable
-    damageContainer: OrganicPart # Shitmed Change
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Mobs/Species/Harpy/parts.rsi
+    state: "chest_m"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Harpy/parts.rsi
+    state: "chest_m"
   - type: BodyPart
+    partType: Chest
+  # Shitmed Change Start
+    toolName: "a chest"
+    containerName: "chest_slot"
   - type: ContainerContainer
     containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice #DynamicPrice
-    price: 100
-  - type: Tag
-    tags:
-      - Trash
-  # Shitmed Change Start
-  - type: Gibbable
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/_Shitmed/Medical/Surgery/organ1.ogg
-    endSound:
-      path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
+      chest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 120
+        damage: 400
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Slash
-        damage: 120
+        damage: 400
       behaviors:
       - !type:GibPartBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 200
+        damage: 400
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawnInContainer: true
@@ -55,25 +58,27 @@
   # Shitmed Change End
 
 - type: entity
-  id: TorsoHarpy
-  name: "harpy torso"
-  parent: PartHarpy
+  id: GroinHarpy
+  name: "harpy groin"
+  parent: [BaseGroin, PartHarpy]
   components:
   - type: Sprite
     netsync: false
     sprite: Backmen/Mobs/Species/Harpy/parts.rsi
-    state: "torso_m"
+    state: "groin_m"
   - type: Icon
     sprite: Backmen/Mobs/Species/Harpy/parts.rsi
-    state: "torso_m"
+    state: "groin_m"
   - type: BodyPart
-    partType: Torso
+    partType: Groin
   # Shitmed Change Start
-    toolName: "a torso"
-    containerName: "torso_slot"
+    toolName: "a groin"
+    containerName: "groin_slot"
   - type: ContainerContainer
     containers:
-      torso_slot: !type:ContainerSlot {}
+      groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
   - type: Destructible
     thresholds:
     - trigger:
@@ -104,6 +109,7 @@
         sound:
           collection: MeatLaserImpact
   # Shitmed Change End
+
 
 - type: entity
   id: HeadHarpy
@@ -119,7 +125,6 @@
     state: "head_m"
   - type: BodyPart
     partType: Head
-    vital: true
     toolName: "a head" # Shitmed Change
   - type: Input
     context: "ghost"

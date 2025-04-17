@@ -20,9 +20,10 @@
   sprites:
     Head: MobArachnidHead
     Snout: MobHumanoidAnyMarking
+    Chest: MobArachnidChest
+    Groin: MobArachnidGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
-    Chest: MobArachnidTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -92,22 +93,40 @@
     state: head_f
 
 - type: humanoidBaseSprite
-  id: MobArachnidTorso
+  id: MobArachnidChest
   baseSprite:
     sprite: Mobs/Species/Arachnid/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobArachnidTorsoMale
+  id: MobArachnidChestMale
   baseSprite:
     sprite: Mobs/Species/Arachnid/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobArachnidTorsoFemale
+  id: MobArachnidChestFemale
   baseSprite:
     sprite: Mobs/Species/Arachnid/parts.rsi
-    state: torso_f
+    state: chest_f
+
+- type: humanoidBaseSprite
+  id: MobArachnidGroin
+  baseSprite:
+    sprite: Mobs/Species/Arachnid/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobArachnidGroinMale
+  baseSprite:
+    sprite: Mobs/Species/Arachnid/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobArachnidGroinFemale
+  baseSprite:
+    sprite: Mobs/Species/Arachnid/parts.rsi
+    state: groin_f
 
 - type: humanoidBaseSprite
   id: MobArachnidLLeg
