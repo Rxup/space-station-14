@@ -26,6 +26,8 @@
   - type: ContainerContainer
     containers:
       chest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
 
 - type: entity
   id: GroinShadowkin
@@ -43,6 +45,8 @@
   - type: ContainerContainer
     containers:
       groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
 
 - type: entity
   id: HeadShadowkin

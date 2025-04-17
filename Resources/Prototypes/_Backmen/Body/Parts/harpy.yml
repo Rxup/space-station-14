@@ -24,6 +24,8 @@
   - type: ContainerContainer
     containers:
       chest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
   - type: Destructible
     thresholds:
     - trigger:
@@ -75,6 +77,8 @@
   - type: ContainerContainer
     containers:
       groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
   - type: Destructible
     thresholds:
     - trigger:
