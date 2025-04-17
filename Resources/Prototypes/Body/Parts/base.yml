@@ -39,9 +39,9 @@
     containers:
       bodypart: !type:Container
         ents: []
-      Wounds: !type:Container
+      Wounds: !type:Container # backmen edit
         ents: []
-      Bone: !type:Container
+      Bone: !type:Container # backmen edit
         ents: []
   - type: StaticPrice
     price: 100

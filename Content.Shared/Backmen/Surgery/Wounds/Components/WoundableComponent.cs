@@ -108,7 +108,7 @@ public sealed partial class WoundableComponent : Component
     /// Container potentially holding wounds.
     /// </summary>
     [ViewVariables]
-    public Container Wounds;
+    public Container? Wounds;
 
     /// <summary>
     /// Container holding this woundables bone.

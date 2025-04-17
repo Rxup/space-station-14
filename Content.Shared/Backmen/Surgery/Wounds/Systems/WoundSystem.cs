@@ -246,12 +246,16 @@ public sealed partial class WoundSystem : EntitySystem
                 var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
                 if (rootPart.HasValue)
                 {
-                    bodySeverity = GetAllWoundableChildren(rootPart.Value)
-                        .Where(woundable =>
-                            woundable.Comp.RootWoundable == rootPart
-                            || woundable.Comp.RootWoundable != woundable.Owner)
-                        .Aggregate(bodySeverity,
-                            (current, woundable) => current + GetWoundableIntegrityDamage(woundable, woundable));
+                    foreach (var woundable in GetAllWoundableChildren(rootPart.Value))
+                    {
+                        if (!MetaData(woundable).Initialized)
+                            continue;
+
+                        if (woundable.Comp.RootWoundable == woundable.Owner && woundable.Owner != rootPart)
+                            continue;
+
+                        bodySeverity += GetWoundableIntegrityDamage(woundable, woundable);
+                    }
                 }
 
                 var ev1 = new WoundableIntegrityChangedOnBodyEvent(

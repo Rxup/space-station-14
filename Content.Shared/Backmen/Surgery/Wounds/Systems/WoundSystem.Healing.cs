@@ -45,6 +45,9 @@ public partial class WoundSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
+        if (ent.Comp.Wounds == null)
+            return;
+
         var healableWounds = ent.Comp.Wounds.ContainedEntities.Count(wound => CanHealWound(wound));
         var healAmount = -ent.Comp.HealAbility / healableWounds;
 
@@ -61,7 +64,7 @@ public partial class WoundSystem
     [PublicAPI]
     public bool TryHaltAllBleeding(EntityUid woundable, WoundableComponent? component = null, bool force = false)
     {
-        if (!Resolve(woundable, ref component) || component.Wounds.Count == 0)
+        if (!Resolve(woundable, ref component) || component.Wounds == null || component.Wounds.Count == 0)
             return true;
 
         foreach (var wound in GetWoundableWounds(woundable, component))
@@ -115,7 +118,7 @@ public partial class WoundSystem
         bool ignoreMultipliers = false)
     {
         healed = 0;
-        if (!Resolve(woundable, ref component))
+        if (!Resolve(woundable, ref component) || component.Wounds == null)
             return false;
 
         var woundsToHeal =
@@ -157,7 +160,7 @@ public partial class WoundSystem
         bool ignoreMultipliers = false)
     {
         healed = 0;
-        if (!Resolve(woundable, ref component))
+        if (!Resolve(woundable, ref component) || component.Wounds == null)
             return false;
 
         var woundsToHeal =
