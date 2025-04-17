@@ -26,11 +26,11 @@
         volume: 3
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_hit.ogg
       params:
         variation: 0.250
     activatedSoundOnHitNoDamage:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      path: /Audio/Weapons/punchmiss.ogg
       params:
         variation: 0.250
         volume: -10
@@ -38,6 +38,30 @@
       path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
       params:
         variation: 0.125
+  - type: Welder
+    fuelSolutionName: plasma
+    fuelReagent: Plasma
+    fuelLitCost: 2
+  - type: RefillableSolution
+    solution: plasma
+  - type: SolutionContainerManager
+    solutions:
+      plasma:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 300
+        maxVol: 300
+  - type: ComponentToggler
+    components:
+    - type: Cautery # Shitmed
+      speed: 1.25
+    - type: SurgeryTool # Shitmed
+      startSound:
+        collection: Welder
+      endSound:
+        collection: WelderOff
+    - type: Execution
+      doAfterDuration: 4.0
 
 - type: entity
   parent: PlasmaSword
@@ -73,11 +97,11 @@
         volume: 3
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_hit.ogg
       params:
         variation: 0.250
     activatedSoundOnHitNoDamage:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      path: /Audio/Weapons/punchmiss.ogg
       params:
         variation: 0.250
         volume: -10
@@ -85,3 +109,27 @@
       path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
       params:
         variation: 0.125
+  - type: Welder
+    fuelSolutionName: plasma
+    fuelReagent: Plasma
+    fuelLitCost: 2
+  - type: RefillableSolution
+    solution: plasma
+  - type: SolutionContainerManager
+    solutions:
+      plasma:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 300
+        maxVol: 300
+  - type: ComponentToggler
+    components:
+    - type: Cautery # Shitmed
+      speed: 1.25
+    - type: SurgeryTool # Shitmed
+      startSound:
+        collection: Welder
+      endSound:
+        collection: WelderOff
+    - type: Execution
+      doAfterDuration: 4.0
