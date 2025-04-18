@@ -748,7 +748,7 @@
     Moonshine: 3
 
 - type: reaction # Backmen-Edit
-  id: reaction
+  id: Neurotoxin
   reactants:
     GargleBlaster:
       amount: 5
