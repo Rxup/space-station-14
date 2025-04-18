@@ -176,7 +176,7 @@
         - FrozenWastes
         - Jungle
         - Continental
-        - Lava
+        #- Lava
         - RuinedMegacity
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked

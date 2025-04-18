@@ -36,7 +36,7 @@
   components:
   - type: MapLight
     # Цвет солнечного света: тёплый рассветный (очень тёмный оранжево‑красный)
-    ambientLightColor: "#030101"
+    ambientLightColor: "#FFFFE0"
   - type: LightCycle
     duration: 720            # секундами
     offset:   0
@@ -69,7 +69,7 @@
   components:
   - type: MapLight
     # Цвет солнечного света: густой полуденный зелёно‑желтый отблеск сквозь листву
-    ambientLightColor: "#010301"
+    ambientLightColor: "#DFFF00"
   - type: LightCycle
     duration: 720
     offset:   0
