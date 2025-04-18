@@ -25,7 +25,6 @@
 
 - type: reaction
   id: Morphine
-  impact: Low
   minTemp: 480
   reactants:
     Carbon:
