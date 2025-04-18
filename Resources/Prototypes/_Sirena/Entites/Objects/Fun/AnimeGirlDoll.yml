@@ -1,0 +1,40 @@
+
+#- type: entity
+#  parent: LPPSoftAnimeGirlDoll
+#  id: LPPAnimeGirlDoll
+#  name: anime girl doll
+#  description:
+#  components:
+#  - type: Sprite
+#    state: icon
+#    scale: 0.5, 0.5
+#  - type: Item
+#    size: Normal
+#
+#
+#
+#- type: entity
+#  parent: BaseItem
+#  id: LPPSoftAnimeGirlDoll
+#  abstract: true
+#  components:
+#  - type: Sprite
+#    sprite: _Sirena/Objects/Fun/anime-girl-doll.rsi
+#  - type: EmitSoundOnUse
+#    sound:
+#      collection: LPPAimePui
+#  - type: EmitSoundOnLand
+#    sound:
+#      collection: LPPAimePui
+#  - type: EmitSoundOnActivate
+#    sound:
+#      collection: LPPAimePui
+#  - type: UseDelay
+#    delay: 1.5
+#  - type: MeleeWeapon
+#    soundHit:
+#      collection: LPPAimePui
+#    damage:
+#      types:
+#        Blunt: 0
+#

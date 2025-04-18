@@ -1,0 +1,752 @@
+- type: entity
+  parent: BaseItem
+  id: LPPSoftToysToys
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ToySqueak
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPAxolotl
+  name: Axolotl
+  description:
+  components:
+  - type: Sprite
+    state: axolotl
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: axolotl
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPCorgi
+  name: Corgi
+  description:
+  components:
+  - type: Sprite
+    state: corgi
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: corgi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPDeer
+  name: Deer
+  description:
+  components:
+  - type: Sprite
+    state: deer
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: deer
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPMedihound
+  name: Medihound
+  description:
+  components:
+  - type: Sprite
+    state: medihound
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: medihound
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPMoff
+  name: Moff
+  description:
+  components:
+  - type: Sprite
+    state: moff
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: moff
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPPlushieSynth
+  name: Plushie synth
+  description:
+  components:
+  - type: Sprite
+    state: plushie_synth
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: plushie_synth
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPProtogen
+  name: Protogen
+  description:
+  components:
+  - type: Sprite
+    state: protogen
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: protogen
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPPupdozer
+  name: Pupdozer
+  description:
+  components:
+  - type: Sprite
+    state: pupdozer
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: pupdozer
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPScrubpuppy
+  name: Scrubpuppy
+  description:
+  components:
+  - type: Sprite
+    state: scrubpuppy
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: scrubpuppy
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPSergal
+  name: Sergal
+  description:
+  components:
+  - type: Sprite
+    state: sergal
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: sergal
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPYch
+  name: Ych
+  description:
+  components:
+  - type: Sprite
+    state: ych
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: ych
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPKirrPlushie
+  abstract: true
+  name: Kirr plush
+  components:
+  - type: Sprite
+    state: kirr
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: Physics
+    canCollide: false
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPJayPlushie
+  name: jay plushie
+  description:
+  components:
+  - type: Sprite
+    state: jay
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: jay
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPCrab
+  name: crab
+  description:
+  components:
+  - type: Sprite
+    state: crab
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: crab
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPNinjaPlushie
+  name: ninja plushie
+  description:
+  components:
+  - type: Sprite
+    state: ninja_plushie
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: ninja_plushie
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPMedDrake
+  name: med drake
+  description:
+  components:
+  - type: Sprite
+    state: meddrake
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: meddrake
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPSecDrake
+  name: sec drake
+  description:
+  components:
+  - type: Sprite
+    state: secdrake
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: secdrake
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPGoat
+  name: goat
+  description:
+  components:
+  - type: Sprite
+    state: goat
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: goat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/goat_bah.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/goat_bah.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/goat_bah.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/goat_bah.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPBoxs
+  name: box
+  description:
+  components:
+  - type: Sprite
+    state: boxs
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: boxs
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: LPPPlushieSharkFluppi
+  name: pink shark soft toy
+  description: Hehe shonk :)
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/Fluppi_Gector.rsi
+    state: gector
+  - type: Item
+    heldPrefix: gector
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#FF00FF"
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPAminaPlushie
+  name: amina plushie
+  description:
+  components:
+  - type: Sprite
+    state: amina
+  - type: Item
+    sprite: _Sirena/Objects/Fun/toys.rsi
+    heldPrefix: amina
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: BasePlushie
+  id: LPPToyTehnick
+  name: Plush Slimecat-tech
+  description: A toy in the form of slimecat from some kind of game. It smells like genocide and explosives...
+  components:
+    - type: Sprite
+      sprite: _Sirena/Objects/Fun/tehnick.rsi
+      state: icon
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Items/Toys/toysqueak1.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Items/Toys/toysqueak3.ogg
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Items/Toys/toysqueak3.ogg
+
+- type: entity
+  parent: BaseItem
+  id: LPPSoftToysCat
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/cat.rsi
+  - type: EmitSoundOnUse
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ToySqueak
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPBlackcat
+  name: Black cat
+  description:
+  components:
+  - type: Sprite
+    state: blackcat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPGreycat
+  name: Grey cat
+  description:
+  components:
+  - type: Sprite
+    state: greycat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPOrangecat
+  name: Orange cat
+  description:
+  components:
+  - type: Sprite
+    state: orangecat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPSiamesecat
+  name: Siamese cat
+  description:
+  components:
+  - type: Sprite
+    state: siamesecat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPTabbycat
+  name: Tabby cat
+  description:
+  components:
+  - type: Sprite
+    state: tabbycat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPTuxedocat
+  name: Tuxedo cat
+  description:
+  components:
+  - type: Sprite
+    state: tuxedocat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysCat
+  id: LPPWhitecat
+  name: White cat
+  description:
+  components:
+  - type: Sprite
+    state: whitecat
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPBread
+  name: Bread
+  description: Plushie bread?
+  components:
+    - type: Sprite
+      sprite: Objects/Consumable/Food/Baked/bread.rsi
+      state: plain
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Items/Toys/toysqueak2.ogg
+
+- type: entity
+  parent: LPPSoftToysToys
+  id: LPPBelka
+  name: Belka
+  description: Who is belka?
+  components:
+    - type: Sprite
+      sprite: _Sirena/Objects/Fun/belka.rsi
+      state: belka-toy
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Items/Toys/mousesqueek.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/Toys/mousesqueek.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Items/Toys/mousesqueek.ogg
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Items/Toys/mousesqueek.ogg

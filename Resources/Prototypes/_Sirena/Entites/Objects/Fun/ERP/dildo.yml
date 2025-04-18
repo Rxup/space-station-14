@@ -1,0 +1,142 @@
+- type: entity
+  name: dildo avian
+  id: LPPDildoAvian
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_avian
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: dildo canine
+  id: LPPDildoCanine
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_canine
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: dildo double
+  id: LPPDildoDouble
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_double
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: dildo dragon
+  id: LPPDildoDragon
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_dragon
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: dildo equine
+  id: LPPDildoEquine
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_equine
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: dildo human
+  id: LPPDildoHuman
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_human
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: dildo tentacle
+  id: LPPDildoTentacle
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: dildo_tentacle
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: polydildo big
+  id: LPPPolydildoBig
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: polydildo_big
+        map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: polydildo med
+  id: LPPPolydildoMed
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: polydildo_med
+        map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: polydildo small
+  id: LPPPolydildoSmall
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sirena/Objects/Fun/ERP/dildo.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: polydildo_small
+        map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Item
+    size: Tiny
