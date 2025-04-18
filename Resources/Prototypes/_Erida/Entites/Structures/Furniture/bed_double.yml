@@ -21,7 +21,7 @@
         mask:
         - TableMask
   - type: Sprite
-    sprite: _Sirena/Structures/Furniture/furniture.rsi
+    sprite: _Erida/Structures/Furniture/furniture.rsi
     state: bed_double_up
     noRot: true
   - type: Strap

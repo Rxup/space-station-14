@@ -19,7 +19,7 @@
 #  abstract: true
 #  components:
 #  - type: Sprite
-#    sprite: _Sirena/Objects/Fun/anime-girl-doll.rsi
+#    sprite: _Erida/Objects/Fun/anime-girl-doll.rsi
 #  - type: EmitSoundOnUse
 #    sound:
 #      collection: LPPAimePui

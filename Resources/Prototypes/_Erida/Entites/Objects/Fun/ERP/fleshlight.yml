@@ -5,7 +5,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: fleshlight_green
@@ -19,7 +19,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: fleshlight_pink
@@ -33,7 +33,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: fleshlight_red
@@ -47,7 +47,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: fleshlight_teal
@@ -61,7 +61,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: fleshlight_yellow
@@ -75,7 +75,7 @@
   description: A soft pillow that is comfortable to sit on.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: pillow_pink_round
@@ -89,7 +89,7 @@
   description: A soft pillow that is comfortable to sit on.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/fleshlight.rsi
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
     scale: 1.0, 1.0
     layers:
       - state: pillow_teal_round

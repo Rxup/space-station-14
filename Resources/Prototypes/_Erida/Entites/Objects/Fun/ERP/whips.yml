@@ -5,18 +5,18 @@
   description: Hot whip
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/whips.rsi
+    sprite: _Erida/Objects/Fun/ERP/whips.rsi
     state: icon
   - type: Item
-    sprite: _Sirena/Objects/Fun/ERP/whips.rsi
+    sprite: _Erida/Objects/Fun/ERP/whips.rsi
     size: Normal
   - type: Clothing
-    sprite: _Sirena/Objects/Fun/ERP/whips.rsi
+    sprite: _Erida/Objects/Fun/ERP/whips.rsi
     slots: [Belt]
     quickEquip: false
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/_Sirena/Effects/whip.ogg
+      path: /Audio/_Erida/Effects/whip.ogg
       params:
         variation: 0.246
 
@@ -26,20 +26,20 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/whips.rsi
+    sprite: _Erida/Objects/Fun/ERP/whips.rsi
   - type: StaminaDamageOnHit
     damage: 5
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/_Sirena/Effects/whip.ogg
+      path: /Audio/_Erida/Effects/whip.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Sirena/Effects/whip.ogg
+      path: /Audio/_Erida/Effects/whip.ogg
   - type: UseDelay
     delay: 1.0
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/_Sirena/Effects/whip.ogg
+      path: /Audio/_Erida/Effects/whip.ogg
     damage:
       types:
         Blunt: 0

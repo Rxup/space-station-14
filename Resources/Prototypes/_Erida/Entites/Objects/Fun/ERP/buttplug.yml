@@ -6,7 +6,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: green_big
@@ -20,7 +20,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: green_med
@@ -34,7 +34,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: green_small
@@ -48,7 +48,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: metal_big
@@ -62,7 +62,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: metal_med
@@ -76,7 +76,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: metal_small
@@ -90,7 +90,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: pink_big
@@ -104,7 +104,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: pink_med
@@ -118,7 +118,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: pink_small
@@ -132,7 +132,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Clothing/Underwear/buttplugtail/big.rsi
+    sprite: _Erida/Clothing/Underwear/buttplugtail/big.rsi
 
 - type: entity
   name: Medium tail buttplug
@@ -141,7 +141,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Clothing/Underwear/buttplugtail/medium.rsi
+    sprite: _Erida/Clothing/Underwear/buttplugtail/medium.rsi
 
 - type: entity
   name: Small tail buttplug
@@ -150,7 +150,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Clothing/Underwear/buttplugtail/small.rsi
+    sprite: _Erida/Clothing/Underwear/buttplugtail/small.rsi
 
 - type: entity
   name: big teal buttplug
@@ -159,7 +159,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: teal_big
@@ -173,7 +173,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: teal_med
@@ -187,7 +187,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: teal_small
@@ -201,7 +201,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: yellow_big
@@ -215,7 +215,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: yellow_med
@@ -229,7 +229,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Sprite
-    sprite: _Sirena/Objects/Fun/ERP/buttplug.rsi
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
     scale: 1.0, 1.0
     layers:
       - state: yellow_small
