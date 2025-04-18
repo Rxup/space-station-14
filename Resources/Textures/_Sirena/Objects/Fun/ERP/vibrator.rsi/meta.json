@@ -1,0 +1,65 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BlueMoon github https://github.com/BlueMoon-Labs/SERP-BlueMoon-Station-13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "magicwand"
+        },
+        {
+            "name": "magicwand_gif",
+            "delays": [
+                     [0.2, 0.2, 0.2, 0.2]
+                  ]
+        },
+        {
+            "name": "vibrator_green"
+        },
+        {
+            "name": "vibrator_green_gif",
+            "delays": [
+                     [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+                  ]
+        },
+        {
+            "name": "vibrator_pink"
+        },
+        {
+            "name": "vibrator_pink_gif",
+            "delays": [
+                     [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+                  ]
+        },
+        {
+            "name": "vibrator_red"
+        },
+        {
+            "name": "vibrator_red_gif",
+            "delays": [
+                     [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+                  ]
+        },
+        {
+            "name": "vibrator_teal"
+        },
+        {
+            "name": "vibrator_teal_gif",
+            "delays": [
+                     [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+                  ]
+        },
+        {
+            "name": "vibrator_yellow"
+        },
+        {
+            "name": "vibrator_yellow_gif",
+            "delays": [
+                     [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+                  ]
+        }
+    ]
+}

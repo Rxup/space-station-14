@@ -1,0 +1,22 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Lost Paradise Server, VIVA LA Chudo_Belka",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "belka-toy"
+    },
+    {
+      "name": "belka-toy-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "belka-toy-inhand-left",
+      "directions": 4
+    }
+  ]
+}

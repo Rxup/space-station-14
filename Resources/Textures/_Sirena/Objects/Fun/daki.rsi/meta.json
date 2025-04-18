@@ -1,0 +1,127 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from BlueMoon github https://github.com/BlueMoon-Labs/SERP-BlueMoon-Station-13",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "chaika"
+    },
+    {
+      "name": "haruko"
+    },
+    {
+      "name": "kurisu"
+    },
+    {
+      "name": "yaranaika"
+    },
+    {
+      "name": "reisen"
+    },
+    {
+      "name": "naga"
+    },
+    {
+      "name": "holo"
+    },
+    {
+      "name": "narsie"
+    },
+    {
+      "name": "marie"
+    },
+    {
+      "name": "yoko"
+    },
+    {
+      "name": "toriel"
+    },
+    {
+      "name": "plutia"
+    },
+    {
+      "name": "sue_bowchief"
+    },
+    {
+      "name": "casca"
+    },
+    {
+      "name": "squiggly"
+    },
+    {
+      "name": "patchouli"
+    },
+    {
+      "name": "camille"
+    },
+    {
+      "name": "rei"
+    },
+    {
+      "name": "tomoko"
+    },
+    {
+      "name": "elisabeth"
+    },
+    {
+      "name": "squid"
+    },
+    {
+      "name": "mugi"
+    },
+    {
+      "name": "callie"
+    },
+    {
+      "name": "ian"
+    },
+    {
+      "name": "foxy_granpa"
+    },
+    {
+      "name": "umaru"
+    },
+    {
+      "name": "jolyne"
+    },
+    {
+      "name": "imera"
+    },
+    {
+      "name": "sisa"
+    },
+    {
+      "name": "aurora"
+    },
+    {
+      "name": "slarsha"
+    },
+    {
+      "name": "nukie"
+    },
+    {
+      "name": "rocker"
+    },
+    {
+      "name": "red"
+    },
+    {
+      "name": "kirrava"
+    },
+    {
+      "name": "naaley"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}
