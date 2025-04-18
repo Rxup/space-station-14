@@ -3,8 +3,10 @@ using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -21,6 +23,8 @@ public sealed class MobThresholdSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
 
     // backmen edit start
+    [Dependency] private readonly SharedBodySystem _body = default!;
+
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
     // backmen edit end
@@ -270,6 +274,32 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target1, out var oldDamage))
             return false;
 
+        // backmen ediT!!!!!
+        var entDamage = oldDamage.Damage;
+        if (TryComp<BodyComponent>(target1, out var body) && HasComp<ConsciousnessComponent>(target1))
+        {
+            var damageDict = new Dictionary<string, FixedPoint2>();
+            foreach (var bodyPart in _body.GetBodyChildren(target1, body))
+            {
+                if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
+                    continue;
+
+                foreach (var woundEnt in _wound.GetWoundableWounds(bodyPart.Id, woundable))
+                {
+                    if (!damageDict.TryAdd(woundEnt.Comp.DamageType, woundEnt.Comp.WoundSeverityPoint))
+                    {
+                        damageDict[woundEnt.Comp.DamageType] = woundEnt.Comp.WoundSeverityPoint;
+                    }
+                }
+            }
+
+            entDamage = new DamageSpecifier
+            {
+                DamageDict = damageDict,
+            };
+        }
+        // backmen eidT1!!11!
+
         if (!TryComp<MobThresholdsComponent>(target1, out var threshold1) ||
             !TryComp<MobThresholdsComponent>(target2, out var threshold2))
             return false;
@@ -280,7 +310,8 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!TryGetThresholdForState(target2, MobState.Dead, out var ent2DeadThreshold, threshold2))
             ent2DeadThreshold = 0;
 
-        damage = (oldDamage.Damage / ent1DeadThreshold.Value) * ent2DeadThreshold.Value;
+        damage = (entDamage / ent1DeadThreshold.Value) * ent2DeadThreshold.Value;
+
         return true;
     }
 

@@ -18,6 +18,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -32,6 +33,8 @@ public sealed partial class WoundSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    [Dependency] private readonly IParallelManager _parallel = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -112,20 +115,21 @@ public sealed partial class WoundSystem : EntitySystem
             }
             else
             {
-                var parentWoundable = Comp<WoundableComponent>(holdingWoundable);
-                var woundableRoot = Comp<WoundableComponent>(parentWoundable.RootWoundable);
-
-                var ev = new WoundAddedEvent(component, parentWoundable, woundableRoot);
-                RaiseLocalEvent(uid, ref ev);
-
-                var ev1 = new WoundAddedEvent(component, parentWoundable, woundableRoot);
-                RaiseLocalEvent(holdingWoundable, ref ev1);
-
-                var bodyPart = Comp<BodyPartComponent>(holdingWoundable);
-                if (bodyPart.Body.HasValue)
+                if (TryComp(holdingWoundable, out WoundableComponent? parentWoundable) &&
+                    TryComp(parentWoundable.RootWoundable, out WoundableComponent? woundableRoot))
                 {
-                    var ev2 = new WoundAddedOnBodyEvent((uid, component), parentWoundable, woundableRoot);
-                    RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
+                    var ev = new WoundAddedEvent(component, parentWoundable, woundableRoot);
+                    RaiseLocalEvent(uid, ref ev);
+
+                    var ev1 = new WoundAddedEvent(component, parentWoundable, woundableRoot);
+                    RaiseLocalEvent(holdingWoundable, ref ev1);
+
+                    var bodyPart = Comp<BodyPartComponent>(holdingWoundable);
+                    if (bodyPart.Body.HasValue)
+                    {
+                        var ev2 = new WoundAddedOnBodyEvent((uid, component), parentWoundable, woundableRoot);
+                        RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
+                    }
                 }
             }
         }
@@ -280,7 +284,6 @@ public sealed partial class WoundSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        _woundableJobQueue.Process();
 
         if (!_timing.IsFirstTimePredicted)
             return;
@@ -289,12 +292,24 @@ public sealed partial class WoundSystem : EntitySystem
         using var query = EntityQueryEnumerator<WoundableComponent>();
         while (query.MoveNext(out var ent, out var woundable))
         {
+            if (Paused(ent))
+                continue;
+
             woundable.HealingRateAccumulated += frameTime;
             if (woundable.HealingRateAccumulated < timeToHeal)
                 continue;
 
+            if (woundable.Wounds == null || woundable.Wounds.Count == 0)
+                continue;
+
             woundable.HealingRateAccumulated -= timeToHeal;
-            _woundableJobQueue.EnqueueJob(new IntegrityJob(this, (ent, woundable), WoundableJobTime));
+
+            _parallel.ProcessNow(new IntegrityJob
+            {
+                System = this,
+                Owner = (ent, woundable),
+            },
+            woundable.Wounds.Count);
         }
     }
 }

@@ -77,12 +77,6 @@
       nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
-    - type: SlowOnDamage
-      speedModifierThresholds:
-        60: 0.8
-        120: 0.6
-        180: 0.4
-        240: 0.2
     - type: MobState
     - type: MobThresholds
       thresholds:
@@ -160,12 +154,6 @@
       nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
-    - type: SlowOnDamage
-      speedModifierThresholds:
-        60: 0.8
-        120: 0.6
-        180: 0.4
-        240: 0.2
     - type: MobState
     - type: MobThresholds
       thresholds:

@@ -49,6 +49,9 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("reactionTime")]
     public TimeSpan PainReactionTime = TimeSpan.FromSeconds(0.07f);
 
+    [DataField("adrenalineTime")]
+    public TimeSpan PainShockAdrenalineTime = TimeSpan.FromSeconds(40f);
+
     [DataField]
     public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(13f);
 

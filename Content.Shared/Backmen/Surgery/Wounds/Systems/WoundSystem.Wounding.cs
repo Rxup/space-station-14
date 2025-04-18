@@ -382,7 +382,7 @@ public partial class WoundSystem
 
         if (!TryCreateWound(woundComponent.HoldingWoundable,
                 woundComponent.ScarWound,
-                1f,
+                0.01f,
                 out var createdWound,
                 woundComponent.DamageGroup))
             return false;

@@ -204,6 +204,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 && body.RootContainer.ContainedEntity.HasValue)
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
+                var damageTypes = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
                 {
                     if (wound.Comp.DamageGroup == null)
@@ -213,15 +214,22 @@ namespace Content.Client.HealthAnalyzer.UI
                     {
                         damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundIntegrityDamage;
                     }
+
+                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundIntegrityDamage))
+                    {
+                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundIntegrityDamage;
+                    }
                 }
 
                 var damageSortedGroups =
                     damageGroups.OrderByDescending(damage => damage.Value)
                         .ToDictionary(x => x.Key, x => x.Value);
 
-                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageGroups;
+                var damageSortedTypes =
+                    damageTypes.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
 
-                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+                DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
 
                 DamageLabel.Text = damageGroups.Values.Sum().ToString();
             }
@@ -235,6 +243,7 @@ namespace Content.Client.HealthAnalyzer.UI
                         .ToString();
 
                 var damageGroups = new Dictionary<string, FixedPoint2>();
+                var damageTypes = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in wounds)
                 {
                     var woundGroup = wound.Comp.DamageGroup;
@@ -245,15 +254,22 @@ namespace Content.Client.HealthAnalyzer.UI
                     {
                         damageGroups[woundGroup.ID] += wound.Comp.WoundIntegrityDamage;
                     }
+
+                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundIntegrityDamage))
+                    {
+                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundIntegrityDamage;
+                    }
                 }
 
                 var damageSortedGroups =
                     damageGroups.OrderByDescending(damage => damage.Value)
                         .ToDictionary(x => x.Key, x => x.Value);
 
-                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageGroups;
+                var damageSortedTypes =
+                    damageTypes.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
 
-                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+                DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
             }
 
             // Alerts

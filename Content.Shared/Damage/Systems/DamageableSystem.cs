@@ -413,7 +413,7 @@ namespace Content.Shared.Damage
             {
                 // CollectionsMarshal my beloved.
                 if (!dict.TryGetValue(type, out var oldValue))
-                    continue;
+                    oldValue = 0;
 
                 var newValue = FixedPoint2.Max(FixedPoint2.Zero, oldValue + value);
                 if (newValue == oldValue)

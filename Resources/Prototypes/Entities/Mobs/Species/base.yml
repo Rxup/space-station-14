@@ -89,10 +89,6 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.7
-      80: 0.5
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -259,8 +255,8 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.1
+        Blunt: 0.9 #per second, scales with pressure and other constants.
+        Heat: 0.2
   - type: Fingerprint
   - type: Blindable
   # Other
