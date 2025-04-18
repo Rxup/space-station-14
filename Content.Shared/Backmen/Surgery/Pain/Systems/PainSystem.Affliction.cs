@@ -22,9 +22,6 @@ public partial class PainSystem
 
     private void OnPainChanged(Entity<PainInflicterComponent> woundEnt, ref WoundSeverityPointChangedEvent args)
     {
-        if (_timing.ApplyingState)
-            return;
-
         if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
             return;
 

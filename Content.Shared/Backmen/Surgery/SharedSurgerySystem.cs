@@ -64,7 +64,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
-        SubscribeLocalEvent<SurgeryCloseIncisionConditionComponent, SurgeryValidEvent>(OnCloseIncisionValid);
         //SubscribeLocalEvent<SurgeryLarvaConditionComponent, SurgeryValidEvent>(OnLarvaValid);
         SubscribeLocalEvent<SurgeryComponentConditionComponent, SurgeryValidEvent>(OnComponentConditionValid);
         SubscribeLocalEvent<SurgeryPartConditionComponent, SurgeryValidEvent>(OnPartConditionValid);
@@ -105,18 +104,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User), surgery);
         RaiseLocalEvent(step, ref ev);
         RefreshUI(ent);
-    }
-
-    private void OnCloseIncisionValid(Entity<SurgeryCloseIncisionConditionComponent> ent, ref SurgeryValidEvent args)
-    {
-        if (!HasComp<IncisionOpenComponent>(args.Part) ||
-            !HasComp<BleedersClampedComponent>(args.Part) ||
-            !HasComp<SkinRetractedComponent>(args.Part) ||
-            !HasComp<BodyPartReattachedComponent>(args.Part) ||
-            !HasComp<InternalBleedersClampedComponent>(args.Part))
-        {
-            args.Cancelled = true;
-        }
     }
 
     private void OnWoundedValid(Entity<SurgeryWoundedConditionComponent> ent, ref SurgeryValidEvent args)

@@ -265,36 +265,6 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
 
-- type: entity
-  parent: SurgeryStepBase
-  id: SurgeryStepCloseIncision
-  name: Close incision
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SurgeryStep
-    tool:
-    - type: Cautery
-    remove:
-    # This surgery removes a bunch of components that might be leftover from other surgeries in unintended cases.
-    # Essentially a bit of a fallback for endusers :)
-    - type: SkinRetracted
-    - type: BleedersClamped
-    - type: IncisionOpen
-    - type: BodyPartReattached
-    - type: InternalBleedersClamped
-    duration: 2
-  - type: Sprite
-    sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
-  - type: SurgeryDamageChangeEffect
-    damage:
-      types:
-        Heat: -5
-    sleepModifier: 2
-  - type: SurgeryStepPainInflicter
-    amount: 9
-    sleepModifier: 0.34
-
 # Feature Insertion
 
 - type: entity
