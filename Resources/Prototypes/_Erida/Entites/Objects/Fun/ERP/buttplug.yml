@@ -1,5 +1,21 @@
 
 - type: entity
+  abstract: true
+  parent: Clothing
+  id: LPPClothingUnderwearBase
+  name: based underwear
+  components:
+  - type: Sprite
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Clothing
+    slots: UNDERWEAR
+  - type: Tag
+    tags:
+    - underwear
+
+- type: entity
   name: big green buttplug
   id: LPPBigGreenButtplug
   parent: LPPClothingUnderwearBase

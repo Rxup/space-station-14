@@ -29,6 +29,7 @@ public enum SlotFlags
     UNDERPANTS = 1 << 16, //backmen:underclothing
     UNDERSHIRT = 1 << 17, //backmen:underclothing
     SOCKS = 1 << 18, //backmen:underclothing
+    UNDERWEAR = 1 << 19, //Erida-Edit
     All = ~NONE,
 
     WITHOUT_POCKET = All & ~POCKET
