@@ -44,6 +44,16 @@
       uiWindowPos: 3,1
       strippingWindowPos: 3,3
       displayName: Socks
+    - name: underwear #LPP slot underwear
+      slotTexture: underwear
+      slotFlags: UNDERWEAR
+      stripTime: 6
+      uiWindowPos: 4,0
+      strippingWindowPos: 4,0
+      displayName: Underwear
+      whitelist:
+        tags:
+        - underwear
       #backmen:underclothing-end
     - name: gloves
       slotTexture: gloves

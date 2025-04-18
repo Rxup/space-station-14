@@ -50,6 +50,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"underpants", "UNDERPANTS"}, //backmen:underclothing
         {"undershirt", "UNDERSHIRT"}, //backmen:underclothing
         {"socks", "SOCKS"}, //backmen:underclothing
+        {"underwear", "UNDERWEAR"}, // Erida-edit
     };
 
     [Dependency] private readonly IResourceCache _cache = default!;
