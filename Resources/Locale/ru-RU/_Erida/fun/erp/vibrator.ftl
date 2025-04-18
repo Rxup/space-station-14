@@ -1,0 +1,12 @@
+ent-LPPMagicwand = Вибратор
+    .desc = { ent-LPPClothingUnderwearBase.desc }
+ent-LPPVibratorGreen = Вибратор зеленый
+    .desc = { ent-LPPClothingUnderwearBase.desc }
+ent-LPPVibratorPink = Вибратор розовый
+    .desc = { ent-LPPClothingUnderwearBase.desc }
+ent-LPPVibratorRed = Вибратор красный
+    .desc = { ent-LPPClothingUnderwearBase.desc }
+ent-LPPVibratorTeal = Вибратор чирок
+    .desc = { ent-LPPClothingUnderwearBase.desc }
+ent-LPPVibratorYellow = Вибратор желтый
+    .desc = { ent-LPPClothingUnderwearBase.desc }
