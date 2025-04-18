@@ -414,16 +414,22 @@
     visible: false
   - type: BlockMovement
     blockInteraction: false
+  - type: BorgAINT
   - type: SiliconLawProvider
     laws: NTDefault # Corvax-NTDefault
   - type: SiliconLawBound
   - type: ActionGrant
     actions:
     - ActionViewLaws
+    - AIEyeCamAction
+    - AIEyeCamShootAction
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.AICameraListUiKey.Key:
+        type: AICameraListBoundUserInterface
         requireInputValidation: false
   - type: ComplexInteraction
   - type: Actions
@@ -493,6 +499,7 @@
   - type: NoFTL
   - type: WarpPoint
     follow: true
+  - type: AIEye
   - type: Eye
     pvsScale: 1.5
   - type: Visibility
