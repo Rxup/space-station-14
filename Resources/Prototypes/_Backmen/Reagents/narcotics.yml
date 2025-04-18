@@ -85,7 +85,7 @@
       - !type:Emote
         conditions:
         - !type:ReagentThreshold
-          min: 10
+          min: 6
         emote: Yawn
         showInChat: true
         probability: 0.1
@@ -93,38 +93,37 @@
         key: Drowsiness
         conditions:
         - !type:ReagentThreshold
-          min: 15
+          min: 12
         component: Drowsiness
-        time: 4
+        time: 30
         type: Add
-        refresh: false
+        refresh: true
       - !type:GenericStatusEffect
         key: ForcedSleeping
         conditions:
         - !type:ReagentThreshold
-          min: 25
+          min: 20
         component: ForcedSleeping
         time: 10
         type: Add
-        refresh: false
+        refresh: true
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           reagent: Morphine
-          min: 30
+          min: 25
         damage:
           types:
-            Poison: 1
+            Poison: 1.25
     Medicine:
       metabolismRate: 0.25
       effects:
         - !type:SuppressPain
-          amount: 1.2
+          amount: 100 # Literally painkiller
           time: 30
         - !type:GenericStatusEffect
           conditions:
           - !type:ReagentThreshold
-            min: 8
+            min: 10
           key: Adrenaline
           component: IgnoreSlowOnDamage
-          time: 30
