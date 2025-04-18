@@ -1,0 +1,65 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BlueMoon github https://github.com/BlueMoon-Labs/SERP-BlueMoon-Station-13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "green_big",
+            "delays": [
+                     [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+                  ]
+        },
+        {
+            "name": "green_med",
+            "delays": [
+                     [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+                  ]
+        },
+        {
+            "name": "green_small",
+            "delays": [
+                     [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+                  ]
+        },
+        {
+            "name": "metal_big"
+        },
+        {
+            "name": "metal_med"
+        },
+        {
+            "name": "metal_small"
+        },
+        {
+            "name": "pink_big"
+        },
+        {
+            "name": "pink_med"
+        },
+        {
+            "name": "pink_small"
+        },
+        {
+            "name": "teal_big"
+        },
+        {
+            "name": "teal_med"
+        },
+        {
+            "name": "teal_small"
+        },
+        {
+            "name": "yellow_big"
+        },
+        {
+            "name": "yellow_med"
+        },
+        {
+            "name": "yellow_small"
+        }
+    ]
+}

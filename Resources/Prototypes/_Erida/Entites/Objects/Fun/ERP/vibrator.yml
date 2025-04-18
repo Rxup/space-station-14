@@ -1,0 +1,83 @@
+- type: entity
+  name: magicwand
+  id: LPPMagicwand
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/vibrator.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: magicwand_gif
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: vibrator green
+  id: LPPVibratorGreen
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/vibrator.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: vibrator_green_gif
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: vibrator pink
+  id: LPPVibratorPink
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/vibrator.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: vibrator_pink_gif
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: vibrator red
+  id: LPPVibratorRed
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/vibrator.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: vibrator_red_gif
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: vibrator teal
+  id: LPPVibratorTeal
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/vibrator.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: vibrator_teal_gif
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: vibrator yellow
+  id: LPPVibratorYellow
+  parent: LPPClothingUnderwearBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/vibrator.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: vibrator_yellow_gif
+  - type: Item
+    size: Normal

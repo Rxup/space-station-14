@@ -1,0 +1,238 @@
+
+- type: entity
+  name: big green buttplug
+  id: LPPBigGreenButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: green_big
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Medium green buttplug
+  id: LPPMedGreenButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: green_med
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Small green buttplug
+  id: LPPSmallGreenButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: green_small
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: big metal buttplug
+  id: LPPBigmetalButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: metal_big
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Medium metal buttplug
+  id: LPPMedmetalButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: metal_med
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Small metal buttplug
+  id: LPPSmallmetalButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: metal_small
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: big pink buttplug
+  id: LPPBigpinkButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: pink_big
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Medium pink buttplug
+  id: LPPMedpinkButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: pink_med
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Small pink buttplug
+  id: LPPSmallpinkButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: pink_small
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: big tail buttplug
+  id: LPPBigtailButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Clothing/Underwear/buttplugtail/big.rsi
+
+- type: entity
+  name: Medium tail buttplug
+  id: LPPMedtailButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Clothing/Underwear/buttplugtail/medium.rsi
+
+- type: entity
+  name: Small tail buttplug
+  id: LPPSmalltailButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Clothing/Underwear/buttplugtail/small.rsi
+
+- type: entity
+  name: big teal buttplug
+  id: LPPBigtealButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: teal_big
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Medium teal buttplug
+  id: LPPMedtealButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: teal_med
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Small teal buttplug
+  id: LPPSmalltealButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: teal_small
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: big yellow buttplug
+  id: LPPBigyellowButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: yellow_big
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Medium yellow buttplug
+  id: LPPMedyellowButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: yellow_med
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: Small yellow buttplug
+  id: LPPSmallyellowButtplug
+  parent: LPPClothingUnderwearBase
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/buttplug.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: yellow_small
+  - type: Item
+    size: Tiny
+

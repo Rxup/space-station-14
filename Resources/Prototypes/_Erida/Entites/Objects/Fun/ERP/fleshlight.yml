@@ -1,0 +1,97 @@
+- type: entity
+  name: fleshlight green
+  id: LPPFleshlightGreen
+  parent: BaseItem
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: fleshlight_green
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: fleshlight pink
+  id: LPPFleshlightPink
+  parent: BaseItem
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: fleshlight_pink
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: fleshlight red
+  id: LPPFleshlightRed
+  parent: BaseItem
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: fleshlight_red
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: fleshlight teal
+  id: LPPFleshlightTeal
+  parent: BaseItem
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: fleshlight_teal
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: fleshlight yellow
+  id: LPPFleshlightYellow
+  parent: BaseItem
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: fleshlight_yellow
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: pillow pink round
+  id: LPPPillowPinkRound
+  parent: BaseItem
+  description: A soft pillow that is comfortable to sit on.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: pillow_pink_round
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: pillow teal round
+  id: LPPPillowTealRound
+  parent: BaseItem
+  description: A soft pillow that is comfortable to sit on.
+  components:
+  - type: Sprite
+    sprite: _Erida/Objects/Fun/ERP/fleshlight.rsi
+    scale: 1.0, 1.0
+    layers:
+      - state: pillow_teal_round
+  - type: Item
+    size: Normal

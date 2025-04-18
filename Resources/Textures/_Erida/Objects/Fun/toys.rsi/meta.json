@@ -1,0 +1,259 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-NC-SA-4.0",
+  "copyright": "Taken from BlueMoon github https://github.com/BlueMoon-Labs/SERP-BlueMoon-Station-13 (changed license for no errors)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "axolotl"
+    },
+    {
+      "name": "amina"
+    },
+    {
+      "name": "axolotl-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "axolotl-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "corgi"
+    },
+    {
+      "name": "corgi-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "corgi-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "deer"
+    },
+    {
+      "name": "beer-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "deer-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "medihound"
+    },
+    {
+      "name": "medihound-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "medihound-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "moff"
+    },
+    {
+      "name": "moff-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "moff-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "protogen"
+    },
+    {
+      "name": "protogen-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "protogen-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pupdozer"
+    },
+    {
+      "name": "pupdozer-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pupdozer-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "scrubpuppy"
+    },
+    {
+      "name": "scrubpuppy-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "scrubpuppy-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "sergal"
+    },
+    {
+      "name": "sergal-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "sergal-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plushie_synth"
+    },
+    {
+      "name": "plushie_synth-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plushie_synth-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "ych"
+    },
+    {
+      "name": "ych-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "ych-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "jay"
+    },
+    {
+      "name": "jay-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "jay-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "kirr"
+    },
+    {
+      "name": "kirr-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "kirr-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "crab",
+      "directions": 4
+    },
+    {
+      "name": "ninja_plushie",
+      "delays": [
+        [ 1.0, 0.1, 0.1, 0.1, 0.1, 0.1 ]
+      ]
+    },
+    {
+      "name": "ninja_plushie-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "ninja_plushie-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "meddrake"
+    },
+    {
+      "name": "meddrake-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "meddrake-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "secdrake"
+    },
+    {
+      "name": "secdrake-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "secdrake-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "goat"
+    },
+    {
+      "name": "goat-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "goat-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "boxs"
+    },
+    {
+      "name": "boxs-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "boxs-inhand-right",
+      "directions": 4
+    },
+
+    {
+      "name": "moon"
+    },
+    {
+      "name": "moon-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "moon-inhand-right",
+      "directions": 4
+    },
+
+    {
+      "name": "pebbles"
+    },
+    {
+      "name": "pebbles-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pebbles-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "amina-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "amina-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "crab-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "crab-inhand-right",
+      "directions": 4
+    }
+  ]
+}
