@@ -133,7 +133,8 @@ public partial class TraumaSystem
         if (!Resolve(uid, ref organ))
             return false;
 
-        organ.IntegrityModifiers.Add((identifier, effectOwner), severity);
+        if(!organ.IntegrityModifiers.TryAdd((identifier, effectOwner), severity))
+            return false;
         UpdateOrganIntegrity(uid, organ);
 
         return true;
