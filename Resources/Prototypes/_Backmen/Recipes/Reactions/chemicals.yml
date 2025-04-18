@@ -22,3 +22,19 @@
       amount: 1
   products:
     StimulantsSuper: 3
+
+- type: reaction
+  id: Morphine
+  impact: Low
+  minTemp: 480
+  reactants:
+    Carbon:
+      amount: 2
+    Hydrogen:
+      amount: 2
+    Ethanol:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    Morphine: 2

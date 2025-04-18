@@ -5,6 +5,7 @@
     Ointment: 3
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
+    ChemistryBottleMorphine: 3 # Backmen
     Syringe: 3
   contrabandInventory:
     PowerCellSmall: 2

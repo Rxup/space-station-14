@@ -69,3 +69,61 @@
               Burn: -6
               Brute: -6
               Airloss: -4
+
+- type: reagent
+  id: Morphine
+  name: reagent-name-morphine
+  group: Narcotics
+  desc: reagent-desc-morphine
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#A9FBFB"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.25
+      effects:
+      - !type:Emote
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        emote: Yawn
+        showInChat: true
+        probability: 0.1
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        component: Drowsiness
+        time: 4
+        type: Add
+        refresh: false
+      - !type:GenericStatusEffect
+        key: ForcedSleeping
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
+        component: ForcedSleeping
+        time: 10
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Morphine
+          min: 30
+        damage:
+          types:
+            Poison: 1
+    Medicine:
+      effects:
+        - !type:SuppressPain
+          amount: 1.2
+          time: 30
+        - !type:GenericStatusEffect
+          conditions:
+          - !type:ReagentThreshold
+            min: 8
+          key: Adrenaline
+          component: IgnoreSlowOnDamage
+          time: 30
