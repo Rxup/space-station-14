@@ -31,11 +31,14 @@
   - type: StationAiHeld
   - type: StationAiOverlay
   - type: ShowElectrocutionHUD
+  - type: BorgAINT
   - type: ActionGrant
     actions:
     - ActionJumpToCore
     - ActionSurvCameraLights
     - ActionAIViewLaws
+    - AIEyeCamAction
+    - AIEyeCamShootAction
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -48,6 +51,9 @@
         type: SiliconLawBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      enum.AICameraListUiKey.Key:
+        type: AICameraListBoundUserInterface
+        requireInputValidation: false
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
@@ -414,22 +420,16 @@
     visible: false
   - type: BlockMovement
     blockInteraction: false
-  - type: BorgAINT
   - type: SiliconLawProvider
     laws: NTDefault # Corvax-NTDefault
   - type: SiliconLawBound
   - type: ActionGrant
     actions:
     - ActionViewLaws
-    - AIEyeCamAction
-    - AIEyeCamShootAction
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
-        requireInputValidation: false
-      enum.AICameraListUiKey.Key:
-        type: AICameraListBoundUserInterface
         requireInputValidation: false
   - type: ComplexInteraction
   - type: Actions

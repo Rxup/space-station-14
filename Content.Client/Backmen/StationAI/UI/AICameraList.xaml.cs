@@ -15,9 +15,11 @@ public sealed partial class AICameraList : FancyWindow
     public event Action<NetEntity>? WarpToCamera;
 
     private readonly EntityUid _owner;
-    public AICameraList(EntityUid? mapUid, EntityUid? trackedEntity)
+    private readonly EntityUid _eye;
+    public AICameraList(EntityUid? mapUid, EntityUid? trackedEntity, EntityUid eye)
     {
         _owner = trackedEntity ?? EntityUid.Invalid;
+        _eye = eye;
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
@@ -40,15 +42,15 @@ public sealed partial class AICameraList : FancyWindow
 
     public void UpdateCameras()
     {
-        if (!_entityManager.TryGetComponent<AIEyeComponent>(_owner, out var eyeComponent))
+        if (!_eye.Valid || !_entityManager.TryGetComponent<AIEyeComponent>(_eye, out var aiEye))
             return;
 
         NavMapScreen.TrackedEntities.Clear();
 
-        foreach (var (camera,pos) in eyeComponent.FollowsCameras)
+        foreach (var (camera,pos) in aiEye.FollowsCameras)
         {
             var texture = _entityManager.System<SpriteSystem>().Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));
-            var isSame = _entityManager.TryGetEntity(camera, out var camUid) && camUid == eyeComponent.Camera;
+            var isSame = _entityManager.TryGetEntity(camera, out var camUid) && camUid == aiEye.Camera;
             var blip = new NavMapBlip(_entityManager.GetCoordinates(pos), texture, isSame ? Color.DarkRed : Color.Cyan, isSame, true);
             NavMapScreen.TrackedEntities[camera] = blip;
         }

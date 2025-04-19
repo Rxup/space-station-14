@@ -3,7 +3,7 @@
 namespace Content.Shared.Backmen.StationAI.Components;
 
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState()]
 public sealed partial class AICameraComponent : Component
 {
     [DataField("enabled"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]

@@ -1,19 +1,35 @@
-﻿using Content.Server.Interaction;
+﻿using System.Numerics;
+using Content.Server.Interaction;
+using Content.Server.Popups;
 using Content.Server.SurveillanceCamera;
+using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Popups;
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Tag;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI;
 
 public sealed class AICameraSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-     [Dependency] private readonly SharedTransformSystem _transform = default!;
-     [Dependency] private readonly InteractionSystem _interaction = default!;
-     [Dependency] private readonly SurveillanceCameraSystem _cameraSystem = default!;
-
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly InteractionSystem _interaction = default!;
+    [Dependency] private readonly SurveillanceCameraSystem _cameraSystem = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedStationAiSystem _stationAi = default!;
 
 
      private const double MoverJobTime = 0.005;
@@ -27,42 +43,73 @@ public sealed class AICameraSystem : EntitySystem
 
          SubscribeLocalEvent<AICameraComponent, ComponentStartup>(HandleCameraStartup);
 
+         SubscribeLocalEvent<AIEyeComponent, ComponentGetStateAttemptEvent>(OnIsEyeOwner);
          SubscribeLocalEvent<AIEyeComponent, MoveEvent>(OnEyeMove);
          SubscribeLocalEvent<AICameraComponent, SurveillanceCameraDeactivateEvent>(OnActiveCameraDisable);
          SubscribeLocalEvent<AICameraComponent, EntityTerminatingEvent>(OnRemove);
+
+         SubscribeLocalEvent<StationAiHeldComponent, AIEyeCampShootActionEvent>(OnShoot);
+         SubscribeLocalEvent<StationAiHeldComponent, AIEyeCampActionEvent>(OnOpenCamUi);
+         Subs.BuiEvents<StationAiHeldComponent>(AICameraListUiKey.Key,
+             sub =>
+             {
+                 sub.Event<EyeMoveToCam>(OnMoveToCam);
+                 sub.Event<EyeCamRequest>(UpdateCams);
+             });
      }
 
-     private void OnRemove(Entity<AICameraComponent> ent, ref EntityTerminatingEvent args)
+     private void OnIsEyeOwner(Entity<AIEyeComponent> ent, ref ComponentGetStateAttemptEvent args)
      {
-         OnCameraOffline(ent);
+         if (args.Player?.AttachedEntity is not { } plr ||
+             !_stationAi.TryGetCore(plr, out var core) ||
+             core.Comp?.RemoteEntity == null ||
+             core.Comp.RemoteEntity != ent)
+             args.Cancelled = true;
+
      }
 
-
-/*
-     private void OnShootCam(Entity<AIEyeComponent> ent, ref AIEyeCampShootActionEvent args)
+     private void UpdateCams(Entity<StationAiHeldComponent> ent, ref EyeCamRequest args)
      {
-         if (!ent.Comp.AiCore.HasValue || ent.Comp.Camera == null)
+         if (
+             !_stationAi.TryGetCore(ent, out var core) ||
+             core.Comp?.RemoteEntity == null ||
+             !TryComp<AIEyeComponent>(core.Comp.RemoteEntity, out var aiEye)
+             )
              return;
 
-         var camMapPos = _transform.GetMapCoordinates(ent.Comp.Camera.Value);
-         var camPos = Transform(ent.Comp.Camera.Value).Coordinates;
-         if (args.Target.GetGridUid(EntityManager) != Transform(ent.Comp.AiCore.Value).GridUid)
-             return;
+         aiEye.FollowsCameras.Clear();
 
-         args.Handled = true;
-         var targetPos = args.Target.ToMap(EntityManager, _transform);
-
-         var ammo = Spawn(BulletDisabler, camPos);
-         _gun.ShootProjectile(ammo, targetPos.Position - camMapPos.Position, Vector2.One, ent.Comp.Camera.Value, args.Performer);
-         _audio.PlayPvs("/Audio/Weapons/Guns/Gunshots/taser2.ogg", ent.Comp.Camera.Value);
+         var pos = Transform(ent).GridUid;
+         var cams = EntityQueryEnumerator<SurveillanceCameraComponent, TransformComponent>();
+         while (cams.MoveNext(out var camUid, out var cam, out var transformComponent))
+         {
+             if(transformComponent.GridUid != pos)
+                 continue;
+             aiEye.FollowsCameras.Add((GetNetEntity(camUid), GetNetCoordinates(transformComponent.Coordinates)));
+         }
+         Dirty(core.Comp.RemoteEntity.Value, aiEye);
      }
 
-     private void OnMoveToCam(Entity<AIEyeComponent> ent, ref EyeMoveToCam args)
+     private void OnOpenCamUi(Entity<StationAiHeldComponent> ent, ref AIEyeCampActionEvent args)
      {
-         if (!TryGetEntity(args.Uid, out var uid) || !ent.Comp.AiCore.HasValue)
+         //AIEye
+         _uiSystem.TryToggleUi(ent.Owner, AICameraListUiKey.Key, ent);
+     }
+
+     private void OnMoveToCam(Entity<StationAiHeldComponent> ent, ref EyeMoveToCam args)
+     {
+         if (!_stationAi.TryGetCore(ent, out var core) || core.Comp?.RemoteEntity == null)
              return;
+
+         if (
+             !TryGetEntity(args.Uid, out var uid) ||
+             TerminatingOrDeleted(core.Comp.RemoteEntity) ||
+             !HasComp<AIEyeComponent>(core.Comp.RemoteEntity)
+             )
+             return;
+
          var camPos = Transform(uid.Value);
-         if (Transform(uid.Value).GridUid != Transform(ent.Comp.AiCore.Value).GridUid)
+         if (Transform(uid.Value).GridUid != Transform(ent).GridUid)
              return;
 
          if (!TryComp<SurveillanceCameraComponent>(uid, out var camera))
@@ -73,10 +120,57 @@ public sealed class AICameraSystem : EntitySystem
              _popup.PopupCursor("камера не работает!", ent, PopupType.LargeCaution);
              return;
          }
-         _transform.SetCoordinates(ent, camPos.Coordinates);
-         _transform.AttachToGridOrMap(ent);
+         _transform.SetCoordinates(core.Comp.RemoteEntity.Value, camPos.Coordinates);
+         _transform.AttachToGridOrMap(core.Comp.RemoteEntity.Value);
      }
-*/
+
+     [ValidatePrototypeId<EntityPrototype>]
+     private const string BulletDisabler = "BulletDisabler";
+     private void OnShoot(Entity<StationAiHeldComponent> ent, ref AIEyeCampShootActionEvent args)
+     {
+         if (!_stationAi.TryGetCore(ent.Owner, out var core) || core.Comp?.RemoteEntity == null)
+             return;
+
+         if (
+             TerminatingOrDeleted(core.Comp.RemoteEntity) ||
+             !HasComp<AIEyeComponent>(core.Comp.RemoteEntity)
+         )
+             return;
+
+         if(!TryComp<AIEyeComponent>(core.Comp.RemoteEntity, out var eye))
+             return;
+
+         if(eye.Camera == null || TerminatingOrDeleted(eye.Camera))
+             return;
+
+         if (_transform.GetGrid(args.Target) != Transform(ent).GridUid)
+             return;
+
+         if (!TryComp<SurveillanceCameraComponent>(eye.Camera, out var camera))
+             return;
+
+         if (!camera.Active)
+         {
+             _popup.PopupCursor("камера не работает!", core.Comp.RemoteEntity.Value, PopupType.LargeCaution);
+             return;
+         }
+
+         args.Handled = true;
+
+         var targetPos = _transform.ToMapCoordinates(args.Target);
+         var camPos = Transform(eye.Camera.Value).Coordinates;
+         var camMapPos = _transform.ToMapCoordinates(camPos);
+
+         var ammo = Spawn(BulletDisabler, camPos);
+         _gun.ShootProjectile(ammo, targetPos.Position - camMapPos.Position, Vector2.One, eye.Camera.Value, args.Performer);
+         _audio.PlayPvs("/Audio/Weapons/Guns/Gunshots/taser2.ogg", eye.Camera.Value);
+     }
+
+     private void OnRemove(Entity<AICameraComponent> ent, ref EntityTerminatingEvent args)
+     {
+         OnCameraOffline(ent);
+     }
+
      private void OnActiveCameraDisable(Entity<AICameraComponent> ent, ref SurveillanceCameraDeactivateEvent args)
      {
          OnCameraOffline(ent);
@@ -92,7 +186,6 @@ public sealed class AICameraSystem : EntitySystem
              }
 
              RemoveActiveCamera((viewer, aiEyeComponent));
-             EnsureComp<TemporaryBlindnessComponent>(viewer);
          }
          ent.Comp.ActiveViewers.Clear();
      }
@@ -106,7 +199,7 @@ public sealed class AICameraSystem : EntitySystem
 
      private void OnEyeMove(Entity<AIEyeComponent> ent, ref MoveEvent args)
      {
-         if (ent.Comp.IsProcessingMoveEvent)
+         if (ent.Comp.IsProcessingMoveEvent || !args.NewPosition.IsValid(EntityManager))
              return;
 
          ent.Comp.IsProcessingMoveEvent = true;

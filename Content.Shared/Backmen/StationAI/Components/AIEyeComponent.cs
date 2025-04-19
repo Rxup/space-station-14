@@ -14,7 +14,7 @@ public sealed partial class AIEyeComponent : Component
     [ViewVariables, AutoNetworkedField]
     public HashSet<(NetEntity, NetCoordinates)> FollowsCameras = new ();
 
-    public override bool SendOnlyToOwner => true;
+    public override bool SessionSpecific => true;
 
     public bool IsProcessingMoveEvent = false;
 }
@@ -29,4 +29,14 @@ public sealed partial class AIEyeCampActionEvent : InstantActionEvent
 public sealed class EyeMoveToCam : BoundUserInterfaceMessage
 {
     public NetEntity Uid;
+}
+[Serializable, NetSerializable]
+public sealed class EyeCamRequest : BoundUserInterfaceMessage
+{
+
+}
+[Serializable, NetSerializable]
+public sealed class EyeCamUpdate : BoundUserInterfaceState
+{
+
 }

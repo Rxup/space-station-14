@@ -7,9 +7,10 @@
     icon: Backmen/Actions/AI/camera_stun.png
     event: !type:AIEyeCampShootActionEvent
     checkCanInteract: false
+    checkCanAccess: false
     useDelay: 3
     priority: 17
-    range: 20
+    range: -1
 
 
 - type: entity

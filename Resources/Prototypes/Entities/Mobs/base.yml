@@ -52,6 +52,7 @@
     understands:
     - TauCetiBasic
     - SpaceMob
+  - type: CanBeBorgNTEnemy
 
 - type: entity
   save: false
