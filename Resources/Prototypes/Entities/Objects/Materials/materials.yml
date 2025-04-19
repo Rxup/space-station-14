@@ -92,6 +92,7 @@
         Piercing: -0.5
         ArmorPiercing: -0.5
     bloodlossModifier: -4
+    healBleedsThreshold: 8
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:

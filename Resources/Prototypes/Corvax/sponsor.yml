@@ -23,6 +23,12 @@
     - type: Clothing
       sprite: Corvax/Sponsor/Clothing/Mask/atmosian.rsi
     - type: Armor
+      traumaDeductions:
+        Dismemberment: 0.0
+        OrganDamage: 0.24
+        BoneDamage: 0.0
+        VeinsDamage: 0
+        NerveDamage: 0
       coverage: # backmen: armour coverage
       - Head
       modifiers:

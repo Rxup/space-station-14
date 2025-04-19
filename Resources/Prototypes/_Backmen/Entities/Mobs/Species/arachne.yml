@@ -149,7 +149,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.03 #per second, scales with pressure and other constants. Reduced Damage. This allows medicine to heal faster than damage.
+        Blunt: 0.1 #per second, scales with pressure and other constants. Reduced Damage. This allows medicine to heal faster than damage.
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.0

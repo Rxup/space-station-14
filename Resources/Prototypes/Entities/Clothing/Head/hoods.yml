@@ -153,6 +153,12 @@
   - type: Clothing
     sprite: Clothing/Head/Hoods/rad.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0.42
+      NerveDamage: 0.42
     coverage: # backmen: armour coverage
     - Head
     modifiers:

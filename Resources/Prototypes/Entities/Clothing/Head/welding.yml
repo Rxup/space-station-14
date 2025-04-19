@@ -11,6 +11,12 @@
   - type: IdentityBlocker
   - type: EyeProtection
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.08
+      OrganDamage: 0.19
+      BoneDamage: 0
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:

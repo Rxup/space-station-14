@@ -15,6 +15,8 @@ public partial class PainSystem
         SubscribeLocalEvent<PainInflicterComponent, WoundSeverityPointChangedEvent>(OnPainChanged);
     }
 
+    private const string PainAdrenalineIdentifier = "PainAdrenaline";
+
     private const string PainModifierIdentifier = "WoundPain";
     private const string PainTraumaticModifierIdentifier = "TraumaticPain";
 

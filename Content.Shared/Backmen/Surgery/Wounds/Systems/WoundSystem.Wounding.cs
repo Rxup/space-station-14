@@ -382,7 +382,7 @@ public partial class WoundSystem
 
         if (!TryCreateWound(woundComponent.HoldingWoundable,
                 woundComponent.ScarWound,
-                1f,
+                0.01f,
                 out var createdWound,
                 woundComponent.DamageGroup))
             return false;
@@ -948,7 +948,7 @@ public partial class WoundSystem
         var woundMeta = MetaData(wound);
         var targetMeta = MetaData(target);
 
-        _sawmill.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
+        Log.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
 
         Dirty(wound, woundComponent);
         Dirty(target, woundableComponent);
@@ -964,7 +964,7 @@ public partial class WoundSystem
         if (!Resolve(woundEntity, ref wound, false) || !TryComp(wound.HoldingWoundable, out WoundableComponent? woundable))
             return false;
 
-        _sawmill.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
+        Log.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
 
         UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
         CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);
@@ -1077,7 +1077,8 @@ public partial class WoundSystem
         }
         component.WoundSeverity = nearestSeverity;
 
-        Dirty(wound, component);
+        if (!TerminatingOrDeleted(wound))
+            Dirty(wound, component);
     }
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
