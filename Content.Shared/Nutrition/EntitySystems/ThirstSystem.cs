@@ -108,7 +108,7 @@ public sealed class ThirstSystem : EntitySystem
             component.ThirstThresholds[ThirstThreshold.OverHydrated]
         );
 
-        EntityManager.DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
+        Dirty(uid, component);
     }
 
     private bool IsMovementThreshold(ThirstThreshold threshold)
