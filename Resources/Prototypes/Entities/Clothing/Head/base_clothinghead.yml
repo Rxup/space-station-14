@@ -160,6 +160,14 @@
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
+    coverage: # backmen: armour coverage
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -185,7 +193,7 @@
 - type: entity
   abstract: true
   # No parent since it isn't an item
-  # must parent both this and the desired helmet base when using 
+  # must parent both this and the desired helmet base when using
   id: ClothingHeadSuitWithLightBase
   name: base hardsuit helmet with light
   categories: [ HideSpawnMenu ]

@@ -18,10 +18,6 @@
     baseSprintSpeed: 4
   - type: Damageable
     damageModifierSet: DwarfSkin
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.9
-      80: 0.7
   - type: Hunger
   - type: Thirst
   - type: Icon

@@ -45,6 +45,9 @@ public sealed partial class DungeonSystem
 
             foreach (var node in forest)
             {
+                if(!connections.ContainsKey(node))
+                    continue;
+
                 foreach (var conn in connections[node])
                 {
                     // Existing tile, skip

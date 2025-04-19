@@ -23,6 +23,14 @@
     - type: Clothing
       sprite: Corvax/Sponsor/Clothing/Mask/atmosian.rsi
     - type: Armor
+      traumaDeductions:
+        Dismemberment: 0.0
+        OrganDamage: 0.24
+        BoneDamage: 0.0
+        VeinsDamage: 0
+        NerveDamage: 0
+      coverage: # backmen: armour coverage
+      - Head
       modifiers:
         coefficients:
           Heat: 0.80
@@ -156,6 +164,18 @@
     - type: Clothing
       sprite: Corvax/Sponsor/NEKISH/Clothing/OuterClothing/Coats/hos_overcoat.rsi
     - type: Armor
+      coverage: # backmen: armour coverage
+      - Chest
+      - Groin
+      - Arm
+      - Tail
+      - Other
+      traumaDeductions:
+        Dismemberment: 0.14
+        OrganDamage: 0.14
+        BoneDamage: 0.14
+        VeinsDamage: 0
+        NerveDamage: 0
       modifiers:
         coefficients:
           Blunt: 0.7

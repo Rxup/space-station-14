@@ -4,7 +4,7 @@
   root: torso
   slots:
     torso:
-      part: TorsoMonkey
+      part: ChestMonkey
       connections:
       - left arm
       - right leg

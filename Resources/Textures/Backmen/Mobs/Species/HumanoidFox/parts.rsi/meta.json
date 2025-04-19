@@ -260,7 +260,7 @@
       ]
     },
     {
-      "name": "torso_f",
+      "name": "chest_f",
       "directions": 4,
       "delays": [
         [
@@ -278,43 +278,7 @@
       ]
     },
     {
-      "name": "torso_f_fat",
-      "directions": 4,
-      "delays": [
-        [
-          1.0
-        ],
-        [
-          1.0
-        ],
-        [
-          1.0
-        ],
-        [
-          1.0
-        ]
-      ]
-    },
-    {
-      "name": "torso_m",
-      "directions": 4,
-      "delays": [
-        [
-          1.0
-        ],
-        [
-          1.0
-        ],
-        [
-          1.0
-        ],
-        [
-          1.0
-        ]
-      ]
-    },
-    {
-      "name": "torso_m_fat",
+      "name": "chest_m",
       "directions": 4,
       "delays": [
         [

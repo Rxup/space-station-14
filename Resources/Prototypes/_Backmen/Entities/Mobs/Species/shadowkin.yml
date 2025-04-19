@@ -27,24 +27,20 @@
   - type: Flammable
     damage:
       types:
-        Heat: 1.5 # burn more
+        Heat: 0.75 # burn more
   - type: MobState
   - type: MobThresholds
     thresholds: # Weak
       0: Alive
       80: Critical
       160: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      48: 0.85
-      64: 0.65
   - type: Damageable
     damageContainer: Biological # Shadowkin
     damageModifierSet: Shadowkin
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.35 # per second, scales with pressure and other constants.
+        Blunt: 1 # per second, scales with pressure and other constants.
   - type: Bloodstream
     bloodlossDamage:
       types:

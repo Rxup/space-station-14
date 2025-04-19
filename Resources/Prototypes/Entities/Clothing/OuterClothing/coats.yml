@@ -19,6 +19,19 @@
     sprite: Clothing/OuterClothing/Coats/detective.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: Armor
+    coverageHidden: true
+    coverage:
+    - Arm
+    - Leg
+    - Tail
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.50
+        Heat: 0.70
+        ArmorPiercing: 0.90
   - type: StorageFill
     contents:
     - id: SmokingPipeFilledTobacco
@@ -64,6 +77,11 @@
   id: ClothingOuterArmorHoS
   components:
   - type: Armor
+    coverageHidden: true
+    coverage:
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -72,7 +90,7 @@
         ArmorPiercing: 0.8
         Stun: 0.6
         Heat: 0.7
-        Caustic: 0.75 # not the full 90% from ss13 because of the head
+        Caustic: 0.1 # ~~not~~ the full 90% from ss13
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -82,6 +100,11 @@
   id: ClothingOuterArmorWarden
   components:
   - type: Armor
+    coverageHidden: true
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -117,10 +140,16 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
   - type: Armor #Backmen-armorstun
+    coverageHidden: true
+    coverage:
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Slash: 0.95
-        Stun: 0.8
+        Blunt: 0.8
+        Slash: 0.8
+        Stun: 0.6
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -135,11 +164,17 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Armor
+  - type: Armor #Backmen-armorstun
+    coverageHidden: true
+    coverage:
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Slash: 0.95
-        Stun: 0.8 #Backmen-armorstun
+        Blunt: 0.8
+        Slash: 0.8
+        Stun: 0.6
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -161,9 +196,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLab]
@@ -181,9 +222,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChem]
@@ -201,9 +248,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabViro]
@@ -221,9 +274,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabGene]
@@ -241,11 +300,17 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Slash: 0.95
-        Heat: 0.95
-        Caustic: 0.65
+        Slash: 0.84
+        Heat: 0.84
+        Caustic: 0.4
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCmo]
@@ -263,9 +328,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRnd]
@@ -283,9 +354,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRobo]
@@ -303,10 +380,17 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Leg
+    - Other
     modifiers:
       coefficients:
-        Caustic: 0.75
-        Radiation: 0.9
+        Caustic: 0.9 # Protects very good against radiation. but does very little caustic defence
+        Radiation: 0.6
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatRD]
@@ -317,7 +401,7 @@
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatPirate
   name: pirate garb
-  description: Yarr.
+  description: Me hearties! There's an intruder aboard the ship's bow! Yaharr!
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/pirate.rsi
@@ -368,11 +452,17 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.65
-        Piercing: 0.85
+        Blunt: 0.6
+        Slash: 0.47
+        Piercing: 0.6
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -418,6 +508,12 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -438,9 +534,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorResearcher]
@@ -458,9 +560,15 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Caustic: 0.75
+        Caustic: 0.65
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
@@ -478,6 +586,12 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
   - type: Armor #Backmen-armorstun
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
