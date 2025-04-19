@@ -934,8 +934,8 @@
     Medicine:
       effects:
       - !type:SuppressPain
-        amount: 2
-        time: 14
+        amount: 1.2
+        time: 4
       - !type:HealthChange
         damage:
           groups:

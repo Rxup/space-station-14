@@ -99,6 +99,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.17
+      BoneDamage: 0.17
+      VeinsDamage: 0
+      NerveDamage: 0.24
     coverage:
     - Chest
     - Groin
@@ -182,6 +188,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -222,6 +234,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.36
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Groin
     - Chest
@@ -266,6 +284,12 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.36
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -305,6 +329,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -342,6 +372,12 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -382,6 +418,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.36
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -393,8 +435,8 @@
       coefficients:
         Blunt: 0.3
         Slash: 0.3
-        Piercing: 0.3
-        ArmorPiercing: 0.4
+        Piercing: 0.4
+        ArmorPiercing: 0.5
         Heat: 0.5
         Caustic: 0.7
         Stun: 0.5
@@ -422,6 +464,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -464,6 +512,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.22
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 0.22
     coverage:
     - Chest
     - Groin
@@ -504,6 +558,12 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 1
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -540,6 +600,12 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.22
+      OrganDamage: 1
+      BoneDamage: 0.22
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -595,6 +661,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 1 # haha fuck you!
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -677,6 +749,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -746,6 +824,12 @@
   - type: FireProtection
     reduction: 0.8
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -788,6 +872,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -843,14 +933,14 @@
       NerveDamage: 1
     modifiers:
       coefficients:
-        Blunt: 0.1
-        Slash: 0.1
+        Blunt: 0.2
+        Slash: 0.2
         Piercing: 0.2
         ArmorPiercing: 0.35
         Heat: 0.2
         Radiation: 0.1
         Caustic: 0.1
-        Stun: 0.01 # stronk
+        Stun: 0 # stronk
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.65
@@ -1129,6 +1219,12 @@
   - type: FireProtection
     reduction: 0.8
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 1
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -1144,7 +1240,7 @@
         Heat: 0.05
         Radiation: 0.05
         Caustic: 0.05
-        Stun: 0.01 # reasons
+        Stun: 0 # reasons
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1174,6 +1270,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin

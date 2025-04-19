@@ -11,8 +11,8 @@
     - Head
     traumaDeductions:
       Dismemberment: 0.2
-      OrganDamage: 0.07
-      BoneDamage: 0.07
+      OrganDamage: 0.14
+      BoneDamage: 0.14
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
@@ -110,6 +110,12 @@
   - type: Armor
     coverage: # backmen: armour coverage
     - Head
+    traumaDeductions:
+      Dismemberment: 0.21
+      OrganDamage: 0.21
+      BoneDamage: 0.21
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -133,6 +139,12 @@
   - type: Armor
     coverage: # backmen: armour coverage
     - Head
+    traumaDeductions:
+      Dismemberment: 0.5 # Keeps your head in place
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Heat: 0.87
@@ -413,7 +425,7 @@
     traumaDeductions:
       Dismemberment: 0.34
       OrganDamage: 0.34
-      BoneDamage: 0.17
+      BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
@@ -421,7 +433,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Heat: 0.6
+        Heat: 0.5
 
 #Bone Helmet
 - type: entity

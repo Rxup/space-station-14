@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Tag;
@@ -30,6 +31,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<DoAfterComponent, DamageChangedEvent>(OnDamage);
+        SubscribeLocalEvent<DoAfterComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundDamage); // backmen edit
         SubscribeLocalEvent<DoAfterComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
         SubscribeLocalEvent<DoAfterComponent, ComponentHandleState>(OnDoAfterHandleState);
@@ -72,6 +74,33 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (dirty)
             Dirty(uid, component);
     }
+
+    // backmen edit start
+    /// <summary>
+    /// Cancels DoAfter if it breaks on damage (wound) and it meets the threshold
+    /// </summary>
+    private void OnWoundDamage(EntityUid uid, DoAfterComponent component, WoundSeverityPointChangedOnBodyEvent args)
+    {
+        // If we're applying state then let the server state handle the do_after prediction.
+        // This is to avoid scenarios where a do_after is erroneously cancelled on the final tick.
+        var damageDelta = args.NewSeverity - args.OldSeverity;
+        if (damageDelta < 0 || GameTiming.ApplyingState)
+            return;
+
+        var dirty = false;
+        foreach (var doAfter in component.DoAfters.Values)
+        {
+            if (doAfter.Args.BreakOnDamage && damageDelta >= doAfter.Args.DamageThreshold)
+            {
+                InternalCancel(doAfter, component);
+                dirty = true;
+            }
+        }
+
+        if (dirty)
+            Dirty(uid, component);
+    }
+    // backmen edit end
 
     private void RaiseDoAfterEvents(DoAfter doAfter, DoAfterComponent component)
     {

@@ -773,9 +773,13 @@ public partial class PainSystem
                     body,
                     AudioParams.Default.WithVolume(-12f));
 
-                // This shit is NOT helpful. It breaks the multipliers, and every 21 seconds the multiplier ends, you fall into fucking crit
-                // and stand up AGAIN due to adrenaline. Thus trapping you in an endless cycle of pain, not funny
-                // TryAddPainMultiplier(nerveSys, "PainShockAdrenaline", 0.5f, nerveSys, TimeSpan.FromSeconds(21f));
+                TryAddPainMultiplier(
+                    nerveSys,
+                    PainAdrenalineIdentifier,
+                    0.7f,
+                    PainDamageTypes.WoundPain,
+                    nerveSys,
+                    nerveSys.Comp.PainShockAdrenalineTime);
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)

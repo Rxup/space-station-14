@@ -9,54 +9,24 @@ using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
 public partial class WoundSystem
 {
-    private const double WoundableJobTime = 0.005;
-    private readonly JobQueue _woundableJobQueue = new(WoundableJobTime);
-    public sealed class IntegrityJob : Job<object>
+    private record struct IntegrityJob : IParallelRobustJob
     {
-        private readonly WoundSystem _self;
-        private readonly Entity<WoundableComponent> _ent;
-        public IntegrityJob(WoundSystem self, Entity<WoundableComponent> ent, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
+        public WoundSystem System { get; init; }
+        public Entity<WoundableComponent> Owner { get; init; }
+        public List<Entity<WoundComponent>> WoundsToHeal { get; init; }
+        public FixedPoint2 HealAmount { get; init; }
+        public void Execute(int index)
         {
-            _self = self;
-            _ent = ent;
+            System.ApplyWoundSeverity(WoundsToHeal[index],
+                System.ApplyHealingRateMultipliers(WoundsToHeal[index], Owner, HealAmount, Owner));
         }
-
-        public IntegrityJob(WoundSystem self, Entity<WoundableComponent> ent, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
-        {
-            _self = self;
-            _ent = ent;
-        }
-
-        protected override Task<object?> Process()
-        {
-            _self.ProcessHealing(_ent);
-            return Task.FromResult<object?>(null);
-        }
-    }
-
-    private void ProcessHealing(Entity<WoundableComponent> ent)
-    {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        if (ent.Comp.Wounds == null)
-            return;
-
-        var healableWounds = ent.Comp.Wounds.ContainedEntities.Count(wound => CanHealWound(wound));
-        var healAmount = -ent.Comp.HealAbility / healableWounds;
-
-        foreach (var wound in ent.Comp.Wounds.ContainedEntities.ToList().Where(wound => CanHealWound(wound)))
-        {
-            ApplyWoundSeverity(wound, ApplyHealingRateMultipliers(wound, ent.Owner, healAmount, ent.Comp));
-        }
-
-        // That's it! o(( >ω< ))o
     }
 
     #region Public API

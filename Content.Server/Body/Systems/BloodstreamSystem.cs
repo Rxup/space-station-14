@@ -198,9 +198,22 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                 }
             }
 
-            if (!_consciousness.SetConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain))
+            var missingBlood = bloodstream.BloodMaxVolume - bloodstream.BloodSolution.Value.Comp.Solution.Volume;
+
+            bloodstream.BleedAmount = (float) total / 4;
+            if (!_consciousness.SetConsciousnessModifier(
+                    uid,
+                    nerveSys.Value,
+                    -missingBlood / 4,
+                    identifier: "Bleeding",
+                    type: ConsciousnessModType.Pain))
             {
-                _consciousness.AddConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain);
+                _consciousness.AddConsciousnessModifier(
+                    uid,
+                    nerveSys.Value,
+                    -missingBlood / 4,
+                    identifier: "Bleeding",
+                    type: ConsciousnessModType.Pain);
             }
             // backmen edit end
         }
