@@ -30,6 +30,6 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
 
         if (!EntityQuery.HasComp(ent) && !_ghostQuery.HasComp(ent))
             return;
-        args.StatusIcons.Add(_prototype.Index<FactionIconPrototype>(AiEnemyStatus));
+        args.StatusIcons.Add(_prototype.Index<SecurityIconPrototype>(AiEnemyStatus));
     }
 }
