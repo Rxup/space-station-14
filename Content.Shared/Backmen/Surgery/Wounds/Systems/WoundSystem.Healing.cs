@@ -21,17 +21,12 @@ public partial class WoundSystem
         public WoundSystem System { get; init; }
         public Entity<WoundableComponent> Owner { get; init; }
         public List<Entity<WoundComponent>> WoundsToHeal { get; init; }
+        public FixedPoint2 HealAmount { get; init; }
         public void Execute(int index)
         {
-            System.ProcessHealing(WoundsToHeal[index], Owner, WoundsToHeal.Count);
+            System.ApplyWoundSeverity(WoundsToHeal[index],
+                System.ApplyHealingRateMultipliers(WoundsToHeal[index], Owner, HealAmount, Owner));
         }
-    }
-
-    private void ProcessHealing(Entity<WoundComponent> ent, Entity<WoundableComponent> owner, int woundsToHeal)
-    {
-        var healAmount = -owner.Comp.HealAbility / woundsToHeal;
-
-        ApplyWoundSeverity(ent, ApplyHealingRateMultipliers(ent, owner, healAmount, owner.Comp));
     }
 
     #region Public API

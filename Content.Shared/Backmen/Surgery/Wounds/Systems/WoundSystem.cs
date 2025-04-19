@@ -319,11 +319,16 @@ public sealed partial class WoundSystem : EntitySystem
             var woundsToHeal =
                 GetWoundableWounds(ent, woundable).Where(wound => CanHealWound(wound, wound)).ToList();
 
+            if (woundsToHeal.Count == 0)
+                continue;
+
+            var healAmount = -woundable.HealAbility / woundsToHeal.Count;
             _parallel.ProcessNow(new IntegrityJob
             {
                 System = this,
                 Owner = (ent, woundable),
                 WoundsToHeal = woundsToHeal,
+                HealAmount = healAmount,
             },
             woundsToHeal.Count);
         }
