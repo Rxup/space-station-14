@@ -35,6 +35,11 @@
   equipment:
     head: ClothingHeadHelmetEGov
 
+- type: loadout
+  id: ClothingHeadHelmetXenonauten
+  equipment:
+    head: ClothingHeadHelmetXenonauten
+
 #outerClothing
 - type: loadout
   id: ClothingOuterNavyVest

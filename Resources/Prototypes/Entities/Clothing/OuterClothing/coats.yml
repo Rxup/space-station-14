@@ -19,6 +19,19 @@
     sprite: Clothing/OuterClothing/Coats/detective.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: Armor
+    coverageHidden: false
+    coverage:
+    - Arm
+    - Leg
+    - Tail
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.50
+        Heat: 0.70
+        ArmorPiercing: 0.90
   - type: StorageFill
     contents:
     - id: SmokingPipeFilledTobacco
@@ -64,9 +77,10 @@
   id: ClothingOuterArmorHoS
   components:
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
+    coverageHidden: false
+    coverage:
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -86,6 +100,7 @@
   id: ClothingOuterArmorWarden
   components:
   - type: Armor
+    coverageHidden: false
     coverage: # backmen: armour coverage
     - Chest
     - Groin
@@ -125,10 +140,16 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
   - type: Armor #Backmen-armorstun
+    coverageHidden: false
+    coverage:
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
-        Slash: 0.95
-        Stun: 0.8
+        Blunt: 0.8
+        Slash: 0.8
+        Stun: 0.6
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -143,15 +164,17 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
+  - type: Armor #Backmen-armorstun
+    coverageHidden: false
+    coverage:
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
-        Slash: 0.85
-        Stun: 0.8 #Backmen-armorstun
+        Blunt: 0.8
+        Slash: 0.8
+        Stun: 0.6
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -176,6 +199,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -200,6 +225,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -224,6 +251,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -248,6 +277,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -272,6 +303,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -298,6 +331,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -322,6 +357,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -348,9 +385,7 @@
     - Groin
     - Tail
     - Arm
-    - Hand
     - Leg
-    - Foot
     - Other
     modifiers:
       coefficients:
@@ -420,6 +455,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -474,6 +511,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -498,6 +537,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -522,6 +563,8 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
+    - Arm
+    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -543,6 +586,12 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
   - type: Armor #Backmen-armorstun
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
