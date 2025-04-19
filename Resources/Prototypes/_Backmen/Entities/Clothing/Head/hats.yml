@@ -360,6 +360,14 @@
     sprite: Backmen/Clothing/Head/Hats/blueberet.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hats/blueberet.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
 
 - type: entity
   parent: ClothingHeadBase
@@ -371,6 +379,14 @@
     sprite: Backmen/Clothing/Head/Hats/bluecap.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hats/bluecap.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
 
 - type: entity
   parent: ClothingHeadBase
@@ -382,6 +398,14 @@
     sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
 
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband]
