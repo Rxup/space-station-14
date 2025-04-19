@@ -15,6 +15,8 @@ public partial class PainSystem
         SubscribeLocalEvent<PainInflicterComponent, WoundSeverityPointChangedEvent>(OnPainChanged);
     }
 
+    private const string PainAdrenalineIdentifier = "PainAdrenaline";
+
     private const string PainModifierIdentifier = "WoundPain";
     private const string PainTraumaticModifierIdentifier = "TraumaticPain";
 
@@ -22,9 +24,6 @@ public partial class PainSystem
 
     private void OnPainChanged(Entity<PainInflicterComponent> woundEnt, ref WoundSeverityPointChangedEvent args)
     {
-        if (_timing.ApplyingState)
-            return;
-
         if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
             return;
 

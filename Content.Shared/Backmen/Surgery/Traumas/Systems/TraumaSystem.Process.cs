@@ -487,6 +487,8 @@ public partial class TraumaSystem
         // organ damage is like, very deadly, but not yet
         // so like, like, yeah, we don't want a disabler to induce some EVIL ASS organ damage with a 0,000001% chance and ruin your round
         // Very unlikely to happen if your woundables are in a good condition
+        if(target.Comp.WoundableIntegrity <= 0)
+            return false;
         var chance =
             FixedPoint2.Clamp(
                 target.Comp.IntegrityCap / target.Comp.WoundableIntegrity / totalIntegrity
@@ -668,7 +670,7 @@ public partial class TraumaSystem
                     break;
             }
 
-            _sawmill.Debug($"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: {trauma}.");
+            Log.Debug($"A new trauma (Raw Severity: {severity}) was created on target: {target}. Type: {trauma}.");
         }
 
         // TODO: veins, would have been very lovely to integrate this into vascular system

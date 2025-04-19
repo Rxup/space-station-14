@@ -204,14 +204,20 @@ namespace Content.Client.HealthAnalyzer.UI
                 && body.RootContainer.ContainedEntity.HasValue)
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
+                var damageTypes = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
                 {
                     if (wound.Comp.DamageGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundIntegrityDamage))
+                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundSeverityPoint))
                     {
-                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundIntegrityDamage;
+                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundSeverityPoint;
+                    }
+
+                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
+                    {
+                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
                     }
                 }
 
@@ -219,9 +225,11 @@ namespace Content.Client.HealthAnalyzer.UI
                     damageGroups.OrderByDescending(damage => damage.Value)
                         .ToDictionary(x => x.Key, x => x.Value);
 
-                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageGroups;
+                var damageSortedTypes =
+                    damageTypes.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
 
-                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+                DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
 
                 DamageLabel.Text = damageGroups.Values.Sum().ToString();
             }
@@ -231,19 +239,25 @@ namespace Content.Client.HealthAnalyzer.UI
                 var wounds = _wound.GetWoundableWounds(part.Value, woundable).ToList();
                 DamageLabel.Text =
                     wounds
-                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage)
+                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint)
                         .ToString();
 
                 var damageGroups = new Dictionary<string, FixedPoint2>();
+                var damageTypes = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in wounds)
                 {
                     var woundGroup = wound.Comp.DamageGroup;
                     if (woundGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundIntegrityDamage))
+                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundSeverityPoint))
                     {
-                        damageGroups[woundGroup.ID] += wound.Comp.WoundIntegrityDamage;
+                        damageGroups[woundGroup.ID] += wound.Comp.WoundSeverityPoint;
+                    }
+
+                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
+                    {
+                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
                     }
                 }
 
@@ -251,9 +265,11 @@ namespace Content.Client.HealthAnalyzer.UI
                     damageGroups.OrderByDescending(damage => damage.Value)
                         .ToDictionary(x => x.Key, x => x.Value);
 
-                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageGroups;
+                var damageSortedTypes =
+                    damageTypes.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => x.Value);
 
-                DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+                DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
             }
 
             // Alerts

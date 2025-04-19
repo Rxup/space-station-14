@@ -171,6 +171,12 @@
   - type: EyeProtection
     protectionTime: 5
   - type: Armor # provide more coverage than default ones. you know, it's a sec one
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.13
+      BoneDamage: 0.13
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -226,6 +232,12 @@
     sprite: Clothing/Eyes/Glasses/mercglasses.rsi
   - type: FlashImmunity
   - type: Armor # the same as SEC
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.13
+      BoneDamage: 0.13
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -251,6 +263,12 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.13
+      BoneDamage: 0.13
+      VeinsDamage: 0
+      NerveDamage: 0
     # backmen: armour coverage
     coverage: # defends you well only against heat lol
     - Head
@@ -290,6 +308,12 @@
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.07
+      BoneDamage: 0.07
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
