@@ -13,16 +13,16 @@
     coverage: # backmen: armour coverage
     - Chest
     - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
+#    - Arm
+#    - Hand
+#    - Leg
+#    - Foot
     modifiers:
       coefficients:
         Blunt: 0.5 #ballistic plates = better protection
         Slash: 0.5
-        Piercing: 0.3
-        ArmorPiercing: 0.6
+        Piercing: 0.1
+        ArmorPiercing: 0.4 #Plates
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9

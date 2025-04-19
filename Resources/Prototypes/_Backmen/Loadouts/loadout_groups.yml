@@ -46,6 +46,7 @@
   - ClothingHeadHatBlueShieldCap
   - ClothingHeadHatUshankaBlueShield
   - ClothingHeadHelmetEGov
+  - ClothingHeadHelmetXenonauten
 
 - type: loadoutGroup
   id: ClothingOuterBlueShield
@@ -198,7 +199,7 @@
   name: loadout-group-virologist-outerclothing
   loadouts:
   - VirologistLabCoat
-  
+
 - type: loadoutGroup
   id: VirologistBackpack
   name: loadout-group-virologist-backpack
