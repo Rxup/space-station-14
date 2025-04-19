@@ -20,7 +20,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective.rsi
   - type: Armor
-    coverageHidden: false
+    coverageHidden: true
     coverage:
     - Arm
     - Leg
@@ -77,7 +77,7 @@
   id: ClothingOuterArmorHoS
   components:
   - type: Armor
-    coverageHidden: false
+    coverageHidden: true
     coverage:
     - Arm
     - Leg
@@ -100,7 +100,7 @@
   id: ClothingOuterArmorWarden
   components:
   - type: Armor
-    coverageHidden: false
+    coverageHidden: true
     coverage: # backmen: armour coverage
     - Chest
     - Groin
@@ -140,7 +140,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
   - type: Armor #Backmen-armorstun
-    coverageHidden: false
+    coverageHidden: true
     coverage:
     - Arm
     - Leg
@@ -165,7 +165,7 @@
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: Armor #Backmen-armorstun
-    coverageHidden: false
+    coverageHidden: true
     coverage:
     - Arm
     - Leg
