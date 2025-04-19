@@ -1077,7 +1077,8 @@ public partial class WoundSystem
         }
         component.WoundSeverity = nearestSeverity;
 
-        Dirty(wound, component);
+        if (!TerminatingOrDeleted(wound))
+            Dirty(wound, component);
     }
 
     private void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
