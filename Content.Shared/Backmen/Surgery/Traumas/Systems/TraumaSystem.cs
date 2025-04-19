@@ -51,8 +51,6 @@ public sealed partial class TraumaSystem : EntitySystem
     {
         base.Initialize();
 
-        _sawmill = Logger.GetSawmill("traumas");
-
         InitProcess();
 
         InitBones();

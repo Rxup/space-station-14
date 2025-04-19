@@ -20,24 +20,18 @@ public partial class WoundSystem
     {
         public WoundSystem System { get; init; }
         public Entity<WoundableComponent> Owner { get; init; }
+        public List<Entity<WoundComponent>> WoundsToHeal { get; init; }
         public void Execute(int index)
         {
-            System.ProcessHealing(Owner, index);
+            System.ProcessHealing(WoundsToHeal[index], Owner, WoundsToHeal.Count);
         }
     }
 
-    private void ProcessHealing(Entity<WoundableComponent> ent, int index)
+    private void ProcessHealing(Entity<WoundComponent> ent, Entity<WoundableComponent> owner, int woundsToHeal)
     {
-        if (ent.Comp.Wounds == null)
-            return;
+        var healAmount = -owner.Comp.HealAbility / woundsToHeal;
 
-        var wounds = GetWoundableWounds(ent, ent).ToList();
-
-        var healableWounds = wounds.Count(wound => CanHealWound(wound, wound));
-        var healAmount = -ent.Comp.HealAbility / healableWounds;
-
-        var woundToHeal = wounds[index];
-        ApplyWoundSeverity(woundToHeal, ApplyHealingRateMultipliers(woundToHeal, ent.Owner, healAmount, ent.Comp));
+        ApplyWoundSeverity(ent, ApplyHealingRateMultipliers(ent, owner, healAmount, owner.Comp));
     }
 
     #region Public API

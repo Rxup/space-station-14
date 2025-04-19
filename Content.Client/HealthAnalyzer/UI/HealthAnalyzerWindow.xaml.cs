@@ -210,14 +210,14 @@ namespace Content.Client.HealthAnalyzer.UI
                     if (wound.Comp.DamageGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundIntegrityDamage))
+                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundSeverityPoint))
                     {
-                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundIntegrityDamage;
+                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundSeverityPoint;
                     }
 
-                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundIntegrityDamage))
+                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
                     {
-                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundIntegrityDamage;
+                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
                     }
                 }
 
@@ -239,7 +239,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 var wounds = _wound.GetWoundableWounds(part.Value, woundable).ToList();
                 DamageLabel.Text =
                     wounds
-                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage)
+                        .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint)
                         .ToString();
 
                 var damageGroups = new Dictionary<string, FixedPoint2>();
@@ -250,14 +250,14 @@ namespace Content.Client.HealthAnalyzer.UI
                     if (woundGroup == null)
                         continue;
 
-                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundIntegrityDamage))
+                    if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundSeverityPoint))
                     {
-                        damageGroups[woundGroup.ID] += wound.Comp.WoundIntegrityDamage;
+                        damageGroups[woundGroup.ID] += wound.Comp.WoundSeverityPoint;
                     }
 
-                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundIntegrityDamage))
+                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
                     {
-                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundIntegrityDamage;
+                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
                     }
                 }
 

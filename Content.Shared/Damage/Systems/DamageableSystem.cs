@@ -297,7 +297,7 @@ namespace Content.Shared.Damage
                         if (!_wounds.TryInduceWounds(damageWoundable.Value, woundsToInduce, out var woundsInduced, damageWoundable.Value))
                             return null;
 
-                        // Sadly I have to convert wounds back to damage. so I can return it back into the event
+                        // Sadly we have to convert wounds back to damage. so we can return it back into the event
                         var specifierToReturn = new DamageSpecifier();
                         foreach (var wound in woundsInduced)
                         {

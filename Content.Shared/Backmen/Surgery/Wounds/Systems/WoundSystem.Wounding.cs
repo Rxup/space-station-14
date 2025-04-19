@@ -948,7 +948,7 @@ public partial class WoundSystem
         var woundMeta = MetaData(wound);
         var targetMeta = MetaData(target);
 
-        _sawmill.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
+        Log.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
 
         Dirty(wound, woundComponent);
         Dirty(target, woundableComponent);
@@ -964,7 +964,7 @@ public partial class WoundSystem
         if (!Resolve(woundEntity, ref wound, false) || !TryComp(wound.HoldingWoundable, out WoundableComponent? woundable))
             return false;
 
-        _sawmill.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
+        Log.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
 
         UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
         CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);
