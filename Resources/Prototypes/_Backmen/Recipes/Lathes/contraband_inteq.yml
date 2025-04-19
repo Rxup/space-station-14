@@ -1,0 +1,51 @@
+- type: latheRecipe
+  id: CaseInteQ
+  result: CaseInteQ
+  completetime: 2
+  materials:
+    Steel: 450
+    Plastic: 250
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxLight57x28InteQ
+  result: MagazineBoxLight57x28InteQ
+  materials:
+    Steel: 350
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxLight762x39InteQ
+  result: MagazineBoxLight762x39InteQ
+  materials:
+    Steel: 1100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxShotgunInteQ
+  result: MagazineBoxShotgunInteQ
+  materials:
+    Steel: 650
+
+- type: latheRecipe
+  id: ClothingEyesGogglessInteQ
+  result: ClothingEyesGogglessInteQ
+  completetime: 2
+  materials:
+    Steel: 300
+    Glass: 200
+
+- type: latheRecipe
+  id: PlasmaSword
+  result: PlasmaSword
+  completetime: 10
+  materials:
+    Steel: 2500
+    Plasteel: 3000
+    Plastic: 3500
+    Plasma: 3300
+
+- type: latheRecipe
+  parent: PlasmaSword
+  id: PlasmaSwordAlt
+  result: PlasmaSwordAlt
