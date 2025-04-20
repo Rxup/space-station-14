@@ -95,7 +95,7 @@ public sealed class TargetingSystem : SharedTargetingSystem
     {
         if (session == null
             || session.AttachedEntity is not { } uid
-            || !TryComp<TargetingComponent>(uid, out var targeting))
+            || !HasComp<TargetingComponent>(uid))
             return;
 
         TargetChange?.Invoke(target);
