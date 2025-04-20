@@ -21,7 +21,7 @@ public partial class WoundSystem
     [PublicAPI]
     public bool TryHaltAllBleeding(EntityUid woundable, WoundableComponent? component = null, bool force = false)
     {
-        if (!Resolve(woundable, ref component) || component.Wounds == null || component.Wounds.Count == 0)
+        if (!_woundableQuery.Resolve(woundable, ref component) || component.Wounds == null || component.Wounds.Count == 0)
             return true;
 
         foreach (var wound in GetWoundableWounds(woundable, component))
@@ -102,7 +102,7 @@ public partial class WoundSystem
         woundable = null;
         foreach (var bodyPart in _body.GetBodyChildren(body))
         {
-            if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundableComp))
+            if (!_woundableQuery.TryComp(bodyPart.Id, out var woundableComp))
                 continue;
 
             var woundableDamage = GetWoundableSeverityPoint(bodyPart.Id, woundableComp, damageGroup, healable);
@@ -189,7 +189,7 @@ public partial class WoundSystem
     [PublicAPI]
     public bool CanHealWound(EntityUid wound, WoundComponent? comp = null)
     {
-        if (!Resolve(wound, ref comp))
+        if (!_woundQuery.Resolve(wound, ref comp))
             return false;
 
         if (!comp.CanBeHealed)

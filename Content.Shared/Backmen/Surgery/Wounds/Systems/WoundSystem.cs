@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
@@ -19,8 +18,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Threading;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
@@ -29,17 +26,17 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] protected readonly IRobustRandom Random = default!;
 
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] protected readonly IConfigurationManager Cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
-    [Dependency] protected readonly SharedContainerSystem _container = default!;
-    [Dependency] protected readonly SharedTransformSystem _transform = default!;
+    [Dependency] protected readonly SharedContainerSystem Containers = default!;
+    [Dependency] protected readonly SharedTransformSystem Xform = default!;
+
     [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -50,6 +47,15 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
 
+    protected readonly Dictionary<WoundSeverity, FixedPoint2> WoundThresholds = new()
+    {
+        { WoundSeverity.Healed, 0 },
+        { WoundSeverity.Minor, 1 },
+        { WoundSeverity.Moderate, 25 },
+        { WoundSeverity.Severe, 50 },
+        { WoundSeverity.Critical, 80 },
+        { WoundSeverity.Loss, 100 },
+    };
 
     public override void Initialize()
     {
@@ -60,7 +66,6 @@ public abstract partial class WoundSystem : EntitySystem
 
         SubscribeLocalEvent<WoundableComponent, ComponentGetState>(OnWoundableComponentGet);
         SubscribeLocalEvent<WoundableComponent, ComponentHandleState>(OnWoundableComponentHandleState);
-
 
         InitWounding();
     }
@@ -304,6 +309,71 @@ public abstract partial class WoundSystem : EntitySystem
         component.HealingRateAccumulated = state.HealingRateAccumulated;
     }
 
+    protected void CheckSeverityThresholds(EntityUid wound, WoundComponent? component = null)
+    {
+        if (!_woundQuery.Resolve(wound, ref component, false))
+            return;
+
+        var nearestSeverity = component.WoundSeverity;
+        foreach (var (severity, value) in WoundThresholds.OrderByDescending(kv => kv.Value))
+        {
+            if (component.WoundSeverityPoint < value)
+                continue;
+
+            if (severity == WoundSeverity.Healed)
+                continue;
+
+            nearestSeverity = severity;
+            break;
+        }
+
+        if (nearestSeverity != component.WoundSeverity)
+        {
+            var ev = new WoundSeverityChangedEvent(component.WoundSeverity, nearestSeverity);
+            RaiseLocalEvent(wound, ref ev);
+        }
+        component.WoundSeverity = nearestSeverity;
+
+        if (!TerminatingOrDeleted(wound))
+            Dirty(wound, component);
+    }
+
+    protected void RaiseWoundEvents(EntityUid uid,
+        EntityUid woundableEnt,
+        WoundComponent wound,
+        FixedPoint2 oldSeverity,
+        WoundableComponent? woundableComp = null)
+    {
+        if (!_woundableQuery.Resolve(woundableEnt, ref woundableComp, false) || woundableComp.Wounds == null)
+            return;
+
+        if (!woundableComp.Wounds.Contains(uid))
+            return;
+
+        var ev = new WoundSeverityPointChangedEvent(wound, oldSeverity, wound.WoundSeverityPoint);
+        RaiseLocalEvent(uid, ref ev);
+
+        var bodyPart = Comp<BodyPartComponent>(wound.HoldingWoundable);
+        if (!bodyPart.Body.HasValue)
+            return;
+
+        var bodySeverity = FixedPoint2.Zero;
+
+        var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+        if (rootPart.HasValue)
+        {
+            bodySeverity =
+                GetAllWoundableChildren(rootPart.Value)
+                    .Aggregate(bodySeverity,
+                        (current, woundable) => current + GetWoundableSeverityPoint(woundable, woundable));
+        }
+
+        var ev1 = new WoundSeverityPointChangedOnBodyEvent(
+            (uid, wound),
+            bodySeverity - (wound.WoundSeverityPoint - oldSeverity),
+            bodySeverity);
+        RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+    }
 
     protected void UpdateWoundableIntegrity(EntityUid uid, WoundableComponent? component = null)
     {
