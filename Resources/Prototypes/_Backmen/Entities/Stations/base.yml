@@ -1,0 +1,16 @@
+- type: entity
+  id: BkmCCBaseStationShuttles
+  abstract: true
+  components:
+    - type: StationCargoShuttle
+      path: /Maps/Shuttles/cargo.yml
+
+- type: entity
+  id: BkmCCBaseStationCargo
+  abstract: true
+  components:
+    - type: StationBankAccount
+      balance: 75000
+    - type: StationCargoOrderDatabase
+    - type: StationCargoBountyDatabase
+    - type: TradeStation

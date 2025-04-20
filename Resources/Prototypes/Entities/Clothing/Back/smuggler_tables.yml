@@ -72,7 +72,7 @@
     - id: Joint
       amount: !type:RangeNumberSelector
         range: 1, 5
-    - id: Blunt
+    - id: BluntCigar
       amount: !type:RangeNumberSelector
         range: 1, 5
     - id: SmokingPipeFilledCannabis

@@ -11,19 +11,36 @@
     containers:
       bodypart: !type:Container
         ents: []
+  # start-backmen: surgery
+  - type: Woundable
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
+  - type: Nerve
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/Medical/Surgery/organ2.ogg
+  # end-backmen: surgery
 
 - type: entity
   id: ThoraxSpider
   name: "spider thorax" #for ArachneClassic, actual spiders should get a cephalothorax that combines with head.
-  parent: [PartSpider, BaseTorso]
+  parent: [BaseGroin, PartSpider]
   components:
   - type: Sprite
     netsync: false
     sprite: Backmen/Mobs/Species/Moth/parts.rsi # placeholder sprite
-    state: "torso_m"
+    state: "chest_m"
   - type: Icon
     sprite: Backmen/Mobs/Species/Moth/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
   - type: BodyPart #"Other" type
     slotId: thorax
     containerName: thorax_slot
@@ -31,7 +48,7 @@
 - type: entity
   id: RightLegSpider
   name: "right spider leg"
-  parent: [PartSpider, BaseRightLeg]
+  parent: [BaseRightLeg, PartSpider]
   components:
   - type: Sprite
     netsync: false
@@ -50,7 +67,7 @@
 - type: entity
   id: LeftLegSpider
   name: "left spider leg"
-  parent: [PartSpider, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartSpider]
   components:
   - type: Sprite
     netsync: false

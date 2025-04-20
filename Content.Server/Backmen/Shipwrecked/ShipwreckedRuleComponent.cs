@@ -163,7 +163,6 @@ public sealed partial class ShipwreckedRuleComponent : Component
     [ViewVariables] public bool AllObjectivesComplete;
 
 #endregion
-
 }
 
 public enum ShipwreckedEventId : int

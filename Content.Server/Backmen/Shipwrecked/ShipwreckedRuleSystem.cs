@@ -102,6 +102,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -153,6 +154,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly SharedSalvageSystem _salvageSystem = default!;
     [Dependency] private readonly SharedRoofSystem _roofSystem = default!;
+    [Dependency] private readonly DoorSystem _door = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+
 
     public override void Initialize()
     {
@@ -424,8 +429,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         //EnsureComp<LightCycleComponent>(planetMapUid);
 
-        EnsureComp<SunShadowComponent>(planetMapUid);
-        EnsureComp<SunShadowCycleComponent>(planetMapUid);
+        //EnsureComp<SunShadowComponent>(planetMapUid);
+        //EnsureComp<SunShadowCycleComponent>(planetMapUid);
 
         // Gravity
         if (destination.Gravity)
@@ -463,12 +468,20 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             Dirty(planetMapUid, lighting);
         }
 
+        foreach (var entry in destination.Components.Values)
+        {
+            var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
+            AddComp(planetMapUid, comp, true);
+        }
+
+        EnsureComp<SunShadowCycleComponent>(planetMapUid);
+
         // planetName
         var planetName = _salvageSystem.GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>(PlanetNames), seed);
         _metadata.SetEntityName(planetMapUid, planetName);
 
         // Позиция карта (точка начала)
-        var mapPos = new MapCoordinates(new Vector2(0f, 0f), planetMapId);
+        var mapPos = new MapCoordinates(Vector2.Zero, planetMapId);
 
         var restriction = AddComp<RestrictedRangeComponent>(planetMapUid);
         restriction.Origin = mapPos.Position;
@@ -491,8 +504,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         EntityManager.System<SharedPhysicsSystem>().WakeBody(boundaryUid, body: boundaryPhysics);
         AddComp<BoundaryComponent>(boundaryUid);
 
-        _mapManager.DoMapInitialize(planetMapId);
-        _mapManager.SetMapPaused(planetMapId, true);
+        _mapSystem.InitializeMap(planetMapId);
+        _mapSystem.SetPaused(planetMapId, true);
 
         component.PlanetMapId = planetMapId;
         component.PlanetMap = planetMapUid;
@@ -570,26 +583,31 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             var point = direction * distance;
 
             var dungeonProto = structuresToBuild.Pop();
+            List<Dungeon> dungeon = new();
             try
             {
-                var dungeon = await _dungeonSystem.GenerateDungeonAsync(dungeonProto,
+                dungeon = await _dungeonSystem.GenerateDungeonAsync(dungeonProto,
                     component.PlanetMap.Value,
                     component.PlanetGrid,
                     point,
                     _random.Next());
 
-                component.Structures.AddRange(dungeon);
-                foreach (var dungeon1 in dungeon)
-                {
-                    foreach (var tile in dungeon1.AllTiles)
-                    {
-                        _roofSystem.SetRoof(gridRoof, tile, true);
-                    }
-                }
             }
             catch (Exception e)
             {
                 Log.Error(e.ToString());
+            }
+
+            if(dungeon.Count == 0)
+                continue;
+
+            component.Structures.AddRange(dungeon);
+            foreach (var dungeon1 in dungeon)
+            {
+                foreach (var tile in dungeon1.AllTiles)
+                {
+                    _roofSystem.SetRoof(gridRoof, tile, true);
+                }
             }
         }
     }
@@ -686,7 +704,38 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         EnsureComp<PreventPilotComponent>(shuttleGrid.Value);
         component.Shuttle = shuttleGrid;
 
+        BoltAirlock(component.Shuttle.Value);
+
         return true;
+    }
+
+    private void BoltAirlock(EntityUid grid)
+    {
+        var airlock = new HashSet<Entity<DoorBoltComponent>>();
+        _entityLookupSystem.GetGridEntities(grid, airlock);
+
+        foreach (var entity in airlock)
+        {
+            if (!HasComp<AirlockComponent>(entity) || !HasComp<DockingComponent>(entity))
+            {
+                continue;
+            }
+            _door.SetBoltsDown(entity, true);
+        }
+    }
+    private void UnBoltAirlock(EntityUid grid)
+    {
+        var airlock = new HashSet<Entity<DoorBoltComponent>>();
+        _entityLookupSystem.GetGridEntities(grid, airlock);
+
+        foreach (var entity in airlock)
+        {
+            if (!HasComp<AirlockComponent>(entity) || !HasComp<DockingComponent>(entity))
+            {
+                continue;
+            }
+            _door.SetBoltsDown(entity, false);
+        }
     }
 
     private bool SpawnHecate(Entity<ShipwreckedRuleComponent> ent)
@@ -1207,6 +1256,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             _roofSystem.SetRoof(entRoof, shuttleTile.GridIndices, true);
         }
 
+        UnBoltAirlock(component.Shuttle.Value);
+
         // Slam the front window.
         var aabb = grid.LocalAABB;
         var topY = grid.LocalAABB.Top + 1;
@@ -1243,20 +1294,17 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         // Fry the console.
-        var consoleQuery = EntityQueryEnumerator<TransformComponent, DamageableComponent, ShuttleConsoleComponent>();
-        while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out var damageableComponent, out _))
+        var consoleQuery = new HashSet<Entity<ShuttleConsoleComponent>>();
+        _entityLookupSystem.GetGridEntities<ShuttleConsoleComponent>(component.Shuttle.Value, consoleQuery);
+        foreach (var ent in consoleQuery) // because we're technically modifying the enumeration by destroying the console.
         {
-            if (consoleXform.GridUid != component.Shuttle)
+            if(!TryComp<DamageableComponent>(ent, out var damageableComponent))
                 continue;
 
-            var limit = _destructibleSystem.DestroyedAt(consoleUid);
-
+            var limit = _destructibleSystem.DestroyedAt(ent);
             var smash = new DamageSpecifier();
             smash.DamageDict.Add("Structural", limit);
-            _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true, damageable: damageableComponent);
-
-            // Break, because we're technically modifying the enumeration by destroying the console.
-            break;
+            _damageableSystem.TryChangeDamage(ent, smash, ignoreResistances: true, damageable: damageableComponent);
         }
 
         var crashSound = new SoundPathSpecifier("/Audio/Nyanotrasen/Effects/crash_impact_metal.ogg");
@@ -1579,7 +1627,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     {
         if (component.Shuttle == null || !component.Shuttle.Value.IsValid())
         {
-            if (!AttachMap(EntityUid.Invalid, component, true))
+            var station = _stationSystem.GetStationInMap(GameTicker.DefaultMap);
+            DebugTools.Assert(station != null);
+            var grid = _stationSystem.GetLargestGrid(Comp<StationDataComponent>(station.Value));
+            if (!AttachMap(grid ?? EntityUid.Invalid, component, true))
             {
                 _gameTicker.EndGameRule(uid, gameRule);
                 throw new ArgumentException("Неправильная карта! Отмена!");

@@ -23,10 +23,18 @@
         damage: # If you get robust too much, you can go to hell!
           types:
             Poison: 4
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentThreshold
+          min: 16
+        amount: 0.4 # haha
       - !type:GenericStatusEffect
           key: Stutter
           component: StutteringAccent
       - !type:Jitter
+      - !type:SuppressPain
+        amount: 1.2
+        time: 60 # it accumulated 1.2*quantity and then exists for 60 seconds.
       - !type:GenericStatusEffect
         key: Stun
         time: 5
@@ -53,7 +61,7 @@
           factor: 1.0
         - !type:SatiateThirst
           factor: 1.0
-        - !type:ModifyBleedAmount # Tranexamic acid in recipe, so it's also stops bleeding, but not that efficient
+        - !type:ModifyBleedAmount # Tranexamic acid in recipe, so it also stops bleeding, but not that efficient
           amount: -1
         - !type:HealthChange
           damage:

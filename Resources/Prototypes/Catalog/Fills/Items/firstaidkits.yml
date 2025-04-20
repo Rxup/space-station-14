@@ -35,6 +35,7 @@
       - id: Gauze
       - id: PillCanisterIron
       - id: PillCanisterCopper
+      - id: Tourniquet
 
 - type: entity
   id: MedkitToxinFilled
@@ -83,6 +84,8 @@
     contents:
       - id: MedicatedSuture
       - id: RegenerativeMesh
+      - id: Tourniquet
+        amount: 2
       - id: Bloodpack
         amount: 2
 

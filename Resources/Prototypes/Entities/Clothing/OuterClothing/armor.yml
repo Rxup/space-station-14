@@ -13,14 +13,23 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi
-  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+  - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
+    coverage: # backmen: armour coverage
+    - Chest
+#    - Groin #Standart plate armor dont cover groin
+    traumaDeductions:
+      Dismemberment: 0.21
+      OrganDamage: 0.21
+      BoneDamage: 0.21
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.60 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
-        Heat: 0.80
-        ArmorPiercing: 0.90
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
+        Heat: 0.4
+        ArmorPiercing: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: Tag
@@ -57,12 +66,26 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/riot.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0.42
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.4
         Slash: 0.4
         Piercing: 0.7
-        Heat: 0.9
+        Heat: 0.7
         Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -79,15 +102,25 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+  #  - Tail #No
+    traumaDeductions:
+      Dismemberment: 0.14
+      OrganDamage: 0.34
+      BoneDamage: -0.12 #whoops
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.25
-        ArmorPiercing: 0.70
-        Heat: 0.9
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.2
+        ArmorPiercing: 0.4
+        Heat: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.80
+    damageCoefficient: 0.60
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -100,12 +133,17 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+   # - Tail #No
+    # Does not give dismemberment deduction because of reflection. yeah do with it somehow
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.8
-        Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.12 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
   - type: Reflect
     reflectProb: 1
     reflects:
@@ -127,11 +165,25 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    #- Arm  #this dont cover a arms
+    - Hand
+    - Leg
+    #- Foot #this dont cover a foots
+    - Tail
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0.21
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.35
         Slash: 0.35
-        Piercing: 0.25
+        Piercing: 0.20
         ArmorPiercing: 0.50
         Heat: 0.35
         Caustic: 0.5
@@ -199,6 +251,21 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
+    # Remember the A-888
+    traumaDeductions:
+      Dismemberment: 0.27
+      OrganDamage: 0.27
+      BoneDamage: 0.27
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -219,11 +286,25 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: -0.12 # It's heavy, figure.
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.2
+        Blunt: 0.2 # very swag armor
         Slash: 0.2
-        Piercing: 0.2
+        Piercing: 0.1
         ArmorPiercing: 0.6
         Heat: 0.5
         Radiation: 0
@@ -290,12 +371,22 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Tail
+    traumaDeductions:
+      Dismemberment: 0.27
+      OrganDamage: 0.42
+      BoneDamage: -0.12 # It isn't effective at stopping kinetic power for it is not a ballistic vest
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        ArmorPiercing: 0.9
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        ArmorPiercing: 0.6
         Heat: 0.5
         Caustic: 0.9
   - type: ClothingSpeedModifier
@@ -317,6 +408,22 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
+    - Other
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -351,6 +458,20 @@
     - type: Clothing
       sprite: Clothing/OuterClothing/Armor/flesh_armor.rsi
     - type: Armor
+      coverage: # backmen: armour coverage
+      - Chest
+      - Groin
+      - Arm
+      - Hand
+      - Leg
+      - Foot
+      - Tail
+      traumaDeductions:
+        Dismemberment: 1
+        OrganDamage: 1
+        BoneDamage: 1
+        VeinsDamage: 1
+        NerveDamage: 1
       modifiers:
         coefficients:
           Blunt: 0.5
@@ -379,6 +500,21 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/bone_armor.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
+    - Other
+    traumaDeductions:
+      Dismemberment: 0.27
+      OrganDamage: 0.42
+      BoneDamage: -0.12 # It isn't effective at stopping kinetic power for it is not a ballistic vest
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -407,6 +543,21 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/podwars_armor.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
+    - Other
+    traumaDeductions:
+      Dismemberment: 0.34
+      OrganDamage: 0.16
+      BoneDamage: 0.16
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5

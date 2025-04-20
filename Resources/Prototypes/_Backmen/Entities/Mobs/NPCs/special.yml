@@ -57,7 +57,7 @@
 - type: startingGear
   id: HecateStartingGear
   equipment:
-    #hat: ClothingHeadHatHairflower
+    hat: ClothingHeadHatHairflower
     jumpsuit: ClothingCostumeArcDress
     shoes: ClothingShoesColorBlack
   #innerClothingSkirt: ClothingCostumeArcDress
@@ -189,7 +189,7 @@
               text: shipwrecked-hecate-response-status-all-green-again
               #audio: !type:SoundPathSpecifier
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_status_all_green_again.ogg
-    - prompts: [weapons, firearms, arms, guns, safe, оружие, пожар, оружие, нож, пушки, стоволы, боезапас]
+    - prompts: [weapons, firearms, arms, guns, safe, оружие, пожар, оружие, нож, пушки, стоволы, боезапас, арсенал]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskWeaponsEvent

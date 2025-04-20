@@ -87,6 +87,7 @@
         Cold: -10
         Shock: -10
         Caustic: -10
+    healBleedsThreshold: 20
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:
@@ -174,8 +175,9 @@
       - Biological
     damage:
       groups:
-        Brute: -30 # 10 for each type in the group
+        Brute: -10 # 3.3~ for each type in the group
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
+    healBleedsThreshold: 12
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
@@ -215,7 +217,7 @@
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
-    ModifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
+    ModifyBloodLevel: 20 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
@@ -249,27 +251,22 @@
   name: tourniquet
   description: Stops bleeding! Hopefully.
   components:
+    - type: Item
+      heldPrefix: tourniquet
+    - type: Tourniquet
+      blockedBodyParts:
+      - Head
+      - Chest
+      - Groin
+      putOnSound:
+        path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      putOffSound:
+        path: "/Audio/Items/Medical/brutepack_end.ogg"
     - type: Tag
       tags:
         - SecBeltEquip
     - type: Sprite
       state: tourniquet
-    - type: Item
-      heldPrefix: tourniquet
-    - type: Healing
-      damageContainers:
-        - Biological
-      damage:
-        groups:
-          Brute: 5 # Tourniquets HURT!
-        types:
-          Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
-      bloodlossModifier: -10 # Tourniquets stop bleeding
-      delay: 0.5
-      healingBeginSound:
-        path: "/Audio/Items/Medical/brutepack_begin.ogg"
-      healingEndSound:
-        path: "/Audio/Items/Medical/brutepack_end.ogg"
 
 - type: entity
   name: roll of gauze
@@ -297,6 +294,7 @@
         Piercing: -10
         ArmorPiercing: -10
     bloodlossModifier: -10
+    healBleedsThreshold: 16
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
@@ -356,6 +354,7 @@
         Burn: -150
         Toxin: -150
     bloodlossModifier: -20
+    healBleedsThreshold: 777
     delay: 1
     selfHealPenaltyMultiplier: 0
     healingBeginSound:

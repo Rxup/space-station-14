@@ -16,7 +16,6 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.DoAfter;
-using Content.Server.Forensics;
 using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
@@ -118,24 +117,25 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     {
         if (
             _bsQuery.HasComp(uid) ||
-            !TryComp<BodyComponent>(uid, out var bodyComponent) ||
-            !TryComp<BodyPartComponent>(bodyComponent.RootContainer.ContainedEntity, out var bodyPartComponent)
+            !TryComp<BodyComponent>(uid, out var bodyComponent)
             || !CanBeSucked(uid)
             )
             return;
 
         EnsureComp<BloodSuckerComponent>(uid);
 
-        var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(uid);// GetBodyOrganComponents<StomachComponent>(uid);
-        foreach (var organId in stomachs)
+        foreach (var bodyPart in _bodySystem.GetBodyChildren(uid))
         {
-            _bodySystem.RemoveOrgan(organId,organId);
-            QueueDel(organId);
+            foreach (var organ in _bodySystem.GetBodyPartOrganComponents<StomachComponent>(bodyPart.Id, bodyPart.Component))
+            {
+                _bodySystem.RemoveOrgan(organ.Owner, organ.Organ);
+
+                var stomach = Spawn(OrganVampiricHumanoidStomach);
+                _bodySystem.InsertOrgan(bodyPart.Id, stomach, "stomach", bodyPart.Component);
+
+                QueueDel(organ.Owner);
+            }
         }
-
-        var stomach = Spawn(OrganVampiricHumanoidStomach);
-
-        _bodySystem.InsertOrgan(bodyComponent.RootContainer.ContainedEntity.Value, stomach, "stomach", bodyPartComponent);
 
         EnsureComp<BkmVampireComponent>(uid);
 

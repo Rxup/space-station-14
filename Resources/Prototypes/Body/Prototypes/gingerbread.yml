@@ -1,26 +1,30 @@
 ﻿- type: body
   id: Gingerbread
   name: gingerbread
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadGingerbread
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoGingerbread
+    chest:
+      part: ChestGingerbread
       connections:
+      - groin
       - right arm
       - left arm
-      - right leg
-      - left leg
-      - head
       organs:
         heart: OrganHumanHeart
         lungs: OrganHumanLungs
+    groin: # Backmen edit: chest, groin separation
+      part: GroinGingerbread
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganHumanStomach
         liver: OrganHumanLiver
         kidneys: OrganHumanKidneys

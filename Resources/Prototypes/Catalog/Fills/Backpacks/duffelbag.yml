@@ -12,6 +12,7 @@
       - id: Cautery
       - id: Retractor
       - id: Scalpel
+      - id: MedicalStitches
       - id: BoneGel # backmen: surgery
 
 - type: entity
@@ -28,6 +29,7 @@
       - id: Cautery
       - id: Retractor
       - id: ScalpelAdvanced
+      - id: MedicalStitches
       - id: ClothingHandsGlovesNitrile
       - id: EmergencyRollerBedSpawnFolded
       - id: BoneGel # backmen: surgery

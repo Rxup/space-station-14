@@ -9,9 +9,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Lavaland.LimitedUsage;
 
-public sealed class NoLavalandUsageSystem : EntitySystem
+public abstract class SharedNoLavalandUsageSystem : EntitySystem
 {
-    private EntityQuery<NoLavalandUsageComponent> _query;
+    protected EntityQuery<NoLavalandUsageComponent> QueryLimit;
 
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
@@ -26,7 +26,8 @@ public sealed class NoLavalandUsageSystem : EntitySystem
         SubscribeLocalEvent<NoLavalandUsageComponent, FoldAttemptEvent>(OnOpenStorage);
         SubscribeLocalEvent<ToolUserAttemptUseEvent>(OnTryAnchor);
         SubscribeLocalEvent<Backmen.Arrivals.FlatPackUserAttemptUseEvent>(OnTryUnPack);
-        _query = GetEntityQuery<NoLavalandUsageComponent>();
+
+        QueryLimit = GetEntityQuery<NoLavalandUsageComponent>();
     }
 
     private void OnTryUnPack(ref FlatPackUserAttemptUseEvent ev)
@@ -44,7 +45,7 @@ public sealed class NoLavalandUsageSystem : EntitySystem
 
     private void OnTryAnchor(ref ToolUserAttemptUseEvent msg)
     {
-        if (_query.HasComp(msg.Target) && IsApply(msg.Target.Value))
+        if (QueryLimit.HasComp(msg.Target) && IsApply(msg.Target.Value))
         {
             msg.Cancelled = true;
         }
