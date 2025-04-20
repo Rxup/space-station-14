@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseWeaponTurret
+  parent: BaseWeaponBallisticTurret
   id: WeaponTurretNanoSAI
   suffix: SAI
   components:
@@ -127,7 +127,7 @@
     - SimpleHostile
 
 - type: entity
-  parent: BaseWeaponTurret
+  parent: BaseWeaponBallisticTurret
   id: WeaponTurretSpetsnaz
   suffix: SpecialForce
   components:
