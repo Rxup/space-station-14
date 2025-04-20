@@ -93,7 +93,8 @@ public record struct WoundableSeverityMultiplier(FixedPoint2 Change, string Iden
 [Serializable, DataRecord]
 public record struct WoundableHealingMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");
 
+[Serializable, NetSerializable]
 public sealed class UpdateWoundableIntegrityEvent : EntityEventArgs
 {
-    public EntityUid Woundable { get; init; }
+    public NetEntity Woundable { get; init; }
 }

@@ -16,19 +16,6 @@ namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
 public partial class WoundSystem
 {
-    private record struct IntegrityJob : IParallelRobustJob
-    {
-        public WoundSystem System { get; init; }
-        public Entity<WoundableComponent> Owner { get; init; }
-        public List<Entity<WoundComponent>> WoundsToHeal { get; init; }
-        public FixedPoint2 HealAmount { get; init; }
-        public void Execute(int index)
-        {
-            System.ApplyWoundSeverity(WoundsToHeal[index],
-                System.ApplyHealingRateMultipliers(WoundsToHeal[index], Owner, HealAmount, Owner));
-        }
-    }
-
     #region Public API
 
     [PublicAPI]
@@ -80,7 +67,7 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public bool TryHealWoundsOnWoundable(EntityUid woundable,
+    public virtual bool TryHealWoundsOnWoundable(EntityUid woundable,
         FixedPoint2 healAmount,
         out FixedPoint2 healed,
         WoundableComponent? component = null,
@@ -88,41 +75,11 @@ public partial class WoundSystem
         bool ignoreMultipliers = false)
     {
         healed = 0;
-        if (!Resolve(woundable, ref component) || component.Wounds == null)
-            return false;
-
-        var woundsToHeal =
-            (from wound in component.Wounds.ContainedEntities
-                let woundComp = Comp<WoundComponent>(wound)
-                where CanHealWound(wound)
-                where damageGroup == null || damageGroup == woundComp.DamageGroup
-                select (wound, woundComp)).Select(dummy => (Entity<WoundComponent>) dummy)
-            .ToList(); // that's what I call LINQ.
-
-        if (woundsToHeal.Count == 0)
-            return false;
-
-        var healNumba = healAmount / woundsToHeal.Count;
-        var actualHeal = FixedPoint2.Zero;
-        foreach (var wound in woundsToHeal)
-        {
-            var heal = ignoreMultipliers
-                ? ApplyHealingRateMultipliers(wound, woundable, -healNumba, component)
-                : -healNumba;
-
-            actualHeal += -heal;
-            ApplyWoundSeverity(wound, heal, wound);
-        }
-
-        UpdateWoundableIntegrity(woundable, component);
-        CheckWoundableSeverityThresholds(woundable, component);
-
-        healed = actualHeal;
-        return actualHeal > 0;
+        return false;
     }
 
     [PublicAPI]
-    public bool TryHealWoundsOnWoundable(EntityUid woundable,
+    public virtual bool TryHealWoundsOnWoundable(EntityUid woundable,
         FixedPoint2 healAmount,
         string damageType,
         out FixedPoint2 healed,
@@ -130,37 +87,7 @@ public partial class WoundSystem
         bool ignoreMultipliers = false)
     {
         healed = 0;
-        if (!Resolve(woundable, ref component) || component.Wounds == null)
-            return false;
-
-        var woundsToHeal =
-            (from wound in component.Wounds.ContainedEntities
-                let woundComp = Comp<WoundComponent>(wound)
-                where CanHealWound(wound)
-                where damageType == woundComp.DamageType
-                select (wound, woundComp)).Select(dummy => (Entity<WoundComponent>) dummy)
-            .ToList();
-
-        if (woundsToHeal.Count == 0)
-            return false;
-
-        var healNumba = healAmount / woundsToHeal.Count;
-        var actualHeal = FixedPoint2.Zero;
-        foreach (var wound in woundsToHeal)
-        {
-            var heal = ignoreMultipliers
-                ? ApplyHealingRateMultipliers(wound, woundable, -healNumba, component)
-                : -healNumba;
-
-            actualHeal += -heal;
-            ApplyWoundSeverity(wound, heal, wound);
-        }
-
-        UpdateWoundableIntegrity(woundable, component);
-        CheckWoundableSeverityThresholds(woundable, component);
-
-        healed = actualHeal;
-        return actualHeal > 0;
+        return false;
     }
 
     [PublicAPI]
@@ -224,14 +151,14 @@ public partial class WoundSystem
     [PublicAPI]
     public FixedPoint2 ApplyHealingRateMultipliers(EntityUid wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
     {
-        if (!Resolve(woundable, ref component))
+        if (!_woundableQuery.Resolve(woundable, ref component, false))
             return severity;
 
-        if (!Comp<WoundComponent>(wound).CanBeHealed)
+        if (!_woundQuery.Comp(wound).CanBeHealed)
             return FixedPoint2.Zero;
 
         var woundHealingMultiplier =
-            _prototype.Index<DamageTypePrototype>(Comp<WoundComponent>(wound).DamageType).WoundHealingMultiplier;
+            _prototype.Index<DamageTypePrototype>(_woundQuery.Comp(wound).DamageType).WoundHealingMultiplier;
 
         if (component.HealingMultipliers.Count == 0)
             return severity * woundHealingMultiplier;

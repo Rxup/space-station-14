@@ -23,7 +23,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
-public sealed partial class WoundSystem : EntitySystem
+public abstract partial class WoundSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
@@ -31,10 +31,8 @@ public sealed partial class WoundSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
 
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] protected readonly IConfigurationManager Cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-
-    [Dependency] private readonly IParallelManager _parallel = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -51,7 +49,6 @@ public sealed partial class WoundSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
 
-    private float _medicalHealingTickrate = 0.5f;
 
     public override void Initialize()
     {
@@ -63,7 +60,7 @@ public sealed partial class WoundSystem : EntitySystem
         SubscribeLocalEvent<WoundableComponent, ComponentGetState>(OnWoundableComponentGet);
         SubscribeLocalEvent<WoundableComponent, ComponentHandleState>(OnWoundableComponentHandleState);
 
-        Subs.CVar(_cfg, CCVars.MedicalHealingTickrate, val => _medicalHealingTickrate = val, true);
+
         InitWounding();
     }
 
@@ -293,44 +290,5 @@ public sealed partial class WoundSystem : EntitySystem
         component.HealingRateAccumulated = state.HealingRateAccumulated;
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
 
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        var timeToHeal = 1 / _medicalHealingTickrate;
-        using var query = EntityQueryEnumerator<WoundableComponent, MetaDataComponent>();
-        while (query.MoveNext(out var ent, out var woundable, out var metaData))
-        {
-            if (Paused(ent, metaData))
-                continue;
-
-            woundable.HealingRateAccumulated += frameTime;
-            if (woundable.HealingRateAccumulated < timeToHeal)
-                continue;
-
-            if (woundable.Wounds == null || woundable.Wounds.Count == 0)
-                continue;
-
-            woundable.HealingRateAccumulated -= timeToHeal;
-
-            var woundsToHeal =
-                GetWoundableWounds(ent, woundable).Where(wound => CanHealWound(wound, wound)).ToList();
-
-            if (woundsToHeal.Count == 0)
-                continue;
-
-            var healAmount = -woundable.HealAbility / woundsToHeal.Count;
-            _parallel.ProcessNow(new IntegrityJob
-            {
-                System = this,
-                Owner = (ent, woundable),
-                WoundsToHeal = woundsToHeal,
-                HealAmount = healAmount,
-            },
-            woundsToHeal.Count);
-        }
-    }
 }
