@@ -30,6 +30,11 @@ public partial class WoundSystem
 
     private const string WoundableDestroyalIdentifier = "WoundableDestroyal";
 
+    private float _dodgeDistanceChance;
+    private float _woundScarChance;
+    private float _maxWoundSeverity;
+    private float _woundTransferPart;
+
     private void InitWounding()
     {
         SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
@@ -48,6 +53,23 @@ public partial class WoundSystem
 
         SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(DudeItsJustLikeMatrix);
         SubscribeLocalEvent<WoundableComponent, WoundHealAttemptOnWoundableEvent>(HealWoundsOnWoundableAttempt);
+
+        SubscribeLocalEvent<UpdateWoundableIntegrityEvent>(OnUpdateWoundableIntegrity);
+
+        Subs.CVar(_cfg, CCVars.DodgeDistanceChance, val => _dodgeDistanceChance = val, true);
+        Subs.CVar(_cfg, CCVars.WoundScarChance, val => _woundScarChance = val, true);
+        Subs.CVar(_cfg, CCVars.MaxWoundSeverity, val => _maxWoundSeverity = val, true);
+        Subs.CVar(_cfg, CCVars.WoundTransferPart, val => _woundTransferPart = val, true);
+    }
+
+    private void OnUpdateWoundableIntegrity(UpdateWoundableIntegrityEvent ev)
+    {
+        if(TerminatingOrDeleted(ev.Woundable) || !TryComp<WoundableComponent>(ev.Woundable, out var woundable))
+            return;
+
+        var holdingWoundable = ev.Woundable;
+        UpdateWoundableIntegrity(holdingWoundable, woundable);
+        CheckWoundableSeverityThresholds(holdingWoundable, woundable);
     }
 
     #region Event Handling
@@ -183,7 +205,7 @@ public partial class WoundSystem
                 var originTransform = _transform.GetWorldPosition(args.Origin.Value);
 
                 var distance = (originTransform - bodyTransform).Length();
-                if (distance < _cfg.GetCVar(CCVars.DodgeDistanceChance) * 2)
+                if (distance < _dodgeDistanceChance * 2)
                 {
                     chance = 0;
                 }
@@ -191,8 +213,8 @@ public partial class WoundSystem
                 {
                     var additionalChance =
                         distance
-                        / _cfg.GetCVar(CCVars.DodgeDistanceChance) // 1 letter difference
-                        * _cfg.GetCVar(CCVars.DodgeDistanceChange);
+                        / _dodgeDistanceChance // 1 letter difference
+                        * _dodgeDistanceChance;
 
                     chance += additionalChance;
                 }
@@ -374,7 +396,7 @@ public partial class WoundSystem
         if (!Resolve(wound, ref woundComponent))
             return false;
 
-        if (!_random.Prob(_cfg.GetCVar(CCVars.WoundScarChance)))
+        if (!_random.Prob(_woundScarChance))
             return false;
 
         if (woundComponent.ScarWound == null || woundComponent.IsScar)
@@ -407,7 +429,7 @@ public partial class WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint =
-            FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(CCVars.MaxWoundSeverity));
+            FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _maxWoundSeverity);
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -459,8 +481,8 @@ public partial class WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = severity > 0
-            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _cfg.GetCVar(CCVars.MaxWoundSeverity))
-            : FixedPoint2.Clamp(old + severity, 0, _cfg.GetCVar(CCVars.MaxWoundSeverity));
+            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity), 0, _maxWoundSeverity)
+            : FixedPoint2.Clamp(old + severity, 0, _maxWoundSeverity);
 
         if (wound.WoundSeverityPoint != old)
         {
@@ -490,8 +512,7 @@ public partial class WoundSystem
         var holdingWoundable = wound.HoldingWoundable;
         CheckSeverityThresholds(uid, wound);
 
-        UpdateWoundableIntegrity(holdingWoundable);
-        CheckWoundableSeverityThresholds(holdingWoundable);
+        QueueLocalEvent(new UpdateWoundableIntegrityEvent { Woundable = holdingWoundable });
     }
 
     [PublicAPI]
@@ -857,7 +878,7 @@ public partial class WoundSystem
         TryInduceWound(
             parent,
             woundComp.DamageType,
-            woundComp.WoundSeverityPoint * _cfg.GetCVar(CCVars.WoundTransferPart),
+            woundComp.WoundSeverityPoint * _woundTransferPart,
             out _,
             woundableComp);
 
