@@ -57,7 +57,7 @@ public partial class WoundSystem
         SubscribeLocalEvent<WoundComponent, WoundSeverityChangedEvent>(OnWoundSeverityChanged);
         SubscribeLocalEvent<WoundableComponent, WoundableSeverityChangedEvent>(OnWoundableSeverityChanged);
 
-        SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(DudeItsJustLikeMatrix);
+        SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(CheckDodge);
         SubscribeLocalEvent<WoundableComponent, WoundHealAttemptOnWoundableEvent>(HealWoundsOnWoundableAttempt);
 
         SubscribeAllEvent<UpdateWoundableIntegrityEvent>(OnUpdateWoundableIntegrity);
@@ -197,7 +197,7 @@ public partial class WoundSystem
         }
     }
 
-    private void DudeItsJustLikeMatrix(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)
+    private void CheckDodge(EntityUid uid, WoundableComponent comp, BeforeDamageChangedEvent args)
     {
         if (!args.CanBeCancelled)
             return;
@@ -909,7 +909,7 @@ public partial class WoundSystem
             tourniquetable.SeveredPartType = bodyPart.PartType;
         }
     }
-    
+
     private bool AddWound(
         EntityUid target,
         EntityUid wound,

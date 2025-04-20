@@ -2,6 +2,7 @@
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
@@ -69,7 +70,9 @@ public abstract partial class WoundSystem : EntitySystem
         var state = new WoundComponentState
         {
             HoldingWoundable =
-                TryGetNetEntity(comp.HoldingWoundable, out var holdingWoundable) ? holdingWoundable.Value : NetEntity.Invalid,
+                TryGetNetEntity(comp.HoldingWoundable, out var holdingWoundable)
+                    ? holdingWoundable.Value
+                    : NetEntity.Invalid,
 
             WoundSeverityPoint = comp.WoundSeverityPoint,
             WoundableIntegrityMultiplier = comp.WoundableIntegrityMultiplier,
@@ -130,11 +133,14 @@ public abstract partial class WoundSystem : EntitySystem
                 }
             }
         }
+
         component.HoldingWoundable = holdingWoundable;
 
         if (component.WoundSeverityPoint != state.WoundSeverityPoint)
         {
-            var ev = new WoundSeverityPointChangedEvent(component, component.WoundSeverityPoint, state.WoundSeverityPoint);
+            var ev = new WoundSeverityPointChangedEvent(component,
+                component.WoundSeverityPoint,
+                state.WoundSeverityPoint);
             RaiseLocalEvent(uid, ref ev);
 
             // TODO: On body changed events aren't predicted, welp
@@ -175,13 +181,15 @@ public abstract partial class WoundSystem : EntitySystem
         var state = new WoundableComponentState
         {
             ParentWoundable = TryGetNetEntity(comp.ParentWoundable, out var parentWoundable) ? parentWoundable : null,
-            RootWoundable = TryGetNetEntity(comp.RootWoundable, out var rootWoundable) ? rootWoundable.Value : NetEntity.Invalid,
+            RootWoundable = TryGetNetEntity(comp.RootWoundable, out var rootWoundable)
+                ? rootWoundable.Value
+                : NetEntity.Invalid,
 
             ChildWoundables =
                 comp.ChildWoundables
                     .Select(woundable => TryGetNetEntity(woundable, out var ne)
-                    ? ne.Value
-                    : NetEntity.Invalid)
+                        ? ne.Value
+                        : NetEntity.Invalid)
                     .ToHashSet(),
             // Attached and Detached -Woundable events are handled on client with containers
 
@@ -197,12 +205,14 @@ public abstract partial class WoundSystem : EntitySystem
             SeverityMultipliers =
                 comp.SeverityMultipliers
                     .Select(multiplier
-                        => (TryGetNetEntity(multiplier.Key, out var ne) ? ne.Value : NetEntity.Invalid, multiplier.Value))
+                        => (TryGetNetEntity(multiplier.Key, out var ne) ? ne.Value : NetEntity.Invalid,
+                            multiplier.Value))
                     .ToDictionary(),
             HealingMultipliers =
                 comp.HealingMultipliers
                     .Select(multiplier
-                        => (TryGetNetEntity(multiplier.Key, out var ne) ? ne.Value : NetEntity.Invalid, multiplier.Value))
+                        => (TryGetNetEntity(multiplier.Key, out var ne) ? ne.Value : NetEntity.Invalid,
+                            multiplier.Value))
                     .ToDictionary(),
 
             WoundableSeverity = comp.WoundableSeverity,
@@ -212,7 +222,9 @@ public abstract partial class WoundSystem : EntitySystem
         args.State = state;
     }
 
-    private void OnWoundableComponentHandleState(EntityUid uid, WoundableComponent component, ref ComponentHandleState args)
+    private void OnWoundableComponentHandleState(EntityUid uid,
+        WoundableComponent component,
+        ref ComponentHandleState args)
     {
         if (args.Current is not WoundableComponentState state)
             return;
@@ -223,8 +235,8 @@ public abstract partial class WoundSystem : EntitySystem
 
         component.ChildWoundables = state.ChildWoundables
             .Select(x => TryGetEntity(x, out var y) ? y.Value : EntityUid.Invalid)
-                .Where(x => x.Valid)
-                .ToHashSet();
+            .Where(x => x.Valid)
+            .ToHashSet();
         // Attached and Detached -Woundable events are handled on client with containers
 
         component.AllowWounds = state.AllowWounds;
@@ -278,6 +290,7 @@ public abstract partial class WoundSystem : EntitySystem
                 RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
             }
         }
+
         component.WoundableIntegrity = state.WoundableIntegrity;
 
         if (component.WoundableSeverity != state.WoundableSeverity)
@@ -285,10 +298,98 @@ public abstract partial class WoundSystem : EntitySystem
             var ev = new WoundableSeverityChangedEvent(component.WoundableSeverity, state.WoundableSeverity);
             RaiseLocalEvent(uid, ref ev);
         }
+
         component.WoundableSeverity = state.WoundableSeverity;
 
         component.HealingRateAccumulated = state.HealingRateAccumulated;
     }
 
 
+    protected void UpdateWoundableIntegrity(EntityUid uid, WoundableComponent? component = null)
+    {
+        if (!_woundableQuery.Resolve(uid, ref component, false) || component.Wounds == null)
+            return;
+
+        // Ignore scars for woundable integrity.. Unless you want to confuse people with minor woundable state
+        var damage =
+            component.Wounds.ContainedEntities.Select(_woundQuery.Comp)
+                .Where(wound => !wound.IsScar)
+                .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.WoundIntegrityDamage);
+
+        var newIntegrity = FixedPoint2.Clamp(component.IntegrityCap - damage, 0, component.IntegrityCap);
+        if (newIntegrity == component.WoundableIntegrity)
+            return;
+
+        var ev = new WoundableIntegrityChangedEvent(component.WoundableIntegrity, newIntegrity);
+        RaiseLocalEvent(uid, ref ev);
+
+        var bodySeverity = FixedPoint2.Zero;
+        var bodyPart = Comp<BodyPartComponent>(uid);
+
+        if (bodyPart.Body.HasValue)
+        {
+            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
+            if (rootPart.HasValue)
+            {
+                bodySeverity =
+                    GetAllWoundableChildren(rootPart.Value)
+                        .Aggregate(bodySeverity,
+                            (current, woundable) => current + GetWoundableIntegrityDamage(woundable, woundable));
+            }
+
+            var ev1 = new WoundableIntegrityChangedOnBodyEvent(
+                (uid, component),
+                bodySeverity - (component.WoundableIntegrity - newIntegrity),
+                bodySeverity);
+            RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+        }
+
+        component.WoundableIntegrity = newIntegrity;
+        Dirty(uid, component);
+    }
+
+    protected void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
+    {
+        if (!_woundableQuery.Resolve(woundable, ref component, false))
+            return;
+
+        var nearestSeverity = component.WoundableSeverity;
+        foreach (var (severity, value) in component.Thresholds.OrderByDescending(kv => kv.Value))
+        {
+            if (component.WoundableIntegrity >= component.IntegrityCap)
+            {
+                nearestSeverity = WoundableSeverity.Healthy;
+                break;
+            }
+
+            if (component.WoundableIntegrity < value)
+                continue;
+
+            nearestSeverity = severity;
+            break;
+        }
+
+        if (nearestSeverity != component.WoundableSeverity)
+        {
+            var ev = new WoundableSeverityChangedEvent(component.WoundableSeverity, nearestSeverity);
+            RaiseLocalEvent(woundable, ref ev);
+        }
+
+        component.WoundableSeverity = nearestSeverity;
+
+        Dirty(woundable, component);
+
+        var bodyPart = Comp<BodyPartComponent>(woundable);
+        if (bodyPart.Body == null)
+            return;
+
+        if (!TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+            return;
+
+        targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
+        Dirty(bodyPart.Body.Value, targeting);
+
+        if (_net.IsServer)
+            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+    }
 }
