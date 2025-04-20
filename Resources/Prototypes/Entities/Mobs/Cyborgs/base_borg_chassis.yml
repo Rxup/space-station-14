@@ -298,6 +298,7 @@
   parent: [BaseBorgChassis, BaseBorgTransponder]
   abstract: true
   components:
+  - type: BorgAINT
   - type: RandomMetadata
     nameSegments:
     - NamesBorg
