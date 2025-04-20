@@ -38,8 +38,8 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] protected readonly SharedContainerSystem _container = default!;
+    [Dependency] protected readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     [Dependency] private readonly SharedPopupSystem _popup = default!;

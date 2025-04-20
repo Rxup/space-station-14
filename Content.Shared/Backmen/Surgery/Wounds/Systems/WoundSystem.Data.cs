@@ -6,7 +6,7 @@ public partial class WoundSystem
 {
     #region Data
 
-    private readonly Dictionary<WoundSeverity, FixedPoint2> _woundThresholds = new()
+    protected readonly Dictionary<WoundSeverity, FixedPoint2> _woundThresholds = new()
     {
         { WoundSeverity.Healed, 0 },
         { WoundSeverity.Minor, 1 },

@@ -20,6 +20,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
@@ -39,7 +40,7 @@ public partial class WoundSystem
     protected EntityQuery<WoundComponent> _woundQuery;
     protected EntityQuery<WoundableComponent> _woundableQuery;
 
-    [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
+    [Dependency] protected readonly ISharedPlayerManager _sharedPlayerManager = default!;
 
     private void InitWounding()
     {
@@ -60,8 +61,6 @@ public partial class WoundSystem
         SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(CheckDodge);
         SubscribeLocalEvent<WoundableComponent, WoundHealAttemptOnWoundableEvent>(HealWoundsOnWoundableAttempt);
 
-        SubscribeAllEvent<UpdateWoundableIntegrityEvent>(OnUpdateWoundableIntegrity);
-
         Subs.CVar(Cfg, CCVars.DodgeDistanceChance, val => _dodgeDistanceChance = val, true);
         Subs.CVar(Cfg, CCVars.WoundScarChance, val => _woundScarChance = val, true);
         Subs.CVar(Cfg, CCVars.MaxWoundSeverity, val => _maxWoundSeverity = val, true);
@@ -69,18 +68,6 @@ public partial class WoundSystem
 
         _woundQuery = GetEntityQuery<WoundComponent>();
         _woundableQuery = GetEntityQuery<WoundableComponent>();
-    }
-
-    private void OnUpdateWoundableIntegrity(UpdateWoundableIntegrityEvent ev)
-    {
-        if(!TryGetEntity(ev.Woundable, out var woundable) ||
-           TerminatingOrDeleted(woundable) ||
-           !_woundableQuery.TryComp(woundable, out var woundableComp)
-           )
-            return;
-
-        UpdateWoundableIntegrity(woundable.Value, woundableComp);
-        CheckWoundableSeverityThresholds(woundable.Value, woundableComp);
     }
 
     #region Event Handling
@@ -266,6 +253,11 @@ public partial class WoundSystem
 
     #region Public API
 
+    protected virtual bool RemoveWound(EntityUid woundEntity, WoundComponent? wound = null)
+    {
+        return false;
+    }
+
     [PublicAPI]
     public bool TryInduceWounds(
         EntityUid uid,
@@ -324,7 +316,7 @@ public partial class WoundSystem
     /// <param name="damageGroup">Damage group.</param>
     /// <param name="woundable">Woundable component.</param>
     [PublicAPI]
-    public bool TryCreateWound(
+    public virtual bool TryCreateWound(
          EntityUid uid,
          string woundProtoId,
          FixedPoint2 severity,
@@ -333,26 +325,7 @@ public partial class WoundSystem
          WoundableComponent? woundable = null)
     {
         woundCreated = null;
-        if (!IsWoundPrototypeValid(woundProtoId))
-            return false;
-
-        if (!_woundableQuery.Resolve(uid, ref woundable))
-            return false;
-
-        var wound = Spawn(woundProtoId);
-        if (AddWound(uid, wound, severity, damageGroup))
-        {
-            woundCreated = (wound, Comp<WoundComponent>(wound));
-        }
-        else
-        {
-            // The wound failed some important checks, and we cannot let an invalid wound to be spawned!
-            if (_net.IsServer && !IsClientSide(wound))
-                QueueDel(wound);
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -479,6 +452,7 @@ public partial class WoundSystem
     /// <param name="uid">UID of the wound.</param>
     /// <param name="severity">Severity to add.</param>
     /// <param name="wound">Wound to which severity is applied.</param>
+    /// <param name="pvs"/>
     [PublicAPI]
     public void ApplyWoundSeverity(
         EntityUid uid,
@@ -519,16 +493,15 @@ public partial class WoundSystem
                 RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
             }
         }
-
-        var holdingWoundable = wound.HoldingWoundable;
         CheckSeverityThresholds(uid, wound);
 
-        if (_net.IsServer)
-        {
-            var evUpdate = new UpdateWoundableIntegrityEvent { Woundable = GetNetEntity(holdingWoundable) };
-            RaiseLocalEvent(evUpdate);
-            RaiseNetworkEvent(evUpdate, Filter.Pvs(holdingWoundable, 2f, EntityManager, _sharedPlayerManager, Cfg));
-        }
+        if(TerminatingOrDeleted(wound.HoldingWoundable) || !_woundableQuery.TryComp(wound.HoldingWoundable, out var holdingComp))
+            return;
+
+        Entity<WoundableComponent> holdingWoundable = (wound.HoldingWoundable, holdingComp);
+
+        UpdateWoundableIntegrity(holdingWoundable, holdingWoundable);
+        CheckWoundableSeverityThresholds(holdingWoundable, holdingWoundable);
     }
 
     [PublicAPI]
@@ -910,64 +883,6 @@ public partial class WoundSystem
         }
     }
 
-    private bool AddWound(
-        EntityUid target,
-        EntityUid wound,
-        FixedPoint2 woundSeverity,
-        DamageGroupPrototype? damageGroup,
-        WoundableComponent? woundableComponent = null,
-        WoundComponent? woundComponent = null)
-    {
-        if (!_woundableQuery.Resolve(target, ref woundableComponent, false)
-            || !_woundQuery.Resolve(wound, ref woundComponent, false)
-            || woundableComponent.Wounds == null
-            || woundableComponent.Wounds.Contains(wound)
-            || !_timing.IsFirstTimePredicted)
-            return false;
-
-        if (woundSeverity <= _woundThresholds[WoundSeverity.Healed])
-            return false;
-
-        if (!woundableComponent.AllowWounds)
-            return false;
-
-        _transform.SetParent(wound, target);
-        woundComponent.HoldingWoundable = target;
-        woundComponent.DamageGroup = damageGroup;
-
-        if (!_container.Insert(wound, woundableComponent.Wounds))
-            return false;
-
-        SetWoundSeverity(wound, woundSeverity, woundComponent);
-
-        var woundMeta = MetaData(wound);
-        var targetMeta = MetaData(target);
-
-        Log.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
-
-        Dirty(wound, woundComponent);
-        Dirty(target, woundableComponent);
-
-        return true;
-    }
-
-    private bool RemoveWound(EntityUid woundEntity, WoundComponent? wound = null)
-    {
-        if (!_timing.IsFirstTimePredicted)
-            return false;
-
-        if (!_woundQuery.Resolve(woundEntity, ref wound, false) || !_woundableQuery.TryComp(wound.HoldingWoundable, out WoundableComponent? woundable))
-            return false;
-
-        Log.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
-
-        UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
-        CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);
-
-        _container.Remove(woundEntity, woundable.Wounds!, false, true);
-        return true;
-    }
-
     protected void InternalAddWoundableToParent(
         EntityUid parentEntity,
         EntityUid childEntity,
@@ -1087,7 +1002,7 @@ public partial class WoundSystem
     /// </summary>
     /// <param name="protoId">The prototype ID to be validated.</param>
     /// <returns>True if the wound prototype is valid, otherwise false.</returns>
-    private bool IsWoundPrototypeValid(string protoId)
+    protected bool IsWoundPrototypeValid(string protoId)
     {
         return _prototype.TryIndex<EntityPrototype>(protoId, out var woundPrototype)
                && woundPrototype.TryGetComponent<WoundComponent>(out _, _factory);

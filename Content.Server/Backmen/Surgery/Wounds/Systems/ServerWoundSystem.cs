@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -8,28 +9,15 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Player;
 using Robust.Shared.Threading;
+using Robust.Shared.Timing;
+using Robust.Shared.Toolshed.Commands.Math;
 
 namespace Content.Server.Backmen.Surgery.Wounds.Systems;
 
 public sealed class ServerWoundSystem : WoundSystem
 {
-    private record struct IntegrityJob : IParallelRobustJob
-    {
-        public WoundSystem System { get; init; }
-        public Entity<WoundableComponent> Owner { get; init; }
-        public List<Entity<WoundComponent>> WoundsToHeal { get; init; }
-        public FixedPoint2 HealAmount { get; init; }
-        public void Execute(int index)
-        {
-            System.ApplyWoundSeverity(WoundsToHeal[index],
-                System.ApplyHealingRateMultipliers(WoundsToHeal[index], Owner, HealAmount, Owner));
-        }
-    }
-
-
-    [Dependency] private readonly IParallelManager _parallel = default!;
-
     private float _medicalHealingTickrate = 0.5f;
 
     public override void Initialize()
@@ -66,7 +54,7 @@ public sealed class ServerWoundSystem : WoundSystem
         foreach (var wound in woundsToHeal)
         {
             var heal = ignoreMultipliers
-                ? ApplyHealingRateMultipliers(wound, woundable, -healNumba, component)
+                ? ApplyHealingRateMultipliers((wound,wound), woundable, -healNumba, component)
                 : -healNumba;
 
             actualHeal += -heal;
@@ -107,7 +95,7 @@ public sealed class ServerWoundSystem : WoundSystem
         foreach (var wound in woundsToHeal)
         {
             var heal = ignoreMultipliers
-                ? ApplyHealingRateMultipliers(wound, woundable, -healNumba, component)
+                ? ApplyHealingRateMultipliers((wound,wound), woundable, -healNumba, component)
                 : -healNumba;
 
             actualHeal += -heal;
@@ -121,7 +109,90 @@ public sealed class ServerWoundSystem : WoundSystem
         return actualHeal > 0;
     }
 
+    private bool AddWound(
+        EntityUid target,
+        EntityUid wound,
+        FixedPoint2 woundSeverity,
+        DamageGroupPrototype? damageGroup,
+        WoundableComponent? woundableComponent = null,
+        WoundComponent? woundComponent = null)
+    {
+        if (!_woundableQuery.Resolve(target, ref woundableComponent, false)
+            || !_woundQuery.Resolve(wound, ref woundComponent, false)
+            || woundableComponent.Wounds == null
+            || woundableComponent.Wounds.Contains(wound)
+            )
+            return false;
 
+        if (woundSeverity <= _woundThresholds[WoundSeverity.Healed])
+            return false;
+
+        if (!woundableComponent.AllowWounds)
+            return false;
+
+        _transform.SetParent(wound, target);
+        woundComponent.HoldingWoundable = target;
+        woundComponent.DamageGroup = damageGroup;
+
+        if (!_container.Insert(wound, woundableComponent.Wounds))
+            return false;
+
+        SetWoundSeverity(wound, woundSeverity, woundComponent);
+
+        var woundMeta = MetaData(wound);
+        var targetMeta = MetaData(target);
+
+        Log.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
+
+        Dirty(wound, woundComponent);
+        Dirty(target, woundableComponent);
+
+        return true;
+    }
+
+    protected override bool RemoveWound(EntityUid woundEntity, WoundComponent? wound = null)
+    {
+        if (!_woundQuery.Resolve(woundEntity, ref wound, false) || !_woundableQuery.TryComp(wound.HoldingWoundable, out WoundableComponent? woundable))
+            return false;
+
+        Log.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
+
+        UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
+        CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);
+
+        _container.Remove(woundEntity, woundable.Wounds!, false, true);
+        return true;
+    }
+
+    public override bool TryCreateWound(
+        EntityUid uid,
+        string woundProtoId,
+        FixedPoint2 severity,
+        [NotNullWhen(true)] out Entity<WoundComponent>? woundCreated,
+        DamageGroupPrototype? damageGroup,
+        WoundableComponent? woundable = null)
+    {
+        woundCreated = null;
+        if (!IsWoundPrototypeValid(woundProtoId))
+            return false;
+
+        if (!_woundableQuery.Resolve(uid, ref woundable))
+            return false;
+
+        var wound = Spawn(woundProtoId);
+        if (AddWound(uid, wound, severity, damageGroup))
+        {
+            woundCreated = (wound, _woundQuery.Comp(wound));
+        }
+        else
+        {
+            // The wound failed some important checks, and we cannot let an invalid wound to be spawned!
+            QueueDel(wound);
+            return false;
+        }
+
+        return true;
+    }
 
     public override void Update(float frameTime)
     {
@@ -153,14 +224,12 @@ public sealed class ServerWoundSystem : WoundSystem
 
             Entity<WoundableComponent> owner = (ent, woundable);
 
-            _parallel.ProcessNow(new IntegrityJob
-                {
-                    System = this,
-                    Owner = owner,
-                    WoundsToHeal = woundsToHeal,
-                    HealAmount = healAmount,
-                },
-                woundsToHeal.Count);
+            foreach (var x in woundsToHeal)
+            {
+                ApplyWoundSeverity(x,
+                    ApplyHealingRateMultipliers((x,x), owner, healAmount, owner),
+                    x);
+            }
         }
     }
 }

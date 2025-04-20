@@ -149,12 +149,12 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public FixedPoint2 ApplyHealingRateMultipliers(EntityUid wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
+    public FixedPoint2 ApplyHealingRateMultipliers(Entity<WoundComponent?> wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
     {
         if (!_woundableQuery.Resolve(woundable, ref component, false))
             return severity;
 
-        if (!_woundQuery.Comp(wound).CanBeHealed)
+        if (!_woundQuery.Resolve(wound.Owner, ref wound.Comp) || !wound.Comp.CanBeHealed)
             return FixedPoint2.Zero;
 
         var woundHealingMultiplier =
