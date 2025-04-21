@@ -60,29 +60,29 @@
 # Weapon #Backmen
 - type: loadout
   id: WeaponRevolverCMB
-  equipment:
+  storage:
     belt: WeaponRevolverCMB
 
 - type: loadout
   id: WeaponRevolverR44
-  equipment:
+  storage:
     belt: WeaponRevolverR44
 
 - type: loadout
   id: WeaponRevolverRebota
-  equipment:
+  storage:
     belt: WeaponRevolverRebota
 
 - type: loadout
   id: WeaponRevolverNY
-  equipment:
+  storage:
     belt: WeaponRevolverNY
 
 - type: loadout
   id: WeaponRevolverInspector
-  equipment:
+  storage:
     belt: WeaponRevolverInspector
-    
+
 - type: loadout
   id: DetectiveCoatGrey
   equipment:
