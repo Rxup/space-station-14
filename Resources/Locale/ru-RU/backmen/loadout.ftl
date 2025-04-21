@@ -7,3 +7,5 @@ PresentRandomKonkursBkm = Подарок
 PneumaticCannonXM1014KonkursBkm = Пневморужье
 ScarfSyndieKonkursBkm = Шарф синдиката
 BizarreKonkursBkm = Невероятный набор
+BoomBox = Бумбокс!
+ClothingNeckCloakBlackWendor = Кусок плаща

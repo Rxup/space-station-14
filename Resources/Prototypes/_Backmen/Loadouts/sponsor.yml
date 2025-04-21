@@ -131,3 +131,9 @@
   storage:
     back:
     - HandledBoomBox
+
+- type: loadout
+  id: ClothingNeckCloakBlackWendor
+  storage:
+    back:
+    - ClothingNeckCloakBlackWendor
