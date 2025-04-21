@@ -171,44 +171,4 @@
     action:
       !type:NoOpAction
 
-  - type: Interaction
-    id: LPPSuck # отсос
-    parent: [BaseGlobal, BaseHands]
-    priority: 2
-    delay: 0.5
-    range: {max: 1}
-    hideByRequirement: true
-    requirement:
-      !type:MobStateRequirement
-      inverted: true
-    action:
-      !type:MoodAction
-      effect: LPPLoved
-
-  - type: Interaction
-    id: LPPfapfap # дрочка
-    parent: [BaseGlobal, BaseHands]
-    priority: 2
-    delay: 0.5
-    range: {max: 1}
-    hideByRequirement: true
-    requirement:
-      !type:MobStateRequirement
-      inverted: true
-    action:
-      !type:MoodAction
-      effect: LPPLoved
-
-  - type: Interaction
-    id: LPPfuckingsalve # выебать
-    parent: [BaseGlobal, BaseHands]
-    priority: 2
-    delay: 0.5
-    range: {max: 1}
-    hideByRequirement: true
-    requirement:
-      !type:MobStateRequirement
-      inverted: true
-    action:
-      !type:MoodAction
-      effect: LPPLoved
+  
