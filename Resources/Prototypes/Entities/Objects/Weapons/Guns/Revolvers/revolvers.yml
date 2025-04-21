@@ -10,7 +10,7 @@
   - type: Item
     size: Small
     shape:
-    - 0,0,1,0
+    - 0,0,2,0 #Backmen-Weapons
     - 0,1,0,1
   - type: Tag
     tags:
@@ -93,6 +93,8 @@
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
+  - type: PumpAction #Backmen-Weapons
+    sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
 
 - type: entity
   name: Mateba
@@ -114,6 +116,7 @@
   parent: WeaponRevolverMateba
   id: WeaponRevolverMatebaAP # For deathsquad
   suffix: armor-piercing
+  categories: [ HideSpawnMenu ] #Backmen-Weapons
   components:
   - type: RevolverAmmoProvider
     proto: CartridgeMagnumAP
@@ -170,3 +173,5 @@
     capacity: 5
     chambers: [ True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null ]
+  - type: PumpAction #Backmen-Weapons
+    sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
