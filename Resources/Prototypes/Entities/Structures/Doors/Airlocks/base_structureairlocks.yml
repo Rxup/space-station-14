@@ -179,6 +179,9 @@
     - Airlocks
     - WirePanels
     - Networking
+  - type: InteractionVerbs
+    allowedVerbs:
+    - KnockOn
   placement:
     mode: SnapgridCenter
 

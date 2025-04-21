@@ -1,0 +1,33 @@
+﻿- type: moodEffect
+  id: LPPEncouraged
+  moodChange: 3
+  timeout: 300
+  category: Health
+  hidden: true
+
+- type: moodEffect
+  id: LPPLoved
+  moodChange: 3
+  timeout: 480
+  category: Health
+  hidden: true
+
+- type: moodEffect
+  id: LPPSlapped
+  moodChange: 2
+  timeout: 300
+  category: Health
+  hidden: true
+
+- type: moodEffect
+  id: LPPGotSlap
+  moodChange: -3
+  timeout: 180
+  category: Health
+  hidden: true
+
+- type: moodEffect
+  id: LPPEmbarrassment
+  moodChange: 0
+  timeout: 300
+  category: NeutralInteraction

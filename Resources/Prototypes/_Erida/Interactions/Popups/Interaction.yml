@@ -1,0 +1,217 @@
+﻿  MrDarkSide - Lost Paradise
+  # <
+
+  # С КЕМ-ТО / ЧЕМ-ТО
+  - type: Interaction
+    id: LPPKiss # Поцелуй
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    delay: 0.5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    action:
+      !type:MoodAction
+      effect: LPPLoved
+
+  - type: Interaction
+    id: LPPKisscheek # Поцелуй в щеку
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    icon: /Textures/Interface/Alerts/mood.rsi/mood6.png
+    delay: 0.5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    action:
+      !type:ComplexAction
+      actions:
+      - !type:MoodAction
+        effect: LPPLoved
+      - !type:OnUserAction
+        action:
+          !type:MoodAction
+          effect: LPPLoved
+
+  - type: Interaction
+    id: LPPPatShoulder # Похлопать по плечу
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    icon: /Textures/Interface/Alerts/mood.rsi/mood6.png
+    delay: 0.7
+    cooldown: 5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    effectSuccess:
+      popup: VisibleNoChat
+      sound: {collection: Claps}
+    action:
+      !type:OnUserAction
+      action:
+        !type:MoodAction
+        effect: LPPEncouraged
+
+  - type: Interaction
+    id: LPPLick # Лизнуть
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    icon: /Textures/Interface/Alerts/mood.rsi/mood6.png
+    delay: 0.2
+    cooldown: 5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:ComplexRequirement
+      requirements:
+      - !type:MobStateRequirement
+        inverted: true
+    effectSuccess:
+      popup: Visible
+      sound: {path: /Audio/Nyanotrasen/Voice/Felinid/cat_hiss1.ogg}
+    action:
+      !type:ComplexAction
+      actions:
+      - !type:MoodAction
+        effect: LPPEmbarrassment
+      - !type:OnUserAction
+        action:
+          !type:MoodAction
+          effect: LPPEmbarrassment
+
+  - type: Interaction
+    id: LPPSlap
+    parent: [BaseGlobal, BaseHands]
+    icon: /Textures/Interface/Alerts/mood.rsi/mood4.png
+    delay: 0.2
+    cooldown: 10
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    effectSuccess:
+      popup: Dangerous
+      sound: {path: /Audio/_LostParadise/Effects/whip.ogg}
+    action:
+      !type:ComplexAction
+      actions:
+      - !type:ModifyHealthAction
+        damage:
+          types: {Blunt: 3}
+      - !type:ConditionalAction
+        condition:
+          !type:ChanceRequirement
+          chance: 0.5
+        true:
+          !type:ModifyHealthAction
+          damage:
+            types: {Blunt: 5.5}
+      - !type:MoodAction
+        effect: LPPSlapped
+      - !type:OnUserAction
+        action:
+          !type:MoodAction
+          effect: LPPGotSlap
+
+  - type: Interaction
+    id: LPPSlap2 # Шлёпнуть
+    parent: [BaseGlobal, BaseHands]
+    icon: /Textures/Interface/Alerts/mood.rsi/mood5.png
+    delay: 0.2
+    cooldown: 5
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    effectSuccess:
+      popup: Visible
+      sound: {path: /Audio/_LostParadise/Effects/whip.ogg}
+    action:
+      !type:ComplexAction
+      actions:
+      - !type:MoodAction
+        effect: LPPEmbarrassment
+      - !type:OnUserAction
+        action:
+          !type:MoodAction
+          effect: LPPEmbarrassment
+
+  - type: Interaction
+    id: LPPFuckYou # Показать кому-то средний палец
+    parent: [BaseHands, BaseGlobal]
+    icon: /Textures/Interface/Alerts/mood.rsi/mood4.png
+    priority: -2
+    requiresCanInteract: false
+    contactInteraction: false
+    range: {max: 20}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    action:
+      !type:NoOpAction
+
+  - type: Interaction
+    id: LPPTickle # Щекотать
+    parent: [BaseHands, BaseGlobal]
+    icon: /Textures/Interface/Alerts/mood.rsi/mood5.png
+    priority: 3
+    requiresCanInteract: false
+    contactInteraction: false
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    effectSuccess:
+      popup: VisibleNoChat
+    action:
+      !type:NoOpAction
+
+  - type: Interaction
+    id: LPPSuck # отсос
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    delay: 0.5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    action:
+      !type:MoodAction
+      effect: LPPLoved
+
+  - type: Interaction
+    id: LPPfapfap # дрочка
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    delay: 0.5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    action:
+      !type:MoodAction
+      effect: LPPLoved
+
+  - type: Interaction
+    id: LPPfuckingsalve # выебать
+    parent: [BaseGlobal, BaseHands]
+    priority: 2
+    delay: 0.5
+    range: {max: 1}
+    hideByRequirement: true
+    requirement:
+      !type:MobStateRequirement
+      inverted: true
+    action:
+      !type:MoodAction
+      effect: LPPLoved

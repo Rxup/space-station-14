@@ -167,6 +167,9 @@
   - type: StaticPrice
     price: 150
   - type: PryUnpowered
+  - type: InteractionVerbs
+    allowedVerbs:
+    - KnockOn
 
 - type: entity
   id: BaseSecureWindoor

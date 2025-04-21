@@ -1,3 +1,4 @@
+verb-system-waiting-on-server-text = Waiting on Server...
 verb-system-null-server-response = Entity not in view. You should not see this.
 
 
@@ -28,6 +29,7 @@ verb-categories-lever = Lever
 verb-categories-select-type = Select Type
 verb-categories-fax = Set Destination
 verb-categories-power-level = Power Level
+verb-categories-interaction = Interact
 
 verb-common-toggle-light = Toggle light
 verb-common-close = Close
