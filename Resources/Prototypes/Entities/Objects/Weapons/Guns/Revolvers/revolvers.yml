@@ -50,6 +50,20 @@
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: StaticPrice
     price: 500
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Backmen/Items/Weapon/Revolver/collide1.ogg
+  # backmen edit end
 
 - type: entity
   name: Deckard

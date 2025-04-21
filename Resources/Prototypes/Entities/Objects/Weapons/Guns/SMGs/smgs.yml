@@ -58,6 +58,17 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SMGPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SMGDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SMGDrop
+  # backmen edit start
 
 - type: entity
   name: Atreides
