@@ -1,16 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
-using Robust.Shared.CPUJob.JobQueues;
-using Robust.Shared.CPUJob.JobQueues.Queues;
-using Robust.Shared.Threading;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
@@ -21,7 +15,7 @@ public partial class WoundSystem
     [PublicAPI]
     public bool TryHaltAllBleeding(EntityUid woundable, WoundableComponent? component = null, bool force = false)
     {
-        if (!_woundableQuery.Resolve(woundable, ref component) || component.Wounds == null || component.Wounds.Count == 0)
+        if (!WoundableQuery.Resolve(woundable, ref component) || component.Wounds == null || component.Wounds.Count == 0)
             return true;
 
         foreach (var wound in GetWoundableWounds(woundable, component))
@@ -42,28 +36,13 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public void ForceHealWoundsOnWoundable(EntityUid woundable,
+    public virtual void ForceHealWoundsOnWoundable(EntityUid woundable,
         out FixedPoint2 healed,
         DamageGroupPrototype? damageGroup = null,
         WoundableComponent? component = null)
     {
+        // Server-only execution
         healed = 0;
-        if (!Resolve(woundable, ref component))
-            return;
-
-        var woundsToHeal =
-            GetWoundableWounds(woundable, component)
-                .Where(wound => damageGroup == null || wound.Comp.DamageGroup == damageGroup)
-                .ToList();
-
-        foreach (var wound in woundsToHeal)
-        {
-            healed += wound.Comp.WoundSeverityPoint;
-            RemoveWound(wound, wound);
-        }
-
-        UpdateWoundableIntegrity(woundable, component);
-        CheckWoundableSeverityThresholds(woundable, component);
     }
 
     [PublicAPI]
@@ -100,9 +79,9 @@ public partial class WoundSystem
         var biggestDamage = FixedPoint2.Zero;
 
         woundable = null;
-        foreach (var bodyPart in _body.GetBodyChildren(body))
+        foreach (var bodyPart in Body.GetBodyChildren(body))
         {
-            if (!_woundableQuery.TryComp(bodyPart.Id, out var woundableComp))
+            if (!WoundableQuery.TryComp(bodyPart.Id, out var woundableComp))
                 continue;
 
             var woundableDamage = GetWoundableSeverityPoint(bodyPart.Id, woundableComp, damageGroup, healable);
@@ -151,14 +130,14 @@ public partial class WoundSystem
     [PublicAPI]
     public FixedPoint2 ApplyHealingRateMultipliers(Entity<WoundComponent?> wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
     {
-        if (!_woundableQuery.Resolve(woundable, ref component, false))
+        if (!WoundableQuery.Resolve(woundable, ref component, false))
             return severity;
 
-        if (!_woundQuery.Resolve(wound.Owner, ref wound.Comp) || !wound.Comp.CanBeHealed)
+        if (!WoundQuery.Resolve(wound.Owner, ref wound.Comp) || !wound.Comp.CanBeHealed)
             return FixedPoint2.Zero;
 
         var woundHealingMultiplier =
-            _prototype.Index<DamageTypePrototype>(_woundQuery.Comp(wound).DamageType).WoundHealingMultiplier;
+            _prototype.Index<DamageTypePrototype>(WoundQuery.Comp(wound).DamageType).WoundHealingMultiplier;
 
         if (component.HealingMultipliers.Count == 0)
             return severity * woundHealingMultiplier;
@@ -169,27 +148,31 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public bool TryAddHealingRateMultiplier(EntityUid owner, EntityUid woundable, string identifier, FixedPoint2 change, WoundableComponent? component = null)
+    public virtual bool TryAddHealingRateMultiplier(
+        EntityUid owner,
+        EntityUid woundable,
+        string identifier,
+        FixedPoint2 change,
+        WoundableComponent? component = null)
     {
-        if (!Resolve(woundable, ref component) || !_net.IsServer)
-            return false;
-
-        return component.HealingMultipliers.TryAdd(owner, new WoundableHealingMultiplier(change, identifier));
+        // Server-only execution.
+        return false;
     }
 
     [PublicAPI]
-    public bool TryRemoveHealingRateMultiplier(EntityUid owner, EntityUid woundable, WoundableComponent? component = null)
+    public virtual bool TryRemoveHealingRateMultiplier(
+        EntityUid owner,
+        EntityUid woundable,
+        WoundableComponent? component = null)
     {
-        if (!Resolve(woundable, ref component)  || !_net.IsServer)
-            return false;
-
-        return component.HealingMultipliers.Remove(owner);
+        // Server-only execution.
+        return false;
     }
 
     [PublicAPI]
     public bool CanHealWound(EntityUid wound, WoundComponent? comp = null)
     {
-        if (!_woundQuery.Resolve(wound, ref comp))
+        if (!WoundQuery.Resolve(wound, ref comp))
             return false;
 
         if (!comp.CanBeHealed)

@@ -206,7 +206,6 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             !ev.CanAccess ||
             !ev.CanInteract ||
             ev.User == ev.Target ||
-            IsClientSide(ev.Target) ||
             !_bsQuery.TryComp(ev.User, out var component)
             )
             return;

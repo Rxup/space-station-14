@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
@@ -23,29 +24,27 @@ namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
 public abstract partial class WoundSystem : EntitySystem
 {
+    [Dependency] protected readonly IRobustRandom Random = default!;
+    [Dependency] protected readonly IConfigurationManager Cfg = default!;
+
+    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
 
-    [Dependency] protected readonly IRobustRandom Random = default!;
-
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] protected readonly IConfigurationManager Cfg = default!;
-
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] protected readonly SharedBodySystem Body = default!;
+    [Dependency] protected readonly SharedHandsSystem Hands = default!;
 
     [Dependency] protected readonly SharedContainerSystem Containers = default!;
     [Dependency] protected readonly SharedTransformSystem Xform = default!;
 
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] protected readonly SharedAudioSystem Audio = default!;
+
+    [Dependency] protected readonly ThrowingSystem Throwing = default!;
+    [Dependency] protected readonly InventorySystem Inventory = default!;
+    [Dependency] protected readonly TraumaSystem Trauma = default!;
 
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-
-    // I'm the one.... who throws........
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     protected readonly Dictionary<WoundSeverity, FixedPoint2> WoundThresholds = new()
     {
@@ -311,7 +310,7 @@ public abstract partial class WoundSystem : EntitySystem
 
     protected void CheckSeverityThresholds(EntityUid wound, WoundComponent? component = null)
     {
-        if (!_woundQuery.Resolve(wound, ref component, false))
+        if (!WoundQuery.Resolve(wound, ref component, false))
             return;
 
         var nearestSeverity = component.WoundSeverity;
@@ -344,7 +343,7 @@ public abstract partial class WoundSystem : EntitySystem
         FixedPoint2 oldSeverity,
         WoundableComponent? woundableComp = null)
     {
-        if (!_woundableQuery.Resolve(woundableEnt, ref woundableComp, false) || woundableComp.Wounds == null)
+        if (!WoundableQuery.Resolve(woundableEnt, ref woundableComp, false) || woundableComp.Wounds == null)
             return;
 
         if (!woundableComp.Wounds.Contains(uid))
@@ -377,12 +376,12 @@ public abstract partial class WoundSystem : EntitySystem
 
     protected void UpdateWoundableIntegrity(EntityUid uid, WoundableComponent? component = null)
     {
-        if (!_woundableQuery.Resolve(uid, ref component, false) || component.Wounds == null)
+        if (!WoundableQuery.Resolve(uid, ref component, false) || component.Wounds == null)
             return;
 
         // Ignore scars for woundable integrity.. Unless you want to confuse people with minor woundable state
         var damage =
-            component.Wounds.ContainedEntities.Select(_woundQuery.Comp)
+            component.Wounds.ContainedEntities.Select(WoundQuery.Comp)
                 .Where(wound => !wound.IsScar)
                 .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.WoundIntegrityDamage);
 
@@ -420,7 +419,7 @@ public abstract partial class WoundSystem : EntitySystem
 
     protected void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
     {
-        if (!_woundableQuery.Resolve(woundable, ref component, false))
+        if (!WoundableQuery.Resolve(woundable, ref component, false))
             return;
 
         var nearestSeverity = component.WoundableSeverity;
@@ -461,5 +460,129 @@ public abstract partial class WoundSystem : EntitySystem
 
         if (_net.IsServer)
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+    }
+
+    protected void FixWoundableRoots(EntityUid targetEntity, WoundableComponent targetWoundable)
+    {
+        if (targetWoundable.ChildWoundables.Count == 0)
+            return;
+
+        foreach (var (childEntity, childWoundable) in GetAllWoundableChildren(targetEntity, targetWoundable))
+        {
+            childWoundable.RootWoundable = targetWoundable.RootWoundable;
+            Dirty(childEntity, childWoundable);
+        }
+
+        Dirty(targetEntity, targetWoundable);
+    }
+
+    protected void InternalAddWoundableToParent(
+        EntityUid parentEntity,
+        EntityUid childEntity,
+        WoundableComponent parentWoundable,
+        WoundableComponent childWoundable)
+    {
+        parentWoundable.ChildWoundables.Add(childEntity);
+        childWoundable.ParentWoundable = parentEntity;
+        childWoundable.RootWoundable = parentWoundable.RootWoundable;
+
+        FixWoundableRoots(childEntity, childWoundable);
+
+        var woundableRoot = WoundableQuery.Comp(parentWoundable.RootWoundable);
+        var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
+
+        RaiseLocalEvent(childEntity, ref woundableAttached);
+
+        var bodyPart = Comp<BodyPartComponent>(childEntity);
+        foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
+        {
+            var ev = new WoundAddedEvent(wound, parentWoundable, woundableRoot);
+            RaiseLocalEvent(woundId, ref ev);
+
+            if (bodyPart.Body.HasValue)
+            {
+                var ev2 = new WoundAddedOnBodyEvent((woundId, wound), parentWoundable, woundableRoot);
+                RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
+            }
+        }
+
+        Dirty(childEntity, childWoundable);
+        Dirty(parentEntity, parentWoundable);
+    }
+
+    protected void InternalRemoveWoundableFromParent(
+        EntityUid parentEntity,
+        EntityUid childEntity,
+        WoundableComponent parentWoundable,
+        WoundableComponent childWoundable)
+    {
+        if (TerminatingOrDeleted(childEntity) || TerminatingOrDeleted(parentEntity))
+            return;
+
+        parentWoundable.ChildWoundables.Remove(childEntity);
+        childWoundable.ParentWoundable = null;
+        childWoundable.RootWoundable = childEntity;
+
+        FixWoundableRoots(childEntity, childWoundable);
+
+        var oldWoundableRoot = WoundableQuery.Comp(parentWoundable.RootWoundable);
+        var woundableDetached = new WoundableDetachedEvent(parentEntity, parentWoundable);
+
+        RaiseLocalEvent(childEntity, ref woundableDetached);
+
+        foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
+        {
+            var ev = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
+            RaiseLocalEvent(woundId, ref ev);
+
+            var ev2 = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
+            RaiseLocalEvent(childWoundable.RootWoundable, ref ev2);
+        }
+
+        Dirty(childEntity, childWoundable);
+        Dirty(parentEntity, parentWoundable);
+    }
+
+    protected void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)
+    {
+        if (!WoundableQuery.Resolve(woundable, ref woundableComp, false))
+            return;
+
+        foreach (var organ in Body.GetPartOrgans(woundable))
+        {
+            if (organ.Component.OrganSeverity == OrganSeverity.Normal)
+            {
+                // TODO: SFX for organs getting not destroyed, but thrown out
+                Body.RemoveOrgan(organ.Id, organ.Component);
+                Throwing.TryThrow(organ.Id, Random.NextAngle().ToWorldVec() * 7f, Random.Next(8, 24));
+            }
+            else
+            {
+                // Destroy it
+                Trauma.TrySetOrganDamageModifier(
+                    organ.Id,
+                    organ.Component.OrganIntegrity * 100,
+                    woundable,
+                    WoundableDestroyalIdentifier,
+                    organ.Component);
+            }
+        }
+    }
+
+    protected void DestroyWoundableChildren(EntityUid woundableEntity, WoundableComponent? woundableComp = null)
+    {
+        if (!WoundableQuery.Resolve(woundableEntity, ref woundableComp, false))
+            return;
+
+        foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity, woundableComp))
+        {
+            if (childWoundable.WoundableSeverity is WoundableSeverity.Critical)
+            {
+                DestroyWoundable(woundableEntity, child, childWoundable);
+                continue;
+            }
+
+            AmputateWoundable(woundableEntity, child, childWoundable);
+        }
     }
 }

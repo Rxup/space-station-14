@@ -25,7 +25,7 @@ public sealed partial class NerveSystemComponent : Component
     /// How much of typical wound pain can this nerve system hold?
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 SoftPainCap = 90f;
+    public FixedPoint2 SoftPainCap = 140f;
 
     // Don't change, OR I will break your knees, filled up upon initialization.
     public Dictionary<EntityUid, NerveComponent> Nerves = new();
@@ -129,7 +129,7 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Female, new SoundCollectionSpecifier("PainShockScreamsFemale")
             {
-                Params = AudioParams.Default.WithVariation(0.05f),
+                Params = AudioParams.Default.WithVariation(0.05f).WithVolume(-2f),
             }
         },
         {
@@ -146,19 +146,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("CritWhimpersMale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Female, new SoundCollectionSpecifier("CritWhimpersFemale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("CritWhimpersMale") // yeah
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
     };
@@ -169,19 +169,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("PainShockWhimpersMale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Female, new SoundCollectionSpecifier("PainShockWhimpersFemale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("PainShockWhimpersMale") // yeah
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
     };
@@ -192,19 +192,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("OrganDamagePainedMale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
        },
        {
             Sex.Female, new SoundCollectionSpecifier("OrganDamagePainedFemale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("OrganDamagePainedMale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
     };
@@ -215,19 +215,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("OrganDamageWhimpersMale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Female, new SoundCollectionSpecifier("OrganDamageWhimpersFemale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("OrganDamageWhimpersMale")
             {
-                Params = AudioParams.Default,
+                Params = AudioParams.Default.WithVolume(-7f),
             }
         },
     };
