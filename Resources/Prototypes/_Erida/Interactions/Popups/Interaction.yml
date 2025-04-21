@@ -1,7 +1,4 @@
-﻿  MrDarkSide - Lost Paradise
-  # <
-
-  # С КЕМ-ТО / ЧЕМ-ТО
+﻿  # С КЕМ-ТО / ЧЕМ-ТО
   - type: Interaction
     id: LPPKiss # Поцелуй
     parent: [BaseGlobal, BaseHands]
