@@ -1051,7 +1051,7 @@
   components:
     - type: Sprite
       layers:
-        - state: wizard 
+        - state: wizard
         - state: sub_department # Backmen
           color: "#433bea"
         - state: frame_head # Backmen
@@ -1089,13 +1089,7 @@
       jobIcon: JobIconAdmin
     - type: Access
       groups:
-        - AllAccess
-        - Silicon
-      tags:
-        - CentralCommand
-        - NuclearOperative
-        - SyndicateAgent
-        - Wizard
+        - AdminAllAccess
     - type: Tag #  Ignore Chameleon tags
       tags:
         - DoorBumpOpener

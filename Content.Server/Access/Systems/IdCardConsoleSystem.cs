@@ -111,7 +111,8 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     /// Called whenever an access button is pressed, adding or removing that access from the target ID card.
     /// Writes data passed from the UI into the ID stored in <see cref="IdCardConsoleComponent.TargetIdSlot"/>, if present.
     /// </summary>
-    private void TryWriteToTargetId(EntityUid uid,
+    private void TryWriteToTargetId(
+        EntityUid uid,
         string newFullName,
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
@@ -143,33 +144,34 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             return;
         }
 
-        var oldTags = _access.TryGetTags(targetId) ?? new List<ProtoId<AccessLevelPrototype>>();
-        oldTags = oldTags.ToList();
-
+        //start-backmen: fix id card console
+        var oldTags = _access.TryGetTags(targetId)?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
         var privilegedId = component.PrivilegedIdSlot.Item;
-
-        if (oldTags.SequenceEqual(newAccessList))
-            return;
-
-        // I hate that C# doesn't have an option for this and don't desire to write this out the hard way.
-        // var difference = newAccessList.Difference(oldTags);
-        var difference = newAccessList.Union(oldTags).Except(newAccessList.Intersect(oldTags)).ToHashSet();
-        // NULL SAFETY: PrivilegedIdIsAuthorized checked this earlier.
         var privilegedPerms = _accessReader.FindAccessTags(privilegedId!.Value).ToHashSet();
-        if (!difference.IsSubsetOf(privilegedPerms))
-        {
-            _sawmill.Warning($"User {ToPrettyString(uid)} tried to modify permissions they could not give/take!");
+
+        var filteredAccessList = newAccessList
+            .Where(tag => privilegedPerms.Contains(tag))
+            .ToList();
+
+        var consoleEditableTags = component.AccessLevels.ToHashSet();
+
+        var tagsToKeep = oldTags.Where(tag => !consoleEditableTags.Contains(tag)).ToList();
+
+        var finalTags = tagsToKeep.Union(filteredAccessList).ToList();
+
+        if (finalTags.SequenceEqual(oldTags))
             return;
-        }
+        //end-backmen: fix id card console
 
-        var addedTags = newAccessList.Except(oldTags).Select(tag => "+" + tag).ToList();
-        var removedTags = oldTags.Except(newAccessList).Select(tag => "-" + tag).ToList();
-        _access.TrySetTags(targetId, newAccessList);
+        _access.TrySetTags(targetId, finalTags);
 
-        /*TODO: ECS SharedIdCardConsoleComponent and then log on card ejection, together with the save.
-        This current implementation is pretty shit as it logs 27 entries (27 lines) if someone decides to give themselves AA*/
+        var addedTags = filteredAccessList.Except(oldTags.Intersect(consoleEditableTags));
+        var removedTags = oldTags.Intersect(consoleEditableTags).Except(filteredAccessList);
+
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has modified {ToPrettyString(targetId):entity} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
+            $"{ToPrettyString(player):player} modified {ToPrettyString(targetId):entity}: " +
+            $"Added [{string.Join(", ", addedTags)}], Removed [{string.Join(", ", removedTags)}] " +
+            $"(Attempted to add invalid tags: [{string.Join(", ", newAccessList.Except(filteredAccessList))}])");
     }
 
     /// <summary>
