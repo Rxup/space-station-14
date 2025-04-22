@@ -350,7 +350,7 @@ namespace Content.Client.Construction.UI
             string recipeName;
             string recipeDesc;
 
-            if (name[..3] != "ent")
+            if (!name.StartsWith("ent-") && !name.Equals($"ent-{prototype.ID}"))
             {
                 recipeName = name;
                 recipeDesc = desc;
@@ -401,7 +401,7 @@ namespace Content.Client.Construction.UI
             string recipeName = Loc.GetString($"ent-{recipe.ID}");
             string recipeDesc;
 
-            if (recipeName[..3] != "ent")
+            if (!recipeName.StartsWith("ent-") && !recipeName.Equals($"ent-{recipe.ID}"))
                 recipeDesc = Loc.GetString($"ent-{recipe.ID}.desc");
             else
             {
