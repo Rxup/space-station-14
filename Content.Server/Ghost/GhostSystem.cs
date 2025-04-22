@@ -8,6 +8,7 @@ using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
 using Content.Server.Warps;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -17,6 +18,7 @@ using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -26,6 +28,8 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Roles;
+using Content.Shared.SSDIndicator;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
@@ -69,17 +73,11 @@ namespace Content.Server.Ghost
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
 
-        private EntityQuery<GhostComponent> _ghostQuery;
-        private EntityQuery<PhysicsComponent> _physicsQuery;
-
         private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
 
         public override void Initialize()
         {
             base.Initialize();
-
-            _ghostQuery = GetEntityQuery<GhostComponent>();
-            _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
             SubscribeLocalEvent<GhostComponent, ComponentStartup>(OnGhostStartup);
             SubscribeLocalEvent<GhostComponent, MapInitEvent>(OnMapInit);
@@ -96,7 +94,6 @@ namespace Content.Server.Ghost
             SubscribeNetworkEvent<GhostWarpsRequestEvent>(OnGhostWarpsRequest);
             SubscribeNetworkEvent<GhostReturnToBodyRequest>(OnGhostReturnToBodyRequest);
             SubscribeNetworkEvent<GhostWarpToTargetRequestEvent>(OnGhostWarpToTargetRequest);
-            SubscribeNetworkEvent<GhostnadoRequestEvent>(OnGhostnadoRequest);
 
             SubscribeLocalEvent<GhostComponent, BooActionEvent>(OnActionPerform);
             SubscribeLocalEvent<GhostComponent, ToggleGhostHearingActionEvent>(OnGhostHearingAction);
@@ -275,7 +272,7 @@ namespace Content.Server.Ghost
         private void OnGhostReturnToBodyRequest(GhostReturnToBodyRequest msg, EntitySessionEventArgs args)
         {
             if (args.SenderSession.AttachedEntity is not {Valid: true} attached
-                || !_ghostQuery.TryComp(attached, out var ghost)
+                || !TryComp(attached, out GhostComponent? ghost)
                 || !ghost.CanReturnToBody
                 || !TryComp(attached, out ActorComponent? actor))
             {
@@ -291,20 +288,20 @@ namespace Content.Server.Ghost
         private void OnGhostWarpsRequest(GhostWarpsRequestEvent msg, EntitySessionEventArgs args)
         {
             if (args.SenderSession.AttachedEntity is not {Valid: true} entity
-                || !_ghostQuery.HasComp(entity))
+                || !HasComp<GhostComponent>(entity))
             {
                 Log.Warning($"User {args.SenderSession.Name} sent a {nameof(GhostWarpsRequestEvent)} without being a ghost.");
                 return;
             }
 
-            var response = new GhostWarpsResponseEvent(GetPlayerWarps(entity).Concat(GetLocationWarps()).ToList());
+            var response = new GhostWarpsResponseEvent(GetPlayerWarps(), GetLocationWarps(), GetAntagonistWarps());
             RaiseNetworkEvent(response, args.SenderSession.Channel);
         }
 
         private void OnGhostWarpToTargetRequest(GhostWarpToTargetRequestEvent msg, EntitySessionEventArgs args)
         {
             if (args.SenderSession.AttachedEntity is not {Valid: true} attached
-                || !_ghostQuery.HasComp(attached))
+                || !TryComp(attached, out GhostComponent? _))
             {
                 Log.Warning($"User {args.SenderSession.Name} tried to warp to {msg.Target} without being a ghost.");
                 return;
@@ -318,68 +315,104 @@ namespace Content.Server.Ghost
                 return;
             }
 
-            WarpTo(attached, target);
-        }
-
-        private void OnGhostnadoRequest(GhostnadoRequestEvent msg, EntitySessionEventArgs args)
-        {
-            if (args.SenderSession.AttachedEntity is not {} uid
-                || !_ghostQuery.HasComp(uid))
-            {
-                Log.Warning($"User {args.SenderSession.Name} tried to ghostnado without being a ghost.");
-                return;
-            }
-
-            if (_followerSystem.GetMostGhostFollowed() is not {} target)
-                return;
-
-            WarpTo(uid, target);
-        }
-
-        private void WarpTo(EntityUid uid, EntityUid target)
-        {
-            _adminLog.Add(LogType.GhostWarp, $"{ToPrettyString(uid)} ghost warped to {ToPrettyString(target)}");
+            _adminLog.Add(LogType.GhostWarp, $"{ToPrettyString(attached)} ghost warped to {ToPrettyString(target)}");
 
             if ((TryComp(target, out WarpPointComponent? warp) && warp.Follow) || HasComp<MobStateComponent>(target))
             {
-                _followerSystem.StartFollowingEntity(uid, target);
+                _followerSystem.StartFollowingEntity(attached, target);
                 return;
             }
 
-            var xform = Transform(uid);
-            _transformSystem.SetCoordinates(uid, xform, Transform(target).Coordinates);
-            _transformSystem.AttachToGridOrMap(uid, xform);
-            if (_physicsQuery.TryComp(uid, out var physics))
-                _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
+            var xform = Transform(attached);
+            _transformSystem.SetCoordinates(attached, xform, Transform(target).Coordinates);
+            _transformSystem.AttachToGridOrMap(attached, xform);
+            if (TryComp(attached, out PhysicsComponent? physics))
+                _physics.SetLinearVelocity(attached, Vector2.Zero, body: physics);
         }
 
-        private IEnumerable<GhostWarp> GetLocationWarps()
+        private List<GhostWarpPlace> GetLocationWarps()
         {
+            var warps = new List<GhostWarpPlace> { };
             var allQuery = AllEntityQuery<WarpPointComponent>();
 
             while (allQuery.MoveNext(out var uid, out var warp))
             {
-                yield return new GhostWarp(GetNetEntity(uid), warp.Location ?? Name(uid), true);
+                var newWarp =  new GhostWarpPlace(GetNetEntity(uid), warp.Location ?? Name(uid), warp.Location ?? Description(uid));
+                warps.Add(newWarp);
             }
+
+            return warps;
         }
 
-        private IEnumerable<GhostWarp> GetPlayerWarps(EntityUid except)
+        private List<GhostWarpPlayer> GetPlayerWarps()
         {
-            foreach (var player in _playerManager.Sessions)
+            var warps = new List<GhostWarpPlayer> { };
+
+            foreach (var mindContainer in EntityQuery<MindContainerComponent>())
             {
-                if (player.AttachedEntity is not {Valid: true} attached)
+                var entity = mindContainer.Owner;
+
+                if (!(HasComp<HumanoidAppearanceComponent>(entity) || HasComp<GhostComponent>(entity)) ||
+                    HasComp<GlobalAntagonistComponent>(entity))
                     continue;
 
-                if (attached == except) continue;
+                var playerDepartmentId = _prototypeManager.Index<DepartmentPrototype>("Specific").ID;
+                var playerJobName = Loc.GetString("generic-unknown-title");
 
-                TryComp<MindContainerComponent>(attached, out var mind);
+                if (_jobs.MindTryGetJob(mindContainer.Mind ?? mindContainer.LastMindStored,
+                        out var jobPrototype))
+                {
+                    playerJobName = Loc.GetString(jobPrototype.Name);
 
-                var jobName = _jobs.MindTryGetJobName(mind?.Mind);
-                var playerInfo = $"{Comp<MetaDataComponent>(attached).EntityName} ({jobName})";
+                    if (_jobs.TryGetDepartment(jobPrototype.ID, out var departmentPrototype))
+                    {
+                        playerDepartmentId = departmentPrototype.ID;
+                    }
+                }
 
-                if (_mobState.IsAlive(attached) || _mobState.IsCritical(attached))
-                    yield return new GhostWarp(GetNetEntity(attached), playerInfo, false);
+                var hasAnyMind = (mindContainer.Mind ?? mindContainer.LastMindStored) != null;
+                var isDead = _mobState.IsDead(entity);
+                var isLeft = TryComp<SSDIndicatorComponent>(entity, out var indicator) && indicator.IsSSD && !isDead &&
+                             hasAnyMind;
+
+                var warp = new GhostWarpPlayer(
+                    GetNetEntity(entity),
+                    Comp<MetaDataComponent>(entity).EntityName,
+                    playerJobName,
+                    playerDepartmentId,
+                    HasComp<GhostComponent>(entity),
+                    isLeft,
+                    isDead,
+                    _mobState.IsAlive(entity)
+                );
+
+                warps.Add(warp);
             }
+
+            return warps;
+        }
+
+        private List<GhostWarpGlobalAntagonist> GetAntagonistWarps()
+        {
+            var warps = new List<GhostWarpGlobalAntagonist> { };
+
+            foreach (var antagonist in EntityQuery<GlobalAntagonistComponent>())
+            {
+                var entity = antagonist.Owner;
+                var prototype = _prototypeManager.Index<AntagonistPrototype>(antagonist.AntagonistPrototype ?? "globalAntagonistUnknown");
+
+                var warp = new GhostWarpGlobalAntagonist(
+                    GetNetEntity(entity),
+                    Comp<MetaDataComponent>(entity).EntityName,
+                    prototype.Name,
+                    prototype.Description,
+                    prototype.ID
+                );
+
+                warps.Add(warp);
+            }
+
+            return warps;
         }
 
         #endregion

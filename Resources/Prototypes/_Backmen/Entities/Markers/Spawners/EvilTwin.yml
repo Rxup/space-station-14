@@ -4,3 +4,5 @@
   parent: SimpleMobBase
   components:
   - type: EvilTwinSpawner
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistUnknown

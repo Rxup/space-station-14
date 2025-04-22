@@ -109,6 +109,8 @@
   - type: Access
     tags:
     - InteQVanguard
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistInteQ
 
 - type: entity
   parent: BaseMobCarp
@@ -142,3 +144,5 @@
   - type: Access
     tags:
     - InteQVanguard
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistInteQ

@@ -137,6 +137,8 @@
       understands:
       - TauCetiBasic
       - OldFastCodes
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistInteQ
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: RandomMetadata
@@ -258,7 +260,9 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
 
 - type: entity
   parent: SpawnPointInteQ
@@ -289,7 +293,9 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
 
 - type: entity
   parent: SpawnPointInteQ
@@ -320,7 +326,9 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
 
 - type: entity
   parent: SpawnPointInteQ
@@ -351,4 +359,6 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole

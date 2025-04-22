@@ -67,6 +67,8 @@
     size: Ginormous
   - type: Unremoveable
     deleteOnDrop: true
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistBlob
 
 - type: currency
   id: BlobPoint

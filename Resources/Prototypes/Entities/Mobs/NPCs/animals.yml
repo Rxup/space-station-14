@@ -2061,6 +2061,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Zombie
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistBlob
 
 - type: entity
   name: lizard #Weh
@@ -2603,6 +2605,8 @@
         type: SurgeryBui
   # end-backmen: surgery
   - type: Fauna # Lavaland Change
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistSpider
 
 - type: entity
   parent: MobSpiderBase
@@ -2725,6 +2729,8 @@
     - type: Bloodstream
       bloodMaxVolume: 150
       bloodReagent: Laughter
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistSpiderClown
 
 - type: entity
   name: wizard spider

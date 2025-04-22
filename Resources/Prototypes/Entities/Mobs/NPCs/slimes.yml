@@ -128,6 +128,8 @@
         type: SurgeryBui
   # end-backmen: surgery
   - type: Fauna # Lavaland Change
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistSlime
 
 - type: entity
   name: basic slime

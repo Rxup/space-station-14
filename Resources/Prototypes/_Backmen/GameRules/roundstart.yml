@@ -68,6 +68,8 @@
       allowNonHumans: true
       components:
       - type: BlobCarrier
+      - type: GlobalAntagonist # Backmen
+        antagonistPrototype: globalAntagonistBlob
       blacklist:
         components:
         - AntagImmune

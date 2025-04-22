@@ -8,6 +8,7 @@
   - Quartermaster
   - SalvageSpecialist
   accountNumber: 1315 #backmen: currency
+  buttonStyle: ButtonColorCargoDepartment # Backmen
 
 - type: department
   id: Civilian
@@ -36,6 +37,7 @@
   #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
   #- ResearchAssistant
   accountNumber: 1316 #backmen: currency
+  buttonStyle: ButtonColorCivilianDepartment # Backmen
 
 - type: department
   id: CentralCommand
@@ -55,6 +57,7 @@
   - SpecialOperationsOfficer #Backmen-ERTRoles
   editorHidden: true
   weight: 120
+  buttonStyle: ButtonColorCentralCommandDepartment # Backmen
 
 - type: department
   id: Command
@@ -82,6 +85,7 @@
   - DeathSquad
   primary: false
   weight: 100
+  buttonStyle: ButtonColorCommandDepartment # Backmen
 
 - type: department
   id: Engineering
@@ -94,6 +98,7 @@
   - StationEngineer
   - TechnicalAssistant
   accountNumber: 1318 #backmen: currency
+  buttonStyle: ButtonColorEngineeringDepartment # Backmen
 
 - type: department
   id: Medical
@@ -110,6 +115,7 @@
   - BkmSurgeon #backmen
   - BkmVirologist #backmen
   accountNumber: 1319 #backmen: currency
+  buttonStyle: ButtonColorMedicalDepartment # Backmen
 
 - type: department
   id: Security
@@ -126,6 +132,7 @@
   - Warden
   - Brigmedic #backmen
   accountNumber: 1320  #backmen: currency
+  buttonStyle: ButtonColorSecurityDepartment # Backmen
 
 - type: department
   id: Science
@@ -138,6 +145,7 @@
   - Scientist
   - ResearchAssistant
   accountNumber: 1321  #backmen: currency
+  buttonStyle: ButtonColorScienceDepartment # Backmen
 
 - type: department
   id: Silicon
@@ -150,6 +158,7 @@
   - BKBPLATech
   - BKBPLAMED
   accountNumber: 1351  #backmen: currency
+  buttonStyle: ButtonColorSiliconDepartment # Backmen
 
 - type: department
   id: Specific
@@ -166,3 +175,4 @@
   - Pilot # Corvax-Pilot
   accountNumber: 1322  #backmen: currency
   primary: false
+  buttonStyle: ButtonColorSpecificDepartment # Backmen

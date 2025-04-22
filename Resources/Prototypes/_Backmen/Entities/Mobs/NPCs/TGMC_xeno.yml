@@ -90,6 +90,8 @@
   - type: Access
     tags:
     - Xeno
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistXenomorph
 
 - type: accessLevel
   id: Xeno

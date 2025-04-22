@@ -166,8 +166,8 @@
     - Carp
     - Dragon
     - TauCetiBasic
-
-
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistDragon
   - type: Puller
     needsHands: false
 

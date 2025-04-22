@@ -235,6 +235,8 @@
         - NamesNinjaTitle
         - NamesNinja
         nameFormat: name-format-ninja
+      - type: GlobalAntagonist # Backmen
+        antagonistPrototype: globalAntagonistNinja
       mindRoles:
       - MindRoleNinja
 
@@ -271,6 +273,9 @@
         text: paradox-clone-role-greeting
         color: lightblue
         sound: /Audio/Misc/paradox_clone_greeting.ogg
+      components:
+      - type: GlobalAntagonist # Backmen
+        antagonistPrototype: globalAntagonistUnknown
       mindRoles:
       - MindRoleParadoxClone
 
@@ -322,6 +327,8 @@
         - NamesWizardFirst
         - NamesWizardLast
         nameFormat: name-format-wizard
+      - type: GlobalAntagonist # Backmen
+        antagonistPrototype: globalAntagonistWizard
       mindRoles:
       - MindRoleWizard
 
@@ -537,6 +544,8 @@
         addFriendlyFactions:
         - Zombie
       # Corvax
+      - type: GlobalAntagonist # Backmen
+        antagonistPrototype: globalAntagonistZombie
       mindRoles:
       - MindRoleInitialInfected
 

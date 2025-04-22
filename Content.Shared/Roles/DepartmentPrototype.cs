@@ -47,6 +47,12 @@ public sealed partial class DepartmentPrototype : IPrototype
     public int Weight { get; private set; }
 
     /// <summary>
+    /// A style string references to style in StyleNano.cs
+    /// </summary>
+    [DataField]
+    public string ButtonStyle = default!;
+
+    /// <summary>
     /// Toggles the display of the department in the priority setting menu in the character editor.
     /// </summary>
     [DataField]
