@@ -154,10 +154,11 @@ namespace Content.Client.Construction.UI
 
             _selected = (ConstructionPrototype) item.Metadata!;
             if (_placementManager.IsActive && !_placementManager.Eraser) UpdateGhostPlacement();
-
+                //BACKMEN-EDIT-START
             var name = Loc.GetString($"ent-{_selected.ID}");
             var desc = Loc.GetString($"ent-{_selected.ID}.desc");
             PopulateInfo(_selected, name, desc);
+               //BACKMEN-EDIT-END
         }
 
         private void OnGridViewRecipeSelected(object? sender, ConstructionPrototype? recipe)
@@ -171,9 +172,11 @@ namespace Content.Client.Construction.UI
 
             _selected = recipe;
             if (_placementManager.IsActive && !_placementManager.Eraser) UpdateGhostPlacement();
+            //BACKMEN-EDIT-START
             var name = Loc.GetString($"ent-{_selected.ID}");
             var desc = Loc.GetString($"ent-{_selected.ID}.desc");
             PopulateInfo(_selected, name, desc);
+            //BACKMEN-EDIT-END
         }
 
         private void OnViewPopulateRecipes(object? sender, (string search, string catagory) args)
@@ -201,7 +204,7 @@ namespace Content.Client.Construction.UI
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    if (!Loc.GetString($"ent-{recipe.ID}").ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
+                    if (!Loc.GetString($"ent-{recipe.ID}").ToLowerInvariant().Contains(search.Trim().ToLowerInvariant())) //BACKMEN-EDIT
                         continue;
                 }
 
@@ -223,7 +226,7 @@ namespace Content.Client.Construction.UI
                 recipes.Add(recipe);
             }
 
-            recipes.Sort((a, b) => string.Compare(Loc.GetString($"ent-{a.ID}"), Loc.GetString($"ent-{b.ID}"), StringComparison.InvariantCulture));
+            recipes.Sort((a, b) => string.Compare(Loc.GetString($"ent-{a.ID}"), Loc.GetString($"ent-{b.ID}"), StringComparison.InvariantCulture)); //BACKMEN-EDIT
             var recipesList = _constructionView.Recipes;
             recipesList.Clear();
 
@@ -339,11 +342,11 @@ namespace Content.Client.Construction.UI
             _constructionView.Categories = categoriesArray;
         }
 
-        private void PopulateInfo(ConstructionPrototype prototype, string name, string desc)
+        private void PopulateInfo(ConstructionPrototype prototype, string name, string desc) //BACKMEN-EDIT
         {
             _constructionView.ClearRecipeInfo();
 
-
+            //BACKMEN-EDIT-START
             string recipeName;
             string recipeDesc;
 
@@ -362,7 +365,7 @@ namespace Content.Client.Construction.UI
                 recipeName, recipeDesc, _spriteSystem.Frame0(prototype.Icon),
                 prototype.Type != ConstructionType.Item,
                 !_favoritedRecipes.Contains(prototype));
-
+            //BACKMEN-EDIT-END
             var stepList = _constructionView.RecipeStepList;
             GenerateStepList(prototype, stepList);
         }
@@ -394,6 +397,7 @@ namespace Content.Client.Construction.UI
 
         private ItemList.Item GetItem(ConstructionPrototype recipe, ItemList itemList)
         {
+            //BACKMEN-EDIT-START
             string recipeName = Loc.GetString($"ent-{recipe.ID}");
             string recipeDesc;
 
@@ -404,7 +408,7 @@ namespace Content.Client.Construction.UI
                 recipeName = recipe.Name;
                 recipeDesc = recipe.Description;
             }
-
+            //BACKMEN-EDIT-END
             return new(itemList)
             {
                 Metadata = recipe,
@@ -497,8 +501,8 @@ namespace Content.Client.Construction.UI
                     OnViewPopulateRecipes(_constructionView, (string.Empty, string.Empty));
             }
 
-            var name = Loc.GetString($"ent-{_selected.ID}");
-            var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+            var name = Loc.GetString($"ent-{_selected.ID}"); //BACKMEN-EDIT
+            var desc = Loc.GetString($"ent-{_selected.ID}.desc"); //BACKMEN-EDIT
             PopulateInfo(_selected, name, desc);
             PopulateCategories(_selectedCategory);
         }
@@ -608,8 +612,8 @@ namespace Content.Client.Construction.UI
             if (_selected == null)
                 return;
 
-            var name = Loc.GetString($"ent-{_selected.ID}");
-            var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+            var name = Loc.GetString($"ent-{_selected.ID}");  //BACKMEN-EDIT
+            var desc = Loc.GetString($"ent-{_selected.ID}.desc"); //BACKMEN-EDIT
             PopulateInfo(_selected, name, desc);
         }
     }
