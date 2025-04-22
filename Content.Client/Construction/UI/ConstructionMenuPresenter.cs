@@ -70,8 +70,12 @@ namespace Content.Client.Construction.UI
                     else
                         _constructionView.OpenCentered();
 
-                    if (_selected != null)
-                        PopulateInfo(_selected);
+                    if (_selected != null) // Backmen-Edit-start
+                    {
+                        var name = Loc.GetString($"ent-{_selected.ID}");
+                        var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+                        PopulateInfo(_selected, name, desc);
+                    } // Backmen-Edit-end
                 }
                 else
                     _constructionView.Close();
@@ -150,7 +154,10 @@ namespace Content.Client.Construction.UI
 
             _selected = (ConstructionPrototype) item.Metadata!;
             if (_placementManager.IsActive && !_placementManager.Eraser) UpdateGhostPlacement();
-            PopulateInfo(_selected);
+
+            var name = Loc.GetString($"ent-{_selected.ID}");
+            var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+            PopulateInfo(_selected, name, desc);
         }
 
         private void OnGridViewRecipeSelected(object? sender, ConstructionPrototype? recipe)
@@ -164,7 +171,9 @@ namespace Content.Client.Construction.UI
 
             _selected = recipe;
             if (_placementManager.IsActive && !_placementManager.Eraser) UpdateGhostPlacement();
-            PopulateInfo(_selected);
+            var name = Loc.GetString($"ent-{_selected.ID}");
+            var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+            PopulateInfo(_selected, name, desc);
         }
 
         private void OnViewPopulateRecipes(object? sender, (string search, string catagory) args)
@@ -192,7 +201,7 @@ namespace Content.Client.Construction.UI
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    if (!recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
+                    if (!Loc.GetString($"ent-{recipe.ID}").ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
                         continue;
                 }
 
@@ -214,8 +223,7 @@ namespace Content.Client.Construction.UI
                 recipes.Add(recipe);
             }
 
-            recipes.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.InvariantCulture));
-
+            recipes.Sort((a, b) => string.Compare(Loc.GetString($"ent-{a.ID}"), Loc.GetString($"ent-{b.ID}"), StringComparison.InvariantCulture));
             var recipesList = _constructionView.Recipes;
             recipesList.Clear();
 
@@ -331,12 +339,27 @@ namespace Content.Client.Construction.UI
             _constructionView.Categories = categoriesArray;
         }
 
-        private void PopulateInfo(ConstructionPrototype prototype)
+        private void PopulateInfo(ConstructionPrototype prototype, string name, string desc)
         {
             _constructionView.ClearRecipeInfo();
 
+
+            string recipeName;
+            string recipeDesc;
+
+            if (name[..3] != "ent")
+            {
+                recipeName = name;
+                recipeDesc = desc;
+            }
+            else
+            {
+                recipeName = prototype.Name;
+                recipeDesc = prototype.Description;
+            }
+
             _constructionView.SetRecipeInfo(
-                prototype.Name, prototype.Description, _spriteSystem.Frame0(prototype.Icon),
+                recipeName, recipeDesc, _spriteSystem.Frame0(prototype.Icon),
                 prototype.Type != ConstructionType.Item,
                 !_favoritedRecipes.Contains(prototype));
 
@@ -371,13 +394,24 @@ namespace Content.Client.Construction.UI
 
         private ItemList.Item GetItem(ConstructionPrototype recipe, ItemList itemList)
         {
+            string recipeName = Loc.GetString($"ent-{recipe.ID}");
+            string recipeDesc;
+
+            if (recipeName[..3] != "ent")
+                recipeDesc = Loc.GetString($"ent-{recipe.ID}.desc");
+            else
+            {
+                recipeName = recipe.Name;
+                recipeDesc = recipe.Description;
+            }
+
             return new(itemList)
             {
                 Metadata = recipe,
-                Text = recipe.Name,
+                Text = recipeName,
                 Icon = _spriteSystem.Frame0(recipe.Icon),
                 TooltipEnabled = true,
-                TooltipText = recipe.Description,
+                TooltipText = recipeDesc,
             };
         }
 
@@ -463,7 +497,9 @@ namespace Content.Client.Construction.UI
                     OnViewPopulateRecipes(_constructionView, (string.Empty, string.Empty));
             }
 
-            PopulateInfo(_selected);
+            var name = Loc.GetString($"ent-{_selected.ID}");
+            var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+            PopulateInfo(_selected, name, desc);
             PopulateCategories(_selectedCategory);
         }
 
@@ -572,7 +608,9 @@ namespace Content.Client.Construction.UI
             if (_selected == null)
                 return;
 
-            PopulateInfo(_selected);
+            var name = Loc.GetString($"ent-{_selected.ID}");
+            var desc = Loc.GetString($"ent-{_selected.ID}.desc");
+            PopulateInfo(_selected, name, desc);
         }
     }
 }
