@@ -36,11 +36,13 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
         public void Populate()
         {
             GhostTeleportContainer.DisposeAllChildren();
+
+            PlayersAllocation();
+
             _playerWarps = GetSortedPlayers(_playerWarps);
             _placeWarps = GetSortedPlaces(_placeWarps);
             _globalAntagonists = GetSortedAntagonists(_globalAntagonists);
 
-            PlayersAllocation();
             AddButtons();
         }
 
