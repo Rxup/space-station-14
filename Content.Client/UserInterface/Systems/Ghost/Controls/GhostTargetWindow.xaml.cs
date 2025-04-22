@@ -88,10 +88,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
                     Columns = 5
                 };
 
+                var departmentPrototype = _prototypeManager.Index<DepartmentPrototype>(departmentList[0].DepartmentID);
                 if (enableByDepartmentColorSheet)
-                    styleClass = _prototypeManager.Index<DepartmentPrototype>(departmentList[0].DepartmentID).ButtonStyle;
+                    styleClass = departmentPrototype.ButtonStyle;
 
-                var labelText = _prototypeManager.Index<DepartmentPrototype>(departmentList[0].DepartmentID).Name;
+                var labelText = departmentPrototype.Name;
 
                 var departmentLabel = new Label
                 {
@@ -223,8 +224,6 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
                     playerButton.OnPressed += _ => WarpClicked?.Invoke(antag.Entity);
 
                     departmentGrid.AddChild(playerButton);
-
-                    labelText = antag.AntagonistName;
                 }
 
                 var departmentLabel = new Label
@@ -243,6 +242,9 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
         public List<List<GhostWarpPlayer>> SortPlayersByDepartment(List<GhostWarpPlayer> players)
         {
             var sortedPlayers = new List<List<GhostWarpPlayer>>();
+
+            if (players.Count == 0)
+                return new List<List<GhostWarpPlayer>>();
 
             players = players.OrderBy(p => _prototypeManager.Index<DepartmentPrototype>(p.DepartmentID).Weight).ToList();
 
@@ -326,22 +328,10 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
 
         private void PlayersAllocation()
         {
-            _alivePlayers.Clear();
-            _deadPlayers.Clear();
-            _leftPlayers.Clear();
-            _ghostPlayers.Clear();
-
-            foreach (var warp in _playerWarps)
-            {
-                if (warp.IsDead)
-                    _deadPlayers.Add(warp);
-                else if (warp.IsLeft)
-                    _leftPlayers.Add(warp);
-                else if (warp.IsAlive)
-                    _alivePlayers.Add(warp);
-                else if (warp.IsGhost)
-                    _ghostPlayers.Add(warp);
-            }
+            _alivePlayers = _playerWarps.Where(warp => warp.IsAlive).ToList();
+            _deadPlayers = _playerWarps.Where(warp => warp.IsDead).ToList();
+            _leftPlayers = _playerWarps.Where(warp => warp.IsLeft).ToList();
+            _ghostPlayers = _playerWarps.Where(warp => warp.IsGhost).ToList();
         }
     }
 }
