@@ -18,7 +18,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
 
         private List<GhostWarpPlayer> _playerWarps = new();
         private List<GhostWarpPlace> _placeWarps = new();
-        private List<GhostWarpGlobalAntagonist> _globalAntoginists = new();
+        private List<GhostWarpGlobalAntagonist> _globalAntagonists = new();
 
         private List<GhostWarpPlayer> _alivePlayers = new();
         private List<GhostWarpPlayer> _leftPlayers = new();
@@ -35,10 +35,10 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
 
         public void Populate()
         {
-            GhostTeleportContainter.DisposeAllChildren();
+            GhostTeleportContainer.DisposeAllChildren();
             _playerWarps = GetSortedPlayers(_playerWarps);
             _placeWarps = GetSortedPlaces(_placeWarps);
-            _globalAntoginists = GetSortedAntagonists(_globalAntoginists);
+            _globalAntagonists = GetSortedAntagonists(_globalAntagonists);
 
             PlayersAllocation();
             AddButtons();
@@ -48,12 +48,12 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
         {
             _playerWarps = players;
             _placeWarps = places;
-            _globalAntoginists = antagonists;
+            _globalAntagonists = antagonists;
         }
 
         private void AddButtons()
         {
-            AddAntagButtons(_globalAntoginists, "ghost-teleport-menu-antagonists-label", "ButtonColorAntagonistDepartment");
+            AddAntagButtons(_globalAntagonists, "ghost-teleport-menu-antagonists-label", "ButtonColorAntagonistDepartment");
             AddPlayerButtons(_alivePlayers, "ghost-teleport-menu-alive-label", string.Empty, true); // Alive
             AddPlayerButtons(_deadPlayers, "ghost-teleport-menu-dead-label", string.Empty, true); // Dead
             AddPlayerButtons(_ghostPlayers, "ghost-teleport-menu-ghosts-label", string.Empty, true); // Ghost
@@ -123,7 +123,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
                 bigGrid.AddChild(departmentGrid);
             }
 
-            GhostTeleportContainter.AddChild(bigGrid);
+            GhostTeleportContainer.AddChild(bigGrid);
         }
 
         private void AddPlaceButtons(List<GhostWarpPlace> places, string text, string styleClass)
@@ -174,7 +174,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
             bigGrid.AddChild(countLabel);
             bigGrid.AddChild(placesGrid);
 
-            GhostTeleportContainter.AddChild(bigGrid);
+            GhostTeleportContainer.AddChild(bigGrid);
         }
 
         private void AddAntagButtons(List<GhostWarpGlobalAntagonist> antags, string text, string styleClass)
@@ -203,7 +203,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
                     Columns = 5
                 };
 
-                var labelText = "ghost-teleport-menu-count-label";
+                var labelText = antagList[0].AntagonistName;
 
                 foreach (var antag in antagList)
                 {
@@ -229,7 +229,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
 
                 var departmentLabel = new Label
                 {
-                    Text = Loc.GetString(labelText) + ": " + antagList.Count,
+                    Text = Loc.GetString(labelText) + $": {antagList.Count}",
                     StyleClasses = { "LabelSecondaryColor" }
                 };
 
@@ -237,7 +237,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
                 bigGrid.AddChild(departmentGrid);
             }
 
-            GhostTeleportContainter.AddChild(bigGrid);
+            GhostTeleportContainer.AddChild(bigGrid);
         }
 
         public List<List<GhostWarpPlayer>> SortPlayersByDepartment(List<GhostWarpPlayer> players)
