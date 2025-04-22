@@ -74,12 +74,6 @@
   id: globalAntagonistInteQ
   name: global-antagonist-inteq-name
   description: global-antagonist-inteq-description
-  weight: 11
-
-- type: antagonist
-  id: globalAntagonistGhostRole
-  name: global-antagonist-ghost-role-name
-  description: global-antagonist-ghost-role-description
   weight: 12
 
 - type: antagonist
@@ -99,6 +93,12 @@
   name: global-antagonist-xenomorph-name
   description: global-antagonist-xenomorph-description
   weight: 15
+
+- type: antagonist
+  id: globalAntagonistGhostRole
+  name: global-antagonist-ghost-role-name
+  description: global-antagonist-ghost-role-description
+  weight: 41
 
 - type: antagonist
   id: globalAntagonistUnknown
