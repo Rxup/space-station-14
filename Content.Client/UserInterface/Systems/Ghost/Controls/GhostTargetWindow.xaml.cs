@@ -241,68 +241,26 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
 
         public List<List<GhostWarpPlayer>> SortPlayersByDepartment(List<GhostWarpPlayer> players)
         {
-            var sortedPlayers = new List<List<GhostWarpPlayer>>();
-
             if (players.Count == 0)
                 return new List<List<GhostWarpPlayer>>();
 
-            players = players.OrderBy(p => _prototypeManager.Index<DepartmentPrototype>(p.DepartmentID).Weight).ToList();
-
-            var currentList = new List<GhostWarpPlayer>();
-            var currentWeight = _prototypeManager.Index<DepartmentPrototype>(players[0].DepartmentID).Weight;
-
-            foreach (var player in players)
-            {
-                var weight = _prototypeManager.Index<DepartmentPrototype>(player.DepartmentID).Weight;
-
-                if (weight == currentWeight)
-                {
-                    currentList.Add(player);
-                }
-                else
-                {
-                    sortedPlayers.Add(currentList);
-                    currentList = new List<GhostWarpPlayer> { player };
-                    currentWeight = weight;
-                }
-            }
-
-            if (!sortedPlayers.Contains(currentList))
-                sortedPlayers.Add(currentList);
-
-            sortedPlayers.Reverse();
-            return sortedPlayers;
+            return players
+                .GroupBy(p => _prototypeManager.Index<DepartmentPrototype>(p.DepartmentID).Weight)
+                .OrderByDescending(g => g.Key)
+                .Select(g => g.ToList())
+                .ToList();
         }
 
         public List<List<GhostWarpGlobalAntagonist>> SortAntagsByWeight(List<GhostWarpGlobalAntagonist> antagonists)
         {
-            var sortedAntags = new List<List<GhostWarpGlobalAntagonist>>();
+            if (antagonists.Count == 0)
+                return new List<List<GhostWarpGlobalAntagonist>>();
 
-            antagonists = antagonists.OrderBy(a => _prototypeManager.Index<AntagonistPrototype>(a.PrototypeID).Weight).ToList();
-
-            var currentList = new List<GhostWarpGlobalAntagonist>();
-            var currentWeight = _prototypeManager.Index<AntagonistPrototype>(antagonists[0].PrototypeID).Weight;
-
-            foreach (var antagonist in antagonists)
-            {
-                var weight = _prototypeManager.Index<AntagonistPrototype>(antagonist.PrototypeID).Weight;
-
-                if (weight == currentWeight)
-                {
-                    currentList.Add(antagonist);
-                }
-                else
-                {
-                    sortedAntags.Add(currentList);
-                    currentList = new List<GhostWarpGlobalAntagonist> { antagonist };
-                    currentWeight = weight;
-                }
-            }
-
-            if (!sortedAntags.Contains(currentList))
-                sortedAntags.Add(currentList);
-
-            return sortedAntags;
+            return antagonists
+                .GroupBy(a => _prototypeManager.Index<AntagonistPrototype>(a.PrototypeID).Weight)
+                .OrderBy(g => g.Key)
+                .Select(g => g.ToList())
+                .ToList();
         }
 
         private List<GhostWarpPlace> GetSortedPlaces(List<GhostWarpPlace> places)
