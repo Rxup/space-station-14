@@ -29,6 +29,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
@@ -352,8 +354,14 @@ namespace Content.Server.Ghost
             {
                 var entity = mindContainer.Owner;
 
-                if (!(HasComp<HumanoidAppearanceComponent>(entity) || HasComp<GhostComponent>(entity)) ||
-                    HasComp<GlobalAntagonistComponent>(entity))
+                if (HasComp<GlobalAntagonistComponent>(entity))
+                    continue;
+
+                if (!HasComp<HumanoidAppearanceComponent>(entity) &&
+                    !HasComp<GhostComponent>(entity) &&
+                    !HasComp<BorgBrainComponent>(entity) &&
+                    !HasComp<SiliconLawProviderComponent>(entity) && // Drone detection
+                    !HasComp<BorgChassisComponent>(entity))
                     continue;
 
                 var playerDepartmentId = _prototypeManager.Index<DepartmentPrototype>("Specific").ID;
