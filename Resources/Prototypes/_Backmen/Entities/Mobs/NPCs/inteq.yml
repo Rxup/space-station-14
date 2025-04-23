@@ -144,5 +144,5 @@
   - type: Access
     tags:
     - InteQVanguard
-  - type: GlobalAntagonist # Backmen
-    antagonistPrototype: globalAntagonistInteQ
+#  - type: GlobalAntagonist # Nuh..
+#    antagonistPrototype: globalAntagonistInteQ
