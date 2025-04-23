@@ -353,15 +353,9 @@ namespace Content.Server.Ghost
             foreach (var mindContainer in EntityQuery<MindContainerComponent>())
             {
                 var entity = mindContainer.Owner;
+                var meta = Comp<MetaDataComponent>(entity);
 
-                if (HasComp<GlobalAntagonistComponent>(entity))
-                    continue;
-
-                if (!HasComp<HumanoidAppearanceComponent>(entity) &&
-                    !HasComp<GhostComponent>(entity) &&
-                    !HasComp<BorgBrainComponent>(entity) &&
-                    !HasComp<SiliconLawProviderComponent>(entity) && // Drone detection
-                    !HasComp<BorgChassisComponent>(entity))
+                if (HasComp<GlobalAntagonistComponent>(entity) || IsRandomCorpse(meta.EntityPrototype?.ID))
                     continue;
 
                 var playerDepartmentId = _prototypeManager.Index<DepartmentPrototype>("Specific").ID;
@@ -398,6 +392,25 @@ namespace Content.Server.Ghost
             }
 
             return warps;
+        }
+
+        private bool IsRandomCorpse(string? entityId)
+        {
+            if (entityId == null)
+                return false;
+
+            return entityId switch
+            {
+                "SalvageHumanCorpse" => true,
+                "MobRandomServiceCorpse" => true,
+                "MobRandomEngineerCorpse" => true,
+                "MobRandomCargoCorpse" => true,
+                "MobRandomMedicCorpse" => true,
+                "MobRandomScienceCorpse" => true,
+                "MobRandomSecurityCorpse" => true,
+                "MobRandomCommandCorpse" => true,
+                _ => false
+            };
         }
 
         private List<GhostWarpGlobalAntagonist> GetAntagonistWarps()
