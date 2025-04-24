@@ -1,0 +1,32 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BlueMoon github https://github.com/BlueMoon-Labs/SERP-BlueMoon-Station-13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "fleshlight_green"
+        },
+        {
+            "name": "fleshlight_pink"
+        },
+        {
+            "name": "fleshlight_red"
+        },
+        {
+            "name": "fleshlight_teal"
+        },
+        {
+            "name": "fleshlight_yellow"
+        },
+        {
+            "name": "pillow_pink_round"
+        },
+        {
+            "name": "pillow_teal_round"
+        }
+    ]
+}
