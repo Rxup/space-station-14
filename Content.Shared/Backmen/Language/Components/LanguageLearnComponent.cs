@@ -16,7 +16,7 @@ public sealed partial class LanguageLearnComponent : Component
     /// The amount of time it takes to learn the language.
     /// </summary>
     [DataField]
-    public float DoAfterDuration = 3f; // 3 seconds
+    public float DoAfterDuration = 3f;
 
     /// <summary>
     /// The sound to play when the item is used.
@@ -31,14 +31,16 @@ public sealed partial class LanguageLearnComponent : Component
     public int MaxUses = 1;
 
     /// <summary>
-    /// Current number of uses remaining.
-    /// </summary>
-    [DataField]
-    public int UsesRemaining = 1;
-
-    /// <summary>
     /// Whether the item should be deleted after the last use.
     /// </summary>
     [DataField]
     public bool DeleteAfterUse = false;
+
+    [ViewVariables]
+    public int? UsesRemaining = null;
+
+    public int GetUsesRemaining()
+    {
+        return UsesRemaining ?? MaxUses;
+    }
 }

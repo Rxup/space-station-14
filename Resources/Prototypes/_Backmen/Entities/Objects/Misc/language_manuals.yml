@@ -11,7 +11,6 @@
     - state: syndicate
   - type: LanguageLearn
     language: Codespeak
-    doAfterDuration: 3
     maxUses: 2
 
 - type: entity
@@ -26,6 +25,5 @@
     layers:
     - state: inteq
   - type: LanguageLearn
-    language: OldFastCodes
-    doAfterDuration: 3
+    language: [OldFastCodes, Codespeak]
     maxUses: 2

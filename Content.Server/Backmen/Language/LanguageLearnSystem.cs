@@ -19,7 +19,7 @@ public sealed class LanguageLearnSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<LanguageLearnComponent, UseInHandEvent>(OnUseInHand);
-        SubscribeLocalEvent<LanguageLearnComponent, LanguageLearnDoAfterEvent>(OnLanguageItemUsed, after: new []{typeof(DoAfterSystem)});
+        SubscribeLocalEvent<LanguageLearnComponent, LanguageLearnDoAfterEvent>(OnUsed, after: new []{typeof(DoAfterSystem)});
         SubscribeLocalEvent<LanguageLearnComponent, ExaminedEvent>(OnExamine);
     }
 
@@ -28,7 +28,9 @@ public sealed class LanguageLearnSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (component.UsesRemaining <= 0)
+        var usesRemaining = component.GetUsesRemaining();
+
+        if (usesRemaining <= 0)
         {
             _popup.PopupEntity(Loc.GetString("language-item-no-uses"), uid, args.User);
             return;
@@ -48,7 +50,7 @@ public sealed class LanguageLearnSystem : EntitySystem
         _audio.PlayPvs(component.UseSound, uid);
     }
 
-    private void OnLanguageItemUsed(EntityUid uid, LanguageLearnComponent component, LanguageLearnDoAfterEvent args)
+    private void OnUsed(EntityUid uid, LanguageLearnComponent component, LanguageLearnDoAfterEvent args)
     {
         if (args.Cancelled)
             return;
@@ -67,10 +69,14 @@ public sealed class LanguageLearnSystem : EntitySystem
         _language.UpdateEntityLanguages(args.User);
         _audio.PlayPvs(component.UseSound, uid);
 
-        component.UsesRemaining--;
+
+        var usesRemaining = component.GetUsesRemaining();
+        usesRemaining--;
+
+        component.UsesRemaining = usesRemaining;
         Dirty(uid, component);
 
-        if (component.DeleteAfterUse && component.UsesRemaining <= 0)
+        if (component.DeleteAfterUse && usesRemaining <= 0)
         {
             EntityManager.QueueDeleteEntity(uid);
         }
@@ -81,6 +87,8 @@ public sealed class LanguageLearnSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        args.PushMarkup(Loc.GetString("language-item-uses-remaining", ("uses", component.UsesRemaining)));
+        var usesRemaining = component.GetUsesRemaining();
+
+        args.PushMarkup(Loc.GetString("language-item-uses-remaining", ("uses", usesRemaining)));
     }
 }
