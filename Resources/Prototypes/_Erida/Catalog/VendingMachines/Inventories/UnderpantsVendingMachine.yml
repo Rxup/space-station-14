@@ -1,0 +1,27 @@
+- type: vendingMachineInventory
+  id: UnderwearVendingMachineServitorInventory
+  startingInventory:
+    ClothingUnderPantsBase: 3
+    ClothingUnderbee_shorts: 3
+    ClothingUnderboxer_briefs: 3
+    ClothingUnderboxers_assblastusa: 3
+    ClothingUnderboxers_commie: 3
+    ClothingUnderboxers_heart: 3
+    ClothingUnderboxers_striped: 3
+    ClothingUnderboxers_uk: 3
+    ClothingUnderboxers: 3
+    ClothingUnderbriefs: 3
+    ClothingUnderjockstrap: 3
+    ClothingUnderljonb: 3
+    ClothingUnderpanties_alt: 3
+    ClothingUnderpanties_assblastusa: 3
+    ClothingUnderpanties_bee-kini: 3
+    ClothingUnderpanties_commie: 3
+    ClothingUnderpanties_neko: 3
+    ClothingUnderpanties_slim: 3
+    ClothingUnderpanties_swimming: 3
+    ClothingUnderpanties_uk: 3
+    ClothingUnderpanties: 3
+    ClothingUnderpantyhose: 3
+    ClothingUnderstriped_panties: 3
+    ClothingUnderthong: 3

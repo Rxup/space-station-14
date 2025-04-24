@@ -1,0 +1,130 @@
+
+- type: entity
+  parent: VendingMachine
+  id: LPPErpMachine
+  name: Erp machine
+  description: Fashionable suits for Varden!
+  suffix: Unlocked
+  components:
+  - type: VendingMachine
+    pack: ERPVendingMachineServitorInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: ClothesMateAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _Erida/Structures/Machines/VendingMachines/erp-machine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#9966cc"
+
+- type: entity
+  parent: VendingMachine
+  id: LPPBrasMat
+  name: Bras machine
+  description: a machine that decorates the appearance of customers and makes them beautiful!
+  suffix: Unlocked
+  components:
+  - type: VendingMachine
+    pack: BrasVendingMachineServitorInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+  - type: Advertise
+    pack: ClothesMateAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _Erida/Structures/Machines/VendingMachines/bras.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#e0f1ff"
+
+- type: entity
+  parent: VendingMachine
+  id: LPPUnderpantsMat
+  name: Underpants machine
+  description: a machine that decorates the appearance of customers and makes them beautiful!
+  suffix: Unlocked
+  components:
+  - type: VendingMachine
+    pack: UnderwearVendingMachineServitorInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+  - type: Advertise
+    pack: ClothesMateAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _Erida/Structures/Machines/VendingMachines/underpants.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#e0f1ff"
+
+- type: entity
+  parent: VendingMachine
+  id: LPPWithSoftAnimals
+  name: With soft animals machine
+  description: For when you need seeds fast. Hands down the best seed selection on the station!
+  suffix: Unlocked
+  components:
+  - type: VendingMachine
+    pack: ToysVendingMachineServitorInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: ClothesMateAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _Erida/Structures/Machines/VendingMachines/with-soft-animals.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#afeeee"
