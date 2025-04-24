@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-NC-4.0",
-  "copyright": "Sprited by ss14nekow (Discord) | Edited and sprited by PuroSlavKing (Github)",
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/commit/fd5cfd76acdf5bda9e46413c11006a6e825d51a9",
   "size": {
     "x": 32,
     "y": 32
@@ -9,9 +9,6 @@
   "states": [
     {
       "name": "assembly"
-    },
-    {
-      "name": "assembly_grayscale"
     },
     {
       "name": "bolted_unlit"
@@ -23,9 +20,6 @@
       "name": "closed"
     },
     {
-      "name": "closed_grayscale"
-    },
-    {
       "name": "closed_unlit"
     },
     {
@@ -33,19 +27,6 @@
     },
     {
       "name": "closing",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.07,
-          0.07,
-          0.07,
-          0.2
-        ]
-      ]
-    },
-    {
-      "name": "closing_grayscale",
       "delays": [
         [
           0.1,
@@ -87,19 +68,6 @@
     },
     {
       "name": "opening",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.07,
-          0.07,
-          0.07,
-          0.2
-        ]
-      ]
-    },
-    {
-      "name": "opening_grayscale",
       "delays": [
         [
           0.1,
