@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Draw by Skilets github at commit https://github.com/Skilets/space-station-14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-UNDERWEAR",
+      "directions": 4
+    }
+  ]
+}
