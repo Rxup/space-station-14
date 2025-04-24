@@ -868,3 +868,16 @@ PaxChemistryBottle: ChemistryBottlePax
 MuteToxinChemistryBottle: ChemistryBottleMuteToxin
 LeadChemistryBottle: ChemistryBottleLead
 ToxinChemistryBottle: ChemistryBottleToxin
+
+# 2025-04-24
+HeadVulpkanin: HeadHuman
+TorsoVulpkanin: TorsoHuman
+LeftArmVulpkanin: LeftArmHuman
+RightArmVulpkanin: RightArmHuman
+LeftHandVulpkanin: LeftHandHuman
+RightHandVulpkanin: RightHandHuman
+LeftLegVulpkanin: LeftLegHuman
+RightLegVulpkanin: RightLegHuman
+LeftFootVulpkanin: LeftFootHuman
+RightFootVulpkanin: RightFootHuman
+FoodBakedVulpkaninPlate: RandomFoodMeal

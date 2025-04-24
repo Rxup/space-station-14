@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "insect_fluff_flat",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_flat_overlay",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_hyena",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_hyena_overlay",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_hyena_stripes",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_renamon",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_soft",
+      "directions": 4
+    },
+    {
+      "name": "insect_fluff_soft_overlay",
+      "directions": 4
+    }
+  ]
+}

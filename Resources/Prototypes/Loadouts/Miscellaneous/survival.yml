@@ -27,6 +27,7 @@
     - Oni
     - Shadowkin
     #backmen-species-end
+    - Anthropomorph # Ataraxia
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox

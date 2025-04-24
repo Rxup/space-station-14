@@ -55,10 +55,10 @@
     revertOnDeath: false
     inventory: Transfer
 
-- type: polymorph
-  id: BFoxMorph
+- type: polymorph # Ataraxia
+  id: BAnthropomorphMorph
   configuration:
-    entity: MobHumanoidFox
+    entity: MobAnthropomorph
     forced: true
     transferName: true
     transferHumanoidAppearance: false

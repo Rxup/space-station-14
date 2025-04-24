@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tail_acrador_Big",
+      "directions": 4
+    },
+    {
+      "name": "tail_acrador_Curved",
+      "directions": 4
+    },
+    {
+      "name": "tail_acrador_Thin",
+      "directions": 4
+    }
+  ]
+}
