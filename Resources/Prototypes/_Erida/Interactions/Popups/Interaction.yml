@@ -10,8 +10,7 @@
       !type:MobStateRequirement
       inverted: true
     action:
-      !type:MoodAction
-      effect: LPPLoved
+      !type:NoOpAction
 
   - type: Interaction
     id: LPPKisscheek # Поцелуй в щеку
@@ -25,14 +24,7 @@
       !type:MobStateRequirement
       inverted: true
     action:
-      !type:ComplexAction
-      actions:
-      - !type:MoodAction
-        effect: LPPLoved
-      - !type:OnUserAction
-        action:
-          !type:MoodAction
-          effect: LPPLoved
+      !type:NoOpAction
 
   - type: Interaction
     id: LPPPatShoulder # Похлопать по плечу
@@ -50,10 +42,7 @@
       popup: VisibleNoChat
       sound: {collection: Claps}
     action:
-      !type:OnUserAction
-      action:
-        !type:MoodAction
-        effect: LPPEncouraged
+      !type:NoOpAction
 
   - type: Interaction
     id: LPPLick # Лизнуть
@@ -73,14 +62,7 @@
       popup: Visible
       sound: {path: /Audio/Nyanotrasen/Voice/Felinid/cat_hiss1.ogg}
     action:
-      !type:ComplexAction
-      actions:
-      - !type:MoodAction
-        effect: LPPEmbarrassment
-      - !type:OnUserAction
-        action:
-          !type:MoodAction
-          effect: LPPEmbarrassment
+      !type:NoOpAction
 
   - type: Interaction
     id: LPPSlap
@@ -94,7 +76,7 @@
       inverted: true
     effectSuccess:
       popup: Dangerous
-      sound: {path: /Audio/_LostParadise/Effects/whip.ogg}
+      sound: {path: /Audio/_Erida/Effects/whip.ogg}
     action:
       !type:ComplexAction
       actions:
@@ -109,12 +91,8 @@
           !type:ModifyHealthAction
           damage:
             types: {Blunt: 5.5}
-      - !type:MoodAction
-        effect: LPPSlapped
-      - !type:OnUserAction
-        action:
-          !type:MoodAction
-          effect: LPPGotSlap
+      action:
+        !type:NoOpAction
 
   - type: Interaction
     id: LPPSlap2 # Шлёпнуть
@@ -128,16 +106,9 @@
       inverted: true
     effectSuccess:
       popup: Visible
-      sound: {path: /Audio/_LostParadise/Effects/whip.ogg}
+      sound: {path: /Audio/_Erida/Effects/whip.ogg}
     action:
-      !type:ComplexAction
-      actions:
-      - !type:MoodAction
-        effect: LPPEmbarrassment
-      - !type:OnUserAction
-        action:
-          !type:MoodAction
-          effect: LPPEmbarrassment
+      !type:NoOpAction
 
   - type: Interaction
     id: LPPFuckYou # Показать кому-то средний палец
