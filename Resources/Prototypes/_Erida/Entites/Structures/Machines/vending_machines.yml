@@ -18,7 +18,7 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Sprite
-    sprite: _LostParadise/Structures/Machines/VendingMachines/erp-machine.rsi
+    sprite: _Erida/Structures/Machines/VendingMachines/erp-machine.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -50,7 +50,7 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Sprite
-    sprite: _LostParadise/Structures/Machines/VendingMachines/bras.rsi
+    sprite: _Erida/Structures/Machines/VendingMachines/bras.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -82,7 +82,7 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Sprite
-    sprite: _LostParadise/Structures/Machines/VendingMachines/underpants.rsi
+    sprite: _Erida/Structures/Machines/VendingMachines/underpants.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -115,7 +115,7 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Sprite
-    sprite: _LostParadise/Structures/Machines/VendingMachines/with-soft-animals.rsi
+    sprite: _Erida/Structures/Machines/VendingMachines/with-soft-animals.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
