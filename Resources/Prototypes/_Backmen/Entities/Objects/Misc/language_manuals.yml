@@ -1,5 +1,29 @@
 - type: entity
   parent: BaseItem
+  id: ManualBabel
+  name: babel manual
+  description: Manual that teaches you all languages.
+  suffix: 1 uses
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#272d33"
+      map: [ "cover" ]
+    - state: decor_wingette
+      color: "#272733"
+      map: [ "decor" ]
+    - state: icon_text
+      map: [ "icon" ]
+  - type: LanguageLearn
+    deleteAfterUse: true
+    languages:
+      - UniversalLanguage
+
+- type: entity
+  parent: BaseItem
   id: ManualCodespeak
   name: codespeak manual
   description: Manual that teaches you the codespeak language.

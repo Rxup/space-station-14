@@ -58,8 +58,21 @@ public sealed class LanguageLearnSystem : EntitySystem
         if (!TryComp<LanguageKnowledgeComponent>(args.User, out var languageKnowledge))
             return;
 
+        bool learnedSomething = false;
+
+        if (!HasComp<UniversalLanguageSpeakerComponent>(args.User) && component.Languages.Contains("UniversalLanguage"))
+        {
+            EnsureComp<UniversalLanguageSpeakerComponent>(args.User);
+            learnedSomething = true;
+        }
+
         foreach (var language in component.Languages)
         {
+            if (language == "UniversalLanguage")
+            {
+                continue;
+            }
+
             if (languageKnowledge.SpokenLanguages.Contains(language))
             {
                 _popup.PopupEntity(Loc.GetString("language-item-already-knows"), uid, args.User);
@@ -68,20 +81,24 @@ public sealed class LanguageLearnSystem : EntitySystem
 
             languageKnowledge.SpokenLanguages.Add(language);
             languageKnowledge.UnderstoodLanguages.Add(language);
+            learnedSomething = true;
         }
+
         _language.UpdateEntityLanguages(args.User);
         _audio.PlayPvs(component.UseSound, uid);
 
-
-        var usesRemaining = component.GetUsesRemaining();
-        usesRemaining--;
-
-        component.UsesRemaining = usesRemaining;
-        Dirty(uid, component);
-
-        if (component.DeleteAfterUse && usesRemaining <= 0)
+        if (learnedSomething)
         {
-            EntityManager.QueueDeleteEntity(uid);
+            var usesRemaining = component.GetUsesRemaining();
+            usesRemaining--;
+
+            component.UsesRemaining = usesRemaining;
+            Dirty(uid, component);
+
+            if (component.DeleteAfterUse && usesRemaining <= 0)
+            {
+                EntityManager.QueueDeleteEntity(uid);
+            }
         }
     }
 
