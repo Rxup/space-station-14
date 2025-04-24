@@ -20,7 +20,7 @@
   - type: LanguageLearn
     deleteAfterUse: true
     languages:
-      - UniversalLanguage
+      - Universal
 
 - type: entity
   parent: BaseItem

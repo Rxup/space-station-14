@@ -60,7 +60,7 @@ public sealed class LanguageLearnSystem : EntitySystem
 
         bool learnedSomething = false;
 
-        if (!HasComp<UniversalLanguageSpeakerComponent>(args.User) && component.Languages.Contains("UniversalLanguage"))
+        if (!HasComp<UniversalLanguageSpeakerComponent>(args.User) && component.Languages.Contains("Universal"))
         {
             EnsureComp<UniversalLanguageSpeakerComponent>(args.User);
             learnedSomething = true;
@@ -68,7 +68,7 @@ public sealed class LanguageLearnSystem : EntitySystem
 
         foreach (var language in component.Languages)
         {
-            if (language == "UniversalLanguage")
+            if (language == "Universal")
             {
                 continue;
             }
