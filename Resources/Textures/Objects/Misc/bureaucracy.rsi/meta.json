@@ -217,10 +217,25 @@
       "name": "paper_stamp-syndicate"
     },
     {
-      "name": "paper_stamp-inteq"
+      "name": "paper_stamp-trader"
     },
     {
-      "name": "paper_stamp-trader"
+      "name": "paper_stamp-approve"
+    },
+    {
+      "name": "paper_stamp-cent"
+    },
+    {
+      "name": "paper_stamp-mag"
+    },
+    {
+      "name": "paper_stamp-iaa"
+    },
+    {
+      "name": "paper_stamp-coroner"
+    },
+    {
+      "name": "paper_stamp-blueshield"
     },
     {
       "name": "paper_stamp-warden"
@@ -232,9 +247,6 @@
       "name": "paper_stamp-greytide"
     },
     {
-      "name": "paper_stamp-approve"
-    },
-    {
       "name": "syndicate_card"
     },
     {
@@ -242,6 +254,27 @@
     },
     {
       "name": "paper_stamp-wizard"
+    },
+    {
+      "name": "paper_stamp-senior-administrator"
+    },
+    {
+      "name": "valentine_card"
+    },
+    {
+      "name": "paper_dotmatrix_grey"
+    },
+    {
+      "name": "paper_dotmatrix_grey_words"
+    },
+    {
+      "name": "paper_stamp-senior-engineer"
+    },
+    {
+      "name": "paper_stamp-senior-researcher"
+    },
+    {
+      "name": "paper_stamp-senior-salvage"
     }
   ]
 }

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Drawn by SASKI. Discord: Skilets#5770",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken"
+    },
+    {
+      "name": "off"
+    },
+    {
+      "name": "panel"
+    },
+    {
+        "name": "normal-unshaded",
+        "delays": [
+            [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        ]
+    },
+    {
+        "name": "deny-unshaded",
+        "delays": [
+            [
+                1.5,
+                0.5
+            ]
+        ]
+    }
+  ]
+}

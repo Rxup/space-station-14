@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Draw by Skilets: https://github.com/Skilets",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bed_double"
+    },
+    {
+      "name": "bed_double_down"
+    },
+    {
+      "name": "bed_double_up"
+    }
+  ]
+}
