@@ -23,15 +23,6 @@
       ]
     },
     {
-      "name": "syndicate_lighter_flame",
-      "delays": [
-        [
-          0.2,
-          0.1
-        ]
-      ]
-    },
-    {
       "name": "basic_icon_base-1"
     },
     {
@@ -77,16 +68,10 @@
       "name": "zippo_engraved_icon_base"
     },
     {
-      "name": "zippo_syndicate_icon_base"
-    },
-    {
       "name": "zippo_open"
     },
     {
       "name": "zippo_engraved_open"
-    },
-    {
-      "name": "zippo_syndicate_open"
     },
     {
       "name": "zippo_top"
