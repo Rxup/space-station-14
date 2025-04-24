@@ -1,24 +1,14 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by Mozinov, resprite by bahamutichka (discord) for Space Station 14 server Мёртвый Космос", 
+  "copyright": "Created by Mozinov",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
+      "name": "icon"
     }
   ]
 }
