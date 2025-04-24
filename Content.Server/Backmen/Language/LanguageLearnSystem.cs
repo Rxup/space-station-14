@@ -3,8 +3,8 @@ using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Backmen.Language.Events;
 using Content.Shared.Backmen.Language.Components;
+using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Language;
@@ -20,8 +20,8 @@ public sealed class LanguageLearnSystem : EntitySystem
     {
         SubscribeLocalEvent<LanguageLearnComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<LanguageLearnComponent, LanguageLearnDoAfterEvent>(OnLanguageItemUsed, after: new []{typeof(DoAfterSystem)});
+        SubscribeLocalEvent<LanguageLearnComponent, ExaminedEvent>(OnExamine);
     }
-
 
     private void OnUseInHand(EntityUid uid, LanguageLearnComponent component, UseInHandEvent args)
     {
@@ -43,7 +43,9 @@ public sealed class LanguageLearnSystem : EntitySystem
             BreakOnDamage = true,
             NeedHand = true
         };
+
         _doAfterSystem.TryStartDoAfter(Args);
+        _audio.PlayPvs(component.UseSound, uid);
     }
 
     private void OnLanguageItemUsed(EntityUid uid, LanguageLearnComponent component, LanguageLearnDoAfterEvent args)
@@ -63,15 +65,22 @@ public sealed class LanguageLearnSystem : EntitySystem
         languageKnowledge.SpokenLanguages.Add(component.Language);
         languageKnowledge.UnderstoodLanguages.Add(component.Language);
         _language.UpdateEntityLanguages(args.User);
-
-        _audio.PlayPvs(component.UseSound, uid, AudioParams.Default.WithVolume(5f));
-        _popup.PopupEntity(Loc.GetString("language-item-learned", ("language", component.Language)), uid, args.User);
+        _audio.PlayPvs(component.UseSound, uid);
 
         component.UsesRemaining--;
+        Dirty(uid, component);
 
         if (component.DeleteAfterUse && component.UsesRemaining <= 0)
         {
             EntityManager.QueueDeleteEntity(uid);
         }
+    }
+
+    private void OnExamine(EntityUid uid, LanguageLearnComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        args.PushMarkup(Loc.GetString("language-item-uses-remaining", ("uses", component.UsesRemaining)));
     }
 }

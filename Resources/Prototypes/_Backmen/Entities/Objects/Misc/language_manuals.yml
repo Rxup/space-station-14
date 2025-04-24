@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseItem
+  id: ManualCodespeak
+  name: codespeak manual
+  description: Manual that teaches you the codespeak language.
+  suffix: 2 uses
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/books.rsi
+    layers:
+    - state: syndicate
+  - type: LanguageLearn
+    language: Codespeak
+    doAfterDuration: 3
+    maxUses: 2
+
+- type: entity
+  parent: BaseItem
+  id: ManualOldFastCodes
+  name: old fast code manual
+  description: Manual that teaches you the old fast code language.
+  suffix: 2 uses
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/books.rsi
+    layers:
+    - state: inteq
+  - type: LanguageLearn
+    language: OldFastCodes
+    doAfterDuration: 3
+    maxUses: 2

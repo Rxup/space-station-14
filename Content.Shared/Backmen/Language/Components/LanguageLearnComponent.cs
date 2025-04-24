@@ -16,7 +16,7 @@ public sealed partial class LanguageLearnComponent : Component
     /// The amount of time it takes to learn the language.
     /// </summary>
     [DataField]
-    public float DoAfterDuration = 2f; // 2 seconds
+    public float DoAfterDuration = 3f; // 3 seconds
 
     /// <summary>
     /// The sound to play when the item is used.
@@ -40,5 +40,5 @@ public sealed partial class LanguageLearnComponent : Component
     /// Whether the item should be deleted after the last use.
     /// </summary>
     [DataField]
-    public bool DeleteAfterUse = true;
+    public bool DeleteAfterUse = false;
 }
