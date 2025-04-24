@@ -10,8 +10,9 @@
     layers:
     - state: syndicate
   - type: LanguageLearn
-    language: Codespeak
     maxUses: 2
+    languages:
+      - Codespeak
 
 - type: entity
   parent: BaseItem
@@ -25,5 +26,6 @@
     layers:
     - state: inteq
   - type: LanguageLearn
-    language: [OldFastCodes, Codespeak]
     maxUses: 2
+    languages:
+      - OldFastCodes

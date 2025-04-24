@@ -1,5 +1,5 @@
 using Robust.Shared.Audio;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Backmen.Language.Components;
 
@@ -7,10 +7,10 @@ namespace Content.Shared.Backmen.Language.Components;
 public sealed partial class LanguageLearnComponent : Component
 {
     /// <summary>
-    /// The language to be learned when the item is used.
+    /// The languages to be learned when the item is used.
     /// </summary>
-    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<LanguagePrototype>))]
-    public string Language { get; set; } = default!;
+    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
+    public List<string> Languages { get; set; } = new List<string>();
 
     /// <summary>
     /// The amount of time it takes to learn the language.
@@ -36,6 +36,9 @@ public sealed partial class LanguageLearnComponent : Component
     [DataField]
     public bool DeleteAfterUse = false;
 
+    /// <summary>
+    /// Current number of uses remaining.
+    /// </summary>
     [ViewVariables]
     public int? UsesRemaining = null;
 

@@ -58,14 +58,17 @@ public sealed class LanguageLearnSystem : EntitySystem
         if (!TryComp<LanguageKnowledgeComponent>(args.User, out var languageKnowledge))
             return;
 
-        if (languageKnowledge.SpokenLanguages.Contains(component.Language))
+        foreach (var language in component.Languages)
         {
-            _popup.PopupEntity(Loc.GetString("language-item-already-knows", ("language", component.Language)), uid, args.User);
-            return;
-        }
+            if (languageKnowledge.SpokenLanguages.Contains(language))
+            {
+                _popup.PopupEntity(Loc.GetString("language-item-already-knows"), uid, args.User);
+                continue;
+            }
 
-        languageKnowledge.SpokenLanguages.Add(component.Language);
-        languageKnowledge.UnderstoodLanguages.Add(component.Language);
+            languageKnowledge.SpokenLanguages.Add(language);
+            languageKnowledge.UnderstoodLanguages.Add(language);
+        }
         _language.UpdateEntityLanguages(args.User);
         _audio.PlayPvs(component.UseSound, uid);
 
