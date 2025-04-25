@@ -37,8 +37,14 @@
       plasma:
         reagents:
         - ReagentId: Plasma
-          Quantity: 300
-        maxVol: 300
+          Quantity: 250
+        maxVol: 250
+  - type: SolutionRegeneration
+    solution: plasma
+    generated:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 0.05
   - type: ComponentToggler
     components:
     - type: Cautery # Shitmed
@@ -90,3 +96,10 @@
     sprite: Backmen/Objects/Weapons/Melee/e_sword_double.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Melee/e_sword_double-inhands.rsi
+  - type: SolutionContainerManager
+    solutions:
+      plasma:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 300
+        maxVol: 300
