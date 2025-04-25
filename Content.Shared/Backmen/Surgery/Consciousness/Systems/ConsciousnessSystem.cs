@@ -61,7 +61,9 @@ public abstract partial class ConsciousnessSystem : EntitySystem
         if (!ConsciousnessQuery.Resolve(uid, ref consciousness))
             return;
 
-        consciousness.Multiplier = consciousness.Multipliers.Aggregate(FixedPoint2.Zero,
+        consciousness.Multiplier = consciousness.Multipliers.Count == 0
+            ? FixedPoint2.New(1)
+            : consciousness.Multipliers.Aggregate(FixedPoint2.Zero,
             (current, multiplier) => current + multiplier.Value.Change) / consciousness.Multipliers.Count;
 
         CheckConscious(uid, consciousness);

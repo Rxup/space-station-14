@@ -377,13 +377,14 @@ namespace Content.Server.Atmos.EntitySystems
             foreach (var woundEnt in args.WoundsDelta)
             {
                 if (woundEnt.Key.Comp.DamageType != "Heat")
-                    return;
+                    continue;
 
                 if (woundEnt.Value <= component.Threshold)
-                    return;
+                    continue;
 
                 flammable.FireStacks += component.FireStacks;
                 Ignite(uid, uid, flammable);
+                break;
             }
         }
 

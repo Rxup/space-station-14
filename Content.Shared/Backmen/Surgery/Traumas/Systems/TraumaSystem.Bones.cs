@@ -139,7 +139,8 @@ public partial class TraumaSystem
             if (!TryComp<WoundableComponent>(legEntity, out var legWoundable))
                 continue;
 
-            if (!TryComp<BoneComponent>(legWoundable.Bone.ContainedEntities[0], out var boneComp))
+            var ent = legWoundable.Bone.ContainedEntities.FirstOrNull();
+            if (!TryComp<BoneComponent>(ent, out var boneComp))
                 continue;
 
             // get the foot penalty

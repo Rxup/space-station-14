@@ -256,7 +256,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             return;
 
         var damagePresent =
-            _wound.GetBodyWounds(uid).Any(wound => wound.Comp.DamageGroup == _prototypeManager.Index<DamageGroupPrototype>("Brute"));
+            _wound.GetBodyWounds(uid).Any(wound => wound.Comp.DamageGroup?.ID == "Brute");
 
         if (!damagePresent)
             RemComp<BloodSuckedComponent>(uid);

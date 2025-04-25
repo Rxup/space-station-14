@@ -25,15 +25,21 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             consciousness.NextConsciousnessUpdate = Timing.CurTime + consciousness.ConsciousnessUpdateTime;
 
             foreach (var modifier in
-                     consciousness.Modifiers.Where(modifier => modifier.Value.Time < Timing.CurTime))
+                     consciousness.Modifiers
+                         .Where(m => m.Value.Time < Timing.CurTime)
+                         .Select(m => m.Key)
+                         .ToArray())
             {
-                RemoveConsciousnessModifier(ent, modifier.Key.Item1, modifier.Key.Item2, consciousness);
+                RemoveConsciousnessModifier(ent, modifier.Item1, modifier.Item2, consciousness);
             }
 
             foreach (var multiplier in
-                     consciousness.Multipliers.Where(multiplier => multiplier.Value.Time < Timing.CurTime))
+                     consciousness.Multipliers
+                         .Where(m => m.Value.Time < Timing.CurTime)
+                         .Select(m => m.Key)
+                         .ToArray())
             {
-                RemoveConsciousnessMultiplier(ent, multiplier.Key.Item1, multiplier.Key.Item2, consciousness);
+                RemoveConsciousnessMultiplier(ent, multiplier.Item1, multiplier.Item2, consciousness);
             }
 
             if (consciousness.PassedOutTime < Timing.CurTime && consciousness.PassedOut)
@@ -122,7 +128,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (!ConsciousnessQuery.Resolve(target, ref consciousness))
             return false;
 
-        if (!consciousness.Modifiers.TryAdd((modifierOwner, identifier), new ConsciousnessModifier(modifier, Timing.CurTime + time, type)))
+        if (!consciousness.Modifiers.TryAdd((modifierOwner, identifier), new ConsciousnessModifier(modifier, Timing.CurTime + (time ?? time), type)))
             return false;
 
         UpdateConsciousnessModifiers(target, consciousness);
@@ -161,7 +167,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (!ConsciousnessQuery.Resolve(target, ref consciousness))
             return false;
 
-        var newModifier = new ConsciousnessModifier(Change: modifierChange, Time: Timing.CurTime + time, Type: type);
+        var newModifier = new ConsciousnessModifier(Change: modifierChange, Time: Timing.CurTime + (time ?? time), Type: type);
         consciousness.Modifiers[(modifierOwner, identifier)] = newModifier;
 
         UpdateConsciousnessModifiers(target, consciousness);
@@ -183,7 +189,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
 
         var newModifier =
-            oldModifier with {Change = oldModifier.Change + modifierChange, Time = Timing.CurTime + time ?? oldModifier.Time};
+            oldModifier with {Change = oldModifier.Change + modifierChange, Time = Timing.CurTime + (time ?? oldModifier.Time)};
 
         consciousness.Modifiers[(modifierOwner, identifier)] = newModifier;
 
@@ -205,7 +211,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (!ConsciousnessQuery.Resolve(target, ref consciousness))
             return false;
 
-        if (!consciousness.Multipliers.TryAdd((multiplierOwner, identifier), new ConsciousnessMultiplier(multiplier, Timing.CurTime + time ?? time, type)))
+        if (!consciousness.Multipliers.TryAdd((multiplierOwner, identifier), new ConsciousnessMultiplier(multiplier, Timing.CurTime + (time ?? time), type)))
             return false;
 
         UpdateConsciousnessMultipliers(target, consciousness);

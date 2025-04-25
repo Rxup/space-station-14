@@ -516,15 +516,13 @@ public sealed class MoodSystem : EntitySystem
             return;
 
         var protoId = "HealthNoDamage";
-        var value = component.HealthMoodEffectsThresholds["HealthNoDamage"];
 
         foreach (var threshold in component.HealthMoodEffectsThresholds)
         {
-            if (threshold.Value <= damage && threshold.Value >= value)
-            {
-                protoId = threshold.Key;
-                value = threshold.Value;
-            }
+            if (threshold.Value <= damage)
+                continue;
+
+            protoId = threshold.Key;
         }
 
         var ev = new MoodEffectEvent(protoId);
@@ -537,15 +535,13 @@ public sealed class MoodSystem : EntitySystem
             return;
 
         var protoId = "HealthNoDamage";
-        var value = component.HealthMoodEffectsThresholds["HealthNoDamage"];
 
         foreach (var threshold in component.HealthMoodEffectsThresholds)
         {
-            if (threshold.Value <= damage && threshold.Value >= value)
-            {
-                protoId = threshold.Key;
-                value = threshold.Value;
-            }
+            if (threshold.Value <= damage)
+                continue;
+
+            protoId = threshold.Key;
         }
 
         var ev = new MoodEffectEvent(protoId);

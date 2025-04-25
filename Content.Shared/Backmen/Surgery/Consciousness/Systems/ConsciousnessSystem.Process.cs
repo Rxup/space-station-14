@@ -29,7 +29,7 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
 
-        SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
+        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessInit);
     }
 
     private const string NerveSystemIdentifier = "nerveSystem";
@@ -188,7 +188,7 @@ public partial class ConsciousnessSystem
         ForceConscious(uid, TimeSpan.FromSeconds(1f), component);
     }
 
-    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, ComponentInit args)
+    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, MapInitEvent args)
     {
         if (consciousness.RawConsciousness < 0)
         {
