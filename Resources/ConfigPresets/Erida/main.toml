@@ -153,7 +153,7 @@ advertise = true
 tags = "lang:ru,rp:med,region:eu_e,tts,18+"
 
 [glimmer]
-glimmer_enabled  = false
+GlimmerEnabled  = false
 
 [diseases]
-diseases_enabled = false
+GameDiseaseEnabled = false
