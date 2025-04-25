@@ -48,6 +48,42 @@ public enum WoundVisibility
     AdvancedScanner,
 }
 
+/// <summary>
+/// Wounds are sorted by added, removed and changed.
+///
+/// Added wounds pass a wound entity, the wound severity point and other values are not changed.
+/// Removed wounds pass a wound entity, the wound severity point is passed before the delition, after the event the entity is deleted.
+/// Changed wounds pass a wound entity and the wound delta.
+/// </summary>
+[ByRefEvent]
+public record struct WoundsChangedEvent(
+    List<Entity<WoundComponent>> AddedWounds,
+    List<Entity<WoundComponent>> RemovedWounds,
+    Dictionary<Entity<WoundComponent>, FixedPoint2> ChangedWounds);
+
+/// <summary>
+/// This one is just, wound added, changed and removed mashed into an event. passes a delta,
+///
+/// If added - the starting severity,
+/// If changed - the actual delta,
+/// If removed - the severity before removal, minused. (eg 7 severity wound healed would be -7 delta)
+/// </summary>
+[ByRefEvent]
+public record struct WoundChangedEvent(WoundComponent Component, FixedPoint2 Delta);
+
+/// <summary>
+/// Wounds are not sorted unlike WoundsChangedEvent, where you can differentiate added/removed wounds from already present, changed wounds.
+/// Use this instead of the Changed events if you don't need to specifically know ADDED nor REMOVED wounds
+///
+/// Total Delta is explanatory
+///
+/// Added wounds have their wound severity passed as value,
+/// Removed wounds pass their severity, minused. e.g., 12 severity wound in this list will pass -12.
+/// Changed wounds pass the delta.
+/// </summary>
+[ByRefEvent]
+public record struct WoundsDeltaChanged(FixedPoint2 TotalDelta, Dictionary<Entity<WoundComponent>, FixedPoint2> WoundsDelta);
+
 [ByRefEvent]
 public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
 

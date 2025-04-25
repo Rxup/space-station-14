@@ -37,6 +37,8 @@ public partial class WoundSystem
         SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
         SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableMapInit);
 
+        SubscribeLocalEvent<WoundableComponent, CheckForCustomHandlerEvent>(OnWoundableDamaged);
+
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
 
@@ -120,6 +122,15 @@ public partial class WoundSystem
             QueueDel(woundableEntity);
     }
 
+    private void OnWoundableDamaged(
+        EntityUid woundable,
+        WoundableComponent component,
+        ref CheckForCustomHandlerEvent args)
+    {
+        args.Handled = true;
+        args.Damage = GetWoundsChanged(woundable, args.Damage, component);
+    }
+
     private void OnWoundableInserted(EntityUid parentEntity, WoundableComponent parentWoundable, EntInsertedIntoContainerMessage args)
     {
         if (!TryComp<WoundableComponent>(args.Entity, out var childWoundable) || !_net.IsServer)
@@ -176,7 +187,7 @@ public partial class WoundSystem
         if (!args.CanBeCancelled)
             return;
 
-        if (args.Damage.GetTotal() <= 0)
+        if (args.Damage.GetTotal() <= 0 || _dodgeDistanceChance <= 0)
             return;
 
         var chance = comp.DodgeChance;
@@ -363,6 +374,118 @@ public partial class WoundSystem
         var toMultiply =
             component.SeverityMultipliers.Sum(multiplier => (float) multiplier.Value.Change) / component.SeverityMultipliers.Count;
         return severity * toMultiply;
+    }
+
+    [PublicAPI]
+    public DamageSpecifier GetWoundsChanged(
+        EntityUid woundable,
+        DamageSpecifier damage,
+        WoundableComponent? component = null)
+    {
+        if (!WoundableQuery.Resolve(woundable, ref component, false))
+            return damage;
+
+        var actuallyInducedDamage = new DamageSpecifier(damage);
+
+        var addedWounds = new List<Entity<WoundComponent>>();
+        var removedWounds = new List<Entity<WoundComponent>>();
+
+        var changedWounds = new Dictionary<Entity<WoundComponent>, FixedPoint2>();
+        var totalChange = FixedPoint2.Zero;
+
+        foreach (var damagePiece in damage.DamageDict)
+        {
+            if (TryGetWoundOfDamageType(woundable, damagePiece.Key, out var foundWound, component))
+            {
+                // Healing ignores severity modifiers
+                var severityApplied = damagePiece.Value > 0
+                    ? ApplySeverityModifiers(woundable, damagePiece.Value, component)
+                    : damagePiece.Value;
+
+                if (severityApplied < 0 && -severityApplied > foundWound.Value.Comp.WoundSeverityPoint)
+                {
+                    actuallyInducedDamage.DamageDict[damagePiece.Key] = -foundWound.Value.Comp.WoundSeverityPoint;
+
+                    var woundChangedEvent = new WoundChangedEvent(
+                        foundWound.Value,
+                        -foundWound.Value.Comp.WoundSeverityPoint);
+                    RaiseLocalEvent(foundWound.Value, ref woundChangedEvent);
+
+                    removedWounds.Add(foundWound.Value);
+                    changedWounds.Add(foundWound.Value, -foundWound.Value.Comp.WoundSeverityPoint);
+                    totalChange -= foundWound.Value.Comp.WoundSeverityPoint;
+                }
+                else
+                {
+                    if (!TryContinueWound(
+                            woundable,
+                            damagePiece.Key,
+                            damagePiece.Value,
+                            out var continuedWound,
+                            component))
+                        continue;
+
+                    var oldSeverity = continuedWound.Value.Comp.WoundSeverityPoint - severityApplied;
+                    var severityDelta = continuedWound.Value.Comp.WoundSeverityPoint - oldSeverity;
+
+                    var woundChangedEvent = new WoundChangedEvent(continuedWound.Value, severityDelta);
+                    RaiseLocalEvent(continuedWound.Value, ref woundChangedEvent);
+
+                    actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
+
+                    changedWounds.Add(continuedWound.Value, severityDelta);
+                    totalChange += severityDelta;
+                }
+            }
+            else
+            {
+                if (damagePiece.Value <= 0)
+                    continue;
+
+                var damageGroup = (from @group in _prototype.EnumeratePrototypes<DamageGroupPrototype>()
+                    where @group.DamageTypes.Contains(damagePiece.Key)
+                    select @group).FirstOrDefault();
+
+                if (!TryCreateWound(
+                        woundable,
+                        damagePiece.Key,
+                        damagePiece.Value,
+                        out var woundCreated,
+                        damageGroup,
+                        component))
+                    continue;
+
+                var woundChangedEvent = new WoundChangedEvent(
+                    woundCreated.Value,
+                    woundCreated.Value.Comp.WoundSeverityPoint);
+                RaiseLocalEvent(woundCreated.Value, ref woundChangedEvent);
+
+                actuallyInducedDamage.DamageDict[damagePiece.Key] = woundCreated.Value.Comp.WoundSeverityPoint;
+
+                addedWounds.Add(woundCreated.Value);
+                changedWounds.Add(woundCreated.Value, woundCreated.Value.Comp.WoundSeverityPoint);
+                totalChange += woundCreated.Value.Comp.WoundSeverityPoint;
+            }
+        }
+
+        var woundsDeltaEv = new WoundsDeltaChanged(totalChange, changedWounds);
+        RaiseLocalEvent(woundable, ref woundsDeltaEv);
+
+        foreach (var wound in
+                 changedWounds.Where(wound => addedWounds.Contains(wound.Key) || removedWounds.Contains(wound.Key)))
+        {
+            changedWounds.Remove(wound.Key);
+        }
+
+        var woundsChangedEv = new WoundsChangedEvent(addedWounds, removedWounds, changedWounds);
+        RaiseLocalEvent(woundable, ref woundsChangedEv);
+
+        foreach (var woundToRemove in removedWounds)
+        {
+            RemoveWound(woundToRemove);
+        }
+
+        return actuallyInducedDamage;
     }
 
     /// <summary>
@@ -629,6 +752,36 @@ public partial class WoundSystem
             yield break;
 
         yield return (targetEntity, targetWoundable,foundComp);
+    }
+
+    /// <summary>
+    /// Retrieves a wound of a specific damage type
+    /// </summary>
+    /// <param name="targetEntity"></param>
+    /// <param name="wound"></param>
+    /// <param name="targetWoundable"></param>
+    /// <param name="damageType"></param>
+    /// <returns>The said wound</returns>
+    public bool TryGetWoundOfDamageType(
+        EntityUid targetEntity,
+        string damageType,
+        [NotNullWhen(true)] out Entity<WoundComponent>? wound,
+        WoundableComponent? targetWoundable = null)
+    {
+        wound = null;
+        if (!WoundableQuery.Resolve(targetEntity, ref targetWoundable, false))
+            return false;
+
+        foreach (var fWound in GetWoundableWounds(targetEntity, targetWoundable))
+        {
+            if (fWound.Comp.DamageType != damageType)
+                continue;
+
+            wound = fWound;
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>

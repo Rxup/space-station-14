@@ -2,10 +2,14 @@
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs;
 using Content.Shared.Rejuvenate;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
@@ -14,6 +18,7 @@ public partial class ConsciousnessSystem
     private void InitProcess()
     {
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<ConsciousnessComponent, CheckForCustomHandlerEvent>(OnConsciousnessDamaged);
 
         // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(SharedBodySystem)]);
@@ -24,43 +29,106 @@ public partial class ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
 
-        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
+        SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
     }
 
     private const string NerveSystemIdentifier = "nerveSystem";
 
-    private void UpdatePassedOut(float frameTime)
+    private void OnConsciousnessDamaged(
+        EntityUid uid,
+        ConsciousnessComponent component,
+        ref CheckForCustomHandlerEvent args)
     {
-        var query = EntityQueryEnumerator<ConsciousnessComponent>();
-        while (query.MoveNext(out var ent, out var consciousness))
+        var actuallyInducedDamage = new DamageSpecifier(args.Damage);
+        switch (args.TargetPart)
         {
-            if (consciousness.ForceDead || _timing.CurTime < consciousness.NextConsciousnessUpdate)
-                continue;
-            consciousness.NextConsciousnessUpdate = _timing.CurTime + consciousness.ConsciousnessUpdateTime;
-
-            // thread damnation!!!
-            foreach (var modifier in consciousness.Modifiers.Where(modifier => modifier.Value.Time < _timing.CurTime))
+            case TargetBodyPart.All:
             {
-                RemoveConsciousnessModifier(ent, modifier.Key.Item1, modifier.Key.Item2, consciousness);
+                foreach (var damagePair in args.Damage.DamageDict)
+                {
+                    if (damagePair.Value == 0)
+                        continue;
+
+                    var damageGroup = (from @group in _proto.EnumeratePrototypes<DamageGroupPrototype>()
+                        where @group.DamageTypes.Contains(damagePair.Key)
+                        select @group).FirstOrDefault();
+
+                    if (damagePair.Value < 0)
+                    {
+                        if (!_wound.TryGetWoundableWithMostDamage(
+                                uid,
+                                out var mostDamaged,
+                                damageGroup?.ID))
+                        {
+                            actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
+                            continue;
+                        }
+
+                        var damage = new DamageSpecifier();
+                        damage.DamageDict.Add(damagePair.Key, damagePair.Value);
+
+                        var beforePart = new BeforeDamageChangedEvent(damage, args.Origin, args.CanBeCancelled);
+                        RaiseLocalEvent(mostDamaged.Value, ref beforePart);
+
+                        if (beforePart.Cancelled)
+                            continue;
+
+                        actuallyInducedDamage.DamageDict[damagePair.Key] =
+                            _wound.GetWoundsChanged(mostDamaged.Value, damage, mostDamaged.Value).DamageDict[damagePair.Key];
+                    }
+                    else
+                    {
+                        var bodyParts = Body.GetBodyChildren(uid).ToList();
+
+                        var damagePerPart = new DamageSpecifier();
+                        damagePerPart.DamageDict.Add(damagePair.Key, damagePair.Value / bodyParts.Count);
+
+                        actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
+                        foreach (var bodyPart in bodyParts)
+                        {
+                            var beforePart = new BeforeDamageChangedEvent(damagePerPart, args.Origin, args.CanBeCancelled);
+                            RaiseLocalEvent(bodyPart.Id, ref beforePart);
+
+                            if (beforePart.Cancelled)
+                                continue;
+
+                            actuallyInducedDamage.DamageDict[damagePair.Key] +=
+                                _wound.GetWoundsChanged(bodyPart.Id, damagePerPart).DamageDict[damagePair.Key];
+                        }
+                    }
+                }
+
+                break;
             }
-
-            foreach (var multiplier in consciousness.Multipliers.Where(multiplier => multiplier.Value.Time < _timing.CurTime))
+            default:
             {
-                RemoveConsciousnessMultiplier(ent, multiplier.Key.Item1, multiplier.Key.Item2, consciousness);
-            }
+                var target = args.TargetPart ?? Body.GetRandomBodyPart(uid);
+                if (args.Origin.HasValue && TryComp<TargetingComponent>(args.Origin.Value, out var targeting))
+                    target = Body.GetRandomBodyPart(uid, args.Origin.Value, attackerComp: targeting);
 
-            if (consciousness.PassedOutTime < _timing.CurTime && consciousness.PassedOut)
-            {
-                consciousness.PassedOut = false;
-                CheckConscious(ent, consciousness);
-            }
+                var (partType, symmetry) = Body.ConvertTargetBodyPart(target);
+                var possibleTargets = Body.GetBodyChildrenOfType(uid, partType, symmetry: symmetry).ToList();
 
-            if (consciousness.ForceConsciousnessTime < _timing.CurTime && consciousness.ForceConscious)
-            {
-                consciousness.ForceConscious = false;
-                CheckConscious(ent, consciousness);
+                if (possibleTargets.Count == 0)
+                    possibleTargets = Body.GetBodyChildren(uid).ToList();
+
+                // No body parts at all?
+                if (possibleTargets.Count == 0)
+                    return;
+
+                var chosenTarget = _random.PickAndTake(possibleTargets);
+
+                var beforePart = new BeforeDamageChangedEvent(args.Damage, args.Origin, args.CanBeCancelled);
+                RaiseLocalEvent(chosenTarget.Id, ref beforePart);
+
+                if (!beforePart.Cancelled)
+                    actuallyInducedDamage = _wound.GetWoundsChanged(chosenTarget.Id, args.Damage);
+                break;
             }
         }
+
+        args.Damage = actuallyInducedDamage;
+        args.Handled = true;
     }
 
     private void OnMobStateChanged(EntityUid uid, ConsciousnessComponent component, MobStateChangedEvent args)
@@ -96,7 +164,6 @@ public partial class ConsciousnessSystem
             _pain.TryRemovePainMultiplier(component.NerveSystem.Owner, painMultiplier.Key, component.NerveSystem.Comp);
         }
 
-
         foreach (var multiplier in
                  component.Multipliers.Where(multiplier => multiplier.Value.Type == ConsciousnessModType.Pain))
         {
@@ -121,7 +188,7 @@ public partial class ConsciousnessSystem
         ForceConscious(uid, TimeSpan.FromSeconds(1f), component);
     }
 
-    private void OnConsciousnessMapInit(EntityUid uid, ConsciousnessComponent consciousness, MapInitEvent args)
+    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, ComponentInit args)
     {
         if (consciousness.RawConsciousness < 0)
         {
@@ -134,27 +201,20 @@ public partial class ConsciousnessSystem
 
     private void OnBodyPartAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartAddedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!Timing.IsFirstTimePredicted)
             return;
 
         if (args.Part.Comp.Body == null ||
             !TryComp<ConsciousnessComponent>(args.Part.Comp.Body, out var consciousness))
             return;
 
-        if (consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null && value.Item1 != uid)
-        {
-            Log.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} changed on a body:" +
-                        $" {args.Part.Comp.Body} this will result in unexpected behaviour!");
-        }
-
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
-
         CheckRequiredParts(args.Part.Comp.Body.Value, consciousness);
     }
 
     private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!Timing.IsFirstTimePredicted)
             return;
 
         if (args.Part.Comp.Body == null || !TryComp<ConsciousnessComponent>(args.Part.Comp.Body.Value, out var consciousness))
@@ -167,23 +227,16 @@ public partial class ConsciousnessSystem
         }
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
-
         CheckRequiredParts(args.Part.Comp.Body.Value, consciousness);
     }
 
     private void OnOrganAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganAddedToBodyEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!Timing.IsFirstTimePredicted)
             return;
 
         if (!TryComp<ConsciousnessComponent>(args.Body, out var consciousness))
             return;
-
-        if (consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value) && value.Item1 != null && value.Item1 != uid)
-        {
-            Log.Warning($"ConsciousnessRequirementPart with duplicate Identifier {component.Identifier}:{uid} changed on a body:" +
-                             $" {args.Body} this will result in unexpected behaviour! Old {component.Identifier} wielder: {value.Item1}");
-        }
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
 
@@ -195,7 +248,7 @@ public partial class ConsciousnessSystem
 
     private void OnOrganRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganRemovedFromBodyEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!Timing.IsFirstTimePredicted)
             return;
 
         if (!TryComp<ConsciousnessComponent>(args.OldBody, out var consciousness))
@@ -208,7 +261,6 @@ public partial class ConsciousnessSystem
         }
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
-
         CheckRequiredParts(args.OldBody, consciousness);
     }
 }

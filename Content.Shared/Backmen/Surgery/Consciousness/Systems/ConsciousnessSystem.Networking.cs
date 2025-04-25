@@ -45,15 +45,16 @@ public partial class ConsciousnessSystem
 
     private void OnComponentGet(EntityUid uid, ConsciousnessComponent comp, ref ComponentGetState args)
     {
-        var state = new ConsciousnessComponentState();
-
-        state.Threshold = comp.Threshold;
-        state.RawConsciousness = comp.RawConsciousness;
-        state.Multiplier = comp.Multiplier;
-        state.Cap = comp.Cap;
-        state.ForceDead = comp.ForceDead;
-        state.ForceUnconscious = comp.ForceUnconscious;
-        state.IsConscious = comp.IsConscious;
+        var state = new ConsciousnessComponentState
+        {
+            Threshold = comp.Threshold,
+            RawConsciousness = comp.RawConsciousness,
+            Multiplier = comp.Multiplier,
+            Cap = comp.Cap,
+            ForceDead = comp.ForceDead,
+            ForceUnconscious = comp.ForceUnconscious,
+            IsConscious = comp.IsConscious,
+        };
 
         foreach (var ((modEntity, modType), modifier) in comp.Modifiers)
         {

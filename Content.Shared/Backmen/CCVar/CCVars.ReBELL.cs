@@ -36,13 +36,29 @@ public sealed partial class CCVars
     /// for every n units of distance, (tiles), chance for dodging is equal to n*x percents, look for it down here
     /// </summary>
     public static readonly CVarDef<float> DodgeDistanceChance =
-        CVarDef.Create("targeting.dodge_chance_distance", 4f, CVar.SERVER);
+        CVarDef.Create("targeting.dodge_chance_distance", 6f, CVar.SERVER);
 
     /// <summary>
     /// the said x amount of percents
     /// </summary>
     public static readonly CVarDef<float> DodgeDistanceChange =
-        CVarDef.Create("targeting.dodge_change_distance", 0.05f, CVar.SERVER);
+        CVarDef.Create("targeting.dodge_change_distance", 0.08f, CVar.SERVER);
+
+    /*
+     * Pain CVars
+     */
+
+    /// <summary>
+    /// The global pain multiplier, applied to every pain source.
+    /// </summary>
+    public static readonly CVarDef<float> UniversalPainMultiplier =
+        CVarDef.Create("pain.universal_multiplier", 1f, CVar.SERVER);
+
+    /// <summary>
+    /// How much pain can a single pain inflicter induce?
+    /// </summary>
+    public static readonly CVarDef<float> PainInflicterCapacity =
+        CVarDef.Create("pain.inflicter_cap", 100f, CVar.SERVER);
 
     /*
      * Trauma CVars
@@ -65,6 +81,12 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> OrganTraumaRunSpeedSlowdown =
         CVarDef.Create("traumas.organ_run_speed_slowdown", 0.6f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The pain feels threshold on a specific nerve, that if broken, will not allow inducing another nerve damage trauma
+    /// </summary>
+    public static readonly CVarDef<float> NerveDamageThreshold =
+        CVarDef.Create("traumas.nerve_damage_threshold", 0.7f, CVar.SERVERONLY);
 
     /*
      * Bleeding CVars

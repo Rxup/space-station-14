@@ -48,7 +48,7 @@ public sealed class ServerWoundSystem : WoundSystem
         base.Update(frameTime);
 
         var timeToHeal = 1 / _medicalHealingTickrate;
-        using var query = EntityQueryEnumerator<WoundableComponent, MetaDataComponent>();
+        var query = EntityQueryEnumerator<WoundableComponent, MetaDataComponent>();
         while (query.MoveNext(out var ent, out var woundable, out var metaData))
         {
             if (Paused(ent, metaData))

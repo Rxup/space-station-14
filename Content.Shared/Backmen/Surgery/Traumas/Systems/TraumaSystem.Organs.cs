@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
+using JetBrains.Annotations;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -22,7 +23,7 @@ public partial class TraumaSystem
         SubscribeLocalEvent<WoundableComponent, OrganDamageSeverityChangedOnWoundable>(OnOrganSeverityChanged);
     }
 
-    #region Event handling
+    #region Event Handling
 
     private void OnOrganIntegrityChanged(Entity<OrganComponent> organ, ref OrganIntegrityChangedEvent args)
     {
@@ -43,23 +44,23 @@ public partial class TraumaSystem
         if (args.Organ.Comp.Body == null)
             return;
 
-        if (!_consciousness.TryGetNerveSystem(args.Organ.Comp.Body.Value, out var nerveSys))
+        if (!Consciousness.TryGetNerveSystem(args.Organ.Comp.Body.Value, out var nerveSys))
             return;
 
-        var organs = _body.GetPartOrgans(args.Organ.Comp.Body.Value).ToList();
+        var organs = Body.GetPartOrgans(args.Organ.Comp.Body.Value).ToList();
 
         var totalIntegrity = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
         var totalIntegrityCap = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.IntegrityCap);
 
         // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
-        if (!_pain.TryChangePainModifier(
+        if (!Pain.TryChangePainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
                 OrganDamagePainIdentifier,
                 (totalIntegrityCap - totalIntegrity) / 2,
                 nerveSys.Value.Comp))
         {
-            _pain.TryAddPainModifier(
+            Pain.TryAddPainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
                 OrganDamagePainIdentifier,
@@ -78,13 +79,13 @@ public partial class TraumaSystem
         if (args.NewSeverity != OrganSeverity.Destroyed)
             return;
 
-        if (_consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !_mobState.IsDead(body.Value))
+        if (Consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !_mobState.IsDead(body.Value))
         {
             var sex = Sex.Unsexed;
             if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
                 sex = humanoid.Sex;
 
-            _pain.PlayPainSoundWithCleanup(
+            Pain.PlayPainSoundWithCleanup(
                 body.Value,
                 nerveSys.Value.Comp,
                 nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
@@ -93,10 +94,10 @@ public partial class TraumaSystem
             _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
             _stun.TrySlowdown(
                 body.Value,
-                nerveSys.Value.Comp.OrganDamageStunTime * _cfg.GetCVar(CCVars.OrganTraumaSlowdownTimeMultiplier),
+                nerveSys.Value.Comp.OrganDamageStunTime * _organTraumaSlowdownTimeMultiplier,
                 true,
-                _cfg.GetCVar(CCVars.OrganTraumaWalkSpeedSlowdown),
-                _cfg.GetCVar(CCVars.OrganTraumaRunSpeedSlowdown));
+                _organTraumaWalkSpeedSlowdown,
+                _organTraumaRunSpeedSlowdown);
         }
 
         if (TryGetWoundableTrauma(bodyPart, out var traumas, TraumaType.OrganDamage, bodyPart))
@@ -111,7 +112,7 @@ public partial class TraumaSystem
         }
 
         _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, body.Value);
-        _body.RemoveOrgan(args.Organ, args.Organ.Comp);
+        Body.RemoveOrgan(args.Organ, args.Organ.Comp);
 
         if (_net.IsServer)
             QueueDel(args.Organ);
@@ -121,132 +122,49 @@ public partial class TraumaSystem
 
     #region Public API
 
-    public bool TryCreateOrganDamageModifier(EntityUid uid,
+    [PublicAPI]
+    public virtual bool TryCreateOrganDamageModifier(EntityUid uid,
         FixedPoint2 severity,
         EntityUid effectOwner,
         string identifier,
         OrganComponent? organ = null)
     {
-        if (severity == 0)
-            return false;
-
-        if (!Resolve(uid, ref organ))
-            return false;
-
-        if(!organ.IntegrityModifiers.TryAdd((identifier, effectOwner), severity))
-            return false;
-        UpdateOrganIntegrity(uid, organ);
-
-        return true;
+        // Server-only execution
+        return false;
     }
 
-    public bool TrySetOrganDamageModifier(EntityUid uid,
+    [PublicAPI]
+    public virtual bool TrySetOrganDamageModifier(EntityUid uid,
         FixedPoint2 severity,
         EntityUid effectOwner,
         string identifier,
         OrganComponent? organ = null)
     {
-        if (severity == 0)
-            return false;
-
-        if (!Resolve(uid, ref organ))
-            return false;
-
-        organ.IntegrityModifiers[(identifier, effectOwner)] = severity;
-        UpdateOrganIntegrity(uid, organ);
-
-        return true;
+        // Server-only execution
+        return false;
     }
 
-    public bool TryChangeOrganDamageModifier(EntityUid uid,
+    [PublicAPI]
+    public virtual bool TryChangeOrganDamageModifier(
+        EntityUid uid,
         FixedPoint2 change,
         EntityUid effectOwner,
         string identifier,
         OrganComponent? organ = null)
     {
-        if (change == 0)
-            return false;
-
-        if (!Resolve(uid, ref organ))
-            return false;
-
-        if (!organ.IntegrityModifiers.TryGetValue((identifier, effectOwner), out var value))
-            return false;
-
-        organ.IntegrityModifiers[(identifier, effectOwner)] = value + change;
-        UpdateOrganIntegrity(uid, organ);
-
-        return true;
+        // Server-only execution
+        return false;
     }
 
-    public bool TryRemoveOrganDamageModifier(EntityUid uid,
+    [PublicAPI]
+    public virtual bool TryRemoveOrganDamageModifier(
+        EntityUid uid,
         EntityUid effectOwner,
         string identifier,
         OrganComponent? organ = null)
     {
-        if (!Resolve(uid, ref organ))
-            return false;
-
-        if (!organ.IntegrityModifiers.Remove((identifier, effectOwner)))
-            return false;
-
-        if (TryComp<TraumaComponent>(effectOwner, out var traumaComp))
-        {
-            RemoveTrauma((effectOwner, traumaComp));
-        }
-
-        UpdateOrganIntegrity(uid, organ);
-        return true;
-    }
-
-    #endregion
-
-    #region Private API
-
-    private void UpdateOrganIntegrity(EntityUid uid, OrganComponent organ)
-    {
-        var oldIntegrity = organ.OrganIntegrity;
-        organ.OrganIntegrity = FixedPoint2.Clamp(organ.IntegrityModifiers
-                .Aggregate(FixedPoint2.Zero, (current, modifier) => current + modifier.Value),
-                0,
-                organ.IntegrityCap);
-
-        if (oldIntegrity != organ.OrganIntegrity)
-        {
-            var ev = new OrganIntegrityChangedEvent(oldIntegrity, organ.OrganIntegrity);
-            RaiseLocalEvent(uid, ref ev);
-
-            if (_container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
-            {
-                var ev1 = new OrganIntegrityChangedEventOnWoundable((uid, organ), oldIntegrity, organ.OrganIntegrity);
-                RaiseLocalEvent(container.Owner, ref ev1);
-            }
-        }
-
-        var nearestSeverity = organ.OrganSeverity;
-        foreach (var (severity, value) in organ.IntegrityThresholds.OrderByDescending(kv => kv.Value))
-        {
-            if (organ.OrganIntegrity > value)
-                continue;
-
-            nearestSeverity = severity;
-            break;
-        }
-
-        if (nearestSeverity != organ.OrganSeverity)
-        {
-            var ev = new OrganDamageSeverityChanged(organ.OrganSeverity, nearestSeverity);
-            RaiseLocalEvent(uid, ref ev);
-
-            if (_container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
-            {
-                var ev1 = new OrganDamageSeverityChangedOnWoundable((uid, organ), organ.OrganSeverity, nearestSeverity);
-                RaiseLocalEvent(container.Owner, ref ev1);
-            }
-        }
-
-        organ.OrganSeverity = nearestSeverity;
-        Dirty(uid, organ);
+        // Server-only execution
+        return false;
     }
 
     #endregion

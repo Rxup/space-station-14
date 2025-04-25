@@ -53,7 +53,7 @@ public sealed partial class NerveSystemComponent : Component
     public TimeSpan PainShockAdrenalineTime = TimeSpan.FromSeconds(40f);
 
     [DataField]
-    public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(13f);
+    public TimeSpan CritScreamsIntervalMin = TimeSpan.FromSeconds(16f);
 
     [DataField]
     public TimeSpan CritScreamsIntervalMax = TimeSpan.FromSeconds(32f);
