@@ -68,19 +68,19 @@ public sealed partial class CCVars
     /// The multiplier applied to the base paralyze time upon an infliction of organ trauma.
     /// </summary>
     public static readonly CVarDef<float> OrganTraumaSlowdownTimeMultiplier =
-        CVarDef.Create("traumas.organ_slowdown_time", 2f, CVar.SERVERONLY);
+        CVarDef.Create("traumas.organ_slowdown_time", 2f, CVar.SERVER);
 
     /// <summary>
     /// The slowdown applied to the walk speed upon an infliction of organ trauma
     /// </summary>
     public static readonly CVarDef<float> OrganTraumaWalkSpeedSlowdown =
-        CVarDef.Create("traumas.organ_walk_speed_slowdown", 0.6f, CVar.SERVERONLY);
+        CVarDef.Create("traumas.organ_walk_speed_slowdown", 0.6f, CVar.SERVER);
 
     /// <summary>
     /// The slowdown applied to the run speed upon an infliction of organ trauma
     /// </summary>
     public static readonly CVarDef<float> OrganTraumaRunSpeedSlowdown =
-        CVarDef.Create("traumas.organ_run_speed_slowdown", 0.6f, CVar.SERVERONLY);
+        CVarDef.Create("traumas.organ_run_speed_slowdown", 0.6f, CVar.SERVER);
 
     /// <summary>
     /// The pain feels threshold on a specific nerve, that if broken, will not allow inducing another nerve damage trauma
