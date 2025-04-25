@@ -23,7 +23,7 @@ map_pool="BackmenDefaultMapPool"
 defaultpreset="secret"
 lobbyenabled = true
 cryo_sleep_rejoining = true
-lobbyduration=300
+lobbyduration= 300
 contraband_examine = true
 
 # IPIntel stuff
@@ -32,7 +32,7 @@ ipintel_contact_email = "backmen@bk.ru"
 
 [infolinks]
 website="https://backmen.ru"
-discord="https://discord.gg/B7gWj7hB8b"
+discord="https://discord.gg/S5x5wuCJ8z"
 wiki="http://wiki.backmen.ru"
 github="https://github.com/SS14Backmen/space-station-14-Erida"
 appeal="https://backmen.ru/tag/ticket"
@@ -150,7 +150,7 @@ timermap = 60
 
 [hub]
 advertise = true
-tags = "lang:ru,rp:med,region:eu_e,tts"
+tags = "lang:ru,rp:med,region:eu_e,tts,18+"
 
 [glimmer]
 glimmer_enabled  = false
