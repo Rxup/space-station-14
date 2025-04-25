@@ -41,8 +41,8 @@ public partial class TraumaSystem
         if (args.Current is not TraumaComponentState state)
             return;
 
-        component.TraumaTarget = GetEntity(state.TraumaTarget);
-        component.HoldingWoundable = GetEntity(state.HoldingWoundable);
+        component.TraumaTarget = TryGetEntity(state.TraumaTarget, out var e) ? e.Value : EntityUid.Invalid;
+        component.HoldingWoundable = TryGetEntity(state.HoldingWoundable, out var e1) ? e1.Value : EntityUid.Invalid;
 
         component.TraumaType = state.TraumaType;
         component.TraumaSeverity = state.TraumaSeverity;
@@ -52,8 +52,8 @@ public partial class TraumaSystem
     {
         var state = new TraumaComponentState
         {
-            TraumaTarget = GetNetEntity(comp.TraumaTarget),
-            HoldingWoundable = GetNetEntity(comp.HoldingWoundable),
+            TraumaTarget = TryGetNetEntity(comp.TraumaTarget, out var ne) ? ne.Value : NetEntity.Invalid,
+            HoldingWoundable = TryGetNetEntity(comp.HoldingWoundable, out var ne1) ? ne1.Value : NetEntity.Invalid,
 
             TraumaType = comp.TraumaType,
             TraumaSeverity = comp.TraumaSeverity,

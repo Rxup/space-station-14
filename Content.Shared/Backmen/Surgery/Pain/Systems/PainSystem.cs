@@ -70,13 +70,13 @@ public abstract partial class PainSystem : EntitySystem
         if (args.Current is not NerveComponentState state)
             return;
 
-        component.ParentedNerveSystem = GetEntity(state.ParentedNerveSystem);
+        component.ParentedNerveSystem = TryGetEntity(state.ParentedNerveSystem, out var e) ? e.Value : EntityUid.Invalid;
         component.PainMultiplier = state.PainMultiplier;
 
         component.PainFeelingModifiers.Clear();
         foreach (var ((modEntity, id), modifier) in state.PainFeelingModifiers)
         {
-            component.PainFeelingModifiers.Add((GetEntity(modEntity), id), modifier);
+            component.PainFeelingModifiers.Add((TryGetEntity(modEntity, out var e1) ? e1.Value : EntityUid.Invalid, id), modifier);
         }
     }
 
@@ -84,14 +84,12 @@ public abstract partial class PainSystem : EntitySystem
     {
         var state = new NerveComponentState();
 
-        if (!TerminatingOrDeleted(comp.ParentedNerveSystem))
-            state.ParentedNerveSystem = GetNetEntity(comp.ParentedNerveSystem);
+        state.ParentedNerveSystem = TryGetNetEntity(comp.ParentedNerveSystem, out var ne) ? ne.Value : NetEntity.Invalid;
         state.PainMultiplier = comp.PainMultiplier;
 
         foreach (var ((modEntity, id), modifier) in comp.PainFeelingModifiers)
         {
-            if (!TerminatingOrDeleted(modEntity))
-                state.PainFeelingModifiers.Add((GetNetEntity(modEntity), id), modifier);
+            state.PainFeelingModifiers.Add((TryGetNetEntity(modEntity, out var ne1) ? ne1.Value : NetEntity.Invalid, id), modifier);
         }
 
         args.State = state;
