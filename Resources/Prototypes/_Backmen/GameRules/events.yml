@@ -32,7 +32,7 @@
     - id: FugitiveSpawn
     - id: BluespaceGoat
     - id: SpiderSpiderVampireSpawn
-    - id: DiseaseOutbreak
+   # - id: DiseaseOutbreak
 
 - type: entityTable
   id: NormalBackmenEventsTable

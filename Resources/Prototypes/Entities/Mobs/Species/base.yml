@@ -24,9 +24,6 @@
     # - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["socks"] #backmen:underclothing
-    - map: ["underpants"] #backmen:underclothing
-    - map: ["undershirt"] #backmen:underclothing
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
@@ -39,6 +36,9 @@
     - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "socks" ] #backmen:underclothing
+    - map: [ "underpants" ] #backmen:underclothing
+    - map: [ "undershirt" ] #backmen:underclothing
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -49,6 +49,7 @@
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
@@ -250,7 +251,7 @@
   abstract: true
   components:
   - type: Absorbable # Changeling
-  - type: DiseaseCarrier # backmen
+  # - type: DiseaseCarrier # backmen
   - type: Targeting # backmen: surgery
   - type: Barotrauma
     damage:
