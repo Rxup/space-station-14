@@ -86,7 +86,7 @@ public sealed partial class CCVars
     /// The pain feels threshold on a specific nerve, that if broken, will not allow inducing another nerve damage trauma
     /// </summary>
     public static readonly CVarDef<float> NerveDamageThreshold =
-        CVarDef.Create("traumas.nerve_damage_threshold", 0.7f, CVar.SERVERONLY);
+        CVarDef.Create("traumas.nerve_damage_threshold", 0.7f, CVar.SERVER);
 
     /*
      * Bleeding CVars
