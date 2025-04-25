@@ -3,6 +3,8 @@
   parent: Clothing
   id: ClothingShoesBase
   components:
+  - type: SlotBlock # Backmen
+    slots: [socks]
   - type: Clothing
     slots:
     - FEET
