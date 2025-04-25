@@ -1,5 +1,5 @@
 ﻿- type: language
-  id: DemonLanguage
+  id: Demonic
   speech:
     color: "#7f4870"  # pinky
     #fontId: UnderdogRegular
@@ -13,3 +13,19 @@
     - katsoa
     - suuntaan
     - takaa
+
+- type: language
+  id: Shark
+  speech:
+    color: "#7fffd4"  # pinky
+    #fontId: UnderdogRegular
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    - бульк
+    - хрысь
+    - бламп
+    - порно
+    - кыть

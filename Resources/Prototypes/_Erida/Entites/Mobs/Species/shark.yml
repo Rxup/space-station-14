@@ -3,6 +3,15 @@
   id: BaseMobPlaf
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Shark
+    - TauCetiBasic
+    understands:
+    - Shark
+    - TauCetiBasic
   - type: Icon
     sprite: _ADT/Mobs/Customization/Shark/parts.rsi
     state: shark_m
