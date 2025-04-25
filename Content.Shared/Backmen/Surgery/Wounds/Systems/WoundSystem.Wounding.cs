@@ -5,6 +5,7 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -121,7 +122,7 @@ public partial class WoundSystem
         ref CheckForCustomHandlerEvent args)
     {
         args.Handled = true;
-        args.Damage = GetWoundsChanged(woundable, args.Damage, component);
+        args.Damage = GetWoundsChanged(woundable, args.Origin, args.Damage, component);
     }
 
     private void OnWoundableInserted(EntityUid parentEntity, WoundableComponent parentWoundable, EntInsertedIntoContainerMessage args)
@@ -372,6 +373,7 @@ public partial class WoundSystem
     [PublicAPI]
     public DamageSpecifier GetWoundsChanged(
         EntityUid woundable,
+        EntityUid? origin,
         DamageSpecifier damage,
         WoundableComponent? component = null)
     {
@@ -466,7 +468,7 @@ public partial class WoundSystem
             }
         }
 
-        var woundsDeltaEv = new WoundsDeltaChanged(totalChange, changedWounds);
+        var woundsDeltaEv = new WoundsDeltaChanged(origin, totalChange, changedWounds, damageIncreased);
         RaiseLocalEvent(woundable, ref woundsDeltaEv);
 
         foreach (var wound in
@@ -475,7 +477,7 @@ public partial class WoundSystem
             changedWounds.Remove(wound.Key);
         }
 
-        var woundsChangedEv = new WoundsChangedEvent(addedWounds, removedWounds, changedWounds, damageIncreased);
+        var woundsChangedEv = new WoundsChangedEvent(origin, addedWounds, removedWounds, changedWounds, damageIncreased);
         RaiseLocalEvent(woundable, ref woundsChangedEv);
 
         foreach (var woundToRemove in removedWounds)
@@ -696,6 +698,35 @@ public partial class WoundSystem
     public bool IsWoundableRoot(EntityUid woundableEntity, WoundableComponent? woundable = null)
     {
         return WoundableQuery.Resolve(woundableEntity, ref woundable, false) && woundable.RootWoundable == woundableEntity;
+    }
+
+    public IEnumerable<Entity<WoundComponent>> GetBodyWounds(
+        EntityUid body,
+        BodyComponent? comp = null)
+    {
+        if (!Resolve(body, ref comp))
+            yield break;
+
+        var rootPart = comp.RootContainer.ContainedEntity;
+        if (!rootPart.HasValue)
+            yield break;
+
+        foreach (var woundable in GetAllWoundableChildren(rootPart.Value))
+        {
+            foreach (var value in GetWoundableWounds(woundable, woundable))
+            {
+                yield return value;
+            }
+        }
+    }
+
+    public FixedPoint2 GetBodySeverityPoint(
+        EntityUid body,
+        BodyComponent? comp = null)
+    {
+        return !Resolve(body, ref comp)
+                ? FixedPoint2.Zero
+                : GetBodyWounds(body, comp).Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint);
     }
 
     /// <summary>

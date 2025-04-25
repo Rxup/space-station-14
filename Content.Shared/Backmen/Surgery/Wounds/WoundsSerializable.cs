@@ -57,6 +57,7 @@ public enum WoundVisibility
 /// </summary>
 [ByRefEvent]
 public record struct WoundsChangedEvent(
+    EntityUid? Origin,
     List<Entity<WoundComponent>> AddedWounds,
     List<Entity<WoundComponent>> RemovedWounds,
     Dictionary<Entity<WoundComponent>, FixedPoint2> ChangedWounds,
@@ -83,7 +84,11 @@ public record struct WoundChangedEvent(WoundComponent Component, FixedPoint2 Del
 /// Changed wounds pass the delta.
 /// </summary>
 [ByRefEvent]
-public record struct WoundsDeltaChanged(FixedPoint2 TotalDelta, Dictionary<Entity<WoundComponent>, FixedPoint2> WoundsDelta);
+public record struct WoundsDeltaChanged(
+    EntityUid? Origin,
+    FixedPoint2 TotalDelta,
+    Dictionary<Entity<WoundComponent>, FixedPoint2> WoundsDelta,
+    bool DamageIncreased = false);
 
 [ByRefEvent]
 public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);

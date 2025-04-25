@@ -74,7 +74,7 @@ public partial class ConsciousnessSystem
                             continue;
 
                         actuallyInducedDamage.DamageDict[damagePair.Key] =
-                            _wound.GetWoundsChanged(mostDamaged.Value, damage, mostDamaged.Value).DamageDict[damagePair.Key];
+                            _wound.GetWoundsChanged(mostDamaged.Value, args.Origin, damage, mostDamaged.Value).DamageDict[damagePair.Key];
                     }
                     else
                     {
@@ -93,7 +93,7 @@ public partial class ConsciousnessSystem
                                 continue;
 
                             actuallyInducedDamage.DamageDict[damagePair.Key] +=
-                                _wound.GetWoundsChanged(bodyPart.Id, damagePerPart).DamageDict[damagePair.Key];
+                                _wound.GetWoundsChanged(bodyPart.Id, args.Origin, damagePerPart).DamageDict[damagePair.Key];
                         }
                     }
                 }
@@ -122,7 +122,7 @@ public partial class ConsciousnessSystem
                 RaiseLocalEvent(chosenTarget.Id, ref beforePart);
 
                 if (!beforePart.Cancelled)
-                    actuallyInducedDamage = _wound.GetWoundsChanged(chosenTarget.Id, args.Damage);
+                    actuallyInducedDamage = _wound.GetWoundsChanged(chosenTarget.Id, args.Origin, args.Damage);
                 break;
             }
         }
