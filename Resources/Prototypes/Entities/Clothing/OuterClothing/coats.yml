@@ -19,12 +19,12 @@
     sprite: Clothing/OuterClothing/Coats/detective.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective.rsi
-  - type: Armor
-    coverageHidden: true
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.40
@@ -76,12 +76,12 @@
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorHoS
   components:
-  - type: Armor
-    coverageHidden: true
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -99,12 +99,12 @@
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorWarden
   components:
-  - type: Armor
-    coverageHidden: true
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Chest
     - Groin
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -139,12 +139,12 @@
     sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
-  - type: Armor #Backmen-armorstun
-    coverageHidden: true
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Arm
     - Leg
     - Tail
+  - type: Armor #Backmen-armorstun
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -164,12 +164,12 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Armor #Backmen-armorstun
-    coverageHidden: true
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Arm
     - Leg
     - Tail
+  - type: Armor #Backmen-armorstun
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -195,13 +195,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -221,13 +222,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -247,13 +249,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -273,13 +276,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -299,13 +303,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Slash: 0.84
@@ -327,13 +332,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -353,13 +359,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -379,14 +386,15 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Tail
     - Arm
     - Leg
     - Other
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.9 # Protects very good against radiation. but does very little caustic defence
@@ -451,13 +459,14 @@
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -507,13 +516,14 @@
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -533,13 +543,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -559,13 +570,14 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.65
@@ -585,17 +597,18 @@
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
-  - type: Armor #Backmen-armorstun
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Chest
     - Groin
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Slash: 0.95
-        Stun: 0.8
+        Stun: 0.8 # backmen change
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase

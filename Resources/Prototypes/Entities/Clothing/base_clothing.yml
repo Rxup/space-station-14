@@ -9,12 +9,13 @@
   - type: Tag
     tags:
       - WhitelistChameleon
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Other
+    - Chest
+    - Groin
   - type: Armor
     modifiers: {}
-    coverage: # backmen: armour coverage
-      - Other
-      - Chest
-      - Groin
   - type: StaticPrice
     price: 10
   - type: FlavorProfile #yes not every piece of clothing is edible, but this way every edible piece of clothing should have the flavor without me having to track down what specific clothing can and cannot be eaten.
@@ -65,8 +66,6 @@
   # to show explosion resistance examine
   - type: GroupExamine
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Other
     modifiers: {}
 
 # for clothing that can be toggled, like magboots

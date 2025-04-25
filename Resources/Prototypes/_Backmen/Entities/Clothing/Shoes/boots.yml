@@ -23,9 +23,8 @@
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: BodyCoverage
   - type: Armor
-    coverage:
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -49,9 +48,8 @@
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: BodyCoverage
   - type: Armor
-    coverage:
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.90

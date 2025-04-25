@@ -17,13 +17,14 @@
       - state: equipped-OUTERCLOTHING
       - state: equipped-OUTERCLOTHING-unshaded
         shader: unshaded
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9

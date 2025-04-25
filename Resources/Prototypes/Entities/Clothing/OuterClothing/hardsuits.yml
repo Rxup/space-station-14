@@ -15,13 +15,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -59,13 +52,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -105,13 +91,6 @@
       BoneDamage: 0.17
       VeinsDamage: 0
       NerveDamage: 0.24
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -144,13 +123,6 @@
     highPressureMultiplier: 0.7
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -194,13 +166,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -240,14 +205,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Groin
-    - Chest
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    - Tail
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -290,13 +247,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -335,13 +285,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -378,13 +321,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients: # backmen brigmedic's hardsuit rebalance
         Blunt: 0.3
@@ -424,13 +360,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -470,13 +399,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -518,13 +440,6 @@
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0.22
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -564,13 +479,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 1
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -606,13 +514,6 @@
       BoneDamage: 0.22
       VeinsDamage: 0
       NerveDamage: 1
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -667,13 +568,6 @@
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 1
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -707,13 +601,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -755,13 +642,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -830,13 +710,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -878,13 +751,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -918,13 +784,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.05
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     traumaDeductions:
       Dismemberment: 1 # laughs in armour
       OrganDamage: 1
@@ -965,13 +824,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -1005,13 +857,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -1042,13 +887,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -1083,13 +921,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -1225,13 +1056,6 @@
       BoneDamage: 1
       VeinsDamage: 1
       NerveDamage: 1
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.05 #best armor in the game
@@ -1276,13 +1100,6 @@
       BoneDamage: 0.36
       VeinsDamage: 0
       NerveDamage: 1
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -1321,13 +1138,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -1379,13 +1189,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: Armor
-    coverage:
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.7 # to protect santa from filthy santa deniers

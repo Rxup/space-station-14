@@ -8,7 +8,7 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -17,6 +17,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -39,12 +40,13 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -66,7 +68,7 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -75,6 +77,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -98,13 +101,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Hand
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -123,11 +127,12 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -148,12 +153,13 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/navy.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/navy.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -172,13 +178,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -197,11 +204,12 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -222,13 +230,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -254,13 +263,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.2
@@ -309,13 +319,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -338,7 +349,7 @@
     sprite: Backmen/Changeling/ling_armor.rsi
   - type: Clothing
     sprite: Backmen/Changeling/ling_armor.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -347,6 +358,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -374,13 +386,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.55
@@ -407,7 +420,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -416,6 +429,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -448,13 +462,14 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.75

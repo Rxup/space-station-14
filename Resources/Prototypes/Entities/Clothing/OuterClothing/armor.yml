@@ -13,10 +13,11 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi
-  - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
-#    - Groin #Standart plate armor dont cover groin
+    - Groin
+  - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
     traumaDeductions:
       Dismemberment: 0.21
       OrganDamage: 0.21
@@ -65,8 +66,8 @@
     sprite: Clothing/OuterClothing/Armor/riot.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/riot.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Tail
@@ -74,6 +75,7 @@
     - Hand
     - Leg
     - Foot
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -102,10 +104,6 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-  #  - Tail #No
     traumaDeductions:
       Dismemberment: 0.14
       OrganDamage: 0.34
@@ -133,10 +131,6 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-   # - Tail #No
     # Does not give dismemberment deduction because of reflection. yeah do with it somehow
     modifiers:
       coefficients:
@@ -164,7 +158,7 @@
       shader: unshaded
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Chest
     - Groin
@@ -173,6 +167,7 @@
     - Leg
     #- Foot #this dont cover a foots
     - Tail
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -250,7 +245,7 @@
     sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Chest
     - Groin
@@ -259,6 +254,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     # Remember the A-888
     traumaDeductions:
       Dismemberment: 0.27
@@ -285,8 +281,8 @@
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/heavy.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
@@ -294,6 +290,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -370,11 +367,12 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Tail
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.27
       OrganDamage: 0.42
@@ -407,7 +405,7 @@
     sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Head
     - Chest
@@ -418,6 +416,7 @@
     - Foot
     - Tail
     - Other
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 1
@@ -457,7 +456,7 @@
       sprite: Clothing/OuterClothing/Armor/flesh_armor.rsi
     - type: Clothing
       sprite: Clothing/OuterClothing/Armor/flesh_armor.rsi
-    - type: Armor
+    - type: BodyCoverage # backmen: body coverage
       coverage: # backmen: armour coverage
       - Chest
       - Groin
@@ -466,6 +465,7 @@
       - Leg
       - Foot
       - Tail
+    - type: Armor
       traumaDeductions:
         Dismemberment: 1
         OrganDamage: 1
@@ -499,7 +499,7 @@
     sprite: Clothing/OuterClothing/Armor/bone_armor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/bone_armor.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Chest
     - Groin
@@ -509,6 +509,7 @@
     - Foot
     - Tail
     - Other
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.27
       OrganDamage: 0.42
@@ -542,7 +543,7 @@
     sprite: Clothing/OuterClothing/Armor/podwars_armor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/podwars_armor.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage: # backmen: armour coverage
     - Chest
     - Groin
@@ -552,6 +553,7 @@
     - Foot
     - Tail
     - Other
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.34
       OrganDamage: 0.16

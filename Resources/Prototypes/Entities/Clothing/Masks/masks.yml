@@ -41,8 +41,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -69,8 +67,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -97,8 +93,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0.36
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Heat: 0.6
@@ -146,8 +140,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -195,8 +187,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -295,8 +285,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -440,8 +428,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -466,8 +452,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -502,8 +486,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -530,8 +512,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.7

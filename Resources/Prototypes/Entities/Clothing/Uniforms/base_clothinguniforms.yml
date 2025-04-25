@@ -5,6 +5,12 @@
   components:
   - type: Sprite
     state: icon
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Leg
   - type: Clothing
     slots: [innerclothing]
     equipSound:

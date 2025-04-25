@@ -50,8 +50,6 @@
     fiberMaterial: fibers-durathread
   - type: FingerprintMask
   - type: Armor
-    coverage:
-    - Hand
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -130,8 +128,6 @@
     fiberMaterial: fibers-durathread
   - type: FingerprintMask
   - type: Armor
-    coverage:
-    - Hand
     modifiers:
       coefficients:
         Blunt: 0.90

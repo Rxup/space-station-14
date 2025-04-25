@@ -14,7 +14,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.70
     sprintModifier: 0.75
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -23,6 +23,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -57,7 +58,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -66,6 +67,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.15
@@ -100,7 +102,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -109,6 +111,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -143,7 +146,7 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -152,6 +155,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -183,7 +187,7 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -192,6 +196,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -219,7 +224,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -228,6 +233,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -269,9 +275,10 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Head
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -333,7 +340,7 @@
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedicTay39
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -342,6 +349,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.3
@@ -467,7 +475,7 @@
     coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -476,6 +484,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.2
@@ -527,7 +536,7 @@
     coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -536,6 +545,7 @@
     - Leg
     - Foot
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95

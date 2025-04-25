@@ -2,7 +2,6 @@
 armor-examinable-verb-text = Броня
 armor-examinable-verb-message = Изучить показатели брони.
 armor-examine = Обеспечивает следующую защиту:
-armor-coverage-value = - [color=yellow]Этот элемент брони уменьшает входящий урон по { $type } части тела.[/color]
 armor-coefficient-value = - [color=yellow]{ $type }[/color] урон снижается на [color=lightblue]{ $value }%[/color].
 armor-reduction-value = - [color=yellow]{ $type }[/color] урон снижается на [color=lightblue]{ $value }[/color].
 armor-damage-type-blunt = Ударный
@@ -22,6 +21,7 @@ armor-damage-type-shock = Электрический
 armor-damage-type-structural = Структурный
 armor-damage-type-holy = Святой
 
+armor-examine-coverage = [color=yellow]Покрывает следующие части тела:[/color]
 armor-coverage-type-arm = руки
 armor-coverage-type-hand = ладонь
 armor-coverage-type-foot = стопа

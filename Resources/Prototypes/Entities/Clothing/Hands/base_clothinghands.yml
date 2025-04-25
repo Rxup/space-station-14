@@ -27,9 +27,10 @@
     damageProtection:
       flatReductions:
         Heat: 5 # the average lightbulb only does around four damage!
-  - type: Armor # the same as SEC
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Hand
+  - type: Armor # the same as SEC
     modifiers:
       coefficients:
         Heat: 0.9

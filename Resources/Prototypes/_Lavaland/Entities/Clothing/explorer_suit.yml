@@ -10,15 +10,13 @@
     state: icon
   - type: Clothing
     sprite: _Lavaland/Equipment/explorer_suit.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
     - Arm
-    - Hand
     - Leg
-    - Foot
-    - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.70
@@ -55,8 +53,6 @@
     - HeadTop
     - HeadSide
   - type: Armor
-    coverage:
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -73,14 +69,6 @@
   description: An armoured suit for exploring harsh environments. Lightly reinforced with goliath plates.
   components:
   - type: Armor
-    coverage:
-    - Groin
-    - Chest
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    - Tail
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -114,8 +102,6 @@
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: reinforced1-equipped-HELMET
   - type: Armor
-    coverage:
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -138,14 +124,6 @@
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: reinforced2-equipped-OUTERCLOTHING
   - type: Armor
-    coverage:
-    - Groin
-    - Chest
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    - Tail
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -173,8 +151,6 @@
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: reinforced2-equipped-HELMET
   - type: Armor
-    coverage:
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -197,14 +173,6 @@
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: reinforced3-equipped-OUTERCLOTHING
   - type: Armor
-    coverage:
-    - Groin
-    - Chest
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    - Tail
     modifiers:
       coefficients:
         Blunt: 0.55
@@ -232,8 +200,6 @@
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: reinforced3-equipped-HELMET
   - type: Armor
-    coverage:
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -306,14 +272,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
-    coverage:
-    - Groin
-    - Chest
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    - Tail
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -369,8 +327,6 @@
     sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
     equippedState: equipped-HELMET
   - type: Armor
-    coverage:
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.9

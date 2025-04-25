@@ -99,13 +99,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWisdom
   - type: Item
     size: Huge
-  - type: Armor
-    traumaDeductions:
-      Dismemberment: 0.17
-      OrganDamage: 0.24
-      BoneDamage: 0.24
-      VeinsDamage: 0
-      NerveDamage: 1
+  - type: BodyCoverage
     coverage:
     - Chest
     - Groin
@@ -113,6 +107,13 @@
     - Hand
     - Leg
     - Foot
+  - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.17
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.65

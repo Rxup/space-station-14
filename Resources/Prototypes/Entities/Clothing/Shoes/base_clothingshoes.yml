@@ -3,6 +3,9 @@
   parent: Clothing
   id: ClothingShoesBase
   components:
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Head
   - type: Clothing
     slots:
     - FEET
@@ -52,8 +55,6 @@
           - Knife
           - Sidearm
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.40

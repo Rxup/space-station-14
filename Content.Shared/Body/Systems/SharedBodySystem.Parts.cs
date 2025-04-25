@@ -744,6 +744,9 @@ public partial class SharedBodySystem
 
     /// <summary>
     /// Converts Enums from Targeting system to their BodyPartType equivalent.
+    ///
+    /// WARNING: Will default to Chest if TargetBodyPart has multiple flags, if there's a possibility
+    /// that you target MULTIPLE parts, use ConvertTargetBodyParts instead.
     /// </summary>
     public (BodyPartType Type, BodyPartSymmetry Symmetry) ConvertTargetBodyPart(TargetBodyPart? targetPart)
     {
@@ -763,6 +766,24 @@ public partial class SharedBodySystem
             _ => (BodyPartType.Chest, BodyPartSymmetry.None)
         };
 
+    }
+
+    /// <summary>
+    /// Converts one TargetBodyPart to an IEnumerable of all actual body parts that it's targeting.
+    /// </summary>
+    public IEnumerable<(BodyPartType Type, BodyPartSymmetry Symmetry)> ConvertTargetBodyParts(TargetBodyPart targetPart)
+    {
+        var parts = new List<(BodyPartType Type, BodyPartSymmetry Symmetry)>();
+        foreach (var validPart in SharedTargetingSystem.GetValidParts())
+        {
+            if (!targetPart.HasFlag(validPart))
+                continue;
+
+            var addPart = ConvertTargetBodyPart(validPart);
+            parts.Add(addPart);
+        }
+
+        return parts;
     }
 
     #endregion

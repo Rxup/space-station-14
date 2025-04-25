@@ -109,8 +109,6 @@
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4
@@ -133,8 +131,6 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-black
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4
@@ -195,8 +191,6 @@
         Heat: 10
         Caustic: 5
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4
@@ -310,8 +304,6 @@
   - type: Fiber
     fiberMaterial: fibers-insulative
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4
@@ -335,8 +327,6 @@
   - type: Fiber
     fiberColor: fibers-black
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4
@@ -363,8 +353,6 @@
     fiberMaterial: fibers-insulative
     fiberColor: fibers-olive
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4
@@ -391,8 +379,6 @@
       flatReductions:
         Heat: 0 # no protection
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -417,8 +403,6 @@
       flatReductions:
         Heat: 0 # no protection
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Blunt: 0.99
@@ -441,8 +425,6 @@
       flatReductions:
         Heat: 0 # no protection
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.4

@@ -68,10 +68,10 @@
       sprite: Corvax/Clothing/OuterClothing/Coats/sec_leather.rsi
     - type: Clothing
       sprite: Corvax/Clothing/OuterClothing/Coats/sec_leather.rsi
-    - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
-      coverage: # backmen: armour coverage
+    - type: BodyCoverage # backmen: body coverage
+      coverage:
       - Chest
-#      - Groin #Standart plate armor dont cover groin
+    - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
       traumaDeductions:
         Dismemberment: 0.21
         OrganDamage: 0.21
@@ -111,7 +111,7 @@
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -119,6 +119,7 @@
     - Hand
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -138,7 +139,7 @@
     sprite: Corvax/Clothing/OuterClothing/Coats/hop.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/hop.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Groin
     - Chest
@@ -146,6 +147,7 @@
     - Hand
     - Leg
     - Tail
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9

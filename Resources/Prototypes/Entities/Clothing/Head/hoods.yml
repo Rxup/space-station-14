@@ -159,8 +159,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0.42
       NerveDamage: 0.42
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Heat: 0.7

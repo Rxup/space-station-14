@@ -10,6 +10,9 @@
   - type: Item
     size: Small
     storedRotation: -90
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Head
   - type: Armor # provide minimal covering to your head
     traumaDeductions:
       Dismemberment: 0
@@ -17,8 +20,6 @@
       BoneDamage: 0.07
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Heat: 0.95

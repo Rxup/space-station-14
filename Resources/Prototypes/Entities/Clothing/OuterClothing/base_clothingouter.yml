@@ -117,7 +117,7 @@
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Chest
     - Groin
@@ -125,6 +125,7 @@
     - Hand
     - Leg
     - Foot
+  - type: Armor
     traumaDeductions:
       Dismemberment: 0.21 # hardsuits hold your limbs tightly and intact, thus is harder to dismember;
       OrganDamage: 0

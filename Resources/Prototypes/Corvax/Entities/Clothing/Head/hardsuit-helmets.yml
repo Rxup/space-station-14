@@ -7,9 +7,10 @@
   components:
   - type: Sprite
     sprite: Corvax/Clothing/Head/hardsuits/cburncommander.rsi
-  - type: Armor
+  - type: BodyCoverage # backmen: body coverage
     coverage:
     - Head
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -19,5 +20,5 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # backmen: viruses
     protection: 0.2

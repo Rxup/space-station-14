@@ -209,8 +209,6 @@
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -241,8 +239,6 @@
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -270,8 +266,6 @@
       BoneDamage: 0.24
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -307,8 +301,6 @@
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -341,8 +333,6 @@
       BoneDamage: 0.14
       VeinsDamage: 0
       NerveDamage: 0
-    coverage:
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -420,8 +410,6 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -472,8 +460,6 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42 # equivalent to HoS trauma protection
       OrganDamage: 0.42
@@ -506,8 +492,6 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -547,8 +531,6 @@
   - type: FireProtection
     reduction: 0.2
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -581,8 +563,6 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -615,8 +595,6 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 1 # prevents traumas at all (kinda)
       OrganDamage: 1
@@ -649,8 +627,6 @@
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.27
       OrganDamage: 0.27
@@ -727,8 +703,6 @@
   - type: PointLight # Corvax-Resprite
     color: cyan
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -770,8 +744,6 @@
   - type: PointLight
     color: "#f4ffad"
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.24 # Designed to protect you from most incidents, hence has more trauma protection, trading them for dismemberment protection
       OrganDamage: 0.42
@@ -813,8 +785,6 @@
   - type: PointLight
     color: "#ffadc6"
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
@@ -874,8 +844,6 @@
     heatingCoefficient: 0.005
     coolingCoefficient: 0.005
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.21
       OrganDamage: 0.21
@@ -911,8 +879,6 @@
   - type: FireProtection
     reduction: 0.2
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 1 # self-explanatory
       OrganDamage: 1

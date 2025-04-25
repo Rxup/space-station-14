@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Armor;
+using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -351,13 +352,14 @@ public partial class TraumaSystem
         var deduction = FixedPoint2.Zero;
         foreach (var ent in _inventory.GetHandOrInventoryEntities(body, SlotFlags.WITHOUT_POCKET))
         {
-            if (!TryComp<ArmorComponent>(ent, out var armour))
+            if (!TryComp<ArmorComponent>(ent, out var armour) ||
+                !TryComp<BodyCoverageComponent>(ent, out var armorCoverage))
                 continue;
 
             if (!inflicter.Comp.AllowArmourDeduction.Contains(traumaType) && armour.TraumaDeductions[traumaType] >= 0)
                 continue;
 
-            if (armour.ArmorCoverage.Contains(coverage))
+            if (armorCoverage.Coverage.Contains(coverage))
             {
                 deduction += armour.TraumaDeductions[traumaType];
             }

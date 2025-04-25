@@ -10,8 +10,6 @@
     sprite: Clothing/Shoes/Boots/workboots.rsi
   - type: Matchbox
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.40
@@ -45,8 +43,6 @@
     sprite: Clothing/Shoes/Boots/explorer.rsi
   - type: Matchbox
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.40

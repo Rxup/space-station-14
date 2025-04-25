@@ -3,6 +3,9 @@
   parent: Clothing
   id: ClothingHeadBase
   components:
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Head
   - type: Clothing
     slots:
     - HEAD
@@ -159,6 +162,9 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Head
   - type: Armor
     traumaDeductions:
       Dismemberment: 0
@@ -166,8 +172,6 @@
       BoneDamage: 0.12
       VeinsDamage: 0
       NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.90

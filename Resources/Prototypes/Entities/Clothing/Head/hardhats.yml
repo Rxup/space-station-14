@@ -66,8 +66,6 @@
     tags:
     - WhitelistChameleon
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.07
       OrganDamage: 0.12
@@ -158,8 +156,6 @@
   - type: Clothing
     sprite: Clothing/Head/Hardhats/armored.rsi
   - type: Armor #Copied from the sec helmet, as it's hard to give these sane values without locational damage existing.
-    coverage: # backmen: armour coverage
-    - Head
     traumaDeductions:
       Dismemberment: 0.17
       OrganDamage: 0.34

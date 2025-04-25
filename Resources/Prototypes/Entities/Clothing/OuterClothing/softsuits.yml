@@ -114,14 +114,15 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
     - Arm
     - Hand
     - Leg
     - Foot
+  - type: Armor
     modifiers:
       coefficients:
         Heat: 0.8

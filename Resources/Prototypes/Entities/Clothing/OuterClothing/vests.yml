@@ -9,14 +9,11 @@
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
     - Chest
     - Groin
-#    - Arm
-#    - Hand
-#    - Leg
-#    - Foot
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5 #ballistic plates = better protection
@@ -39,9 +36,6 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
     modifiers:
       coefficients:
         Blunt: 0.45 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible

@@ -9,6 +9,9 @@
     size: Small
   - type: Clothing
     slots: [mask]
+  - type: BodyCoverage # backmen: body coverage
+    coverage:
+    - Head
   - type: StaticPrice
     price: 25
 

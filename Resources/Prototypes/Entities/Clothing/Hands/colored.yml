@@ -338,8 +338,6 @@
     - id: ClothingHandsGlovesFingerlessInsulated
   - type: Insulated
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
     modifiers:
       coefficients:
         Heat: 0.9
