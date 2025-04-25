@@ -20,6 +20,7 @@ using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Nutrition.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -241,6 +242,19 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
                 RemComp<BloodSuckedComponent>(uid);
         }
     }
+
+    //private void OnWoundsChanged(EntityUid uid, BloodSuckedComponent component, WoundsChangedEvent args)
+    //{
+    //    if (args.DamageIncreased)
+    //        return;
+
+    //    if (_prototypeManager.TryIndex<DamageGroupPrototype>("Brute", out var brute) && args.Damageable.Damage.TryGetDamageInGroup(brute, out var bruteTotal)
+    //        && _prototypeManager.TryIndex<DamageGroupPrototype>("Airloss", out var airloss) && args.Damageable.Damage.TryGetDamageInGroup(airloss, out var airlossTotal))
+    //    {
+    //        if (bruteTotal == 0 && airlossTotal == 0)
+    //            RemComp<BloodSuckedComponent>(uid);
+    //    }
+    //}
 
     private void OnDoAfter(EntityUid uid, BloodSuckerComponent component, BloodSuckDoAfterEvent args)
     {

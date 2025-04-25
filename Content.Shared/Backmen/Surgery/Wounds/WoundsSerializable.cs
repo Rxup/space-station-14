@@ -59,7 +59,8 @@ public enum WoundVisibility
 public record struct WoundsChangedEvent(
     List<Entity<WoundComponent>> AddedWounds,
     List<Entity<WoundComponent>> RemovedWounds,
-    Dictionary<Entity<WoundComponent>, FixedPoint2> ChangedWounds);
+    Dictionary<Entity<WoundComponent>, FixedPoint2> ChangedWounds,
+    bool DamageIncreased = false);
 
 /// <summary>
 /// This one is just, wound added, changed and removed mashed into an event. passes a delta,
@@ -88,9 +89,6 @@ public record struct WoundsDeltaChanged(FixedPoint2 TotalDelta, Dictionary<Entit
 public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
 
 [ByRefEvent]
-public record struct WoundAddedOnBodyEvent(Entity<WoundComponent> Wound, WoundableComponent Woundable, WoundableComponent RootWoundable);
-
-[ByRefEvent]
 public record struct WoundRemovedEvent(WoundComponent Component, WoundableComponent OldWoundable, WoundableComponent OldRootWoundable);
 
 [ByRefEvent]
@@ -101,9 +99,6 @@ public record struct WoundableDetachedEvent(EntityUid ParentWoundableEntity, Wou
 
 [ByRefEvent]
 public record struct WoundSeverityPointChangedEvent(WoundComponent Component, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
-
-[ByRefEvent]
-public record struct WoundSeverityPointChangedOnBodyEvent(Entity<WoundComponent> Wound, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
 
 [ByRefEvent]
 public record struct WoundSeverityChangedEvent(WoundSeverity OldSeverity, WoundSeverity NewSeverity);

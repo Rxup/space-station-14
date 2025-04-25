@@ -95,13 +95,6 @@ public partial class WoundSystem
 
         var ev1 = new WoundAddedEvent(comp, parentWoundable, woundableRoot);
         RaiseLocalEvent(comp.HoldingWoundable, ref ev1);
-
-        var bodyPart = Comp<BodyPartComponent>(comp.HoldingWoundable);
-        if (bodyPart.Body.HasValue)
-        {
-            var ev2 = new WoundAddedOnBodyEvent((uid, comp), parentWoundable, woundableRoot);
-            RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
-        }
     }
 
     private void OnWoundRemoved(EntityUid woundableEntity, WoundComponent wound, EntGotRemovedFromContainerMessage args)
@@ -385,6 +378,7 @@ public partial class WoundSystem
         if (!WoundableQuery.Resolve(woundable, ref component, false))
             return damage;
 
+        var damageIncreased = false;
         var actuallyInducedDamage = new DamageSpecifier(damage);
 
         var addedWounds = new List<Entity<WoundComponent>>();
@@ -433,6 +427,9 @@ public partial class WoundSystem
 
                     actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
 
+                    if (severityApplied > 0)
+                        damageIncreased = true;
+
                     changedWounds.Add(continuedWound.Value, severityDelta);
                     totalChange += severityDelta;
                 }
@@ -461,6 +458,7 @@ public partial class WoundSystem
                 RaiseLocalEvent(woundCreated.Value, ref woundChangedEvent);
 
                 actuallyInducedDamage.DamageDict[damagePiece.Key] = woundCreated.Value.Comp.WoundSeverityPoint;
+                damageIncreased = true;
 
                 addedWounds.Add(woundCreated.Value);
                 changedWounds.Add(woundCreated.Value, woundCreated.Value.Comp.WoundSeverityPoint);
@@ -477,7 +475,7 @@ public partial class WoundSystem
             changedWounds.Remove(wound.Key);
         }
 
-        var woundsChangedEv = new WoundsChangedEvent(addedWounds, removedWounds, changedWounds);
+        var woundsChangedEv = new WoundsChangedEvent(addedWounds, removedWounds, changedWounds, damageIncreased);
         RaiseLocalEvent(woundable, ref woundsChangedEv);
 
         foreach (var woundToRemove in removedWounds)

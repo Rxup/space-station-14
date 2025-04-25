@@ -127,13 +127,6 @@ public abstract partial class WoundSystem : EntitySystem
 
                     var ev1 = new WoundAddedEvent(component, parentWoundable, woundableRoot);
                     RaiseLocalEvent(holdingWoundable, ref ev1);
-
-                    var bodyPart = Comp<BodyPartComponent>(holdingWoundable);
-                    if (bodyPart.Body.HasValue)
-                    {
-                        var ev2 = new WoundAddedOnBodyEvent((uid, component), parentWoundable, woundableRoot);
-                        RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
-                    }
                 }
             }
         }
@@ -351,27 +344,6 @@ public abstract partial class WoundSystem : EntitySystem
 
         var ev = new WoundSeverityPointChangedEvent(wound, oldSeverity, wound.WoundSeverityPoint);
         RaiseLocalEvent(uid, ref ev);
-
-        var bodyPart = Comp<BodyPartComponent>(wound.HoldingWoundable);
-        if (!bodyPart.Body.HasValue)
-            return;
-
-        var bodySeverity = FixedPoint2.Zero;
-
-        var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
-        if (rootPart.HasValue)
-        {
-            bodySeverity =
-                GetAllWoundableChildren(rootPart.Value)
-                    .Aggregate(bodySeverity,
-                        (current, woundable) => current + GetWoundableSeverityPoint(woundable, woundable));
-        }
-
-        var ev1 = new WoundSeverityPointChangedOnBodyEvent(
-            (uid, wound),
-            bodySeverity - (wound.WoundSeverityPoint - oldSeverity),
-            bodySeverity);
-        RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
     }
 
     protected void UpdateWoundableIntegrity(EntityUid uid, WoundableComponent? component = null)
@@ -493,17 +465,10 @@ public abstract partial class WoundSystem : EntitySystem
 
         RaiseLocalEvent(childEntity, ref woundableAttached);
 
-        var bodyPart = Comp<BodyPartComponent>(childEntity);
         foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
         {
             var ev = new WoundAddedEvent(wound, parentWoundable, woundableRoot);
             RaiseLocalEvent(woundId, ref ev);
-
-            if (bodyPart.Body.HasValue)
-            {
-                var ev2 = new WoundAddedOnBodyEvent((woundId, wound), parentWoundable, woundableRoot);
-                RaiseLocalEvent(bodyPart.Body.Value, ref ev2);
-            }
         }
 
         Dirty(childEntity, childWoundable);
