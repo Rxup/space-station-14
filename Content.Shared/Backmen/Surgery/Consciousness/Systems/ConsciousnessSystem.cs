@@ -17,15 +17,15 @@ public abstract partial class ConsciousnessSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] protected readonly IRobustRandom Random = default!;
+    [Dependency] protected readonly IPrototypeManager Proto = default!;
 
     [Dependency] protected readonly SharedBodySystem Body = default!;
 
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] protected readonly PainSystem Pain = default!;
+    [Dependency] protected readonly WoundSystem Wound = default!;
 
-    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
     protected EntityQuery<MobStateComponent> MobStateQuery;
@@ -34,7 +34,6 @@ public abstract partial class ConsciousnessSystem : EntitySystem
     {
         base.Initialize();
 
-        InitProcess();
         InitNet();
 
         ConsciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
