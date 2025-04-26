@@ -89,9 +89,6 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         var shouldBeConscious =
             consciousness.Consciousness > consciousness.Threshold || consciousness is { ForceUnconscious: false, ForceConscious: true };
 
-        if (shouldBeConscious == consciousness.IsConscious)
-            return consciousness.IsConscious;
-
         var ev = new ConsciousnessUpdatedEvent(shouldBeConscious);
         RaiseLocalEvent(target, ref ev);
 
