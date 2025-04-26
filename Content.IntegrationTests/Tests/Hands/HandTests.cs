@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Damage.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -57,6 +58,11 @@ public sealed class HandTests
                 Is.True,
                 $"player {entMan.ToPrettyString(player)} does not have hands component");
             hands = entMan.GetComponent<HandsComponent>(player);
+
+            // backmen edit start
+            var godmode = entMan.System<GodmodeSystem>();
+            godmode.EnableGodmode(player);
+            // Backmen edit; Make sure the player does not get damaged by anything and does not flinch from pain (and thus drop the item)
             sys.TryPickup(player, item, hands.ActiveHand!);
         });
 
@@ -109,6 +115,10 @@ public sealed class HandTests
             player = playerMan.Sessions.First().AttachedEntity!.Value;
             tSys.PlaceNextTo(player, item);
             hands = entMan.GetComponent<HandsComponent>(player);
+            // backmen edit start
+            var godmode = entMan.System<GodmodeSystem>();
+            godmode.EnableGodmode(player);
+            // Backmen edit; Make sure the player does not get damaged by anything and does not flinch from pain (and thus drop the item)
             sys.TryPickup(player, item, hands.ActiveHand!);
         });
         await pair.RunTicksSync(5);

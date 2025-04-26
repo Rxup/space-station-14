@@ -20,10 +20,7 @@ public partial class ConsciousnessSystem
     [PublicAPI]
     public Entity<NerveSystemComponent>? GetNerveSystem(EntityUid body, ConsciousnessComponent? consciousness = null)
     {
-        if (!Resolve(body, ref consciousness))
-            return null;
-
-        return consciousness.NerveSystem;
+        return !ConsciousnessQuery.Resolve(body, ref consciousness, false) ? null : consciousness.NerveSystem;
     }
 
     /// <summary>
@@ -31,13 +28,18 @@ public partial class ConsciousnessSystem
     /// </summary>
     /// <param name="body">Target entity</param>
     /// <param name="nerveSys">The nerve system you wanted.</param>
+    /// <param name="consciousness">Consciousness component for this thingy</param>
     [PublicAPI]
     public bool TryGetNerveSystem(
         EntityUid body,
-        [NotNullWhen(true)] out Entity<NerveSystemComponent>? nerveSys)
+        [NotNullWhen(true)] out Entity<NerveSystemComponent>? nerveSys,
+        ConsciousnessComponent? consciousness = null)
     {
         nerveSys = null;
-        if (!TryComp<ConsciousnessComponent>(body, out var consciousness))
+        if (!ConsciousnessQuery.Resolve(body, ref consciousness, false))
+            return false;
+
+        if (!consciousness.NerveSystem.HasValue)
             return false;
 
         nerveSys = consciousness.NerveSystem;

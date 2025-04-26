@@ -46,8 +46,8 @@ public abstract partial class PainSystem : EntitySystem
         SubscribeLocalEvent<NerveComponent, ComponentHandleState>(OnComponentHandleState);
         SubscribeLocalEvent<NerveComponent, ComponentGetState>(OnComponentGet);
 
-        SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded);
-        SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+        SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
 
         SubscribeLocalEvent<PainInflicterComponent, WoundChangedEvent>(OnPainChanged);
 

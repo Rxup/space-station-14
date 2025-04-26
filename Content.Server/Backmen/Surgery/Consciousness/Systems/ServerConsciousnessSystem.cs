@@ -161,14 +161,32 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnRejuvenate(EntityUid uid, ConsciousnessComponent component, RejuvenateEvent args)
     {
-        foreach (var painModifier in component.NerveSystem.Comp.Modifiers)
+        if (component.NerveSystem != null)
         {
-            Pain.TryRemovePainModifier(component.NerveSystem.Owner, painModifier.Key.Item1, painModifier.Key.Item2, component.NerveSystem.Comp);
-        }
+            foreach (var painModifier in component.NerveSystem.Value.Comp.Modifiers)
+            {
+                Pain.TryRemovePainModifier(
+                    component.NerveSystem.Value.Owner,
+                    painModifier.Key.Item1,
+                    painModifier.Key.Item2,
+                    component.NerveSystem.Value.Comp);
+            }
 
-        foreach (var painMultiplier in component.NerveSystem.Comp.Multipliers)
-        {
-            Pain.TryRemovePainMultiplier(component.NerveSystem.Owner, painMultiplier.Key, component.NerveSystem.Comp);
+            foreach (var painMultiplier in component.NerveSystem.Value.Comp.Multipliers)
+            {
+                Pain.TryRemovePainMultiplier(
+                    component.NerveSystem.Value.Owner,
+                    painMultiplier.Key,
+                    component.NerveSystem.Value.Comp);
+            }
+
+            foreach (var nerve in component.NerveSystem.Value.Comp.Nerves)
+            {
+                foreach (var painFeelsModifier in nerve.Value.PainFeelingModifiers)
+                {
+                    Pain.TryRemovePainFeelsModifier(painFeelsModifier.Key.Item1, painFeelsModifier.Key.Item2, nerve.Key, nerve.Value);
+                }
+            }
         }
 
         foreach (var multiplier in
@@ -181,14 +199,6 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                  component.Modifiers.Where(modifier => modifier.Value.Type == ConsciousnessModType.Pain))
         {
             RemoveConsciousnessModifier(uid, modifier.Key.Item1, modifier.Key.Item2, component);
-        }
-
-        foreach (var nerve in component.NerveSystem.Comp.Nerves)
-        {
-            foreach (var painFeelsModifier in nerve.Value.PainFeelingModifiers)
-            {
-                Pain.TryRemovePainFeelsModifier(painFeelsModifier.Key.Item1, painFeelsModifier.Key.Item2, nerve.Key, nerve.Value);
-            }
         }
 
         CheckRequiredParts(uid, component);

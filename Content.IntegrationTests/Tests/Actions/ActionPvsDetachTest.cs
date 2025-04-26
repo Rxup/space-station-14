@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Damage.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
@@ -23,6 +24,11 @@ public sealed class ActionPvsDetachTest
         await server.WaitPost(() => ent = server.EntMan.SpawnAtPosition("MobHuman", map.GridCoords));
         await pair.RunTicksSync(5);
         var cEnt = pair.ToClientUid(ent);
+
+        // backmen edit start
+        var godmode = server.System<GodmodeSystem>();
+        godmode.EnableGodmode(ent);
+        // backmen edit; Godmode the entity so it does not crit, and the amount of actions stays the same.
 
         // Verify that both the client & server agree on the number of actions
         var initActions = sys.GetActions(ent).Count();

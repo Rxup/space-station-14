@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server.Atmos.Components;
+using Content.Server.Damage.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -77,6 +79,10 @@ public sealed class SuicideCommandTests
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
+
+        // backmen edit start
+        await server.WaitPost(() => entManager.EnsureComponent<PressureImmunityComponent>(player));
+        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
@@ -251,6 +257,10 @@ public sealed class SuicideCommandTests
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
 
+        // backmen edit start
+        await server.WaitPost(() => entManager.EnsureComponent<PressureImmunityComponent>(player));
+        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
+
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
         MobThresholdsComponent mobThresholdsComp = default;
@@ -325,6 +335,10 @@ public sealed class SuicideCommandTests
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
+
+        // backmen edit start
+        await server.WaitPost(() => entManager.EnsureComponent<PressureImmunityComponent>(player));
+        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;

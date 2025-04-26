@@ -225,14 +225,9 @@ namespace Content.Server.Atmos.EntitySystems
                 }
 
                 // backmen edit start
-                if (TryComp<BodyComponent>(uid, out var body)
-                    && HasComp<ConsciousnessComponent>(uid)
-                    && body.RootContainer.ContainedEntity.HasValue)
+                if (TryComp<BodyComponent>(uid, out var body) && HasComp<ConsciousnessComponent>(uid))
                 {
-                    totalDamage =
-                        _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value)
-                            .Where(woundEnt => barotrauma.Damage.DamageDict.ContainsKey(woundEnt.Comp.DamageType))
-                            .Aggregate(totalDamage, (current, woundEnt) => current + woundEnt.Comp.WoundIntegrityDamage);
+                    totalDamage = _wound.GetBodySeverityPoint(uid, body);
                 }
                 // backmen edit end
 
