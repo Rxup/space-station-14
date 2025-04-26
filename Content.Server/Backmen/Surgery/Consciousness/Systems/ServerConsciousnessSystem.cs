@@ -10,6 +10,24 @@ namespace Content.Server.Backmen.Surgery.Consciousness.Systems;
 
 public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 {
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessInit);
+    }
+
+    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, MapInitEvent args)
+    {
+        if (consciousness.RawConsciousness <= 0)
+        {
+            consciousness.RawConsciousness = consciousness.Cap;
+            Dirty(uid, consciousness);
+        }
+
+        CheckConscious(uid, consciousness);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
