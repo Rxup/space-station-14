@@ -18,6 +18,7 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     - HeadTop
     - HeadSide
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
