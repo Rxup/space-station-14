@@ -14,6 +14,7 @@
       - IngotSilver1
       - SheetPlastic1
       - MaterialBananium1
+  - type: Temperature
   - type: Sprite
     sprite: Backmen/Structures/Machines/bluespace_miner.rsi
     layers:

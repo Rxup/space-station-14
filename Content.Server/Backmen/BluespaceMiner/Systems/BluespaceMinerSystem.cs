@@ -51,11 +51,11 @@ namespace Content.Server.Backmen.BluespaceMining
         {
             if (args.CurrentTemperature > component.MaxTemperature)
             {
-                _chat.TrySendInGameICMessage(uid, "bluespace-miner-too-hot", InGameICChatType.Speak, false);
+                _chat.TrySendInGameICMessage(uid, Loc.GetString("bluespace-miner-too-hot"), InGameICChatType.Speak, false);
             }
             else if (args.CurrentTemperature < component.MinTemperature)
             {
-                _chat.TrySendInGameICMessage(uid, "bluespace-miner-too-cold", InGameICChatType.Speak, false);
+                _chat.TrySendInGameICMessage(uid, Loc.GetString("bluespace-miner-too-cold"), InGameICChatType.Speak, false);
             }
         }
 
@@ -92,6 +92,9 @@ namespace Content.Server.Backmen.BluespaceMining
                 UpdateAppearance(uid);
 
                 if (!miner.IsActive)
+                    continue;
+
+                if (!temperatureInRange)
                     continue;
 
                 if (_gameTiming.CurTime.TotalSeconds >= miner.NextSpawnTime)
@@ -219,23 +222,31 @@ namespace Content.Server.Backmen.BluespaceMining
 
             if (TryComp<TemperatureComponent>(uid, out var temp))
             {
-                var currentTemperature = temp.CurrentTemperature - 273.15f;
-                if (temp.CurrentTemperature > component.MaxTemperature)
+                var currentTemperatureKelvin = temp.CurrentTemperature;
+                var currentTemperatureCelsius = currentTemperatureKelvin - 273.15f;
+                var minTemperatureCelsius = component.MinTemperature - 273.15f;
+                var maxTemperatureCelsius = component.MaxTemperature - 273.15f;
+
+                if (currentTemperatureKelvin > component.MaxTemperature)
                 {
                     args.PushMarkup(Loc.GetString("bluespace-miner-examine-too-hot",
-                        ("temperature", currentTemperature.ToString("F1"))));
+                        ("temperature", currentTemperatureCelsius.ToString("F1"))));
                 }
-                else if (temp.CurrentTemperature < component.MinTemperature)
+                else if (currentTemperatureKelvin < component.MinTemperature)
                 {
                     args.PushMarkup(Loc.GetString("bluespace-miner-examine-too-cold",
-                        ("temperature", currentTemperature.ToString("F1"))));
+                        ("temperature", currentTemperatureCelsius.ToString("F1"))));
                 }
                 else
                 {
                     args.PushMarkup(Loc.GetString("bluespace-miner-examine-ok",
-                        ("min", component.MinTemperature - 273.15f),
-                        ("max", component.MaxTemperature - 273.15f)));
+                        ("min", minTemperatureCelsius),
+                        ("max", maxTemperatureCelsius)));
                 }
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString("bluespace-miner-examine-no-temperature"));
             }
         }
     }

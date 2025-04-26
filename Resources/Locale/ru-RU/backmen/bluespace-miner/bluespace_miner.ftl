@@ -1,3 +1,3 @@
-bluespace-miner-examine-too-hot = The bluespace miner is too hot to operate. Current temperature: {temperature} K
-bluespace-miner-examine-too-cold = The bluespace miner is too cold to operate. Current temperature: {temperature} K
-bluespace-miner-examine-ok = The bluespace miner is operating normally. Temperature range: {min} K - {max} K
+bluespace-miner-examine-too-hot = Слишком [color=red]горячая[/color] температура для работы блюспейс майнера. Температура: [color=yellow]{ $temperature }°C[/color]
+bluespace-miner-examine-too-cold = Слишком [color=blue]холодная[/color] температура для работы блюспейс майнера. Температура: [color=yellow]{ $temperature }°C[/color]
+bluespace-miner-examine-ok = Блюспейс майнер работает. Рабочая температура: [color=yellow]{ $min }°C[/color] - { $max }°C[/color]
