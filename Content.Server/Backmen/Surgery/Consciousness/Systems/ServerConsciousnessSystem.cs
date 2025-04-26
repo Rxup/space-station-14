@@ -14,10 +14,10 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessInit);
+        SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
     }
 
-    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, MapInitEvent args)
+    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, ComponentInit args)
     {
         if (consciousness.RawConsciousness <= 0)
         {

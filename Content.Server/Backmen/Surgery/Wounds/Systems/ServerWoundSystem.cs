@@ -482,6 +482,10 @@ public sealed class ServerWoundSystem : WoundSystem
                     15f);
             }
 
+            // It got destroyed by the transfered wound damage :sob:
+            if (TerminatingOrDeleted(parentWoundableEntity))
+                return;
+
             foreach (var wound in
                      GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
             {
@@ -517,6 +521,10 @@ public sealed class ServerWoundSystem : WoundSystem
         {
             TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
         }
+
+        // It got destroyed by the transfered wound damage :sob:
+        if (TerminatingOrDeleted(parentWoundableEntity))
+            return;
 
         foreach (var wound in
                  GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))

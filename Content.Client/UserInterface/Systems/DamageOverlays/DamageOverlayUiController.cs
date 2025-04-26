@@ -165,8 +165,8 @@ public sealed class DamageOverlayUiController : UIController
                         (consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold))
                         .Float();
 
-                    if (_consciousness.TryGetNerveSystem(_playerManager.LocalEntity!.Value, out var nerveSys) &&
-                        _consciousness.TryGetConsciousnessModifier(_playerManager.LocalEntity!.Value, nerveSys.Value, out var modifier, "Suffocation"))
+                    if (_consciousness.TryGetNerveSystem(entity, out var nerveSys) &&
+                        _consciousness.TryGetConsciousnessModifier(entity, nerveSys.Value, out var modifier, "Suffocation"))
                     {
                         _overlay.OxygenLevel = FixedPoint2.Min(1f, modifier.Value.Change / (consciousness.Cap - consciousness.Threshold)).Float();
                     }
