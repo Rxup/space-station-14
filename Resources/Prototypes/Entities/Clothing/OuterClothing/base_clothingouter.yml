@@ -105,7 +105,7 @@
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
-  - type: SlotBlock # Backmen
+  - type: CoveredSlot # Backmen
     slots: [innerclothing, feet, undershirt, underpants, socks]
   - type: PressureProtection
     highPressureMultiplier: 0.3
@@ -170,7 +170,7 @@
   id: ClothingOuterEVASuitBase
   name: base EVA Suit
   components:
-  - type: SlotBlock # Backmen
+  - type: CoveredSlot # Backmen
     slots: [innerclothing, feet, undershirt, underpants, socks]
   - type: PressureProtection
     highPressureMultiplier: 0.6

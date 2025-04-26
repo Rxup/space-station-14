@@ -105,7 +105,7 @@
   id: ClothingHeadEVAHelmetBase
   name: base space helmet
   components:
-  - type: SlotBlock # Backmen
+  - type: CoveredSlot # Backmen
     slots: [eyes, mask, ears]
   - type: BreathMask
   - type: Item
@@ -144,7 +144,7 @@
   name: base hardsuit helmet
   categories: [ HideSpawnMenu ]
   components:
-  - type: SlotBlock # Backmen
+  - type: CoveredSlot # Backmen
     slots: [eyes, mask, ears]
   - type: BreathMask
   - type: Sprite

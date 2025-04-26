@@ -4,11 +4,11 @@ using Content.Shared.Inventory.Events;
 namespace Content.Shared.Backmen.Inventory;
 
 /// <summary>
-/// Handles prevention of items being unequipped and equipped from slots that are blocked by <see cref="SlotBlockComponent"/>.
+/// Handles prevention of items being unequipped and equipped from slots that are blocked by <see cref="CoveredSlotComponent"/>.
 /// </summary>
-public sealed class SlotBlockSystem : EntitySystem
+public sealed class CoveredSlotSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     public override void Initialize()
     {
@@ -29,7 +29,7 @@ public sealed class SlotBlockSystem : EntitySystem
         if (blocker == null)
             return;
 
-        args.Reason = Loc.GetString("slot-block-component-blocked", ("item", blocker));
+        args.Reason = Loc.GetString("covered-slot-component-blocked", ("item", blocker));
         args.Cancel();
     }
 
@@ -44,7 +44,7 @@ public sealed class SlotBlockSystem : EntitySystem
         if (blocker == null)
             return;
 
-        args.Reason = Loc.GetString("slot-block-component-blocked", ("item", blocker));
+        args.Reason = Loc.GetString("covered-slot-component-blocked", ("item", blocker));
         args.Cancel();
     }
 
@@ -55,10 +55,10 @@ public sealed class SlotBlockSystem : EntitySystem
     {
         foreach (var slotDef in ent.Comp.Slots)
         {
-            if (!_inventorySystem.TryGetSlotEntity(ent, slotDef.Name, out var entity))
+            if (!_inventory.TryGetSlotEntity(ent, slotDef.Name, out var entity))
                 continue;
 
-            if (!TryComp<SlotBlockComponent>(entity, out var blockComponent) || (slot & blockComponent.Slots) == 0)
+            if (!TryComp<CoveredSlotComponent>(entity, out var blockComponent) || (slot & blockComponent.Slots) == 0)
                 continue;
 
             return entity;
