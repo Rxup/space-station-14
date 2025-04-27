@@ -14,7 +14,7 @@ using Content.Shared.Examine;
 using Content.Shared.Backmen.BluespaceMining;
 using Content.Shared.Backmen.Chat;
 
-namespace Content.Server.Backmen.BluespaceMining
+namespace Content.Server.Backmen.BluespaceMiner
 {
     public sealed class BluespaceMinerSystem : EntitySystem
     {

@@ -1,7 +1,4 @@
-using Robust.Shared.Random;
-using Robust.Shared.Prototypes;
-
-namespace Content.Server.Backmen.BluespaceMining
+namespace Content.Server.Backmen.BluespaceMiner
 {
     [RegisterComponent]
     public sealed partial class BluespaceMinerComponent : Component
