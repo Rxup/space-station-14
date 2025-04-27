@@ -27,7 +27,7 @@ public sealed class ActionPvsDetachTest
 
         // backmen edit start
         var godmode = server.System<GodmodeSystem>();
-        godmode.EnableGodmode(ent);
+        await server.WaitPost(() => godmode.EnableGodmode(ent));
         // backmen edit; Godmode the entity so it does not crit, and the amount of actions stays the same.
 
         // Verify that both the client & server agree on the number of actions
