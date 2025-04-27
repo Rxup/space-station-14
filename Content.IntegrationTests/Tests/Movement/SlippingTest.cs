@@ -1,7 +1,6 @@
 #nullable enable
 using System.Collections.Generic;
-using Content.IntegrationTests.Tests.Interaction;
-using Content.Shared.Movement.Components;
+using Content.Server.Damage.Systems;
 using Content.Shared.Slippery;
 using Content.Shared.Stunnable;
 using Robust.Shared.GameObjects;
@@ -45,6 +44,11 @@ public sealed class SlippingTest : MovementTest
         Assert.That(Delta(), Is.LessThan(0.5f));
         Assert.That(sys.Slipped, Does.Not.Contain(SEntMan.GetEntity(Player)));
         AssertComp<KnockedDownComponent>(false, Player);
+
+        // backmen edit start
+        var godmode = SEntMan.System<GodmodeSystem>();
+        await Server.WaitPost(() => godmode.DisableGodmode(SPlayer));
+        // backmen edit end; Allow the player to slip
 
         // Moving at normal speeds does trigger a slip.
         await SetKey(EngineKeyFunctions.Walk, BoundKeyState.Up);

@@ -20,6 +20,12 @@ public sealed class PullingTest : MovementTest
         var sAlert = Server.System<AlertsSystem>();
         await SpawnTarget("MobHuman");
 
+        // backmen edit start
+        var godmode = SEntMan.System<GodmodeSystem>();
+        await Server.WaitPost(() => godmode.EnableGodmode(STarget.Value));
+        await AwaitDoAfters();
+        // Backmen edit; Make sure the target is still, after standing up
+
         var puller = Comp<PullerComponent>(Player);
         var pullable = Comp<PullableComponent>(Target);
 
