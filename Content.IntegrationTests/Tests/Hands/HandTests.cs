@@ -115,10 +115,6 @@ public sealed class HandTests
             player = playerMan.Sessions.First().AttachedEntity!.Value;
             tSys.PlaceNextTo(player, item);
             hands = entMan.GetComponent<HandsComponent>(player);
-            // backmen edit start
-            var godmode = entMan.System<GodmodeSystem>();
-            godmode.EnableGodmode(player);
-            // Backmen edit; Make sure the player does not get damaged by anything and does not flinch from pain (and thus drop the item)
             sys.TryPickup(player, item, hands.ActiveHand!);
         });
         await pair.RunTicksSync(5);

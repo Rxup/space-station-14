@@ -18,13 +18,6 @@ public sealed class StrippableTest : InteractionTest
         TargetCoords = SEntMan.GetNetCoordinates(new EntityCoordinates(MapData.MapUid, 1, 0));
         await SpawnTarget("MobHuman");
 
-        // backmen edit start
-        // godmode the entity so they can strip each other and stuff
-        var godmode = SEntMan.System<GodmodeSystem>();
-        await Server.WaitPost(() => godmode.EnableGodmode(STarget.Value));
-        await Server.WaitPost(() => godmode.EnableGodmode(SPlayer));
-        // backmen edit end
-
         await RunTicks(5);
 
         var userInterface = Comp<UserInterfaceComponent>(Target);

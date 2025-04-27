@@ -22,13 +22,6 @@ public sealed class BuckleMovementTest : MovementTest
         buckle.Delay = TimeSpan.Zero;
 #pragma warning restore RA0002
 
-        // backmen edit start
-        // godmode the entity so it does not fall from pain and then let it stand up
-        var godmode = SEntMan.System<GodmodeSystem>();
-        await Server.WaitPost(() => godmode.EnableGodmode(SPlayer));
-        await AwaitDoAfters();
-        // backmen edit end
-
         // Initially not buckled to the chair, and standing off to the side
         Assert.That(Delta(), Is.InRange(0.9f, 1.1f));
         Assert.That(buckle.Buckled, Is.False);

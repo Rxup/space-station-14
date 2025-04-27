@@ -5,6 +5,8 @@ using Content.Client.Construction;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.IntegrationTests.Pair;
+using Content.Server.Administration.Systems;
+using Content.Server.Atmos.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
@@ -212,6 +214,13 @@ public abstract partial class InteractionTest
 
             old = cPlayerMan.LocalEntity;
             SPlayer = SEntMan.SpawnEntity(PlayerPrototype, SEntMan.GetCoordinates(PlayerCoords));
+
+            // backmen edit start
+            var rejuvenateSys = SEntMan.System<RejuvenateSystem>();
+            rejuvenateSys.PerformRejuvenate(SPlayer);
+            SEntMan.EnsureComponent<PressureImmunityComponent>(SPlayer);
+            // backmen edit; give immunity to the entity so it does not crit (barotrauma), and henceforth is able to interact with whatever it needs
+
             Player = SEntMan.GetNetEntity(SPlayer);
             Server.PlayerMan.SetAttachedEntity(ServerSession, SPlayer);
             Hands = SEntMan.GetComponent<HandsComponent>(SPlayer);

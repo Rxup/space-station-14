@@ -28,13 +28,6 @@ public sealed class ClimbingTest : MovementTest
         await Move(DirectionFlag.East, 1f);
         Assert.That(Delta(), Is.GreaterThan(0));
 
-        // backmen edit start
-        // godmode the entity so it does not fall from pain and then let it stand up
-        var godmode = SEntMan.System<GodmodeSystem>();
-        await Server.WaitPost(() => godmode.EnableGodmode(SPlayer));
-        await AwaitDoAfters();
-        // backmen edit end
-
         // Try to start climbing
         var sys = SEntMan.System<ClimbSystem>();
         await Server.WaitPost(() => sys.TryClimb(SPlayer, SPlayer, STarget.Value, out _));

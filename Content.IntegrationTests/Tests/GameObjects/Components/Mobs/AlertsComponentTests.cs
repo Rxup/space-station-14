@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Client.UserInterface.Systems.Alerts.Widgets;
+using Content.Server.Administration.Systems;
+using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
 using Robust.Client.UserInterface;
 using Robust.Server.Player;
@@ -49,6 +51,15 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
 
                 Assert.That(alerts, Has.Count.EqualTo(alertCount + 2));
             });
+
+            // backmen edit start
+            await server.WaitPost(() =>
+            {
+                var rejuvenateSys = entManager.System<RejuvenateSystem>();
+                rejuvenateSys.PerformRejuvenate(playerUid);
+                entManager.EnsureComponent<PressureImmunityComponent>(playerUid);
+            });
+            // backmen edit; give immunity to the entity so it does not kill it and the health alert does not change
 
             await pair.RunTicksSync(5);
 
