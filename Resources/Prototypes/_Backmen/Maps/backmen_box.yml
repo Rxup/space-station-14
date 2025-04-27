@@ -53,7 +53,7 @@
             SecurityCadet: [ 2, 4 ]
             Pilot: [ 1, 1 ]
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
-            BkmVirologist: [1, 1] # backmen-Virologist
+           # BkmVirologist: [1, 1] # backmen-Virologist
             BkmSurgeon: [1, 1] # backmen-Surgeon
             #supply
             Quartermaster: [ 1, 1 ]
