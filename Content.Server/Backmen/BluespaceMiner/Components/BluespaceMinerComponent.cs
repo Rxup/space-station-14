@@ -6,9 +6,6 @@ namespace Content.Server.Backmen.BluespaceMining
     [RegisterComponent]
     public sealed partial class BluespaceMinerComponent : Component
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("entityTable")]
         public List<string> EntityTable = new();
@@ -53,5 +50,16 @@ namespace Content.Server.Backmen.BluespaceMining
 
         [ViewVariables(VVAccess.ReadWrite)]
         public bool NeedsResync = true;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public double LastMessageTime = 0.0;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("messageCooldown")]
+        public double MessageCooldown = 5.0;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("temperatureChangeThreshold")]
+        public float TemperatureChangeThreshold = 5f;
     }
 }

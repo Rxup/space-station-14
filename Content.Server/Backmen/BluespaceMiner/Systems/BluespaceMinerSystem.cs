@@ -49,13 +49,27 @@ namespace Content.Server.Backmen.BluespaceMining
             BluespaceMinerComponent component,
             OnTemperatureChangeEvent args)
         {
+            var currentTime = _gameTiming.CurTime.TotalSeconds;
+
+            if (currentTime - component.LastMessageTime < component.MessageCooldown)
+            {
+                return;
+            }
+
+            if (Math.Abs(args.CurrentTemperature - args.LastTemperature) < component.TemperatureChangeThreshold)
+            {
+                return;
+            }
+
             if (args.CurrentTemperature > component.MaxTemperature)
             {
                 _chat.TrySendInGameICMessage(uid, Loc.GetString("bluespace-miner-too-hot"), InGameICChatType.Speak, false);
+                component.LastMessageTime = currentTime;
             }
             else if (args.CurrentTemperature < component.MinTemperature)
             {
                 _chat.TrySendInGameICMessage(uid, Loc.GetString("bluespace-miner-too-cold"), InGameICChatType.Speak, false);
+                component.LastMessageTime = currentTime;
             }
         }
 
