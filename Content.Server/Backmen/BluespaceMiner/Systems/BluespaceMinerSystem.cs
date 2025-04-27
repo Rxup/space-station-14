@@ -254,8 +254,8 @@ namespace Content.Server.Backmen.BluespaceMiner
                 else
                 {
                     args.PushMarkup(Loc.GetString("bluespace-miner-examine-ok",
-                        ("min", minTemperatureCelsius),
-                        ("max", maxTemperatureCelsius)));
+                        ("min", minTemperatureCelsius.ToString("F1")),
+                        ("max", maxTemperatureCelsius.ToString("F1"))));
                 }
             }
             else

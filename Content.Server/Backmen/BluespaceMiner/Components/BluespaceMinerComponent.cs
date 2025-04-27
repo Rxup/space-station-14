@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Backmen.BluespaceMiner
 {
     [RegisterComponent]
@@ -5,7 +7,7 @@ namespace Content.Server.Backmen.BluespaceMiner
     {
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("entityTable")]
-        public List<string> EntityTable = new();
+        public List<EntProtoId> EntityTable = new();
 
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("spawnAmount")]
