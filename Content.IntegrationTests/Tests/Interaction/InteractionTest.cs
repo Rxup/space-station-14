@@ -8,6 +8,7 @@ using Content.IntegrationTests.Pair;
 using Content.Server.Administration.Systems;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Damage.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
 using Content.Server.Tools;
@@ -216,9 +217,8 @@ public abstract partial class InteractionTest
             SPlayer = SEntMan.SpawnEntity(PlayerPrototype, SEntMan.GetCoordinates(PlayerCoords));
 
             // backmen edit start
-            var rejuvenateSys = SEntMan.System<RejuvenateSystem>();
-            rejuvenateSys.PerformRejuvenate(SPlayer);
-            SEntMan.EnsureComponent<PressureImmunityComponent>(SPlayer);
+            var godmode = SEntMan.System<GodmodeSystem>();
+            godmode.EnableGodmode(SPlayer);
             // backmen edit; give immunity to the entity so it does not crit (barotrauma), and henceforth is able to interact with whatever it needs
 
             Player = SEntMan.GetNetEntity(SPlayer);
@@ -226,6 +226,8 @@ public abstract partial class InteractionTest
             Hands = SEntMan.GetComponent<HandsComponent>(SPlayer);
             DoAfters = SEntMan.GetComponent<DoAfterComponent>(SPlayer);
         });
+
+        await AwaitDoAfters(); // backmen edit: Make sure the entity is standing before running the tests
 
         // Check player got attached.
         await RunTicks(5);
