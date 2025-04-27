@@ -48,7 +48,7 @@
       slotTexture: underwear
       slotFlags: UNDERWEAR
       stripTime: 6
-      uiWindowPos: 4,0
+      uiWindowPos: 4,1
       strippingWindowPos: 4,0
       displayName: Underwear
       whitelist:
