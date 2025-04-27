@@ -1,4 +1,5 @@
 #nullable enable
+using Content.Server.Damage.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Input;
 using Content.Shared.Movement.Pulling.Components;
@@ -19,6 +20,13 @@ public sealed class PullingTest : MovementTest
 
         var puller = Comp<PullerComponent>(Player);
         var pullable = Comp<PullableComponent>(Target);
+
+        // backmen edit start
+        // godmode the entity so it does not fall from pain and then let it stand up
+        var godmode = SEntMan.System<GodmodeSystem>();
+        await Server.WaitPost(() => godmode.EnableGodmode(SPlayer));
+        await AwaitDoAfters();
+        // backmen edit end
 
         // Player is initially to the left of the target and not pulling anything
         Assert.That(Delta(), Is.InRange(0.9f, 1.1f));

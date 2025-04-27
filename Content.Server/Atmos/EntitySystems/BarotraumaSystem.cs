@@ -212,9 +212,13 @@ namespace Content.Server.Atmos.EntitySystems
 
             _timer -= UpdateTimer;
 
-            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent>();
-            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable))
+            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent, MetaDataComponent>();
+            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable, out var meta))
             {
+                // backmen edit: meta check
+                if (Paused(uid, meta))
+                    continue;
+
                 var totalDamage = FixedPoint2.Zero;
                 foreach (var (damageType, _) in barotrauma.Damage.DamageDict)
                 {
@@ -223,13 +227,6 @@ namespace Content.Server.Atmos.EntitySystems
 
                     totalDamage += damage;
                 }
-
-                // backmen edit start
-                if (TryComp<BodyComponent>(uid, out var body) && HasComp<ConsciousnessComponent>(uid))
-                {
-                    totalDamage = _wound.GetBodySeverityPoint(uid, body);
-                }
-                // backmen edit end
 
                 if (totalDamage >= barotrauma.MaxDamage)
                     continue;

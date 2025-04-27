@@ -13,9 +13,6 @@
     prototype: Slime
     requiredLegs: 2
   # they like eat it idk lol
-  - type: Consciousness
-    cap: 190
-    threshold: 95
   - type: Storage
     clickInsert: false
     openOnActivate: false

@@ -1,10 +1,6 @@
 #nullable enable
-using Content.IntegrationTests.Tests.Interaction;
 using Content.IntegrationTests.Tests.Movement;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
 using Content.Server.Damage.Systems;
-using Content.Shared.Standing;
 using Robust.Shared.Maths;
 using ClimbingComponent = Content.Shared.Climbing.Components.ClimbingComponent;
 using ClimbSystem = Content.Shared.Climbing.Systems.ClimbSystem;
@@ -13,25 +9,6 @@ namespace Content.IntegrationTests.Tests.Climbing;
 
 public sealed class ClimbingTest : MovementTest
 {
-    [TestPrototypes]
-    private const string TestPrototype = @"
-- type: entity
-  id: ClimbingTestMob
-  components:
-  - type: Climbing
-  - type: Body
-    prototype: Human
-  - type: Hands
-  - type: ComplexInteraction
-  - type: MindContainer
-  - type: Stripping
-  - type: Puller
-  - type: Physics
-  - type: DoAfter
-";
-
-    protected override string PlayerPrototype => "ClimbingTestMob";
-
     [Test]
     public async Task ClimbTableTest()
     {
@@ -50,6 +27,13 @@ public sealed class ClimbingTest : MovementTest
         // Attempt (and fail) to walk past the table.
         await Move(DirectionFlag.East, 1f);
         Assert.That(Delta(), Is.GreaterThan(0));
+
+        // backmen edit start
+        // godmode the entity so it does not fall from pain and then let it stand up
+        var godmode = SEntMan.System<GodmodeSystem>();
+        await Server.WaitPost(() => godmode.EnableGodmode(SPlayer));
+        await AwaitDoAfters();
+        // backmen edit end
 
         // Try to start climbing
         var sys = SEntMan.System<ClimbSystem>();

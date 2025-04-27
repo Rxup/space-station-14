@@ -122,7 +122,7 @@ public partial class WoundSystem
         ref CheckForCustomHandlerEvent args)
     {
         args.Handled = true;
-        args.Damage = GetWoundsChanged(woundable, args.Origin, args.Damage, component);
+        args.Damage = GetWoundsChanged(woundable, args.Origin, args.Damage, component: component);
     }
 
     private void OnWoundableInserted(EntityUid parentEntity, WoundableComponent parentWoundable, EntInsertedIntoContainerMessage args)
@@ -267,6 +267,31 @@ public partial class WoundSystem
         return false;
     }
 
+    [PublicAPI]
+    public bool IsAbleToAddWound(
+        EntityUid uid,
+        string id,
+        FixedPoint2 severity,
+        WoundableComponent? woundable = null)
+    {
+        if (!IsWoundPrototypeValid(id))
+            return false;
+
+        if (!WoundableQuery.Resolve(uid, ref woundable))
+            return false;
+
+        if (woundable.Wounds == null)
+            return false;
+
+        if (!woundable.AllowWounds)
+            return false;
+
+        if (severity <= WoundThresholds[WoundSeverity.Healed])
+            return false;
+
+        return false;
+    }
+
     /// <summary>
     /// Opens a new wound on a requested woundable.
     /// </summary>
@@ -274,7 +299,7 @@ public partial class WoundSystem
     /// <param name="woundProtoId">Wound prototype.</param>
     /// <param name="severity">Severity for wound to apply.</param>
     /// <param name="woundCreated">The wound that was created</param>
-    /// <param name="damageGroup">Damage group.</param>
+    /// <param name="damageGroup"></param>
     /// <param name="woundable">Woundable component.</param>
     [PublicAPI]
     public virtual bool TryCreateWound(
@@ -282,11 +307,42 @@ public partial class WoundSystem
          string woundProtoId,
          FixedPoint2 severity,
          [NotNullWhen(true)] out Entity<WoundComponent>? woundCreated,
-         DamageGroupPrototype? damageGroup,
+         DamageGroupPrototype? damageGroup = null,
          WoundableComponent? woundable = null)
     {
         // Server-only execution
         woundCreated = null;
+        return false;
+    }
+
+    [PublicAPI]
+    public bool IsAbleToContinueWound(
+        EntityUid uid,
+        string id,
+        FixedPoint2 severity,
+        [NotNullWhen(true)] out Entity<WoundComponent>? continuableWound,
+        WoundableComponent? woundable = null)
+    {
+        continuableWound = null;
+        if (!IsWoundPrototypeValid(id))
+            return false;
+
+        if (!WoundableQuery.Resolve(uid, ref woundable))
+            return false;
+
+        if (woundable.Wounds == null)
+            return false;
+
+        var proto = _prototype.Index(id);
+        foreach (var wound in GetWoundableWounds(uid, woundable))
+        {
+            if (proto.ID != wound.Comp.DamageType)
+                continue;
+
+            continuableWound = wound;
+            return true;
+        }
+
         return false;
     }
 
@@ -375,6 +431,7 @@ public partial class WoundSystem
         EntityUid woundable,
         EntityUid? origin,
         DamageSpecifier damage,
+        bool performLogic = true,
         WoundableComponent? component = null)
     {
         if (!WoundableQuery.Resolve(woundable, ref component, false))
@@ -383,6 +440,7 @@ public partial class WoundSystem
         var damageIncreased = false;
         var actuallyInducedDamage = new DamageSpecifier(damage);
 
+        var woundsToAdd = new Dictionary<string, FixedPoint2>();
         var addedWounds = new List<Entity<WoundComponent>>();
         var removedWounds = new List<Entity<WoundComponent>>();
 
@@ -402,18 +460,13 @@ public partial class WoundSystem
                 {
                     actuallyInducedDamage.DamageDict[damagePiece.Key] = -foundWound.Value.Comp.WoundSeverityPoint;
 
-                    var woundChangedEvent = new WoundChangedEvent(
-                        foundWound.Value,
-                        -foundWound.Value.Comp.WoundSeverityPoint);
-                    RaiseLocalEvent(foundWound.Value, ref woundChangedEvent);
-
                     removedWounds.Add(foundWound.Value);
                     changedWounds.Add(foundWound.Value, -foundWound.Value.Comp.WoundSeverityPoint);
                     totalChange -= foundWound.Value.Comp.WoundSeverityPoint;
                 }
                 else
                 {
-                    if (!TryContinueWound(
+                    if (!IsAbleToContinueWound(
                             woundable,
                             damagePiece.Key,
                             damagePiece.Value,
@@ -424,11 +477,7 @@ public partial class WoundSystem
                     var oldSeverity = continuedWound.Value.Comp.WoundSeverityPoint - severityApplied;
                     var severityDelta = continuedWound.Value.Comp.WoundSeverityPoint - oldSeverity;
 
-                    var woundChangedEvent = new WoundChangedEvent(continuedWound.Value, severityDelta);
-                    RaiseLocalEvent(continuedWound.Value, ref woundChangedEvent);
-
                     actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
-
                     if (severityApplied > 0)
                         damageIncreased = true;
 
@@ -441,30 +490,35 @@ public partial class WoundSystem
                 if (damagePiece.Value <= 0)
                     continue;
 
-                var damageGroup = (from @group in _prototype.EnumeratePrototypes<DamageGroupPrototype>()
-                    where @group.DamageTypes.Contains(damagePiece.Key)
-                    select @group).FirstOrDefault();
-
-                if (!TryCreateWound(
+                if (!IsAbleToAddWound(
                         woundable,
                         damagePiece.Key,
                         damagePiece.Value,
-                        out var woundCreated,
-                        damageGroup,
                         component))
                     continue;
 
-                var woundChangedEvent = new WoundChangedEvent(
-                    woundCreated.Value,
-                    woundCreated.Value.Comp.WoundSeverityPoint);
-                RaiseLocalEvent(woundCreated.Value, ref woundChangedEvent);
+                var severity = ApplySeverityModifiers(woundable, damagePiece.Value, component);
 
-                actuallyInducedDamage.DamageDict[damagePiece.Key] = woundCreated.Value.Comp.WoundSeverityPoint;
+                actuallyInducedDamage.DamageDict[damagePiece.Key] = severity;
                 damageIncreased = true;
 
-                addedWounds.Add(woundCreated.Value);
-                changedWounds.Add(woundCreated.Value, woundCreated.Value.Comp.WoundSeverityPoint);
-                totalChange += woundCreated.Value.Comp.WoundSeverityPoint;
+                woundsToAdd.Add(damagePiece.Key, damagePiece.Value);
+                totalChange += severity;
+            }
+        }
+
+        if (performLogic)
+        {
+            foreach (var woundToAdd in woundsToAdd)
+            {
+                if (TryCreateWound(
+                        woundable,
+                        woundToAdd.Key,
+                        woundToAdd.Value,
+                        out var woundCreated))
+                {
+                    addedWounds.Add(woundCreated.Value);
+                }
             }
         }
 
@@ -477,13 +531,21 @@ public partial class WoundSystem
             changedWounds.Remove(wound.Key);
         }
 
+        if (performLogic)
+        {
+            foreach (var woundToRemove in removedWounds)
+            {
+                RemoveWound(woundToRemove);
+            }
+
+            foreach (var woundToChange in changedWounds)
+            {
+                ApplyWoundSeverity(woundToChange.Key, woundToChange.Value, woundToChange.Key);
+            }
+        }
+
         var woundsChangedEv = new WoundsChangedEvent(origin, addedWounds, removedWounds, changedWounds, damageIncreased);
         RaiseLocalEvent(woundable, ref woundsChangedEv);
-
-        foreach (var woundToRemove in removedWounds)
-        {
-            RemoveWound(woundToRemove);
-        }
 
         return actuallyInducedDamage;
     }

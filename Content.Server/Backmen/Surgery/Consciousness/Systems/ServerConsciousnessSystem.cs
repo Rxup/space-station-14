@@ -81,16 +81,19 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                             continue;
 
                         actuallyInducedDamage.DamageDict[damagePair.Key] =
-                            Wound.GetWoundsChanged(mostDamaged.Value, args.Origin, damage, mostDamaged.Value).DamageDict[damagePair.Key];
+                            Wound.GetWoundsChanged(mostDamaged.Value, args.Origin, damage, component: mostDamaged.Value).DamageDict[damagePair.Key];
                     }
                     else
                     {
                         var bodyParts = Body.GetBodyChildren(uid).ToList();
 
+                        actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
+                        if (bodyParts.Count == 0)
+                            continue;
+
                         var damagePerPart = new DamageSpecifier();
                         damagePerPart.DamageDict.Add(damagePair.Key, damagePair.Value / bodyParts.Count);
 
-                        actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
                         foreach (var bodyPart in bodyParts)
                         {
                             var beforePart = new BeforeDamageChangedEvent(damagePerPart, args.Origin, args.CanBeCancelled);
@@ -121,7 +124,11 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
                 // No body parts at all?
                 if (possibleTargets.Count == 0)
-                    return;
+                {
+                    // empty
+                    actuallyInducedDamage = new DamageSpecifier();
+                    break;
+                }
 
                 var chosenTarget = Random.PickAndTake(possibleTargets);
 
@@ -354,7 +361,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     }
 
     [PublicAPI]
-    public override void ForceConscious(EntityUid target,
+    public override void ForceConscious(
+        EntityUid target,
         TimeSpan time,
         ConsciousnessComponent? consciousness = null)
     {
@@ -363,6 +371,20 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
         consciousness.ForceConscious = true;
         consciousness.ForceConsciousnessTime = Timing.CurTime + time;
+
+        CheckConscious(target, consciousness);
+    }
+
+    [PublicAPI]
+    public override void ClearForceEffects(
+        EntityUid target,
+        ConsciousnessComponent? consciousness = null)
+    {
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+            return;
+
+        consciousness.ForceConscious = false;
+        consciousness.PassedOut = false;
 
         CheckConscious(target, consciousness);
     }

@@ -438,7 +438,7 @@ public sealed class ServerPainSystem : PainSystem
 
         var modifierToSet =
             modifier with { Change = change};
-        nerve.PainFeelingModifiers[(nerveUid, identifier)] = modifierToSet;
+        nerve.PainFeelingModifiers[(effectOwner, identifier)] = modifierToSet;
 
         UpdatePainFeels(nerveUid);
 
@@ -462,7 +462,7 @@ public sealed class ServerPainSystem : PainSystem
             return false;
 
         var modifierToSet = new PainFeelingModifier(Change: change, Time: Timing.CurTime + time ?? modifier.Time);
-        nerve.PainFeelingModifiers[(nerveUid, identifier)] = modifierToSet;
+        nerve.PainFeelingModifiers[(effectOwner, identifier)] = modifierToSet;
 
         UpdatePainFeels(nerveUid);
 
@@ -486,7 +486,7 @@ public sealed class ServerPainSystem : PainSystem
             return false;
 
         var modifierToSet = new PainFeelingModifier(Change: change ?? modifier.Change, Time: Timing.CurTime + time);
-        nerve.PainFeelingModifiers[(nerveUid, identifier)] = modifierToSet;
+        nerve.PainFeelingModifiers[(effectOwner, identifier)] = modifierToSet;
 
         UpdatePainFeels(nerveUid);
 

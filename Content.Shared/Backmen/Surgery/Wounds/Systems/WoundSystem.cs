@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -330,6 +331,7 @@ public abstract partial class WoundSystem : EntitySystem
             Dirty(wound, component);
     }
 
+    // NOTE: THIS SHOULD BE ONLY RAISED ON A CHANGE OF VALUES. OUTSIDE OF CLASSICAL DAMAGE HANDLING LIKE HEALING
     protected void RaiseWoundEvents(EntityUid uid,
         EntityUid woundableEnt,
         WoundComponent wound,
@@ -341,6 +343,17 @@ public abstract partial class WoundSystem : EntitySystem
 
         if (!woundableComp.Wounds.Contains(uid))
             return;
+
+        var delta = wound.WoundSeverityPoint - oldSeverity;
+        var damageSpec = new DamageSpecifier();
+
+        damageSpec.DamageDict.Add(wound.DamageType, delta);
+
+        var woundChangedEvent = new WoundChangedEvent(wound, delta);
+        RaiseLocalEvent(uid, ref woundChangedEvent);
+
+        // Raise woundable effects without computing the severity changes, so we do not accidentally duplicate the severity.
+        GetWoundsChanged(woundableEnt, woundableEnt, damageSpec, false, woundableComp);
 
         var ev = new WoundSeverityPointChangedEvent(wound, oldSeverity, wound.WoundSeverityPoint);
         RaiseLocalEvent(uid, ref ev);

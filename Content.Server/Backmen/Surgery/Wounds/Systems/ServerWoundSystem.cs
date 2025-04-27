@@ -125,10 +125,7 @@ public sealed class ServerWoundSystem : WoundSystem
             woundId,
             severity,
             out woundInduced,
-            (from @group in _prototype.EnumeratePrototypes<DamageGroupPrototype>()
-                where @group.DamageTypes.Contains(woundId)
-                select @group).FirstOrDefault(),
-            woundable);
+            woundable: woundable);
     }
 
     [PublicAPI]
@@ -137,7 +134,7 @@ public sealed class ServerWoundSystem : WoundSystem
         string woundProtoId,
         FixedPoint2 severity,
         [NotNullWhen(true)] out Entity<WoundComponent>? woundCreated,
-        DamageGroupPrototype? damageGroup,
+        DamageGroupPrototype? damageGroup = null,
         WoundableComponent? woundable = null)
     {
         woundCreated = null;
@@ -148,6 +145,11 @@ public sealed class ServerWoundSystem : WoundSystem
             return false;
 
         var wound = Spawn(woundProtoId);
+
+        damageGroup ??= (from @group in _prototype.EnumeratePrototypes<DamageGroupPrototype>()
+            where @group.DamageTypes.Contains(woundProtoId)
+            select @group).FirstOrDefault();
+
         if (AddWound(uid, wound, severity, damageGroup))
         {
             woundCreated = (wound, WoundQuery.Comp(wound));
@@ -764,6 +766,11 @@ public sealed class ServerWoundSystem : WoundSystem
 
         UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
         CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);
+
+        var woundChangedEvent = new WoundChangedEvent(
+            wound,
+            -wound.WoundSeverityPoint);
+        RaiseLocalEvent(woundEntity, ref woundChangedEvent);
 
         Containers.Remove(woundEntity, woundable.Wounds!, false, true);
         return true;

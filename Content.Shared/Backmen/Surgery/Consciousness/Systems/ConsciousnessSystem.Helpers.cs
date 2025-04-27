@@ -94,6 +94,19 @@ public partial class ConsciousnessSystem
         // Server-only execution
     }
 
+    /// <summary>
+    /// Removes all the forced effects like, <see cref="ForceConscious"/> or <see cref="ForcePassOut"/> and etc.
+    /// </summary>
+    /// <param name="target">Target that has a <see cref="ConsciousnessComponent"/></param>
+    /// <param name="consciousness"><see cref="ConsciousnessComponent"/></param>
+    [PublicAPI]
+    public virtual void ClearForceEffects(
+        EntityUid target,
+        ConsciousnessComponent? consciousness = null)
+    {
+        // Server-only execution
+    }
+
     #endregion
 
     #region Multipliers and Modifiers
