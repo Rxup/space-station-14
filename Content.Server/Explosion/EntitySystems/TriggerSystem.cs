@@ -219,7 +219,7 @@ namespace Content.Server.Explosion.EntitySystems
                     Del(item);
                 }
             }
-            _body.GibBody(xform.ParentUid, true);
+            _body.GibBody(xform.ParentUid); // backmen edit originally: gibOrgans, true; but due to it being handled by woundsystem it is false now
             args.Handled = true;
         }
 

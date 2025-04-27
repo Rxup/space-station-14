@@ -65,7 +65,7 @@ public partial class PainSystem
         PainDamageTypes painType,
         NerveComponent? nerve = null)
     {
-        if (!NerveQuery.Resolve(nerveUid, ref nerve))
+        if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
             return pain;
 
         var modifiedPain = pain * nerve.PainMultiplier;

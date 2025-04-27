@@ -168,7 +168,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnRejuvenate(EntityUid uid, ConsciousnessComponent component, RejuvenateEvent args)
     {
-        if (component.NerveSystem != null)
+        if (component.NerveSystem.HasValue)
         {
             foreach (var painModifier in component.NerveSystem.Value.Comp.Modifiers)
             {
@@ -196,16 +196,20 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             }
         }
 
-        foreach (var multiplier in
-                 component.Multipliers.Where(multiplier => multiplier.Value.Type == ConsciousnessModType.Pain))
+        foreach (var key in component.Multipliers
+                    .Where(multiplier => multiplier.Value.Type != ConsciousnessModType.Pain)
+                    .Select(multiplier => multiplier.Key)
+                    .ToArray())
         {
-            RemoveConsciousnessMultiplier(uid, multiplier.Key.Item1, multiplier.Key.Item2, component);
+            RemoveConsciousnessMultiplier(uid, key.Item1, key.Item2, component);
         }
 
-        foreach (var modifier in
-                 component.Modifiers.Where(modifier => modifier.Value.Type == ConsciousnessModType.Pain))
+        foreach (var key in component.Modifiers
+                     .Where(modifier => modifier.Value.Type != ConsciousnessModType.Pain)
+                     .Select(modifier => modifier.Key)
+                     .ToArray())
         {
-            RemoveConsciousnessModifier(uid, modifier.Key.Item1, modifier.Key.Item2, component);
+            RemoveConsciousnessModifier(uid, key.Item1, key.Item2, component);
         }
 
         CheckRequiredParts(uid, component);
