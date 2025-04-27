@@ -181,7 +181,7 @@
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
-    - id: SupermatterFlatpack # backmen
+   # - id: SupermatterFlatpack # ERIDA
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -301,8 +301,8 @@
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
-    - id: FlatpackOracle # backmen
-    - id: FlatpackSophie # backmen
+   # - id: FlatpackOracle # ERIDA
+   # - id: FlatpackSophie # ERIDA
     - id: BoxBodyBagRadiation # Backmen-AdvancedBodyBags
 
 # Hardsuit table, used for suit storage as well
