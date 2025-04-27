@@ -59,8 +59,7 @@ public partial class ConsciousnessSystem
         ConsciousnessComponent? consciousness = null,
         MobStateComponent? mobState = null)
     {
-        // Server-only execution
-        return false;
+        return ConsciousnessQuery.Resolve(target, ref consciousness) && consciousness.IsConscious;
     }
 
     /// <summary>

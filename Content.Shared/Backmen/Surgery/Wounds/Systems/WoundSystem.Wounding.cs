@@ -268,7 +268,7 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public bool IsAbleToAddWound(
+    public bool CanAddWound(
         EntityUid uid,
         string id,
         FixedPoint2 severity,
@@ -280,7 +280,8 @@ public partial class WoundSystem
         if (!WoundableQuery.Resolve(uid, ref woundable))
             return false;
 
-        if (woundable.Wounds == null)
+        i
+        f (woundable.Wounds == null)
             return false;
 
         if (!woundable.AllowWounds)
@@ -289,7 +290,7 @@ public partial class WoundSystem
         if (severity <= WoundThresholds[WoundSeverity.Healed])
             return false;
 
-        return false;
+        return true;
     }
 
     /// <summary>
@@ -316,7 +317,7 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public bool IsAbleToContinueWound(
+    public bool CanContinueWound(
         EntityUid uid,
         string id,
         FixedPoint2 severity,
@@ -466,7 +467,7 @@ public partial class WoundSystem
                 }
                 else
                 {
-                    if (!IsAbleToContinueWound(
+                    if (!CanContinueWound(
                             woundable,
                             damagePiece.Key,
                             damagePiece.Value,
@@ -490,7 +491,7 @@ public partial class WoundSystem
                 if (damagePiece.Value <= 0)
                     continue;
 
-                if (!IsAbleToAddWound(
+                if (!CanAddWound(
                         woundable,
                         damagePiece.Key,
                         damagePiece.Value,
