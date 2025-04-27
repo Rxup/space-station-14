@@ -107,6 +107,15 @@
             "name": "janitor"
         },
         {
+            "name": "icon-storage"
+        },
+        {
+            "name": "icon-advanced-surgery"
+        },
+        {
+            "name": "icon-surgery"
+        },
+        {
             "name": "icon-bomb"
         },
         {
