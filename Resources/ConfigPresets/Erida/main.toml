@@ -112,7 +112,7 @@ server_name="main"
 enabled=true
 
 [server]
-rules_file="RulesBackmen"
+rules_file="DeadSpaceDefaultRuleset"
 
 [net]
 max_connections = 1024
