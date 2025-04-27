@@ -280,8 +280,7 @@ public partial class WoundSystem
         if (!WoundableQuery.Resolve(uid, ref woundable))
             return false;
 
-        i
-        f (woundable.Wounds == null)
+        if (woundable.Wounds == null)
             return false;
 
         if (!woundable.AllowWounds)
