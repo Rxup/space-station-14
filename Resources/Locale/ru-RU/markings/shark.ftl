@@ -11,4 +11,4 @@ marking-LizardHornsRam1 = рожки (Бараньи)
 marking-LizardHornsSimple1 = рожки
 marking-LizardHornsDouble1 = рожки (Двойные)
 
-species-name-shark = Плаффеим
+species-name-shark = Плафеим
