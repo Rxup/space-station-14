@@ -45,6 +45,7 @@
   name: department-CentralCommand
   description: department-CentralCommand-description
   color: "#0c344d"
+  primary: true # Backmen
   roles:
   #- CentralCommandOfficial
   - CBURN
@@ -55,9 +56,20 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  - SpecialOperationsOfficer #Backmen-ERTRoles
+  # Backmen-Start
+  - SpecialOperationsOfficer
+  - BKCCSecGavna
+  - BKCCSecOfficer
+  - BKCCOperator
+  - BKCCOfficial
+  - BKCCCargo
+  - BKCCAssistant
+  - BKCCAdmiral
+  - BlueShield
+  # Backmen-End
   editorHidden: true
   weight: -1 # Backmen
+  accountNumber: 1350  #backmen: currency
   buttonStyle: ButtonColorCentralCommandDepartment # Backmen
 
 - type: department
