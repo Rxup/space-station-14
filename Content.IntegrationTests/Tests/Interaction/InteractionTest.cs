@@ -191,6 +191,9 @@ public abstract partial class InteractionTest
         CLogger = Client.ResolveDependency<ILogManager>().RootSawmill;
         CUiSys = Client.System<SharedUserInterfaceSystem>();
 
+        // backmen edit; Disable pain reflexes so the entities don't fall from pain
+        Pair.Server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false);
+
         // Setup map.
         await Pair.CreateTestMap();
 
@@ -216,9 +219,6 @@ public abstract partial class InteractionTest
 
             old = cPlayerMan.LocalEntity;
             SPlayer = SEntMan.SpawnEntity(PlayerPrototype, SEntMan.GetCoordinates(PlayerCoords));
-
-            // backmen edit; Disable pain reflexes so the entities don't fall from pain
-            Pair.Server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false);
 
             Player = SEntMan.GetNetEntity(SPlayer);
             Server.PlayerMan.SetAttachedEntity(ServerSession, SPlayer);
