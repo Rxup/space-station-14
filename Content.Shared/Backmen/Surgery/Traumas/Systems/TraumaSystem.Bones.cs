@@ -87,92 +87,36 @@ public partial class TraumaSystem
     #region Public API
 
     [PublicAPI]
-    public bool ApplyBoneTrauma(
+    public virtual bool ApplyBoneTrauma(
         EntityUid boneEnt,
         Entity<WoundableComponent> woundable,
         Entity<TraumaInflicterComponent> inflicter,
         FixedPoint2 inflicterSeverity,
         BoneComponent? boneComp = null)
     {
-        if (!Resolve(boneEnt, ref boneComp))
-            return false;
-
-        AddTrauma(boneEnt, woundable, inflicter, TraumaType.BoneDamage, inflicterSeverity);
-        ApplyDamageToBone(boneEnt, inflicterSeverity, boneComp);
-
-        return true;
+        // Server-only execution
+        return false;
     }
 
     [PublicAPI]
-    public bool SetBoneIntegrity(EntityUid bone, FixedPoint2 integrity, BoneComponent? boneComp = null)
+    public virtual bool SetBoneIntegrity(EntityUid bone, FixedPoint2 integrity, BoneComponent? boneComp = null)
     {
-        if (!Resolve(bone, ref boneComp))
-            return false;
-
-        var newIntegrity = FixedPoint2.Clamp(integrity, 0, boneComp.IntegrityCap);
-        if (boneComp.BoneIntegrity == newIntegrity)
-            return false;
-
-        var ev = new BoneIntegrityChangedEvent((bone, boneComp), boneComp.BoneIntegrity, newIntegrity);
-        RaiseLocalEvent(bone, ref ev);
-
-        boneComp.BoneIntegrity = newIntegrity;
-        CheckBoneSeverity(bone, boneComp);
-
-        Dirty(bone, boneComp);
-        return true;
+        // Server-only execution
+        return false;
     }
 
     [PublicAPI]
-    public bool ApplyDamageToBone(EntityUid bone, FixedPoint2 severity, BoneComponent? boneComp = null)
+    public virtual bool ApplyDamageToBone(EntityUid bone, FixedPoint2 severity, BoneComponent? boneComp = null)
     {
-        if (severity == 0)
-            return false;
-
-        if (!Resolve(bone, ref boneComp))
-            return false;
-
-        var newIntegrity = FixedPoint2.Clamp(boneComp.BoneIntegrity - severity, 0, boneComp.IntegrityCap);
-        if (boneComp.BoneIntegrity == newIntegrity)
-            return false;
-
-        var ev = new BoneIntegrityChangedEvent((bone, boneComp), boneComp.BoneIntegrity, newIntegrity);
-        RaiseLocalEvent(bone, ref ev);
-
-        boneComp.BoneIntegrity = newIntegrity;
-        CheckBoneSeverity(bone, boneComp);
-
-        Dirty(bone, boneComp);
-        return true;
+        // Server-only execution
+        return false;
     }
 
     #endregion
 
     #region Private API
 
-    private void CheckBoneSeverity(EntityUid bone, BoneComponent boneComp)
-    {
-        var nearestSeverity = boneComp.BoneSeverity;
-        foreach (var (severity, value) in _boneThresholds.OrderByDescending(kv => kv.Value))
-        {
-            if (boneComp.BoneIntegrity < value)
-                continue;
-
-            nearestSeverity = severity;
-            break;
-        }
-
-        if (nearestSeverity != boneComp.BoneSeverity)
-        {
-            var ev = new BoneSeverityChangedEvent((bone, boneComp), boneComp.BoneSeverity, nearestSeverity);
-            RaiseLocalEvent(bone, ref ev, true);
-        }
-        boneComp.BoneSeverity = nearestSeverity;
-
-        Dirty(bone, boneComp);
-    }
-
-    private void ProcessLegsState(EntityUid body)
+    protected void ProcessLegsState(EntityUid body)
     {
         if (!TryComp<BodyComponent>(body, out var bodyComp))
             return;
@@ -195,13 +139,14 @@ public partial class TraumaSystem
             if (!TryComp<WoundableComponent>(legEntity, out var legWoundable))
                 continue;
 
-            if (!TryComp<BoneComponent>(legWoundable.Bone.ContainedEntities.First(), out var boneComp))
+            var ent = legWoundable.Bone.ContainedEntities.FirstOrNull();
+            if (!TryComp<BoneComponent>(ent, out var boneComp))
                 continue;
 
             // get the foot penalty
             var penalty = 1f;
             var footEnt =
-                _body.GetBodyChildrenOfType(body,
+                Body.GetBodyChildrenOfType(body,
                         BodyPartType.Foot,
                         symmetry: Comp<BodyPartComponent>(legEntity).Symmetry)
                     .FirstOrNull();
@@ -221,7 +166,7 @@ public partial class TraumaSystem
             else
             {
                 // You are supposed to have one
-                penalty = 0.44f;
+                penalty = 0.22f;
             }
 
             rawWalkSpeed += partWalkSpeed;
@@ -253,7 +198,7 @@ public partial class TraumaSystem
         acceleration /= bodyComp.RequiredLegs;
 
         _movementSpeed.ChangeBaseSpeed(body, walkSpeed, sprintSpeed, acceleration);
-        if (walkSpeed < rawWalkSpeed / 3.4)
+        if (walkSpeed < rawWalkSpeed / 2.7f)
         {
             _standing.Down(body);
         }

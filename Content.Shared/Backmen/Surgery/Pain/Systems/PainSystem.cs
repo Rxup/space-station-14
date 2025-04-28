@@ -1,48 +1,46 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
-using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
-using Content.Shared.Jittering;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
-using Content.Shared.Standing;
-using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
-using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
-[Virtual]
-public sealed partial class PainSystem : EntitySystem
+public abstract partial class PainSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected readonly IRobustRandom Random = default!;
+
+    [Dependency] protected readonly IConfigurationManager Cfg = default!;
+
+    [Dependency] protected readonly SharedAudioSystem IHaveNoMouthAndIMustScream = default!;
+
+    [Dependency] protected readonly ConsciousnessSystem Consciousness = default!;
+    [Dependency] protected readonly WoundSystem Wound = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
 
-    [Dependency] private readonly SharedAudioSystem _IHaveNoMouthAndIMustScream = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    protected EntityQuery<NerveSystemComponent> NerveSystemQuery;
+    protected EntityQuery<NerveComponent> NerveQuery;
 
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    private float _universalPainMultiplier = 1f;
+    private float _maxPainPerInflicter = 100f;
 
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-
-    [Dependency] private readonly WoundSystem _wound = default!;
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    protected bool PainEnabled = true;
+    protected bool PainReflexesEnabled = true;
 
     public override void Initialize()
     {
@@ -51,42 +49,40 @@ public sealed partial class PainSystem : EntitySystem
         SubscribeLocalEvent<NerveComponent, ComponentHandleState>(OnComponentHandleState);
         SubscribeLocalEvent<NerveComponent, ComponentGetState>(OnComponentGet);
 
-        SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded);
-        SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+        SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
+
+        SubscribeLocalEvent<PainInflicterComponent, WoundChangedEvent>(OnPainChanged);
 
         SubscribeLocalEvent<NerveSystemComponent, MobStateChangedEvent>(OnMobStateChanged);
 
-        InitAffliction();
+        Subs.CVar(Cfg, CCVars.UniversalPainMultiplier, value => _universalPainMultiplier = value, true);
+        Subs.CVar(Cfg, CCVars.PainInflicterCapacity, value => _maxPainPerInflicter = value, true);
+
+        Subs.CVar(Cfg, CCVars.PainEnabled, value => PainEnabled = value, true);
+        Subs.CVar(Cfg, CCVars.PainReflexesEnabled, value => PainReflexesEnabled = value, true);
+
+        NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
+        NerveQuery = GetEntityQuery<NerveComponent>();
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        _painJobQueue.Process();
+    protected const string PainAdrenalineIdentifier = "PainAdrenaline";
 
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        using var query = EntityQueryEnumerator<NerveSystemComponent>();
-        while (query.MoveNext(out var ent, out var nerveSystem))
-        {
-            // might want to use TerminatingOrDeleted(), because some anomalous stuff appeared before, but tests run fine now
-            _painJobQueue.EnqueueJob(new PainTimerJob(this, (ent, nerveSystem), PainJobTime));
-        }
-    }
+    protected const string PainModifierIdentifier = "WoundPain";
+    private const string PainTraumaticModifierIdentifier = "TraumaticPain";
 
     private void OnComponentHandleState(EntityUid uid, NerveComponent component, ref ComponentHandleState args)
     {
         if (args.Current is not NerveComponentState state)
             return;
 
-        component.ParentedNerveSystem = GetEntity(state.ParentedNerveSystem);
+        component.ParentedNerveSystem = TryGetEntity(state.ParentedNerveSystem, out var e) ? e.Value : EntityUid.Invalid;
         component.PainMultiplier = state.PainMultiplier;
 
         component.PainFeelingModifiers.Clear();
         foreach (var ((modEntity, id), modifier) in state.PainFeelingModifiers)
         {
-            component.PainFeelingModifiers.Add((GetEntity(modEntity), id), modifier);
+            component.PainFeelingModifiers.Add((TryGetEntity(modEntity, out var e1) ? e1.Value : EntityUid.Invalid, id), modifier);
         }
     }
 
@@ -94,14 +90,12 @@ public sealed partial class PainSystem : EntitySystem
     {
         var state = new NerveComponentState();
 
-        if (!TerminatingOrDeleted(comp.ParentedNerveSystem))
-            state.ParentedNerveSystem = GetNetEntity(comp.ParentedNerveSystem);
+        state.ParentedNerveSystem = TryGetNetEntity(comp.ParentedNerveSystem, out var ne) ? ne.Value : NetEntity.Invalid;
         state.PainMultiplier = comp.PainMultiplier;
 
         foreach (var ((modEntity, id), modifier) in comp.PainFeelingModifiers)
         {
-            if (!TerminatingOrDeleted(modEntity))
-                state.PainFeelingModifiers.Add((GetNetEntity(modEntity), id), modifier);
+            state.PainFeelingModifiers.Add((TryGetNetEntity(modEntity, out var ne1) ? ne1.Value : NetEntity.Invalid, id), modifier);
         }
 
         args.State = state;
@@ -113,7 +107,7 @@ public sealed partial class PainSystem : EntitySystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
+        if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
         UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
@@ -125,7 +119,7 @@ public sealed partial class PainSystem : EntitySystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
+        if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
         foreach (var modifier in brainUid.Value.Comp.Modifiers
@@ -138,6 +132,59 @@ public sealed partial class PainSystem : EntitySystem
         UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
+    private void OnPainChanged(EntityUid uid, PainInflicterComponent component, WoundChangedEvent args)
+    {
+        if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
+            return;
+
+        if (bodyPart.Body == null)
+            return;
+
+        if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+            return;
+
+        component.RawPain = FixedPoint2.Clamp(component.RawPain + args.Delta * _universalPainMultiplier, 0, _maxPainPerInflicter);
+
+        var woundPain = FixedPoint2.Zero;
+        var traumaticPain = FixedPoint2.Zero;
+
+        foreach (var bp in _body.GetBodyChildren(bodyPart.Body))
+        {
+            foreach (var wound in Wound.GetWoundableWoundsWithComp<PainInflicterComponent>(bp.Id))
+            {
+                switch (wound.Comp2.PainType)
+                {
+                    case PainDamageTypes.TraumaticPain:
+                        traumaticPain += wound.Comp2.Pain;
+                        break;
+                    default:
+                        woundPain += wound.Comp2.Pain;
+                        break;
+                }
+            }
+        }
+
+        if (!TryAddPainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, woundPain))
+            TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, woundPain);
+
+        if (traumaticPain <= 0)
+            return;
+
+        if (!TryAddPainModifier(
+                nerveSys.Value,
+                args.Component.HoldingWoundable,
+                PainTraumaticModifierIdentifier,
+                traumaticPain,
+                PainDamageTypes.TraumaticPain))
+        {
+            TryChangePainModifier(
+                nerveSys.Value,
+                args.Component.HoldingWoundable,
+                PainTraumaticModifierIdentifier,
+                traumaticPain);
+        }
+    }
+
     private void OnMobStateChanged(EntityUid uid, NerveSystemComponent nerveSys, MobStateChangedEvent args)
     {
         switch (args.NewMobState)
@@ -148,8 +195,7 @@ public sealed partial class PainSystem : EntitySystem
                     sex = humanoid.Sex;
 
                 PlayPainSoundWithCleanup(args.Target, nerveSys, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f));
-
-                nerveSys.NextCritScream = _timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
+                nerveSys.NextCritScream = Timing.CurTime + Random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
 
                 break;
             case MobState.Dead:

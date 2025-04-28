@@ -2607,3 +2607,11 @@
   id: 173
   time: '2025-04-20T09:06:16.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1245
+- author: Rxup
+  changes:
+  - message: "\u041E\u0448\u0438\u0431\u043A\u0438 \u0441\u0435\u0442\u0435\u0432\u043E\
+      \u0433\u043E \u043A\u043E\u0434\u0430"
+    type: Fix
+  id: 174
+  time: '2025-04-28T12:08:36.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1249
