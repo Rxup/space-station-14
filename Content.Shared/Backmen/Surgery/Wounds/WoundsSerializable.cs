@@ -48,11 +48,50 @@ public enum WoundVisibility
     AdvancedScanner,
 }
 
+/// <summary>
+/// Wounds are sorted by added, removed and changed.
+///
+/// Added wounds pass a wound entity, the wound severity point and other values are not changed.
+/// Removed wounds pass a wound entity, the wound severity point is passed before the delition, after the event the entity is deleted.
+/// Changed wounds pass a wound entity and the wound delta.
+/// </summary>
 [ByRefEvent]
-public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
+public record struct WoundsChangedEvent(
+    EntityUid? Origin,
+    List<Entity<WoundComponent>> AddedWounds,
+    List<Entity<WoundComponent>> RemovedWounds,
+    Dictionary<Entity<WoundComponent>, FixedPoint2> ChangedWounds,
+    bool DamageIncreased = false);
+
+/// <summary>
+/// This one is just, wound added, changed and removed mashed into an event. passes a delta,
+///
+/// If added - the starting severity,
+/// If changed - the actual delta,
+/// If removed - the severity before removal, minused. (eg 7 severity wound healed would be -7 delta)
+/// </summary>
+[ByRefEvent]
+public record struct WoundChangedEvent(WoundComponent Component, FixedPoint2 Delta);
+
+/// <summary>
+/// Wounds are not sorted unlike WoundsChangedEvent, where you can differentiate added/removed wounds from already present, changed wounds.
+/// Use this instead of the Changed events if you don't need to specifically know ADDED nor REMOVED wounds
+///
+/// Total Delta is explanatory
+///
+/// Added wounds have their wound severity passed as value,
+/// Removed wounds pass their severity, minused. e.g., 12 severity wound in this list will pass -12.
+/// Changed wounds pass the delta.
+/// </summary>
+[ByRefEvent]
+public record struct WoundsDeltaChanged(
+    EntityUid? Origin,
+    FixedPoint2 TotalDelta,
+    Dictionary<Entity<WoundComponent>, FixedPoint2> WoundsDelta,
+    bool DamageIncreased = false);
 
 [ByRefEvent]
-public record struct WoundAddedOnBodyEvent(Entity<WoundComponent> Wound, WoundableComponent Woundable, WoundableComponent RootWoundable);
+public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
 
 [ByRefEvent]
 public record struct WoundRemovedEvent(WoundComponent Component, WoundableComponent OldWoundable, WoundableComponent OldRootWoundable);
@@ -65,9 +104,6 @@ public record struct WoundableDetachedEvent(EntityUid ParentWoundableEntity, Wou
 
 [ByRefEvent]
 public record struct WoundSeverityPointChangedEvent(WoundComponent Component, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
-
-[ByRefEvent]
-public record struct WoundSeverityPointChangedOnBodyEvent(Entity<WoundComponent> Wound, FixedPoint2 OldSeverity, FixedPoint2 NewSeverity);
 
 [ByRefEvent]
 public record struct WoundSeverityChangedEvent(WoundSeverity OldSeverity, WoundSeverity NewSeverity);
@@ -92,8 +128,3 @@ public record struct WoundableSeverityMultiplier(FixedPoint2 Change, string Iden
 
 [Serializable, DataRecord]
 public record struct WoundableHealingMultiplier(FixedPoint2 Change, string Identifier = "Unspecified");
-
-public sealed class UpdateWoundableIntegrityEvent : EntityEventArgs
-{
-    public EntityUid Woundable { get; init; }
-}

@@ -5,10 +5,14 @@ using Content.Client.Construction;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.IntegrationTests.Pair;
+using Content.Server.Administration.Systems;
+using Content.Server.Atmos.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Damage.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
 using Content.Server.Tools;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Body.Part;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
@@ -212,11 +216,14 @@ public abstract partial class InteractionTest
 
             old = cPlayerMan.LocalEntity;
             SPlayer = SEntMan.SpawnEntity(PlayerPrototype, SEntMan.GetCoordinates(PlayerCoords));
+
             Player = SEntMan.GetNetEntity(SPlayer);
             Server.PlayerMan.SetAttachedEntity(ServerSession, SPlayer);
             Hands = SEntMan.GetComponent<HandsComponent>(SPlayer);
             DoAfters = SEntMan.GetComponent<DoAfterComponent>(SPlayer);
         });
+
+        await AwaitDoAfters(); // backmen edit: Make sure the entity is standing before running the tests
 
         // Check player got attached.
         await RunTicks(5);

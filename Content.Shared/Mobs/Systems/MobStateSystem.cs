@@ -15,18 +15,14 @@ public partial class MobStateSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-
-    private ISawmill _sawmill = default!;
 
     private EntityQuery<MobStateComponent> _mobStateQuery;
 
     public override void Initialize()
     {
-        _sawmill = _logManager.GetSawmill("MobState");
         _mobStateQuery = GetEntityQuery<MobStateComponent>();
         base.Initialize();
         SubscribeEvents();

@@ -1,4 +1,5 @@
 using Content.Server.NPC.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
@@ -21,10 +22,22 @@ public sealed class NPCRetaliationSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<NPCRetaliationComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<NPCRetaliationComponent, WoundsChangedEvent>(OnWoundsChanged);
         SubscribeLocalEvent<NPCRetaliationComponent, DisarmedEvent>(OnDisarmed);
     }
 
     private void OnDamageChanged(Entity<NPCRetaliationComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        if (args.Origin is not {} origin)
+            return;
+
+        TryRetaliate(ent, origin);
+    }
+
+    private void OnWoundsChanged(Entity<NPCRetaliationComponent> ent, ref WoundsChangedEvent args)
     {
         if (!args.DamageIncreased)
             return;
