@@ -207,7 +207,7 @@ namespace Content.Server.Atmos.EntitySystems
 
         public override void Update(float frameTime)
         {
-            if (_barotraumaEnabled)
+            if (!_barotraumaEnabled)
                 return;
 
             _timer += frameTime;
