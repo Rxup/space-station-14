@@ -20,9 +20,11 @@ using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Nutrition.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -67,6 +69,8 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
     [ValidatePrototypeId<EntityPrototype>] private const string BloodsuckerMindRole = "MindRoleBloodsucker";
@@ -77,6 +81,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(AddSuccVerb);
 
         SubscribeLocalEvent<BloodSuckedComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BloodSuckedComponent, WoundsChangedEvent>(OnWoundsChanged);
         SubscribeLocalEvent<BloodSuckerComponent, BloodSuckDoAfterEvent>(OnDoAfter);
 
 
@@ -206,7 +211,6 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             !ev.CanAccess ||
             !ev.CanInteract ||
             ev.User == ev.Target ||
-            IsClientSide(ev.Target) ||
             !_bsQuery.TryComp(ev.User, out var component)
             )
             return;
@@ -241,6 +245,21 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             if (bruteTotal == 0 && airlossTotal == 0)
                 RemComp<BloodSuckedComponent>(uid);
         }
+    }
+
+    private void OnWoundsChanged(EntityUid uid, BloodSuckedComponent component, WoundsChangedEvent args)
+    {
+        if (args.DamageIncreased)
+            return;
+
+        if (!_consciousness.CheckConscious(uid))
+            return;
+
+        var damagePresent =
+            _wound.GetBodyWounds(uid).Any(wound => wound.Comp.DamageGroup?.ID == "Brute");
+
+        if (!damagePresent)
+            RemComp<BloodSuckedComponent>(uid);
     }
 
     private void OnDoAfter(EntityUid uid, BloodSuckerComponent component, BloodSuckDoAfterEvent args)

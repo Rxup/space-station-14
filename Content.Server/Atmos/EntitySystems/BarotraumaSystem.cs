@@ -1,33 +1,33 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Body.Components;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
 {
     public sealed class BarotraumaSystem : EntitySystem
     {
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly WoundSystem _wound = default!; // Backmen edit
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
         private const float UpdateTimer = 1f;
         private float _timer;
+
+        private bool _barotraumaEnabled = true; // Backmen edit
 
         public override void Initialize()
         {
@@ -38,6 +38,8 @@ namespace Content.Server.Atmos.EntitySystems
 
             SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
+
+            Subs.CVar(_cfg, CCVars.GameBarotraumaEnabled, value => _barotraumaEnabled = value, true); // Backmen edit
         }
 
         private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
@@ -205,6 +207,9 @@ namespace Content.Server.Atmos.EntitySystems
 
         public override void Update(float frameTime)
         {
+            if (!_barotraumaEnabled)
+                return;
+
             _timer += frameTime;
 
             if (_timer < UpdateTimer)
@@ -212,9 +217,13 @@ namespace Content.Server.Atmos.EntitySystems
 
             _timer -= UpdateTimer;
 
-            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent>();
-            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable))
+            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent, MetaDataComponent>();
+            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable, out var meta))
             {
+                // backmen edit: meta check
+                if (Paused(uid, meta))
+                    continue;
+
                 var totalDamage = FixedPoint2.Zero;
                 foreach (var (damageType, _) in barotrauma.Damage.DamageDict)
                 {
@@ -223,18 +232,6 @@ namespace Content.Server.Atmos.EntitySystems
 
                     totalDamage += damage;
                 }
-
-                // backmen edit start
-                if (TryComp<BodyComponent>(uid, out var body)
-                    && HasComp<ConsciousnessComponent>(uid)
-                    && body.RootContainer.ContainedEntity.HasValue)
-                {
-                    totalDamage =
-                        _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value)
-                            .Where(woundEnt => barotrauma.Damage.DamageDict.ContainsKey(woundEnt.Comp.DamageType))
-                            .Aggregate(totalDamage, (current, woundEnt) => current + woundEnt.Comp.WoundIntegrityDamage);
-                }
-                // backmen edit end
 
                 if (totalDamage >= barotrauma.MaxDamage)
                     continue;

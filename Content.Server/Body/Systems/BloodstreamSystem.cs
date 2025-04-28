@@ -118,9 +118,12 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<BloodstreamComponent>();
-        while (query.MoveNext(out var uid, out var bloodstream))
+        var query = EntityQueryEnumerator<BloodstreamComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var bloodstream, out var meta))
         {
+            if (Paused(uid, meta))
+                continue;
+
             if (_gameTiming.CurTime < bloodstream.NextUpdate)
                 continue;
 
@@ -215,8 +218,37 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                     identifier: "Bleeding",
                     type: ConsciousnessModType.Pain);
             }
-            // backmen edit end
         }
+
+        var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, MetaDataComponent>();
+        while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var meta))
+        {
+            if (Paused(ent, meta))
+                continue;
+
+            var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
+            if (canBleed != bleeds.IsBleeding)
+                Dirty(ent, bleeds);
+
+            bleeds.IsBleeding = canBleed;
+            if (!bleeds.IsBleeding)
+                continue;
+
+            var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
+            var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
+
+            if (totalTime <= currentTime || bleeds.Scaling >= bleeds.ScalingLimit)
+                continue;
+
+            var newBleeds = FixedPoint2.Clamp(
+                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
+                0,
+                bleeds.ScalingLimit);
+
+            bleeds.Scaling = newBleeds;
+            Dirty(ent, bleeds);
+        }
+        // backmen edit end
     }
 
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)

@@ -34,6 +34,10 @@
       path: /Audio/Medical/Surgery/organ1.ogg
     endSound:
       path: /Audio/Medical/Surgery/organ2.ogg
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 1
   # end-backmen: surgery
   - type: ContainerContainer
     containers:
