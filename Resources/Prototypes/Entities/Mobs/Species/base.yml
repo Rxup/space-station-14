@@ -73,9 +73,6 @@
   #      color: "#FF0000"
   #    Burn:
   #      sprite: Mobs/Effects/burn_damage.rsi
-  - type: Consciousness
-    cap: 190
-    threshold: 95
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
@@ -249,6 +246,9 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Consciousness # backmen
+    cap: 190
+    threshold: 95
   - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
   - type: Targeting # backmen: surgery
