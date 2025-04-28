@@ -106,7 +106,7 @@ public sealed partial class MaterialStorageControl : ScrollContainer
         SiloLinkedLabel.Visible = _entityManager.TryGetComponent<OreSiloClientComponent>(_owner.Value, out var client) && client.Silo != null;
     }
 
-    private Dictionary<string, int> FilterOutOres(Dictionary<string, int> materials)
+    private Dictionary<ProtoId<MaterialPrototype>, int> FilterOutOres(Dictionary<ProtoId<MaterialPrototype>, int> materials)
     {
         return materials.Where(pair =>
             !(_prototypeManager.TryIndex<MaterialPrototype>(pair.Key, out var proto) &&

@@ -600,7 +600,10 @@ namespace Content.Server.Ghost
             if (ghost == null)
                 return false;
 
-            EntityManager.SystemOrNull<Backmen.Ghost.GhostReJoinSystem>()?.AttachGhost(ghost.Value, mind.Session); // backmen: ReturnToRound
+            if (_minds.TryGetSession(mind, out var mindSession))
+            {
+                EntityManager.SystemOrNull<Backmen.Ghost.GhostReJoinSystem>()?.AttachGhost(ghost.Value, mindSession); // backmen: ReturnToRound
+            }
 
             return true;
         }

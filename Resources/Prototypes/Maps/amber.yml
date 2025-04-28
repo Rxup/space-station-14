@@ -54,7 +54,6 @@
           SecurityCadet: [ 2, 2 ]
           #Lawyer: [ 2, 2 ]
           #supply (6 - 7)
-          Quartermaster: [ 1, 1 ]
           SalvageSpecialist: [ 3, 3 ]
           CargoTechnician: [ 3, 4 ]
           #civilian (3+)

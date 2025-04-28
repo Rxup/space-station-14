@@ -57,7 +57,6 @@
             SecurityCadet: [ 3, 3 ]
             #Lawyer: [ 1, 2 ] # Corvax-IAA
             #supply (6)
-            Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             #civilian (3+)
@@ -67,7 +66,6 @@
             Musician: [ 1, 1 ]
             #silicon (2)
             Borg: [ 2, 2 ]
-            Reporter: [ 1, 1 ]
             #backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 1] # backmen-BPLA-Silicons

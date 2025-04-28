@@ -30,14 +30,14 @@
     capacity: 1
     count: 1
   - type: UpgradeableGun
-    maxUpgradeCapacity: 60
+    maxUpgradeCount: 60
     whitelist:
       tags:
       - PKAUpgrade
   - type: Item
     shape:
     - 0,0,4,0
-  
+
 - type: entity
   name: proto-kinetic repeater
   id: WeaponProtoKineticRepeater
@@ -80,7 +80,7 @@
     capacity: 3
     count: 3
   - type: UpgradeableGun
-    maxUpgradeCapacity: 60
+    maxUpgradeCount: 60
     whitelist:
       tags:
       - PKAUpgrade
@@ -116,7 +116,7 @@
     capacity: 1
     count: 1
   - type: UpgradeableGun
-    maxUpgradeCapacity: 200
+    maxUpgradeCount: 200
     whitelist:
       tags:
       - PKAUpgrade

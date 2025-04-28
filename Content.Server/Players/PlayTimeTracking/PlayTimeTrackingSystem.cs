@@ -5,6 +5,7 @@ using Content.Server.Afk;
 using Content.Server.Afk.Events;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Mind;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Events;
 using Content.Shared.CCVar;

@@ -352,4 +352,20 @@ public sealed class MindSystem : SharedMindSystem
         MakeSentientCommand.MakeSentient(target, EntityManager);
         TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
     }
+
+    public bool TryGetSession(MindComponent mind, [NotNullWhen(true)]out ICommonSession? session)
+    {
+        session = null;
+        if (!mind.UserId.HasValue) return false;
+        session = _players.GetSessionById(mind.UserId.Value);
+        return true;
+    }
+
+    public bool TryGetSession(EntityUid? mindId, [NotNullWhen(true)]out ICommonSession? session)
+    {
+        session = null;
+        if (!mindId.HasValue || !TryGetMind(mindId!.Value, out _, out var mind))
+            return false;
+        return TryGetSession(mind, out session);
+    }
 }

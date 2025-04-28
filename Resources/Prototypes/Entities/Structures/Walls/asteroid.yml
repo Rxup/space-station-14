@@ -676,7 +676,7 @@
         tags: [] # Lavaland Change
   - type: Damageable
     damageContainer: StructuralInorganic
-      damageModifierSet: Rock # Lavaland Change
+    damageModifierSet: Rock # Lavaland Change
   - type: Destructible
     thresholds:
     # Lavaland Change start

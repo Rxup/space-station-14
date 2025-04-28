@@ -56,7 +56,6 @@ namespace Content.Shared.Ghost
         public void SetTimeOfDeath(EntityUid uid, TimeSpan value, GhostComponent? component)
         {
             SetTimeOfDeath((uid, component), value);
-            Dirty(uid, component); // backmen
         }
 
         /// <summary>

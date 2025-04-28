@@ -55,7 +55,6 @@
             SecurityCadet: [ 2, 2 ]
             #Lawyer: [ 1, 1 ] # Corvax-IAA
             #supply (4)
-            Quartermaster: [ 1, 1 ]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]

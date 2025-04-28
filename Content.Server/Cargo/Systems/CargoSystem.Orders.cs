@@ -521,7 +521,7 @@ namespace Content.Server.Cargo.Systems
 
         public void DeductFunds(StationBankAccountComponent component, int amount)
         {
-            component.Balance = Math.Max(0, component.Balance - amount);
+            component.Accounts[component.PrimaryAccount] = Math.Max(0, component.Accounts[component.PrimaryAccount] - amount);
         }
 
         #region Station

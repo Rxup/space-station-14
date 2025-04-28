@@ -63,9 +63,11 @@
 - type: typingIndicator
   id: gingerbread
   typingState: gingerbread0
+  idleState: gingerbread2
   offset: 0, 0.125
 
 - type: typingIndicator
   id: diona
   typingState: diona0
+  idleState: diona2
   offset: 0, 0.125

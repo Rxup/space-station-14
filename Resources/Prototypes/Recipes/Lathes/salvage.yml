@@ -76,9 +76,9 @@
   - Weapons
   completetime: 5
   materials:
-    Steel: 1500
-    Gold: 500
-    Silver: 500
+    Steel: 4500 #lavaland
+    Gold: 2500 #lavaland
+    Silver: 2500 #lavaland
 
 - type: latheRecipe
   id: PKAUpgradeRange

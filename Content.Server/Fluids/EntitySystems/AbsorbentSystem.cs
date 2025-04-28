@@ -352,7 +352,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
                 continue; // no spam
 
             var absorberSolution = absorberSoln.Comp.Solution;
-            var available = absorberSolution.GetTotalPrototypeQuantity(PuddleSystem.EvaporationReagents);
+            var available = absorberSolution.GetTotalPrototypeQuantity();
 
             // No material
             if (available == FixedPoint2.Zero)
@@ -364,8 +364,8 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             var transferMax = absorber.PickupAmount;
             var transferAmount = available > transferMax ? transferMax : available;
 
-            var puddleSplit = targetStepSolution.SplitSolutionWithout(transferAmount, PuddleSystem.EvaporationReagents);
-            var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume, PuddleSystem.EvaporationReagents);
+            var puddleSplit = targetStepSolution.SplitSolutionWithout(transferAmount);
+            var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume);
 
             var transform = Transform(target);
             var gridUid = transform.GridUid;

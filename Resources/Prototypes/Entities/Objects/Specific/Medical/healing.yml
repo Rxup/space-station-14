@@ -316,8 +316,6 @@
         - SecBeltEquip
     - type: Sprite
       state: tourniquet
-    - type: Item
-      heldPrefix: tourniquet
     - type: Healing
       damageContainers:
         - Biological

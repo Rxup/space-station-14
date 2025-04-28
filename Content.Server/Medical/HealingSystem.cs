@@ -27,6 +27,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -461,7 +462,7 @@ public sealed class HealingSystem : EntitySystem
 
         if (!anythingToDo)
             return false;
-        
+
         _audio.PlayPvs(component.HealingBeginSound, uid);
 
         var isNotSelf = user != target;

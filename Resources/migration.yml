@@ -657,12 +657,6 @@ PresentRandomAsh: PresentRandomCoal
 # 2024-11-19
 CrateCrewMonitoringBoards: CrateCrewMonitoring
 
-# 2024-11-23 backmen
-# Computer that by idea let's you call cargo shuttle is replaced
-# with console that let's you buy any shuttle.
-ComputerCargoShuttle: ComputerShipyard
-CargoShuttleComputerCircuitboard: ShipyardComputerCircuitboard
-
 # 2024-11-25
 CrateSlimepersonLifeSupport: CrateNitrogenInternals
 
@@ -793,8 +787,8 @@ MagazineBoxLightRifleUranium: MagazinePacketRifle762x39
 MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
 
 #2025-02-05
-WeaponSubMachineGunVector: null
-WeaponSubMachineGunVectorRubber: null
+#WeaponSubMachineGunVector: null
+#WeaponSubMachineGunVectorRubber: null
 MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
 
 #2025-02-06 backmen: no pride

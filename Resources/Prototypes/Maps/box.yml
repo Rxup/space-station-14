@@ -54,7 +54,6 @@
             SecurityCadet: [ 2, 4 ]
             #Lawyer: [ 2, 2 ] # Corvax-IAA
             #supply (6)
-            Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             #Civilian (3+)

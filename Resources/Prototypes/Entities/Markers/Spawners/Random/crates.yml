@@ -42,9 +42,9 @@
   id: LowValueFunCrateTable
   table: !type:GroupSelector
     children:
-    - id: CrateFunPlushie
-      weight: 2
-    - id: CrateFunLizardPlushieBulk
+#    - id: CrateFunPlushie
+#      weight: 2
+#    - id: CrateFunLizardPlushieBulk
     - id: CrateFunSharkPlushieBulk
     - id: CrateCandles
     - id: CrateFunArtSupplies

@@ -143,13 +143,13 @@ public sealed class RCDSystem : EntitySystem
         var position = _mapSystem.TileIndicesFor(gridUid.Value, mapGrid, location);
 
         // start-backmen: protect system
-        if (HasComp<Shared.Tiles.ProtectedGridComponent>(mapGridData.Value.GridUid))
+        if (HasComp<ProtectedGridComponent>(gridUid))
         {
             _popup.PopupClient(Loc.GetString("rcd-component-no-valid-grid"), uid, user);
             return;
         }
         // end-backmen: protect system
-        
+
         if (!IsRCDOperationStillValid(uid, component, gridUid.Value, mapGrid, tile, position, args.Target, args.User))
             return;
 

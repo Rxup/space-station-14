@@ -11,14 +11,6 @@
 - type: latheRecipe
   parent: BaseElectronicsRecipe
   abstract: true
-  id: BaseCheapElectronicsRecipe
-  materials:
-    Steel: 50
-    Plastic: 50
-
-- type: latheRecipe
-  parent: BaseElectronicsRecipe
-  abstract: true
   id: BaseCheapCircuitboardRecipe
   materials:
      Steel: 50

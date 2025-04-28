@@ -959,7 +959,7 @@
   components:
   - type: Sprite
     layers:
-    - state: orange
+    - state: card_orange
   - type: Item
     heldPrefix: orange
   - type: Access
@@ -1085,7 +1085,7 @@
   components:
     - type: Sprite
       layers:
-        - state: wizard 
+        - state: wizard
         - state: sub_department # Backmen
           color: "#433bea"
         - state: frame_head # Backmen
@@ -1108,13 +1108,6 @@
     sprite: Objects/Misc/id_cards.rsi
     layers:
     - state: admin
-    - state: idadmin
-    - state: card_green # Backmen
-    - state: sub_department # Backmen
-      color: "#cb0000"
-    - state: frame_default # Backmen
-      color: "#cb0000"
-    - state: assigned_weh # Backmen
   - type: Clothing
 #    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
   - type: Item
@@ -1136,6 +1129,3 @@
     interfaces:
       enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
-  - type: Tag #  Ignore Chameleon tags
-    tags:
-      - DoorBumpOpener

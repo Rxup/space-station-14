@@ -881,7 +881,7 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: CargoShuttleConsole
+#  - type: CargoShuttleConsole
   - type: ActivatableUI
     key: enum.CargoConsoleUiKey.Shuttle
   - type: UserInterface
@@ -1400,7 +1400,7 @@
     flags:
     - Anchorable
   - type: CargoPalletConsole
-    cashType: BillOfExchange
+#    cashType: BillOfExchange
   - type: ActivatableUI
     key: enum.CargoPalletConsoleUiKey.Sale
   - type: UserInterface
