@@ -8,7 +8,7 @@
   - Quartermaster
   - SalvageSpecialist
   accountNumber: 1315 #backmen: currency
-  weight: -4 # Backmen
+  weight: -5 # Backmen
   buttonStyle: ButtonColorCargoDepartment # Backmen
 
 - type: department
@@ -16,7 +16,7 @@
   name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
-  weight: -3 # Backmen
+  weight: -4 # Backmen
   roles:
   - Bartender
   - Botanist
@@ -57,7 +57,7 @@
   - DeathSquad
   - SpecialOperationsOfficer #Backmen-ERTRoles
   editorHidden: true
-  weight: 0 # Backmen
+  weight: -1 # Backmen
   buttonStyle: ButtonColorCentralCommandDepartment # Backmen
 
 - type: department
@@ -85,7 +85,7 @@
   - ERTEngineer
   - DeathSquad
   primary: false
-  weight: -1 # Backmen
+  weight: -2 # Backmen
   buttonStyle: ButtonColorCommandDepartment # Backmen
 
 - type: department
@@ -99,7 +99,7 @@
   - StationEngineer
   - TechnicalAssistant
   accountNumber: 1318 #backmen: currency
-  weight: -5 # Backmen
+  weight: -6 # Backmen
   buttonStyle: ButtonColorEngineeringDepartment # Backmen
 
 - type: department
@@ -117,7 +117,7 @@
   - BkmSurgeon #backmen
   - BkmVirologist #backmen
   accountNumber: 1319 #backmen: currency
-  weight: -6 # Backmen
+  weight: -7 # Backmen
   buttonStyle: ButtonColorMedicalDepartment # Backmen
 
 - type: department
@@ -125,7 +125,7 @@
   name: department-Security
   description: department-Security-description
   color: "#DE3A3A"
-  weight: -2 # Backmen
+  weight: -3 # Backmen
   roles:
   - HeadOfSecurity
   - SecurityCadet
@@ -148,7 +148,7 @@
   - Scientist
   - ResearchAssistant
   accountNumber: 1321  #backmen: currency
-  weight: -7 # Backmen
+  weight: -8 # Backmen
   buttonStyle: ButtonColorScienceDepartment # Backmen
 
 - type: department
@@ -162,7 +162,7 @@
   - BKBPLATech
   - BKBPLAMED
   accountNumber: 1351  #backmen: currency
-  weight: -8 # Backmen
+  weight: -9 # Backmen
   buttonStyle: ButtonColorSiliconDepartment # Backmen
 
 - type: department
