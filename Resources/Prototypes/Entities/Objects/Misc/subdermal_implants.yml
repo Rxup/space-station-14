@@ -261,7 +261,7 @@
     - type: TriggerOnMobstateChange #Chains with OnUseTimerTrigger
       mobState:
       - Dead
-      preventSuicide: true
+      preventSuicide: false # Backmen-Edit
     - type: OnUseTimerTrigger
       delay: 7
       initialBeepDelay: 0
@@ -274,9 +274,9 @@
       deleteItems: true
     - type: Explosive
       explosionType: Default
-      totalIntensity: 3500
-      intensitySlope: 15
-      maxIntensity: 70
+      totalIntensity: 4000 # Backmen-Edit
+      intensitySlope: 5 # Backmen-Edit
+      maxIntensity: 50 # Backmen-Edit
       canCreateVacuum: true
     - type: Tag
       tags:
