@@ -28,37 +28,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BleedInflicterComponent, WoundAddedEvent>(OnWoundAdded);
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent>();
-        while (bleedsQuery.MoveNext(out var ent, out var bleeds))
-        {
-            var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
-            if (canBleed != bleeds.IsBleeding)
-                Dirty(ent, bleeds);
-
-            bleeds.IsBleeding = canBleed;
-            if (!bleeds.IsBleeding)
-                continue;
-
-            var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
-            var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
-
-            if (totalTime <= currentTime || bleeds.ScalingLimit >= bleeds.Scaling)
-                continue;
-
-            var newBleeds = FixedPoint2.Clamp(
-                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
-                0,
-                bleeds.ScalingLimit);
-
-            bleeds.Scaling = newBleeds;
-            Dirty(ent, bleeds);
-        }
-    }
-
     /// <summary>
     /// Add a bleed-ability modifier on woundable
     /// </summary>

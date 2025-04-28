@@ -63,6 +63,19 @@ public sealed class ServerWoundSystem : WoundSystem
 
             woundable.HealingRateAccumulated -= timeToHeal;
 
+            var bleedWounds = GetWoundableWoundsWithComp<BleedInflicterComponent>(ent, woundable).ToArray();
+            var bleedingAmount = bleedWounds.Aggregate(FixedPoint2.Zero,
+                    (current, wound) => current + wound.Comp2.BleedingAmount);
+
+            if (bleedingAmount > woundable.BleedsThreshold)
+                continue;
+
+            var bleedTreatment = woundable.BleedingTreatmentAbility / bleedWounds.Length;
+            foreach (var wound in bleedWounds)
+            {
+                wound.Comp2.BleedingAmountRaw -= bleedTreatment;
+            }
+
             var woundsToHeal =
                 GetWoundableWounds(ent, woundable).Where(wound => CanHealWound(wound, wound)).ToList();
 
