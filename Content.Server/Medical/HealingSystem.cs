@@ -4,7 +4,6 @@ using Content.Server.Medical.Components;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -32,6 +31,8 @@ using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Random;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Medical;
 
@@ -133,7 +134,7 @@ public sealed class HealingSystem : EntitySystem
                 $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {total:damage} damage");
         }
 
-        _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
+        _audio.PlayPvs(healing.HealingEndSound, entity.Owner);
 
         // Logic to determine whether or not to repeat the healing action
         args.Repeat = HasDamage(entity, healing) && !dontRepeat;
@@ -460,8 +461,8 @@ public sealed class HealingSystem : EntitySystem
 
         if (!anythingToDo)
             return false;
-
-        _audio.PlayPvs(component.HealingBeginSound, uid, AudioParams.Default.WithVariation(.125f).WithVolume(1f));
+        
+        _audio.PlayPvs(component.HealingBeginSound, uid);
 
         var isNotSelf = user != target;
         if (isNotSelf)
