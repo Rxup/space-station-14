@@ -94,6 +94,7 @@ public sealed class SharedSuicideSystem : EntitySystem
     /// </summary>
     public void KillConsciousness(Entity<ConsciousnessComponent> target)
     {
+        _consciousness.ClearForceEffects(target, target);
         foreach (var modifier in target.Comp.Modifiers)
         {
             _consciousness.RemoveConsciousnessModifier(target, modifier.Key.Item1, modifier.Key.Item2);
