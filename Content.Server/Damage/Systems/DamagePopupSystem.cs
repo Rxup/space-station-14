@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Server.Damage.Components;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 
@@ -9,11 +11,13 @@ namespace Content.Server.Damage.Systems;
 public sealed class DamagePopupSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly WoundSystem _wound = default!; // backmen edit
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<DamagePopupComponent, DamageChangedEvent>(OnDamageChange);
+        SubscribeLocalEvent<DamagePopupComponent, WoundsDeltaChanged>(OnWoundsChange); // backmen edit
         SubscribeLocalEvent<DamagePopupComponent, InteractHandEvent>(OnInteractHand);
     }
 
@@ -35,6 +39,24 @@ public sealed class DamagePopupSystem : EntitySystem
             _popupSystem.PopupEntity(msg, uid);
         }
     }
+
+    // backmen edit start
+    private void OnWoundsChange(EntityUid uid, DamagePopupComponent component, WoundsDeltaChanged args)
+    {
+        var damageTotal = _wound.GetBodySeverityPoint(uid);
+        var damageDelta = args.TotalDelta;
+
+        var msg = component.Type switch
+        {
+            DamagePopupType.Delta => damageDelta.ToString(),
+            DamagePopupType.Total => damageTotal.ToString(),
+            DamagePopupType.Combined => damageDelta + " | " + damageTotal,
+            DamagePopupType.Hit => "!",
+            _ => "Invalid type",
+        };
+        _popupSystem.PopupEntity(msg, uid);
+    }
+    // backmen edit end
 
     private void OnInteractHand(EntityUid uid, DamagePopupComponent component, InteractHandEvent args)
     {

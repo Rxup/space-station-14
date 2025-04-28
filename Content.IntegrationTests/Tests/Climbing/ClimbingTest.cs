@@ -1,6 +1,6 @@
 #nullable enable
-using Content.IntegrationTests.Tests.Interaction;
 using Content.IntegrationTests.Tests.Movement;
+using Content.Server.Damage.Systems;
 using Robust.Shared.Maths;
 using ClimbingComponent = Content.Shared.Climbing.Components.ClimbingComponent;
 using ClimbSystem = Content.Shared.Climbing.Systems.ClimbSystem;
@@ -30,7 +30,7 @@ public sealed class ClimbingTest : MovementTest
 
         // Try to start climbing
         var sys = SEntMan.System<ClimbSystem>();
-        await Server.WaitPost(() => sys.TryClimb(SEntMan.GetEntity(Player), SEntMan.GetEntity(Player), SEntMan.GetEntity(Target.Value), out _));
+        await Server.WaitPost(() => sys.TryClimb(SPlayer, SPlayer, STarget.Value, out _));
         await AwaitDoAfters();
 
         // Player should now be climbing
@@ -57,7 +57,7 @@ public sealed class ClimbingTest : MovementTest
         Assert.That(Delta(), Is.LessThan(0));
 
         // Start climbing
-        await Server.WaitPost(() => sys.TryClimb(SEntMan.GetEntity(Player), SEntMan.GetEntity(Player), SEntMan.GetEntity(Target.Value), out _));
+        await Server.WaitPost(() => sys.TryClimb(SPlayer, SPlayer, STarget.Value, out _));
         await AwaitDoAfters();
 
         Assert.Multiple(() =>

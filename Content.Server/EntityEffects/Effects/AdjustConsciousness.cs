@@ -53,7 +53,7 @@ public sealed partial class AdjustConsciousness : EntityEffect // backmen effect
         if (AllowCreatingModifiers)
         {
             if (!args.EntityManager.System<ConsciousnessSystem>()
-                    .EditConsciousnessModifier(args.TargetEntity,
+                    .ChangeConsciousnessModifier(args.TargetEntity,
                         nerveSys.Value.Owner,
                         Amount * scale,
                         Identifier,
@@ -71,7 +71,7 @@ public sealed partial class AdjustConsciousness : EntityEffect // backmen effect
         else
         {
             args.EntityManager.System<ConsciousnessSystem>()
-                .EditConsciousnessModifier(args.TargetEntity, nerveSys.Value.Owner, Amount * scale, Identifier, Time);
+                .ChangeConsciousnessModifier(args.TargetEntity, nerveSys.Value.Owner, Amount * scale, Identifier, Time);
         }
     }
 }
