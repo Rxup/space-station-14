@@ -15,7 +15,7 @@
   discordRequired: true
   requirements:
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 1
   access:
     - CCCargo
@@ -39,7 +39,7 @@
         - type: AntagImmune
   minBankBalance: 400
   maxBankBalance: 600
-  wageDepartment: CentCom
+  wageDepartment: CentralCommand
   wage: 75
 
 - type: jobIcon

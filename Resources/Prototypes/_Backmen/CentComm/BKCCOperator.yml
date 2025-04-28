@@ -20,7 +20,7 @@
       role: JobCentralCommandAssistant
       time: 7200
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 14400
     - !type:DepartmentTimeRequirement
       department: Silicon

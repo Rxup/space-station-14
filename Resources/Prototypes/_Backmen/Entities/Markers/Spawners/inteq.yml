@@ -248,7 +248,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardLeaderSizoGear
@@ -281,7 +281,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardOperativeSizoGear
@@ -314,7 +314,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardSoldierSizoGear
@@ -347,7 +347,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardMedicSizoGear

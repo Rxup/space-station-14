@@ -47,7 +47,7 @@
   #start-backmen: currency
   minBankBalance: 900
   maxBankBalance: 1600
-  wageDepartment: CentCom
+  wageDepartment: CentralCommand
   wage: 50
   #end-backmen: currency
 

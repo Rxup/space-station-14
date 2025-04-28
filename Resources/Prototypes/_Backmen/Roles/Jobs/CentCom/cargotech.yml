@@ -20,7 +20,7 @@
       role: JobCentralCommandAssistant
       time: 21600
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 43200
   access:
     - CentralCommand
@@ -44,7 +44,7 @@
         - type: AntagImmune
   minBankBalance: 200
   maxBankBalance: 300
-  wageDepartment: CentCom
+  wageDepartment: CentralCommand
   wage: 50
 
 - type: jobIcon

@@ -44,7 +44,7 @@
         - type: AntagImmune
   minBankBalance: 100
   maxBankBalance: 250
-  wageDepartment: CentCom
+  wageDepartment: CentralCommand
   wage: 75
 
 - type: startingGear
