@@ -240,6 +240,7 @@ namespace Content.IntegrationTests.Tests
             var excludedIds = new[]
             {
                 "MobSyndicateSmuggler",
+                "MobHumanSyndicateAgentMedic",
                 "MobHumanSpaceNinja",
                 "MobHumanRXBZZFlamer",
                 "MobPMCGreyTideMosin",

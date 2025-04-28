@@ -3,6 +3,7 @@ using Content.Server.Administration.Systems;
 using Content.Server.Atmos.Components;
 using Content.Server.Damage.Systems;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Input;
 using Content.Shared.Movement.Pulling.Components;
 using Robust.Shared.Maths;
@@ -19,12 +20,6 @@ public sealed class PullingTest : MovementTest
         var cAlert = Client.System<AlertsSystem>();
         var sAlert = Server.System<AlertsSystem>();
         await SpawnTarget("MobHuman");
-
-        // backmen edit start
-        var godmode = SEntMan.System<GodmodeSystem>();
-        await Server.WaitPost(() => godmode.EnableGodmode(STarget.Value));
-        await AwaitDoAfters();
-        // Backmen edit; Make sure the target is still, after standing up
 
         var puller = Comp<PullerComponent>(Player);
         var pullable = Comp<PullableComponent>(Target);

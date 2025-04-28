@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Damage.Systems;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -18,17 +19,14 @@ public sealed class ActionPvsDetachTest
         var sys = server.System<SharedActionsSystem>();
         var cSys = client.System<SharedActionsSystem>();
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         // Spawn mob that has some actions
         EntityUid ent = default;
         var map = await pair.CreateTestMap();
         await server.WaitPost(() => ent = server.EntMan.SpawnAtPosition("MobHuman", map.GridCoords));
         await pair.RunTicksSync(5);
         var cEnt = pair.ToClientUid(ent);
-
-        // backmen edit start
-        var godmode = server.System<GodmodeSystem>();
-        await server.WaitPost(() => godmode.EnableGodmode(ent));
-        // backmen edit; Godmode the entity so it does not crit, and the amount of actions stays the same.
 
         // Verify that both the client & server agree on the number of actions
         var initActions = sys.GetActions(ent).Count();

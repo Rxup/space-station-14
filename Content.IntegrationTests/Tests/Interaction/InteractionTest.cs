@@ -12,6 +12,7 @@ using Content.Server.Damage.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
 using Content.Server.Tools;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Body.Part;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
@@ -216,10 +217,8 @@ public abstract partial class InteractionTest
             old = cPlayerMan.LocalEntity;
             SPlayer = SEntMan.SpawnEntity(PlayerPrototype, SEntMan.GetCoordinates(PlayerCoords));
 
-            // backmen edit start
-            var godmode = SEntMan.System<GodmodeSystem>();
-            godmode.EnableGodmode(SPlayer);
-            // backmen edit; give immunity to the entity so it does not crit (barotrauma), and henceforth is able to interact with whatever it needs
+            // backmen edit; Disable pain reflexes so the entities don't fall from pain
+            Pair.Server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false);
 
             Player = SEntMan.GetNetEntity(SPlayer);
             Server.PlayerMan.SetAttachedEntity(ServerSession, SPlayer);

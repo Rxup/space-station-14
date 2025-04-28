@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Systems;
 using Content.Server.Atmos.Components;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -76,18 +77,11 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
-
-        // backmen edit start
-        await server.WaitPost(() =>
-        {
-            var rejuvenateSys = entManager.System<RejuvenateSystem>();
-            rejuvenateSys.PerformRejuvenate(player);
-            entManager.EnsureComponent<PressureImmunityComponent>(player);
-        });
-        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
@@ -139,18 +133,11 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
-
-        // backmen edit start
-        await server.WaitPost(() =>
-        {
-            var rejuvenateSys = entManager.System<RejuvenateSystem>();
-            rejuvenateSys.PerformRejuvenate(player);
-            entManager.EnsureComponent<PressureImmunityComponent>(player);
-        });
-        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
@@ -213,18 +200,11 @@ public sealed class SuicideCommandTests
         var mobStateSystem = entManager.System<MobStateSystem>();
         var tagSystem = entManager.System<TagSystem>();
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
-
-        // backmen edit start
-        await server.WaitPost(() =>
-        {
-            var rejuvenateSys = entManager.System<RejuvenateSystem>();
-            rejuvenateSys.PerformRejuvenate(player);
-            entManager.EnsureComponent<PressureImmunityComponent>(player);
-        });
-        // backmen edit; give immunity to the entity so we can properly check if the entity is actually capable of doing suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
@@ -276,18 +256,11 @@ public sealed class SuicideCommandTests
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
-
-        // backmen edit start
-        await server.WaitPost(() =>
-        {
-            var rejuvenateSys = entManager.System<RejuvenateSystem>();
-            rejuvenateSys.PerformRejuvenate(player);
-            entManager.EnsureComponent<PressureImmunityComponent>(player);
-        });
-        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
@@ -357,18 +330,11 @@ public sealed class SuicideCommandTests
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
-
-        // backmen edit start
-        await server.WaitPost(() =>
-        {
-            var rejuvenateSys = entManager.System<RejuvenateSystem>();
-            rejuvenateSys.PerformRejuvenate(player);
-            entManager.EnsureComponent<PressureImmunityComponent>(player);
-        });
-        // backmen edit; give immunity to the entity so it does not crit (barotrauma), and thus are able to do suicide
 
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;

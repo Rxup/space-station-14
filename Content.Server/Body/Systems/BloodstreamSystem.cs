@@ -218,7 +218,6 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                     identifier: "Bleeding",
                     type: ConsciousnessModType.Pain);
             }
-            // backmen edit end
         }
 
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, MetaDataComponent>();
@@ -238,7 +237,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
             var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
             var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
 
-            if (totalTime <= currentTime || bleeds.ScalingLimit >= bleeds.Scaling)
+            if (totalTime <= currentTime || bleeds.Scaling >= bleeds.ScalingLimit)
                 continue;
 
             var newBleeds = FixedPoint2.Clamp(
@@ -249,6 +248,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
             bleeds.Scaling = newBleeds;
             Dirty(ent, bleeds);
         }
+        // backmen edit end
     }
 
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)

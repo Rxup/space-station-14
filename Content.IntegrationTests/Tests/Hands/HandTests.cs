@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Damage.Systems;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Server.GameObjects;
@@ -36,6 +37,8 @@ public sealed class HandTests
         });
         var server = pair.Server;
 
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         var entMan = server.ResolveDependency<IEntityManager>();
         var playerMan = server.ResolveDependency<IPlayerManager>();
         var mapSystem = server.System<SharedMapSystem>();
@@ -58,11 +61,6 @@ public sealed class HandTests
                 Is.True,
                 $"player {entMan.ToPrettyString(player)} does not have hands component");
             hands = entMan.GetComponent<HandsComponent>(player);
-
-            // backmen edit start
-            var godmode = entMan.System<GodmodeSystem>();
-            godmode.EnableGodmode(player);
-            // Backmen edit; Make sure the player does not get damaged by anything and does not flinch from pain (and thus drop the item)
             sys.TryPickup(player, item, hands.ActiveHand!);
         });
 
@@ -88,9 +86,13 @@ public sealed class HandTests
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Fresh = true, // backmen edit
         });
         var server = pair.Server;
+
+        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
+
         var map = await pair.CreateTestMap();
         await pair.RunTicksSync(5);
 
@@ -113,10 +115,6 @@ public sealed class HandTests
         await server.WaitPost(() =>
         {
             player = playerMan.Sessions.First().AttachedEntity!.Value;
-            // backmen edit start
-            var godmode = entMan.System<GodmodeSystem>();
-            godmode.EnableGodmode(player);
-            // Backmen edit; Make sure the player does not get damaged by anything and does not flinch from pain (and thus drop the item)
             tSys.PlaceNextTo(player, item);
             hands = entMan.GetComponent<HandsComponent>(player);
             sys.TryPickup(player, item, hands.ActiveHand!);

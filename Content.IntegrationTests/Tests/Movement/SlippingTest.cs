@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using Content.Server.Damage.Systems;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Slippery;
 using Content.Shared.Stunnable;
 using Robust.Shared.GameObjects;
@@ -28,6 +29,9 @@ public sealed class SlippingTest : MovementTest
     [Test]
     public async Task BananaSlipTest()
     {
+        // backmen edit; Disable pain reflexes so the entities don't fall from pain
+        Pair.Server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false);
+
         var sys = SEntMan.System<SlipTestSystem>();
         await SpawnTarget("TrashBananaPeel");
 
@@ -44,11 +48,6 @@ public sealed class SlippingTest : MovementTest
         Assert.That(Delta(), Is.LessThan(0.5f));
         Assert.That(sys.Slipped, Does.Not.Contain(SEntMan.GetEntity(Player)));
         AssertComp<KnockedDownComponent>(false, Player);
-
-        // backmen edit start
-        var godmode = SEntMan.System<GodmodeSystem>();
-        await Server.WaitPost(() => godmode.DisableGodmode(SPlayer));
-        // backmen edit end; Allow the player to slip
 
         // Moving at normal speeds does trigger a slip.
         await SetKey(EngineKeyFunctions.Walk, BoundKeyState.Up);
