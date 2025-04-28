@@ -49,6 +49,12 @@ public sealed partial class CCVars
      */
 
     /// <summary>
+    /// Should Pain System work at all?
+    /// </summary>
+    public static readonly CVarDef<bool> PainEnabled =
+        CVarDef.Create("pain.enabled", true, CVar.SERVER);
+
+    /// <summary>
     /// Should Pain System trigger pain reflexes?
     /// </summary>
     public static readonly CVarDef<bool> PainReflexesEnabled =

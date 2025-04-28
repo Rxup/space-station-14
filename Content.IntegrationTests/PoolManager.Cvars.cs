@@ -42,7 +42,7 @@ public static partial class PoolManager
         (CCVars.MovementMobPushing.Name, "false"),
 
         // Backmen CCvars
-        (Shared.Backmen.CCVar.CCVars.PainReflexesEnabled.Name, "false"),
+        (Shared.Backmen.CCVar.CCVars.PainEnabled.Name, "false"),
         (Shared.Backmen.CCVar.CCVars.GameBarotraumaEnabled.Name, "false"),
         (CCVars.NPCPathfinding.Name, "false"), //backmen: fix test memory
         (CCVars.LavalandEnabled.Name, "false"), //backmen: fix test memory

@@ -36,6 +36,9 @@ public sealed class ServerPainSystem : PainSystem
     {
         base.Update(frameTime);
 
+        if (!PainEnabled)
+            return;
+
         var q = EntityQueryEnumerator<NerveSystemComponent, MetaDataComponent>();
         while (q.MoveNext(out var uid, out var nerveSys, out var meta))
         {
@@ -229,7 +232,7 @@ public sealed class ServerPainSystem : PainSystem
 
     private void ApplyPainReflexesEffects(EntityUid body, Entity<NerveSystemComponent> nerveSys, PainThresholdTypes reaction)
     {
-        if (!_painReflexesEnabled)
+        if (!PainReflexesEnabled)
             return;
 
         var sex = Sex.Unsexed;

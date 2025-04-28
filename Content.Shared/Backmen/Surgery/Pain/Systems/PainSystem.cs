@@ -39,7 +39,8 @@ public abstract partial class PainSystem : EntitySystem
     private float _universalPainMultiplier = 1f;
     private float _maxPainPerInflicter = 100f;
 
-    protected bool _painReflexesEnabled = true;
+    protected bool PainEnabled = true;
+    protected bool PainReflexesEnabled = true;
 
     public override void Initialize()
     {
@@ -58,7 +59,8 @@ public abstract partial class PainSystem : EntitySystem
         Subs.CVar(Cfg, CCVars.UniversalPainMultiplier, value => _universalPainMultiplier = value, true);
         Subs.CVar(Cfg, CCVars.PainInflicterCapacity, value => _maxPainPerInflicter = value, true);
 
-        Subs.CVar(Cfg, CCVars.PainReflexesEnabled, value => _painReflexesEnabled = value, true);
+        Subs.CVar(Cfg, CCVars.PainEnabled, value => PainEnabled = value, true);
+        Subs.CVar(Cfg, CCVars.PainReflexesEnabled, value => PainReflexesEnabled = value, true);
 
         NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
         NerveQuery = GetEntityQuery<NerveComponent>();

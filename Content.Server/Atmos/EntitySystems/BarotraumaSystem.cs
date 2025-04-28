@@ -39,7 +39,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
 
-            Subs.CVar(_cfg, CCVars.GameBarotraumaEnabled, value => _barotraumaEnabled = value, true);
+            Subs.CVar(_cfg, CCVars.GameBarotraumaEnabled, value => _barotraumaEnabled = value, true); // Backmen edit
         }
 
         private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
