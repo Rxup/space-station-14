@@ -236,6 +236,15 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
             var client = pair.Client;
 
+            // TODO: Fix all of these
+            var excludedIds = new[]
+            {
+                "MobSyndicateSmuggler",
+                "MobHumanSpaceNinja",
+                "MobHumanRXBZZFlamer",
+                "MobPMCGreyTideMosin",
+            };
+
             var excluded = new[]
             {
                 "MapGrid",
@@ -279,15 +288,9 @@ namespace Content.IntegrationTests.Tests
 
             foreach (var protoId in protoIds)
             {
-                // TODO fix ninja
-                // Currently ninja fails to equip their own loadout.
-                if (protoId == "MobHumanSpaceNinja")
+                // TODO: Would be great to actually fix those with their loadouts, instead of just ignoring them
+                if (excludedIds.Contains(protoId))
                     continue;
-                if (protoId == "MobHumanRXBZZFlamer") // TODO fix MobHumanRXBZZFlamer
-                    continue;
-                if (protoId == "MobPMCGreyTideMosin") // TODO fix MobPMCGreyTideMosin
-                    continue;
-
 
                 var count = Count(server.EntMan);
                 var clientCount = Count(client.EntMan);

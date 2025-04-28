@@ -554,6 +554,9 @@ public abstract partial class WoundSystem : EntitySystem
 
         foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity, woundableComp))
         {
+            if (TerminatingOrDeleted(child))
+                continue;
+
             if (childWoundable.WoundableSeverity is WoundableSeverity.Critical)
             {
                 DestroyWoundable(woundableEntity, child, childWoundable);
