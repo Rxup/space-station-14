@@ -44,6 +44,8 @@ public static partial class PoolManager
         // Backmen CCvars
         (Shared.Backmen.CCVar.CCVars.PainReflexesEnabled.Name, "false"),
         (Shared.Backmen.CCVar.CCVars.GameBarotraumaEnabled.Name, "false"),
+        (CCVars.NPCPathfinding.Name, "false"), //backmen: fix test memory
+        (CCVars.LavalandEnabled.Name, "false"), //backmen: fix test memory
     };
 
     public static async Task SetupCVars(RobustIntegrationTest.IntegrationInstance instance, PoolSettings settings)
