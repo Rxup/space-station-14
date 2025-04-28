@@ -29,9 +29,6 @@ public sealed class SlippingTest : MovementTest
     [Test]
     public async Task BananaSlipTest()
     {
-        // backmen edit; Disable pain reflexes so the entities don't fall from pain
-        Pair.Server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false);
-
         var sys = SEntMan.System<SlipTestSystem>();
         await SpawnTarget("TrashBananaPeel");
 

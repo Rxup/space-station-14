@@ -19,8 +19,6 @@ public sealed class ActionPvsDetachTest
         var sys = server.System<SharedActionsSystem>();
         var cSys = client.System<SharedActionsSystem>();
 
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
-
         // Spawn mob that has some actions
         EntityUid ent = default;
         var map = await pair.CreateTestMap();

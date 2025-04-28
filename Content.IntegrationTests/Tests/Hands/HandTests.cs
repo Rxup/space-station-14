@@ -37,8 +37,6 @@ public sealed class HandTests
         });
         var server = pair.Server;
 
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
-
         var entMan = server.ResolveDependency<IEntityManager>();
         var playerMan = server.ResolveDependency<IPlayerManager>();
         var mapSystem = server.System<SharedMapSystem>();
@@ -90,8 +88,6 @@ public sealed class HandTests
             Fresh = true, // backmen edit
         });
         var server = pair.Server;
-
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
 
         var map = await pair.CreateTestMap();
         await pair.RunTicksSync(5);

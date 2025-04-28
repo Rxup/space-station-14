@@ -77,8 +77,6 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
 
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
-
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
@@ -132,8 +130,6 @@ public sealed class SuicideCommandTests
         var damageableSystem = entManager.System<DamageableSystem>();
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
-
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
@@ -200,8 +196,6 @@ public sealed class SuicideCommandTests
         var mobStateSystem = entManager.System<MobStateSystem>();
         var tagSystem = entManager.System<TagSystem>();
 
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
-
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
@@ -255,8 +249,6 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
-
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
@@ -329,8 +321,6 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
-
-        server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;

@@ -191,9 +191,6 @@ public abstract partial class InteractionTest
         CLogger = Client.ResolveDependency<ILogManager>().RootSawmill;
         CUiSys = Client.System<SharedUserInterfaceSystem>();
 
-        // backmen edit; Disable pain reflexes so the entities don't fall from pain
-        Pair.Server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false);
-
         // Setup map.
         await Pair.CreateTestMap();
 

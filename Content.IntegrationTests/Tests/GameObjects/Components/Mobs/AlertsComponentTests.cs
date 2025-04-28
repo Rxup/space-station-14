@@ -26,8 +26,6 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
             var server = pair.Server;
             var client = pair.Client;
 
-            server.CfgMan.SetCVar(CCVars.PainReflexesEnabled, false); // backmen edit; Disable pain reflexes so the entities don't fall from pain
-
             var clientUIMgr = client.ResolveDependency<IUserInterfaceManager>();
             var clientEntManager = client.ResolveDependency<IEntityManager>();
 
