@@ -229,6 +229,9 @@ public sealed class ServerPainSystem : PainSystem
 
     private void ApplyPainReflexesEffects(EntityUid body, Entity<NerveSystemComponent> nerveSys, PainThresholdTypes reaction)
     {
+        if (!_painReflexesEnabled)
+            return;
+
         var sex = Sex.Unsexed;
         if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
             sex = humanoid.Sex;
