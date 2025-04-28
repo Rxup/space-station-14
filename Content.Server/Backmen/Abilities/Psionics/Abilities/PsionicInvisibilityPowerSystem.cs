@@ -34,7 +34,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentInit>(OnStart);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentShutdown>(OnEnd);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundDamage);
+        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, WoundsChangedEvent>(OnWoundDamage);
     }
 
     private void OnInit(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentInit args)
@@ -118,9 +118,9 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         ToggleInvisibility(uid);
     }
 
-    private void OnWoundDamage(EntityUid uid, PsionicInvisibilityUsedComponent component, WoundSeverityPointChangedOnBodyEvent args)
+    private void OnWoundDamage(EntityUid uid, PsionicInvisibilityUsedComponent component, WoundsChangedEvent args)
     {
-        if (args.NewSeverity < args.OldSeverity)
+        if (!args.DamageIncreased)
             return;
 
         ToggleInvisibility(uid);

@@ -7,6 +7,9 @@ using Content.Server.Pinpointer;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Flash.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Database;
@@ -84,6 +87,7 @@ namespace Content.Server.Explosion.EntitySystems
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
         [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+        [Dependency] private readonly WoundSystem _wounds = default!;
 
         public override void Initialize()
         {
@@ -219,7 +223,21 @@ namespace Content.Server.Explosion.EntitySystems
                     Del(item);
                 }
             }
-            _body.GibBody(xform.ParentUid, true);
+            // backmen edit start
+            var gibTarget = xform.ParentUid;
+            if (HasComp<ConsciousnessComponent>(gibTarget))
+            {
+                var bodyComp = Comp<BodyComponent>(gibTarget);
+                if (bodyComp.RootContainer.ContainedEntity.HasValue)
+                {
+                    _wounds.DestroyWoundable(bodyComp.RootContainer.ContainedEntity.Value, bodyComp.RootContainer.ContainedEntity.Value);
+                }
+            }
+            else
+            {
+                _body.GibBody(gibTarget, true);
+            }
+            // backmen edit end
             args.Handled = true;
         }
 

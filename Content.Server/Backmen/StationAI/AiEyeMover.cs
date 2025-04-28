@@ -34,7 +34,7 @@ public sealed class AiEyeMover : Job<object>
      {
          try
          {
-             var mapPos = _transform.ToMapCoordinates(NewPosition);
+             var mapPos = _transform.ToMapCoordinates(NewPosition, false);
 
              await WaitAsyncTask(Task.Run(() =>
                  _lookup.GetEntitiesInRange(mapPos, AICameraSystem.CameraEyeRange, _cameraComponents, LookupFlags.Sensors)));
