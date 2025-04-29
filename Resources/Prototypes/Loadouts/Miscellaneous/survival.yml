@@ -18,7 +18,6 @@
     - Human
     - Moth
     - Reptilian
-    - Vulpkanin # Corvax-MRP
     #backmen-species-start
     - ArachneClassic
     - Felinid
@@ -27,6 +26,10 @@
     - Oni
     - Shadowkin
     #backmen-species-end
+    #Corvax-Species-Start
+    - Vulpkanin
+    - Tajaran
+    #Corvax-Species-End
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
