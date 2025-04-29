@@ -59,6 +59,25 @@ marking-WesternDragonTail-tail_westerndragon_overlay = Нижняя часть
 marking-KangarooTail = Ящер, хвост кенгуру
 marking-KangarooTail-tail_kangaroo = Верняя часть
 
+marking-TailSnake = Ящер, хвост змеи
+marking-TailSnake-snake = Основная часть
+
+marking-TailSnakeStripe = Ящер, хвост змеи (Полосатый)
+marking-TailSnakeStripe-snake_stripe = Верняя часть
+marking-TailSnakeStripe-snake_stripe_secondary = Нижняя часть
+
+marking-TailSnakeStripeAlt = Ящер, хвост змеи (Полосатый, альтернативный)
+marking-TailSnakeStripeAlt-snake_stripe_alt = Верняя часть
+marking-TailSnakeStripeAlt-snake_stripe_alt_secondary = Нижняя часть
+
+marking-TailSnakeDual = Ящер, хвост змеи (Двойной)
+marking-TailSnakeDual-snake_dual = Верняя часть
+marking-TailSnakeDual-snake_dual_secondary = Нижняя часть
+
+marking-TailSnakeUnder = Ящер, хвост змеи (Подхвостье)
+marking-TailSnakeUnder-snake_under = Верняя часть
+marking-TailSnakeUnder-snake_under_secondary = Нижняя часть
+
 # ШИПЫ
 marking-LizardChestSpinesAquaticWithoutTail = Ящер, грудь, шипы на спине (Водный, без хвоста)
 marking-LizardChestSpinesAquaticWithoutTail-spines_aquatic = Шипы
