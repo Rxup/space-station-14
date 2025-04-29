@@ -250,7 +250,7 @@
   recipeUnlocks:
   - WeaponPistolG23
   technologyPrerequisites:
-  - CombatLaser
+  - GunsmithPrinterMachines
   position: -1,-5
 
 - type: technology
