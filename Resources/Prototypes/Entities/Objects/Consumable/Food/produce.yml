@@ -816,6 +816,8 @@
   - type: Tag
     tags:
     - Fruit
+  - type: Clothing #Erida
+    slots: UNDERWEAR #Erida
 
 - type: entity
   name: potato
