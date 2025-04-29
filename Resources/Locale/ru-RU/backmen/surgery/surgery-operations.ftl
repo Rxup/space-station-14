@@ -63,3 +63,9 @@ ent-SurgeryInsertStomach = Вставить желудок
 ent-SurgeryRemoveEyes = Удалить глаза
 ent-SurgeryInsertEyes = Вставить глаза
 ent-SurgeryLobotomize = Лоботомировать
+
+ent-SurgeryStopBloodOutput = Остановить отток крови
+ent-SurgeryFixDismemberment = Восстановить поврежденные участки мышщ
+ent-SurgeryMendBones = Восстановить кости
+ent-SurgeryStepRemoveSeveredSkin = убрать сгнившие участки кожи
+ent-SurgeryStepMendBones = Восстановить кости

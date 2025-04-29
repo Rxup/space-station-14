@@ -10,9 +10,15 @@
     sprite: Backmen/Clothing/Head/Helmets/mog_helmet.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
+        Blunt: 0.70
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.70
+        ArmorPiercing: 0.95
 
 - type: entity
   parent: ClothingHeadBase
@@ -25,6 +31,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -44,12 +52,15 @@
     sprite: Backmen/Clothing/Head/Helmets/altinbelov.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.60
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.80
+        ArmorPiercing: 0.80
 
 - type: entity
   parent: ClothingHeadBase
@@ -63,6 +74,8 @@
     sprite: Backmen/Clothing/Head/Helmets/germanhelmetbelov.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.50
@@ -80,6 +93,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helmetssspbel.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -99,6 +114,8 @@
     sprite: Backmen/Clothing/Head/Helmets/ihscombathelmetbelsuper.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -121,6 +138,8 @@
   - type: PointLight
     color: "#ffdbad"
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Slash: 0.9
@@ -137,6 +156,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/motohelmetred.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -220,12 +241,14 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.6
-        ArmorPiercing: 0.95
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        ArmorPiercing: 0.8
         Heat: 0.8
         Radiation: 0.8
         Caustic: 0.95
@@ -243,6 +266,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/helmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -263,12 +288,14 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/helmetmvd.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.8
-        Piercing: 0.9
-        Heat: 0.8
+        Blunt: 0.4
+        Slash: 0.5
+        Piercing: 0.85
+        Heat: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.8
 
@@ -306,6 +333,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helm.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.60
@@ -325,6 +354,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.40
@@ -344,6 +375,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.30
@@ -363,6 +396,8 @@
     sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
   - type: IngestionBlocker
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.30
@@ -383,6 +418,8 @@
   - type: Clothing
     sprite: Backmen/Changeling/ling_armor_helmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -402,11 +439,13 @@
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.9
+        Piercing: 0.8
         Heat: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.8

@@ -18,6 +18,14 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.7

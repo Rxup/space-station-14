@@ -20,7 +20,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    Chest: MobHumanoidFoxTorso
+    Chest: MobHumanoidFoxChest
+    Groin: MobHumanoidFoxGroin # Backmen edit: chest, groin separation
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -77,22 +78,40 @@
     state: head_f
 
 - type: humanoidBaseSprite
-  id: MobHumanoidFoxTorso
+  id: MobHumanoidFoxChest
   baseSprite:
     sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobHumanoidFoxTorsoMale
+  id: MobHumanoidFoxChestMale
   baseSprite:
     sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobHumanoidFoxTorsoFemale
+  id: MobHumanoidFoxChestFemale
   baseSprite:
     sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
-    state: torso_f
+    state: chest_f
+
+- type: humanoidBaseSprite
+  id: MobHumanoidFoxGroin
+  baseSprite:
+    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidFoxGroinMale
+  baseSprite:
+    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidFoxGroinFemale
+  baseSprite:
+    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    state: groin_f
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxLLeg

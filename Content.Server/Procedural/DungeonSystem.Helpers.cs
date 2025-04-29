@@ -25,7 +25,7 @@ public sealed partial class DungeonSystem
 
             // Sort these as they will be iterated many times.
             edgeConns.Sort((x, y) => x.Distance.CompareTo(y.Distance));
-            connections.TryAdd(entrance, edgeConns);
+            connections.Add(entrance, edgeConns);
         }
 
         var seedIndex = random.Next(tiles.Count);

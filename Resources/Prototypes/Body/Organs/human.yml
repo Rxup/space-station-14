@@ -6,6 +6,13 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
+    # backmen edit
+    intCap: 15
+    integrity: 15
+    integrityThresholds:
+      Normal: 15
+      Damaged: 6
+      Destroyed: 0
   - type: Food
   - type: Extractable
     grindableSolutionName: organ
@@ -43,9 +50,20 @@
   - type: Sprite
     state: brain
   - type: Organ
+    # backmen edit
     slotId: brain # backmen: surgery
+    intCap: 28
+    integrity: 28
+    integrityThresholds:
+      Normal: 28
+      Damaged: 16
+      Destroyed: 0
   - type: Input
     context: "ghost"
+  - type: NerveSystem
+  - type: ConsciousnessRequired
+    identifier: "nerveSystem"
+    causesDeath: true
   - type: Brain
   - type: InputMover
   - type: Examiner
@@ -84,6 +102,13 @@
   components:
   # start-backmen: surgery
   - type: Organ
+    # backmen edit
+    intCap: 12
+    integrity: 12
+    integrityThresholds:
+      Normal: 12
+      Damaged: 4
+      Destroyed: 0
     slotId: eyes
   - type: Eyes
   # end-backmen: surgery
@@ -140,6 +165,13 @@
     heldPrefix: lungs
   - type: Lung
   - type: Organ # backmen: surgery
+    # backmen edit
+    intCap: 17
+    integrity: 17
+    integrityThresholds:
+      Normal: 17
+      Damaged: 9
+      Destroyed: 0
     slotId: lungs
   - type: Metabolizer
     removeEmpty: true
@@ -173,6 +205,13 @@
   # start-backmen: surgery
   - type: Heart
   - type: Organ
+    # backmen edit
+    intCap: 17
+    integrity: 17
+    integrityThresholds:
+      Normal: 17
+      Damaged: 9
+      Destroyed: 0
     slotId: heart
   # end-backmen: surgery
   - type: Sprite
@@ -213,6 +252,13 @@
           Quantity: 5
   - type: Stomach
   - type: Organ # backmen: surgery
+    # backmen edit
+    intCap: 44 # consists of a lot of pieces, thus is incredibly hard to easily destroy
+    integrity: 44 # but easily is getting damaged
+    integrityThresholds:
+      Normal: 44
+      Damaged: 17
+      Destroyed: 0
     slotId: stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
@@ -234,6 +280,13 @@
   # start-backmen: surgery
   - type: Liver
   - type: Organ
+    # backmen edit
+    intCap: 21
+    integrity: 21
+    integrityThresholds:
+      Normal: 21
+      Damaged: 12
+      Destroyed: 0
     slotId: liver
   # end-backmen: surgery
   - type: Sprite
@@ -255,6 +308,13 @@
   description: "Filters toxins from the bloodstream."
   components:
   - type: Organ # Shitmed
+    # backmen edit
+    intCap: 21
+    integrity: 21
+    integrityThresholds:
+      Normal: 21
+      Damaged: 12
+      Destroyed: 0
     slotId: kidneys
   - type: Sprite
     layers:

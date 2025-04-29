@@ -1,4 +1,6 @@
-[<img src="https://imagizer.imageshack.com/img923/7392/pIWR7b.png" alt="ASF" width="989" align="center">](https://github.com/Rxup/space-station-14)
+<div class="header" align="center">  
+[<img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg">](https://github.com/Rxup/space-station-14)
+</div>
 
 ---
 
@@ -8,8 +10,11 @@ Space Station 14 - это ремейк SS13, который работает н�
 
 ## Ссылки
 
-[<img src="https://i.imgur.com/XiS9QP5.png" alt="ASF" width="150" align="left">](https://github.com/AtaraxiaSpaceFoundation)
-**Ataraxia Space Foundation**<br>Специализируемся на разработке этого билда.
+<div class="header" align="center">  
+
+[Website](https://backmen.ru/) | [Discord](https://discord.com/invite/B7gWj7hB8b) | [Forum](https://backmen.ru/) | [Boosty](https://boosty.to/deadstation14) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.com/about/nightlies/)
+
+</div>
 
 [<img src="https://i.imgur.com/xMzKtYK.png" alt="Discord" width="150" align="left">](https://discord.gg/ss-14-backmen-ru-1053200453829132298)
 **Discord Server**<br>В космосе вас никто не услышит.
@@ -31,6 +36,18 @@ Space Station 14 - это ремейк SS13, который работает н�
 > 5. Подключитесь к локальному серверу и играйте.
 
 ### Linux
+1. Clone this repo:
+```shell
+git clone https://github.com/space-wizards/space-station-14.git
+```
+2. Go to the project folder and run `RUN_THIS.py` to initialize the submodules and load the engine:
+```shell
+cd space-station-14
+python RUN_THIS.py
+```
+3. Compile the solution:  
+
+Build the server using `dotnet build`.
 
 > 1. Склонируйте данный репозиторий.
 > 2. Запустите `git submodule update --init --recursive` в командной строке, чтобы скачать движок игры.
@@ -72,3 +89,4 @@ giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
 [Example](./Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
 Обратите внимание, что некоторые активы лицензированы под некоммерческой [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) или аналогичной некоммерческой лицензией и должны быть удалены, если вы хотите использовать этот проект в коммерческих целях.
+

@@ -10,15 +10,50 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+#    - Arm
+#    - Hand
+#    - Leg
+#    - Foot
     modifiers:
       coefficients:
-        Blunt: 0.6 #ballistic plates = better protection
-        Slash: 0.6
-        Piercing: 0.3
-        ArmorPiercing: 0.6
+        Blunt: 0.5 #ballistic plates = better protection
+        Slash: 0.5
+        Piercing: 0.1
+        ArmorPiercing: 0.4 #Plates
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
+
+#Elite web vest
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  id: ClothingOuterVestWebElite
+  name: elite web vest
+  description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.7
+        Heat: 0.3
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.85
 
 #Mercenary web vest
 - type: entity
@@ -32,10 +67,13 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
     modifiers:
       coefficients:
-        Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
-        Slash: 0.7
+        Blunt: 0.45 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
+        Slash: 0.45
         Piercing: 0.5
         ArmorPiercing: 0.7
         Heat: 0.9
@@ -101,3 +139,7 @@
     sprite: Clothing/OuterClothing/Vests/tankharness.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/tankharness.rsi
+  - type: Item
+    size: Normal # Make smaller than typical outer clothing
+    shape:
+    - 0, 0, 0, 1

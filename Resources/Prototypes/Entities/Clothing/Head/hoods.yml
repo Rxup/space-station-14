@@ -11,6 +11,11 @@
     sprite: Clothing/Head/Hoods/Bio/general.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: GroupExamine
+  - type: Armor
+    modifiers: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -35,6 +40,8 @@
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.8
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -80,13 +87,15 @@
   id: ClothingHeadHatHoodBioVirology
   name: bio hood
   suffix: Virology
-  description: A hood that protects the head and face from biological contaminants.
+  description: A hood that strongly protects the head and face from biological contaminants.
   components:
   - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.8
 
 - type: entity
   parent: ClothingHeadBase
@@ -153,10 +162,18 @@
   - type: Clothing
     sprite: Clothing/Head/Hoods/rad.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0.42
+      NerveDamage: 0.42
+    coverage: # backmen: armour coverage
+    - Head
     modifiers:
       coefficients:
-        Heat: 0.95
-        Radiation: 0.65
+        Heat: 0.7
+        Radiation: 0.2
   - type: IdentityBlocker
   - type: BreathMask
   - type: HideLayerClothing
