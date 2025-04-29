@@ -8,6 +8,8 @@
     sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
+  - type: Item
+    size: Normal
   - type: Storage
     maxItemSize: Normal
     defaultStorageOrientation: Vertical
