@@ -17,5 +17,4 @@
       icon: { sprite: Backmen/Objects/Misc/eggspider.rsi, state: icon }
       priority: -10
       event: !type:SpiderVampireEggActionEvent
-      charges: 1
       useDelay: 30
