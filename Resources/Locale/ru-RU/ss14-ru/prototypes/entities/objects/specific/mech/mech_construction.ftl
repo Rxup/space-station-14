@@ -55,4 +55,4 @@ ent-BaseVimPartItem = { ent-BaseVimPart }
 ent-VimHarness = каркас ВИМ
     .desc = Небольшой кронштейн для крепления частей ВИМ.
 ent-VimChassis = каркас ВИМ
-    .desc = Незавершённое каркас меха ВИМ.
+    .desc = Незавершённый каркас меха ВИМ.
