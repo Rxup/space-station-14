@@ -121,9 +121,9 @@
   description: A turtleneck specifically for a Blueshield officers.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Uniforms/Jumpskirt/bluesuit-alt.rsi
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/blueskirt-alt.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Uniforms/Jumpskirt/bluesuit-alt.rsi
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/blueskirt-alt.rsi
 
 - type: entity # Backmen
   parent: ClothingUniformSkirtBase
