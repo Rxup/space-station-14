@@ -14,3 +14,6 @@
     - type: StationCargoOrderDatabase
     - type: StationCargoBountyDatabase
     - type: TradeStation
+    - type: StationCargoShuttle
+      path: /Maps/Shuttles/cargo.yml
+    - type: CargoDeliveryData

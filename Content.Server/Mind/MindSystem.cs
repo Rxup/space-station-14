@@ -357,7 +357,15 @@ public sealed class MindSystem : SharedMindSystem
     {
         session = null;
         if (!mind.UserId.HasValue) return false;
-        session = _players.GetSessionById(mind.UserId.Value);
+        try //because in test no users
+        {
+            session = _players.GetSessionById(mind.UserId.Value);
+        }
+        catch (KeyNotFoundException ex)
+        {
+            session = null;
+            return false;
+        }
         return true;
     }
 

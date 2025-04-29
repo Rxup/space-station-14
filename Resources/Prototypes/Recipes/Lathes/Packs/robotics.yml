@@ -38,6 +38,8 @@
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
+  - BorgModuleGardening
+  - BorgModuleHarvesting
 
 - type: latheRecipePack
   id: MechParts

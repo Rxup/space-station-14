@@ -37,6 +37,12 @@
   - type: Item
     shape:
     - 0,0,4,0
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   name: proto-kinetic repeater
@@ -87,6 +93,12 @@
   - type: Item
     shape:
     - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   name: proto-kinetic pistol
@@ -125,6 +137,12 @@
     shape:
     - 0,0,1,0
     - 0,1,0,1
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 # Lavaland Change
 - type: entity

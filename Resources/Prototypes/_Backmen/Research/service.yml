@@ -70,6 +70,7 @@
   - FoodPlateTin
   - FoodPlateMuffinTin
   - FoodKebabSkewer
+  - Ashtray
   technologyPrerequisites:
   - ServiceMachines
   position: 4,9

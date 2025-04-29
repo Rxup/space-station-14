@@ -556,13 +556,6 @@ entities:
     - type: Transform
       pos: -5.5667624,3.0776424
       parent: 1
-- proto: TorsoSkeleton
-  entities:
-  - uid: 110
-    components:
-    - type: Transform
-      pos: -3.0209117,-2.102045
-      parent: 1
 - proto: WallCult
   entities:
   - uid: 32
