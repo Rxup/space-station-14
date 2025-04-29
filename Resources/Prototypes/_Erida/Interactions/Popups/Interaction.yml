@@ -91,8 +91,6 @@
           !type:ModifyHealthAction
           damage:
             types: {Blunt: 5.5}
-      action:
-        !type:NoOpAction
 
   - type: Interaction
     id: LPPSlap2 # Шлёпнуть
