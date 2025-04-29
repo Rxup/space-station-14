@@ -12,8 +12,8 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleCE
-  name: chief engineer's mantle
-  description: A bright white and yellow striped mantle. Do not wear around active machinery.  # Corvax-Resprite
+  name: chief engineer's manica
+  description: A segmented arm covering for the experienced Chief Engineer, to signify the hazards of the job and the dangers faced to earn it.
   components:
   - type: Sprite
     sprite: Clothing/Neck/mantles/cemantle.rsi

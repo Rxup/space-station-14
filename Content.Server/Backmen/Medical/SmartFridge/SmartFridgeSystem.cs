@@ -13,6 +13,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Verbs;
 
 namespace Content.Server.Backmen.Medical.SmartFridge;
