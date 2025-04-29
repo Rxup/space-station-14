@@ -6,10 +6,10 @@
   sprites: MobAnthropomorphSprites
   defaultSkinTone: "#f5aaff"
   markingLimits: MobAnthropomorphMarkingLimits
-  dollPrototype: MobAnthropomorphDummy 
+  dollPrototype: MobAnthropomorphDummy
   skinColoration: Hues
-  maleFirstNames: names_arachnid_first
-  femaleFirstNames: names_arachnid_first
+  maleFirstNames: NamesVox
+  femaleFirstNames: NamesVox
   naming: FirstDashFirst
 
 - type: speciesBaseSprites
@@ -69,7 +69,7 @@
     Overlay:
       points: 1
       required: false
-    
+
 - type: humanoidBaseSprite
   id: MobAnthropomorphHead
   baseSprite:

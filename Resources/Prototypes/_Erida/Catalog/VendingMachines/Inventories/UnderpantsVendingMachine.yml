@@ -1,7 +1,6 @@
 - type: vendingMachineInventory
   id: UnderwearVendingMachineServitorInventory
   startingInventory:
-    ClothingUnderPantsBase: 3
     ClothingUnderbee_shorts: 3
     ClothingUnderboxer_briefs: 3
     ClothingUnderboxers_assblastusa: 3

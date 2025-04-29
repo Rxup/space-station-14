@@ -28,12 +28,6 @@
     position: Down
     rotation: -90
     buckleOffset: "0,0.20"
-  # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
-  - type: Construction
-    graph: LPPBedDouble
-    node: LPPBedDoubleUp
-  # So that you can put bedsheets on beds again. Would be cool to have a tag
-  # for this so that only bedsheets can be placed.
   - type: PlaceableSurface
     placeCentered: true
   - type: Damageable
@@ -64,9 +58,6 @@
   name: bed double down
   description: Better sleep in that then on the floor i guess.
   components:
-  - type: Construction
-    graph: LPPBedDouble
-    node: LPPBedDoubleDown
   - type: Sprite
     state: bed_double_down
   - type: Damageable
