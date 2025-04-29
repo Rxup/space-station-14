@@ -38,14 +38,13 @@
     state: building
   discipline: Engineering
   tier: 1
-  cost: 12000
+  cost: 18000
   recipeUnlocks:
    - AutolatheHyperConvectionMachineCircuitboard
    - ProtolatheHyperConvectionMachineCircuitboard
    - CircuitImprinterHyperConvectionMachineCircuitboard
    - SheetifierMachineCircuitboard
   technologyPrerequisites:
-  - EngineeringMachines
   - PowerGenerationAdvancedMachines
   position: -4,4
 
@@ -111,9 +110,9 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-   - ThermomachineFreezerMachineCircuitBoard
-   - GasRecyclerMachineCircuitboard
-   - SpaceHeaterMachineCircuitBoard
+  - ThermomachineFreezerMachineCircuitBoard
+  - GasRecyclerMachineCircuitboard
+  - PortableScrubberMachineCircuitBoard
   technologyPrerequisites:
   - EngineeringMachines
   - AtmosphericTools
@@ -127,10 +126,11 @@
     state: freezerOn
   discipline: Engineering
   tier: 1
-  cost: 8500
+  cost: 12500
   recipeUnlocks:
   - HellfireFreezerMachineCircuitBoard
-  - PortableScrubberMachineCircuitBoard
+  - HellfireHeaterMachineCircuitBoard
+  - SpaceHeaterMachineCircuitBoard
   technologyPrerequisites:
   - AtmosphericMachines
   position: -2,4

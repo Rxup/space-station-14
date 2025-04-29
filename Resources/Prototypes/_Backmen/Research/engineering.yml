@@ -35,7 +35,7 @@
     state: high
   discipline: Engineering
   tier: 1
-  cost: 2500
+  cost: 5500
   recipeUnlocks:
    - PowerCellHigh
   technologyPrerequisites:
@@ -50,7 +50,7 @@
     state: hyper
   discipline: Engineering
   tier: 1
-  cost: 5500
+  cost: 9500
   recipeUnlocks:
    - PowerCellSuper
    - PowerCellHyper
@@ -133,7 +133,7 @@
 #  tier: 1
 #  cost: 10000
 #  recipeUnlocks:
-#  - RCDRecipe
+#  - RCD
 #  position: -2,-1
 
 #- type: technology
@@ -146,7 +146,7 @@
 #  tier: 1
 #  cost: 7500
 #  recipeUnlocks:
-#  - RapidPipeDispenserRecipe
+#  - RapidPipeDispenser
 #  position: -2,-2
 
 - type: technology
@@ -189,7 +189,7 @@
     state: icon
   discipline: Engineering
   tier: 1
-  cost: 12000
+  cost: 15500
   recipeUnlocks:
     - WelderExperimental
     - PowerDrill

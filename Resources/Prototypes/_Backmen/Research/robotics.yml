@@ -184,7 +184,7 @@
   technologyPrerequisites:
   - CyborgModules
 #  - EngineeringAdvancedTools
-  position: 9,-3
+  position: 8,-3
 
 - type: technology
   id: HydroponicsModules
@@ -249,7 +249,7 @@
   technologyPrerequisites:
   - CyborgModules
   - BiochemicalStasis
-  position: 9,-4
+  position: 6,-5
 
 - type: technology
   id: MassExcavation
@@ -265,4 +265,4 @@
   technologyPrerequisites:
   - CyborgModules
   - MassExcavation
-  position: 10,-4
+  position: 8,-4

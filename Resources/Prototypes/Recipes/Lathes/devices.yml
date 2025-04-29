@@ -191,6 +191,7 @@
     Steel: 700
     Glass: 100
     Uranium: 200
+    BluespaceCrystal: 220 # Backmen
 
 - type: latheRecipe
   id: WeaponProtoKineticAccelerator

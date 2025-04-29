@@ -9,4 +9,6 @@
   cost: 12000
   recipeUnlocks:
   - GunsmithTechFabCircuitboard
-  position: -4,-5
+  technologyPrerequisites:
+  - CombatLaser
+  position: -1,-1

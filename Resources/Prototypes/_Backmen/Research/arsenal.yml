@@ -239,17 +239,6 @@
   position: 2,-1
 
 - type: technology
-  id: EarthArmoriesBase
-  name: research-technology-Earth-Armories
-  icon:
-    sprite: Backmen/Structures/Decoration/banner.rsi
-    state: banner
-  discipline: Arsenal
-  tier: 1
-  cost: 1000
-  position: -3,-5
-
-- type: technology
   id: WeaponPistolBase
   name: research-technology-pistol-base
   discipline: Arsenal
@@ -258,7 +247,11 @@
     state: icon
   tier: 1
   cost: 1000
-  position: 0,-5
+  recipeUnlocks:
+  - WeaponPistolG23
+  technologyPrerequisites:
+  - CombatLaser
+  position: -1,-5
 
 - type: technology
   id: WeaponRifleBase
@@ -288,7 +281,7 @@
   - MagazinePistolNail
   technologyPrerequisites:
   - WeaponPistolBase
-  position: -1,-5
+  position: -1,-7
 
 - type: technology
   id: AdvancedAutoWeaponBase
@@ -300,9 +293,8 @@
   tier: 3
   cost: 30000
   technologyPrerequisites:
-  - LightAutoWeaponBase
   - WeaponRifleBase
-  position: -1,-6
+  position: 0,-8
 
 - type: technology
   id: ReinforcedBarrelBase
@@ -315,8 +307,7 @@
   cost: 40000
   technologyPrerequisites:
   - AdvancedAutoWeaponBase
-  - WeaponRifleBase
-  position: 0,-7
+  position: -2,-8
 
 - type: technology
   id: EarthArmoriesPistols
@@ -329,12 +320,10 @@
   cost: 5000
   recipeUnlocks:
   - WeaponPistolG22
-  - WeaponPistolG23
   - WeaponPistolACP14
   technologyPrerequisites:
-  - EarthArmoriesBase
   - WeaponPistolBase
-  position: -4,-6
+  position: -2,-6
 
 - type: technology
   id: EarthArmoriesLightAutoWeapons
@@ -349,11 +338,9 @@
   - WeaponPistolVP78
   - WeaponSubMachineGunMP5
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponPistolBase
   - LightAutoWeaponBase
   - EarthArmoriesPistols
-  position: -4,-7
+  position: -3,-7
 
 - type: technology
   id: EarthArmoriesReinforcedWeapons
@@ -368,10 +355,9 @@
   - WeaponRevolverMatebaNew
   - WeaponRevolverR44
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponPistolBase
+  - EarthArmoriesPistols
   - ReinforcedBarrelBase
-  position: -2,-6
+  position: -3,-6
 
 - type: technology
   id: EarthArmoriesRiflesWeapons
@@ -386,9 +372,8 @@
   - WeaponSniperRemington700
   - WeaponShotgunPaladin12
   technologyPrerequisites:
-  - EarthArmoriesBase
   - WeaponRifleBase
-  position: -3,-8
+  position: 0,-10
 
 - type: technology
   id: EarthArmoriesRiflesHeavyWeapons
@@ -402,11 +387,9 @@
   recipeUnlocks:
   - WeaponShotgun12
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponRifleBase
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -2,-9
+  position: 0,-11
 
 - type: technology
   id: EarthArmoriesRiflesAutoWeapons
@@ -423,11 +406,9 @@
   - WeaponRifleAR18
   - WeaponRifleM28
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponRifleBase
   - AdvancedAutoWeaponBase
   - EarthArmoriesRiflesWeapons
-  position: -3,-9
+  position: -1,-10
 
 - type: technology
   id: EarthArmoriesRiflesAutoHeavyWeapons
@@ -442,9 +423,6 @@
   - WeaponShotgun39
   - WeaponRifleSR127
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponRifleBase
-  - AdvancedAutoWeaponBase
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -4,-9
+  position: -2,-10

@@ -155,6 +155,8 @@
   - PillCanister
   - ChemistryEmptyBottle01
   - Syringe
+  technologyPrerequisites:
+  - Medicine
   position: 2,-5
 
 - type: technology
@@ -182,7 +184,7 @@
     state: beakernoreact
   discipline: Medical
   tier: 1
-  cost: 7200
+  cost: 5200
   recipeUnlocks:
   - CryostasisBeaker
   - SyringeCryostasis
