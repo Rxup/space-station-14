@@ -353,8 +353,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBlueShield
-  name: берет Синего Щита
-  description: Берет офицеров Синего Щита, внушает чувство лживой безопасности.
+  name: берет офицера "Синий Щит"
+  description: Берет офицеров "Синий щит", внушает чувство более строгой безопасности.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Hats/blueberet.rsi

@@ -27,10 +27,10 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesGlassesSecurity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseBlueShieldContraband]
   id: ClothingEyesGlassesBlueShield
-  name: очки Синего Щита
-  description: Улучшенный солнце защитные очки с охранной системой HUD.
+  name: officer "Blueshield" glasses
+  description: Improved security glasses, in blue coloring and with a built-in health scanner.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
@@ -40,6 +40,11 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - HalfSpirit
+    - RaceDemon
 
 - type: entity
   parent: ClothingEyesGlassesSecurity

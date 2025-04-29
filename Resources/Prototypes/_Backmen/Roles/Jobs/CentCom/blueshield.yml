@@ -55,14 +55,16 @@
   id: BlueShieldGear
   equipment:
     id: BlueShieldPDA
+    head: ClothingHeadHatBeretBlueShield
+    eyes: ClothingEyesGlassesBlueShield
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
     shoes: ClothingShoesBootsCombat
-    back: ClothingBackpackSatchelLeather
-    neck: CombatKnifeSpetsnaz
-    belt: ClothingBeltSecurityCentComSecurity
-    pocket1: WeaponPistolUCS
-    pocket2: RadioBlueShieldSupplyPod
+    back: ClothingBackpackBlueshield
+    belt: ClothingBeltBlueshieldWebbingFilled
+    pocket1: WeaponMultiphaseEnergyGun
+    pocket2: CombatKnifeSpetsnaz
   storage:
     back:
     - BlueShieldSetLoadouts
+    - RadioBlueShieldSupplyPod

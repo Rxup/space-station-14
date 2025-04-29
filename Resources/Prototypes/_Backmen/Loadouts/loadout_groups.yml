@@ -26,44 +26,29 @@
   - BKCCCargoDuffel
   - CommonMessenger
 
-# Security
-
 # BlueShield
 - type: loadoutGroup
-  id: ClothingUniformJumpsuitBlueShield
+  id: BlueshieldJumpsuit
   name: loadout-group-blueshield-jumpsuit
   loadouts:
-  - ClothingJumpsuitBlueShield
-  - ClothingUniformBlueShield
-  - ClothingSkirtBlueShield
+  - ClothingUniformJumpsuitBlueShield
+  - ClothingUniformJumpskirtBlueShield
+  - ClothingUniformBlueShieldTurtleneck
+  - ClothingUniformJumpskirtBlueShieldTurtleneck
 
 - type: loadoutGroup
-  id: ClothingHeadHatBlueShield
-  name: loadout-group-BlueShield-hat
+  id: BlueshieldNeck
+  name: loadout-group-blueshield-neck
   minLimit: 0
   loadouts:
-  - ClothingHeadHatBeretBlueShield
-  - ClothingHeadHatBlueShieldCap
-  - ClothingHeadHatUshankaBlueShield
-  - ClothingHeadHelmetEGov
-  - ClothingHeadHelmetXenonauten
+  - ClothingNeckMantleBlueShield
 
 - type: loadoutGroup
-  id: ClothingOuterBlueShield
+  id: BlueshieldOuterClothing
   name: loadout-group-BlueShield-outer
   loadouts:
-  - ClothingOuterNavyVest
-  - ClothingOuterXenonautenLight
+  - ClothingOuterArmorBlueshield
   - ClothingOuterCoatArmorBlueShield
-  - ClothingOuterCoatArmorBlueShieldAlt
-
-- type: loadoutGroup
-  id: EyeBlueShield
-  name: loadout-group-BlueShield-eyes
-  minLimit: 0
-  loadouts:
-  - ClothingEyesGlassesBlueShield
-  - ClothingEyeslensesBlueShield
 
 # Operator
 #- type: loadoutGroup

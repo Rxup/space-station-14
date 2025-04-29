@@ -2,12 +2,12 @@
 loadout-group-security-pocket = Табельное оружие
 loadout-group-security-pocket2 = Вторичный магазин
 
-loadout-group-brigmedic-jumpsuit = Одежда бригмедика
-loadout-group-brigmedic-backpack = Рюкзак бригмедика
-loadout-group-brigmedic-hat = Головной убор бригмедика
-loadout-group-brigmedic-outer = Верхняя одежда бригмедика
-loadout-group-brigmedic-ear = Гарнитура бригмедика
-loadout-group-brigmedic-mask = Маска бригмедика
+loadout-group-brigmedic-jumpsuit = Бригмедик, комбинезон
+loadout-group-brigmedic-backpack = Бригмедик, рюкзак
+loadout-group-brigmedic-hat = Бригмедик, голова
+loadout-group-brigmedic-outer = Бригмедик, верхняя одежда
+loadout-group-brigmedic-ear = Бригмедик, гарнитура
+loadout-group-brigmedic-mask = Бригмедик, маска
 
 # Misc
 loadout-group-medals = Медали
@@ -16,10 +16,12 @@ loadout-group-niz = Нижняя,низ
 loadout-group-socks = Нижняя, ноги
 
 # CentCom
-loadout-group-blueshield-jumpsuit = Одежда
-loadout-group-BlueShield-hat = Головной убор
-loadout-group-BlueShield-outer = Верхняя одежда
-loadout-group-BlueShield-eyes = Очки
+loadout-group-blueshield-hat = ОСЩ, голова
+loadout-group-blueshield-neck = ОСЩ, шея
+loadout-group-blueshield-jumpsuit = ОСЩ, комбинезон
+loadout-group-blueshield-backpack = ОСЩ, рюкзак
+loadout-group-BlueShield-outer = ОСЩ, верхняя одежда
+loadout-group-blueshield-shoes = ОСЩ, обувь
 
 # Virilogist
 loadout-group-virologist-jumpsuit = Вирусолог, комбинезон

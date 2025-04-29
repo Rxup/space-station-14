@@ -1,73 +1,51 @@
+- type: loadoutEffectGroup
+  id: MasterBlueShield
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 72000 #20 hrs
+
 #Suit
 - type: loadout
-  id: ClothingJumpsuitBlueShield
+  id: ClothingUniformJumpsuitBlueShield
   equipment:
-    jumpsuit: ClothingJumpsuitBlueShield
+    jumpsuit: ClothingUniformJumpsuitBlueShield
 
 - type: loadout
-  id: ClothingUniformBlueShield
+  id: ClothingUniformJumpskirtBlueShield
   equipment:
-    jumpsuit: ClothingUniformBlueShield
+    jumpsuit: ClothingUniformJumpskirtBlueShield
 
 - type: loadout
-  id: ClothingSkirtBlueShield
+  id: ClothingUniformBlueShieldTurtleneck
   equipment:
-    jumpsuit: ClothingSkirtBlueShield
-
-#Head
-- type: loadout
-  id: ClothingHeadHatBeretBlueShield
-  equipment:
-    head: ClothingHeadHatBeretBlueShield
+    jumpsuit: ClothingUniformBlueShieldTurtleneck
 
 - type: loadout
-  id: ClothingHeadHatBlueShieldCap
+  id: ClothingUniformJumpskirtBlueShieldTurtleneck
   equipment:
-    head: ClothingHeadHatBlueShieldCap
+    jumpsuit: ClothingUniformJumpskirtBlueShieldTurtleneck
 
-- type: loadout
-  id: ClothingHeadHatUshankaBlueShield
-  equipment:
-    head: ClothingHeadHatUshankaBlueShield
-
-- type: loadout
-  id: ClothingHeadHelmetEGov
-  equipment:
-    head: ClothingHeadHelmetEGov
-
-- type: loadout
-  id: ClothingHeadHelmetXenonauten
-  equipment:
-    head: ClothingHeadHelmetXenonauten
 
 #outerClothing
 - type: loadout
-  id: ClothingOuterNavyVest
+  id: ClothingOuterArmorBlueshield
   equipment:
-    outerClothing: ClothingOuterNavyVest
-
-- type: loadout
-  id: ClothingOuterXenonautenLight
-  equipment:
-    outerClothing: ClothingOuterXenonautenLight
+    outerClothing: ClothingOuterArmorBlueshield
 
 - type: loadout
   id: ClothingOuterCoatArmorBlueShield
   equipment:
     outerClothing: ClothingOuterCoatArmorBlueShield
 
-- type: loadout
-  id: ClothingOuterCoatArmorBlueShieldAlt
-  equipment:
-    outerClothing: ClothingOuterCoatArmorBlueShieldAlt
-
-#eyes
-- type: loadout
-  id: ClothingEyesGlassesBlueShield
-  equipment:
-    eyes: ClothingEyesGlassesBlueShield
+#neck
 
 - type: loadout
-  id: ClothingEyeslensesBlueShield
+  id: ClothingNeckMantleBlueShield
   equipment:
-    eyes: ClothingEyeslensesBlueShield
+    neck: ClothingNeckMantleBlueShield
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterBlueShield

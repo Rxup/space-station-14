@@ -1,0 +1,17 @@
+- type: entity
+  id: LockerBlueShieldFilled
+  parent: LockerBlueShield
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingHeadHatBeretBlueShield
+        - id: ClothingOuterCoatArmorBlueShield
+        - id: ClothingOuterArmorBlueshield
+        - id: ClothingMaskGasSecurity
+        - id: FlashlightSeclite
+        - id: PowerCellHigh
+        - id: MedkitCombatFilled
+        - id: HandheldCrewMonitor
+        - id: BoxZiptie
+        - id: DefibrillatorCompact

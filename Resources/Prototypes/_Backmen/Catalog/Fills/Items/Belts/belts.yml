@@ -476,3 +476,15 @@
       - id: EmergencyMedipen
         amount: 3
       - id: Stimpack
+
+- type: entity
+  id: ClothingBeltBlueshieldWebbingFilled
+  parent: ClothingBeltBlueshieldWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedkitCombatFilled
+      - id: Stunbaton
+      - id: Handcuffs
+      - id: Handcuffs
