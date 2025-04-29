@@ -8,5 +8,5 @@
 - type: borgSubtype
   parentBorgType: generic
   id: drake_generic
-  spritePath: Backmen/Mobs/Silicon/Chassis/drake.rsi
+  spritePath: Backmen/Mobs/Silicon/Chassis/Generic/drake.rsi
   dummyPrototype: BorgChassisDrakeGeneric

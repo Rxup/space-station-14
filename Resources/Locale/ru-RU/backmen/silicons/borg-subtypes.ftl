@@ -1,1 +1,3 @@
-borg-select-subtype-flavour-text = Доступны косметические опции для идеальной оболочки
+borg-select-subtype-flavour-text = Доступные оболочки:
+
+borg-no-subtypes-available = NT.OS | ERROR: 404

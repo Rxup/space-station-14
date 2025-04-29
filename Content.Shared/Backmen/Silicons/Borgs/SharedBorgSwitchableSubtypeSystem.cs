@@ -5,7 +5,6 @@ namespace Content.Shared.Backmen.Silicons.Borgs;
 public abstract class SharedBorgSwitchableSubtypeSystem : EntitySystem
 {
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] private readonly SharedBorgSwitchableSubtypeSystem _subtypeSystem = default!;
 
     public override void Initialize()
     {
@@ -35,6 +34,11 @@ public abstract class SharedBorgSwitchableSubtypeSystem : EntitySystem
 
     private void SetSubtype(Entity<BorgSwitchableSubtypeComponent> ent, ProtoId<BorgSubtypePrototype> subtype)
     {
+        if (!Prototypes.HasIndex(subtype))
+        {
+            return;
+        }
+
         ent.Comp.BorgSubtype = subtype;
         RaiseLocalEvent(ent, new BorgSubtypeChangedEvent(subtype));
     }
