@@ -45,7 +45,7 @@
 
 - type: loadoutGroup
   id: BlueshieldOuterClothing
-  name: loadout-group-BlueShield-outer
+  name: loadout-group-blueshield-outer
   loadouts:
   - ClothingOuterArmorBlueshield
   - ClothingOuterCoatArmorBlueShield

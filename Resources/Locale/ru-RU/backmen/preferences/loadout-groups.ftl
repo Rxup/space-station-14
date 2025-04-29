@@ -20,7 +20,7 @@ loadout-group-blueshield-hat = ОСЩ, голова
 loadout-group-blueshield-neck = ОСЩ, шея
 loadout-group-blueshield-jumpsuit = ОСЩ, комбинезон
 loadout-group-blueshield-backpack = ОСЩ, рюкзак
-loadout-group-BlueShield-outer = ОСЩ, верхняя одежда
+loadout-group-blueshield-outer = ОСЩ, верхняя одежда
 loadout-group-blueshield-shoes = ОСЩ, обувь
 
 # Virilogist
