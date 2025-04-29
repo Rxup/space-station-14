@@ -1,0 +1,12 @@
+# Generic subtypes
+- type: borgSubtype
+  parentBorgType: generic
+  id: default_generic
+  spritePath: Mobs/Silicon/chassis.rsi
+  dummyPrototype: BorgChassisGeneric
+
+- type: borgSubtype
+  parentBorgType: generic
+  id: drake_generic
+  spritePath: Backmen/Mobs/Silicon/Chassis/drake.rsi
+  dummyPrototype: BorgChassisDrakeGeneric

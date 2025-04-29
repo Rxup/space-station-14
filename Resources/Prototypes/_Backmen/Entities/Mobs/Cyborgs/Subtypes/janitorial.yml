@@ -1,0 +1,6 @@
+# Janitorial subtypes
+- type: borgSubtype
+  parentBorgType: janitor
+  id: default_janitor
+  spritePath: Mobs/Silicon/chassis.rsi
+  dummyPrototype: BorgChassisJanitor

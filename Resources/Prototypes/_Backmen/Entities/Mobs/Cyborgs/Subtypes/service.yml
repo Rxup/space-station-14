@@ -1,0 +1,6 @@
+# Service subtypes
+- type: borgSubtype
+  parentBorgType: service
+  id: default_service
+  spritePath: Mobs/Silicon/chassis.rsi
+  dummyPrototype: BorgChassisService

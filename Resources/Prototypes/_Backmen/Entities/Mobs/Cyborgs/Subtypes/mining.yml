@@ -1,0 +1,6 @@
+# Mining subtypes
+- type: borgSubtype
+  parentBorgType: mining
+  id: default_mining
+  spritePath: Mobs/Silicon/chassis.rsi
+  dummyPrototype: BorgChassisMining

@@ -1,0 +1,25 @@
+- type: entity
+  parent: BorgChassisSelectable
+  id: BorgChassisDrakeGeneric
+  name: drake generic cyborg
+  components:
+  - type: BorgChassis
+    hasMindState: overlay
+    noMindState: overlay
+  - type: Sprite
+    sprite: Backmen/Mobs/Silicon/Chassis/Generic/drake.rsi
+    layers:
+    - state: drake
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: overlay
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: overlay
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgSwitchableType
+    selectedBorgType: generic
+  - type: BorgSwitchableSubtype
+    borgSubtype: drake_generic
