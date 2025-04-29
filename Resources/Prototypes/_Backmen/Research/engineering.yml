@@ -177,6 +177,7 @@
   - CableHVStack
   - ClothingHeadHatWelding
   - Igniter
+  - ClothingOuterVestTank
   position: -2,1
 
 - type: technology

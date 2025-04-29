@@ -17,6 +17,20 @@
 #  - ReagentGrinderIndustrialMachineCircuitboard
 
 #- type: technology
+#  id: Hydroponics
+#  name: research-technology-basic-hydroponics
+#  icon:
+#    sprite: Structures/Machines/seed_extractor.rsi
+#    state: seedextractor
+#  discipline: CivilianServices
+#  tier: 1
+#  cost: 5000
+#  recipeUnlocks:
+#  - SeedExtractorMachineCircuitboard
+#  - HydroponicsTrayMachineCircuitboard
+#  - ReagentGrinderIndustrialMachineCircuitboard
+
+#- type: technology
 #  id: CritterMechs
 #  name: research-technology-critter-mechs
 #  icon:
@@ -166,6 +180,32 @@
 #  - HonkerPeripheralsElectronics
 #  - HonkerTargetingElectronics
 #  - MechEquipmentHorn
+
+#- type: technology # Merge with other T2 medical research if possible!
+#  id: MechanizedTreatment
+#  name: research-technology-mechanized-treatment
+#  icon:
+#    sprite: Mobs/Silicon/chassis.rsi
+#    state: medical
+#  discipline: CivilianServices
+#  tier: 2
+#  cost: 5000
+#  recipeUnlocks:
+#  - BorgModuleAdvancedChemical
+
+#- type: technology
+#  id: AdvancedCleaning
+#  name: research-technology-advanced-cleaning
+#  icon:
+#    sprite: Objects/Specific/Janitorial/advmop.rsi
+#    state: advmop
+#  discipline: CivilianServices
+#  tier: 2
+#  cost: 10000
+#  recipeUnlocks:
+#  - AdvMopItem
+#  - MegaSprayBottle
+#  - BorgModuleAdvancedCleaning
 
 #- type: technology
 #  id: AdvancedSpray

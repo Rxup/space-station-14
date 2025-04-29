@@ -1,19 +1,5 @@
 ﻿- type: entity
   parent: IDCardStandard
-  id: PrisonerIDCard
-  name: prisoner ID card
-  components:
-    - type: Sprite
-      layers:
-        - state: card_orange
-        - state: frame_default
-          color: "#000000"
-        - state: idprisoner
-    - type: PresetIdCard
-      job: Prisoner
-
-- type: entity
-  parent: IDCardStandard
   id: RoboticistIDCard
   name: Roboticist ID Card
   components:
@@ -687,7 +673,7 @@
         - state: sub_department
           color: "#2ab0d9"
         - state: frame_default
-          color: "#2ab0d9"            
+          color: "#2ab0d9"
         - state: idvirologist
     - type: PresetIdCard
       job: BkmVirologist

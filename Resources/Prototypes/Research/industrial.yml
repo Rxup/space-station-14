@@ -46,6 +46,33 @@
 #  - SMESAdvancedMachineCircuitboard
 
 #- type: technology
+#  id: SpaceScanning
+#  name: research-technology-space-scanning
+#  icon:
+#    sprite: Objects/Tools/handheld_mass_scanner.rsi
+#    state: icon
+#  discipline: Industrial
+#  tier: 1
+#  cost: 5000
+#  recipeUnlocks:
+#  - RadarConsoleCircuitboard
+#  - HandHeldMassScanner
+
+#- type: technology
+#  id: AdvancedPowercells
+#  name: research-technology-advanced-powercells
+#  icon:
+#    sprite: Structures/Power/turbo_recharger.rsi
+#    state: empty
+#  discipline: Industrial
+#  tier: 1
+#  cost: 7500
+#  recipeUnlocks:
+#  - PowerCellHigh
+#  - TurboItemRechargerCircuitboard
+#  - SMESAdvancedMachineCircuitboard
+
+#- type: technology
 #  id: MechanicalCompression
 #  name: research-technology-mechanical-compression
 #  icon:
@@ -185,6 +212,21 @@
 #    - MiningDrillDiamond
 #    - AdvancedMineralScannerEmpty
 #    - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
+
+#- type: technology
+#  id: MassExcavation
+#  name: research-technology-excavation
+#  icon:
+#    sprite: Objects/Tools/handdrilldiamond.rsi
+#    state: handdrill
+#  discipline: Industrial
+#  tier: 2
+#  cost: 12500
+#  recipeUnlocks:
+#    - OreBagOfHolding
+#    - MiningDrillDiamond
+#    - AdvancedMineralScannerEmpty
+#    - BorgModuleAdvancedMining
 
 # Tier 3
 

@@ -162,7 +162,7 @@ public sealed class EvilTwinSystem : EntitySystem
                             }*/
 
 
-                            var targetSession = targetMind?.Session;
+                            _mindSystem.TryGetSession(targetMind, out var targetSession);
                             var targetUserId = targetMind?.UserId ?? targetMind?.OriginalOwnerUserId;
                             if (targetUserId == null)
                             {
@@ -398,7 +398,11 @@ public sealed class EvilTwinSystem : EntitySystem
         foreach (var (mindId, mind) in _allEvilTwins)
         {
             var name = mind.CharacterName;
-            var username = mind.Session?.Name;
+            string? username=null;
+            if (_mindSystem.TryGetSession(mind, out var session))
+            {
+                username = session.Name;
+            }
             var objectives = mind.Objectives.ToArray();
             if (objectives.Length == 0)
             {
