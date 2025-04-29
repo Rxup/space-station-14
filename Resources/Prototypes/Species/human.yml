@@ -20,6 +20,7 @@
     Special: MobHumanoidAnyMarking
     Head: MobHumanHead
     Hair: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -47,6 +48,9 @@
       points: 1
       required: false
     FacialHair:
+      points: 1
+      required: false
+    HeadSide:
       points: 1
       required: false
     Snout:
