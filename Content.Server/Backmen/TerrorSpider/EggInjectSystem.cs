@@ -5,6 +5,7 @@ using Content.Shared.Spider;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
+namespace Content.Server.Backmen.TerrorSpider;
 namespace Content.Shared.Backmen.TerrorSpider;
 
 public sealed class EggInjectSystem : EntitySystem
