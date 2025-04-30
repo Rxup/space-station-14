@@ -88,8 +88,8 @@
   cost: 15000
   recipeUnlocks:
   - BiomassReclaimerMachineCircuitboard
-  - CloningConsoleComputerCircuitboard
-  - MedicalScannerMachineCircuitboard
+#  - CloningConsoleComputerCircuitboard
+#  - MedicalScannerMachineCircuitboard
 #  - MetempsychoticMachineCircuitboard
   technologyPrerequisites:
   - PsionicCountermeasures

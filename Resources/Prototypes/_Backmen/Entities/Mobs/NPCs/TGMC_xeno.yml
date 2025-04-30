@@ -1740,7 +1740,6 @@
       - state: b_checker_piece
   - type: LimitedCharges
     maxCharges: 50
-    charges: 50
   - type: AutoRecharge
     rechargeDuration: 5
   - type: RCD

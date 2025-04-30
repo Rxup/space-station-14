@@ -42,7 +42,7 @@ public sealed class NPCZombieSystem : EntitySystem
         RemComp<GhostRoleComponent>(ev.Target);
 
         var z = EnsureComp<ZombieComponent>(ev.Target);
-        z.MaxZombieInfectionChance = 0.0001f;
+        z.BaseZombieInfectionChance = 0.0001f;
         z.MinZombieInfectionChance = 0.00001f;
 
         var melee = EnsureComp<MeleeWeaponComponent>(ev.Target); // npc (lower damage, like a flesh)

@@ -28,7 +28,6 @@
           !type:NanotrasenNameGenerator
           prefixCreator: 'G'
       - type: StationBankAccount
-        balance: 20000
         increasePerSecond: 100
       - type: StationTeamMarker
         team: TeamA
@@ -53,7 +52,7 @@
           !type:NanotrasenNameGenerator
           prefixCreator: 'G'
       - type: StationBankAccount
-        balance: 20000
+#        balance: 20000
         increasePerSecond: 100
       - type: StationTeamMarker
         team: TeamB
