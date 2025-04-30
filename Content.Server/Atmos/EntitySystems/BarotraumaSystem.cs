@@ -10,6 +10,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -24,6 +26,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
+        [Dependency] private readonly WoundSystem _wounds = default!; // backmen edit: wounding
 
         private const float UpdateTimer = 1f;
         private float _timer;
@@ -232,6 +235,12 @@ namespace Content.Server.Atmos.EntitySystems
                         continue;
 
                     totalDamage += damage;
+                }
+
+                // backmen edit: Consciousness woundable damage check
+                if (HasComp<ConsciousnessComponent>(uid))
+                {
+                    totalDamage = _wounds.GetBodySeverityPoint(uid);
                 }
 
                 if (totalDamage >= barotrauma.MaxDamage)
