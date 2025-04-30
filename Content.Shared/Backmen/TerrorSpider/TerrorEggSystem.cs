@@ -15,6 +15,8 @@ public sealed class TerrorEggSystem : EntitySystem
     private readonly EntProtoId[] _terrorSpiders = ["MobTerrorGray", "MobTerrorGreen", "MobTerrorRed"];
     private DamageTypePrototype? _blunt;
     private DamageSpecifier? _damage;
+    private float _accumulatedTime;
+    private const float HatchInterval = 5f;
 
     public override void Initialize()
     {
@@ -26,20 +28,20 @@ public sealed class TerrorEggSystem : EntitySystem
 
     private void OnEggRemoved(Entity<EggHolderComponent> ent, ref ComponentShutdown args) => _eggs.Remove(ent.Owner);
 
-    protected override float Threshold { get; set; } = 1f;
-
-    protected override void Update()
+    public override void Update(float frameTime)
     {
         _blunt ??= _prototype.Index<DamageTypePrototype>("Blunt");
         _damage ??= new(_blunt, 1);
 
-        foreach (var egg in _eggs.Values)
-        {
-            egg.Comp.Counter++;
-            _damageable.TryChangeDamage(egg.Owner, _damage, false);
+        _accumulatedTime += frameTime;
 
-            if (egg.Comp.Counter >= 300)
+        if (_accumulatedTime >= HatchInterval)
+        {
+            _accumulatedTime -= HatchInterval;
+
+            foreach (var egg in _eggs.Values)
             {
+                _damageable.TryChangeDamage(egg.Owner, _damage, false);
                 HatchEgg(egg.Owner);
             }
         }
