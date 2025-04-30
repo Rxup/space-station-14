@@ -83,7 +83,7 @@ namespace Content.Server.Administration.Systems
         // Backmen-Start
         private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
 
-        private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
+        private readonly Dictionary<NetUserId, Queue<(string Text, TimeSpan Timestamp)>> _recentMessages = new();
         private const int MaxRecentMessages = 10;
         private const int SpamCheckMessageCount = 3;
         // Backmen-End
@@ -897,37 +897,55 @@ namespace Content.Server.Administration.Systems
         // Backmen-Start
         private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
         {
-            _recentMessages.Enqueue((channelId, text, timestamp));
-
-            if (_recentMessages.Count > MaxRecentMessages)
+            if (!_recentMessages.TryGetValue(channelId, out var userQueue))
             {
-                _recentMessages.Dequeue();
+                userQueue = new Queue<(string, TimeSpan)>();
+                _recentMessages[channelId] = userQueue;
             }
+
+            userQueue.Enqueue((text, timestamp));
+
+            if (userQueue.Count > MaxRecentMessages)
+                userQueue.Dequeue();
         }
 
         private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
         {
-            var lastMessage = _recentMessages
-                .Where(msg => msg.Channel == channelId)
+            if (!_recentMessages.TryGetValue(channelId, out var userQueue) || userQueue.Count == 0)
+                return false;
+
+            var lastMessage = userQueue
                 .OrderByDescending(msg => msg.Timestamp)
                 .FirstOrDefault();
 
-            return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
+            return (currentTime - lastMessage.Timestamp) < _messageCooldown;
         }
 
         private bool IsSpam(NetUserId channelId, string text)
         {
-            var recentMessages = _recentMessages
-                .Where(msg => msg.Channel == channelId)
+            if (!_recentMessages.TryGetValue(channelId, out var userQueue) || userQueue.Count < 5)
+                return false;
+
+            var recentMessages = userQueue
                 .OrderByDescending(msg => msg.Timestamp)
                 .Take(10);
 
-            return recentMessages.All(msg => msg.Text == text) && recentMessages.Count() >= 5;
+            return recentMessages.All(msg => msg.Text == text);
         }
 
         public IEnumerable<(NetUserId Channel, string Text, TimeSpan Timestamp)> GetRecentMessages()
         {
-            return _recentMessages;
+            var result = new List<(NetUserId Channel, string Text, TimeSpan Timestamp)>();
+
+            foreach (var kvp in _recentMessages)
+            {
+                var channelId = kvp.Key;
+                foreach (var (text, timestamp) in kvp.Value)
+                {
+                    result.Add((channelId, text, timestamp));
+                }
+            }
+            return result;
         }
         // Backmen-End
     }
