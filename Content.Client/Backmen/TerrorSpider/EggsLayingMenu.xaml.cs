@@ -7,7 +7,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 
-namespace Content.Client.Backmen.Antags.TerrorSpider;
+namespace Content.Client.Backmen.TerrorSpider;
 
 [GenerateTypedNameReferences]
 public sealed partial class EggsLayingMenu : RadialMenu
@@ -15,16 +15,20 @@ public sealed partial class EggsLayingMenu : RadialMenu
     [Dependency] private readonly EntityManager _entManager = default!;
 
     private SpriteSystem? _sprites;
+
     public event Action<EntProtoId>? EggChosen;
 
     public EggsLayingMenu()
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
+
         _sprites = _entManager.System<SpriteSystem>();
+
         Refresh();
         Open();
     }
+
     public void Refresh()
     {
         var main = FindControl<RadialContainer>("Main");
@@ -36,20 +40,21 @@ public sealed partial class EggsLayingMenu : RadialMenu
 
     private void AddButton(RadialContainer main, string tooltip, Texture sprite, string prototype)
     {
-        var button = new MenuButton()
+        var button = new MenuButton
         {
             StyleClasses = { "RadialMenuButton" },
             SetSize = new Vector2(64f, 64f),
             ToolTip = tooltip,
         };
 
-        var tex = new TextureRect()
+        var tex = new TextureRect
         {
             VerticalAlignment = VAlignment.Center,
             HorizontalAlignment = HAlignment.Center,
             Texture = sprite,
             TextureScale = new Vector2(2f, 2f),
         };
+
         button.OnButtonUp += _ => EggChosen?.Invoke(prototype);
         button.AddChild(tex);
         main.AddChild(button);
