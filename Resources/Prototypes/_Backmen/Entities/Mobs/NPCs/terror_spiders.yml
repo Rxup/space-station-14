@@ -11,7 +11,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -138,6 +137,12 @@
   id: MobTerrorRed
   name: terror red
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: alive
+      sprite: Backmen/Mobs/Animals/TerrorSpiders/knight.rsi
 #  - type: VentCrawler
   - type: MobThresholds
     thresholds:
@@ -178,7 +183,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
+      sprite: Backmen/Mobs/Animals/TerrorSpiders/drone.rsi
 #  - type: VentCrawler
   - type: StealthOnWeb
   - type: StaminaDamageOnHit
@@ -227,8 +232,8 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
-  - type: VentCrawler
+      sprite: Backmen/Mobs/Animals/TerrorSpiders/healer.rsi
+#  - type: VentCrawler
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -279,7 +284,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
+      sprite: Backmen/Mobs/Animals/TerrorSpiders/princess.rsi
 #  - type: VentCrawler
   - type: MobThresholds
     thresholds:
@@ -326,18 +331,18 @@
       enum.EggsLayingUiKey.Key:
         type: EggsLayingBui
 
+# <--- EGGS --->
 - type: entity
   parent: EggSpider
-  id: TerrorGrayEggSpiderFertilized
-  name: egg spider
+  id: BaseTerrorSpiderEgg
+  name: terror egg
+  abstract: true
   components:
   - type: Sprite
-    sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
-    state: egg
+    sprite: Backmen/Objects/Misc/egg.rsi
+    state: icon
   - type: Timer
   - type: TimedSpawner
-    prototypes:
-    - MobTerrorGray
     intervalSeconds: 180
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
@@ -345,37 +350,25 @@
     lifetime: 181
 
 - type: entity
-  parent: EggSpider
-  id: TerrorGreenSpiderFertilized
-  name: egg spider
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDroneEgg
   components:
-  - type: Sprite
-    sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
-    state: egg
-  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorGray
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderHealerEgg
+  components:
   - type: TimedSpawner
     prototypes:
     - MobTerrorGreen
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 181
-    
+
 - type: entity
-  parent: EggSpider
-  id: TerrorRedEggSpiderFertilized
-  name: egg spider
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderKnightEgg
   components:
-  - type: Sprite
-    sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
-    state: egg
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobTerrorRed
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 181

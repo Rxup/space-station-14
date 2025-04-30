@@ -33,9 +33,9 @@ public sealed partial class EggsLayingMenu : RadialMenu
     {
         var main = FindControl<RadialContainer>("Main");
 
-        AddButton(main, "Red", _sprites!.GetPrototypeIcon("MobTerrorRed").TextureFor(Direction.South), "TerrorRedEggSpiderFertilized");
-        AddButton(main, "Green", _sprites.GetPrototypeIcon("MobTerrorGreen").TextureFor(Direction.South), "TerrorGreenSpiderFertilized");
-        AddButton(main, "Gray", _sprites.GetPrototypeIcon("MobTerrorGray").TextureFor(Direction.South), "TerrorGrayEggSpiderFertilized");
+        AddButton(main, "Red", _sprites!.GetPrototypeIcon("MobTerrorRed").TextureFor(Direction.South), "TerrorSpiderKnightEgg");
+        AddButton(main, "Green", _sprites.GetPrototypeIcon("MobTerrorGreen").TextureFor(Direction.South), "TerrorSpiderHealerEgg");
+        AddButton(main, "Gray", _sprites.GetPrototypeIcon("MobTerrorGray").TextureFor(Direction.South), "TerrorSpiderDroneEgg");
     }
 
     private void AddButton(RadialContainer main, string tooltip, Texture sprite, string prototype)

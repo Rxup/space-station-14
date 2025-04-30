@@ -15,9 +15,9 @@ public sealed class EggInjectSystem : EntitySystem
 
     private readonly EntProtoId[] _validEggPrototypes =
     [
-        "TerrorRedEggSpiderFertilized",
-        "TerrorGreenSpiderFertilized",
-        "TerrorGrayEggSpiderFertilized"
+        "TerrorSpiderKnightEgg",
+        "TerrorSpiderHealerEgg",
+        "TerrorSpiderDroneEgg"
     ];
 
     public override void Initialize()
