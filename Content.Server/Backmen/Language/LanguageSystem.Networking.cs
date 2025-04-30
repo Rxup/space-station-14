@@ -27,8 +27,8 @@ public sealed partial class LanguageSystem
         SubscribeLocalEvent<MindContainerComponent, MindAddedMessage>((uid, _, _) => SendLanguageStateToClient(uid));
         SubscribeLocalEvent<MindComponent, MindGotRemovedEvent>((_, _, args) =>
         {
-            if (args.Mind.Comp.Session != null)
-                SendLanguageStateToClient(args.Mind.Comp.Session);
+            if (_mind.TryGetSession(args.Mind.Comp, out var session))
+                SendLanguageStateToClient(session);
         });
     }
 
@@ -48,10 +48,10 @@ public sealed partial class LanguageSystem
     private void SendLanguageStateToClient(EntityUid uid, LanguageSpeakerComponent? comp = null)
     {
         // Try to find a mind inside the entity and notify its session
-        if (!_mind.TryGetMind(uid, out _, out var mindComp) || mindComp.Session == null)
+        if (!_mind.TryGetMind(uid, out _, out var mindComp) || !_mind.TryGetSession(mindComp, out var session))
             return;
 
-        SendLanguageStateToClient(uid, mindComp.Session, comp);
+        SendLanguageStateToClient(uid, session, comp);
     }
 
     private void SendLanguageStateToClient(ICommonSession session, LanguageSpeakerComponent? comp = null)

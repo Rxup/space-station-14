@@ -11,10 +11,8 @@
 - type: latheRecipePack
   id: BorgModulesStatic
   recipes:
-  - BorgModuleCable
-  - BorgModuleFireExtinguisher
-  - BorgModuleRadiationDetection
   - BorgModuleTool
+  - BorgModuleFireExtinguisher
 
 - type: latheRecipePack
   id: BorgLimbsStatic
@@ -38,13 +36,10 @@
   recipes:
   - BorgModuleAdvancedCleaning
   - BorgModuleAdvancedTool
-  - BorgModuleGPS
-  - BorgModuleArtifact
-  - BorgModuleAnomaly
+  - BorgModuleAdvancedChemical
+  - BorgModuleAdvancedMining
   - BorgModuleGardening
   - BorgModuleHarvesting
-  - BorgModuleDefibrillator
-  - BorgModuleAdvancedTreatment
 
 - type: latheRecipePack
   id: MechParts

@@ -129,6 +129,8 @@ namespace Content.IntegrationTests.Tests
             "Convex",
             "Relic",
             "Lavatest", // Lavaland Change
+            "dm01-entryway"
+
         };
 
         /// <summary>

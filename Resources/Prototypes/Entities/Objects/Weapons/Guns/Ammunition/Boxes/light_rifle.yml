@@ -47,6 +47,7 @@
   id: MagazineBoxLightRifle
   name: ammunition box (.30 rifle)
   categories: [ HideSpawnMenu ]
+  description: A cardboard box of .30 rifle rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifle
@@ -62,6 +63,7 @@
   id: MagazineBoxLightRiflePractice
   name: ammunition box (.30 rifle practice)
   categories: [ HideSpawnMenu ]
+  description: A cardboard box of .30 rifle rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
@@ -78,6 +80,7 @@
   parent: BaseMagazineBoxLightRifle
   name: ammunition box (.30 rifle incendiary)
   categories: [ HideSpawnMenu ]
+  description: A cardboard box of .30 rifle rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleIncendiary
@@ -94,6 +97,7 @@
   id: MagazineBoxLightRifleUranium
   name: ammunition box (.30 rifle uranium)
   categories: [ HideSpawnMenu ]
+  description: A cardboard box of .30 rifle rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleUranium

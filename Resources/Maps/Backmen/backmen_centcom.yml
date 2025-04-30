@@ -9894,17 +9894,6 @@ entities:
     - type: NavMap
     - type: BecomesStation
       id: centcomm
-    - type: StationCargoBountyDatabase
-      checkedBounties: []
-      history: []
-      bounties: []
-    - type: StationCargoOrderDatabase
-      orders: []
-    - type: StationCargoShuttle
-      path: /Maps/Shuttles/cargo.yml
-    - type: StationBankAccount
-    - type: TradeStation
-    - type: CargoDeliveryData
   - uid: 6696
     components:
     - type: MetaData

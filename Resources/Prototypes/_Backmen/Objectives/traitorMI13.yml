@@ -64,7 +64,7 @@
   - type: Objective
     icon:
       sprite: Objects/Misc/bureaucracy.rsi
-      state: folder-white
+      state: paper
   - type: MultipleTraitorsRequirement
 
 - type: entity

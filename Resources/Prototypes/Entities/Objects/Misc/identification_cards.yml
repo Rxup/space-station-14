@@ -838,7 +838,7 @@
       job: AtmosphericTechnician
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ IDCardStandard, BaseSyndicateContraband ]
   id: SyndicateIDCard
   name: syndicate ID card
   components:
@@ -856,7 +856,7 @@
         - SyndicateAgent
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ IDCardStandard, BaseMajorContraband ]
   id: PirateIDCard
   name: pirate ID card
   components:
@@ -950,6 +950,40 @@
         - state: iddetective
     - type: PresetIdCard
       job: Detective
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonerIDCard
+  name: prisoner ID card
+  description: A generically printed ID card for scummy prisoners.
+  components:
+  - type: Sprite
+    layers:
+    - state: card_orange
+  - type: Item
+    heldPrefix: orange
+  - type: Access
+    tags:
+    - GenpopEnter
+  - type: GenpopIdCard
+  - type: IdCard
+    jobTitle: job-name-prisoner
+    jobIcon: JobIconPrisoner
+    canMicrowave: false
+  - type: ExpireIdCard
+    expireMessage: genpop-prisoner-id-expire
+    expiredAccess:
+    - GenpopLeave
+  - type: Speech
+    speechVerb: Robotic
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonIdCard
+    - Recyclable
+  - type: StaticPrice # these are infinitely producible.
+    price: 0
 
 - type: entity
   parent: CentcomIDCard
@@ -1051,7 +1085,7 @@
   components:
     - type: Sprite
       layers:
-        - state: wizard 
+        - state: wizard
         - state: sub_department # Backmen
           color: "#433bea"
         - state: frame_head # Backmen
@@ -1070,40 +1104,28 @@
   suffix: Admin
   description: An ID card that gives you access beyond your wildest dreams.
   components:
-    - type: Sprite
-      #    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
-      layers:
-        - state: card_green # Backmen
-        - state: sub_department # Backmen
-          color: "#cb0000"
-        - state: frame_default # Backmen
-          color: "#cb0000"
-        - state: assigned_weh # Backmen
-        - state: idadmin
-    - type: Clothing
-    #    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
-    - type: Item
-      heldPrefix: green
-    - type: IdCard
-      jobTitle: job-title-universal
-      jobIcon: JobIconAdmin
-    - type: Access
-      groups:
-        - AllAccess
-        - Silicon
-      tags:
-        - CentralCommand
-        - NuclearOperative
-        - SyndicateAgent
-        - Wizard
-    - type: Tag #  Ignore Chameleon tags
-      tags:
-        - DoorBumpOpener
-    - type: AgentIDCard
-    - type: ActivatableUI
-      key: enum.AgentIDCardUiKey.Key
-      inHandsOnly: true
-    - type: UserInterface
-      interfaces:
-        enum.AgentIDCardUiKey.Key:
-          type: AgentIDCardBoundUserInterface
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    layers:
+    - state: admin
+  - type: Clothing
+#    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
+  - type: Item
+    heldPrefix: green
+  - type: IdCard
+    jobTitle: job-title-universal
+    jobIcon: JobIconAdmin
+  - type: Access
+    groups:
+    - AdminAllAccess
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+  - type: AgentIDCard
+  - type: ActivatableUI
+    key: enum.AgentIDCardUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.AgentIDCardUiKey.Key:
+        type: AgentIDCardBoundUserInterface
