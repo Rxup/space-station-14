@@ -58,6 +58,8 @@
   - type: Inventory
     templateId: ratqueen
   - type: InventorySlots
+  - type: Loadout
+    prototypes: [ RatQueenGear ]
   - type: Stripping
   - type: Strippable
   - type: UserInterface
@@ -91,13 +93,16 @@
   name: ID карта Королевы крыс
   components:
   - type: Sprite
+    sprite: _Ataraxia/Objects/Misc/id_cards.rsi # Ataraxia
+    scale: 0.9, 0.9 # Ataraxia
     layers:
-    - state: card_centcom # Backmen
-    - state: sub_department # Backmen
-      color: "#0F4162"
-    - state: frame_head # Backmen
-      color: "#0F4162"
-    - state: idintern-service
+    - state: card_red
+    - state: sub_department
+      color: "#9c4300"
+    - state: frame_head
+      color: "#ff7e00"
+    - state: assigned_centcom
+    - state: idratqueen
   - type: Clothing
     slots:
     - idcard

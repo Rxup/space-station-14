@@ -37,7 +37,7 @@
 - type: entity
   id: LeftLegQuen
   categories: [ HideSpawnMenu ]
-  parent: [PartAnimal, BaseRightArm]
+  parent: [PartAnimal, BaseLeftLeg]
   components:
   - type: Sprite
     sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
@@ -46,7 +46,7 @@
 - type: entity
   id: RightLegQuen
   categories: [ HideSpawnMenu ]
-  parent: [PartAnimal, BaseRightArm]
+  parent: [PartAnimal, BaseRightLeg]
   components:
   - type: Sprite
     sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
