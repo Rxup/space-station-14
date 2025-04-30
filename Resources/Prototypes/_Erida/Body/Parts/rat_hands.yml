@@ -1,6 +1,6 @@
 - type: entity
   id: LeftArmRatQueen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [PartAnimal, BaseLeftArm]
   components:
   - type: Sprite
@@ -9,7 +9,7 @@
 
 - type: entity
   id: RightArmRatQueen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [PartAnimal, BaseRightArm]
   components:
   - type: Sprite
@@ -18,7 +18,7 @@
 
 - type: entity
   id: LeftHandRatQueen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [PartAnimal, BaseLeftHand]
   components:
   - type: Sprite
@@ -27,12 +27,48 @@
 
 - type: entity
   id: RightHandRatQueen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [PartAnimal, BaseRightHand]
   components:
   - type: Sprite
     sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
     state: "r_hand"
+
+- type: entity
+  id: LeftLegQuen
+  categories: [ HideSpawnMenu ]
+  parent: [PartAnimal, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegQuen
+  categories: [ HideSpawnMenu ]
+  parent: [PartAnimal, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: RightFootQuen
+  categories: [ HideSpawnMenu ]
+  parent: [PartAnimal, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "r_foot"
+
+- type: entity
+  id: LeftFootQuen
+  categories: [ HideSpawnMenu ]
+  parent: [PartAnimal, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "l_foot"
 
 
 - type: body
@@ -51,18 +87,29 @@
       connections:
       - right_arm
       - left_arm
-      - legs
+      - right_leg
+      - left_leg
     right_arm:
       part: RightArmRatQueen
+      connections:
+      - right_hand
+    right_hand:
+      part: RightHandRatQueen
     left_arm:
       part: LeftArmRatQueen
       connections:
       - left_hand
     left_hand:
       part: LeftHandRatQueen
-    legs:
-      part: RightHandRatQueen
+    right_leg:
+      part: RightLegQuen
       connections:
-      - feet
-    feet:
-      part: FeetAnimal
+      - right_foot
+    left_leg:
+      part: LeftLegQuen
+      connections:
+      - left_foot
+    right_foot:
+      part: RightFootQuen
+    left_foot:
+      part: LeftFootQuen

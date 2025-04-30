@@ -7,7 +7,6 @@
     uiWindowPos: 1,2
     strippingWindowPos: 0,0
     displayName: Head
-    offset: 0, -0.11
   - name: ears
     slotTexture: ears
     slotFlags: EARS
@@ -15,19 +14,16 @@
     uiWindowPos: 0,2
     strippingWindowPos: 1,2
     displayName: Ears
-    offset: 0, -0.11
   - name: neck
     slotTexture: neck
     slotFlags: NECK
-    uiWindowPos: 0,2
+    uiWindowPos: 0,3
     strippingWindowPos: 0,1
     displayName: Neck
-    offset: 0, -0.11
   - name: id
     slotTexture: id
     fullTextureName: template_small
     slotFlags: IDCARD
-    slotGroup: SecondHotbar
     stripTime: 6
     uiWindowPos: 2,1
     strippingWindowPos: 2,4
