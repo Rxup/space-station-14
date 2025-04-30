@@ -26,6 +26,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Database;
 
 namespace Content.Server.Administration.Systems
 {
@@ -45,6 +46,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly GptAhelpSystem _gpt = default!;
+        [Dependency] private readonly IBanManager _banManager = default!; // Backmen
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -77,6 +79,14 @@ namespace Content.Server.Administration.Systems
         // Maximum length a message can be before it is cut off
         // Should be shorter than DescriptionMax
         private const ushort MessageLengthCap = 3000;
+
+        // Backmen-Start
+        private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
+
+        private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
+        private const int MaxRecentMessages = 10;
+        private const int SpamCheckMessageCount = 3;
+        // Backmen-End
 
         // Text to be used to cut off messages that are too long. Should be shorter than MessageLengthCap
         private const string TooLongText = "... **(too long)**";
@@ -649,6 +659,18 @@ namespace Content.Server.Administration.Systems
                 return;
             }
 
+            // Backmen-Start
+            var currentTime = _timing.RealTime;
+
+            if (IsOnCooldown(message.UserId, currentTime))
+                return;
+
+            if (IsSpam(message.UserId, message.Text))
+                _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Нехуй спамить.");
+
+            AddToRecentMessages(message.UserId, message.Text, currentTime);
+            // Backmen-End
+
             if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
@@ -871,6 +893,43 @@ namespace Content.Server.Administration.Systems
             /// </summary>
             public bool OnCall;
         }
+
+        // Backmen-Start
+        private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
+        {
+            _recentMessages.Enqueue((channelId, text, timestamp));
+
+            if (_recentMessages.Count > MaxRecentMessages)
+            {
+                _recentMessages.Dequeue();
+            }
+        }
+
+        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
+        {
+            var lastMessage = _recentMessages
+                .Where(msg => msg.Channel == channelId)
+                .OrderByDescending(msg => msg.Timestamp)
+                .FirstOrDefault();
+
+            return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
+        }
+
+        private bool IsSpam(NetUserId channelId, string text)
+        {
+            var recentMessages = _recentMessages
+                .Where(msg => msg.Channel == channelId)
+                .OrderByDescending(msg => msg.Timestamp)
+                .Take(10);
+
+            return recentMessages.All(msg => msg.Text == text) && recentMessages.Count() >= 5;
+        }
+
+        public IEnumerable<(NetUserId Channel, string Text, TimeSpan Timestamp)> GetRecentMessages()
+        {
+            return _recentMessages;
+        }
+        // Backmen-End
     }
 
     public sealed class AHelpMessageParams
