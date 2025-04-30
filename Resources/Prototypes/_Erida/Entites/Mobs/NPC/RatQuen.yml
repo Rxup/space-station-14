@@ -50,7 +50,7 @@
   - type: Emoting
   - type: Body
     prototype: RatHands
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 2 # TODO: More than 1 leg
   - type: Hands
   - type: Puller
     needsHands: false

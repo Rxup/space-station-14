@@ -85,31 +85,31 @@
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
-    right_arm:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+    right arm:
       part: RightArmRatQueen
       connections:
-      - right_hand
-    right_hand:
+      - right hand
+    right hand:
       part: RightHandRatQueen
-    left_arm:
+    left arm:
       part: LeftArmRatQueen
       connections:
-      - left_hand
-    left_hand:
+      - left hand
+    left hand:
       part: LeftHandRatQueen
-    right_leg:
+    right leg:
       part: RightLegQuen
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegQuen
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootQuen
-    left_foot:
+    left foot:
       part: LeftFootQuen
