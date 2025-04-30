@@ -32,7 +32,7 @@ namespace Content.Server.Atmos.EntitySystems
         private float _timer;
 
         private bool _barotraumaEnabled = true; // Backmen edit
-
+        private EntityQuery<ConsciousnessComponent>  _consciousnessQuery; // Backmen edit
         public override void Initialize()
         {
             SubscribeLocalEvent<PressureProtectionComponent, GotEquippedEvent>(OnPressureProtectionEquipped);
@@ -44,6 +44,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
 
             Subs.CVar(_cfg, CCVars.GameBarotraumaEnabled, value => _barotraumaEnabled = value, true); // Backmen edit
+            _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>(); // Backmen edit
         }
 
         private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
@@ -237,11 +238,12 @@ namespace Content.Server.Atmos.EntitySystems
                     totalDamage += damage;
                 }
 
-                // backmen edit: Consciousness woundable damage check
-                if (HasComp<ConsciousnessComponent>(uid))
+                //start-backmen edit: Consciousness woundable damage check
+                if (_consciousnessQuery.HasComp(uid))
                 {
                     totalDamage = _wounds.GetBodySeverityPoint(uid);
                 }
+                //end-backmen edit: Consciousness woundable damage check
 
                 if (totalDamage >= barotrauma.MaxDamage)
                     continue;
