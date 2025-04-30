@@ -6,6 +6,7 @@ using Content.Shared.Backmen.CartridgeLoader.Cartridges;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
+using Content.Shared.PDA.Ringer;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.Containers;

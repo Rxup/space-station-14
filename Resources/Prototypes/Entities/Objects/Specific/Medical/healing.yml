@@ -38,8 +38,14 @@
         Caustic: -1.5
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: Ointment
     count: 10
@@ -90,8 +96,14 @@
     healBleedsThreshold: 20
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: RegenerativeMesh
     count: 10
@@ -106,6 +118,15 @@
   - type: Stack
     stackType: RegenerativeMesh
     count: 1
+
+- type: entity
+  parent: RegenerativeMesh
+  id: RegenerativeMeshLingering0
+  suffix: 0, Lingering
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
 
 - type: entity
   name: bruise pack
@@ -129,8 +150,14 @@
         Brute: -15 # 5 for each type in the group
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: Brutepack
     count: 10
@@ -180,8 +207,14 @@
     healBleedsThreshold: 12
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: MedicatedSuture
     count: 10
@@ -196,6 +229,15 @@
   - type: Stack
     stackType: MedicatedSuture
     count: 1
+
+- type: entity
+  parent: MedicatedSuture
+  id: MedicatedSutureLingering0
+  suffix: 0, Lingering
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
 
 - type: entity
   name: blood pack
@@ -220,8 +262,14 @@
     ModifyBloodLevel: 20 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: Bloodpack
     count: 10
@@ -244,6 +292,7 @@
   components:
   - type: Stack
     lingering: true
+    count: 10
 
 - type: entity
   parent: BaseHealingItem
@@ -267,6 +316,26 @@
         - SecBeltEquip
     - type: Sprite
       state: tourniquet
+    - type: Healing
+      damageContainers:
+        - Biological
+      damage:
+        groups:
+          Brute: 5 # Tourniquets HURT!
+        types:
+          Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
+      bloodlossModifier: -10 # Tourniquets stop bleeding
+      delay: 0.5
+      healingBeginSound:
+        path: "/Audio/Items/Medical/brutepack_begin.ogg"
+        params:
+          volume: 1.0
+          variation: 0.125
+      healingEndSound:
+        path: "/Audio/Items/Medical/brutepack_end.ogg"
+        params:
+          volume: 1.0
+          variation: 0.125
 
 - type: entity
   name: roll of gauze
@@ -297,8 +366,14 @@
     healBleedsThreshold: 16
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: Gauze
     count: 10
@@ -359,8 +434,14 @@
     selfHealPenaltyMultiplier: 0
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
 
 # Pills
 - type: entity

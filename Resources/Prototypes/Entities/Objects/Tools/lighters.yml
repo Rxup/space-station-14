@@ -88,13 +88,16 @@
     radius: 1.1 #smallest possible
     color: orange
   - type: ItemTogglePointLight
-  - type: Cautery # Shitmed
+  #start-Shitmed
+  - type: Cautery
     speed: 0.45
-  - type: SurgeryTool # Shitmed
+  - type: SurgeryTool
     startSound:
       collection: lighterOnSounds
     endSound:
       collection: lighterOffSounds
+   #end-Shitmed
+  - type: PhysicalComposition
 
 - type: entity
   name: cheap lighter
