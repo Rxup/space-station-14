@@ -1,9 +1,9 @@
 - type: entity
   parent: MobRatKing
   id: MobRatQueen
-  name: rat queen
+  name: Королева Крыс
   suffix: Король Крыс
-  description: Shes da rat. He make da roolz.
+  description: Она крыса с смачной задницей
   components:
   - type: Sprite
     sprite: _Erida\Mobs\Animals\mommy_rat.rsi
@@ -64,8 +64,10 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+       type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+       type: SurgeryBui
   - type: RandomMetadata
     nameSegments:
     - RegalRatQueenNameKingdom
@@ -82,13 +84,6 @@
   - type: GuideHelp
     guides:
     - RatQueen
-  # start-backmen: surgery
-  - type: SurgeryTarget
-  - type: UserInterface
-    interfaces:
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
-  # end-backmen: surgery
 
 - type: startingGear
   id: RatQueenGear
