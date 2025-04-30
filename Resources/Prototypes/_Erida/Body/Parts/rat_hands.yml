@@ -1,0 +1,68 @@
+- type: entity
+  id: LeftArmRatQueen
+  noSpawn: true
+  parent: [PartAnimal, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmRatQueen
+  noSpawn: true
+  parent: [PartAnimal, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandRatQueen
+  noSpawn: true
+  parent: [PartAnimal, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandRatQueen
+  noSpawn: true
+  parent: [PartAnimal, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Ataraxia/Mobs/Species/Xenomorph_hybrid/parts.rsi
+    state: "r_hand"
+
+
+- type: body
+  id: RatHands
+  name: "RatHands"
+  root: torso
+  slots:
+    torso:
+      part: TorsoRat
+      organs:
+        lungs: OrganRatLungs
+        stomach: OrganRatStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+      connections:
+      - right_arm
+      - left_arm
+      - legs
+    right_arm:
+      part: RightArmRatQueen
+    left_arm:
+      part: LeftArmRatQueen
+      connections:
+      - left_hand
+    left_hand:
+      part: LeftHandRatQueen
+    legs:
+      part: RightHandRatQueen
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
