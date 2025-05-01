@@ -3,6 +3,8 @@
   parent: Clothing
   id: UnsensoredClothingUniformBase
   components:
+  - type: CoveredSlot # Backmen
+    slots: [undershirt, underpants]
   - type: Sprite
     state: icon
   - type: Clothing
@@ -33,6 +35,8 @@
   parent: UnsensoredClothingUniformBase
   id: UnsensoredClothingUniformSkirtBase
   components:
+  - type: CoveredSlot # Backmen
+    slots: [undershirt]
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
@@ -43,6 +47,8 @@
   parent: UnsensoredClothingUniformBase
   id: ClothingUniformBase
   components:
+  - type: CoveredSlot # Backmen
+    slots: [undershirt, underpants]
   - type: SuitSensor
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -57,6 +63,8 @@
   parent: ClothingUniformBase
   id: ClothingUniformSkirtBase
   components:
+  - type: CoveredSlot # Backmen
+    slots: [undershirt]
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop

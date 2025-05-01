@@ -138,6 +138,13 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
+      - type: LanguageKnowledge #backmen: languages
+        speaks:
+        - TauCetiBasic
+        - Codespeak
+        understands:
+        - TauCetiBasic
+        - Codespeak
       mindRoles:
       - MindRoleNukeopsCommander
     - prefRoles: [ NukeopsMedic ]

@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseBlueprint
+  id: BlueprintInteQ
+  name: InteQ blueprint
+  description: A blueprint with a schematic of a InteQ contraband. It can be inserted into an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - CaseInteQ
+    - MagazineBoxLight57x28InteQ
+    - MagazineBoxLight762x39InteQ
+    - MagazineBoxShotgunInteQ
+    - ClothingEyesGogglessInteQ
+    - PlasmaSword
+    - PlasmaSwordAlt
+    - ExGrenade
+    - SingularityGrenade
+    - WhiteholeGrenade
+    - C4
+    - EmpGrenade
+
+- type: entity
+  parent: BaseBlueprint
+  id: BlueprintSyndicate
+  name: Syndicate blueprint
+  description: A blueprint with a schematic of a Syndicate contraband. It can be inserted into an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - SyndicateJawsOfLife
+    - SyndicateWhistle
+    - ClothingBeltSyndieHolster
+    - TowelColorSyndicate
+    - ExGrenade
+    - SingularityGrenade
+    - WhiteholeGrenade
+    - C4
+    - EmpGrenade
+    - PenExplodingBox
+    - CyberPen
+    - RadioJammer
+    - CameraBug
+    - ClothingShoesBootsMagSyndie
