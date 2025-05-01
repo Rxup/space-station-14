@@ -16,6 +16,7 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
     [Dependency] private readonly IEntityNetworkManager _net = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
+    public DollDisplayState DisplayState = DollDisplayState.Wounds;
     private SpriteSystem? _spriteSystem;
     private TargetingComponent? _targetingComponent;
     private TargetingControl? TargetingControl => UIManager.GetActiveUIWidgetOrNull<TargetingControl>();
@@ -47,7 +48,7 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
             return;
 
         TargetingControl.SetBodyPartsVisible(_targetingComponent.Target);
-        TargetingControl.SetTextures(_targetingComponent.BodyStatus);
+        TargetingControl.SetTextures(_targetingComponent);
     }
 
     public void AddTargetingControl(TargetingComponent component)
@@ -63,7 +64,7 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
             return;
 
         TargetingControl.SetBodyPartsVisible(_targetingComponent.Target);
-        TargetingControl.SetTextures(_targetingComponent.BodyStatus);
+        TargetingControl.SetTextures(_targetingComponent);
     }
 
     public void RemoveTargetingControl()
@@ -89,7 +90,25 @@ public sealed class TargetingUIController : UIController, IOnStateEntered<Gamepl
     public void UpdatePartStatusControl(TargetingComponent component)
     {
         if (TargetingControl != null && _targetingComponent != null)
-            TargetingControl.SetTextures(_targetingComponent.BodyStatus);
+            TargetingControl.SetTextures(_targetingComponent);
+    }
+
+    public void ToggleDollMode()
+    {
+        switch (DisplayState)
+        {
+            case DollDisplayState.Wounds:
+                DisplayState = DollDisplayState.Temperature;
+                break;
+            case DollDisplayState.Temperature:
+                DisplayState = DollDisplayState.Wounds;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        if (_targetingComponent != null)
+            UpdatePartStatusControl(_targetingComponent);
     }
 
     public Texture GetTexture(SpriteSpecifier specifier)

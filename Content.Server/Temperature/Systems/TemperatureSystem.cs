@@ -1,10 +1,16 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.Targeting;
 using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
+using Content.Shared.Backmen.Surgery.Body;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Inventory;
@@ -17,7 +23,7 @@ using Content.Shared.Projectiles;
 
 namespace Content.Server.Temperature.Systems;
 
-public sealed class TemperatureSystem : EntitySystem
+public sealed partial class TemperatureSystem : EntitySystem // backmen change: make TemperatureSystem partial
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
@@ -41,6 +47,8 @@ public sealed class TemperatureSystem : EntitySystem
 
     public override void Initialize()
     {
+        InitializeBkm(); // backmen change
+
         SubscribeLocalEvent<TemperatureComponent, OnTemperatureChangeEvent>(EnqueueDamage);
         SubscribeLocalEvent<TemperatureComponent, AtmosExposedUpdateEvent>(OnAtmosExposedUpdate);
         SubscribeLocalEvent<TemperatureComponent, RejuvenateEvent>(OnRejuvenate);
@@ -87,6 +95,7 @@ public sealed class TemperatureSystem : EntitySystem
             ForceChangeTemperature(uid, temp.CurrentTemperature - degrees, temp);
         }
 
+        UpdateBkm(frameTime); // backmen change
         UpdateDamage(frameTime);
     }
 
@@ -115,10 +124,15 @@ public sealed class TemperatureSystem : EntitySystem
         ShouldUpdateDamage.Clear();
     }
 
-    public void ForceChangeTemperature(EntityUid uid, float temp, TemperatureComponent? temperature = null)
+    public void ForceChangeTemperature(EntityUid uid, float temp, TemperatureComponent? temperature = null, TargetBodyPart parts = TargetBodyPart.All)
     {
         if (!Resolve(uid, ref temperature))
             return;
+
+        // backmen change start
+        if (TryForceChangeBodyHeat(uid, temp, parts))
+            return;
+        // backmen change end
 
         float lastTemp = temperature.CurrentTemperature;
         float delta = temperature.CurrentTemperature - temp;
@@ -128,17 +142,22 @@ public sealed class TemperatureSystem : EntitySystem
     }
 
     public void ChangeHeat(EntityUid uid, float heatAmount, bool ignoreHeatResistance = false,
-        TemperatureComponent? temperature = null)
+        TemperatureComponent? temperature = null, TargetBodyPart parts = TargetBodyPart.Head)
     {
         if (!Resolve(uid, ref temperature, false))
             return;
 
         if (!ignoreHeatResistance)
         {
-            var ev = new ModifyChangedTemperatureEvent(heatAmount);
+            var ev = new ModifyChangedTemperatureEvent(heatAmount, parts);
             RaiseLocalEvent(uid, ev);
             heatAmount = ev.TemperatureDelta;
         }
+
+        // backmen change start
+        if (TryChangeBodyHeat(uid, heatAmount, ignoreHeatResistance, parts))
+            return;
+        // backmen change end
 
         float lastTemp = temperature.CurrentTemperature;
         temperature.CurrentTemperature += heatAmount / GetHeatCapacity(uid, temperature);
@@ -183,7 +202,13 @@ public sealed class TemperatureSystem : EntitySystem
 
     private void OnRejuvenate(EntityUid uid, TemperatureComponent comp, RejuvenateEvent args)
     {
-        ForceChangeTemperature(uid, Atmospherics.T20C, comp);
+        // backmen change start
+        var temp = Atmospherics.T20C;
+        if (TryComp<ThermalRegulatorComponent>(uid, out var thermalRegulation))
+            temp = thermalRegulation.NormalBodyTemperature;
+        // backmen change end
+
+        ForceChangeTemperature(uid, temp, comp);
     }
 
     private void ServerAlert(EntityUid uid, AlertsComponent status, OnTemperatureChangeEvent args)
@@ -248,10 +273,23 @@ public sealed class TemperatureSystem : EntitySystem
         ShouldUpdateDamage.Add(temperature);
     }
 
-    private void ChangeDamage(EntityUid uid, TemperatureComponent temperature)
+    private void ChangeDamage(EntityUid damage, TemperatureComponent temperature) // backmen change: renamed "uid" to "damage"
     {
+        // backmen change start
+        var uid = damage;
+        float multiplier = 1;
+        // If we damage a body part, we're redirecting the damage to the body owner.
+        if (TryComp<BodyPartComponent>(uid, out var bodyPart) && bodyPart.Body != null)
+        {
+            uid = bodyPart.Body.Value;
+            multiplier /= _body.GetBodyChildren(uid).ToList().Count;
+        }
+        else if (!HasComp<DamageableComponent>(uid))
+            return;
+
         if (!HasComp<DamageableComponent>(uid))
             return;
+        // backmen change end
 
         // See this link for where the scaling func comes from:
         // https://www.desmos.com/calculator/0vknqtdvq9
@@ -274,7 +312,8 @@ public sealed class TemperatureSystem : EntitySystem
 
             var diff = Math.Abs(temperature.CurrentTemperature - heatDamageThreshold);
             var tempDamage = c / (1 + a * Math.Pow(Math.E, -heatK * diff)) - y;
-            _damageable.TryChangeDamage(uid, temperature.HeatDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
+            tempDamage *= multiplier; // backmen change: scale the damage if we redirect damage from body part to its owner.
+            _damageable.TryChangeDamage(uid, temperature.HeatDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false, partMultiplier: 0f); // backmen change: body parts temperature damage is handled elsewhere.
         }
         else if (temperature.CurrentTemperature <= coldDamageThreshold)
         {
@@ -287,7 +326,8 @@ public sealed class TemperatureSystem : EntitySystem
             var diff = Math.Abs(temperature.CurrentTemperature - coldDamageThreshold);
             var tempDamage =
                 Math.Sqrt(diff * (Math.Pow(temperature.DamageCap.Double(), 2) / coldDamageThreshold));
-            _damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false);
+            tempDamage *= multiplier; // backmen change: scale the damage if we redirect damage from body part to its owner.
+            _damageable.TryChangeDamage(uid, temperature.ColdDamage * tempDamage, ignoreResistances: true, interruptsDoAfters: false, partMultiplier: 0f); // backmen change: body parts temperature damage is handled elsewhere.
         }
         else if (temperature.TakingDamage)
         {
@@ -299,6 +339,18 @@ public sealed class TemperatureSystem : EntitySystem
     private void OnTemperatureChangeAttempt(EntityUid uid, TemperatureProtectionComponent component,
         InventoryRelayedEvent<ModifyChangedTemperatureEvent> args)
     {
+        // Protection doesn't apply if target body part is something that our armor doesn't cover.
+        if (args.Args.TargetBodyPart != null && TryComp<BodyCoverageComponent>(uid, out var armorCoverage))
+        {
+            var parts = _body.ConvertTargetBodyParts(args.Args.TargetBodyPart.Value);
+
+            foreach (var (part, _) in parts)
+            {
+                if (!armorCoverage.Coverage.Contains(part))
+                    return;
+            }
+        }
+
         var coefficient = args.Args.TemperatureDelta < 0
             ? component.CoolingCoefficient
             : component.HeatingCoefficient;

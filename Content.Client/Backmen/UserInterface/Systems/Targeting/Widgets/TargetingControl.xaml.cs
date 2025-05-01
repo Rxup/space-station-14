@@ -14,6 +14,7 @@ public sealed partial class TargetingControl : UIWidget
     private readonly TargetingUIController _controller;
     private readonly Dictionary<TargetBodyPart, TextureButton> _bodyPartControls;
     private readonly Dictionary<TargetBodyPart, TextureRect> _partStatusControls;
+    private readonly TextureButton _dollModeControl;
 
     public TargetingControl()
     {
@@ -51,11 +52,16 @@ public sealed partial class TargetingControl : UIWidget
             { TargetBodyPart.RightFoot, DollRightFoot },
         };
 
+        _dollModeControl = DollModeButton;
+
         foreach (var bodyPartButton in _bodyPartControls)
         {
             bodyPartButton.Value.MouseFilter = MouseFilterMode.Stop;
             bodyPartButton.Value.OnPressed += _ => SetActiveBodyPart(bodyPartButton.Key);
         }
+
+        _dollModeControl.MouseFilter = MouseFilterMode.Stop;
+        _dollModeControl.OnPressed += _ => _controller.ToggleDollMode();
 
         TargetDoll.Texture = Theme.ResolveTexture("target_doll");
         BodyDoll.Texture = Theme.ResolveTexture("SlotBackground");
@@ -71,13 +77,38 @@ public sealed partial class TargetingControl : UIWidget
         }
     }
 
-    public void SetTextures(Dictionary<TargetBodyPart, WoundableSeverity> state)
+    public void SetTextures(TargetingComponent component)
+    {
+        var display = _controller.DisplayState;
+        switch (display)
+        {
+            case DollDisplayState.Wounds:
+                SetWoundsTextures(component.BodyStatus);
+                break;
+            case DollDisplayState.Temperature:
+                SetTemperatureTextures(component.TemperatureBodyStatus);
+                break;
+        }
+    }
+
+    private void SetWoundsTextures(Dictionary<TargetBodyPart, WoundableSeverity> state)
     {
         foreach (var (bodyPart, integrity) in state)
         {
             string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
             int enumValue = (int) integrity;
             var texture = new SpriteSpecifier.Rsi(new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
+            _partStatusControls[bodyPart].Texture = _controller.GetTexture(texture);
+        }
+    }
+
+    private void SetTemperatureTextures(Dictionary<TargetBodyPart, TemperatureSeverity> state)
+    {
+        foreach (var (bodyPart, integrity) in state)
+        {
+            string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
+            int enumValue = (int) integrity;
+            var texture = new SpriteSpecifier.Rsi(new ResPath($"/Textures/Interface/Targeting/Temperature/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
             _partStatusControls[bodyPart].Texture = _controller.GetTexture(texture);
         }
     }

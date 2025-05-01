@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseItem
+  id: DebugThermometer
+  name: temperature test
+  description: Exchanges temperature with all other thermometers in existance.
+  suffix: DEBUG
+  components:
+  - type: Tag
+    tags:
+      - Debug
+  - type: Sprite
+    sprite: Objects/Misc/skub.rsi
+    state: icon
+  - type: DebugTermomether
+  - type: TriggerOnUse
+  - type: AddTemperatureOnTrigger
+    heatAmount: 20000.0
+  - type: TemperatureExamine
+  - type: Temperature
+  - type: TemperatureConductor
+    thickness: 0.02
+    area: 0.02
+    conductivity: 0.5

@@ -131,6 +131,25 @@ public sealed partial class TargetingComponent : Component
     };
 
     /// <summary>
+    /// What is the current temperature of each body part?
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public Dictionary<TargetBodyPart, TemperatureSeverity> TemperatureBodyStatus = new()
+    {
+        { TargetBodyPart.Head, TemperatureSeverity.Normal },
+        { TargetBodyPart.Chest, TemperatureSeverity.Normal },
+        { TargetBodyPart.Groin, TemperatureSeverity.Normal },
+        { TargetBodyPart.LeftArm, TemperatureSeverity.Normal },
+        { TargetBodyPart.LeftHand, TemperatureSeverity.Normal },
+        { TargetBodyPart.RightArm, TemperatureSeverity.Normal },
+        { TargetBodyPart.RightHand, TemperatureSeverity.Normal },
+        { TargetBodyPart.LeftLeg, TemperatureSeverity.Normal },
+        { TargetBodyPart.LeftFoot, TemperatureSeverity.Normal },
+        { TargetBodyPart.RightLeg, TemperatureSeverity.Normal },
+        { TargetBodyPart.RightFoot, TemperatureSeverity.Normal },
+    };
+
+    /// <summary>
     /// What noise does the entity play when swapping targets?
     /// </summary>
     [DataField]

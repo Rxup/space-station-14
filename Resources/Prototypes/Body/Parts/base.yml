@@ -34,6 +34,12 @@
       path: /Audio/Medical/Surgery/organ1.ogg
     endSound:
       path: /Audio/Medical/Surgery/organ2.ogg
+  - type: Temperature
+    specificHeat: 1000.0
+  - type: TemperatureConductor
+    thickness: 0.02
+    area: 0.03
+    conductivity: 0.8
   # end-backmen: surgery
   - type: ContainerContainer
     containers:

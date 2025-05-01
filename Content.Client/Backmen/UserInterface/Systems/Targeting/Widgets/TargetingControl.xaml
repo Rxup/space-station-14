@@ -57,6 +57,21 @@
                     Name="DollRightFoot"
                     Stretch="KeepAspectCentered"
                     SetSize="96 96"/>
+                <TextureRect
+                    Name="IconDoll"
+                    Stretch="KeepAspectCentered"
+                    SetSize="96 96"/>
+                <TextureButton
+                    Name="DollModeButton"
+                    MinSize="18 18"
+                    VerticalAlignment="Bottom">
+                    <TextureRect
+                        TexturePath="/Textures/Interface/Targeting/Status/temperature.png"
+                        Stretch="KeepAspectCentered"
+                        SetSize="96 96"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"/>
+                </TextureButton>
             </PanelContainer>
         </TextureRect>
     </Control>
