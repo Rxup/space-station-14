@@ -7,6 +7,7 @@
     contents:
     - id: InteQSecretDocument
     - id: BaseInteQUplinkRadio
+    - id: ManualOldFastCodes
     - id: ClothingBackpackChameleonFill
     - id: SecurityTechFabCircuitboard
     - id: AngleGrinder
@@ -23,6 +24,8 @@
     - id: AntiPsychicKnife
     - id: CombatKnife
     - id: CrowbarOrange
+    - id: ManualOldFastCodes
+      prob: 0.25
     - id: MagazineBoxLight57x28InteQ
     - id: FlashlightSeclite
     - id: Emag
@@ -39,6 +42,8 @@
     - id: AntiPsychicKnife
     - id: CombatKnife
     - id: CrowbarOrange
+    - id: ManualOldFastCodes
+      prob: 0.25
     - id: MagazineBoxLight57x28InteQ
     - id: FlashlightSeclite
 
@@ -52,6 +57,8 @@
     - id: AntiPsychicKnife
     - id: CombatKnife
     - id: CrowbarOrange
+    - id: ManualOldFastCodes
+      prob: 0.25
     - id: MagazineBoxLight57x28InteQ
     - id: FlashlightSeclite
     - id: MedkitCombatFilled
