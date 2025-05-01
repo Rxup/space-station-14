@@ -10,6 +10,9 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 
@@ -23,12 +26,13 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
+        [Dependency] private readonly WoundSystem _wounds = default!; // backmen edit: wounding
 
         private const float UpdateTimer = 1f;
         private float _timer;
 
         private bool _barotraumaEnabled = true; // Backmen edit
-
+        private EntityQuery<ConsciousnessComponent>  _consciousnessQuery; // Backmen edit
         public override void Initialize()
         {
             SubscribeLocalEvent<PressureProtectionComponent, GotEquippedEvent>(OnPressureProtectionEquipped);
@@ -40,6 +44,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
 
             Subs.CVar(_cfg, CCVars.GameBarotraumaEnabled, value => _barotraumaEnabled = value, true); // Backmen edit
+            _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>(); // Backmen edit
         }
 
         private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
@@ -207,7 +212,7 @@ namespace Content.Server.Atmos.EntitySystems
 
         public override void Update(float frameTime)
         {
-            if (!_barotraumaEnabled)
+            if (!_barotraumaEnabled) // backmen edit
                 return;
 
             _timer += frameTime;
@@ -233,6 +238,13 @@ namespace Content.Server.Atmos.EntitySystems
                     totalDamage += damage;
                 }
 
+                //start-backmen edit: Consciousness woundable damage check
+                if (_consciousnessQuery.HasComp(uid))
+                {
+                    totalDamage = _wounds.GetBodySeverityPoint(uid);
+                }
+                //end-backmen edit: Consciousness woundable damage check
+
                 if (totalDamage >= barotrauma.MaxDamage)
                     continue;
 
@@ -254,7 +266,13 @@ namespace Content.Server.Atmos.EntitySystems
                 if (pressure <= Atmospherics.HazardLowPressure)
                 {
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * Atmospherics.LowPressureDamage, true, false, partMultiplier: 0.5f); // backmen
+                    _damageableSystem.TryChangeDamage(
+                        uid,
+                        barotrauma.Damage * Atmospherics.LowPressureDamage,
+                        true,
+                        false,
+                        partMultiplier: 0.5f,
+                        targetPart: TargetBodyPart.All); // backmen
                     if (!barotrauma.TakingDamage)
                     {
                         barotrauma.TakingDamage = true;
@@ -268,7 +286,13 @@ namespace Content.Server.Atmos.EntitySystems
                     var damageScale = MathF.Min(((pressure / Atmospherics.HazardHighPressure) - 1) * Atmospherics.PressureDamageCoefficient, Atmospherics.MaxHighPressureDamage);
 
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * damageScale, true, false, partMultiplier: 0.5f); // backmen
+                    _damageableSystem.TryChangeDamage(
+                        uid,
+                        barotrauma.Damage * damageScale,
+                        true,
+                        false,
+                        partMultiplier: 0.5f,
+                        targetPart: TargetBodyPart.All); // backmen
                     RaiseLocalEvent(uid, new MoodEffectEvent("MobHighPressure")); // backmen: mood
 
                     if (!barotrauma.TakingDamage)

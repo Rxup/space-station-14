@@ -12,3 +12,14 @@
     sprite: Structures/Furniture/Tables/optable.rsi
     state: operating_table
   - type: OperatingTable # backmen
+  - type: ItemSlots # Backmen
+    slots:
+      gas_tank_slot:
+        name: comp-gas-canister-slot-name-gas-tank
+        priority: 1
+        whitelist:
+          tags:
+          - GasTank
+  - type: ContainerContainer # Backmen
+    containers:
+      gas_tank_slot: !type:ContainerSlot {}

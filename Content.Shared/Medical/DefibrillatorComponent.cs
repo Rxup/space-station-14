@@ -34,6 +34,12 @@ public sealed partial class DefibrillatorComponent : Component
     public TimeSpan WritheDuration = TimeSpan.FromSeconds(3);
 
     /// <summary>
+    /// How long will the entity stay conscious after getting defibrillated?
+    /// </summary>
+    [DataField("consciousnessDuration")]
+    public TimeSpan ForceConsciousnessDuration = TimeSpan.FromSeconds(12);
+
+    /// <summary>
     ///     ID of the cooldown use delay.
     /// </summary>
     [DataField]

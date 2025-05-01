@@ -9,6 +9,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
+    - SnoutOverlay # Backmen
 #    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
@@ -119,6 +120,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
+    - SnoutOverlay # Backmen
 #    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian

@@ -210,10 +210,17 @@ public sealed class DefibrillatorSystem : EntitySystem
             if (_mobState.IsDead(target, mob))
             {
                 // backmen edit start
-                if (HasComp<ConsciousnessComponent>(target) && _consciousness.TryGetNerveSystem(target, out _))
+                if (TryComp<ConsciousnessComponent>(target, out var consciousness)
+                    && _consciousness.TryGetNerveSystem(target, out var nerveSys))
                 {
-                    _consciousness.RemoveConsciousnessModifier(target, target, "Suffocation");
-                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold");
+                    _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Suffocation", consciousness);
+                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold", consciousness);
+
+                    if (_consciousness.CheckConscious(target, consciousness, mob))
+                    {
+                        _consciousness.ForceConscious(target, component.ForceConsciousnessDuration, consciousness);
+                        dead = false;
+                    }
                 }
                 else // backmen edit end
                 {
