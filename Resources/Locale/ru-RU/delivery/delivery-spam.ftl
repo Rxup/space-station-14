@@ -81,23 +81,23 @@ delivery-spam-3 =   Reasons to choose The Syndicate!
                     {"[bold]NUMBER THREE[/bold]"}
                     THEIR MURDER METHODS ARE UNINSPIRED! IT'S JUST GUN! THERE'S NO THROWING PEOPLE INTO DEEP SPACE, NO FEEDING PEOPLE INTO RECYCLERS WITH SAFETY MODE DISENGAGED, NO SLIPPING BOMBS INTO POCKETS! SO BORING!
 
-delivery-spam-4 =   Устали от взрывов в РнД?
-    .desc =         Следуйте этим простым шагам чтобы этого больше никогда не происходило!
-    .content =      [head=3]Учёные будут ЛЮБИТЬ вас за это!![/head]
+delivery-spam-4 =   Tired of science blowing up?
+    .desc =         Follow these simple steps to ensure it never happens again!
+    .content =      [head=3]Science will LOVE you for this!!
 
-                    [bold]ВЫ[/bold] устали оттого что ваш Научный Отдел постоянно взрывается, не исследуя в итоге ничего полезного?
-                    Тогда вам повезло!
+                    are [bold]YOU[/bold] Tired of your Station's Science Department blowing up withoutdoing any actual science?
+                    Well Your in luck![/head]
 
-                    Следуйте этому простому руководству, и мы обеспечим вам, чтобы научный отдел [italic]Больше Никогда Не Работал![/italic]
+                    Folow this simple guide, and we'll ensure your Science [italic]Never Works Again![/italic]
 
-                    Просто выполните следующие шаги:
-                    - Шаг Первый: Найдите Сервер РнД в вашем Научном Отделе
-                    - Шаг Второй: Открепите Сервер РнД от земли
-                    - Шаг Третий: Выбросите Сервер РнД в космос, предпочтительно в направлении Супер Секретного Космического Додзё Клана Паука
-                    - Шаг Четвёртый: Подождите примерно 3-5 рабочих смен
-                    - Шаг Пятый: Наши работники в Spid-ex Inc будут обеспечивать вашу станцию одним (1) технологическим диском в неделю.
+                    Simply do the following:
+                    - Step One: Locate your Science Department's Research Server
+                    - Step Two: Un-anchor the Research Server from the ground
+                    - Step Three: Hurl the Research Server into space, preferably in the direction of the Spider Clan Super Secret Space Dojo
+                    - Step Four: Wait appproximately 3-5 Business Shifts
+                    - Step Five: Our Workers at Spid-ex Inc will provide your station with one (1) techdisk per week.
 
-                    {"[color=lightgray]Примечание: Клан Паука не несёт ответственности за любые наказания от вашего начальства за выполнение действий, описанных в руководстве.[/color]"}
+                    {"[color=lightgray]Note: Spider Clan is not responsible for any punishment issued by your supervisors.[/color]"}
 
 delivery-spam-5 =   БЕСПЛАТНЫЕ ФУЛЛЫ!!
     .desc =         Вы когда-нибудь хотели получить полный доступ?!
