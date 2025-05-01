@@ -1,5 +1,7 @@
 using System.Linq;
+using Content.Server.Damage.Systems;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;

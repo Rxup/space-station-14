@@ -1,0 +1,7 @@
+﻿- type: entity
+  parent: Recycler
+  id: RecyclerGib
+  suffix: Always gib
+  components:
+  - type: MaterialReclaimer
+    alwaysGib: true # Backmen

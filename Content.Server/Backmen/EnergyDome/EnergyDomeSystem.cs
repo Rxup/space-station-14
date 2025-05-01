@@ -1,4 +1,3 @@
-using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -14,6 +13,7 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 using Content.Shared.Backmen.EnergyDome;
+using Content.Shared.DeviceLinking.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 

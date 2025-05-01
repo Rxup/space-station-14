@@ -1,0 +1,15 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnLandMineExplosiveRandom
+  name: land mine explosive spawner
+  suffix: 50%
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/landmine.rsi
+      state: landmine
+  - type: RandomSpawner
+    prototypes:
+      - LandMineExplosive
+    chance: 0.5

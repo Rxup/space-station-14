@@ -38,10 +38,10 @@
   - Inventory # Corvax-Loadouts
 
 # Silicons
-#- type: roleLoadout
-#  id: JobBorg
-#  nameDataset: roleloadout doesn't support both so need to update that first.
-#  canCustomizeName: true
+- type: roleLoadout
+  id: JobBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
 
 - type: roleLoadout
   id: JobStationAi
@@ -215,6 +215,7 @@
 
 - type: roleLoadout
   id: JobClown
+  canCustomizeName: true
   groups:
   - Werx #backmen
   - Niz #backmen
@@ -233,6 +234,7 @@
 
 - type: roleLoadout
   id: JobMime
+  canCustomizeName: true
   groups:
   - Werx #backmen
   - Niz #backmen
@@ -579,8 +581,8 @@
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
-  - Glasses
   - Medals #backmen
+  - MedicalEyewear
   - SurvivalMedical
   - SelfDefenceDevices # Ataraxia
   - Trinkets
@@ -602,8 +604,8 @@
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
-  - Glasses
   - Medals #backmen
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -620,6 +622,7 @@
   - MedicalBackpack
   - Glasses
   - Medals #backmen
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -658,8 +661,8 @@
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
-  - Glasses
   - Medals #backmen
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical

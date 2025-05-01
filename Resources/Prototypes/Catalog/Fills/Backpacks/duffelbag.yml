@@ -12,6 +12,7 @@
       - id: Cautery
       - id: Retractor
       - id: Scalpel
+      - id: MedicalStitches
       - id: BoneGel # backmen: surgery
 
 - type: entity
@@ -28,6 +29,7 @@
       - id: Cautery
       - id: Retractor
       - id: ScalpelAdvanced
+      - id: MedicalStitches
       - id: ClothingHandsGlovesNitrile
       - id: EmergencyRollerBedSpawnFolded
       - id: BoneGel # backmen: surgery
@@ -232,19 +234,6 @@
       - id: ClothingHandsGlovesColorYellowBudget
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
-
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateRaidBundle
-  name: syndicate raid suit bundle
-  description: "Contains the Syndicate's durable raid armor suit."
-  components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorRaid
-      - id: ClothingHeadHelmetRaid
-      - id: ClothingMaskGasSyndicate
-      - id: ClothingHandsGlovesCombat
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

@@ -201,3 +201,8 @@
     Radiation: 0.1
     Caustic: 0.1
     Stun: 0.1
+
+- type: damageModifierSet
+  id: RaceDemon
+  coefficients:
+    Holy: 0.6

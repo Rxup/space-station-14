@@ -1,40 +1,33 @@
-- type: dataset
+- type: localizedDataset
   id: NameSpetsRXBZZ
   values:
-  - Оперативник
+    prefix: names-spets-rxbzz-
+    count: 1
 
-- type: dataset
+- type: localizedDataset
   id: NamesOFCs
   values:
-  - Полковник
-  - Подполковник
-  - Майор
+    prefix: names-ofcs-
+    count: 3
 
-- type: dataset
+- type: localizedDataset
   id: NamesSGTs
   values:
-  - Старший Лейтенант
-  - Лейтенант
-  - Капитан
+    prefix: names-sgts-
+    count: 3
 
-- type: dataset
+- type: localizedDataset
   id: NamesCPLs
   values:
-  - Капрал
-  - Сержант
-  - Старший Сержант
+    prefix: names-cpls-
+    count: 3
 
-- type: dataset
+- type: localizedDataset
   id: NamesPVTs
   values:
-  - Рядовой
-  - Рядовой
-  - Рядовой
-  - Рядовой
-  - Рядовой
-  - Ефрейтор
-  - Ефрейтор
-  - Ефрейтор
+    prefix: names-pvts-
+    count: 2
+
 
 - type: localizedDataset
   id: NameSpets

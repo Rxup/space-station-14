@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -23,10 +25,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     /// </summary>
     private static readonly TimeSpan ExcessTime = TimeSpan.FromSeconds(0.5f);
 
+    private static readonly ProtoId<TagPrototype> InstantDoAftersTag = "InstantDoAfters";
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<DoAfterComponent, DamageChangedEvent>(OnDamage);
+        SubscribeLocalEvent<DoAfterComponent, WoundsDeltaChanged>(OnWoundDamage); // backmen edit
         SubscribeLocalEvent<DoAfterComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
         SubscribeLocalEvent<DoAfterComponent, ComponentHandleState>(OnDoAfterHandleState);
@@ -69,6 +74,33 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (dirty)
             Dirty(uid, component);
     }
+
+    // backmen edit start
+    /// <summary>
+    /// Cancels DoAfter if it breaks on damage (wound) and it meets the threshold
+    /// </summary>
+    private void OnWoundDamage(EntityUid uid, DoAfterComponent component, WoundsDeltaChanged args)
+    {
+        // If we're applying state then let the server state handle the do_after prediction.
+        // This is to avoid scenarios where a do_after is erroneously cancelled on the final tick.
+        var damageDelta = args.TotalDelta;
+        if (damageDelta < 0 || GameTiming.ApplyingState)
+            return;
+
+        var dirty = false;
+        foreach (var doAfter in component.DoAfters.Values)
+        {
+            if (doAfter.Args.BreakOnDamage && damageDelta >= doAfter.Args.DamageThreshold)
+            {
+                InternalCancel(doAfter, component);
+                dirty = true;
+            }
+        }
+
+        if (dirty)
+            Dirty(uid, component);
+    }
+    // backmen edit end
 
     private void RaiseDoAfterEvents(DoAfter doAfter, DoAfterComponent component)
     {
@@ -233,7 +265,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         // TODO DO AFTER
         // Why does this tag exist? Just make this a bool on the component?
-        if (args.Delay <= TimeSpan.Zero || _tag.HasTag(args.User, "InstantDoAfters"))
+        if (args.Delay <= TimeSpan.Zero || _tag.HasTag(args.User, InstantDoAftersTag))
         {
             RaiseDoAfterEvents(doAfter, comp);
             // We don't store instant do-afters. This is just a lazy way of hiding them from client-side visuals.

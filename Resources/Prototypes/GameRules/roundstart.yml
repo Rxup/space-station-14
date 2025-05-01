@@ -97,6 +97,7 @@
     nameSegments:
     - NamesOperationPrefix
     - NamesOperationSuffix
+    nameFormat: name-format-nuclear-operation
   - type: NukeopsRule
     warDeclarationMinOps: 3 #Backmen terror
   - type: RuleGrids
@@ -130,11 +131,18 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-commander
         - NamesSyndicateElite
+        nameFormat: name-format-nukie-commander
       - type: NpcFactionMember
         factions:
         - Syndicate
+      - type: LanguageKnowledge #backmen: languages
+        speaks:
+        - TauCetiBasic
+        - Codespeak
+        understands:
+        - TauCetiBasic
+        - Codespeak
       mindRoles:
       - MindRoleNukeopsCommander
     - prefRoles: [ NukeopsMedic ]
@@ -147,8 +155,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-agent
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-agent
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -166,8 +174,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-operator
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-operator
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -308,6 +316,7 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
+        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -453,3 +462,5 @@
       orGroup: puddleMess
     - id: SmugglerStashVariationPass
       prob: 0.90
+    - id: SolarPanelDamageVariationPass
+    - id: SolarPanelEmptyVariationPass

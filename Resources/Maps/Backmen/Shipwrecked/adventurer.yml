@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.0.0
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/19/2025 11:09:53
-  entityCount: 336
+  time: 04/16/2025 10:27:15
+  entityCount: 338
 maps:
 - 196
 grids:
@@ -586,6 +586,18 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: Bucket
+  entities:
+  - uid: 337
+    components:
+    - type: Transform
+      pos: 1.5896806,-5.6171875
+      parent: 2
+  - uid: 338
+    components:
+    - type: Transform
+      pos: 1.3084306,-5.606763
+      parent: 2
 - proto: CableApcExtension
   entities:
   - uid: 3

@@ -19,7 +19,7 @@
     state: icon
   discipline: Shaft
   tier: 1
-  cost: 7500
+  cost: 6500
   recipeUnlocks:
   - MiningDrill
   - Pickaxe

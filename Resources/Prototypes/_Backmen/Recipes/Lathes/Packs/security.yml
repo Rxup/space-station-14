@@ -18,6 +18,7 @@
     - MagazinePacketRifle762x39
     - MagazinePacketRifle762UEG
     - MagazinePacketPistolACP
+    - MagazinePacketPistol9x17
     - MagazinePacketPistol57x28
     - MagazinePacketPistol50AE
     # Backmen-ammonation-end
@@ -29,6 +30,7 @@
   recipes:
   - MagazineBoxMagnumIncendiary
   # Backmen-ammonation-start
+  - MagazinePacketHeavyRifle50BMG
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP
@@ -46,6 +48,8 @@
   - MagazinePistol57x28Incendiary
   - MagazinePistol9x17Incendiary
   # Backmen-ammonation-end
+  - BoxLethalshot
+  - BoxShotgunSlug
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary
   - BoxShotgunIncendiary
@@ -53,6 +57,45 @@
   - BoxShellTranquilizer
   - BoxBeanbag
   - ShellSoulbreaker
+  - SpeedLoaderMagnum
+  - SpeedLoaderMagnumEmpty
   - SpeedLoaderMagnumUranium
   - BoxShotgunUranium
   - WeaponLaserPistol
+
+- type: latheRecipePack
+  id: BackmenGunsmithStatic
+  recipes:
+    - WeaponDisablerPractice
+
+- type: latheRecipePack
+  id: BackmenGunsmithDynamic
+  recipes:
+    # Earth Armories
+    - WeaponSniperRemington700
+    - WeaponRifleSR127
+    - WeaponPistolG22
+    - WeaponPistolG23
+    - WeaponPistolACP14
+    - WeaponPistolVP78
+    - WeaponRevolverR44
+    - WeaponRevolverMatebaNew
+    - WeaponSubMachineGunMP5
+    - WeaponShotgun12
+    - WeaponShotgun39
+    - WeaponShotgunPaladin12
+    - WeaponRifleG36
+    - WeaponRifleFamas
+    - WeaponRifleM28
+    - WeaponRifleAR18
+
+- type: latheRecipePack
+  id: BackmenEngineerWeapon
+  recipes:
+    - WeaponPistolRivet
+    - MagazinePistolNail
+
+- type: latheRecipePack
+  id: BackmenCircuboardArsenal
+  recipes:
+    - GunsmithTechFabCircuitboard

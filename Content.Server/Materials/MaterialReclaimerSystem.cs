@@ -190,12 +190,6 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             var logImpact = HasComp<HumanoidAppearanceComponent>(item) ? LogImpact.Extreme : LogImpact.Medium;
             _adminLogger.Add(LogType.Gib, logImpact, $"{ToPrettyString(item):victim} was gibbed by {ToPrettyString(uid):entity} ");
             SpawnChemicalsFromComposition(uid, item, completion, false, component, xform);
-            // start-backmen: oracle blood moon
-            if (EntityManager.SystemOrNull<Backmen.Research.Oracle.OracleSystem>()?.GibBody(uid, item) ?? false)
-            {
-                return;
-            }
-            // end-backmen: oracle blood moon
             _body.GibBody(item, true);
             _appearance.SetData(uid, RecyclerVisuals.Bloody, true);
         }

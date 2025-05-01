@@ -9,6 +9,13 @@
   - type: Clothing
     sprite: Clothing/Shoes/Boots/workboots.rsi
   - type: Matchbox
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Foot
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
 
 - type: entity
   parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
@@ -37,6 +44,13 @@
   - type: Clothing
     sprite: Clothing/Shoes/Boots/explorer.rsi
   - type: Matchbox
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Foot
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
 
 - type: entity
   parent: ClothingShoesBaseButcherable

@@ -14,12 +14,19 @@
   - type: Item
     size: Normal
   - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
         Heat: 0.90
         Stun: 0.80 #Backmen-edit
     priceMultiplier: 0
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.55
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -232,6 +239,13 @@
       outerClothing:
       - state: CHEM-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -263,6 +277,13 @@
       outerClothing:
       - state: CMO-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -327,6 +348,13 @@
       outerClothing:
       - state: GENE-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -444,6 +472,13 @@
       outerClothing:
       - state: JANI-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -475,6 +510,13 @@
       outerClothing:
       - state: MED-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -552,6 +594,13 @@
       outerClothing:
       - state: PARA-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -607,6 +656,13 @@
       outerClothing:
       - state: RD-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -662,6 +718,13 @@
       outerClothing:
       - state: SCI-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -716,6 +779,13 @@
       outerClothing:
       - state: VIRO-equipped-OUTERCLOTHING
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Tail
     modifiers:
       coefficients:
         Slash: 0.95
@@ -791,7 +861,7 @@
 
 ##############################################################
 - type: entity
-  parent: [ClothingOuterWinterWarden, BaseSyndicateContraband]
+  parent: [ BaseSyndicateContraband, ClothingOuterWinterWarden ]
   id: ClothingOuterWinterSyndieCapArmored
   name: syndicate's armored winter coat
   description: "The syndicate's armored winter coat is made of durable fabric, with gilded patterns, and coarse wool."

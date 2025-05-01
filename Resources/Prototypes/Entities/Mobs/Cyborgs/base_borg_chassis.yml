@@ -115,6 +115,7 @@
       - BorgChassis
       - RoboticsConsole
   - type: WiresPanel
+    openingTool: Prying
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
     group: Silicon
@@ -238,6 +239,8 @@
     - DoorBumpOpener
     - FootstepSound
     - CanPilot
+    - SiliconEmotes
+    - Unimplantable
   - type: Emoting
   - type: TTS # Corvax-TTS
     voice: Glados
@@ -297,6 +300,7 @@
   parent: [BaseBorgChassis, BaseBorgTransponder]
   abstract: true
   components:
+  - type: BorgAINT
   - type: RandomMetadata
     nameSegments:
     - NamesBorg

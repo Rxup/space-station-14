@@ -38,10 +38,10 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-  #  - BaseStationCargo #Backmen
+    - BkmCCBaseStationCargo #Backmen
     - BaseStationJobsSpawning #Backmen
     - BaseStationRecords #Backmen
-  #  - BaseStationShuttles #Backmen
+    - BkmCCBaseStationShuttles #Backmen
     - BaseStationExpeditions #Backmen
     - BaseStationMagnet #Backmen
   categories: [ HideSpawnMenu ]

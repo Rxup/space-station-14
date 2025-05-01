@@ -234,6 +234,7 @@
         nameSegments:
         - NamesNinjaTitle
         - NamesNinja
+        nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
 
@@ -320,6 +321,7 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
+        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -567,9 +569,17 @@
         nameSegments:
         - NamesSyndicatePrefix
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate
+      - type: LanguageKnowledge #backmen: languages
+        speaks:
+        - TauCetiBasic
+        - Codespeak
+        understands:
+        - TauCetiBasic
+        - Codespeak
       mindRoles:
       - MindRoleNukeops
 

@@ -125,6 +125,8 @@
         department: Command
         time: 9000
     job: ERTLeader
+    mindRoles:
+    - MindRoleERTLeader
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -234,6 +236,8 @@
       - !type:OverallPlaytimeRequirement
         time: 16000
     job: ERTSecurity
+    mindRoles:
+    - MindRoleERTSecurity
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember

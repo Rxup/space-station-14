@@ -140289,21 +140289,6 @@ entities:
     - type: Transform
       pos: 47.472157,102.75783
       parent: 1
-- proto: TorsoReptilian
-  entities:
-  - uid: 16355
-    components:
-    - type: Transform
-      pos: 131.61108,47.669888
-      parent: 1
-- proto: TorsoSkeleton
-  entities:
-  - uid: 17747
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 78.49516,161.7972
-      parent: 1
 - proto: ToyAi
   entities:
   - uid: 9696

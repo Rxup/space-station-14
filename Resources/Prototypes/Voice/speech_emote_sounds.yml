@@ -42,7 +42,8 @@
       collection: MaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
-
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleHuman
@@ -87,6 +88,8 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: MaleReptilian
@@ -113,6 +116,8 @@
       collection: DeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -139,6 +144,8 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: MaleSlime
@@ -183,6 +190,8 @@
       collection: MaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
 
@@ -229,6 +238,8 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
 
@@ -272,6 +283,8 @@
       collection: DeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
 
@@ -300,6 +313,8 @@
       collection: DeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -342,6 +357,8 @@
       collection: MaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
     pitch: 0.75
@@ -387,6 +404,8 @@
       collection: FemaleDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
     pitch: 0.75
@@ -418,6 +437,8 @@
       collection: MothDeathGasp
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexSilicon

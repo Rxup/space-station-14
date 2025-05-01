@@ -265,3 +265,37 @@
       - CartridgeAntitank
     capacity: 1
     proto: CartridgeAntitank
+
+- type: entity
+  name: Remington 700
+  parent: BaseWeaponSniper
+  id: WeaponSniperRemington700
+  suffix: Винтовка
+  description: Remington 700 охотничая винтовка под калибр 308 винчестер, был сделан по реплике чертежей Earth Armories сторонними компаниями, каркас винтовки исполнен из пластика.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/tiny.rsi
+  - type: Gun
+    fireRate: 0.8
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/dmr37.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Snipers/sniper_empty.ogg
+  - type: BallisticAmmoProvider
+    capacity: 3
+    proto: Cartridge308win
+    whitelist:
+      tags:
+      - CartridgeRifle300win
+  - type: PumpAction
+    sound: /Audio/Weapons/Guns64/Snipers/kt42_cocked.ogg
+  - type: Wieldable
+  - type: UseDelay
+    delay: 2.8
+  - type: UseDelayOnShoot
+  - type: GunRequiresWield
+  - type: Telescope # Ataraxia

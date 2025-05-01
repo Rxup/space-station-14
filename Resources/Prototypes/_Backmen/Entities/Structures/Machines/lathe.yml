@@ -114,3 +114,37 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - BackmenCashEmag
+
+- type: entity
+  id: GunsmithTechFab
+  parent: BaseLathe
+  name: weapon printer
+  description: Prints equipment for use by security crew.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/cuttermachine.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: GunsmithTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - BackmenGunsmithStatic
+    dynamicPacks:
+    - BackmenGunsmithDynamic
+    - SecurityWeapons
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot

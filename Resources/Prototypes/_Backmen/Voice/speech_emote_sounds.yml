@@ -28,6 +28,8 @@
       collection: Weh
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -58,6 +60,8 @@
       collection: Weh
     BCatMeow:
       collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 # species
 - type: emoteSounds
@@ -149,6 +153,8 @@
       collection: MaleDeathGasp
     Purrs:
       collection: FoxesPurrs
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleFoxes
@@ -185,3 +191,5 @@
       collection: FemaleDeathGasp
     Purrs:
       collection: FoxesPurrs
+    Hiss: # Backmen
+      collection: ReptilianHisses

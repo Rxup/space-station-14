@@ -204,7 +204,7 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!TryComp<ItemSlotsComponent>(uid, out var slots))
             return;
 
-        if (!_mindSystem.TryGetMind(component.PotentialCrystal.Value, out var mindId, out var mind) || mind.Session == null)
+        if (!_mindSystem.TryGetMind(component.PotentialCrystal.Value, out var mindId, out var mind) || !_mindSystem.TryGetSession(mind, out var sessions))
             return;
 
         if (!_slotsSystem.TryGetSlot(uid, CrystalSlot, out var crystalSlot, slots)) // does it not have a crystal slot?

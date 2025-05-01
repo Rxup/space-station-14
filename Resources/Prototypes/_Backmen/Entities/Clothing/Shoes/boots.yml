@@ -24,6 +24,8 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: Armor
+    coverage:
+    - Foot
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -48,6 +50,8 @@
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Armor
+    coverage:
+    - Foot
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -81,8 +85,8 @@
       params:
         volume: -999
   - type: NoSlip
-  
-- type: entity  
+
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsBerrci
   name: Шнурованные берцы
@@ -107,3 +111,20 @@
   - type: Clothing
     sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
   - type: NoSlip
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesBootsInteQInfiltrator
+  name: infiltrator sneakboots
+  description: Pair of insidious boots with special noise muffling soles which very slightly drown out your footsteps. They would be absolutely perfect for stealth operations were it not for the iconic Syndicate flairs.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
+  - type: NoSlip
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCatwalk
+      params:
+        volume: -25

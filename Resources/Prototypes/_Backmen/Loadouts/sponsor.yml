@@ -125,3 +125,15 @@
     back:
     - ClothingHeadHatBizarreSoft
 
+# Бумбокс
+- type: loadout
+  id: BoomBox
+  storage:
+    back:
+    - HandledBoomBox
+
+- type: loadout
+  id: ClothingNeckCloakBlackWendor
+  storage:
+    back:
+    - ClothingNeckCloakBlackWendor

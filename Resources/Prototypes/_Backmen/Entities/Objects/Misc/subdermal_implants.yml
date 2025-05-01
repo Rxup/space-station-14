@@ -30,3 +30,27 @@
     icon:
       sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
       state: icon
+
+# InteQ implants
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantInteQ
+  name: radio implant
+  description: This implant grants access to the InteQ channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - InteQ
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantInteQ
+  name: InteQ death rattle implant
+  description: This implant will inform the InteQ radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Rattle
+    radioChannel: InteQ

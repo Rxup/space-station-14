@@ -1,7 +1,8 @@
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
+using Content.Shared.Backmen.Smoking;
+using Content.Shared.Backmen.Smoking.Components;
 using Content.Shared.Smoking;
-using Content.Shared.Smoking.Components;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
@@ -21,7 +22,7 @@ public sealed class SurgeryToolConditionsSystem : EntitySystem
 
         SubscribeLocalEvent<ItemToggleComponent, SurgeryToolUsedEvent>(OnToggleUsed);
         SubscribeLocalEvent<GunComponent, SurgeryToolUsedEvent>(OnGunUsed);
-        SubscribeLocalEvent<MatchstickComponent, SurgeryToolUsedEvent>(OnMatchUsed);
+        SubscribeLocalEvent<BkmMatchstickComponent, SurgeryToolUsedEvent>(OnMatchUsed);
     }
 
     private void OnToggleUsed(Entity<ItemToggleComponent> ent, ref SurgeryToolUsedEvent args)
@@ -44,7 +45,7 @@ public sealed class SurgeryToolConditionsSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnMatchUsed(Entity<MatchstickComponent> ent, ref SurgeryToolUsedEvent args)
+    private void OnMatchUsed(Entity<BkmMatchstickComponent> ent, ref SurgeryToolUsedEvent args)
     {
         var state = ent.Comp.CurrentState;
         if (state == SmokableState.Lit)

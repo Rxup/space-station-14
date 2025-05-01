@@ -8,6 +8,7 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
+  - type: MobCollision
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -51,6 +52,7 @@
     understands:
     - TauCetiBasic
     - SpaceMob
+  - type: CanBeBorgNTEnemy
 
 - type: entity
   save: false
@@ -209,7 +211,7 @@
     canResistFire: true
     damage: #per second, scales with number of fire 'stacks'
       types:
-        Heat: 1.5
+        Heat: 0.75
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Generic_mob_burning

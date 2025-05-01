@@ -1,0 +1,62 @@
+- type: latheRecipe
+  id: PowerCellSuper
+  result: PowerCellSuperPrinted
+  categories:
+  - Parts
+  completetime: 10
+  materials:
+    Steel: 300
+    Glass: 500
+    Plastic: 280
+    Gold: 75
+
+- type: latheRecipe
+  id: PowerCellHyper
+  result: PowerCellHyperPrinted
+  categories:
+  - Parts
+  completetime: 10
+  materials:
+    Steel: 400
+    Glass: 520
+    Plastic: 300
+    Gold: 120
+
+- type: latheRecipe
+  id: PowerCellBluespace
+  result: PowerCellBluespacePrinted
+  categories:
+  - Parts
+  completetime: 10
+  materials:
+    Steel: 500
+    Glass: 520
+    Uranium: 200
+    Gold: 140
+    Bluespace: 80
+
+- type: latheRecipe
+  id: PowerCellBluespaceReactor
+  result: PowerCellBluespaceReactorPrinted
+  categories:
+  - Parts
+  completetime: 10
+  materials:
+    Steel: 600
+    Glass: 620
+    Uranium: 500
+    Gold: 180
+    Bluespace: 200
+
+- type: latheRecipe
+  id: PowerCellVortex
+  result: PowerCellVortexPrinted
+  categories:
+  - Parts
+  completetime: 10
+  materials:
+    Steel: 800
+    Glass: 820
+    Plasma: 1660
+    Gold: 220
+    Bluespace: 1200

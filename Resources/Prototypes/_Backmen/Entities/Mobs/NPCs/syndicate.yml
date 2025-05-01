@@ -52,6 +52,7 @@
     nameSegments:
     - SyndicateZvanieSuperNormal
     - names_last_male
+    nameFormat: name-format-standard
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: NpcFactionMember
@@ -91,6 +92,7 @@
     nameSegments:
     - SyndicateZvanieSuperNormalAgent
     - names_last_male
+    nameFormat: name-format-standard
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: NpcFactionMember
@@ -117,6 +119,7 @@
       nameSegments:
       - SyndicateZvanieSuperNormalAgent
       - names_last_male
+      nameFormat: name-format-standard
     - type: Damageable
       damageModifierSet: NPCArmor
     - type: HTN
@@ -126,7 +129,7 @@
       tools:
         - id: EnergySword
     - type: Reflect
-      reflectProb: 0.95
+      reflectProb: 0.85
       reflects:
         - Energy
     - type: MeleeWeapon
@@ -158,6 +161,7 @@
       nameSegments:
       - SyndicateZvanieSuperNormalAgent
       - names_last_male
+      nameFormat: name-format-standard
     - type: Damageable
       damageModifierSet: NPCLightArmor
     - type: HTN
@@ -196,18 +200,16 @@
       nameSegments:
       - SyndicateZvanieSuperNormalAgent
       - names_last_male
+      nameFormat: name-format-standard
     - type: Damageable
       damageModifierSet: NPCLightArmor
     - type: HTN
       rootTask:
         task: SimpleRangedHostileCompound
-    - type: InnateTool
-      tools:
-        - id: WeaponPistolViper
     - type: BasicEntityAmmoProvider
       proto: BulletPistol
-      capacity: 60
-      count: 60
+      capacity: 12
+      count: 12
     - type: Gun
       fireRate: 1.25
       useKey: false
@@ -215,6 +217,12 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns64/Pistols/vp70_shot.ogg
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1.25
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+        params:
+          volume: -100
 
 - type: entity
   parent: MobBaseNpc
@@ -236,18 +244,16 @@
       nameSegments:
       - SyndicateZvanieSuperNormalAgent
       - names_last_male
+      nameFormat: name-format-standard
     - type: Damageable
       damageModifierSet: NPCLightArmor
     - type: HTN
       rootTask:
         task: SimpleRangedHostileCompound
-    - type: InnateTool
-      tools:
-        - id: WeaponShotgunKammerer # No bulldog
     - type: BasicEntityAmmoProvider
       proto: PelletShotgunSlug
-      capacity: 60
-      count: 60
+      capacity: 6
+      count: 6
     - type: Gun
       fireRate: 0.75
       useKey: false
@@ -255,6 +261,12 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns64/Shotguns/t35.ogg
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+        params:
+          volume: -100
 
 - type: entity
   parent: MobBaseNpc
@@ -276,18 +288,16 @@
       nameSegments:
       - SyndicateZvanieSuperNormalAgent
       - names_last_male
+      nameFormat: name-format-standard
     - type: Damageable
       damageModifierSet: NPCLightArmor
     - type: HTN
       rootTask:
         task: SimpleRangedHostileCompound
-    - type: InnateTool
-      tools:
-        - id: WeaponSubMachineGunMP7 # No C-20
     - type: BasicEntityAmmoProvider
       proto: BulletLightRifle
-      capacity: 60
-      count: 60
+      capacity: 30
+      count: 30
     - type: Gun
       fireRate: 1.50
       useKey: false
@@ -295,3 +305,9 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns64/SMGs/mp7.ogg
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1.50
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+        params:
+          volume: -100

@@ -21,6 +21,7 @@ public partial class SharedBodySystem
 
         SubscribeLocalEvent<BodyPartAppearanceComponent, ComponentStartup>(OnPartAppearanceStartup);
         SubscribeLocalEvent<BodyPartAppearanceComponent, AfterAutoHandleStateEvent>(HandleState);
+
         SubscribeLocalEvent<BodyComponent, BodyPartAddedEvent>(OnPartAttachedToBody);
         SubscribeLocalEvent<BodyComponent, BodyPartRemovedEvent>(OnPartDroppedFromBody);
     }
@@ -84,12 +85,11 @@ public partial class SharedBodySystem
     private string? CreateIdFromPart(HumanoidAppearanceComponent bodyAppearance, HumanoidVisualLayers part)
     {
         var speciesProto = _prototypeManager.Index(bodyAppearance.Species);
-        var baseSprites = _prototypeManager.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
+        var baseSprites = _prototypeManager.Index(speciesProto.SpriteSet);
 
-        if (!baseSprites.Sprites.ContainsKey(part))
-            return null;
-
-        return HumanoidVisualLayersExtension.GetSexMorph(part, bodyAppearance.Sex, baseSprites.Sprites[part]);
+        return baseSprites.Sprites.TryGetValue(part, out var value)
+            ? HumanoidVisualLayersExtension.GetSexMorph(part, bodyAppearance.Sex, value)
+            : null;
     }
 
     public void ModifyMarkings(EntityUid uid,
@@ -191,10 +191,12 @@ public partial class SharedBodySystem
         if (!TryComp(entity, out HumanoidAppearanceComponent? bodyAppearance))
             return;
 
+        _humanoid.SetLayerVisibility(entity, component.Type, false);
         foreach (var (visualLayer, markingList) in component.Markings)
         {
             _humanoid.SetLayerVisibility(entity, visualLayer, false);
         }
+
         RemoveBodyMarkings(entity, component, bodyAppearance);
     }
 
