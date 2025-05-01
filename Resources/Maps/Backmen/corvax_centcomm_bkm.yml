@@ -5452,14 +5452,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -20.455715,-16.523304
       parent: 2
-- proto: BorgModuleGrapplingGun
-  entities:
-  - uid: 2405
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -25.541653,-16.335804
-      parent: 2
 - proto: BoxFolderBase
   entities:
   - uid: 2106

@@ -131,7 +131,11 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (!isNewMind)
         {
-            var name = mind.Session?.Name ?? "???";
+            string name = "???";
+            if (_mindSystem.TryGetSession(mind, out var mindSession))
+            {
+                name = mindSession.Name;
+            }
             _mindSystem.WipeMind(mindId, mind);
             mindId = _mindSystem.CreateMind(args.UserId, $"Blob Player ({name})");
             mind = Comp<MindComponent>(mindId);
@@ -200,10 +204,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     {
         if (component.Core == null || !TryComp<BlobCoreComponent>(component.Core.Value, out var blobCoreComponent))
             return;
-            
+
         if (component.SelectedChemId == args.SelectedId)
             return;
-            
+
         if (!_blobCoreSystem.TryUseAbility(component.Core.Value, blobCoreComponent.SwapChemCost))
             return;
 

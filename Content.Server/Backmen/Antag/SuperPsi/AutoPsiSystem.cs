@@ -4,6 +4,7 @@ using Content.Server.Antag;
 using Content.Server.Backmen.Fugitive;
 using Content.Server.Forensics;
 using Content.Server.IdentityManagement;
+using Content.Server.Mind;
 using Content.Server.RandomMetadata;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Systems;
@@ -47,6 +48,7 @@ public sealed class AutoPsiSystem : EntitySystem
     [Dependency] private readonly IdCardSystem _idCardSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly ISharedPlayerManager _playerMgr = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -270,7 +272,11 @@ public sealed class AutoPsiSystem : EntitySystem
 
     private void OnMindAdded(Entity<AutoPsiComponent> ent, ref MindAddedMessage args)
     {
+        if (!_mind.TryGetSession(args.Mind.Comp, out var session))
+        {
+            return;
+        }
         RemCompDeferred<AutoPsiComponent>(ent);
-        _antag.ForceMakeAntag<SuperPsiRuleComponent>(args.Mind.Comp.Session, DefaultSuperPsiRule);
+        _antag.ForceMakeAntag<SuperPsiRuleComponent>(session, DefaultSuperPsiRule);
     }
 }

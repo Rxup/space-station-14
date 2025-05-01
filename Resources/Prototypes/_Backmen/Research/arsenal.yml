@@ -218,6 +218,7 @@
   recipeUnlocks:
   - WeaponLaserSvalinn
   - WeaponLaserPistol
+  - WeaponTemperatureGun
   technologyPrerequisites:
   - CombatLaser
   position: -2,-4

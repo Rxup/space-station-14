@@ -180,3 +180,19 @@
   - PowercellsBluespace
   - SalvageEquipmentAdvanced
   position: 5,5
+
+- type: technology
+  id: BluespaceTimeManipulation
+  name: research-technology-bluespace-time-manipulation
+  icon:
+    sprite: Objects/Devices/desynchronizer.rsi
+    state: icon
+  discipline: Scientific
+  tier: 3
+  cost: 30000
+  technologyPrerequisites:
+  - QuantumLeaping
+  - Teleportation
+  recipeUnlocks:
+  - DeviceDesynchronizer
+  position: 3,4

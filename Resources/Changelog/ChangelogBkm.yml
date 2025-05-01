@@ -2615,3 +2615,17 @@
   id: 174
   time: '2025-04-28T12:08:36.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1249
+- author: MightBeNotReal
+  changes:
+  - message: fixed barotrauma having insane amounts of damage
+    type: Fix
+  id: 175
+  time: '2025-04-30T12:39:10.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1272
+- author: KayzelW
+  changes:
+  - message: "\u0430\u043F\u0441\u0442\u0440\u0438\u043C 28.04.2025"
+    type: Tweak
+  id: 176
+  time: '2025-04-29T09:31:18.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1264
