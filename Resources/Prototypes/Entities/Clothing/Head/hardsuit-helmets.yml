@@ -16,6 +16,7 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     - HeadTop
     - HeadSide
 

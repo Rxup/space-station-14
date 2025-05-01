@@ -38,6 +38,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: WeldingMaskBase

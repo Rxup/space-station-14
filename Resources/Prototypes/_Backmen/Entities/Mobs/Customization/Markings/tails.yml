@@ -129,6 +129,103 @@
       state: snake
 
 - type: marking
+  id: TailSnakeAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_wagging
+
+- type: marking
+  id: TailSnakeStripe
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_secondary
+
+- type: marking
+  id: TailSnakeStripeAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_secondary_wagging
+
+- type: marking
+  id: TailSnakeStripeAlt
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt_secondary
+
+- type: marking
+  id: TailSnakeStripeAltAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt_secondary_wagging
+
+- type: marking
+  id: TailSnakeDual
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual_secondary
+
+- type: marking
+  id: TailSnakeDualAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual_secondary_wagging
+
+- type: marking
+  id: TailSnakeUnder
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under_secondary
+
+- type: marking
+  id: TailSnakeUnderAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under_secondary_wagging
+
+- type: marking
   id: TailSuccubus
   bodyPart: Tail
   markingCategory: Tail
