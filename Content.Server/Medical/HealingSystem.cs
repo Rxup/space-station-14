@@ -213,9 +213,10 @@ public sealed class HealingSystem : EntitySystem
         {
             if (healing.BloodlossModifier != 0)
             {
-                foreach (var wound in _wounds.GetWoundableWounds(targetedWoundable, woundableComp))
+                foreach (var wound in _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedWoundable, woundableComp))
                 {
-                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds) || !bleeds.IsBleeding)
+                    var bleeds = wound.Comp2;
+                    if (!bleeds.IsBleeding)
                         continue;
 
                     if (bleedStopAbility > bleeds.BleedingAmount)
@@ -351,6 +352,9 @@ public sealed class HealingSystem : EntitySystem
     // backmen edit start
     private bool IsBodyDamaged(Entity<BodyComponent> target, EntityUid user, EntityUid used, HealingComponent healing, bool throwPopups = true)
     {
+        if (!HasComp<ConsciousnessComponent>(target))
+            return false;
+
         if (!TryComp<TargetingComponent>(user, out var targeting))
             return false;
 
@@ -364,14 +368,11 @@ public sealed class HealingSystem : EntitySystem
             return false;
         }
 
-        var totalBleeds = FixedPoint2.Zero;
-        foreach (var woundEnt in _wounds.GetWoundableWounds(targetedBodyPart.Value.Id))
-        {
-            if (!TryComp<BleedInflicterComponent>(woundEnt.Owner, out var bleeds) || !bleeds.IsBleeding)
-                continue;
-
-            totalBleeds += bleeds.BleedingAmountRaw;
-        }
+        var totalBleeds =
+            _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedBodyPart.Value.Id)
+                .Select(woundEnt => woundEnt.Comp2)
+                .Where(bleeds => bleeds.IsBleeding)
+                .Aggregate(FixedPoint2.Zero, (current, bleeds) => current + bleeds.BleedingAmountRaw);
 
         if (totalBleeds < healing.UnableToHealBleedsThreshold
             && totalBleeds > 0
@@ -380,35 +381,34 @@ public sealed class HealingSystem : EntitySystem
 
         var stuffToHeal =
             healing.Damage.DamageDict
-                .Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Value.Id, damage.Key))
+                .Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Value.Id, damage.Key, true))
                 .ToDictionary(damage => damage.Key, damage => damage.Value);
 
         if (stuffToHeal.Count <= 0)
         {
             if (throwPopups)
             {
-                _popupSystem.PopupEntity(
-                    Loc.GetString("medical-item-cant-use", ("item", used)),
-                    target,
-                    user,
-                    PopupType.Medium);
+                if (TraumaSystem.TraumasBlockingHealing.Any(traumaType => _trauma.HasWoundableTrauma(targetedBodyPart.Value.Id, traumaType)))
+                {
+                    _popupSystem.PopupEntity(
+                        Loc.GetString("medical-item-requires-surgery-rebell", ("target", target)),
+                        target,
+                        user,
+                        PopupType.MediumCaution);
+                }
+                else
+                {
+                    _popupSystem.PopupEntity(
+                        Loc.GetString("medical-item-cant-use", ("item", used)),
+                        target,
+                        user,
+                        PopupType.Medium);
+                }
             }
         }
         else
         {
             return true;
-        }
-
-        if (TraumaSystem.TraumasBlockingHealing.Any(traumaType => _trauma.HasWoundableTrauma(targetedBodyPart.Value.Id, traumaType)))
-        {
-            if (throwPopups)
-            {
-                _popupSystem.PopupEntity(
-                    Loc.GetString("medical-item-requires-surgery-rebell", ("target", target)),
-                    target,
-                    user,
-                    PopupType.MediumCaution);
-            }
         }
 
         return false;
