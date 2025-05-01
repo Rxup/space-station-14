@@ -114,5 +114,5 @@ public sealed partial class CCVars
     /// How quick by default do bleeds grow to their full form?
     /// </summary>
     public static readonly CVarDef<float> BleedsScalingTime =
-        CVarDef.Create("bleeds.bleeding_scaling_time", 9f, CVar.SERVERONLY);
+        CVarDef.Create("bleeds.bleeding_scaling_time", 6f, CVar.SERVERONLY);
 }
