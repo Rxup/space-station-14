@@ -3,11 +3,12 @@ using Content.Server.Actions;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Mind;
-using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.Popups;
 using Content.Server.NPC.Systems;
 using Content.Server.Nutrition.Components;
+using Content.Server.Speech.Components;
+using Content.Server.Zombies;
 using Content.Shared.Zombies;
 using Content.Shared.CombatMode;
 using Content.Shared.Ghost;
@@ -105,6 +106,12 @@ public sealed partial class HeadcrabSystem : EntitySystem
 //        _npc.WakeNPC(args.Equipee, htn);
 //        _htn.Replan(htn);
 
+        var accentType = "zombie";
+        if (TryComp<ZombieAccentOverrideComponent>(args.Equipee, out var accent))
+            accentType = accent.Accent;
+
+        EnsureComp<ReplacementAccentComponent>(args.Equipee).Accent = accentType;
+
         var mindlostMessage = Loc.GetString(component.MindLostMessageSelf);
 
         var headcrabHasMind = _mindSystem.TryGetMind(uid, out var hostMindId, out var hostMind);
@@ -184,6 +191,8 @@ public sealed partial class HeadcrabSystem : EntitySystem
         _autoEmote.RemoveEmote(args.Equipee, "ZombieGroan");
         _tagSystem.RemoveTag(args.Equipee, "CannotSuicide");
 
+        _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(2), true);
+
         component.EquippedOn = EntityUid.Invalid;
         var combatMode = EnsureComp<CombatModeComponent>(uid);
 //        EnsureComp<HTNComponent>(args.Equipee);
@@ -191,6 +200,8 @@ public sealed partial class HeadcrabSystem : EntitySystem
 
 //        if (component.HasNpc)
 //            RemComp<HTNComponent>(args.Equipee);
+
+        RemComp<ReplacementAccentComponent>(args.Equipee);
 
         var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.Equipee);
         _npcFaction.RemoveFaction((args.Equipee, npcFaction), component.HeadcrabFaction, false);

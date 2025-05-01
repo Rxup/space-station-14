@@ -71,6 +71,16 @@
       - HEAD
   - type: Physics
     bodyType: KinematicController
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - StaminaModifier
+  - type: Stamina
+    critThreshold: 120
   - type: MeleeWeapon
     hidden: true
     soundHit:
