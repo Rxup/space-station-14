@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
@@ -192,13 +193,8 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
             var total = FixedPoint2.Zero;
             foreach (var (bodyPart, _) in _body.GetBodyChildren(uid))
             {
-                foreach (var (wound, _) in _wound.GetWoundableWounds(bodyPart))
-                {
-                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
-                        continue;
-
-                    total += bleeds.BleedingAmount;
-                }
+                total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
+                        .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
             }
 
             var missingBlood = bloodstream.BloodMaxVolume - bloodstream.BloodSolution.Value.Comp.Solution.Volume;
@@ -227,10 +223,12 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                 continue;
 
             var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
-            if (canBleed != bleeds.IsBleeding)
-                Dirty(ent, bleeds);
+            if (bleeds.IsBleeding == canBleed)
+                continue;
 
             bleeds.IsBleeding = canBleed;
+            Dirty(ent, bleeds);
+
             if (!bleeds.IsBleeding)
                 continue;
 
