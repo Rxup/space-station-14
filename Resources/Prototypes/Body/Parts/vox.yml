@@ -2,22 +2,19 @@
 # TODO BODY: Part damage
 - type: entity
   id: PartVox
-  parent: BaseItem
+  parent: BasePart
   name: "vox body part"
   abstract: true
   components:
-  - type: Damageable
-    damageContainer: OrganicPart # Shitmed
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice
-    price: 100
-  - type: Tag
-    tags:
-      - Trash
+  # backmen edit
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#7a8bf2"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: Extractable
     juiceSolution:
       reagents:
@@ -27,18 +24,35 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoVox
-  name: "vox torso"
-  parent: PartVox
+  id: ChestVox
+  name: "vox chest"
+  parent: [BaseChest, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
-      state: "torso"
+      state: "chest"
     - type: Icon
       sprite: Mobs/Species/Vox/parts.rsi
-      state: "torso"
-    - type: BodyPart
-      partType: Torso
+      state: "chest"
+    - type: Extractable
+      juiceSolution:
+        reagents:
+        - ReagentId: Fat
+          Quantity: 3
+        - ReagentId: Blood
+          Quantity: 10
+
+- type: entity
+  id: GroinVox
+  name: "vox groin"
+  parent: [BaseGroin, PartVox]
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Vox/parts.rsi
+      state: "groin"
+    - type: Icon
+      sprite: Mobs/Species/Vox/parts.rsi
+      state: "groin"
     - type: Extractable
       juiceSolution:
         reagents:
@@ -50,7 +64,7 @@
 - type: entity
   id: HeadVox
   name: "vox head"
-  parent: PartVox
+  parent: [BaseHead, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -60,7 +74,6 @@
       state: "head"
     - type: BodyPart
       partType: Head
-      vital: true
     - type: Input
       context: "ghost"
     - type: Tag
@@ -77,7 +90,7 @@
 - type: entity
   id: LeftArmVox
   name: "left vox arm"
-  parent: PartVox
+  parent: [BaseLeftArm, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -92,7 +105,7 @@
 - type: entity
   id: RightArmVox
   name: "right vox arm"
-  parent: PartVox
+  parent: [BaseRightArm, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -107,7 +120,7 @@
 - type: entity
   id: LeftHandVox
   name: "left vox hand"
-  parent: PartVox
+  parent: [BaseLeftHand, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -122,7 +135,7 @@
 - type: entity
   id: RightHandVox
   name: "right vox hand"
-  parent: PartVox
+  parent: [BaseRightHand, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -137,7 +150,7 @@
 - type: entity
   id: LeftLegVox
   name: "left vox leg"
-  parent: PartVox
+  parent: [BaseLeftLeg, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -153,7 +166,7 @@
 - type: entity
   id: RightLegVox
   name: "right vox leg"
-  parent: PartVox
+  parent: [BaseRightLeg, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -169,7 +182,7 @@
 - type: entity
   id: LeftFootVox
   name: "left vox foot"
-  parent: PartVox
+  parent: [BaseLeftFoot, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi
@@ -184,7 +197,7 @@
 - type: entity
   id: RightFootVox
   name: "right vox foot"
-  parent: PartVox
+  parent: [BaseRightFoot, PartVox]
   components:
     - type: Sprite
       sprite: Mobs/Species/Vox/parts.rsi

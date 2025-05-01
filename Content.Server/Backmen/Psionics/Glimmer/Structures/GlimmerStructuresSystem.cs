@@ -6,8 +6,6 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
-using Content.Server.Xenoarchaeology.XenoArtifacts;
-using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Components;
@@ -15,6 +13,8 @@ using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
 using Content.Shared.StatusEffect;
+using Content.Shared.Xenoarchaeology.Artifact;
+using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Psionics.Glimmer;
@@ -34,7 +34,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private EntityQuery<ApcPowerReceiverComponent> _apcPower;
-    private EntityQuery<ArtifactComponent> _artQuery;
+    private EntityQuery<XenoArtifactComponent> _artQuery;
 
     public override void Initialize()
     {
@@ -44,19 +44,19 @@ public sealed class GlimmerStructuresSystem : EntitySystem
 
         SubscribeLocalEvent<GlimmerSourceComponent, AnomalyPulseEvent>(OnAnomalyPulse);
         SubscribeLocalEvent<GlimmerSourceComponent, AnomalySupercriticalEvent>(OnAnomalySupercritical);
-        SubscribeLocalEvent<GlimmerSourceComponent, ArtifactActivatedEvent>(OnArtifactActivated);
+        SubscribeLocalEvent<GlimmerSourceComponent, XenoArtifactActivatedEvent>(OnArtifactActivated);
 
         _apcPower = GetEntityQuery<ApcPowerReceiverComponent>();
-        _artQuery = GetEntityQuery<ArtifactComponent>();
+        _artQuery = GetEntityQuery<XenoArtifactComponent>();
     }
 
-    private void OnArtifactActivated(Entity<GlimmerSourceComponent> ent, ref ArtifactActivatedEvent args)
+    private void OnArtifactActivated(Entity<GlimmerSourceComponent> ent, ref XenoArtifactActivatedEvent args)
     {
-        if (args.Activator != null &&
-            !HasComp<PsionicInsulationComponent>(args.Activator) &&
-            TryComp<PotentialPsionicComponent>(args.Activator, out var potentialPsionicComponent))
+        if (args.User != null &&
+            !HasComp<PsionicInsulationComponent>(args.User) &&
+            TryComp<PotentialPsionicComponent>(args.User, out var potentialPsionicComponent))
         {
-            ZapTarget((args.Activator.Value, potentialPsionicComponent));
+            ZapTarget((args.User.Value, potentialPsionicComponent));
             return;
         }
 
@@ -152,7 +152,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
 
             source.Accumulator -= source.SecondsPerGlimmer;
 
-            if (_artQuery.TryComp(owner, out var artifactComponent) && artifactComponent.IsSuppressed)
+            if (_artQuery.TryComp(owner, out var artifactComponent) && artifactComponent.Suppressed)
             {
                 // art is IsSuppressed = true, so skip!
                 continue;

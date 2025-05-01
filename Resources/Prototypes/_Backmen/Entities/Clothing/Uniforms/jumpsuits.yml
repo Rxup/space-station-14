@@ -262,6 +262,14 @@
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-military.rsi
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -533,6 +541,14 @@
   description: Форма бойцов спецвойск.
   components:
   - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    - Tail
     modifiers:
       coefficients:
         Blunt: 0.80

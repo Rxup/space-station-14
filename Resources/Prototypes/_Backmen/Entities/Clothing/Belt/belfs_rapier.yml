@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltBase, ClothingSlotBase]
   id: ClothingBeltRapier
   name: Ножны рапиры
   description: Ножны для рапиры
@@ -9,12 +9,19 @@
     state: sheath
   - type: Clothing
     sprite: Backmen/Clothing/Belt/rapier.rsi
-  - type: Storage
-    grid:
-    - 0,0,2,2
-    whitelist:
-      tags:
-        - Rapier
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Rapier
   - type: ItemMapper
     mapLayers:
       sheath-sabre:
@@ -22,28 +29,3 @@
           tags:
           - Rapier
   - type: Appearance
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltMythistophelRapier
-  name: Ножны рапиры Мифистофеля
-  description: Ножны для рапиры Мифистофеля
-  components:
-    - type: Sprite
-      sprite: Backmen/Clothing/Belt/rapier.rsi
-      state: sheath
-    - type: Clothing
-      sprite: Backmen/Clothing/Belt/rapier.rsi
-    - type: Storage
-      grid:
-      - 0,0,2,2
-      whitelist:
-        tags:
-          - Rapier
-    - type: ItemMapper
-      mapLayers:
-        sheath-sabre:
-          whitelist:
-            tags:
-              - Rapier
-    - type: Appearance

@@ -26,7 +26,7 @@
     capacity: 1
     count: 1
   - type: UpgradeableGun
-    maxUpgradeCapacity: 70
+    maxUpgradeCount: 60
     whitelist:
       tags:
       - PKAUpgrade
@@ -34,8 +34,13 @@
   - type: Item
     shape:
     - 0,0,4,0
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
-# Repeater is balanced around dual wielding not affecting burst fire rate. If someone changes that, repeater should probably be buffed.
 - type: entity
   name: proto-kinetic repeater
   id: WeaponProtoKineticRepeater
@@ -74,13 +79,19 @@
     capacity: 3
     count: 3
   - type: UpgradeableGun
-    maxUpgradeCapacity: 70
+    maxUpgradeCount: 60
     whitelist:
       tags:
       - PKAUpgrade
   - type: Item
     shape:
     - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   name: proto-kinetic pistol
@@ -110,7 +121,7 @@
     capacity: 1
     count: 1
   - type: UpgradeableGun
-    maxUpgradeCapacity: 200
+    maxUpgradeCount: 200
     whitelist:
       tags:
       - PKAUpgrade
@@ -123,6 +134,12 @@
     shape:
     - 0,0,1,0
     - 0,1,0,1
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 # Lavaland Change
 - type: entity

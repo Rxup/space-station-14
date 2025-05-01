@@ -114,7 +114,7 @@
   name: ammunition box (.50 BMG)
   components:
   - type: BallisticAmmoProvider
-    proto: BaseCartridgeRifleLightSniper
+    proto: Cartridge50BMG
     capacity: 60
 
 - type: entity
@@ -310,5 +310,5 @@
     steps: 4
     zeroVisible: false
   - type: BallisticAmmoProvider
-    proto: BaseCartridgeRifleLightSniper
+    proto: Cartridge50BMG
     capacity: 10

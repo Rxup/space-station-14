@@ -77,7 +77,19 @@ public abstract partial class SharedDoorSystem
 
     public void SetBoltsDown(Entity<DoorBoltComponent> ent, bool value, EntityUid? user = null, bool predicted = false)
     {
-        TrySetBoltDown(ent, value, user, predicted);
+        ent.Comp.BoltsDown = value;
+        Dirty(ent, ent.Comp);
+        UpdateBoltLightStatus(ent);
+
+        // used to reset the auto-close timer after unbolting
+        var ev = new DoorBoltsChangedEvent(value);
+        RaiseLocalEvent(ent.Owner, ev);
+
+        var sound = value ? ent.Comp.BoltDownSound : ent.Comp.BoltUpSound;
+        if (predicted)
+            Audio.PlayPredicted(sound, ent, user: user);
+        else
+            Audio.PlayPvs(sound, ent);
     }
 
     public bool TrySetBoltDown(
@@ -92,19 +104,7 @@ public abstract partial class SharedDoorSystem
         if (ent.Comp.BoltsDown == value)
             return false;
 
-        ent.Comp.BoltsDown = value;
-        Dirty(ent, ent.Comp);
-        UpdateBoltLightStatus(ent);
-
-        // used to reset the auto-close timer after unbolting
-        var ev = new DoorBoltsChangedEvent(value);
-        RaiseLocalEvent(ent.Owner, ev);
-
-        var sound = value ? ent.Comp.BoltDownSound : ent.Comp.BoltUpSound;
-        if (predicted)
-            Audio.PlayPredicted(sound, ent, user: user);
-        else
-            Audio.PlayPvs(sound, ent);
+        SetBoltsDown(ent, value, user, predicted);
         return true;
     }
 

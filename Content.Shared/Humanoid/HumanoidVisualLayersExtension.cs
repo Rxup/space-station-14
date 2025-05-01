@@ -73,6 +73,11 @@ namespace Content.Shared.Humanoid
                     break;
                 case HumanoidVisualLayers.Chest:
                     yield return HumanoidVisualLayers.Chest;
+                    yield return HumanoidVisualLayers.Groin;
+                    yield return HumanoidVisualLayers.Tail;
+                    break;
+                case HumanoidVisualLayers.Groin:
+                    yield return HumanoidVisualLayers.Groin;
                     yield return HumanoidVisualLayers.Tail;
                     break;
                 default:
@@ -86,8 +91,10 @@ namespace Content.Shared.Humanoid
             {
                 case BodyPartType.Other:
                     break;
-                case BodyPartType.Torso:
+                case BodyPartType.Chest:
                     return HumanoidVisualLayers.Chest;
+                case BodyPartType.Groin:
+                    return HumanoidVisualLayers.Groin;
                 case BodyPartType.Tail:
                     return HumanoidVisualLayers.Tail;
                 case BodyPartType.Head:
