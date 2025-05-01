@@ -31,7 +31,7 @@
     - id: FlashlightSeclite
     - id: Emag
     - id: FlatpackOracle # For Bluespace Crystalls
-    - id: EnergySwordDoubleScythe
+    - id: PlasmaScythe
 
 - type: entity
   parent: LockerInteQVanguard
