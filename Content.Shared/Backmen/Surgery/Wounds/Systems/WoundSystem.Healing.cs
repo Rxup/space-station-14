@@ -30,6 +30,9 @@ public partial class WoundSystem
                 continue;
 
             bleeds.IsBleeding = false;
+            bleeds.BleedingAmountRaw = 0;
+            bleeds.SeverityPenalty = 0;
+            bleeds.ScalingLimit = 0;
         }
 
         return true;

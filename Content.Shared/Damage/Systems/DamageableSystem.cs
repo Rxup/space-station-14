@@ -237,7 +237,7 @@ namespace Content.Shared.Damage
             }
 
             // backmen edit start
-            var specialHandlerEvent = new CheckForCustomHandlerEvent(
+            var specialHandlerEvent = new HandleCustomDamage(
                 damage,
                 targetPart,
                 canBeCancelled,
@@ -433,7 +433,7 @@ namespace Content.Shared.Damage
     ///     Currently, is used only for wounds
     /// </summary>
     [ByRefEvent]
-    public record struct CheckForCustomHandlerEvent(
+    public record struct HandleCustomDamage(
         DamageSpecifier Damage,
         TargetBodyPart? TargetPart,
         bool CanBeCancelled = true,
