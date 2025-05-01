@@ -105,6 +105,8 @@
   id: ClothingHeadEVAHelmetBase
   name: base space helmet
   components:
+  - type: CoveredSlot # Backmen
+    slots: [eyes, mask, ears]
   - type: BreathMask
   - type: Item
     size: Normal
@@ -142,6 +144,8 @@
   name: base hardsuit helmet
   categories: [ HideSpawnMenu ]
   components:
+  - type: CoveredSlot # Backmen
+    slots: [eyes, mask, ears]
   - type: BreathMask
   - type: Sprite
     state: icon # default state used by most inheritors
