@@ -80,3 +80,6 @@ uplink-bundles-wizardoutfitbag-desc = Хороший набор содержащ
 # Pointless
 uplink-pointless-spellburger-name = магический бургер
 uplink-pointless-spellburger-desc = Вкуснейший бургер созданный магией и блюспейсом.
+
+uplink-book-codespeak-language-name = словарь кодового языка
+uplink-book-codespeak-language-desc = Словарь, что научит вас кодовому языку. Можно прочитать всего 2 раза.

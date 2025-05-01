@@ -65,7 +65,7 @@ public abstract partial class SharedXenoArtifactSystem
     public bool TryGetNode(Entity<XenoArtifactComponent?> ent, int index, [NotNullWhen(true)] out Entity<XenoArtifactNodeComponent>? node)
     {
         node = null;
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
         if (index < 0 || index >= ent.Comp.NodeVertices.Length)
