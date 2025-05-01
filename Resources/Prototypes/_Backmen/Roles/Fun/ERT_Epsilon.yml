@@ -97,7 +97,7 @@
     outerClothing: ClothingOuterMVDVest
     suitstorage: AirTankFilled
     ears: ClothingHeadsetCentComCCMTFEPS11
-    pocket1: ClothingPounchMTFBattleFilled
+    pocket1: ClothingPounchMTFBattleSMGFilled
     pocket2: ClothingPounchMTFSecurityFilled
     belt: ClothingBeltSecurityFilled
     eyes: ClothingEyesGlassesSecurity
@@ -116,7 +116,7 @@
     outerClothing: ClothingOuterVestArmorMedSecUEG
     suitstorage: AirTankFilled
     ears: ClothingHeadsetCentComCCMTFEPS11
-    pocket1: ClothingPounchMTFBattleFilled
+    pocket1: ClothingPounchMTFBattleSMGMP5Filled
     eyes: ClothingEyesHudMedical
     id: OBRGavnaMedicIDCard2
     belt: ClothingBeltMedicalEps11Filled

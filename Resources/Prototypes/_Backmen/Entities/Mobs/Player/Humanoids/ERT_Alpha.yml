@@ -23,6 +23,8 @@
         department: Command
         time: 18000
     job: ERTLeader
+    mindRoles:
+    - MindRoleERTLeader
   - type: Loadout
     prototypes: [ERTLeaderAlpha1Gear]
   - type: RandomMetadata
@@ -55,6 +57,8 @@
         department: Command
         time: 18000
     job: ERTSecurity
+    mindRoles:
+    - MindRoleERTSecurity
   - type: Loadout
     prototypes: [ERTOperativeAlpha1Gear]
   - type: RandomMetadata

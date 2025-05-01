@@ -20,6 +20,7 @@ research-technology-bluespace-storage = Блюспейс-хранилище
 research-technology-portable-fission = Портативный распад
 research-technology-space-scanning = Сканирование космоса
 research-technology-excavation = Массовые раскопки
+research-technology-excavation-borg = Массовые раскопки(борг)
 research-technology-biochemical-stasis = Биохимический стазис
 research-technology-mechanized-treatment = Механизированная подготовка
 research-technology-bluespace-chemistry = Блюспейс-химия

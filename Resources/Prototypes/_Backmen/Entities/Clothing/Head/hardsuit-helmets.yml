@@ -28,6 +28,8 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -54,6 +56,8 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -84,6 +88,8 @@
     radius: 7
     energy: 3
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -126,6 +132,8 @@
     radius: 5
     energy: 3
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -228,6 +236,8 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
   - type: Armor
+    coverage:
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.8

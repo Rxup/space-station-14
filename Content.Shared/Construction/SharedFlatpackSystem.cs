@@ -94,7 +94,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
         var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, coords);
         if (xform.GridUid is { } gridUid)
         {
-            RaiseLocalEvent(gridUid, ref ev);
+            RaiseLocalEvent(gridUid, ref ev, true);
             if (ev.Cancelled)
             {
                 if (_net.IsServer)

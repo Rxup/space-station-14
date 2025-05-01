@@ -24363,7 +24363,7 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GasMinerNitrogenStation
+- proto: GasMinerNitrogen
   entities:
   - uid: 3856
     components:
@@ -24371,7 +24371,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 25.5,-29.5
       parent: 2
-- proto: GasMinerOxygenStation
+- proto: GasMinerOxygen
   entities:
   - uid: 3857
     components:

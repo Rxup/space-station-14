@@ -112,6 +112,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -185,6 +186,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -211,6 +213,7 @@
     - BackmenTranslators # backmen
     - BackmenProtolathe # backmen
     - BackmenSurgery # backmen
+    - BackmenEngineerWeapon # backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - BackmenAmmo # backmen
@@ -280,6 +283,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -330,6 +334,7 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -403,18 +408,24 @@
     - BackmenAmmoStatic # backmen
     - SecurityWeaponsStatic
 #    dynamicPacks: # Backmen-EDIT
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
     - BackmenAmmo # backmen
-    - SecurityWeapons
+#    - SecurityWeapons #backmen-gumsmiths
     - SecurityDisablers
+    - BackmenCircuboardArsenal #backmen-gumsmiths
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Security]
 
 - type: entity
   id: AmmoTechFab
@@ -448,6 +459,7 @@
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
 
 - type: entity
   id: MedicalTechFab
@@ -489,6 +501,9 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Medical]
 
 - type: entity
   parent: BaseLathe
@@ -621,6 +636,7 @@
     - type: MiningPoints # DeltaV - Source of mining points for miners
     - type: MiningPointsLathe # DeltaV
     - type: MaterialStorageMagnetPickup # Frontier
+    - type: NoLavalandUsage
 
 
 - type: entity
@@ -665,6 +681,7 @@
       tags:
       - Raw
       - Wooden
+      - Boll
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing

@@ -94,6 +94,11 @@
   name: store-category-bundles
   priority: 11
 
+- type: storeCategory
+  id: UplinkPsionic
+  name: store-category-psionic
+  priority: 12
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities
@@ -102,6 +107,11 @@
 #flesh cultist
 - type: storeCategory
   id: FleshCultistAbilities
+  name: store-category-abilities
+  
+#pai
+- type: storeCategory
+  id: PAIAbilities
   name: store-category-abilities
 
 - type: storeCategory

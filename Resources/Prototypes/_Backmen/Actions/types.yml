@@ -188,8 +188,9 @@
 #      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
       priority: -10
       event: !type:HairballActionEvent
-      charges: 1
       useDelay: 30
+    - type: LimitedCharges
+      maxCharges: 3
 
 - type: entity
   id: ActionToggleDome

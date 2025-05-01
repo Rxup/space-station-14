@@ -11,6 +11,8 @@
     name: Оператор ЦК
     description: Вас вызвали в этот сектор для помощи станции с целью!
     rules: Вас вызвали в этот сектор для помощи станции с целью!
+    mindRoles:
+    - MindRoleBKCCOperator
     raffle:
       settings: short
     requirements:

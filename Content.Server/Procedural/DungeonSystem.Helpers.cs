@@ -62,7 +62,7 @@ public sealed partial class DungeonSystem
                 }
             }
 
-            DebugTools.Assert(cheapestDistance < float.MaxValue);
+            //DebugTools.Assert(cheapestDistance < float.MaxValue);
             // Add to tree
             edges.Add(cheapest);
             forest.Add(cheapest.Item2);

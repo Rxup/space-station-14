@@ -1,5 +1,5 @@
 using Content.Shared.Backmen.Surgery.Tools;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Containers.ItemSlots;
@@ -25,13 +25,6 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public BodyPartSlot? ParentSlot;
 
-    /// <summary>
-    ///     Shitmed Change: Amount of damage to deal when the part gets removed.
-    ///     Only works if IsVital is true.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public FixedPoint2 VitalDamage = 100;
-
     [DataField] //AlwaysPushInheritance
     public string ToolName { get; set; } = "A body part";
 
@@ -43,18 +36,6 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 
     [DataField, AlwaysPushInheritance]
     public float Speed { get; set; } = 1f;
-
-    /// <summary>
-    /// Shitmed Change: What's the max health this body part can have?
-    /// </summary>
-    [DataField]
-    public float MinIntegrity;
-
-    /// <summary>
-    /// Whether this body part can be severed or not
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool CanSever = true;
 
     /// <summary>
     ///     Shitmed Change: Whether this body part is enabled or not.
@@ -73,23 +54,6 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// </summary>
     [DataField]
     public bool CanAttachChildren = true;
-
-    /// <summary>
-    ///     Shitmed Change: How long it takes to run another self heal tick on the body part.
-    /// </summary>
-    [DataField]
-    public float HealingTime = 10;
-
-    /// <summary>
-    ///     Shitmed Change: How long it has been since the last self heal tick on the body part.
-    /// </summary>
-    public float HealingTimer;
-
-    /// <summary>
-    ///     Shitmed Change: How much health to heal on the body part per tick.
-    /// </summary>
-    [DataField]
-    public float SelfHealingAmount = 0.15f;
 
     /// <summary>
     ///     Shitmed Change: The name of the container for this body part. Used in insertion surgeries.
@@ -111,46 +75,19 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public string Species { get; set; } = "";
 
     /// <summary>
-    ///     Shitmed Change: The total damage that has to be dealt to a body part
-    ///     to make possible severing it.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float SeverIntegrity = 90;
-
-    /// <summary>
     ///     Shitmed Change: The ID of the base layer for this body part.
     /// </summary>
     [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public string? BaseLayerId;
 
     /// <summary>
-    ///     Shitmed Change: On what TargetIntegrity we should re-enable the part.
+    ///     Shitmed Change: On what WoundableSeverity we should re-enable the part.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
-
-    [DataField, AutoNetworkedField]
-    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
-    {
-        { TargetIntegrity.CriticallyWounded, 75 },
-        { TargetIntegrity.HeavilyWounded, 60 },
-        { TargetIntegrity.ModeratelyWounded, 50 },
-        { TargetIntegrity.SomewhatWounded, 35 },
-        { TargetIntegrity.LightlyWounded, 20 },
-        { TargetIntegrity.Healthy, 10 },
-    };
+    public WoundableSeverity EnableIntegrity = WoundableSeverity.Severe;
 
     [DataField, AutoNetworkedField] //, AlwaysPushInheritance
     public BodyPartType PartType = BodyPartType.Other;
-
-
-    // TODO BODY Replace with a simulation of organs
-    /// <summary>
-    ///     Whether or not the owning <see cref="Body"/> will die if all
-    ///     <see cref="BodyComponent"/>s of this type are removed from it.
-    /// </summary>
-    [DataField("vital"), AutoNetworkedField]
-    public bool IsVital;
 
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry { get; set; } = BodyPartSymmetry.None;
@@ -228,11 +165,13 @@ public partial struct BodyPartSlot
 {
     public string Id;
     public BodyPartType Type;
+    public BodyPartSymmetry Symmetry; // backmen edit: symmetry
 
-    public BodyPartSlot(string id, BodyPartType type)
+    public BodyPartSlot(string id, BodyPartType type, BodyPartSymmetry symmetry) // backmen edit: symmetry
     {
         Id = id;
         Type = type;
+        Symmetry = symmetry; // backmen edit: symmetry
     }
 };
 

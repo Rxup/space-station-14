@@ -2,6 +2,8 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -67,13 +69,10 @@ public sealed partial class ExplosionSystem
 
     private List<EntityUid> _anchored = new();
 
-    private void OnMapChanged(MapChangedEvent ev)
+    private void OnMapRemoved(MapRemovedEvent ev)
     {
         // If a map was deleted, check the explosion currently being processed belongs to that map.
-        if (ev.Created)
-            return;
-
-        if (_activeExplosion?.Epicenter.MapId != ev.Map)
+        if (_activeExplosion?.Epicenter.MapId != ev.MapId)
             return;
 
         QueueDel(_activeExplosion.VisualEnt);
@@ -471,8 +470,46 @@ public sealed partial class ExplosionSystem
                 }
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage(entity, damage * _damageableSystem.UniversalExplosionDamageModifier, ignoreResistances: true);
+                // backmen edit start
+                if (TryComp<BodyComponent>(entity, out var body) && HasComp<ConsciousnessComponent>(entity))
+                {
+                    var bodyParts = _body.GetBodyChildren(entity, body).ToList();
+                    _robustRandom.Shuffle(bodyParts);
 
+                    var prioritisedParts = new List<EntityUid>();
+                    var chosenPart = bodyParts.First();
+
+                    prioritisedParts.Add(chosenPart.Id);
+                    bodyParts.Remove(chosenPart);
+
+                    if (_body.TryGetParentBodyPart(chosenPart.Id, out var parent, out var parentComponent))
+                    {
+                        prioritisedParts.Add(parent.Value);
+                        bodyParts.Remove((parent.Value, parentComponent));
+                    }
+
+                    var children = _body.GetBodyPartChildren(chosenPart.Id, chosenPart.Component).ToList();
+                    _robustRandom.Shuffle(children);
+
+                    prioritisedParts.Add(children.First().Id);
+                    bodyParts.Remove(children.First());
+
+                    foreach (var part in prioritisedParts)
+                    {
+                        _damageableSystem.TryChangeDamage(part, damage / prioritisedParts.Count, ignoreResistances: true);
+                    }
+
+                    foreach (var bodyPart in bodyParts)
+                    {
+                        // Distribute the last damage on the other parts... for the cinematic effect :3
+                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count, ignoreResistances: true);
+                    }
+                }
+                else
+                {
+                    _damageableSystem.TryChangeDamage(entity, damage, ignoreResistances: true);
+                }
+                // backmen edit end
             }
         }
 
@@ -725,7 +762,7 @@ sealed class Explosion
 
         if (spaceData != null)
         {
-            var mapUid = mapMan.GetMapEntityId(epicenter.MapId);
+            var mapUid = mapSystem.GetMap(epicenter.MapId);
 
             _explosionData.Add(new()
             {

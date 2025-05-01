@@ -67,10 +67,10 @@ namespace Content.Server.Construction
             if (!Resolve(uid, ref construction, false))
                 return null;
 
-            if (construction.Node is not {} nodeIdentifier)
+            if (construction.Node is not { } nodeIdentifier)
                 return null;
 
-            return GetCurrentGraph(uid, construction) is not {} graph ? null : GetNodeFromGraph(graph, nodeIdentifier);
+            return GetCurrentGraph(uid, construction) is not { } graph ? null : GetNodeFromGraph(graph, nodeIdentifier);
         }
 
         /// <summary>
@@ -86,10 +86,10 @@ namespace Content.Server.Construction
             if (!Resolve(uid, ref construction, false))
                 return null;
 
-            if (construction.EdgeIndex is not {} edgeIndex)
+            if (construction.EdgeIndex is not { } edgeIndex)
                 return null;
 
-            return GetCurrentNode(uid, construction) is not {} node ? null : GetEdgeFromNode(node, edgeIndex);
+            return GetCurrentNode(uid, construction) is not { } node ? null : GetEdgeFromNode(node, edgeIndex);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Content.Server.Construction
             if (GetCurrentNode(uid, construction) is not { } node)
                 return (null, null);
 
-            if (construction.EdgeIndex is not {} edgeIndex)
+            if (construction.EdgeIndex is not { } edgeIndex)
                 return (node, null);
 
             return (node, GetEdgeFromNode(node, edgeIndex));
@@ -122,7 +122,7 @@ namespace Content.Server.Construction
             if (!Resolve(uid, ref construction, false))
                 return null;
 
-            if (GetCurrentEdge(uid, construction) is not {} edge)
+            if (GetCurrentEdge(uid, construction) is not { } edge)
                 return null;
 
             return GetStepFromEdge(edge, construction.StepIndex);
@@ -142,10 +142,10 @@ namespace Content.Server.Construction
             if (!Resolve(uid, ref construction))
                 return null;
 
-            if (construction.TargetNode is not {} targetNodeId)
+            if (construction.TargetNode is not { } targetNodeId)
                 return null;
 
-            if (GetCurrentGraph(uid, construction) is not {} graph)
+            if (GetCurrentGraph(uid, construction) is not { } graph)
                 return null;
 
             return GetNodeFromGraph(graph, targetNodeId);
@@ -166,10 +166,10 @@ namespace Content.Server.Construction
             if (!Resolve(uid, ref construction))
                 return null;
 
-            if (construction.TargetEdgeIndex is not {} targetEdgeIndex)
+            if (construction.TargetEdgeIndex is not { } targetEdgeIndex)
                 return null;
 
-            if (GetCurrentNode(uid, construction) is not {} node)
+            if (GetCurrentNode(uid, construction) is not { } node)
                 return null;
 
             return GetEdgeFromNode(node, targetEdgeIndex);
@@ -246,8 +246,8 @@ namespace Content.Server.Construction
             if (!Resolve(uid, ref construction))
                 return false;
 
-            if (GetCurrentGraph(uid, construction) is not {} graph
-            ||  GetNodeFromGraph(graph, id) is not {} node)
+            if (GetCurrentGraph(uid, construction) is not { } graph
+            || GetNodeFromGraph(graph, id) is not { } node)
                 return false;
 
             var oldNode = construction.Node;
@@ -258,11 +258,11 @@ namespace Content.Server.Construction
                     $"{ToPrettyString(userUid.Value):player} changed {ToPrettyString(uid):entity}'s node from \"{oldNode}\" to \"{id}\"");
 
             // ChangeEntity will handle the pathfinding update.
-            if (node.Entity.GetId(uid, userUid, new(EntityManager)) is {} newEntity
+            if (node.Entity.GetId(uid, userUid, new(EntityManager)) is { } newEntity
                 && ChangeEntity(uid, userUid, newEntity, construction) != null)
                 return true;
 
-            if(performActions)
+            if (performActions)
                 PerformActions(uid, userUid, node.Actions);
 
             // An action might have deleted the entity... Account for this.
@@ -348,7 +348,7 @@ namespace Content.Server.Construction
 
                 // Retain the target node if an entity change happens in response to deconstruction;
                 // in that case, we must continue to move towards the start node.
-                if (construction.TargetNode is {} targetNode)
+                if (construction.TargetNode is { } targetNode)
                     SetPathfindingTarget(newUid, targetNode, newConstruction);
             }
 
@@ -359,7 +359,7 @@ namespace Content.Server.Construction
             }
 
             if (newConstruction.InteractionQueue.Count > 0 && _queuedUpdates.Add(newUid))
-                    _constructionUpdateQueue.Enqueue(newUid);
+                _constructionUpdateQueue.Enqueue(newUid);
 
             // Transform transferring.
             var newTransform = Transform(newUid);
@@ -449,7 +449,7 @@ namespace Content.Server.Construction
             if (!PrototypeManager.TryIndex<ConstructionGraphPrototype>(graphId, out var graph))
                 return false;
 
-            if(GetNodeFromGraph(graph, nodeId) is not {})
+            if (GetNodeFromGraph(graph, nodeId) is not { })
                 return false;
 
             construction.Graph = graphId;

@@ -1,6 +1,10 @@
 research-technology-machine-parts = Детали
-research-technology-powercells = Питание
-research-technology-powercells-advanced = Продвинутое питание
+research-technology-powercells = Базовые элементы питания
+research-technology-powercells-upgraded = Улучшенные элементы питания
+research-technology-powercells-prototypes = Прототипные элементы питания
+research-technology-powercells-bluespace = Блюспейс элементы питания
+research-technology-powercells-bluespace-reactor = Блюспейс реакторные элементы питания
+research-technology-powercells-vortex = Вортекс элементы питания
 research-technology-engineering-devices = Инженерные устройства
 research-technology-atmospheric-devices = Атмосферные устройства
 research-engineering-tools = Базовые инструменты

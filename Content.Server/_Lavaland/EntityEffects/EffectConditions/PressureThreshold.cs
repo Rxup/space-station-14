@@ -2,6 +2,7 @@ using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server._Lavaland.Procedural.Components;
+using Content.Shared._Lavaland.Procedural.Components;
 
 namespace Content.Server.EntityEffects.EffectConditions;
 

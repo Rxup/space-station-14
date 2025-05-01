@@ -1,7 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
-using Content.IntegrationTests.Tests.Interaction;
-using Content.Shared.Movement.Components;
+using Content.Server.Damage.Systems;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Slippery;
 using Content.Shared.Stunnable;
 using Robust.Shared.GameObjects;

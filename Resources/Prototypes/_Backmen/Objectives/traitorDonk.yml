@@ -5,8 +5,7 @@
   components:
   - type: RoleRequirement
     roles:
-      mindRoles:
-      - TraitorRole
+    - TraitorRole
   - type: Objective
     issuer: issuer-Donk-Pocket-Corp
   - type: ObjectiveBlacklistRequirement

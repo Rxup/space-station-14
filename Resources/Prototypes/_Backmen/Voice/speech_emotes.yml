@@ -92,6 +92,7 @@
   id: Hiss
   category: Vocal
   name: chat-emote-name-hiss
+  icon: Backmen/Interface/Emotes/hiss.png
   whitelist:
     components:
     - Vocal
@@ -100,9 +101,18 @@
     - BorgChassis
   chatMessages: ["chat-emote-msg-hiss"]
   chatTriggers:
+    - hiss
+    - шипит
+    - шипит.
+    - шипит!
+    - шипеть
+    - хсс
+    - хс
     - хис
     - хисс
     - хис!
+    - хисс.
+    - хисс!
     - хиссс!
 
 - type: emote

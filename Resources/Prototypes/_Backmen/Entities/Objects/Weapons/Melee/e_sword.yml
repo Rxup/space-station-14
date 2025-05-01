@@ -1,4 +1,56 @@
 - type: entity
+  parent: EnergySword
+  id: PlasmaSword
+  name: plasma sword
+  description: Blade is made of pure plasma heated from two to nine thousand degrees at the request of the owner. Power module made in the form of a handle heats up the gas and maintains its shape with a strong magnetic field. It seems that such blades have not been produced since the discovery of lightsabers.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword.rsi
+    layers:
+    - state: icon
+    - state: icon-on
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword-inhands.rsi
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_on.ogg
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_off.ogg
+      params:
+        volume: 3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      params:
+        variation: 0.125
+
+- type: entity
+  parent: PlasmaSword
+  id: PlasmaSwordAlt
+  name: plasma sword
+  description: Blade is made of pure plasma heated from two to nine thousand degrees at the request of the owner. Power module made in the form of a handle heats up the gas and maintains its shape with a strong magnetic field. It seems that such blades have not been produced since the discovery of lightsabers.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt-inhands.rsi
+
+- type: entity
   parent: EnergySwordDouble
   id: EnergySwordDoubleScythe
   name: energy scythe
@@ -9,6 +61,8 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: ItemToggle
+    onUse: false
+    onActivate: false
     soundActivate:
       path: /Audio/Backmen/Weapons/Melee/plasma/plasma_on.ogg
       params:

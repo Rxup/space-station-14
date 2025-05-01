@@ -99,7 +99,7 @@
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
   - EngineeringAdvancedMachines
-  position: -4,5
+  position: -5,4
 
 - type: technology
   id: AtmosphericMachines

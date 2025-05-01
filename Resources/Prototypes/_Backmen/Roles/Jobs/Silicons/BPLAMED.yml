@@ -17,4 +17,6 @@
   supervisors: job-supervisors-human
   canBeAntag: false
   jobEntity: DroneBPLAMED
+  whitelisted: true
+  discordRequired: true
   startingGear: RobotGear # for char preview only

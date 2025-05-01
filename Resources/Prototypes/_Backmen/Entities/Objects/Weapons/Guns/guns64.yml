@@ -342,10 +342,6 @@
     coldDamage:
       types:
         Cold: 5 #per second, scales with temperature & other constants
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 5
   - type: AtmosExposed
   - type: TimedDespawn
     lifetime: 100

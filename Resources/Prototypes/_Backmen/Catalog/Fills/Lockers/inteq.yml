@@ -1,0 +1,57 @@
+- type: entity
+  parent: GunSafe
+  id: GunSafeInteQFilled
+  suffix: Sizo, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: InteQSecretDocument
+    - id: BaseInteQUplinkRadio
+    - id: ClothingBackpackChameleonFill
+    - id: SecurityTechFabCircuitboard
+    - id: AngleGrinder
+  - type: AccessReader
+    access: [["InteQVanguardLeader"]]
+
+- type: entity
+  parent: LockerInteQVanguardLeader
+  id: LockerInteQVanguardLeaderSizoFilled
+  suffix: Sizo, Leader, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: AntiPsychicKnife
+    - id: CombatKnife
+    - id: CrowbarOrange
+    - id: MagazineBoxLight57x28InteQ
+    - id: FlashlightSeclite
+    - id: Emag
+    - id: FlatpackOracle # For Bluespace Crystalls
+    - id: EnergySwordDoubleScythe
+
+- type: entity
+  parent: LockerInteQVanguard
+  id: LockerInteQVanguardSizoFilled
+  suffix: Sizo, Vanguard, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: AntiPsychicKnife
+    - id: CombatKnife
+    - id: CrowbarOrange
+    - id: MagazineBoxLight57x28InteQ
+    - id: FlashlightSeclite
+
+- type: entity
+  parent: LockerInteQVanguard
+  id: LockerInteQVanguardMedicSizoFilled
+  suffix: Sizo, Medic, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: AntiPsychicKnife
+    - id: CombatKnife
+    - id: CrowbarOrange
+    - id: MagazineBoxLight57x28InteQ
+    - id: FlashlightSeclite
+    - id: MedkitCombatFilled

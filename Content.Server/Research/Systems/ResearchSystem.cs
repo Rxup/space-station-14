@@ -8,6 +8,7 @@ using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Research.Systems
@@ -35,19 +36,26 @@ namespace Content.Server.Research.Systems
 
         /// <summary>
         /// Gets a server based on it's unique numeric id.
+        /// backmen change: Also requires MapId to check a map
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="mapId"></param> // backmen change
         /// <param name="serverUid"></param>
         /// <param name="serverComponent"></param>
         /// <returns></returns>
-        public bool TryGetServerById(int id, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
+        public bool TryGetServerById(int id, MapId mapId, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
         {
             serverUid = null;
             serverComponent = null;
 
-            var query = EntityQueryEnumerator<ResearchServerComponent>();
-            while (query.MoveNext(out var uid, out var server))
+            var query = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var server, out var xform))
             {
+                // backmen edit: RnD servers are local for a map
+                if (xform.MapID != mapId)
+                    continue;
+                // backmen edit end
+
                 if (server.Id != id)
                     continue;
                 serverUid = uid;
@@ -61,6 +69,7 @@ namespace Content.Server.Research.Systems
         /// Gets the names of all the servers.
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Backmen API change: use GetAvailableServerNames with specified MapId instead")] // backmen change
         public string[] GetServerNames()
         {
             var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
@@ -78,6 +87,7 @@ namespace Content.Server.Research.Systems
         /// Gets the ids of all the servers
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Backmen API change: use GetAvailableServerIds with specified MapId instead")] // backmen change
         public int[] GetServerIds()
         {
             var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
@@ -90,6 +100,27 @@ namespace Content.Server.Research.Systems
 
             return list;
         }
+
+        // backmen changes start
+        /// <summary>
+        /// Gets the names of all the servers.
+        /// </summary>
+        public IEnumerable<Entity<ResearchServerComponent>> GetAvailableServers(MapId mapId)
+        {
+            var allServers = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
+
+            while (allServers.MoveNext(out var uid, out var server, out var xform))
+            {
+                // backmen edit: RnD servers are local for a map
+                if (xform.MapID != mapId)
+                    continue;
+                // backmen edit end
+
+
+                yield return (uid, server);
+            }
+        }
+        // backmen changes end
 
         public override void Update(float frameTime)
         {

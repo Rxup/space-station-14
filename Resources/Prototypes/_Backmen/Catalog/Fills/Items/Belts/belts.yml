@@ -3,28 +3,42 @@
   parent: ClothingBeltKatanaSheath
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: Wakizashi
-      - id: Katana
+  - type: ContainerFill
+    containers:
+      item-1:
+      - Katana
+      item-2:
+      - Wakizashi
 
 - type: entity
   id: ClothingBeltSheathFilledOrd
   parent: ClothingBeltOrden
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: OrdenSabre
+  - type: ContainerFill
+    containers:
+      item:
+      - OrdenSabre
 
 - type: entity
   id: ClothingBeltSheathFilledRapier
   parent: ClothingBeltRapier
   suffix: Filled
   components:
-    - type: StorageFill
-      contents:
-        - id: Rapier
+  - type: ContainerFill
+    containers:
+      item:
+      - Rapier
+
+- type: entity
+  id: ClothingBeltSheathFilledMythistophelRapier
+  parent: ClothingBeltRapier
+  suffix: Filled, Рапира Мифистофеля
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - MythistophelRapier
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -445,3 +459,20 @@
         - id: SpeedLoaderMagnumAP
           amount: 4
         - id: PinpointerNuclear
+
+- type: entity
+  parent: ClothingBeltInteQDropPouch
+  id: ClothingBeltInteQDropPouchMedicFilled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 2
+      - id: Bloodpack
+      - id: Gauze
+      - id: EmergencyMedipen
+        amount: 3
+      - id: Stimpack

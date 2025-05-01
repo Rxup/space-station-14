@@ -125,6 +125,9 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: ERTLeader
+    mindRoles:
+      - MindRoleERTLeader
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -181,6 +184,9 @@
       - !type:DepartmentTimeRequirement
         department: Engineering
         time: 18000
+    job: ERTEngineer
+    mindRoles:
+    - MindRoleERTEngineer
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -233,6 +239,9 @@
         time: 36000
       - !type:OverallPlaytimeRequirement
         time: 36000
+    job: ERTSecurity
+    mindRoles:
+    - MindRoleERTSecurity
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -288,6 +297,9 @@
       - !type:DepartmentTimeRequirement
         department: Medical
         time: 18000
+    job: ERTMedical
+    mindRoles:
+    - MindRoleERTMedical
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -303,7 +315,7 @@
     randomizeName: false
   - type: AntagImmune
 
-# ERT Junitor
+# ERT Janitor
 - type: entity
   name: Theta - 9 уборщик ОБР
   parent: MobHuman
@@ -343,6 +355,9 @@
       - !type:RoleTimeRequirement
         role: JobJanitor
         time: 3000
+    job: ERTJanitor
+    mindRoles:
+    - MindRoleERTJanitor
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
@@ -116,6 +117,17 @@ namespace Content.Shared.Damage
                 remainingTypes -= 1;
             }
         }
+
+        // backmen edit start
+        public DamageSpecifier(WoundSpecifier woundSpecifier)
+        {
+            foreach (var woundPair in woundSpecifier.WoundDict)
+            {
+                DamageDict.Add(woundPair.Key, woundPair.Value);
+            }
+        }
+        // backmen edit end
+
         #endregion constructors
 
         /// <summary>
