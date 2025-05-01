@@ -49,15 +49,34 @@ marking-LizardHornsBighorn-horns_bighorn_r = Правый рог
 
 # ХВОСТЫ
 marking-SnakeLargeTail = Ящер, большой змеиный хвост
-marking-SnakeLargeTail-tail_snakelarge = Верняя часть
+marking-SnakeLargeTail-tail_snakelarge = Верхняя часть
 marking-SnakeLargeTail-tail_snakelarge_overlay = Нижняя часть
 
 marking-WesternDragonTail = Ящер, хвост западного дракона
-marking-WesternDragonTail-tail_westerndragon = Верняя часть
+marking-WesternDragonTail-tail_westerndragon = Верхняя часть
 marking-WesternDragonTail-tail_westerndragon_overlay = Нижняя часть
 
 marking-KangarooTail = Ящер, хвост кенгуру
-marking-KangarooTail-tail_kangaroo = Верняя часть
+marking-KangarooTail-tail_kangaroo = Верхняя часть
+
+marking-TailSnake = Ящер, хвост змеи
+marking-TailSnake-snake = Основная часть
+
+marking-TailSnakeStripe = Ящер, хвост змеи (Полосатый)
+marking-TailSnakeStripe-snake_stripe = Верхняя часть
+marking-TailSnakeStripe-snake_stripe_secondary = Нижняя часть
+
+marking-TailSnakeStripeAlt = Ящер, хвост змеи (Полосатый, альтернативный)
+marking-TailSnakeStripeAlt-snake_stripe_alt = Верхняя часть
+marking-TailSnakeStripeAlt-snake_stripe_alt_secondary = Нижняя часть
+
+marking-TailSnakeDual = Ящер, хвост змеи (Двойной)
+marking-TailSnakeDual-snake_dual = Верхняя часть
+marking-TailSnakeDual-snake_dual_secondary = Нижняя часть
+
+marking-TailSnakeUnder = Ящер, хвост змеи (Подхвостье)
+marking-TailSnakeUnder-snake_under = Верхняя часть
+marking-TailSnakeUnder-snake_under_secondary = Нижняя часть
 
 # ШИПЫ
 marking-LizardChestSpinesAquaticWithoutTail = Ящер, грудь, шипы на спине (Водный, без хвоста)
@@ -74,3 +93,13 @@ marking-LizardChestSpinesShortWithoutTail-spines_short = Шипы
 
 marking-LizardChestSpinesShortMembraneWithoutTail = Ящер, грудь, шипы на спине (Короткие, Мембрана, без хвоста)
 marking-LizardChestSpinesShortMembraneWithoutTail-spines_short = Шипы
+
+# ЯЗЫК
+marking-ReptilianTongue = Ящер, язык
+marking-ReptilianTongue-reptilian_tongue = Язык
+
+marking-ReptilianTongueFast = Ящер, язык (Быстрый)
+marking-ReptilianTongueFast-reptilian_tongue_fast = Язык
+
+marking-ReptilianTongueSlow = Ящер, язык (Медленный)
+marking-ReptilianTongueSlow-reptilian_tongue_slow = Язык

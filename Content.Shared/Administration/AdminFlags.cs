@@ -130,11 +130,6 @@
         WhiteList = 1 << 29, //Backmen:perms-upd
 
         /// <summary>
-        ///     PlayTime commands
-        /// </summary>
-        PlayTime = 1 << 30, //Backmen:perms-upd
-
-        /// <summary>
         ///     Dangerous host permissions like scsi.
         /// </summary>
         Host = 1u << 31,
