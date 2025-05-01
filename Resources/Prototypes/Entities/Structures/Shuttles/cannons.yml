@@ -355,7 +355,7 @@
     board: ShuttleGunKineticCircuitboard
   - type: PressureDamageChange # Goobstation
   - type: UpgradeableGun # Goobstation
-    maxUpgradeCapacity: 40
+    maxUpgradeCount: 40
     whitelist:
       tags:
       - PKAUpgrade
