@@ -39,7 +39,6 @@
   - SpeedLeftLeg
   - SpeedRightLeg
   - BasicCyberneticEyes
-  - BorgModuleAdvancedMining
 
 - type: latheRecipePack
   id: BackmenSynthBodyParts
