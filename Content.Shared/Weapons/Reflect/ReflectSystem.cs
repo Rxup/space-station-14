@@ -101,7 +101,7 @@ public sealed class ReflectSystem : EntitySystem
             (reflect.Reflects & reflective.Reflective) == 0x0 ||
             !_toggle.IsActivated(reflector) ||
             !_random.Prob(reflect.ReflectProb) ||
-            ((reflect.Reflects & reflective.Reflective) == 0x0 &&
+            (reflect.Reflects & reflective.Reflective) == 0x0 &&
             _random.Prob(reflect.OtherTypeReflectProb) ||
             !TryComp<PhysicsComponent>(projectile, out var physics))
         {
@@ -183,7 +183,7 @@ public sealed class ReflectSystem : EntitySystem
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if (!TryComp<ReflectComponent>(reflector, out var reflect) ||
-            (reflect.Reflects & hitscanReflectType) == 0x0 ||
+            (reflect.Reflects & reflective) == 0x0 ||
             !_toggle.IsActivated(reflector) ||
             // Goob edit start
             !((reflect.Reflects & reflective) != 0x0 &&
