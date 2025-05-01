@@ -200,16 +200,3 @@
   - type: InstantAction
     icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
     event: !type:ToggleActionEvent
-
-- type: entity
-  id: ActionEggsLaying
-  name: Lay terror egg.
-  description: Lay the egg.
-  components:
-  - type: InstantAction
-    charges: 1
-    maxCharges: 3
-    useDelay: 120
-    renewCharges: true
-    icon: { sprite: Backmen/Objects/Misc/egg.rsi, state: icon }
-    event: !type:EggsLayingEvent

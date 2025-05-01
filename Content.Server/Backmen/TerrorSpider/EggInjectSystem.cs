@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Backmen.TerrorSpider;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Spider;
@@ -6,7 +7,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.TerrorSpider;
-namespace Content.Shared.Backmen.TerrorSpider;
 
 public sealed class EggInjectSystem : EntitySystem
 {
