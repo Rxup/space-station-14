@@ -1,4 +1,7 @@
 using System.Linq;
+using Content.Server.Administration.Systems;
+using Content.Server.Atmos.Components;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -196,6 +199,7 @@ public sealed class SuicideCommandTests
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
         var mind = mindSystem.GetMind(player);
+
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
         await server.WaitPost(() =>
@@ -245,7 +249,6 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
-        var damageableSystem = entManager.System<DamageableSystem>();
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
@@ -281,17 +284,15 @@ public sealed class SuicideCommandTests
         // and that all the damage is concentrated in the Slash category
         await server.WaitAssertion(() =>
         {
-            // Heal all damage first (possible low pressure damage taken)
-            damageableSystem.SetAllDamage(player, damageableComp, 0);
             consoleHost.GetSessionShell(playerMan.Sessions.First()).ExecuteCommand("suicide");
-            var lethalDamageThreshold = mobThresholdsComp.Thresholds.Keys.Last();
+            //var lethalDamageThreshold = mobThresholdsComp.Thresholds.Keys.Last();
 
             Assert.Multiple(() =>
             {
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                // Assert.That(damageableComp.Damage.DamageDict["Slash"], Is.EqualTo(lethalDamageThreshold)); // backmen: fix tests on github
+                //Assert.That(damageableComp.Damage.DamageDict["Slash"], Is.EqualTo(lethalDamageThreshold));
             });
         });
 
@@ -320,7 +321,6 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
-        var damageableSystem = entManager.System<DamageableSystem>();
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
@@ -329,7 +329,6 @@ public sealed class SuicideCommandTests
         MindComponent mindComponent = default;
         MobStateComponent mobStateComp = default;
         MobThresholdsComponent mobThresholdsComp = default;
-        DamageableComponent damageableComp = default;
         HandsComponent handsComponent = default;
         await server.WaitPost(() =>
         {
@@ -338,7 +337,6 @@ public sealed class SuicideCommandTests
 
             mobStateComp = entManager.GetComponent<MobStateComponent>(player);
             mobThresholdsComp = entManager.GetComponent<MobThresholdsComponent>(player);
-            damageableComp = entManager.GetComponent<DamageableComponent>(player);
             handsComponent = entManager.GetComponent<HandsComponent>(player);
         });
 
@@ -357,9 +355,8 @@ public sealed class SuicideCommandTests
         await server.WaitAssertion(() =>
         {
             // Heal all damage first (possible low pressure damage taken)
-            damageableSystem.SetAllDamage(player, damageableComp, 0);
             consoleHost.GetSessionShell(playerMan.Sessions.First()).ExecuteCommand("suicide");
-            var lethalDamageThreshold = mobThresholdsComp.Thresholds.Keys.Last();
+            //var lethalDamageThreshold = mobThresholdsComp.Thresholds.Keys.Last();
 
             Assert.Multiple(() =>
             {

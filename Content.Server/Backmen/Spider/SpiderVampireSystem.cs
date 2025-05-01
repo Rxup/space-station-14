@@ -9,6 +9,7 @@ using Robust.Shared.Audio;
 using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Nutrition.Components;
 using Content.Server.Administration.Logs;
+using Content.Server.Charges;
 using Robust.Shared.Random;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
@@ -28,6 +29,7 @@ public sealed class SpiderVampireSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly ChargesSystem _charges = default!;
 
     public override void Initialize()
     {
@@ -48,7 +50,8 @@ public sealed class SpiderVampireSystem : EntitySystem
         _action.AddAction(uid, ref component.SpiderVampireEggAction, SpiderVampireEggAction);
         //_action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
         //    _gameTiming.CurTime + (TimeSpan) component.InitCooldown);
-        _action.SetCharges(component.SpiderVampireEggAction, component.Charges);
+        if (component.SpiderVampireEggAction.HasValue)
+            _charges.AddCharges(component.SpiderVampireEggAction.Value, component.Charges);
     }
 
     #endregion
@@ -112,7 +115,8 @@ public sealed class SpiderVampireSystem : EntitySystem
         {
             if (_action.TryGetActionData(component.SpiderVampireEggAction, out var data))
             {
-                _action.SetCharges(component.SpiderVampireEggAction, data.Charges+1);
+                if (component.SpiderVampireEggAction.HasValue)
+                    _charges.AddCharges(component.SpiderVampireEggAction.Value, 1);
                 _action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
                     _gameTiming.CurTime + TimeSpan.FromSeconds(1));
                 _action.SetEnabled(component.SpiderVampireEggAction, true);

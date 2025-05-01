@@ -7,6 +7,9 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
+  - type: Consciousness
+    threshold: 80
+    cap: 165
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - TauCetiBasic

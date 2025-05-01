@@ -79,4 +79,5 @@
     maximumEntitiesSpawned: 1
   - type: TimedDespawn
     lifetime: 301
-
+  - type: LimitedCharges
+    maxCharges: 1

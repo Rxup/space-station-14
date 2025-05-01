@@ -1,5 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
@@ -52,6 +54,7 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, SleepActionEvent>(OnSleepAction);
 
         SubscribeLocalEvent<SleepingComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<SleepingComponent, WoundsDeltaChanged>(OnWoundsChanged); // backmen edit
         SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<SleepingComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SleepingComponent, SpeakAttemptEvent>(OnSpeakAttempt);
@@ -222,6 +225,20 @@ public sealed partial class SleepingSystem : EntitySystem
         if (args.DamageDelta.GetTotal() >= ent.Comp.WakeThreshold)
             TryWaking((ent, ent.Comp));
     }
+
+    // backmen edit start
+    /// <summary>
+    /// Wake up on taking an instance of damage at least the value of WakeThreshold.
+    /// </summary>
+    private void OnWoundsChanged(Entity<SleepingComponent> ent, ref WoundsDeltaChanged args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        if (args.TotalDelta >= ent.Comp.WakeThreshold)
+            TryWaking((ent, ent.Comp));
+    }
+    // backmen edit end
 
     /// <summary>
     /// In crit, we wake up if we are not being forced to sleep.

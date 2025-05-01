@@ -4,7 +4,7 @@
   name: "skeleton body part"
   abstract: true
   components:
-  # backmen edit
+  #start-backmen edit
   - type: WoundableVisuals
     damageOverlayGroups:
       Brute:
@@ -13,6 +13,19 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  #end-backmen edit
+  - type: Damageable
+    damageContainer: Biological
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 20
+  - type: Tag
+    tags:
+      - Trash
 
 - type: entity
   id: ChestSkeleton
@@ -42,7 +55,7 @@
   id: HeadSkeleton
   name: "skull"
   description: Alas poor Yorick...
-  parent: [BaseHead, PartSkeleton]
+  parent: [ PartSkeleton, BaseMob ]
   components:
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi
@@ -52,10 +65,12 @@
       state: "skull_icon"
     - type: BodyPart
       partType: Head
+    - type: BlockMovement
     - type: Input
       context: "human"
     - type: Speech
       speechVerb: Skeleton
+      speechSounds: Alto
     - type: SkeletonAccent
     - type: Actions
     - type: Vocal

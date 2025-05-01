@@ -301,7 +301,7 @@ public abstract partial class SharedResearchSystem : EntitySystem   // Goobstati
         component.UnlockedRecipes.Add(recipe);
         Dirty(uid, component);
 
-        var ev = new TechnologyDatabaseModifiedEvent();
+        var ev = new TechnologyDatabaseModifiedEvent(new List<string> { recipe });
         RaiseLocalEvent(uid, ref ev);
     }
 }

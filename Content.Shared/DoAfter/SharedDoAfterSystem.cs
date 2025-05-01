@@ -31,7 +31,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<DoAfterComponent, DamageChangedEvent>(OnDamage);
-        SubscribeLocalEvent<DoAfterComponent, WoundSeverityPointChangedOnBodyEvent>(OnWoundDamage); // backmen edit
+        SubscribeLocalEvent<DoAfterComponent, WoundsDeltaChanged>(OnWoundDamage); // backmen edit
         SubscribeLocalEvent<DoAfterComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
         SubscribeLocalEvent<DoAfterComponent, ComponentHandleState>(OnDoAfterHandleState);
@@ -79,11 +79,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     /// <summary>
     /// Cancels DoAfter if it breaks on damage (wound) and it meets the threshold
     /// </summary>
-    private void OnWoundDamage(EntityUid uid, DoAfterComponent component, WoundSeverityPointChangedOnBodyEvent args)
+    private void OnWoundDamage(EntityUid uid, DoAfterComponent component, WoundsDeltaChanged args)
     {
         // If we're applying state then let the server state handle the do_after prediction.
         // This is to avoid scenarios where a do_after is erroneously cancelled on the final tick.
-        var damageDelta = args.NewSeverity - args.OldSeverity;
+        var damageDelta = args.TotalDelta;
         if (damageDelta < 0 || GameTiming.ApplyingState)
             return;
 

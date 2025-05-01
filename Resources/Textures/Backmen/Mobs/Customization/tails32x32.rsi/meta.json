@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from S.P.L.U.R.T at commit https://github.com/SPLURT-Station/S.P.L.U.R.T-Station-13/commit/96703f76bccd8fe6a96b78524efb97a9af661767",
+    "copyright": "Taken from S.P.L.U.R.T at commit https://github.com/SPLURT-Station/S.P.L.U.R.T-Station-13/commit/96703f76bccd8fe6a96b78524efb97a9af661767 | and https://github.com/Bubberstation/Bubberstation/commit/e9e0683c6e34512c125cef1a4c69976258ebfdce | snake_ tails adjusted by KittenColony (Github) and PuroSlavKing (Github)",
     "states": [
         {
             "name": "axolotl",
@@ -96,8 +96,274 @@
             "directions": 4
         },
         {
-            "name": "snake",
-            "directions": 4
+          "name": "snake",
+          "directions": 4
+        },
+        {
+          "name": "snake_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_stripe",
+          "directions": 4
+        },
+        {
+          "name": "snake_stripe_secondary",
+          "directions": 4
+        },
+        {
+          "name": "snake_stripe_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_stripe_secondary_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_stripe_alt",
+          "directions": 4
+        },
+        {
+          "name": "snake_stripe_alt_secondary",
+          "directions": 4
+        },
+        {
+          "name": "snake_stripe_alt_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_stripe_alt_secondary_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_dual",
+          "directions": 4
+        },
+        {
+          "name": "snake_dual_secondary",
+          "directions": 4
+        },
+        {
+          "name": "snake_dual_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_dual_secondary_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_under",
+          "directions": 4
+        },
+        {
+          "name": "snake_under_secondary",
+          "directions": 4
+        },
+        {
+          "name": "snake_under_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
+        },
+        {
+          "name": "snake_under_secondary_wagging",
+          "directions": 4,
+          "delays": [
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ],
+            [
+              0.45,
+              0.45,
+              0.45
+            ]
+          ]
         },
         {
             "name": "succubus",

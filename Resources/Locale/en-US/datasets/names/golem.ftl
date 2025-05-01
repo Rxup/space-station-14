@@ -1333,4 +1333,3 @@ names-golem-dataset-1332 = Zoisite
 names-golem-dataset-1333 = Zorite
 names-golem-dataset-1334 = Zunyite
 names-golem-dataset-1335 = Zussmanite
-names-golem-dataset-1336 = Zykaite
