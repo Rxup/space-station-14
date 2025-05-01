@@ -93,3 +93,13 @@ marking-LizardChestSpinesShortWithoutTail-spines_short = Шипы
 
 marking-LizardChestSpinesShortMembraneWithoutTail = Ящер, грудь, шипы на спине (Короткие, Мембрана, без хвоста)
 marking-LizardChestSpinesShortMembraneWithoutTail-spines_short = Шипы
+
+# ЯЗЫК
+marking-ReptilianTongue = Ящер, язык
+marking-ReptilianTongue-reptilian_tongue = Язык
+
+marking-ReptilianTongueFast = Ящер, язык (Быстрый)
+marking-ReptilianTongueFast-reptilian_tongue_fast = Язык
+
+marking-ReptilianTongueSlow = Ящер, язык (Медленный)
+marking-ReptilianTongueSlow-reptilian_tongue_slow = Язык
