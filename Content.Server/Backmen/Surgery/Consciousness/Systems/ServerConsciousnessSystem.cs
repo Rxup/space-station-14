@@ -27,7 +27,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<ConsciousnessComponent, CheckForCustomHandlerEvent>(OnConsciousnessDamaged);
+        SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
 
         // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(SharedBodySystem)]);
@@ -44,8 +44,11 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     private void OnConsciousnessDamaged(
         EntityUid uid,
         ConsciousnessComponent component,
-        ref CheckForCustomHandlerEvent args)
+        ref HandleCustomDamage args)
     {
+        if (args.Handled)
+            return;
+
         var actuallyInducedDamage = new DamageSpecifier(args.Damage);
         switch (args.TargetPart)
         {

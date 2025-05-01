@@ -42,6 +42,8 @@
     - id: PlushieMoth
     - id: PlushieArachind
     - id: PlushiePenguin
+    - id: PlushieThrongler # backmen change
+      weight: 0.05
 
 # Removed crates with toys because EE toys
 

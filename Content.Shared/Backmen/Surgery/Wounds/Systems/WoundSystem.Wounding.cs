@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -38,7 +39,7 @@ public partial class WoundSystem
         SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
         SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableMapInit);
 
-        SubscribeLocalEvent<WoundableComponent, CheckForCustomHandlerEvent>(OnWoundableDamaged);
+        SubscribeLocalEvent<WoundableComponent, HandleCustomDamage>(OnWoundableDamaged, after: [typeof(ConsciousnessSystem)]);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -119,10 +120,13 @@ public partial class WoundSystem
     private void OnWoundableDamaged(
         EntityUid woundable,
         WoundableComponent component,
-        ref CheckForCustomHandlerEvent args)
+        ref HandleCustomDamage args)
     {
-        args.Handled = true;
+        if (args.Handled)
+            return;
+
         args.Damage = GetWoundsChanged(woundable, args.Origin, args.Damage, component: component);
+        args.Handled = true;
     }
 
     private void OnWoundableInserted(EntityUid parentEntity, WoundableComponent parentWoundable, EntInsertedIntoContainerMessage args)
@@ -435,7 +439,7 @@ public partial class WoundSystem
         WoundableComponent? component = null)
     {
         if (!WoundableQuery.Resolve(woundable, ref component, false))
-            return damage;
+            return new DamageSpecifier(); // Empty
 
         var damageIncreased = false;
         var actuallyInducedDamage = new DamageSpecifier(damage);
