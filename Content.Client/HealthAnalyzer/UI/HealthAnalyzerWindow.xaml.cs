@@ -200,12 +200,11 @@ namespace Content.Client.HealthAnalyzer.UI
 
             if (!isPart
                 && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body)
-                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value)
-                && body.RootContainer.ContainedEntity.HasValue)
+                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value))
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
                 var damageTypes = new Dictionary<string, FixedPoint2>();
-                foreach (var wound in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
+                foreach (var wound in _wound.GetBodyWounds(_target.Value, body))
                 {
                     if (wound.Comp.DamageGroup == null)
                         continue;

@@ -10,3 +10,8 @@ ent-ClothingOuterWinterInteQ = зимнее пальто Интек
     .desc = Утепленное зимнее пальто, похоже это мерч.
 ent-ClothingOuterHoodieInteQ = худи Интек
     .desc = Утепленная толстовка с капюшоном, похоже это мерч.
+
+ent-ClothingOuterCoatCaptainWhite = белый китель капитана
+    .desc = Белый китель капитана, инкрустированный золотом.
+ent-ClothingOuterCoatCaptainSheriff = китель шерифа
+    .desc = Китель шерифа, инкрустированный золотом.

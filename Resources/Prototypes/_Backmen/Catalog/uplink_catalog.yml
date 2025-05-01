@@ -231,3 +231,14 @@
     - Psychologist
     - Chemist
     - Paramedic
+
+- type: listing
+  id: UplinkBookCodespeakLanguage
+  name: uplink-book-codespeak-language-name
+  description: uplink-book-codespeak-language-desc
+  icon: { sprite: /Textures/Backmen/Objects/Misc/books.rsi, state: syndicate }
+  productEntity: ManualCodespeak
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDeception
