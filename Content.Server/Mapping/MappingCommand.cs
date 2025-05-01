@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Mapping
 {
-    [AdminCommand(AdminFlags.Server | AdminFlags.Mapping | AdminFlags.Host)]
+    [AdminCommand(AdminFlags.Server | AdminFlags.Mapping)]
     sealed class MappingCommand : IConsoleCommand
     {
         [Dependency] private readonly IEntityManager _entities = default!;
