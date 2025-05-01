@@ -1,0 +1,77 @@
+# <--- EGGS --->
+- type: entity
+  parent: BaseItem
+  id: BaseTerrorSpiderEgg
+  name: gloomy egg
+  description: It seems to be moving.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/egg.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Huge
+  - type: Damageable
+    damageContainer: Biological
+  - type: Flammable
+    fireSpread: true
+    damage:
+     types:
+       Heat: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Eggshells:
+            min: 0
+            max: 1
+          FoodMeatSpiderLeg:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 1500
+  - type: EmitSoundOnUse
+    sound: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: UseDelay
+    delay: 300
+  - type: Timer
+  - type: TimedSpawner
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn 
+    lifetime: 181
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDroneEgg
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorGray
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderHealerEgg
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorGreen
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderKnightEgg
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorRed

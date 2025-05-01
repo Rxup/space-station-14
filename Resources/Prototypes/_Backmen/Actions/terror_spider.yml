@@ -21,9 +21,6 @@
   description: Lay the egg.
   components:
   - type: InstantAction
-    charges: 1
-    maxCharges: 3
     useDelay: 120
-    renewCharges: true
     icon: { sprite: Backmen/Objects/Misc/egg.rsi, state: icon }
     event: !type:EggsLayingEvent

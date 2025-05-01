@@ -1,7 +1,7 @@
-﻿using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage;
+﻿using System.Linq;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.TerrorSpider;
 
@@ -9,17 +9,22 @@ public sealed class TerrorEggSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private readonly Dictionary<EntityUid, Entity<EggHolderComponent>> _eggs = [];
-    private readonly EntProtoId[] _terrorSpiders = ["MobTerrorGray", "MobTerrorGreen", "MobTerrorRed"];
-    private DamageTypePrototype? _blunt;
-    private DamageSpecifier? _damage;
+    private EntProtoId[] _terrorSpiders = [];
     private float _accumulatedTime;
-    private const float HatchInterval = 5f;
+    private const float HatchInterval = 30f;
 
     public override void Initialize()
     {
+        base.Initialize();
+
+        _terrorSpiders = _prototype.EnumeratePrototypes<EntityPrototype>()
+            .Where(p => p.ID.StartsWith("MobTerror") && !p.Abstract)
+            .Select(p => new EntProtoId(p.ID))
+            .ToArray();
+
         SubscribeLocalEvent<EggHolderComponent, ComponentInit>(OnEggAdded);
         SubscribeLocalEvent<EggHolderComponent, ComponentShutdown>(OnEggRemoved);
     }
@@ -30,9 +35,6 @@ public sealed class TerrorEggSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        _blunt ??= _prototype.Index<DamageTypePrototype>("Blunt");
-        _damage ??= new(_blunt, 1);
-
         _accumulatedTime += frameTime;
 
         if (_accumulatedTime >= HatchInterval)
@@ -41,7 +43,6 @@ public sealed class TerrorEggSystem : EntitySystem
 
             foreach (var egg in _eggs.Values)
             {
-                _damageable.TryChangeDamage(egg.Owner, _damage, false);
                 HatchEgg(egg.Owner);
             }
         }
@@ -49,7 +50,14 @@ public sealed class TerrorEggSystem : EntitySystem
 
     private void HatchEgg(EntityUid eggUid)
     {
-        var entity = EntityManager.SpawnEntity(_random.Pick(_terrorSpiders), Transform(eggUid).Coordinates);
+        if (!_terrorSpiders.Any() || Deleted(eggUid))
+            return;
+
+        var xform = Transform(eggUid);
+        if (!xform.Coordinates.IsValid(EntityManager))
+            return;
+
+        var entity = EntityManager.SpawnEntity(_random.Pick(_terrorSpiders), xform.Coordinates);
         RemComp<EggHolderComponent>(eggUid);
     }
 }
