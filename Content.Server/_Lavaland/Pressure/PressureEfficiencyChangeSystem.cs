@@ -44,12 +44,18 @@ public sealed partial class PressureEfficiencyChangeSystem : EntitySystem
         if (!ApplyModifier(ent))
             return;
 
+        if (!ent.Comp.ApplyToMelee)
+            return;
+
         args.Damage *= ent.Comp.AppliedModifier;
     }
 
     private void OnGunShot(Entity<PressureDamageChangeComponent> ent, ref GunShotEvent args)
     {
         if (!ApplyModifier(ent))
+            return;
+
+        if (!ent.Comp.ApplyToProjectiles)
             return;
 
         foreach (var (uid, shootable) in args.Ammo)

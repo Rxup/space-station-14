@@ -1,0 +1,15 @@
+- type: entity
+  id: BorgModulePKA
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: proto-kinetic cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-pka
+      sprite: _Goobstation/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    items:
+    - WeaponProtoKineticAccelerator
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi, state: icon }

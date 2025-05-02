@@ -19,5 +19,7 @@ public record struct GunRefreshModifiersEvent(
     Angle MinAngle,
     int ShotsPerBurst,
     float FireRate,
-    float ProjectileSpeed
+    float ProjectileSpeed,
+    float BurstFireRate, // Goobstation
+    float BurstCooldown // Goobstation
 );

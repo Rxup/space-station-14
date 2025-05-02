@@ -59,8 +59,6 @@
     cost: 1000
   - id: AdvancedMineralScanner
     cost: 1100
-  - id: WeaponProtoKineticShotgun
-    cost: 1150
   - id: WeaponProtoKineticRepeater
     cost: 1150
   - id: WeaponProtoKineticPistol
@@ -79,11 +77,13 @@
     cost: 1250
   - id: ClothingBackpackDuffelSalvageConscription
     cost: 1250
-  - id: ShelterCapsule
+  - id: WeaponProtoKineticShotgun
     cost: 1500
   - id: WeaponPlasmaCutter
     cost: 1700
   - id: SpaceCash1000
+    cost: 2000
+  - id: BorgModuleAdvancedMining
     cost: 2000
   # TODO: super resonator for 2500
   - id: ClothingOuterHardsuitSalvage

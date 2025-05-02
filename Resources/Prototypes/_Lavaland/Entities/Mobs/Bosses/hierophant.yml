@@ -52,7 +52,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      2500: Dead
+      2500: Dead #
   - type: Tag
     tags:
     - CannotSuicide
@@ -115,8 +115,8 @@
   - type: DamageSquare
     damage:
       types:
-        Blunt: 3
-        Heat: 3
+        Blunt: 6
+        Heat: 6
     sound:
       path: /Audio/_Lavaland/Mobs/Bosses/hiero_blast.ogg
 

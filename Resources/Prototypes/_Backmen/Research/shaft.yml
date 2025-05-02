@@ -42,6 +42,7 @@
    - OreBagOfHolding
    - AdvancedMineralScannerEmpty
    - MiningDrillDiamond
+   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - SalvageEquipment
   position: 10,4

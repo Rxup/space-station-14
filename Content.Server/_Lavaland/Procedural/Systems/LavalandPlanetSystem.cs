@@ -5,7 +5,6 @@ using Content.Server._Lavaland.Biome;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Lavaland.Procedural.Components;
@@ -14,18 +13,14 @@ using Content.Shared.Atmos;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Gravity;
-using Content.Shared.Movement.Components;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Physics;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -51,7 +46,6 @@ public sealed class LavalandPlanetSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly BiomeSystem _biome = default!;
-    [Dependency] private readonly FixtureSystem _fixtures = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -67,6 +61,7 @@ public sealed class LavalandPlanetSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<MobStateComponent, EntParentChangedMessage>(OnPlayerParentChange);
 
         _xformQuery = GetEntityQuery<TransformComponent>();
         _fixtureQuery = GetEntityQuery<FixturesComponent>();
@@ -102,6 +97,21 @@ public sealed class LavalandPlanetSystem : EntitySystem
         EnsureComp<LavalandPreloaderComponent>(mapUid);
         _metaData.SetEntityName(mapUid, "Lavaland Preloader Map");
         _map.SetPaused(mapId, true);
+    }
+
+    /// <summary>
+    /// Raised when an entity exits or enters a grid.
+    /// </summary>
+    private void OnPlayerParentChange(Entity<MobStateComponent> ent, ref EntParentChangedMessage args)
+    {
+        if (TerminatingOrDeleted(ent.Owner))
+            return;
+
+        if (args.OldParent != null
+            && TryComp<LavalandGridGrantComponent>(args.OldParent.Value, out var toRemove))
+            EntityManager.RemoveComponents(ent.Owner, toRemove.ComponentsToGrant);
+        else if (TryComp<LavalandGridGrantComponent>(Transform(ent.Owner).GridUid, out var toGrant))
+            EntityManager.AddComponents(ent.Owner, toGrant.ComponentsToGrant);
     }
 
     public Entity<LavalandPreloaderComponent>? GetPreloaderEntity()
@@ -190,11 +200,11 @@ public sealed class LavalandPlanetSystem : EntitySystem
         // Hide all grids from the mass scanner.
         foreach (var grid in _mapManager.GetAllGrids(lavalandMapId))
         {
-            var flag = IFFFlags.Hide;
+            var flag = IFFFlags.HideLabel;
 
-            #if DEBUG || TOOLS
+            /*#if DEBUG || TOOLS Uncomment me when GPS is done.
             flag = IFFFlags.HideLabel;
-            #endif
+            #endif*/
 
             _shuttle.AddIFFFlag(grid, flag);
         }
@@ -484,6 +494,9 @@ public sealed class LavalandPlanetSystem : EntitySystem
         _metaData.SetEntityName(spawned.Value, Loc.GetString(ruin.Name));
         _transform.SetParent(spawned.Value, spawnedXForm, lavaland);
         _transform.SetCoordinates(spawned.Value, new EntityCoordinates(lavaland, spawnedXForm.Coordinates.Position.Rounded()));
+        var componentsToGrant = EnsureComp<LavalandGridGrantComponent>(spawned.Value);
+        foreach (var (key, comp) in ruin.ComponentsToGrant)
+            componentsToGrant.ComponentsToGrant[key] = comp;
 
         // yaaaaaaaaaaaaaaaay
         usedSpace.Add(ruinBox);

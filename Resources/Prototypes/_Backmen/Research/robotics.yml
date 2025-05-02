@@ -250,19 +250,3 @@
   - CyborgModules
   - BiochemicalStasis
   position: 9,-4
-
-- type: technology
-  id: MassExcavation
-  name: research-technology-excavation-borg
-  icon:
-    sprite: Objects/Tools/handdrilldiamond.rsi
-    state: handdrill
-  discipline: Engineering
-  tier: 2
-  cost: 12500
-  recipeUnlocks:
-  - BorgModuleAdvancedMining
-  technologyPrerequisites:
-  - CyborgModules
-  - MassExcavation
-  position: 10,-4
