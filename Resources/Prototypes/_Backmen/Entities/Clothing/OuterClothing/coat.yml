@@ -173,11 +173,12 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.4
-        ArmorPiercing: 0.8
+        Piercing: 0.5
+        ArmorPiercing: 0.85
         Stun: 0.6
         Heat: 0.7
-        Caustic: 0.1 # ~~not~~ the full 90% from ss13
+        Caustic: 0.75
+        Stun: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
