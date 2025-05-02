@@ -544,6 +544,9 @@
             shouldHave: false
           - !type:OrganType # Ataraxia
             type: AnthroAnimal
+            shouldHave: true
+          - !type:OrganType
+            type: Vox
             shouldHave: false
         type: Local
         visualType: MediumCaution
@@ -555,6 +558,9 @@
           - !type:OrganType
             type: Animal
             shouldHave: false
+          - !type:OrganType
+            type: Vox
+            shouldHave: false
       - !type:HealthChange
         conditions:
         - !type:OrganType
@@ -564,6 +570,10 @@
           type: AnthroAnimal
           shouldHave: true
         damage: # Ataraxia-EDIT
+        - !type:OrganType
+          type: Vox
+          shouldHave: false
+        damage:
           types:
             Blunt: -0.5
             Piercing: -0.5
@@ -578,6 +588,12 @@
           shouldHave: false
         reagent: Protein
         amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType
+          type: Vox
+        reagent: Protein
+        amount: 0.25
 
 - type: reagent
   id: Allicin
@@ -781,3 +797,19 @@
           shouldHave: false
         walkSpeedModifier: 0.4
         sprintSpeedModifier: 0.4
+
+- type: reagent
+  id: ToxinTrash
+  name: reagent-name-toxintrash
+  group: Toxins
+  desc: reagent-desc-toxintrash
+  flavor: trashy
+  physicalDesc: reagent-physical-desc-nondescript
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+        conditions:
+        - !type:OrganType
+          type: Vox
