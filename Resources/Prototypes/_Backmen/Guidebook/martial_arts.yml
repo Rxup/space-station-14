@@ -1,0 +1,57 @@
+- type: guideEntry
+  id: MartialArts
+  name: guide-entry-martial-arts
+  text: "/ServerInfo/_Backmen/Guidebook/Controls/MartialArts.xml"
+
+# Shitty guidebook entities
+- type: entity
+  id: GuidebookMartialHarm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Actions/intents.rsi
+    state: harm
+    scale: 2.0,2.0
+
+- type: entity
+  id: GuidebookMartialGrab
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Actions/intents.rsi
+    state: grab
+    scale: 2.0,2.0
+
+- type: entity
+  id: GuidebookMartialDisarm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Actions/intents.rsi
+    state: shove
+    scale: 2.0,2.0
+
+# Krav Maga
+- type: entity
+  id: GuidebookMartialLegSweep
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Actions/kravmaga.rsi
+    state: legsweep
+
+- type: entity
+  id: GuidebookMartialNeckChop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Actions/kravmaga.rsi
+    state: neckchop
+
+- type: entity
+  id: GuidebookMartialLungPunch
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Actions/kravmaga.rsi
+    state: lungpunch

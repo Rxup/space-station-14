@@ -18,3 +18,4 @@ guide-entry-organmanipulation = Манипулирование органами
 guide-entry-utilitysurgeries = Особые применения
 guide-entry-special-actions = Особые действия
 guide-entry-mood = Настроение
+guide-entry-martial-arts = Боёвка

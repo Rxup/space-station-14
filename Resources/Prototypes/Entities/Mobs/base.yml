@@ -52,6 +52,7 @@
     understands:
     - TauCetiBasic
     - SpaceMob
+  - type: AnimatedEmotes
   - type: CanBeBorgNTEnemy
 
 - type: entity

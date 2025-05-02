@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Goobstation.MartialArts.Events; // Goobstation - Martial Arts
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Components;
@@ -468,6 +469,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         // If I do not come back later to fix Light Attacks being Heavy Attacks you can throw me in the spider pit -Errant
         var damage = GetDamage(meleeUid, user, component) * GetHeavyDamageModifier(meleeUid, user, component);
+
         var target = GetEntity(ev.Target);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
 
@@ -528,7 +530,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         RaiseLocalEvent(target.Value, attackedEvent);
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
-        var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin: user, ignoreResistances:resistanceBypass, partMultiplier: component.ClickPartDamageMultiplier);
+        var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin: user, partMultiplier: component.ClickPartDamageMultiplier); // Shitmed Change
+        var comboEv = new ComboAttackPerformedEvent(user, target.Value, meleeUid, ComboAttackType.Harm);
+        RaiseLocalEvent(user, comboEv);
 
         if (damageResult is {Empty: false})
         {
@@ -691,6 +695,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
 
             var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, partMultiplier: component.HeavyPartDamageMultiplier);
+
+            var comboEv = new ComboAttackPerformedEvent(user, entity, meleeUid, ComboAttackType.HarmLight);
+            RaiseLocalEvent(user, comboEv);
 
             if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
             {

@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Audio;
+using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Hands;
 using Content.Shared.Inventory;
@@ -38,6 +39,7 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!; // WD EDIT
 
     public override void Initialize()
     {
@@ -62,7 +64,7 @@ public sealed class ReflectSystem : EntitySystem
 
         foreach (var ent in _inventorySystem.GetHandOrInventoryEntities(uid, SlotFlags.All & ~SlotFlags.POCKET))
         {
-            if (!TryReflectHitscan(uid, ent, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
+            if (!TryReflectHitscan(uid, ent, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.Damage, out var dir)) // Goob edit
                 continue;
 
             args.Direction = dir.Value;
@@ -99,6 +101,8 @@ public sealed class ReflectSystem : EntitySystem
             (reflect.Reflects & reflective.Reflective) == 0x0 ||
             !_toggle.IsActivated(reflector) ||
             !_random.Prob(reflect.ReflectProb) ||
+            (reflect.Reflects & reflective.Reflective) == 0x0 &&
+            _random.Prob(reflect.OtherTypeReflectProb) ||
             !TryComp<PhysicsComponent>(projectile, out var physics))
         {
             return false;
@@ -122,6 +126,14 @@ public sealed class ReflectSystem : EntitySystem
 
         if (Resolve(projectile, ref projectileComp, false))
         {
+            // WD EDIT START
+            if (reflect.DamageOnReflectModifier != 0)
+            {
+                _damageable.TryChangeDamage(reflector, projectileComp.Damage * reflect.DamageOnReflectModifier,
+                    projectileComp.IgnoreResistances, origin: projectileComp.Shooter);
+            }
+            // WD EDIT END
+
             _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)} from {ToPrettyString(projectileComp.Weapon)} shot by {projectileComp.Shooter}");
 
             projectileComp.Shooter = user;
@@ -143,7 +155,7 @@ public sealed class ReflectSystem : EntitySystem
             return;
         }
 
-        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
+        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.Damage, out var dir)) // Goob edit
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -166,19 +178,30 @@ public sealed class ReflectSystem : EntitySystem
         EntityUid? shooter,
         EntityUid shotSource,
         Vector2 direction,
-        ReflectType hitscanReflectType,
+        ReflectType reflective, // Goobstation
+        DamageSpecifier? damage, // WD EDIT
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if (!TryComp<ReflectComponent>(reflector, out var reflect) ||
-            (reflect.Reflects & hitscanReflectType) == 0x0 ||
+            (reflect.Reflects & reflective) == 0x0 ||
             !_toggle.IsActivated(reflector) ||
-            !_random.Prob(reflect.ReflectProb))
+            // Goob edit start
+            !((reflect.Reflects & reflective) != 0x0 &&
+                _random.Prob(reflect.ReflectProb) ||
+                (reflect.Reflects & reflective) == 0x0 &&
+                _random.Prob(reflect.OtherTypeReflectProb)))
+            // Goob edit end
         {
             newDirection = null;
             return false;
         }
 
         PlayAudioAndPopup(reflect, user);
+
+        // WD EDIT START
+        if (reflect.DamageOnReflectModifier != 0 && damage != null)
+            _damageable.TryChangeDamage(reflector, damage * reflect.DamageOnReflectModifier, origin: shooter);
+        // WD EDIT END
 
         var spread = _random.NextAngle(-reflect.Spread / 2, reflect.Spread / 2);
         newDirection = -spread.RotateVec(direction);
@@ -230,7 +253,7 @@ public sealed class ReflectSystem : EntitySystem
     {
         foreach (var ent in _inventorySystem.GetHandOrInventoryEntities(user, SlotFlags.All & ~SlotFlags.POCKET))
         {
-            if (!HasComp<ReflectComponent>(ent) || !_toggle.IsActivated(ent))
+            if (!HasComp<ReflectComponent>(ent)) // Goob edit - fix desword not reflecting
                 continue;
 
             EnsureComp<ReflectUserComponent>(user);

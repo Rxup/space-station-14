@@ -15,6 +15,7 @@
   - Radio
   - SpecialActions # backmen: laying-down & surgery
   - Mood # backmen: mood
+  - MartialArts # Goobstation: martial arts
 
 - type: guideEntry
   id: Radio
