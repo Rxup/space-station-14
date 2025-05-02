@@ -105,10 +105,10 @@ public sealed partial class CCVars
      */
 
     /// <summary>
-    /// The rate at which severity (wound) points get exchanged into bleeding; e.g., 50 severity would be 7.5 bleeding points.
+    /// The rate at which severity (wound) points get exchanged into bleeding; e.g., 50 severity would be 11 bleeding points.
     /// </summary>
     public static readonly CVarDef<float> BleedingSeverityTrade =
-        CVarDef.Create("bleeds.wound_severity_trade", 0.09f, CVar.SERVERONLY);
+        CVarDef.Create("bleeds.wound_severity_trade", 0.22f, CVar.SERVERONLY);
 
     /// <summary>
     /// How quick by default do bleeds grow to their full form?

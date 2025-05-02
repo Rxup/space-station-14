@@ -232,7 +232,7 @@ public sealed class HealingSystem : EntitySystem
         var isBleeding = -healing.BloodlossModifier != bleedStopAbility;
         if (!isBleeding)
         {
-            if (bleedStopAbility != 0)
+            if (bleedStopAbility != 0 && bleedStopAbility != -healing.BloodlossModifier)
             {
                 _popupSystem.PopupEntity(
                     Loc.GetString("rebell-medical-item-stop-bleeding-fully"),
