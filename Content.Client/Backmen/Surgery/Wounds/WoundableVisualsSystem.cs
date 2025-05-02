@@ -145,9 +145,14 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
     {
         foreach (var group in visuals.DamageOverlayGroups!)
         {
+            if (!sprite.LayerMapTryGet($"{visuals.OccupiedLayer}{group.Key}", out var damageLayer))
+                continue;
+
             var severityPoint = _wound.GetWoundableSeverityPoint(uid, damageGroup: group.Key);
-            if (sprite.LayerMapTryGet($"{visuals.OccupiedLayer}{group.Key}", out var damageLayer))
-                UpdateDamageLayerState(sprite, damageLayer, $"{visuals.OccupiedLayer}_{group.Key}", GetThreshold(severityPoint, visuals));
+            UpdateDamageLayerState(sprite,
+                damageLayer,
+                $"{visuals.OccupiedLayer}_{group.Key}",
+                severityPoint <= visuals.Thresholds.First() ? 0 : GetThreshold(severityPoint, visuals));
         }
 
         UpdateBleeding(uid, visuals, visuals.OccupiedLayer, sprite);

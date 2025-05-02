@@ -5,6 +5,9 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
+  - type: Consciousness # some fucking exclusivity for demons, harder to put them into crit, but they die more quickly.
+    cap: 180
+    threshold: 130
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Demonic

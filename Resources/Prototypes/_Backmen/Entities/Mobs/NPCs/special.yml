@@ -108,7 +108,7 @@
         - text: hecate-response-hello-3
           #audio: !type:SoundPathSpecifier
           #  path: /Audio/Nyanotrasen/Dialogue/Hecate/hecate_response_hello_3.ogg
-    - prompts: [bye, goodbye, done, farewell, later, seeya, пока, прощяй, бывай, досвидание, бб]
+    - prompts: [bye, goodbye, done, farewell, later, seeya, пока, прощай, бывай, до свидания, бб]
       weight: 0.1
       hidden: true
       responses:
@@ -129,7 +129,7 @@
             # Quest-relevant
             #
 
-    - prompts: [food, drink, drinks, вода, еда, напитаки, пить, есть, жрать]
+    - prompts: [food, drink, drinks, вода, еда, напитки, пить, есть, жрать]
       responses:
         - text: shipwrecked-hecate-response-food
           #audio: !type:SoundPathSpecifier
@@ -189,7 +189,7 @@
               text: shipwrecked-hecate-response-status-all-green-again
               #audio: !type:SoundPathSpecifier
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_status_all_green_again.ogg
-    - prompts: [weapons, firearms, arms, guns, safe, оружие, пожар, оружие, нож, пушки, стоволы, боезапас, арсенал]
+    - prompts: [weapons, firearms, arms, guns, safe, оружие, пожар, оружие, нож, пушки, стволы, боезапас, арсенал]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskWeaponsEvent

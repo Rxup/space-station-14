@@ -14,5 +14,3 @@ names-revenant-adjective-dataset-13 = peaceful
 names-revenant-adjective-dataset-14 = searing
 names-revenant-adjective-dataset-15 = silent
 names-revenant-adjective-dataset-16 = spiteful
-names-revenant-adjective-dataset-17 = vicious
-names-revenant-adjective-dataset-18 = violent

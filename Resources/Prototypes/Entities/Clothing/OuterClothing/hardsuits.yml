@@ -99,6 +99,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.17
+      BoneDamage: 0.17
+      VeinsDamage: 0
+      NerveDamage: 0.24
     coverage:
     - Chest
     - Groin
@@ -180,8 +186,14 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.3
+    damageCoefficient: 0.7
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -222,6 +234,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.36
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Groin
     - Chest
@@ -266,6 +284,12 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.36
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -305,6 +329,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -342,6 +372,12 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -382,6 +418,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.36
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -393,8 +435,8 @@
       coefficients:
         Blunt: 0.3
         Slash: 0.3
-        Piercing: 0.3
-        ArmorPiercing: 0.4
+        Piercing: 0.4
+        ArmorPiercing: 0.5
         Heat: 0.5
         Caustic: 0.7
         Stun: 0.5
@@ -422,6 +464,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -464,6 +512,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.22
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 0.22
     coverage:
     - Chest
     - Groin
@@ -504,6 +558,12 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 1
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -518,6 +578,8 @@
         Piercing: 0.6
         Heat: 0.4
         Caustic: 0 # it literally gives no other protections. so
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.95
@@ -540,6 +602,12 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.22
+      OrganDamage: 1
+      BoneDamage: 0.22
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -595,6 +663,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 1 # haha fuck you!
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -633,7 +707,7 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.9
   - type: Armor
     coverage:
     - Chest
@@ -677,6 +751,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -729,7 +809,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieElite
   name: syndicate elite hardsuit
-  description: An elite version of the blood-red hardsuit, with improved mobility and fireproofing. Property of Gorlex Marauders.
+  description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi #backmen resprite
@@ -745,7 +825,15 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
+  #- type: StaminaResistance
+  #  damageCoefficient: 0.6
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -788,6 +876,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage:
     - Chest
     - Groin
@@ -805,8 +899,8 @@
         Caustic: 0.5
         Stun: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
@@ -843,20 +937,23 @@
       NerveDamage: 1
     modifiers:
       coefficients:
-        Blunt: 0.1
-        Slash: 0.1
+        Blunt: 0.2
+        Slash: 0.2
         Piercing: 0.2
         ArmorPiercing: 0.35
         Heat: 0.2
         Radiation: 0.1
         Caustic: 0.1
-        Stun: 0.01 # stronk
+        Stun: 0 # stronk
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.65
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 #Wizard Hardsuit
 - type: entity
@@ -939,7 +1036,7 @@
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
 - type: entity
-  parent:  ClothingOuterHardsuitBase
+  parent: [ ClothingOuterHardsuitBase, BaseMajorContraband ]
   id:  ClothingOuterHardsuitPirateEVA
   name: deep space EVA suit
   suffix: Pirate
@@ -947,6 +1044,8 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi
+  - type: Item
+    size: Huge
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi
   - type: ExplosionResistance
@@ -978,13 +1077,15 @@
 
 #Pirate Captain Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ ClothingOuterHardsuitBase, BaseMajorContraband ]
   id: ClothingOuterHardsuitPirateCap
   name: pirate captain's hardsuit
   description: An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
+  - type: Item
+    size: Huge
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
   - type: PressureProtection
@@ -1060,6 +1161,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
+  - type: FireProtection
+    reduction: 0.8
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1128,7 +1231,15 @@
     damageCoefficient: 0.0
   - type: FireProtection
     reduction: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 1
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -1144,7 +1255,7 @@
         Heat: 0.05
         Radiation: 0.05
         Caustic: 0.05
-        Stun: 0.01 # reasons
+        Stun: 0 # reasons
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1174,6 +1285,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.24
+      OrganDamage: 0.36
+      BoneDamage: 0.36
+      VeinsDamage: 0
+      NerveDamage: 1
     coverage:
     - Chest
     - Groin
@@ -1192,6 +1309,8 @@
         Radiation: 0.2
         Caustic: 0.2
         Stun: 0.1
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0

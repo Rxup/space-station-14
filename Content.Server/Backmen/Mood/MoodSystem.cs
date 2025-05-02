@@ -1,4 +1,5 @@
-﻿using Content.Server.Chat.Managers;
+﻿using System.Linq;
+using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Alert.Click;
@@ -18,6 +19,9 @@ using Timer = Robust.Shared.Timing.Timer;
 using Robust.Shared.Player;
 using Robust.Shared.Configuration;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 
@@ -33,6 +37,7 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
 
     [ValidatePrototypeId<AlertCategoryPrototype>]
     private const string MoodCategory = "Mood";
@@ -44,6 +49,7 @@ public sealed class MoodSystem : EntitySystem
         SubscribeLocalEvent<MoodComponent, ComponentStartup>(OnInit);
         SubscribeLocalEvent<MoodComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MoodComponent, MoodEffectEvent>(OnMoodEffect);
+        SubscribeLocalEvent<MoodComponent, WoundsChangedEvent>(OnWoundsChange);
         SubscribeLocalEvent<MoodComponent, DamageChangedEvent>(OnDamageChange);
         SubscribeLocalEvent<MoodComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMoveSpeed);
         SubscribeLocalEvent<MoodComponent, MoodRemoveEffectEvent>(OnRemoveEffect);
@@ -491,21 +497,51 @@ public sealed class MoodSystem : EntitySystem
         };
     }
 
+    private void OnWoundsChange(EntityUid uid, MoodComponent component, WoundsChangedEvent args)
+    {
+        if (!TryComp<BodyComponent>(uid, out var body))
+            return;
+
+        var rootPart = body.RootContainer.ContainedEntity;
+        if (!rootPart.HasValue)
+            return;
+
+        var bodySeverity =
+            _wound.GetAllWoundableChildren(rootPart.Value)
+                .Aggregate(
+                    FixedPoint2.Zero,
+                    (current, woundable) => current + _wound.GetWoundableSeverityPoint(woundable, woundable));
+
+        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, bodySeverity, out var damage))
+            return;
+
+        var protoId = "HealthNoDamage";
+
+        foreach (var threshold in component.HealthMoodEffectsThresholds)
+        {
+            if (threshold.Value <= damage)
+                continue;
+
+            protoId = threshold.Key;
+        }
+
+        var ev = new MoodEffectEvent(protoId);
+        RaiseLocalEvent(uid, ev);
+    }
+
     private void OnDamageChange(EntityUid uid, MoodComponent component, DamageChangedEvent args)
     {
         if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, args.Damageable.TotalDamage, out var damage))
             return;
 
         var protoId = "HealthNoDamage";
-        var value = component.HealthMoodEffectsThresholds["HealthNoDamage"];
 
         foreach (var threshold in component.HealthMoodEffectsThresholds)
         {
-            if (threshold.Value <= damage && threshold.Value >= value)
-            {
-                protoId = threshold.Key;
-                value = threshold.Value;
-            }
+            if (threshold.Value <= damage)
+                continue;
+
+            protoId = threshold.Key;
         }
 
         var ev = new MoodEffectEvent(protoId);

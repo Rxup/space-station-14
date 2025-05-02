@@ -16,6 +16,7 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     - HeadTop
     - HeadSide
 
@@ -203,14 +204,20 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.34
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
 
 #Security Hardsuit
 - type: entity
@@ -229,14 +236,20 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.34
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
 
 #Brigmedic Hardsuit
 - type: entity
@@ -252,14 +265,20 @@
   - type: PointLight
     color: "#00FFFF"
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.34
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.75
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.65
         Radiation: 0.7
         Caustic: 0.7
   - type: PressureProtection
@@ -283,14 +302,20 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.34
+      OrganDamage: 0.34
+      BoneDamage: 0.34
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
 
 #Captain's Hardsuit
 - type: entity
@@ -310,13 +335,21 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Armor                    #Backmen edit
+  - type: Armor #Backmen edit: armour coverage
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.14
+      BoneDamage: 0.14
+      VeinsDamage: 0
+      NerveDamage: 0
+    coverage:
+    - Head
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.65
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -393,7 +426,7 @@
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
-      BoneDamage: 0
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
@@ -445,15 +478,15 @@
     traumaDeductions:
       Dismemberment: 0.42 # equivalent to HoS trauma protection
       OrganDamage: 0.42
-      BoneDamage: 0
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
       coefficients: # this should protect you REALLY weeell
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
   - type: TinfoilHat
     destroyOnFry: false
 
@@ -479,15 +512,15 @@
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
-      BoneDamage: 0.14
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
         Radiation: 0.6
         Caustic: 0.6
   - type: TinfoilHat
@@ -498,7 +531,7 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSyndieElite
   name: syndicate elite helmet
-  description: An elite version of the blood-red hardsuit's helmet, with improved armor and fireproofing. Property of Gorlex Marauders.
+  description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Hardsuits/syndieelite.rsi #backmen resprite
@@ -520,15 +553,15 @@
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
-      BoneDamage: 0
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
   - type: TinfoilHat
     destroyOnFry: false
 
@@ -554,15 +587,15 @@
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
-      BoneDamage: 0
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
   - type: TinfoilHat
     destroyOnFry: false
 
@@ -593,10 +626,10 @@
       NerveDamage: 1
     modifiers:
       coefficients:
-        Blunt: 0.25
-        Slash: 0.25
-        Piercing: 0.25
-        Heat: 0.25
+        Blunt: 0.37
+        Slash: 0.37
+        Piercing: 0.37
+        Heat: 0.37
   - type: TinfoilHat
     destroyOnFry: false
 
@@ -622,7 +655,7 @@
     traumaDeductions:
       Dismemberment: 0.27
       OrganDamage: 0.27
-      BoneDamage: 0.16
+      BoneDamage: 0.27
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
@@ -666,7 +699,7 @@
 
 #Pirate Captain Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitPirateCap
   name: pirate captain's hardsuit helmet
   suffix: Pirate
@@ -676,9 +709,20 @@
     sprite: Clothing/Head/Hardsuits/piratecaptainhelm.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/piratecaptainhelm.rsi
+  - type: PointLight # Color matches visor colors, radius/energy same as mining hardsuit for the big captain.
+    color: "#f3ea9c"
+    radius: 7
+    energy: 3
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
@@ -700,15 +744,15 @@
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
-      BoneDamage: 0
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -737,20 +781,22 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
     color: "#f4ffad"
+  - type: FireProtection
+    reduction: 0.2
   - type: Armor
     coverage: # backmen: armour coverage
     - Head
     traumaDeductions:
-      Dismemberment: 0.27 # Designed to protect you from most incidents, hence has more trauma protection, trading them for dismemberment protection
-      OrganDamage: 0.27
+      Dismemberment: 0.24 # Designed to protect you from most incidents, hence has more trauma protection, trading them for dismemberment protection
+      OrganDamage: 0.42
       BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0.42
     modifiers:
       coefficients:
         Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+        Slash: 0.6
+        Piercing: 0.6
         Heat: 0.4
 
 #ERT Medical Hardsuit
@@ -786,15 +832,15 @@
     traumaDeductions:
       Dismemberment: 0.42
       OrganDamage: 0.42
-      BoneDamage: 0
+      BoneDamage: 0.42
       VeinsDamage: 0
       NerveDamage: 0
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -852,12 +898,14 @@
       NerveDamage: 0.42 # To protect you from fire
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.3
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.4
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
 
 #Deathsquad Hardsuit
 - type: entity

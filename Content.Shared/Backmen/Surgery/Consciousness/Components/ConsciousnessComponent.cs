@@ -60,7 +60,7 @@ public sealed partial class ConsciousnessComponent : Component
     public Dictionary<string, (EntityUid?, bool, bool)> RequiredConsciousnessParts = new();
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public Entity<NerveSystemComponent> NerveSystem = default;
+    public Entity<NerveSystemComponent>? NerveSystem;
 
     [DataField] // whoops.
     public TimeSpan ConsciousnessUpdateTime = TimeSpan.FromSeconds(0.8f);

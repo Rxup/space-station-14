@@ -29,48 +29,52 @@ public partial class ConsciousnessSystem
 
         foreach (var ((modEntity, modType), modifier) in state.Modifiers)
         {
-            component.Modifiers.Add((GetEntity(modEntity), modType), modifier);
+            var ent = TryGetEntity(modEntity, out var nem) ? nem.Value : EntityUid.Invalid;
+            if (ent.Valid && !TerminatingOrDeleted(ent))
+                component.Modifiers.TryAdd((ent, modType), modifier);
         }
 
         foreach (var ((multiplierEntity, multiplierType), modifier) in state.Multipliers)
         {
-            component.Multipliers.Add((GetEntity(multiplierEntity), multiplierType), modifier);
+            var ent = TryGetEntity(multiplierEntity, out var nem) ? nem.Value : EntityUid.Invalid;
+            if (ent.Valid && !TerminatingOrDeleted(ent))
+                component.Multipliers.TryAdd((ent, multiplierType), modifier);
         }
 
         foreach (var (id, (entity, causesDeath, isLost)) in state.RequiredConsciousnessParts)
         {
-            component.RequiredConsciousnessParts.Add(id, (GetEntity(entity), causesDeath, isLost));
+            var ent = TryGetEntity(entity, out var ne) ? ne.Value : EntityUid.Invalid;
+            if (ent.Valid && !TerminatingOrDeleted(ent))
+                component.RequiredConsciousnessParts.TryAdd(id, (ent, causesDeath, isLost));
         }
     }
 
     private void OnComponentGet(EntityUid uid, ConsciousnessComponent comp, ref ComponentGetState args)
     {
-        var state = new ConsciousnessComponentState();
-
-        state.Threshold = comp.Threshold;
-        state.RawConsciousness = comp.RawConsciousness;
-        state.Multiplier = comp.Multiplier;
-        state.Cap = comp.Cap;
-        state.ForceDead = comp.ForceDead;
-        state.ForceUnconscious = comp.ForceUnconscious;
-        state.IsConscious = comp.IsConscious;
+        var state = new ConsciousnessComponentState
+        {
+            Threshold = comp.Threshold,
+            RawConsciousness = comp.RawConsciousness,
+            Multiplier = comp.Multiplier,
+            Cap = comp.Cap,
+            ForceDead = comp.ForceDead,
+            ForceUnconscious = comp.ForceUnconscious,
+            IsConscious = comp.IsConscious,
+        };
 
         foreach (var ((modEntity, modType), modifier) in comp.Modifiers)
         {
-            if (!TerminatingOrDeleted(modEntity))
-                state.Modifiers.Add((GetNetEntity(modEntity), modType), modifier);
+            state.Modifiers.Add((TryGetNetEntity(modEntity, out var e) ? e.Value : NetEntity.Invalid, modType), modifier);
         }
 
         foreach (var ((multiplierEntity, multiplierType), modifier) in comp.Multipliers)
         {
-            if (!TerminatingOrDeleted(multiplierEntity))
-                state.Multipliers.Add((GetNetEntity(multiplierEntity), multiplierType), modifier);
+            state.Multipliers.Add((TryGetNetEntity(multiplierEntity, out var e) ? e.Value : NetEntity.Invalid, multiplierType), modifier);
         }
 
         foreach (var (id, (entity, causesDeath, isLost)) in comp.RequiredConsciousnessParts)
         {
-            if (!TerminatingOrDeleted(entity))
-                state.RequiredConsciousnessParts.Add(id, (GetNetEntity(entity), causesDeath, isLost));
+            state.RequiredConsciousnessParts.Add(id, (TryGetNetEntity(entity, out var e) ? e.Value : NetEntity.Invalid, causesDeath, isLost));
         }
 
         args.State = state;

@@ -16,6 +16,7 @@ namespace Content.Shared.Humanoid
         Groin,
         Head,
         Snout,
+        SnoutOverlay, // Backmen | for animated tongue
         HeadSide, // side parts (i.e., frills)
         HeadTop,  // top parts (i.e., ears)
         Eyes,

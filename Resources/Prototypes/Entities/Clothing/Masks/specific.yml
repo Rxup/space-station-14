@@ -23,6 +23,7 @@
     - type: HideLayerClothing
       slots:
       - Snout
+      - SnoutOverlay # Backmen
 # Corvax-HiddenDesc-Start
     - type: HiddenDescription
       entries:
@@ -48,6 +49,7 @@
     - type: HideLayerClothing
       slots:
       - Snout
+      - SnoutOverlay # Backmen
     - type: UserInterface
       interfaces:
         enum.ChameleonUiKey.Key:
@@ -116,6 +118,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
   - type: IngestionBlocker
   - type: StaticPrice
     price: 5000
