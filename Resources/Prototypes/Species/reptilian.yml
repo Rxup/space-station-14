@@ -17,6 +17,7 @@
   sprites:
     Head: MobReptilianHead
     Snout: MobHumanoidAnyMarking
+    SnoutOverlay: MobHumanoidAnyMarking # Backmen
     Chest: MobReptilianChest
     Groin: MobReptilianGroin # Backmen edit: chest, groin separation
     UndergarmentTop: MobHumanoidAnyMarking
@@ -52,6 +53,9 @@
       points: 1
       required: true
       defaultMarkings: [ LizardSnoutRound ]
+    SnoutOverlay: # Backmen
+      points: 1
+      required: false
     HeadTop:
       points: 2
       required: false
