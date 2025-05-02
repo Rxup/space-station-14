@@ -30,7 +30,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseBlueShieldContraband]
+  parent: [ ClothingOuterArmorBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterArmorBlueshield
   name: officer "Blueshield"'s vest
   description: Redesigned security vest with increased protection.
@@ -47,12 +47,11 @@
     - Tail
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        ArmorPiercing: 0.6
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
         Heat: 0.5
-        Caustic: 0.9
+        Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: GroupExamine
