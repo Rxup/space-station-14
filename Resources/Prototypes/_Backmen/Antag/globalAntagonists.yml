@@ -95,6 +95,12 @@
   weight: 15
 
 - type: antagonist
+  id: globalAntagonistVampire
+  name: global-antagonist-vampire-name
+  description: global-antagonist-vampire-description
+  weight: 16
+
+- type: antagonist
   id: globalAntagonistGhostRole
   name: global-antagonist-ghost-role-name
   description: global-antagonist-ghost-role-description

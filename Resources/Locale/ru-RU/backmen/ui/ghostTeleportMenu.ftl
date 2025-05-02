@@ -46,6 +46,9 @@ global-antagonist-flesh-cult-description = Поклонники фимоза, и
 global-antagonist-xenomorph-name = Ксеноморф
 global-antagonist-xenomorph-description = Они пришли из космоса!
 
+global-antagonist-vampire-name = Вампир
+global-antagonist-vampire-description = Отсосёт и не заметишь!
+
 global-antagonist-ghost-role-name = Вне станционный
 global-antagonist-ghost-role-description = Роли для призраков, чаще всего не несут никакого влияния на станцию.
 

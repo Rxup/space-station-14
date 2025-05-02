@@ -105,6 +105,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BloodsuckerRule
+  - type: GlobalAntagonist
+    antagonistPrototype: globalAntagonistVampire
   - type: AntagObjectives
     objectives:
     - EscapeShuttleObjectiveBloodsucker

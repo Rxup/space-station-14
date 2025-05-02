@@ -46,6 +46,9 @@ global-antagonist-flesh-cult-description = Phimosis fans use blood and blah-blah
 global-antagonist-xenomorph-name = Xenomorph
 global-antagonist-xenomorph-description = They came from outer space!
 
+global-antagonist-vampire-name = Vampire
+global-antagonist-vampire-description = She'll suck you off and you wont notice!
+
 global-antagonist-ghost-role-name = Ghost Role
 global-antagonist-ghost-role-description = Ghost roles most often have no effect on the station.
 
