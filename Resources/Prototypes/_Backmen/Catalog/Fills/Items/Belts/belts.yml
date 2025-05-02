@@ -470,9 +470,11 @@
       - id: Brutepack
         amount: 2
       - id: Ointment
-        amount: 2
+        amount: 1
       - id: Bloodpack
       - id: Gauze
+      - id: ChemistryBottleMorphine
+      - id: Syringe
       - id: EmergencyMedipen
         amount: 3
       - id: Stimpack

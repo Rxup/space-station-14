@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ChemistryBottleMorphine
+  suffix: morphine
+  components:
+  - type: Label
+    currentLabel: reagent-name-morphine
+  - type: SolutionContainerManager
+    solutions:
+      drink: # This solution name and target volume is hard-coded in ChemMasterComponent
+        maxVol: 30
+        reagents:
+        - ReagentId: Morphine
+          Quantity: 30

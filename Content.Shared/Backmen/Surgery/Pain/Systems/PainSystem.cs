@@ -132,7 +132,7 @@ public abstract partial class PainSystem : EntitySystem
         UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
-    private void OnPainChanged(EntityUid uid, PainInflicterComponent component, WoundChangedEvent args)
+    private void OnPainChanged(EntityUid uid, PainInflicterComponent component, ref WoundChangedEvent args)
     {
         if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
             return;
@@ -148,19 +148,17 @@ public abstract partial class PainSystem : EntitySystem
         var woundPain = FixedPoint2.Zero;
         var traumaticPain = FixedPoint2.Zero;
 
-        foreach (var bp in _body.GetBodyChildren(bodyPart.Body))
+        foreach (var wound in
+                 Wound.GetWoundableWoundsWithComp<PainInflicterComponent>(args.Component.HoldingWoundable))
         {
-            foreach (var wound in Wound.GetWoundableWoundsWithComp<PainInflicterComponent>(bp.Id))
+            switch (wound.Comp2.PainType)
             {
-                switch (wound.Comp2.PainType)
-                {
-                    case PainDamageTypes.TraumaticPain:
-                        traumaticPain += wound.Comp2.Pain;
-                        break;
-                    default:
-                        woundPain += wound.Comp2.Pain;
-                        break;
-                }
+                case PainDamageTypes.TraumaticPain:
+                    traumaticPain += wound.Comp2.Pain;
+                    break;
+                default:
+                    woundPain += wound.Comp2.Pain;
+                    break;
             }
         }
 
