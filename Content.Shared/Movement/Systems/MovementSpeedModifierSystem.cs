@@ -21,6 +21,11 @@ namespace Content.Shared.Movement.Systems
         private float _airDamping;
         private float _offGridDamping;
 
+        // start-backmen: layingdown
+        private EntityQuery<LayingDownComponent> _layerQuery;
+        private EntityQuery<StandingStateComponent> _standingStateQuery;
+        // end-backmen: layingdown
+
         public override void Initialize()
         {
             base.Initialize();
@@ -29,6 +34,11 @@ namespace Content.Shared.Movement.Systems
             Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
             Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
             Subs.CVar(_configManager, CCVars.OffgridFriction, value => _offGridDamping = value, true);
+
+            // start-backmen: layingdown
+            _layerQuery = GetEntityQuery<LayingDownComponent>();
+            _standingStateQuery = GetEntityQuery<StandingStateComponent>();
+            // end-backmen: layingdown
         }
 
         private void OnModMapInit(Entity<MovementSpeedModifierComponent> ent, ref MapInitEvent args)
@@ -80,19 +90,6 @@ namespace Content.Shared.Movement.Systems
             move.WeightlessFrictionNoInput = _airDamping * ev.WeightlessFrictionNoInput * ev.WeightlessFrictionNoInputMod;
             Dirty(uid, move);
         }
-
-        // start-backmen: layingdown
-        private EntityQuery<LayingDownComponent> _layerQuery;
-        private EntityQuery<StandingStateComponent> _standingStateQuery;
-
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            _layerQuery = GetEntityQuery<LayingDownComponent>();
-            _standingStateQuery = GetEntityQuery<StandingStateComponent>();
-        }
-        // end-backmen: layingdows
 
         public void RefreshMovementSpeedModifiers(EntityUid uid, MovementSpeedModifierComponent? move = null)
         {

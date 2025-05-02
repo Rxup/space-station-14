@@ -569,7 +569,6 @@
         - !type:OrganType # Ataraxia
           type: AnthroAnimal
           shouldHave: true
-        damage: # Ataraxia-EDIT
         - !type:OrganType
           type: Vox
           shouldHave: false

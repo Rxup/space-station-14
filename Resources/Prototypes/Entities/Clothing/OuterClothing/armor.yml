@@ -57,42 +57,6 @@
     sprite: Clothing/OuterClothing/Armor/security_slim.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
-  id: ClothingOuterArmorRiot
-  name: riot suit
-  description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/riot.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/riot.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Tail
-    - Arm
-    - Hand
-    - Leg
-    - Foot
-    traumaDeductions:
-      Dismemberment: 0.42
-      OrganDamage: 0.42
-      BoneDamage: 0.42
-      VeinsDamage: 0
-      NerveDamage: 0
-    modifiers:
-      coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.7
-        Heat: 0.7
-        Caustic: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: GroupExamine
-
-- type: entity
   parent: ClothingOuterArmorBase
   id: ClothingOuterArmorBulletproof
   name: bulletproof vest
@@ -421,12 +385,26 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/riot.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+    traumaDeductions:
+      Dismemberment: 0.42
+      OrganDamage: 0.42
+      BoneDamage: 0.42
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.4
         Slash: 0.4
         Piercing: 0.7
-        Heat: 0.9
+        Heat: 0.7
         Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9

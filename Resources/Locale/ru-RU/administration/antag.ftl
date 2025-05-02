@@ -20,8 +20,5 @@ admin-verb-text-make-pirate = Сделать пиратом
 admin-verb-make-head-rev = Превратите цель в Лидера Революции.
 admin-verb-text-make-head-rev = Сделать Главой революции
 admin-verb-text-make-thief = Сделать вором
-admin-verb-text-make-paradox-clone = Create Paradox Clone
-admin-overlay-antag-classic = АНТАГ
-
-admin-verb-make-paradox-clone = Создаёт парадокс клона как гость роль выбранной цели
 admin-verb-text-make-paradox-clone = Создать парадокс клона
+admin-overlay-antag-classic = АНТАГ
