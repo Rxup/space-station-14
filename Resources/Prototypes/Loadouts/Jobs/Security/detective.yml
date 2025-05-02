@@ -61,27 +61,32 @@
 - type: loadout
   id: WeaponRevolverCMB
   storage:
-    belt: WeaponRevolverCMB
+    belt:
+    - WeaponRevolverCMB
 
 - type: loadout
   id: WeaponRevolverR44
   storage:
-    belt: WeaponRevolverR44
+    belt:
+    - WeaponRevolverR44
 
 - type: loadout
   id: WeaponRevolverRebota
   storage:
-    belt: WeaponRevolverRebota
+    belt:
+    - WeaponRevolverRebota
 
 - type: loadout
   id: WeaponRevolverNY
   storage:
-    belt: WeaponRevolverNY
+    belt:
+    - WeaponRevolverNY
 
 - type: loadout
   id: WeaponRevolverInspector
   storage:
-    belt: WeaponRevolverInspector
+    belt:
+    - WeaponRevolverInspector
 
 - type: loadout
   id: DetectiveCoatGrey
