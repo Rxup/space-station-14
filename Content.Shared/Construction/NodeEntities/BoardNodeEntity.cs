@@ -28,8 +28,11 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
         var board = container.ContainedEntities[0];
 
         // Frontier - adds tabletop variants
-        if (args.EntityManager.TryGetComponent(board, out ComputerTabletopBoardComponent? tabletopComputer))
-            return tabletopComputer.Prototype;
+        // TODO: ConstructionComponent is still on server side, so we can't get this code to work here.
+        //if (args.EntityManager.TryGetComponent(container.Owner, out ConstructionComponent? constructionComponent)
+        //  && constructionComponent.Graph == "GraphComputerTabletop"
+        //  && args.EntityManager.TryGetComponent(board, out ComputerTabletopBoardComponent? tabletopComputer))
+        //  return tabletopComputer.Prototype;
 
         // There should not be a case where both of these components exist on the same entity...
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))

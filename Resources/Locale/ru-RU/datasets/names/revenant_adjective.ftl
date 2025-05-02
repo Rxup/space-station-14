@@ -14,5 +14,3 @@ names-revenant-adjective-dataset-13 = мирной
 names-revenant-adjective-dataset-14 = обжигающей
 names-revenant-adjective-dataset-15 = безмолвной
 names-revenant-adjective-dataset-16 = яростной
-names-revenant-adjective-dataset-17 = парочной
-names-revenant-adjective-dataset-18 = озлобленной
