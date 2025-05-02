@@ -69,6 +69,7 @@
           stationGrid: false
           paths:
           - /Maps/Ruins/abandoned_outpost.yml
+          - /Maps/Ruins/atmos_interchange.yml
           # Corvax-Mapping-Start
           #- /Maps/Corvax/Ruins/corvax_accident.yml
           #- /Maps/Corvax/Ruins/corvax_adventurer.yml
