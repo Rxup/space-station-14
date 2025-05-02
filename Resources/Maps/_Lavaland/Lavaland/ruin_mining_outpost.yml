@@ -630,25 +630,6 @@ entities:
     - type: Transform
       pos: 7.5,7.5
       parent: 2
-- proto: TriggerInstantSpawnerXENGuard
-  entities:
-  - uid: 105
-    components:
-    - type: Transform
-      pos: -0.5,6.5
-      parent: 2
-- proto: TriggerInstantSpawnerXENScience
-  entities:
-  - uid: 103
-    components:
-    - type: Transform
-      pos: -0.5,3.5
-      parent: 2
-  - uid: 104
-    components:
-    - type: Transform
-      pos: -1.5,5.5
-      parent: 2
 - proto: WallMining
   entities:
   - uid: 78
