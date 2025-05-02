@@ -16,7 +16,7 @@
 
 - type: entity
   id: ChestHuman
-  name: "Грудная клетка"
+  name: "human chest"
   parent: [BaseChest, PartHuman]
   components:
   - type: Sprite
@@ -32,7 +32,7 @@
 
 - type: entity
   id: GroinHuman
-  name: "Тазовая область"
+  name: "human groin"
   parent: [BaseGroin, PartHuman]
   components:
   - type: Sprite

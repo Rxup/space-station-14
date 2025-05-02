@@ -1,6 +1,8 @@
 ent-BasePart = часть тела
     .desc = { ent-BaseItem.desc }
-ent-BaseTorso = туловище
+ent-BaseChest = грудь
+    .desc = { ent-BasePart.desc }
+ent-BaseGroin = пах
     .desc = { ent-BasePart.desc }
 ent-BaseHead = голова
     .desc = { ent-BasePart.desc }
