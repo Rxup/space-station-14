@@ -142,7 +142,7 @@
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesNoir
-      - id: ClothingHeadHatDetGadget
+      #- id: ClothingHeadHatDetGadget
       - id: ClothingNeckTieDet
       - id: ClothingOuterVestDetective
       - id: ClothingOuterCoatDetectiveLoadout

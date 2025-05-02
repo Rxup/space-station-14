@@ -199,7 +199,7 @@
   icon:
     sprite: Objects/Fun/push_horn.rsi
     state: icon
-  discipline: CivilianServices
+  discipline: Service
   tier: 2
   cost: 4000
   recipeUnlocks:
