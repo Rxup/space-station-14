@@ -17,6 +17,8 @@
     sprite: _DeadSpace/Structures/Machines/photocopier.rsi
     state: icon
   - type: Appearance
+  - type: Machine
+    board: PrinterDocMachineCircuitboard
   - type: Physics
     bodyType: Static
   - type: Fixtures
