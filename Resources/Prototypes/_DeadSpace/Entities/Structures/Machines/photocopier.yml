@@ -12,6 +12,7 @@
     - state: icon
       map: [ "enum.PhotocopierVisuals.VisualState" ]
   - type: Transform #Backmen-edit
+    NoRot: false
   - type: Icon
     sprite: _DeadSpace/Structures/Machines/photocopier.rsi
     state: icon
