@@ -125,15 +125,15 @@
 #      prototype: WizardBlueGear2
       prototypes: [WizardBlueGear]
 
-- type: entity
-  name: Urist McWizard
-  id: UristMcWizardHardsuit2
-  suffix: hardsuit
-  parent: UristMcWizardBase
-  components:
-    - type: Loadout
+#- type: entity
+#  name: Urist McWizard
+#  id: UristMcWizardHardsuit2
+#  suffix: hardsuit
+#  parent: UristMcWizardBase
+#  components:
+#    - type: Loadout
 #      prototype: WizardHardsuitGear2
-      prototypes: [WizardHardsuitGear]
+#      prototypes: [WizardHardsuitGear]
 
 # SuperPsi - Urist McNars
 - type: entity

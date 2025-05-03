@@ -1482,7 +1482,7 @@
 
 - type: stack
   id: XenoHealingStack
-  name: слизь ксено
+  name: stack-xeno-healing
   icon: { sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi, state: ano09 }
   spawn: XenoHealing
   maxCount: 9999
