@@ -63,6 +63,11 @@
     - id: ClothingHeadCage # backmen
     - id: HandheldReinforcementCentCom # backmen
 #    - id: ClothingEyesGlassesCommand # Backmen - Because dublicate (56)???
+    - id: ClothingEyesGlassesCommand
+    - id: HeadSkeleton # A skull to accompany your skeleton crew
+      conditions:
+      - !type:PlayerCountCondition
+        max: 15
 
 # No laser table + Laser table
 - type: entityTable
