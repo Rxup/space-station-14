@@ -18,20 +18,26 @@ public sealed partial class DefibrillatorComponent : Component
     /// <summary>
     /// How much damage is healed from getting zapped.
     /// </summary>
-    [DataField("zapHeal", required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier ZapHeal = default!;
 
     /// <summary>
     /// The electrical damage from getting zapped.
     /// </summary>
-    [DataField("zapDamage"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public int ZapDamage = 5;
 
     /// <summary>
     /// How long the victim will be electrocuted after getting zapped.
     /// </summary>
-    [DataField("writheDuration"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan WritheDuration = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// How long will the entity stay conscious after getting defibrillated?
+    /// </summary>
+    [DataField("consciousnessDuration")]
+    public TimeSpan ForceConsciousnessDuration = TimeSpan.FromSeconds(12);
 
     /// <summary>
     ///     ID of the cooldown use delay.
@@ -51,7 +57,7 @@ public sealed partial class DefibrillatorComponent : Component
     /// <remarks>
     /// This is synced with the audio; do not change one but not the other.
     /// </remarks>
-    [DataField("doAfterDuration"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan DoAfterDuration = TimeSpan.FromSeconds(3);
 
     [DataField]

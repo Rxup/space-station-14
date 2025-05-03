@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Chat.Commands;
 
-[AdminCommand(AdminFlags.Server)]
+[AdminCommand(AdminFlags.Fun)]
 public sealed class SetLOOCCommand : IConsoleCommand
 {
     public string Command => "setlooc";

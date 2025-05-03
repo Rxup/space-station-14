@@ -18,7 +18,7 @@
   - !type:CorridorDunGen
     width: 3
   - !type:DungeonEntranceDunGen
-    count: 2
+    count: 1
   - !type:RoomEntranceDunGen
   - !type:EntranceFlankDunGen
   - !type:ExternalWindowDunGen

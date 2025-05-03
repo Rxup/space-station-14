@@ -1,17 +1,22 @@
 ﻿- type: body
   id: Rat
   name: "animal"
-  root: torso
+  root: chest
   slots:
-    torso:
-      part: TorsoRat
+    chest:
+      part: ChestAnimal
+      connections:
+      - groin
+      organs:
+        lungs: OrganRatLungs
+        heart: OrganAnimalHeart
+    groin: # Backmen edit: chest, groin separation
+      part: GroinAnimal
       connections:
       - legs
       organs:
-        lungs: OrganRatLungs
         stomach: OrganRatStomach
         liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
     legs:
       part: LegsAnimal

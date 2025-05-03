@@ -127,6 +127,8 @@
   - WeaponLaserCannon
   - WeaponLaserCarbine
   - WeaponXrayCannon
+  - WeaponTemperatureGun
+  - WeaponLaserSvalinn
 
 - type: latheRecipePack
   id: SecurityDisablers

@@ -1,6 +1,4 @@
 - type: construction
-  name: дорога перекрёсток
-  description: Для твоих ног?...
   id: SmallWorldRoadFourWay
   graph: SmallWorldRoads
   startNode: start
@@ -8,13 +6,8 @@
   category: construction-category-misc
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
-    state: "roadfourway"
 
 - type: construction
-  name: дорога прямая
-  description: Для твоих ног?...
   id: SmallWorldRoadStraight
   graph: SmallWorldRoads
   startNode: start
@@ -22,13 +15,8 @@
   category: construction-category-misc
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
-    state: "roadstraight"
 
 - type: construction
-  name: дорога развилка
-  description: Для твоих ног?...
   id: SmallWorldRoadThreeWay
   graph: SmallWorldRoads
   startNode: start
@@ -36,13 +24,8 @@
   category: construction-category-misc
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
-    state: "roadthreeway"
 
 - type: construction
-  name: дорога поворот
-  description: Для твоих ног?...
   id: SmallWorldRoadTurn
   graph: SmallWorldRoads
   startNode: start
@@ -50,9 +33,6 @@
   category: construction-category-misc
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: /Textures/Backmen/Structures/Decoration/SmallWorld/roads.rsi
-    state: "roadturn"
 
 - type: constructionGraph
   id: SmallWorldRoads

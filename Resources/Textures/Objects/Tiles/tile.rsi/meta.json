@@ -554,6 +554,9 @@
       "name": "asteroid"
     },
     {
+      "name": "astro-asteroid"
+    },
+    {
       "name": "asteroid-inhand-right",
       "directions": 4
     },

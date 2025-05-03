@@ -11,7 +11,7 @@
     - type: Insulated
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: ClothingHandsGlovesCaptain
   id: ClothingHandsGlovesCentcomNaval
   name: nanotrasen naval gloves
   description: A high quality pair of thick gloves covered in gold stitching, given to Nanotrasen's Naval Commanders.

@@ -1,0 +1,55 @@
+- type: entity
+  parent: BaseItem
+  id: ManualBabel
+  name: babel manual
+  description: Manual that teaches you all languages.
+  suffix: 1 uses
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#272d33"
+      map: [ "cover" ]
+    - state: decor_wingette
+      color: "#272733"
+      map: [ "decor" ]
+    - state: icon_text
+      map: [ "icon" ]
+  - type: LanguageLearn
+    deleteAfterUse: true
+    languages:
+      - Universal
+
+- type: entity
+  parent: BaseItem
+  id: ManualCodespeak
+  name: codespeak manual
+  description: Manual that teaches you the codespeak language.
+  suffix: 2 uses
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/books.rsi
+    layers:
+    - state: syndicate
+  - type: LanguageLearn
+    maxUses: 2
+    languages:
+      - Codespeak
+
+- type: entity
+  parent: BaseItem
+  id: ManualOldFastCodes
+  name: old fast code manual
+  description: Manual that teaches you the old fast code language.
+  suffix: 2 uses
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/books.rsi
+    layers:
+    - state: inteq
+  - type: LanguageLearn
+    maxUses: 2
+    languages:
+      - OldFastCodes

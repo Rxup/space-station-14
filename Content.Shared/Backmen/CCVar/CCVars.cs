@@ -7,6 +7,9 @@ namespace Content.Shared.Backmen.CCVar;
 public sealed partial class CCVars
 {
     public static readonly CVarDef<bool>
+        GameBarotraumaEnabled = CVarDef.Create("game.barotrauma", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool>
         GameDiseaseEnabled = CVarDef.Create("game.disease", true, CVar.SERVERONLY);
 
     /// <summary>

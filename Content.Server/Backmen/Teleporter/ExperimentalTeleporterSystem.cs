@@ -1,12 +1,15 @@
-using Content.Shared.Ghost;
 using System.Linq;
 using System.Numerics;
+using Content.Server._White.Teleporter;
 using Content.Server.Body.Systems;
+using Content.Server.Disposal.Unit;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
+using Content.Shared.Ghost;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
+using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
@@ -14,10 +17,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
-using Content.Server.Disposal.Unit.Components;
-using Content.Shared.Popups;
 
-namespace Content.Server._White.Teleporter;
+namespace Content.Server.Backmen.Teleporter;
 
 public sealed class ExperimentalTeleporterSystem : EntitySystem
 {
@@ -91,7 +92,7 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
         _layingDown.LieDownInRange(uid, coords);
         _transform.SetCoordinates(uid, coords);
 
-        _charges.UseCharge(teleporterUid);
+        _charges.TryUseCharge(teleporterUid);
     }
 
     private void PlaySoundAndEffects(ExperimentalTeleporterComponent component, EntityCoordinates coords, EntityCoordinates oldCoords)

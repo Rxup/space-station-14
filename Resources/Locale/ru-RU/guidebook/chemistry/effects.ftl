@@ -133,7 +133,7 @@ reagent-effect-guidebook-adjust-reagent-reagent =
                 [1] добавляют
                *[-1] удаляют
             }
-    } { NATURALFIXED($amount, 2) }ед. от { $reagent } { $deltasign ->
+    } { NATURALFIXED($amount, 2) } ед. от { $reagent } { $deltasign ->
         [1] к
        *[-1] из
     } раствора
@@ -374,3 +374,8 @@ reagent-effect-guidebook-plant-seeds-remove =
         [1] Убирает
        *[other] убирают
     } семена из растения
+reagent-effect-guidebook-suppress-pain =
+    { $chance ->
+        [1] подавляет
+       *[other] подавляют
+    } боль употребившего
