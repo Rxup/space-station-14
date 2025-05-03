@@ -58,7 +58,7 @@ public sealed partial class CCVars
     /// Should Pain System trigger pain reflexes?
     /// </summary>
     public static readonly CVarDef<bool> PainReflexesEnabled =
-        CVarDef.Create("pain.reflexes_enabled", true, CVar.SERVER);
+        CVarDef.Create("pain.reflexes_enabled", false, CVar.SERVER);
 
     /// <summary>
     /// The global pain multiplier, applied to every pain source.
