@@ -264,5 +264,4 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - CyborgModules
-  - MassExcavation
   position: 8,-4
