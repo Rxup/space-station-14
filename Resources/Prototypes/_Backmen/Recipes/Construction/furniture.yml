@@ -322,71 +322,51 @@
 #    - !type:TileNotBlocked
 
 - type: construction
-  name: tatami square
   id: tatamisingle
   graph: tatami
   startNode: start
   targetNode: tatamiSquare
   category: construction-category-furniture
-  description: It's tatami, but a square.
-  icon:
-    sprite: Backmen/Structures/Furniture/tatami.rsi
-    state: tatami_1x1
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
-    - !type:TileNotBlocked
+  - !type:TileNotBlocked
 
 - type: construction
-  name: tatami mat
   id: tatamimat
   graph: tatami
   startNode: start
   targetNode: tatamiPart
   category: construction-category-furniture
-  description: It's a portion of a tatami mat.
-  icon:
-    sprite: Backmen/Structures/Furniture/tatami.rsi
-    state: tatami_1x1P
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
-    - !type:TileNotBlocked
+  - !type:TileNotBlocked
 
 - type: construction
-  name: comfy dark chair
   id: ChairDarkComfy
   graph: Seat
   startNode: start
   targetNode: chairDarkComfy
   category: construction-category-furniture
-  description: Quite a comfortable dark chair.
-  icon:
-    sprite: Backmen/Structures/Furniture/chairs.rsi
-    state: dark-comfy
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
-    - !type:TileNotBlocked
+  - !type:TileNotBlocked
 
 #bathroom
 - type: construction
-  name: shower
   id: Shower
   graph: Shower
   startNode: start
   targetNode: shower
   category: construction-category-furniture
-  description: A shower, complete with bluespace water.
-  icon:
-    sprite: Backmen/Structures/Furniture/shower.rsi
-    state: shower
-    objectType: Structure
+  objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
   canBuildInImpassable: false
   conditions:
-    - !type:TileNotBlocked
+  - !type:TileNotBlocked

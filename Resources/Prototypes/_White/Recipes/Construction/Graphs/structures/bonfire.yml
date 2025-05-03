@@ -17,7 +17,7 @@
               amount: 25
               doAfter: 15
             - tag: Head
-              name: любая голова
+              name: construction-graph-tag-any-head
               icon:
                 sprite: Mobs/Species/Skeleton/parts.rsi
                 state: skull_icon
