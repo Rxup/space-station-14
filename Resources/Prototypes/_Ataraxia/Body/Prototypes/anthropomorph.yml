@@ -6,23 +6,29 @@
     head:
       part: HeadHuman
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoHuman
-      organs:
-        heart: OrganAnthroAnimalHeart
-        lungs: OrganHumanLungs
-        stomach: OrganAnthroAnimalStomach
-        liver: OrganAnthroAnimalLiver
-        kidneys: OrganHumanKidneys
+    chest:
+      part: ChestHuman
       connections:
       - right arm
       - left arm
+      - groin
+      - head
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganHumanLungs
+    groin: # Backmen edit: chest, groin separation
+      part: GroinVulpkanin
+      connections:
       - right leg
       - left leg
+      organs:
+        stomach: OrganAnthroAnimalStomach
+        liver: OrganAnthroAnimalLiver
+        kidneys: OrganHumanKidneys
     right arm:
       part: RightArmHuman
       connections:

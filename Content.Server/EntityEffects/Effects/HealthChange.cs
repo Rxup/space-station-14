@@ -168,8 +168,7 @@ namespace Content.Server.EntityEffects.Effects
                     interruptsDoAfters: false,
                 // start-backmen: surgery
                     targetPart: TargetBodyPart.All,
-                    partMultiplier: 0.5f,
-                    canSever: false);
+                    partMultiplier: 1f);
                 // end-backmen: surgery
         }
     }

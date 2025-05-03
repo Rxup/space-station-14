@@ -1,4 +1,6 @@
 drone-activated = Дрон активирован
+drone-active = Активен
+drone-dormant = Ожидает активации
 
 #BPLA MED
 Brutepack-action-name = Пакет от ушибов

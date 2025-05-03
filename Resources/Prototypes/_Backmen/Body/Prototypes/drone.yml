@@ -1,10 +1,10 @@
 ﻿- type: body
   id: Drone
   name: "drone"
-  root: torso
+  root: chest
   slots:
-    torso:
-      part: TorsoDrone
+    chest:
+      part: ChestDrone
       connections:
       - hand 1
       - hand 2
@@ -30,15 +30,15 @@
 
 - type: entity
   parent: BaseItem
-  id: TorsoDrone
-  name: nt-800 torso
+  id: ChestDrone
+  name: nt-800 chest
   components:
   - type: Sprite
     sprite: Mobs/Species/Terminator/parts.rsi
-    state: torso_m
+    state: chest_m
   - type: Icon
     sprite: Mobs/Species/Terminator/parts.rsi
-    state: torso_m
+    state: chest_m
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -50,4 +50,4 @@
   - type: StaticPrice
     price: 200
   - type: BodyPart
-    partType: Torso
+    partType: Chest

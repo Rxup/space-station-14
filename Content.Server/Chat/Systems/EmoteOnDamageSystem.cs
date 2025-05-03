@@ -1,3 +1,5 @@
+using Content.Shared.Backmen.Surgery.Wounds;
+
 namespace Content.Server.Chat.Systems;
 
 using Content.Shared.Chat.Prototypes;
@@ -19,6 +21,7 @@ public sealed class EmoteOnDamageSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<EmoteOnDamageComponent, DamageChangedEvent>(OnDamage);
+        SubscribeLocalEvent<EmoteOnDamageComponent, WoundsChangedEvent>(OnWounded);
     }
 
     private void OnDamage(EntityUid uid, EmoteOnDamageComponent emoteOnDamage, DamageChangedEvent args)
@@ -47,6 +50,35 @@ public sealed class EmoteOnDamageSystem : EntitySystem
 
         emoteOnDamage.LastEmoteTime = _gameTiming.CurTime;
     }
+
+    // Backmen edit start
+    private void OnWounded(EntityUid uid, EmoteOnDamageComponent emoteOnDamage, WoundsChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        if (emoteOnDamage.LastEmoteTime + emoteOnDamage.EmoteCooldown > _gameTiming.CurTime)
+            return;
+
+        if (emoteOnDamage.Emotes.Count == 0)
+            return;
+
+        if (!_random.Prob(emoteOnDamage.EmoteChance))
+            return;
+
+        var emote = _random.Pick(emoteOnDamage.Emotes);
+        if (emoteOnDamage.WithChat)
+        {
+            _chatSystem.TryEmoteWithChat(uid, emote, emoteOnDamage.HiddenFromChatWindow ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal);
+        }
+        else
+        {
+            _chatSystem.TryEmoteWithoutChat(uid,emote);
+        }
+
+        emoteOnDamage.LastEmoteTime = _gameTiming.CurTime;
+    }
+    // backmen edit end
 
     /// <summary>
     /// Try to add an emote to the entity, which will be performed at an interval.

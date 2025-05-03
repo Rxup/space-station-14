@@ -23,10 +23,18 @@
         damage: # If you get robust too much, you can go to hell!
           types:
             Poison: 4
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentThreshold
+          min: 16
+        amount: 0.4 # haha
       - !type:GenericStatusEffect
           key: Stutter
           component: StutteringAccent
       - !type:Jitter
+      - !type:SuppressPain
+        amount: 1.2
+        time: 60 # it accumulated 1.2*quantity and then exists for 60 seconds.
       - !type:GenericStatusEffect
         key: Stun
         time: 5
@@ -53,7 +61,7 @@
           factor: 1.0
         - !type:SatiateThirst
           factor: 1.0
-        - !type:ModifyBleedAmount # Tranexamic acid in recipe, so it's also stops bleeding, but not that efficient
+        - !type:ModifyBleedAmount # Tranexamic acid in recipe, so it also stops bleeding, but not that efficient
           amount: -1
         - !type:HealthChange
           damage:
@@ -61,3 +69,61 @@
               Burn: -6
               Brute: -6
               Airloss: -4
+
+- type: reagent
+  id: Morphine
+  name: reagent-name-morphine
+  group: Narcotics
+  desc: reagent-desc-morphine
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#A9FBFB"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.25
+      effects:
+      - !type:Emote
+        conditions:
+        - !type:ReagentThreshold
+          min: 6
+        emote: Yawn
+        showInChat: true
+        probability: 0.1
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        conditions:
+        - !type:ReagentThreshold
+          min: 12
+        component: Drowsiness
+        time: 30
+        type: Add
+        refresh: true
+      - !type:GenericStatusEffect
+        key: ForcedSleeping
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        component: ForcedSleeping
+        time: 10
+        type: Add
+        refresh: true
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Morphine
+          min: 25
+        damage:
+          types:
+            Poison: 1.25
+    Medicine:
+      metabolismRate: 0.25
+      effects:
+        - !type:SuppressPain
+          amount: 100 # Literally painkiller
+          time: 30
+        - !type:GenericStatusEffect
+          conditions:
+          - !type:ReagentThreshold
+            min: 10
+          key: Adrenaline
+          component: IgnoreSlowOnDamage

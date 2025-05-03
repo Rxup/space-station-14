@@ -10,7 +10,7 @@
   recipes:
   - ShipyardCircuitboard # backmen
   - SalvageExpeditionsComputerCircuitboard
-  - CloningConsoleComputerCircuitboard
-  - MedicalScannerMachineCircuitboard
-  - VaccinatorMachineCircuitboard
-  - DiagnoserMachineCircuitboard
+#  - CloningConsoleComputerCircuitboard
+#  - MedicalScannerMachineCircuitboard
+#  - VaccinatorMachineCircuitboard
+#  - DiagnoserMachineCircuitboard

@@ -1,0 +1,9 @@
+- type: entity
+  parent: OperatingTable
+  id: OperatingTableFilled
+  suffix: Filled, Nitrous Oxide Tank
+  components:
+  - type: ItemSlots # Backmen
+    slots:
+      gas_tank_slot:
+        startingItem: NitrousOxideTankFilled

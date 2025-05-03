@@ -70,6 +70,7 @@
   - FoodPlateTin
   - FoodPlateMuffinTin
   - FoodKebabSkewer
+  - Ashtray
   technologyPrerequisites:
   - ServiceMachines
   position: 4,9
@@ -191,6 +192,19 @@
   technologyPrerequisites:
   - Spray
   position: 5,7
+
+- type: technology
+  id: PushHorn
+  name: research-technology-clowning-utilities
+  icon:
+    sprite: Objects/Fun/push_horn.rsi
+    state: icon
+  discipline: Service
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - PushHorn
+  position: 5,8
 
 - type: technology
   id: TranslationDevice

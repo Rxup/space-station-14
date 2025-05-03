@@ -100401,13 +100401,6 @@ entities:
     - type: Transform
       pos: -28.316187,13.343903
       parent: 2
-- proto: TorsoBorg
-  entities:
-  - uid: 12390
-    components:
-    - type: Transform
-      pos: -73.75546,5.4194083
-      parent: 2
 - proto: ToyFigurineCaptain
   entities:
   - uid: 14948

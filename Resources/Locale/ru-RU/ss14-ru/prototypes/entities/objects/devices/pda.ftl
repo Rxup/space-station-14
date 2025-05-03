@@ -1,5 +1,7 @@
 ent-BasePDA = КПК
     .desc = Ассистент по персональным данным.
+ent-BaseWidePDA = { ent-BasePDA }
+    .desc = { ent-BasePDA.desc }
 ent-BaseSecurityPDA = { ent-BasePDA }
     .desc = { ent-BasePDA.desc }
 ent-BaseMedicalPDA = { ent-BasePDA }
@@ -100,13 +102,8 @@ ent-ClearPDA = прозрачный КПК
     .desc = На 99,44% из прозрачного пластика.
 ent-VisitorPDA = { ent-ClearPDA }
     .desc = { ent-ClearPDA.desc }
-# Corvax-HiddenDesc-Start
-ent-SyndiPDA = кроваво-красный КПК
-    .suffix = КПК Синдиката, Ядерный Оперативник
-    .desc = Смотря на этот КПК, ваше сердцебиение учащается... словно его владелец совершил нечто ужасное.
-
-# Corvax-HiddenDesc-End
-
+ent-SyndiPDA = КПК синдиката
+    .desc = Окей, пора стать продуктивным членом... о, круто, я плохой парень, пора убивать людей!
 ent-ERTLeaderPDA = КПК ОБР
     .desc = Красный значит мощный.
     .suffix = Лидер
@@ -152,9 +149,10 @@ ent-SeniorOfficerPDA = КПК инструктора СБ
     .desc = Побит, помят, поломан, практически не пригоден для использования.
 ent-PiratePDA = КПК пирата
     .desc = Йарр!
+ent-SyndiAgentPDA = КПК агента Синдиката
+    .desc = Когда лечения простых агентов Синдикатов недостаточно, займитесь лечением Ядерных оперативников!
 ent-ChameleonPDA = КПК пассажира
     .desc = Почему он не серый?
     .suffix = Хамелеон
-ent-SyndiAgentPDA = медицинский ало-красный КПК
-    .suffix = КПК оперативника медика Синдиката, Ядерный Оперативник
-    .desc = Смотря на этот КПК, ваше сердцебиение учащается... словно его владелец проводил немыслимые и ужасные медицинские эксперименты.
+ent-WizardPDA = КПК волшебника
+    .desc = Вы слышите слабый шепот, доносящийся из него.

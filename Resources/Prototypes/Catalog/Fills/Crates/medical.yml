@@ -69,6 +69,7 @@
       - id: Hemostat
       # start-backmen: surgery
       - id: BoneGel
+      - id: MedicalStitches
       - id: BoxLatexGloves
       - id: BoxSterileMask
       # end-backmen: surgery

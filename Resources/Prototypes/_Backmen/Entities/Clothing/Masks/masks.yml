@@ -1,0 +1,40 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskInteQInfiltrator
+  name: infiltrator mask
+  description: Incredibly suspicious balaclava made with Syndicate nanofibers to absorb impacts slightly while obfuscating the voice and face using a garbled vocoder.
+  components:
+  - type: VoiceMask
+  - type: UserInterface
+    interfaces:
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Backmen/Clothing/Mask/inteq_infiltrator.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Mask/inteq_infiltrator.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+# Corvax-HiddenDesc-Start
+  - type: HiddenDescription
+    entries:
+    - label: corvax-hidden-desc-VoiceMasker-syndicate
+      whitelistMind:
+        mindRoles:
+        - TraitorRole
+        - NukeopsRole
+        - MindRoleGhostRoleInteQAntagonist
+    - label: corvax-hidden-desc-VoiceMasker-research
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+# Corvax-HiddenDesc-End
