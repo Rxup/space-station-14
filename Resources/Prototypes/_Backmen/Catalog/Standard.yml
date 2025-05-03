@@ -177,3 +177,15 @@
   name: Ween - Ocean Man
   path:
     path: /Audio/Backmen/Jukebox/Ween/Ween_OceanMan.ogg
+
+- type: jukebox
+  id: Omen
+  name: Ryan Amon - Omen
+  path:
+    path: /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_Omen.ogg
+
+- type: jukebox
+  id: TheHunter
+  name: Ryan Amon - The Hunter
+  path:
+    path: /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_TheHunter.ogg

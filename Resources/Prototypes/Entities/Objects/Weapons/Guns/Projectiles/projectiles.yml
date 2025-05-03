@@ -486,7 +486,7 @@
 #        Structural: 15 Lavaland Change - No easy break-ins :)
   # Short lifespan
   - type: TimedDespawn
-    lifetime: 0.170 # ~4 tiles of range.
+    lifetime: 0.22 # roughly 5.5 tiles
   - type: GatheringProjectile
 
 - type: entity
