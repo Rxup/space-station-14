@@ -5,6 +5,5 @@ energy-dome-no-cell = Требуется батарея
 energy-dome-on-examine-is-on-message = Энергетический барьер [color=darkgreen]поднят[/color].
 energy-dome-on-examine-is-off-message = Энергетический барьер [color=darkred]выключен[/color].
 energy-dome-verb-toggle = Включить энергетический барьер
-
 uplink-energy-dome-name = Энергетический барьер
 uplink-energy-dome-desc = Генератор щита, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.

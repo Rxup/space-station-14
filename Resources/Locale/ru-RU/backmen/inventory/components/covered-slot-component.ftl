@@ -1,1 +1,1 @@
-covered-slot-component-blocked = Слот перекрыт {$item}!
+covered-slot-component-blocked = Слот перекрыт { $item }!

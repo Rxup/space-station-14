@@ -12,4 +12,6 @@ damage-type-shock = Электрические
 damage-type-slash = Порезы
 damage-type-structural = Структурные
 damage-type-holy = Святые
+#backmen
+damage-type-stun = Stun
 damage-type-armorpiercing = Пробивающий

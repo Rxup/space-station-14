@@ -51,6 +51,5 @@ action-name-psychokinesis = Психокинез
 action-description-psychokinesis = Согните ткань пространства, чтобы мгновенно перемещаться по ней.
 action-name-rf-sensitivity = Переключение чувствительности к радиочастотному излучению
 action-desc-rf-sensitivity = Включайте и выключайте свою способность интерпретировать радиоволны.
-
 cant-use-in-invisible = невозможно использовать из невидимости
 cant-use-in-insulation = невозможно использовать во время псионической изоляции

@@ -1,6 +1,10 @@
 ent-FireExtinguisher = огнетушитель
     .desc = Он тушит пожары.
+ent-BorgFireExtinguisher = манёвренный джетпак
+    .desc = Основанный на технологии пожарного огнетушителя, манёвренный джетпак это... Ну да, это просто большой огнетушитель, приделанный к боргу.
 ent-ExtinguisherSpray = струя огнетушителя
     .desc = { ent-Vapor.desc }
 ent-FireExtinguisherMini = карманный огнетушитель
     .desc = Легкая и компактная модель огнетушителя в стекловолоконном корпусе. Вмещает меньше воды, чем его старший брат.
+ent-SelfRechargingFireExtinguisher = self-recharging fire extinguisher
+    .desc = It extinguishes fires. it slowly refills with water.

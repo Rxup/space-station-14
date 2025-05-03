@@ -1,5 +1,7 @@
 ent-BaseBeaker = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
+ent-BorgBeaker = интегрированная мензурка
+    .desc = Внутренняя мензурка, установленная прямо в борга.
 ent-BaseBeakerMetallic = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-Beaker = мензурка
