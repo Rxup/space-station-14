@@ -106,7 +106,7 @@ public sealed partial class HeadcrabSystem : EntitySystem
 //        _npc.WakeNPC(args.Equipee, htn);
 //        _htn.Replan(htn);
 
-        var accentType = "zombie";
+        var accentType = component.Accent;
         if (TryComp<ZombieAccentOverrideComponent>(args.Equipee, out var accent))
             accentType = accent.Accent;
 

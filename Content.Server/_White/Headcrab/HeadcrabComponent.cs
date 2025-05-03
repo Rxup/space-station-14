@@ -56,6 +56,9 @@ public sealed partial class HeadcrabComponent : Component
     public ProtoId<HTNCompoundPrototype> TakeoverTask = "SimpleHostileCompound";
 
     [DataField]
+    public string Accent = "zombie";
+
+    [DataField]
     public ProtoId<NpcFactionPrototype> HeadcrabFaction = "Zombie";
 
     [DataField]
