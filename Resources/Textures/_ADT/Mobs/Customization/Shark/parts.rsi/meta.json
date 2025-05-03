@@ -1,14 +1,15 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Occulus-Eris (https://github.com/Occulus-Server/Occulus-Eris) & modified by discord:kuro_0001 (388673708753027083)",
+    "copyright": "Created by discord:Skilets#5770",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "full"
+            "name": "full",
+            "directions": 1
         },
         {
             "name": "head_f",
@@ -35,6 +36,10 @@
             "directions": 4
         },
         {
+            "name": "overlay_husk",
+            "directions": 4
+        },
+        {
             "name": "r_arm",
             "directions": 4
         },
@@ -51,19 +56,33 @@
             "directions": 4
         },
         {
+            "name": "tail_m",
+            "directions": 4,
+            "delays": [
+                [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ],
+                [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ],
+                [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ],
+                [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ]
+            ]
+        },
+        {
+            "name": "torso_f",
+            "directions": 4
+        },
+		        {
             "name": "chest_f",
             "directions": 4
         },
-        {
+		        {
             "name": "chest_m",
             "directions": 4
         },
         {
-            "name": "groin_f",
+            "name": "torso_m",
             "directions": 4
         },
         {
-            "name": "groin_m",
+            "name": "shark_m",
             "directions": 4
         }
     ]

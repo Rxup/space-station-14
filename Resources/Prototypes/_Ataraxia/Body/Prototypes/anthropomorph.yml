@@ -1,7 +1,7 @@
 - type: body
   id: Anthropomorph
   name: "anthropomorph"
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadHuman
