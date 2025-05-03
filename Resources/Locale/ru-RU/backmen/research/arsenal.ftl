@@ -7,5 +7,6 @@ research-technology-combat-laser-advanced = Продвинутые боевые 
 research-technology-combat-laser-concentrated = Концентрированные боевые лазеры
 research-technology-combat-laser-wave-harnessing = Волновые боевые лазеры
 research-technology-combat-laser-experimental = Экспериментальные боевые лазеры
+research-technology-experimental-guns = Экспериментальное оружие
 
 research-technology-gunsmith-printer-machines = Оружейный принтер
