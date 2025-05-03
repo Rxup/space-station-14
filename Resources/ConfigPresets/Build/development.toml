@@ -41,5 +41,6 @@ see_own_notes = true
 [net]
 tickrate = 20
 
-#[lavaland] # Lavaland Change
-#enabled = false
+[ic]
+random_characters = true
+random_species_weights = ""
