@@ -23,5 +23,5 @@
   id: NormalityCrystal
   name: stack-normality-crystal
   icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: normalitycrystal }
-  spawn: CrystalNormality
+  spawn: CrystalNormality1
   maxCount: 30
