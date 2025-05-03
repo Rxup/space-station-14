@@ -153,7 +153,7 @@
     sprite: Objects/Specific/Janitorial/advmop.rsi
     state: advmop
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 8000
   recipeUnlocks:
    - AdvMopItem
@@ -183,7 +183,7 @@
     sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
     state: icon
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
    - WeaponSprayNozzle
@@ -238,7 +238,7 @@
     sprite: Backmen/Objects/Devices/translator.rsi
     state: icon
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 12000
   recipeUnlocks:
   - XenoTranslator
@@ -254,7 +254,7 @@
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 15000
   recipeUnlocks:
   - AdvancedGalaticCommonTranslatorImplanter

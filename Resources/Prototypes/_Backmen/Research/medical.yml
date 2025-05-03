@@ -53,7 +53,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
     state: rapid-syringe-gun
   discipline: Medical
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - RapidSyringeGun
@@ -90,7 +90,7 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
     state: e-scalpel-on
   discipline: Medical
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - EnergyScalpel
@@ -107,7 +107,7 @@
     sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
     state: eyes
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 15000
   recipeUnlocks:
   - JawsOfLifeLeftArm
@@ -128,7 +128,7 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi
     state: omnimed
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 15000
   recipeUnlocks:
   - OmnimedTool
@@ -166,7 +166,7 @@
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     state: beakerbluespace
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 12000
   recipeUnlocks:
   - BluespaceBeaker
@@ -217,7 +217,7 @@
     sprite: _CorvaxNext/Objects/Specific/Medical/BodyBags/bluespace.rsi
     state: bluespacebag_folded
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 9500
   recipeUnlocks:
   - BluespaceBodyBag

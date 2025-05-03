@@ -21,7 +21,7 @@
     sprite: Structures/Machines/anomaly_sync.rsi
     state: base
   discipline: Scientific
-  tier: 1
+  tier: 3
   cost: 15000
   recipeUnlocks:
   - AnomalySynchronizerCircuitboard

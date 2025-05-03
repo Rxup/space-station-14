@@ -23,7 +23,7 @@
     sprite: Structures/Machines/ore_processor_industrial.rsi
     state: inserting
   discipline: Shaft
-  tier: 1
+  tier: 2
   cost: 7200
   recipeUnlocks:
   - OreProcessorIndustrialMachineCircuitboard

@@ -37,7 +37,7 @@
     sprite: Structures/Machines/protolathe_hypercon.rsi
     state: building
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 18000
   recipeUnlocks:
    - AutolatheHyperConvectionMachineCircuitboard
@@ -55,7 +55,7 @@
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen0
   discipline: Engineering
-  tier: 1
+  tier: 2
   cost: 7500
   recipeUnlocks:
   - PortableGeneratorPacmanMachineCircuitboard
@@ -75,7 +75,7 @@
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen0
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 8500
   recipeUnlocks:
   - TurboItemRechargerCircuitboard
@@ -92,7 +92,7 @@
     sprite: Structures/Machines/flatpacker.rsi
     state: base
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 8500
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
@@ -125,7 +125,7 @@
     sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
     state: freezerOn
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 12500
   recipeUnlocks:
   - HellfireFreezerMachineCircuitBoard

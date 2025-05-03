@@ -67,7 +67,7 @@
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
     state: incendiarydisplay
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - MagazinePacketPistolACPIncendiary
@@ -97,7 +97,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: uranium
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 7500
   recipeUnlocks:
   - SpeedLoaderMagnumUranium
@@ -167,8 +167,8 @@
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
-  cost: 15000
+  tier: 3
+  cost: 18000
   recipeUnlocks:
   - WeaponAdvancedLaser
   technologyPrerequisites:
@@ -183,7 +183,7 @@
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 8000
   recipeUnlocks:
   - WeaponLaserCannon
@@ -198,7 +198,7 @@
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
@@ -213,7 +213,7 @@
     sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 5200
   recipeUnlocks:
   - WeaponLaserSvalinn
@@ -229,7 +229,7 @@
     sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
     state: base
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 8500
   recipeUnlocks:
   - WeaponTemperatureGun
@@ -244,7 +244,7 @@
     sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
@@ -274,7 +274,7 @@
     sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeStraight
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 10000
   technologyPrerequisites:
   - LightAutoWeaponBase
@@ -288,7 +288,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     state: icon
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 5000
   recipeUnlocks:
   - WeaponPistolRivet
@@ -330,7 +330,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
     state: icon
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 5000
   recipeUnlocks:
   - WeaponPistolG22

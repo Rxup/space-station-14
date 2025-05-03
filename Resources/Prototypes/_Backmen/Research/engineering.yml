@@ -49,7 +49,7 @@
     sprite: Objects/Power/power_cells.rsi
     state: hyper
   discipline: Engineering
-  tier: 1
+  tier: 2
   cost: 9500
   recipeUnlocks:
    - PowerCellSuper
@@ -66,7 +66,7 @@
     sprite: Backmen/Objects/Power/power_cells.rsi
     state: bluespace
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 18000
   recipeUnlocks:
    - PowerCellBluespace
@@ -83,7 +83,7 @@
     sprite: Backmen/Objects/Power/power_cells.rsi
     state: bluespace_reactor
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 55000
   recipeUnlocks:
    - PowerCellBluespaceReactor
@@ -98,7 +98,7 @@
     sprite: Backmen/Objects/Power/power_cells.rsi
     state: vortex
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 125000
   recipeUnlocks:
    - PowerCellVortex
@@ -114,7 +114,7 @@
 #    sprite: Objects/Power/power_cells.rsi
 #    state: microreactor
 #  discipline: Engineering
-#  tier: 1
+#  tier: 3
 #  cost: 25000
 #  recipeUnlocks:
 #   - PowerCellMicroreactor
@@ -130,7 +130,7 @@
 #    sprite: Objects/Tools/rcd.rsi
 #    state: icon
 #  discipline: Engineering
-#  tier: 1
+#  tier: 2
 #  cost: 10000
 #  recipeUnlocks:
 #  - RCD
@@ -188,7 +188,7 @@
     sprite: Objects/Tools/welder_experimental.rsi
     state: icon
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 15500
   recipeUnlocks:
     - WelderExperimental

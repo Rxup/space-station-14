@@ -40,7 +40,7 @@
     sprite: Structures/Machines/stasis_bed.rsi
     state: icon
   discipline: Medical
-  tier: 1
+  tier: 2
   cost: 7500
   recipeUnlocks:
   - StasisBedMachineCircuitboard

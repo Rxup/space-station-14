@@ -5,7 +5,7 @@
     sprite: Structures/cargo_telepad.rsi
     state: display
   discipline: Cargo
-  tier: 1
+  tier: 3
   cost: 12000
   recipeUnlocks:
   - CargoTelepadMachineCircuitboard

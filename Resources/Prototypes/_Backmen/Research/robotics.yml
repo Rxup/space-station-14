@@ -146,7 +146,7 @@
    sprite: Interface/Actions/actions_borg.rsi
    state: adv-surgery-module
   discipline: Robotics
-  tier: 1
+  tier: 2
   cost: 1500
   recipeUnlocks:
   - BorgModuleAdvancedSurgery
@@ -177,7 +177,7 @@
     sprite: Interface/Actions/actions_borg.rsi
     state: adv-tools-module
   discipline: Robotics
-  tier: 1
+  tier: 2
   cost: 3500
   recipeUnlocks:
   - BorgModuleAdvancedTool
