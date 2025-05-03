@@ -8,7 +8,7 @@
       connections:
       - torso
     torso:
-      part: TorsoGolemCult
+      part: ChestGolemCult
       connections:
       - left arm
       - right arm

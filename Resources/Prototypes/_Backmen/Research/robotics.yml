@@ -114,9 +114,9 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-   - BorgModuleCable
+#   - BorgModuleCable
    - BorgModuleFireExtinguisher
-   - BorgModuleRadiationDetection
+#   - BorgModuleRadiationDetection
    - BorgModuleTool
   technologyPrerequisites:
   - RoboticsAdvanced
@@ -133,8 +133,8 @@
   cost: 2500
   recipeUnlocks:
   - BorgModuleSurgery
-  - BorgModuleAdvancedTreatment
-  - BorgModuleDefibrillator
+#  - BorgModuleAdvancedTreatment
+#  - BorgModuleDefibrillator
   technologyPrerequisites:
   - CyborgModules
   position: 7,-2
@@ -154,21 +154,21 @@
   - MechanizedTreatmentModules
   position: 8,-2
 
-- type: technology
-  id: SpaceScanningModules
-  name: research-technology-space-scanning-modules
-  icon:
-   sprite: Interface/Actions/actions_borg.rsi
-   state: gps-module
-  discipline: Robotics
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - BorgModuleGPS
-  technologyPrerequisites:
-  - CyborgModules
-#  - SpaceScanning
-  position: 8,-3
+#- type: technology
+#  id: SpaceScanningModules
+#  name: research-technology-space-scanning-modules
+#  icon:
+#   sprite: Interface/Actions/actions_borg.rsi
+#   state: gps-module
+#  discipline: Robotics
+#  tier: 1
+#  cost: 2500
+#  recipeUnlocks:
+#  - BorgModuleGPS
+#  technologyPrerequisites:
+#  - CyborgModules
+##  - SpaceScanning
+#  position: 8,-3
 
 - type: technology
   id: AdvancedToolsModules
@@ -218,19 +218,51 @@
 #  - CleaningAdvanced
   position: 7,-4
 
-- type: technology
-  id: XenoArcheologyModules
-  name: research-technology-xeno-archeology-modules
+#- type: technology
+#  id: XenoArcheologyModules
+#  name: research-technology-xeno-archeology-modules
+#  icon:
+#    sprite: Interface/Actions/actions_borg.rsi
+#    state: node-scanner-module
+#  discipline: Robotics
+#  tier: 1
+#  cost: 2500
+#  recipeUnlocks:
+##  - BorgModuleArtifact
+#  - BorgModuleAnomaly
+#  technologyPrerequisites:
+#  - CyborgModules
+##  - XenoArcheologyMachines
+#  position: 8,-4
+
+- type: technology # Merge with other T2 medical research if possible!
+  id: MechanizedTreatment
+  name: research-technology-mechanized-treatment
   icon:
-    sprite: Interface/Actions/actions_borg.rsi
-    state: node-scanner-module
+    sprite: Mobs/Silicon/chassis.rsi
+    state: medical
   discipline: Robotics
-  tier: 1
-  cost: 2500
+  tier: 2
+  cost: 5000
   recipeUnlocks:
-  - BorgModuleArtifact
-  - BorgModuleAnomaly
+  - BorgModuleAdvancedChemical
   technologyPrerequisites:
   - CyborgModules
-#  - XenoArcheologyMachines
-  position: 8,-4
+  - BiochemicalStasis
+  position: 9,-4
+
+- type: technology
+  id: MassExcavation
+  name: research-technology-excavation-borg
+  icon:
+    sprite: Objects/Tools/handdrilldiamond.rsi
+    state: handdrill
+  discipline: Engineering
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+  - BorgModuleAdvancedMining
+  technologyPrerequisites:
+  - CyborgModules
+  - MassExcavation
+  position: 10,-4

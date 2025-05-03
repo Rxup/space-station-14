@@ -27,28 +27,28 @@
       slotTexture: undershirt
       slotFlags: UNDERSHIRT
       stripTime: 8
-      uiWindowPos: 3,3
+      uiWindowPos: 0,6
       strippingWindowPos: 3,1
       displayName: Undershirt
     - name: underpants
       slotTexture: underpants
       slotFlags: UNDERPANTS
       stripTime: 12
-      uiWindowPos: 3,2
+      uiWindowPos: 0,5
       strippingWindowPos: 3,2
       displayName: Underpants
     - name: socks
       slotTexture: socks
       slotFlags: SOCKS
       stripTime: 8
-      uiWindowPos: 3,1
+      uiWindowPos: 0,4
       strippingWindowPos: 3,3
       displayName: Socks
     - name: underwear #LPP slot underwear
       slotTexture: underwear
       slotFlags: UNDERWEAR
       stripTime: 6
-      uiWindowPos: 4,1
+      uiWindowPos: 3,1
       strippingWindowPos: 4,0
       displayName: Underwear
       whitelist:

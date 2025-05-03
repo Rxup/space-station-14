@@ -341,3 +341,55 @@
         - id: WeaponPistolG22
         - id: MagazinePistol
           amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackInteQ
+  id: ClothingBackpackInteQSizoLeaderFilled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: InteQSizoLeaderEntityTable
+
+- type: entityTable
+  id: InteQSizoLeaderEntityTable
+  table: !type:AllSelector
+    children:
+    - id: BoxSurvival
+    - id: BoxFlare
+      prob: 0.50
+    - id: CombatMedipen
+      prob: 0.50
+    - id: RubberStampInteQ
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackInteQ
+  id: ClothingBackpackInteQSizoFilled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: InteQSizoEntityTable
+
+- type: entityTable
+  id: InteQSizoEntityTable
+  table: !type:AllSelector
+    children:
+    - id: BoxSurvival
+    - id: BoxFlare
+      prob: 0.50
+    - id: CombatMedipen
+      prob: 0.50
+    - !type:NestedSelector
+      rolls: !type:RangeNumberSelector
+        range: 0, 0
+      tableId: PlasmaSwordTypeEntityTable
+
+- type: entityTable
+  id: PlasmaSwordTypeEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: PlasmaSword
+    - id: PlasmaSwordAlt

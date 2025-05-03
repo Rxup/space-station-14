@@ -12,22 +12,39 @@
     steps:
     - SurgeryStepOpenIncisionScalpel
     - SurgeryStepRetractSkin
-    - SurgeryStepClampBleeders
   - type: SurgeryPartPresentCondition
 
 - type: entity
   parent: SurgeryBase
-  id: SurgeryCloseIncision
-  name: Close Incision
+  id: SurgeryStopBloodOutput
+  name: Stop Constant Blood Output
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    priority: 1
+    requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepCloseBones
-    - SurgeryStepMendRibcage
-    - SurgeryStepCloseIncision
+    - SurgeryStepCloseBloodOutputs
+    - SurgeryStepClampBleeders
+  - type: SurgeryBleedsPresentCondition
   - type: SurgeryPartPresentCondition
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryFixDismemberment
+  name: Fix Dismemberment Leftovers
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepRemoveSeveredSkin
+    - SurgeryStepRemoveLeftoverBones
+    - SurgeryStepSealDismembermentWound
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryBleedsPresentCondition
+    inverted: true
+  - type: SurgeryTraumaPresentCondition
+    trauma: Dismemberment
 
 - type: entity
   parent: SurgeryBase
@@ -41,7 +58,7 @@
     - SurgeryStepSawBones
     - SurgeryStepPriseOpenBones
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
 
 - type: entity
   parent: SurgeryBase
@@ -56,8 +73,43 @@
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveFeature
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
     inverse: true
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryMendBones
+  name: Mend Bones
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepMendBones
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryBleedsPresentCondition
+    inverted: true
+  - type: SurgeryTraumaPresentCondition
+    trauma: BoneDamage
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryHealOrgans
+  name: Heal Organs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepHealOrgans
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryBleedsPresentCondition
+    inverted: true
+  - type: SurgeryTraumaPresentCondition
+    trauma: OrganDamage
 
 # I fucking hate hardcoding all of this shit to accomodate for surgery BUI.
 # If anyone can give me pointers on how to make it better I'd be incredibly grateful.
@@ -74,10 +126,33 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: head
     part: Head
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAttachGroin
+  name: Attach Groin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
+  - type: SurgeryPartRemovedCondition
+    connection: groin
+    part: Groin
 
 - type: entity
   parent: SurgeryBase
@@ -91,7 +166,10 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left arm
     part: Arm
@@ -109,7 +187,10 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right arm
     part: Arm
@@ -127,7 +208,10 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left leg
     part: Leg
@@ -145,7 +229,10 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right leg
     part: Leg
@@ -165,6 +252,9 @@
   - type: SurgeryPartCondition
     part: Arm
     symmetry: Left
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left hand
     part: Hand
@@ -184,6 +274,9 @@
   - type: SurgeryPartCondition
     part: Arm
     symmetry: Right
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right hand
     part: Hand
@@ -203,6 +296,9 @@
   - type: SurgeryPartCondition
     part: Leg
     symmetry: Left
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: left foot
     part: Foot
@@ -222,6 +318,9 @@
   - type: SurgeryPartCondition
     part: Leg
     symmetry: Right
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
   - type: SurgeryPartRemovedCondition
     connection: right foot
     part: Foot
@@ -241,7 +340,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryPartRemovedCondition
     connection: legs
     part: Leg
@@ -259,7 +358,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
   - type: SurgeryPartRemovedCondition
     connection: hands
     part: Hand
@@ -277,7 +376,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryPartRemovedCondition
     connection: feet
     part: Foot
@@ -294,7 +393,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryPartRemovedCondition
     connection: tail
     part: Tail
@@ -315,7 +414,7 @@
 #    - SurgeryStepRemoveLarva
 #  - type: SurgeryLarvaCondition
 #  - type: SurgeryPartCondition
-#    part: Torso
+#    part: Chest
 
 - type: entity
   parent: SurgeryBase
@@ -329,6 +428,7 @@
     - SurgeryStepRepairBruteTissue
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
+    damageGroup: Brute
 
 - type: entity
   parent: SurgeryBase
@@ -342,6 +442,7 @@
     - SurgeryStepRepairBurnTissue
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
+    damageGroup: Burn
 
 - type: entity
   parent: SurgeryBase
@@ -355,7 +456,7 @@
     - SurgeryStepInsertItem
     - SurgeryStepRemoveItem
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
 
 # Note for any Organ manipulation surgeries. Most of the organs are only defined on the server.
 # I added some of them to the client too, but we should probably move them to a shared
@@ -412,7 +513,7 @@
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Heart
@@ -430,7 +531,7 @@
     - SurgeryStepInsertHeart
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Heart
@@ -444,13 +545,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepSawBones
+    - SurgeryStepCarefulIncisionScalpel
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
@@ -462,13 +563,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepSawBones
     - SurgeryStepInsertLiver
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
@@ -488,7 +588,7 @@
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Lung
@@ -506,7 +606,7 @@
     - SurgeryStepInsertLungs
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Torso
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Lung
@@ -520,13 +620,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepSawBones
+    - SurgeryStepCarefulIncisionScalpel
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
@@ -538,13 +638,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepSawBones
     - SurgeryStepInsertStomach
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Torso
+    part: Groin
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
@@ -599,7 +698,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepLobotomize
-    - SurgeryStepCloseIncision
+    - SurgeryStepClampInternalBleeders
   - type: SurgeryComponentCondition
     component:
     - type: OhioAccent
@@ -617,7 +716,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepMendBrainTissue
-    - SurgeryStepCloseIncision
+    - SurgeryStepClampInternalBleeders
   - type: SurgeryComponentCondition
     component:
     - type: OhioAccent
@@ -670,7 +769,7 @@
 #    steps:
 #    - SurgeryStepAddFelinidTail
 #  - type: SurgeryPartCondition
-#    part: Torso
+#    part: Groin
 #  - type: SurgeryMarkingCondition
 #    markingCategory: Tail
 #    matchString: FelinidTail
@@ -687,7 +786,7 @@
 #    steps:
 #    - SurgeryStepRemoveFelinidTail
 #  - type: SurgeryPartCondition
-#    part: Torso
+#    part: Groin
 #  - type: SurgeryMarkingCondition
 #    markingCategory: Tail
 #    matchString: FelinidTail

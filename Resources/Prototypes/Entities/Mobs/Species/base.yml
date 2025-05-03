@@ -11,6 +11,7 @@
   components:
   - type: Sprite
     layers:
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
@@ -58,21 +59,21 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  - type: DamageVisuals
-    thresholds: [ 10, 20, 30, 50, 70, 100 ]
-    targetLayers:
-    - "enum.HumanoidVisualLayers.Chest"
-    - "enum.HumanoidVisualLayers.Head"
-    - "enum.HumanoidVisualLayers.LArm"
-    - "enum.HumanoidVisualLayers.LLeg"
-    - "enum.HumanoidVisualLayers.RArm"
-    - "enum.HumanoidVisualLayers.RLeg"
-    damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#FF0000"
-      Burn:
-        sprite: Mobs/Effects/burn_damage.rsi
+  #- type: DamageVisuals
+  #  thresholds: [ 10, 20, 30, 50, 70, 100 ]
+  #  targetLayers:
+  #  - "enum.HumanoidVisualLayers.Chest"
+  #  - "enum.HumanoidVisualLayers.Head"
+  #  - "enum.HumanoidVisualLayers.LArm"
+  #  - "enum.HumanoidVisualLayers.LLeg"
+  #  - "enum.HumanoidVisualLayers.RArm"
+  #  - "enum.HumanoidVisualLayers.RLeg"
+  #  damageOverlayGroups:
+  #    Brute:
+  #      sprite: Mobs/Effects/brute_damage.rsi
+  #      color: "#FF0000"
+  #    Burn:
+  #      sprite: Mobs/Effects/burn_damage.rsi
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
@@ -86,10 +87,6 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.7
-      80: 0.5
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -250,6 +247,9 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Consciousness # backmen
+    cap: 190
+    threshold: 95
   - type: Absorbable # Changeling
   # - type: DiseaseCarrier # backmen
   - type: OfferItem # Erida
@@ -257,17 +257,8 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.1
-  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
-    allowedStates:
-    - Alive
-    damageCap: 20
-    damage:
-      types:
-        Heat: -0.07
-      groups:
-        Brute: -0.07
+        Blunt: 0.9 #per second, scales with pressure and other constants.
+        Heat: 0.2
   - type: Fingerprint
   - type: Blindable
   # Other
@@ -336,6 +327,7 @@
     # TODO BODY Turn these into individual body parts?
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -345,6 +337,9 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "socks" ] # Backmen
+    - map: [ "underpants" ] # Backmen
+    - map: [ "undershirt" ] # Backmen
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]

@@ -184,8 +184,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
-        ArmorPiercing: 10
+        Piercing: 30
+        ArmorPiercing: 15
 
 - type: entity
   id: Bullet308winAP
@@ -196,7 +196,7 @@
   - type: Projectile
     damage:
       types:
-        ArmorPiercing: 25
+        ArmorPiercing: 35
         Piercing: 10
 
 - type: entity

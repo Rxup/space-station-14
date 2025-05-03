@@ -16,6 +16,16 @@
       uiWindowPos: 1,1
       strippingWindowPos: 1,2
       displayName: Suit
+    - name: underwear #LPP slot underwear
+      slotTexture: underwear
+      slotFlags: UNDERWEAR
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 4,0
+      displayName: Underwear
+      whitelist:
+        tags:
+        - underwear
       #backmen:underclothing-start
     - name: undershirt
       slotTexture: undershirt

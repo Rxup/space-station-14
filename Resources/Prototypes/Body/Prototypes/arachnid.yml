@@ -1,29 +1,33 @@
 ﻿- type: body
   id: Arachnid
   name: "arachnid"
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadArachnid
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganArachnidEyes
-    torso:
-      part: TorsoArachnid
+    chest:
+      part: ChestArachnid
+      connections:
+      - groin
+      - right arm
+      - left arm
       organs:
         heart: OrganArachnidHeart
         lungs: OrganAnimalLungs
+    groin: # Backmen edit: chest, groin separation
+      part: GroinArachnid
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganArachnidStomach
         liver: OrganArachnidLiver
         kidneys: OrganArachnidKidneys
-      connections:
-      - right arm
-      - left arm
-      - right leg
-      - left leg
-      - head
     right arm:
       part: RightArmArachnid
       connections:

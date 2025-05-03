@@ -3,7 +3,6 @@
   name: tts-voice-name-aidar
   sex: Male
   speaker: aidar
-  roundStart: false # too bad to be Round Start
 
 - type: ttsVoice
   id: Baya
@@ -17,7 +16,6 @@
   name: tts-voice-name-kseniya
   sex: Female
   speaker: kseniya
-  roundStart: false # too bad to be Round Start
 
 - type: ttsVoice
   id: Xenia

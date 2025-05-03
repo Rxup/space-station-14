@@ -15,10 +15,30 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoShark
-  name: "тело акулы"
-  parent: [PartShark, BaseTorso]
+  id: ChestShark
+  name: "Shark chest"
+  parent: [BaseChest, PartShark]
   components:
+  - type: BodyPart #Backmen-Edit
+    partType: Chest
+  - type: Sprite
+    sprite: _ADT/Mobs/Customization/Shark/parts.rsi
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinShark
+  name: "Shark groin"
+  parent: [BaseGroin, PartShark]
+  components:
+  - type: BodyPart #Backmen-Edit
+    partType: Groin
   - type: Sprite
     sprite: _ADT/Mobs/Customization/Shark/parts.rsi
     state: "torso_m"

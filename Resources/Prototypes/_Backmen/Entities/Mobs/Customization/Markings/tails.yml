@@ -1,4 +1,249 @@
 - type: marking
+  id: TailAxolotl
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: axolotl
+
+- type: marking
+  id: TailDatashark
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: datashark_ears_inner
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: datashark_ears
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: datashark_fin
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: datashark_tail
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: datashark_taildata
+
+- type: marking
+  id: TailEasternDragon
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: easternd_primary
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: easternd_secondary
+
+- type: marking
+  id: TailFennec
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Felinid]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: fennec
+
+- type: marking
+  id: TailFish
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: fish_primary
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: fish_secondary
+
+- type: marking
+  id: TailFluffy
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Felinid]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: fluffy
+
+- type: marking
+  id: TailFox
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Felinid]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: fox_primary
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: fox_secondary
+
+- type: marking
+  id: TailGecko
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: gecko_primary
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: gecko_secondary
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: gecko_tertiary
+
+- type: marking
+  id: TailKitsune
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Felinid]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: kitsune_primary
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: kitsune_secondary
+
+- type: marking
+  id: TailMaw
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: maw
+
+- type: marking
+  id: TailShark
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: shark_fin
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: shark_tail
+
+- type: marking
+  id: TailSnake
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake
+
+- type: marking
+  id: TailSnakeAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_wagging
+
+- type: marking
+  id: TailSnakeStripe
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_secondary
+
+- type: marking
+  id: TailSnakeStripeAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_secondary_wagging
+
+- type: marking
+  id: TailSnakeStripeAlt
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt_secondary
+
+- type: marking
+  id: TailSnakeStripeAltAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_stripe_alt_secondary_wagging
+
+- type: marking
+  id: TailSnakeDual
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual_secondary
+
+- type: marking
+  id: TailSnakeDualAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_dual_secondary_wagging
+
+- type: marking
+  id: TailSnakeUnder
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, SlimePerson]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under_secondary
+
+- type: marking
+  id: TailSnakeUnderAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under_wagging
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: snake_under_secondary_wagging
+
+- type: marking
+  id: TailSuccubus
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Moth, Felinid]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: succubus
+
+- type: marking
+  id: TailTentacle
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, nHuman, Oni]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
+      state: tentacle
+
+- type: marking
   id: TailShadowkin
   bodyPart: Tail
   markingCategory: Tail

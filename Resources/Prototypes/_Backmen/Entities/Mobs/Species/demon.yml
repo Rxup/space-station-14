@@ -5,13 +5,16 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
+  - type: Consciousness # some fucking exclusivity for demons, harder to put them into crit, but they die more quickly.
+    cap: 180
+    threshold: 130
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Demonic
     - TauCetiBasic
     understands:
-    - Demonic
     - TauCetiBasic
+    - Demonic
   - type: Icon
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: full_m
@@ -40,8 +43,8 @@
       Female: FemaleHuman
       Unsexed: FemaleHuman
   - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: HellSpawn
+    damageContainer: RaceDemon
+    damageModifierSet: RaceDemon
   - type: MeleeWeapon
     hidden: true
     soundHit:

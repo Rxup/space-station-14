@@ -327,10 +327,10 @@ public sealed class OldAntagSelectionSystem : EntitySystem
         if (!_mindSystem.TryGetMind(entity, out _, out var mindComponent))
             return;
 
-        if (mindComponent.Session == null)
+        if (!_mindSystem.TryGetSession(mindComponent, out var session))
             return;
 
-        SendBriefing(mindComponent.Session, briefing, briefingColor, briefingSound);
+        SendBriefing(session, briefing, briefingColor, briefingSound);
     }
 
     /// <summary>

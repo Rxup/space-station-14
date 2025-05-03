@@ -1,6 +1,6 @@
 - type: entity
   id: PartShadowkin
-  parent: BaseItem
+  parent: BasePart
   name: "Shadowkin body part"
   abstract: true
   components:
@@ -9,68 +9,44 @@
     sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Icon
     sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
-  - type: Damageable
-    damageContainer: OrganicPart # backmen: surgery
-  - type: SurgeryTool
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice #DynamicPrice
-    price: 100
-  - type: Tag
-    tags:
-      - Trash
-  # start-backmen: surgery
-  - type: Gibbable
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 120
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Slash
-        damage: 120
-      behaviors:
-      - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
-  # end-backmen: surgery
 
 - type: entity
-  id: TorsoShadowkin
-  name: "Shadowkin torso"
-  parent: PartShadowkin
+  id: ChestShadowkin
+  name: "Shadowkin chest"
+  parent: [BaseChest, PartShadowkin]
   components:
   - type: Sprite
-    state: "torso_m"
+    state: "chest_m"
   - type: Icon
-    state: "torso_m"
+    state: "chest_m"
   - type: BodyPart
-    partType: Torso
-    toolName: "a torso"
-    containerName: "torso_slot"
+    partType: Chest
+    toolName: "a chest"
+    containerName: "chest_slot"
   - type: ContainerContainer
     containers:
-      torso_slot: !type:ContainerSlot {}
+      chest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
+
+- type: entity
+  id: GroinShadowkin
+  name: "Shadowkin groin"
+  parent: [BaseGroin, PartShadowkin]
+  components:
+  - type: Sprite
+    state: "groin_m"
+  - type: Icon
+    state: "groin_m"
+  - type: BodyPart
+    partType: Groin
+    toolName: "a groin"
+    containerName: "groin_slot"
+  - type: ContainerContainer
+    containers:
+      groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
 
 - type: entity
   id: HeadShadowkin
@@ -84,7 +60,6 @@
   - type: BodyPart
     partType: Head
     toolName: "a head"
-    vital: true
   - type: Input
     context: "ghost"
   - type: MovementSpeedModifier

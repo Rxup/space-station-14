@@ -347,6 +347,7 @@
   - type: Item
     size: Tiny
   - type: HTN
+    constantlyReplan: false
     rootTask:
       task: MouseCompound
   - type: Physics
@@ -532,7 +533,7 @@
     baseSprintSpeed: 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
-    weightlessModifier: 1
+    baseWeightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -1601,6 +1602,9 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
+  - type: Consciousness
+    threshold: 70
+    cap: 140
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
@@ -1783,6 +1787,7 @@
     factions:
     - Mouse
   - type: HTN
+    constantlyReplan: false
     rootTask:
       task: MouseCompound
   - type: Physics
@@ -3185,6 +3190,9 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
 
 - type: entity
   name: calico cat

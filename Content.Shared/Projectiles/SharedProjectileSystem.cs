@@ -4,6 +4,7 @@ using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
@@ -95,7 +96,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         // Raise a specific event for projectiles.
         if (TryComp(embeddable, out ProjectileComponent? projectile))
         {
-            var ev = new ProjectileEmbedEvent(projectile.Shooter!.Value, projectile.Weapon!.Value, args.Target);
+            var ev = new ProjectileEmbedEvent(projectile.Shooter, projectile.Weapon ?? EntityUid.Invalid, args.Target);
             RaiseLocalEvent(embeddable, ref ev);
         }
     }
@@ -238,7 +239,10 @@ public sealed class ImpactEffectEvent : EntityEventArgs
 /// Raised when an entity is just about to be hit with a projectile but can reflect it
 /// </summary>
 [ByRefEvent]
-public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, ProjectileComponent Component, bool Cancelled);
+public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, ProjectileComponent Component, bool Cancelled) : IInventoryRelayEvent
+{
+    SlotFlags IInventoryRelayEvent.TargetSlots => SlotFlags.WITHOUT_POCKET;
+}
 
 /// <summary>
 /// Raised when a projectile hits an entity
