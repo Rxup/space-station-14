@@ -1,5 +1,6 @@
 ﻿using Content.Client.Interaction;
 using Content.IntegrationTests.Tests.Interaction;
+using Content.Server.Damage.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
@@ -16,6 +17,8 @@ public sealed class StrippableTest : InteractionTest
         // Spawn one tile away
         TargetCoords = SEntMan.GetNetCoordinates(new EntityCoordinates(MapData.MapUid, 1, 0));
         await SpawnTarget("MobHuman");
+
+        await RunTicks(5);
 
         var userInterface = Comp<UserInterfaceComponent>(Target);
         Assert.That(userInterface.Actors.Count == 0);

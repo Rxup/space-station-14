@@ -85,6 +85,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
+using Content.Shared.Warps;
 using Content.Shared.Zombies;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -583,26 +584,31 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             var point = direction * distance;
 
             var dungeonProto = structuresToBuild.Pop();
+            List<Dungeon> dungeon = new();
             try
             {
-                var dungeon = await _dungeonSystem.GenerateDungeonAsync(dungeonProto,
+                dungeon = await _dungeonSystem.GenerateDungeonAsync(dungeonProto,
                     component.PlanetMap.Value,
                     component.PlanetGrid,
                     point,
                     _random.Next());
 
-                component.Structures.AddRange(dungeon);
-                foreach (var dungeon1 in dungeon)
-                {
-                    foreach (var tile in dungeon1.AllTiles)
-                    {
-                        _roofSystem.SetRoof(gridRoof, tile, true);
-                    }
-                }
             }
             catch (Exception e)
             {
                 Log.Error(e.ToString());
+            }
+
+            if(dungeon.Count == 0)
+                continue;
+
+            component.Structures.AddRange(dungeon);
+            foreach (var dungeon1 in dungeon)
+            {
+                foreach (var tile in dungeon1.AllTiles)
+                {
+                    _roofSystem.SetRoof(gridRoof, tile, true);
+                }
             }
         }
     }

@@ -82,8 +82,8 @@
     proto: spider
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.
     layers:
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Groin" ]
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
       - map: [ "enum.HumanoidVisualLayers.Snout" ]
       - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -104,10 +104,10 @@
       - map: [ "gloves" ]
       - map: [ "shoes" ]
       - map: [ "ears" ]
+      - map: [ "outerClothing" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "outerClothing" ]
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
       - map: [ "neck" ]

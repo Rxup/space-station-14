@@ -3,6 +3,8 @@
   parent: Clothing
   id: ClothingShoesBase
   components:
+  - type: CoveredSlot # Backmen
+    slots: [socks]
   - type: Clothing
     slots:
     - FEET
@@ -51,6 +53,13 @@
           tags:
           - Knife
           - Sidearm
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Foot
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
 
 - type: entity
   abstract: true

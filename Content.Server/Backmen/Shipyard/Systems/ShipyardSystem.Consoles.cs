@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Shipyard.Prototypes;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard;
+using Content.Shared.Cargo.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
@@ -94,7 +95,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         if (bank == null)
             return;
 
-        if (bank.Balance <= vessel.Price)
+        if (bank.Accounts[bank.PrimaryAccount.Id] <= vessel.Price)
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
             PlayDenySound(uid, component);
@@ -113,7 +114,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         PlayConfirmSound(uid, component);
 
         var newState = new ShipyardConsoleInterfaceState(
-            bank.Balance,
+            bank.Accounts[bank.PrimaryAccount.Id],
             true,
             component.AllowedGroup);
 
@@ -129,7 +130,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             return;
 
         var newState = new ShipyardConsoleInterfaceState(
-            bank.Balance,
+            bank.Accounts[bank.PrimaryAccount.Id],
             true,
             component.AllowedGroup);
 

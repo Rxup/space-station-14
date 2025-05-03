@@ -1,5 +1,5 @@
+using Content.Client.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
@@ -21,7 +21,7 @@ public sealed class DamageOverlayUiController : UIController
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    [UISystemDependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [UISystemDependency] private readonly ClientConsciousnessSystem _consciousness = default!;
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     private Overlays.DamageOverlay _overlay = default!;
 
@@ -165,8 +165,8 @@ public sealed class DamageOverlayUiController : UIController
                         (consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold))
                         .Float();
 
-                    if (_consciousness.TryGetNerveSystem(_playerManager.LocalEntity!.Value, out var nerveSys) &&
-                        _consciousness.TryGetConsciousnessModifier(_playerManager.LocalEntity!.Value, nerveSys.Value, out var modifier, "Suffocation"))
+                    if (_consciousness.TryGetNerveSystem(entity, out var nerveSys) &&
+                        _consciousness.TryGetConsciousnessModifier(entity, nerveSys.Value, out var modifier, "Suffocation"))
                     {
                         _overlay.OxygenLevel = FixedPoint2.Min(1f, modifier.Value.Change / (consciousness.Cap - consciousness.Threshold)).Float();
                     }

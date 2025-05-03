@@ -94,8 +94,11 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private void MoveProccessing(Entity<FootPrintsComponent> ent)
     {
+        if (TerminatingOrDeleted(ent))
+            return;
+
         var (uid, comp) = ent;
-        var transform = Transform(uid);
+        var transform = Transform(ent);
 
         if (_gravity.IsWeightless(uid, xform: transform))
             return;

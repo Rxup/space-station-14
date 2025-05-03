@@ -108,13 +108,19 @@ namespace Content.Server.Body.Commands
             part.SlotId = part.GetHashCode().ToString();
             // Shitmed Change End
             // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+            var (rootPartId, rootPart) = bodySystem.GetRootPartOrNull(bodyId, body)!.Value;
             if (body.RootContainer.ContainedEntity != null)
             {
                 bodySystem.AttachPartToRoot(bodyId, partUid.Value, body, part);
             }
             else
             {
-                var (rootPartId, rootPart) = bodySystem.GetRootPartOrNull(bodyId, body)!.Value;
+                if (!bodySystem.AttachPartToRoot(bodyId, partUid.Value, body, part))
+                {
+                    shell.WriteError("Body container does not have a root entity to attach to the body part!");
+                    return;
+                }
+
                 // backmen edit: symmetry
                 if (!bodySystem.TryCreatePartSlotAndAttach(rootPartId, slotId, partUid.Value, part.PartType, part.Symmetry, rootPart, part))
                 {
@@ -123,6 +129,16 @@ namespace Content.Server.Body.Commands
                 }
             }
 
+            if (!bodySystem.TryCreatePartSlotAndAttach(rootPartId,
+                    slotId,
+                    partUid.Value,
+                    part.PartType,
+                    rootPart.Symmetry,
+                    part))
+            {
+                shell.WriteError($"Could not create slot {slotId} on entity {_entManager.ToPrettyString(bodyId)}");
+                return;
+            }
             shell.WriteLine($"Attached part {_entManager.ToPrettyString(partUid.Value)} to {_entManager.ToPrettyString(bodyId)}");
         }
     }

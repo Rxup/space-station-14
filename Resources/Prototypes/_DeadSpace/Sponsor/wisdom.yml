@@ -1,6 +1,8 @@
 # Sponsor Loadout
 - type: loadout
   id: WisdomLoadOutBkm
+  equipment:
+    back: ClothingBackpackWisdom
 
 # Backpack
 - type: entity
@@ -100,6 +102,19 @@
   - type: Item
     size: Huge
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0.17
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 1
+    coverage:
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
     modifiers:
       coefficients:
         Blunt: 0.65

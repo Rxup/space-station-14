@@ -17,7 +17,7 @@
         allowNewModifiers: false
         modifierType: Pain
         identifier: Suffocation
-        amount: 3
+        amount: 6
         time: 12
       - !type:AdjustTemperature
         conditions:

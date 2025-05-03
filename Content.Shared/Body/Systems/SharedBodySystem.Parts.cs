@@ -706,7 +706,8 @@ public partial class SharedBodySystem
 
     public TargetBodyPart? GetRandomBodyPart(EntityUid target)
     {
-        return GetTargetBodyPart(_random.PickAndTake(GetBodyChildren(target).ToList()));
+        var toPick = GetBodyChildren(target).ToList();
+        return toPick.Count == 0 ? null : GetTargetBodyPart(_random.PickAndTake(toPick));
     }
 
     public TargetBodyPart? GetTargetBodyPart(Entity<BodyPartComponent> part)

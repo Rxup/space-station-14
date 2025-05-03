@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
@@ -118,9 +119,12 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<BloodstreamComponent>();
-        while (query.MoveNext(out var uid, out var bloodstream))
+        var query = EntityQueryEnumerator<BloodstreamComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var bloodstream, out var meta))
         {
+            if (Paused(uid, meta))
+                continue;
+
             if (_gameTiming.CurTime < bloodstream.NextUpdate)
                 continue;
 
@@ -189,21 +193,60 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
             var total = FixedPoint2.Zero;
             foreach (var (bodyPart, _) in _body.GetBodyChildren(uid))
             {
-                foreach (var (wound, _) in _wound.GetWoundableWounds(bodyPart))
-                {
-                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
-                        continue;
-
-                    total += bleeds.BleedingAmount;
-                }
+                total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
+                        .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
             }
 
-            if (!_consciousness.SetConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain))
+            var missingBlood = bloodstream.BloodMaxVolume - bloodstream.BloodSolution.Value.Comp.Solution.Volume;
+
+            bloodstream.BleedAmount = (float) total / 4;
+            if (!_consciousness.SetConsciousnessModifier(
+                    uid,
+                    nerveSys.Value,
+                    -missingBlood / 4,
+                    identifier: "Bleeding",
+                    type: ConsciousnessModType.Pain))
             {
-                _consciousness.AddConsciousnessModifier(uid, nerveSys.Value, -total, identifier: "Bleeding", type: ConsciousnessModType.Pain);
+                _consciousness.AddConsciousnessModifier(
+                    uid,
+                    nerveSys.Value,
+                    -missingBlood / 4,
+                    identifier: "Bleeding",
+                    type: ConsciousnessModType.Pain);
             }
-            // backmen edit end
         }
+
+        var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent, MetaDataComponent>();
+        while (bleedsQuery.MoveNext(out var ent, out var bleeds, out var meta))
+        {
+            if (Paused(ent, meta))
+                continue;
+
+            var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
+            if (bleeds.IsBleeding == canBleed)
+                continue;
+
+            bleeds.IsBleeding = canBleed;
+            Dirty(ent, bleeds);
+
+            if (!bleeds.IsBleeding)
+                continue;
+
+            var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
+            var currentTime = bleeds.ScalingFinishesAt - _gameTiming.CurTime;
+
+            if (totalTime <= currentTime || bleeds.Scaling >= bleeds.ScalingLimit)
+                continue;
+
+            var newBleeds = FixedPoint2.Clamp(
+                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
+                0,
+                bleeds.ScalingLimit);
+
+            bleeds.Scaling = newBleeds;
+            Dirty(ent, bleeds);
+        }
+        // backmen edit end
     }
 
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)

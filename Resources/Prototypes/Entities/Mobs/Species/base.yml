@@ -11,8 +11,8 @@
   components:
   - type: Sprite
     layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Groin" ]
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -34,10 +34,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -73,9 +73,6 @@
   #      color: "#FF0000"
   #    Burn:
   #      sprite: Mobs/Effects/burn_damage.rsi
-  - type: Consciousness
-    cap: 190
-    threshold: 95
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
@@ -89,10 +86,6 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.7
-      80: 0.5
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -253,14 +246,17 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Consciousness # backmen
+    cap: 190
+    threshold: 95
   - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
   - type: Targeting # backmen: surgery
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.1
+        Blunt: 0.9 #per second, scales with pressure and other constants.
+        Heat: 0.2
   - type: Fingerprint
   - type: Blindable
   # Other

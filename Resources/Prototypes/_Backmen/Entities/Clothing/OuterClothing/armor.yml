@@ -127,8 +127,6 @@
     coverage:
     - Groin
     - Chest
-    - Arm
-    - Leg
     - Tail
     modifiers:
       coefficients:
@@ -203,15 +201,13 @@
     coverage:
     - Groin
     - Chest
-    - Arm
-    - Leg
     - Tail
     modifiers:
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.4
-        ArmorPiercing: 0.8
+        Piercing: 0.3
+        ArmorPiercing: 0.6
         Heat: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.8
@@ -231,7 +227,6 @@
     - Groin
     - Chest
     - Arm
-    - Hand
     - Leg
     - Tail
     modifiers:
@@ -246,8 +241,8 @@
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.95
+    sprintModifier: 0.95
 
 - type: entity
   parent: ClothingOuterArmorBasic
@@ -264,9 +259,7 @@
     - Groin
     - Chest
     - Arm
-    - Hand
     - Leg
-    - Foot
     - Tail
     modifiers:
       coefficients:
@@ -280,8 +273,8 @@
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 - type: entity
   parent: ClothingOuterArmorBasic

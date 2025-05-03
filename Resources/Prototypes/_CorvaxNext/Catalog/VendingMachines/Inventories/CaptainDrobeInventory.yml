@@ -25,6 +25,7 @@
     ClothingHeadHatCapcapWhite: 1
     ClothingNeckCloakRoyalCaptain: 1
     ClothingNeckWhiteMantleCaptain: 1
+    ClothingOuterCoatCaptainWhite: 1
     ClothingUniformJumpskirtWhiteCaptain: 1
     ClothingUniformJumpsuitWhiteCaptain: 1
     ClothingUniformJumpsuitWhiteCapTurtleneck: 1 # Backmen-Edit
@@ -33,6 +34,7 @@
    # Sheriff
     ClothingHeadHatBeretSheriff: 1
     ClothingHeadHatCapcapSheriff: 1
+    ClothingOuterCoatCaptainSheriff: 1
     ClothingUniformJumpsuitSheriff: 1
     ClothingHandsGlovesSheriff: 1
     ClothingBeltSheriffSheath: 1

@@ -18,6 +18,7 @@
   - type: HideLayerClothing
     layers:
       Snout: Mask
+      SnoutOverlay: Mask # Backmen
     hideOnToggle: true
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.1
@@ -35,6 +36,12 @@
   - type: Clothing
     sprite: Clothing/Mask/gassecurity.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -57,6 +64,12 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -79,6 +92,12 @@
   - type: Clothing
     sprite: Clothing/Mask/gasatmos.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0.36
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -122,6 +141,12 @@
   - type: Clothing
     sprite: Clothing/Mask/gasexplorer.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -165,6 +190,12 @@
   - type: Clothing
     sprite: Clothing/Mask/medicalsecurity.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -221,6 +252,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -234,6 +266,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskClown
@@ -259,6 +292,12 @@
   - type: Clothing
     sprite: Clothing/Mask/clown_security.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -283,6 +322,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -303,6 +343,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -362,6 +403,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
     hideOnToggle: true
 
 - type: entity
@@ -396,16 +438,23 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     hideOnToggle: true
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.85
-        Heat: 0.85
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
 
 - type: entity
   parent: [ ClothingMaskGas, BaseSecurityCargoContraband ]
@@ -418,6 +467,12 @@
   - type: Clothing
     sprite: Clothing/Mask/merc.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.12
+      BoneDamage: 0.12
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -444,10 +499,17 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     hideOnToggle: true
   - type: FlashImmunity
   - type: EyeProtection
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -470,6 +532,12 @@
   - type: Clothing
     sprite: Clothing/Mask/squadron.rsi
   - type: Armor
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.24
+      BoneDamage: 0.24
+      VeinsDamage: 0
+      NerveDamage: 0
     coverage: # backmen: armour coverage
     - Head
     modifiers:
@@ -499,6 +567,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
   - type: IdentityBlocker
 
 - type: entity
@@ -516,6 +585,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -532,6 +602,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -548,6 +619,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -564,6 +636,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -580,6 +653,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -596,9 +670,10 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase # Backmen-Edit
   id: ClothingMaskNeckGaiter
   name: neck gaiter
   description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...

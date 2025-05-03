@@ -48,21 +48,6 @@
 
 - type: entity
   parent: SurgeryBase
-  id: SurgeryCloseIncision
-  name: Close Incision
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Surgery
-    priority: 1
-    steps:
-    - SurgeryStepCloseBones
-    - SurgeryStepMendRibcage
-    - SurgeryStepCloseIncision
-  - type: SurgeryPartPresentCondition
-  - type: SurgeryCloseIncisionCondition
-
-- type: entity
-  parent: SurgeryBase
   id: SurgeryOpenRibcage
   name: Open Ribcage
   categories: [ HideSpawnMenu ]
@@ -713,7 +698,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepLobotomize
-    - SurgeryStepCloseIncision
+    - SurgeryStepClampInternalBleeders
   - type: SurgeryComponentCondition
     component:
     - type: OhioAccent
@@ -731,7 +716,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepMendBrainTissue
-    - SurgeryStepCloseIncision
+    - SurgeryStepClampInternalBleeders
   - type: SurgeryComponentCondition
     component:
     - type: OhioAccent
