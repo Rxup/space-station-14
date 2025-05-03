@@ -33,9 +33,19 @@ public sealed partial class EggsLayingMenu : RadialMenu
     {
         var main = FindControl<RadialContainer>("Main");
 
-        AddButton(main, "Red", _sprites!.GetPrototypeIcon("MobTerrorRed").TextureFor(Direction.South), "TerrorSpiderKnightEgg");
-        AddButton(main, "Green", _sprites.GetPrototypeIcon("MobTerrorGreen").TextureFor(Direction.South), "TerrorSpiderHealerEgg");
-        AddButton(main, "Gray", _sprites.GetPrototypeIcon("MobTerrorGray").TextureFor(Direction.South), "TerrorSpiderDroneEgg");
+//        AddButton(main, "Queen", _sprites!.GetPrototypeIcon("MobTerrorSpiderQueen").TextureFor(Direction.South), "TerrorSpiderQueenEgg");
+//        AddButton(main, "Mother", _sprites!.GetPrototypeIcon("MobTerrorSpiderMother").TextureFor(Direction.South), "TerrorSpiderMotherEgg");
+//        AddButton(main, "Princess", _sprites!.GetPrototypeIcon("MobTerrorSpiderPrincess").TextureFor(Direction.South), "TerrorSpiderPrincessEgg");
+//        AddButton(main, "Prince", _sprites!.GetPrototypeIcon("MobTerrorSpiderPrince").TextureFor(Direction.South), "TerrorSpiderPrinceEgg");
+        AddButton(main, "Destroyer", _sprites!.GetPrototypeIcon("MobTerrorSpiderDestroyer").TextureFor(Direction.South), "TerrorSpiderDestroyerEgg");
+        AddButton(main, "Guardian", _sprites!.GetPrototypeIcon("MobTerrorSpiderGuardian").TextureFor(Direction.South), "TerrorSpiderGuardianEgg");
+        AddButton(main, "Defiler", _sprites!.GetPrototypeIcon("MobTerrorSpiderDefiler").TextureFor(Direction.South), "TerrorSpiderDefilerEgg");
+        AddButton(main, "Widow", _sprites!.GetPrototypeIcon("MobTerrorSpiderWidow").TextureFor(Direction.South), "TerrorSpiderWidowEgg");
+        AddButton(main, "Reaper", _sprites!.GetPrototypeIcon("MobTerrorSpiderReaper").TextureFor(Direction.South), "TerrorSpiderReaperEgg");
+        AddButton(main, "Drone", _sprites!.GetPrototypeIcon("MobTerrorSpiderDrone").TextureFor(Direction.South), "TerrorSpiderDroneEgg");
+        AddButton(main, "Healer", _sprites!.GetPrototypeIcon("MobTerrorSpiderHealer").TextureFor(Direction.South), "TerrorSpiderHealerEgg");
+        AddButton(main, "Lurker", _sprites!.GetPrototypeIcon("MobTerrorSpiderLurker").TextureFor(Direction.South), "TerrorSpiderLurkerEgg");
+        AddButton(main, "Knight", _sprites!.GetPrototypeIcon("MobTerrorSpiderKnight").TextureFor(Direction.South), "TerrorSpiderKnightEgg");
     }
 
     private void AddButton(RadialContainer main, string tooltip, Texture sprite, string prototype)

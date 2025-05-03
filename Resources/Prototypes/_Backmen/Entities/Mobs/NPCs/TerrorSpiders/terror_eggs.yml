@@ -1,4 +1,3 @@
-# <--- EGGS --->
 - type: entity
   parent: BaseItem
   id: BaseTerrorSpiderEgg
@@ -54,24 +53,117 @@
 
 - type: entity
   parent: BaseTerrorSpiderEgg
-  id: TerrorSpiderDroneEgg
+  id: TerrorSpiderQueenEgg
+  suffix: Queen
   components:
   - type: TimedSpawner
     prototypes:
-    - MobTerrorGray
+    - MobTerrorSpiderQueen
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderMotherEgg
+  suffix: Mother
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderMother
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderPrincessEgg
+  suffix: Princess
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderPrincess
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderPrinceEgg
+  suffix: Prince
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderPrince
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDestroyerEgg
+  suffix: Destroyer
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderDestroyer
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderGuardianEgg
+  suffix: Guardian
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderGuardian
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDefilerEgg
+  suffix: Defiler
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderDefiler
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderWidowEgg
+  suffix: Widow
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderWidow
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderReaperEgg
+  suffix: Reaper
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderReaper
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDroneEgg
+  suffix: Drone
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderDrone
 
 - type: entity
   parent: BaseTerrorSpiderEgg
   id: TerrorSpiderHealerEgg
+  suffix: Healer
   components:
   - type: TimedSpawner
     prototypes:
-    - MobTerrorGreen
+    - MobTerrorSpiderHealer
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderLurkerEgg
+  suffix: Lurker
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderLurker
 
 - type: entity
   parent: BaseTerrorSpiderEgg
   id: TerrorSpiderKnightEgg
+  suffix: Knight
   components:
   - type: TimedSpawner
     prototypes:
-    - MobTerrorRed
+    - MobTerrorSpiderKnight

@@ -33,8 +33,8 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSpider
-      amount: 4
+    - id: FoodMeatSpiderLeg
+      amount: 3
   - type: CombatMode
   - type: Body
     prototype: AnimalHemocyanin
@@ -47,17 +47,18 @@
       90: Dead
   - type: MeleeWeapon
     altDisarm: false
+    hidden: true
     angle: 0
-    animation: WeaponArcBite
+    animation: WeaponArcClaw
     soundHit:
-      path: /Audio/Effects/bite.ogg
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
         Piercing: 18
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 30
+        maxVol: 5
   - type: SolutionRegeneration
     solution: melee
     generated:
@@ -65,14 +66,21 @@
       - ReagentId: Mechanotoxin
         Quantity: 1
   - type: MeleeChemicalInjector
-    transferAmount: 0.75
+    transferAmount: 0.25
     solution: melee
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 150
     bloodReagent: CopperBlood
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.05
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -131,197 +139,42 @@
       settings: short
   - type: Puller
     needsHands: false
-
-- type: entity
-  parent: BaseTerrorSpider
-  id: MobTerrorRed
-  name: terror red
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: Backmen/Mobs/Animals/TerrorSpiders/knight.rsi
-#  - type: VentCrawler
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      140: Dead
-  - type: PassiveDamage 
-    allowedStates:
-    - Alive
-    damageCap: 139
-    damage:
-      types:
-        Poison: -0.8
-      groups:
-        Brute: -0.8
-        Burn: -0.8
-        Airloss: -1.5
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Piercing: 21
-        Structural: 20
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.00
-    baseSprintSpeed : 4.00
-
-- type: entity
-  parent: BaseTerrorSpider
-  id: MobTerrorGray
-  name: terror gray
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: Backmen/Mobs/Animals/TerrorSpiders/drone.rsi
-#  - type: VentCrawler
-  - type: StealthOnWeb
-  - type: StaminaDamageOnHit
-    damage: 100
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Dead
-  - type: PassiveDamage 
-    allowedStates:
-    - Alive
-    damageCap: 79
-    damage:
-      types:
-        Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Piercing: 11
-  - type: Prying
-    pryPowered: false
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.00
-    baseSprintSpeed : 5
-    
-- type: entity
-  parent: BaseTerrorSpider
-  id: MobTerrorGreen
-  name: terror green
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: Backmen/Mobs/Animals/TerrorSpiders/healer.rsi
-#  - type: VentCrawler
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Dead
-  - type: PassiveDamage 
-    allowedStates:
-    - Alive
-    damageCap: 79
-    damage:
-      types:
-        Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Piercing: 11
-  - type: MeleeChemicalInjector
-    transferAmount: 2.75
-    solution: melee
-  - type: Prying
-    pryPowered: false
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.00
-    baseSprintSpeed : 4.75
+  - type: Stamina
+    excess: 250
   - type: ActionGrant
     actions:
     - ActionEggInjection
+  - type: GuideHelp
+    guides:
+    - TerrorSpiders
 
+# <--- QUEEN --->
 - type: entity
   parent: BaseTerrorSpider
-  id: MobTerrorPrincess
-  name: princess of terror
+  id: MobTerrorSpiderQueen 
+  suffix: Queen
   components:
+  - type: Spider
+#    webPrototype: SpiderWebTerrorReinforcered
+#    webAction: TerrorWebAction
+  - type: MobPrice
+    price: 9000
   - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: Backmen/Mobs/Animals/TerrorSpiders/princess.rsi
-#  - type: VentCrawler
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/queen.rsi
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Dead
-  - type: PassiveDamage 
-    allowedStates:
-    - Alive
-    damageCap: 179
-    damage:
-      types:
-        Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -2
+      340: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      220: 0.7
+      285: 0.5
   - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
+    attackRate: 0.75
     damage:
       types:
-        Piercing: 15
-  - type: MeleeChemicalInjector
-    transferAmount: 3.75
-    solution: melee
-  - type: Prying
-    pryPowered: true
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.00
-    baseSprintSpeed : 3.75
+        Slash: 22
+        Poison: 10
   - type: TerrorPrincess
   - type: ActionGrant
     actions:
@@ -330,3 +183,358 @@
     interfaces:
       enum.EggsLayingUiKey.Key:
         type: EggsLayingBui
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderQueen
+
+# <--- MOTHER --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderMother 
+  suffix: Mother
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/mother.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      160: 0.7
+      190: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 15
+        Poison: 8
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderMother
+
+# <--- PRINCESS --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderPrincess 
+  suffix: Princess
+  components:
+  - type: Spider
+#    webPrototype: SpiderWebTerrorReinforcered
+#    webAction: TerrorWebAction
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/princess.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      185: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      130: 0.7
+      160: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 12
+        Poison: 8
+  - type: TerrorPrincess
+  - type: ActionGrant
+    actions:
+    - ActionEggsLaying
+  - type: UserInterface
+    interfaces:
+      enum.EggsLayingUiKey.Key:
+        type: EggsLayingBui
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderPrincess
+
+# <--- PRINCE --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderPrince
+  suffix: Prince
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/prince.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.7
+      350: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 32
+        Poison: 12
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderPrince
+
+# <--- DESTROYER --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderDestroyer 
+  suffix: Destroyer
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/destroyer.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      70: 0.7
+      90: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 15
+        Poison: 8
+        Structural: 70
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderDestroyer
+
+# <--- GUARDIAN --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderGuardian
+  suffix: Guardian
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/guardian.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      170: 0.7
+      200: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 15
+        Poison: 10
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderGuardian
+
+# <--- DEFILER --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderDefiler 
+  suffix: Defiler
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/defiler.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      140: 0.7
+      170: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.85
+    damage:
+      types:
+        Poison: 1
+  - type: StaminaDamageOnHit
+    damage: 35
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderDefiler
+
+# <--- WIDOW --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderWidow
+  suffix: Widow
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/widow.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      70: 0.7
+      90: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Poison: 25
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderWidow
+
+# <--- REAPER --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderReaper 
+  suffix: Reaper
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/reaper.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      130: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      70: 0.7
+      90: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 22
+        Poison: 4
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderReaper
+
+# <--- DRONE --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderDrone 
+  suffix: Drone
+  components:
+  - type: Spider
+#    webPrototype: SpiderWebTerrorReinforcered
+#    webAction: TerrorWebAction
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/drone.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      65: 0.7
+      80: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.80
+    damage:
+      types:
+        Slash: 10
+        Poison: 4
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderDrone
+
+# <--- HEALER --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderHealer
+  suffix: Healer
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/healer.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.7
+      85: 0.5
+  - type: InjectableSolution
+    solution: chemicals
+  - type: SolutionRegeneration
+    solution: chemicals
+    generated:
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 0.25
+  - type: RefillableSolution
+    solution: chemicals
+  - type: Metabolizer
+    solutionOnBody: false
+    updateFrequency: 3.5
+    metabolizerTypes: [ Human ]
+    groups:
+      - id: Medicine
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 12
+        Poison: 4
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderHealer
+
+# <--- LURKER --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderLurker
+  suffix: Lurker
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/lurker.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: Stealth
+    enabledOnDeath: false
+    maxVisibility: 1.2
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.25
+    movementVisibilityRate: 0.25
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 12
+        Poison: 8
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: StealthOnWeb
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderLurker
+
+# <--- KNIGHT --->
+- type: entity
+  parent: BaseTerrorSpider
+  id: MobTerrorSpiderKnight 
+  suffix: Knight
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/TerrorSpiders/knight.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      160: 0.7
+      190: 0.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 25
+        Poison: 10
+  - type: GuideHelp
+    guides:
+    - TerrorSpiderKnight

@@ -21,7 +21,7 @@ public sealed class TerrorEggSystem : EntitySystem
         base.Initialize();
 
         _terrorSpiders = _prototype.EnumeratePrototypes<EntityPrototype>()
-            .Where(p => p.ID.StartsWith("MobTerror") && !p.Abstract)
+            .Where(p => p.ID.StartsWith("MobTerrorSpider") && !p.Abstract)
             .Select(p => new EntProtoId(p.ID))
             .ToArray();
 
