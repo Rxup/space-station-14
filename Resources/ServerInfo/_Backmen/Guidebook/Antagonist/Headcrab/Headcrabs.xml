@@ -17,7 +17,6 @@
     <GuideEntityEmbed Entity="MobHeadcrab" Caption="Обычный."/>
     <GuideEntityEmbed Entity="MobHeadcrabFast" Caption="Быстрый."/>
     <GuideEntityEmbed Entity="MobHeadcrabPoison" Caption="Ядовитый."/>
-    <GuideEntityEmbed Entity="MobRatQueen" Caption="Королева крыс."/>
   </Box>
 
 </Document>
