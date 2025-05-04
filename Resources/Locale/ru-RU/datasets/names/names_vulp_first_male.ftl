@@ -1,4 +1,4 @@
-﻿names-first-male-vulp-1 = Аарон
+names-first-male-vulp-1 = Аарон
 names-first-male-vulp-2 = Абе
 names-first-male-vulp-3 = Абрахам
 names-first-male-vulp-4 = Аделгер
