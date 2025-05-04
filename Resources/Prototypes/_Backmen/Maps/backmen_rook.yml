@@ -3,7 +3,7 @@
   mapName: 'Rook'
   mapPath: /Maps/Backmen/backmen_rook.yml
   minPlayers: 0
-  maxPlayers: 25
+  maxPlayers: 20
   stations:
     Rook:
       stationProto: StandardNanotrasenStation

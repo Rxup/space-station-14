@@ -13,7 +13,7 @@ jobs:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [self-hosted]
 
     runs-on: ${{ matrix.os }}
 

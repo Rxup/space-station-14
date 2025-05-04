@@ -67,7 +67,6 @@ ent-BackmenVendingMachineHappyHonk = { ent-VendingMachineHappyHonk }
 ent-VendingMachineBoxingDrobe = БоксоМат
     .suffix = backmen
     .desc = Разбавляем капитализм!
-
 ent-VendingMachineInteQDrobe = ИнтекШкаф
     .desc = Гардеробная машина, закодированная Интек, содержит элитную одежду для различных операций.
 ent-VendingMachineInteQDrobeNerf = { ent-VendingMachineInteQDrobe }

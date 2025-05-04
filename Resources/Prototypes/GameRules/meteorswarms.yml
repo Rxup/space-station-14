@@ -45,8 +45,8 @@
     MeteorRockSilver: 2
     MeteorRockGold: 2
     MeteorRockPlasma: 2
-    MeteorRockDiamond: 2
-    MeteorRockUranium: 0.5
+    MeteorRockDiamond: 0.5
+    MeteorRockUranium: 2
     MeteorRockBananium: 0.5
 
 # Event Schedulers
@@ -106,7 +106,7 @@
   id: GameRuleSpaceDustMinor
   components:
   - type: StationEvent
-    weight: 44
+    weight: 50 # backmen change
     earliestStart: 2
     minimumPlayers: 0
   - type: MeteorSwarm
@@ -127,7 +127,7 @@
   id: GameRuleSpaceDustMajor
   components:
   - type: StationEvent
-    weight: 22
+    weight: 28 # backmen change
     minimumPlayers: 0
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
@@ -147,7 +147,7 @@
   id: GameRuleMeteorSwarmSmall
   components:
   - type: StationEvent
-    weight: 18
+    weight: 9 # backmen change
     minimumPlayers: 15
   - type: MeteorSwarm
     meteors:
@@ -159,7 +159,7 @@
   id: GameRuleMeteorSwarmMedium
   components:
   - type: StationEvent
-    weight: 10
+    weight: 7 # backmen change
   - type: MeteorSwarm
     meteors:
       MeteorSmall: 3
