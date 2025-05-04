@@ -29,7 +29,7 @@ namespace Content.Shared.Fluids.Components
         public Entity<SolutionComponent>? Solution;
 
         // start-backmen: footsteps
-        [DataField]
+        [DataField("affectsMovement")]
         public bool ViscosityAffectsMovement = true;
         
         [DataField]

@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Server._CorvaxNext.Footprints;
 using Content.Server.Popups;
-using Content.Shared.Backmen.FootPrint;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
