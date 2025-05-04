@@ -6,11 +6,17 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38Special
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special #Backmen-revolver
+  - type: Tag
+    tags:
+      - SpeedLoader38Special
 
 - type: entity
   id: SpeedLoader38SpecialAP
   name: "speed loader (.38 Special AP)"
-  parent: SpeedLoaderMagnum
+  parent: SpeedLoader38Special
   description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -24,11 +30,17 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver44Magnum
+    whitelist:
+      tags:
+        - CartridgeRevolver44Magnum
+  - type: Tag
+    tags:
+      - SpeedLoader44Magnum
 
 - type: entity
   id: SpeedLoader44MagnumAP
   name: "speed loader (.44 Magnum AP)"
-  parent: SpeedLoaderMagnum
+  parent: SpeedLoader44Magnum
   description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider

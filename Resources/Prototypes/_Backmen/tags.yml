@@ -231,3 +231,9 @@
 
 - type: Tag
   id: CartridgeRevolver44Magnum
+
+- type: Tag
+  id: SpeedLoader38Special
+
+- type: Tag
+  id: SpeedLoader44Magnum
