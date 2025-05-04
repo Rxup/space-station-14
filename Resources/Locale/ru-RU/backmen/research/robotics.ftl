@@ -11,5 +11,4 @@ research-technology-hydroponics-modules = Модули гидропоники
 research-technology-salvage-equipment-modules = Модули утилизационного снаряжения
 research-technology-robotic-cleanliness-modules = Модули уборщика
 research-technology-xeno-archeology-modules = Модули ксеноархеологии
-
 research-technology-robotics-machines = Оборудование робототехники

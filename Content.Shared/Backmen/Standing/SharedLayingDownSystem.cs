@@ -57,6 +57,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
@@ -281,19 +282,35 @@ public abstract class SharedLayingDownSystem : EntitySystem
     public bool IsSafeStanUp(EntityUid entity, [NotNullWhen(false)] out EntityUid? obj)
     {
         var xform = Transform(entity);
-        if (xform.GridUid != null)
+        if (
+            !TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(entity, out var physEnt) ||
+            !TryComp<FixturesComponent>(entity, out var fixEnt)
+            )
         {
-            foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, Comp<MapGridComponent>(xform.GridUid.Value), xform.Coordinates))
-            {
-                if (!TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var phys))
-                    continue;
+            obj = null;
+            return true;
+        }
 
-                if(!phys.CanCollide|| (phys.CollisionMask & (int) CollisionGroup.MidImpassable) == 0x0)
-                    continue;
+        Entity<FixturesComponent?, Robust.Shared.Physics.Components.PhysicsComponent?> entObj = (entity, fixEnt, physEnt);
+        foreach (var ent in _physics.GetEntitiesIntersectingBody(entity,
+                     (int)CollisionGroup.MidImpassable | (int)CollisionGroup.BlobImpassable,
+                     body: physEnt,
+                     xform: xform,
+                     fixtureComp: fixEnt)
+                 )
+        {
+            if (!TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var phys))
+                continue;
 
-                obj = ent;
-                return false;
-            }
+            if (!phys.CanCollide)
+                continue;
+
+            if ((phys.CollisionLayer & (int)CollisionGroup.BlobImpassable) != 0 &&
+                (physEnt.CollisionMask & (int)CollisionGroup.BlobImpassable) == 0)
+                continue;
+
+            obj = ent;
+            return false;
         }
         obj = null;
         return true;

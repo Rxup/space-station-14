@@ -1,5 +1,6 @@
 drone-activated = Дрон активирован
-
+drone-active = Активен
+drone-dormant = Ожидает активации
 #BPLA MED
 Brutepack-action-name = Пакет от ушибов
 Brutepack-action-description = Создаёт полный стак пакетов от ушибов
@@ -7,7 +8,6 @@ Ointment-action-name = Мазь от ожогов
 Ointment-action-description = Создаёт полный стак мази от ожогов
 Bloodpack-action-name = Пакет крови
 Bloodpack-action-description = Создаёт полный стак пакетов крови
-
 #BPLA
 CableApcStack-action-name = НВ провода
 CableApcStack-action-description = Создаёт полный стак НВ проводов
@@ -25,6 +25,3 @@ SheetRGlass-action-name = Укреплённое стекло
 SheetRGlass-action-description = Создаёт полный стак укреплённого стекла
 SheetPlastic-action-name = Пластик
 SheetPlastic-action-description = Создаёт полный стак пластика
-
-
-

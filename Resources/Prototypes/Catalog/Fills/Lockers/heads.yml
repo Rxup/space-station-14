@@ -20,6 +20,7 @@
     - id: RubberStampQm
     - id: AstroNavCartridge
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: ClothingHandsKnuckleDustersQM
     - id: MailTeleporterMachineCircuitboard
 
 - type: entity
@@ -63,6 +64,11 @@
     - id: ClothingHeadCage # backmen
     - id: HandheldReinforcementCentCom # backmen
 #    - id: ClothingEyesGlassesCommand # Backmen - Because dublicate (56)???
+    - id: ClothingEyesGlassesCommand
+    - id: HeadSkeleton # A skull to accompany your skeleton crew
+      conditions:
+      - !type:PlayerCountCondition
+        max: 15
 
 # No laser table + Laser table
 - type: entityTable
@@ -141,10 +147,13 @@
     - id: DoorRemoteService
     - id: HoPIDCard
     - id: IDComputerCircuitboard
+    - id: FundingAllocationComputerCircuitboard
+    - id: CargoRequestServiceComputerCircuitboard
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampHop
     - id: WeaponDisabler
+    - id: BoxPhotocopierToners # DS14
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
     - id: ClothingOuterCoatHOP # Corvax-Resprite
@@ -175,6 +184,7 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
+    - id: CargoRequestEngineeringComputerCircuitboard
     - id: RCD
     - id: RCDAmmo
     - id: RubberStampCE
@@ -237,6 +247,7 @@
     - id: HandheldCrewMonitor
     - id: Hypospray
     - id: MedicalTechFabCircuitboard
+    - id: CargoRequestMedicalComputerCircuitboard
     - id: MedkitFilled
     - id: RubberStampCMO
     - id: AntiPsychicKnife # backmen
@@ -297,6 +308,7 @@
     - id: HandTeleporter
     - id: ProtolatheMachineCircuitboard
     - id: ResearchComputerCircuitboard
+    - id: CargoRequestScienceComputerCircuitboard
     - id: RubberStampRd
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
@@ -361,6 +373,7 @@
     - id: RubberStampHos
     - id: SecurityTechFabCircuitboard
     - id: GunsmithTechFabCircuitboard #backmen
+    - id: CargoRequestSecurityComputerCircuitboard
     - id: WeaponDisabler
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen

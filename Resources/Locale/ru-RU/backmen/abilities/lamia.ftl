@@ -9,5 +9,7 @@ bloodsucker-blood-sucked = Вы высасываете немного крови
 bloodsucker-doafter-start = Вы пытаетесь высосать кровь из { $target }.
 bloodsucker-doafter-start-victim = { CAPITALIZE(THE($sucker)) } пытается укусить тебя за шею!
 bloodsucker-blood-sucked-victim = { CAPITALIZE(THE($sucker)) } высасывает немного твоей крови!
+reagent-name-bloodsucker-toxin = вампирский вирус
+reagent-desc-bloodsucker-toxin = Многие называют это лекарством от старости, его состав говорит о том что он относится к классу токсинов и вызывает множество негативных мутаций.
 bloodsucked-health-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } имеет следы укусов на шее.[/color]
 bloodsucker-glands-throb = Железы за вашими клыками немного болят.

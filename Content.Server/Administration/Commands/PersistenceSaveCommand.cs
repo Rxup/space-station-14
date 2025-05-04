@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Server)]
+[AdminCommand(AdminFlags.Host)]
 public sealed class PersistenceSave : IConsoleCommand
 {
     [Dependency] private readonly IConfigurationManager _config = default!;

@@ -15,7 +15,7 @@
   minBankBalance: 1500
   maxBankBalance: 2500
   wageDepartment: Security
-  wage: 500
+  wage: 50
   #end-backmen: currency
   access:
   - SecurityTechnician #backmen
