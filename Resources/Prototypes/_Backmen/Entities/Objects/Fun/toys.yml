@@ -585,3 +585,139 @@
   - type: Tag
     tags:
     - Balloon
+
+- type: entity
+  parent: BaseItem
+  id: PlayersPlushie
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Fun/players.rsi
+  - type: UseDelay
+    delay: 3
+  - type: MeleeWeapon
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 5
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: Speech
+    speechSounds: Baritone
+  - type: TTS
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+
+- type: entity
+  parent: PlayersPlushie
+  id: ChaosPlushie
+  name: Plush Serafima Lapina
+  description: Avantgarde Dishwasher is always ready to perform tasks
+  components:
+  - type: Sprite
+    state: lapina_plush
+  - type: SpeakOnTrigger
+    pack: ChaosPlush
+  - type: TTS 
+    voice: Neeko
+    
+- type: entity
+  parent: PlayersPlushie
+  id: RaNlikPlushie
+  name: Plush Cephas Prokharov
+  description: Oh no! He's escaped again!
+  components:
+  - type: Sprite
+    state: cefa_plush
+  - type: SpeakOnTrigger
+    pack: CefPlush
+  - type: TTS 
+    voice: Anton
+  - type: Speech
+    speechSounds: Slime
+
+- type: entity
+  parent: PlayersPlushie
+  id: YuriPlushie
+  name: Plush Yuri Aikis
+  description: ECO product. Definitely does not contain materials of animal origin.
+  components:
+  - type: Sprite
+    state: yuri_plush
+  - type: SpeakOnTrigger
+    pack: YutiPlush
+  - type: TTS 
+    voice: Deva
+
+- type: entity
+  parent: BasePlushieBk
+  id: DDH777Plushie
+  name: Plush DDH777
+  description: The ball suspension is 70% softer!
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Fun/players.rsi
+    state: ddh_plush
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Backmen/Items/Toys/fantomas.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Backmen/Items/Toys/fantomas.ogg    
+      
+- type: entity
+  parent: BasePlushieBk
+  id: KreydPlush
+  name: Plush Kreyd
+  description: Plush Crade. Horror!
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Fun/players.rsi
+    state: kreyd_plush
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Backmen/Items/Toys/Boykisser_Meowing.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Backmen/Items/Toys/Boykisser_Meowing.ogg
+      
+- type: entity
+  parent: PlayersPlushie
+  id: BogdaPlush
+  name: Plush Bogdan Utilov
+  description: "Have you heard about Robust? I worked with it."
+  components:
+  - type: Sprite
+    state: bogda_plush
+  - type: SpeakOnTrigger
+    pack: BogdaPlush
+  - type: TTS 
+    voice: Goblin
+  - type: Speech
+    speechSounds: Squeak
+
+- type: entity
+  parent: PlayersPlushie
+  id: MikaPlush
+  name: Plush Mika Yakovleva
+  description: "Made by masters in honor of a little cat with a big soul."
+  components:
+  - type: Sprite
+    state: mika_plush
+  - type: SpeakOnTrigger
+    pack: MikaPlush
+  - type: TTS 
+    voice: Ahri
+

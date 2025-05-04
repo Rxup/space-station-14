@@ -1,0 +1,25 @@
+- type: localizedDataset
+  id: CefPlush
+  values:
+    prefix: cef-plush-
+    count: 2
+- type: localizedDataset
+  id: YutiPlush
+  values:
+    prefix: yuri-plush-
+    count: 5
+- type: localizedDataset
+  id: BogdaPlush
+  values:
+    prefix: bogda-plush-
+    count: 1
+- type: localizedDataset
+  id: MikaPlush
+  values:
+    prefix: mika-plush-
+    count: 1
+- type: localizedDataset
+  id: ChaosPlush
+  values:
+    prefix: chaos-plush-
+    count: 1
