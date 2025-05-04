@@ -251,7 +251,11 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
 
         if (component.Identifier == NerveSystemIdentifier)
-            consciousness.NerveSystem = (uid, Comp<NerveSystemComponent>(uid));
+        {
+            var nerveSys = Comp<NerveSystemComponent>(uid);
+            nerveSys.RootNerve = args.Part;
+            consciousness.NerveSystem = (uid, nerveSys);
+        }
 
         CheckRequiredParts(args.Body, consciousness);
     }

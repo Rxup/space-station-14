@@ -85,9 +85,9 @@ public partial class TraumaSystem
             if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
                 sex = humanoid.Sex;
 
-            Pain.PlayPainSoundWithCleanup(
+            Pain.CleanupPainSounds(nerveSys.Value, nerveSys);
+            Pain.PlayPainSound(
                 body.Value,
-                nerveSys.Value.Comp,
                 nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
                 AudioParams.Default.WithVolume(6f));
 
