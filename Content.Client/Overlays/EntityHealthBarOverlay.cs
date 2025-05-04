@@ -133,13 +133,15 @@ public sealed class EntityHealthBarOverlay : Overlay
         {
             if (_mobStateSystem.IsAlive(uid, component))
             {
-                var ratio = 1 - ((consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold)).Float();
+                var ratio = // ForceConscious makes people stay alive even though given no consciousness, so it seems silly.
+                    Math.Clamp(1 - ((consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold)).Float(), 0, 1);
                 return (ratio, false);
             }
 
             if (_mobStateSystem.IsCritical(uid, component))
             {
-                var ratio = 1 - ((consciousness.Threshold - consciousness.Consciousness) / consciousness.Threshold).Float();
+                var ratio = // The same as above but for ForcePassOut, yep
+                    Math.Clamp(1 - ((consciousness.Threshold - consciousness.Consciousness) / consciousness.Threshold).Float(), 0, 1);
                 return (ratio, true);
             }
         }

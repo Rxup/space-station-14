@@ -125,6 +125,16 @@ public partial class WoundSystem
         if (args.Handled)
             return;
 
+        var bodyPart = Comp<BodyPartComponent>(woundable);
+        if (bodyPart.Body.HasValue)
+        {
+            var before = new BeforeDamageChangedEvent(args.Damage, args.Origin, args.CanBeCancelled); // heheheha
+            RaiseLocalEvent(bodyPart.Body.Value, ref before);
+
+            if (before.Cancelled)
+                return;
+        }
+
         args.Damage = GetWoundsChanged(woundable, args.Origin, args.Damage, component: component);
         args.Handled = true;
     }
