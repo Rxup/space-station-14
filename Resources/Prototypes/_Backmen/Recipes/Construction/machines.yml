@@ -1,14 +1,9 @@
 - type: construction
   id: GlimmerProber
-  name: glimmer prober
-  description: Increases glimmer and research points.
   graph: GlimmerDevices
   startNode: start
   targetNode: glimmerProber
   category: construction-category-machines
-  icon:
-    sprite: Backmen/Structures/Machines/glimmer_machines.rsi
-    state: base
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -17,15 +12,10 @@
 
 - type: construction
   id: GlimmerDrain
-  name: glimmer drain
-  description: Decreases glimmer.
   graph: GlimmerDevices
   startNode: start
   targetNode: glimmerDrain
   category: construction-category-machines
-  icon:
-    sprite: Backmen/Structures/Machines/glimmer_machines.rsi
-    state: base
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -34,15 +24,10 @@
 
 - type: construction
   id: Golem
-  name: golem
-  description: Your very own personal servant! Requires a soul crystal to activate.
   graph: Golem
   startNode: start
   targetNode: golem
   category: construction-category-machines
-  icon:
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
-      state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: False
@@ -51,15 +36,10 @@
 
 - type: construction
   id: GolemWood
-  name: wood golem
-  description: Your very own personal servant! This one can hold plants. Requires a soul crystal to activate.
   graph: GolemWood
   startNode: start
   targetNode: golem
   category: construction-category-machines
-  icon:
-      sprite: Mobs/Species/Diona/parts.rsi
-      state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: False
@@ -68,15 +48,10 @@
 
 - type: construction
   id: GolemSilver
-  name: silver golem
-  description: Your very own personal servant! Requires a soul crystal to activate.
   graph: GolemSilver
   startNode: start
   targetNode: golem
   category: construction-category-machines
-  icon:
-      sprite: Backmen/Mobs/Species/Golem/silver.rsi
-      state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: False
@@ -84,15 +59,10 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: computer (tabletop)
   id: ConstructionComputerTabletop
   graph: GraphComputerTabletop
   startNode: start
   targetNode: tabletop computer
   category: construction-category-machines
-  description: A frame used to construct anything with a computer circuitboard.
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: _NF/Structures/Machines/computer_tabletop.rsi
-    state: computer_tabletop_frame

@@ -2,6 +2,8 @@
   parent: BaseGameRule
   id: Thief
   components:
+  - type: GameRule
+    minPlayers: 15 # backmen change
   - type: ThiefRule
   - type: AntagObjectives
     objectives:
@@ -37,6 +39,8 @@
   parent: BaseWizardRule
   id: SubWizard
   components:
+  - type: GameRule
+    minPlayers: 20 # backmen change
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
