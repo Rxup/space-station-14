@@ -4,7 +4,7 @@
   parent: BaseMobHuman
   id: MobHuman
   components:
-    - type: PotentialPsionic
+   # - type: PotentialPsionic
     - type: FootPrints
 
 #Syndie
