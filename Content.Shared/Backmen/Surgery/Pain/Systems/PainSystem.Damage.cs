@@ -12,49 +12,60 @@ public partial class PainSystem
 {
     #region Public API
 
-    public void CleanupSounds(NerveSystemComponent nerveSys)
+    public virtual void CleanupPainSounds(EntityUid ent, NerveSystemComponent? nerveSys = null)
     {
-        foreach (var (id, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
-        {
-            IHaveNoMouthAndIMustScream.Stop(id);
-            nerveSys.PlayedPainSounds.Remove(id);
-        }
-
-        foreach (var (id, _) in nerveSys.PainSoundsToPlay.Where(sound => !TerminatingOrDeleted(sound.Key)))
-        {
-            nerveSys.PainSoundsToPlay.Remove(id);
-        }
     }
 
-    public Entity<AudioComponent>? PlayPainSound(EntityUid body, SoundSpecifier specifier, AudioParams? audioParams = null)
+    /// <summary>
+    /// Plays the Pain Sound without logging it, use this if you want it to not be interrupted
+    /// </summary>
+    /// <param name="body">The body entity to make scream</param>
+    /// <param name="specifier">The scream audio</param>
+    /// <param name="audioParams">audio params</param>
+    /// <returns>Returns the audio entity</returns>
+    public virtual Entity<AudioComponent>? PlayPainSound(EntityUid body, SoundSpecifier specifier, AudioParams? audioParams = null)
     {
-        return IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
+        return null;
     }
 
-    public Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    /// <summary>
+    /// Plays the Pain Sound with logging, use this for typical pain sounds
+    /// </summary>
+    /// <param name="body">Body uid</param>
+    /// <param name="nerveSysEnt">Nerve sys uid</param>
+    /// <param name="specifier">The scream audio</param>
+    /// <param name="audioParams">audio params</param>
+    /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    /// <returns>Returns teh playing audio</returns>
+    public virtual Entity<AudioComponent>? PlayPainSound(
+        EntityUid body,
+        EntityUid nerveSysEnt,
+        SoundSpecifier specifier,
+        AudioParams? audioParams = null,
+        NerveSystemComponent? nerveSys = null)
     {
-        var sound = IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
-        if (!sound.HasValue)
-            return null;
-
-        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
-        return sound.Value;
+        return null;
     }
 
-    public Entity<AudioComponent>? PlayPainSoundWithCleanup(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    /// <summary>
+    /// Plays the Pain Sounds with a delay and logging, use this if you want to delay it for some reason
+    /// </summary>
+    /// <param name="nerveSysEnt">Nerve system entity</param>
+    /// <param name="specifier">Scream sound</param>
+    /// <param name="delay">The delay</param>
+    /// <param name="audioParams">audio params</param>
+    /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    public void PlayPainSound(
+        EntityUid nerveSysEnt,
+        SoundSpecifier specifier,
+        TimeSpan delay,
+        AudioParams? audioParams = null,
+        NerveSystemComponent? nerveSys = null)
     {
-        CleanupSounds(nerveSys);
-        var sound = IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
-        if (!sound.HasValue)
-            return null;
+        if (!Resolve(nerveSysEnt, ref nerveSys))
+            return;
 
-        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
-        return sound.Value;
-    }
-
-    public void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, TimeSpan delay, AudioParams? audioParams = null)
-    {
-        nerveSys.PainSoundsToPlay.Add(body, (specifier, audioParams, Timing.CurTime + delay));
+        nerveSys.PainSoundsToPlay.TryAdd(specifier, (audioParams, Timing.CurTime + delay));
     }
 
     [PublicAPI]

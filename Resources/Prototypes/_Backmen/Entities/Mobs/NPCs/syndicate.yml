@@ -125,9 +125,9 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: InnateTool
-      tools:
-        - id: EnergySword
+    #- type: InnateTool # TODO: This breaks tests somehow
+    #  tools:
+    #    - id: EnergySword
     - type: Reflect
       reflectProb: 0.85
       reflects:

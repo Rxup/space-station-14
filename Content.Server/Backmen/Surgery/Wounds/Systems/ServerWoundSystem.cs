@@ -55,11 +55,14 @@ public sealed class ServerWoundSystem : WoundSystem
             if (Paused(ent, metaData))
                 continue;
 
-            woundable.HealingRateAccumulated += frameTime;
-            if (woundable.HealingRateAccumulated < timeToHeal)
+            if (woundable.Wounds == null || woundable.Wounds.Count == 0)
                 continue;
 
-            if (woundable.Wounds == null || woundable.Wounds.Count == 0)
+            if (woundable.WoundableSeverity is WoundableSeverity.Critical)
+                continue;
+
+            woundable.HealingRateAccumulated += frameTime;
+            if (woundable.HealingRateAccumulated < timeToHeal)
                 continue;
 
             woundable.HealingRateAccumulated -= timeToHeal;
@@ -76,6 +79,16 @@ public sealed class ServerWoundSystem : WoundSystem
             {
                 wound.Comp2.BleedingAmountRaw -= bleedTreatment;
             }
+
+            var bleeding = false;
+            foreach (var wound in bleedWounds)
+            {
+                if (wound.Comp2.IsBleeding)
+                    bleeding = true;
+            }
+
+            if (bleeding)
+                continue;
 
             var woundsToHeal =
                 GetWoundableWounds(ent, woundable).Where(wound => CanHealWound(wound, wound)).ToList();

@@ -5,7 +5,7 @@
   description: A machine printed circuit board for an document printer
   components:
     - type: MachineBoard
-      prototype: PrinterDoc
+      prototype: PhotocopierCommand
       stackRequirements:
         MatterBin: 3
         Manipulator: 1

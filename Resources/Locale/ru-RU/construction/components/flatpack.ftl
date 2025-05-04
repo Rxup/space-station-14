@@ -9,7 +9,6 @@ flatpacker-ui-cost-label = Стоимость запаковки
 flatpacker-ui-no-board-label = Отсутствует машинная плата!
 flatpacker-ui-insert-board = Для начала вставьте машинную плату.
 flatpacker-ui-pack-button = Упаковать
-
 # backmen
 flatpack-unpack-grid-error = Данная зона запрещает распаковывать предметы!
 flatpack-unpack-user-error = Данная зона запрещает Вам распаковывать предметы!

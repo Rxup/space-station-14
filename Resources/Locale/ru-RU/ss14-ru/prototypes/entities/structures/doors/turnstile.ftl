@@ -1,0 +1,10 @@
+ent-Turnstile = турникет
+    .desc = Механическая дверь, которая предотвращает проход нескольких людей через него без доступов.
+ent-TurnstileArrow = { "" }
+    .desc = { "" }
+ent-TurnstileGenpopEnter = { ent-Turnstile }
+    .suffix = Вход тюрьмы
+    .desc = { ent-Turnstile.desc }
+ent-TurnstileGenpopLeave = { ent-Turnstile }
+    .suffix = Выход тюрьмы
+    .desc = { ent-Turnstile.desc }

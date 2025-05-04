@@ -211,44 +211,58 @@
 # Pocket #Backmen
 - type: loadout
   id: WeaponPistolMk58
-  equipment:
-    pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - WeaponPistolMk58
+    - MagazinePistol9x17
 
 - type: loadout
   id: WeaponPistolG22
-  equipment:
-    pocket1: WeaponPistolG22
+  storage:
+    back:
+    - WeaponPistolG22
+    - MagazinePistol9x17
 
 - type: loadout
   id: WeaponPistolACP14
-  equipment:
-    pocket1: WeaponPistolACP14
+  storage:
+    back:
+    - WeaponPistolACP14
+    - MagazinePistol45ACP
 
 - type: loadout
   id: WeaponPistolG23
-  equipment:
-    pocket1: WeaponPistolG23
+  storage:
+    back:
+    - WeaponPistolG23
+    - MagazinePistol9x17
 
 - type: loadout
   id: WeaponPistolVP78
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
-  equipment:
-    pocket1: WeaponPistolVP78
+  storage:
+    back:
+    - WeaponPistolVP78
+    - MagazinePistol57x28Extd
 
 - type: loadout
   id: WeaponPistolDEagle
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
-  equipment:
-    pocket1: WeaponPistolDEagle
+  storage:
+    back:
+    - WeaponPistolDEagle
+    - MagazinePistol50AE
 
 - type: loadout
   id: WeaponPistolM1911
-  equipment:
-    pocket1: WeaponPistolM1911
+  storage:
+    back:
+    - WeaponPistolM1911
+    - MagazinePistol57x28
 
 # Pocket 2 #Backmen
 
