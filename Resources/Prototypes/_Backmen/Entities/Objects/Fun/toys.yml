@@ -657,7 +657,7 @@
   - type: Sprite
     state: yuri_plush
   - type: SpeakOnTrigger
-    pack: YutiPlush
+    pack: YuriPlush
   - type: TTS 
     voice: Deva
 

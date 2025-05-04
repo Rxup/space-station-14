@@ -4,7 +4,7 @@
     prefix: cef-plush-
     count: 2
 - type: localizedDataset
-  id: YutiPlush
+  id: YuriPlush
   values:
     prefix: yuri-plush-
     count: 5
