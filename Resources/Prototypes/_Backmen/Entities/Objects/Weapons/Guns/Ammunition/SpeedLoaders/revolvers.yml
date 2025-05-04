@@ -1,0 +1,53 @@
+- type: entity
+  id: SpeedLoader38Special
+  name: "speed loader (.38 Special)"
+  parent: SpeedLoaderMagnum
+  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Special
+
+- type: entity
+  id: SpeedLoader38SpecialAP
+  name: "speed loader (.38 Special AP)"
+  parent: SpeedLoaderMagnum
+  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38SpecialAP
+
+- type: entity
+  id: SpeedLoader44Magnum
+  name: "speed loader (.44 Magnum)"
+  parent: SpeedLoaderMagnum
+  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver44Magnum
+
+- type: entity
+  id: SpeedLoader44MagnumAP
+  name: "speed loader (.44 Magnum AP)"
+  parent: SpeedLoaderMagnum
+  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver44MagnumAP
+
+- type: entity
+  id: SpeedLoader357Magnum
+  name: "speed loader (.357 Magnum)"
+  parent: SpeedLoaderMagnum
+  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver357Magnum
+
+- type: entity
+  id: SpeedLoader357MagnumAP
+  name: "speed loader (.357 Magnum AP)"
+  parent: SpeedLoaderMagnum
+  description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver357MagnumAP
