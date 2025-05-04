@@ -67,7 +67,7 @@
       - state: syn_inhand-right
     size: Normal
   - type: Prying
-    speedModifier: 3.0
+    speedModifier: 2.0 # Backmen-Edit
   - type: MultipleTool
     entries:
       - behavior: Prying

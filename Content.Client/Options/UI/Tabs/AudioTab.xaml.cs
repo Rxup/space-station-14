@@ -29,20 +29,13 @@ public sealed partial class AudioTab : Control
             scale: ContentAudioSystem.MasterVolumeMultiplier);
         masterVolume.ImmediateValueChanged += OnMasterVolumeSliderChanged;
 
-        // Corvax-TTS-Start
-        Control.AddOptionPercentSlider(
-            CCCVars.TTSVolume,
-            SliderVolumeTts,
-            scale: ContentAudioSystem.TtsMultiplier);
-        // Corvax-TTS-End
-
         // Backmen-ReBELL-Start
         Control.AddOptionPercentSlider(
             Shared.Backmen.CCVar.CCVars.BrutalDeathRattlesVolume,
             SliderVolumeBrutalDeathRattles,
             scale: ContentAudioSystem.BrutalDeathRattlesMultiplier);
         // Backmen-ReBELL-End
-
+        
         Control.AddOptionPercentSlider(
             CVars.MidiVolume,
             SliderVolumeMidi,
