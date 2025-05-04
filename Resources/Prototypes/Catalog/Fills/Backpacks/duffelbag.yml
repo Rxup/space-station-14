@@ -288,7 +288,7 @@
     contents:
       - id: SyringeRomerol
       - id: WeaponRevolverPython
-      - id: MagazineBoxMagnumIncendiary
+      - id: MagazinePacketRevolver357Magnum
       - id: PillAmbuzolPlus
       - id: PillAmbuzol
         amount: 3
