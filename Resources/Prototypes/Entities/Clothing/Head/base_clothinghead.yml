@@ -6,6 +6,10 @@
   - type: Clothing
     slots:
     - HEAD
+  # backmen edit start
+    equipSound:
+      collection: GenericEquip
+  # backmen edit end
   - type: Sprite
     state: icon
   - type: Item
