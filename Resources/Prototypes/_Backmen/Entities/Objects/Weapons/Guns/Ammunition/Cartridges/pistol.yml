@@ -178,7 +178,7 @@
   parent: CartridgeRevolver357Magnum
   components:
   - type: CartridgeAmmo
-    proto: BulletRevolver38SpecialAP
+    proto: BulletRevolver357MagnumAP
 
 - type: entity
   id: CartridgeRevolver38Special
