@@ -21,7 +21,7 @@
     whitelist:
       tags:
         - CartridgeRevolver44Magnum
-        - SpeedLoaderMagnum
+        - SpeedLoader44Magnum
     proto: CartridgeRevolver44Magnum
   - type: Gun
     fireRate: 3
@@ -52,7 +52,7 @@
     whitelist:
       tags:
         - CartridgeRevolver38Special
-        - SpeedLoaderMagnum
+        - SpeedLoader38Special
     proto: CartridgeRevolver38Special
   - type: Gun
     fireRate: 3
@@ -112,7 +112,7 @@
     whitelist:
       tags:
         - CartridgeRevolver38Special
-        - SpeedLoaderMagnum
+        - SpeedLoader38Special
     proto: CartridgeRevolver38Special
   - type: PumpAction
     sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
@@ -146,7 +146,7 @@
     whitelist:
       tags:
         - CartridgeRevolver38Special
-        - SpeedLoaderMagnum
+        - SpeedLoader38Special
     proto: CartridgeRevolver38Special
   - type: PumpAction
     sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
