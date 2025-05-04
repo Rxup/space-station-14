@@ -912,3 +912,10 @@ AirlockMaintIntLocked: AirlockMaintLocked
 # 2025-04-26
 ComputerCargoShuttle: ComputerShuttleCargo
 CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
+
+SpeedLoaderMagnum: SpeedLoader357Magnum
+SpeedLoaderMagnumIncendiary: SpeedLoader357Magnum
+SpeedLoaderMagnumPractice: SpeedLoader357Magnum
+SpeedLoaderMagnumAP: SpeedLoader357MagnumAP
+SpeedLoaderMagnumUranium: SpeedLoader357Magnum
+MagazineBoxMagnum: MagazinePacketRevolver357Magnum
