@@ -22,7 +22,7 @@
   showInVote: false # secret
   rules:
   - VampiresGameRule
-  - BasicStationEventScheduler
+  - StandardStationEventScheduler # TODO: set back to Basic when Vampires will get reworked and become more dangerous
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - SubGamemodesRule
@@ -38,6 +38,7 @@
   description: blob-description
   showInVote: false
   rules:
+  - CalmStationEventScheduler
   - BlobGameMode
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
@@ -252,7 +253,7 @@
   - PsiScheduler #backmen: psi
   - Changeling
   - SubGamemodesRule
-  - BasicStationEventScheduler
+  - StandardStationEventScheduler # backmen: gamerules rework
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
   - LavalandStormScheduler # Lavaland Change
@@ -266,6 +267,7 @@
   description: secret-description
   showInVote: false
   rules:
+  - StandardStationEventScheduler # backmen: gamerules rework
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - Changeling
@@ -286,7 +288,7 @@
   showInVote: false
   rules:
   - ExtendedThief
-  - BasicStationEventScheduler
+  - StandardStationEventScheduler # backmen: gamerules rework
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
@@ -302,10 +304,10 @@
   description: thief-extended-gamemode-description
   showInVote: false
   rules:
+  - BasicStationEventScheduler
   - Revolutionary
   - ExtendedThief
   - Traitor
-  - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
@@ -323,7 +325,7 @@
   description: super-kessler-gamemode-description
   showInVote: false
   rules:
-  - BasicStationEventScheduler
+  - CalmStationEventScheduler # Calm because it's already scary.
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - BasicRoundstartVariation
@@ -331,15 +333,16 @@
   - KesslerSyndromeScheduler
   - KesslerSyndromeScheduler
   - KesslerSyndromeScheduler
-  - MeteorSwarmMildScheduler
-  - MeteorSwarmScheduler
-  - RampingStationEventScheduler
 #  - SpaceTrafficControlEventScheduler
 #  - SpaceTrafficControlFriendlyEventScheduler
   - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Calm
+  alias:
+  - calm
+  - spok
+  - calmer
   name: calm-title
   showInVote: true
   description: calm-description
@@ -358,13 +361,54 @@
   minPlayers: 5
   showInVote: false # secret
   rules:
-    - BabelTower
-    - CalmStationEventScheduler
-    - WageScheduler
-    - PsiScheduler #backmen: psi
-    - CalmMeteorSwarmScheduler
-    - BasicRoundstartVariation
-#    - SpaceTrafficControlEventScheduler
-#    - SpaceTrafficControlFriendlyEventScheduler
-    - ExtendedThief
-    - LavalandStormScheduler # Lavaland Change
+  - BabelTower
+  - CalmStationEventScheduler
+  - WageScheduler
+  - PsiScheduler #backmen: psi
+  - CalmMeteorSwarmScheduler
+  - BasicRoundstartVariation
+  - ExtendedThief # Uhh guess that's for more instability?
+  - LavalandStormScheduler # Lavaland Change
+
+- type: gamePreset
+  id: Standard
+  name: standard-title
+  showInVote: true
+  description: standard-description
+  rules:
+  - StandardStationEventScheduler
+  - WageScheduler #backmen: currency
+  - PsiScheduler #backmen: psi
+  - MeteorSwarmScheduler
+  - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
+
+- type: gamePreset
+  id: SecretStandard #For Admin Use: Runs Standard but shows "Secret" in lobby.
+  alias:
+  - secretstandard
+  name: secret-title
+  showInVote: false #Admin Use
+  description: secret-description
+  rules:
+  - StandardStationEventScheduler
+  - WageScheduler #backmen: currency
+  - PsiScheduler #backmen: psi
+  - MeteorSwarmScheduler
+  - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
+
+- type: gamePreset
+  id: SecretCalm #For Admin Use: Runs Calm but shows "Secret" in lobby.
+  alias:
+  - secretcalm
+  name: secret-title
+  showInVote: false #Admin Use
+  description: secret-description
+  rules:
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - PsiScheduler #backmen: psi
+  - CalmMeteorSwarmScheduler
+  - BasicRoundstartVariation
+  - LavalandStormScheduler # Lavaland Change
