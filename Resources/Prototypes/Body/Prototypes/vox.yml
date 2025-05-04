@@ -17,7 +17,7 @@
       - right arm
       - left arm
       organs:
-        heart: OrganHumanHeart
+        heart: OrganVoxHeart
         lungs: OrganVoxLungs
     groin: # Backmen edit: chest, groin separation
       part: GroinVox
@@ -25,8 +25,8 @@
       - right leg
       - left leg
       organs:
-        stomach: OrganHumanStomach
-        liver: OrganHumanLiver
+        stomach: OrganVoxStomach
+        liver: OrganVoxLiver
         kidneys: OrganHumanKidneys
     right arm:
       part: RightArmVox

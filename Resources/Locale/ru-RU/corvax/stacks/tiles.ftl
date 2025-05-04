@@ -1,0 +1,17 @@
+stack-black-wood-floor = деревянный чёрный пол
+stack-dark-wood-floor = деревянный тёмный пол
+stack-light-wood-floor = деревянный светлый пол
+stack-red-wood-floor = деревянный красный пол
+stack-large-black-wood-floor = большой деревянный чёрный пол
+stack-large-dark-wood-floor = большой деревянный тёмный пол
+stack-large-light-wood-floor = большой деревянный светлый пол
+stack-large-red-wood-floor = большой деревянный красный пол
+stack-parquet-black-wood-floor = чёрный деревянный паркет
+stack-parquet-dark-wood-floor = тёмный деревянный паркет
+stack-parquet-light-wood-floor = светлый деревянный паркет
+stack-parquet-red-wood-floor = красный деревянный паркет
+stack-chess-wood-floor = деревянный шахматный пол
+stack-chess-black-wood-floor = чёрный деревянный шахматный пол
+stack-chess-dark-wood-floor = тёмный деревянный шахматный пол
+stack-chess-light-wood-floor = светлый деревянный шахматный пол
+stack-chess-red-wood-floor = красный деревянный шахматный пол

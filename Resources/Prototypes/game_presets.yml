@@ -3,7 +3,7 @@
   alias:
     - survival
   name: survival-title
-  showInVote: false # secret
+  showInVote: true # not secret
   description: survival-description
   rules:
     - MeteorSwarmScheduler
@@ -28,7 +28,7 @@
     - WageScheduler #backmen: currency
     - PsiScheduler #backmen: psi
     - KesslerSyndromeScheduler
-    - RampingStationEventScheduler
+    - CalmStationEventScheduler # backmen change: Meteors are already enough to destroy the station.
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
@@ -54,7 +54,7 @@
     - Zombie
     - Wizard
     - KesslerSyndromeScheduler
-    - RampingStationEventScheduler
+    - StandardStationEventScheduler # backmen: game rules rework
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
@@ -89,7 +89,7 @@
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
-    - RampingStationEventScheduler
+    - StandardStationEventScheduler # backmen: game rules rework
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
@@ -101,7 +101,7 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: false #2boring2vote
+  showInVote: true
   description: extended-description
   rules:
   - BasicStationEventScheduler
@@ -302,7 +302,7 @@
   - WageScheduler #backmen: currency
   - PsiScheduler #backmen: psi
   - Zombie
-  - BasicStationEventScheduler
+  - CalmStationEventScheduler # backmen: gamerules rework
   - KesslerSyndromeScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation

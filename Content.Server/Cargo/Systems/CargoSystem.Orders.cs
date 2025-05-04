@@ -351,7 +351,12 @@ namespace Content.Server.Cargo.Systems
         {
             var amount = 0;
 
-            foreach (var order in component.Orders[account])
+            if (!component.Orders.TryGetValue(account, out var values))
+            {
+                return amount;
+            }
+
+            foreach (var order in values)
             {
                 if (!order.Approved)
                     continue;
