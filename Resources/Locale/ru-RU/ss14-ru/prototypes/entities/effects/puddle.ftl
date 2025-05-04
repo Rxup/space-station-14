@@ -23,4 +23,4 @@ ent-PuddleSparkle = Блеск
 ent-Puddle = лужа
     .desc = Лужа жидкости.
 ent-Footstep = след
-    .desc = След жидкости
+    .desc = След жидкости.

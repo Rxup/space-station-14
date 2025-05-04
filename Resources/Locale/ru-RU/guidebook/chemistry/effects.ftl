@@ -336,9 +336,9 @@ reagent-effect-guidebook-area-reaction =
     }
 reagent-effect-guidebook-artifact-unlock =
     { $chance ->
-        [1] Helps
-       *[other] help
-    } unlock an alien artifact.
+        [1] Помогает
+       *[other] Помогают
+    } разблокировать инопланетный артефакт.
 reagent-effect-guidebook-add-to-solution-reaction =
     { $chance ->
         [1] Заставляет

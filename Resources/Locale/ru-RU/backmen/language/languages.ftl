@@ -2,14 +2,14 @@ language-Universal-name = Межгалактический
 language-Universal-description =
     Знания всех языков, ну типа, да.
             Вы надмозг.
-language-Bubblish-name = Bubblish
-language-Bubblish-description = The language of Slimes. Being a mixture of bubbling noises and pops it's very difficult to speak for humans without the use of mechanical aids.
+language-Bubblish-name = Баблиш
+language-Bubblish-description = Язык слаймов. Поскольку он представляет собой смесь булькающих звуков и хлопков, людям очень трудно говорить на нем без использования механических приспособлений.
 language-Slime-name = Баблиш
 language-Slime-description = Язык слаймов. Поскольку он представляет собой смесь булькающих звуков и хлопков, людям очень трудно говорить на нем без использования механических приспособлений.
 language-RootSpeak-name = Язык корней
 language-RootSpeak-description = Странный свистящий язык, на котором говорят Дионы.
-language-Draconic-name = Draconic
-language-Draconic-description = The common language of lizard-people, composed of sibilant hisses and rattles.
+language-Draconic-name = Драконический
+language-Draconic-description = Общий язык Ящеров, состоящий из свистящего шипения и трещоток.
 language-Nekomimetic-name = Некомиметический
 language-Nekomimetic-description =
     Странная смесь Японского и кошачьего языка. Был создан Японской колониальной компанией для Феленидов, созданные в тоже время, во время экспансии космоса ОПЗ(на тот момент ООН).
