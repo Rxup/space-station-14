@@ -293,10 +293,10 @@ public sealed class MobThresholdSystem : EntitySystem
                 }
             }
 
-            entDamage = new DamageSpecifier
+            foreach (var damagePiece in damageDict)
             {
-                DamageDict = damageDict,
-            };
+                entDamage.DamageDict[damagePiece.Key] += damagePiece.Value;
+            }
         }
         // backmen eidT1!!11!
 

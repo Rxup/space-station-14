@@ -13,6 +13,9 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
@@ -221,6 +224,26 @@ public sealed partial class ZombieSystem
         if (TryComp<DamageableComponent>(target, out var damageablecomp))
             _damageable.SetAllDamage(target, damageablecomp, 0);
         _mobState.ChangeMobState(target, MobState.Alive);
+
+        // Backmen Edit start
+        if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
+        {
+            _pain.TryAddPainMultiplier(
+                nerveSys.Value,
+                "Zombified",
+                -1f,
+                PainDamageTypes.WoundPain,
+                nerveSys.Value);
+            _pain.TryAddPainMultiplier(nerveSys.Value,
+                "ZombifiedTraumatic",
+                -1f,
+                PainDamageTypes.TraumaticPain,
+                nerveSys.Value);
+
+            _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
+            _consciousness.ForceConscious(target, TimeSpan.FromSeconds(12f));
+        }
+        // Backmen Edit end
 
         _faction.ClearFactions(target, dirty: false);
         _faction.AddFaction(target, "Zombie");

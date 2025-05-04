@@ -19,13 +19,18 @@ public sealed partial class NerveSystemComponent : Component
     /// How much Pain can this nerve system hold.
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 PainCap = 200f;
+    public FixedPoint2 PainCap = 300f;
 
     /// <summary>
     /// How much of typical wound pain can this nerve system hold?
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 SoftPainCap = 140f;
+    public FixedPoint2 SoftPainCap = 150f;
+
+    /// <summary>
+    /// The entity of the body part, in which the nerve system is stored in
+    /// </summary>
+    public EntityUid RootNerve;
 
     // Don't change, OR I will break your knees, filled up upon initialization.
     public Dictionary<EntityUid, NerveComponent> Nerves = new();
@@ -35,7 +40,7 @@ public sealed partial class NerveSystemComponent : Component
     public Dictionary<(EntityUid, string), PainModifier> Modifiers = new();
 
     public Dictionary<EntityUid, AudioComponent> PlayedPainSounds = new();
-    public Dictionary<EntityUid, (SoundSpecifier, AudioParams?, TimeSpan)> PainSoundsToPlay = new();
+    public Dictionary<SoundSpecifier, (AudioParams?, TimeSpan)> PainSoundsToPlay = new();
 
     [DataField("lastThreshold"), ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 LastPainThreshold = 0;
@@ -72,6 +77,29 @@ public sealed partial class NerveSystemComponent : Component
     public SoundSpecifier PainRattles = new SoundCollectionSpecifier("PainRattles");
 
     [DataField]
+    public Dictionary<Sex, SoundSpecifier> PainGrunts = new()
+    {
+        {
+            Sex.Male, new SoundCollectionSpecifier("PainScreamsShortMale")
+            {
+                Params = AudioParams.Default.WithVariation(0.04f).WithVolume(-4f),
+            }
+        },
+        {
+            Sex.Female, new SoundCollectionSpecifier("PainScreamsShortFemale")
+            {
+                Params = AudioParams.Default.WithVariation(0.04f).WithVolume(-4f),
+            }
+        },
+        {
+            Sex.Unsexed, new SoundCollectionSpecifier("PainScreamsShortMale") // yeah
+            {
+                Params = AudioParams.Default.WithVariation(0.2f).WithVolume(-4f),
+            }
+        },
+    };
+
+    [DataField]
     public Dictionary<Sex, SoundSpecifier> PainScreams = new()
     {
         {
@@ -100,19 +128,19 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Male, new SoundCollectionSpecifier("AgonyScreamsMale")
             {
-                Params = AudioParams.Default.WithVariation(0.04f),
+                Params = AudioParams.Default.WithVariation(0.04f).WithVolume(7f),
             }
         },
         {
             Sex.Female, new SoundCollectionSpecifier("AgonyScreamsFemale")
             {
-                Params = AudioParams.Default.WithVariation(0.04f),
+                Params = AudioParams.Default.WithVariation(0.04f).WithVolume(7f),
             }
         },
         {
             Sex.Unsexed, new SoundCollectionSpecifier("AgonyScreamsMale") // yeah
             {
-                Params = AudioParams.Default.WithVariation(0.2f),
+                Params = AudioParams.Default.WithVariation(0.2f).WithVolume(7f),
             }
         },
     };
@@ -129,7 +157,7 @@ public sealed partial class NerveSystemComponent : Component
         {
             Sex.Female, new SoundCollectionSpecifier("PainShockScreamsFemale")
             {
-                Params = AudioParams.Default.WithVariation(0.05f).WithVolume(-2f),
+                Params = AudioParams.Default.WithVariation(0.05f).WithVolume(-4f),
             }
         },
         {
@@ -235,13 +263,14 @@ public sealed partial class NerveSystemComponent : Component
     [DataField("reflexThresholds"), ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<PainThresholdTypes, FixedPoint2> PainThresholds = new()
     {
-        { PainThresholdTypes.PainFlinch, 5 },
-        { PainThresholdTypes.Agony, 20 },
+        { PainThresholdTypes.PainGrunt, 1 },
+        { PainThresholdTypes.PainFlinch, 7 },
+        { PainThresholdTypes.Agony, 27 },
         // Just having 'PainFlinch' is lame, people scream for a few seconds before passing out / getting pain shocked, so I added agony.
         // A lot of screams (individual pain screams poll), for the funnies.
-        { PainThresholdTypes.PainShock, 42 },
+        { PainThresholdTypes.PainShock, 52 },
         // usually appears after an explosion. or some ultra big damage output thing, you might survive, and most importantly, you will fall down in pain.
         // :troll:
-        { PainThresholdTypes.PainShockAndAgony, 70 },
+        { PainThresholdTypes.PainShockAndAgony, 80 },
     };
 }
