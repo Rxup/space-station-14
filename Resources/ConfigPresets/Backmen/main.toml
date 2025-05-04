@@ -143,6 +143,9 @@ enabled=true
 [laying]
 crawlundertables=true
 
+[movement]
+mob_pushing = false
+
 [vote]
 map_enabled = true
 restart_required_ratio = 0.6
