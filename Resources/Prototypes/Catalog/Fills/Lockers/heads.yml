@@ -20,6 +20,7 @@
     - id: RubberStampQm
     - id: AstroNavCartridge
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: ClothingHandsKnuckleDustersQM
     - id: MailTeleporterMachineCircuitboard
 
 - type: entity

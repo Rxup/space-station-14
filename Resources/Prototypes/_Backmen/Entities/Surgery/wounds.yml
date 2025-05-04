@@ -20,7 +20,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: BluntScar
-    integrityMultiplier: 0.5 #heheheha
+    integrityMultiplier: 0.75 #heheheha
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -34,14 +34,14 @@
     - NerveDamage
     traumasChances:
       Dismemberment: -0.17
-      OrganDamage: 0.17
+      OrganDamage: 0.21
       BoneDamage: 0.34
       VeinsDamage: 0
       NerveDamage: 0
   - type: PainInflicter
     multiplier: 0.75
   - type: BleedInflicter
-    scalingSpeed: 0.8
+    scalingSpeed: 1
     severityThreshold: 8
 
 - type: entity
@@ -67,15 +67,15 @@
     - Dismemberment
     traumasChances:
       Dismemberment: -0.17
-      OrganDamage: 0.08
-      BoneDamage: 0.14
+      OrganDamage: 0.21
+      BoneDamage: 0.21
       VeinsDamage: -0.4 # goes through rather easy.
       NerveDamage: -0.4
   - type: PainInflicter
     multiplier: 0.67
   - type: BleedInflicter
     severityThreshold: 9
-    scalingSpeed: 0.5
+    scalingSpeed: 0.78
 
 - type: entity
   id: ArmorPiercing
@@ -97,8 +97,8 @@
     - NerveDamage
     traumasChances:
       Dismemberment: 0 # Bullets go THROUGH people
-      OrganDamage: 0.24
-      BoneDamage: 0.24
+      OrganDamage: 0.34
+      BoneDamage: 0.34
       VeinsDamage: -0.4
       NerveDamage: -0.4
   - type: PainInflicter
@@ -129,7 +129,7 @@
     - VeinsDamage
     - NerveDamage
     traumasChances:
-      Dismemberment: 0.08
+      Dismemberment: 0.14
       OrganDamage: 0
       BoneDamage: 0
       VeinsDamage: 0.27
@@ -137,7 +137,7 @@
   - type: PainInflicter
     multiplier: 0.75
   - type: BleedInflicter
-    scalingSpeed: 1.7
+    scalingSpeed: 0.34
 
 - type: entity
   id: Heat
@@ -164,13 +164,14 @@
       Dismemberment: 0
       OrganDamage: -0.12
       BoneDamage: -0.21
-      VeinsDamage: 0.34
+      VeinsDamage: 0.51
       NerveDamage: 0.34
   - type: PainInflicter
-    multiplier: 1.2
+    painType: TraumaticPain
+    multiplier: 0.85
   - type: BleedInflicter
-    severityThreshold: 14
-    scalingSpeed: 0.07
+    severityThreshold: 18
+    scalingSpeed: 1.34
 
 - type: entity
   id: Cold
@@ -182,20 +183,22 @@
     woundType: External
     woundVisibility: Always
     scarWound: BurnScar
-    integrityMultiplier: 0.34
+    integrityMultiplier: 0.01
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
+    - OrganDamage
     - VeinsDamage
     - NerveDamage
     traumasChances:
       Dismemberment: 0
-      OrganDamage: 0
+      OrganDamage: 0.5
       BoneDamage: 0
       VeinsDamage: 0.5
       NerveDamage: 0.5
   - type: PainInflicter
-    multiplier: 0.8
+    painType: TraumaticPain
+    multiplier: 0.34
 
 - type: entity
   id: Cellular
@@ -207,7 +210,7 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
-    integrityMultiplier: 0.15
+    integrityMultiplier: 0.6
   - type: TraumaInflicter
     severityThreshold: 0
     allowedTraumas:
@@ -217,13 +220,13 @@
     - NerveDamage
     traumasChances:
       Dismemberment: 0
-      OrganDamage: 0
-      BoneDamage: 0
+      OrganDamage: 0.34
+      BoneDamage: 0.34
       VeinsDamage: 0.17
       NerveDamage: 0.17
   - type: PainInflicter
     painType: TraumaticPain
-    multiplier: 0.34
+    multiplier: 0.17
 
 - type: entity
   id: Caustic
@@ -235,7 +238,7 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
-    integrityMultiplier: 0
+    integrityMultiplier: 0.34
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -261,7 +264,7 @@
     woundType: Internal
     woundVisibility: HandScanner
     scarWound: RadiationScar
-    integrityMultiplier: 0
+    integrityMultiplier: 0.12
   - type: TraumaInflicter
     severityThreshold: 11
     allowedTraumas:
@@ -269,7 +272,8 @@
     - VeinsDamage
     - NerveDamage
     allowArmourDeduction:
-    - OrganDamage
+    - VeinsDamage
+    - NerveDamage
     traumasChances:
       Dismemberment: 0
       OrganDamage: 0.34
@@ -298,7 +302,7 @@
     - NerveDamage
     traumasChances:
       Dismemberment: 0
-      OrganDamage: -0.34
+      OrganDamage: -0.17
       BoneDamage: 0
       VeinsDamage: 0.12
       NerveDamage: 0.12
@@ -339,7 +343,7 @@
     woundType: Internal
     woundVisibility: HandScanner
     scarWound: BurnScar
-    integrityMultiplier: 0.07
+    integrityMultiplier: 0.12
   - type: TraumaInflicter
     severityThreshold: 9
     allowedTraumas:
