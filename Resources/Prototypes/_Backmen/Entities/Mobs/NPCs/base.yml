@@ -5,7 +5,7 @@
   description: Just a body, be calm.
   components:
   - type: UniversalLanguageSpeaker
-  - type: DiseaseCarrier
+  #- type: DiseaseCarrier
   - type: CombatMode
   - type: SurgeryTarget
   - type: Stripping
