@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.0.0
   forkId: backmen
   forkVersion: d68dcb31ee5376a03ebe47f6017f7fee9f46dd8f
-  time: 05/05/2025 09:25:33
-  entityCount: 14047
+  time: 05/05/2025 14:47:35
+  entityCount: 14049
 maps:
 - 1
 grids:
@@ -6141,7 +6141,7 @@ entities:
       pos: 13.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -45128.953
+      secondsUntilStateChange: -45266.844
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -33129,7 +33129,7 @@ entities:
       pos: -67.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -2883.7156
+      secondsUntilStateChange: -3021.605
       state: Closing
   - uid: 5216
     components:
@@ -74400,6 +74400,13 @@ entities:
     - type: Transform
       pos: 40.50937,-38.527203
       parent: 2
+- proto: SpawnJobBkmVirologist
+  entities:
+  - uid: 14048
+    components:
+    - type: Transform
+      pos: -0.5,-36.5
+      parent: 2
 - proto: SpawnMobAlexander
   entities:
   - uid: 11424
@@ -74537,6 +74544,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-5.5
+      parent: 2
+- proto: SpawnPointBkmSurgeon
+  entities:
+  - uid: 14049
+    components:
+    - type: Transform
+      pos: 9.5,-27.5
       parent: 2
 - proto: SpawnPointBlueShield
   entities:
