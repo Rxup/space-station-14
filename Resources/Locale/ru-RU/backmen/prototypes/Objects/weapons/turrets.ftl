@@ -1,12 +1,11 @@
 ent-WeaponTurretBaseLaser = лазерная турель
     .desc = Автоматическая турель лазерного поражения, имеет встроенную батарею самозарядки.
-ent-WeaponTurretLaserNanoTrasen = { ent-WeaponTurretBaseLaser } 
+ent-WeaponTurretLaserNanoTrasen = { ent-WeaponTurretBaseLaser }
     .desc = { ent-WeaponTurretBaseLaser.desc }
-ent-WeaponTurretLaserOnestar = { ent-WeaponTurretBaseLaser } 
+ent-WeaponTurretLaserOnestar = { ent-WeaponTurretBaseLaser }
     .desc = { ent-WeaponTurretBaseLaser.desc }
-ent-WeaponTurretLaserNanoTrasenAI = { ent-WeaponTurretBaseLaser } 
+ent-WeaponTurretLaserNanoTrasenAI = { ent-WeaponTurretBaseLaser }
     .desc = { ent-WeaponTurretBaseLaser.desc }
-
 ent-WeaponTurretInteQ = { ent-BaseWeaponTurret }
     .desc = { ent-BaseWeaponTurret.desc }
     .suffix = Интек

@@ -23,6 +23,11 @@ public sealed partial class SuppressPain : EntityEffect // backmen effect
     public TimeSpan Time = default!;
 
     [DataField]
+    [JsonPropertyName("maxSuppression")]
+    public FixedPoint2 MaximumSuppression = 60f;
+    // 190 - 60 = 130; Right nearby the maximal crit threshold in consciousness, will let you live through, but you will die once the painkiller stops working.
+
+    [DataField]
     [JsonPropertyName("identifier")]
     public string ModifierIdentifier = "PainSuppressant";
 
@@ -48,16 +53,24 @@ public sealed partial class SuppressPain : EntityEffect // backmen effect
         if (bodyPart == null)
             return;
 
-        if (!args.EntityManager.System<PainSystem>()
-                .TryGetPainModifier(nerveSys.Value, bodyPart.Value.Id, ModifierIdentifier, out var modifier))
+        var painSystem = args.EntityManager.System<PainSystem>();
+        if (!painSystem.TryGetPainModifier(nerveSys.Value, bodyPart.Value.Id, ModifierIdentifier, out var modifier))
         {
-            args.EntityManager.System<PainSystem>()
-                .TryAddPainModifier(nerveSys.Value, bodyPart.Value.Id, ModifierIdentifier, -Amount * scale, time: Time);
+            painSystem.TryAddPainModifier(
+                    nerveSys.Value,
+                    bodyPart.Value.Id,
+                    ModifierIdentifier,
+                    FixedPoint2.Clamp(-Amount * scale, -MaximumSuppression, MaximumSuppression),
+                    time: Time);
         }
         else
         {
-            args.EntityManager.System<PainSystem>()
-                .TryChangePainModifier(nerveSys.Value, bodyPart.Value.Id, ModifierIdentifier, modifier.Value.Change - Amount * scale, time: Time);
+            painSystem.TryChangePainModifier(
+                    nerveSys.Value,
+                    bodyPart.Value.Id,
+                    ModifierIdentifier,
+                    FixedPoint2.Clamp(modifier.Value.Change - Amount * scale, -MaximumSuppression, MaximumSuppression),
+                    time: Time);
         }
     }
 }

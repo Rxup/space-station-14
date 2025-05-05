@@ -272,6 +272,7 @@ public sealed class BodySetupTest
 
         var entMan = server.ResolveDependency<IEntityManager>();
         var bodySystem = entMan.System<BodySystem>();
+        var woundSystem = entMan.System<WoundSystem>();
 
         await server.WaitAssertion(() =>
         {
@@ -292,6 +293,9 @@ public sealed class BodySetupTest
                         Assert.That(bone, Is.Not.Null);
                         Assert.That(entMan.HasComponent<BoneComponent>(bone));
                     });
+
+                    woundSystem.TryInduceWound(bodyPart.Id, "Piercing", 5f, out _);
+                    Assert.That(woundSystem.GetWoundableSeverityPoint(bodyPart.Id), Is.EqualTo(FixedPoint2.New(5f)));
                 }
             }
         });

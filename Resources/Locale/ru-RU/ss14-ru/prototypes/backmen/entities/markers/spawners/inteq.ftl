@@ -1,4 +1,4 @@
-ent-SpawnMobInteQVanguardLeader = спавнер Интек Коммандер Авангарда 
+ent-SpawnMobInteQVanguardLeader = спавнер Интек Коммандер Авангарда
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobInteQVanguardOperative = спавнер Интек Авангард Оперативник
     .desc = { ent-MarkerBase.desc }
@@ -6,7 +6,6 @@ ent-SpawnMobInteQVanguardSoldier = спавнер Интек Авангард С
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobInteQVanguardMedic = спавнер Интек Авангард Медик
     .desc = { ent-MarkerBase.desc }
-
 ent-SpawnMobInteQAgent = спавнер агент Интек
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobInteQAgentRandom = { ent-SpawnMobInteQAgent }
@@ -14,7 +13,6 @@ ent-SpawnMobInteQAgentRandom = { ent-SpawnMobInteQAgent }
     .suffix = 20%
 ent-SpawnMobCarpBrownInteQ = спавнер карп Интек
     .desc = { ent-MarkerBase.desc }
-
 ent-SpawnPointInteQVanguardLeader = капсула Коммандера Авангарда Интек
     .desc = { ent-MarkerBase.desc }
     .suffix = Спавнер, Гост Роль, Персонаж игрока
@@ -27,7 +25,6 @@ ent-SpawnPointInteQVanguardSoldier = капсула Солдата Аванга�
 ent-SpawnPointInteQVanguardMedic = капсула Медика Авангарда Интек
     .desc = { ent-MarkerBase.desc }
     .suffix = Спавнер, Гост Роль, Персонаж игрока
-
 ent-SpawnPointInteQVanguardLeaderSizo37 = { ent-SpawnPointInteQVanguardLeader }
     .desc = { ent-MarkerBase.desc }
     .suffix = Спавнер, СИЗО-37 Гост Роль, Персонаж игрока

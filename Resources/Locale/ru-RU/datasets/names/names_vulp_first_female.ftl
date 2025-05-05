@@ -1,4 +1,4 @@
-﻿names-vulp-first-female-1 = Аббы
+names-vulp-first-female-1 = Аббы
 names-vulp-first-female-2 = Ацантха
 names-vulp-first-female-3 = Аддилын
 names-vulp-first-female-4 = Адела
