@@ -33,9 +33,8 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing # Goobstation - Modsuits change
-    clothingPrototypes:
-      head: ClothingHeadHelmetCosmicCult
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetCosmicCult
   - type: Tag
     tags:
     - Hardsuit
