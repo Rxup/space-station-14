@@ -130,8 +130,8 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
         _alerts.ShowAlert(uid, uid.Comp.EntropyAlert);
 
-        if (TryComp(uid, out EyeComponent? eyeComp))
-            _eye.SetVisibilityMask(uid, eyeComp.VisibilityMask | (int) VisibilityFlags.CosmicCultMonument);
+        if (TryComp(uid, out EyeComponent? eye))
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.CosmicCultMonument, eye);
     }
 
     /// <summary>
