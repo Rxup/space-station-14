@@ -39,7 +39,7 @@
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
+#    pocket1: WeaponPistolMk58 # Backmen-Weapons
     pocket2: BookSpaceLaw # Corvax-HyperLink
   storage:
     back:

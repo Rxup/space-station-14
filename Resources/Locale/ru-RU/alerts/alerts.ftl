@@ -33,7 +33,7 @@ alerts-crit-desc = Вы серьёзно ранены и без сознания
 alerts-dead-name = Смерть
 alerts-dead-desc = Вы мертвы. Учтите, что вас ещё можно воскресить!
 alerts-health-name = Здоровье
-alerts-health-desc = [color=green]Синий и зелёный[/color] хорошо. [color=red]Красный[/color] плохо.
+alerts-health-desc = [color=green]Зелёный[/color] хорошо. [color=red]Красный[/color] плохо.
 alerts-battery-name = Батарея
 alerts-battery-desc = Если батарея разрядится, вы не сможете использовать свои способности.
 alerts-no-battery-name = Нет батареи
@@ -55,9 +55,9 @@ alerts-parched-desc = Вы ужасно хотите пить. Жажда вас
 alerts-muted-name = Заглушены
 alerts-muted-desc = Вы потеряли способность говорить.
 alerts-vow-silence-name = Обет молчания
-alerts-vow-silence-desc = Вы дали обет молчания в рамках инициации в Мистико Тагма Мимон. Щёлкните по иконке, чтобы нарушить свой обет.
+alerts-vow-silence-desc = Вы дали обет, запрещающий устное или письменное общение, в рамках инициации в Мистико Тагма Мимон. Щёлкните по иконке, чтобы нарушить свой обет.
 alerts-vow-broken-name = Нарушенный обет
-alerts-vow-broken-desc = Вы нарушили свою клятву, данную Мимам. Теперь вы можете говорить, но вы потеряли свои мимские способности как минимум на 5 минут!!! Щёлкните по иконке, чтобы попытаться дать обет молчания снова.
+alerts-vow-broken-desc = Вы нарушили свою клятву, данную Мимам. Теперь вы можете говорить и писать, но вы потеряли свои мимские способности как минимум на 5 минут!!! Щёлкните по иконке, чтобы попытаться дать обет молчания снова.
 alerts-pulled-name = Вас тянут
 alerts-pulled-desc = Вас тянут за собой. Двигайтесь, чтобы освободиться.
 alerts-pulling-name = Вы тянете
@@ -76,13 +76,9 @@ alerts-revenant-essence-name = Эссенция
 alerts-revenant-essence-desc = Сила душ. Поддерживает вас и используется при использовании способностей. Медленно восстанавливается с течением времени.
 alerts-revenant-corporeal-name = Материальность
 alerts-revenant-corporeal-desc = Вы физически воплотились. Окружающие могут видеть и наносить вам вред.
-
 alerts-changeling-chemicals-name = Химические вещества
 alerts-changeling-chemicals-desc = Тратится на использование ваших способностей. Постепенно восстанавливается.
-
 alerts-offer-name = передать
 alerts-offer-desc = кто-то передаёт вам предмет
-
 alerts-changeling-biomass-name = Биомасса
-alerts-changeling-biomass-desc =
-    Это ваше здоровье. Если оно достигнет 0 - это [color=red]конец игры[/color]. Поглощайте гуманоидов, чтобы восстановить часть биомассы.
+alerts-changeling-biomass-desc = Это ваше здоровье. Если оно достигнет 0 - это [color=red]конец игры[/color]. Поглощайте гуманоидов, чтобы восстановить часть биомассы.

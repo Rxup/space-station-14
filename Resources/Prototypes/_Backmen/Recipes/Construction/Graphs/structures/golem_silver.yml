@@ -14,7 +14,7 @@
               icon:
                 sprite: Objects/Misc/guardian_info.rsi
                 state: guardian_info
-              name: a silver core
+              name: construction-graph-tag-silver-core
               doAfter: 10
 
 

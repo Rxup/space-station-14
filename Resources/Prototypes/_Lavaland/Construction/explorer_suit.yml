@@ -52,6 +52,7 @@
             amount: 20
             doAfter: 2
           - tag: SalvageResearchTool
+            name: construction-graph-tag-xen-research-tool
             doAfter: 1
     - node: reinforcedhev2
       entity: LavalandEquipmentExplorerSuitReinforcedHEV2
@@ -65,10 +66,13 @@
             amount: 30
             doAfter: 2
           - tag: SalvageResearchTool
+            name: construction-graph-tag-xen-research-tool
             doAfter: 1
           - tag: SalvageResearchTool
+            name: construction-graph-tag-xen-research-tool
             doAfter: 1
           - tag: SalvagePCVPlate
+            name: construction-graph-tag-xen-pcv-plate
             doAfter: 1
     - node: reinforcedhev3
       entity: LavalandEquipmentExplorerSuitReinforcedHEV3
