@@ -4,6 +4,7 @@
   text: "/ServerInfo/Guidebook/Antagonist/Antagonists.xml"
   children:
   - Traitors
+  - CosmicCult # DeltaV - Cosmic Cult
   - Thieves
   - Revolutionaries
   - NuclearOperatives

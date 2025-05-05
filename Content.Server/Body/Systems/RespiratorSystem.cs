@@ -22,7 +22,7 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-
+using Content.Shared._DV.CosmicCult.Components; // DeltaV
 
 namespace Content.Server.Body.Systems;
 
@@ -54,6 +54,20 @@ public sealed class RespiratorSystem : EntitySystem
         SubscribeLocalEvent<RespiratorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
     }
+
+    // Goobstation start
+    // Can breathe check for grab
+    public bool CanBreathe(EntityUid uid, RespiratorComponent respirator)
+    {
+        if (respirator.Saturation < respirator.SuffocationThreshold)
+            return false;
+        if (TryComp<PullableComponent>(uid, out var pullable)
+            && pullable.GrabStage == GrabStage.Suffocate)
+            return false;
+
+        return !HasComp<KravMagaBlockedBreathingComponent>(uid);
+    }
+    // Goobstation end
 
     private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
     {
@@ -110,6 +124,13 @@ public sealed class RespiratorSystem : EntitySystem
             // end-backmen: blob zombie
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
+                // DeltaV: Cosmic Cult - One line change but a refactor would be better. this is kinda cringe.
+                // Makes cultists gasp and respirate but not asphyxiate in space.
+                if (TryComp<CosmicCultComponent>(uid, out var cultComponent)
+                    && !cultComponent.Respiration
+                    && !_mobState.IsIncapacitated(uid))
+                    return;
+
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
