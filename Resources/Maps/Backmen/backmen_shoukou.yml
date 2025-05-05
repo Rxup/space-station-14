@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.0.0
   forkId: backmen
   forkVersion: d68dcb31ee5376a03ebe47f6017f7fee9f46dd8f
-  time: 05/03/2025 01:06:52
-  entityCount: 14037
+  time: 05/05/2025 09:25:33
+  entityCount: 14047
 maps:
 - 1
 grids:
@@ -3845,7 +3845,8 @@ entities:
           6,-1:
             0: 63743
           6,0:
-            0: 57583
+            0: 57519
+            8: 64
           7,-4:
             0: 8176
           7,-3:
@@ -4356,6 +4357,29 @@ entities:
           - 0
           - 0
           - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -4509,8 +4533,6 @@ entities:
       pos: -40.5,-8.5
       parent: 2
     - type: DeviceList
-      configurators:
-      - invalid
       devices:
       - 6102
       - 6107
@@ -6119,7 +6141,7 @@ entities:
       pos: 13.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -44197.734
+      secondsUntilStateChange: -45128.953
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31765,6 +31787,44 @@ entities:
       rot: 3.141592653589793 rad
       pos: -14.5,-27.5
       parent: 2
+- proto: ComputerCargoOrdersEngineering
+  entities:
+  - uid: 14040
+    components:
+    - type: Transform
+      pos: -40.5,-25.5
+      parent: 2
+- proto: ComputerCargoOrdersMedical
+  entities:
+  - uid: 5917
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-34.5
+      parent: 2
+- proto: ComputerCargoOrdersScience
+  entities:
+  - uid: 14043
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -30.5,-11.5
+      parent: 2
+- proto: ComputerCargoOrdersSecurity
+  entities:
+  - uid: 14041
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,-5.5
+      parent: 2
+- proto: ComputerCargoOrdersService
+  entities:
+  - uid: 14038
+    components:
+    - type: Transform
+      pos: -14.5,-10.5
+      parent: 2
 - proto: ComputerCloningConsole
   entities:
   - uid: 5104
@@ -31905,6 +31965,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -35.5,-18.5
+      parent: 2
+  - uid: 8562
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -33.5,-8.5
       parent: 2
 - proto: ComputerShuttleCargo
   entities:
@@ -32663,8 +32729,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -33063,7 +33129,7 @@ entities:
       pos: -67.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1952.4984
+      secondsUntilStateChange: -2883.7156
       state: Closing
   - uid: 5216
     components:
@@ -37445,10 +37511,10 @@ entities:
           - 9
 - proto: EmergencyRollerBed
   entities:
-  - uid: 5917
+  - uid: 14042
     components:
     - type: Transform
-      pos: 4.4804573,-34.454243
+      pos: 7.5073566,-40.366646
       parent: 2
 - proto: EncryptionKeyCargo
   entities:
@@ -57238,16 +57304,6 @@ entities:
     - type: Transform
       pos: 51.5,-22.5
       parent: 2
-- proto: GlimmerProber
-  entities:
-  - uid: 8562
-    components:
-    - type: Transform
-      pos: -33.5,-8.5
-      parent: 2
-    - type: PointLight
-      energy: 0
-      radius: 0
 - proto: GravityGenerator
   entities:
   - uid: 8563
@@ -63435,6 +63491,13 @@ entities:
     - type: Transform
       pos: 40.5,-45.5
       parent: 2
+- proto: MachineMaterialSilo
+  entities:
+  - uid: 14044
+    components:
+    - type: Transform
+      pos: -35.5,-14.5
+      parent: 2
 - proto: MagazinePacketPistol9x17
   entities:
   - uid: 662
@@ -65114,11 +65177,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-9.5
-      parent: 2
-  - uid: 9911
-    components:
-    - type: Transform
-      pos: -35.5,-14.5
       parent: 2
   - uid: 9912
     components:
@@ -68207,6 +68265,30 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -59.5,13.5
+      parent: 2
+- proto: PresentRandomCash
+  entities:
+  - uid: 9911
+    components:
+    - type: Transform
+      pos: -16.495678,-29.45104
+      parent: 2
+  - uid: 14045
+    components:
+    - type: Transform
+      pos: 21.515015,11.481045
+      parent: 2
+  - uid: 14046
+    components:
+    - type: Transform
+      pos: -51.458424,8.605862
+      parent: 2
+- proto: PresentRandomUnsafe
+  entities:
+  - uid: 14047
+    components:
+    - type: Transform
+      pos: -51.43761,13.136299
       parent: 2
 - proto: PrinterDoc
   entities:
@@ -72534,6 +72616,12 @@ entities:
       parent: 2
     - type: Stack
       count: 15
+  - uid: 14039
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 34.47905,5.631321
+      parent: 2
 - proto: Shinai
   entities:
   - uid: 11177
