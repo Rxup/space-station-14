@@ -1185,7 +1185,7 @@
 - type: loadoutGroup #Backmen
   id: DetectiveRevolver
   name: loadout-group-security-pocket
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - WeaponRevolverCMB
   - WeaponRevolverR44
