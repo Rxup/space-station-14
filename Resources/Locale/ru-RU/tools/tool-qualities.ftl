@@ -22,3 +22,6 @@ tool-quality-rolling-name = Раскатывание
 tool-quality-rolling-tool-name = Скалка
 tool-quality-digging-name = Копание
 tool-quality-digging-tool-name = Лопата
+# White Dream
+tool-quality-advanced-prying-name = Продвинутое монтирование
+tool-quality-advanced-prying-tool-name = Топор

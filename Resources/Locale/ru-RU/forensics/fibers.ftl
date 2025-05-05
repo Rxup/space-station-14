@@ -10,6 +10,7 @@ fibers-nitrile = нитриловые
 fibers-nanomachines = изолирующие наномашинные
 fibers-chameleon = голографические хамелеонные
 fibers-rubber = резиновые
+fibers-kinetic = кинетические
 fibers-purple = фиолетовые
 fibers-red = красные
 fibers-black = чёрные

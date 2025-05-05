@@ -29,6 +29,13 @@ public sealed partial class AudioTab : Control
             scale: ContentAudioSystem.MasterVolumeMultiplier);
         masterVolume.ImmediateValueChanged += OnMasterVolumeSliderChanged;
 
+        // Backmen-ReBELL-Start
+        Control.AddOptionPercentSlider(
+            Shared.Backmen.CCVar.CCVars.BrutalDeathRattlesVolume,
+            SliderVolumeBrutalDeathRattles,
+            scale: ContentAudioSystem.BrutalDeathRattlesMultiplier);
+        // Backmen-ReBELL-End
+        
         Control.AddOptionPercentSlider(
             CVars.MidiVolume,
             SliderVolumeMidi,
