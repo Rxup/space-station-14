@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Surgery.Pain;
@@ -15,10 +16,40 @@ public enum PainDamageTypes
 public enum PainThresholdTypes
 {
     None,
+    PainGrunt,
     PainFlinch,
     Agony,
     PainShock,
     PainShockAndAgony,
+}
+
+[ByRefEvent]
+public record struct BeforePainSoundPlayed(Entity<NerveSystemComponent> NerveSystem, SoundSpecifier PainAudio, bool Cancelled = false);
+
+[Serializable, NetSerializable]
+public sealed class KillAllPainSoundsEvent(NetEntity? nerveSys) : EntityEventArgs
+{
+    public NetEntity? NerveSystem { get; } = nerveSys;
+}
+
+[Serializable, NetSerializable]
+public sealed class PlayPainSoundEvent(SoundSpecifier audio, NetEntity? source, AudioParams? audioParams) : EntityEventArgs
+{
+    public SoundSpecifier Audio { get; } = audio;
+
+    public NetEntity? Source { get; } = source;
+    public AudioParams? AudioParams { get; } = audioParams;
+}
+
+[Serializable, NetSerializable]
+public sealed class PlayLoggedPainSoundEvent(NetEntity nerveSystem, SoundSpecifier audio, NetEntity? source, AudioParams? audioParams) : EntityEventArgs
+{
+    public NetEntity NerveSystem { get; } = nerveSystem;
+
+    public SoundSpecifier Audio { get; } = audio;
+
+    public NetEntity? Source { get; } = source;
+    public AudioParams? AudioParams { get; } = audioParams;
 }
 
 [Serializable, NetSerializable]

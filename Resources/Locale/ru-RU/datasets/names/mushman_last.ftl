@@ -94,3 +94,4 @@ names-mushman-last-dataset-93 = Сабрутилцее
 names-mushman-last-dataset-94 = Нюда
 names-mushman-last-dataset-95 = Торминосий
 names-mushman-last-dataset-96 = Эквестр
+names-mushman-last-dataset-97 = Ксанзодермус

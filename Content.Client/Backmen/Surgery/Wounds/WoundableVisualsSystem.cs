@@ -26,6 +26,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         base.Initialize();
 
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity, after: [typeof(WoundSystem)]);
+        SubscribeLocalEvent<WoundableVisualsComponent, ComponentStartup>(StartupEntity, after: [typeof(WoundSystem)]);
 
         SubscribeLocalEvent<WoundableVisualsComponent, BodyPartRemovedEvent>(WoundableRemoved);
         SubscribeLocalEvent<WoundableVisualsComponent, BodyPartAddedEvent>(WoundableConnected);
@@ -56,10 +57,20 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
         }
     }
 
+    private void StartupEntity(EntityUid uid, WoundableVisualsComponent component, ref ComponentStartup args)
+    {
+        if (TryComp(uid, out SpriteComponent? partSprite))
+            UpdateWoundableVisuals(uid, component, partSprite);
+
+        var bodyPart = Comp<BodyPartComponent>(uid);
+        if (TryComp(bodyPart.Body, out SpriteComponent? bodySprite))
+            UpdateWoundableVisuals(uid, component, bodySprite);
+    }
+
     private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, ref BodyPartAddedEvent args)
     {
         var bodyPart = args.Part.Comp;
-        if (!bodyPart.Body.HasValue || !TryComp(bodyPart.Body.Value, out SpriteComponent? bodySprite))
+        if (!TryComp(bodyPart.Body, out SpriteComponent? bodySprite))
             return;
 
         foreach (var (group, sprite) in component.DamageOverlayGroups!)
@@ -152,7 +163,7 @@ public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsCo
             UpdateDamageLayerState(sprite,
                 damageLayer,
                 $"{visuals.OccupiedLayer}_{group.Key}",
-                severityPoint <= visuals.Thresholds.First() ? 0 : GetThreshold(severityPoint, visuals));
+                severityPoint < visuals.Thresholds.First() ? 0 : GetThreshold(severityPoint, visuals));
         }
 
         UpdateBleeding(uid, visuals, visuals.OccupiedLayer, sprite);

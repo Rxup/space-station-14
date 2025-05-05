@@ -1,3 +1,5 @@
+ent-MailSpamLetter = письмо спама
+    .desc = Даже космос не спасёт вас от мусорных писем.
 ent-MailRobustToolsSpam = Робаст Тулбокс - Специальное предложение!
     .desc = Реклама робаст тулбоксов.
 ent-MailNanotrasenSpam = Причины выбрать Nanotrasen!

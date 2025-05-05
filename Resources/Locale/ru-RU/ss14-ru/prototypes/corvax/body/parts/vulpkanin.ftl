@@ -1,5 +1,9 @@
 ent-PartVulpkanin = часть тела вульпканина
     .desc = { ent-BasePart.desc }
+ent-ChestVulpkanin = грудь вульпканина
+    .desc = { ent-BaseChest.desc }
+ent-GroinVulpkanin = пах вульпканина
+    .desc = { ent-BaseGroin.desc }
 ent-TorsoVulpkanin = туловище вульпканина
     .desc = { ent-PartVulpkanin.desc }
 ent-HeadVulpkanin = голова вульпканина
