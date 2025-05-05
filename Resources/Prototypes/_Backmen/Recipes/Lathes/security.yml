@@ -201,8 +201,8 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePacketRifle556
-  result: MagazinePacketRifle556
+  id: MagazinePacketRifle556UEG
+  result: MagazinePacketRifle556UEG
   materials:
     Steel: 750
 
