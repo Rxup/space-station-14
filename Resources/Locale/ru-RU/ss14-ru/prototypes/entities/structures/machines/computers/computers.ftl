@@ -72,7 +72,6 @@ ent-ComputerRoboticsControl = консоль управления роботот
     .desc = Используется для дистанционного контроля, отключения и уничтожения киборгов станции.
 ent-StationAiUploadComputer = консоль загрузки ИИ
     .desc = Используется для обновления законов станционного ИИ.
-
 ent-ComputerCargoOrdersEngineering = инженерная консоль заказов
     .desc = { ent-ComputerCargoOrders.desc }
 ent-ComputerCargoOrdersMedical = медицинская консоль заказов

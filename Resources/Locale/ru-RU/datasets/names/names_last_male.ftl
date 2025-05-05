@@ -1,4 +1,4 @@
-﻿names-last-male-1 = Смирнов
+names-last-male-1 = Смирнов
 names-last-male-2 = Иванов
 names-last-male-3 = Кузнецов
 names-last-male-4 = Соколов

@@ -3,12 +3,8 @@ names-military-first-dataset-2 = Старшина
 names-military-first-dataset-3 = Сержант
 names-military-first-dataset-4 = Капрал
 names-military-first-dataset-5 = Ефрейтор
-
-
 name-spets-commander-dataset-1 = Командир
-
 name-spets-operative-dataset-1 = Оперативник
-
 name-spets-dataset-1 = ДипКол
 name-spets-dataset-2 = БитКоп
 name-spets-dataset-3 = Джаз
