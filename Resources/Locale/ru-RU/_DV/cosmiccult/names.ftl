@@ -1,0 +1,21 @@
+dv-ascended-title-1 = Вознесённый
+dv-ascended-title-2 = Апокрифический
+dv-ascended-title-3 = Безграничный
+dv-ascended-title-4 = Трансцендентный
+
+dv-ascended-name-1 = Оно-Что-Взирает,
+dv-ascended-name-2 = Оно-Что-Сбежало,
+dv-ascended-name-3 = Оно-Что-Ждёт,
+dv-ascended-name-4 = Оно-Что-Шепчет,
+dv-ascended-name-5 = Оно-Что-Наблюдает,
+dv-ascended-name-6 = Оно-Что-Желает,
+dv-ascended-name-7 = Оно-Что-Было,
+dv-ascended-name-8 = Оно-Что-Дотягивается,
+dv-ascended-name-9 = Оно-Что-Преследует,
+dv-ascended-name-10 = Оно-Что-Опустошает,
+dv-ascended-name-11 = Оно-Что-Скрывается,
+dv-ascended-name-12 = То-Что-Желает,
+dv-ascended-name-13 = То-Что-Ждёт,
+dv-ascended-name-14 = То-Что-Наблюдает,
+dv-ascended-name-15 = То-Что-Шепчет,
+dv-ascended-name-16 = То-Что-Было,
