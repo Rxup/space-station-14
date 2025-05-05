@@ -17,7 +17,7 @@ lathe-reagent-dispense-no-container = Жидкость выливается из
 lathe-menu-result-reagent-display = { $reagent } ({ $amount } ед.)
 lathe-menu-material-display = { $material } { $amount }
 lathe-menu-tooltip-display = { $amount } { $material }
-lathe-menu-description-display = [italic]{ $description }[/italic]
+lathe-menu-description-display =  [italic]{ $description }[/italic]
 lathe-menu-material-amount =
     { $amount ->
         [1] { NATURALFIXED($amount, 2) } ({ $unit })
@@ -29,6 +29,7 @@ lathe-menu-material-amount-missing =
        *[other] { NATURALFIXED($amount, 2) } { $unit } { $material } ([color=red]{ NATURALFIXED($missingAmount, 2) } { $unit } не хватает[/color])
     }
 lathe-menu-no-materials-message = Материалы не загружены
+lathe-menu-silo-linked-message = Ресурсный сервер подключён
 lathe-menu-fabricating-message = Производится...
 lathe-menu-materials-title = Материалы
 lathe-menu-queue-title = Очередь производства

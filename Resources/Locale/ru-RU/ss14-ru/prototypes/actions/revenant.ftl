@@ -4,5 +4,7 @@ ent-ActionRevenantDefile = Осквернение
     .desc = Цена 30 эссенций.
 ent-ActionRevenantOverloadLights = Перегрузка ламп
     .desc = Цена 40 эссенций.
+ent-ActionRevenantBlight = Blight
+    .desc = Costs 50 Essence.
 ent-ActionRevenantMalfunction = Сбой
     .desc = Цена 60 эссенций.

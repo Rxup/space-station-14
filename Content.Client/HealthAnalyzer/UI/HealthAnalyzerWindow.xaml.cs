@@ -206,6 +206,9 @@ namespace Content.Client.HealthAnalyzer.UI
                 var damageTypes = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in _wound.GetBodyWounds(_target.Value, body))
                 {
+                    if (wound.Comp.IsScar)
+                        continue;
+
                     if (wound.Comp.DamageGroup == null)
                         continue;
 
@@ -245,6 +248,9 @@ namespace Content.Client.HealthAnalyzer.UI
                 var damageTypes = new Dictionary<string, FixedPoint2>();
                 foreach (var wound in wounds)
                 {
+                    if (wound.Comp.IsScar)
+                        continue;
+
                     var woundGroup = wound.Comp.DamageGroup;
                     if (woundGroup == null)
                         continue;

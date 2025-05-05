@@ -59,7 +59,7 @@ public partial class ConsciousnessSystem
         ConsciousnessComponent? consciousness = null,
         MobStateComponent? mobState = null)
     {
-        return ConsciousnessQuery.Resolve(target, ref consciousness) && consciousness.IsConscious;
+        return ConsciousnessQuery.Resolve(target, ref consciousness, false) && consciousness.IsConscious;
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public partial class ConsciousnessSystem
         EntityUid target,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             yield break;
 
         foreach (var (owner, modifier) in consciousness.Modifiers)
@@ -141,7 +141,7 @@ public partial class ConsciousnessSystem
         EntityUid target,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             yield break;
 
         foreach (var (owner, multiplier) in consciousness.Multipliers)
@@ -192,7 +192,7 @@ public partial class ConsciousnessSystem
         ConsciousnessComponent? consciousness = null)
     {
         modifier = null;
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness)
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false)
             || !consciousness.Modifiers.TryGetValue((modifierOwner, identifier), out var rawModifier))
             return false;
 

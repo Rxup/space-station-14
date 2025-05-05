@@ -1,3 +1,3 @@
-﻿ent-DeployableBarrierLocked = { ent-DeployableBarrier }
-   .desc = { ent-DeployableBarrier.desc }
-   .suffix = Закреплённый
+ent-DeployableBarrierLocked = { ent-DeployableBarrier }
+    .desc = { ent-DeployableBarrier.desc }
+    .suffix = Закреплённый
