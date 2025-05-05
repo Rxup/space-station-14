@@ -201,6 +201,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePacketRifle556
+  result: MagazinePacketRifle556
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePacketPistolACP
   result: MagazinePacketPistolACP
   materials:
