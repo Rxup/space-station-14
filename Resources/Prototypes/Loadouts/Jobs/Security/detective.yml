@@ -62,7 +62,7 @@
   id: WeaponRevolverCMB
   dummyEntity: WeaponRevolverCMB
   storage:
-    belt:
+    back:
     - WeaponRevolverCMB
     - SpeedLoader38Special
 
@@ -70,7 +70,7 @@
   id: WeaponRevolverR44
   dummyEntity: WeaponRevolverR44
   storage:
-    belt:
+    back:
     - WeaponRevolverR44
     - SpeedLoader357Magnum
 
@@ -78,7 +78,7 @@
   id: WeaponRevolverRebota
   dummyEntity: WeaponRevolverRebota
   storage:
-    belt:
+    back:
     - WeaponRevolverRebota
     - SpeedLoader38Special
 
@@ -86,7 +86,7 @@
   id: WeaponRevolverNY
   dummyEntity: WeaponRevolverNY
   storage:
-    belt:
+    back:
     - WeaponRevolverNY
     - SpeedLoader38Special
 
@@ -94,7 +94,7 @@
   id: WeaponRevolverInspector
   dummyEntity: WeaponRevolverInspector
   storage:
-    belt:
+    back:
     - WeaponRevolverInspector
     - SpeedLoader357Magnum
 
