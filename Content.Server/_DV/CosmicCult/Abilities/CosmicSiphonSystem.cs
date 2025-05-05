@@ -1,5 +1,6 @@
 using Content.Server.Ghost;
 using Content.Server.Light.Components;
+using Content.Server.Mind;
 using Content.Shared._DV.CosmicCult;
 using Content.Shared._DV.CosmicCult.Components;
 using Content.Shared.Alert;
@@ -23,7 +24,7 @@ public sealed class CosmicSiphonSystem : EntitySystem
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly CosmicCultSystem _cosmicCult = default!;
@@ -75,8 +76,8 @@ public sealed class CosmicSiphonSystem : EntitySystem
 
         args.Handled = true;
 
-        if (_mind.TryGetMind(uid, out var _, out var mind) && mind.Session != null)
-            RaiseNetworkEvent(new CosmicSiphonIndicatorEvent(GetNetEntity(target)), mind.Session);
+        if (_mind.TryGetMind(uid, out var _, out var mind))
+            RaiseNetworkEvent(new CosmicSiphonIndicatorEvent(GetNetEntity(target)));
 
         uid.Comp.EntropyStored += uid.Comp.CosmicSiphonQuantity;
         uid.Comp.EntropyBudget += uid.Comp.CosmicSiphonQuantity;

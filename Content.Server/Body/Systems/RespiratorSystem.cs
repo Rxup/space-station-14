@@ -22,7 +22,8 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._DV.CosmicCult.Components; // DeltaV
+using Content.Shared._DV.CosmicCult.Components;
+using Content.Shared.Movement.Pulling.Components; // DeltaV
 
 namespace Content.Server.Body.Systems;
 
@@ -54,20 +55,6 @@ public sealed class RespiratorSystem : EntitySystem
         SubscribeLocalEvent<RespiratorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
     }
-
-    // Goobstation start
-    // Can breathe check for grab
-    public bool CanBreathe(EntityUid uid, RespiratorComponent respirator)
-    {
-        if (respirator.Saturation < respirator.SuffocationThreshold)
-            return false;
-        if (TryComp<PullableComponent>(uid, out var pullable)
-            && pullable.GrabStage == GrabStage.Suffocate)
-            return false;
-
-        return !HasComp<KravMagaBlockedBreathingComponent>(uid);
-    }
-    // Goobstation end
 
     private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
     {
