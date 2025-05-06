@@ -151,6 +151,7 @@
 - type: entity
   parent: ToolboxInteq
   id: ToolboxInteqFilled
+  name: brown toolbox
   suffix: Filled
   components:
   - type: StorageFill
@@ -163,4 +164,3 @@
     - id: Multitool
     - id: ClothingHandsGlovesCombat
     - id: ClothingBalaclavaSwat
-    
