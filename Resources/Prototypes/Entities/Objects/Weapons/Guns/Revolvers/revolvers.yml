@@ -60,9 +60,6 @@
   - type: EmitSoundOnLand
     sound:
       collection: RevolversDrop
-  - type: EmitSoundOnCollide
-    sound:
-      path: /Audio/Backmen/Items/weapon/Revolver/collide1.ogg
   # backmen edit end
 
 - type: entity
