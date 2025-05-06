@@ -1,0 +1,84 @@
+- type: entity
+  parent: MobGoliath
+  id: MobGoliathBroodmother
+  name: goliath broodmother
+  description: An example of sexual dimorphism, this female goliath looks much different than the males of her species.  She is, however, just as dangerous, if not more.
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Bosses/broodmother.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.20
+    baseSprintSpeed : 3.00
+  - type: Bloodstream
+    bloodMaxVolume: 350
+    chemicalMaxVolume: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1200: Dead # Like 42 PKA shots
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1400
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 30
+        ArmorPiercing: 30
+        Slash: 15
+    range: 1.12 # Goob - Allows kinetic crushers to fight them without taking guaranteed damage.
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: GoliathCompound
+    blackboard:
+      VisionRadius: !type:Single
+        15
+      AggroVisionRadius: !type:Single
+        25
+  - type: NPCUseActionOnTarget
+    actionId:
+    - ActionGoliathTentacle
+    - ActionGoliathTentacleSquare
+    - ActionGoliathTentacleHollowSquare
+    - ActionGoliathTentacleDiagonalCross
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatGoliath
+      amount: 3
+    - id: MaterialGoliathHide1
+      amount: 5
+    - id: BroodmotherTongue
+      amount: 1
+  - type: Temperature
+    heatDamageThreshold: 800
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: LavalandCrateNecropolisRandom

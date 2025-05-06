@@ -24,6 +24,11 @@ public sealed class GoliathTentacleSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<GoliathSummonTentacleAction>(OnSummonAction);
+        // Backmen-Start
+        SubscribeLocalEvent<GoliathSummonTentacleSquareAction>(OnSummonSquareAction);
+        SubscribeLocalEvent<GoliathSummonTentacleHollowSquareAction>(OnSummonHollowSquareAction);
+        SubscribeLocalEvent<GoliathSummonTentacleDiagonalCrossAction>(OnSummonDiagonalCrossAction);
+        // Backmen-End
     }
 
     private void OnSummonAction(GoliathSummonTentacleAction args)
@@ -66,4 +71,130 @@ public sealed class GoliathTentacleSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    // Backmen-START
+    private void OnSummonSquareAction(GoliathSummonTentacleSquareAction args)
+    {
+        if (args.Handled || args.Coords is not { } coords)
+            return;
+
+        // TODO: animation
+
+        _popup.PopupPredicted(Loc.GetString("tentacle-ability-use-popup", ("entity", args.Performer)), args.Performer, args.Performer, type: PopupType.SmallCaution);
+        _stun.TryStun(args.Performer, TimeSpan.FromSeconds(0.8f), false);
+
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        List<EntityCoordinates> spawnPos = new();
+        for (int x = -args.Range; x <= args.Range; x++)
+        {
+            for (int y = -args.Range; y <= args.Range; y++)
+            {
+                var offset = new Vector2i(x, y);
+                var newCoords = coords.Offset(offset);
+                spawnPos.Add(newCoords);
+            }
+        }
+
+        foreach (var pos in spawnPos)
+        {
+            if (!_map.TryGetTileRef(grid, gridComp, pos, out var tileRef) ||
+                tileRef.IsSpace() ||
+                _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
+            {
+                continue;
+            }
+
+            if (_net.IsServer)
+                Spawn(args.EntityId, pos);
+        }
+
+        args.Handled = true;
+    }
+
+    private void OnSummonHollowSquareAction(GoliathSummonTentacleHollowSquareAction args)
+    {
+        if (args.Handled || args.Coords is not { } coords)
+            return;
+
+        // TODO: animation
+
+        _popup.PopupPredicted(Loc.GetString("tentacle-ability-use-popup", ("entity", args.Performer)), args.Performer, args.Performer, type: PopupType.SmallCaution);
+        _stun.TryStun(args.Performer, TimeSpan.FromSeconds(0.8f), false);
+
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        List<EntityCoordinates> spawnPos = new();
+        int range = args.Range;
+
+        for (int x = -range; x <= range; x++)
+        {
+            spawnPos.Add(coords.Offset(new Vector2i(x, range)));
+            spawnPos.Add(coords.Offset(new Vector2i(x, -range)));
+        }
+
+        for (int y = -range + 1; y <= range - 1; y++)
+        {
+            spawnPos.Add(coords.Offset(new Vector2i(range, y)));
+            spawnPos.Add(coords.Offset(new Vector2i(-range, y)));
+        }
+
+        foreach (var pos in spawnPos)
+        {
+            if (!_map.TryGetTileRef(grid, gridComp, pos, out var tileRef) ||
+                tileRef.IsSpace() ||
+                _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
+            {
+                continue;
+            }
+
+            if (_net.IsServer)
+                Spawn(args.EntityId, pos);
+        }
+
+        args.Handled = true;
+    }
+
+    private void OnSummonDiagonalCrossAction(GoliathSummonTentacleDiagonalCrossAction args)
+    {
+        if (args.Handled || args.Coords is not { } coords)
+            return;
+
+        // TODO: animation
+
+        _popup.PopupPredicted(Loc.GetString("tentacle-ability-use-popup", ("entity", args.Performer)), args.Performer, args.Performer, type: PopupType.SmallCaution);
+        _stun.TryStun(args.Performer, TimeSpan.FromSeconds(0.8f), false);
+
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        List<EntityCoordinates> spawnPos = new();
+        for (int i = -args.Range; i <= args.Range; i++)
+        {
+            spawnPos.Add(coords.Offset(new Vector2i(i, i)));
+
+            if (i != 0)
+            {
+                spawnPos.Add(coords.Offset(new Vector2i(i, -i)));
+            }
+        }
+
+        foreach (var pos in spawnPos)
+        {
+            if (!_map.TryGetTileRef(grid, gridComp, pos, out var tileRef) ||
+                tileRef.IsSpace() ||
+                _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
+            {
+                continue;
+            }
+
+            if (_net.IsServer)
+                Spawn(args.EntityId, pos);
+        }
+
+        args.Handled = true;
+    }
+    // Backmen-END
 }

@@ -106,7 +106,8 @@
       params:
         volume: -100
   - type: NPCUseActionOnTarget
-    actionId: ActionSpawnMine
+    actionId:
+    - ActionSpawnMine
   - type: BasicEntityAmmoProvider
     proto: BulletRifleBigJohn
     capacity: 20
