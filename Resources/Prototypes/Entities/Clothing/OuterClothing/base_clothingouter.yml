@@ -182,6 +182,27 @@
     slots: OUTERCLOTHING
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.4
+  # backmen edit start
+    equipSound:
+      path: /Audio/Backmen/Items/handling/backpack_equip.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/backpack_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/backpack_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/backpack_drop.ogg
+      params:
+        volume: -4
+  # backmen edit end
 
 - type: entity
   abstract: true
