@@ -6,7 +6,7 @@
   showInVote: true # not secret
   description: survival-description
   rules:
-    - MeteorSwarmScheduler
+   # - MeteorSwarmScheduler
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
     #- PsiScheduler #backmen: psi
@@ -57,7 +57,7 @@
     - StandardStationEventScheduler # backmen: game rules rework
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+   # - MeteorSwarmScheduler
     - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
@@ -88,7 +88,7 @@
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
-    - MeteorSwarmScheduler
+  #  - MeteorSwarmScheduler
     - StandardStationEventScheduler # backmen: game rules rework
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
@@ -107,7 +107,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   # - PsiScheduler #backmen: psi
-  - MeteorSwarmScheduler
+ # - MeteorSwarmScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change
@@ -149,7 +149,7 @@
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
    # - PsiScheduler #backmen: psi
-    - MeteorSwarmScheduler
+  #  - MeteorSwarmScheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
@@ -194,7 +194,7 @@
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
    # - PsiScheduler #backmen: psi
-    - MeteorSwarmScheduler
+   # - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
@@ -226,10 +226,10 @@
     - DummyNonAntagChance
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - MeteorSwarmScheduler
+   # - MeteorSwarmScheduler
     - WageScheduler #backmen: currency
    # - PsiScheduler #backmen: psi
-    - CalmMeteorSwarmScheduler #backmen: calm-scheduler
+   # - CalmMeteorSwarmScheduler #backmen: calm-scheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
@@ -247,7 +247,7 @@
     - DummyNonAntagChance
     - Revolutionary
     - SubGamemodesRule
-    - MeteorSwarmScheduler
+  #  - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - WageScheduler #backmen: currency
@@ -265,7 +265,7 @@
   - Wizard
   - DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
-  - MeteorSwarmScheduler
+ # - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
@@ -284,7 +284,7 @@
   - Zombie
   - WageScheduler #backmen: currency
  # - PsiScheduler #backmen: psi
-  - MeteorSwarmScheduler
+ # - MeteorSwarmScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change

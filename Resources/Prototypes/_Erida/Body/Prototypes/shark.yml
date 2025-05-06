@@ -27,7 +27,7 @@
       - left leg
       - tail
       organs:
-      stomach: OrganSharkStomach
+      stomach: OrganHumanStomach
       liver: OrganAnimalLiver
       kidneys: OrganHumanKidneys
     right arm:
