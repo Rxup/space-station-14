@@ -10,3 +10,4 @@ ui-lobby-open-vote-menu = Меню голосований
 ui-lobby-changelog-button = Список изменений
 ui-lobby-changelog = Список изменений:
 ui-lobby-changelog-not-found = Не удалось загрузить список изменений
+ui-lobby-open-votemenu = Открыть меню голосований 
