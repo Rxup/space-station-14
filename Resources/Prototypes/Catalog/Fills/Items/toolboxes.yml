@@ -147,3 +147,19 @@
       - id: IngotGold
       - id: DrinkGoldenCup
         prob: 0.05
+
+- type: entity
+  parent: ToolboxInteq
+  id: ToolboxSyndicateFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Crowbar
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingBalaclavaSwat
