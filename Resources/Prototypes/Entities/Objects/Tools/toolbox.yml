@@ -164,7 +164,8 @@
   description: An elegant toolbox.
   components:
   - type: Sprite
-    sprite: Objects/Tools/Toolboxes/toolbox_gold.rsi
+    sprite: Objects/Tools/Toolboxes/toolbox_inteq.rsi
     state: icon
   - type: Item
-    sprite: Objects/Tools/Toolboxes/toolbox_gold.rsi
+    sprite: Objects/Tools/Toolboxes/toolbox_inteq.rsi
+    
