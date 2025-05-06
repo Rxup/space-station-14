@@ -36,6 +36,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Standing;
 
@@ -49,9 +50,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
@@ -235,13 +234,11 @@ public abstract class SharedLayingDownSystem : EntitySystem
             !inputMover.CanMove)
             return;
 
-        //RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
-        TryProcessAutoGetUp((uid,layingDown));
-
         if (_standing.IsDown(uid, standing))
             TryStandUp(uid, layingDown, standing);
         else
             TryLieDown(uid, layingDown, standing);
+
     }
 
     private void OnStandingUpDoAfter(EntityUid uid, StandingStateComponent component, StandingUpDoAfterEvent args)
@@ -279,6 +276,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         _standing.Stand(uid, standingState);
     }
 
+    private const int NotSafeStanUp = (int)CollisionGroup.MidImpassable | (int)CollisionGroup.BlobImpassable;
     public bool IsSafeStanUp(EntityUid entity, [NotNullWhen(false)] out EntityUid? obj)
     {
         var xform = Transform(entity);
@@ -293,7 +291,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         Entity<FixturesComponent?, Robust.Shared.Physics.Components.PhysicsComponent?> entObj = (entity, fixEnt, physEnt);
         foreach (var ent in _physics.GetEntitiesIntersectingBody(entity,
-                     (int)CollisionGroup.MidImpassable | (int)CollisionGroup.BlobImpassable,
+                     NotSafeStanUp,
                      body: physEnt,
                      xform: xform,
                      fixtureComp: fixEnt)
@@ -302,12 +300,30 @@ public abstract class SharedLayingDownSystem : EntitySystem
             if (!TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var phys))
                 continue;
 
-            if (!phys.CanCollide)
+            if (!phys.CanCollide || !phys.Hard)
                 continue;
 
             if ((phys.CollisionLayer & (int)CollisionGroup.BlobImpassable) != 0 &&
                 (physEnt.CollisionMask & (int)CollisionGroup.BlobImpassable) == 0)
                 continue;
+
+            if (TryComp<FixturesComponent>(ent, out var fix))
+            {
+                // slow check
+                foreach (var (entFixId, entFix) in fix.Fixtures)
+                {
+                    if(
+                        entFix.Hard &&
+                        (entFix.CollisionLayer & NotSafeStanUp) == 0)
+                        continue;
+
+                    if(!entFix.Hard)
+                        continue;
+
+                    obj = ent;
+                    return false;
+                }
+            }
 
             obj = ent;
             return false;
