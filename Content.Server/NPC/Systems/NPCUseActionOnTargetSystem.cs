@@ -22,6 +22,7 @@ public sealed class NPCUseActionOnTargetSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<NPCUseActionOnTargetComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<NPCUseActionOnTargetComponent, ComponentShutdown>(OnShutdown); // Backmen
     }
 
     // Backmen-EDIT-Start
@@ -39,6 +40,11 @@ public sealed class NPCUseActionOnTargetSystem : EntitySystem
 
             ent.Comp.ActionEntities.Add(actionEnt.Value);
         }
+    }
+
+    private void OnShutdown(EntityUid uid, NPCUseActionOnTargetComponent comp, ComponentShutdown args)
+    {
+        _lastUsed.Remove(uid);
     }
 
     public bool TryUseAction(EntityUid user, EntityUid target, List<EntityUid> actionEntities) // Backmen-EDIT | Renamed to TryUseAction
