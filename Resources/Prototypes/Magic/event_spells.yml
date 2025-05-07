@@ -320,7 +320,8 @@
       - id: WeaponRifleFamas
         orGroup: Guns
 #Backmen-weapon-end
-      speech: action-speech-spell-summon-guns
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summon-guns
 
 - type: entity
   id: ActionSummonMagic
@@ -367,4 +368,5 @@
         orGroup: Magics
       - id: RGBStaff
         orGroup: Magics
-      speech: action-speech-spell-summon-magic
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summon-magic
