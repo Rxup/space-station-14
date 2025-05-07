@@ -1,6 +1,6 @@
 - type: entity
-  parent: ToolboxInteq
-  id: ToolboxInteqFilled
+  parent: ToolboxInteQ
+  id: ToolboxInteQFilled
   suffix: Filled
   components:
   - type: StorageFill

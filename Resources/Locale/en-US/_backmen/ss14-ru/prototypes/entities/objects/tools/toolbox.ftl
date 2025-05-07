@@ -1,2 +1,2 @@
-ent-ToolboxInteq = brown toolbox
+ent-ToolboxInteQ = brown toolbox
    .desc = An elegant toolbox.

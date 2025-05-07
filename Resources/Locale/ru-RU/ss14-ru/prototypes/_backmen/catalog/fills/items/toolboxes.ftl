@@ -1,3 +1,3 @@
-ent-ToolboxInteqFilled = коричневый ящик для инструментов
+ent-ToolboxInteQFilled = коричневый ящик для инструментов
     .suffix = Заполненный
-    .desc = { ent-ToolboxInteq.desc }
+    .desc = { ent-ToolboxInteQ.desc }

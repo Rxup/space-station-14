@@ -1,11 +1,11 @@
 - type: entity
   name: brown toolbox
   parent: ToolboxBase
-  id: ToolboxInteq
+  id: ToolboxInteQ
   description: An elegant toolbox.
   components:
   - type: Sprite
-    sprite: Objects/Tools/Toolboxes/toolbox_inteq.rsi
+    sprite: Objects/Tools/Toolboxes/toolbox_inteQ.rsi
     state: icon
   - type: Item
-    sprite: Objects/Tools/Toolboxes/toolbox_inteq.rsi
+    sprite: Objects/Tools/Toolboxes/toolbox_inteQ.rsi

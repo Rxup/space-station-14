@@ -1,3 +1,3 @@
-ent-ToolboxInteqFilled = brown toolbox
+ent-ToolboxInteQFilled = brown toolbox
     .suffix = Filled
-    .desc = { ent-ToolboxInteq.desc }
+    .desc = { ent-ToolboxInteQ.desc }
