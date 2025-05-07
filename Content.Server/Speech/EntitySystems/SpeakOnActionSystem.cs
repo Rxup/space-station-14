@@ -4,7 +4,7 @@ using Content.Shared.Speech;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Actions.Events;
-
+using Content.Shared.Backmen.Chat;
 
 namespace Content.Server.Speech.EntitySystems;
 
