@@ -10,6 +10,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
 using Robust.Shared.Toolshed.TypeParsers;
@@ -21,6 +22,7 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 public sealed class ChangeAccessCommand : ToolshedCommand
 {
     private AccessSystem? _accessSystem;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     #region Set
 
@@ -28,7 +30,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? SetGroupAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<AccessGroupPrototype> accessGroupPrototype
+        [CommandArgument] ProtoId<AccessGroupPrototype> accessGroupPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
@@ -46,7 +48,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> SetGroupAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<AccessGroupPrototype> accessGroupPrototype
+        [CommandArgument] ProtoId<AccessGroupPrototype> accessGroupPrototype
     )
     {
         return input.Where(ent => SetGroupAccessLevel(ctx, ent, accessGroupPrototype) != null);
@@ -56,11 +58,11 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? SetJobAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<JobPrototype> jobPrototype
+        [CommandArgument] ProtoId<JobPrototype> jobPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
-        _accessSystem.SetAccessToJob(input, jobPrototype.Value, false);
+        _accessSystem.SetAccessToJob(input, _prototype.Index(jobPrototype), false);
         return input;
     }
 
@@ -68,7 +70,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> SetJobAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<JobPrototype> jobPrototype
+        [CommandArgument] ProtoId<JobPrototype> jobPrototype
     )
     {
         return input.Where(ent => SetJobAccessLevel(ctx, ent, jobPrototype) != null);
@@ -82,7 +84,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? AddAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<AccessLevelPrototype> accessPrototype
+        [CommandArgument] ProtoId<AccessLevelPrototype> accessPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
@@ -100,7 +102,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> AddAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<AccessLevelPrototype> accessPrototype
+        [CommandArgument] ProtoId<AccessLevelPrototype> accessPrototype
     )
     {
         return input.Where(ent => AddAccessLevel(ctx, ent, accessPrototype) != null);
@@ -110,7 +112,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? AddGroupAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<AccessGroupPrototype> accessGroupPrototype
+        [CommandArgument] ProtoId<AccessGroupPrototype> accessGroupPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
@@ -128,7 +130,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> AddGroupAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<AccessGroupPrototype> accessGroupPrototype
+        [CommandArgument] ProtoId<AccessGroupPrototype> accessGroupPrototype
     )
     {
         return input.Where(ent => AddGroupAccessLevel(ctx, ent, accessGroupPrototype) != null);
@@ -138,12 +140,12 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? AddJobAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<JobPrototype> jobPrototype
+        [CommandArgument] ProtoId<JobPrototype> jobPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
 
-        if (!_accessSystem.TryUnionWithJob(input, jobPrototype.Value, false))
+        if (!_accessSystem.TryUnionWithJob(input, _prototype.Index(jobPrototype), false))
         {
             ctx.ReportError(new AccessCompNotExists());
             return null;
@@ -156,7 +158,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> AddJobAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<JobPrototype> jobPrototype
+        [CommandArgument] ProtoId<JobPrototype> jobPrototype
     )
     {
         return input.Where(ent => AddJobAccessLevel(ctx, ent, jobPrototype) != null);
@@ -170,7 +172,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? RemoveAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<AccessLevelPrototype> accessPrototype
+        [CommandArgument] ProtoId<AccessLevelPrototype> accessPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
@@ -188,7 +190,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> RemoveAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<AccessLevelPrototype> accessPrototype
+        [CommandArgument] ProtoId<AccessLevelPrototype> accessPrototype
     )
     {
         return input.Where(ent => RemoveAccessLevel(ctx, ent, accessPrototype) != null);
@@ -198,7 +200,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? RemoveGroupAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<AccessGroupPrototype> accessGroupPrototype
+        [CommandArgument] ProtoId<AccessGroupPrototype> accessGroupPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
@@ -216,7 +218,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> RemoveGroupAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<AccessGroupPrototype> accessGroupPrototype
+        [CommandArgument] ProtoId<AccessGroupPrototype> accessGroupPrototype
     )
     {
         return input.Where(ent => RemoveGroupAccessLevel(ctx, ent, accessGroupPrototype) != null);
@@ -226,12 +228,12 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private EntityUid? RemoveJobAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<JobPrototype> jobPrototype
+        [CommandArgument] ProtoId<JobPrototype> jobPrototype
     )
     {
         _accessSystem ??= GetSys<AccessSystem>();
 
-        if (!_accessSystem.TryExceptWithJob(input, jobPrototype.Value, false))
+        if (!_accessSystem.TryExceptWithJob(input, _prototype.Index(jobPrototype), false))
         {
             ctx.ReportError(new AccessCompNotExists());
             return null;
@@ -244,7 +246,7 @@ public sealed class ChangeAccessCommand : ToolshedCommand
     private IEnumerable<EntityUid> RemoveJobAccessLevel(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<JobPrototype> jobPrototype
+        [CommandArgument] ProtoId<JobPrototype> jobPrototype
     )
     {
         return input.Where(ent => RemoveJobAccessLevel(ctx, ent, jobPrototype) != null);
