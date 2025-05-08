@@ -35,7 +35,7 @@ public sealed class StationRecordCommand : ToolshedCommand
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
         [CommandArgument] ValueRef<ICommonSession> playerRef,
-        [CommandArgument] Prototype<JobPrototype> job)
+        [CommandArgument] ProtoId<JobPrototype> job)
     {
         var player = playerRef.Evaluate(ctx);
         if (player is null || player.AttachedEntity is null ||
@@ -113,7 +113,7 @@ public sealed class StationRecordCommand : ToolshedCommand
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
         [CommandArgument] ValueRef<ICommonSession> playerRef,
-        [CommandArgument] Prototype<JobPrototype> job
+        [CommandArgument] ProtoId<JobPrototype> job
     )
         => input.Select(x => Add(ctx, x, playerRef, job));
 
