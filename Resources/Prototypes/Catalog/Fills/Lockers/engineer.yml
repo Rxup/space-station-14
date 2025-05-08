@@ -95,6 +95,7 @@
       - id: MedkitOxygenFilled
       - id: HolofanProjector
       - id: RCD
+      - id: RPD
       - id: RCDAmmo
 
 - type: entity
@@ -111,6 +112,7 @@
       - id: MedkitOxygenFilled
       - id: HolofanProjector
       - id: RCD
+      - id: RPD
       - id: RCDAmmo
 
 - type: entity
