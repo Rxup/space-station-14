@@ -36,6 +36,8 @@ ent-ClothingUniformJumpskirtHoSAlt = юбка-водолазка главы сл
     .desc = Это водолазка, носимая теми, кто достаточно силён и дисциплинирован, чтобы достичь должности главы службы безопасности. Её прочная ткань обеспечивает слабую защиту от механических повреждений.
 ent-ClothingUniformJumpskirtHoSParadeMale = парадная форма главы службы безопасности
     .desc = Роскошная униформа главы службы безопасности, для особых случаев.
+ent-ClothingUniformJumpskirtCommandGeneric = юбка-комбинезон командования
+    .desc = Стандартная юбка-комбинезон в цветах командования, не предназначенная для конкретного отдела.
 ent-ClothingUniformJumpskirtHydroponics = юбка-комбинезон ботаника
     .desc = Имеет сильный запах земли. Будем надеяться, что она просто грязная, а не вся в земле.
 ent-ClothingUniformJumpskirtJanitor = юбка-комбинезон уборщика
@@ -49,7 +51,7 @@ ent-ClothingUniformJumpskirtParamedic = юбка-комбинезон парам
 ent-ClothingUniformJumpskirtBrigmedic = юбка-комбинезон бригмедика
     .desc = Форма, выдаваемая квалифицированным и прошедшим обучение лицам. Никого не волнует, что обучение продлилось полдня.
 ent-ClothingUniformJumpskirtPrisoner = юбка-комбинезон заключённого
-    .desc = Потрачено.
+    .desc = Юбка-комбинезон, предназначенная для заключенных. Датчики костюма включены по умолчанию и не подлежат отключению.
 ent-ClothingUniformJumpskirtQM = юбка-комбинезон квартирмейстера
     .desc = Что Браун может сделать для вас?
 ent-ClothingUniformJumpskirtQMTurtleneck = юбка-водолазка квартирмейстера
@@ -78,8 +80,7 @@ ent-ClothingUniformJumpskirtHosFormal = торжественное платье 
     .desc = Платье для особых случаев.
 # Corvax-HiddenDesc-Start
 ent-ClothingUniformJumpskirtOperative = юбка-комбинезон оперативника
-    .desc = Униформа для проведения тактических операций в глубоком космосе.
-# Corvax-HiddenDesc-End
+    .desc = Униформа элитных агентов синдиката, выполняющих тактические операции в глубоком космосе.
 ent-ClothingUniformJumpskirtTacticool = тактическая юбка-комбинезон
     .desc = Униформа для оперативных LARPеров, выполняющих тактические кражи изолированных перчаток в глубоком космосе.
 ent-ClothingUniformJumpskirtAtmos = юбка-комбинезон атмосферного техника

@@ -1,3 +1,5 @@
+ent-CrateFunSharkPlushieBulk = bulk soft toy shark crate
+    .desc = A crate filled with a variety of everyone's favorite finned friend. Rawr!
 ent-CrateFunPlushie = ящик плюшевых игрушек
     .desc = Куча мягких плюшевых игрушек. Разложите их повсюду, а потом подумайте, как вы объясните эту покупку NT.
 ent-CrateFunLizardPlushieBulk = оптовый ящик плюшевых ящеров
@@ -26,6 +28,8 @@ ent-CrateFunParty = набор для вечеринок
     .desc = Все участники вечеринки ждут, когда вы его откроете. Включает в себя подарки, напитки и даже торт.
 ent-CrateFunWaterGuns = ящик водяных пистолетов
     .desc = Специальное летнее предложение с набором ярких водяных пистолетов. Не содержит воды.
+ent-CrateFunFoamGuns = ящик "Сила Пены"
+    .desc = Содержит четыре винтовки "Сила Пены", несколько гранат и дополнительные патроны. Или [УДАЛЕНО], или ничего!
 ent-CrateFunBoxing = ящик боксёрского снаряжения
     .desc = Хотите организовать подпольный бойцовский клуб или провести турнир среди сотрудников станции? Этот ящик для вас!
 ent-CrateFunPirate = { ent-CratePirate }

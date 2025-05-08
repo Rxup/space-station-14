@@ -1,5 +1,7 @@
 ent-BaseChemistryEmptyVial = пробирка
     .desc = Маленькая пробирка.
+ent-BorgVial = интегрированный шприц
+    .desc = Шприц, установленный прямо в киборга.
 ent-VestineChemistryVial = { ent-BaseChemistryEmptyVial }
     .suffix = Вестин
     .desc = { ent-BaseChemistryEmptyVial.desc }

@@ -1,7 +1,6 @@
 ent-GunSafeInteQFilled = { ent-GunSafe }
     .desc = { ent-GunSafe.desc }
     .suffix = Сизо, Заполненный
-
 ent-LockerInteQVanguardLeaderSizoFilled = { ent-LockerInteQVanguardLeader }
     .desc = { ent-LockerInteQVanguardLeader.desc }
     .suffix = Сизо, Коммандер, Заполненный

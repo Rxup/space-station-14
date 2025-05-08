@@ -313,9 +313,6 @@ public abstract partial class WoundSystem : EntitySystem
             if (component.WoundSeverityPoint < value)
                 continue;
 
-            if (severity == WoundSeverity.Healed)
-                continue;
-
             nearestSeverity = severity;
             break;
         }
