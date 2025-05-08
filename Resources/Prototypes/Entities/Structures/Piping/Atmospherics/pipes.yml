@@ -53,8 +53,7 @@
   - type: Appearance
   - type: PipeColorVisuals
   - type: NodeContainer
-  # backmen - Allow device-on-pipe stacking
-  # - type: PipeRestrictOverlap
+  - type: PipeRestrictOverlap
   - type: AtmosUnsafeUnanchor
   - type: AtmosPipeColor
   - type: AtmosMonitoringConsoleDevice
@@ -67,19 +66,10 @@
   - type: StaticPrice
     price: 30
 
-# backmen - Allow device-on-pipe stacking
-- type: entity
-  abstract: true
-  parent: GasPipeBase
-  id: GasPipeNoOverlap
-  components:
-  - type: PipeRestrictOverlap
-
 #Note: The PipeDirection of the PipeNode should be the south-facing version, because the entity starts at an angle of 0 (south)
 
 - type: entity
-  # backmen - Allow device-on-pipe stacking
-  parent: GasPipeNoOverlap
+  parent: GasPipeBase
   id: GasPipeHalf
   suffix: Half
   components:
@@ -91,8 +81,8 @@
         pipeDirection: South
   - type: Sprite
     layers:
-      - state: pipeHalf
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pipeHalf
+      map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: Construction
     graph: GasPipe
     node: half
@@ -102,8 +92,7 @@
     - PipeNetworks
 
 - type: entity
-  # backmen - Allow device-on-pipe stacking
-  parent: GasPipeNoOverlap
+  parent: GasPipeBase
   id: GasPipeStraight
   suffix: Straight
   components:
@@ -115,8 +104,8 @@
         pipeDirection: Longitudinal
   - type: Sprite
     layers:
-      - state: pipeStraight
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: Construction
     graph: GasPipe
     node: straight
@@ -140,8 +129,7 @@
     - PipeNetworks
 
 - type: entity
-  # backmen - Allow device-on-pipe stacking
-  parent: GasPipeNoOverlap
+  parent: GasPipeBase
   id: GasPipeBend
   suffix: Bend
   components:
@@ -153,8 +141,8 @@
         pipeDirection: SWBend
   - type: Sprite
     layers:
-      - state: pipeBend
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pipeBend
+      map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: Construction
     graph: GasPipe
     node: bend
@@ -185,8 +173,7 @@
     - PipeNetworks
 
 - type: entity
-  # backmen - Allow device-on-pipe stacking
-  parent: GasPipeNoOverlap
+  parent: GasPipeBase
   id: GasPipeTJunction
   suffix: TJunction
   components:
@@ -198,8 +185,8 @@
         pipeDirection: TSouth
   - type: Sprite
     layers:
-      - state: pipeTJunction
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pipeTJunction
+      map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: Construction
     graph: GasPipe
     node: tjunction
@@ -226,8 +213,7 @@
     - PipeNetworks
 
 - type: entity
-  # backmen - Allow device-on-pipe stacking
-  parent: GasPipeNoOverlap
+  parent: GasPipeBase
   id: GasPipeFourway
   suffix: Fourway
   components:
@@ -241,8 +227,8 @@
         pipeDirection: Fourway
   - type: Sprite
     layers:
-      - state: pipeFourway
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pipeFourway
+      map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: Construction
     graph: GasPipe
     node: fourway
@@ -267,8 +253,7 @@
 
 - type: entity
   id: GasPipeBroken
-  # backmen - Allow device-on-pipe stacking
-  parent: GasPipeNoOverlap
+  parent: GasPipeBase
   name: broken pipe
   description: It used to hold gas.
   components:
@@ -277,8 +262,8 @@
     drawdepth: ThinPipe
     state: pipeBroken
     layers:
-      - state: pipeBroken
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pipeBroken
+      map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: Construction
     graph: GasPipe
     node: broken
