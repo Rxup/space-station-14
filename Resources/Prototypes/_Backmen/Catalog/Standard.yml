@@ -218,16 +218,16 @@
   id: CityOfChildhood
   name: Гражданская оборона - Город детства
   path:
-    path: /Audio/Backmen/Jukebox/M8L8TH/GrazhdanskayaOborona_CityOfChildhood.ogg
+    path: /Audio/Backmen/Jukebox/GrazhdanskayaOborona/GrazhdanskayaOborona_CityOfChildhood.ogg
 
 - type: jukebox
   id: MyDefense
   name: Гражданская оборона - Моя оборона
   path:
-    path: /Audio/Backmen/Jukebox/M8L8TH/GrazhdanskayaOborona_MyDefense.ogg
+    path: /Audio/Backmen/Jukebox/GrazhdanskayaOborona/GrazhdanskayaOborona_MyDefense.ogg
 
 - type: jukebox
   id: VsePiPlanu
   name: Гражданская оборона - Всё идёт по плану
   path:
-    path: /Audio/Backmen/Jukebox/M8L8TH/GrazhdanskayaOborona_VseIdetPoPlanu.ogg
+    path: /Audio/Backmen/Jukebox/GrazhdanskayaOborona/GrazhdanskayaOborona_VseIdetPoPlanu.ogg
