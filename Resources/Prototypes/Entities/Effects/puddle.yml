@@ -190,8 +190,8 @@
     - type: Sprite
       drawdepth: FloorObjects
       color: "#FFFFFF80"
-    - type: Physics
-      bodyType: Static
+#    - type: Physics
+#      bodyType: Static
     - type: Fixtures
       fixtures:
         slipFixture:

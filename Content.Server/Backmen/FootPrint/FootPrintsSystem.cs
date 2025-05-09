@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Atmos.Components;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -9,6 +10,7 @@ using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
+using Robust.Shared.Configuration;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
@@ -28,10 +30,14 @@ public sealed class FootPrintsSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
 
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
+
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<LayingDownComponent> _layingQuery;
+
+    private bool _footprintEnabled = false;
 
     public override void Initialize()
     {
@@ -42,21 +48,15 @@ public sealed class FootPrintsSystem : EntitySystem
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _layingQuery = GetEntityQuery<LayingDownComponent>();
 
+        Subs.CVar(_configuration, CCVars.EnableFootPrints, value => _footprintEnabled = value, true);
+
         SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
         SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
-        SubscribeLocalEvent<FootPrintComponent, ComponentGetState>(OnGetState);
     }
 
 
     private const double ActionJobTime = 0.005;
     private readonly JobQueue _actionJobQueue = new(ActionJobTime);
-
-    private void OnGetState(Entity<FootPrintComponent> ent, ref ComponentGetState args)
-    {
-        args.State = new FootPrintState(TerminatingOrDeleted(ent.Comp.PrintOwner)
-            ? NetEntity.Invalid
-            : GetNetEntity(ent.Comp.PrintOwner));
-    }
 
     private void OnStartupComponent(EntityUid uid, FootPrintsComponent comp, ComponentStartup args)
     {
@@ -85,6 +85,9 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private void OnMove(EntityUid uid, FootPrintsComponent comp, ref MoveEvent args)
     {
+        if (!_footprintEnabled)
+            return;
+
         // Less resource expensive checks first
         if (comp.PrintsColor.A <= 0f || TerminatingOrDeleted(uid))
             return;
@@ -121,12 +124,23 @@ public sealed class FootPrintsSystem : EntitySystem
         var footPrintComponent =
             Comp<FootPrintComponent>(entity); // There's NO way there's no footprint component in a FOOTPRINT
 
-        footPrintComponent.PrintOwner = uid;
-        Dirty(entity, footPrintComponent);
-
         if (_appearanceQuery.TryComp(entity, out var appearance))
         {
-            _appearance.SetData(entity, FootPrintVisualState.State, PickState(uid, dragging), appearance);
+            var state = PickState(uid, dragging);
+
+            _appearance.SetData(entity, FootPrintValue.Rsi, comp.RsiPath, appearance);
+            var layer = state switch
+            {
+                FootPrintVisuals.BareFootPrint => comp.RightStep
+                    ? comp.RightBarePrint
+                    : comp.LeftBarePrint,
+                FootPrintVisuals.ShoesPrint => comp.ShoesPrint,
+                FootPrintVisuals.SuitPrint => comp.SuitPrint,
+                FootPrintVisuals.Dragging => _random.Pick(comp.DraggingPrint),
+                _ => "error",
+            };
+
+            _appearance.SetData(entity, FootPrintValue.Layer, layer, appearance);
             _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
         }
 
