@@ -31,5 +31,7 @@ ent-ClothingShoesCluwne = клувеньские туфли
     .suffix = Неснимаемый
 ent-ClothingShoesClownLarge = большие клоунские туфли
     .desc = Когда вам нужно выделиться в комнате, полной клоунов!
+ent-ClothingFleshSpiderLegs = Flesh Spider Legs
+    .desc = Flesh Spider Legs.
 ent-ClothingShoesSkates = роликовые коньки
     .desc = Надевай свои ролики!

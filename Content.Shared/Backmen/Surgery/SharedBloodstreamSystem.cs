@@ -256,11 +256,11 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             var oldBleedsAmount = component.BleedingAmountRaw;
             component.BleedingAmountRaw = args.Component.WoundSeverityPoint * _bleedingSeverityTrade;
 
+            var severityPenalty = component.BleedingAmountRaw - oldBleedsAmount / _bleedsScalingTime;
+            component.SeverityPenalty += severityPenalty;
+
             if (component.IsBleeding)
             {
-                var severityPenalty = component.BleedingAmountRaw - oldBleedsAmount / _bleedsScalingTime;
-                component.SeverityPenalty += severityPenalty;
-
                 // Pump up the bleeding if hit again.
                 component.ScalingLimit += args.Delta * _bleedingSeverityTrade;
             }

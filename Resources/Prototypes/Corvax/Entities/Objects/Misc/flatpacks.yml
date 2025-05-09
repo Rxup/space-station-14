@@ -5,4 +5,4 @@
   description: A flatpack used for constructing a document printer.
   components:
   - type: Flatpack
-    entity: PrinterDoc
+    entity: PhotocopierCommand #BACKMEN-EDIT
