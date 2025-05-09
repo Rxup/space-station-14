@@ -189,3 +189,45 @@
   name: Ryan Amon - The Hunter
   path:
     path: /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_TheHunter.ogg
+
+- type: jukebox
+  id: TheOrange
+  name: Серёга Пират - Апельсин
+  path:
+    path: /Audio/Backmen/Jukebox/SeregaPirat/SeregaPirat_Apelsin.ogg
+
+- type: jukebox
+  id: HymnDakhaka
+  name: Серёга Пират - Гимн Дахака
+  path:
+    path: /Audio/Backmen/Jukebox/SeregaPirat/SeregaPirat_GimnDakhaka.ogg
+
+- type: jukebox
+  id: TheMasha
+  name: Серёга Пират - Маша
+  path:
+    path: /Audio/Backmen/Jukebox/SeregaPirat/SeregaPirat_Masha.ogg
+
+- type: jukebox
+  id: TearsOfAutumn
+  name: M8L8TH - Слёзы Осени
+  path:
+    path: /Audio/Backmen/Jukebox/M8L8TH/M8L8TH_SljozyOseni.ogg
+
+- type: jukebox
+  id: CityOfChildhood
+  name: Гражданская оборона - Город детства
+  path:
+    path: /Audio/Backmen/Jukebox/M8L8TH/GrazhdanskayaOborona_CityOfChildhood.ogg
+
+- type: jukebox
+  id: MyDefense
+  name: Гражданская оборона - Моя оборона
+  path:
+    path: /Audio/Backmen/Jukebox/M8L8TH/GrazhdanskayaOborona_MyDefense.ogg
+
+- type: jukebox
+  id: VsePiPlanu
+  name: Гражданская оборона - Всё идёт по плану
+  path:
+    path: /Audio/Backmen/Jukebox/M8L8TH/GrazhdanskayaOborona_VseIdetPoPlanu.ogg
