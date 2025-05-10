@@ -47,6 +47,17 @@
     magState: mag
     steps: 2
     zeroVisible: true
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/weapons/Pulse/pickup1.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  # backmen edit start
 
 - type: entity
   name: AP-12 NT

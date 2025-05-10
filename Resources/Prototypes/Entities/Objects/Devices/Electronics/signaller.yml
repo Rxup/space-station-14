@@ -24,6 +24,17 @@
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
     range: 15
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/component_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/component_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/component_drop.ogg
+  # backmen edit end
 
 - type: entity
   parent: RemoteSignaller

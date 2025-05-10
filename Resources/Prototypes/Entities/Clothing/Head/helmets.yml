@@ -19,6 +19,14 @@
   id: ClothingHeadHelmetArmoredBase
   abstract: true
   components:
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/helmet_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/helmet_drop.ogg
+  # backmen edit end
   - type: Armor #Values seem to let the user survive one extra hit if attacked consistently.
     coverage: # backmen: armour coverage
     - Head
