@@ -118,4 +118,7 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> StrictPipeStacking =
         CVarDef.Create("atmos.strict_pipe_stacking", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> EnableFootPrints =
+        CVarDef.Create("footprint.enabled", true, CVar.SERVERONLY);
 }

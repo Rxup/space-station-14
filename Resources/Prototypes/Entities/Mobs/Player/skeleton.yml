@@ -9,6 +9,7 @@
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: hugging-success-generic-others
   - type: FootPrints
+  - type: PotentialPsionic
 
 - type: entity
   name: skeleton pirate
