@@ -46,3 +46,8 @@ alert-level-sigma-instructions = All personnel must go to their department.
 alert-level-white = white
 alert-level-white-announcement = Aurora levels on station approaching dangerous levels. Disable all aurora beacons. Seek psionic isolation. Authorized personnel are to report mind swaps and aurora beacon locations. Science is to neutralize all registered psionics.
 alert-level-white-instructions = Crew members are advised to seek psionic isolation. All psionics are to be neutralized. Radiance beacons are to be disabled.
+
+## DeltaV - Cosmic Cult
+alert-level-octarine = Octarine
+alert-level-octarine-announcement = A cataclysmic noospheric event threatens to envelop realspace. Station crew are to contain the event if possible, or else evacuate.
+alert-level-octarine-instructions = Crewmembers are advised to listen to heads of staff for more information.

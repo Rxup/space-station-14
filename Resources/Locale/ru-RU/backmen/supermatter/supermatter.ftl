@@ -1,9 +1,9 @@
 supermatter-self = Суперматерия
-supermatter-danger-message = Danger! Crystal hyperstructure integrity faltering! Integrity: { $integrity }%
-supermatter-warning-message = WARNING! Crystal hyperstructure integrity reaching critical levels! Integrity: { $integrity }%
+supermatter-danger-message = Опасность! Нарушена целостность кристаллической гиперструктуры! Целостность: { $integrity }%
+supermatter-warning-message = Предупреждение! Целостность кристаллической гиперструктуры достигает критического уровня! Целостность: { $integrity }%
 supermatter-emergency = Опасность! Целостность гиперструктуры кристалла нарушена! Целостность: { $integrity }%
-supermatter-delamination-overmass = The Supermatter has Reached Critical Mass Falure. Singularity formation Imminent
-supermatter-delamination-default = The Supermatter has Reached Critical Integrity Falure. Emergency Causality Destabilization Field has been Activated.
+supermatter-delamination-overmass = Сверхматерия достигла критической массы Разрушения. Формирование сингулярности неизбежно
+supermatter-delamination-default = Целостность Сверхматерии достигла критической точки. Активировано поле дестабилизации аварийной причинно-следственной связи.
 supermatter-warning = ВНИМАНИЕ! Целостность гиперструктуры кристалла приближается к критическому уровню! Целостность: { $integrity }%
 supermatter-safe-alert = Целостность гиперструктуры кристалла возвращается к безопасным рабочим параметрам. Аварийная блокировка отключена. Целостность: { $integrity }%
 supermatter-examine-integrity = Его целостность равна [color=yellow]{ $integrity }%[/color].
