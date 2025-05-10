@@ -9,7 +9,7 @@ namespace Content.Server.Backmen.Species.Shadowkin.Events;
 /// <summary>
 ///     Raised when the shadowkin teleport action is used.
 /// </summary>
-public sealed partial class ShadowkinTeleportEvent : WorldTargetActionEvent, ISpeakSpell
+public sealed partial class ShadowkinTeleportEvent : WorldTargetActionEvent
 {
     [DataField("sound")]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Backmen/Effects/Shadowkin/Powers/teleport.ogg");
@@ -32,7 +32,7 @@ public sealed partial class ShadowkinTeleportEvent : WorldTargetActionEvent, ISp
 /// <summary>
 ///     Raised when the shadowkin darkSwap action is used.
 /// </summary>
-public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent, ISpeakSpell
+public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent
 {
     [DataField("soundOn")]
     public SoundSpecifier SoundOn = new SoundPathSpecifier("/Audio/Backmen/Effects/Shadowkin/Powers/darkswapon.ogg");
@@ -70,7 +70,6 @@ public sealed partial class ShadowkinDarkSwapEvent : InstantActionEvent, ISpeakS
     /// </summary>
     [DataField("staminaCostOff")]
     public float StaminaCostOff;
-
 
     [DataField("speech")]
     public string? Speech { get; set; }
