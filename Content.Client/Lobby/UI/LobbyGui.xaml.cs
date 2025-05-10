@@ -64,6 +64,12 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        private void TogglePanel(bool value)
+        {
+            RightSide.Visible = value;
+            ExpandPanel.Visible = !value;
+        }
+
         public enum LobbyGuiState : byte
         {
             /// <summary>
