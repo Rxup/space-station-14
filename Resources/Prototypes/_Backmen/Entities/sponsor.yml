@@ -51,6 +51,7 @@
   id: ClothingHeadHelmetHardsuitRdWisdom
   name: Шлем скаафандра НРа
   description: вай какой
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
