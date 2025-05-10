@@ -298,6 +298,7 @@
     - type: LightningTarget
       priority: 1
       lightningExplode: false
+    - type: ExaminableCharacter # Backmen
 
 
 - type: damageModifierSet
