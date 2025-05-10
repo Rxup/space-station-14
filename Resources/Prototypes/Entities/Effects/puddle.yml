@@ -176,9 +176,12 @@
   save: false
   description: След жидкости
   components:
+    - type: Slippery
+    - type: StepTrigger
     - type: Tag
       tags:
       - HideContextMenu
+      - DNASolutionScannable
     - type: Clickable
     - type: FootstepModifier
       footstepSoundCollection:
@@ -190,8 +193,8 @@
     - type: Sprite
       drawdepth: FloorObjects
       color: "#FFFFFF80"
-#    - type: Physics
-#      bodyType: Static
+    - type: Physics
+      bodyType: Static
     - type: Fixtures
       fixtures:
         slipFixture:
@@ -211,5 +214,6 @@
     - type: Puddle
       solution: step
       viscosityAffectsMovement: false
+      overflowVolume: 2
     - type: Appearance
 # end-backmen: footsteps

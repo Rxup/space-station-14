@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Atmos.Components;
+using Content.Server.Spreader;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
@@ -11,6 +12,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
@@ -36,6 +38,8 @@ public sealed class FootPrintsSystem : EntitySystem
     private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<LayingDownComponent> _layingQuery;
+    private EntityQuery<InventoryComponent> _inventoryQuery;
+    private EntityQuery<ContainerManagerComponent> _containerManagerQuery;
 
     private bool _footprintEnabled = false;
 
@@ -47,6 +51,8 @@ public sealed class FootPrintsSystem : EntitySystem
         _mobThresholdQuery = GetEntityQuery<MobThresholdsComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _layingQuery = GetEntityQuery<LayingDownComponent>();
+        _inventoryQuery = GetEntityQuery<InventoryComponent>();
+        _containerManagerQuery = GetEntityQuery<ContainerManagerComponent>();
 
         Subs.CVar(_configuration, CCVars.EnableFootPrints, value => _footprintEnabled = value, true);
 
@@ -162,7 +168,11 @@ public sealed class FootPrintsSystem : EntitySystem
             || string.IsNullOrWhiteSpace(comp.ReagentToTransfer) || solution.Volume >= 1)
             return;
 
-        _solutionSystem.TryAddReagent(footPrintComponent.Solution.Value, comp.ReagentToTransfer, 1, out _);
+        if (_solutionSystem.TryAddReagent(footPrintComponent.Solution.Value, comp.ReagentToTransfer, 1, out _))
+        {
+            var ev = new SolutionContainerChangedEvent(footPrintComponent.Solution.Value.Comp.Solution, comp.ReagentToTransfer);
+            RaiseLocalEvent(entity, ref ev);
+        }
     }
 
     private EntityCoordinates CalcCoords(EntityUid uid,
@@ -184,15 +194,25 @@ public sealed class FootPrintsSystem : EntitySystem
     {
         var state = FootPrintVisuals.BareFootPrint;
 
-        if (_inventorySystem.TryGetSlotEntity(uid, "shoes", out _))
+        if (_inventoryQuery.TryComp(uid, out var inventory) &&
+            _containerManagerQuery.TryComp(uid, out var containerManager))
         {
-            state = FootPrintVisuals.ShoesPrint;
-        }
+            if (_inventorySystem.TryGetSlotEntity(uid, "shoes", out _, inventory, containerManager))
+            {
+                state = FootPrintVisuals.ShoesPrint;
+            }
 
-        if (_inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var suit) &&
-            TryComp<PressureProtectionComponent>(suit, out _))
-        {
-            state = FootPrintVisuals.SuitPrint;
+            if (
+                _inventorySystem.TryGetSlotEntity(
+                    uid,
+                    "outerClothing",
+                    out var suit,
+                    inventory,
+                    containerManager) &&
+                HasComp<PressureProtectionComponent>(suit))
+            {
+                state = FootPrintVisuals.SuitPrint;
+            }
         }
 
         if (dragging)
