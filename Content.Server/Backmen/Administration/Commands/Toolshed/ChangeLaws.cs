@@ -4,6 +4,7 @@ using Content.Server.Silicons.Laws;
 using Content.Shared.Administration;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.TypeParsers;
 
@@ -13,6 +14,7 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 public sealed class LawsCommand : ToolshedCommand
 {
     private SiliconLawSystem? _law;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     [CommandImplementation("list")]
     public IEnumerable<EntityUid> List()
@@ -39,12 +41,12 @@ public sealed class LawsCommand : ToolshedCommand
     public EntityUid? SetLaws(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<SiliconLawsetPrototype> siliconLawSetPrototype
+        [CommandArgument] ProtoId<SiliconLawsetPrototype> siliconLawSetPrototype
     )
     {
         _law ??= GetSys<SiliconLawSystem>();
 
-        _law.SetLaws(input, siliconLawSetPrototype.Value);
+        _law.SetLaws(input, _prototype.Index(siliconLawSetPrototype));
         return input;
     }
 
@@ -52,10 +54,10 @@ public sealed class LawsCommand : ToolshedCommand
     public IEnumerable<EntityUid> SetLaws(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<SiliconLawsetPrototype> siliconLawSetPrototype
+        [CommandArgument] ProtoId<SiliconLawsetPrototype> siliconLawSetPrototype
     )
     {
-        return input.Where(ent => SetLaws(ctx, ent, siliconLawSetPrototype) != null);
+        return input.Where(ent => SetLaws(ctx, ent, _prototype.Index(siliconLawSetPrototype)) != null);
     }
 
     [CommandImplementation("override")]

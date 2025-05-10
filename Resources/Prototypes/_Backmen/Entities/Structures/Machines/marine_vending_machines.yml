@@ -115,7 +115,7 @@
     WeaponRifleBR64: 10
     MagazineHeavyRifleBR64: 20
     WeaponRevolverMateba: 10
-    SpeedLoaderMagnum: 20
+    SpeedLoader357Magnum: 20
 
 - type: entity
   parent: VendingMachine
@@ -430,7 +430,7 @@
     WeaponShotgun12: 10
     BoxLethalshot: 40
     WeaponRevolverMateba: 10
-    SpeedLoaderMagnum: 20
+    SpeedLoader357Magnum: 20
     WeaponLightMachineGunMG60: 1
     MagazineLightMachineGunDrum: 10
     WeaponRifleM41: 1
@@ -442,7 +442,7 @@
     MagazineBoxRifle556UEG: 20
     MagazineBoxRifle762x39: 20
     MagazinePacketPistol9x17: 20
-    MagazineBoxMagnum: 20
+    MagazinePacketRevolver357Magnum: 20
     MagazineBoxCaselessRifle: 20
 
 - type: entity
@@ -479,7 +479,7 @@
     WeaponPistolDivet: 5
     MagazinePistol345: 40
     WeaponRevolverMateba: 5
-    SpeedLoaderMagnum: 20
+    SpeedLoader357Magnum: 20
     WeaponPistolDEagle: 5
     MagazinePistol50AE: 20
     WeaponSniperGarand: 5

@@ -84,12 +84,15 @@
 
 - type: loadout
   id: WeaponRevolverMatebaNew
-  equipment:
-    pocket1: WeaponRevolverMatebaNew
+  dummyEntity: WeaponRevolverMatebaNew
+  storage:
+    back:
+    - WeaponRevolverMatebaNew
+    - SpeedLoader44Magnum
 
 # Pocket 2 #Backmen
 
 - type: loadout
   id: SpeedLoaderMagnum
   equipment:
-    pocket2: SpeedLoaderMagnum
+    pocket2: SpeedLoader44Magnum

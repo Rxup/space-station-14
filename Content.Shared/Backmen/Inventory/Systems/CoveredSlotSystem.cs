@@ -23,6 +23,9 @@ public sealed class CoveredSlotSystem : EntitySystem
         if (args.Cancelled)
             return;
 
+        if (args.EquipTarget != ent.Owner)
+            return;
+
         var blocker = GetBlocker(ent, args.SlotFlags);
 
         // Don't do anything if nothing is blocking the entity from equipping.
@@ -36,6 +39,9 @@ public sealed class CoveredSlotSystem : EntitySystem
     private void OnUnequipAttempt(Entity<InventoryComponent> ent, ref IsUnequippingAttemptEvent args)
     {
         if (args.Cancelled)
+            return;
+
+        if (args.UnEquipTarget != ent.Owner)
             return;
 
         var blocker = GetBlocker(ent, args.SlotFlags);

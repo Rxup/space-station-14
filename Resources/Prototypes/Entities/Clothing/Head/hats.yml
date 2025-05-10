@@ -1022,6 +1022,8 @@
     sprite: Clothing/Head/Hats/gladiator.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/gladiator.rsi
+  - type: CoveredSlot # Backmen
+    slots: [eyes, mask, ears]
 
 - type: entity
   parent: ClothingHeadBase

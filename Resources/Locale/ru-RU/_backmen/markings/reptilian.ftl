@@ -2,6 +2,8 @@
 marking-LizardHeadGuilmon = Ящер, гилмон
 marking-LizardHeadGuilmon-guilmon = Основная часть
 marking-LizardShoutEasternDragon = Ящер, восточный дракон
+marking-LizardShoutEasternDragon-eastern_dragon = Внешний
+marking-LizardShoutEasternDragon-eastern_dragon_overlay = Внутренний
 marking-LizardShoutEasternDragon-cobra_hood_with_ears = Внешняя часть
 marking-LizardShoutEasternDragon-cobra_hood_with_ears_overlay = Внутреняя часть
 marking-LizardShoutEasternDragonUsiki = Ящер, восточный дракон (Усики)

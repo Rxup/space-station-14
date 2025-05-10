@@ -38,7 +38,6 @@
       - id: MissileDropSpawnerAreaSpawner
         amount: 1
       offset: 0, 1
-      speech: atrillery-call
 
 - type: entity
   name: рация вызова снабжения

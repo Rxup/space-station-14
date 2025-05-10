@@ -72,7 +72,7 @@
   - type: StorageFill
     contents:
       - id: WeaponRevolverPythonAP
-      - id: SpeedLoaderMagnumAP
+      - id: SpeedLoader357MagnumAP #Backmen-edit
         amount: 2
 
 - type: entity
@@ -288,7 +288,7 @@
     contents:
       - id: SyringeRomerol
       - id: WeaponRevolverPython
-      - id: MagazineBoxMagnumIncendiary
+      - id: MagazinePacketRevolver357Magnum
       - id: PillAmbuzolPlus
       - id: PillAmbuzol
         amount: 3

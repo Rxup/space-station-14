@@ -1,3 +1,4 @@
+upgradeable-gun-popup-already-present = Улучшение уже установлено.
 upgradeable-gun-popup-upgrade-limit = Максимальная вместимость улучшений превышена!
 upgradeable-gun-slot-name = Слот для улучшения { $value }
 upgradeable-gun-total-remaining-capacity = Оставшееся место для улучшений: { $value }
