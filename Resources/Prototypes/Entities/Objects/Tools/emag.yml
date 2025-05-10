@@ -9,6 +9,7 @@
   - type: Sprite
     sprite: Objects/Tools/emag.rsi
     state: icon
+    scale: 0.9, 0.9 # Backmen
   - type: Item
     sprite: Objects/Tools/emag.rsi
     storedRotation: -90
