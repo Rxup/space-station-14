@@ -46,4 +46,4 @@
   - type: RandomSpawner
     prototypes:
       - MaterialHEVPiece1
-    chance: 0.5
+    chance: 0.3

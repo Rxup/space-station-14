@@ -358,7 +358,7 @@
       params:
         volume: -100
   - type: BasicEntityAmmoProvider
-    proto: BulletMagnum
+    proto: BulletPistol9x17
     capacity: 1
     count: 1
   - type: Gun
@@ -416,12 +416,12 @@
     attackRate: 1.5
     damage:
         types:
-          Slash: 4
+          Slash: 2
           Structural: 25
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Dead
+      200: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       140: 0.5

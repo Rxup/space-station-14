@@ -155,7 +155,7 @@
   - PillCanister
   - ChemistryEmptyBottle01
   - Syringe
-  position: 2,-5
+  position: 5,-7
 
 - type: technology
   id: ChemistryBluespace
@@ -172,7 +172,7 @@
   - BluespacePillCanister # backmen
   technologyPrerequisites:
   - Chemistry
-  position: 2,-6
+  position: 5,-8
 
 - type: technology
   id: BiochemicalStasis
