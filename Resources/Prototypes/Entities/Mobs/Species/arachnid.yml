@@ -132,7 +132,6 @@
     templateId: arachnid
     speciesId: arachnid
 
-
 - type: entity
   parent: BaseSpeciesDummy
   id: MobArachnidDummy
