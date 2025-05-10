@@ -49,8 +49,8 @@
 - type: entity
   parent: ClothingHeadHelmetHardsuitRd
   id: ClothingHeadHelmetHardsuitRdWisdom
-  name: Шлем скаафандра НРа
-  description: вай какой
+  name: шлем скаафандра НР
+  description: Вай какой.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -61,8 +61,8 @@
 - type: entity
   parent: ClothingBackpack
   id: ClothingRdBackpackWisdom
-  name: Рюкзак НР
-  description: красивый рюкзак НР
+  name: рюкзак НР
+  description: Красивый рюкзак НР.
   components:
   - type: Storage
     grid:
