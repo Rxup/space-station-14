@@ -5,4 +5,3 @@ store-currency-display-spacecash =
        *[other] кредитов
     }
 store-currency-spacecredits-currency-symbol = ¢
-

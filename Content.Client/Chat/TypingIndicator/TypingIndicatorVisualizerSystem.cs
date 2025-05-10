@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Chat.TypingIndicator;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
 using Content.Shared.Inventory;
 
@@ -11,25 +10,9 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
-    public override void Initialize()
+    protected override void OnAppearanceChange(EntityUid uid, TypingIndicatorComponent component, ref AppearanceChangeEvent args)
     {
-        base.Initialize();
-
-        SubscribeLocalEvent<TypingIndicatorComponent, AfterAutoHandleStateEvent>(OnChangeState); // backmen: TypingIndicator
-    }
-
-    // startbackmen: TypingIndicator
-    private void OnChangeState(Entity<TypingIndicatorComponent> ent, ref AfterAutoHandleStateEvent args)
-    {
-        UpdateAppearance(ent,ent);
-    }
-
-    private void UpdateAppearance(EntityUid uid,
-        TypingIndicatorComponent component,
-        AppearanceComponent? appearance = null,
-        SpriteComponent? sprite = null)
-    {
-        if (!Resolve(uid, ref appearance, ref sprite, false))
+        if (args.Sprite == null)
             return;
 
         var currentTypingIndicator = component.TypingIndicatorPrototype;
@@ -50,38 +33,25 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
             return;
         }
 
-        //AppearanceSystem.TryGetData<bool>(uid, TypingIndicatorVisuals.IsTyping, out var isTyping, args.Component); // Corvax-TypingIndicator
-        var layerExists = sprite.LayerMapTryGet(TypingIndicatorLayers.Base, out var layer);
+        var layerExists = args.Sprite.LayerMapTryGet(TypingIndicatorLayers.Base, out var layer);
         if (!layerExists)
-            layer = sprite.LayerMapReserveBlank(TypingIndicatorLayers.Base);
+            layer = args.Sprite.LayerMapReserveBlank(TypingIndicatorLayers.Base);
 
-        sprite.LayerSetRSI(layer, proto.SpritePath);
-        sprite.LayerSetState(layer, proto.TypingState);
-        sprite.LayerSetShader(layer, proto.Shader);
-        sprite.LayerSetOffset(layer, proto.Offset);
-        // args.Sprite.LayerSetVisible(layer, isTyping); // Corvax-TypingIndicator
+        args.Sprite.LayerSetRSI(layer, proto.SpritePath);
+        args.Sprite.LayerSetState(layer, proto.TypingState);
+        args.Sprite.LayerSetShader(layer, proto.Shader);
+        args.Sprite.LayerSetOffset(layer, proto.Offset);
 
-        // Corvax-TypingIndicator-Start
-        sprite.LayerSetVisible(layer, component.TypingIndicatorState != TypingIndicatorState.None);
-        switch (component.TypingIndicatorState)
+        AppearanceSystem.TryGetData<TypingIndicatorState>(uid, TypingIndicatorVisuals.State, out var state);
+        args.Sprite.LayerSetVisible(layer, state != TypingIndicatorState.None);
+        switch (state)
         {
             case TypingIndicatorState.Idle:
-                sprite.LayerSetState(layer, proto.IdleState);
+                args.Sprite.LayerSetState(layer, proto.IdleState);
                 break;
             case TypingIndicatorState.Typing:
-                sprite.LayerSetState(layer, proto.TypingState);
+                args.Sprite.LayerSetState(layer, proto.TypingState);
                 break;
         }
-        // Corvax-TypingIndicator-End
-    }
-
-    // end-backmen: TypingIndicator
-
-    protected override void OnAppearanceChange(EntityUid uid, TypingIndicatorComponent component, ref AppearanceChangeEvent args)
-    {
-        if (args.Sprite == null)
-            return;
-
-        UpdateAppearance(uid, component, args.Component, args.Sprite); // backmen: TypingIndicator
     }
 }

@@ -312,3 +312,51 @@
   - type: BallisticAmmoProvider
     proto: Cartridge50BMG
     capacity: 10
+
+- type: entity
+  parent: MagazinePacketRifle556UEG
+  id: MagazinePacketRevolver38Special
+  name: ammunition packet (.38 Special)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Special
+
+- type: entity
+  parent: MagazinePacketRifle556UEGAP
+  id: MagazinePacketRevolver38SpecialAP
+  name: ammunition packet (.38 Special AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38SpecialAP
+
+- type: entity
+  parent: MagazinePacketRifle556UEG
+  id: MagazinePacketRevolver44Magnum
+  name: ammunition packet (.44 Magnum)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver44Magnum
+
+- type: entity
+  parent: MagazinePacketRifle556UEGAP
+  id: MagazinePacketRevolver44MagnumAP
+  name: ammunition packet (.44 Magnum AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver44MagnumAP
+
+- type: entity
+  parent: MagazinePacketRifle556UEG
+  id: MagazinePacketRevolver357Magnum
+  name: ammunition packet (.357 Magnum)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver357Magnum
+
+- type: entity
+  parent: MagazinePacketRifle556UEGAP
+  id: MagazinePacketRevolver357MagnumAP
+  name: ammunition packet (.357 Magnum AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver357MagnumAP
