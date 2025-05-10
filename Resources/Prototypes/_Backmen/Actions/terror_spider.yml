@@ -1,0 +1,26 @@
+- type: entity
+  id: ActionEggInjection
+  name: Egg injection
+  description: Injection of eggs into the body.
+  components:
+  - type: EntityTargetAction
+    useDelay: 3
+    itemIconStyle: BigAction
+    whitelist:
+      components:
+      - HumanoidAppearance
+    canTargetSelf: false
+    interactOnMiss: false
+    sound: /Audio/Effects/pop.ogg
+    icon: { sprite: Backmen/Objects/Misc/egg.rsi, state: icon }
+    event: !type:EggInjectionEvent
+
+- type: entity
+  id: ActionEggsLaying
+  name: Lay terror egg.
+  description: Lay the egg.
+  components:
+  - type: InstantAction
+    useDelay: 120
+    icon: { sprite: Backmen/Objects/Misc/egg.rsi, state: icon }
+    event: !type:EggsLayingEvent

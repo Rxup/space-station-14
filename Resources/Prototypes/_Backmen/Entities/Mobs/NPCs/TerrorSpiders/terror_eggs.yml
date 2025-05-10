@@ -1,0 +1,169 @@
+- type: entity
+  parent: BaseItem
+  id: BaseTerrorSpiderEgg
+  name: gloomy egg
+  description: It seems to be moving.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/egg.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Huge
+  - type: Damageable
+    damageContainer: Biological
+  - type: Flammable
+    fireSpread: true
+    damage:
+     types:
+       Heat: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Eggshells:
+            min: 0
+            max: 1
+          FoodMeatSpiderLeg:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 1500
+  - type: EmitSoundOnUse
+    sound: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: UseDelay
+    delay: 300
+  - type: Timer
+  - type: TimedSpawner
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn 
+    lifetime: 181
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderQueenEgg
+  suffix: Queen
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderQueen
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderMotherEgg
+  suffix: Mother
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderMother
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderPrincessEgg
+  suffix: Princess
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderPrincess
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderPrinceEgg
+  suffix: Prince
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderPrince
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDestroyerEgg
+  suffix: Destroyer
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderDestroyer
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderGuardianEgg
+  suffix: Guardian
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderGuardian
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDefilerEgg
+  suffix: Defiler
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderDefiler
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderWidowEgg
+  suffix: Widow
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderWidow
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderReaperEgg
+  suffix: Reaper
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderReaper
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderDroneEgg
+  suffix: Drone
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderDrone
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderHealerEgg
+  suffix: Healer
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderHealer
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderLurkerEgg
+  suffix: Lurker
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderLurker
+
+- type: entity
+  parent: BaseTerrorSpiderEgg
+  id: TerrorSpiderKnightEgg
+  suffix: Knight
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorSpiderKnight
