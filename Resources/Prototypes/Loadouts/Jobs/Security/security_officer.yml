@@ -211,6 +211,7 @@
 # Pocket #Backmen
 - type: loadout
   id: WeaponPistolMk58
+  dummyEntity: WeaponPistolMk58
   storage:
     back:
     - WeaponPistolMk58
@@ -218,6 +219,7 @@
 
 - type: loadout
   id: WeaponPistolG22
+  dummyEntity: WeaponPistolG22
   storage:
     back:
     - WeaponPistolG22
@@ -225,6 +227,7 @@
 
 - type: loadout
   id: WeaponPistolACP14
+  dummyEntity: WeaponPistolACP14
   storage:
     back:
     - WeaponPistolACP14
@@ -232,6 +235,7 @@
 
 - type: loadout
   id: WeaponPistolG23
+  dummyEntity: WeaponPistolG23
   storage:
     back:
     - WeaponPistolG23
@@ -239,6 +243,7 @@
 
 - type: loadout
   id: WeaponPistolVP78
+  dummyEntity: WeaponPistolVP78
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
@@ -249,6 +254,7 @@
 
 - type: loadout
   id: WeaponPistolDEagle
+  dummyEntity: WeaponPistolDEagle
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
@@ -259,6 +265,7 @@
 
 - type: loadout
   id: WeaponPistolM1911
+  dummyEntity: WeaponPistolM1911
   storage:
     back:
     - WeaponPistolM1911

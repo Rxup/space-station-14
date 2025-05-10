@@ -1479,7 +1479,7 @@
         - SpeedLoaderCap
         - CartridgeMagnum
         - SpeedLoaderMagnum
-    proto: CartridgeMagnumAP
+    proto: CartridgeRevolver357MagnumAP #Backmen-edit
 
 - type: entity
   parent: BaseItem

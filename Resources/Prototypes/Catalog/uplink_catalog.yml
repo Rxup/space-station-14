@@ -519,7 +519,7 @@
   name: uplink-speedloader-magnum-name
   description: uplink-speedloader-magnu-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumAP
+  productEntity: SpeedLoader357MagnumAP #Backmen-edit
   cost:
     Telecrystal: 3
   categories:
