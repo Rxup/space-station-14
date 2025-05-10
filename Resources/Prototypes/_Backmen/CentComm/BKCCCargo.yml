@@ -26,7 +26,7 @@
       role: JobCentralCommandAssistant
       time: 21600
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 43200
     job: BKCCCargo
   - type: GhostRoleMobSpawner

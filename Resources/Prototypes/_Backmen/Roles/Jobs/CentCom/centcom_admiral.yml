@@ -21,7 +21,7 @@
       role: JobCentralCommandOfficial
       time: 21600
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 31600
   accessGroups:
     - AllAccess
@@ -42,7 +42,7 @@
         - type: AntagImmune
   minBankBalance: 400
   maxBankBalance: 600
-  wageDepartment: CentCom
+  wageDepartment: CentralCommand
   wage: 75
 
 - type: jobIcon

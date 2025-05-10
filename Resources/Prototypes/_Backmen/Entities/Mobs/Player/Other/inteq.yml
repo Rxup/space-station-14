@@ -25,6 +25,8 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistInteQ
 
 - type: randomHumanoidSettings
   id: InteQVanguardOperative
@@ -52,6 +54,8 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistInteQ
 
 - type: randomHumanoidSettings
   id: InteQVanguardSoldier
@@ -79,6 +83,8 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistInteQ
 
 - type: randomHumanoidSettings
   id: InteQVanguardMedic
@@ -106,6 +112,8 @@
     understands:
     - TauCetiBasic
     - OldFastCodes
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistInteQ
 
 # Spawners
 - type: entity

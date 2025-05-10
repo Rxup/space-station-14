@@ -142,6 +142,8 @@
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
   # end-backmen: surgery
+  - type: GlobalAntagonist
+    antagonistPrototype: globalAntagonistRats
 
 - type: entity
   id: MobRatKingBuff
@@ -320,6 +322,8 @@
   - type: Food
   - type: Item
     size: Tiny # Delta V - Make them edible and pickable.
+  - type: GlobalAntagonist
+    antagonistPrototype: globalAntagonistRats
 
 - type: weightedRandomEntity
   id: RatKingLoot
