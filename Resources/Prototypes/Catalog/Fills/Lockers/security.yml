@@ -133,6 +133,8 @@
       - id: ClothingHeadCage # backmen
       - id: ClothingHeadsetAltBrigmedic # backmen
       - id: BoxBodyBagPrisoner # Backmen-AdvancedBodyBags
+      - id: MikaPlush # backmen 
+        prob: 0.1
 
 - type: entity
   id: LockerDetectiveFilled

@@ -17,3 +17,5 @@
         amount: 2
       - id: ClothingHeadCage # backmen
         amount: 2
+      - id: KreydPlush #backmen
+        prob: 0.1
