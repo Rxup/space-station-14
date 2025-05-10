@@ -3,9 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
-
 namespace Content.Shared.RCD.Components;
-
 /// <summary>
 /// Main component for the RCD
 /// Optionally uses LimitedChargesComponent.
@@ -32,6 +30,26 @@ public sealed partial class RCDComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public ProtoId<RCDPrototype> ProtoId { get; set; } = "Invalid";
+    /// <summary>
+    /// A cached copy of currently selected RCD prototype
+    /// </summary>
+    /// <remarks>
+    /// If the ProtoId is changed, make sure to update the CachedPrototype as well
+    /// </remarks>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public RCDPrototype CachedPrototype { get; set; } = default!;
+
+    /// <summary>
+    /// Indicates if a mirrored version of the construction prototype should be used (if available)
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public bool UseMirrorPrototype = false;
+
+    /// <summary>
+    /// Indicates whether this is an RCD or an RPD
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsRpd { get; set; } = false;
 
     /// <summary>
     /// The direction constructed entities will face upon spawning
@@ -39,7 +57,10 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public Direction ConstructionDirection
     {
-        get => _constructionDirection;
+        get
+        {
+            return _constructionDirection;
+        }
         set
         {
             _constructionDirection = value;
@@ -56,5 +77,5 @@ public sealed partial class RCDComponent : Component
     /// Contains no position data
     /// </remarks>
     [ViewVariables(VVAccess.ReadOnly)]
-    public Transform ConstructionTransform { get; private set; }
+    public Transform ConstructionTransform { get; private set; } = default!;
 }
