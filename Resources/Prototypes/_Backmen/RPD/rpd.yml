@@ -177,6 +177,18 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
+  id: RadiatorBend
+  category: AtmosphericUtility
+  sprite: /Textures/Backmen/Interface/Radial/RPD/radiator_bend.png
+  mode: ConstructObject
+  prototype: HeatExchangerBend
+  cost: 1
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
   id: MixerGas
   category: AtmosphericUtility
   sprite: /Textures/Backmen/Interface/Radial/RPD/gas_mixer.png
