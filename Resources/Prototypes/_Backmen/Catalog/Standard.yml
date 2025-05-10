@@ -191,24 +191,6 @@
     path: /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_TheHunter.ogg
 
 - type: jukebox
-  id: TheOrange
-  name: Серёга Пират - Апельсин
-  path:
-    path: /Audio/Backmen/Jukebox/SeregaPirat/SeregaPirat_Apelsin.ogg
-
-- type: jukebox
-  id: HymnDakhaka
-  name: Серёга Пират - Гимн Дахака
-  path:
-    path: /Audio/Backmen/Jukebox/SeregaPirat/SeregaPirat_GimnDakhaka.ogg
-
-- type: jukebox
-  id: TheMasha
-  name: Серёга Пират - Маша
-  path:
-    path: /Audio/Backmen/Jukebox/SeregaPirat/SeregaPirat_Masha.ogg
-
-- type: jukebox
   id: TearsOfAutumn
   name: M8L8TH - Слёзы Осени
   path:
