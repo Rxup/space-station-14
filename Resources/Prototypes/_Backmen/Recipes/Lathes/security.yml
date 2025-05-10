@@ -4,7 +4,7 @@
   completetime: 4
   materials:
     Steel: 400
-    Bluespace: 20
+    BluespaceEssence: 20
 
 - type: latheRecipe
   id: InsulativeHeadcage
@@ -15,7 +15,7 @@
   completetime: 4
   materials:
     Steel: 400
-    Bluespace: 20
+    BluespaceEssence: 20
 
 - type: latheRecipe
   id: ShellSoulbreaker
@@ -27,7 +27,7 @@
   materials:
     Plastic: 15
     Steel: 10
-    Bluespace: 10
+    BluespaceEssence: 10
     Glass: 5
 
 - type: latheRecipe

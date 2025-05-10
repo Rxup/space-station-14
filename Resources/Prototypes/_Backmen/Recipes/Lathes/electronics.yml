@@ -7,6 +7,7 @@
     Glass: 900
 
 - type: latheRecipe
+  parent: BaseResearchMachineRecipeCategory
   id: MetempsychoticMachineCircuitboard
   result: MetempsychoticMachineCircuitboard
   completetime: 4
@@ -16,6 +17,21 @@
     Gold: 100
 
 - type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseSecurityMachineRecipeCategory ]
   id: GunsmithTechFabCircuitboard
   result: GunsmithTechFabCircuitboard
+
+- type: latheRecipe
+  parent: HellfireFreezerMachineCircuitBoard
+  id: HellfireHeaterMachineCircuitBoard
+  result: HellfireHeaterMachineCircuitBoard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: VaccinatorMachineCircuitboard
+  result: VaccinatorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: DiagnoserMachineCircuitboard
+  result: DiagnoserMachineCircuitboard

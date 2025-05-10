@@ -11,7 +11,7 @@
    - LightTube
    - LightBulb
    - WarmLightBulb
-  position: 2,6
+  position: 2,7
 
 - type: technology
   id: LightningAdvanced
@@ -30,7 +30,7 @@
    - DimLightBulb
   technologyPrerequisites:
    - Lightning
-  position: 2,7
+  position: 2,8
 
 - type: technology
   id: Bootlegging
@@ -153,7 +153,7 @@
     sprite: Objects/Specific/Janitorial/advmop.rsi
     state: advmop
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 8000
   recipeUnlocks:
    - AdvMopItem
@@ -183,7 +183,7 @@
     sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
     state: icon
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
    - WeaponSprayNozzle
@@ -204,7 +204,9 @@
   cost: 4000
   recipeUnlocks:
   - PushHorn
-  position: 5,8
+  technologyPrerequisites:
+  - Entertainment
+  position: 4,10
 
 - type: technology
   id: TranslationDevice
@@ -251,7 +253,7 @@
     sprite: Backmen/Objects/Devices/translator.rsi
     state: icon
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 12000
   recipeUnlocks:
   - XenoTranslator
@@ -267,7 +269,7 @@
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 15000
   recipeUnlocks:
   - AdvancedGalaticCommonTranslatorImplanter

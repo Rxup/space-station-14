@@ -1249,6 +1249,7 @@
       stackRequirements:
         Capacitor: 2
         Steel: 5
+        BluespaceCrystal: 1
 
 - type: entity
   id: MailTeleporterMachineCircuitboard
