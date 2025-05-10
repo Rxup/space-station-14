@@ -104,8 +104,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 15
-    autoRechargePause: true
-    autoRechargePauseTime: 5
 
 - type: entity
   parent: PowerCellVortex
