@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
+using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.CPUJob.JobQueues;
@@ -31,13 +32,13 @@ public sealed class FootPrintsSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
-    private EntityQuery<LayingDownComponent> _layingQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
     private EntityQuery<ContainerManagerComponent> _containerManagerQuery;
 
@@ -50,7 +51,6 @@ public sealed class FootPrintsSystem : EntitySystem
         _transformQuery = GetEntityQuery<TransformComponent>();
         _mobThresholdQuery = GetEntityQuery<MobThresholdsComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        _layingQuery = GetEntityQuery<LayingDownComponent>();
         _inventoryQuery = GetEntityQuery<InventoryComponent>();
         _containerManagerQuery = GetEntityQuery<ContainerManagerComponent>();
 
@@ -117,7 +117,7 @@ public sealed class FootPrintsSystem : EntitySystem
             return;
 
         var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead ||
-                       _layingQuery.TryComp(uid, out var laying) && laying.DrawDowned;
+                       _standing.IsDown(uid);
         var distance = (transform.LocalPosition - comp.StepPos).Length();
         var stepSize = dragging ? comp.DragSize : comp.StepSize;
 
@@ -168,11 +168,7 @@ public sealed class FootPrintsSystem : EntitySystem
             || string.IsNullOrWhiteSpace(comp.ReagentToTransfer) || solution.Volume >= 1)
             return;
 
-        if (_solutionSystem.TryAddReagent(footPrintComponent.Solution.Value, comp.ReagentToTransfer, 1, out _))
-        {
-            var ev = new SolutionContainerChangedEvent(footPrintComponent.Solution.Value.Comp.Solution, comp.ReagentToTransfer);
-            RaiseLocalEvent(entity, ref ev);
-        }
+        _solutionSystem.TryAddReagent(footPrintComponent.Solution.Value, comp.ReagentToTransfer, 1, out _);
     }
 
     private EntityCoordinates CalcCoords(EntityUid uid,
