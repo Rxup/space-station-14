@@ -25,6 +25,19 @@
     - Robotics
     - Medical
     - Service
+    roundstartTechs:
+    - MachineParts
+    - EngineeringTools
+    - EngineeringMachines
+    - NonlethalAmmunition
+    - LethalAmmunition
+    - Cleaning
+    - Lightning
+    - Bootlegging
+    - Kitchen
+    - Medicine
+    - Chemistry
+    - Security
     # Backmen-Edit-END
   - type: ApcPowerReceiver
     powerLoad: 200

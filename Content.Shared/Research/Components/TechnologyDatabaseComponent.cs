@@ -43,6 +43,13 @@ public sealed partial class TechnologyDatabaseComponent : Component
     [AutoNetworkedField]
     [DataField("unlockedRecipes", customTypeSerializer: typeof(PrototypeIdListSerializer<LatheRecipePrototype>))]
     public List<string> UnlockedRecipes = new();
+
+    /// <summary>
+    /// Backmen change: technologies that are researched rounstart.
+    /// </summary>
+    [AutoNetworkedField]
+    [DataField("roundstartTechs", customTypeSerializer: typeof(PrototypeIdListSerializer<TechnologyPrototype>))]
+    public List<string> RoundstartTechnologies = new();
 }
 
 /// <summary>

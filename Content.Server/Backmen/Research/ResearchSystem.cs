@@ -4,11 +4,19 @@ using Content.Shared.Research.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Research;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    private void UpdateFancyConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
+    private void InitializeBkm()
+    {
+        SubscribeLocalEvent<ResearchServerComponent, MapInitEvent>(OnServerInit);
+    }
+
+    private void UpdateFancyConsoleInterface(EntityUid uid,
+        ResearchConsoleComponent? component = null,
+        ResearchClientComponent? clientComponent = null)
     {
         if (!Resolve(uid, ref component, ref clientComponent, false))
             return;
@@ -31,8 +39,8 @@ public sealed partial class ResearchSystem
                     var prereqsMet = proto.TechnologyPrerequisites.All(p => unlockedTechs.Contains(p));
                     var canAfford = server.Points >= proto.Cost;
 
-                    return prereqsMet ?
-                        (canAfford ? ResearchAvailability.Available : ResearchAvailability.PrereqsMet)
+                    return prereqsMet
+                        ? (canAfford ? ResearchAvailability.Available : ResearchAvailability.PrereqsMet)
                         : ResearchAvailability.Unavailable;
                 });
 
@@ -43,7 +51,19 @@ public sealed partial class ResearchSystem
             techList = allTechs.ToDictionary(proto => proto.ID, _ => ResearchAvailability.Unavailable);
         }
 
-        _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key,
+        _uiSystem.SetUiState(uid,
+            ResearchConsoleUiKey.Key,
             new ResearchConsoleBoundInterfaceState(points, techList));
+    }
+
+    private void OnServerInit(Entity<ResearchServerComponent> ent, ref MapInitEvent args)
+    {
+        if (!TryComp<TechnologyDatabaseComponent>(ent, out var techBase))
+            return;
+
+        foreach (var tech in techBase.RoundstartTechnologies)
+        {
+            AddTechnology(ent, tech, techBase);
+        }
     }
 }

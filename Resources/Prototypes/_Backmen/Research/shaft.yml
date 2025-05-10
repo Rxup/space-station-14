@@ -22,7 +22,6 @@
   cost: 6500
   recipeUnlocks:
   - MiningDrill
-  - Pickaxe
   - MineralScannerEmpty
   - WeaponPlasmaCutter # Goobstation
   - ClothingMaskWeldingGas
@@ -44,6 +43,7 @@
    - MiningDrillDiamond
   technologyPrerequisites:
   - SalvageEquipment
+  - SalvageEquipmentMachines
   position: 10,4
 
 - type: technology
@@ -63,21 +63,6 @@
   position: 9,1
 
 - type: technology
-  id: Grappling
-  name: research-technology-grappling
-  icon:
-    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
-    state: base
-  discipline: Shaft
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-   - WeaponGrapplingGun
-  technologyPrerequisites:
-  - SalvageEquipment
-  position: 9,3
-
-- type: technology
   id: SpaceScanning
   name: research-technology-space-scanning
   icon:
@@ -87,8 +72,9 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-#   - HandHeldMassScanner # Removed by Lavaland
-   - HandheldGPSBasic
+  #- HandHeldMassScanner # Removed by Lavaland
+  - HandheldGPSBasic
+  - RadarConsoleCircuitboard
   technologyPrerequisites:
   - SalvageEquipment
   position: 9,2

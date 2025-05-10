@@ -8,24 +8,12 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-   - MicroManipulatorStockPart
-   - MatterBinStockPart
-   - CapacitorStockPart
+  - MicroManipulatorStockPart
+  - MatterBinStockPart
+  - CapacitorStockPart
+  - PowerCellSmall
+  - PowerCellMedium
   position: -3,2
-
-- type: technology
-  id: Powercells
-  name: research-technology-powercells
-  icon:
-    sprite: Objects/Power/power_cells.rsi
-    state: small
-  discipline: Engineering
-  tier: 1
-  cost: 500
-  recipeUnlocks:
-   - PowerCellSmall
-   - PowerCellMedium
-  position: 0,3
 
 - type: technology
   id: PowercellsUpgraded
@@ -37,9 +25,7 @@
   tier: 1
   cost: 2500
   recipeUnlocks:
-   - PowerCellHigh
-  technologyPrerequisites:
-  - Powercells
+  - PowerCellHigh
   position: 0,4
 
 - type: technology
@@ -52,8 +38,8 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-   - PowerCellSuper
-   - PowerCellHyper
+  - PowerCellSuper
+  - PowerCellHyper
   technologyPrerequisites:
   - PowercellsUpgraded
   - PowerGenerationMachines
@@ -178,6 +164,7 @@
   - ClothingHeadHatWelding
   - Igniter
   - ClothingOuterVestTank
+  - Pickaxe
   position: -2,1
 
 - type: technology
