@@ -3126,3 +3126,12 @@
   id: 206
   time: '2025-05-10T12:55:11.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1323
+- author: no_mad
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u044B \u043A\u0430\u043B\u0438\
+      \u0431\u0440\u044B \u0440\u0435\u0432\u043E\u043B\u044C\u0432\u0435\u0440\u043E\
+      \u0432."
+    type: Tweak
+  id: 207
+  time: '2025-05-10T13:20:06.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1305
