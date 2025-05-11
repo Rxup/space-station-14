@@ -1,5 +1,4 @@
 using Content.Server.Chat.Systems;
-using Content.Shared.Backmen.Chat;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Magic;
@@ -18,26 +17,6 @@ public sealed class MagicSystem : SharedMagicSystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForSurvivorAntagTag = "InvalidForSurvivorAntag";
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<SpeakSpellEvent>(OnSpellSpoken);
-    }
-
-    private void OnSpellSpoken(ref SpeakSpellEvent args)
-    {
-        // // start-backmen: magick
-        // var ev = new Shared.Backmen.Magic.Events.CanUseMagicEvent
-        // {
-        //     User = args.User,
-        // };
-        // if(ev.Cancelled)
-        //     return;
-        // // end-backmen: magick
-        _chat.TrySendInGameICMessage(args.Performer, Loc.GetString(args.Speech), InGameICChatType.Speak, false);
-    }
 
     public override void OnVoidApplause(VoidApplauseSpellEvent ev)
     {

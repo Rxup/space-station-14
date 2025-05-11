@@ -11,3 +11,4 @@ surgery-ui-window-steps-error-armor = Нужно снять с этого бро
 surgery-ui-window-steps-error-tools = Не хватает инструментов!
 surgery-error-laying = Оно должно быть в положении лёжа!
 surgery-error-self-surgery = Вы не можете оперировать самого себя!
+surgery-part-damage-evaded = { $user } смог уклониться!

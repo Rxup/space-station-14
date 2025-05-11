@@ -17,7 +17,7 @@
   recipes:
   - BoxShotgunPractice
 #  - MagazineBoxLightRiflePractice #Backmen-ammo
-  - MagazineBoxMagnumPractice
+#  - MagazineBoxMagnumPractice #Backmen-ammo
 #  - MagazineBoxPistolPractice #Backmen-ammo
 #  - MagazineBoxRiflePractice #Backmen-ammo
   - WeaponDisablerPractice

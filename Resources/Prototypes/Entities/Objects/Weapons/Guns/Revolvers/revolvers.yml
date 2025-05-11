@@ -40,7 +40,7 @@
       tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum
-    proto: CartridgeMagnum
+    proto: CartridgeRevolver357Magnum #Backmen-revolvers
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
@@ -50,6 +50,17 @@
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: StaticPrice
     price: 500
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
+  # backmen edit end
 
 - type: entity
   name: Deckard
@@ -119,7 +130,7 @@
   categories: [ HideSpawnMenu ] #Backmen-Weapons
   components:
   - type: RevolverAmmoProvider
-    proto: CartridgeMagnumAP
+    proto: CartridgeRevolver357MagnumAP #Backmen-revolvers
 
 - type: entity
   name: Python
@@ -151,7 +162,7 @@
       tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum
-    proto: CartridgeMagnumAP
+    proto: CartridgeRevolver357MagnumAP #Backmen-revolvers
 
 
 - type: entity

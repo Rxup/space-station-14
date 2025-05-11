@@ -26,7 +26,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
@@ -112,9 +112,6 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         // Take power and deal stamina damage
         _power.TryAddPowerLevel(args.Performer, -args.PowerCost);
         _stamina.TakeStaminaDamage(args.Performer, args.StaminaCost);
-
-        // Speak
-        _magic.Speak(args);
 
         args.Handled = true;
     }

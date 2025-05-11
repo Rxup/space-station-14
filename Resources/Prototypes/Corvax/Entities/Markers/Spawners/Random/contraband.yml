@@ -89,7 +89,7 @@
         - WhiteholeGrenade
         - HotPotato
         - WeaponSniperMosinNew
-        - SpeedLoaderMagnumAP
+        - SpeedLoader357MagnumAP
       rareChance: 0.2
       prototypes:
         - CigPackSyndicate
