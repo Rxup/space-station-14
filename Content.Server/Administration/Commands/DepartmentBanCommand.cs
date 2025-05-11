@@ -1,3 +1,4 @@
+using Content.DeadSpace.Interfaces.Server;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -16,6 +17,7 @@ public sealed class DepartmentBanCommand : IConsoleCommand
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    private IServerBanWebhooksManager? _banWebhooksManager; // DS14-bans-weebhook
 
     public string Command => "departmentban";
     public string Description => Loc.GetString("cmd-departmentban-desc");
@@ -99,6 +101,12 @@ public sealed class DepartmentBanCommand : IConsoleCommand
         {
             _banManager.CreateRoleBan(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, job, minutes, severity, reason, now);
         }
+
+        // DS14-bans-weebhook-start
+        IoCManager.Instance!.TryResolveType(out _banWebhooksManager);
+        if (_banWebhooksManager != null)
+            await _banWebhooksManager.SendDepartmentBan(target, shell.Player, department, reason, minutes);
+        // DS14-bans-weebhook-end
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
