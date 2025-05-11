@@ -9,6 +9,16 @@
     size: Small
   - type: Clothing
     slots: [mask]
+  # backmen edit start
+    equipSound:
+      collection: GenericEquip
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/generic_small_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/generic_small_drop.ogg
+  # backmen edit end
   - type: StaticPrice
     price: 25
 
