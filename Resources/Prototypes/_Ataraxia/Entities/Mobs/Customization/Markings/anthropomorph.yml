@@ -1460,7 +1460,7 @@
   id: AnthropomorphTailLunasune
   bodyPart: Tail
   markingCategory: Tail
-#  sponsorOnly: true
+  sponsorOnly: true
   speciesRestriction: [Anthropomorph, Felinid, Human]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
@@ -1470,7 +1470,7 @@
   id: AnthropomorphTailSabresune
   bodyPart: Tail
   markingCategory: Tail
-#  sponsorOnly: true
+  sponsorOnly: true
   speciesRestriction: [Anthropomorph, Felinid, Human]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
@@ -1714,7 +1714,7 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
     state: tail_vulp
 
-# CHEST | ГРУДЬ 
+# CHEST | ГРУДЬ
 
 - type: marking
   id: AnthropomorphChestAbsarms

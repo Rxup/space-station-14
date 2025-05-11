@@ -2,6 +2,7 @@
   id: HumanHairAfricanPigtails
   bodyPart: Hair
   markingCategory: Hair
+  sponsorOnly: true
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: africanpigtails
@@ -172,7 +173,7 @@
   id: HumanHairFortuneteller
   bodyPart: Hair
   markingCategory: Hair
- # sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: true # Corvax-Sponsors
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: fortuneteller
@@ -181,7 +182,7 @@
   id: HumanHairFortunetellerAlt
   bodyPart: Hair
   markingCategory: Hair
- # sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: true # Corvax-Sponsors
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: fortuneteller_alt
@@ -326,7 +327,7 @@
   id: HumanHairLongdtails
   bodyPart: Hair
   markingCategory: Hair
- # sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: true # Corvax-Sponsors
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: longdtails
@@ -408,7 +409,7 @@
   id: HumanHairQuadcurls
   bodyPart: Hair
   markingCategory: Hair
- # sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: true # Corvax-Sponsors
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: quadcurls
@@ -441,7 +442,7 @@
   id: HumanHairShy
   bodyPart: Hair
   markingCategory: Hair
- # sponsorOnly: true # Corvax-Sponsors
+  sponsorOnly: true # Corvax-Sponsors
   sprites:
     - sprite: Corvax/Mobs/Customization/human_hair.rsi
       state: shy
