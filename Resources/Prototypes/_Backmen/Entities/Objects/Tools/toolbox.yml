@@ -8,4 +8,4 @@
     sprite: Backmen/Objects/Tools/Toolboxes/toolbox_inteq.rsi
     state: icon
   - type: Item
-    sprite: Backmen/Objects/Tools/Toolboxes/toolbox_inteq.rsi
+    sprite: Backmen/Objects/Tools/toolbox_inteq.rsi
