@@ -262,7 +262,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnOrganRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganRemovedFromBodyEvent args)
     {
-        if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OldBody) || !ConsciousnessQuery.TryComp(args.OldBody, out var consciousness))
+        if (TerminatingOrDeleted(args.OldBody) || !ConsciousnessQuery.TryComp(args.OldBody, out var consciousness))
             return;
 
         if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
