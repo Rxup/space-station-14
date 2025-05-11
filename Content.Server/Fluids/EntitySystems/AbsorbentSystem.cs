@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Shared.Backmen.FootPrint;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
@@ -333,6 +334,8 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     }
 
     // BACKMEN EDIT START
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string WaterSolutionId = "Water";
     private bool TryFootStepInteract(EntityUid user, EntityUid used, EntityUid target, AbsorbentComponent absorber, UseDelayComponent? useDelay, Entity<SolutionComponent> absorberSoln)
     {
         if (!HasComp<FootPrintComponent>(target)) // Perform a check if it was a footprint that was clicked on
@@ -352,7 +355,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
                 continue; // no spam
 
             var absorberSolution = absorberSoln.Comp.Solution;
-            var available = absorberSolution.GetTotalPrototypeQuantity();
+            var available = absorberSolution.GetTotalPrototypeQuantity(WaterSolutionId);
 
             // No material
             if (available == FixedPoint2.Zero)
