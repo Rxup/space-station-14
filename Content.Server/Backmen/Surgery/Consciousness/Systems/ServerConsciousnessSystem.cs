@@ -340,7 +340,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         ConsciousnessComponent? consciousness = null,
         MobStateComponent? mobState = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false)
+        if (TerminatingOrDeleted(target) ||
+            !ConsciousnessQuery.Resolve(target, ref consciousness, false)
             || !MobStateQuery.Resolve(target, ref mobState, false))
             return false;
 
