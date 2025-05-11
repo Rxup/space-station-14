@@ -367,8 +367,8 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             var transferMax = absorber.PickupAmount;
             var transferAmount = available > transferMax ? transferMax : available;
 
-            var puddleSplit = targetStepSolution.SplitSolutionWithout(transferAmount);
-            var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume);
+            var puddleSplit = targetStepSolution.SplitSolutionWithout(transferAmount, WaterSolutionId);
+            var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume, WaterSolutionId);
 
             var transform = Transform(target);
             var gridUid = transform.GridUid;
