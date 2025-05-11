@@ -3135,3 +3135,21 @@
   id: 207
   time: '2025-05-10T13:20:06.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1305
+- author: KayzelW
+  changes:
+  - message: "cvar \u0434\u043B\u044F \u0441\u043B\u0435\u0434\u043E\u0432"
+    type: Add
+  id: 208
+  time: '2025-05-11T02:24:51.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1322
+- author: Agronomist-NN
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u0437\u0432\u0443\
+      \u043A\u0438 \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\
+      \u0432\u0438\u0439 \u043F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\
+      \u0438 \u0434\u043B\u044F \u0432\u0441\u0435\u0445 \u043F\u0440\u0435\u0434\u043C\
+      \u0435\u0442\u043E\u0432 \u0432 \u0438\u0433\u0440\u0435."
+    type: Tweak
+  id: 209
+  time: '2025-05-11T02:42:02.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1309
