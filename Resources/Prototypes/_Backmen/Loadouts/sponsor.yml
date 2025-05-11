@@ -137,3 +137,51 @@
   storage:
     back:
     - ClothingNeckCloakBlackWendor
+
+# ERP Sponsor
+
+- type: loadout
+  id: Probki
+  storage:
+    back:
+    - LPPBigGreenButtplug
+    - LPPMedGreenButtplug
+    - LPPSmallGreenButtplug
+    - LPPBigmetalButtplug
+    - LPPMedmetalButtplug
+    - LPPSmallmetalButtplug
+    - LPPBigpinkButtplug
+    - LPPMedpinkButtplug
+    - LPPSmallpinkButtplug
+    - LPPBigtailButtplug
+    - LPPMedtailButtplug
+    - LPPSmalltailButtplug
+    - LPPBigtealButtplug
+    - LPPMedtealButtplug
+    - LPPSmalltealButtplug
+    - LPPBigyellowButtplug
+    - LPPMedyellowButtplug
+    - LPPSmallyellowButtplug
+    - LPPDildoAvian
+    - LPPDildoCanine
+    - LPPDildoDouble
+    - LPPDildoDragon
+    - LPPDildoEquine
+    - LPPDildoHuman
+    - LPPDildoTentacle
+    - LPPPolydildoBig
+    - LPPPolydildoMed
+    - LPPPolydildoSmall
+    - LPPFleshlightGreen
+    - LPPFleshlightPink
+    - LPPFleshlightRed
+    - LPPFleshlightTeal
+    - LPPFleshlightYellow
+    - LPPPillowPinkRound
+    - LPPPillowTealRound
+    - LPPVibratorGreen
+    - LPPVibratorPink
+    - LPPVibratorRed
+    - LPPVibratorTeal
+    - LPPVibratorYellow
+    - LPPWhips

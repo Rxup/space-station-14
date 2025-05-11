@@ -779,6 +779,7 @@
   id: HumanHairNitori
   bodyPart: Hair
   markingCategory: Hair
+  sponsorOnly: true
   sprites:
     - sprite: Mobs/Customization/human_hair.rsi
       state: nitori
@@ -1381,6 +1382,7 @@
   id: HumanHairLongBow
   bodyPart: Hair
   markingCategory: Hair
+  sponsorOnly: true
   sprites:
     - sprite: Mobs/Customization/human_hair.rsi
       state: longbow
