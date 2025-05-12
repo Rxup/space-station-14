@@ -30,6 +30,7 @@ namespace Content.Server.Research.Systems
             InitializeConsole();
             InitializeSource();
             InitializeServer();
+            InitializeBkm(); // backmen change
 
             SubscribeLocalEvent<TechnologyDatabaseComponent, ResearchRegistrationChangedEvent>(OnDatabaseRegistrationChanged);
         }

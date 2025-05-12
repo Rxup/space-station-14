@@ -29,6 +29,7 @@
   - MedkitRadiation
   - MedkitCombat
   - WhiteCane
+  - BodyBag
   position: 4,-5
 
 - type: technology
@@ -164,15 +165,15 @@
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     state: beakerbluespace
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 12000
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
   - BluespacePillCanister # backmen
   technologyPrerequisites:
-  - Chemistry
-  position: 2,-6
+  - ChemistryMachines
+  position: 2,-7
 
 - type: technology
   id: BiochemicalStasis
@@ -200,7 +201,6 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-  - BodyBag
   - NTBodyBag
   - PrisonerBodyBag
   - RadiationBodyBag
