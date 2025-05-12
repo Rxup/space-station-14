@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+// SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server._DV.CosmicCult.EntitySystems;
 using Content.Server._DV.CosmicCult.Components;
 using Content.Server.Actions;
@@ -18,6 +25,7 @@ using Content.Shared.Eye;
 using Content.Shared.Hands;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -69,7 +77,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         SubscribeLocalEvent<CosmicCultComponent, ComponentInit>(OnStartCultist);
         SubscribeLocalEvent<CosmicCultLeadComponent, ComponentInit>(OnStartCultLead);
         SubscribeLocalEvent<CosmicCultLeadComponent, CosmicCultLeadChangedEvent>(OnCultLeadChanged);
-        //SubscribeLocalEvent<CosmicCultComponent, GetVisMaskEvent>(OnGetVisMask);
+        SubscribeLocalEvent<CosmicCultComponent, GetVisMaskEvent>(OnGetVisMask);
 
         SubscribeLocalEvent<CosmicEquipmentComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<CosmicEquipmentComponent, GotUnequippedEvent>(OnGotUnequipped);
@@ -175,10 +183,10 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         cult.Comp.CultLeader = uid;
     }
 
-    /*private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
+    private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
     {
         args.VisibilityMask |= (int) VisibilityFlags.CosmicCultMonument;
-    }*/
+    }
 
     /// <summary>
     /// Called by Cosmic Siphon. Increments the Cult's global objective tracker.
@@ -200,7 +208,10 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     private void OnGotHeld(Entity<CosmicEquipmentComponent> ent, ref GotEquippedHandEvent args)
     {
         if (!EntityIsCultist(args.User))
+        {
             _statusEffects.TryAddStatusEffect<CosmicEntropyDebuffComponent>(args.User, EntropicDegen, TimeSpan.FromDays(1), true);
+            _popup.PopupEntity(Loc.GetString("cosmiccult-gear-pickup", ("ITEM", args.Equipped)), args.User, args.User, PopupType.MediumCaution);
+        }
     }
 
     private void OnGotUnheld(Entity<CosmicEquipmentComponent> ent, ref GotUnequippedHandEvent args)
@@ -227,9 +238,9 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     }
 
     private void OnRefreshMoveSpeed(EntityUid uid, InfluenceStrideComponent comp, RefreshMovementSpeedModifiersEvent args) =>
-        args.ModifySpeed(1.05f, 1.05f);
+        args.ModifySpeed(1.1f, 1.1f);
     private void OnImpositionMoveSpeed(EntityUid uid, CosmicImposingComponent comp, RefreshMovementSpeedModifiersEvent args) =>
-        args.ModifySpeed(0.55f, 0.55f);
+        args.ModifySpeed(0.65f, 0.65f);
 
     #endregion
 

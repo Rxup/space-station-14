@@ -10,6 +10,9 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
@@ -25,7 +28,7 @@ public sealed class CosmicGlareSystem : EntitySystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private readonly SharedInteractionSystem _interact = default!;
-
+    [Dependency] private readonly SharedStunSystem _stun = default!;
     private HashSet<Entity<PoweredLightComponent>> _lights = [];
 
     public override void Initialize()
@@ -76,7 +79,9 @@ public sealed class CosmicGlareSystem : EntitySystem
 
         foreach (var target in targets)
         {
-            _flash.Flash(GetEntity(target),
+            var targetEnt = GetEntity(target);
+
+            _flash.Flash(targetEnt,
                 uid,
                 args.Action,
                 (float) uid.Comp.CosmicGlareDuration.TotalMilliseconds,
@@ -85,10 +90,13 @@ public sealed class CosmicGlareSystem : EntitySystem
                 false,
                 uid.Comp.CosmicGlareStun);
 
+            if (HasComp<BorgChassisComponent>(targetEnt) // fuck them clankers
+                || HasComp<SiliconLawProviderComponent>(targetEnt))
+                _stun.TryParalyze(targetEnt, uid.Comp.CosmicGlareDuration / 2, true);
+
             _color.RaiseEffect(Color.CadetBlue,
-                new List<EntityUid>() { GetEntity(target) },
-                Filter.Pvs(GetEntity(target),
-                entityManager: EntityManager));
+                new List<EntityUid>() { targetEnt },
+                Filter.Pvs(targetEnt, entityManager: EntityManager));
         }
     }
 }
