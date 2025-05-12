@@ -237,7 +237,7 @@ namespace Content.Shared.Damage
             }
 
             // backmen edit start
-            var specialHandlerEvent = new CheckForCustomHandlerEvent(
+            var specialHandlerEvent = new HandleCustomDamage(
                 damage,
                 targetPart,
                 canBeCancelled,
@@ -384,9 +384,6 @@ namespace Content.Shared.Damage
 
         private void OnRejuvenate(EntityUid uid, DamageableComponent component, RejuvenateEvent args)
         {
-            if (HasComp<BodyComponent>(uid))
-                return;
-
             TryComp<MobThresholdsComponent>(uid, out var thresholds);
             _mobThreshold.SetAllowRevives(uid, true, thresholds); // do this so that the state changes when we set the damage
             SetAllDamage(uid, component, 0);
@@ -433,7 +430,7 @@ namespace Content.Shared.Damage
     ///     Currently, is used only for wounds
     /// </summary>
     [ByRefEvent]
-    public record struct CheckForCustomHandlerEvent(
+    public record struct HandleCustomDamage(
         DamageSpecifier Damage,
         TargetBodyPart? TargetPart,
         bool CanBeCancelled = true,

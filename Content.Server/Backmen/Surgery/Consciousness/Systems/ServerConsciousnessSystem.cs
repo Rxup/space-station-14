@@ -27,7 +27,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<ConsciousnessComponent, CheckForCustomHandlerEvent>(OnConsciousnessDamaged);
+        SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
 
         // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(SharedBodySystem)]);
@@ -44,8 +44,11 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     private void OnConsciousnessDamaged(
         EntityUid uid,
         ConsciousnessComponent component,
-        ref CheckForCustomHandlerEvent args)
+        ref HandleCustomDamage args)
     {
+        if (args.Handled)
+            return;
+
         var actuallyInducedDamage = new DamageSpecifier(args.Damage);
         switch (args.TargetPart)
         {
@@ -248,7 +251,11 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
 
         if (component.Identifier == NerveSystemIdentifier)
-            consciousness.NerveSystem = (uid, Comp<NerveSystemComponent>(uid));
+        {
+            var nerveSys = Comp<NerveSystemComponent>(uid);
+            nerveSys.RootNerve = args.Part;
+            consciousness.NerveSystem = (uid, nerveSys);
+        }
 
         CheckRequiredParts(args.Body, consciousness);
     }
@@ -333,7 +340,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         ConsciousnessComponent? consciousness = null,
         MobStateComponent? mobState = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness)
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false)
             || !MobStateQuery.Resolve(target, ref mobState, false))
             return false;
 
@@ -355,7 +362,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         TimeSpan time,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return;
 
         consciousness.PassedOut = true;
@@ -370,7 +377,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         TimeSpan time,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return;
 
         consciousness.ForceConscious = true;
@@ -384,7 +391,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         EntityUid target,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return;
 
         consciousness.ForceConscious = false;
@@ -406,7 +413,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         TimeSpan? time = null,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return false;
 
         if (!consciousness.Modifiers.TryAdd((modifierOwner, identifier),
@@ -425,7 +432,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         string identifier,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return false;
 
         if (!consciousness.Modifiers.Remove((modifierOwner, identifier)))
@@ -446,7 +453,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         TimeSpan? time = null,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return false;
 
         var newModifier = new ConsciousnessModifier(Change: modifierChange, Time: time.HasValue ? Timing.CurTime + time : time, Type: type);
@@ -466,7 +473,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         TimeSpan? time = null,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness) ||
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false) ||
             !consciousness.Modifiers.TryGetValue((modifierOwner, identifier), out var oldModifier))
             return false;
 
@@ -490,7 +497,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         TimeSpan? time = null,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return false;
 
         if (!consciousness.Multipliers.TryAdd((multiplierOwner, identifier),
@@ -511,7 +518,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         string identifier,
         ConsciousnessComponent? consciousness = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness))
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return false;
 
         if (!consciousness.Multipliers.Remove((multiplierOwner, identifier)))

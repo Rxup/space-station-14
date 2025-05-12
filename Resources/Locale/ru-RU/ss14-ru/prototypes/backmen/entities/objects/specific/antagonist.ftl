@@ -1,5 +1,4 @@
 ent-BluespaceUplink = блюспейс
-
 ent-BluespaceUplink1 = блюспейс кристалл
     .suffix = 1 БС Аплинк
     .desc = Блюспейс кристалл, переливающийся синим цветом.
@@ -15,7 +14,6 @@ ent-BluespaceUplink25 = { ent-BluespaceUplink1 }
 ent-BluespaceUplink50 = { ent-BluespaceUplink1 }
     .suffix = 50 БС Аплинк
     .desc = { ent-BluespaceUplink1.desc }
-
 ent-BaseWizardUplinkRadio = магический аплинк
     .suffix = Пустой
     .desc = Ты волшебник, Гарри!

@@ -8,6 +8,9 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Roles;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Damage;
@@ -42,6 +45,9 @@ namespace Content.Server.Zombies
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedRoleSystem _role = default!;
+
+        [Dependency] private readonly PainSystem _pain = default!; // Backmen Edit
+        [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // Backmen Edit
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -299,6 +305,16 @@ namespace Content.Server.Zombies
             }
             _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
             _bloodstream.ChangeBloodReagent(target, zombiecomp.BeforeZombifiedBloodReagent);
+
+            // Backmen Edit start
+            if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
+            {
+                _pain.TryRemovePainMultiplier(nerveSys.Value, "Zombified", nerveSys.Value);
+                _pain.TryRemovePainMultiplier(nerveSys.Value, "ZombifiedTraumatic", nerveSys.Value);
+
+                _consciousness.RemoveConsciousnessMultiplier(target, target, "Zombified");
+            }
+            // Backmen Edit end
 
             return true;
         }

@@ -1,6 +1,8 @@
 # Sponsor Loadout
 - type: loadout
   id: WisdomLoadOutBkm
+  equipment:
+    back: ClothingBackpackWisdom
 
 # Backpack
 - type: entity
