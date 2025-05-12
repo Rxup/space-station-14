@@ -3,7 +3,7 @@
 - type: entity
   id: PartKobold
   parent: [BaseItem, BasePart]
-  name: "Kobold body part"
+  name: kobold body part
   abstract: true
   components:
   - type: Extractable
@@ -16,7 +16,7 @@
 
 - type: entity
   id: ChestKobold
-  name: "Kobold chest"
+  name: kobold chest
   parent: [BaseChest, PartKobold]
   components:
   - type: Sprite
@@ -32,7 +32,7 @@
 
 - type: entity
   id: GroinKobold
-  name: "Kobold groin"
+  name: kobold groin
   parent: [BaseGroin, PartKobold]
   components:
   - type: Sprite
@@ -48,7 +48,7 @@
 
 - type: entity
   id: HeadKobold
-  name: "Kobold head"
+  name: kobold head
   parent: [BaseHead, PartKobold]
   components:
   - type: Sprite
@@ -64,7 +64,7 @@
 
 - type: entity
   id: LeftArmKobold
-  name: "left Kobold arm"
+  name: left kobold arm
   parent: [BaseLeftArm, PartKobold]
   components:
   - type: Sprite
@@ -73,7 +73,7 @@
 
 - type: entity
   id: RightArmKobold
-  name: "right Kobold arm"
+  name: right kobold arm
   parent: [BaseRightArm, PartKobold]
   components:
   - type: Sprite
@@ -82,7 +82,7 @@
 
 - type: entity
   id: LeftHandKobold
-  name: "left Kobold hand"
+  name: left kobold hand
   parent: [BaseLeftHand, PartKobold]
   components:
   - type: Sprite
@@ -91,7 +91,7 @@
 
 - type: entity
   id: RightHandKobold
-  name: "right Kobold hand"
+  name: right kobold hand
   parent: [BaseRightHand, PartKobold]
   components:
   - type: Sprite
@@ -100,7 +100,7 @@
 
 - type: entity
   id: LeftLegKobold
-  name: "left Kobold leg"
+  name: left kobold leg
   parent: [BaseLeftLeg, PartKobold]
   components:
   - type: Sprite
@@ -109,7 +109,7 @@
 
 - type: entity
   id: RightLegKobold
-  name: "right Kobold leg"
+  name: right kobold leg
   parent: [BaseRightLeg, PartKobold]
   components:
   - type: Sprite
@@ -118,7 +118,7 @@
 
 - type: entity
   id: LeftFootKobold
-  name: "left Kobold foot"
+  name: left kobold foot
   parent: [BaseLeftFoot, PartKobold]
   components:
   - type: Sprite
@@ -127,7 +127,7 @@
 
 - type: entity
   id: RightFootKobold
-  name: "right Kobold foot"
+  name: right kobold foot
   parent: [BaseRightFoot, PartKobold]
   components:
   - type: Sprite

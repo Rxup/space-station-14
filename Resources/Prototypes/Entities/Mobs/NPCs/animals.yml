@@ -1376,6 +1376,9 @@
     - Monkey
   - type: HumanoidAppearance
     species: Monkey # backmen: species
+  - type: Consciousness
+    threshold: 80
+    cap: 160
   - type: DiseaseCarrier
   - type: CombatMode
   - type: SurgeryTarget
@@ -1513,8 +1516,6 @@
       effects:
       - !type:WashCreamPieReaction
 
-
-
 - type: entity
   name: monkey
   id: MobMonkey
@@ -1602,9 +1603,6 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
-  - type: Consciousness
-    threshold: 70
-    cap: 140
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent

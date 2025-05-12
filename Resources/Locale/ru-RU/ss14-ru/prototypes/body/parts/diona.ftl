@@ -1,6 +1,8 @@
 ent-PartDiona = часть тела дионы
     .desc = { ent-BaseItem.desc }
-ent-TorsoDiona = туловище дионы
+ent-ChestDiona = грудь дионы
+    .desc = { ent-PartDiona.desc }
+ent-GroinDiona = пах дионы
     .desc = { ent-PartDiona.desc }
 ent-HeadDiona = голова дионы
     .desc = { ent-PartDiona.desc }
