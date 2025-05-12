@@ -14,7 +14,7 @@
   - SalvageExpeditionsComputerCircuitboard
   technologyPrerequisites:
   - SalvageEquipment
-  position: 11,2
+  position: 10,3
 
 - type: technology
   id: SalvageEquipmentAdvancedMachines
@@ -29,19 +29,4 @@
   - OreProcessorIndustrialMachineCircuitboard
   technologyPrerequisites:
   - SalvageEquipmentMachines
-  position: 12,2
-
-- type: technology
-  id: SpaceScanningMachines
-  name: research-technology-space-scanning-machines
-  icon:
-    sprite: Objects/Tools/handheld_mass_scanner.rsi
-    state: icon
-  discipline: Shaft
-  tier: 1
-  cost: 3500
-  recipeUnlocks:
-  - RadarConsoleCircuitboard
-  technologyPrerequisites:
-  - SpaceScanning
   position: 11,3

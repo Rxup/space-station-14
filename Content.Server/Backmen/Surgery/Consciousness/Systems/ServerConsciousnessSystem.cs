@@ -262,7 +262,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnOrganRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganRemovedFromBodyEvent args)
     {
-        if (!ConsciousnessQuery.TryComp(args.OldBody, out var consciousness))
+        if (TerminatingOrDeleted(args.OldBody) || !ConsciousnessQuery.TryComp(args.OldBody, out var consciousness))
             return;
 
         if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
@@ -340,7 +340,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         ConsciousnessComponent? consciousness = null,
         MobStateComponent? mobState = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false)
+        if (TerminatingOrDeleted(target) ||
+            !ConsciousnessQuery.Resolve(target, ref consciousness, false)
             || !MobStateQuery.Resolve(target, ref mobState, false))
             return false;
 

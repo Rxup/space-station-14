@@ -201,6 +201,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePacketRifle556UEG
+  result: MagazinePacketRifle556UEG
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePacketPistolACP
   result: MagazinePacketPistolACP
   materials:
@@ -318,3 +325,45 @@
   materials:
     Steel: 2500
     Plasteel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoader38Special
+  result: SpeedLoader38Special
+  materials:
+    Steel: 150
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoader44Magnum
+  result: SpeedLoader44Magnum
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoader357Magnum
+  result: SpeedLoader357Magnum
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRevolver38Special
+  result: MagazinePacketRevolver38Special
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRevolver44Magnum
+  result: MagazinePacketRevolver44Magnum
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePacketRevolver357Magnum
+  result: MagazinePacketRevolver357Magnum
+  materials:
+    Steel: 1000

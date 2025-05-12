@@ -235,7 +235,7 @@
 ##  - XenoArcheologyMachines
 #  position: 8,-4
 
-- type: technology # Merge with other T2 medical research if possible!
+- type: technology
   id: MechanizedTreatment
   name: research-technology-mechanized-treatment
   icon:
@@ -263,5 +263,5 @@
   recipeUnlocks:
   - BorgModuleAdvancedMining
   technologyPrerequisites:
-  - CyborgModules
-  position: 8,-4
+  - SalvageEquipmentAdvanced
+  position: 10,-4

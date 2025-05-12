@@ -152,3 +152,86 @@
   components:
   - type: CartridgeAmmo
     proto: BulletPistol50AEIncendiary
+
+- type: entity
+  id: CartridgeRevolver357Magnum
+  name: cartridge (.357 Magnum)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeMagnum
+  - type: CartridgeAmmo
+    proto: BulletRevolver357Magnum
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: 45combat
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+    state: 45combat
+
+- type: entity
+  id: CartridgeRevolver357MagnumAP
+  name: cartridge (.357 Magnum AP)
+  parent: CartridgeRevolver357Magnum
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolver357MagnumAP
+
+- type: entity
+  id: CartridgeRevolver38Special
+  name: cartridge (.38 Special)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeRevolver38Special
+  - type: CartridgeAmmo
+    proto: BulletRevolver38Special
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    scale: 0.8, 0.8
+    layers:
+      - state: 45combat
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+    state: 45combat
+
+- type: entity
+  id: CartridgeRevolver38SpecialAP
+  name: cartridge (.38 Special AP)
+  parent: CartridgeRevolver38Special
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolver38SpecialAP
+
+- type: entity
+  id: CartridgeRevolver44Magnum
+  name: cartridge (.44 Magnum)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeRevolver44Magnum
+  - type: CartridgeAmmo
+    proto: BulletRevolver44Magnum
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    scale: 1.2, 1.2
+    layers:
+      - state: 45combat
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+    state: 45combat
+
+- type: entity
+  id: CartridgeRevolver44MagnumAP
+  name: cartridge (.44 Magnum AP)
+  parent: CartridgeRevolver44Magnum
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolver44MagnumAP

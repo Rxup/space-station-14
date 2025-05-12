@@ -915,3 +915,11 @@ CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
 
 # 2025-04-16 BACKMEN-EDIT
 PrinterDoc: PhotocopierCommand
+
+# 2025-05-05 | Backmen
+SpeedLoaderMagnum: SpeedLoader357Magnum
+SpeedLoaderMagnumIncendiary: SpeedLoader357Magnum
+SpeedLoaderMagnumPractice: SpeedLoader357Magnum
+SpeedLoaderMagnumAP: SpeedLoader357MagnumAP
+SpeedLoaderMagnumUranium: SpeedLoader357Magnum
+MagazineBoxMagnum: MagazinePacketRevolver357Magnum

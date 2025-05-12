@@ -16,7 +16,7 @@
           emergencyShuttlePath: /Maps/Corvax/Shuttles/emergency_corvaxdelta.yml
         - type: StationJobs
           availableJobs:
-            #Borg: [ 2, 3 ]
+            Borg: [ 2, 3 ]
             #Boxer: [ 2, 2 ]
             Pilot: [ 1, 1 ]
             CargoTechnician: [ 4, 4 ]
@@ -64,6 +64,7 @@
             BlueShield: [1, 1] # backmen-BlueShield
             BKBPLATech: [0, 1] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
+            StationAi: [ 1, 1 ]
         # backmen blob-config-start HUGE
         - type: StationBlobConfig
           stageBegin: 40

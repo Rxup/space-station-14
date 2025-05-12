@@ -1,0 +1,15 @@
+- type: entity
+  parent: ToolboxInteQ
+  id: ToolboxInteQFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Crowbar
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingBalaclavaSwat

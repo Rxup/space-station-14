@@ -201,3 +201,78 @@
         Piercing: 10
         Blunt: 10
         Heat: 25
+
+- type: entity
+  id: BulletRevolver38Special
+  name: bullet (.38 Special)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+        ArmorPiercing: 15
+
+- type: entity
+  id: BulletRevolver357Magnum
+  name: bullet (.357 Magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Slash: 25
+
+- type: entity
+  id: BulletRevolver44Magnum
+  name: bullet (.44 Magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+        Slash: 20
+        ArmorPiercing: 20
+
+- type: entity
+  id: BulletRevolver38SpecialAP
+  name: bullet (.38 Special AP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+        ArmorPiercing: 30
+
+- type: entity
+  id: BulletRevolver357MagnumAP
+  name: bullet (.357 Magnum AP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+        Slash: 30
+        ArmorPiercing: 20
+
+- type: entity
+  id: BulletRevolver44MagnumAP
+  name: bullet (.44 Magnum AP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+        Slash: 20
+        ArmorPiercing: 40

@@ -29,6 +29,7 @@
   - MedkitRadiation
   - MedkitCombat
   - WhiteCane
+  - BodyBag
   position: 4,-5
 
 - type: technology
@@ -173,8 +174,8 @@
   - SyringeBluespace
   - BluespacePillCanister # backmen
   technologyPrerequisites:
-  - Chemistry
-  position: 2,-6
+  - ChemistryMachines
+  position: 2,-7
 
 - type: technology
   id: BiochemicalStasis
@@ -202,7 +203,6 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-  - BodyBag
   - NTBodyBag
   - PrisonerBodyBag
   - RadiationBodyBag
