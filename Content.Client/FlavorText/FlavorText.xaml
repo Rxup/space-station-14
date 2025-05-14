@@ -6,11 +6,9 @@
             <graphics:StyleBoxFlat BackgroundColor="#111111" />
         </PanelContainer.PanelOverride>
         <!-- BACKMEN EDIT END-->
-        <!-- SD-ERPStatus-Start -->
-        <OptionButton Name="CERPStatusOption" Access="Public" MinSize="220 0" HorizontalExpand="True" />
-        <!-- SD-ERPStatus-End   -->
         <BoxContainer Orientation="Vertical" HorizontalExpand="True">
             <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
+            <OptionButton Name="CERPStatusOption" Access="Public" MinSize="220 0" Margin="10 0 10 10" HorizontalExpand="True" />
         </BoxContainer>
     </PanelContainer>
 </Control>
