@@ -917,6 +917,7 @@ CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
 PrinterDoc: PhotocopierCommand
 SyringeGun: LauncherSyringe
 RapidSyringeGun: LauncherSyringe
+PlayerStationAiPilgrim: PlayerStationAi
 
 # 2025-05-05 | Backmen
 SpeedLoaderMagnum: SpeedLoader357Magnum
