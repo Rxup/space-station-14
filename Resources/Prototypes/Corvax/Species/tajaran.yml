@@ -2,7 +2,6 @@
   id: Tajaran
   name: species-name-tajaran
   roundStart: true
-  sponsorOnly: true # Corvax-Sponsors
   prototype: MobTajaran
   sprites: MobTajaranSprites
   defaultSkinTone: "#eb943d"
