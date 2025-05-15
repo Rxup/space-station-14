@@ -458,7 +458,7 @@
     - state: icon-nobeard
       map: [ "foldedLayer" ]
       visible: true
-    
+
 
 - type: entity
   parent: ClothingHeadBase
@@ -1022,7 +1022,7 @@
     sprite: Clothing/Head/Hats/gladiator.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/gladiator.rsi
-  - type: CoveredSlot # Backmen
+  - type: SlotBlock # Backmen
     slots: [eyes, mask, ears]
 
 - type: entity

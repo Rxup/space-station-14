@@ -3,7 +3,7 @@
   parent: Clothing
   id: ClothingShoesBase
   components:
-  - type: CoveredSlot # Backmen
+  - type: SlotBlock # Backmen
     slots: [socks]
   # backmen edit start
   - type: EmitSoundOnPickup
