@@ -106,7 +106,7 @@
   id: GameRuleSpaceDustMinor
   components:
   - type: StationEvent
-    weight: 50 # backmen change
+    weight: 0 # backmen change
     earliestStart: 2
     minimumPlayers: 0
   - type: MeteorSwarm
@@ -127,7 +127,7 @@
   id: GameRuleSpaceDustMajor
   components:
   - type: StationEvent
-    weight: 28 # backmen change
+    weight: 0 # backmen change
     minimumPlayers: 0
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement

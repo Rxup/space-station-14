@@ -271,6 +271,5 @@
     contents:
         - id: OxygenTankFilled
         - id: ClothingMaskBreath
-        # TODO: Gone until reworked to have no space protection
-        #- id: ClothingOuterHardsuitWizard
-        #- id: JetpackVoidFilled
+        - id: ClothingOuterHardsuitWizard
+        - id: JetpackVoidFilled
