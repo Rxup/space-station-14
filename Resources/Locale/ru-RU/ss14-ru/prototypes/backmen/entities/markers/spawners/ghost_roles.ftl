@@ -1,6 +1,3 @@
-ent-SpawnPointEvilTwin = спавнер ролей призраков
-    .suffix = Злой двойник
-    .desc = { ent-MarkerBase.desc }
 ent-SpawnPointGhostFugitive = { ent-SpawnPointEvilTwin }
     .desc = { ent-MarkerBase.desc }
 ent-SpawnPointGhostIfrit = { ent-SpawnPointEvilTwin }

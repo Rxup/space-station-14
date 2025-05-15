@@ -25,7 +25,6 @@
   id: BasicAntagEventsTableBackmen
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    #- id: EvilTwinSpawn
     - id: FugitiveSpawn
     - id: BlobSpawn
     - id: VampireOutbreak
@@ -60,17 +59,6 @@
     - id: NoosphericStorm
     - !type:NestedSelector
       tableId: FreeProberEventsTable
-
-- type: entity
-  id: EvilTwinSpawn
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    weight: 7
-    earliestStart: 15
-    minimumPlayers: 5
-  - type: EvilTwinRule
 
 - type: entity
   id: FugitiveSpawn

@@ -75,19 +75,6 @@
     roleType: FreeAgent
   - type: ChangelingRole
 
-# EvilTwin
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleEvilTwin
-  name: Evil Twin Role
-  #  description: mind-role-evil-twin-description
-  components:
-  - type: MindRole
-    antagPrototype: EvilTwin
-    exclusiveAntag: true
-    roleType: Neutral
-  - type: EvilTwinRole
-
 # SuperPsi
 - type: entity
   parent: BaseMindRoleAntag
