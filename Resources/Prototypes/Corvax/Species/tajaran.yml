@@ -20,7 +20,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    Chest: MobTajaranTorso
+    Chest: MobTajaranChest
+    Groin: MobTajaranGroin # Backmen edit: chest, groin separation
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -84,22 +85,40 @@
     state: head_f
 
 - type: humanoidBaseSprite
-  id: MobTajaranTorso
+  id: MobTajaranChest
   baseSprite:
     sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobTajaranTorsoMale
+  id: MobTajaranChestMale
   baseSprite:
     sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-    state: torso_m
+    state: chest_m
 
 - type: humanoidBaseSprite
-  id: MobTajaranTorsoFemale
+  id: MobTajaranChestFemale
   baseSprite:
     sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-    state: torso_f
+    state: chest_f
+
+- type: humanoidBaseSprite
+  id: MobTajaranGroin
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobTajaranGroinMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: groin_m
+
+- type: humanoidBaseSprite
+  id: MobTajaranGroinFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: groin_f
 
 - type: humanoidBaseSprite
   id: MobTajaranLLeg

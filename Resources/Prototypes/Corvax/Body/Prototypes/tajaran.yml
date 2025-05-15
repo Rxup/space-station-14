@@ -6,44 +6,50 @@
     head:
       part: HeadTajaran
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoTajaran
+    chest:
+      part: ChestTajaran
+      connections:
+      - right arm
+      - left arm
+      - groin
+      - head
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
+    groin: # Backmen edit: chest, groin separation
+      part: GroinTajaran
+      connections:
+      - right leg
+      - left leg
+      organs:
         stomach: OrganTajaranStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
-      connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
-    right_arm:
+    right arm:
       part: RightArmTajaran
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmTajaran
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandTajaran
-    left_hand:
+    left hand:
       part: LeftHandTajaran
-    right_leg:
+    right leg:
       part: RightLegTajaran
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegTajaran
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootTajaran
-    left_foot:
+    left foot:
       part: LeftFootTajaran

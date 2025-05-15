@@ -2,124 +2,267 @@
 # TODO BODY: Part damage
 - type: entity
   id: PartTajaran
-  parent: [BaseItem, BasePart]
+  parent: BasePart
   name: "tajaran body part"
   abstract: true
   components:
-    - type: Extractable
-      juiceSolution:
-        reagents:
-          - ReagentId: Fat
-            Quantity: 3
-          - ReagentId: Blood
-            Quantity: 10
+  # Shitmed Change Start
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 110
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 150
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    # Shitmed Change End
 
 - type: entity
-  id: TorsoTajaran
-  name: "tajaran torso"
-  parent: [PartTajaran, BaseTorso]
+  id: ChestTajaran
+  name: "tajaran chest"
+  parent: [BaseChest, PartTajaran]
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "torso_m"
-    - type: Extractable
-      juiceSolution:
-        reagents:
-          - ReagentId: Fat
-            Quantity: 10
-          - ReagentId: Blood
-            Quantity: 20
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "chest_m"
+  # Shitmed Change Start
+  - type: BodyPart
+    partType: Chest
+    toolName: "a chest"
+    containerName: "chest_slot"
+  - type: ContainerContainer
+    containers:
+      chest_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  # Shitmed Change End
+
+- type: entity
+  id: GroinTajaran
+  name: "tajaran groin"
+  parent: [BaseGroin, PartTajaran]
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "groin_m"
+  - type: Icon
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "groin_m"
+  - type: BodyPart
+    partType: Groin
+    toolName: "a groin"
+    containerName: "groin_slot"
+  - type: ContainerContainer
+    containers:
+      groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
 
 - type: entity
   id: HeadTajaran
   name: "tajaran head"
-  parent: [PartTajaran, BaseHead]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "head_m"
-    - type: Extractable
-      juiceSolution:
-        reagents:
-          - ReagentId: Fat
-            Quantity: 5
-          - ReagentId: Blood
-            Quantity: 10
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "head_m"
+  - type: BodyPart
+    partType: Head
+    toolName: "a head" # Shitmed Change
+  - type: Input
+    context: "ghost"
+  - type: InputMover
+  - type: GhostOnMove
+  - type: Tag
+    tags:
+      - Head
 
 - type: entity
   id: LeftArmTajaran
   name: "left tajaran arm"
-  parent: [PartTajaran, BaseLeftArm]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "l_arm"
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "l_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
+    toolName: "a left arm" # Shitmed Change
 
 - type: entity
   id: RightArmTajaran
   name: "right tajaran arm"
-  parent: [PartTajaran, BaseRightArm]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "r_arm"
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "r_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
+    toolName: "a right arm" # Shitmed Change
 
 - type: entity
   id: LeftHandTajaran
   name: "left tajaran hand"
-  parent: [PartTajaran, BaseLeftHand]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "l_hand"
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+    toolName: "a left hand" # Shitmed Change
 
 - type: entity
   id: RightHandTajaran
   name: "right tajaran hand"
-  parent: [PartTajaran, BaseRightHand]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "r_hand"
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "r_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+    toolName: "a right hand" # Shitmed Change
 
 - type: entity
   id: LeftLegTajaran
   name: "left tajaran leg"
-  parent: [PartTajaran, BaseLeftLeg]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "l_leg"
-    - type: MovementBodyPart
-      walkSpeed : 2.7
-      sprintSpeed : 4.5
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "l_leg"
+  - type: MovementBodyPart
+    walkSpeed : 2.7
+    sprintSpeed : 4.5
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+    toolName: "a left leg" # Shitmed Change
 
 - type: entity
   id: RightLegTajaran
   name: "right tajaran leg"
-  parent: [PartTajaran, BaseRightLeg]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "r_leg"
-    - type: MovementBodyPart
-      walkSpeed : 2.7
-      sprintSpeed : 4.5
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "r_leg"
+  - type: MovementBodyPart
+    walkSpeed : 2.7
+    sprintSpeed : 4.5
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+    toolName: "a right leg" # Shitmed Change
 
 - type: entity
   id: LeftFootTajaran
   name: "left tajaran foot"
-  parent: [PartTajaran, BaseLeftFoot]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "l_foot"
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "l_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Left
+    toolName: "a left foot" # Shitmed Change
 
 - type: entity
   id: RightFootTajaran
   name: "right tajaran foot"
-  parent: [PartTajaran, BaseRightFoot]
+  parent: PartTajaran
   components:
-    - type: Sprite
-      sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
-      state: "r_foot"
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Tajaran/parts.rsi
+    state: "r_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Right
+    toolName: "a right foot" # Shitmed Change

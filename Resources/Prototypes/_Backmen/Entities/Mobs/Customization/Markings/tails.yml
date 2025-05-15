@@ -56,15 +56,6 @@
       state: fish_secondary
 
 - type: marking
-  id: TailFluffy
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Felinid]
-  sprites:
-    - sprite: Backmen/Mobs/Customization/tails32x32.rsi
-      state: fluffy
-
-- type: marking
   id: TailFox
   bodyPart: Tail
   markingCategory: Tail
