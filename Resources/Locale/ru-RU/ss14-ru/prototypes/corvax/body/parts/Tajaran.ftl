@@ -1,7 +1,9 @@
 ent-PartTajaran = часть тела таярана
-    .desc = { ent-BaseItem.desc }
-ent-TorsoTajaran = торс таярана
-    .desc = { ent-PartTajaran.desc }
+    .desc = { ent-BasePart.desc }
+ent-ChestTajaran = грудь таярана
+    .desc = { ent-BaseChest.desc }
+ent-GroinVulpkanin = пах таярана
+    .desc = { ent-BaseGroin.desc }
 ent-HeadTajaran = голова таярана
     .desc = { ent-PartTajaran.desc }
 ent-LeftArmTajaran = левая рука таярана
