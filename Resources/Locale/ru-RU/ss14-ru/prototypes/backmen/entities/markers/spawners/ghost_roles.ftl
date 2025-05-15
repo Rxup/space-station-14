@@ -1,8 +1,6 @@
-ent-SpawnPointGhostFugitive = { ent-SpawnPointEvilTwin }
+ent-SpawnPointGhostFugitive = спавнер беглец
     .desc = { ent-MarkerBase.desc }
-ent-SpawnPointGhostIfrit = { ent-SpawnPointEvilTwin }
-    .suffix = Ифрит
+ent-SpawnPointGhostIfrit = спавнер ифрит
     .desc = { ent-MarkerBase.desc }
-ent-SpawnPointGhostVampSpider = { ent-SpawnPointEvilTwin }
-    .suffix = Паук-Вампир
+ent-SpawnPointGhostVampSpider = спавнер паук-вампир
     .desc = { ent-MarkerBase.desc }
