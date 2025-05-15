@@ -4,7 +4,7 @@
   id: BaseFugitiveObjective
   components:
     - type: Objective
-      issuer: objective-issuer-self
+      issuer: objective-issuer-unknown
       unique: true
       difficulty: 1
       icon:
@@ -27,3 +27,18 @@
         sprite: Structures/Furniture/chairs.rsi
         state: shuttle
     - type: EscapeShuttleCondition
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseObjective
+  id: BankNote
+  components:
+    - type: Objective
+      difficulty: 0
+      hideFromTotal: true
+      unique: true
+      issuer: objective-issuer-SpaceBank
+      icon:
+        sprite: Backmen/Objects/Tools/rimbank.rsi
+        state: icon
+    - type: MindNoteCondition
