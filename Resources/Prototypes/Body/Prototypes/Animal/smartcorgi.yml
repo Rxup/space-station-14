@@ -6,8 +6,8 @@
     chest:
       part: ChestAnimal
       connections:
-      - righthand
-      - lefthand
+      - right hand
+      - left hand
       - legs
       organs:
         brain: OrganHumanBrain # feels strange but it is what it is
