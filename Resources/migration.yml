@@ -923,3 +923,14 @@ SpeedLoaderMagnumPractice: SpeedLoader357Magnum
 SpeedLoaderMagnumAP: SpeedLoader357MagnumAP
 SpeedLoaderMagnumUranium: SpeedLoader357Magnum
 MagazineBoxMagnum: MagazinePacketRevolver357Magnum
+
+# 2025-05-02
+CigPackMixedNasty: CigPackMixed
+CigPackMixedMedical: CigPackMixed
+CigaretteIpecac: CigaretteNutriment
+CigarettePax: CigaretteSaline
+CigaretteTHC: CigaretteRobustHarvest
+CigaretteMuteToxin: CigaretteSodiumPolyacrylate
+CigaretteSpaceDrugs: CigaretteLipolicide
+CigaretteMilk: CigaretteHaloperidol
+CigaretteBread: CigaretteBbqSauce
