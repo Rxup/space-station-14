@@ -16,9 +16,8 @@ ent-DoorElectronicsCCOfficer = { ent-DoorElectronics }
 ent-DoorElectronicsCCAdmiral = { ent-DoorElectronics }
     .suffix = ЦентКом, Адмирал, Закрыт
     .desc = { ent-DoorElectronics.desc }
-
 ent-DoorElectronicsMTFCommand = { ent-DoorElectronics }
-    .suffix =  МТФ, Командный, Закрыт
+    .suffix = МТФ, Командный, Закрыт
     .desc = { ent-DoorElectronics.desc }
 ent-DoorElectronicsMTFCpls = { ent-DoorElectronics }
     .suffix = МТФ, КПЛС, Закрыт
@@ -38,14 +37,12 @@ ent-DoorElectronicsMTFJanitor = { ent-DoorElectronics }
 ent-DoorElectronicsMTF = { ent-DoorElectronics }
     .suffix = МТФ, Закрыт
     .desc = { ent-DoorElectronics.desc }
-
 ent-DoorElectronicsUEG = { ent-DoorElectronics }
     .suffix = EarthGov, Закрыт
     .desc = { ent-DoorElectronics.desc }
 ent-DoorElectronicsUEGCommand = { ent-DoorElectronics }
     .suffix = EarthGov, Командный, Закрыт
     .desc = { ent-DoorElectronics.desc }
-
 ent-DoorElectronicsInteQVanguard = { ent-DoorElectronics }
     .desc = { ent-DoorElectronics.desc }
     .suffix = Интек, Авангард, Закрыт

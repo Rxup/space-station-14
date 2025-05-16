@@ -107,6 +107,7 @@
     - BypassInteractionRangeChecks
   - type: UniversalLanguageSpeaker #backmen: languages
   - type: PointLight
+    netsync: false
     radius: 6
     castShadows: false
     enabled: false

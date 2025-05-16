@@ -20,7 +20,7 @@ public sealed class AdminLanguageCommand : ToolshedCommand
     public EntityUid AddLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<LanguagePrototype> prototype,
+        [CommandArgument] ProtoId<LanguagePrototype> prototype,
         [CommandArgument] bool canSpeak = true,
         [CommandArgument] bool canUnderstand = true
     )
@@ -43,7 +43,7 @@ public sealed class AdminLanguageCommand : ToolshedCommand
     public EntityUid RemoveLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<LanguagePrototype> prototype,
+        [CommandArgument] ProtoId<LanguagePrototype> prototype,
         [CommandArgument] bool removeSpeak = true,
         [CommandArgument] bool removeUnderstand = true
     )
