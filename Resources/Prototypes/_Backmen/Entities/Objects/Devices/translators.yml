@@ -287,3 +287,20 @@
     requires:
     - TauCetiBasic
     - Elvish
+
+- type: entity
+  id: SiiktajrTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Siiktajr translator
+  description: Translates speech between Siiktajr and Tau-Ceti Basic. For talking to Tajaran!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Siiktajr
+    understood:
+    - TauCetiBasic
+    - Siiktajr
+    requires:
+    - TauCetiBasic
+    - Siiktajr

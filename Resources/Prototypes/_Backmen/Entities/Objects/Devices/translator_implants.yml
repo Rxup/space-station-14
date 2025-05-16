@@ -84,6 +84,21 @@
 
 - type: entity
   parent: BaseSubdermalImplant
+  id: SiiktajrTranslatorImplant
+  name: siiktajr translator implant
+  description: A translator implant that helps you communicate with Tajaran.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Siiktajr
+    spoken:
+    - Siiktajr
+    requires:
+    - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
   id: SolCommonTranslatorImplant
   name: sol-common translator implant
   description: An implant giving the ability to understand and speak SolCommon. Raaagh!
@@ -184,5 +199,20 @@
     - Elvish
     spoken:
     - Elvish
+    requires:
+    - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SiiktajrStandardTranslatorImplant
+  name: Siiktajr standard translator implant
+  description: An implant giving the ability to understand and speak Siiktajr Standard.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Siiktajr
+    spoken:
+    - Siiktajr
     requires:
     - TauCetiBasic

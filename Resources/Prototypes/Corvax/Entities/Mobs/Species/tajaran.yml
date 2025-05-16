@@ -5,6 +5,16 @@
   id: BaseMobTajaran
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Siiktajr
+    understands:
+    - TauCetiBasic
+    - Siiktajr
+    - Cat
   - type: HumanoidAppearance
     species: Tajaran
   - type: Hunger
