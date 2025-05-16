@@ -1,7 +1,9 @@
 ent-PartVulpkanin = vulpkanin body part
     .desc = { ent-BaseItem.desc }
-ent-TorsoVulpkanin = vulpkanin torso
-    .desc = { ent-PartVulpkanin.desc }
+ent-ChestVulpkanin = vulpakin chest
+    .desc = { ent-BaseChest.desc }
+ent-GroinVulpkanin = vulpakin groin
+    .desc = { ent-BaseGroin.desc }
 ent-HeadVulpkanin = vulpkanin head
     .desc = { ent-PartVulpkanin.desc }
 ent-LeftArmVulpkanin = left vulpkanin arm

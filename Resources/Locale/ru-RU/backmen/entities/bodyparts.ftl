@@ -1,5 +1,5 @@
 ent-PartMonkey = часть обезьяны
-ent-TorsoMonkey = торс обезьяны
+ent-ChestMonkey = грудь обезьяны
 ent-HeadMonkey = голова обезьяны
 ent-LeftArmMonkey = левая рука обезьяны
 ent-RightArmMonkey = правая рука обезьяны
@@ -10,7 +10,7 @@ ent-RightLegMonkey = правая нога обезьяны
 ent-LeftFootMonkey = левая стопа обезьяны
 ent-RightFootMonkey = правая стопа обезьяны
 ent-PartKobold = часть кобольда
-ent-TorsoKobold = торс кобольда
+ent-ChestKobold = грудь кобольда
 ent-HeadKobold = голова кобольда
 ent-LeftArmKobold = левая рука кобольда
 ent-RightArmKobold = правая рука кобольда
