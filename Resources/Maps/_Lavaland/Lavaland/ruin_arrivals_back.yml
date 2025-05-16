@@ -522,6 +522,25 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-4.5
       parent: 2
+- proto: TriggerInstantSpawnerXENHEV
+  entities:
+  - uid: 125
+    components:
+    - type: Transform
+      pos: -3.5,-3.5
+      parent: 2
+- proto: TriggerInstantSpawnerXENMarine
+  entities:
+  - uid: 1
+    components:
+    - type: Transform
+      pos: -5.5,-4.5
+      parent: 2
+  - uid: 124
+    components:
+    - type: Transform
+      pos: -4.5,-0.5
+      parent: 2
 - proto: UnfinishedMachineFrame
   entities:
   - uid: 60
