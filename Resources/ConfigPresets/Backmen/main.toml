@@ -144,7 +144,6 @@ enabled=true
 crawlundertables=true
 
 [vote]
-map_enabled = true
 restart_required_ratio = 0.6
 timermap = 60
 
