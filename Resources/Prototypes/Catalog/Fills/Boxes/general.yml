@@ -4,6 +4,17 @@
   id: BoxCardboard
   description: A cardboard box for storing things.
   components:
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/cardboardbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/cardboardbox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/cardboardbox_drop.ogg
+  # backmen edit end
   - type: Item
     size: Normal
     shape:
@@ -477,3 +488,20 @@
     contents:
       - id: Envelope
         amount: 9
+
+- type: entity
+  name: utensil box
+  parent: BoxCardboard
+  id: BoxUtensil
+  description: A box filled with forks and spoons.
+  components:
+  - type: Sprite
+    layers:
+      - state: box
+      - state: utensils
+  - type: StorageFill
+    contents:
+      - id: Fork
+        amount: 2
+      - id: Spoon
+        amount: 2

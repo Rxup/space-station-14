@@ -1,7 +1,5 @@
 ent-BaseCarpPart = { ent-PartAnimal }
     .desc = { ent-PartAnimal.desc }
 
-ent-ChestCarp = carp chest
-    .desc = { ent-BaseCarpPart.desc }
-ent-GroinCarp = carp groin
+ent-GroinCarp = пах карпа
     .desc = { ent-BaseCarpPart.desc }

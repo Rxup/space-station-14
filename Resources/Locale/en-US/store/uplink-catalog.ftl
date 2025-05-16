@@ -224,9 +224,6 @@ uplink-decoy-kit-desc = State-of-the-art distraction technology straight from RN
 uplink-chemistry-kit-name = Chemical Synthesis Kit
 uplink-chemistry-kit-desc = A starter kit for the aspiring chemist, includes two vials of vestine for all your criminal needs!
 
-uplink-dart-syringe-gun-name = Dart Syringe Gun
-uplink-dart-syringe-gun-desc = A gun that takes in syringes as ammunition, and injects their contents on its victims. Can pierce through armor.
-
 uplink-knives-kit-name = Throwing Knives Kit
 uplink-knives-kit-desc = A set of 4 syndicate branded throwing knives, perfect for embedding into the body of your victims.
 
@@ -259,6 +256,9 @@ uplink-surplus-bundle-desc = Contains 50 telecrystals worth of completely random
 
 uplink-super-surplus-bundle-name = Super Surplus Crate
 uplink-super-surplus-bundle-desc = Contains 125 telecrystals worth of completely random Syndicate items.
+
+uplink-starter-kit-name = Basic Operative Bundle
+uplink-starter-kit-desc = Contains 40 telecrystals of basic operative gear. For those operatives who just don't know what they should buy.
 
 # Tools
 uplink-toolbox-name = Toolbox
