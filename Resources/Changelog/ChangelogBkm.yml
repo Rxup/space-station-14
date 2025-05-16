@@ -3171,3 +3171,53 @@
   id: 211
   time: '2025-05-12T20:26:33.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1307
+- author: CatBackGround
+  changes:
+  - message: "NanoTrasen \u0438\u0441\u043F\u0440\u0430\u0432\u0438\u043B\u0430 \u041F\
+      \u041E \u041A\u043E\u043D\u0441\u043E\u043B\u0435\u0439 ID-\u043A\u0430\u0440\
+      \u0442 \u0438 \u0432\u0435\u0440\u043D\u0443\u043B\u0430 \u043D\u0435\u0434\u043E\
+      \u0441\u0442\u0430\u044E\u0449\u0438\u0435 \u0434\u043E\u0441\u0442\u0443\u043F\
+      \u044B."
+    type: Fix
+  id: 212
+  time: '2025-05-16T14:04:03.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1332
+- author: Rxup
+  changes:
+  - message: "\u0422\u0435\u043F\u0435\u0440\u044C \u043D\u0430 \u0438\u043D\u0442\
+      \u0435\u043A \u043C\u043E\u0436\u043D\u043E \u0438\u0441\u043F\u043E\u043B\u044C\
+      \u0437\u043E\u0432\u0430\u0442\u044C \u043F\u0435\u0447\u043A\u0443 \u0434\u043B\
+      \u044F \u0440\u0443\u0434\u044B"
+    type: Fix
+  id: 213
+  time: '2025-05-16T14:08:21.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1337
+- author: Armok
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u044B \u043A\u0438\u0431\u0435\
+      \u0440\u043D\u0435\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u043D\u043E\
+      \u0433\u0438 \u0411.\u0415.\u0413.\u0418 \u0431\u043E\u043B\u044C\u0448\u0435\
+      \ \u043E\u043D\u0438 \u043D\u0435 \u0434\u0430\u044E\u0442 \u043D\u043E\u0443\
+      \u0441\u043B\u0438\u043F\u044B."
+    type: Tweak
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0430 \u0441\u043A\u043E\u0440\
+      \u043E\u0441\u0442\u044C \u043A\u0438\u0431\u0435\u0440\u043D\u0435\u0442\u0438\
+      \u0447\u0435\u0441\u043A\u0438\u0445 \u043D\u043E\u0433 \u0411.\u0415.\u0413\
+      .\u0418 \u0442\u0435\u043F\u0435\u0440\u044C \u043E\u043D\u0438 \u0434\u0430\
+      \u044E\u0442 \u0432\u0441\u0435\u0433\u043E +5% \u0441\u043A\u043E\u0440\u043E\
+      \u0441\u0442\u0438, \u043D\u0430 \u043D\u043E\u0433\u0443 (\u043C\u0430\u043A\
+      \u0441\u0438\u043C\u0443\u043C +10%)"
+    type: Tweak
+  id: 214
+  time: '2025-05-16T19:46:54.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1339
+- author: PuroSlavKing
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E 28 \u0432\u0430\
+      \u0440\u0438\u0430\u0446\u0438\u0439 \u044D\u043A\u0440\u0430\u043D\u0430 \u0438\
+      \ 2 \u0433\u043E\u043B\u043E\u0433\u0440\u0430\u043C\u043C\u044B, \u0434\u043B\
+      \u044F \u0418\u0418."
+    type: Add
+  id: 215
+  time: '2025-05-16T20:30:39.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1342
