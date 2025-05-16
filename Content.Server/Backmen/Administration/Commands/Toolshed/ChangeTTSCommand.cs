@@ -7,6 +7,7 @@ using Content.Shared.Administration;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.TypeParsers;
 
@@ -21,7 +22,7 @@ public sealed class ChangeTTSCommand : ToolshedCommand
     public EntityUid? ChangeTTS(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<TTSVoicePrototype> prototype
+        [CommandArgument] ProtoId<TTSVoicePrototype> prototype
     )
     {
         if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(input, out var humanoidAppearanceComponent))
@@ -42,7 +43,7 @@ public sealed class ChangeTTSCommand : ToolshedCommand
     public IEnumerable<EntityUid> ChangeTTS(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<TTSVoicePrototype> prototype
+        [CommandArgument] ProtoId<TTSVoicePrototype> prototype
     )
         => input.Select(x => ChangeTTS(ctx, x, prototype)).Where(x => x is not null).Select(x => (EntityUid) x!);
 }

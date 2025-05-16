@@ -13,7 +13,7 @@
   - BoxBeanbag
   - BoxShotgunPractice
 #  - MagazineBoxLightRiflePractice #Backmen-ammunation
-  - MagazineBoxMagnumPractice
+#  - MagazineBoxMagnumPractice #Backmen-ammunation
 #  - MagazineBoxPistolPractice #Backmen-ammunation
 #  - MagazineBoxRiflePractice #Backmen-ammunation
 #  technologyPrerequisites:
@@ -46,14 +46,19 @@
   - MagazinePacketPistol9x17
   - MagazinePacketRifle762x39
   - MagazinePacketRifle762UEG
+  - MagazinePacketRifle556UEG
   - MagazinePacketPistolACP
   - MagazinePacketPistol57x28
   - MagazinePacketPistol50AE
+  - SpeedLoader357Magnum
+  - SpeedLoader38Special
+  - SpeedLoader44Magnum
+  - MagazinePacketRevolver357Magnum
+  - MagazinePacketRevolver44Magnum
+  - MagazinePacketRevolver38Special
   # Backmen-ammonation-end
-  - MagazineBoxMagnum
   - BoxLethalshot
   - BoxShotgunSlug
-  - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
   technologyPrerequisites:
 #  - RiotControl
@@ -82,10 +87,10 @@
   - MagazinePistol45ACPincendiary
   - MagazinePistol57x28Incendiary
   - MagazinePistol9x17Incendiary
-  - MagazineBoxMagnumIncendiary
+#  - MagazineBoxMagnumIncendiary
   - MagazineShotgunIncendiary
   - BoxShotgunIncendiary
-  - SpeedLoaderMagnumIncendiary
+#  - SpeedLoaderMagnumIncendiary
   technologyPrerequisites:
   - LethalAmmunition
   position: -4,-1
@@ -100,7 +105,7 @@
   tier: 1
   cost: 7500
   recipeUnlocks:
-  - SpeedLoaderMagnumUranium
+#  - SpeedLoaderMagnumUranium
   - BoxShotgunUranium
   technologyPrerequisites:
   - LethalAmmunition
