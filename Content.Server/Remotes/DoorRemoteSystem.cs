@@ -51,6 +51,14 @@ namespace Content.Shared.Remotes
                 return;
             }
 
+            // start-backmen: protect
+            if (HasComp<Server.Backmen.Arrivals.ArrivalsProtectComponent>(args.Target))
+            {
+                Popup.PopupEntity(Loc.GetString("door-remote-denied"), args.User, args.User);
+                return;
+            }
+            // end-backmen: protect
+
             if (TryComp<AccessReaderComponent>(args.Target, out var accessComponent)
                 && !_doorSystem.HasAccess(args.Target.Value, args.Used, doorComp, accessComponent))
             {

@@ -1,6 +1,6 @@
 ent-PartReptilian = часть тела ящера
     .desc = { ent-BaseItem.desc }
-ent-TorsoReptilian = туловище ящера
+ent-ChestReptilian = грудь ящера
     .desc = { ent-PartReptilian.desc }
 ent-HeadReptilian = голова ящера
     .desc = { ent-PartReptilian.desc }

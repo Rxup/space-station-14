@@ -913,8 +913,28 @@ AirlockMaintIntLocked: AirlockMaintLocked
 ComputerCargoShuttle: ComputerShuttleCargo
 CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
 
-# 2025-04-16 BACKMEN-EDIT
+# 2025-04-16 | Backmen
 PrinterDoc: PhotocopierCommand
+SyringeGun: LauncherSyringe
+RapidSyringeGun: LauncherSyringe
+PlayerStationAiPilgrim: PlayerStationAi
+TorsoSkeleton: ChestSkeleton
+TorsoHarpy: ChestHarpy
+TorsoMonkey: ChestMonkey
+TorsoKobold: ChestKobold
+TorsoVox: ChestVox
+TorsoRat: ChestRat
+TorsoMoth: ChestMoth
+TorsoAnimal: ChestAnimal
+TorsoArachnid: ChestArachnid
+TorsoSlime: ChestSlime
+TorsoVulpkanin: ChestVulpkanin
+TorsoHuman: ChestHuman
+TorsoGingerbread: ChestGingerbread
+TorsoReptilian: ChestReptilian
+TorsoCarp: ChestCarp
+TorsoGolemCult: ChestGolemCult
+TorsoDiona: ChestDiona
 
 # 2025-05-05 | Backmen
 SpeedLoaderMagnum: SpeedLoader357Magnum
@@ -923,3 +943,14 @@ SpeedLoaderMagnumPractice: SpeedLoader357Magnum
 SpeedLoaderMagnumAP: SpeedLoader357MagnumAP
 SpeedLoaderMagnumUranium: SpeedLoader357Magnum
 MagazineBoxMagnum: MagazinePacketRevolver357Magnum
+
+# 2025-05-02
+CigPackMixedNasty: CigPackMixed
+CigPackMixedMedical: CigPackMixed
+CigaretteIpecac: CigaretteNutriment
+CigarettePax: CigaretteSaline
+CigaretteTHC: CigaretteRobustHarvest
+CigaretteMuteToxin: CigaretteSodiumPolyacrylate
+CigaretteSpaceDrugs: CigaretteLipolicide
+CigaretteMilk: CigaretteHaloperidol
+CigaretteBread: CigaretteBbqSauce

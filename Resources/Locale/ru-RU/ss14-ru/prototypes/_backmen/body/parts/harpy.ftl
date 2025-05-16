@@ -1,7 +1,4 @@
-ent-PartHarpy = harpy body part
+ent-PartHarpy = часть тела гарпии
     .desc = { ent-BasePart.desc }
-ent-ChestHarpy = harpy chest
-    .desc = { ent-BaseChest.desc }
-ent-GroinHarpy = harpy groin
+ent-GroinHarpy = пах гарпии
     .desc = { ent-BaseGroin.desc }
-

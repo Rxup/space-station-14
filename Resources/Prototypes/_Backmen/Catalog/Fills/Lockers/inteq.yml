@@ -32,6 +32,8 @@
     - id: Emag
     - id: FlatpackOracle # For Bluespace Crystalls
     - id: PlasmaScythe
+    - id: ChaosPlushie
+      prob: 0.2
 
 - type: entity
   parent: LockerInteQVanguard
