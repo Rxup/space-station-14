@@ -62,3 +62,17 @@
     layers:
     - state: animated-Veta
       shader: unshaded
+
+
+- type: ghostTheme
+  id: MemesGhost
+  name: sponsor-win-manager-ghost-Memes
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/Memes-ghost.rsi
+    layers:
+    - state: animated-Memes
+      shader: unshaded
