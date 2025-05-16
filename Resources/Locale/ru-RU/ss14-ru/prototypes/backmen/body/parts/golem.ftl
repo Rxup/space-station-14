@@ -1,6 +1,6 @@
 ent-PartGolem = golem body part
     .desc = { ent-BaseItem.desc }
-ent-TorsoGolemCult = golem torso
+ent-ChestGolemCult = golem chest
     .desc = { ent-PartGolem.desc }
 ent-HeadGolemCult = golem head
     .desc = { ent-PartGolem.desc }
