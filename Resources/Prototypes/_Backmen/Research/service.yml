@@ -30,7 +30,7 @@
    - DimLightBulb
   technologyPrerequisites:
    - Lightning
-  position: 2,8
+  position: 1,7
 
 - type: technology
   id: Bootlegging
@@ -178,7 +178,7 @@
   - PushHorn
   technologyPrerequisites:
   - Entertainment
-  position: 4,10
+  position: 4,9
 
 - type: technology
   id: TranslationDevice
