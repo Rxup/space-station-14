@@ -156,7 +156,7 @@
   - PillCanister
   - ChemistryEmptyBottle01
   - Syringe
-  position: 5,-7
+  position: 2,-5
 
 - type: technology
   id: ChemistryBluespace
@@ -189,7 +189,7 @@
   - SyringeCryostasis
   technologyPrerequisites:
   - Medicine
-  position: 2,-6
+  position: 5,-5
 
 - type: technology
   id: BodyBags
