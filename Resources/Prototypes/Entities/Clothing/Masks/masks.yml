@@ -4,7 +4,7 @@
   name: gas mask
   description: A face-covering mask that can be connected to an air supply.
   components:
-  - type: CoveredSlot # Backmen
+  - type: SlotBlock # Backmen
     slots: [eyes]
   - type: Sprite
     sprite: Clothing/Mask/gas.rsi
