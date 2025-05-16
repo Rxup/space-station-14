@@ -1,8 +1,8 @@
 species-name-harpy = Гарпия
 ent-OrganHarpyLungs = лёгкие
     .desc = Продвинутая пара птичьих лёгких. Фильтруют кислород, постоянно прогоняя воздух через воздушные мешки.
-ent-TorsoHarpy = торс гарпии
-    .desc = Кибернетический торс гарпии.
+ent-ChestHarpy = грудь гарпии
+    .desc = Кибернетическая грудь гарпии.
 ent-HeadHarpy = голова гарпии
 ent-LeftArmHarpy = левая рука гарпии
 ent-RightArmHarpy = правая рука гарпии
