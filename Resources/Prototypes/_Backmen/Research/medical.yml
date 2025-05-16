@@ -189,7 +189,7 @@
   - SyringeCryostasis
   technologyPrerequisites:
   - Medicine
-  position: 5,-5
+  position: 2,-6
 
 - type: technology
   id: BodyBags
