@@ -27,12 +27,30 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoDemon
-  name: "demon torso"
-  parent: [PartDemon, BaseTorso]
+  id: ChestDemon
+  name: "demon chest"
+  parent: [BaseChest, PartDemon]
   components:
   - type: BodyPart #Backmen-Edit
-    partType: Torso
+    partType: Chest
+  - type: Sprite
+    sprite: _ADT/Mobs/Demon/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinDemon
+  name: "demon groin"
+  parent: [BaseGroin, PartDemon]
+  components:
+  - type: BodyPart #Backmen-Edit
+    partType: Groin
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "torso_m"
@@ -47,11 +65,10 @@
 - type: entity
   id: HeadDemon
   name: "demon head"
-  parent: [PartDemon, BaseHead]
+  parent: [BaseHead, PartDemon]
   components:
   - type: BodyPart #Backmen-Edit
     partType: Head
-    vital: true
   - type: Input #Backmen-Edit
     context: "ghost"
   - type: Tag #Backmen-Edit
@@ -71,7 +88,7 @@
 - type: entity
   id: LeftArmDemon
   name: "left demon arm"
-  parent: [PartDemon, BaseLeftArm]
+  parent: [BaseLeftArm, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -84,7 +101,7 @@
 - type: entity
   id: RightArmDemon
   name: "right demon arm"
-  parent: [PartDemon, BaseRightArm]
+  parent: [BaseRightArm, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -96,7 +113,7 @@
 - type: entity
   id: LeftHandDemon
   name: "left demon hand"
-  parent: [PartDemon, BaseLeftHand]
+  parent: [BaseLeftHand, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -108,7 +125,7 @@
 - type: entity
   id: RightHandDemon
   name: "right demon hand"
-  parent: [PartDemon, BaseRightHand]
+  parent: [BaseRightHand, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -120,7 +137,7 @@
 - type: entity
   id: LeftLegDemon
   name: "left demon leg"
-  parent: [PartDemon, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -135,7 +152,7 @@
 - type: entity
   id: RightLegDemon
   name: "right demon leg"
-  parent: [PartDemon, BaseRightLeg]
+  parent: [BaseRightLeg, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -150,7 +167,7 @@
 - type: entity
   id: LeftFootDemon
   name: "left demon foot"
-  parent: [PartDemon, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -162,7 +179,7 @@
 - type: entity
   id: RightFootDemon
   name: "right demon foot"
-  parent: [PartDemon, BaseRightFoot]
+  parent: [BaseRightFoot, PartDemon]
   components:
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi

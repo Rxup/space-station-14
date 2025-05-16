@@ -6,6 +6,7 @@
     mode: SnapgridCenter
   components:
   - type: AtmosDevice
+  - type: PipeRestrictOverlap # backmen change: no atmos abusing
   - type: Tag
     tags:
       - Unstackable
@@ -120,6 +121,9 @@
     - type: PipeColorVisuals
     - type: GasVolumePump
       enabled: false
+    - type: ActivatableUI
+      key: enum.GasVolumePumpUiKey.Key
+    - type: ActivatableUIRequiresAnchor
     - type: UserInterface
       interfaces:
         enum.GasVolumePumpUiKey.Key:

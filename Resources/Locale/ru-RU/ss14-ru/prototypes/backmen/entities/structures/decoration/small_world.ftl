@@ -6,7 +6,6 @@ ent-SmallWorldRoadThreeWay = дорога развилка
     .desc = { ent-SmallWorldRoadFourWay.desc }
 ent-SmallWorldRoadTurn = дорога поворот
     .desc = { ent-SmallWorldRoadFourWay.desc }
-
 ent-SmallWorldBuildingSmallBusiness = маленькое здание бизнеса
     .desc = НЕ для твоих твоих ног!!!
 ent-SmallWorldBuildingSmallHouses = маленькое здание домики

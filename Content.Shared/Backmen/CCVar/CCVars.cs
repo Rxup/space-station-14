@@ -7,6 +7,9 @@ namespace Content.Shared.Backmen.CCVar;
 public sealed partial class CCVars
 {
     public static readonly CVarDef<bool>
+        GameBarotraumaEnabled = CVarDef.Create("game.barotrauma", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool>
         GameDiseaseEnabled = CVarDef.Create("game.disease", true, CVar.SERVERONLY);
 
     /// <summary>
@@ -115,4 +118,7 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> StrictPipeStacking =
         CVarDef.Create("atmos.strict_pipe_stacking", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> EnableFootPrints =
+        CVarDef.Create("footprint.enabled", true, CVar.SERVERONLY);
 }

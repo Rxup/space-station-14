@@ -11,10 +11,6 @@
   - type: Body
     prototype: Vox
     requiredLegs: 2
-  - type: HumanoidAppearance
-    species: Vox
-    undergarmentTop: UndergarmentTopTanktopVox
-    undergarmentBottom: UndergarmentBottomBoxersVox
     #- type: VoxAccent # Not yet coded
   - type: Speech
     speechVerb: Vox
@@ -34,25 +30,26 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vox
-  - type: PassiveDamage
-    # Augment normal health regen to be able to tank some Poison damage
-    # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
-    allowedStates:
-    - Alive
-    damageCap: 20
-    damage:
-      types:
-        Heat: -0.07
-        Poison: -0.2
-      groups:
-        Brute: -0.07
-  - type: DamageVisuals
-    damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#7a8bf2"
-      Burn:
-        sprite: Mobs/Effects/burn_damage.rsi
+  #- type: DamageVisuals
+  #  damageOverlayGroups:
+  #    Brute:
+  #      sprite: Mobs/Effects/brute_damage.rsi
+  #      color: "#7a8bf2"
+  #    Burn:
+  #      sprite: Mobs/Effects/burn_damage.rsi
+  #- type: PassiveDamage
+  # Augment normal health regen to be able to tank some Poison damage
+  # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
+  # Removed for now. Will be enabled back with organ simulation and stuff yeah
+  #  allowedStates:
+  #  - Alive
+  #  damageCap: 20
+  #  damage:
+  #    types:
+  #      Heat: -0.07
+  #      Poison: -0.2
+  #    groups:
+  #      Brute: -0.07
   - type: Bloodstream
     bloodReagent: AmmoniaBlood
   - type: MeleeWeapon
@@ -65,6 +62,7 @@
         Slash: 5 # Reduce?
   - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
     layers:
+    - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
@@ -86,10 +84,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -111,6 +109,16 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_vox" # Not default
       visible: false
+  - type: HumanoidAppearance
+    species: Vox
+    undergarmentTop: UndergarmentTopTanktopVox
+    undergarmentBottom: UndergarmentBottomBoxersVox
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: hair
   - type: Inventory
     speciesId: vox
     displacements:
@@ -179,6 +187,12 @@
     species: Vox
     undergarmentTop: UndergarmentTopTanktopVox
     undergarmentBottom: UndergarmentBottomBoxersVox
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: hair
   - type: Body
     prototype: Vox
   - type: Inventory

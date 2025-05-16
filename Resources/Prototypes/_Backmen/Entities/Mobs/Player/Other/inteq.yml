@@ -13,7 +13,8 @@
   - type: RandomMetadata
     nameSegments:
     - InteQVanguardLeaderNamesPrefix
-    - SyndicateNamesSuperNormal
+    - NameSpets
+    nameFormat: name-format-standard
   - type: NpcFactionMember
     factions:
       - InteQ
@@ -39,7 +40,8 @@
   - type: RandomMetadata
     nameSegments:
     - InteQVanguardNamesPrefix
-    - SyndicateNamesSuperNormal
+    - NameSpets
+    nameFormat: name-format-standard
   - type: NpcFactionMember
     factions:
       - InteQ
@@ -65,7 +67,8 @@
   - type: RandomMetadata
     nameSegments:
     - InteQVanguardNamesPrefix
-    - SyndicateNamesSuperNormal
+    - NameSpets
+    nameFormat: name-format-standard
   - type: NpcFactionMember
     factions:
       - InteQ
@@ -87,11 +90,12 @@
   components:
   - type: AntagImmune
   - type: Loadout
-    prototypes: [ InteQMedicGear ]
+    prototypes: [ InteQVanguardMedicGear ]
   - type: RandomMetadata
     nameSegments:
     - InteQVanguardNamesPrefix
-    - SyndicateNamesSuperNormal
+    - NameSpets
+    nameFormat: name-format-standard
   - type: NpcFactionMember
     factions:
       - InteQ
@@ -114,7 +118,8 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardLeaderNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
     - type: RandomHumanoidSpawner
       settings: InteQVanguardLeader
 
@@ -128,7 +133,8 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
     - type: RandomHumanoidSpawner
       settings: InteQVanguardOperative
 
@@ -142,7 +148,8 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
     - type: RandomHumanoidSpawner
       settings: InteQVanguardSoldier
 
@@ -156,6 +163,7 @@
     - type: RandomMetadata
       nameSegments:
       - InteQVanguardNamesPrefix
-      - SyndicateNamesSuperNormal
+      - NameSpets
+      nameFormat: name-format-standard
     - type: RandomHumanoidSpawner
       settings: InteQVanguardMedic

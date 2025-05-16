@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.PlayTime)] // Corvax-DiscordRoles
+[AdminCommand(AdminFlags.Host)]
 public sealed class PlayTimeAddOverallCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -58,7 +58,7 @@ public sealed class PlayTimeAddOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.PlayTime)] // Corvax-DiscordRoles
+[AdminCommand(AdminFlags.Host)] // Corvax-DiscordRoles
 public sealed class PlayTimeAddRoleCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -123,7 +123,7 @@ public sealed class PlayTimeAddRoleCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.PlayTime)]
+[AdminCommand(AdminFlags.Host)]
 public sealed class PlayTimeGetOverallCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -168,7 +168,7 @@ public sealed class PlayTimeGetOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.PlayTime)]
+[AdminCommand(AdminFlags.Host)]
 public sealed class PlayTimeGetRoleCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -247,7 +247,7 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
 /// <summary>
 /// Saves the timers for a particular player immediately
 /// </summary>
-[AdminCommand(AdminFlags.PlayTime)]
+[AdminCommand(AdminFlags.Host)]
 public sealed class PlayTimeSaveCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -289,7 +289,7 @@ public sealed class PlayTimeSaveCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.PlayTime)]
+[AdminCommand(AdminFlags.Host)]
 public sealed class PlayTimeFlushCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;

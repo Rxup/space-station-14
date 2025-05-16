@@ -4,6 +4,17 @@
   id: BaseMagazineBoxCaselessRifle
   name: ammunition box (.25 caseless)
   components:
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/ammobox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/ammobox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/ammobox_drop.ogg
+  # backmen edit end
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -29,6 +40,7 @@
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRifle
   name: ammunition box (.25 caseless)
+  description: A cardboard box of .25 caseless rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRifle
@@ -43,6 +55,7 @@
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRiflePractice
   name: ammunition box (.25 caseless practice)
+  description: A cardboard box of .25 caseless rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRiflePractice

@@ -9,6 +9,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
+    - SnoutOverlay # Backmen
 #    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
@@ -19,6 +20,9 @@
   - type: Icon
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: full
+  - type: Consciousness # Idk they are kinda more resistant to pain
+    threshold: 105
+    cap: 210
   - type: Body
     prototype: Reptilian
     requiredLegs: 2
@@ -116,6 +120,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
+    - SnoutOverlay # Backmen
 #    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian

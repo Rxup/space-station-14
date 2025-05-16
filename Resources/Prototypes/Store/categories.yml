@@ -108,6 +108,11 @@
 - type: storeCategory
   id: FleshCultistAbilities
   name: store-category-abilities
+  
+#pai
+- type: storeCategory
+  id: PAIAbilities
+  name: store-category-abilities
 
 - type: storeCategory
   id: DiscountedItems

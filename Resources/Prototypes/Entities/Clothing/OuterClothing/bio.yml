@@ -13,9 +13,23 @@
     tags:
       - FullBodyOuter
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
     modifiers:
       coefficients:
-        Caustic: 0.5
+        Caustic: 0.2
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.35
+  - type: GroupExamine
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.4
 
@@ -39,12 +53,16 @@
   id: ClothingOuterBioJanitor
   name: bio suit
   suffix: Janitor
-  description: A suit that protects against biological contamination, in Janitor colors.
+  description: A suit that protects against biological contamination and caustic spills.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Bio/janitor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/janitor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.4
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -59,17 +77,25 @@
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
 
 - type: entity
-  parent: ClothingOuterBioGeneral
+  parent: [ClothingOuterBioGeneral, BaseSecurityContraband]
   id: ClothingOuterBioSecurity
   name: bio suit
   suffix: Security
-  description: A suit that protects against biological contamination, in Security colors.
+  description: A suit that protects against biological contamination, kitted out with additional armor.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    coverage: # backmen: armour coverage
+    - Head
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -77,15 +103,20 @@
         Piercing: 0.70
         ArmorPiercing: 0.90
         Heat: 0.80
+        Caustic: 0.2
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.4
 
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioVirology
   name: bio suit
   suffix: Virology
-  description: A suit that protects against biological contamination, in Virology colors.
+  description: A suit that strongly protects against biological contamination.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/virology.rsi
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25

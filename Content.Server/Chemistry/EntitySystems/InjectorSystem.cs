@@ -4,7 +4,6 @@ using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -369,7 +368,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
         var removedSolution = SolutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
 
         // Add back non-whitelisted reagents to the target solution
-        applicableTargetSolution.AddSolution(temporarilyRemovedSolution, null);
+        SolutionContainers.TryAddSolution(targetSolution, temporarilyRemovedSolution);
 
         if (!SolutionContainers.TryAddSolution(soln.Value, removedSolution))
         {

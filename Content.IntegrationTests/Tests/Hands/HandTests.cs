@@ -1,5 +1,7 @@
 using System.Linq;
+using Content.Server.Damage.Systems;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Server.GameObjects;
@@ -82,9 +84,11 @@ public sealed class HandTests
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Fresh = true, // backmen edit
         });
         var server = pair.Server;
+
         var map = await pair.CreateTestMap();
         await pair.RunTicksSync(5);
 

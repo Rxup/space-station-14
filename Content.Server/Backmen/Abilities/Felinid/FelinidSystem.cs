@@ -9,13 +9,14 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Server.Body.Components;
+using Content.Server.Charges;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical;
 using Content.Server.Nutrition.Components;
-using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
@@ -37,6 +38,7 @@ public sealed class FelinidSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ChargesSystem _chargesSystem = default!;
 
     public override void Initialize()
     {
@@ -148,7 +150,7 @@ public sealed class FelinidSystem : EntitySystem
 
         if (component.HairballAction != null && _actions.TryGetActionData(component.HairballAction, out var skill))
         {
-            _actionsSystem.SetCharges(component.HairballAction, skill?.Charges + 1);
+            _chargesSystem.AddCharges(component.HairballAction.Value, 1);
             _actionsSystem.SetEnabled(component.HairballAction, true);
         }
         Del(component.PotentialTarget.Value);

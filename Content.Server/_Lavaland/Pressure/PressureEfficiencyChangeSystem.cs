@@ -1,5 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared._Lavaland.Weapons.Ranged.Events;
 using Content.Shared.Examine;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged;
@@ -19,7 +18,7 @@ public sealed partial class PressureEfficiencyChangeSystem : EntitySystem
         SubscribeLocalEvent<PressureDamageChangeComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PressureDamageChangeComponent, GetMeleeDamageEvent>(OnGetDamage);
         SubscribeLocalEvent<PressureDamageChangeComponent, GunShotEvent>(OnGunShot);
-        SubscribeLocalEvent<PressureDamageChangeComponent, ProjectileShotEvent>(OnProjectileShot);
+        SubscribeLocalEvent<PressureDamageChangeComponent, ProjectileHitEvent>(OnProjectileShot);
     }
 
     public void OnExamined(Entity<PressureDamageChangeComponent> ent, ref ExaminedEvent args)
@@ -63,13 +62,11 @@ public sealed partial class PressureEfficiencyChangeSystem : EntitySystem
         }
     }
 
-    private void OnProjectileShot(Entity<PressureDamageChangeComponent> ent, ref ProjectileShotEvent args)
+    private void OnProjectileShot(Entity<PressureDamageChangeComponent> ent, ref ProjectileHitEvent args)
     {
-        if (!ApplyModifier(ent)
-            || !TryComp<ProjectileComponent>(args.FiredProjectile, out var projectile))
+        if (!ApplyModifier(ent))
             return;
-
-        projectile.Damage *= ent.Comp.AppliedModifier;
+        args.Damage *= ent.Comp.AppliedModifier;
     }
 
     public bool ApplyModifier(Entity<PressureDamageChangeComponent> ent)

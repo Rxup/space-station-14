@@ -81,7 +81,7 @@ public sealed class InnateToolSystem : EntitySystem
         var item = Spawn(toSpawn, spawnCoord);
         if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
         {
-            QueueDel(item);
+            Del(item);
             component.ToSpawn.Remove(toSpawn);
             return;
         }

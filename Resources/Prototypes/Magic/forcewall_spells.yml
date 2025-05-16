@@ -13,4 +13,6 @@
       state: shield
     event: !type:InstantSpawnSpellEvent
       prototype: WallForce
-      speech: action-speech-spell-forcewall
+      posData: !type:TargetInFront
+  - type: SpeakOnAction
+    sentence: action-speech-spell-forcewall

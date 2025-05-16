@@ -3,35 +3,30 @@
   name: tts-voice-name-aidar
   sex: Male
   speaker: aidar
-  roundStart: false # too bad to be Round Start
 
 - type: ttsVoice
   id: Baya
   name: tts-voice-name-baya
   sex: Unsexed
   speaker: baya
-  roundStart: false # too bad to be Round Start
 
 - type: ttsVoice
   id: Kseniya
   name: tts-voice-name-kseniya
   sex: Female
   speaker: kseniya
-  roundStart: false # too bad to be Round Start
 
 - type: ttsVoice
   id: Xenia
   name: tts-voice-name-xenia
   sex: Female
   speaker: xenia
-  sponsorOnly: true
 
 - type: ttsVoice
   id: Eugene
   name: tts-voice-name-eugene
   sex: Male
   speaker: eugene
-  roundStart: false # too bad to be Round Start
 
 - type: ttsVoice
   id: Arthas

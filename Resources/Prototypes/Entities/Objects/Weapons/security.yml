@@ -25,6 +25,9 @@
       path: /Audio/Machines/button.ogg
       params:
         variation: 0.250
+  - type: ItemTogglePrefix
+    prefixOn: on
+    prefixOff: off
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
@@ -132,6 +135,17 @@
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:
+    # backmen edit start
+    - type: EmitSoundOnPickup
+      sound:
+        path: /Audio/Backmen/Items/handling/component_pickup.ogg
+    - type: EmitSoundOnDrop
+      sound:
+        path: /Audio/Backmen/Items/handling/component_drop.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Backmen/Items/handling/component_drop.ogg
+    # backmen edit end
     - type: Sprite
       sprite: Objects/Weapons/Melee/flash.rsi
       layers:
@@ -144,7 +158,6 @@
     - type: Flash
     - type: LimitedCharges
       maxCharges: 5
-      charges: 5
     - type: MeleeWeapon
       wideAnimationRotation: 180
       damage:
@@ -180,7 +193,6 @@
   components:
     - type: LimitedCharges
       maxCharges: 2
-      charges: 2
 
 - type: entity
   name: portable flasher

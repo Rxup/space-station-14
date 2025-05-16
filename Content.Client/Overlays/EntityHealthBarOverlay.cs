@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client.StatusIcon;
 using Content.Client.UserInterface.Systems;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
@@ -127,30 +128,49 @@ public sealed class EntityHealthBarOverlay : Overlay
     /// </summary>
     private (float ratio, bool inCrit)? CalcProgress(EntityUid uid, MobStateComponent component, DamageableComponent dmg, MobThresholdsComponent thresholds)
     {
-        if (_mobStateSystem.IsAlive(uid, component))
+        // backmen edit start
+        if (_entManager.TryGetComponent<ConsciousnessComponent>(uid, out var consciousness))
         {
-            if (dmg.HealthBarThreshold != null && dmg.TotalDamage < dmg.HealthBarThreshold)
-                return null;
-
-            if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds) &&
-                !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out threshold, thresholds))
-                return (1, false);
-
-            var ratio = 1 - ((FixedPoint2) (dmg.TotalDamage / threshold)).Float();
-            return (ratio, false);
-        }
-
-        if (_mobStateSystem.IsCritical(uid, component))
-        {
-            if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
-                !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
+            if (_mobStateSystem.IsAlive(uid, component))
             {
-                return (1, true);
+                var ratio = // ForceConscious makes people stay alive even though given no consciousness, so it seems silly.
+                    Math.Clamp(1 - ((consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold)).Float(), 0, 1);
+                return (ratio, false);
             }
 
-            var ratio = 1 - ((dmg.TotalDamage - critThreshold) / (deadThreshold - critThreshold)).Value.Float();
+            if (_mobStateSystem.IsCritical(uid, component))
+            {
+                var ratio = // The same as above but for ForcePassOut, yep
+                    Math.Clamp(1 - ((consciousness.Threshold - consciousness.Consciousness) / consciousness.Threshold).Float(), 0, 1);
+                return (ratio, true);
+            }
+        }
+        else // backmen edit end
+        {
+            // Typical management
+            if (_mobStateSystem.IsAlive(uid, component))
+            {
+                if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds))
+                    return (1, false);
 
-            return (ratio, true);
+                var ratio = 1 - ((FixedPoint2)(dmg.TotalDamage / threshold)).Float();
+                return (ratio, false);
+            }
+
+            if (_mobStateSystem.IsCritical(uid, component))
+            {
+                if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
+                    !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
+                {
+                    return (1, true);
+                }
+
+                var ratio = 1 -
+                            ((dmg.TotalDamage - critThreshold) /
+                             (deadThreshold - critThreshold)).Value.Float();
+
+                return (ratio, true);
+            }
         }
 
         return (0, true);

@@ -77,12 +77,6 @@
       nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
-    - type: SlowOnDamage
-      speedModifierThresholds:
-        60: 0.8
-        120: 0.6
-        180: 0.4
-        240: 0.2
     - type: MobState
     - type: MobThresholds
       thresholds:
@@ -131,15 +125,15 @@
 #      prototype: WizardBlueGear2
       prototypes: [WizardBlueGear]
 
-- type: entity
-  name: Urist McWizard
-  id: UristMcWizardHardsuit2
-  suffix: hardsuit
-  parent: UristMcWizardBase
-  components:
-    - type: Loadout
+#- type: entity
+#  name: Urist McWizard
+#  id: UristMcWizardHardsuit2
+#  suffix: hardsuit
+#  parent: UristMcWizardBase
+#  components:
+#    - type: Loadout
 #      prototype: WizardHardsuitGear2
-      prototypes: [WizardHardsuitGear]
+#      prototypes: [WizardHardsuitGear]
 
 # SuperPsi - Urist McNars
 - type: entity
@@ -160,12 +154,6 @@
       nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
-    - type: SlowOnDamage
-      speedModifierThresholds:
-        60: 0.8
-        120: 0.6
-        180: 0.4
-        240: 0.2
     - type: MobState
     - type: MobThresholds
       thresholds:

@@ -1,23 +1,20 @@
 - type: body
   id: ArachneClassic
   name: "ArachneClassic"
-  root: torso
+  root: chest
   slots:
     head:
       part: HeadHuman
       connections:
-      - torso
+      - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-    torso:
-      part: TorsoHuman
+    chest:
+      part: ChestHuman
       organs:
         heart: OrganSpaceAnimalHeart
         lungs: OrganSpaceAnimalLungs
-        stomach: OrganVampiricHumanoidStomach
-        liver:  OrganHumanLiver
-        kidneys: OrganHumanKidneys
       connections:
       - right arm
       - left arm
@@ -36,6 +33,10 @@
       part: LeftHandHuman
     thorax:
       part: ThoraxSpider
+      organs:
+        stomach: OrganVampiricHumanoidStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
       connections:
         - left leg first
         - left leg second

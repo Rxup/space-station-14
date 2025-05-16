@@ -8,6 +8,7 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -33,6 +34,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentInit>(OnStart);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentShutdown>(OnEnd);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, WoundsChangedEvent>(OnWoundDamage);
     }
 
     private void OnInit(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentInit args)
@@ -109,6 +111,14 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
     }
 
     private void OnDamageChanged(EntityUid uid, PsionicInvisibilityUsedComponent component, DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        ToggleInvisibility(uid);
+    }
+
+    private void OnWoundDamage(EntityUid uid, PsionicInvisibilityUsedComponent component, WoundsChangedEvent args)
     {
         if (!args.DamageIncreased)
             return;

@@ -6,6 +6,15 @@
   name: "moth body part"
   abstract: true
   components:
+  # backmen edit
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#808A51"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: Extractable
     juiceSolution:
       reagents:
@@ -15,13 +24,13 @@
         Quantity: 10
 
 - type: entity
-  id: TorsoMoth
-  name: "moth torso"
-  parent: [PartMoth, BaseTorso]
+  id: ChestMoth
+  name: "moth chest"
+  parent: [BaseChest, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
-    state: "torso_m"
+    state: "chest_m"
   - type: Extractable
     juiceSolution:
       reagents:
@@ -30,11 +39,26 @@
       - ReagentId: Blood
         Quantity: 20
 
+- type: entity
+  id: GroinMoth
+  name: "moth groin"
+  parent: [BaseGroin, PartMoth]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Moth/parts.rsi
+    state: "groin_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
 
 - type: entity
   id: HeadMoth
   name: "moth head"
-  parent: [PartMoth, BaseHead]
+  parent: [BaseHead, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -50,7 +74,7 @@
 - type: entity
   id: LeftArmMoth
   name: "left moth arm"
-  parent: [PartMoth, BaseLeftArm]
+  parent: [BaseLeftArm, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -59,7 +83,7 @@
 - type: entity
   id: RightArmMoth
   name: "right moth arm"
-  parent: [PartMoth, BaseRightArm]
+  parent: [BaseRightArm, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -68,7 +92,7 @@
 - type: entity
   id: LeftHandMoth
   name: "left moth hand"
-  parent: [PartMoth, BaseLeftHand]
+  parent: [BaseLeftHand, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -77,7 +101,7 @@
 - type: entity
   id: RightHandMoth
   name: "right moth hand"
-  parent: [PartMoth, BaseRightHand]
+  parent: [BaseRightHand, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -86,7 +110,7 @@
 - type: entity
   id: LeftLegMoth
   name: "left moth leg"
-  parent: [PartMoth, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -95,7 +119,7 @@
 - type: entity
   id: RightLegMoth
   name: "right moth leg"
-  parent: [PartMoth, BaseRightLeg]
+  parent: [BaseRightLeg, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -104,7 +128,7 @@
 - type: entity
   id: LeftFootMoth
   name: "left moth foot"
-  parent: [PartMoth, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi
@@ -113,7 +137,7 @@
 - type: entity
   id: RightFootMoth
   name: "right moth foot"
-  parent: [PartMoth, BaseRightFoot]
+  parent: [BaseRightFoot, PartMoth]
   components:
   - type: Sprite
     sprite: Mobs/Species/Moth/parts.rsi

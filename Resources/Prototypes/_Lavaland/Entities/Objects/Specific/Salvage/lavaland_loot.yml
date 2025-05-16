@@ -22,9 +22,9 @@
   - type: GunUpgrade
     tags: [ GunUpgradeReloadSpeed ]
     examineText: gun-upgrade-examine-text-vampirism
-  - type: GunUpgradeVampirism
-    damageOnHit:
-      types:
-        Slash: -1.5
-        Piercing: -1.5
-        Blunt: -1.5
+#  - type: GunUpgradeVampirism
+#    damageOnHit:
+#      types:
+#        Slash: -1.5
+#        Piercing: -1.5
+#        Blunt: -1.5

@@ -43,4 +43,8 @@ public sealed partial class ShipwreckDestinationPrototype : IPrototype
     [ViewVariables]
     [DataField("atmosphere")]
     public readonly GasMixture? Atmosphere = null;
+
+    [DataField("components")]
+    [AlwaysPushInheritance]
+    public ComponentRegistry Components { get; private set; } = new();
 }

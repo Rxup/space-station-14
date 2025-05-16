@@ -4,7 +4,7 @@
     jumpsuit: ClothingUniformJumpsuitInteQHonorable
     back: ClothingBackpackInteQ
     head: ClothingHeadInteQHonorableBeret
-    neck: ClothinNeckCloakInteQ
+    neck: ClothingNeckCloakInteQ
     mask: ClothingMaskNeckGaiter
     eyes: ClothingEyesGogglessInteQ
     ears: ClothingHeadsetAltInteQ
@@ -62,7 +62,7 @@
 #  duffelbag: ClothingBackpackDuffelInteQ
 
 - type: startingGear
-  id: InteQMedicGear
+  id: InteQVanguardMedicGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitInteQMedical
     back: ClothingBackpackInteQ
@@ -77,7 +77,7 @@
     pocket1: HandheldHealthAnalyzer
     pocket2: WeaponPistolInteQCommissar
     suitstorage: OxygenTankFilled
-    belt: ClothingBeltInteQDropPouch
+    belt: ClothingBeltInteQDropPouchMedicFilled
 #  innerclothingskirt: ClothingUniformJumpskirtInteQMedical
 #  satchel: ClothingBackpackSatchelInteQ
 #  duffelbag: ClothingBackpackDuffelInteQMedical

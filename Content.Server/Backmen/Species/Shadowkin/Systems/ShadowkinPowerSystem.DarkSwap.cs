@@ -14,6 +14,7 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
@@ -37,7 +38,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly ShadowkinDarkenSystem _darken = default!;
-    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
@@ -62,6 +63,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnInvisShutdown);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, MoveEvent>(OnMoveInInvis);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DamageChangedEvent>(OnDamageInInvis);
+        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, WoundsChangedEvent>(OnWoundedInInvis);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DispelledEvent>(OnDispelled);
 
         _activePsionicsDisabled = GetEntityQuery<PsionicsDisabledComponent>();
@@ -75,6 +77,15 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     }
 
     private void OnDamageInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
+        _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(3), false);
+    }
+
+    private void OnWoundedInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref WoundsChangedEvent args)
     {
         if (!args.DamageIncreased)
             return;
@@ -179,8 +190,6 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             args.VolumeOff,
             args
         );
-
-        _magic.Speak(args);
     }
 
 

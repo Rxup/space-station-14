@@ -146,7 +146,7 @@
   - type: StaticPrice
     price: 500
   - type: PowerCellDraw
-    drawRate: 4
+    drawRate: 50 # Backmen-Edit | 4 > 50
   - type: ToggleCellDraw
   - type: ItemSlots
     slots:

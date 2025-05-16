@@ -4,21 +4,37 @@
   name: "diona body part"
   abstract: true
   components:
+  # backmen edit
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#cd7314"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: Sprite
     sprite: Mobs/Species/Diona/parts.rsi
 
 - type: entity
-  id: TorsoDiona
-  name: "diona torso"
-  parent: [PartDiona, BaseTorso]
+  id: ChestDiona
+  name: "diona chest"
+  parent: [BaseChest, PartDiona]
   components:
   - type: Sprite
-    state: "torso_m"
+    state: "chest_m"
+
+- type: entity
+  id: GroinDiona
+  name: "diona groin"
+  parent: [BaseGroin, PartDiona]
+  components:
+  - type: Sprite
+    state: "groin_m"
 
 - type: entity
   id: HeadDiona
   name: "diona head"
-  parent: [PartDiona, BaseHead]
+  parent: [BaseHead, PartDiona]
   components:
   - type: Sprite
     state: "head_m"
@@ -26,7 +42,7 @@
 - type: entity
   id: LeftArmDiona
   name: "left diona arm"
-  parent: [PartDiona, BaseLeftArm]
+  parent: [BaseLeftArm, PartDiona]
   components:
   - type: Sprite
     state: "l_arm"
@@ -34,7 +50,7 @@
 - type: entity
   id: RightArmDiona
   name: "right diona arm"
-  parent: [PartDiona, BaseRightArm]
+  parent: [BaseRightArm, PartDiona]
   components:
   - type: Sprite
     state: "r_arm"
@@ -42,7 +58,7 @@
 - type: entity
   id: LeftHandDiona
   name: "left diona hand"
-  parent: [PartDiona, BaseLeftHand]
+  parent: [BaseLeftHand, PartDiona]
   components:
   - type: Sprite
     state: "l_hand"
@@ -50,7 +66,7 @@
 - type: entity
   id: RightHandDiona
   name: "right diona hand"
-  parent: [PartDiona, BaseRightHand]
+  parent: [BaseRightHand, PartDiona]
   components:
   - type: Sprite
     state: "r_hand"
@@ -58,7 +74,7 @@
 - type: entity
   id: LeftLegDiona
   name: "left diona leg"
-  parent: [PartDiona, BaseLeftLeg]
+  parent: [BaseLeftLeg, PartDiona]
   components:
   - type: Sprite
     state: "l_leg"
@@ -66,7 +82,7 @@
 - type: entity
   id: RightLegDiona
   name: "right diona leg"
-  parent: [PartDiona, BaseRightLeg]
+  parent: [BaseRightLeg, PartDiona]
   components:
   - type: Sprite
     state: "r_leg"
@@ -77,7 +93,7 @@
 - type: entity
   id: LeftFootDiona
   name: "left diona foot"
-  parent: [PartDiona, BaseLeftFoot]
+  parent: [BaseLeftFoot, PartDiona]
   components:
   - type: Sprite
     state: "l_foot"
@@ -88,7 +104,7 @@
 - type: entity
   id: RightFootDiona
   name: "right diona foot"
-  parent: [PartDiona, BaseRightFoot]
+  parent: [BaseRightFoot, PartDiona]
   components:
   - type: Sprite
     state: "r_foot"

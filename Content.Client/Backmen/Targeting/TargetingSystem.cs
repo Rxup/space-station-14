@@ -27,8 +27,10 @@ public sealed class TargetingSystem : SharedTargetingSystem
         CommandBinds.Builder
         .Bind(ContentKeyFunctions.TargetHead,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Head)))
-        .Bind(ContentKeyFunctions.TargetTorso,
-            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Torso)))
+        .Bind(ContentKeyFunctions.TargetChest,
+            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Chest)))
+        .Bind(ContentKeyFunctions.TargetGroin,
+            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Groin)))
         .Bind(ContentKeyFunctions.TargetLeftArm,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.LeftArm)))
         .Bind(ContentKeyFunctions.TargetLeftHand,
@@ -93,7 +95,7 @@ public sealed class TargetingSystem : SharedTargetingSystem
     {
         if (session == null
             || session.AttachedEntity is not { } uid
-            || !TryComp<TargetingComponent>(uid, out var targeting))
+            || !HasComp<TargetingComponent>(uid))
             return;
 
         TargetChange?.Invoke(target);
