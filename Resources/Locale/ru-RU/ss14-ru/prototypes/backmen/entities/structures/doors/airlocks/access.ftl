@@ -28,7 +28,6 @@ ent-AirlockHatchCentcommLocked = Шлюз ЦК
 ent-DoubleGlassAirlockCentcomLocked = Двойной Шлюз ЦК
     .suffix = ЦентКом, Закрыт
     .desc = { ent-DoubleGlassAirlock.desc }
-
 ent-AirlockHatchMaintLocked = Технический Шлюз
     .suffix = Техобслуживание, Закрыт
     .desc = { ent-AirlockHatchMaint.desc }
@@ -38,7 +37,6 @@ ent-AirlockHatchSyndicateLocked = Шлюз Синдиката
 ent-DoubleGlassAirlockSyndicateLocked = Двойной Шлюз Синдиката
     .suffix = Синдикат, Закрыт
     .desc = { ent-DoubleGlassAirlock.desc }
-
 ent-WindoorMTFLocked = { ent-WindoorSecure }
     .suffix = МТФ
     .desc = { ent-WindoorSecure.desc }

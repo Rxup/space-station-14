@@ -18,6 +18,11 @@
       path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
     soundEject:
       path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver44Magnum
+        - SpeedLoader44Magnum
+    proto: CartridgeRevolver44Magnum
   - type: Gun
     fireRate: 3
     cameraRecoilScalar: 3
@@ -44,6 +49,11 @@
       path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
     soundEject:
       path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special
+        - SpeedLoader38Special
+    proto: CartridgeRevolver38Special
   - type: Gun
     fireRate: 3
     soundGunshot:
@@ -99,6 +109,11 @@
       path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
     soundEject:
       path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special
+        - SpeedLoader38Special
+    proto: CartridgeRevolver38Special
   - type: PumpAction
     sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
   - type: Gun
@@ -128,6 +143,11 @@
       path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
     soundSpin:
       path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special
+        - SpeedLoader38Special
+    proto: CartridgeRevolver38Special
   - type: PumpAction
     sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
   - type: Gun

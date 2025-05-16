@@ -86,7 +86,7 @@ public sealed partial class WoundableComponent : Component
     /// At which amount of bleeds the woundable will stop healing.
     /// </summary>
     [ViewVariables, DataField]
-    public FixedPoint2 BleedsThreshold = 3.5f;
+    public FixedPoint2 BleedsThreshold = 2.4f;
 
     /// <summary>
     /// Multipliers of severity applied to this wound.

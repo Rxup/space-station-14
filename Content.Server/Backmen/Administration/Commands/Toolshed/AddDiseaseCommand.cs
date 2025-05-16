@@ -5,6 +5,7 @@ using Content.Server.Polymorph.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Polymorph;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.TypeParsers;
 
@@ -18,7 +19,7 @@ public sealed class AddDiseaseCommand : ToolshedCommand
     [CommandImplementation]
     public EntityUid? AddDisease(
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<DiseasePrototype> prototype
+        [CommandArgument] ProtoId<DiseasePrototype> prototype
     )
     {
         _diseaseSystem ??= GetSys<DiseaseSystem>();
@@ -30,7 +31,7 @@ public sealed class AddDiseaseCommand : ToolshedCommand
     [CommandImplementation]
     public IEnumerable<EntityUid> AddDisease(
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<DiseasePrototype> prototype
+        [CommandArgument] ProtoId<DiseasePrototype> prototype
     )
         => input.Select(x => AddDisease(x, prototype)).Where(x => x is not null).Select(x => (EntityUid) x!);
 }

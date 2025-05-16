@@ -1,6 +1,6 @@
 ent-PartMoth = moth body part
     .desc = { ent-BaseItem.desc }
-ent-TorsoMoth = moth torso
+ent-ChestMoth = moth chest
     .desc = { ent-PartMoth.desc }
 ent-HeadMoth = moth head
     .desc = { ent-PartMoth.desc }

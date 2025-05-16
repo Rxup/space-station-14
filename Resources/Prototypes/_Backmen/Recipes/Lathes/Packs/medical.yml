@@ -3,14 +3,12 @@
   id: BackmenMedfabStatic
   recipes:
   - BoneGel
-  - SyringeGun
 
 # Only medfab (dynamic)
 - type: latheRecipePack
   id: BackmenMedfab
   recipes:
   - OmnimedTool
-  - RapidSyringeGun
   - MedicalCyberneticEyes
   - SecurityCyberneticEyes
 

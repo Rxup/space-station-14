@@ -575,6 +575,7 @@
   loadouts:
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
+  - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
@@ -1185,6 +1186,7 @@
 - type: loadoutGroup #Backmen
   id: DetectiveRevolver
   name: loadout-group-security-pocket
+  minLimit: 1
   loadouts:
   - WeaponRevolverCMB
   - WeaponRevolverR44

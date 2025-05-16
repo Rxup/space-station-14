@@ -153,6 +153,7 @@
     - id: RubberStampDenied
     - id: RubberStampHop
     - id: WeaponDisabler
+    - id: BoxPhotocopierToners # DS14
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
     - id: ClothingOuterCoatHOP # Corvax-Resprite
@@ -255,8 +256,6 @@
     - id: FlatpackMetempsychoticMachine # backmen
     - id: MedicalBiofabMachineBoard # backmen
     - id: MedTekCartridge
-    - id: RapidSyringeGun # backmen
-    - id: BoxSyringePax # backmen
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

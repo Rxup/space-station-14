@@ -225,3 +225,15 @@
 
 - type: Tag
   id: Wakizashi
+
+- type: Tag
+  id: CartridgeRevolver38Special
+
+- type: Tag
+  id: CartridgeRevolver44Magnum
+
+- type: Tag
+  id: SpeedLoader38Special
+
+- type: Tag
+  id: SpeedLoader44Magnum
