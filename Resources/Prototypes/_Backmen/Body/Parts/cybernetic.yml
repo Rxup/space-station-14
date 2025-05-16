@@ -129,6 +129,8 @@
     - type: Prying
       speedModifier: 1.5
       pryPowered: true
+    - type: UseDelay
+      delay: 1
 
 - type: entity
   parent: RightArmCybernetic
@@ -141,6 +143,8 @@
     - type: Prying
       speedModifier: 1.5
       pryPowered: true
+    - type: UseDelay
+      delay: 1
 
 - type: entity
   parent: LeftLegCybernetic
@@ -150,11 +154,7 @@
   components:
   - type: MovementBodyPart
     walkSpeed: 3.125
-    sprintSpeed: 5.625
-  - type: BodyPart
-    onAdd:
-    - type: NoSlip
-    - type: ProtectedFromStepTriggers
+    sprintSpeed: 5.175
 
 - type: entity
   parent: RightLegCybernetic
@@ -164,8 +164,4 @@
   components:
   - type: MovementBodyPart
     walkSpeed: 3.125
-    sprintSpeed: 5.625
-  - type: BodyPart
-    onAdd:
-    - type: NoSlip
-    - type: ProtectedFromStepTriggers
+    sprintSpeed: 5.175
