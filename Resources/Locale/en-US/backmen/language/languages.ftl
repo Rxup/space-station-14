@@ -115,8 +115,8 @@ language-OldFastCodes-description =
     Old military codes used hundreds of years ago.
         Now they are almost forgotten and replaced by more advanced referral systems, but someone still uses them.
 
-language-Canilunzt-name = Siik'tajr
-language-Canilunzt-description =
+language-Siiktajr-name = Siik'tajr
+language-Siiktajr-description =
     Overly complicated and with a turbulent history, this tongue comprised of short-form
     speech mixed with growls and meows is native to the Tajara. Due to the size of their 
     Empire, countless dialects and different idioms exist - making a simple uniform way to 
