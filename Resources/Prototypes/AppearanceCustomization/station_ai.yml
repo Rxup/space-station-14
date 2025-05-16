@@ -11,6 +11,36 @@
   - StationAiIconDorf
   - StationAiIconHeartline
   - StationAiIconSmiley
+  # Backmen-Start
+  - StationAiIconThinking
+  - StationAiIconXenomorph
+  - StationAiIconBanned
+  - StationAiIconDatabase
+  - StationAiIconFirewall
+  - StationAiIconGento
+  - StationAiIconGlitchman
+  - StationAiIconGondola
+  - StationAiIconGoon
+  - StationAiIconHelios
+  - StationAiIconHouse
+  - StationAiIconInverted
+  - StationAiIconMatrix
+  - StationAiIconMonochrome
+  - StationAiIconArmy
+  - StationAiIconNanotrasen
+  - StationAiIconNotMalf
+  - StationAiIconPresident
+  - StationAiIconRainbow
+  - StationAiIconRed
+  - StationAiIconRedOctober
+  - StationAiIconStatic
+  - StationAiIconMeow
+  - StationAiIconText
+  - StationAiIconTooDeep
+  - StationAiIconTriumvirate
+  - StationAiIconTriumvirateMalf
+  - StationAiIconWeird
+  # Backmen-End
 
 - type: stationAiCustomizationGroup
   id: StationAiHolograms
@@ -22,6 +52,10 @@
   - StationAiHologramFace
   - StationAiHologramCat
   - StationAiHologramDog
+  # Backmen-Start
+  - StationAiHologramHorror
+  - StationAiHologramXenomorphQueen
+  # Backmen-End
 
 # Iconography
 - type: stationAiCustomization
