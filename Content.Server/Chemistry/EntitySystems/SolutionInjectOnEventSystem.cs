@@ -1,7 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
-using Content.Shared.Chemistry.Components; // GoobStation
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Events;
 using Content.Shared.Inventory;
@@ -44,11 +43,6 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
 
     private void HandleEmbed(Entity<SolutionInjectOnEmbedComponent> entity, ref EmbedEvent args)
     {
-        // GoobStation Change Start
-        if (_tag.HasTag(entity, "Syringe") && !entity.Comp.Shot)
-            entity.Comp.PierceArmor = false; // This way syringes that are thrown still inject but do not pierce armor.
-        // GoobStation Change End
-
         DoInjection((entity.Owner, entity.Comp), args.Embedded, args.Shooter);
     }
 
@@ -104,7 +98,6 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // TODO blocking injection with a hardsuit should probably done with a cancellable event or something
             if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag))
             {
-                injector.Comp.Shot = false;
                 // Only show popup to attacker
                 if (source != null)
                     _popup.PopupEntity(Loc.GetString(injector.Comp.BlockedByHardsuitPopupMessage, ("weapon", injector.Owner), ("target", target)), target, source.Value, PopupType.SmallCaution);
@@ -142,16 +135,8 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         if (targetBloodstreams.Count == 0)
             return false;
 
-        // GoobStation Change Start
-        Solution removedSolution;
-        if (injector.Comp.Shot)
-        {
-            removedSolution = _solutionContainer.SplitSolution(injectorSolution.Value, injectorSolution.Value.Comp.Solution.Volume);
-            injector.Comp.Shot = false; // Prevent them from abusing this.
-        }
-        else
-            removedSolution = _solutionContainer.SplitSolution(injectorSolution.Value, injector.Comp.TransferAmount * targetBloodstreams.Count);
-        // GoobStation Change End
+        // Extract total needed solution from the injector
+        var removedSolution = _solutionContainer.SplitSolution(injectorSolution.Value, injector.Comp.TransferAmount * targetBloodstreams.Count);
         // Adjust solution amount based on transfer efficiency
         var solutionToInject = removedSolution.SplitSolution(removedSolution.Volume * injector.Comp.TransferEfficiency);
         // Calculate how much of the adjusted solution each target will get

@@ -29,3 +29,49 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
+
+
+# Wisdom RD HardSuit
+
+- type: entity
+  parent: ClothingOuterHardsuitRd
+  id: ClothingOuterHardsuitRdWisdom
+  name: экспериментальный исследовательский скафандр
+  description: Специальный костюм, защищающий от опасной среды с низким давлением. Имеет дополнительный слой брони. Стоп, он с сиськами?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/hardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRdWisdom
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRd
+  id: ClothingHeadHelmetHardsuitRdWisdom
+  name: шлем скаафандра НР
+  description: Вай какой.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingRdBackpackWisdom
+  name: рюкзак НР
+  description: Красивый рюкзак НР.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,4
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/WisdomBackPack/backpack.rsi
+
+- type: loadout
+  id: WisdomRdLoadOutBkm
+  equipment:
+    back: ClothingRdBackpackWisdom
+    outerClothing: ClothingOuterHardsuitRdWisdom

@@ -8,13 +8,7 @@
   },
   "states": [
     {
-      "name": "icon"
-    },
-    {
-      "name": "icon-open"
-    },
-    {
-      "name": "equipped-OUTERCLOTHING",
+      "name": "inhand-right",
       "directions": 4
     },
     {
@@ -22,19 +16,7 @@
       "directions": 4
     },
     {
-      "name": "equipped-OUTERCLOTHING-reptilian",
-      "directions": 4
-    },
-    {
       "name": "open-equipped-OUTERCLOTHING-reptilian",
-      "directions": 4
-    },
-    {
-      "name": "inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "inhand-right",
       "directions": 4
     },
     {
@@ -43,6 +25,24 @@
     },
     {
       "name": "open-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-reptilian",
+      "directions": 4
+    },
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon-open"
+    },
+    {
+      "name": "inhand-left",
       "directions": 4
     }
   ]

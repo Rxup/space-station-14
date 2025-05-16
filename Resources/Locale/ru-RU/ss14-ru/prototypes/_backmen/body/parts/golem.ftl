@@ -1,6 +1,3 @@
-
-ent-ChestGolemCult = golem chest
-    .desc = { ent-PartGolem.desc }
-ent-GroinGolemCult = golem groin
+ent-GroinGolemCult = пах голема
     .desc = { ent-PartGolem.desc }
 

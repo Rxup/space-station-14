@@ -222,7 +222,7 @@ namespace Content.Shared.Interaction
         {
             if (!item.DeleteOnDrop)
                 RemCompDeferred<UnremoveableComponent>(uid);
-            else
+            else if(!TerminatingOrDeleted(uid))
                 PredictedQueueDel(uid);
         }
 

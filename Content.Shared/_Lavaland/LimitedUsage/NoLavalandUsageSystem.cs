@@ -21,8 +21,8 @@ public abstract class SharedNoLavalandUsageSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NoLavalandUsageComponent, BoundUserInterfaceMessageAttempt>(OnBoundUserInterface,
-            after: [typeof(SharedInteractionSystem)]);
+        /*SubscribeLocalEvent<NoLavalandUsageComponent, BoundUserInterfaceMessageAttempt>(OnBoundUserInterface,
+            after: [typeof(SharedInteractionSystem)]);*/
         SubscribeLocalEvent<NoLavalandUsageComponent, FoldAttemptEvent>(OnOpenStorage);
         SubscribeLocalEvent<ToolUserAttemptUseEvent>(OnTryAnchor);
         SubscribeLocalEvent<Backmen.Arrivals.FlatPackUserAttemptUseEvent>(OnTryUnPack);
@@ -51,13 +51,13 @@ public abstract class SharedNoLavalandUsageSystem : EntitySystem
         }
     }
 
-    private void OnBoundUserInterface(Entity<NoLavalandUsageComponent> ent, ref BoundUserInterfaceMessageAttempt args)
+    /*private void OnBoundUserInterface(Entity<NoLavalandUsageComponent> ent, ref BoundUserInterfaceMessageAttempt args)
     {
         if (IsApply(ent))
         {
             args.Cancel();
         }
-    }
+    }*/
 
     public bool IsApply(EntityUid entity)
     {

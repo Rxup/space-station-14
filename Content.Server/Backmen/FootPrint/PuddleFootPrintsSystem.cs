@@ -1,9 +1,12 @@
 using System.Linq;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.FootPrint;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
+using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Server.Backmen.FootPrint;
@@ -12,10 +15,16 @@ public sealed class PuddleFootPrintsSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<FootPrintsComponent> _footPrintsQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionContainerManageQuery;
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string WaterId = "Water";
+
+    private bool _footprintEnabled = false;
 
     public override void Initialize()
    {
@@ -26,10 +35,15 @@ public sealed class PuddleFootPrintsSystem : EntitySystem
        _puddleQuery = GetEntityQuery<PuddleComponent>();
        _footPrintsQuery = GetEntityQuery<FootPrintsComponent>();
        _solutionContainerManageQuery = GetEntityQuery<SolutionContainerManagerComponent>();
+
+       Subs.CVar(_configuration, CCVars.EnableFootPrints, value => _footprintEnabled = value, true);
    }
 
     private void OnStepTrigger(EntityUid uid, PuddleFootPrintsComponent comp, ref EndCollideEvent args)
     {
+        if(!_footprintEnabled)
+            return;
+
         if (!_appearanceQuery.TryComp(uid, out var appearance) ||
             !_puddleQuery.TryComp(uid, out var puddle) ||
             !_footPrintsQuery.TryComp(args.OtherEntity, out var tripper) ||
@@ -43,7 +57,7 @@ public sealed class PuddleFootPrintsSystem : EntitySystem
 
         // alles gut!
         var totalSolutionQuantity = solutions.Contents.Sum(sol => (float)sol.Quantity);
-        var waterQuantity = (from sol in solutions.Contents where sol.Reagent.Prototype == "Water" select (float) sol.Quantity).FirstOrDefault();
+        var waterQuantity = (from sol in solutions.Contents where sol.Reagent.Prototype == WaterId select (float) sol.Quantity).FirstOrDefault();
 
         if (waterQuantity / (totalSolutionQuantity / 100f) > comp.OffPercent)
             return;

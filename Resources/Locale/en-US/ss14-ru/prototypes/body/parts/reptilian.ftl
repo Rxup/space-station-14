@@ -1,6 +1,6 @@
 ent-PartReptilian = reptilian body part
     .desc = { ent-BaseItem.desc }
-ent-TorsoReptilian = reptilian torso
+ent-ChestReptilian = reptilian chest
     .desc = { ent-PartReptilian.desc }
 ent-HeadReptilian = reptilian head
     .desc = { ent-PartReptilian.desc }
