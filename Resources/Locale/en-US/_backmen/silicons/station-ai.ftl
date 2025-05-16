@@ -1,0 +1,32 @@
+# Customizations
+station-ai-icon-thinking = Thinking
+station-ai-icon-xenomorph = Xenomorph
+station-ai-icon-banned = Banned
+station-ai-icon-database = Database
+station-ai-icon-firewall = Firewall
+station-ai-icon-gento = Gento
+station-ai-icon-glitchman = Glitchman
+station-ai-icon-gondola = Gondola
+station-ai-icon-goon = Goon
+station-ai-icon-helios = Helios
+station-ai-icon-house = House
+station-ai-icon-inverted = Inverted
+station-ai-icon-matrix = Matrix
+station-ai-icon-monochrome = Monochrome
+station-ai-icon-army = Army
+station-ai-icon-nanotrasen = Nanotrasen
+station-ai-icon-notmalf = Not malf
+station-ai-icon-president = President
+station-ai-icon-rainbow = Rainbow
+station-ai-icon-red = Red
+station-ai-icon-redoctober = Red October
+station-ai-icon-static = Static
+station-ai-icon-meow = Meow
+station-ai-icon-text = Text
+station-ai-icon-toodeep = Too deep
+station-ai-icon-triumvirate = Triumvirate
+station-ai-icon-triumvirate-malf = Triumvirate (Malf)
+station-ai-icon-weird = Weird
+
+station-ai-hologram-horror = Horror appearance
+station-ai-hologram-xenomorph-queen = Xenomorph queen appearance
