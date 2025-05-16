@@ -478,3 +478,22 @@
       - id: EmergencyMedipen
         amount: 3
       - id: Stimpack
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbingCMO
+  id: ClothingBeltMilitaryWebbingCMOFilled
+  name: chief medical officer's chest rig
+  description: "A medical chest rig with deep pockets, for use by paramedics and health professionals."
+  components:
+  - type: StorageFill
+    contents:
+      - id: EnergyCautery
+      - id: EnergyScalpel
+      - id: AdvancedRetractor
+      - id: BoneGel
+      - id: Brutepack
+      - id: Ointment
+      - id: Bloodpack
+      - id: Gauze
+      - id: EmergencyMedipen
+        amount: 3
