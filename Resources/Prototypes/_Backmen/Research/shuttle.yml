@@ -24,7 +24,7 @@
     sprite: Objects/Power/power_cages.rsi
     state: high
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 6000
   recipeUnlocks:
    - GrenadeEMP

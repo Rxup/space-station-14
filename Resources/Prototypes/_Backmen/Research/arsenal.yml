@@ -72,7 +72,7 @@
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
     state: incendiarydisplay
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - MagazinePacketPistolACPIncendiary
@@ -102,7 +102,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: uranium
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 7500
   recipeUnlocks:
 #  - SpeedLoaderMagnumUranium
@@ -172,8 +172,8 @@
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
-  cost: 15000
+  tier: 3
+  cost: 18000
   recipeUnlocks:
   - WeaponAdvancedLaser
   technologyPrerequisites:
@@ -188,7 +188,7 @@
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 8000
   recipeUnlocks:
   - WeaponLaserCannon
@@ -203,7 +203,7 @@
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
@@ -218,15 +218,29 @@
     sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
-  cost: 3200
+  tier: 2
+  cost: 5200
   recipeUnlocks:
   - WeaponLaserSvalinn
   - WeaponLaserPistol
-  - WeaponTemperatureGun
   technologyPrerequisites:
   - CombatLaser
   position: -2,-4
+
+- type: technology
+  id: ExperimentalGuns
+  name: research-technology-experimental-guns
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
+    state: base
+  discipline: Arsenal
+  tier: 2
+  cost: 8500
+  recipeUnlocks:
+  - WeaponTemperatureGun
+  technologyPrerequisites:
+  - CombatLaserExperimental
+  position: -3,-4
 
 - type: technology
   id: EnergyBarriers
@@ -235,24 +249,13 @@
     sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
   technologyPrerequisites:
   - RiotControlAdvanced
   position: 2,-1
-
-- type: technology
-  id: EarthArmoriesBase
-  name: research-technology-Earth-Armories
-  icon:
-    sprite: Backmen/Structures/Decoration/banner.rsi
-    state: banner
-  discipline: Arsenal
-  tier: 1
-  cost: 1000
-  position: -3,-5
 
 - type: technology
   id: WeaponPistolBase
@@ -263,7 +266,11 @@
     state: icon
   tier: 1
   cost: 1000
-  position: 0,-5
+  recipeUnlocks:
+  - WeaponPistolG23
+  technologyPrerequisites:
+  - GunsmithPrinterMachines
+  position: -1,-5
 
 - type: technology
   id: WeaponRifleBase
@@ -272,7 +279,7 @@
     sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeStraight
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 10000
   technologyPrerequisites:
   - LightAutoWeaponBase
@@ -286,14 +293,14 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     state: icon
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 5000
   recipeUnlocks:
   - WeaponPistolRivet
   - MagazinePistolNail
   technologyPrerequisites:
   - WeaponPistolBase
-  position: -1,-5
+  position: -1,-7
 
 - type: technology
   id: AdvancedAutoWeaponBase
@@ -305,9 +312,8 @@
   tier: 3
   cost: 30000
   technologyPrerequisites:
-  - LightAutoWeaponBase
   - WeaponRifleBase
-  position: -1,-6
+  position: 0,-8
 
 - type: technology
   id: ReinforcedBarrelBase
@@ -320,8 +326,7 @@
   cost: 40000
   technologyPrerequisites:
   - AdvancedAutoWeaponBase
-  - WeaponRifleBase
-  position: 0,-7
+  position: -2,-8
 
 - type: technology
   id: EarthArmoriesPistols
@@ -330,16 +335,14 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
     state: icon
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 5000
   recipeUnlocks:
   - WeaponPistolG22
-  - WeaponPistolG23
   - WeaponPistolACP14
   technologyPrerequisites:
-  - EarthArmoriesBase
   - WeaponPistolBase
-  position: -4,-6
+  position: -2,-6
 
 - type: technology
   id: EarthArmoriesLightAutoWeapons
@@ -354,11 +357,9 @@
   - WeaponPistolVP78
   - WeaponSubMachineGunMP5
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponPistolBase
   - LightAutoWeaponBase
   - EarthArmoriesPistols
-  position: -4,-7
+  position: -3,-7
 
 - type: technology
   id: EarthArmoriesReinforcedWeapons
@@ -373,10 +374,9 @@
   - WeaponRevolverMatebaNew
   - WeaponRevolverR44
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponPistolBase
+  - EarthArmoriesPistols
   - ReinforcedBarrelBase
-  position: -2,-6
+  position: -3,-6
 
 - type: technology
   id: EarthArmoriesRiflesWeapons
@@ -391,9 +391,8 @@
   - WeaponSniperRemington700
   - WeaponShotgunPaladin12
   technologyPrerequisites:
-  - EarthArmoriesBase
   - WeaponRifleBase
-  position: -3,-8
+  position: 0,-10
 
 - type: technology
   id: EarthArmoriesRiflesHeavyWeapons
@@ -407,11 +406,9 @@
   recipeUnlocks:
   - WeaponShotgun12
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponRifleBase
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -2,-9
+  position: 0,-11
 
 - type: technology
   id: EarthArmoriesRiflesAutoWeapons
@@ -428,11 +425,9 @@
   - WeaponRifleAR18
   - WeaponRifleM28
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponRifleBase
   - AdvancedAutoWeaponBase
   - EarthArmoriesRiflesWeapons
-  position: -3,-9
+  position: -1,-10
 
 - type: technology
   id: EarthArmoriesRiflesAutoHeavyWeapons
@@ -447,9 +442,6 @@
   - WeaponShotgun39
   - WeaponRifleSR127
   technologyPrerequisites:
-  - EarthArmoriesBase
-  - WeaponRifleBase
-  - AdvancedAutoWeaponBase
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -4,-9
+  position: -2,-10

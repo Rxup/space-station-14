@@ -232,10 +232,10 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             Beam(uid, args.Origin.Value, tier);
         }
 
-        [ValidatePrototypeId<EntityPrototype>] private const string MaterialBluespace = "MaterialBluespace1";
+        [ValidatePrototypeId<EntityPrototype>] private const string MaterialEssence = "MaterialBluespaceEssence1";
         private void OnDestroyed(EntityUid uid, GlimmerReactiveComponent component, DestructionEventArgs args)
         {
-            Spawn(MaterialBluespace, Transform(uid).Coordinates);
+            Spawn(MaterialEssence, Transform(uid).Coordinates);
 
             var tier = _glimmerSystem.GetGlimmerTier();
             if (tier < GlimmerTier.High)

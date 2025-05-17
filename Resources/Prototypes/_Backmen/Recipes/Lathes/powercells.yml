@@ -33,7 +33,7 @@
     Glass: 520
     Uranium: 200
     Gold: 140
-    Bluespace: 80
+    BluespaceCrystal: 80
 
 - type: latheRecipe
   id: PowerCellBluespaceReactor
@@ -46,7 +46,7 @@
     Glass: 620
     Uranium: 500
     Gold: 180
-    Bluespace: 200
+    BluespaceCrystal: 200
 
 - type: latheRecipe
   id: PowerCellVortex
@@ -59,4 +59,4 @@
     Glass: 820
     Plasma: 1660
     Gold: 220
-    Bluespace: 1200
+    BluespaceCrystal: 1200

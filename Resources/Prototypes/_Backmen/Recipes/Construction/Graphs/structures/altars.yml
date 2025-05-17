@@ -10,7 +10,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -21,7 +21,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -32,7 +32,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -43,7 +43,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -54,7 +54,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -65,7 +65,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -76,7 +76,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -87,7 +87,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -98,7 +98,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -109,7 +109,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -120,7 +120,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -131,7 +131,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -142,7 +142,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -153,7 +153,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -164,7 +164,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -175,7 +175,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -186,7 +186,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4
@@ -197,7 +197,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 3
             - material: Gold
               amount: 4

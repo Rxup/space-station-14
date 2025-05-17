@@ -34,7 +34,7 @@
   - type: Stack
     stackType: DiamondOreUnprocessed
   - type: UnclaimedOre
-    miningPoints: 1000 # rarest ore in the game, only 1 yield, used for endgame schematics 
+    miningPoints: 800 # Backmen-Edit 1000 > 800 | No longer rarest ore in the game.
 
 - type: entity
   parent: DiamondOreUnprocessed

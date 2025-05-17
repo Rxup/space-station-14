@@ -6,7 +6,7 @@
 #  result: QSI
 #  completetime: 5
 #  materials:
-#    Bluespace: 25
+#    BluespaceEssence: 25
 #    Glass: 250
 #    Plastic: 250
 
@@ -18,7 +18,7 @@
   result: CoreSilver
   completetime: 10
   materials:
-    Bluespace: 500
+    BluespaceEssence: 500
     Silver: 1000
     Plastic: 1000
 
@@ -34,7 +34,7 @@
     Plastic: 500
     Gold: 300
     Bananium: 600
-    Bluespace: 500
+    BluespaceCrystal: 500
 
 #- type: latheRecipe
 #  id: BluespaceBeaker1
@@ -44,7 +44,7 @@
 #  result: BluespaceBeaker
 #  completetime: 5
 #  materials:
-#    Bluespace: 100
+#    BluespaceCrystal: 100
 #    Glass: 500
 #    Plastic: 500
 
@@ -56,7 +56,7 @@
   result: TrashBagHolding
   completetime: 4
   materials:
-    Bluespace: 200
+    BluespaceCrystal: 200
     Durathread: 750
     Plastic: 200
 
@@ -68,4 +68,4 @@
     Steel: 250
     Plastic: 250
     Plasma: 100
-    Bluespace: 50
+    BluespaceCrystal: 50

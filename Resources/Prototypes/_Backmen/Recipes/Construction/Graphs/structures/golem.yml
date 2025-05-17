@@ -8,7 +8,7 @@
           steps:
             - material: Plasteel
               amount: 10
-            - material: Bluespace
+            - material: BluespaceEssence
               amount: 5
               doAfter: 10
 

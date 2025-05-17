@@ -7,3 +7,6 @@ research-technology-combat-laser-advanced = Advanced Combat laser
 research-technology-combat-laser-concentrated = Concentrated Combat laser
 research-technology-combat-laser-wave-harnessing = Wave harnessing Combat laser
 research-technology-combat-laser-experimental = Experimental Combat laser
+research-technology-experimental-guns = Experimental Guns
+
+research-technology-gunsmith-printer-machines = Gunsmith Printer Machines

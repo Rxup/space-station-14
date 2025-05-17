@@ -1,15 +1,35 @@
 ﻿- type: material
-  id: Bluespace
-  name: bluespace
-  icon: /Textures/Backmen/Objects/Materials/materials.rsi/bluespace.png
+  id: BluespaceCrystal
+  stackEntity: MaterialBluespaceCrystal1
+  name: materials-bluespace-crystal
+  unit: materials-unit-piece
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }
   color: "#53a9ff"
-  stackEntity: MaterialBluespace
+  price: 25
+
+- type: material
+  id: BluespaceCrystalUnprocessed
+  stackEntity: BluespaceCrystal1Unprocessed
+  name: materials-bluespace-crystal-unprocessed
+  unit: materials-unit-piece
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace_crystal_unprocessed }
+  color: "#53a9ff"
+  price: 10
+
+- type: material
+  id: BluespaceEssence
+  stackEntity: MaterialBluespaceEssence1
+  name: materials-bluespace-essence
+  unit: materials-unit-piece
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace_essence }
+  color: "#4169E1"
   price: 15
 
 - type: material
   id: NormalityCrystal
-  name: normality crystal
+  stackEntity: CrystalNormality1
+  name: materials-normality-crystal
+  unit: materials-unit-piece
   icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: normalitycrystal }
   color: "#77e5f6"
-  stackEntity: CrystalNormality
   price: 20
