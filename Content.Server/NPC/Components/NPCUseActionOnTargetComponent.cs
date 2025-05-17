@@ -16,12 +16,29 @@ public sealed partial class NPCUseActionOnTargetComponent : Component
     [DataField]
     public string TargetKey = "Target";
 
+    /// Backmen-EDIT-Start
     /// <summary>
     /// Action that's going to attempt to be used.
     /// </summary>
     [DataField(required: true)]
-    public EntProtoId<EntityWorldTargetActionComponent> ActionId;
+    public List<EntProtoId<EntityWorldTargetActionComponent>> ActionId = new();
 
     [DataField]
     public EntityUid? ActionEnt;
+
+    /// <summary>
+    /// Minimum delay between attempts to use ANY action.
+    /// </summary>
+    [DataField]
+    public TimeSpan UseActionDelay = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// Time of the last attempt to use ANY action.
+    /// </summary>
+    [DataField]
+    public TimeSpan LastUseAnyActionTime;
+
+    [DataField]
+    public List<EntityUid> ActionEntities = new();
+    /// Backmen-EDIT-End
 }

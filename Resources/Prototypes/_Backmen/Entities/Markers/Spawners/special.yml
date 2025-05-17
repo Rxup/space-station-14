@@ -11,3 +11,17 @@
   - type: ConditionalSpawner
     prototypes:
       - MobGolemCult
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobGoliathBroodmother
+  name: goliath broodmother spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Backmen/Mobs/Bosses/broodmother.rsi
+        state: alive
+  - type: ConditionalSpawner
+    prototypes:
+      - MobGoliathBroodmother

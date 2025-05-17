@@ -1,0 +1,18 @@
+- type: entity # TODO: Tentacle spawn on target
+  parent: PKAUpgradeDamage # TODO: Crusher
+  id: BroodmotherTongue
+  name: broodmother tongue
+  description: The tongue of a broodmother. If attached a certain way, makes for a suitable trophy. It also feels very spongey, I wonder what would happen if you squeezed it?...
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/upgrade.rsi
+    layers:
+    - state: broodmother_tongue
+  - type: GunUpgrade # Filler
+    tags: [ GunUpgradeDamage ]
+    examineText: gun-upgrade-examine-text-damage
+  - type: GunUpgradeDamage # Filler
+    damage:
+      types:
+        ArmorPiercing: 10
+        Structural: 15

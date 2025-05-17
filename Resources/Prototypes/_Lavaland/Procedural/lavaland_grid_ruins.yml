@@ -4,6 +4,12 @@
   path: /Maps/_Lavaland/Lavaland/ruin_hierophant_arena.yml
   priority: -1 # highest priority
 
+- type: lavalandGridRuin # Backmen
+  id: BroodmotherArena
+  name: lavaland-ruin-broodmother
+  path: /Maps/Backmen/Lavaland/BroodmotherArena.yml
+  priority: -1 # highest priority
+
 - type: lavalandGridRuin
   id: SyndicateBase
   name: lavaland-ruin-syndicate
