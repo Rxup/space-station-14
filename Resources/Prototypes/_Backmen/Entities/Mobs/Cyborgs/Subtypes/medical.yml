@@ -1,0 +1,6 @@
+# Medical subtypes
+- type: borgSubtype
+  parentBorgType: medical
+  id: default_medical
+  spritePath: Mobs/Silicon/chassis.rsi
+  dummyPrototype: BorgChassisMedical

@@ -1,0 +1,6 @@
+# Engineering subtypes
+- type: borgSubtype
+  parentBorgType: engineering
+  id: default_engineering
+  spritePath: Mobs/Silicon/chassis.rsi
+  dummyPrototype: BorgChassisEngineer
