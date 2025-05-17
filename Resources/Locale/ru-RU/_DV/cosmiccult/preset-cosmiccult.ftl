@@ -191,3 +191,4 @@ cosmiccult-entropy-inserted = Вы вливаете {$count} энтропии в
 cosmiccult-entropy-unavailable = Вы не можете сделать это прямо сейчас.
 cosmiccult-astral-ascendant = {$name}, Вознесенный
 cosmiccult-gear-pickup-rejection = {$ITEM} сопротивляется прикосновению {CAPITALIZE(THE($TARGET))}!
+cosmiccult-gear-pickup = Вы можете почувствовать, как раскрываетесь, держа в руках {$ITEM}!
