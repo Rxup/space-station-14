@@ -81,6 +81,8 @@
     - type: Psionic
       channel: Flesh
       channelColor: "#cf1b48"
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistFleshCult
 
 - type: entity
   parent: BaseMobFleshCult

@@ -208,6 +208,8 @@
     isToggle: true
     color: "#808080"
     playSoundOn: false
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistSpider
 
 - type: entity
   name: Чёрная вдова

@@ -93,3 +93,5 @@
   - type: Reactive
     groups:
       Acidic: [Touch]
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistRevenant

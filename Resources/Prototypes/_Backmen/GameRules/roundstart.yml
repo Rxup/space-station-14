@@ -68,6 +68,8 @@
       allowNonHumans: true
       components:
       - type: BlobCarrier
+      - type: GlobalAntagonist # Backmen
+        antagonistPrototype: globalAntagonistBlob
       blacklist:
         components:
         - AntagImmune
@@ -103,6 +105,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: BloodsuckerRule
+  - type: GlobalAntagonist
+    antagonistPrototype: globalAntagonistVampire
   - type: AntagObjectives
     objectives:
     - EscapeShuttleObjectiveBloodsucker

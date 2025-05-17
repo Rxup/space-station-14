@@ -107,6 +107,8 @@
     - type: GuideHelp
       guides:
       - Blob
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistBlob
 
 # Blobbernaut
 - type: entity
@@ -210,6 +212,8 @@
     - type: GuideHelp
       guides:
       - Blob
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistBlob
 
 # Observer
 - type: entity
@@ -283,3 +287,5 @@
     - type: Tag
       tags:
       - BypassInteractionRangeChecks
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistBlob

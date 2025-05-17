@@ -172,6 +172,8 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistBlob
 
 - type: entity
   parent: BaseBlob

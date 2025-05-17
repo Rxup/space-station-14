@@ -103,3 +103,5 @@
     understands:
     - Xeno
     - TauCetiBasic
+  - type: GlobalAntagonist # Backmen
+    antagonistPrototype: globalAntagonistXenomorph

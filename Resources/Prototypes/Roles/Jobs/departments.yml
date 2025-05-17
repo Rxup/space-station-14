@@ -8,13 +8,15 @@
   - Quartermaster
   - SalvageSpecialist
   accountNumber: 1315 #backmen: currency
+  weight: -5 # Backmen
+  buttonStyle: ButtonColorCargoDepartment # Backmen
 
 - type: department
   id: Civilian
   name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
-  weight: -10
+  weight: -4 # Backmen
   roles:
   - Bartender
   - Botanist
@@ -36,12 +38,14 @@
   #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
   #- ResearchAssistant
   accountNumber: 1316 #backmen: currency
+  buttonStyle: ButtonColorCivilianDepartment # Backmen
 
 - type: department
   id: CentralCommand
   name: department-CentralCommand
   description: department-CentralCommand-description
   color: "#0c344d"
+  primary: true # Backmen
   roles:
   #- CentralCommandOfficial
   - CBURN
@@ -52,9 +56,21 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  - SpecialOperationsOfficer #Backmen-ERTRoles
+  # Backmen-Start
+  - SpecialOperationsOfficer
+  - BKCCSecGavna
+  - BKCCSecOfficer
+  - BKCCOperator
+  - BKCCOfficial
+  - BKCCCargo
+  - BKCCAssistant
+  - BKCCAdmiral
+  - BlueShield
+  # Backmen-End
   editorHidden: true
-  weight: 120
+  weight: -1 # Backmen
+  accountNumber: 1350  #backmen: currency
+  buttonStyle: ButtonColorCentralCommandDepartment # Backmen
 
 - type: department
   id: Command
@@ -81,7 +97,8 @@
   - ERTEngineer
   - DeathSquad
   primary: false
-  weight: 100
+  weight: -2 # Backmen
+  buttonStyle: ButtonColorCommandDepartment # Backmen
 
 - type: department
   id: Engineering
@@ -94,6 +111,8 @@
   - StationEngineer
   - TechnicalAssistant
   accountNumber: 1318 #backmen: currency
+  weight: -6 # Backmen
+  buttonStyle: ButtonColorEngineeringDepartment # Backmen
 
 - type: department
   id: Medical
@@ -110,13 +129,15 @@
   - BkmSurgeon #backmen
   - BkmVirologist #backmen
   accountNumber: 1319 #backmen: currency
+  weight: -7 # Backmen
+  buttonStyle: ButtonColorMedicalDepartment # Backmen
 
 - type: department
   id: Security
   name: department-Security
   description: department-Security-description
   color: "#DE3A3A"
-  weight: 20
+  weight: -3 # Backmen
   roles:
   - HeadOfSecurity
   - SecurityCadet
@@ -126,6 +147,7 @@
   - Warden
   - Brigmedic #backmen
   accountNumber: 1320  #backmen: currency
+  buttonStyle: ButtonColorSecurityDepartment # Backmen
 
 - type: department
   id: Science
@@ -138,6 +160,8 @@
   - Scientist
   - ResearchAssistant
   accountNumber: 1321  #backmen: currency
+  weight: -8 # Backmen
+  buttonStyle: ButtonColorScienceDepartment # Backmen
 
 - type: department
   id: Silicon
@@ -150,13 +174,15 @@
   - BKBPLATech
   - BKBPLAMED
   accountNumber: 1351  #backmen: currency
+  weight: -9 # Backmen
+  buttonStyle: ButtonColorSiliconDepartment # Backmen
 
 - type: department
   id: Specific
   name: department-Specific
   description: department-Specific-description
   color: "#9FED58"
-  weight: 10
+  weight: -42 # Backmen-EDIT
   roles:
   - Boxer
   - Reporter
@@ -166,3 +192,4 @@
   - Pilot # Corvax-Pilot
   accountNumber: 1322  #backmen: currency
   primary: false
+  buttonStyle: ButtonColorSpecificDepartment # Backmen

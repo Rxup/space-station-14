@@ -137,6 +137,8 @@
       understands:
       - TauCetiBasic
       - OldFastCodes
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistInteQ
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: RandomMetadata
@@ -246,7 +248,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardLeaderSizoGear
@@ -258,7 +260,9 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
 
 - type: entity
   parent: SpawnPointInteQ
@@ -277,7 +281,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardOperativeSizoGear
@@ -289,7 +293,9 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
 
 - type: entity
   parent: SpawnPointInteQ
@@ -308,7 +314,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardSoldierSizoGear
@@ -320,7 +326,9 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
 
 - type: entity
   parent: SpawnPointInteQ
@@ -339,7 +347,7 @@
       role: JobCentralCommandOperator
       time: 10800
     - !type:DepartmentTimeRequirement
-      department: CentCom
+      department: CentralCommand
       time: 36000
   - type: CloningAppearance
     gear: InteQVanguardMedicSizoGear
@@ -351,4 +359,6 @@
       nameFormat: name-format-standard
     - type: AutoImplant
       implants:
-        - DeathRattleImplantInteQ 
+        - DeathRattleImplantInteQ
+    - type: GlobalAntagonist # Backmen
+      antagonistPrototype: globalAntagonistGhostRole
