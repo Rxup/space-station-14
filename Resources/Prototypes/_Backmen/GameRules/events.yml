@@ -366,7 +366,6 @@
     startAnnouncement: station-event-wisdom-cow
     startAudio:
       path: /Audio/Announcements/attention.ogg
-  - type: StationEvent
     minimumPlayers: 8
     weight: 8
     reoccurrenceDelay: 30
