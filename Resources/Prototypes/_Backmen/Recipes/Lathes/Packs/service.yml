@@ -4,6 +4,7 @@
   recipes:
   # start-backmen: languages
   - CanilunztTranslator
+  - SiiktajrTranslator
   - BubblishTranslator
   - NekomimeticTranslator
   - DraconicTranslator
@@ -16,6 +17,7 @@
   - NekomimeticTranslatorImplanter
   - DraconicTranslatorImplanter
   - CanilunztTranslatorImplanter
+  - SiiktajrTranslatorImplanter
   - SolCommonTranslatorImplanter
   - RootSpeakTranslatorImplanter
   - AnimalTranslator

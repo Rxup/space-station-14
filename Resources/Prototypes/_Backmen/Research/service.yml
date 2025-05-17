@@ -191,6 +191,7 @@
   cost: 10000
   recipeUnlocks:
   - CanilunztTranslator
+  - SiiktajrTranslator
   - BubblishTranslator
   - NekomimeticTranslator
   - DraconicTranslator
@@ -249,6 +250,7 @@
   - NekomimeticTranslatorImplanter
   - DraconicTranslatorImplanter
   - CanilunztTranslatorImplanter
+  - SiiktajrTranslatorImplanter
   - SolCommonTranslatorImplanter
   - RootSpeakTranslatorImplanter
   - MofficTranslatorImplanter

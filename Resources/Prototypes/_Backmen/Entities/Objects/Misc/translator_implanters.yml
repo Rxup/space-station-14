@@ -53,6 +53,14 @@
     implant: CanilunztTranslatorImplant
 
 - type: entity
+  id: SiiktajrTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: siiktajr translator implant
+  components:
+  - type: Implanter
+    implant: SiiktajrTranslatorImplant
+
+- type: entity
   id: SolCommonTranslatorImplanter
   parent: [ BaseTranslatorImplanter ]
   name: sol-common translator implant
