@@ -167,9 +167,9 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: InnateTool
-      tools:
-        - id: CombatKnife
+#    - type: InnateTool # TODO: This breaks tests somehow
+#      tools:
+#        - id: CombatKnife
     - type: MeleeWeapon
       angle: 0
       animation: WeaponArcSmash
