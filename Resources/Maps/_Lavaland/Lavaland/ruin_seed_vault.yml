@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.1.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:38:44
+  time: 05/16/2025 02:35:13
   entityCount: 274
 maps: []
 grids:
@@ -210,6 +210,14 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: Roof
+      data:
+        -1,0: 18374403900871471344
+        -1,1: 4042322160
+        0,0: 18446744073709551615
+        0,1: 4294967295
+        1,0: 506381209866536711
+        1,1: 117901063
 - proto: AirlockExternal
   entities:
   - uid: 175
