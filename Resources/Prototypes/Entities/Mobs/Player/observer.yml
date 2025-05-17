@@ -54,6 +54,7 @@
       - Ghost
       - PsionicInvisibility
       - DarkSwapInvisibility
+      - CosmicCultMonument # DeltaV - Cosmic Cult
   - type: Input
     context: "ghost"
   - type: Examiner

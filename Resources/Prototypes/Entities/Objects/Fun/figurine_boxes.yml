@@ -133,3 +133,6 @@
       - id: ToyFigurineHamlet
         prob: 0.20
         orGroup: SpacemenFig
+      - id: ToyFigurineCosmicCultist # DeltaV Figurine
+        prob: 0.50
+        orGroup: SpacemenFig
