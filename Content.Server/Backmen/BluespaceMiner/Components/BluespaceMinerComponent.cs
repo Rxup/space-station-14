@@ -1,0 +1,64 @@
+using Robust.Shared.Prototypes;
+
+namespace Content.Server.Backmen.BluespaceMiner
+{
+    [RegisterComponent]
+    public sealed partial class BluespaceMinerComponent : Component
+    {
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("entityTable")]
+        public List<EntProtoId> EntityTable = new();
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("spawnAmount")]
+        public int SpawnAmount = 1;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("spawnInterval")]
+        public float SpawnInterval = 10f;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("maxTemperature")]
+        public float MaxTemperature = 283.15f; // 10C
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("minTemperature")]
+        public float MinTemperature = 193.15f; // -80C
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("heatPerSecond")]
+        public float HeatPerSecond = 100f;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("explosionThreshold")]
+        public float ExplosionThreshold = 373.15f; // 100C
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("explosionRange")]
+        public float ExplosionRange = 4f;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float NextSpawnTime;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool IsActive = false;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("requiresPower")]
+        public bool RequiresPower = true;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool NeedsResync = true;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public double LastMessageTime = 0.0;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("messageCooldown")]
+        public double MessageCooldown = 5.0;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("temperatureChangeThreshold")]
+        public float TemperatureChangeThreshold = 5f;
+    }
+}
