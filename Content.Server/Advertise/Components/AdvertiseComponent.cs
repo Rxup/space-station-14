@@ -12,6 +12,12 @@ namespace Content.Server.Advertise.Components;
 public sealed partial class AdvertiseComponent : Component
 {
     /// <summary>
+    ///  Backmen | When false - show advertise message in chat
+    /// </summary>
+    [DataField]
+    public bool HideFromChat { get; set; } = true;
+
+    /// <summary>
     /// Minimum time in seconds to wait before saying a new ad, in seconds. Has to be larger than or equal to 1.
     /// </summary>
     [DataField]
