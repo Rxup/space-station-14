@@ -141,21 +141,6 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(fleshCultist);
 
-        Verb EvilTwin = new()
-        {
-            Text = "Make EvilTwin",
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")),
-                "poster3_legit"),
-            Act = () =>
-            {
-                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>()
-                    .MakeTwin(out _, args.Target);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-eviltwin"),
-        };
-        args.Verbs.Add(EvilTwin);
         var initialInfectedName = Loc.GetString("admin-verb-text-make-initial-infected");
         Verb initialInfected = new()
         {

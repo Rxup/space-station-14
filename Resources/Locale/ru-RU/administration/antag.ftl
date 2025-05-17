@@ -4,7 +4,6 @@ admin-verb-make-initial-infected = Сделать цель нулевым пац
 admin-verb-make-zombie = Сделать цель зомби.
 admin-verb-make-nuclear-operative = Сделать цель одиноким Ядерным оперативником.
 admin-verb-make-pirate = Сделать цель пиратом\капером. Учтите, что это не меняет игровой режим.
-admin-verb-make-eviltwin = Сделать цели злого близнеца.
 admin-verb-text-make-blob = Сделать цель блобом.
 admin-verb-make-changeling = Сделать цель генокрадом.
 admin-verb-text-make-vampire = Сделать цель вампиром.

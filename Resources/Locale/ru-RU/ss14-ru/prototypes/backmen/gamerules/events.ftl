@@ -1,5 +1,3 @@
-ent-EvilTwinSpawn = { ent-BaseGameRule }
-    .desc = { ent-BaseGameRule.desc }
 ent-FugitiveSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-WageScheduler = { ent-BaseGameRule }

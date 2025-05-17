@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Backmen.EvilTwin;
 using Content.Server.GameTicking;
 using System.IO;
 using Content.Server.Access.Systems;
@@ -60,16 +59,12 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         if (!TryComp<StationRecordsComponent>(args.Station, out var stationRecords))
             return;
 
-        // start-backmen: evil tween
-        if (HasComp<EvilTwinComponent>(args.Mob))
-        {
-            return;
-        }
+        // Backmen-End
         if (HasComp<AutoPsiComponent>(args.Mob))
         {
             return;
         }
-        // end-backmen: evil tween
+        // Backmen-Start
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
     }
