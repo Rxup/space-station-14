@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: Wisdom
+  values:
+    prefix: wisdom-say-
+    count: 227

@@ -25,3 +25,29 @@
     attributes:
       gender: male
       proper: true
+
+- type: entity
+  parent: MobCow
+  id: MobWisdomCow
+  name: wisdom cow
+  description: Known for its wisdom, shares it with all.
+  components:
+  - type: Advertise
+    hideFromChat: false
+    minimumWait: 12
+    maximumWait: 80
+    pack: Wisdom
+  - type: TTS
+    voice: Dictor
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Cow
+    understands:
+    - TauCetiBasic
+    - SpaceMob
+    - Cow
+  - type: Speech
+    speechSounds: Baritone

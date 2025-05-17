@@ -357,3 +357,20 @@
     reoccurrenceDelay: 50
   - type: RandomSpawnRule
     prototype: SpawnMobInteQAgent
+
+- type: entity
+  parent: BaseGameRule
+  id: WisdomCowSpawn
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-wisdom-cow
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+  - type: StationEvent
+    minimumPlayers: 8
+    weight: 8
+    reoccurrenceDelay: 30
+    duration: 1
+    maxOccurrences: 3
+  - type: RandomSpawnRule
+    prototype: MobWisdomCow

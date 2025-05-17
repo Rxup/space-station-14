@@ -27,6 +27,7 @@
     - NameSpets
     nameFormat: name-format-standard
   - type: Advertise
+    hideFromChat: false
     pack: InteQAgent
   - type: LanguageKnowledge #backmen: languages
     speaks:
