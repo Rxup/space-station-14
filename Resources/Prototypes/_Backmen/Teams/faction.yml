@@ -3,14 +3,52 @@
   id: TeamA
   hostile:
   - TeamB
+  - Team0
 
 - type: npcFaction
   id: TeamB
   hostile:
   - TeamA
+  - Team0
 
 - type: npcFaction
   id: Team0 # neutral
   hostile:
   - TeamB
   - TeamA
+
+- type: npcFaction
+  id: WallsA
+  hostile:
+  - WallsB
+  - Walls0
+
+- type: npcFaction
+  id: WallsB
+  hostile:
+  - WallsA
+  - Walls0
+
+- type: npcFaction
+  id: Walls0 # neutral
+  hostile:
+  - WallsB
+  - WallsA
+
+- type: npcFaction
+  id: BulletA
+  hostile:
+  - BulletB
+  - Bullet0
+
+- type: npcFaction
+  id: BulletB
+  hostile:
+  - BulletA
+  - Bullet0
+
+- type: npcFaction
+  id: Bullet0
+  hostile:
+  - BulletA
+  - BulletB
