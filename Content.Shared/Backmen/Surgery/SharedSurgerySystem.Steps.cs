@@ -657,6 +657,7 @@ public abstract partial class SharedSurgerySystem
             else
             {
                 bleeds.BleedingAmountRaw = 0;
+                bleeds.SeverityPenalty = 0;
                 bleeds.Scaling = 0;
 
                 bleeds.IsBleeding = false; // Won't bleed as long as it's not reopened
@@ -682,6 +683,9 @@ public abstract partial class SharedSurgerySystem
 
     private void OnPainInflicterStep(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepEvent args)
     {
+        if (_mobState.IsDead(args.Body))
+            return;
+
         if (!_consciousness.TryGetNerveSystem(args.Body, out var nerveSys))
             return;
 

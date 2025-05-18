@@ -161,8 +161,6 @@ public partial class SharedBodySystem
                 if (!TryComp(organ, out OrganComponent? organComp))
                     continue;
 
-                Dirty(organ, organComp);
-
                 if (organComp.Body is { Valid: true } oldBodyUid)
                 {
                     var removedEv = new OrganRemovedFromBodyEvent(oldBodyUid, ent);
@@ -170,11 +168,14 @@ public partial class SharedBodySystem
                 }
 
                 organComp.Body = bodyUid;
+                organComp.BodyPart = ent.Owner;
                 if (bodyUid is not null)
                 {
                     var addedEv = new OrganAddedToBodyEvent(bodyUid.Value, ent);
                     RaiseLocalEvent(organ, ref addedEv);
                 }
+
+                Dirty(organ, organComp);
             }
         }
 

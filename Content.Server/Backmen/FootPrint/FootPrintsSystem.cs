@@ -2,13 +2,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Atmos.Components;
 using Content.Shared.Inventory;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Backmen.FootPrint;
-using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
+using Content.Shared.Standing;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
@@ -20,33 +18,29 @@ namespace Content.Server.Backmen.FootPrint;
 public sealed class FootPrintsSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly StandingStateSystem _laying = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
-    private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
-    private EntityQuery<LayingDownComponent> _layingQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _transformQuery = GetEntityQuery<TransformComponent>();
-        _mobThresholdQuery = GetEntityQuery<MobThresholdsComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        _layingQuery = GetEntityQuery<LayingDownComponent>();
 
         SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
         SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
         SubscribeLocalEvent<FootPrintComponent, ComponentGetState>(OnGetState);
     }
-
 
     private const double ActionJobTime = 0.005;
     private readonly JobQueue _actionJobQueue = new(ActionJobTime);
@@ -103,16 +97,14 @@ public sealed class FootPrintsSystem : EntitySystem
         if (_gravity.IsWeightless(uid, xform: transform))
             return;
 
-        if (!_mobThresholdQuery.TryComp(uid, out var mobThreshHolds) ||
-            !_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
+        if (!_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
             return;
 
-        var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead ||
-                       _layingQuery.TryComp(uid, out var laying) && laying.DrawDowned;
+        var dragging = _laying.IsDown(uid);
         var distance = (transform.LocalPosition - comp.StepPos).Length();
         var stepSize = dragging ? comp.DragSize : comp.StepSize;
 
-        if (!(distance > stepSize))
+        if (distance < stepSize)
             return;
 
         comp.RightStep = !comp.RightStep;

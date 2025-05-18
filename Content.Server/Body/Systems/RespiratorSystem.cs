@@ -82,7 +82,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float) respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid) && !HasComp<DebrainedComponent>(uid)) // Shitmed Change - Cannot breathe in crit or when no brain.
+            if (!_mobState.IsIncapacitated(uid))
             {
                 switch (respirator.Status)
                 {
@@ -108,6 +108,7 @@ public sealed class RespiratorSystem : EntitySystem
                 continue;
             }
             // end-backmen: blob zombie
+
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
@@ -338,7 +339,7 @@ public sealed class RespiratorSystem : EntitySystem
         }
         // backmen edit end
 
-        _damageableSys.TryChangeDamage(ent, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, interruptsDoAfters: false);
+        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);
     }
 
     private void StopSuffocation(Entity<RespiratorComponent> ent)

@@ -20,6 +20,13 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     public EntityUid? Body;
 
     /// <summary>
+    /// The body part the organ is in.
+    /// Backmen edit;
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? BodyPart;
+
+    /// <summary>
     ///     Relevant body this organ originally belonged to.
     ///     ///     FOR WHATEVER FUCKING REASON AUTONETWORKING THIS CRASHES GIBTEST AAAAAAAAAAAAAAA
     /// </summary>

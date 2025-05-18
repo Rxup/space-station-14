@@ -13,6 +13,7 @@ public sealed partial class OrganEffectComponent : Component
     ///     The components that are active on the part and will be refreshed every 5s
     /// </summary>
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry Active = new();
 
     /// <summary>

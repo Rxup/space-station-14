@@ -11,9 +11,12 @@ public sealed partial class NerveComponent : Component
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 PainMultiplier = 1.0f;
 
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 DefaultPainFeels = 1;
+
     // How feel able the pain is; The value can be decreased by pain suppressants and Nerve Damage.
     [ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 PainFeels => 1f + PainFeelingModifiers.Values.Sum(modifier => (float) modifier.Change);
+    public FixedPoint2 PainFeels => DefaultPainFeels + PainFeelingModifiers.Values.Sum(modifier => (float) modifier.Change);
 
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<(EntityUid, string), PainFeelingModifier> PainFeelingModifiers = new();

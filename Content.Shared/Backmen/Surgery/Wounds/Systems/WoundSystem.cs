@@ -43,9 +43,9 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem Throwing = default!;
     [Dependency] protected readonly InventorySystem Inventory = default!;
     [Dependency] protected readonly TraumaSystem Trauma = default!;
+    [Dependency] protected readonly MobStateSystem MobState = default!;
 
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     protected readonly Dictionary<WoundSeverity, FixedPoint2> WoundThresholds = new()
     {

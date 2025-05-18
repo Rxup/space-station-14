@@ -49,8 +49,8 @@ public sealed class ServerWoundSystem : WoundSystem
         base.Update(frameTime);
 
         var timeToHeal = 1 / _medicalHealingTickrate;
-        var query = EntityQueryEnumerator<WoundableComponent, MetaDataComponent>();
-        while (query.MoveNext(out var ent, out var woundable, out var metaData))
+        var query = EntityQueryEnumerator<WoundableComponent, BodyPartComponent, MetaDataComponent>();
+        while (query.MoveNext(out var ent, out var woundable, out var bodyPart, out var metaData))
         {
             if (Paused(ent, metaData))
                 continue;
@@ -58,7 +58,10 @@ public sealed class ServerWoundSystem : WoundSystem
             if (woundable.Wounds == null || woundable.Wounds.Count == 0)
                 continue;
 
-            if (woundable.WoundableSeverity is WoundableSeverity.Critical)
+            if (!bodyPart.Body.HasValue || MobState.IsDead(bodyPart.Body.Value))
+                continue;
+
+            if (woundable.WoundableSeverity is WoundableSeverity.Critical or WoundableSeverity.Loss)
                 continue;
 
             woundable.HealingRateAccumulated += frameTime;
@@ -520,6 +523,7 @@ public sealed class ServerWoundSystem : WoundSystem
             {
                 // Bleeding :3
                 wound.Comp2.ScalingLimit += 10;
+                wound.Comp2.ScalingSpeed += 2;
             }
 
             var bodyPartId = container.ID;
@@ -558,7 +562,8 @@ public sealed class ServerWoundSystem : WoundSystem
         foreach (var wound in
                  GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
         {
-            wound.Comp2.ScalingLimit += 6;
+            wound.Comp2.ScalingLimit += 10;
+            wound.Comp2.ScalingSpeed += 2;
         }
 
         AmputateWoundableSafely(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);
