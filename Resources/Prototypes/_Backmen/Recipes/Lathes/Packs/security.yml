@@ -17,18 +17,17 @@
     - MagazineBoxHeavyRifle
     - MagazinePacketRifle762x39
     - MagazinePacketRifle762UEG
+    - MagazinePacketRifle556UEG
     - MagazinePacketPistolACP
     - MagazinePacketPistol9x17
     - MagazinePacketPistol57x28
     - MagazinePacketPistol50AE
     # Backmen-ammonation-end
-    - MagazineBoxMagnum
 
 # Shared between secfab and emagged protolathe
 - type: latheRecipePack
   id: BackmenAmmo
   recipes:
-  - MagazineBoxMagnumIncendiary
   # Backmen-ammonation-start
   - MagazinePacketHeavyRifle50BMG
   - MagazinePacketPistol50AEAP
@@ -47,19 +46,22 @@
   - MagazinePistol45ACPincendiary
   - MagazinePistol57x28Incendiary
   - MagazinePistol9x17Incendiary
+  - SpeedLoader357Magnum
+  - SpeedLoader38Special
+  - SpeedLoader44Magnum
+  - MagazinePacketRevolver357Magnum
+  - MagazinePacketRevolver44Magnum
+  - MagazinePacketRevolver38Special
   # Backmen-ammonation-end
   - BoxLethalshot
   - BoxShotgunSlug
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary
   - BoxShotgunIncendiary
-  - SpeedLoaderMagnumIncendiary
   - BoxShellTranquilizer
   - BoxBeanbag
   - ShellSoulbreaker
-  - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
-  - SpeedLoaderMagnumUranium
   - BoxShotgunUranium
   - WeaponLaserPistol
 

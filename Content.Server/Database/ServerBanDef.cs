@@ -72,7 +72,17 @@ namespace Content.Server.Database
             {
                 var duration = expireTime - BanTime;
                 var utc = expireTime.ToUniversalTime();
-                expires = loc.GetString("ban-expires", ("duration", duration.TotalMinutes.ToString("N0")), ("time", utc.ToString("f")));
+                var appeal = cfg.GetCVar(CCVars.InfoLinksAppeal); // Backmen
+                // Backmen-Edit-Start | Adds ban expires but with appeal link
+                expires = !string.IsNullOrWhiteSpace(appeal)
+                    ? loc.GetString("ban-expires-with-appeal",
+                        ("duration", duration.TotalMinutes.ToString("N0")),
+                        ("time", utc.ToString("f")),
+                        ("link", appeal))
+                    : loc.GetString("ban-expires",
+                        ("duration", duration.TotalMinutes.ToString("N0")),
+                        ("time", utc.ToString("f")));
+                // Backmen-Edit-End
             }
             else
             {

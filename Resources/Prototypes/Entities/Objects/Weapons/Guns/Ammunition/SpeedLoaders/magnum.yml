@@ -12,6 +12,8 @@
     whitelist:
       tags:
         - CartridgeMagnum
+        - CartridgeRevolver38Special #Backmen-revolver
+        - CartridgeRevolver44Magnum #Backmen-revolver
     capacity: 6
   - type: Sprite
   - type: ContainerContainer

@@ -20,6 +20,7 @@
     - id: RubberStampQm
     - id: AstroNavCartridge
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: ClothingHandsKnuckleDustersQM
     - id: MailTeleporterMachineCircuitboard
 
 - type: entity
@@ -63,6 +64,11 @@
     - id: ClothingHeadCage # backmen
     - id: HandheldReinforcementCentCom # backmen
 #    - id: ClothingEyesGlassesCommand # Backmen - Because dublicate (56)???
+    - id: ClothingEyesGlassesCommand
+    - id: HeadSkeleton # A skull to accompany your skeleton crew
+      conditions:
+      - !type:PlayerCountCondition
+        max: 15
 
 # No laser table + Laser table
 - type: entityTable
@@ -147,6 +153,7 @@
     - id: RubberStampDenied
     - id: RubberStampHop
     - id: WeaponDisabler
+    - id: BoxPhotocopierToners # DS14
     - id: AntiPsychicKnife # backmen
     - id: ClothingHeadCage # backmen
     - id: ClothingOuterCoatHOP # Corvax-Resprite
@@ -249,8 +256,6 @@
     - id: FlatpackMetempsychoticMachine # backmen
     - id: MedicalBiofabMachineBoard # backmen
     - id: MedTekCartridge
-    - id: RapidSyringeGun # backmen
-    - id: BoxSyringePax # backmen
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

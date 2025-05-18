@@ -1,8 +1,4 @@
-using System.Linq;
-using Content.Shared.Backmen.CCVar;
-using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness;
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
@@ -23,6 +19,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;

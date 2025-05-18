@@ -16,7 +16,7 @@
   - HotplateMachineCircuitboard
   technologyPrerequisites:
   - Chemistry
-  position: 1,-5
+  position: 2,-6
 
 - type: technology
   id: BiomassMachines

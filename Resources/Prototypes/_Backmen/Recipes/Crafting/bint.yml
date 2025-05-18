@@ -1,16 +1,11 @@
 - type: construction
-  name: боксерский бинт
   id: Hands_Bint
   graph: HandsBint
   startNode: start
   targetNode: Hands_Bint
   category: construction-category-clothing
-  description: полоса ткани, которую используют боксёры и представители других спортивных единоборств.
-  icon:
-    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
-    state: icon
   objectType: Item
-  
+
 - type: constructionGraph
   id: HandsBint
   start: start

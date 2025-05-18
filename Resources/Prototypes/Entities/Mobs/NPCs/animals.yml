@@ -69,6 +69,20 @@
     damage:
       types:
         Piercing: 5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Critical
+      60: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 120
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
   - type: Tag
     tags:
     - VimPilot
@@ -146,6 +160,15 @@
     rootTask:
       task: SimpleHostileCompound
   - type: ZombieImmune
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 20
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
 
 - type: entity
   name: bee
@@ -415,7 +438,7 @@
         damage: 10
       behaviors:
       - !type:GibBehavior
-        gibContents: Skip
+        recursive: false
   - type: NonSpreaderZombie
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
@@ -533,7 +556,7 @@
     baseSprintSpeed: 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
-    weightlessModifier: 1
+    baseWeightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -593,7 +616,8 @@
         damageType: Blunt
         damage: 60
       behaviors:
-      - !type:GibBehavior { }
+      - !type:GibBehavior
+        recursive: false
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
@@ -845,6 +869,15 @@
     bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 20
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
 
 - type: entity
   name: cow
@@ -1321,9 +1354,6 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepBounce
   - type: Puller
     needsHands: false
   - type: StaminaDamageOnHit
@@ -1927,6 +1957,15 @@
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
   # end-backmen: surgery
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
 
 - type: entity
   parent: MobMouse
@@ -2233,6 +2272,15 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
 
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
@@ -2953,9 +3001,10 @@
     - VimPilot
 
 - type: entity
-  name: corgi
+  abstract: true
   parent: [SimpleMobBase, StripableInventoryBase]
-  id: MobCorgi
+  id: MobCorgiBase
+  name: corgi
   description: Finally, a space corgi!
   components:
   - type: Sprite
@@ -2982,6 +3031,22 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
+  - type: InteractionPopup
+    interactSuccessString: petting-success-dog
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/small_dog_bark_happy.ogg
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: MobPrice
+    price: 200
+
+- type: entity
+  parent: MobCorgiBase
+  id: MobCorgi
+  components:
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2994,9 +3059,9 @@
     spawned:
     - id: FoodMeat
       amount: 2
-#  - type: ReplacementAccent
+#  - type: ReplacementAccent # Backmen-Remove
 #    accent: dog
-  - type: LanguageSpeaker
+  - type: LanguageSpeaker # Backmen
     currentLanguage: Dog
   - type: LanguageKnowledge #backmen: languages
     speaks:
@@ -3015,8 +3080,6 @@
       gender: epicene
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-corgi
-  - type: MobPrice
-    price: 200
   - type: Tag
     tags:
     - VimPilot
@@ -3613,6 +3676,15 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 120
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
 
 - type: entity
   name: pig
@@ -3892,3 +3964,64 @@
         Base: reindeer_doe_dead
       Dead:
         Base: reindeer_doe_dead
+
+- type: entity
+  parent: MobCorgiBase
+  id: MobCorgiSmart
+  name: smart corgi
+  description: An unusually smart dog.
+  components:
+  # Use corgi sprite, need to add handcuff layer
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: corgi
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
+      state: body-overlay-2
+      visible: false
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  # Custom inventory template
+  - type: Inventory
+    speciesId: dog
+    templateId: SmartCorgi
+    displacements:
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Pets/corgi.rsi
+            state: belt_displacement
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Pets/corgi.rsi
+            state: belt_displacement
+  - type: Hands # HANDS!
+  - type: Puller
+  - type: Cuffable # bad dog!
+  - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
+  - type: Stripping
+  - type: ComplexInteraction
+  # Implement custom borgi body type
+  - type: Body
+    prototype: SmartCorgi
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 180
+  - type: Grammar
+    attributes:
+      gender: epicene # Gender neutral
+      proper: true
+  - type: Tag
+    tags:
+    - VimPilot
+    - CanPilot
+    - DoorBumpOpener
+  - type: StatusIcon # marks them as crew
+    bounds: -0.5,-0.5,0.5,0.5

@@ -1,12 +1,19 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Atmos.Components;
+using Content.Server.Spreader;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Backmen.FootPrint;
+using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
+using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
@@ -18,39 +25,44 @@ namespace Content.Server.Backmen.FootPrint;
 public sealed class FootPrintsSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IMapManager _map = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly IMapManager _map = default!;
 
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly StandingStateSystem _laying = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
+
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
+    private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
+    private EntityQuery<InventoryComponent> _inventoryQuery;
+    private EntityQuery<ContainerManagerComponent> _containerManagerQuery;
+
+    private bool _footprintEnabled = false;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _transformQuery = GetEntityQuery<TransformComponent>();
+        _mobThresholdQuery = GetEntityQuery<MobThresholdsComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
+        _inventoryQuery = GetEntityQuery<InventoryComponent>();
+        _containerManagerQuery = GetEntityQuery<ContainerManagerComponent>();
+
+        Subs.CVar(_configuration, CCVars.EnableFootPrints, value => _footprintEnabled = value, true);
 
         SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
         SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
-        SubscribeLocalEvent<FootPrintComponent, ComponentGetState>(OnGetState);
     }
+
 
     private const double ActionJobTime = 0.005;
     private readonly JobQueue _actionJobQueue = new(ActionJobTime);
-
-    private void OnGetState(Entity<FootPrintComponent> ent, ref ComponentGetState args)
-    {
-        args.State = new FootPrintState(TerminatingOrDeleted(ent.Comp.PrintOwner)
-            ? NetEntity.Invalid
-            : GetNetEntity(ent.Comp.PrintOwner));
-    }
 
     private void OnStartupComponent(EntityUid uid, FootPrintsComponent comp, ComponentStartup args)
     {
@@ -79,6 +91,9 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private void OnMove(EntityUid uid, FootPrintsComponent comp, ref MoveEvent args)
     {
+        if (!_footprintEnabled)
+            return;
+
         // Less resource expensive checks first
         if (comp.PrintsColor.A <= 0f || TerminatingOrDeleted(uid))
             return;
@@ -97,14 +112,16 @@ public sealed class FootPrintsSystem : EntitySystem
         if (_gravity.IsWeightless(uid, xform: transform))
             return;
 
-        if (!_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
+        if (!_mobThresholdQuery.TryComp(uid, out var mobThreshHolds) ||
+            !_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
             return;
 
-        var dragging = _laying.IsDown(uid);
+        var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead ||
+                       _standing.IsDown(uid);
         var distance = (transform.LocalPosition - comp.StepPos).Length();
         var stepSize = dragging ? comp.DragSize : comp.StepSize;
 
-        if (distance < stepSize)
+        if (!(distance > stepSize))
             return;
 
         comp.RightStep = !comp.RightStep;
@@ -113,12 +130,23 @@ public sealed class FootPrintsSystem : EntitySystem
         var footPrintComponent =
             Comp<FootPrintComponent>(entity); // There's NO way there's no footprint component in a FOOTPRINT
 
-        footPrintComponent.PrintOwner = uid;
-        Dirty(entity, footPrintComponent);
-
         if (_appearanceQuery.TryComp(entity, out var appearance))
         {
-            _appearance.SetData(entity, FootPrintVisualState.State, PickState(uid, dragging), appearance);
+            var state = PickState(uid, dragging);
+
+            _appearance.SetData(entity, FootPrintValue.Rsi, comp.RsiPath, appearance);
+            var layer = state switch
+            {
+                FootPrintVisuals.BareFootPrint => comp.RightStep
+                    ? comp.RightBarePrint
+                    : comp.LeftBarePrint,
+                FootPrintVisuals.ShoesPrint => comp.ShoesPrint,
+                FootPrintVisuals.SuitPrint => comp.SuitPrint,
+                FootPrintVisuals.Dragging => _random.Pick(comp.DraggingPrint),
+                _ => "error",
+            };
+
+            _appearance.SetData(entity, FootPrintValue.Layer, layer, appearance);
             _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
         }
 
@@ -162,15 +190,25 @@ public sealed class FootPrintsSystem : EntitySystem
     {
         var state = FootPrintVisuals.BareFootPrint;
 
-        if (_inventorySystem.TryGetSlotEntity(uid, "shoes", out _))
+        if (_inventoryQuery.TryComp(uid, out var inventory) &&
+            _containerManagerQuery.TryComp(uid, out var containerManager))
         {
-            state = FootPrintVisuals.ShoesPrint;
-        }
+            if (_inventorySystem.TryGetSlotEntity(uid, "shoes", out _, inventory, containerManager))
+            {
+                state = FootPrintVisuals.ShoesPrint;
+            }
 
-        if (_inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var suit) &&
-            TryComp<PressureProtectionComponent>(suit, out _))
-        {
-            state = FootPrintVisuals.SuitPrint;
+            if (
+                _inventorySystem.TryGetSlotEntity(
+                    uid,
+                    "outerClothing",
+                    out var suit,
+                    inventory,
+                    containerManager) &&
+                HasComp<PressureProtectionComponent>(suit))
+            {
+                state = FootPrintVisuals.SuitPrint;
+            }
         }
 
         if (dragging)

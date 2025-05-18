@@ -12,7 +12,6 @@ research-technology-translation-device = Устройства перевода
 research-technology-translation-implanter = Импланты перевода
 research-technology-translation-device-advanced = Продвинутые устройства перевода
 research-technology-translation-implanter-advanced = Продвинутые импланты перевода
-
 research-technology-hydroponics-machines = Оборудование гидропоники
 research-technology-entertainment-machines = Оборудование развлечений
 research-technology-kitchen-machines = Кухонное оборудование

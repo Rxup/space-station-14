@@ -15,7 +15,7 @@ namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 public sealed class ShadowkinBlackeyeSystem : EntitySystem
 {
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
-    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;

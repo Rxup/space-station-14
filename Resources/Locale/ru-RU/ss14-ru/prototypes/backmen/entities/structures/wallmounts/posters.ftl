@@ -14,7 +14,6 @@ ent-PosterLegitPieSlice = Плакат с пирогом
     .desc = Пироги - это полезно и вкусно! Попросите своего шеф-повара начать что-нибудь готовить.
 ent-PosterLegitPizzaHope = Надежда на пиццу
     .desc = В самые мрачные времена есть только одна надежда - ПИЦЦА! Обратитесь к своему местному квартирмейстеру, чтобы он срочно заказал ящик пиццы прямо сейчас!
-
 ent-PosterContrabandInteQRecruitment = Набор в Интек
     .desc = Набор в Интек.
 ent-PosterContrabandInteQWorkship = Сотрудничество с Интек
@@ -29,3 +28,7 @@ ent-PosterContrabandInteQVulp = Вульпа Интек
     .desc = Мы берём даже фурри фриков, вступайте к нам!
 ent-PosterContrabandInteQJulie = Горячие Ящерицы
     .desc = Самые красивые ящерицы во вселенной, вступайте к нам!
+ent-PosterContrabandLustyXenomorph = Похотливая ксено дева
+    .desc = Эротический плакат с изображением главной звезды не менее эротической книги.
+ent-PosterContrabandBustyBackdoorXenoBabes6 = Фигуристые Ксено-Малышки 6
+    .desc = Зарядись (или разрядись) с этими полностью натуральными ксено-малышками!

@@ -234,7 +234,8 @@
   materials:
     Steel: 1500
     Glass: 1000
-    Gold: 850
+    Gold: 500
+    Uranium: 300
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -246,7 +247,7 @@
   materials:
     Steel: 1250
     Plastic: 750
-    Gold: 500
+    Gold: 350
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -258,8 +259,8 @@
   materials:
     Steel: 1500
     Glass: 500
-    Plastic: 400
-    Gold: 200
+    Plastic: 250
+    Gold: 250
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong

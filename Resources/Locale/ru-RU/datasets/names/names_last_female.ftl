@@ -1,4 +1,4 @@
-﻿names-last-name-female-dataset-1 = Смирнова
+names-last-name-female-dataset-1 = Смирнова
 names-last-name-female-dataset-2 = Иванова
 names-last-name-female-dataset-3 = Кузнецова
 names-last-name-female-dataset-4 = Соколова
