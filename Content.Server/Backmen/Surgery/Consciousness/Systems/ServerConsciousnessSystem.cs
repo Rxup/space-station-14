@@ -455,6 +455,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                     "Suffocation",
                     consciousness: consciousness);
             }
+
+            args.UnhandledDamage.Remove(damagePiece.Key);
         }
     }
 
