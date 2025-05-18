@@ -87,7 +87,7 @@
         - !type:ReagentThreshold
           min: 20
         amount: 0.2
-        randomised: false # SKYROCKETS your pain feels
+        randomise: false # SKYROCKETS your pain feels
       - !type:Emote
         conditions:
         - !type:ReagentThreshold

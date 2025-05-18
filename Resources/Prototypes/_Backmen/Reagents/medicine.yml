@@ -13,7 +13,6 @@
         damage:
           types:
             Cold: -4
-        time: 12
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
