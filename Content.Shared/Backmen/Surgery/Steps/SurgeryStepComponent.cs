@@ -9,6 +9,7 @@ public sealed partial class SurgeryStepComponent : Component
 {
 
     [DataField]
+    [AlwaysPushInheritance] // organs
     public ComponentRegistry? Tool;
 
     [DataField]

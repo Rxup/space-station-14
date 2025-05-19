@@ -49,8 +49,8 @@ public sealed class ServerWoundSystem : WoundSystem
         base.Update(frameTime);
 
         var timeToHeal = 1 / _medicalHealingTickrate;
-        var query = EntityQueryEnumerator<WoundableComponent, MetaDataComponent>();
-        while (query.MoveNext(out var ent, out var woundable, out var metaData))
+        var query = EntityQueryEnumerator<WoundableComponent, BodyPartComponent, MetaDataComponent>();
+        while (query.MoveNext(out var ent, out var woundable, out var bodyPart, out var metaData))
         {
             if (Paused(ent, metaData))
                 continue;
@@ -58,7 +58,10 @@ public sealed class ServerWoundSystem : WoundSystem
             if (woundable.Wounds == null || woundable.Wounds.Count == 0)
                 continue;
 
-            if (woundable.WoundableSeverity is WoundableSeverity.Critical)
+            if (!bodyPart.Body.HasValue || MobState.IsDead(bodyPart.Body.Value))
+                continue;
+
+            if (woundable.WoundableSeverity is WoundableSeverity.Critical or WoundableSeverity.Loss)
                 continue;
 
             woundable.HealingRateAccumulated += frameTime;
@@ -433,17 +436,13 @@ public sealed class ServerWoundSystem : WoundSystem
             return;
 
         var bodyPart = Comp<BodyPartComponent>(woundableEntity);
-        if (bodyPart.Body == null)
+        if (!bodyPart.Body.HasValue)
         {
             DropWoundableOrgans(woundableEntity, woundableComp);
             QueueDel(woundableEntity);
 
             return;
         }
-
-        var key = bodyPart.ToHumanoidLayers();
-        if (key == null)
-            return;
 
         // if wounds amount somehow changes it triggers an enumeration error. owch
         woundableComp.AllowWounds = false;
@@ -465,32 +464,25 @@ public sealed class ServerWoundSystem : WoundSystem
             DestroyWoundableChildren(woundableEntity, woundableComp);
 
             QueueDel(woundableEntity);
-            Dirty(parentWoundableEntity, parentWoundableComp);
 
             Body.GibBody(bodyPart.Body.Value); // More blood for the Blood Gods!
         }
         else
         {
-            if (!Containers.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
-                return;
-
-            if (bodyPart.Body is not null)
+            if (TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
+                && Body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
+                && Body.TryGetPartSlotContainerName(bodyPart.PartType, out var containerNames))
             {
-                if (TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
-                    && Body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
-                    && Body.TryGetPartSlotContainerName(bodyPart.PartType, out var containerNames))
+                foreach (var containerName in containerNames)
                 {
-                    foreach (var containerName in containerNames)
-                    {
-                        Inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
-                    }
+                    Inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
                 }
+            }
 
-                if (bodyPart.PartType is BodyPartType.Hand or BodyPartType.Arm)
-                {
-                    // Prevent anomalous behaviour
-                    Hands.TryDrop(bodyPart.Body.Value, woundableEntity);
-                }
+            if (bodyPart.PartType is BodyPartType.Hand or BodyPartType.Arm)
+            {
+                // Prevent anomalous behaviour
+                Hands.TryDrop(bodyPart.Body.Value, woundableEntity);
             }
 
             DropWoundableOrgans(woundableEntity, woundableComp);
@@ -511,7 +503,7 @@ public sealed class ServerWoundSystem : WoundSystem
                     15f);
             }
 
-            // It got destroyed by the transfered wound damage :sob:
+            // It got destroyed by the transferred wound damage :sob:
             if (TerminatingOrDeleted(parentWoundableEntity))
                 return;
 
@@ -519,11 +511,8 @@ public sealed class ServerWoundSystem : WoundSystem
                      GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
             {
                 // Bleeding :3
-                wound.Comp2.ScalingLimit += 10;
+                wound.Comp2.ScalingLimit += 4;
             }
-
-            var bodyPartId = container.ID;
-            Body.DetachPart(parentWoundableEntity, SharedBodySystem.GetPartSlotContainerIdFromContainer(bodyPartId), woundableEntity);
 
             QueueDel(woundableEntity);
         }
@@ -558,7 +547,7 @@ public sealed class ServerWoundSystem : WoundSystem
         foreach (var wound in
                  GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
         {
-            wound.Comp2.ScalingLimit += 6;
+            wound.Comp2.ScalingLimit += 4;
         }
 
         AmputateWoundableSafely(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);

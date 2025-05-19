@@ -106,9 +106,6 @@ public partial class MobStateSystem
         if (oldState == newState || !component.AllowedStates.Contains(newState))
             return;
 
-        if (oldState == MobState.Dead && HasComp<DebrainedComponent>(target))
-            return;
-
         OnExitState(target, component, oldState);
         component.CurrentState = newState;
         OnEnterState(target, component, newState);

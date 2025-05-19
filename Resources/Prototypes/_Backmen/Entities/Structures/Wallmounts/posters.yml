@@ -267,3 +267,23 @@
   - type: Sprite
     sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster7
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandLustyXenomorph
+  name: Lusty Xenomorph
+  description: Heretical poster depicting the titular star of an equally heretical book.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Wallmounts/Posters/posters.rsi
+    state: xenomorph_poster1
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandBustyBackdoorXenoBabes6
+  name: Busty Backdoor Xeno Babes 6
+  description: Get a load, or give, of these all natural Xenos!
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Wallmounts/Posters/posters.rsi
+    state: xenomorph_poster2

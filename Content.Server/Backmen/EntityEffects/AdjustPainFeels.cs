@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Content.Server.Body.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
@@ -8,21 +7,21 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.EntityEffects.Effects;
+namespace Content.Server.Backmen.EntityEffects;
 
 [UsedImplicitly]
-public sealed partial class AdjustPainFeels : EntityEffect // backmen effect
+public sealed partial class AdjustPainFeels : EntityEffect
 {
     [DataField(required: true)]
-    [JsonPropertyName("amount")]
-    public FixedPoint2 Amount = default!;
+    public FixedPoint2 Amount;
+
+    [DataField("randomise")]
+    public bool RandomiseAmount = true;
 
     [DataField]
-    [JsonPropertyName("identifier")]
     public string ModifierIdentifier = "PainSuppressant";
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("reagent-effect-guidebook-suppress-pain", ("chance", Probability));
+    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
 
     public override void Effect(EntityEffectBaseArgs args)
     {
@@ -36,21 +35,29 @@ public sealed partial class AdjustPainFeels : EntityEffect // backmen effect
         if (!args.EntityManager.System<ConsciousnessSystem>().TryGetNerveSystem(args.TargetEntity, out var nerveSys))
             return;
 
+        var random = IoCManager.Resolve<IRobustRandom>();
         foreach (var bodyPart in args.EntityManager.System<BodySystem>().GetBodyChildren(args.TargetEntity))
         {
             if (!args.EntityManager.System<PainSystem>()
                     .TryGetPainFeelsModifier(bodyPart.Id, nerveSys.Value, ModifierIdentifier, out var modifier))
             {
+                var add = Amount;
+                if (RandomiseAmount && random.Prob(0.3f))
+                    add = -add;
+
                 args.EntityManager.System<PainSystem>()
                     .TryAddPainFeelsModifier(
                         nerveSys.Value,
                         ModifierIdentifier,
                         bodyPart.Id,
-                        IoCManager.Resolve<IRobustRandom>().Prob(0.3f) ? Amount * scale : -Amount * scale);
+                        add);
             }
             else
             {
-                var add = IoCManager.Resolve<IRobustRandom>().Prob(0.3f) ? Amount : -Amount;
+                var add = Amount;
+                if (RandomiseAmount && random.Prob(0.3f))
+                    add = -add;
+
                 args.EntityManager.System<PainSystem>()
                     .TryChangePainFeelsModifier(
                         nerveSys.Value,

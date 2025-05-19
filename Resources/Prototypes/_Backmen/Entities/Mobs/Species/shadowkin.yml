@@ -8,8 +8,8 @@
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: Consciousness
-    threshold: 80
-    cap: 165
+    threshold: 110
+    cap: 220
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - TauCetiBasic
@@ -31,12 +31,6 @@
     damage:
       types:
         Heat: 0.75 # burn more
-  - type: MobState
-  - type: MobThresholds
-    thresholds: # Weak
-      0: Alive
-      80: Critical
-      160: Dead
   - type: Damageable
     damageContainer: Biological # Shadowkin
     damageModifierSet: Shadowkin

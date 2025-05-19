@@ -21,7 +21,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Tourniquet;
+namespace Content.Server.Backmen.Tourniquet;
 
 /// <summary>
 /// This handles tourniqueting people
@@ -87,7 +87,7 @@ public sealed class TourniquetSystem : EntitySystem
 
     private void TakeOffTourniquet(EntityUid target, EntityUid user, EntityUid tourniquetEnt, TourniquetComponent tourniquet)
     {
-        _popup.PopupEntity(Loc.GetString("takes-off-a-tourniquet", ("user", user), ("part", tourniquet.BodyPartTorniqueted!)), target, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("takes-off-a-tourniquet", ("user", user), ("part", tourniquet.BodyPartTourniqueted!)), target, PopupType.Medium);
         _audio.PlayPvs(tourniquet.TourniquetPutOffSound, target, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
         var doAfterEventArgs =
@@ -186,7 +186,7 @@ public sealed class TourniquetSystem : EntitySystem
                 woundEnt.Comp2.CurrentTourniquetEntity = args.Used;
             }
 
-            tourniquet.BodyPartTorniqueted = tourniquetable;
+            tourniquet.BodyPartTourniqueted = tourniquetable;
         }
         else
         {
@@ -205,7 +205,7 @@ public sealed class TourniquetSystem : EntitySystem
                 _bloodstream.TryAddBleedModifier(woundable, "TourniquetPresent", 100, false, true, woundable);
             }
 
-            tourniquet.BodyPartTorniqueted = targetPart.Value.Id;
+            tourniquet.BodyPartTourniqueted = targetPart.Value.Id;
         }
 
         args.Handled = true;
@@ -222,7 +222,7 @@ public sealed class TourniquetSystem : EntitySystem
         if (!_container.TryGetContainer(ent, TourniquetContainerId, out var container))
             return;
 
-        var tourniquetedBodyPart = tourniquet.BodyPartTorniqueted;
+        var tourniquetedBodyPart = tourniquet.BodyPartTourniqueted;
         if (tourniquetedBodyPart == null)
             return;
 
@@ -259,7 +259,7 @@ public sealed class TourniquetSystem : EntitySystem
         _container.Remove(args.Used.Value, container);
 
         _hands.TryPickupAnyHand(args.User, args.Used.Value);
-        tourniquet.BodyPartTorniqueted = null;
+        tourniquet.BodyPartTourniqueted = null;
 
         args.Handled = true;
     }
@@ -278,7 +278,7 @@ public sealed class TourniquetSystem : EntitySystem
             InnateVerb verb = new()
             {
                 Act = () => TakeOffTourniquet(args.Target, args.User, entity, tourniquet),
-                Text = Loc.GetString("take-off-tourniquet", ("part", tourniquet.BodyPartTorniqueted!)),
+                Text = Loc.GetString("take-off-tourniquet", ("part", tourniquet.BodyPartTourniqueted!)),
                 // Icon = new SpriteSpecifier.Texture(new ("/Textures/")),
                 Priority = 2
             };

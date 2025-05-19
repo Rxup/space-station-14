@@ -1,3 +1,4 @@
+using Content.Server.Body.Systems;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery;
@@ -12,7 +13,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Body.Components
 {
-    [RegisterComponent, Access(typeof(SharedBloodstreamSystem), typeof(ReactionMixerSystem))]
+    [RegisterComponent, Access(typeof(BloodstreamSystem), typeof(ReactionMixerSystem))]
     public sealed partial class BloodstreamComponent : Component
     {
         public static string DefaultChemicalsSolutionName = "chemicals";
@@ -32,6 +33,13 @@ namespace Content.Server.Body.Components
         public TimeSpan UpdateInterval = TimeSpan.FromSeconds(3);
 
         /// <summary>
+        ///     Based on percents, how much of blood lost will equal to this entity dying?
+        ///     Backmen edit: This is used for consciousness based entities
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public FixedPoint2 LethalBloodlossThreshold = 0.67;
+
+        /// <summary>
         ///     How much is this entity currently bleeding?
         ///     Higher numbers mean more blood lost every tick.
         ///
@@ -45,6 +53,7 @@ namespace Content.Server.Body.Components
         public float BleedAmount;
 
         /// <summary>
+        ///     Backmen edit: This is used for non-consciousness based entities
         ///     How much should bleeding be reduced every update interval?
         /// </summary>
         [DataField]
