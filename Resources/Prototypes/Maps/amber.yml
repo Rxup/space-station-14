@@ -66,8 +66,8 @@
           Borg: [ 3, 3 ]
           #backmen
           Prisoner: [ 1, 2]
-        - type: StationGoal
-          goals:
+      - type: StationGoal
+        goals:
           - Singularity
           - SolarPanels
           - Artifacts
