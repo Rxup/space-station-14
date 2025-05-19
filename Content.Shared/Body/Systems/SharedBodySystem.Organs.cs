@@ -171,7 +171,7 @@ public partial class SharedBodySystem
         var parent = container.Owner;
 
         return HasComp<BodyPartComponent>(parent)
-            && Containers.Remove(organId, container);
+            && Containers.Remove(organId, container, false);
     }
 
     /// <summary>
