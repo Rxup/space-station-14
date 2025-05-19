@@ -15,8 +15,8 @@
     - TauCetiBasic
     - Nekomimetic
   - type: Consciousness
-    cap: 160
-    threshold: 80
+    cap: 220
+    threshold: 110
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance
@@ -37,11 +37,6 @@
     prototype: Felinid
   - type: Damageable
     damageContainer: Biological
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      90: Critical
-      200: Dead
   - type: MeleeWeapon
     hidden: true
     soundHit:

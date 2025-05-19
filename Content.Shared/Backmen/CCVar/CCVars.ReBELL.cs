@@ -106,6 +106,12 @@ public sealed partial class CCVars
     public static readonly CVarDef<float> NerveDamageThreshold =
         CVarDef.Create("traumas.nerve_damage_threshold", 0.7f, CVar.SERVER | CVar.REPLICATED);
 
+    /// <summary>
+    /// The chance that will be rolled for adding a trauma to player's lungs in case of CPR failure.
+    /// </summary>
+    public static readonly CVarDef<float> CprTraumaChance =
+        CVarDef.Create("traumas.cpr_trauma_chance", 0.1f, CVar.SERVERONLY);
+
     /*
      * Bleeding CVars
      */
@@ -114,11 +120,11 @@ public sealed partial class CCVars
     /// The rate at which severity (wound) points get exchanged into bleeding; e.g., 50 severity would be 11 bleeding points.
     /// </summary>
     public static readonly CVarDef<float> BleedingSeverityTrade =
-        CVarDef.Create("bleeds.wound_severity_trade", 0.22f, CVar.SERVERONLY);
+        CVarDef.Create("bleeds.wound_severity_trade", 0.12f, CVar.SERVERONLY);
 
     /// <summary>
-    /// How quick by default do bleeds grow to their full form?
+    /// How long by default do bleeds grow to their full form?
     /// </summary>
     public static readonly CVarDef<float> BleedsScalingTime =
-        CVarDef.Create("bleeds.bleeding_scaling_time", 6f, CVar.SERVERONLY);
+        CVarDef.Create("bleeds.bleeding_scaling_time", 2f, CVar.SERVERONLY);
 }
