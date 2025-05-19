@@ -506,7 +506,10 @@ public partial class WoundSystem
                             damagePiece.Value,
                             out var continuedWound,
                             component))
+                    {
+                        actuallyInducedDamage.DamageDict[damagePiece.Key] = 0;
                         continue;
+                    }
 
                     var oldSeverity = continuedWound.Value.Comp.WoundSeverityPoint - severityApplied;
                     var severityDelta = continuedWound.Value.Comp.WoundSeverityPoint - oldSeverity;
@@ -529,7 +532,10 @@ public partial class WoundSystem
                         damagePiece.Key,
                         damagePiece.Value,
                         component))
+                {
+                    actuallyInducedDamage.DamageDict[damagePiece.Key] = 0;
                     continue;
+                }
 
                 var severity = ApplySeverityModifiers(woundable, damagePiece.Value, component);
 

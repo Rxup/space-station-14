@@ -470,7 +470,7 @@ public abstract partial class WoundSystem : EntitySystem
 
         FixWoundableRoots(childEntity, childWoundable);
 
-        var woundableRoot = WoundableQuery.Comp(parentWoundable.RootWoundable);
+        var woundableRoot = CompOrNull<WoundableComponent>(parentWoundable.RootWoundable) ?? parentWoundable;
         var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
 
         RaiseLocalEvent(childEntity, ref woundableAttached);
