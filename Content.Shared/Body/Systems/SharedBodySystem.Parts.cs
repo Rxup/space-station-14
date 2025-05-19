@@ -85,7 +85,6 @@ public partial class SharedBodySystem
         if (body is null)
             return;
 
-
         if (TryComp(insertedUid, out BodyPartComponent? part) && slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part))) // Shitmed Change
         {
             AddPart(body.Value, (insertedUid, part), slotId);
@@ -115,6 +114,11 @@ public partial class SharedBodySystem
 
     private void OnBodyPartRemoved(Entity<BodyPartComponent> ent, ref EntRemovedFromContainerMessage args)
     {
+        // I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed
+        // I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed
+        if (TerminatingOrDeleted(ent.Comp.Body))
+            return;
+
         // Body part removed from another body part.
         var removedUid = args.Entity;
         var slotId = args.Container.ID;
