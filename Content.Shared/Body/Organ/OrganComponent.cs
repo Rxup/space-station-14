@@ -23,7 +23,7 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     /// The body part the organ is in.
     /// Backmen edit;
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public EntityUid? BodyPart;
 
     /// <summary>
