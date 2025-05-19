@@ -149,6 +149,10 @@ public partial class WoundSystem
 
     private void OnWoundableInserted(Entity<WoundableComponent> parent, ref EntInsertedIntoContainerMessage args)
     {
+        // smh
+        if (TerminatingOrDeleted(parent) || parent.Owner == EntityUid.Invalid)
+            return;
+
         var (parentEntity, parentWoundable) = parent;
         if (!TryComp<WoundableComponent>(args.Entity, out var childWoundable))
             return;
@@ -158,6 +162,9 @@ public partial class WoundSystem
 
     private void OnWoundableRemoved(Entity<WoundableComponent> parent, ref EntRemovedFromContainerMessage args)
     {
+        if (TerminatingOrDeleted(parent) || parent.Owner == EntityUid.Invalid)
+            return;
+
         var (parentEntity, parentWoundable) = parent;
         if (!TryComp<WoundableComponent>(args.Entity, out var childWoundable))
             return;
