@@ -47,7 +47,7 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     public FixedPoint2 OrganIntegrity = 15;
 
     /// <summary>
-    ///     Current Organ severity, dynamically updated based on organ integrity
+    ///     Current Organ severity, dynamically updates based on organ integrity
     /// </summary>
     [DataField, AutoNetworkedField]
     public OrganSeverity OrganSeverity = OrganSeverity.Normal;

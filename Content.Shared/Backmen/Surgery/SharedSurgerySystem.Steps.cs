@@ -645,14 +645,12 @@ public abstract partial class SharedSurgerySystem
     private void OnBleedsTreatmentStep(Entity<SurgeryBleedsTreatmentStepComponent> ent, ref SurgeryStepEvent args)
     {
         var healAmount = ent.Comp.Amount;
-        foreach (var woundEnt in _wounds.GetWoundableWounds(args.Part))
+        foreach (var woundEnt in _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(args.Part))
         {
-            if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleeds))
-                continue;
-
-            if (bleeds.Scaling > healAmount)
+            var bleeds = woundEnt.Comp2;
+            if (bleeds.BleedingAmountRaw > healAmount)
             {
-                bleeds.Scaling -= healAmount;
+                bleeds.BleedingAmountRaw -= healAmount;
             }
             else
             {
@@ -662,7 +660,7 @@ public abstract partial class SharedSurgerySystem
 
                 bleeds.IsBleeding = false; // Won't bleed as long as it's not reopened
 
-                healAmount -= bleeds.Scaling;
+                healAmount -= bleeds.BleedingAmountRaw;
             }
 
             Dirty(woundEnt, bleeds);
