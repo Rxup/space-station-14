@@ -476,7 +476,7 @@ public sealed class ServerPainSystem : PainSystem
         {
             case PainThresholdTypes.PainGrunt:
                 CleanupPainSounds(nerveSys, nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], nerveSys: nerveSys.Comp);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], AudioParams.Default.WithVariation(0.05f).WithVolume(-9f), nerveSys.Comp);
 
                 break;
             case PainThresholdTypes.PainFlinch:
@@ -507,7 +507,8 @@ public sealed class ServerPainSystem : PainSystem
                     sound,
                     IHaveNoMouthAndIMustScream
                         .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(screamSpecifier)) + TimeSpan.FromSeconds(2),
-                    nerveSys: nerveSys);
+                    AudioParams.Default.WithVolume(-8f),
+                    nerveSys);
 
                 IHaveNoMouthAndIMustScream.PlayPvs(
                     nerveSys.Comp.PainRattles,
@@ -534,7 +535,7 @@ public sealed class ServerPainSystem : PainSystem
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration, true, 20f, 7f);
 
                 // For the funnies :3
-                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration);
+                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 0.99f);
 
                 break;
             case PainThresholdTypes.PainShockAndAgony:
@@ -548,7 +549,9 @@ public sealed class ServerPainSystem : PainSystem
                     nerveSys,
                     painWhimpers,
                     IHaveNoMouthAndIMustScream
-                        .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(agonySpecifier)) - TimeSpan.FromSeconds(2));
+                        .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(agonySpecifier)) - TimeSpan.FromSeconds(2),
+                    AudioParams.Default.WithVolume(-8f),
+                    nerveSys);
 
                 IHaveNoMouthAndIMustScream.PlayPvs(
                     nerveSys.Comp.PainRattles,
@@ -574,7 +577,7 @@ public sealed class ServerPainSystem : PainSystem
                 ForcePainCrit(nerveSys, nerveSys.Comp.PainShockCritDuration * 1.4f, nerveSys);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration * 1.4f, true, 20f, 7f);
 
-                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 1.4f);
+                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 1.39f);
 
                 break;
             case PainThresholdTypes.None:

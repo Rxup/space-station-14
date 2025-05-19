@@ -228,7 +228,17 @@ public sealed class BloodstreamSystem : EntitySystem
                         .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
             }
 
+            // I am very sorry, my dear shitcoders. but for now, while bloodstream is still in the state it is;
+            // I cannot properly override bleeding for woundable based entities. I am very sorry.
+            // This is this, and that is that.
             bloodstream.BleedAmount = (float) total / 5f;
+            if (bloodstream.BleedAmount == 0)
+                _alertsSystem.ClearAlert(uid, bloodstream.BleedingAlert);
+            else
+            {
+                var severity = (short) Math.Clamp(Math.Round(bloodstream.BleedAmount, MidpointRounding.ToZero), 0, 10);
+                _alertsSystem.ShowAlert(uid, bloodstream.BleedingAlert, severity);
+            }
 
             var lethalBloodlossPoint = bloodstream.BloodMaxVolume * bloodstream.LethalBloodlossThreshold;
             var bloodAmount = bloodstream.BloodSolution.Value.Comp.Solution.Volume;
@@ -259,11 +269,11 @@ public sealed class BloodstreamSystem : EntitySystem
                 continue;
 
             var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
-            if (bleeds.IsBleeding == canBleed)
-                continue;
-
-            bleeds.IsBleeding = canBleed;
-            Dirty(ent, bleeds);
+            if (bleeds.IsBleeding != canBleed)
+            {
+                bleeds.IsBleeding = canBleed;
+                Dirty(ent, bleeds);
+            }
 
             if (!bleeds.IsBleeding)
                 continue;
@@ -275,7 +285,7 @@ public sealed class BloodstreamSystem : EntitySystem
                 continue;
 
             var newBleeds = FixedPoint2.Clamp(
-                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
+                bleeds.ScalingLimit * ((totalTime - currentTime) / totalTime),
                 0,
                 bleeds.ScalingLimit);
 
@@ -410,20 +420,21 @@ public sealed class BloodstreamSystem : EntitySystem
                 if (args.Delta < 0)
                     return;
 
-                var prob = Math.Clamp((float) args.Delta / 25, 0, 1);
-                if (args.Delta > 0 && _robustRandom.Prob(prob))
-                {
-                    var woundable = args.Component.HoldingWoundable;
-                    if (TryComp(woundable, out BodyPartComponent? bodyPart) && bodyPart.Body.HasValue)
-                    {
-                        var bodyEnt = bodyPart.Body.Value;
-                        var bloodstream = Comp<BloodstreamComponent>(bodyEnt);
+                // TODO: Instant bloodloss isn't funny at all
+                //var prob = Math.Clamp((float) args.Delta / 25, 0, 1);
+                //if (args.Delta > 0 && _robustRandom.Prob(prob))
+                //{
+                //    var woundable = args.Component.HoldingWoundable;
+                //    if (TryComp(woundable, out BodyPartComponent? bodyPart) && bodyPart.Body.HasValue)
+                //    {
+                //        var bodyEnt = bodyPart.Body.Value;
+                //        var bloodstream = Comp<BloodstreamComponent>(bodyEnt);
 
                         // instant blood loss
-                        TryModifyBloodLevel(bodyEnt, (-args.Delta) / 5, bloodstream);
-                        _audio.PlayPvs(bloodstream.InstantBloodSound, bodyEnt);
-                    }
-                }
+                //        TryModifyBloodLevel(bodyEnt, (-args.Delta) / 15, bloodstream);
+                //        _audio.PlayPvs(bloodstream.InstantBloodSound, bodyEnt);
+                //    }
+                //}
 
                 var oldBleedsAmount = component.BleedingAmountRaw;
                 component.BleedingAmountRaw = args.Component.WoundSeverityPoint * _bleedingSeverityTrade;

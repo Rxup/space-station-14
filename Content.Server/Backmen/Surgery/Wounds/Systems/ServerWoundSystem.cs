@@ -511,8 +511,7 @@ public sealed class ServerWoundSystem : WoundSystem
                      GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
             {
                 // Bleeding :3
-                wound.Comp2.ScalingLimit += 10;
-                wound.Comp2.ScalingSpeed += 2;
+                wound.Comp2.ScalingLimit += 4;
             }
 
             QueueDel(woundableEntity);
@@ -548,8 +547,7 @@ public sealed class ServerWoundSystem : WoundSystem
         foreach (var wound in
                  GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
         {
-            wound.Comp2.ScalingLimit += 10;
-            wound.Comp2.ScalingSpeed += 2;
+            wound.Comp2.ScalingLimit += 4;
         }
 
         AmputateWoundableSafely(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);

@@ -588,7 +588,7 @@ public partial class WoundSystem
         RaiseLocalEvent(woundable, ref woundsChangedEv);
 
         var unhandledWounds = damage.DamageDict
-                .Where(damagePiece => !actuallyInducedDamage.DamageDict.ContainsKey(damagePiece.Key))
+                .Where(damagePiece => actuallyInducedDamage.DamageDict[damagePiece.Key] == 0)
                 .ToDictionary(damagePiece => damagePiece.Key, damagePiece => damagePiece.Value);
 
         if (unhandledWounds.Count != 0)

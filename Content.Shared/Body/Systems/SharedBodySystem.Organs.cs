@@ -165,13 +165,15 @@ public partial class SharedBodySystem
     /// </summary>
     public bool RemoveOrgan(EntityUid organId, OrganComponent? organ = null)
     {
+        if (!Resolve(organId, ref organ, false))
+            return false;
+
         if (!Containers.TryGetContainingContainer((organId, null, null), out var container))
             return false;
 
         var parent = container.Owner;
-
         return HasComp<BodyPartComponent>(parent)
-            && Containers.Remove(organId, container, false);
+            && Containers.Remove(organId, container, destination: Transform(organ.Body!.Value).Coordinates);
     }
 
     /// <summary>

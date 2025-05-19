@@ -627,7 +627,7 @@ public partial class SharedBodySystem
             && !TerminatingOrDeleted(partId)) // Saw some exceptions involving these due to the spawn menu.
             EnsureComp<BodyPartAppearanceComponent>(partId);
 
-        return Containers.Remove(partId, container, false);
+        return Containers.Remove(partId, container, destination: Transform(part.Body!.Value).Coordinates);
     }
     // backmen edit end
 

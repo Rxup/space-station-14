@@ -327,7 +327,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         var threshold = consciousness.Comp.CprSuffocationHealAmount * consciousness.Comp.CprSuffocationHealThreshold;
-        if (modifier.Change < threshold)
+        if (FixedPoint2.Abs(modifier.Change) < threshold)
         {
             if (Random.Prob(_cprTraumaChance))
             {
@@ -371,7 +371,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         ChangeConsciousnessModifier(
             consciousness,
             nerveSys.Value,
-            -consciousness.Comp.CprSuffocationHealAmount,
+            consciousness.Comp.CprSuffocationHealAmount,
             "Suffocation");
 
         _popup.PopupEntity(
@@ -444,14 +444,14 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             if (!ChangeConsciousnessModifier(
                     consciousness,
                     nerveSys.Value,
-                    damagePiece.Value,
+                    -damagePiece.Value,
                     "Suffocation",
                     consciousness: consciousness))
             {
                 AddConsciousnessModifier(
                     consciousness,
                     nerveSys.Value,
-                    damagePiece.Value,
+                    -damagePiece.Value,
                     "Suffocation",
                     consciousness: consciousness);
             }

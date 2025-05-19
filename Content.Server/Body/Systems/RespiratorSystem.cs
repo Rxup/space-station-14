@@ -19,6 +19,7 @@ using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Backmen.Surgery.Consciousness; // backmen
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -356,22 +357,11 @@ public sealed class RespiratorSystem : EntitySystem
 
         if (_consciousness.TryGetNerveSystem(ent, out var nerveSys))
         {
-            if (!_consciousness.TryGetConsciousnessModifier(ent, nerveSys.Value, out var modifier, "Suffocation"))
-                return;
-
-            if (modifier.Value.Change < ent.Comp.DamageRecovery.GetTotal())
-            {
-                _consciousness.RemoveConsciousnessModifier(ent, nerveSys.Value, "Suffocation");
-            }
-            else
-            {
-                _consciousness.SetConsciousnessModifier(
-                    ent,
-                    nerveSys.Value,
-                    modifier.Value.Change + ent.Comp.DamageRecovery.GetTotal(),
-                    identifier: "Suffocation",
-                    type: ConsciousnessModType.Pain);
-            }
+            _consciousness.ChangeConsciousnessModifier(
+                ent,
+                nerveSys.Value,
+                FixedPoint2.Abs(ent.Comp.DamageRecovery.GetTotal()),
+                "Suffocation");
 
             return;
         }
