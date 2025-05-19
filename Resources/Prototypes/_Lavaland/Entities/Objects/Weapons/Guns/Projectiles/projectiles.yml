@@ -57,7 +57,7 @@
   - type: SpawnOnTrigger
     proto: HolyLight
   - type: SoundOnTrigger
-    sound: /Uploaded/holyforfobos/mortarhit.ogg
+    sound: /Audio/Backmen/Bosses/mortarhit.ogg
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -107,7 +107,7 @@
   components:
   - type: Clickable
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/shockwave.rsi
+    sprite: Backmen/Objects/Weapons/Guns/Misc/shockwave.rsi
     layers:
     - state: slice
       shader: unshaded
@@ -157,11 +157,11 @@
     linearDamping: -100
     fixedRotation: True
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/weapon/justice_splendor-animate.rsi
+    sprite: Backmen/Objects/Weapons/Melee/justice_splendor-animate.rsi
     state: icon
   - type: EmitSoundOnCollide
     sound:
-      path: /Uploaded/holyforfobos/Punch_projectile.ogg
+      path: /Audio/Backmen/Bosses/Punch_projectile.ogg
   - type: TileFrictionModifier
     modifier: -100
   - type: Fixtures

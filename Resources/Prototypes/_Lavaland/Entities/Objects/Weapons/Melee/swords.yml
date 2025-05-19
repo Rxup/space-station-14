@@ -5,7 +5,7 @@
   description: Меч одного из архангелов, даже стоя рядом с ним, проникаишься искуплением перед неудержимой мощью.
   components:
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/weapon/justice.rsi
+    sprite: Backmen/Objects/Weapons/Melee/justice.rsi
     state: icon
   - type: Item
     size: Normal
@@ -14,7 +14,7 @@
     - 2,1,2,1
     - 1,2,1,2
     - 0,3,0,3
-    sprite: /Uploaded/holyforfobos/weapon/justice-inhands.rsi
+    sprite: Backmen/Objects/Weapons/Melee/justice-inhands.rsi
   - type: MeleeWeapon
     autoAttack: true
     wideAnimationRotation: -135
@@ -32,23 +32,6 @@
     damage:
       types:
         Slash: 25
-  #- type: Gun #ForFuture
-  #  projectileSpeed: 20
-  #  soundGunshot: /Uploaded/holyforfobos/Punch_projectile.ogg
-  #  fireRate: 1
-  #  useKey: false
-  #  soundEmpty:
-  #    path: /Audio/Weapons/Guns/Empty/empty.ogg
-  #    params:
-  #      volume: -100
-  #- type: RechargeBasicEntityAmmo
-  #  rechargeSound:
-  #    path: /Uploaded/holyforfobos/BlueFlash.ogg
-  #  rechargeCooldown: 12
-  #- type: BasicEntityAmmoProvider
-  #  proto: BounceSplendor
-  #  capacity: 1
-  #  count: 1
   - type: DisarmMalus
     malus: 0.225
   - type: ThrowingAngle
@@ -74,7 +57,7 @@
       state: blink
     itemIconStyle: NoItem
     sound:
-      path: /Uploaded/holyforfobos/Portal3.ogg
+      path: /Audio/Backmen/Bosses/Portal3.ogg
       params:
         volume: 5
     event: !type:DashEvent
@@ -89,7 +72,7 @@
   description: сдвоенные мечи архангела, он излучает неописуемое чувство страха, гнева и ярости. Одновременно.
   components:
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/weapon/justice-inhands.rsi
+    sprite: Backmen/Objects/Weapons/Melee/justice-inhands.rsi
     state: icon
   - type: Item
     size: Normal
@@ -103,7 +86,7 @@
     - 3,2,3,2
     - 2,3,2,3
     - 1,4,1,4
-    sprite: /Uploaded/holyforfobos/weapon/justice-inhands.rsi
+    sprite: Backmen/Objects/Weapons/Melee/justice-inhands.rsi
   - type: MeleeWeapon
     range: 2.5
     autoAttack: true
@@ -123,7 +106,7 @@
         Slash: 25
   - type: Gun
     projectileSpeed: 20
-    soundGunshot: /Uploaded/holyforfobos/Punch_projectile.ogg
+    soundGunshot: /Audio/Backmen/Bosses/Punch_projectile.ogg
     fireRate: 1
     useKey: false
     soundEmpty:
@@ -132,7 +115,7 @@
         volume: -100
   - type: RechargeBasicEntityAmmo
     rechargeSound:
-      path: /Uploaded/holyforfobos/BlueFlash.ogg
+      path: /Audio/Backmen/Bosses/BlueFlash.ogg
     rechargeCooldown: 10
   - type: BasicEntityAmmoProvider
     proto: BounceSplendor
@@ -154,7 +137,7 @@
   description: Меч одного из архангелов, смотря на него, возникает неописуемое чувство спокойствия.
   components:
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/weapon/splendor.rsi
+    sprite: Backmen/Objects/Weapons/Melee/splendor.rsi
     state: icon
   - type: Item
     size: Normal
@@ -163,7 +146,7 @@
     - 1,1,1,1
     - 3,3,3,3
     - 2,2,2,2
-    sprite: /Uploaded/holyforfobos/weapon/splendor-inhands.rsi
+    sprite: Backmen/Objects/Weapons/Melee/splendor-inhands.rsi
   - type: MeleeWeapon
     autoAttack: true
     wideAnimationRotation: 135
@@ -183,7 +166,7 @@
         Slash: 25
   - type: Gun
     projectileSpeed: 15
-    soundGunshot: /Uploaded/holyforfobos/PunchSwoosh.ogg
+    soundGunshot: /Audio/Backmen/Bosses/PunchSwoosh.ogg
     fireRate: 1
     useKey: false
     soundEmpty:
@@ -192,7 +175,7 @@
         volume: -100
   - type: RechargeBasicEntityAmmo
     rechargeSound:
-      path: /Uploaded/holyforfobos/BlueFlash.ogg
+      path: /Audio/Backmen/Bosses/BlueFlash.ogg
       params:
         volume: -100
     rechargeCooldown: 2
@@ -217,13 +200,13 @@
   components:
   - type: Sharp
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/weapon/agnec.rsi
+    sprite: Backmen/Objects/Weapons/Melee/agnec.rsi
     state: icon
   - type: Item
     size: Ginormous
-    sprite: /Uploaded/holyforfobos/weapon/agnec-inhands.rsi
+    sprite: Backmen/Objects/Weapons/Melee/agnec-inhands.rsi
   - type: Clothing
-    sprite: /Uploaded/holyforfobos/weapon/agnec.rsi
+    sprite: Backmen/Objects/Weapons/Melee/agnec.rsi
     quickEquip: false
     slots:
     - Back
@@ -244,7 +227,7 @@
   - type: UseDelayOnShoot
   - type: Gun
     projectileSpeed: 5
-    soundGunshot: /Uploaded/holyforfobos/Portal3.ogg
+    soundGunshot: /Audio/Backmen/Bosses/Portal3.ogg
     fireRate: 1
     useKey: false
     soundEmpty:
@@ -254,7 +237,7 @@
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 4.5
     rechargeSound:
-      path: /Uploaded/holyforfobos/BlueFlash.ogg
+      path: /Audio/Backmen/Bosses/BlueFlash.ogg
   - type: BasicEntityAmmoProvider
     proto: WalkingLightNanoTrasen
     capacity: 1

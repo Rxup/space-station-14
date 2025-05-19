@@ -162,16 +162,16 @@
   description: Fires low-damage kinetic bolts at a short range.
   components:
   - type: Sprite
-    sprite: /Uploaded/holyforfobos/weapon/kinetic_accelerator.rsi
+    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
     layers:
     - state: icon
     - state: animation-icon
       visible: false
       map: [ "empty-icon" ]
   - type: Clothing
-    sprite: /Uploaded/holyforfobos/weapon/kinetic_accelerator.rsi
+    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
   - type: Item
-    sprite: /Uploaded/holyforfobos/weapon/kinetic_accelerator.rsi
+    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
   - type: PressureDamageChange
     appliedModifier: 0.65
   - type: UpgradeableGun
