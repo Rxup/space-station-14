@@ -525,6 +525,9 @@ public abstract partial class WoundSystem : EntitySystem
 
         foreach (var organ in Body.GetPartOrgans(woundable))
         {
+            if (TerminatingOrDeleted(organ.Id))
+                continue;
+
             if (organ.Component.OrganSeverity == OrganSeverity.Normal)
             {
                 // TODO: SFX for organs getting not destroyed, but thrown out
