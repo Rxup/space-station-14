@@ -35,7 +35,7 @@ public sealed partial class AudioTab : Control
             SliderVolumeBrutalDeathRattles,
             scale: ContentAudioSystem.BrutalDeathRattlesMultiplier);
         // Backmen-ReBELL-End
-        
+
         Control.AddOptionPercentSlider(
             CVars.MidiVolume,
             SliderVolumeMidi,

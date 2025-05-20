@@ -54,6 +54,7 @@
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
   parent: [ PlayerSiliconBase, ShowMedicalIcons ]
   components:
+  - type: Targeting
   - type: BatteryDrainer
   - type: AntagImmune
   - type: BSSDrone

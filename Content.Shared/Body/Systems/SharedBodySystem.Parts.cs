@@ -85,7 +85,6 @@ public partial class SharedBodySystem
         if (body is null)
             return;
 
-
         if (TryComp(insertedUid, out BodyPartComponent? part) && slotId.Contains(PartSlotContainerIdPrefix + GetSlotFromBodyPart(part))) // Shitmed Change
         {
             AddPart(body.Value, (insertedUid, part), slotId);
@@ -115,6 +114,11 @@ public partial class SharedBodySystem
 
     private void OnBodyPartRemoved(Entity<BodyPartComponent> ent, ref EntRemovedFromContainerMessage args)
     {
+        // I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed
+        // I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed I hate shitmed
+        if (TerminatingOrDeleted(ent.Comp.Body))
+            return;
+
         // Body part removed from another body part.
         var removedUid = args.Entity;
         var slotId = args.Container.ID;
@@ -161,8 +165,6 @@ public partial class SharedBodySystem
                 if (!TryComp(organ, out OrganComponent? organComp))
                     continue;
 
-                Dirty(organ, organComp);
-
                 if (organComp.Body is { Valid: true } oldBodyUid)
                 {
                     var removedEv = new OrganRemovedFromBodyEvent(oldBodyUid, ent);
@@ -170,11 +172,14 @@ public partial class SharedBodySystem
                 }
 
                 organComp.Body = bodyUid;
+                organComp.BodyPart = ent.Owner;
                 if (bodyUid is not null)
                 {
                     var addedEv = new OrganAddedToBodyEvent(bodyUid.Value, ent);
                     RaiseLocalEvent(organ, ref addedEv);
                 }
+
+                Dirty(organ, organComp);
             }
         }
 
@@ -626,7 +631,7 @@ public partial class SharedBodySystem
             && !TerminatingOrDeleted(partId)) // Saw some exceptions involving these due to the spawn menu.
             EnsureComp<BodyPartAppearanceComponent>(partId);
 
-        return Containers.Remove(partId, container);
+        return Containers.Remove(partId, container, destination: Transform(part.Body!.Value).Coordinates);
     }
     // backmen edit end
 

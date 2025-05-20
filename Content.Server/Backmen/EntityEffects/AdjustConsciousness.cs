@@ -1,41 +1,32 @@
 using System.Text.Json.Serialization;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Backmen.Surgery.Pain.Systems;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
-namespace Content.Server.EntityEffects.Effects;
+namespace Content.Server.Backmen.EntityEffects;
 
 [UsedImplicitly]
-public sealed partial class AdjustConsciousness : EntityEffect // backmen effect
+public sealed partial class AdjustConsciousness : EntityEffect
 {
     [DataField(required: true)]
-    [JsonPropertyName("amount")]
-    public FixedPoint2 Amount = default!;
+    public FixedPoint2 Amount;
 
     [DataField(required: true)]
-    [JsonPropertyName("time")]
-    public TimeSpan Time = default!;
+    public TimeSpan Time;
 
     [DataField]
-    [JsonPropertyName("identifier")]
     public string Identifier = "ConsciousnessModifier";
 
     [DataField("allowNewModifiers")]
-    [JsonPropertyName("allowNewModifiers")]
     public bool AllowCreatingModifiers = true;
 
     [DataField]
-    [JsonPropertyName("modifierType")]
     public ConsciousnessModType ModifierType = ConsciousnessModType.Generic;
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-adjust-consciousness");
 
     public override void Effect(EntityEffectBaseArgs args)

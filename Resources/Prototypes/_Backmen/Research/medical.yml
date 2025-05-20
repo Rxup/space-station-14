@@ -59,6 +59,7 @@
   cost: 1500
   recipeUnlocks:
   - Scalpel
+  - MedicalStitches
   - Retractor
   - Cautery
   - Drill

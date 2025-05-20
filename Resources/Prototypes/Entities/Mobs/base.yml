@@ -95,10 +95,16 @@
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState
+    allowedStates:
+    - Alive
+    - SoftCritical
+    - Critical
+    - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      100: SoftCritical
+      150: Critical
       200: Dead
   - type: MobStateActions
     actions:

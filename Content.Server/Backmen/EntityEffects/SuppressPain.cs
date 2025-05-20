@@ -9,26 +9,21 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.EntityEffects.Effects;
+namespace Content.Server.Backmen.EntityEffects;
 
 [UsedImplicitly]
 public sealed partial class SuppressPain : EntityEffect // backmen effect
 {
     [DataField(required: true)]
-    [JsonPropertyName("amount")]
-    public FixedPoint2 Amount = default!;
+    public FixedPoint2 Amount;
 
     [DataField(required: true)]
-    [JsonPropertyName("time")]
-    public TimeSpan Time = default!;
+    public TimeSpan Time;
 
     [DataField]
-    [JsonPropertyName("maxSuppression")]
-    public FixedPoint2 MaximumSuppression = 60f;
-    // 190 - 60 = 130; Right nearby the maximal crit threshold in consciousness, will let you live through, but you will die once the painkiller stops working.
+    public FixedPoint2 MaximumSuppression = 80f;
 
     [DataField]
-    [JsonPropertyName("identifier")]
     public string ModifierIdentifier = "PainSuppressant";
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)

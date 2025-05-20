@@ -12,6 +12,18 @@ public partial class PainSystem
 {
     #region Public API
 
+    /// <summary>
+    /// Forces someone into pain crit
+    /// </summary>
+    /// <param name="ent">The brain entity</param>
+    /// <param name="time">Time for the person to be in pain crit</param>
+    /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    [PublicAPI]
+    public virtual void ForcePainCrit(EntityUid ent, TimeSpan time, NerveSystemComponent? nerveSys = null)
+    {
+    }
+
+    [PublicAPI]
     public virtual void CleanupPainSounds(EntityUid ent, NerveSystemComponent? nerveSys = null)
     {
     }
@@ -23,6 +35,7 @@ public partial class PainSystem
     /// <param name="specifier">The scream audio</param>
     /// <param name="audioParams">audio params</param>
     /// <returns>Returns the audio entity</returns>
+    [PublicAPI]
     public virtual Entity<AudioComponent>? PlayPainSound(EntityUid body, SoundSpecifier specifier, AudioParams? audioParams = null)
     {
         return null;
@@ -37,6 +50,7 @@ public partial class PainSystem
     /// <param name="audioParams">audio params</param>
     /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
     /// <returns>Returns teh playing audio</returns>
+    [PublicAPI]
     public virtual Entity<AudioComponent>? PlayPainSound(
         EntityUid body,
         EntityUid nerveSysEnt,
@@ -55,6 +69,7 @@ public partial class PainSystem
     /// <param name="delay">The delay</param>
     /// <param name="audioParams">audio params</param>
     /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    [PublicAPI]
     public void PlayPainSound(
         EntityUid nerveSysEnt,
         SoundSpecifier specifier,
@@ -117,7 +132,7 @@ public partial class PainSystem
     }
 
     /// <summary>
-    /// Gets a copy of pain modifier.
+    /// Gets a copy of a pain modifier.
     /// </summary>
     /// <param name="uid">Uid of the nerveSystem component owner.</param>
     /// <param name="nerveUid">Nerve uid, used to seek for modifier.</param>
