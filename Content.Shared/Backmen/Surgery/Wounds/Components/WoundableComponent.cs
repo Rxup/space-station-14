@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage.Prototypes;
+﻿using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -66,8 +67,18 @@ public sealed partial class WoundableComponent : Component
     /// <summary>
     /// yeah
     /// </summary>
-    [DataField(required: true)]
+    [ViewVariables, DataField(required: true)]
     public Dictionary<WoundableSeverity, FixedPoint2> Thresholds = new();
+
+    [ViewVariables, DataField]
+    public Dictionary<TraumaType, FixedPoint2> PassiveTraumaChances = new()
+    {
+        { TraumaType.BoneDamage, 0 },
+        { TraumaType.OrganDamage, 0 },
+        { TraumaType.Dismemberment, 0 },
+        { TraumaType.NerveDamage, 0 },
+        { TraumaType.VeinsDamage, 0 },
+    };
 
     /// <summary>
     /// How much damage will be healed ACROSS all limb, for example if there are 2 wounds,
@@ -86,7 +97,7 @@ public sealed partial class WoundableComponent : Component
     /// At which amount of bleeds the woundable will stop healing.
     /// </summary>
     [ViewVariables, DataField]
-    public FixedPoint2 BleedsThreshold = 3.5f;
+    public FixedPoint2 BleedsThreshold = 2.4f;
 
     /// <summary>
     /// Multipliers of severity applied to this wound.

@@ -28,7 +28,7 @@ public sealed partial class ModifyBleedAmount : EntityEffect
         if (args.EntityManager.TryGetComponent<BloodstreamComponent>(args.TargetEntity, out var blood))
         {
             var sys = args.EntityManager.System<BloodstreamSystem>();
-            var amt = Amount;
+            var amt = -Amount;
             if (args is EntityEffectReagentArgs reagentArgs) {
                 if (Scaled)
                     amt *= reagentArgs.Quantity.Float();
@@ -46,11 +46,10 @@ public sealed partial class ModifyBleedAmount : EntityEffect
                     if (!args.EntityManager.TryGetComponent<WoundableComponent>(bodyPart.Id, out var woundable))
                         continue;
 
-                    foreach (var wound in woundSystem.GetWoundableWounds(bodyPart.Id, woundable))
+                    foreach (var wound in
+                             woundSystem.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart.Id, woundable))
                     {
-                        if (!args.EntityManager.TryGetComponent<BleedInflicterComponent>(wound.Owner, out var bleeds))
-                            continue;
-
+                        var bleeds = wound.Comp2;
                         if (bleeds.BleedingAmountRaw > amt)
                         {
                             bleeds.BleedingAmountRaw -= amt;

@@ -320,7 +320,7 @@
     raffle:
       settings: default
   - type: Body
-    prototype: Xeno4hand
+    prototype: XenoBody
   - type: InnateTool
     tools:
       - id: WeaponXenoQueenClaw
@@ -412,7 +412,7 @@
   - type: NameIdentifier
     group: Xeno
   - type: Body
-    prototype: Xeno2hand
+    prototype: XenoBody
   - type: Fixtures
     fixtures:
       fix1:
@@ -448,7 +448,7 @@
     raffle:
       settings: default
   - type: Body
-    prototype: Xeno4hand
+    prototype: XenoBody
   - type: InnateTool
     tools:
       - id: WeaponXenoClaw
@@ -509,7 +509,7 @@
     raffle:
       settings: default
   - type: Body
-    prototype: Xeno4hand
+    prototype: XenoBody
   - type: HTN
     rootTask:
       task: SimpleHumanoidHostileCompound
@@ -653,7 +653,7 @@
   - type: NameIdentifier
     group: Xeno
   - type: Body
-    prototype: Xeno3hand
+    prototype: XenoBody
   - type: InnateTool
     tools:
       - id: WeaponXenoClaw
@@ -717,7 +717,7 @@
   - type: NameIdentifier
     group: Xeno
   - type: Body
-    prototype: Xeno2hand
+    prototype: XenoBody
   - type: StealthOnMove
     passiveVisibilityRate: -2
     movementVisibilityRate: 0.1
@@ -754,7 +754,7 @@
     raffle:
       settings: default
   - type: Body
-    prototype: Xeno3hand
+    prototype: XenoBody
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: XenolianStrong
@@ -830,7 +830,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
   - type: Body
-    prototype: Xeno4hand
+    prototype: XenoBody
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: XenolianStrong
@@ -878,94 +878,12 @@
 # BODY PRESETS #
 
 - type: body
-  id: Xeno1hand
+  id: XenoBody
   name: "xeno"
   root: torso
   slots:
     torso:
       part: ChestReptilian
-      connections:
-      - hand 1
-    hand 1:
-      part: XenoArm
-
-- type: body
-  id: Xeno2hand
-  name: "xeno"
-  root: torso
-  slots:
-    torso:
-      part: ChestReptilian
-      connections:
-      - hand 1
-      - hand 2
-    hand 1:
-      part: XenoArm
-    hand 2:
-      part: XenoArm
-
-- type: body
-  id: Xeno3hand
-  name: "xeno"
-  root: torso
-  slots:
-    torso:
-      part: ChestReptilian
-      connections:
-      - hand 1
-      - hand 2
-      - hand 3
-    hand 1:
-      part: XenoArm
-    hand 2:
-      part: XenoArm
-    hand 3:
-      part: XenoArm
-
-- type: body
-  id: Xeno4hand
-  name: "xeno"
-  root: torso
-  slots:
-    torso:
-      part: ChestReptilian
-      connections:
-      - hand 1
-      - hand 2
-      - hand 3
-      - hand 4
-    hand 1:
-      part: XenoArm
-    hand 2:
-      part: XenoArm
-    hand 3:
-      part: XenoArm
-    hand 4:
-      part: XenoArm
-
-- type: body
-  id: Xeno5hand
-  name: "xeno"
-  root: torso
-  slots:
-    torso:
-      part: ChestReptilian
-      connections:
-      - hand 1
-      - hand 2
-      - hand 3
-      - hand 4
-      - hand 5
-    hand 1:
-      part: XenoArm
-    hand 2:
-      part: XenoArm
-    hand 3:
-      part: XenoArm
-    hand 4:
-      part: XenoArm
-    hand 5:
-      part: XenoArm
 
 - type: entity
   id: XenoArm
@@ -1482,7 +1400,7 @@
 
 - type: stack
   id: XenoHealingStack
-  name: слизь ксено
+  name: stack-xeno-healing
   icon: { sprite: Objects/Specific/Xenoarchaeology/xeno_artifacts.rsi, state: ano09 }
   spawn: XenoHealing
   maxCount: 9999

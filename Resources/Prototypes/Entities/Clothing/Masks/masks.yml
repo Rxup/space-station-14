@@ -4,6 +4,8 @@
   name: gas mask
   description: A face-covering mask that can be connected to an air supply.
   components:
+  - type: SlotBlock # Backmen
+    slots: [eyes]
   - type: Sprite
     sprite: Clothing/Mask/gas.rsi
   - type: Clothing
@@ -18,6 +20,7 @@
   - type: HideLayerClothing
     layers:
       Snout: Mask
+      SnoutOverlay: Mask # Backmen
     hideOnToggle: true
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.1
@@ -251,6 +254,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -264,6 +268,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskClown
@@ -319,6 +324,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -339,6 +345,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -398,6 +405,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
     hideOnToggle: true
 
 - type: entity
@@ -432,6 +440,7 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     hideOnToggle: true
   - type: Armor
     traumaDeductions:
@@ -492,6 +501,7 @@
     slots:
     - Hair
     - Snout
+    - SnoutOverlay # Backmen
     hideOnToggle: true
   - type: FlashImmunity
   - type: EyeProtection
@@ -559,6 +569,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
   - type: IdentityBlocker
 
 - type: entity
@@ -576,6 +587,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -592,6 +604,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -608,6 +621,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -624,6 +638,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -640,6 +655,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
   parent: ClothingMaskBase
@@ -656,9 +672,10 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    - SnoutOverlay # Backmen
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase # Backmen-Edit
   id: ClothingMaskNeckGaiter
   name: neck gaiter
   description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...

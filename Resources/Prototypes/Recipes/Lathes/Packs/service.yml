@@ -5,6 +5,7 @@
   recipes:
   - Bucket
   - Ashtray
+  - TrashBag
   - DrinkMug
   - DrinkMugMetal
   - DrinkGlass
@@ -20,6 +21,7 @@
   - FoodPlateMuffinTin
   - FoodKebabSkewer
   - SprayBottle
+  - TrashBag
   - LightReplacer
   - MopItem
   - Holoprojector
@@ -42,7 +44,6 @@
 - type: latheRecipePack
   id: Janitor
   recipes:
-  - TrashBag # Backmen
   - AdvMopItem
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
@@ -52,6 +53,7 @@
   id: Instruments
   recipes:
   - SynthesizerInstrument
+  - PushHorn
 
 - type: latheRecipePack
   id: ServiceBoards

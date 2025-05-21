@@ -34,9 +34,9 @@
   storage:
     back:
     - WeaponPulsePistol
-    - WeaponRevolverMatebaAP
-    - SpeedLoaderMagnumAP
-    - SpeedLoaderMagnumAP
+    - WeaponRevolverMatebaAP #Backmen-edit
+    - SpeedLoader357MagnumAP #Backmen-edit
+    - SpeedLoader357MagnumAP #Backmen-edit
     - BoxFlashbang
     - ToolDebug # spanish army knife
     - WelderExperimental

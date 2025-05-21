@@ -47,7 +47,7 @@
 
 - type: material
   id: BillOfExchange
-  name: вексель
+  name: materials-unit-bill-of-exchange
   unit: materials-unit-bill-of-exchange
   stackEntity: SpaceCash
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
@@ -55,7 +55,7 @@
 
 - type: stack
   id: BillOfExchange
-  name: вексель
+  name: materials-unit-bill-of-exchange
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
   spawn: CargoCash
 

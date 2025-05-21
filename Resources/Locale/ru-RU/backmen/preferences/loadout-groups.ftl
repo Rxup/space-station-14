@@ -27,7 +27,6 @@ loadout-group-blueshield-shoes = ОСЩ, обувь
 loadout-group-virologist-jumpsuit = Вирусолог, комбинезон
 loadout-group-virologist-outerclothing = Вирусолог, верхняя одежда
 loadout-group-virologist-backpack = Вирусолог, рюкзак
-
 # Surgeon
 loadout-group-surgeon-head = Хирург, голово
 loadout-group-surgeon-jumpsuit = Хирург, комбинезон

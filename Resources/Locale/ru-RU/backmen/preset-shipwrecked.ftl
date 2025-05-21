@@ -59,7 +59,6 @@ shipwrecked-hecate-aftercrash-sitrep = Что ж... это прискорбно.
 
 ## The Psychopomp
 
-
 # Somewhat general statements not specific to Shipwrecked
 
 hecate-qa-user-interface = Если у вас возникнут вопросы, просто назовите мое имя и спросите. В остальное время я буду заниматься калибровкой корабельных систем. Приятного полета.

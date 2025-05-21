@@ -29,37 +29,24 @@
   - MedkitRadiation
   - MedkitCombat
   - WhiteCane
+  - BodyBag
   position: 4,-5
 
 - type: technology
-  id: MedicalDefense
-  name: research-technology-medical-defense
+  id: LauncherSyringe
+  name: research-technology-launcher-syringe
   icon:
-    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
-    state: syringe-gun
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe_gun
   discipline: Medical
-  tier: 1
-  cost: 6500
+  tier: 3
+  cost: 22000
   recipeUnlocks:
-  - SyringeGun
+  - LauncherSyringe
+  - MiniSyringe
   technologyPrerequisites:
   - Medicine
   position: 4,-7
-
-- type: technology
-  id: MedicalDefenseAdvanced
-  name: research-technology-medical-defense-advanced
-  icon:
-    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
-    state: rapid-syringe-gun
-  discipline: Medical
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - RapidSyringeGun
-  technologyPrerequisites:
-  - MedicalDefense
-  position: 4,-8
 
 - type: technology
   id: Surgery
@@ -72,6 +59,7 @@
   cost: 1500
   recipeUnlocks:
   - Scalpel
+  - MedicalStitches
   - Retractor
   - Cautery
   - Drill
@@ -164,15 +152,15 @@
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     state: beakerbluespace
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 12000
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
   - BluespacePillCanister # backmen
   technologyPrerequisites:
-  - Chemistry
-  position: 2,-6
+  - ChemistryMachines
+  position: 2,-7
 
 - type: technology
   id: BiochemicalStasis
@@ -200,7 +188,6 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-  - BodyBag
   - NTBodyBag
   - PrisonerBodyBag
   - RadiationBodyBag

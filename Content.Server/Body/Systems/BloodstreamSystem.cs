@@ -1,13 +1,19 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
@@ -22,14 +28,16 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Speech.EntitySystems;
+using JetBrains.Annotations;
 using Robust.Server.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
 
-public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloodstream: backmen edit
+public sealed class BloodstreamSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -45,9 +53,18 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
 
     // backmen edit start
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
+
+    private float _bleedingSeverityTrade;
+    private float _bleedsScalingTime;
+
+    private EntityQuery<BleedInflicterComponent> _bleedsQuery;
+    private EntityQuery<WoundableComponent> _woundableQuery;
+    private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
     // backmen edit end
 
     public override void Initialize()
@@ -65,6 +82,18 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
         SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
+
+        // backmen edit start
+        SubscribeLocalEvent<BleedInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
+        SubscribeLocalEvent<BleedInflicterComponent, WoundChangedEvent>(OnWoundChanged);
+
+        Subs.CVar(_cfg, CCVars.BleedingSeverityTrade, value => _bleedingSeverityTrade = value, true);
+        Subs.CVar(_cfg, CCVars.BleedsScalingTime, value => _bleedsScalingTime = value, true);
+
+        _bleedsQuery = GetEntityQuery<BleedInflicterComponent>();
+        _woundableQuery = GetEntityQuery<WoundableComponent>();
+        _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
+        // backmen edit end
     }
 
     private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
@@ -185,37 +214,50 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                 bloodstream.StatusTime = TimeSpan.Zero;
             }
 
+            if (!_consciousnessQuery.TryComp(uid, out var consciousness))
+                continue;
+
             // backmen edit start
-            if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys))
+            if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys, consciousness))
                 continue;
 
             var total = FixedPoint2.Zero;
             foreach (var (bodyPart, _) in _body.GetBodyChildren(uid))
             {
-                foreach (var (wound, _) in _wound.GetWoundableWounds(bodyPart))
-                {
-                    if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
-                        continue;
-
-                    total += bleeds.BleedingAmount;
-                }
+                total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
+                        .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
             }
 
-            var missingBlood = bloodstream.BloodMaxVolume - bloodstream.BloodSolution.Value.Comp.Solution.Volume;
+            // I am very sorry, my dear shitcoders. but for now, while bloodstream is still in the state it is;
+            // I cannot properly override bleeding for woundable based entities. I am very sorry.
+            // This is this, and that is that.
+            bloodstream.BleedAmount = (float) total / 5f;
+            if (bloodstream.BleedAmount == 0)
+                _alertsSystem.ClearAlert(uid, bloodstream.BleedingAlert);
+            else
+            {
+                var severity = (short) Math.Clamp(Math.Round(bloodstream.BleedAmount, MidpointRounding.ToZero), 0, 10);
+                _alertsSystem.ShowAlert(uid, bloodstream.BleedingAlert, severity);
+            }
 
-            bloodstream.BleedAmount = (float) total / 4;
+            var lethalBloodlossPoint = bloodstream.BloodMaxVolume * bloodstream.LethalBloodlossThreshold;
+            var bloodAmount = bloodstream.BloodSolution.Value.Comp.Solution.Volume;
+
+            var missingBlood = 1 - (bloodAmount - lethalBloodlossPoint) / (bloodstream.BloodMaxVolume - lethalBloodlossPoint);
+            var consciousnessDamage = -consciousness.Cap * missingBlood;
+
             if (!_consciousness.SetConsciousnessModifier(
                     uid,
                     nerveSys.Value,
-                    -missingBlood / 4,
-                    identifier: "Bleeding",
+                    consciousnessDamage,
+                    identifier: "Bloodloss",
                     type: ConsciousnessModType.Pain))
             {
                 _consciousness.AddConsciousnessModifier(
                     uid,
                     nerveSys.Value,
-                    -missingBlood / 4,
-                    identifier: "Bleeding",
+                    consciousnessDamage,
+                    identifier: "Bloodloss",
                     type: ConsciousnessModType.Pain);
             }
         }
@@ -227,10 +269,12 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                 continue;
 
             var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
-            if (canBleed != bleeds.IsBleeding)
+            if (bleeds.IsBleeding != canBleed)
+            {
+                bleeds.IsBleeding = canBleed;
                 Dirty(ent, bleeds);
+            }
 
-            bleeds.IsBleeding = canBleed;
             if (!bleeds.IsBleeding)
                 continue;
 
@@ -241,7 +285,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
                 continue;
 
             var newBleeds = FixedPoint2.Clamp(
-                (totalTime / currentTime) / (bleeds.ScalingLimit - bleeds.Scaling),
+                bleeds.ScalingLimit * ((totalTime - currentTime) / totalTime),
                 0,
                 bleeds.ScalingLimit);
 
@@ -316,6 +360,107 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
             _popupSystem.PopupEntity(Loc.GetString("bloodstream-component-wounds-cauterized"), ent, ent, PopupType.Medium);
         }
     }
+
+    // backmen edit start
+    private void OnWoundHealAttempt(EntityUid uid, BleedInflicterComponent component, ref WoundHealAttemptEvent args)
+    {
+        if (component.IsBleeding)
+            args.Cancelled = true;
+    }
+
+    private void OnWoundChanged(EntityUid uid, BleedInflicterComponent component, ref WoundChangedEvent args)
+    {
+        if (args.Component.WoundSeverityPoint < component.SeverityThreshold)
+        {
+            var woundable = args.Component.HoldingWoundable;
+            if (!_woundableQuery.TryComp(woundable, out var woundableComp)
+                || !TryComp(woundable, out BodyPartComponent? bodyPart) || !bodyPart.Body.HasValue)
+                return;
+
+            var bodyEnt = bodyPart.Body.Value;
+            var bloodstream = Comp<BloodstreamComponent>(bodyEnt);
+
+            if (args.Delta <= bloodstream.BloodHealedSoundThreshold
+                     && component.IsBleeding && component.CauterizedBy.Contains(args.Component.DamageType))
+            {
+                foreach (var wound in
+                         _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(woundable, woundableComp))
+                {
+                    var bleeds = wound.Comp2;
+                    if (!bleeds.IsBleeding)
+                        continue;
+
+                    if (!bleeds.CauterizedBy.Contains(args.Component.DamageType))
+                        continue;
+
+                    bleeds.BleedingAmountRaw = 0;
+                    bleeds.SeverityPenalty = 0;
+                    bleeds.Scaling = 0;
+
+                    bleeds.IsBleeding = false;
+                }
+
+                _audio.PlayPvs(bloodstream.BloodHealedSound, bodyEnt);
+                _popupSystem.PopupEntity(Loc.GetString("bloodstream-component-wounds-cauterized"), bodyEnt, bodyEnt, PopupType.Medium);
+            }
+        }
+        else
+        {
+            if (!CanWoundBleed(uid, component)
+                && component.BleedingAmount < component.BleedingAmountRaw * component.ScalingLimit / 2)
+            {
+                component.BleedingAmountRaw = 0;
+                component.SeverityPenalty = 0;
+                component.Scaling = 0;
+
+                component.IsBleeding = false;
+            }
+            else
+            {
+                if (args.Delta < 0)
+                    return;
+
+                // TODO: Instant bloodloss isn't funny at all
+                //var prob = Math.Clamp((float) args.Delta / 25, 0, 1);
+                //if (args.Delta > 0 && _robustRandom.Prob(prob))
+                //{
+                //    var woundable = args.Component.HoldingWoundable;
+                //    if (TryComp(woundable, out BodyPartComponent? bodyPart) && bodyPart.Body.HasValue)
+                //    {
+                //        var bodyEnt = bodyPart.Body.Value;
+                //        var bloodstream = Comp<BloodstreamComponent>(bodyEnt);
+
+                        // instant blood loss
+                //        TryModifyBloodLevel(bodyEnt, (-args.Delta) / 15, bloodstream);
+                //        _audio.PlayPvs(bloodstream.InstantBloodSound, bodyEnt);
+                //    }
+                //}
+
+                var oldBleedsAmount = component.BleedingAmountRaw;
+                component.BleedingAmountRaw = args.Component.WoundSeverityPoint * _bleedingSeverityTrade;
+
+                var severityPenalty = component.BleedingAmountRaw - oldBleedsAmount / _bleedsScalingTime;
+                component.SeverityPenalty += severityPenalty;
+
+                if (component.IsBleeding)
+                {
+                    // Pump up the bleeding if hit again.
+                    component.ScalingLimit += args.Delta * _bleedingSeverityTrade;
+                }
+
+                var formula = (float) (args.Component.WoundSeverityPoint / _bleedsScalingTime * component.ScalingSpeed);
+                component.ScalingFinishesAt = _gameTiming.CurTime + TimeSpan.FromSeconds(formula);
+                component.ScalingStartsAt = _gameTiming.CurTime;
+
+                // wounds that BLEED will not HEAL.
+                component.IsBleeding = true;
+            }
+        }
+
+        Dirty(uid, component);
+    }
+    // backmene dit end
+
     /// <summary>
     ///     Shows text on health examine, based on bleed rate and blood level.
     /// </summary>
@@ -580,4 +725,201 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem // Shared Bloods
 
         return bloodData;
     }
+
+    // backmen edit start
+    /// <summary>
+    /// Self-explanatory
+    /// </summary>
+    /// <param name="uid">Wound entity</param>
+    /// <param name="comp">Bleeds Inflicter Component </param>
+    /// <returns>Returns whether if the wound can bleed</returns>
+    public bool CanWoundBleed(EntityUid uid, BleedInflicterComponent? comp = null)
+    {
+        if (!_bleedsQuery.Resolve(uid, ref comp))
+            return false;
+
+        if (comp.BleedingModifiers.Count == 0)
+            return true; // No modifiers. return true
+
+        var lastCanBleed = true;
+        var lastPriority = 0;
+        foreach (var (_, pair) in comp.BleedingModifiers)
+        {
+            if (pair.Priority <= lastPriority)
+                continue;
+
+            lastPriority = pair.Priority;
+            lastCanBleed = pair.CanBleed;
+        }
+
+        return lastCanBleed;
+    }
+
+    /// <summary>
+    /// Add a bleed-ability modifier on woundable
+    /// </summary>
+    /// <param name="woundable">Entity uid of the woundable to apply the modifiers</param>
+    /// <param name="identifier">string identifier of the modifier</param>
+    /// <param name="priority">Priority of the said modifier</param>
+    /// <param name="canBleed">Should the wounds bleed?</param>
+    /// <param name="force">If forced, won't stop after failing to apply one modifier</param>
+    /// <param name="woundableComp">Woundable Component</param>
+    /// <returns>Return true if applied</returns>
+    [PublicAPI]
+    public bool TryAddBleedModifier(
+        EntityUid woundable,
+        string identifier,
+        int priority,
+        bool canBleed,
+        bool force = false,
+        WoundableComponent? woundableComp = null)
+    {
+        if (!_woundableQuery.Resolve(woundable, ref woundableComp))
+            return false;
+
+        foreach (var woundEnt in _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(woundable, woundableComp))
+        {
+            if (TryAddBleedModifier(woundEnt, identifier, priority, canBleed, woundEnt.Comp2))
+                continue;
+
+            if (!force)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Add a bleed-ability modifier
+    /// </summary>
+    /// <param name="uid">Entity uid of the wound</param>
+    /// <param name="identifier">string identifier of the modifier</param>
+    /// <param name="priority">Priority of the said modifier</param>
+    /// <param name="canBleed">Should the wound bleed?</param>
+    /// <param name="comp">Bleed Inflicter Component</param>
+    /// <returns>Return true if applied</returns>
+    [PublicAPI]
+    public bool TryAddBleedModifier(
+        EntityUid uid,
+        string identifier,
+        int priority,
+        bool canBleed,
+        BleedInflicterComponent? comp = null)
+    {
+        if (!_bleedsQuery.Resolve(uid, ref comp))
+            return false;
+
+        if (!comp.BleedingModifiers.TryAdd(identifier, (priority, canBleed)))
+            return false;
+
+        Dirty(uid, comp);
+        return true;
+    }
+
+    /// <summary>
+    /// Remove a bleed-ability modifier from a woundable
+    /// </summary>
+    /// <param name="uid">Entity uid of the woundable</param>
+    /// <param name="identifier">string identifier of the modifier</param>
+    /// <param name="force">If forced, won't stop applying modifiers after failing one wound</param>
+    /// <param name="woundable">Woundable Component</param>
+    /// <returns>Returns true if removed all modifiers ON WOUNDABLE</returns>
+    [PublicAPI]
+    public bool TryRemoveBleedModifier(
+        EntityUid uid,
+        string identifier,
+        bool force = false,
+        WoundableComponent? woundable = null)
+    {
+        if (!_woundableQuery.Resolve(uid, ref woundable))
+            return false;
+
+        foreach (var woundEnt in _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(uid, woundable))
+        {
+            if (TryRemoveBleedModifier(woundEnt, identifier, woundEnt.Comp2))
+                continue;
+
+            if (!force)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Remove a bleed-ability modifier
+    /// </summary>
+    /// <param name="uid">Entity uid of the wound</param>
+    /// <param name="identifier">string identifier of the modifier</param>
+    /// <param name="comp">Bleed Inflicter Component</param>
+    /// <returns>Return true if removed</returns>
+    public bool TryRemoveBleedModifier(
+        EntityUid uid,
+        string identifier,
+        BleedInflicterComponent? comp = null)
+    {
+        if (!_bleedsQuery.Resolve(uid, ref comp))
+            return false;
+
+        if (!comp.BleedingModifiers.Remove(identifier))
+            return false;
+
+        Dirty(uid, comp);
+        return true;
+    }
+
+    /// <summary>
+    /// Redact a modifiers meta data
+    /// </summary>
+    /// <param name="wound">The wound entity uid</param>
+    /// <param name="identifier">Identifier of the modifier</param>
+    /// <param name="priority">Priority to set</param>
+    /// <param name="canBleed">Should it bleed?</param>
+    /// <param name="bleeds">Bleed Inflicter Component</param>
+    /// <returns>true if was changed</returns>
+    [PublicAPI]
+    public bool ChangeBleedsModifierMetadata(
+        EntityUid wound,
+        string identifier,
+        bool canBleed,
+        int? priority,
+        BleedInflicterComponent? bleeds = null)
+    {
+        if (!_bleedsQuery.Resolve(wound, ref bleeds))
+            return false;
+
+        if (!bleeds.BleedingModifiers.TryGetValue(identifier, out var pair))
+            return false;
+
+        bleeds.BleedingModifiers[identifier] = (Priority: priority ?? pair.Priority, CanBleed: canBleed);
+        return true;
+    }
+
+    /// <summary>
+    /// Redact a modifiers meta data
+    /// </summary>
+    /// <param name="wound">The wound entity uid</param>
+    /// <param name="identifier">Identifier of the modifier</param>
+    /// <param name="priority">Priority to set</param>
+    /// <param name="canBleed">Should it bleed?</param>
+    /// <param name="bleeds">Bleed Inflicter Component</param>
+    /// <returns>true if was changed</returns>
+    [PublicAPI]
+    public bool ChangeBleedsModifierMetadata(
+        EntityUid wound,
+        string identifier,
+        int priority,
+        bool? canBleed,
+        BleedInflicterComponent? bleeds = null)
+    {
+        if (!_bleedsQuery.Resolve(wound, ref bleeds))
+            return false;
+
+        if (!bleeds.BleedingModifiers.TryGetValue(identifier, out var pair))
+            return false;
+
+        bleeds.BleedingModifiers[identifier] = (Priority: priority, CanBleed: canBleed ?? pair.CanBleed);
+        return true;
+    }
+    // backmen edit end
 }

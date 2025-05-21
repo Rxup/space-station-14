@@ -14,6 +14,8 @@
         - id: ClothingUniformJumpskirtOperative
         - id: ClothingHeadsetAltSyndicate
         - id: ClothingEyesHudSyndicate
+        - id: BogdaPlush #backmen
+          prob: 0.1        
 
 - type: entityTable
   id: FillLockerEmergencyStandard
@@ -147,6 +149,7 @@
     - id: BalloonSyn
     - id: WeaponSniperMosinNew
       weight: 2
+    - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable
   id: BackmenMaintLoot
@@ -213,7 +216,22 @@
       prob: 0.02
     - id: FoodJellySlugUwU
       prob: 0.01
-
+    # Player plush | Backmen
+    - id: MikaPlush
+      prob: 0.01
+    - id: BogdaPlush
+      prob: 0.01
+    - id: KreydPlush
+      prob: 0.01
+    - id: DDH777Plushie
+      prob: 0.05
+    - id: YuriPlushie
+      prob: 0.01
+    - id: RaNlikPlushie
+      prob: 0.01
+    - id: ChaosPlushie
+      prob: 0.01
+    
 - type: entity
   id: ClosetMaintenanceFilledRandom
   suffix: Filled, Random

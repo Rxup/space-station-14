@@ -10,6 +10,14 @@
           - material: GoliathHide
             amount: 5
             doAfter: 2
+      - to: reinforcedhev # HEV
+        steps:
+          - material: HEVPiece
+            amount: 5
+            doAfter: 5
+          - material: CableGold
+            amount: 10
+            doAfter: 2
     - node: reinforced1
       entity: LavalandEquipmentExplorerSuitReinforced1
       edges:
@@ -29,17 +37,6 @@
     - node: reinforced3
       entity: LavalandEquipmentExplorerSuitReinforced3
     # HEV
-    - node: start
-      entity: LavalandEquipmentExplorerSuit
-      edges:
-      - to: reinforcedhev
-        steps:
-          - material: HEVPiece
-            amount: 5
-            doAfter: 5
-          - material: CableGold
-            amount: 10
-            doAfter: 2
     - node: reinforcedhev
       entity: LavalandEquipmentExplorerSuitReinforcedHEV
       edges:
@@ -52,6 +49,7 @@
             amount: 20
             doAfter: 2
           - tag: SalvageResearchTool
+            name: construction-graph-tag-xen-research-tool
             doAfter: 1
     - node: reinforcedhev2
       entity: LavalandEquipmentExplorerSuitReinforcedHEV2
@@ -65,10 +63,13 @@
             amount: 30
             doAfter: 2
           - tag: SalvageResearchTool
+            name: construction-graph-tag-xen-research-tool
             doAfter: 1
           - tag: SalvageResearchTool
+            name: construction-graph-tag-xen-research-tool
             doAfter: 1
           - tag: SalvagePCVPlate
+            name: construction-graph-tag-xen-pcv-plate
             doAfter: 1
     - node: reinforcedhev3
       entity: LavalandEquipmentExplorerSuitReinforcedHEV3

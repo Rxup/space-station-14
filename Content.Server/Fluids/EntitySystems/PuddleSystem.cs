@@ -5,6 +5,7 @@ using Content.Server.DoAfter;
 using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.FootPrint;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -76,6 +77,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     private HashSet<EntityUid> _deletionQueue = [];
 
     private EntityQuery<PuddleComponent> _puddleQuery;
+    private EntityQuery<FootPrintComponent> _footPrintQuery; // backmen
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -88,6 +90,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         base.Initialize();
 
         _puddleQuery = GetEntityQuery<PuddleComponent>();
+        _footPrintQuery = GetEntityQuery<FootPrintComponent>(); // backmen
 
         // Shouldn't need re-anchoring.
         SubscribeLocalEvent<PuddleComponent, AnchorStateChangedEvent>(OnAnchorChanged);
@@ -345,6 +348,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     private void UpdateAppearance(EntityUid uid, PuddleComponent? puddleComponent = null,
         AppearanceComponent? appearance = null)
     {
+        // start-backmen: footprint
+        if(_footPrintQuery.HasComp(uid))
+            return;
+        // end-backmen: footprint
         if (!Resolve(uid, ref puddleComponent, ref appearance, false))
         {
             return;
@@ -386,6 +393,9 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (!TryComp<StepTriggerComponent>(entity, out var comp))
             return;
 
+        // Ensure we actually have the component
+        EnsureComp<TileFrictionModifierComponent>(entity);
+
         // This is the base amount of reagent needed before a puddle can be considered slippery. Is defined based on
         // the sprite threshold for a puddle larger than 5 pixels.
         var smallPuddleThreshold = FixedPoint2.New(entity.Comp.OverflowVolume.Float() * LowThreshold);
@@ -409,7 +419,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (solution.Volume <= smallPuddleThreshold)
         {
             _stepTrigger.SetActive(entity, false, comp);
-            _tile.SetModifier(entity, TileFrictionController.DefaultFriction);
+            _tile.SetModifier(entity, 1f);
             return;
         }
 
@@ -461,7 +471,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         // Lower tile friction based on how slippery it is, lets items slide across a puddle of lube
         slipComp.SlipData.SlipFriction = (float)(puddleFriction/solution.Volume);
-        _tile.SetModifier(entity, TileFrictionController.DefaultFriction * slipComp.SlipData.SlipFriction);
+        _tile.SetModifier(entity, slipComp.SlipData.SlipFriction);
 
         Dirty(entity, slipComp);
     }
@@ -484,7 +494,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         {
             var comp = EnsureComp<SpeedModifierContactsComponent>(uid);
             var speed = 1 - maxViscosity;
-            _speedModContacts.ChangeModifiers(uid, speed, comp);
+            _speedModContacts.ChangeSpeedModifiers(uid, speed, comp);
         }
         else
         {

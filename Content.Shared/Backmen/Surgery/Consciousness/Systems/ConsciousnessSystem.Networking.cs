@@ -29,17 +29,23 @@ public partial class ConsciousnessSystem
 
         foreach (var ((modEntity, modType), modifier) in state.Modifiers)
         {
-            component.Modifiers.Add((TryGetEntity(modEntity, out var ne) ? ne.Value : EntityUid.Invalid, modType), modifier);
+            var ent = TryGetEntity(modEntity, out var nem) ? nem.Value : EntityUid.Invalid;
+            if (ent.Valid && !TerminatingOrDeleted(ent))
+                component.Modifiers.TryAdd((ent, modType), modifier);
         }
 
         foreach (var ((multiplierEntity, multiplierType), modifier) in state.Multipliers)
         {
-            component.Multipliers.Add((TryGetEntity(multiplierEntity, out var ne) ? ne.Value : EntityUid.Invalid, multiplierType), modifier);
+            var ent = TryGetEntity(multiplierEntity, out var nem) ? nem.Value : EntityUid.Invalid;
+            if (ent.Valid && !TerminatingOrDeleted(ent))
+                component.Multipliers.TryAdd((ent, multiplierType), modifier);
         }
 
         foreach (var (id, (entity, causesDeath, isLost)) in state.RequiredConsciousnessParts)
         {
-            component.RequiredConsciousnessParts.Add(id, (TryGetEntity(entity, out var ne) ? ne.Value : EntityUid.Invalid, causesDeath, isLost));
+            var ent = TryGetEntity(entity, out var ne) ? ne.Value : EntityUid.Invalid;
+            if (ent.Valid && !TerminatingOrDeleted(ent))
+                component.RequiredConsciousnessParts.TryAdd(id, (ent, causesDeath, isLost));
         }
     }
 

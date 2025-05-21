@@ -5,6 +5,23 @@
   description: A card necessary to access various areas aboard the station.
   abstract: true
   components:
+    # backmen edit start
+    - type: EmitSoundOnPickup
+      sound:
+        path: /Audio/Backmen/Items/handling/card_pickup.ogg
+        params:
+          volume: -7
+    - type: EmitSoundOnDrop
+      sound:
+        path: /Audio/Backmen/Items/handling/card_drop.ogg
+        params:
+          volume: -7
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Backmen/Items/handling/card_drop.ogg
+        params:
+          volume: -7
+    # backmen edit end
     - type: Sprite
       sprite: Backmen/Objects/Misc/id_cards.rsi # Backmen
       scale: 0.9, 0.9 # Backmen
@@ -1104,28 +1121,35 @@
   suffix: Admin
   description: An ID card that gives you access beyond your wildest dreams.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
-    layers:
-    - state: admin
-  - type: Clothing
-#    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
-  - type: Item
-    heldPrefix: green
-  - type: IdCard
-    jobTitle: job-title-universal
-    jobIcon: JobIconAdmin
-  - type: Access
-    groups:
-    - AdminAllAccess
-  - type: Tag #  Ignore Chameleon tags
-    tags:
-    - DoorBumpOpener
-  - type: AgentIDCard
-  - type: ActivatableUI
-    key: enum.AgentIDCardUiKey.Key
-    inHandsOnly: true
-  - type: UserInterface
-    interfaces:
-      enum.AgentIDCardUiKey.Key:
-        type: AgentIDCardBoundUserInterface
+    - type: Sprite
+      #    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
+      layers:
+        - state: card_green # Backmen
+        - state: sub_department # Backmen
+          color: "#cb0000"
+        - state: frame_default # Backmen
+          color: "#cb0000"
+        - state: assigned_weh # Backmen
+        - state: idadmin
+    - type: Clothing
+    #    sprite: Objects/Misc/id_cards.rsi # Backmen-REMOVE
+    - type: Item
+      heldPrefix: green
+    - type: IdCard
+      jobTitle: job-title-universal
+      jobIcon: JobIconAdmin
+    - type: Access
+      groups:
+        - AdminAllAccess
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+    - type: AgentIDCard
+    - type: ActivatableUI
+      key: enum.AgentIDCardUiKey.Key
+      inHandsOnly: true
+    - type: UserInterface
+      interfaces:
+        enum.AgentIDCardUiKey.Key:
+          type: AgentIDCardBoundUserInterface
+

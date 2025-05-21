@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Pain;
-using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
@@ -14,6 +12,7 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 public partial class TraumaSystem
 {
     private const string OrganDamagePainIdentifier = "OrganDamage";
+    private const string OrganDestroyedPainIdentifier = "OrganDestroyed";
 
     private void InitOrgans()
     {
@@ -53,18 +52,19 @@ public partial class TraumaSystem
         var totalIntegrityCap = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.IntegrityCap);
 
         // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
+        var organPainDamage = totalIntegrityCap - totalIntegrity;
         if (!Pain.TryChangePainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
                 OrganDamagePainIdentifier,
-                (totalIntegrityCap - totalIntegrity) / 2,
+                organPainDamage,
                 nerveSys.Value.Comp))
         {
             Pain.TryAddPainModifier(
                 nerveSys.Value,
                 bodyPart.Owner,
                 OrganDamagePainIdentifier,
-                (totalIntegrityCap - totalIntegrity) / 2,
+                organPainDamage,
                 PainDamageTypes.TraumaticPain,
                 nerveSys.Value.Comp);
         }
@@ -79,17 +79,35 @@ public partial class TraumaSystem
         if (args.NewSeverity != OrganSeverity.Destroyed)
             return;
 
-        if (Consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !_mobState.IsDead(body.Value))
+        if (Consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !MobState.IsDead(body.Value))
         {
             var sex = Sex.Unsexed;
             if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
                 sex = humanoid.Sex;
 
-            Pain.PlayPainSoundWithCleanup(
+            Pain.CleanupPainSounds(nerveSys.Value, nerveSys);
+            Pain.PlayPainSound(
                 body.Value,
-                nerveSys.Value.Comp,
                 nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
                 AudioParams.Default.WithVolume(6f));
+
+            if (!Pain.TryChangePainModifier(
+                    nerveSys.Value,
+                    bodyPart.Owner,
+                    OrganDestroyedPainIdentifier,
+                    args.Organ.Comp.IntegrityCap * 1.6f,
+                    nerveSys.Value.Comp,
+                    TimeSpan.FromMinutes(4f)))
+            {
+                Pain.TryAddPainModifier(
+                    nerveSys.Value,
+                    bodyPart.Owner,
+                    OrganDestroyedPainIdentifier,
+                    args.Organ.Comp.IntegrityCap * 1.6f,
+                    PainDamageTypes.TraumaticPain,
+                    nerveSys.Value.Comp,
+                    TimeSpan.FromMinutes(4f));
+            }
 
             _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
             _stun.TrySlowdown(
@@ -123,7 +141,7 @@ public partial class TraumaSystem
     #region Public API
 
     [PublicAPI]
-    public virtual bool TryCreateOrganDamageModifier(EntityUid uid,
+    public virtual bool TryAddOrganDamageModifier(EntityUid uid,
         FixedPoint2 severity,
         EntityUid effectOwner,
         string identifier,

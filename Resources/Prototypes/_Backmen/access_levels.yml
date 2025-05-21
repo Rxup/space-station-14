@@ -35,8 +35,14 @@
   - Theatre
   - Chapel
   - Lawyer
+  - Wizard
   - GenpopEnter
   - GenpopLeave
+  - Borg
+  - BasicSilicon
+  - Virology
+  - SecurityTechnician
+  - StationAi
   #all access: end
   #syndy: start
   - NuclearOperative

@@ -1,0 +1,11 @@
+- type: entity
+  name: brown toolbox
+  parent: ToolboxBase
+  id: ToolboxInteQ
+  description: An elegant toolbox.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/toolbox_inteq.rsi
+    state: icon
+  - type: Item
+    sprite: Backmen/Objects/Tools/toolbox_inteq.rsi

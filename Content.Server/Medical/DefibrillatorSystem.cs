@@ -6,7 +6,7 @@ using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.PowerCell;
-using Content.Server.Traits.Assorted;
+using Content.Server.Revenant.Components;
 using Content.Shared.Backmen.Chat;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
@@ -14,17 +14,13 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Medical;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.PowerCell;
 using Content.Shared.Timing;
-using Content.Shared.Toggleable;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -181,8 +177,7 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (targetEvent.Cancelled || !CanZap(uid, target, user, component, true))
             return;
 
-        if (!TryComp<MobStateComponent>(target, out var mob) ||
-            !TryComp<MobThresholdsComponent>(target, out var thresholds))
+        if (!TryComp<MobStateComponent>(target, out var mob))
             return;
 
         _audio.PlayPvs(component.ZapSound, uid);
@@ -210,10 +205,17 @@ public sealed class DefibrillatorSystem : EntitySystem
             if (_mobState.IsDead(target, mob))
             {
                 // backmen edit start
-                if (HasComp<ConsciousnessComponent>(target) && _consciousness.TryGetNerveSystem(target, out _))
+                if (TryComp<ConsciousnessComponent>(target, out var consciousness)
+                    && _consciousness.TryGetNerveSystem(target, out var nerveSys))
                 {
-                    _consciousness.RemoveConsciousnessModifier(target, target, "Suffocation");
-                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold");
+                    _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Suffocation", consciousness);
+                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold", consciousness);
+
+                    if (_consciousness.CheckConscious(target, consciousness, mob))
+                    {
+                        _consciousness.ForceConscious(target, component.ForceConsciousnessDuration, consciousness);
+                        dead = false;
+                    }
                 }
                 else // backmen edit end
                 {
@@ -240,7 +242,7 @@ public sealed class DefibrillatorSystem : EntitySystem
                 }
 
                 // start-backmen: revenant
-                if (TryComp<Server.Revenant.Components.EssenceComponent>(target, out var essenceComponent))
+                if (TryComp<EssenceComponent>(target, out var essenceComponent))
                 {
                     essenceComponent.Harvested = false;
                 }

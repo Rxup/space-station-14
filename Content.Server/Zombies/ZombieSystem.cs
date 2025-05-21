@@ -8,6 +8,9 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Roles;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Damage;
@@ -43,6 +46,9 @@ namespace Content.Server.Zombies
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedRoleSystem _role = default!;
 
+        [Dependency] private readonly PainSystem _pain = default!; // Backmen Edit
+        [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // Backmen Edit
+
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
             SlotFlags.HEAD |
@@ -66,6 +72,7 @@ namespace Content.Server.Zombies
             SubscribeLocalEvent<ZombieComponent, CloningEvent>(OnZombieCloning);
             SubscribeLocalEvent<ZombieComponent, TryingToSleepEvent>(OnSleepAttempt);
             SubscribeLocalEvent<ZombieComponent, GetCharactedDeadIcEvent>(OnGetCharacterDeadIC);
+            SubscribeLocalEvent<ZombieComponent, GetCharacterUnrevivableIcEvent>(OnGetCharacterUnrevivableIC);
             SubscribeLocalEvent<ZombieComponent, MindAddedMessage>(OnMindAdded);
             SubscribeLocalEvent<ZombieComponent, MindRemovedMessage>(OnMindRemoved);
 
@@ -166,6 +173,11 @@ namespace Content.Server.Zombies
         private void OnGetCharacterDeadIC(EntityUid uid, ZombieComponent component, ref GetCharactedDeadIcEvent args)
         {
             args.Dead = true;
+        }
+
+        private void OnGetCharacterUnrevivableIC(EntityUid uid, ZombieComponent component, ref GetCharacterUnrevivableIcEvent args)
+        {
+            args.Unrevivable = true;
         }
 
         private void OnStartup(EntityUid uid, ZombieComponent component, ComponentStartup args)
@@ -299,6 +311,16 @@ namespace Content.Server.Zombies
             }
             _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
             _bloodstream.ChangeBloodReagent(target, zombiecomp.BeforeZombifiedBloodReagent);
+
+            // Backmen Edit start
+            if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
+            {
+                _pain.TryRemovePainMultiplier(nerveSys.Value, "Zombified", nerveSys.Value);
+                _pain.TryRemovePainMultiplier(nerveSys.Value, "ZombifiedTraumatic", nerveSys.Value);
+
+                _consciousness.RemoveConsciousnessMultiplier(target, target, "Zombified");
+            }
+            // Backmen Edit end
 
             return true;
         }

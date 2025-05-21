@@ -38,6 +38,17 @@
         ents: []
   - type: StaticPrice
     price: 500
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
+  # backmen edit start
 
 - type: entity
   name: Kardashev-Mosin
@@ -48,6 +59,7 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: GunRequiresWield
 
 - type: entity
   name: Hristov
@@ -120,6 +132,7 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: GunRequiresWield
 
 - type: entity
   name: flintlock pistol
@@ -153,10 +166,8 @@
     price: 0
 
 - type: entity
-  name: flintlock pistol
   parent: WeaponPistolFlintlock
   id: WeaponPistolFlintlockEmpty
-  description: A pirate's companion. Yarrr! Uses .45 magnum ammo.
   suffix: Empty
   components:
   - type: BallisticAmmoProvider

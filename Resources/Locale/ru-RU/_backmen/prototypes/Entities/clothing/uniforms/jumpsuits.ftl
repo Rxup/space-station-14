@@ -1,5 +1,5 @@
 ent-ClothingUniformJumpsuitWhiteCapTurtleneck = белая водолазка капитана
-    .desc = Белая водолазка для настоящего капитана.
+    .desc = Настоящая белая водолазка капитана.
 ent-ClothingUniformJumpsuitBlueShield = комбенизон офицера "Синий Щит"
     .desc = Специальный комбенизон для офицеров "Синий Щит".
 ent-ClothingUniformBlueShieldTurtleneck = водолазка офицера "Синий Щит"

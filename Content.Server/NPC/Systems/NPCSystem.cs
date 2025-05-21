@@ -136,7 +136,6 @@ namespace Content.Server.NPC.Systems
             if (!Enabled)
                 return;
 
-            _count = 0;
             // Add your system here.
             _htn.UpdateNPC(ref _count, _maxUpdates, frameTime);
         }
@@ -151,6 +150,7 @@ namespace Content.Server.NPC.Systems
                 case MobState.Alive:
                     WakeNPC(uid, component);
                     break;
+                case MobState.SoftCritical: // backmen edit: Soft crit
                 case MobState.Critical:
                 case MobState.Dead:
                     SleepNPC(uid, component);

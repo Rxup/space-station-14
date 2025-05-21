@@ -6,6 +6,8 @@ using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Clothing;
 using Content.Shared.Damage;
 using Content.Shared.DeviceNetwork;
@@ -45,6 +47,7 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly WoundSystem _wound = default!; // backmen edit
 
     public override void Initialize()
     {
@@ -403,6 +406,14 @@ public sealed class SuitSensorSystem : EntitySystem
         int? totalDamageThreshold = null;
         if (_mobThresholdSystem.TryGetThresholdForState(sensor.User.Value, MobState.Critical, out var critThreshold))
             totalDamageThreshold = critThreshold.Value.Int();
+
+        // backmen edit start
+        if (TryComp<ConsciousnessComponent>(sensor.User.Value, out var consciousness))
+        {
+            totalDamage = (int) _wound.GetBodySeverityPoint(sensor.User.Value);
+            totalDamageThreshold = (int) consciousness.Threshold;
+        }
+        // backmen edit end
 
         // finally, form suit sensor status
         var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(uid), userName, userJob, userJobIcon, userJobDepartments);

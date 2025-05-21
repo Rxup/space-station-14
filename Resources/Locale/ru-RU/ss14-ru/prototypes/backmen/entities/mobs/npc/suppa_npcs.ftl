@@ -10,7 +10,6 @@ ent-MobBritishRangedGuard = { ent-MobBritishMelee }
 ent-MobBritishRanged = { ent-MobBritishMelee }
     .desc = { ent-MobBritishMelee.desc }
     .suffix = Дальний
-
 ent-MobSpanishMelee = испанский солдат
     .desc = Человек в форме испанского флота. Эм... Да...
     .suffix = Ближний
@@ -23,18 +22,15 @@ ent-MobSpanishRangedGuard = { ent-MobSpanishMelee }
 ent-MobSpanishRanged = { ent-MobSpanishMelee }
     .desc = { ent-MobSpanishMelee.desc }
     .suffix = Дальний
-
 ent-MobPirateMelee = пират
     .desc = Ярр, тысяча морских драконов.
     .suffix = Ближний
 ent-MobPirateRanged = { ent-MobPirateMelee }
     .desc = { ent-MobPirateMelee.desc }
     .suffix = Дальний
-
 ent-MobCivilianOld = { ent-MobCivilianSuppa }
     .desc = { ent-MobCivilianSuppa.desc }
     .suffix = Гражданский, Устаревший
-
 ent-MobCivilianSuppa = гражданский
     .desc = Гражданский, просто существует.
     .suffix = Гражданский

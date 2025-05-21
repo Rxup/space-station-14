@@ -12,49 +12,75 @@ public partial class PainSystem
 {
     #region Public API
 
-    public void CleanupSounds(NerveSystemComponent nerveSys)
+    /// <summary>
+    /// Forces someone into pain crit
+    /// </summary>
+    /// <param name="ent">The brain entity</param>
+    /// <param name="time">Time for the person to be in pain crit</param>
+    /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    [PublicAPI]
+    public virtual void ForcePainCrit(EntityUid ent, TimeSpan time, NerveSystemComponent? nerveSys = null)
     {
-        foreach (var (id, _) in nerveSys.PlayedPainSounds.Where(sound => !TerminatingOrDeleted(sound.Key)))
-        {
-            IHaveNoMouthAndIMustScream.Stop(id);
-            nerveSys.PlayedPainSounds.Remove(id);
-        }
-
-        foreach (var (id, _) in nerveSys.PainSoundsToPlay.Where(sound => !TerminatingOrDeleted(sound.Key)))
-        {
-            nerveSys.PainSoundsToPlay.Remove(id);
-        }
     }
 
-    public Entity<AudioComponent>? PlayPainSound(EntityUid body, SoundSpecifier specifier, AudioParams? audioParams = null)
+    [PublicAPI]
+    public virtual void CleanupPainSounds(EntityUid ent, NerveSystemComponent? nerveSys = null)
     {
-        return IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
     }
 
-    public Entity<AudioComponent>? PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    /// <summary>
+    /// Plays the Pain Sound without logging it, use this if you want it to not be interrupted
+    /// </summary>
+    /// <param name="body">The body entity to make scream</param>
+    /// <param name="specifier">The scream audio</param>
+    /// <param name="audioParams">audio params</param>
+    /// <returns>Returns the audio entity</returns>
+    [PublicAPI]
+    public virtual Entity<AudioComponent>? PlayPainSound(EntityUid body, SoundSpecifier specifier, AudioParams? audioParams = null)
     {
-        var sound = IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
-        if (!sound.HasValue)
-            return null;
-
-        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
-        return sound.Value;
+        return null;
     }
 
-    public Entity<AudioComponent>? PlayPainSoundWithCleanup(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, AudioParams? audioParams = null)
+    /// <summary>
+    /// Plays the Pain Sound with logging, use this for typical pain sounds
+    /// </summary>
+    /// <param name="body">Body uid</param>
+    /// <param name="nerveSysEnt">Nerve sys uid</param>
+    /// <param name="specifier">The scream audio</param>
+    /// <param name="audioParams">audio params</param>
+    /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    /// <returns>Returns teh playing audio</returns>
+    [PublicAPI]
+    public virtual Entity<AudioComponent>? PlayPainSound(
+        EntityUid body,
+        EntityUid nerveSysEnt,
+        SoundSpecifier specifier,
+        AudioParams? audioParams = null,
+        NerveSystemComponent? nerveSys = null)
     {
-        CleanupSounds(nerveSys);
-        var sound = IHaveNoMouthAndIMustScream.PlayPvs(specifier, body, audioParams);
-        if (!sound.HasValue)
-            return null;
-
-        nerveSys.PlayedPainSounds.Add(sound.Value.Entity, sound.Value.Component);
-        return sound.Value;
+        return null;
     }
 
-    public void PlayPainSound(EntityUid body, NerveSystemComponent nerveSys, SoundSpecifier specifier, TimeSpan delay, AudioParams? audioParams = null)
+    /// <summary>
+    /// Plays the Pain Sounds with a delay and logging, use this if you want to delay it for some reason
+    /// </summary>
+    /// <param name="nerveSysEnt">Nerve system entity</param>
+    /// <param name="specifier">Scream sound</param>
+    /// <param name="delay">The delay</param>
+    /// <param name="audioParams">audio params</param>
+    /// <param name="nerveSys"><see cref="NerveSystemComponent"/></param>
+    [PublicAPI]
+    public void PlayPainSound(
+        EntityUid nerveSysEnt,
+        SoundSpecifier specifier,
+        TimeSpan delay,
+        AudioParams? audioParams = null,
+        NerveSystemComponent? nerveSys = null)
     {
-        nerveSys.PainSoundsToPlay.Add(body, (specifier, audioParams, Timing.CurTime + delay));
+        if (!Resolve(nerveSysEnt, ref nerveSys))
+            return;
+
+        nerveSys.PainSoundsToPlay.TryAdd(specifier, (audioParams, Timing.CurTime + delay));
     }
 
     [PublicAPI]
@@ -106,7 +132,7 @@ public partial class PainSystem
     }
 
     /// <summary>
-    /// Gets a copy of pain modifier.
+    /// Gets a copy of a pain modifier.
     /// </summary>
     /// <param name="uid">Uid of the nerveSystem component owner.</param>
     /// <param name="nerveUid">Nerve uid, used to seek for modifier.</param>

@@ -106,6 +106,10 @@ language-Kobold-description = Hiss!
 language-Hissing-name = Hissing
 language-Hissing-description = Hiss!
 
+language-Codespeak-name = Codespeak
+language-Codespeak-description =
+    Military codes used by Syndicate.
+
 language-OldFastCodes-name = Old Fast Codes
 language-OldFastCodes-description =
     Old military codes used hundreds of years ago.

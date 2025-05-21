@@ -2,10 +2,8 @@
 using System.Linq;
 using Content.Shared.Armor;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
-using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -22,7 +20,6 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 public partial class TraumaSystem
 {
     private const string TraumaContainerId = "Traumas";
-    public static readonly TraumaType[] TraumasBlockingHealing = { TraumaType.BoneDamage, TraumaType.OrganDamage, TraumaType.Dismemberment };
 
     private float _nerveDamageThreshold = 0.7f;
 
@@ -70,6 +67,40 @@ public partial class TraumaSystem
     }
 
     #region Public API
+
+    public bool AnyTraumasBlockingHealing(
+        EntityUid targetWoundable,
+        WoundableComponent? woundableComp = null)
+    {
+        if (!WoundableQuery.Resolve(targetWoundable, ref woundableComp))
+            return false;
+
+        if (!TryGetWoundableTrauma(targetWoundable, out var traumas, woundableComp: woundableComp))
+            return false;
+
+        foreach (var trauma in traumas)
+        {
+            switch (trauma.Comp.TraumaType)
+            {
+                case TraumaType.BoneDamage:
+                    var targetedBone = trauma.Comp.TraumaTarget;
+                    if (!BoneQuery.TryComp(targetedBone, out var bone))
+                        break;
+
+                    if (bone.BoneSeverity is BoneSeverity.Damaged or BoneSeverity.Broken)
+                        return true;
+
+                    break;
+                case TraumaType.NerveDamage:
+                case TraumaType.VeinsDamage: // Veins being destroyed actually should stop you from healing, but well
+                    continue;
+                default:
+                    return true;
+            }
+        }
+
+        return false;
+    }
 
     public virtual EntityUid AddTrauma(
         EntityUid target,
@@ -341,7 +372,9 @@ public partial class TraumaSystem
         var chance = FixedPoint2.Clamp(
             target.Comp.IntegrityCap / (target.Comp.WoundableIntegrity + boneComp.BoneIntegrity)
              * _boneTraumaChanceMultipliers[target.Comp.WoundableSeverity]
-             - deduction + woundInflicter.Comp.TraumasChances[TraumaType.BoneDamage],
+             - deduction
+             + woundInflicter.Comp.TraumasChances[TraumaType.BoneDamage]
+             + target.Comp.PassiveTraumaChances[TraumaType.BoneDamage],
             0,
             1);
 
@@ -375,7 +408,9 @@ public partial class TraumaSystem
         var chance =
             FixedPoint2.Clamp(
                 target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 20
-                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage],
+                - deduction
+                + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage]
+                + target.Comp.PassiveTraumaChances[TraumaType.NerveDamage],
                 0,
                 1);
 
@@ -415,7 +450,9 @@ public partial class TraumaSystem
         var chance =
             FixedPoint2.Clamp(
                 target.Comp.IntegrityCap / target.Comp.WoundableIntegrity / totalIntegrity
-                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.OrganDamage],
+                - deduction
+                + woundInflicter.Comp.TraumasChances[TraumaType.OrganDamage]
+                + target.Comp.PassiveTraumaChances[TraumaType.OrganDamage],
                 0,
                 1);
 
@@ -435,9 +472,6 @@ public partial class TraumaSystem
         if (!parentWoundable.HasValue)
             return false;
 
-        if (bodyPart.PartType == BodyPartType.Groin && Comp<WoundableComponent>(parentWoundable.Value).WoundableSeverity != WoundableSeverity.Critical)
-            return false;
-
         var deduction = GetTraumaChanceDeduction(
             woundInflicter,
             bodyPart.Body.Value,
@@ -450,7 +484,7 @@ public partial class TraumaSystem
 
         // Broken bones increase the chance of your limb getting delimbed
         var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
-        if (bone != null && TryComp<BoneComponent>(bone, out var boneComp))
+        if (TryComp<BoneComponent>(bone, out var boneComp))
         {
             if (boneComp.BoneSeverity != BoneSeverity.Broken)
             {
@@ -462,7 +496,9 @@ public partial class TraumaSystem
         var chance =
             FixedPoint2.Clamp(
                 1 - target.Comp.WoundableIntegrity / target.Comp.IntegrityCap * bonePenalty
-                - deduction + woundInflicter.Comp.TraumasChances[TraumaType.Dismemberment],
+                - deduction
+                + woundInflicter.Comp.TraumasChances[TraumaType.Dismemberment]
+                + target.Comp.PassiveTraumaChances[TraumaType.Dismemberment],
                 0,
                 1);
         // getting hit again increases the chance

@@ -72,8 +72,13 @@
         walkSpeedModifier: 1.25
         sprintSpeedModifier: 1.25
       - !type:SuppressPain
-        amount: 1.2
-        time: 10 # it accumulated 1.2*quantity and then exists for 30 seconds.
+        amount: 1.6
+        time: 40
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        amount: 0.04
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -184,8 +189,8 @@
               Burn: -1
               Brute: -1
         - !type:SuppressPain
-          amount: 1.2
-          time: 30 # it accumulated 1.2*quantity and then exists for 30 seconds.
+          amount: 2
+          time: 30 # it accumulates 2*quantity and then exists for 30 seconds.
 
 - type: reagent
   id: THC

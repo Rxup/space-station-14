@@ -38,7 +38,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly ShadowkinDarkenSystem _darken = default!;
-    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
@@ -190,8 +190,6 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             args.VolumeOff,
             args
         );
-
-        _magic.Speak(args);
     }
 
 

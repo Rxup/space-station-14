@@ -18,15 +18,6 @@ public sealed class FootPrintsVisualizerSystem : VisualizerSystem<FootPrintCompo
 
         SubscribeLocalEvent<FootPrintComponent, ComponentInit>(OnInitialized);
         SubscribeLocalEvent<FootPrintComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<FootPrintComponent, ComponentHandleState>(OnHandleState);
-    }
-
-    private void OnHandleState(Entity<FootPrintComponent> ent, ref ComponentHandleState args)
-    {
-        if (args.Current is not FootPrintState state || !TryGetEntity(state.PrintOwner, out var entity))
-            return;
-
-        ent.Comp.PrintOwner = entity.Value;
     }
 
     private void OnInitialized(EntityUid uid, FootPrintComponent comp, ComponentInit args)
@@ -52,36 +43,16 @@ public sealed class FootPrintsVisualizerSystem : VisualizerSystem<FootPrintCompo
         if (!sprite.LayerMapTryGet(FootPrintVisualLayers.Print, out var layer))
             return;
 
-        if (!TryComp<FootPrintsComponent>(component.PrintOwner, out var printsComponent))
-            return;
-
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        if (_appearance.TryGetData<FootPrintVisuals>(uid, FootPrintVisualState.State, out var printVisuals, appearance))
+        if (!_appearance.TryGetData<ResPath>(uid, FootPrintValue.Rsi, out var rsi, appearance)
+            || !_appearance.TryGetData<string>(uid, FootPrintValue.Layer, out var footPrintLayer, appearance))
         {
-            switch (printVisuals)
-            {
-                case FootPrintVisuals.BareFootPrint:
-                    sprite.LayerSetState(layer,
-                            printsComponent.RightStep
-                            ? new RSI.StateId(printsComponent.RightBarePrint)
-                            : new RSI.StateId(printsComponent.LeftBarePrint),
-                        printsComponent.RsiPath);
-                    break;
-                case FootPrintVisuals.ShoesPrint:
-                    sprite.LayerSetState(layer, new RSI.StateId(printsComponent.ShoesPrint), printsComponent.RsiPath);
-                    break;
-                case FootPrintVisuals.SuitPrint:
-                    sprite.LayerSetState(layer, new RSI.StateId(printsComponent.SuitPrint), printsComponent.RsiPath);
-                    break;
-                case FootPrintVisuals.Dragging:
-                    sprite.LayerSetState(layer, new RSI.StateId(_random.Pick(printsComponent.DraggingPrint)), printsComponent.RsiPath);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"Unknown {printVisuals} parameter.");
-            }
+            return;
         }
+
+        sprite.LayerSetState(layer, new RSI.StateId(footPrintLayer), rsi);
 
         if (!_appearance.TryGetData<Color>(uid, FootPrintVisualState.Color, out var printColor, appearance))
             return;
@@ -89,7 +60,9 @@ public sealed class FootPrintsVisualizerSystem : VisualizerSystem<FootPrintCompo
         sprite.LayerSetColor(layer, printColor);
     }
 
-    protected override void OnAppearanceChange (EntityUid uid, FootPrintComponent component, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid,
+        FootPrintComponent component,
+        ref AppearanceChangeEvent args)
     {
         if (args.Sprite is not { } sprite)
             return;
