@@ -4,3 +4,5 @@ construction-graph-tag-any-head = любая голова
 construction-graph-tag-upgrade-station = улучшение для оружия
 construction-graph-tag-xen-research-tool = исследовательский инструмент
 construction-graph-tag-xen-pcv-plate = плата PCV
+construction-graph-tag-blessed-bible = благословенная библия
+construction-graph-tag-father-light = свет все-отца

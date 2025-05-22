@@ -196,6 +196,11 @@
   - type: Tag
     tags:
     - Knife
+  #Backmen-edit-start
+  - type: Construction
+    graph: HolyWeapon
+    node: Justice
+  #Backmen-edit-end
 
 # Like a crusher... but better
 - type: entity
@@ -226,3 +231,8 @@
   - type: Tag
     tags:
       - Pickaxe
+  #Backmen-edit-start
+  - type: Construction
+    graph: HolyWeapon
+    node: Lamb
+  #Backmen-edit-end

@@ -34,12 +34,13 @@
   components:
   - type: GunUpgrade
 #    capacityCost: 40
-    tags: [ GunUpgradeDamage ]
+    tags: [ GunUpgradeDamage2 ]
     examineText: gun-upgrade-examine-text-damage
   - type: GunUpgradeDamage
     damage:
       types:
         Blunt: 20
+        Structural: 30
 
 - type: entity
   id: PKAUpgradeRangeTier2
@@ -48,7 +49,7 @@
   suffix: Tier 2
   components:
   - type: GunUpgrade
-    tags: [ GunUpgradeRange ]
+    tags: [ GunUpgradeRange2 ]
     examineText: gun-upgrade-examine-text-range
   - type: GunUpgradeSpeed
     coefficient: 3
@@ -60,7 +61,7 @@
   suffix: Tier 2
   components:
   - type: GunUpgrade
-    tags: [ GunUpgradeReloadSpeed ]
+    tags: [ GunUpgradeReloadSpeed2 ]
 #    capacityCost: 20
     examineText: gun-upgrade-examine-text-reload
   - type: GunUpgradeFireRate

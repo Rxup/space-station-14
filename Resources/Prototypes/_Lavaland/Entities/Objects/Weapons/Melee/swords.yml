@@ -39,12 +39,16 @@
   - type: Tag
     tags:
     - Knife
+    - Justice
   - type: DashAbility
     dashAction: ActionDashJustice
   - type: LimitedCharges
     maxCharges: 3
   - type: AutoRecharge
     rechargeDuration: 10
+  - type: Construction
+    graph: SplendorSword
+    node: Justice
 
 - type: entity
   id: ActionDashJustice
@@ -191,6 +195,10 @@
   - type: Tag
     tags:
     - Knife
+    - Splendor
+  - type: Construction
+    graph: SplendorSword
+    node: Splendor
 
 - type: entity
   parent: [ BaseItem, BaseSecurityCargoContraband]

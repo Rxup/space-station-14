@@ -337,9 +337,7 @@
 
 - type: entity
   id: WalkingLight
-  parent:
-  - BaseAutoAimHTN
-  - Baseholypentagram
+  parent: Baseholypentagram
   name: святой свет
   suffix: Holy light Walking
   components:

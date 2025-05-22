@@ -1,4 +1,196 @@
 - type: entity
+  id: HolyAltar
+  parent: BaseStructure
+  name: священный алтарь
+  description: Алтарь пропитанный божественным светом, что озаряет все сущие вокруг себя своим великолепием.
+  components:
+  - type: Prayable
+  - type: Sprite
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    layers:
+      - state: space-christian
+      - state: space-christian_lightning
+        shader: unshaded
+  - type: Icon
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    state: space-christian
+  - type: PointLight
+    radius: 20.0
+    energy: 3.5
+    color: "#fbceb1"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - ItemMask
+  - type: Clickable
+  - type: Construction
+    graph: HolyAltar
+    node: start
+  - type: MarkerOne
+
+- type: entity
+  id: SealsTrigger
+  parent: DomeDisabler
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageContacts
+    ignoreWhitelist:
+      components:
+      - HumanoidAppearance
+    damage:
+      types:
+        Bloodloss: 1
+
+- type: entity
+  id: SpawnerWallOfSteadfastnessSeal
+  parent:
+  - DeathByDome
+  - BaseStructure
+  name: The seal of steadfastness
+  suffix: Unactivaded
+  components:
+  - type: Marker
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 0.5, 0.5
+    drawdepth: FloorTiles
+    layers:
+    - state: holypentagram
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 20
+        mask:
+        - ItemMask
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/holy.ogg
+          params:
+            volume: -1
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          WallOfSteadfastnessSeal:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseWall
+  id: WallOfSteadfastnessSeal
+  name: The seal of steadfastness
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: Structures/Walls/cult.rsi
+  - type: Icon
+    sprite: Structures/Walls/cult.rsi
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Bloodloss
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          SpawnerWallOfSteadfastnessSeal:
+            min: 1
+            max: 1
+  - type: Occluder
+    enabled: false
+  - type: IconSmooth
+    key: walls
+    base: cult
+    shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - HolyLightAnimUriil
+
+- type: entity
+  name: blessed pinpointer
+  id: PinpointerAltar
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    component: MarkerOne
+    targetName: священный алтарь
+
+- type: entity
+  name: благословенная библия
+  description: Истинная библия, созданная всевышним, без человеческого фактора. К сожалению написана она на языке что не понятен для смертных, от чего и смысла от этой книги не много.
+  parent: Bible
+  id: BlessedBible
+  components:
+  - type: Bible
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Immaterial: -1
+    damageOnFail:
+      groups:
+        Airloss: 1
+    damageOnUntrainedUse:
+      groups:
+        Burn: 80
+    failChance: 0
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    damage:
+      types:
+        Holy: 50
+        Blunt: 1
+  - type: Tool
+    qualities:
+      - Praying
+    useSound:
+      path: /Audio/Effects/holy.ogg
+  - type: Tag
+    tags:
+    - Book
+    - BlessedBible
+
+- type: tool
+  id: Praying
+  name: tool-quality-praying-name
+  toolName: tool-quality-praying-tool-name
+  spawn: BlessedBible
+  icon: { sprite: Objects/Specific/Chapel/bible.rsi, state: icon }
+
+- type: entity
   id: UriilSpawn
   name: святой свет
   parent: HolyLight
@@ -76,6 +268,7 @@
   - type: Sprite
     sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 0.5, 0.5
+    drawdepth: FloorTiles
     layers:
     - state: holypentagram
       shader: unshaded
@@ -813,7 +1006,9 @@
 #        layer:
 #        - GlassLayer
   - type: Physics
-    bodyType: Static
+    bodyType: KinematicController
+  - type: Transform
+    anchored: true
   - type: Tag
     tags:
       - HideContextMenu
@@ -1045,10 +1240,10 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.7
+          radius: 0.6
         density: 5000
-        mask:
-        - MobMask
+      #  mask:
+      #  - MobMask
         layer:
         - MobLayer
   - type: ConditionalSpawner
@@ -1549,7 +1744,9 @@
   - type: TimedDespawn
     lifetime: 21
   - type: SpawnOnDespawn
-    prototype: HolyLightAnimUriilDeathPhase2
+    prototypes:
+    - HolyLightAnimUriilDeathPhase2
+    - SealsTrigger
   - type: ConditionalSpawner
     prototypes:
     - DomeDisabler
@@ -1559,9 +1756,11 @@
   parent: HolyLightAnimBIG
   categories: [ HideSpawnMenu ]
   components:
-  - type: ConditionalSpawner
+  - type: SpawnOnDespawn
     prototypes:
     - PaperTestamentOfGod
+    - FatherLight
+    - Bible
 
 - type: entity
   id: PaperTestamentOfGod
@@ -1579,6 +1778,21 @@
 
       ТОГДА Я НАЧНУ СНОВА, И МОЁ СЛОВО
       БУДЕТ ЗАКОНОМ.
+
+- type: entity
+  name: свет все-отца
+  description: КОГДА Я ПОНЯЛ, ЧТО Я ТОЛЬКО ЧТО СДЕЛАЛ... Я МОГ ТОЛЬКО ПЛАКАТЬ, ПОГРУЖАЯСЬ МЕДЛЕННО В ГЛУБИНЫ ОТЧАЯНИЯ...  ГЛУБОКИЕ, ОХ ТАКИЕ ГЛУБОКИЕ.
+  parent: BaseItem
+  id: FatherLight
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/father_light.rsi
+    layers:
+    - state: light
+      shader: unshaded
+  - type: Tag
+    tags:
+    - FatherLight
 
 - type: entity
   id: DeathByDome
