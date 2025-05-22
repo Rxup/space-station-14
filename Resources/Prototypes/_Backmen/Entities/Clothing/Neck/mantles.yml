@@ -2,7 +2,7 @@
   parent: [ClothingNeckBase, BaseBlueShieldContraband]
   id: ClothingNeckMantleBlueShield
   name: officer "Blueshield"'s mantle
-  description: A robe specially tailored for Blueshield officers. On the inside of the cloak you can see a tag with the worn inscription “SecInstuct”.
+  description: A mantle specially tailored for Blueshield officers. On the inside of the cloak you can see a tag with the worn inscription “SecInstuct”.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
