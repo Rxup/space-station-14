@@ -22,3 +22,14 @@
       amount: 1
   products:
     StimulantsSuper: 3
+
+- type: reaction
+  id: Morphine
+  minTemp: 480
+  reactants:
+    Vinegar:
+      amount: 4
+    Ethanol:
+      amount: 1
+  products:
+    Morphine: 5

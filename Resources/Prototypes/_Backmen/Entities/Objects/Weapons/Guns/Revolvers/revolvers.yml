@@ -11,9 +11,21 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
+  - type: RevolverAmmoProvider
+    soundInsert:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
+    soundSpin:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
+    soundEject:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver44Magnum
+        - SpeedLoader44Magnum
+    proto: CartridgeRevolver44Magnum
   - type: Gun
     fireRate: 3
-    cameraRecoilScalar: 2
+    cameraRecoilScalar: 3
     soundGunshot:
       path: /Audio/Weapons/Guns64/Revolvers/mateba.ogg
 
@@ -31,6 +43,17 @@
     capacity: 5
     chambers: [ True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
+    soundSpin:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
+    soundEject:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special
+        - SpeedLoader38Special
+    proto: CartridgeRevolver38Special
   - type: Gun
     fireRate: 3
     soundGunshot:
@@ -54,6 +77,14 @@
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
+    soundSpin:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
+    soundEject:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+  - type: PumpAction
+    sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns64/Revolvers/44mag.ogg
@@ -69,9 +100,22 @@
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
   - type: RevolverAmmoProvider
-    capacity: 7
-    chambers: [ True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null ]
+    capacity: 8
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
+    soundSpin:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
+    soundEject:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_unload.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special
+        - SpeedLoader38Special
+    proto: CartridgeRevolver38Special
+  - type: PumpAction
+    sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
   - type: Gun
     fireRate: 1
     soundGunshot:
@@ -87,10 +131,25 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
   - type: RevolverAmmoProvider
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
+    soundSpin:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_spun.ogg
+    whitelist:
+      tags:
+        - CartridgeRevolver38Special
+        - SpeedLoader38Special
+    proto: CartridgeRevolver38Special
+  - type: PumpAction
+    sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns64/Revolvers/revolver.ogg

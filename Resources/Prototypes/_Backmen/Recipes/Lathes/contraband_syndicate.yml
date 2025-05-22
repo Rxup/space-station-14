@@ -1,0 +1,120 @@
+- type: latheRecipe
+  id: SyndicateJawsOfLife
+  result: SyndicateJawsOfLife
+  completetime: 6
+  materials:
+    Steel: 1200
+    Glass: 600
+    Plasma: 500
+    Gold: 80
+
+- type: latheRecipe
+  id: SyndicateWhistle
+  result: SyndicateWhistle
+  completetime: 2
+  materials:
+    Steel: 340
+
+- type: latheRecipe
+  id: ClothingBeltSyndieHolster
+  result: ClothingBeltSyndieHolster
+  completetime: 2
+  materials:
+    Steel: 740
+    Plasma: 220
+
+- type: latheRecipe
+  id: TowelColorSyndicate
+  result: TowelColorSyndicate
+  completetime: 2
+  materials:
+    Plastic: 20
+
+- type: latheRecipe
+  id: ExGrenade
+  result: ExGrenade
+  completetime: 5
+  materials:
+    Steel: 900
+    Plastic: 100
+    Uranium: 1000
+
+- type: latheRecipe
+  id: SingularityGrenade
+  result: SingularityGrenade
+  completetime: 5
+  materials:
+    Steel: 900
+    Plastic: 100
+    Uranium: 1000
+    Plasma: 2200
+
+- type: latheRecipe
+  id: WhiteholeGrenade
+  result: WhiteholeGrenade
+  completetime: 5
+  materials:
+    Steel: 950
+    Plastic: 120
+    Uranium: 1800
+
+- type: latheRecipe
+  id: C4
+  result: C4
+  completetime: 5
+  materials:
+    Steel: 1200
+    Plastic: 800
+    Uranium: 750
+
+- type: latheRecipe
+  id: EmpGrenade
+  result: EmpGrenade
+  completetime: 5
+  materials:
+    Steel: 1200
+    Plastic: 600
+    Plasma: 750
+    Glass: 800
+
+- type: latheRecipe
+  id: PenExplodingBox
+  result: PenExplodingBox
+  completetime: 5
+  materials:
+    Steel: 450
+    Plastic: 20
+    Uranium: 150
+
+- type: latheRecipe
+  id: CyberPen
+  result: CyberPen
+  completetime: 2
+  materials:
+    Steel: 850
+    Plastic: 40
+
+- type: latheRecipe
+  id: RadioJammer
+  result: RadioJammer
+  completetime: 5
+  materials:
+    Steel: 2550
+    Plastic: 500
+    Uranium: 550
+
+- type: latheRecipe
+  id: CameraBug
+  result: CameraBug
+  completetime: 5
+  materials:
+    Steel: 2550
+    Plastic: 500
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagSyndie
+  result: ClothingShoesBootsMagSyndie
+  completetime: 10
+  materials:
+    Steel: 1200
+    Plastic: 500

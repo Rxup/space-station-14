@@ -50,7 +50,7 @@
   - CustomDrinkJug
   technologyPrerequisites:
   - ServiceMachines
-  position: 2,9
+  position: 2,8
 
 - type: technology
   id: Kitchen
@@ -73,22 +73,7 @@
   - Ashtray
   technologyPrerequisites:
   - ServiceMachines
-  position: 4,9
-
-- type: technology
-  id: Hydroponics
-  name: research-technology-hydroponics
-  icon:
-    sprite: Objects/Tools/bucket.rsi
-    state: icon
-  discipline: Service
-  tier: 1
-  cost: 500
-  recipeUnlocks:
-   - Bucket
-  technologyPrerequisites:
-  - ServiceMachines
-  position: 3,8
+  position: 4,8
 
 - type: technology
   id: Entertainment
@@ -104,7 +89,7 @@
    - HandheldStationMap
   technologyPrerequisites:
   - ServiceMachines
-  position: 3,10
+  position: 3,9
 
 - type: technology
   id: FauxAstroTiles
@@ -124,7 +109,7 @@
   - FauxTileAstroAsteroidSand
   technologyPrerequisites:
   - Entertainment
-  position: 2,10
+  position: 2,9
 
 - type: technology
   id: Cleaning
@@ -136,12 +121,14 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-   - MopItem
-   - TrashBag
-   - LightReplacer
-   - Holoprojector
-   - WetFloorSign
-   - ClothingHeadHatCone
+  - MopItem
+  - TrashBag
+  - LightReplacer
+  - Holoprojector
+  - WetFloorSign
+  - ClothingHeadHatCone
+  - SprayBottle
+  - Bucket
   technologyPrerequisites:
   - ServiceMachines
   position: 4,6
@@ -162,21 +149,6 @@
   position: 4,7
 
 - type: technology
-  id: Spray
-  name: research-technology-spray
-  icon:
-    sprite: Objects/Specific/Janitorial/janitorial.rsi
-    state: cleaner
-  discipline: Service
-  tier: 1
-  cost: 500
-  recipeUnlocks:
-   - SprayBottle
-  technologyPrerequisites:
-  - Cleaning
-  position: 5,6
-
-- type: technology
   id: SprayAdvanced
   name: research-technology-spray-advanced
   icon:
@@ -186,12 +158,27 @@
   tier: 1
   cost: 10000
   recipeUnlocks:
-   - WeaponSprayNozzle
-   - ClothingBackpackWaterTank
-   - MegaSprayBottle
+  - WeaponSprayNozzle
+  - ClothingBackpackWaterTank
+  - MegaSprayBottle
   technologyPrerequisites:
-  - Spray
+  - CleaningAdvanced
   position: 5,7
+
+- type: technology
+  id: PushHorn
+  name: research-technology-clowning-utilities
+  icon:
+    sprite: Objects/Fun/push_horn.rsi
+    state: icon
+  discipline: Service
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - PushHorn
+  technologyPrerequisites:
+  - Kitchen
+  position: 5,8
 
 - type: technology
   id: TranslationDevice

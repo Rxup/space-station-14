@@ -3,7 +3,6 @@ using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Medical;
 
@@ -32,6 +31,12 @@ public sealed partial class DefibrillatorComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan WritheDuration = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// How long will the entity stay conscious after getting defibrillated?
+    /// </summary>
+    [DataField("consciousnessDuration")]
+    public TimeSpan ForceConsciousnessDuration = TimeSpan.FromSeconds(12);
 
     /// <summary>
     ///     ID of the cooldown use delay.
@@ -63,19 +68,19 @@ public sealed partial class DefibrillatorComponent : Component
     /// <summary>
     /// The sound when someone is zapped.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("zapSound")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? ZapSound = new SoundPathSpecifier("/Audio/Items/Defib/defib_zap.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("chargeSound")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? ChargeSound = new SoundPathSpecifier("/Audio/Items/Defib/defib_charge.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("failureSound")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? FailureSound = new SoundPathSpecifier("/Audio/Items/Defib/defib_failed.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("successSound")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? SuccessSound = new SoundPathSpecifier("/Audio/Items/Defib/defib_success.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("readySound")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? ReadySound = new SoundPathSpecifier("/Audio/Items/Defib/defib_ready.ogg");
 }
 

@@ -12,13 +12,11 @@ flesh-pudge-transform-user = You transform into { CAPITALIZE($EntityTransform) }
 flesh-pudge-transform-others = { CAPITALIZE($Entity) } transforms into { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-begin-user = You begin to transform.
 flesh-pudge-transform-begin-others = { CAPITALIZE($Entity) } begins to transform.
-
 flesh-mob-cant-atack-flesh-heart = You cannot attack the flesh heart.
 flesh-mob-cant-atack-flesh-mob = You cannot attack flesh mobs.
 flesh-mob-cant-atack-flesh-cultist = You cannot attack flesh cultists.
 flesh-worm-jump-name = Jump
 flesh-worm-jump-desc = Allows you to jump in the chosen direction. If you hit a humanoid without a mask, you will latch onto their face.
-
 mob-flesh-ghost-role-rules = Do not attack flesh cultists, do not break DAMs, servers, consoles, and so on. Do not cause breaches.
 mob-flesh-abom-ghost-role-name = Flesh Abomination
 mob-flesh-abom-ghost-role-decs = You are sentient flesh. Cooperate with other flesh creatures to take control of the station.
@@ -32,4 +30,3 @@ mob-flesh-bat-ghost-role-name = Flesh Bat
 mob-flesh-bat-ghost-role-decs = You are sentient flesh. Cooperate with other flesh creatures to take control of the station.
 mob-flesh-worm-ghost-role-name = Flesh Worm
 mob-flesh-worm-ghost-role-decs = You are sentient flesh. Cooperate with other flesh creatures to take control of the station.
-

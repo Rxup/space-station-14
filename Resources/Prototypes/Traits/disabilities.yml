@@ -95,10 +95,11 @@
       sounds:
         collection: Paracusia
 
-- type: trait
-  id: PainNumbness
-  name: trait-painnumbness-name
-  description: trait-painnumbness-desc
-  category: Disabilities
-  components:
-  - type: PainNumbness
+# TODO: rework this. later.
+#- type: trait
+#  id: PainNumbness
+#  name: trait-painnumbness-name
+#  description: trait-painnumbness-desc
+#  category: Disabilities
+#  components:
+#  - type: PainNumbness

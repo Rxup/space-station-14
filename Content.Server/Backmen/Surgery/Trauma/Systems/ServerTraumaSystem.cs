@@ -23,12 +23,35 @@ public sealed class ServerTraumaSystem : TraumaSystem
         SubscribeLocalEvent<TraumaInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
     }
 
-    private readonly Dictionary<BoneSeverity, FixedPoint2> _boneThresholds = new()
+    public override void Update(float frameTime)
     {
-        { BoneSeverity.Normal, 40 },
-        { BoneSeverity.Damaged, 20 },
-        { BoneSeverity.Broken, 0 },
-    };
+        base.Update(frameTime);
+
+        var q = EntityQueryEnumerator<BoneComponent, MetaDataComponent>();
+        while (q.MoveNext(out var uid, out var bone, out var meta))
+        {
+            if (Paused(uid, meta))
+                continue;
+
+            // Deleted or for some reason, or out of the woundable.
+            if (!bone.BoneWoundable.HasValue || !WoundableQuery.TryComp(bone.BoneWoundable, out var woundable))
+                continue;
+
+            if (!BodyPartQuery.TryComp(bone.BoneWoundable, out var bodyPart) || !bodyPart.Body.HasValue)
+                continue;
+
+            if (woundable.WoundableSeverity is WoundableSeverity.Critical or WoundableSeverity.Loss)
+                continue;
+
+            if (bone.BoneSeverity is BoneSeverity.Broken or BoneSeverity.Damaged)
+                continue;
+
+            if (MobState.IsDead(bodyPart.Body.Value))
+                continue;
+
+            ApplyDamageToBone(uid, -bone.BoneRegenerationRate, bone);
+        }
+    }
 
     #region Very Private Server API
 
@@ -52,21 +75,15 @@ public sealed class ServerTraumaSystem : TraumaSystem
         Entity<TraumaInflicterComponent> inflicter,
         ref WoundHealAttemptEvent args)
     {
-        foreach (var trauma in GetAllWoundTraumas(inflicter, inflicter))
-        {
-            // Custom handling for optimisation
-            if (TraumasBlockingHealing.Contains(trauma.Comp.TraumaType))
-                args.Cancelled = true;
-        }
+        var parentWoundable = args.Woundable;
+        if (AnyTraumasBlockingHealing(parentWoundable, parentWoundable))
+            args.Cancelled = true;
     }
 
     private void ApplyTraumas(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> inflicter, List<TraumaType> traumas, FixedPoint2 severity)
     {
         var bodyPart = Comp<BodyPartComponent>(target);
         if (!bodyPart.Body.HasValue)
-            return;
-
-        if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
             return;
 
         foreach (var trauma in traumas)
@@ -110,15 +127,18 @@ public sealed class ServerTraumaSystem : TraumaSystem
             switch (trauma)
             {
                 case TraumaType.BoneDamage:
+                    if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSysB))
+                        break;
+
                     if (ApplyBoneTrauma(targetChosen.Value, target, inflicter, severity))
                     {
                         Pain.TryAddPainModifier(
-                            nerveSys.Value.Owner,
+                            nerveSysB.Value.Owner,
                                 target.Owner,
                                 "BoneDamage",
-                                severity,
+                                severity * 2,
                                 PainDamageTypes.TraumaticPain,
-                                nerveSys.Value.Comp);
+                                nerveSysB.Value.Comp);
                     }
 
                     break;
@@ -127,24 +147,27 @@ public sealed class ServerTraumaSystem : TraumaSystem
                     var traumaEnt = AddTrauma(targetChosen.Value, target, inflicter, TraumaType.OrganDamage, severity);
                     if (!TryChangeOrganDamageModifier(targetChosen.Value, severity, traumaEnt, "WoundableDamage"))
                     {
-                        TryCreateOrganDamageModifier(targetChosen.Value, severity, traumaEnt, "WoundableDamage");
+                        TryAddOrganDamageModifier(targetChosen.Value, severity, traumaEnt, "WoundableDamage");
                     }
 
                     break;
 
                 case TraumaType.NerveDamage:
+                    if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSysN))
+                        break;
+
                     var time = TimeSpan.FromSeconds((float) severity * 2.4);
 
                     // Fooling people into thinking they have no pain.
                     // 10 (raw pain) * 1.4 (multiplier) = 14 (actual pain)
                     // 1 - 0.28 = 0.72 (the fraction of pain the person feels)
                     // 14 * 0.72 = 10.08 (the pain the player can actually see) ... Barely noticeable :3
-                    Pain.TryAddPainMultiplier(nerveSys.Value,
+                    Pain.TryAddPainMultiplier(nerveSysN.Value,
                         "NerveDamage",
                         1.4f,
                         time: time);
 
-                    Pain.TryAddPainFeelsModifier(nerveSys.Value,
+                    Pain.TryAddPainFeelsModifier(nerveSysN.Value,
                         "NerveDamage",
                         target,
                         -0.28f,
@@ -153,7 +176,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
                     foreach (var child in Wound.GetAllWoundableChildren(target))
                     {
                         // Funner! Very unlucky of you if your torso gets hit. Rest in pieces
-                        Pain.TryAddPainFeelsModifier(nerveSys.Value,
+                        Pain.TryAddPainFeelsModifier(nerveSysN.Value,
                             "NerveDamage",
                             child,
                             -0.7f,
@@ -387,7 +410,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
         return true;
     }
 
-    public override bool TryCreateOrganDamageModifier(
+    public override bool TryAddOrganDamageModifier(
         EntityUid uid,
         FixedPoint2 severity,
         EntityUid effectOwner,
@@ -414,7 +437,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
     private void CheckBoneSeverity(EntityUid bone, BoneComponent boneComp)
     {
         var nearestSeverity = boneComp.BoneSeverity;
-        foreach (var (severity, value) in _boneThresholds.OrderByDescending(kv => kv.Value))
+        foreach (var (severity, value) in boneComp.BoneThresholds.OrderByDescending(kv => kv.Value))
         {
             if (boneComp.BoneIntegrity < value)
                 continue;
@@ -432,6 +455,8 @@ public sealed class ServerTraumaSystem : TraumaSystem
 
         Dirty(bone, boneComp);
     }
+
+
 
     [PublicAPI]
     public override bool ApplyBoneTrauma(

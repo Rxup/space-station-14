@@ -143,14 +143,6 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:SuppressPain
-        amount: 1.2
-        time: 30 # it accumulated 1.2*quantity and then exists for 30 seconds.
-      - !type:AdjustPainFeels
-        conditions:
-        - !type:ReagentThreshold
-          min: 15
-        amount: 0.04
       - !type:HealthChange
         damage:
           groups:
@@ -203,6 +195,31 @@
               Brute: -4
               Burn: -6
               Toxin: -4
+        - !type:AdjustTraumas
+          conditions:
+          - !type:Temperature
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
+          traumaType: BoneDamage
+          amount: -2
+          identifier: "Cryoxadone"
+          targetBodyParts: true
+          targetOrgans: false
+        - !type:AdjustTraumas
+          conditions:
+          - !type:Temperature
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
+          traumaType: OrganDamage
+          amount: -1
+          identifier: "Cryoxadone"
+          targetBodyParts: false
+          targetComponents: # treats all organs besides brains and eyes
+          - type: Lung
+          - type: Ears
+          - type: Liver
+          - type: Heart
+          - type: Stomach
 
 - type: reagent
   id: Doxarubixadone
@@ -234,14 +251,6 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:SuppressPain
-        amount: 2
-        time: 7
-      - !type:AdjustPainFeels
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
-        amount: 0.01
       - !type:HealthChange
         damage:
           types:
@@ -258,15 +267,6 @@
             Cold: 2
           groups:
             Brute: 0.5
-      - !type:AdjustConsciousness
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
-        allowNewModifiers: true
-        modifierType: Pain
-        identifier: Suffocation
-        amount: -1.2
-        time: 12
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
@@ -284,14 +284,11 @@
     Medicine:
       effects:
       - !type:SuppressPain
-        amount: 2.4
-        time: 12
-      - !type:AdjustConsciousness
-        allowNewModifiers: false
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 1.7
-        time: 12
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        amount: 4
+        time: 8
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
@@ -310,12 +307,6 @@
           types:
             Asphyxiation: 3
             Cold: 1
-      - !type:AdjustConsciousness
-        allowNewModifiers: true
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 3.4
-        time: 12
 
 - type: reagent
   id: DexalinPlus
@@ -329,19 +320,17 @@
     Medicine:
       effects:
       - !type:SuppressPain
-        amount: 3.7
-        time: 12
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        amount: 5
+        time: 30
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentThreshold
-          min: 25
+          min: 25 # whoops overdose
         amount: 0.1
-      - !type:AdjustConsciousness
-        allowNewModifiers: false
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 6
-        time: 12
+        randomise: false
       - !type:HealthChange
         damage:
           types:
@@ -362,12 +351,6 @@
           types:
             Asphyxiation: 5
             Cold: 3
-      - !type:AdjustConsciousness
-        allowNewModifiers: true
-        modifierType: Pain
-        identifier: Suffocation
-        amount: -5
-        time: 12
 
 # this ones a doozy
 - type: reagent
@@ -381,21 +364,6 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:SuppressPain
-        conditions:
-        - !type:MobStateCondition
-          mobstate: Critical
-        amount: 5
-        time: 10 # very little because it's supposed to suppress pain while you're in crit
-      - !type:AdjustConsciousness
-        conditions:
-        - !type:MobStateCondition
-          mobstate: Critical
-        allowNewModifiers: false
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 5 # Does not let the entity suffocate and also treats it while the pain is suppressed
-        time: 10
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -419,15 +387,6 @@
           types:
             Asphyxiation: 1
             Poison: 1
-      - !type:AdjustConsciousness
-        conditions:
-        - !type:ReagentThreshold
-          min: 20
-        allowNewModifiers: false
-        modifierType: Pain
-        identifier: Suffocation
-        amount: -2.4
-        time: 12
       - !type:AdjustReagent
         reagent: HeartbreakerToxin
         amount: -2
@@ -517,6 +476,13 @@
     Medicine:
       metabolismRate: 0.1 # Smaller doses stabilize critical people for longer. Gives it a specific usecase as to not be entirely outclassed by dex+
       effects:
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Inaprovaline"
+        targetBodyParts: false
+        targetComponents:
+        - type: Lung
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -525,14 +491,6 @@
         damage:
           types:
             Asphyxiation: -2
-      #start-rebell
-      - !type:AdjustConsciousness
-        allowNewModifiers: false
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 8
-        time: 20
-      #end-rebell
       - !type:ModifyBleedAmount
         amount: -0.25
 
@@ -705,12 +663,6 @@
             Brute: -3.5
           types:
             Asphyxiation: -2.5
-      - !type:AdjustConsciousness
-        allowNewModifiers: false
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 6
-        time: 12
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -718,15 +670,6 @@
         damage:
           types:
             Asphyxiation: 3.5
-      - !type:AdjustConsciousness
-        conditions:
-        - !type:ReagentThreshold
-          min: 30
-        allowNewModifiers: true
-        modifierType: Pain
-        identifier: Suffocation
-        amount: 6
-        time: 12
       - !type:ModifyBleedAmount
         amount: -0.25
 
@@ -805,7 +748,8 @@
     Medicine:
       effects:
       - !type:AdjustPainFeels
-        amount: 0.05 # heheheh
+        amount: -0.03
+        randomise: false
       - !type:HealthChange
         damage:
           types:
@@ -937,7 +881,7 @@
     Medicine:
       effects:
       - !type:SuppressPain
-        amount: 1.2
+        amount: 3
         time: 4
       - !type:HealthChange
         damage:
@@ -1003,6 +947,13 @@
     Medicine:
       effects:
       - !type:ChemHealEyeDamage
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Oculine"
+        targetBodyParts: false
+        targetComponents:
+        - type: Eyes
 
 - type: reagent
   id: Cognizine
@@ -1015,6 +966,13 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Cognizine"
+        targetBodyParts: false
+        targetComponents:
+        - type: Brain
       - !type:MakeSentient
         conditions:
         - !type:ReagentThreshold
@@ -1257,9 +1215,6 @@
     Medicine:
       metabolismRate: 0.1 # slow metabolism to not be a godly combat med, its for treating burn victims efficiently
       effects:
-      - !type:SuppressPain
-        amount: 4 # To prevent people from dying while being healed
-        time: 7
       - !type:HealthChange
         damage:
           types:

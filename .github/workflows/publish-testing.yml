@@ -2,6 +2,7 @@
 
 concurrency:
   group: publish-testing
+  cancel-in-progress: true
 
 on:
   workflow_dispatch:
@@ -10,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3.6.0

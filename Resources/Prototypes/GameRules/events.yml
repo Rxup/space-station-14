@@ -1,45 +1,99 @@
+# backmen change: Event tables are more split up
+
+# Strange or weird things that don't necessarily destroy the station
 - type: entityTable
-  id: BasicCalmEventsTable
+  id: AnomalousEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: AnomalySpawn
     - id: BluespaceArtifact
     - id: BluespaceLocker
-    - id: BreakerFlip
     - id: BureaucraticError
     - id: ClericalError
-    - id: CockroachMigration
-    - id: GasLeak
-    - id: GreytideVirus
-    - id: IonStorm # its calm like 90% of the time smh
-    - id: KudzuGrowth
     - id: MassHallucinations
     - id: MimicVendorRule
-    - id: MouseMigration
-    - id: PowerGridCheck
     - id: RandomSentience
-    - id: SlimesSpawn
+    - id: IonStorm # its calm like 90% of the time smh
+    - !type:NestedSelector # backmen change
+      tableId: AnomalousEventsTableBackmen
+
+# Events that can cause inner station destruction
+- type: entityTable
+  id: StationDestructiveEvents
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: BreakerFlip
+    - id: GasLeak
+    - id: GreytideVirus
+    - id: KudzuGrowth
+    - id: PowerGridCheck
     - id: SolarFlare
+    - id: VentClog
+    - !type:NestedSelector # backmen change
+      tableId: StationDestructiveEventsBackmen
+
+# Dangerous vent events, also includes some migration ones.
+- type: entityTable
+  id: BasicVentSpawnEvents
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: CockroachMigration
+    - id: MouseMigration
+    - id: SlimesSpawn
     - id: SnakeSpawn
     - id: SpiderClownSpawn
     - id: SpiderSpawn
-    - id: VentClog
+    - !type:NestedSelector # backmen change
+      tableId: BasicVentSpawnEventsBackmen
 
+# Basic antags that can't kill the station on their own.
 - type: entityTable
   id: BasicAntagEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: ClosetSkeleton
-    - id: DragonSpawn
     - id: KingRatMigration
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
     - id: RevenantSpawn
     - id: SleeperAgents
+    - id: DerelictCyborgSpawn
+    - !type:NestedSelector # backmen change
+      tableId: BasicAntagEventsTableBackmen
+
+# Station-wide threats that CAN kill an entire
+- type: entityTable
+  id: SpicyAntagEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: DragonSpawn
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
-    - id: DerelictCyborgSpawn
     - id: WizardSpawn
+    - !type:NestedSelector # backmen change
+      tableId: SpicyAntagEventsTableBackmen
+
+# All basic events, but without antags.
+- type: entityTable
+  id: BasicCalmEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: AnomalousEventsTable
+    - !type:NestedSelector
+      tableId: StationDestructiveEvents
+    - !type:NestedSelector
+      tableId: BasicVentSpawnEvents
+
+# All antag events.
+- type: entityTable
+  id: AllAntagsEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: BasicAntagEventsTable
+    - !type:NestedSelector
+      tableId: SpicyAntagEventsTable
 
 - type: entity
   id: BaseStationEvent
@@ -295,7 +349,7 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 10
+    minimumPlayers: 30
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
@@ -547,7 +601,7 @@
   - type: StationEvent
     earliestStart: 35
     weight: 5.5
-    minimumPlayers: 20
+    minimumPlayers: 25
     duration: 1
   - type: RuleGrids
   - type: LoadMapRule
@@ -573,6 +627,13 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
+      - type: LanguageKnowledge #backmen: languages
+        speaks:
+        - TauCetiBasic
+        - Codespeak
+        understands:
+        - TauCetiBasic
+        - Codespeak
       mindRoles:
       - MindRoleNukeops
 
@@ -583,7 +644,7 @@
   - type: StationEvent
     earliestStart: 30
     weight: 8
-    minimumPlayers: 15
+    minimumPlayers: 20
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:

@@ -232,18 +232,17 @@
 #  recipeUnlocks:
 #  - CargoTelepadMachineCircuitboard
 
-# GoobStation - Why civilian? Because fuck you.
 #- type: technology
-#  id: MedicalDefense
-#  name: research-technology-medical-defense
+#  id: PushHorn
+#  name: research-technology-clowning-utilities
 #  icon:
-#    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi
-#    state: rapid-syringe-gun
+#    sprite: Objects/Fun/push_horn.rsi
+#    state: icon
 #  discipline: CivilianServices
 #  tier: 2
-#  cost: 10000
+#  cost: 4000
 #  recipeUnlocks:
-#  - RapidSyringeGun
+#  - PushHorn
 
 # Tier 3
 
@@ -271,5 +270,16 @@
 #  recipeUnlocks:
 #  - BluespaceBeaker
 #  - SyringeBluespace
-#  - BluespacePillCanister # backmen
-#  - BluespaceBodyBag # Backmen-AdvancedBodyBags
+
+#- type: technology
+#  id: LauncherSyringe
+#  name: research-technology-launcher-syringe
+#  icon:
+#    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+#    state: syringe_gun
+#  discipline: CivilianServices
+#  tier: 3
+#  cost: 15000
+#  recipeUnlocks:
+#  - LauncherSyringe
+#  - MiniSyringe

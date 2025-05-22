@@ -43,9 +43,9 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem Throwing = default!;
     [Dependency] protected readonly InventorySystem Inventory = default!;
     [Dependency] protected readonly TraumaSystem Trauma = default!;
+    [Dependency] protected readonly MobStateSystem MobState = default!;
 
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     protected readonly Dictionary<WoundSeverity, FixedPoint2> WoundThresholds = new()
     {
@@ -313,9 +313,6 @@ public abstract partial class WoundSystem : EntitySystem
             if (component.WoundSeverityPoint < value)
                 continue;
 
-            if (severity == WoundSeverity.Healed)
-                continue;
-
             nearestSeverity = severity;
             break;
         }
@@ -473,7 +470,7 @@ public abstract partial class WoundSystem : EntitySystem
 
         FixWoundableRoots(childEntity, childWoundable);
 
-        var woundableRoot = WoundableQuery.Comp(parentWoundable.RootWoundable);
+        var woundableRoot = CompOrNull<WoundableComponent>(parentWoundable.RootWoundable) ?? parentWoundable;
         var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
 
         RaiseLocalEvent(childEntity, ref woundableAttached);
@@ -528,6 +525,9 @@ public abstract partial class WoundSystem : EntitySystem
 
         foreach (var organ in Body.GetPartOrgans(woundable))
         {
+            if (TerminatingOrDeleted(organ.Id))
+                continue;
+
             if (organ.Component.OrganSeverity == OrganSeverity.Normal)
             {
                 // TODO: SFX for organs getting not destroyed, but thrown out

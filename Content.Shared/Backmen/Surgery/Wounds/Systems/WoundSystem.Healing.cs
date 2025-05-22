@@ -29,6 +29,10 @@ public partial class WoundSystem
             if (!TryComp<BleedInflicterComponent>(wound, out var bleeds))
                 continue;
 
+            bleeds.BleedingAmountRaw = 0;
+            bleeds.SeverityPenalty = 0;
+            bleeds.ScalingLimit = 0;
+
             bleeds.IsBleeding = false;
         }
 

@@ -3,6 +3,19 @@
   parent: Clothing
   id: UnsensoredClothingUniformBase
   components:
+  - type: SlotBlock # Backmen
+    slots: [undershirt, underpants]
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/cloth_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/cloth_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/cloth_drop.ogg
+  # backmen edit end
   - type: Sprite
     state: icon
   - type: Clothing
@@ -14,6 +27,9 @@
     spawned:
     - id: MaterialCloth1
       amount: 3
+  - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
+    materialComposition:
+      Cloth: 150
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -26,6 +42,7 @@
   - type: Tag
     tags:
     - ClothMade
+    - Recyclable
     - WhitelistChameleon
 
 - type: entity
@@ -33,6 +50,8 @@
   parent: UnsensoredClothingUniformBase
   id: UnsensoredClothingUniformSkirtBase
   components:
+  - type: SlotBlock # Backmen
+    slots: [undershirt]
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
@@ -43,6 +62,8 @@
   parent: UnsensoredClothingUniformBase
   id: ClothingUniformBase
   components:
+  - type: SlotBlock # Backmen
+    slots: [undershirt, underpants]
   - type: SuitSensor
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -57,6 +78,8 @@
   parent: ClothingUniformBase
   id: ClothingUniformSkirtBase
   components:
+  - type: SlotBlock # Backmen
+    slots: [undershirt]
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop

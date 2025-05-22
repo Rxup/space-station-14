@@ -214,20 +214,12 @@
     - UplinkDeception
 
 - type: listing
-  id: UplinkDartSyringeGun
-  name: uplink-dart-syringe-gun-name
-  description: uplink-dart-syringe-gun-desc
-  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Cannons/syringe_gun.rsi, state: dart-syringe-gun }
-  productEntity: DartSyringeGun
+  id: UplinkBookCodespeakLanguage
+  name: uplink-book-codespeak-language-name
+  description: uplink-book-codespeak-language-desc
+  icon: { sprite: /Textures/Backmen/Objects/Misc/books.rsi, state: syndicate }
+  productEntity: ManualCodespeak
   cost:
-    Telecrystal: 30 # goob
+    Telecrystal: 2
   categories:
-  - UplinkChemicals
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - MedicalDoctor
-    - MedicalIntern
-    - Psychologist
-    - Chemist
-    - Paramedic
+  - UplinkDeception

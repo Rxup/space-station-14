@@ -32,5 +32,15 @@ zzzz-fmt-power-joules =
         [4] ТДж
        *[5] ???
     }
+# Used internally by the ENERGYWATTHOURS() function.
+zzzz-fmt-energy-watt-hours =
+    { TOSTRING($divided, "F1") } { $places ->
+        [0] Вт/Ч
+        [1] кВт/Ч
+        [2] МВт/Ч
+        [3] ГВт/Ч
+        [4] ТВт/Ч
+       *[5] ???
+    }
 # Used internally by the PLAYTIME() function.
 zzzz-fmt-playtime = { $hours }ч { $minutes }м

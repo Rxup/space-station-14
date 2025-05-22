@@ -1,0 +1,355 @@
+# Iconography
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconThinking
+  name: station-ai-icon-thinking
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-_thinking_
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-_thinking__dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconXenomorph
+  name: station-ai-icon-xenomorph
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-alien
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-alien_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconBanned
+  name: station-ai-icon-banned
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-banned
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconDatabase
+  name: station-ai-icon-database
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-database
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-database_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconFirewall
+  name: station-ai-icon-firewall
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-firewall
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconGento
+  name: station-ai-icon-gento
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-gentoo
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-gentoo_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconGlitchman
+  name: station-ai-icon-glitchman
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-glitchman
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-glitchman_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconGondola
+  name: station-ai-icon-gondola
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-gondola
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconGoon
+  name: station-ai-icon-goon
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-goon
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-goon_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconHelios
+  name: station-ai-icon-helios
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-helios
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconHouse
+  name: station-ai-icon-house
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-house
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-house_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconInverted
+  name: station-ai-icon-inverted
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-inverted
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-inverted_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconMatrix
+  name: station-ai-icon-matrix
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-matrix
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconMonochrome
+  name: station-ai-icon-monochrome
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-monochrome
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-monochrome_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconArmy
+  name: station-ai-icon-army
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-murica
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-murica_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconNanotrasen
+  name: station-ai-icon-nanotrasen
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-nanotrasen
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconNotMalf
+  name: station-ai-icon-notmalf
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-notmalf
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconPresident
+  name: station-ai-icon-president
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-president
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconRainbow
+  name: station-ai-icon-rainbow
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-rainbow
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_clown_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconRed
+  name: station-ai-icon-red
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-red
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-red_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconRedOctober
+  name: station-ai-icon-redoctober
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-redoctober
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-redoctober_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconStatic
+  name: station-ai-icon-static
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-static
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-static_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconMeow
+  name: station-ai-icon-meow
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-syndicatmeow
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconText
+  name: station-ai-icon-text
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-text
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconTooDeep
+  name: station-ai-icon-toodeep
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-toodeep
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconTriumvirate
+  name: station-ai-icon-triumvirate
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-triumvirate
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconTriumvirateMalf
+  name: station-ai-icon-triumvirate-malf
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-triumvirate-m
+    Dead:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead
+
+- type: stationAiCustomization
+  parent: StationAiIconBase
+  id: StationAiIconWeird
+  name: station-ai-icon-weird
+  layerData:
+    Occupied:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-weird
+    Dead:
+      sprite: Backmen/Mobs/Silicon/station_ai.rsi
+      state: ai-weird_dead
+
+# Holograms
+- type: stationAiCustomization
+  id: StationAiHologramHorror
+  name: station-ai-hologram-horror
+  previewKey: Hologram
+  layerData:
+    Hologram:
+      sprite: Backmen/Mobs/Silicon/holograms.rsi
+      state: horror
+
+- type: stationAiCustomization
+  id: StationAiHologramXenomorphQueen
+  name: station-ai-hologram-xenomorph-queen
+  previewKey: Hologram
+  layerData:
+    Hologram:
+      sprite: Backmen/Mobs/Silicon/holograms.rsi
+      state: xeno_queen

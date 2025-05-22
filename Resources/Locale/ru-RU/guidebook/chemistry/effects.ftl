@@ -133,7 +133,7 @@ reagent-effect-guidebook-adjust-reagent-reagent =
                 [1] добавляют
                *[-1] удаляют
             }
-    } { NATURALFIXED($amount, 2) }ед. от { $reagent } { $deltasign ->
+    } { NATURALFIXED($amount, 2) } ед. от { $reagent } { $deltasign ->
         [1] к
        *[-1] из
     } раствора
@@ -334,6 +334,11 @@ reagent-effect-guidebook-area-reaction =
         [few] секунды
        *[other] секунд
     }
+reagent-effect-guidebook-artifact-unlock =
+    { $chance ->
+        [1] Помогает
+       *[other] Помогают
+    } разблокировать инопланетный артефакт.
 reagent-effect-guidebook-add-to-solution-reaction =
     { $chance ->
         [1] Заставляет
@@ -369,6 +374,12 @@ reagent-effect-guidebook-plant-seeds-add =
         [1] Восстанавливает
        *[other] восстанавливают
     } семена растения
+reagent-effect-guidebook-add-moodlet =
+    Изменяет настроение на { $amount } единиц
+    { $timeout ->
+        [0] навсегда
+       *[other] на { $timeout } секунд
+    }
 reagent-effect-guidebook-plant-seeds-remove =
     { $chance ->
         [1] Убирает

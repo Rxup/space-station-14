@@ -3,23 +3,44 @@ using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Popups;
 using Content.Shared.Puppet;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Muting;
+using Robust.Shared.Random;
 
 namespace Content.Server.Speech.Muting
 {
     public sealed class MutingSystem : EntitySystem
     {
+        [Dependency] private readonly IRobustRandom _random = default!; // backmen edit
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<MutedComponent, SpeakAttemptEvent>(OnSpeakAttempt);
+            SubscribeLocalEvent<MutedComponent, BeforePainSoundPlayed>(OnPainSound); // backmen edit
             SubscribeLocalEvent<MutedComponent, EmoteEvent>(OnEmote, before: new[] { typeof(VocalSystem) });
             SubscribeLocalEvent<MutedComponent, ScreamActionEvent>(OnScreamAction, before: new[] { typeof(VocalSystem) });
         }
+
+        // backmen start
+        private void OnPainSound(Entity<MutedComponent> muted, ref BeforePainSoundPlayed args)
+        {
+            if (_random.Prob(0.01f))
+            {
+                _popupSystem.PopupEntity(
+                    Loc.GetString("no-mouth-and-must-scream-muted"),
+                    muted,
+                    muted,
+                    PopupType.LargeCaution);
+            }
+
+            args.Cancelled = true;
+        }
+        // backmen end
 
         private void OnEmote(EntityUid uid, MutedComponent component, ref EmoteEvent args)
         {

@@ -4,6 +4,14 @@
   id: Welder
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/weldingtool_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/welder_drop.ogg
+  # backmen edit end
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/welder_drop.ogg
@@ -207,3 +215,21 @@
     enabled: false
     radius: 1.0
     color: orange
+
+- type: entity
+  parent: [ Welder, BaseXenoborgContraband ]
+  id: RefuelingWelder
+  name: refuling welding tool
+  description: "An slow welder that can refuel itself over time."
+  components:
+  - type: Tool
+    speedModifier: 0.5
+  - type: Welder
+    fuelConsumption: 2
+    fuelLitCost: 1
+  - type: SolutionRegeneration
+    solution: Welder
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 0.1

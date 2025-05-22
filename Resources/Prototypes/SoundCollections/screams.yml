@@ -59,6 +59,19 @@
 
 # Pain screams (male)
 - type: soundCollection
+  id: PainGruntsMale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt1.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt2.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt3.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt4.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt5.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt6.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt7.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt8.ogg
+  - /Audio/Voice/BrutalDeathRattles/MalePainGrunt9.ogg
+
+- type: soundCollection
   id: PainScreamsShortMale
   files:
     - /Audio/Voice/BrutalDeathRattles/MalePainShort1.ogg
@@ -75,6 +88,8 @@
   - /Audio/Voice/BrutalDeathRattles/MaleAgony1.ogg
   - /Audio/Voice/BrutalDeathRattles/MaleAgony2.ogg
   - /Audio/Voice/BrutalDeathRattles/MaleAgony3.ogg
+  - /Audio/Voice/BrutalDeathRattles/MaleAgony4.ogg
+  - /Audio/Voice/BrutalDeathRattles/MaleAgony5.ogg
 
 - type: soundCollection
   id: PainShockScreamsMale
@@ -83,9 +98,10 @@
     - /Audio/Voice/BrutalDeathRattles/PainShockMale2.ogg
     - /Audio/Voice/BrutalDeathRattles/PainShockMale3.ogg
     - /Audio/Voice/BrutalDeathRattles/PainShockMale4.ogg
+    - /Audio/Voice/BrutalDeathRattles/PainShockMale5.ogg
 
 - type: soundCollection
-  id: CritWhimpersMale
+  id: WhimpersMale
   files:
     - /Audio/Voice/BrutalDeathRattles/StillAliveMale1.ogg
     - /Audio/Voice/BrutalDeathRattles/StillAliveMale2.ogg
@@ -93,12 +109,39 @@
     - /Audio/Voice/BrutalDeathRattles/StillAliveMale4.ogg
 
 - type: soundCollection
-  id: PainShockWhimpersMale
+  id: PainedWhimpersMale
   files:
     - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale1.ogg
     - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale2.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale3.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale4.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale5.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale6.ogg
+    - /Audio/Voice/BrutalDeathRattles/StillAlivePainedMale7.ogg
+
+- type: soundCollection
+  id: ExtremePainMale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainMale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainMale2.ogg
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainMale3.ogg
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainMale4.ogg
 
 # Pain screams (female)
+- type: soundCollection
+  id: PainGruntsFemale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt1.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt2.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt3.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt4.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt5.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt6.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt7.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt8.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt9.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemalePainGrunt10.ogg
+
 - type: soundCollection
   id: PainScreamsShortFemale
   files:
@@ -114,6 +157,7 @@
   - /Audio/Voice/BrutalDeathRattles/FemaleAgony1.ogg
   - /Audio/Voice/BrutalDeathRattles/FemaleAgony2.ogg
   - /Audio/Voice/BrutalDeathRattles/FemaleAgony3.ogg
+  - /Audio/Voice/BrutalDeathRattles/FemaleAgony4.ogg
 
 - type: soundCollection
   id: PainShockScreamsFemale
@@ -121,18 +165,33 @@
   - /Audio/Voice/BrutalDeathRattles/PainShockFemale1.ogg
   - /Audio/Voice/BrutalDeathRattles/PainShockFemale2.ogg
   - /Audio/Voice/BrutalDeathRattles/PainShockFemale3.ogg
+  - /Audio/Voice/BrutalDeathRattles/PainShockFemale4.ogg
 
 - type: soundCollection
-  id: CritWhimpersFemale
+  id: WhimpersFemale
   files:
   - /Audio/Voice/BrutalDeathRattles/StillAliveFemale1.ogg
   - /Audio/Voice/BrutalDeathRattles/StillAliveFemale2.ogg
   - /Audio/Voice/BrutalDeathRattles/StillAliveFemale3.ogg
+  - /Audio/Voice/BrutalDeathRattles/StillAliveFemale4.ogg
 
 - type: soundCollection
-  id: PainShockWhimpersFemale
+  id: PainedWhimpersFemale
   files:
   - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale2.ogg
+  - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale3.ogg
+  - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale4.ogg
+  - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale5.ogg
+  - /Audio/Voice/BrutalDeathRattles/StillAlivePainedFemale6.ogg
+
+- type: soundCollection
+  id: ExtremePainFemale
+  files:
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainFemale1.ogg
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainFemale2.ogg
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainFemale3.ogg
+  - /Audio/Voice/BrutalDeathRattles/ExtremePainFemale4.ogg
 
 # Organ damage gaggling
 - type: soundCollection
@@ -147,6 +206,7 @@
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale1.ogg
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale2.ogg
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale3.ogg
+  - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersMale4.ogg
 
 - type: soundCollection
   id: OrganDamagePainedFemale

@@ -43,12 +43,21 @@ ent-ThievingGloves = { ent-ClothingHandsGlovesColorBlack }
 ent-ClothingHandsGlovesCluwne = руки клувеня
     .desc = Проклятая пара рук клувеня.
     .suffix = Неснимаемый
-# Corvax-HiddenDesc-Start
-ent-ClothingHandsGlovesNorthStar = пара сине-белых перчаток
-    .suffix = перчатки Полярной звезды, Синдикат
-    .desc = Одев их, можно с уверенностью чувствовать себя жестоким и брутальным героем из аниме-сериалов.
-# Corvax-HiddenDesc-End
+ent-ClothingHandsGlovesNorthStar = перчатки Полярный звезды
+    .desc = Эти перчатки позволяют наносить удары с невероятной скоростью.
 ent-ClothingHandsGlovesForensic = криминалистические перчатки
     .desc = Не оставляют ни волокна, ни отпечатки пальцев. Если вы работаете без них, то вы - УЖАСНЫЙ ДЕТЕКТИВ.
 ent-ClothingHandsGlovesJanitor = резиновые перчатки
     .desc = Высококачественные резиновые перчатки, скрипящие от желания сделать уборку!
+ent-ClothingHandsKnuckleDusters = костеты
+    .desc = Холодные пласталевые костеты, делает ваши удары сильнее.
+ent-ClothingHandsKnuckleDustersBrass = латунные костеты
+    .desc = Латунные костеты, точно так же, как их делали раньше, и бьют они так же сильно.
+ent-ClothingHandsKnuckleDustersQM = золотые костеты квартирмейстера
+    .desc = 24-ёх каратное золото Пропитанный пласталью и отмеченный логотипом Nanotrasen. Настоящий символ мощи квартирмейстера.
+ent-ClothingHandsKnuckleDustersSyndicate = syndicate костеты
+    .desc = Пластитаниумовые костеты с выгроверонной буквой S. Настоящий мужчина изобьёт кого-нибудь с помощью них.
+ent-ClothingHandsKnuckleDustersStun = стан-костеты
+    .desc = Пара костетов с встроенной технологией шоковой дубинки. С ним гораздо броще бить ассистентов.
+ent-ClothingHandsKnuckleBoneCrushers = костяные крушители
+    .desc = Освящены Богами, чтобы ломать лица всем, кто не поклоняется им.

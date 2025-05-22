@@ -1,5 +1,5 @@
 ent-BaseImplanter = имплантер
-    .desc = Шприц, специально предназначенный для введения и извлечения подкожных имплантов.
+    .desc = Шприц, специально предназначенный для введения и извлечения подкожных имплантов. Будьте осторожны при извлечении имплантатов, так как неправильные настройки извлечения могут травмировать пользователя.
 ent-Implanter = { ent-BaseImplanter }
     .desc = Одноразовый шприц, специально предназначенный для введения и извлечения подкожных имплантов.
 ent-ImplanterAdmeme = { ent-Implanter }
@@ -62,4 +62,6 @@ ent-MindShieldImplanter = { ent-BaseImplantOnlyImplanter }
     .desc = { ent-BaseImplantOnlyImplanter.desc }
 ent-RadioImplanterCentcomm = { ent-BaseImplantOnlyImplanter }
     .suffix = радио Центком
+    .desc = { ent-BaseImplantOnlyImplanter.desc }
+ent-DeathRattleImplanterCentcomm = центкомм имплант предсмертного хрипа
     .desc = { ent-BaseImplantOnlyImplanter.desc }

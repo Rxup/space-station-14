@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
@@ -37,7 +37,7 @@ public sealed class MobThresholdSystem : EntitySystem
         SubscribeLocalEvent<MobThresholdsComponent, ComponentShutdown>(MobThresholdShutdown);
         SubscribeLocalEvent<MobThresholdsComponent, ComponentStartup>(MobThresholdStartup);
         SubscribeLocalEvent<MobThresholdsComponent, DamageChangedEvent>(OnDamaged);
-        SubscribeLocalEvent<MobThresholdsComponent, WoundableIntegrityChangedOnBodyEvent>(OnWoundableDamage); // backmen edit
+        SubscribeLocalEvent<MobThresholdsComponent, ConsciousnessChangedEvent>(OnConsciousnessUpdate); // backmen edit
         SubscribeLocalEvent<MobThresholdsComponent, UpdateMobStateEvent>(OnUpdateMobState);
         SubscribeLocalEvent<MobThresholdsComponent, MobStateChangedEvent>(OnThresholdsMobState);
     }
@@ -293,10 +293,10 @@ public sealed class MobThresholdSystem : EntitySystem
                 }
             }
 
-            entDamage = new DamageSpecifier
+            foreach (var damagePiece in damageDict)
             {
-                DamageDict = damageDict,
-            };
+                entDamage.DamageDict[damagePiece.Key] += damagePiece.Value;
+            }
         }
         // backmen eidT1!!11!
 
@@ -445,18 +445,9 @@ public sealed class MobThresholdSystem : EntitySystem
             {
                 totalDamage = damageable.TotalDamage;
             }
-            else
+            else if (TryComp<ConsciousnessComponent>(target, out var consciousness))
             {
-                if (body is { RootContainer.ContainedEntity: not null })
-                {
-                    foreach (var (_, wound) in _wound.GetAllWounds(body.RootContainer.ContainedEntity.Value))
-                    {
-                        if (wound.IsScar)
-                            continue;
-
-                        totalDamage += wound.WoundSeverityPoint;
-                    }
-                }
+                totalDamage = consciousness.Cap - consciousness.Consciousness;
             }
             // backmen edit end
 
@@ -504,7 +495,7 @@ public sealed class MobThresholdSystem : EntitySystem
         UpdateAlerts(target, mobState.CurrentState, thresholds, args.Damageable);
     }
 
-    private void OnWoundableDamage(EntityUid body, MobThresholdsComponent thresholds, WoundableIntegrityChangedOnBodyEvent args)
+    private void OnConsciousnessUpdate(EntityUid body, MobThresholdsComponent thresholds, ref ConsciousnessChangedEvent args)
     {
         if (!TryComp<MobStateComponent>(body, out var mobState))
             return;

@@ -113,8 +113,6 @@
   components:
   - type: Clickable
   - type: Slippery
-  - type: TileFrictionModifier
-    modifier: 0.3
   - type: Transform
     noRot: true
     anchored: true
@@ -178,9 +176,12 @@
   save: false
   description: След жидкости
   components:
+    - type: Slippery
+    - type: StepTrigger
     - type: Tag
       tags:
       - HideContextMenu
+      - DNASolutionScannable
     - type: Clickable
     - type: FootstepModifier
       footstepSoundCollection:
@@ -213,5 +214,6 @@
     - type: Puddle
       solution: step
       viscosityAffectsMovement: false
+      overflowVolume: 2
     - type: Appearance
 # end-backmen: footsteps

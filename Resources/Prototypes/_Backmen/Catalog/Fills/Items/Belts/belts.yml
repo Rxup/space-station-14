@@ -456,7 +456,7 @@
         - id: SpetsnazMedipen
           amount: 3
         - id: PaperManualCodes
-        - id: SpeedLoaderMagnumAP
+        - id: SpeedLoader357MagnumAP
           amount: 4
         - id: PinpointerNuclear
 
@@ -470,9 +470,11 @@
       - id: Brutepack
         amount: 2
       - id: Ointment
-        amount: 2
+        amount: 1
       - id: Bloodpack
       - id: Gauze
+      - id: ChemistryBottleMorphine
+      - id: Syringe
       - id: EmergencyMedipen
         amount: 3
       - id: Stimpack
@@ -488,3 +490,23 @@
       - id: Stunbaton
       - id: Handcuffs
       - id: Handcuffs
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbingCMO
+  id: ClothingBeltMilitaryWebbingCMOFilled
+  name: chief medical officer's chest rig
+  description: "A medical chest rig with deep pockets, for use by paramedics and health professionals."
+  components:
+  - type: StorageFill
+    contents:
+      - id: EnergyCautery
+      - id: EnergyScalpel
+      - id: AdvancedRetractor
+      - id: BoneGel
+      - id: Brutepack
+      - id: Ointment
+      - id: Bloodpack
+      - id: Gauze
+      - id: EmergencyMedipen
+        amount: 3
+

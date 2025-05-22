@@ -35,6 +35,7 @@ public partial class SharedBodySystem
         EntityUid parentPartUid)
     {
         organEnt.Comp.Body = bodyUid;
+        organEnt.Comp.BodyPart = parentPartUid;
         var addedEv = new OrganAddedEvent(parentPartUid);
         RaiseLocalEvent(organEnt, ref addedEv);
 
@@ -78,6 +79,7 @@ public partial class SharedBodySystem
             TrySetOrganUsed(organEnt, true, organEnt.Comp);
 
         organEnt.Comp.Body = null;
+        organEnt.Comp.BodyPart = null;
         Dirty(organEnt, organEnt.Comp);
     }
 
@@ -163,13 +165,15 @@ public partial class SharedBodySystem
     /// </summary>
     public bool RemoveOrgan(EntityUid organId, OrganComponent? organ = null)
     {
+        if (!Resolve(organId, ref organ, false))
+            return false;
+
         if (!Containers.TryGetContainingContainer((organId, null, null), out var container))
             return false;
 
         var parent = container.Owner;
-
         return HasComp<BodyPartComponent>(parent)
-            && Containers.Remove(organId, container);
+            && Containers.Remove(organId, container, destination: Transform(organ.Body!.Value).Coordinates);
     }
 
     /// <summary>

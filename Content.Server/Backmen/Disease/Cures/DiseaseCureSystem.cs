@@ -1,7 +1,7 @@
-﻿using Content.Server.Bed.Components;
-using Content.Server.Body.Components;
+﻿using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Disease;
+using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Mobs.Components;

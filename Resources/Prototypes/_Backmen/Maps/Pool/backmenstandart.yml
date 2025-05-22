@@ -3,24 +3,26 @@
   maps:
   - BackmenAspid
   - BackmenKettle
-  #- BackmenTortuga
+  - BackmenBox
+  - BackmenTortuga
   - BackmenHive
   - BackmenShoukou
   #- BackmenRook
   - BackmenDelta
-  - CorvaxSplit
-  - Saltern
+  #- CorvaxSplit
+  - Amber
   - Bagel
-  - Box
-  - Core
+  - Convex
+  #- Core
+  - Elkridge
   - Fland
+  #- Gate
+  - Loop
   - Marathon
   - Meta
   - Oasis
   - Omega
   - Packed
-  - Reach
-  - Amber
-  - CorvaxTushkan
-  - Elkridge
+  - Plasma
+  #- Reach
   #- Train

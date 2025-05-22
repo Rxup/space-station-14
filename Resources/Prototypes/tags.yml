@@ -353,6 +353,9 @@
 - type: Tag
   id: CoordinatesDisk
 
+- type: Tag # designed to let corgis wear things; at present only for SmartCorgi.  View PR 33737 on upstream for more dog wearables
+  id: CorgiWearable
+
 - type: Tag #Ohioans die happy
   id: Corn
 
@@ -596,6 +599,10 @@
 - type: Tag
   id: GeigerCounter
 
+# Used for warps
+- type: Tag
+  id: GhostOnlyWarp
+
 - type: Tag
   id: GlassAirlock
 
@@ -610,6 +617,9 @@
 
 - type: Tag
   id: Goliath
+
+- type: Tag
+  id: GoliathPlate
 
 - type: Tag
   id: GPS
@@ -706,6 +716,9 @@
 
 - type: Tag
   id: HighSecDoor
+
+- type: Tag
+  id: HivelordRemains
 
 - type: Tag
   id: HiViz
@@ -1360,6 +1373,9 @@
 - type: Tag
   id: VoiceTrigger
 
+- type: Tag # Eating fix tag
+  id: VoxFood
+
 - type: Tag
   id: Wall
 
@@ -1431,5 +1447,20 @@
 
 - type: Tag
   id: WriteIgnoreStamps
+
+- type: Tag
+  id: XenoborgModuleEngi
+
+- type: Tag
+  id: XenoborgModuleGeneric
+
+- type: Tag
+  id: XenoborgModuleHeavy
+
+- type: Tag
+  id: XenoborgModuleScout
+
+- type: Tag
+  id: XenoborgModuleStealth
 
 # ALPHABETICAL
