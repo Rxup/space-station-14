@@ -31,7 +31,6 @@
       implants: [ MindShieldImplant ]
     - !type:AddComponentSpecial
       components:
-        - type: CommandStaff
         - type: NpcFactionMember
           factions:
             - CentralCommand
@@ -60,7 +59,6 @@
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
     shoes: ClothingShoesBootsCombat
-    back: ClothingBackpackBlueshield
     belt: ClothingBeltBlueshieldWebbingFilled
     pocket1: WeaponMultiphaseEnergyGun
     pocket2: CombatKnifeSpetsnaz

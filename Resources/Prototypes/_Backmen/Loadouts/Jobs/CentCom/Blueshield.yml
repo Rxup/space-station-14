@@ -7,7 +7,7 @@
       role: JobBlueShield
       time: 72000 #20 hrs
 
-#Suit
+#suit
 - type: loadout
   id: ClothingUniformJumpsuitBlueShield
   equipment:
@@ -28,6 +28,21 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtBlueShieldTurtleneck
 
+#back
+- type: loadout
+  id: ClothingBackpackBlueshield
+  equipment:
+    back: ClothingBackpackBlueshield
+
+- type: loadout
+  id: ClothingBackpackSatchelBlueshield
+  equipment:
+    back: ClothingBackpackSatchelBlueshield
+
+- type: loadout
+  id: ClothingBackpackMessengerBlueshield
+  equipment:
+    back: ClothingBackpackMessengerBlueshield
 
 #outerClothing
 - type: loadout

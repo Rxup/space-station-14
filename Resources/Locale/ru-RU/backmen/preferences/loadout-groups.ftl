@@ -29,6 +29,6 @@ loadout-group-virologist-outerclothing = Вирусолог, верхняя од
 loadout-group-virologist-backpack = Вирусолог, рюкзак
 
 # Surgeon
-loadout-group-surgeon-head = Хирург, голово
+loadout-group-surgeon-head = Хирург, головa
 loadout-group-surgeon-jumpsuit = Хирург, комбинезон
 loadout-group-surgeon-outerclothing = Хирург, верхняя одежда
