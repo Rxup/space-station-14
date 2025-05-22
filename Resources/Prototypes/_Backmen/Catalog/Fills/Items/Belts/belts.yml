@@ -479,7 +479,7 @@
         amount: 3
       - id: Stimpack
 
-
+- type: entity
   id: ClothingBeltBlueshieldWebbingFilled
   parent: ClothingBeltBlueshieldWebbing
   suffix: Filled
