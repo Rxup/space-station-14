@@ -47,7 +47,7 @@
           - !type:DeleteEntity
         steps:
           - tag: Justice
-            name: Меч
+            name: construction-graph-tag-sword
             doAfter: 5
     - node: Justice
       edges:
@@ -58,7 +58,7 @@
           - !type:DeleteEntity
         steps:
           - tag: Splendor
-            name: Меч
+            name: construction-graph-tag-sword
             doAfter: 5
     - node: sword
       entity: WeaponSwordJusticeAndSplendor
