@@ -6,3 +6,4 @@ construction-graph-tag-xen-research-tool = исследовательский и
 construction-graph-tag-xen-pcv-plate = плата PCV
 construction-graph-tag-blessed-bible = благословенная библия
 construction-graph-tag-father-light = свет все-отца
+construction-graph-tag-sword = меч
