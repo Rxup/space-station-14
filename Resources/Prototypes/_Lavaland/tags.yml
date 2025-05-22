@@ -26,10 +26,10 @@
   id: Splendor
 
 - type: Tag
-  id: GunUpgradeDamage2
+  id: GunUpgradeDamageT2
 
 - type: Tag
-  id: GunUpgradeRange2
+  id: GunUpgradeRangeT2
 
 - type: Tag
-  id: GunUpgradeReloadSpeed2
+  id: GunUpgradeReloadSpeedT2

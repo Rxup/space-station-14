@@ -34,7 +34,7 @@
   components:
   - type: GunUpgrade
 #    capacityCost: 40
-    tags: [ GunUpgradeDamage2 ]
+    tags: [ GunUpgradeDamageT2 ]
     examineText: gun-upgrade-examine-text-damage
   - type: GunUpgradeDamage
     damage:
@@ -49,7 +49,7 @@
   suffix: Tier 2
   components:
   - type: GunUpgrade
-    tags: [ GunUpgradeRange2 ]
+    tags: [ GunUpgradeRangeT2 ]
     examineText: gun-upgrade-examine-text-range
   - type: GunUpgradeSpeed
     coefficient: 3
@@ -61,7 +61,7 @@
   suffix: Tier 2
   components:
   - type: GunUpgrade
-    tags: [ GunUpgradeReloadSpeed2 ]
+    tags: [ GunUpgradeReloadSpeedT2 ]
 #    capacityCost: 20
     examineText: gun-upgrade-examine-text-reload
   - type: GunUpgradeFireRate
