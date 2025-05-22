@@ -47,7 +47,7 @@
   - type: AutoRecharge
     rechargeDuration: 10
   - type: Construction
-    graph: SplendorSword
+    graph: HolyWeapon
     node: Justice
 
 - type: entity
@@ -197,7 +197,7 @@
     - Knife
     - Splendor
   - type: Construction
-    graph: SplendorSword
+    graph: HolyWeapon
     node: Splendor
 
 - type: entity

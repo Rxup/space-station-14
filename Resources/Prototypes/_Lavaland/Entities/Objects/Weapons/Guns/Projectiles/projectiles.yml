@@ -161,8 +161,7 @@
     bodyType: KinematicController
     #bodyStatus: InAir
     canCollide: true
-    angularVelocity: -100
-    linearVelocity: -100
+    angularDamping: -100
     linearDamping: -100
     fixedRotation: True
   - type: Sprite
