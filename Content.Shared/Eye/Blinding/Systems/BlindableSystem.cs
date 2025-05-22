@@ -3,6 +3,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.HealthExaminable;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
@@ -20,6 +21,7 @@ public sealed class BlindableSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<BlindableComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BlindableComponent, EyeDamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BlindableComponent, HealthBeingExaminedEvent>(OnHealthBeingExamined); // Backmen
     }
 
     // Might need to keep this one because of slimes since their eyes arent an organ, so they wouldnt get rejuvenated.
@@ -92,6 +94,18 @@ public sealed class BlindableSystem : EntitySystem
 
         blindable.Comp.EyeDamage = amount;
         UpdateEyeDamage(blindable, true);
+    }
+
+    /// <summary>
+    ///     Shows text on health examine.
+    /// </summary>
+    private void OnHealthBeingExamined(Entity<BlindableComponent> ent, ref HealthBeingExaminedEvent args)
+    {
+        if (!TryComp<BlindableComponent>(ent.Owner, out var blindable) || blindable.EyeDamage <= 0)
+            return;
+
+        args.Message.PushNewline();
+        args.Message.AddMarkupOrThrow(Loc.GetString("blindable-component-eye-damage", ("target", ent.Owner)));
     }
     // backmen edit end
 

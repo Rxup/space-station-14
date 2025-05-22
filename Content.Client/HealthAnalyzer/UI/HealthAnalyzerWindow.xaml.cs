@@ -12,6 +12,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -328,6 +329,18 @@ namespace Content.Client.HealthAnalyzer.UI
                 };
                 boneTraumaLabel.SetMessage(Loc.GetString("health-analyzer-window-bone-damage-present"), defaultColor: Color.Red);
                 AlertsContainer.AddChild(boneTraumaLabel);
+            }
+
+            // Backmen: Blindness
+            if (_entityManager.TryGetComponent<BlindableComponent>(_target, out var blindable) && blindable.IsBlind)
+            {
+                var blindnessLabel = new RichTextLabel
+                {
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300,
+                };
+                blindnessLabel.SetMessage(Loc.GetString("health-analyzer-window-entity-blind-text"), defaultColor: Color.Bisque);
+                AlertsContainer.AddChild(blindnessLabel);
             }
         }
 
