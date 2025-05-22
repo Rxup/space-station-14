@@ -78,7 +78,7 @@ public sealed class BlindableSystem : EntitySystem
 
         foreach (var eye in eyes)
             // for now
-            _trauma.TryCreateOrganDamageModifier(eye.Owner, amount, blindable.Owner, "BlindableDamage", eye.Comp2);
+            _trauma.TryAddOrganDamageModifier(eye.Owner, amount, blindable.Owner, "BlindableDamage", eye.Comp2);
         // backmen edit end
     }
 

@@ -267,8 +267,7 @@ public sealed class HealingSystem : EntitySystem
         if (healedTotal <= 0 && !bleedsManipulated)
         {
             _popupSystem.PopupEntity(
-                TraumaSystem.TraumasBlockingHealing.Any(traumaType =>
-                    _trauma.HasWoundableTrauma(targetedWoundable, traumaType))
+                _trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp)
                     ? Loc.GetString("medical-item-requires-surgery-rebell", ("target", args.Target))
                     : Loc.GetString("medical-item-cant-use-rebell", ("target", args.Target)),
                 args.Target.Value,
@@ -310,7 +309,7 @@ public sealed class HealingSystem : EntitySystem
         if (args.Repeat)
             return;
 
-        if (TraumaSystem.TraumasBlockingHealing.Any(traumaType => _trauma.HasWoundableTrauma(targetedWoundable, traumaType, woundableComp)))
+        if (_trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp))
         {
             _popupSystem.PopupEntity(Loc.GetString("medical-item-requires-partial-surgery-rebell", ("target", ent)), ent, args.User, PopupType.MediumCaution);
             return;
