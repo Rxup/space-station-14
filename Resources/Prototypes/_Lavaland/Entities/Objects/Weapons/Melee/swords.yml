@@ -198,7 +198,7 @@
     - Splendor
   - type: Construction
     graph: ArchangelSword
-    node: Splendor
+    node: start
 
 - type: entity
   parent: [ BaseItem, BaseSecurityCargoContraband]

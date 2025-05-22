@@ -36,9 +36,9 @@
 
 - type: constructionGraph
   id: ArchangelSword
-  start: Splendor
+  start: start
   graph:
-    - node: Splendor
+    - node: start
       edges:
       - to: sword
         completed:
