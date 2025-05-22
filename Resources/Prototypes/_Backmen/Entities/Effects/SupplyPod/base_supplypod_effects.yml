@@ -6,7 +6,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: _White/Effects/telegraph.rsi
+    sprite: Backmen/Effects/telegraph.rsi
     drawdepth: FloorTiles
     layers:
       - state: target_circle_holographic
@@ -42,7 +42,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _White/Effects/supplypod_falling.rsi
+    sprite: Backmen/Effects/supplypod_falling.rsi
     layers:
     - state: default_falling_animation
       offset: "0,3.3"
@@ -60,7 +60,7 @@
     prototype: SmallExplosionInstant
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/_White/Weapons/mortar_long_whistle.ogg
+      path: /Audio/Backmen/Weapons/mortar_long_whistle.ogg
       params:
         variation: 0.3
         volume: 4

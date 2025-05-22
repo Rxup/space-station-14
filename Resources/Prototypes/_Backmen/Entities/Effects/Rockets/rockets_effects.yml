@@ -5,7 +5,7 @@
   id: RocketMediumExplosionFallingAnimation
   components:
     - type: Sprite
-      sprite: _White/Effects/rocket_falling.rsi
+      sprite: Backmen/Effects/rocket_falling.rsi
       layers:
         - state: rocket_falling_animation
     - type: TimedSpawner
@@ -22,7 +22,7 @@
   id: RocketSyndicateMediumExplosionFallingAnimation
   components:
     - type: Sprite
-      sprite: _White/Effects/rocket_falling.rsi
+      sprite: Backmen/Effects/rocket_falling.rsi
       layers:
         - state: rocket_syndicate_falling_animation
     - type: SpawnOnDespawn

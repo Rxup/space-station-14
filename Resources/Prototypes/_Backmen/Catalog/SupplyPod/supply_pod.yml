@@ -249,29 +249,29 @@
         - id: DoubleEmergencyNitrogenTankFilled
 
 # NPCGondola
-- type: entity
-  parent: BaseSupplyPodTargetCircle
-  id: SupplyPodCircleNPCGondola
-  suffix: Gondola
-  components:
-    - type: TimedSpawner
-      prototypes:
-        -  SupplyPodFallingAnimationNPCGondola
+#- type: entity
+#  parent: BaseSupplyPodTargetCircle
+#  id: SupplyPodCircleNPCGondola
+#  suffix: Gondola
+#  components:
+#    - type: TimedSpawner
+#      prototypes:
+#        -  SupplyPodFallingAnimationNPCGondola
 
-- type: entity
-  parent: SupplyPodGondolaFallingAnimation
-  categories: [ HideSpawnMenu ]
-  id: SupplyPodFallingAnimationNPCGondola
-  components:
-    - type: TimedSpawner
-      prototypes:
-        - SupplyPodNPCGondola
+#- type: entity
+#  parent: SupplyPodGondolaFallingAnimation
+#  categories: [ HideSpawnMenu ]
+#  id: SupplyPodFallingAnimationNPCGondola
+#  components:
+#    - type: TimedSpawner
+#      prototypes:
+#        - SupplyPodNPCGondola
 
-- type: entity
-  parent: SupplyPodCapsuleGondola
-  categories: [ HideSpawnMenu ]
-  id: SupplyPodNPCGondola
-  components:
-    - type: StorageFill
-      contents:
-        - id: MobGondola
+#- type: entity
+#  parent: SupplyPodCapsuleGondola
+#  categories: [ HideSpawnMenu ]
+#  id: SupplyPodNPCGondola
+#  components:
+#    - type: StorageFill
+#      contents:
+#        - id: MobGondola

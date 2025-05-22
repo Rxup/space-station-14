@@ -6,11 +6,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: _White/Structures/Storage/SupplyPods/supply_pod_default.rsi
+      - sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_default.rsi
         state: default_pod
-      - sprite: _White/Structures/Storage/SupplyPods/supply_pod_default.rsi
+      - sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_default.rsi
         state: default_closed
-      - sprite: _White/Structures/Storage/SupplyPods/supply_pod_default.rsi
+      - sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_default.rsi
         state: overlay
   - type: RandomSpawner
     prototypes:
@@ -24,11 +24,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: _White/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
+      - sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
         state: default_pod
-      - sprite: _White/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
+      - sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
         state: default_closed
-      - sprite: _White/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
+      - sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
         state: overlay
   - type: RandomSpawner
     prototypes:
