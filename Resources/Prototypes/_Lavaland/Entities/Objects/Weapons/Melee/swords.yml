@@ -48,7 +48,7 @@
     rechargeDuration: 10
   - type: Construction
     graph: HolyWeapon
-    node: Justice
+    node: start
 
 - type: entity
   id: ActionDashJustice
