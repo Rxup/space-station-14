@@ -201,7 +201,7 @@
   #Backmen-edit-start
   - type: Construction
     graph: HolyWeapon
-    node: Justice
+    node: start
   #Backmen-edit-end
 
 # Like a crusher... but better

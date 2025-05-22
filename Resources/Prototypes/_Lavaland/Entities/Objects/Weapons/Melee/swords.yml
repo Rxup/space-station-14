@@ -47,8 +47,8 @@
   - type: AutoRecharge
     rechargeDuration: 10
   - type: Construction
-    graph: HolyWeapon
-    node: start
+    graph: ArchangelSword
+    node: Justice
 
 - type: entity
   id: ActionDashJustice
@@ -197,7 +197,7 @@
     - Knife
     - Splendor
   - type: Construction
-    graph: HolyWeapon
+    graph: ArchangelSword
     node: Splendor
 
 - type: entity
