@@ -1,0 +1,60 @@
+# HardsuitBlueShield
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleHardsuitBlueShield
+  suffix: Hardsuit BlueShield, NanoTrasen
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationHardsuitBlueShield
+
+- type: entity
+  parent: SupplyPodNanoTrasenFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationHardsuitBlueShield
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodHardsuitBlueShield
+
+- type: entity
+  parent: SupplyPodCapsuleNanoTrasen
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodHardsuitBlueShield
+  components:
+    - type: StorageFill
+      contents:
+        - id: ClothingOuterHardsuitBlueShield
+        - id: ClothingMaskTacticalGas
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+
+# HardsuitSecurityPilot
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleHardsuitSecurityPilot
+  suffix: Hardsuit Security Pilot, Syndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationHardsuitSecurityPilot
+
+- type: entity
+  parent: SupplyPodNanoTrasenFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationHardsuitSecurityPilot
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodHardsuitSecurityPilot
+
+- type: entity
+  parent: SupplyPodCapsuleNanoTrasen
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodHardsuitSecurityPilot
+  components:
+    - type: StorageFill
+      contents:
+        - id: ClothingOuterHardsuitSecurityPilot
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled

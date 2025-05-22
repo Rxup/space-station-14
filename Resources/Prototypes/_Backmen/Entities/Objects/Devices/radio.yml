@@ -53,7 +53,7 @@
     heldPrefix: radio
   - type: SpawnItemsOnUse
     items:
-      - id: DropPodMarkerBlueShield
+      - id: SupplyPodCircleHardsuitBlueShield
     sound:
       path: /Audio/Corvax/Effects/Footsteps/off2.ogg
 
@@ -72,6 +72,6 @@
     heldPrefix: radio
   - type: SpawnItemsOnUse
     items:
-      - id: DropPodMarkerSecurityPilot
+      - id: SupplyPodCircleHardsuitSecurityPilot
     sound:
       path: /Audio/Corvax/Effects/Footsteps/off2.ogg

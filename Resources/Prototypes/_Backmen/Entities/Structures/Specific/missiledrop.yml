@@ -1,0 +1,112 @@
+# Missiles
+
+- type: entity
+  parent: MissileBase
+  id: MissileDrop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Specific/missile.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: Timer
+  - type: SpawnOnDespawn
+    prototype: ExplosionInstant
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  parent: MissileBase
+  id: MissileDropUnexploded
+  categories: [ HideSpawnMenu ]
+  name: неразорвавшийся снаряд
+  description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Specific/missile.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ExplosionInstant:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: MissileDropMarker
+  suffix: Missile
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  MissileDropLaunchAnimation
+
+- type: entity
+  parent: BaseSupplyPodFallingAnimation
+  id: MissileDropLaunchAnimation
+  name: missile
+  description: A standard-issue Nanotrasen intercontinental missile.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/missile_falling.rsi
+    layers:
+    - state: missile_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawner
+
+- type: entity
+  parent: BaseSupplyPodFallingAnimation
+  id: MissileDropRandomSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MissileDrop
+    chance: 1
+    rarePrototypes:
+      - MissileDropUnexploded
+    rareChance: 0.2
+
+- type: entity
+  parent: BaseTargetCircle
+  id: MissileDropSpawnerAreaSpawner
+  name: арт-обстрел
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawnerArea
+    intervalSeconds: 1
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  parent: BaseTargetCircle
+  id: MissileDropRandomSpawnerArea
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    offset: 10
+    prototypes:
+      - MissileDropMarker
+    chance: 1
+  - type: TimedDespawn
+    lifetime: 1

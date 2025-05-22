@@ -1169,7 +1169,7 @@
   id: UplinkReinforcementRadioSyndicate
   name: uplink-reinforcement-radio-name
   description: uplink-reinforcement-radio-traitor-desc
-  productEntity: DropPodMarkerReinforcementSyndicate #backmen-droppod
+  productEntity: SupplyPodCircleReinforcementSyndicate # Backmen
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1188,7 +1188,7 @@
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
   name: uplink-reinforcement-radio-nukeops-name
   description: uplink-reinforcement-radio-nukeops-desc
-  productEntity: DropPodMarkerReinforcementSyndicateNukeops #backmen-droppod
+  productEntity: SupplyPodCircleReinforcementSyndicateNukeops # Backmen
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
   cost:
     Telecrystal: 30
@@ -1204,7 +1204,7 @@
   id: UplinkReinforcementRadioSyndicateCyborgAssault
   name:  uplink-reinforcement-radio-cyborg-assault-name
   description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: DropPodMarkerReinforcementSyndicateCyborgAssault #backmen-droppod
+  productEntity: SupplyPodCircleReinforcementSyndicateCyborgAssault # Backmen
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
   cost:
     Telecrystal: 65
@@ -1220,7 +1220,7 @@
   id: UplinkReinforcementRadioSyndicateAncestor
   name: uplink-reinforcement-radio-ancestor-name
   description: uplink-reinforcement-radio-ancestor-desc
-  productEntity: DropPodMarkerReinforcementSyndicateAncestor #backmen-droppod
+  productEntity: SupplyPodCircleReinforcementSyndicateAncestor # Backmen
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1239,7 +1239,7 @@
   id: UplinkReinforcementRadioSyndicateAncestorNukeops # Version for Nukeops that spawns a syndicate monkey with the NukeOperative component.
   name: uplink-reinforcement-radio-ancestor-name
   description: uplink-reinforcement-radio-ancestor-desc
-  productEntity: DropPodMarkerReinforcementSyndicateAncestorNukeops #backmen-droppod
+  productEntity: SupplyPodCircleReinforcementSyndicateAncestorNukeops # Backmen
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:

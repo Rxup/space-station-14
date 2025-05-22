@@ -275,3 +275,123 @@
 #    - type: StorageFill
 #      contents:
 #        - id: MobGondola
+
+# ReinforcementSyndicate
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleReinforcementSyndicate
+  suffix: Reinforcement Syndicate, Syndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationReinforcementSyndicate
+
+- type: entity
+  parent: SupplyPodSyndicateFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationReinforcementSyndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodReinforcemenSyndicate
+
+- type: entity
+  parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicate]
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodReinforcementSyndicate
+
+# ReinforcementSyndicateNukeops
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleReinforcementSyndicateNukeops
+  suffix: Reinforcement Syndicate Nukeops, Syndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationReinforcementSyndicateNukeops
+
+- type: entity
+  parent: SupplyPodSyndicateFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationReinforcementSyndicateNukeops
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodReinforcemenSyndicateNukeops
+
+- type: entity
+  parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateNukeops]
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodReinforcementSyndicateNukeops
+
+# ReinforcementSyndicateAncestor
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleReinforcementSyndicateAncestor
+  suffix: Reinforcement Syndicate Ancestor, Syndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationReinforcementSyndicateAncestor
+
+- type: entity
+  parent: SupplyPodSyndicateFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationReinforcementSyndicateAncestor
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodReinforcemenSyndicateAncestor
+
+- type: entity
+  parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateAncestor]
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodReinforcementSyndicateAncestor
+
+# ReinforcementSyndicateAncestorNukeops
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleReinforcementSyndicateAncestorNukeops
+  suffix: Reinforcement Syndicate Ancestor Nukeops, Syndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationReinforcementSyndicateAncestorNukeops
+
+- type: entity
+  parent: SupplyPodSyndicateFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationReinforcementSyndicateAncestorNukeops
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodReinforcemenSyndicateAncestorNukeops
+
+- type: entity
+  parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateAncestorNukeops]
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodReinforcementSyndicateAncestorNukeops
+
+# ReinforcementSyndicateCyborgAssault
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleReinforcementSyndicateCyborgAssault
+  suffix: Reinforcement Syndicate Cyborg Assault, Syndicate
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault
+
+- type: entity
+  parent: SupplyPodSyndicateFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodReinforcemenSyndicateCyborgAssault
+
+- type: entity
+  parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateCyborgAssault]
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodReinforcementSyndicateCyborgAssault

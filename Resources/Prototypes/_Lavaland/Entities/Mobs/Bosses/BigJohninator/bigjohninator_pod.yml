@@ -1,0 +1,27 @@
+# BigJohninator
+- type: entity
+  parent: BaseSupplyPodTargetCircle
+  id: SupplyPodCircleBigJohninator
+  suffix: Big Johninator, NanoTrasen
+  components:
+    - type: TimedSpawner
+      prototypes:
+        -  SupplyPodFallingAnimationBigJohninator
+
+- type: entity
+  parent: SupplyPodNanoTrasenFallingAnimation
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodFallingAnimationBigJohninator
+  components:
+    - type: TimedSpawner
+      prototypes:
+        - SupplyPodBigJohninator
+
+- type: entity
+  parent: SupplyPodCapsuleNanoTrasen
+  categories: [ HideSpawnMenu ]
+  id: SupplyPodBigJohninator
+  components:
+    - type: StorageFill
+      contents:
+        - id: MobBigJohninator

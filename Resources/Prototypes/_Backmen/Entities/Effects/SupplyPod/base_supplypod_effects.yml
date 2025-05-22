@@ -21,6 +21,9 @@
   - type: Physics
     bodyType: Static
     canCollide: False
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 # Base supply pod target circle
 - type: entity
@@ -65,3 +68,6 @@
         variation: 0.3
         volume: 4
         maxDistance: 20
+  - type: Tag
+    tags:
+    - HideContextMenu
