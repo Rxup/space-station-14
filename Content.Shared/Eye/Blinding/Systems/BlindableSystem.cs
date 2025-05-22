@@ -101,7 +101,7 @@ public sealed class BlindableSystem : EntitySystem
     /// </summary>
     private void OnHealthBeingExamined(Entity<BlindableComponent> ent, ref HealthBeingExaminedEvent args)
     {
-        if (!TryComp<BlindableComponent>(ent.Owner, out var blindable) || blindable.EyeDamage <= 0)
+        if (ent.Comp.EyeDamage <= 0)
             return;
 
         args.Message.PushNewline();
