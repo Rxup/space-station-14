@@ -42,12 +42,12 @@
   - type: ResistLocker
   - type: ItemSlots
   - type: EntityStorage
-    capacity: 10
+    capacity: 0 # Only dilivery, no safe place
   - type: RadiationBlockingContainer
     resistance: 5
   - type: ExplosionResistance
     worn: false
-    damageCoefficient: 0.1
+    damageCoefficient: 0
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
