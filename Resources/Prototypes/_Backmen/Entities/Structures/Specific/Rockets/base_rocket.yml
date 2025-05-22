@@ -13,7 +13,7 @@
     noRot: true
     scale: 0.9, 0.9
     offset: 0, 0.3
-    sprite: _White/Structures/Specific/Rockets/rocket.rsi
+    sprite: Backmen/Structures/Specific/Rockets/rocket.rsi
     layers:
     - state: icon
       map: ["enum.StorageVisualLayers.Base"]

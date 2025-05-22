@@ -4,7 +4,7 @@
   id: Rocket
   components:
   - type: Sprite
-    sprite: _White/Structures/Specific/Rockets/rocket.rsi
+    sprite: Backmen/Structures/Specific/Rockets/rocket.rsi
 
 # Syndicate
 - type: entity
@@ -12,4 +12,4 @@
   id: RocketSyndicate
   components:
   - type: Sprite
-    sprite: _White/Structures/Specific/Rockets/rocket_syndicate.rsi
+    sprite: Backmen/Structures/Specific/Rockets/rocket_syndicate.rsi

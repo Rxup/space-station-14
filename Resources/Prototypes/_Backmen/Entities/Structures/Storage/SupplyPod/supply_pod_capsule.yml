@@ -5,7 +5,7 @@
   suffix: Empty, default
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_default.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_default.rsi
 
 # Bluespace
 - type: entity
@@ -14,7 +14,7 @@
   suffix: Empty, bluespace
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_bluespace.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_bluespace.rsi
 
 # Cult
 - type: entity
@@ -23,7 +23,7 @@
   suffix: Empty, cult
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_cult.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_cult.rsi
 
 # Gondola
 - type: entity
@@ -32,7 +32,7 @@
   suffix: Empty, Gondola
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_gondola.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_gondola.rsi
   - type: Construction
     node: SupplyPodGondola
 
@@ -43,7 +43,7 @@
   suffix: Empty, orange
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_orange.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_orange.rsi
   - type: Construction
     node: SupplyPodOrange
 
@@ -54,7 +54,7 @@
   suffix: Empty, honk
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_honk.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_honk.rsi
 
 # NanoTrasen
 - type: entity
@@ -63,7 +63,7 @@
   suffix: Empty, NanoTrasen
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_nanotrasen.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_nanotrasen.rsi
 
 # Squad
 - type: entity
@@ -72,7 +72,7 @@
   suffix: Empty, squad
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_squad.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_squad.rsi
 
 # Syndicate
 - type: entity
@@ -81,4 +81,4 @@
   suffix: Empty, Syndicate
   components:
   - type: Sprite
-    sprite: _White/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
+    sprite: Backmen/Structures/Storage/SupplyPods/supply_pod_syndicate.rsi
