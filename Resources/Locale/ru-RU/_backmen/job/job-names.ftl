@@ -30,4 +30,3 @@ job-title-lieutenant_general = Генерал-Лейтенант
 job-title-colonel_general = Генерал-Полковник
 job-title-pmc_desert_busters = PMC Desert Busters
 job-title-pmc_desert_busters_leader = PMC Desert Busters Leader
-

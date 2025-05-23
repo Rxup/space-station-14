@@ -645,23 +645,22 @@ public abstract partial class SharedSurgerySystem
     private void OnBleedsTreatmentStep(Entity<SurgeryBleedsTreatmentStepComponent> ent, ref SurgeryStepEvent args)
     {
         var healAmount = ent.Comp.Amount;
-        foreach (var woundEnt in _wounds.GetWoundableWounds(args.Part))
+        foreach (var woundEnt in _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(args.Part))
         {
-            if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleeds))
-                continue;
-
-            if (bleeds.Scaling > healAmount)
+            var bleeds = woundEnt.Comp2;
+            if (bleeds.BleedingAmountRaw > healAmount)
             {
-                bleeds.Scaling -= healAmount;
+                bleeds.BleedingAmountRaw -= healAmount;
             }
             else
             {
                 bleeds.BleedingAmountRaw = 0;
+                bleeds.SeverityPenalty = 0;
                 bleeds.Scaling = 0;
 
                 bleeds.IsBleeding = false; // Won't bleed as long as it's not reopened
 
-                healAmount -= bleeds.Scaling;
+                healAmount -= bleeds.BleedingAmountRaw;
             }
 
             Dirty(woundEnt, bleeds);
@@ -682,6 +681,9 @@ public abstract partial class SharedSurgerySystem
 
     private void OnPainInflicterStep(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepEvent args)
     {
+        if (_mobState.IsDead(args.Body))
+            return;
+
         if (!_consciousness.TryGetNerveSystem(args.Body, out var nerveSys))
             return;
 

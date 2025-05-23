@@ -31,6 +31,7 @@
             Mime: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
           #Engineering
             ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 2, 4 ]

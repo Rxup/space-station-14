@@ -12,7 +12,7 @@ public sealed partial class ConsciousnessComponent : Component
     /// </summary>
     [DataField(required: true)]
     [ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 Threshold = 95;
+    public FixedPoint2 Threshold = 120;
 
     /// <summary>
     /// Represents the base consciousness value before applying any modifiers.
@@ -39,7 +39,30 @@ public sealed partial class ConsciousnessComponent : Component
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
-    public FixedPoint2 Cap = 190;
+    public FixedPoint2 Cap = 220;
+
+    /// <summary>
+    /// the amount of SUFFOCATION damage the CPR will heal!
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 CprSuffocationHealAmount = 8;
+
+    /// <summary>
+    /// By how much <see cref="CprSuffocationHealAmount"/> get multiplied, ergo get the point since which performing CPR will be successful
+    /// e.g, default values.. 8 * 0.6 = 4.8. If this consciousness has 4.8 or more suffocation damage, performed CPR will be successful
+    /// unless traumas. or anything else.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public FixedPoint2 CprSuffocationHealThreshold = 0.6;
+
+    /// <summary>
+    /// Self-explanatory
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan CprDoAfterDuration = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Represents the collection of additional effects that modify the base consciousness level.

@@ -1,3 +1,5 @@
+ent-CrateFunSharkPlushieBulk = bulk soft toy shark crate
+    .desc = A crate filled with a variety of everyone's favorite finned friend. Rawr!
 ent-CrateFunPlushie = ящик плюшевых игрушек
     .desc = Куча мягких плюшевых игрушек. Разложите их повсюду, а потом подумайте, как вы объясните эту покупку NT.
 ent-CrateFunLizardPlushieBulk = оптовый ящик плюшевых ящеров

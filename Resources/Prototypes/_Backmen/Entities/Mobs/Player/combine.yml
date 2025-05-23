@@ -15,11 +15,6 @@
   - type: Stamina
     critThreshold: 250
   - type: MobState
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      250: Dead
   - type: TriggerOnMobstateChange
     mobState:
     - Critical

@@ -145,7 +145,7 @@
         - id: WeaponPulseRifleSpetnaz
         - id: PulseMag
           amount: 4
-        - id: SpeedLoaderMagnumAP
+        - id: SpeedLoader357MagnumAP
           amount: 4
         - id: PaperManualCodes
         - id: C4

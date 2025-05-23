@@ -1,4 +1,3 @@
-
 # these specifically mostly come from examples of specific scottish-english (not necessarily scots) verbiage
 # https://en.wikipedia.org/wiki/Scotticism
 # https://en.wikipedia.org/wiki/Scottish_English
@@ -284,4 +283,3 @@ accent-dwarf-words-147 = СБ
 accent-dwarf-words-replace-147 = стража
 accent-dwarf-words-148 = ящер
 accent-dwarf-words-replace-148 = чешуйчатый
-

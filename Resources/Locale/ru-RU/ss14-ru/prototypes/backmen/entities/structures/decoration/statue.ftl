@@ -1,6 +1,5 @@
 ent-StatueBaseDecoration = статуя
     .desc = Кусок исскуства.
-
 ent-StatueAIDecoration = статуя ИИ
     .desc = Статуя, посвященная самому умному искусственному интеллекту.
 ent-StatueAICoreDecoration = статуя ядра ИИ
@@ -55,7 +54,6 @@ ent-StatueSnowmanDecoration = статуя снеговика
     .desc = Статуя, посвященная самому снежному снеговику.
 ent-StatueXenomorphDecoration = статуя ксеноморфа
     .desc = Статуя, посвященная самому страшному ксеноморфу.
-
 ent-StatueBustDecoration = бюст
     .desc = Просто чей-то бюст.
 ent-StatueHippocraticBustDecoration = бюст Гиппократа

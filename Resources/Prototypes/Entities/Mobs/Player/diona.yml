@@ -4,6 +4,7 @@
   parent: BaseMobDiona
   id: MobDiona
   components:
+    - type: PotentialPsionic
     - type: Respirator
       damage:
         types:
@@ -23,4 +24,4 @@
   name: Reformed Diona
   components:
     - type: IsDeadIC
-    - type: RandomHumanoidAppearance 
+    - type: RandomHumanoidAppearance

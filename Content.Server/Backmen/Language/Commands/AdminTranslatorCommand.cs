@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Components.Translators;
 using Content.Shared.Backmen.Language.Systems;
 using Robust.Server.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
@@ -25,7 +26,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     public EntityUid AddLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<LanguagePrototype> language,
+        [CommandArgument] ProtoId<LanguagePrototype> language,
         [CommandArgument] bool addSpeak = true,
         [CommandArgument] bool addUnderstand = true
     )
@@ -51,7 +52,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     public EntityUid RemoveLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<LanguagePrototype> language,
+        [CommandArgument] ProtoId<LanguagePrototype> language,
         [CommandArgument] bool removeSpeak = true,
         [CommandArgument] bool removeUnderstand = true
     )
@@ -73,7 +74,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     public EntityUid AddRequiredLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<LanguagePrototype> language)
+        [CommandArgument] ProtoId<LanguagePrototype> language)
     {
         if (!TryGetTranslatorComp(input, out var translator))
             throw new ArgumentException(Loc.GetString("command-language-error-not-a-translator", ("entity", input)));
@@ -91,7 +92,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     public EntityUid RemoveRequiredLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<LanguagePrototype> language)
+        [CommandArgument] ProtoId<LanguagePrototype> language)
     {
         if (!TryGetTranslatorComp(input, out var translator))
             throw new ArgumentException(Loc.GetString("command-language-error-not-a-translator", ("entity", input)));

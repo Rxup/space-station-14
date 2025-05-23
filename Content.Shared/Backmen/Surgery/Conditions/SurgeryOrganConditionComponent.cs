@@ -8,6 +8,7 @@ namespace Content.Shared.Medical.Surgery.Conditions;
 public sealed partial class SurgeryOrganConditionComponent : Component
 {
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry? Organ;
 
     [DataField]
