@@ -35,7 +35,7 @@
         - to: start
           completed:
             - !type:SpawnPrototype
-              prototype: FoodMeatGondola
+              prototype: FoodMeat # FoodMeatGondola
               amount: 1
             - !type:EmptyAllContainers
             - !type:DeleteEntity {}

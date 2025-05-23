@@ -1,8 +1,8 @@
 - type: entity
-  name: рация
-  description: Рация которая связывается с ближайшей блю-спейс артиллерийской платформой.
   parent: BaseItem
   id: RadioMTFHandheld
+  name: рация
+  description: Рация которая связывается с ближайшей блю-спейс артиллерийской платформой.
   components:
   - type: Sprite
     sprite: Objects/Devices/communication.rsi
@@ -31,7 +31,7 @@
     range: 80
     itemIconStyle: BigAction
     icon:
-      sprite: Backmen/Structures/Storage/supplypod.rsi
+      sprite: Backmen/Structures/Specific/missile.rsi
       state: missilepod_falling
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -40,10 +40,10 @@
       offset: 0, 1
 
 - type: entity
-  name: рация вызова снабжения
-  description: Портативная рация для связи с отделом снабжения, настроена на одностороний разговор.
   parent: BaseItem
   id: RadioBlueShieldSupplyPod
+  name: рация вызова снабжения
+  description: Портативная рация для связи с отделом снабжения, настроена на одностороний разговор.
   components:
   - type: Sprite
     sprite: Objects/Devices/communication.rsi
@@ -58,11 +58,11 @@
       path: /Audio/Corvax/Effects/Footsteps/off2.ogg
 
 - type: entity
+  parent: BaseItem
+  id: RadioSecurityPilotSupplyPod
   name: supply call radio
   description: A portable radio for communication with the supply department, configured for one-way conversation.
   suffix: security pilot
-  parent: BaseItem
-  id: RadioSecurityPilotSupplyPod
   components:
   - type: Sprite
     sprite: Objects/Devices/communication.rsi

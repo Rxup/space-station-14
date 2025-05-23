@@ -293,7 +293,7 @@
   components:
     - type: TimedSpawner
       prototypes:
-        - SupplyPodReinforcemenSyndicate
+        - SupplyPodReinforcementSyndicate
 
 - type: entity
   parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicate]
@@ -317,7 +317,7 @@
   components:
     - type: TimedSpawner
       prototypes:
-        - SupplyPodReinforcemenSyndicateNukeops
+        - SupplyPodReinforcementSyndicateNukeops
 
 - type: entity
   parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateNukeops]
@@ -341,7 +341,7 @@
   components:
     - type: TimedSpawner
       prototypes:
-        - SupplyPodReinforcemenSyndicateAncestor
+        - SupplyPodReinforcementSyndicateAncestor
 
 - type: entity
   parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateAncestor]
@@ -365,7 +365,7 @@
   components:
     - type: TimedSpawner
       prototypes:
-        - SupplyPodReinforcemenSyndicateAncestorNukeops
+        - SupplyPodReinforcementSyndicateAncestorNukeops
 
 - type: entity
   parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateAncestorNukeops]
@@ -389,7 +389,7 @@
   components:
     - type: TimedSpawner
       prototypes:
-        - SupplyPodReinforcemenSyndicateCyborgAssault
+        - SupplyPodReinforcementSyndicateCyborgAssault
 
 - type: entity
   parent: [SupplyPodCapsuleSyndicate, ReinforcementRadioSyndicateCyborgAssault]

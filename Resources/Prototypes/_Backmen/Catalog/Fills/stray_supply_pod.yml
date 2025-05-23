@@ -65,12 +65,6 @@
         - !type:EntSelector
           id: CrateCargoLuxuryHardsuit
           weight: 1
-        # Cargo - Circuitboards
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateCrewMonitoringBoards
-          weight: 1
         # Cargo - Emergency
       - !type:GroupSelector
         children:
@@ -101,11 +95,6 @@
         children:
         - !type:EntSelector
           id: CrateEmergencyInflatablewall
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateSlimepersonLifeSupport
           weight: 1
       - !type:GroupSelector
         children:
@@ -193,11 +182,6 @@
         - !type:EntSelector
           id: CrateEngineeringTeslaGenerator
           weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateEngineeringTEGKit
-          weight: 1
         # Cargo - Food
       - !type:GroupSelector
         children:
@@ -273,11 +257,6 @@
       - !type:GroupSelector
         children:
         - !type:EntSelector
-          id: CrateFunSprayPaints
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
           id: CrateFunParty
           weight: 1
       - !type:GroupSelector
@@ -304,42 +283,6 @@
         children:
         - !type:EntSelector
           id: CrateFunMysteryFigurines
-          weight: 1
-        # Cargo - Hardsuits
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateEngineeringFotiaHardsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateEngineeringLampsiHardsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateLogisticsKritiHardsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateLogisticsLavrionHardsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateSecurityBaghaturTacsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateSecuritySuldeTacsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateSecurityTsagaanTacsuit
           weight: 1
         # Cargo - Livestock
       - !type:GroupSelector
@@ -422,21 +365,6 @@
         children:
         - !type:EntSelector
           id: WaterTankFull
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateMaterialUranium
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateMaterialGold
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateMaterialSilver
           weight: 1
         # Cargo - Medical
       - !type:GroupSelector
@@ -639,17 +567,6 @@
         children:
         - !type:EntSelector
           id: CrateCargoGambling
-          weight: 1
-        # Cargo - Hardsuits
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateSecurityShanlinTacsuit
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
-          id: CrateSecurityGuanYuTacsuit
           weight: 1
         # Cargo - Medical
       - !type:GroupSelector

@@ -200,7 +200,7 @@
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
     event: !type:GoliathSummonTentacleAction
-      entityId: MissileDropMarkerBigJohn
+      entityId: MissileDropMarker
       extraSpawns: 0
     useDelay: 5
     range: 30
