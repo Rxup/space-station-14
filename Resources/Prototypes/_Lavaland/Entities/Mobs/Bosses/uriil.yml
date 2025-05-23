@@ -407,7 +407,7 @@
     anchored: false
   - type: Physics
     bodyType: KinematicController
-    canCollide: true
+    canCollide: false
   - type: InteractionOutline
   - type: Sprite
     sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
@@ -613,7 +613,7 @@
     anchored: false
   - type: Physics
     bodyType: KinematicController
-    canCollide: true
+    canCollide: false
   - type: InteractionOutline
   - type: Sprite
     sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
@@ -724,7 +724,7 @@
     anchored: false
   - type: Physics
     bodyType: KinematicController
-    canCollide: true
+    canCollide: false
   - type: InteractionOutline
   - type: Sprite
     sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
@@ -1018,6 +1018,7 @@
       - DomeDisabler
     chance: 1
     intervalSeconds: 40
+  - type: Timer
 
 - type: accent
   id: Uriil
