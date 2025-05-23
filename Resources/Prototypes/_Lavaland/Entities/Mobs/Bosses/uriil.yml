@@ -1006,7 +1006,7 @@
 #        layer:
 #        - GlassLayer
   - type: Physics
-    bodyType: KinematicController
+    bodyType: Static
   - type: Transform
     anchored: true
   - type: Tag
