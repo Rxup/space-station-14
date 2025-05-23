@@ -90,6 +90,12 @@ public record struct WoundsDeltaChanged(
     Dictionary<Entity<WoundComponent>, FixedPoint2> WoundsDelta,
     bool DamageIncreased = false);
 
+/// <summary>
+/// lets you know alllll the unhandled consciousness wounds' damage and stuff for whatever implementation you want.
+/// </summary>
+[ByRefEvent]
+public record struct HandleUnhandledWoundsEvent(Dictionary<string, FixedPoint2> UnhandledDamage);
+
 [ByRefEvent]
 public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);
 

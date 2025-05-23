@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.1.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:40:24
-  entityCount: 563
+  time: 05/16/2025 02:37:10
+  entityCount: 564
 maps: []
 grids:
 - 1
@@ -271,6 +271,24 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: Roof
+      data:
+        -2,-1: 18374403900871474940
+        -2,0: 18229725762842197758
+        -1,-1: 18446744073709551615
+        -1,0: 18446744073709551615
+        0,-1: 18446744073709551615
+        0,0: 18446744073709551615
+        1,-1: 9187201950435721023
+        1,0: 4557501533498867583
+        1,1: 289236504756031
+        1,-2: 4548388298069966848
+        0,1: 4611686018427387903
+        0,-2: 18446744073709502208
+        -1,1: 17942340915444056063
+        -1,-2: 18446744073709549568
+        -2,1: 36276122592804092
+        -2,-2: 18228593205224407040
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 476
@@ -2216,6 +2234,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,13.5
+      parent: 1
+- proto: TriggerInstantSpawnerXENHEV
+  entities:
+  - uid: 567
+    components:
+    - type: Transform
+      pos: 8.5,-0.5
       parent: 1
 - proto: WallReinforced
   entities:

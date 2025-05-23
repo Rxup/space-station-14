@@ -59,7 +59,7 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
     {
         if(!ent.Comp.Active)
             return;
-        if (args.NewMobState is MobState.Critical or MobState.Dead)
+        if (args.NewMobState is not MobState.Alive)
         {
             ClearState(ent);
         }

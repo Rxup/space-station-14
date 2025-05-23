@@ -19,6 +19,7 @@ using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Backmen.Surgery.Consciousness; // backmen
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -82,7 +83,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float) respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid) && !HasComp<DebrainedComponent>(uid)) // Shitmed Change - Cannot breathe in crit or when no brain.
+            if (!_mobState.IsIncapacitated(uid))
             {
                 switch (respirator.Status)
                 {
@@ -108,6 +109,7 @@ public sealed class RespiratorSystem : EntitySystem
                 continue;
             }
             // end-backmen: blob zombie
+
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
@@ -338,7 +340,7 @@ public sealed class RespiratorSystem : EntitySystem
         }
         // backmen edit end
 
-        _damageableSys.TryChangeDamage(ent, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, interruptsDoAfters: false);
+        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);
     }
 
     private void StopSuffocation(Entity<RespiratorComponent> ent)
@@ -355,22 +357,11 @@ public sealed class RespiratorSystem : EntitySystem
 
         if (_consciousness.TryGetNerveSystem(ent, out var nerveSys))
         {
-            if (!_consciousness.TryGetConsciousnessModifier(ent, nerveSys.Value, out var modifier, "Suffocation"))
-                return;
-
-            if (modifier.Value.Change < ent.Comp.DamageRecovery.GetTotal())
-            {
-                _consciousness.RemoveConsciousnessModifier(ent, nerveSys.Value, "Suffocation");
-            }
-            else
-            {
-                _consciousness.SetConsciousnessModifier(
-                    ent,
-                    nerveSys.Value,
-                    modifier.Value.Change + ent.Comp.DamageRecovery.GetTotal(),
-                    identifier: "Suffocation",
-                    type: ConsciousnessModType.Pain);
-            }
+            _consciousness.ChangeConsciousnessModifier(
+                ent,
+                nerveSys.Value,
+                FixedPoint2.Abs(ent.Comp.DamageRecovery.GetTotal()),
+                "Suffocation");
 
             return;
         }

@@ -25,7 +25,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
     [Dependency] protected readonly PainSystem Pain = default!;
     [Dependency] protected readonly WoundSystem Wound = default!;
 
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] protected readonly MobStateSystem MobStateSys = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
     protected EntityQuery<MobStateComponent> MobStateQuery;
@@ -49,7 +49,14 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             = consciousness.Modifiers.Aggregate(FixedPoint2.Zero,
                 (current, modifier) => current + modifier.Value.Change * consciousness.Multiplier);
 
-        consciousness.RawConsciousness = consciousness.Cap + totalDamage;
+        var newConsciousness = consciousness.Cap + totalDamage;
+        if (newConsciousness != consciousness.RawConsciousness)
+        {
+            var ev = new ConsciousnessChangedEvent(consciousness, newConsciousness, consciousness.RawConsciousness);
+            RaiseLocalEvent(uid, ref ev);
+        }
+
+        consciousness.RawConsciousness = newConsciousness;
 
         CheckConscious(uid, consciousness);
         Dirty(uid, consciousness);
@@ -97,23 +104,33 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             || !MobStateQuery.Resolve(target, ref mobState, false))
             return;
 
-        var newMobState = consciousness.IsConscious
-            ? MobState.Alive
-            : MobState.Critical;
+        var newMobState = MobState.Alive;
+        if (TryGetNerveSystem(target, out var nerveSys))
+        {
+            var comp = nerveSys.Value.Comp;
+            if (comp.Pain >= comp.SoftPainCap || comp.ForcePainCrit)
+                newMobState = MobState.SoftCritical;
+        }
 
-        if (consciousness.PassedOut)
-            newMobState = MobState.Critical;
+        if (!consciousness.ForceConscious)
+        {
+            if (!consciousness.IsConscious)
+                newMobState = MobState.Critical;
 
-        if (consciousness.ForceUnconscious)
-            newMobState = MobState.Critical;
+            if (consciousness.PassedOut)
+                newMobState = MobState.Critical;
 
-        if (consciousness.Consciousness <= 0 && !consciousness.ForceConscious)
-            newMobState = MobState.Dead;
+            if (consciousness.ForceUnconscious)
+                newMobState = MobState.Critical;
+
+            if (consciousness.Consciousness <= 0)
+                newMobState = MobState.Dead;
+        }
 
         if (consciousness.ForceDead)
             newMobState = MobState.Dead;
 
-        _mobStateSystem.ChangeMobState(target, newMobState, mobState);
+        MobStateSys.ChangeMobState(target, newMobState, mobState);
     }
 
     protected void CheckRequiredParts(

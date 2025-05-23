@@ -102,6 +102,12 @@
       Severe: 55
       Critical: 30
       Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0
+      OrganDamage: 0
+      Dismemberment: -1
+      NerveDamage: -0.2
+      VeinsDamage: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.Chest"
@@ -142,6 +148,12 @@
       Severe: 33
       Critical: 17
       Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0
+      OrganDamage: 0
+      Dismemberment: -0.34
+      NerveDamage: -0.2
+      VeinsDamage: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.Groin"
@@ -183,6 +195,12 @@
       Severe: 24
       Critical: 12
       Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0.4
+      OrganDamage: 0.4
+      Dismemberment: -0.2
+      NerveDamage: 1
+      VeinsDamage: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: "enum.HumanoidVisualLayers.Head"

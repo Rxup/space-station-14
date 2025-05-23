@@ -1138,6 +1138,7 @@
   - type: ItemBorgModule
     items:
     - Scalpel
+    - MedicalStitches
     - Drill
     - Hemostat
     - Retractor
