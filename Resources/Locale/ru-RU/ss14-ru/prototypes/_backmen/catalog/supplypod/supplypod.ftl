@@ -77,3 +77,67 @@ ent-SupplyPodFallingAnimationNPCGondola = { ent-SupplyPodGondolaFallingAnimation
     .desc = { ent-SupplyPodGondolaFallingAnimation.desc }
 ent-SupplyPodNPCGondola = { ent-SupplyPodCapsuleGondola }
     .desc = { ent-SupplyPodCapsuleGondola.desc }
+
+ent-SupplyPodCircleHardsuitBlueShield = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Скафандр синего щита, НТ
+ent-SupplyPodFallingAnimationHardsuitBlueShield = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodHardsuitBlueShield = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleHardsuitSecurityPilot = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Скафандр пилота СБ, НТ
+ent-SupplyPodFallingAnimationHardsuitSecurityPilot = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodHardsuitSecurityPilot = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleReinforcementSyndicate = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Подкрепление Синдикат, Синдикат
+ent-SupplyPodFallingAnimationReinforcementSyndicate = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodReinforcementSyndicate = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleReinforcementSyndicateNukeops = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Подкрепление Синдикат оперативник, Синдикат
+ent-SupplyPodFallingAnimationReinforcementSyndicateNukeops = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodReinforcementSyndicateNukeops = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleReinforcementSyndicateAncestor = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Подкрепление генетический предок, Синдикат
+ent-SupplyPodFallingAnimationReinforcementSyndicateAncestor = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodReinforcementSyndicateAncestor = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleReinforcementSyndicateAncestorNukeops = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Подкрепление генетический предок оперативник, Синдикат
+ent-SupplyPodFallingAnimationReinforcementSyndicateAncestorNukeops = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodReinforcementSyndicateAncestorNukeops = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleReinforcementSyndicateCyborgAssault = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Подкрепление штурмовой борг, Синдикат
+ent-SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodReinforcementSyndicateCyborgAssault = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleReinforcementSyndicateCyborgAssault = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Подкрепление штурмовой борг, Синдикат
+ent-SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault = { ent-SupplyPodSyndicateFallingAnimation }
+    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
+ent-SupplyPodReinforcementSyndicateCyborgAssault = { ent-SupplyPodCapsuleSyndicate }
+    .desc = { ent-SupplyPodCapsuleSyndicate.desc }

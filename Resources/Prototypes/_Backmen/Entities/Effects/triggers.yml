@@ -25,3 +25,33 @@
     intensitySlope: 3
     totalIntensity: 120
     canCreateVacuum: false
+
+- type: entity
+  id: GibZone
+  categories: [ HideSpawnMenu ]
+  name: gibbing zone
+  description: A zone when you step her, you got gibbed. If you see that, you are probably dead.
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Transform
+    anchored: true
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 1000
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: TimedDespawn
+    lifetime: 0.5
