@@ -1,10 +1,10 @@
 ent-SupplyPodCircleSurplusCargo = { ent-BaseSupplyPodTargetCircle }
     .desc = { ent-BaseSupplyPodTargetCircle.desc }
-    .suffix = Припасы, Карго
-ent-SupplyPodFallingAnimationSurplusCargo = { ent-SupplyPodSyndicateFallingAnimation }
-    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
-ent-SupplyPodSurplusCargo = { ent-SupplyPodCapsuleSyndicate }
-    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+    .suffix = Припасы карго, 
+ent-SupplyPodFallingAnimationSurplusCargo = { ent-SupplyPodDefaultFallingAnimation }
+    .desc = { ent-SupplyPodDefaultFallingAnimation.desc }
+ent-SupplyPodSurplusCargo = { ent-SupplyPodCapsuleDefault }
+    .desc = { ent-SupplyPodCapsuleDefault.desc }
 
 ent-SupplyPodCircleSyndicateSurplus5TK = { ent-BaseSupplyPodTargetCircle }
     .desc = { ent-BaseSupplyPodTargetCircle.desc }
@@ -81,18 +81,18 @@ ent-SupplyPodNPCGondola = { ent-SupplyPodCapsuleGondola }
 ent-SupplyPodCircleHardsuitBlueShield = { ent-BaseSupplyPodTargetCircle }
     .desc = { ent-BaseSupplyPodTargetCircle.desc }
     .suffix = Скафандр синего щита, НТ
-ent-SupplyPodFallingAnimationHardsuitBlueShield = { ent-SupplyPodSyndicateFallingAnimation }
-    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
-ent-SupplyPodHardsuitBlueShield = { ent-SupplyPodCapsuleSyndicate }
-    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+ent-SupplyPodFallingAnimationHardsuitBlueShield = { ent-SupplyPodNanoTrasenFallingAnimation }
+    .desc = { ent-SupplyPodNanoTrasenFallingAnimation.desc }
+ent-SupplyPodHardsuitBlueShield = { ent-SupplyPodCapsuleNanoTrasen }
+    .desc = { ent-SupplyPodCapsuleNanoTrasen.desc }
 
 ent-SupplyPodCircleHardsuitSecurityPilot = { ent-BaseSupplyPodTargetCircle }
     .desc = { ent-BaseSupplyPodTargetCircle.desc }
     .suffix = Скафандр пилота СБ, НТ
-ent-SupplyPodFallingAnimationHardsuitSecurityPilot = { ent-SupplyPodSyndicateFallingAnimation }
-    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
-ent-SupplyPodHardsuitSecurityPilot = { ent-SupplyPodCapsuleSyndicate }
-    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+ent-SupplyPodFallingAnimationHardsuitSecurityPilot = { ent-SupplyPodNanoTrasenFallingAnimation }
+    .desc = { ent-SupplyPodNanoTrasenFallingAnimation.desc }
+ent-SupplyPodHardsuitSecurityPilot = { ent-SupplyPodCapsuleNanoTrasen }
+    .desc = { ent-SupplyPodCapsuleNanoTrasen.desc }
 
 ent-SupplyPodCircleReinforcementSyndicate = { ent-BaseSupplyPodTargetCircle }
     .desc = { ent-BaseSupplyPodTargetCircle.desc }
@@ -133,3 +133,11 @@ ent-SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault = { ent-SupplyP
     .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
 ent-SupplyPodReinforcementSyndicateCyborgAssault = { ent-SupplyPodCapsuleSyndicate }
     .desc = { ent-SupplyPodCapsuleSyndicate.desc }
+
+ent-SupplyPodCircleBigJohninator = { ent-BaseSupplyPodTargetCircle }
+    .desc = { ent-BaseSupplyPodTargetCircle.desc }
+    .suffix = Большой Джон, отряд
+ent-SupplyPodFallingAnimationBigJohninator = { ent-SupplyPodSquadFallingAnimation }
+    .desc = { ent-SupplyPodSquadFallingAnimation.desc }
+ent-SupplyPodBigJohninator = { ent-SupplyPodCapsuleSquad }
+    .desc = { ent-SupplyPodCapsuleSquad.desc }
