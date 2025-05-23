@@ -47,7 +47,7 @@
         - SupplyPodSyndicateSurplus5TK
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSurplus5TK
   components:
@@ -74,7 +74,7 @@
         - SupplyPodSyndicateSurplus10TK
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSurplus10TK
   components:
@@ -101,7 +101,7 @@
         - SupplyPodSyndicateSurplus15TK
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSurplus15TK
   components:
@@ -128,7 +128,7 @@
         - SupplyPodSyndicateSurplus20TK
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSurplus20TK
   components:
@@ -155,7 +155,7 @@
         - SupplyPodSyndicateSurplus25TK
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSurplus25TK
   components:
@@ -182,7 +182,7 @@
         - SupplyPodSyndicateSurplusBundle
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSurplusBundle
   components:
@@ -209,7 +209,7 @@
         - SupplyPodSyndicateSuperSurplusBundle
 
 - type: entity
-  parent: SupplyPodCapsuleSyndicate
+  parent: [SupplyPodCapsuleSyndicate, StorePresetUplink]
   categories: [ HideSpawnMenu ]
   id: SupplyPodSyndicateSuperSurplusBundle
   components:
