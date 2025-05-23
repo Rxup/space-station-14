@@ -79,6 +79,14 @@
   - ClothingOuterArmorBlueshield
   - ClothingOuterCoatArmorBlueShield
 
+- type: loadoutGroup
+  id: BlueShieldPersonalWeapon
+  name: loadout-group-security-pocket
+  loadouts:
+  - WeaponMultiphaseEnergyGun
+  - WeaponPistolUCS
+  - WeaponPistolVP78
+
 # Operator
 #- type: loadoutGroup
 #  id: BKCCOperatorGavnaJumpsuit

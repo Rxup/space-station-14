@@ -58,9 +58,8 @@
     ears: ClothingHeadsetAltCommand
     shoes: ClothingShoesBootsCombat
     belt: ClothingBeltBlueshieldWebbingFilled
-    pocket1: WeaponMultiphaseEnergyGun
-    pocket2: CombatKnifeSpetsnaz
   storage:
     back:
     - BlueShieldSetLoadouts
     - RadioBlueShieldSupplyPod
+    - CombatKnifeSpetsnaz
