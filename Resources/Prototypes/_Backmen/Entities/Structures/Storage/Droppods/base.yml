@@ -75,10 +75,12 @@
 
 - type: entity
   id: GibZone
+  categories: [ HideSpawnMenu ]
   name: gibbing zone
   description: A zone when you step her, you got gibbed. If you see that, you are probably dead.
   components:
   - type: Physics
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -95,5 +97,8 @@
     damage:
       types:
         Blunt: 1000
+  - type: Tag
+    tags:
+    - HideContextMenu
   - type: TimedDespawn
-    lifetime: 1
+    lifetime: 0.5

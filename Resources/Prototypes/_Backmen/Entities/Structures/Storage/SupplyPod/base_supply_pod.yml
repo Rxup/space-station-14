@@ -80,3 +80,6 @@
           collection: MetalBreak
           params:
             volume: -6
+  - type: ConditionalSpawner # Kill every under falling capsule
+    prototypes:
+    - GibZone
