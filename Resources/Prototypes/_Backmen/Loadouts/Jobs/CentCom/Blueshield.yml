@@ -5,7 +5,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobBlueShield
-      time: 72000 #20 hrs
+      time: 288000 #80 hrs
 
 #suit
 - type: loadout
@@ -28,6 +28,28 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtBlueShieldTurtleneck
 
+#eyes
+- type: loadout
+  id: ClothingEyesGlassesBlueShield
+  equipment:
+    eyes: ClothingEyesGlassesBlueShield
+
+- type: loadout
+  id: ClothingEyesBlueshieldVisor
+  equipment:
+    eyes: ClothingEyesBlueshieldVisor
+
+#hat
+- type: loadout
+  id: ClothingHeadHatBlackBeretBlueShield
+  equipment:
+    head: ClothingHeadHatBlackBeretBlueShield
+
+- type: loadout
+  id: ClothingHeadHatLightBeretBlueShield
+  equipment:
+    head: ClothingHeadHatLightBeretBlueShield
+
 #back
 - type: loadout
   id: ClothingBackpackBlueshield
@@ -38,6 +60,11 @@
   id: ClothingBackpackSatchelBlueshield
   equipment:
     back: ClothingBackpackSatchelBlueshield
+
+- type: loadout
+  id: ClothingBackpackDuffelBlueshield
+  equipment:
+    back: ClothingBackpackDuffelBlueshield
 
 - type: loadout
   id: ClothingBackpackMessengerBlueshield
@@ -56,7 +83,6 @@
     outerClothing: ClothingOuterCoatArmorBlueShield
 
 #neck
-
 - type: loadout
   id: ClothingNeckMantleBlueShield
   equipment:

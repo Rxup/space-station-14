@@ -37,6 +37,24 @@
   - ClothingUniformJumpskirtBlueShieldTurtleneck
 
 - type: loadoutGroup
+  id: BlueShieldEyes
+  name: loadout-group-blueshield-eyes
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingEyesGlassesBlueShield
+  - ClothingEyesBlueshieldVisor
+
+- type: loadoutGroup
+  id: BlueShieldHat
+  name: loadout-group-blueshield-hat
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingHeadHatBlackBeretBlueShield
+  - ClothingHeadHatLightBeretBlueShield
+
+- type: loadoutGroup
   id: BlueshieldNeck
   name: loadout-group-blueshield-neck
   minLimit: 0
@@ -51,6 +69,7 @@
   loadouts:
   - ClothingBackpackBlueshield
   - ClothingBackpackSatchelBlueshield
+  - ClothingBackpackDuffelBlueshield
   - ClothingBackpackMessengerBlueshield
 
 - type: loadoutGroup

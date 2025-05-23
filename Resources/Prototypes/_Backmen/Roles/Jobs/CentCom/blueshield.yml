@@ -54,8 +54,6 @@
   id: BlueShieldGear
   equipment:
     id: BlueShieldPDA
-    head: ClothingHeadHatBeretBlueShield
-    eyes: ClothingEyesGlassesBlueShield
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
     shoes: ClothingShoesBootsCombat
