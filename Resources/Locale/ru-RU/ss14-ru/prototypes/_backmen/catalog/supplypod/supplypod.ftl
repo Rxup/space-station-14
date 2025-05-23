@@ -1,6 +1,6 @@
 ent-SupplyPodCircleSurplusCargo = { ent-BaseSupplyPodTargetCircle }
     .desc = { ent-BaseSupplyPodTargetCircle.desc }
-    .suffix = Припасы карго, 
+    .suffix = Припасы карго, обычный
 ent-SupplyPodFallingAnimationSurplusCargo = { ent-SupplyPodDefaultFallingAnimation }
     .desc = { ent-SupplyPodDefaultFallingAnimation.desc }
 ent-SupplyPodSurplusCargo = { ent-SupplyPodCapsuleDefault }
