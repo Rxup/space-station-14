@@ -549,7 +549,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BaseWidePDA
+  parent: BasePDA # backmen
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -656,7 +656,7 @@
        !type:String
        pda-captain
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#e3a72b"
   - type: Icon
     state: pda-captain
 
