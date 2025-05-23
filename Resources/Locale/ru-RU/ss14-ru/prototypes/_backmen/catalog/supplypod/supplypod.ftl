@@ -133,11 +133,3 @@ ent-SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault = { ent-SupplyP
     .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
 ent-SupplyPodReinforcementSyndicateCyborgAssault = { ent-SupplyPodCapsuleSyndicate }
     .desc = { ent-SupplyPodCapsuleSyndicate.desc }
-
-ent-SupplyPodCircleReinforcementSyndicateCyborgAssault = { ent-BaseSupplyPodTargetCircle }
-    .desc = { ent-BaseSupplyPodTargetCircle.desc }
-    .suffix = Подкрепление штурмовой борг, Синдикат
-ent-SupplyPodFallingAnimationReinforcementSyndicateCyborgAssault = { ent-SupplyPodSyndicateFallingAnimation }
-    .desc = { ent-SupplyPodSyndicateFallingAnimation.desc }
-ent-SupplyPodReinforcementSyndicateCyborgAssault = { ent-SupplyPodCapsuleSyndicate }
-    .desc = { ent-SupplyPodCapsuleSyndicate.desc }
