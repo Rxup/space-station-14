@@ -5,7 +5,8 @@
   components:
   - type: StorageFill
     contents:
-        - id: ClothingHeadHatBeretBlueShield
+        - id: ClothingHeadHatBlackBeretBlueShield
+        - id: ClothingHeadHatLightBeretBlueShield
         - id: ClothingOuterCoatArmorBlueShield
         - id: ClothingOuterArmorBlueshield
         - id: FlashlightSeclite
