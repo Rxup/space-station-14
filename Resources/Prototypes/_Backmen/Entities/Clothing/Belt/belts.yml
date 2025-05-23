@@ -394,7 +394,7 @@
     delay: 10.0
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, BaseBlueShieldContraband]
   id: ClothingBeltBlueshieldWebbing
   name: blueshield webbing
   description: A unique and versatile chest mount capable of holding blueshield gear.

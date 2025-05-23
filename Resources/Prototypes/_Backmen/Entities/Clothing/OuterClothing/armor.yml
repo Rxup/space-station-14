@@ -30,7 +30,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ ClothingOuterArmorBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
+  parent: [ ClothingOuterArmorBase, AllowSuitStorageClothing]
   id: ClothingOuterArmorBlueshield
   name: officer "Blueshield"'s vest
   description: Redesigned security vest with increased protection.
@@ -41,7 +41,6 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Armor
     coverage:
-    - Groin
     - Chest
     - Arm
     - Tail
@@ -55,6 +54,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: GroupExamine
+  - type: Contraband
+    allowedJobs: [ BlueShield ]
 
 - type: entity
   parent: ClothingOuterBaseLarge
