@@ -33,7 +33,7 @@
 - type: entity
   parent: BaseSupplyPodTargetCircle
   id: SupplyPodCircleHardsuitSecurityPilot
-  suffix: Hardsuit Security Pilot, Syndicate
+  suffix: Hardsuit Security Pilot, NanoTrasen
   components:
     - type: TimedSpawner
       prototypes:

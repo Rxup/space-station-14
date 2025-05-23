@@ -9,6 +9,8 @@
     mode: AlignTileAny
   components:
   - type: Appearance
+  - type: Physics
+    bodyType: Static
   - type: Sprite
     noRot: true
     scale: 0.9, 0.9
