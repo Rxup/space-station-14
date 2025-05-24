@@ -46,3 +46,157 @@
     proto: PelletKinetic
     count: 4
     spread: 40
+
+- type: entity
+  id: BulletKineticHoly
+  parent:
+  - BaseBulletTrigger
+  - BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnOnTrigger
+    proto: HolyLight
+  - type: SoundOnTrigger
+    sound: /Audio/Backmen/Bosses/mortarhit.ogg
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 15
+        Structural: 30
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  id: WalkingLightNanoTrasen
+  parent: WalkingLight
+  name: святой свет
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageContacts
+    ignoreWhitelist:
+      components:
+      - HumanoidAppearance
+    damage:
+      types:
+        Heat: 10
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - ItemMask
+        layer:
+        - Impassable
+        hard: false
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - ItemMask
+        hard: true
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  id: AirSlice
+  name: air slice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Misc/shockwave.rsi
+    layers:
+    - state: slice
+      shader: unshaded
+  - type: ThrowingAngle
+    angle: 0
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: GatheringProjectile
+    amount: 40
+  - type: Projectile
+    deleteOnCollide: false
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable #killme
+
+- type: entity
+  id: BounceSplendor
+  name: сдвоенный меч
+  description: Where dah courts at?
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    #bodyStatus: InAir
+    canCollide: true
+    angularDamping: -100
+    linearDamping: -100
+    fixedRotation: True
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/justice_splendor-animate.rsi
+    state: icon
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Backmen/Bosses/Punch_projectile.ogg
+  - type: TileFrictionModifier
+    modifier: -100
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: -10
+        mask:
+        - ItemMask
+        - Impassable
+        layer:
+        - BulletImpassable
+        restitution: 1
+        friction: -10
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Animateable
+  - type: DamageContacts
+    damage:
+      types:
+        Slash: 25
+#  - type: Projectile
+#    deleteOnCollide: false
+#    damage:
+#      types:
+#        Slash: 20
+  - type: TimedDespawn
+    lifetime: 8

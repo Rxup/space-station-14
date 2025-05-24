@@ -53,7 +53,7 @@
   - ElectricGrillMachineCircuitboard
   technologyPrerequisites:
    - Kitchen
-  position: 4,9
+  position: 5,8
 
 - type: technology
   id: BarMachines
