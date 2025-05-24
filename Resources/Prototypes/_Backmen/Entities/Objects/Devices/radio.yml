@@ -13,7 +13,7 @@
   - type: Spellbook
     learnTime: 0
     spellActions:
-      ActionCallAirSupportMissiles: -1
+      ActionCallAirSupportMissiles: 1
   - type: UseDelay
     delay: 10
   - type: Speech
