@@ -147,7 +147,7 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Slash: 5 
+        Slash: 5
     soundHit:
       collection: MetalThud
     angle: 0
@@ -206,3 +206,8 @@
   - type: BlockCharge
     rechargeTime: 120
     markerReductionTime: 20
+  #Backmen-edit-start
+  - type: Construction
+    graph: HolyWeapon
+    node: Splendor
+  #Backmen-edit-end

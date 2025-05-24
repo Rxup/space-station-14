@@ -92,6 +92,36 @@
   position: 3,9
 
 - type: technology
+  id: EntertainmentAdvanced
+  name: research-technology-entertainment-advanced
+  icon:
+    sprite: Backmen/Objects/Weapons/Grenades/confetti.rsi
+    state: icon
+  discipline: Service
+  tier: 2
+  cost: 6500
+  recipeUnlocks:
+   - ConfettiGrenade
+  technologyPrerequisites:
+  - EntertainmentMachines
+  position: 4,9
+
+- type: technology
+  id: PushHorn
+  name: research-technology-clowning-utilities
+  icon:
+    sprite: Objects/Fun/push_horn.rsi
+    state: icon
+  discipline: Service
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - PushHorn
+  technologyPrerequisites:
+  - EntertainmentAdvanced
+  position: 4,10
+
+- type: technology
   id: FauxAstroTiles
   name: research-technology-faux-astro-tiles
   icon:
@@ -164,21 +194,6 @@
   technologyPrerequisites:
   - CleaningAdvanced
   position: 5,7
-
-- type: technology
-  id: PushHorn
-  name: research-technology-clowning-utilities
-  icon:
-    sprite: Objects/Fun/push_horn.rsi
-    state: icon
-  discipline: Service
-  tier: 2
-  cost: 4000
-  recipeUnlocks:
-  - PushHorn
-  technologyPrerequisites:
-  - Entertainment
-  position: 4,9
 
 - type: technology
   id: TranslationDevice

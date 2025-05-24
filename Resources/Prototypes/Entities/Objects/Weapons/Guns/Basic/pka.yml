@@ -30,3 +30,8 @@
   - type: ContainerContainer
     containers:
       upgrades: !type:Container
+  #Backmen-edit-start
+  - type: Construction
+    graph: HolyWeapon
+    node: Retribution
+  #Backmen-edit-end
