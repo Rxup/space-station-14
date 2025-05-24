@@ -72,8 +72,10 @@ public sealed partial class IdCardConsoleComponent : Component
         "ResearchDirector",
         "Salvage",
         "Security",
+        "SecurityTechnician",
         "Service",
         "Theatre",
+        "Virology",
     };
 
     [Serializable, NetSerializable]

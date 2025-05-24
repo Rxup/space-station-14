@@ -23,6 +23,7 @@ using Content.Server.Radio.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Changeling;
 using Content.Shared.Backmen.Changeling.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 
 namespace Content.Server.Backmen.Changeling;
 
@@ -266,6 +267,9 @@ public sealed partial class ChangelingSystem : EntitySystem
         _mobState.ChangeMobState(uid, MobState.Alive);
         _blood.TryModifyBloodLevel(uid, 1000);
         _blood.TryModifyBleedAmount(uid, -1000);
+
+        if (TryComp<ConsciousnessComponent>(uid, out var consciousness))
+            _consciousness.RemoveConsciousnessModifier(uid, uid, "DeathThreshold", consciousness);
 
         _popup.PopupEntity(Loc.GetString("changeling-stasis-exit"), uid, uid);
 
