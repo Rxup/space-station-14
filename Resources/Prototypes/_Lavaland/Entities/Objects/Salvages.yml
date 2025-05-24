@@ -189,8 +189,8 @@
     shape:
     - 0,0,0,1
   - type: Construction
-    graph: AncientTool
-    node: repair
+    graph: AncientResearch
+    node: start
   - type: Tag
     tags:
     - SalvageResearchTool

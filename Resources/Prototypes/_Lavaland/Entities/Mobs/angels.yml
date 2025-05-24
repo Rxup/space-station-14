@@ -1,0 +1,474 @@
+#Angels
+
+- type: entity
+  id: MobBaseAngelicHuman
+  parent:
+  - DeathByDome
+  - MobBaseNpc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SuperZloy
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: HolyLightAnimUriil
+  - type: DeleteOnTrigger
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 1
+  - type: Bloodstream
+    bloodReagent: Holywater
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Damageable
+    damageModifierSet: HolyArmorAngels
+  - type: Tag
+    tags:
+      - HolySpirit
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+- type: entity
+  name: святой страж
+  description: Душа смертного, помещенная в святую броню, тем самым возвышаясь и формируя себе оболочку.
+  id: MobAngelicHellGuard
+  parent: MobBaseAngelicHuman
+  suffix: Holy melee
+  components:
+  - type: MeleeWeapon
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Heat: 5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/lesser_angel.rsi
+    drawdepth: Mobs
+    layers:
+    - state: angel
+    - state: angel_nimb
+      shader: unshaded
+    - state: spearoflight
+      shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - HolyLightAnimUriil
+
+- type: entity
+  id: MobAngelicHellGuardUriilDome
+  parent: MobAngelicHellGuard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnOnTrigger
+    proto: HolyLightAnimUriilDome
+  - type: Damageable
+    damageModifierSet: HolyArmor
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          DomeDisabler:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          DomeDisabler:
+            min: 1
+            max: 1
+
+- type: entity
+  id: HolyLightAnimUriilDome
+  name: holy light
+  parent: HolyLightAnimUriil
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - DomeDisabler
+
+- type: entity
+  id: DomeDisabler
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: true
+  - type: InteractionOutline
+  - type: DamageContacts
+    damage:
+      types:
+        Asphyxiation: 1
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-50.5,-50.5,50.5,50.5"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+
+- type: entity
+  name: благодетель, низший ангел
+  description: Младший ангел, возвышенная душа смертного, был лешен множества способностей и назначен надзирателем ада, но он все еще остается ангелом, что желает лишь добра всем, посвоему.
+  id: MobAngelVirtue
+  parent: MobBaseAngelicHuman
+  suffix: Holy
+  components:
+  - type: Physics
+    bodyStatus: InAir
+  - type: NoSlip
+  - type: CanMoveInAir
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Angles/virtue.rsi
+    layers:
+    - state: virtue
+      shader: unshaded
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: NpcFactionMember
+    factions:
+      - SuperZloy
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/VirtueDeathReal.ogg
+          params:
+            volume: 5
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          VirtueCore:
+            min: 1
+            max: 1
+  - type: NPCUseActionOnTarget
+    actionId: ActionHolyLightVirtue
+  - type: HitscanBatteryAmmoProvider
+    proto: HolyBeamMini
+    fireCost: 50
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Gun
+    fireRate: 0.01
+    minAngle: 5
+    maxAngle: 12
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: ConditionalSpawner
+    prototypes:
+    - HolyLightAnimUriil
+
+- type: entity
+  id: ActionHolyLightVirtue
+  name: "[color=red]Святой удар[/color]"
+  description: Используй свою всевышнию силу и уничтожь врагов!
+  components:
+  - type: EntityWorldTargetAction
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    event: !type:GoliathSummonTentacleAction
+      entityId: holypentagramFast
+      extraSpawns: 0
+    useDelay: 3
+    range: 30
+
+- type: entity
+  parent: BaseItem
+  id: VirtueCore
+  name: ядро благодетеля
+  description: Ядро ангела... Оно излучает божественную ауру, по ощущением приятная, правда если прислушаться, можно услышать агонию в которой находиться душа.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/virtue_core.rsi
+    layers:
+    - state: virtue_core
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: HolyLightHeal
+    sound:
+      path: /Audio/Backmen/Bosses/virtuedeath.ogg
+      params:
+        volume: 2
+
+#High angel
+
+- type: entity
+  id: MobAnaielAngelGuardian
+  name: ангел-хранитель, младший ангел
+  description: Создана по подобию бога, родившись в одном из пантеонов ангелов. В данный момент служит хранителем одного из архангелов.
+  parent: MobBaseAngelicHuman
+  suffix: Holy Мини-босс
+  components:
+  - type: MeleeWeapon
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Heat: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/angel_guardian.rsi
+    drawdepth: Mobs
+    layers:
+    - state: wings
+      shader: unshaded
+    - state: high_angel
+    - state: fire_sword
+      shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - HolyLightAnimUriil
+  - type: NPCUseActionOnTarget
+    actionId: ActionHolySpears
+  - type: TimedSpawner
+    prototypes:
+      - MobAngelWispBeam
+    chance: 1
+    intervalSeconds: 8
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  id: WalkingLight
+  parent: Baseholypentagram
+  name: святой свет
+  suffix: Holy light Walking
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: true
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.6"
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+    friction: 0
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 3
+  - type: DamageContacts
+    ignoreWhitelist:
+      tags:
+      - HolySpirit
+    damage:
+      types:
+        Heat: 5
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundUriilChoir
+  - type: SpawnOnDespawn
+    prototype: HolyLightAnimUriil
+
+- type: entity
+  name: angel wisp
+  id: MobAngelWispBeam
+  parent: BaseAngelWisp
+  suffix: Holy Beam
+  components:
+  - type: Sprite
+    scale: 0.5, 0.5
+  - type: BasicEntityAmmoProvider
+    proto: WalkingLight
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 0
+    soundGunshot:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: TimedDespawn
+    lifetime: 1
+
+#Angels Spawners
+
+- type: entity
+  id: BaseHolySpawner
+  parent: HolyLight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.6"
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: ConditionalSpawner
+    prototypes:
+    - AngelsSpawnSound
+
+- type: entity
+  id: HolyAngelVirtueSpawn
+  parent: BaseHolySpawner
+  suffix: Спавнер Благодетеля
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAngelVirtue
+
+- type: entity
+  id: HolyMobAngelicHellGuardSpawn
+  parent: BaseHolySpawner
+  suffix: Спавнер Святой страж
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAngelicHellGuard
+
+- type: entity
+  id: HolyMobAngelicHellGuardSpawnUriilDome
+  parent: BaseHolySpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAngelicHellGuardUriilDome
+
+- type: entity
+  id: HolyAnaielAngelGuardianSpawn
+  parent: BaseHolySpawner
+  suffix: Спавнер Ангел хранитель
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAnaielAngelGuardian
+
+- type: entity
+  id: AngelsSpawnSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 4
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/Portal3.ogg
+      params:
+        volume: 2

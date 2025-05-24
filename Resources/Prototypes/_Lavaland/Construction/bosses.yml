@@ -1,0 +1,117 @@
+- type: constructionGraph
+  id: HolyAltar
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: UriilSpawn
+            amount: 1
+          - !type:SpawnPrototype
+            prototype: DomeDisabler
+            amount: 1
+        steps:
+          - tag: BlessedBible
+            name: construction-graph-tag-blessed-bible
+            doAfter: 5
+
+- type: constructionGraph
+  id: BlessedBible
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: BlessedBible
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - material: Bluespace
+            amount: 1
+            doAfter: 5
+
+- type: constructionGraph
+  id: ArchangelSword
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: sword
+        completed:
+          - !type:SpawnPrototype
+            prototype: WeaponSwordJusticeAndSplendor
+          - !type:DeleteEntity
+        steps:
+          - tag: Justice
+            name: construction-graph-tag-sword
+            doAfter: 5
+    - node: Justice
+      edges:
+      - to: sword
+        completed:
+          - !type:SpawnPrototype
+            prototype: WeaponSwordJusticeAndSplendor
+          - !type:DeleteEntity
+        steps:
+          - tag: Splendor
+            name: construction-graph-tag-sword
+            doAfter: 5
+    - node: sword
+      entity: WeaponSwordJusticeAndSplendor
+
+- type: constructionGraph
+  id: HolyWeapon
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: WeaponSwordJustice
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tag: FatherLight
+            name: construction-graph-tag-father-light
+            doAfter: 5
+    - node: Splendor
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: WeaponSwordSplendor
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tag: FatherLight
+            name: construction-graph-tag-father-light
+            doAfter: 5
+    - node: Lamb
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: WeaponGlaiveLamb
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tag: FatherLight
+            name: construction-graph-tag-father-light
+            doAfter: 5
+    - node: Retribution
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: WeaponProtoKineticAcceleratorHoly
+            amount: 1
+          - !type:DeleteEntity
+        steps:
+          - tag: FatherLight
+            name: construction-graph-tag-father-light
+            doAfter: 5

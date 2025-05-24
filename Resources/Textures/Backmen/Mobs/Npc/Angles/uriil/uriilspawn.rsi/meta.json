@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by no_mad",
+    "size": {
+      "x": 128,
+      "y": 162
+    },
+    "states": [
+    {
+        "name": "phase2anim",
+        "delays":[
+        [0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,1.0,2.0]
+	    ]
+    }
+  ]
+}
+

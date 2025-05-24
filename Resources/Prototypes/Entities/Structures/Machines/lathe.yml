@@ -214,6 +214,7 @@
     - BackmenProtolathe # backmen
     - BackmenSurgery # backmen
     - BackmenEngineerWeapon # backmen
+    - BackmenService # Backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - BackmenAmmo # backmen

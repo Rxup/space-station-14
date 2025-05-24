@@ -24,10 +24,6 @@
   #  maxAngle: -43
   #- type: Wieldable
   # Lavaland Change end
-  - type: GunWieldBonus
-    minAngle: -43
-    maxAngle: -43
-  - type: Wieldable
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto

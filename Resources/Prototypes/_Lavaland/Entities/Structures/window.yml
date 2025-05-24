@@ -1,0 +1,40 @@
+- type: entity
+  parent: TintedWindow
+  id: FrostyTintedWindow
+  name: tinted window
+  suffix: Light Frosty
+  components:
+    - type: PointLight
+      radius: 10
+      energy: 0.8
+      softness: 1
+      color: "#00FFFF"
+
+- type: entity
+  parent: BaseWall
+  id: IndestructibleFrostyTintedWindow
+  name: tinted window
+  suffix: indestructible Light Frosty
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/tinted_window.rsi
+  - type: Icon
+    sprite: Structures/Windows/tinted_window.rsi
+  - type: IconSmooth
+    key: walls
+    base: twindow
+  - type: PointLight
+    radius: 10
+    energy: 0.8
+    softness: 1
+    color: "#00FFFF"

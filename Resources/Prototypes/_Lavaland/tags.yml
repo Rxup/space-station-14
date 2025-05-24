@@ -12,3 +12,24 @@
 
 - type: Tag
   id: SalvageResearchTool
+
+- type: Tag
+  id: BlessedBible
+
+- type: Tag
+  id: FatherLight
+
+- type: Tag
+  id: Justice
+
+- type: Tag
+  id: Splendor
+
+- type: Tag
+  id: GunUpgradeDamageT2
+
+- type: Tag
+  id: GunUpgradeRangeT2
+
+- type: Tag
+  id: GunUpgradeReloadSpeedT2

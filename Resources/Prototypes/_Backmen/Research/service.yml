@@ -92,6 +92,21 @@
   position: 3,9
 
 - type: technology
+  id: EntertainmentAdvanced
+  name: research-technology-entertainment-advanced
+  icon:
+    sprite: Backmen/Objects/Weapons/Grenades/confetti.rsi
+    state: icon
+  discipline: Service
+  tier: 2
+  cost: 6500
+  recipeUnlocks:
+   - ConfettiGrenade
+  technologyPrerequisites:
+  - EntertainmentMachines
+  position: 4,9
+
+- type: technology
   id: FauxAstroTiles
   name: research-technology-faux-astro-tiles
   icon:
@@ -177,8 +192,8 @@
   recipeUnlocks:
   - PushHorn
   technologyPrerequisites:
-  - Kitchen
-  position: 5,8
+  - EntertainmentAdvanced
+  position: 4,10
 
 - type: technology
   id: TranslationDevice

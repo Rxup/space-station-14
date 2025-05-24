@@ -17,6 +17,12 @@
   priority: -1 # highest priority
 
 - type: lavalandGridRuin # backmen-edit
+  id: UriilChapelArena
+  name: lavaland-ruin-chapel
+  path: /Maps/Backmen/Lavaland/uriilArena.yml
+  priority: 1
+
+- type: lavalandGridRuin # backmen-edit
   id: BlackMesaResearchFacility
   name: lavaland-ruin-bmc-research-facility
   path: /Maps/Backmen/Lavaland/researchfacility.yml

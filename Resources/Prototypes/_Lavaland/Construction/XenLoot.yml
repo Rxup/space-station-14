@@ -176,6 +176,30 @@
             doAfter: 1
     - node: Unload
     - node: repair
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: PinpointerAltar
+          - !type:DeleteEntity
+        steps:
+          - tool: Praying
+            doAfter: 1
+
+- type: constructionGraph
+  id: AncientResearch
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: PinpointerAltar
+          - !type:DeleteEntity
+        steps:
+          - tool: Praying
+            doAfter: 1
 
 - type: constructionGraph
   id: PCVArmor

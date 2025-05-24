@@ -38,6 +38,11 @@
       types:
         Blunt: 10
         Structural: 15
+  #Backmen-edit-start
+  - type: Construction
+    graph: PKAUpgradeDamage
+    node: start
+  #Backmen-edit-end
 
 - type: entity
   id: PKAUpgradeRange
@@ -58,6 +63,11 @@
     examineText: gun-upgrade-examine-text-range
   - type: GunUpgradeSpeed
     coefficient: 1.5
+  #Backmen-edit-start
+  - type: Construction
+    graph: PKAUpgradeRange
+    node: start
+  #Backmen-edit-end
 
 - type: entity
   id: PKAUpgradeFireRate
@@ -78,3 +88,8 @@
     examineText: gun-upgrade-examine-text-reload
   - type: GunUpgradeFireRate
     coefficient: 1.5
+  #Backmen-edit-start
+  - type: Construction
+    graph: PKAUpgradeFireRate
+    node: start
+  #Backmen-edit-end
