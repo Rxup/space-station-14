@@ -28,3 +28,24 @@
 #        Slash: -1.5
 #        Piercing: -1.5
 #        Blunt: -1.5
+
+    # когда почините, удалить этот участок, он тут ради прикола
+  - type: SpawnItemsOnUse
+    items:
+    - id: PaperNecropolis
+    sound:
+      path: /Audio/Backmen/Bosses/virtuedeath.ogg
+      params:
+        volume: 1
+
+- type: entity
+  id: PaperNecropolis
+  name: официальное заявление
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      Если вы читаете это, значит вам попался поврежденный кристал.
+      Мы приносим свои извинения.
+
+      - Администрация Некрополиса.
