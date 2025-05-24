@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Backmen.ru @GTTEDMI#3009 / ccsec, cccargo by kirillcas (github)",
+  "copyright": "Backmen.ru @GTTEDMI#3009 / ccsec, cccargo by kirillcas (github). pda-surgeon made by catbg(Discord).",
   "size": {
     "x": 32,
     "y": 32
@@ -41,11 +41,15 @@
     {
       "name": "pda-blue"
     },
-	{
-	  "name": "pda-Roboticist"
-	},
+    {
+    "name": "pda-Roboticist"
+    },
     {
       "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "equipped-IDCARD",
       "directions": 4
     },
     {
@@ -64,6 +68,12 @@
     },
     {
       "name": "pda-surgeon"
+    },
+    {
+      "name": "id_overlay_wide"
+    },
+    {
+      "name": "light_overlay_wide"
     }
   ]
 }
