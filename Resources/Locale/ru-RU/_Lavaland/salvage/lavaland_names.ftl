@@ -24,3 +24,4 @@ lavaland-ruin-bmc-oblom-met = Разрушенная химическая лаб
 lavaland-ruin-bmc-research-station = Станция Чёрной Мезы
 lavaland-ruin-bmc-military-shuttle = Шаттл Чёрной Мезы
 lavaland-ruin-bmc-evacuation-shuttle = Эвакуационный шаттл Чёрной Мезы
+lavaland-ruin-chapel = Часовня
