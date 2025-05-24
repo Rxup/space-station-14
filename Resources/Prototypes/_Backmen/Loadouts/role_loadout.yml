@@ -34,13 +34,17 @@
   - Werx #backmen
   - Niz #backmen
   - Socks #backmen
-  - ClothingUniformJumpsuitBlueShield
-  - ClothingHeadHatBlueShield
-  - ClothingOuterBlueShield
-  - EyeBlueShield
+  - BlueShieldHat
+  - BlueShieldEyes
+  - BlueshieldNeck
+  - BlueshieldBackpack
+  - BlueshieldJumpsuit
+  - BlueshieldOuterClothing
+  - BlueShieldPersonalWeapon
   - Trinkets
-  - Survival
+  - SurvivalSecurity
   - Medals #backmen
+  - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout

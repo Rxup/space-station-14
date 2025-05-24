@@ -1,13 +1,28 @@
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseBlueShieldContraband]
   id: ClothingNeckMantleBlueShield
-  name: мантия Синего Щита
-  description: Мантия из меха синих львов, довольно красивый, но совершенно не держит тепло.
+  name: officer "Blueshield"'s mantle
+  description: A mantle specially tailored for Blueshield officers. On the inside of the cloak you can see a tag with the worn inscription “SecInstuct”.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,3,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
 
 - type: entity
   parent: ClothingNeckBase

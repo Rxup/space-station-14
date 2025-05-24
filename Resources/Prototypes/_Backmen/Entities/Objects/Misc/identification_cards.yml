@@ -630,7 +630,7 @@
 - type: entity
   parent: IDCardStandard
   id: BlueShieldIDCard
-  name: Blue Shield ID Card
+  name: officer "Blueshield" ID Card
   components:
     - type: Sprite
       layers:

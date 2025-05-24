@@ -27,19 +27,45 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesGlassesSecurity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseBlueShieldContraband]
   id: ClothingEyesGlassesBlueShield
-  name: очки Синего Щита
-  description: Улучшенный солнце защитные очки с охранной системой HUD.
+  name: officer "Blueshield" glasses
+  description: Improved security glasses, in blue coloring and with a built-in health scanner.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Armor # provide more coverage than default ones. you know, it's a sec one
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.13
+      BoneDamage: 0.13
+      VeinsDamage: 0
+      NerveDamage: 0
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
   - type: Tag
     tags:
+    - Sunglasses
     - HamsterWearable
     - WhitelistChameleon
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - HalfSpirit
+    - RaceDemon
+  - type: IdentityBlocker
+    coverage: EYES
 
 - type: entity
   parent: ClothingEyesGlassesSecurity
@@ -92,3 +118,26 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: ShowJobIcons
+
+- type: entity
+  parent: ClothingEyesGlassesBlueShield
+  id: ClothingEyesBlueshieldVisor
+  name: officer "Blueshield" visor
+  description: Improved security technical visor, in blue coloring and built-in health scanner included.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Eyes/Glasses/bluevisor.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: Backmen/Clothing/Eyes/Glasses/bluevisor.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES

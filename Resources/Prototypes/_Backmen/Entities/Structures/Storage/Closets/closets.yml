@@ -29,7 +29,7 @@
 - type: entity
   id: LockerBlueShield
   parent: LockerBase
-  name: шкаф Синего Щита
+  name: officer "Blueshield"'s locker
   components:
   - type: Sprite
     netsync: false

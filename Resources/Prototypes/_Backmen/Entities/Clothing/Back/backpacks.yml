@@ -47,3 +47,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/inteq_backpack.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseBlueShieldContraband]
+  id: ClothingBackpackBlueshield
+  name: officer "Blueshield" backpack
+  description: It's a very blue robust backpack.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/blueshield_backpack.rsi
