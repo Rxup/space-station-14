@@ -129,6 +129,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     {
         switch (args.NewMobState)
         {
+            case MobState.SoftCritical:
             case MobState.Critical:
             {
                 EnsureComp<CuffableComponent>(uid);
@@ -364,6 +365,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     break;
 
                 case MobState.Invalid:
+                case MobState.SoftCritical:
                 case MobState.Critical:
                 case MobState.Alive:
                 default:

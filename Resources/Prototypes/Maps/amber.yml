@@ -66,3 +66,24 @@
           Borg: [ 3, 3 ]
           #backmen
           Prisoner: [ 1, 2]
+      - type: StationGoal
+        goals:
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - SecurityTraining
+          - ShuttleMed
+          - ShuttleSec
+          - ShuttleRnd
+          - ShuttleSrv
+          - ShuttleEmergency
+          - Theatre
+          - CellAI
+          - Botany
+          - Bunker
+          - XenobiologyRepair
+          - VirusologyAmbusol

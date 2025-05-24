@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ULTRAKILL, copied from https://ultrakill.wiki.gg/wiki/1-4:_Clair_de_Lune",
+  "size": {
+    "x": 64,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "gabriel"
+    }
+  ]
+}

@@ -9,7 +9,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 3
+            amount: 5
           - !type:DeleteEntity
         steps:
           - tool: Screwing
@@ -39,10 +39,10 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
-            amount: 2
+            amount: 4
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 2
+            amount: 5
           - !type:DeleteEntity
         steps:
           - tool: Cutting
@@ -79,7 +79,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 2
+            amount: 5
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialMaterialGunMaterial
             amount: 2
@@ -97,13 +97,13 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 30
+            amount: 40
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialMaterialGunMaterial
             amount: 20
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
-            amount: 15
+            amount: 25
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemSalvagePCVPlate
             amount: 1
@@ -129,7 +129,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
-            amount: 2
+            amount: 5
           - !type:DeleteEntity
         steps:
           - tool: Screwing
@@ -152,7 +152,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
-            amount: 5
+            amount: 10
           - !type:DeleteEntity
         steps:
           - tool: Prying
@@ -176,6 +176,30 @@
             doAfter: 1
     - node: Unload
     - node: repair
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: PinpointerAltar
+          - !type:DeleteEntity
+        steps:
+          - tool: Praying
+            doAfter: 1
+
+- type: constructionGraph
+  id: AncientResearch
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: PinpointerAltar
+          - !type:DeleteEntity
+        steps:
+          - tool: Praying
+            doAfter: 1
 
 - type: constructionGraph
   id: PCVArmor
@@ -187,7 +211,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemM9Steel
-            amount: 5
+            amount: 10
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
             amount: 5
@@ -210,10 +234,10 @@
         completed:
           - !type:SpawnPrototype
             prototype: MaterialM9Steel1
-            amount: 5
+            amount: 10
           - !type:SpawnPrototype
             prototype: MaterialCableGold1
-            amount: 5
+            amount: 8
           - !type:SpawnPrototype
             prototype: SalvagePCVPlate
             amount: 1
@@ -239,7 +263,7 @@
         completed:
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialHEVPiece
-            amount: 5
+            amount: 10
           - !type:SpawnPrototype
             prototype: ChanceSpawnerItemMaterialCableGold
             amount: 2

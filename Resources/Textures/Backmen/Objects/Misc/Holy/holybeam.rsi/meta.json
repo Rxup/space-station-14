@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by no_mad",
+    "size": {
+      "x": 32,
+      "y": 128
+    },
+    "states": [
+    {
+        "name": "beamanim",
+        "delays":[
+        [0.02,0.02,0.02,0.02,0.02,0.02,0.02]
+	    ]
+    },
+    {
+        "name": "beam"
+    }
+  ]
+}
+

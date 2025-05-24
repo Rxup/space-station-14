@@ -24,6 +24,7 @@ public sealed partial class SurgeryAddMarkingStepComponent : Component
     ///     What type of organ is required for this surgery?
     /// </summary>
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry? Organ;
 
     /// <summary>

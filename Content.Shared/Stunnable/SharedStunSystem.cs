@@ -89,6 +89,7 @@ public abstract class SharedStunSystem : EntitySystem
         }
         switch (args.NewMobState)
         {
+            case MobState.SoftCritical:
             case MobState.Alive:
                 {
                     break;

@@ -150,4 +150,10 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> AtmosTankFragment =
         CVarDef.Create("atmos.max_explosion_range", 26f, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Backmen | Whether or not Space Wind will create subtle visual indicators for the presence of air currents.
+    /// </summary>
+    public static readonly CVarDef<bool> SpaceWindVisuals =
+        CVarDef.Create("atmos.space_wind_visuals", true, CVar.SERVERONLY);
 }

@@ -16,6 +16,17 @@ public sealed partial class BoneComponent : Component
     [DataField, AutoNetworkedField, ViewVariables]
     public FixedPoint2 BoneIntegrity = 60f;
 
+    [DataField, AutoNetworkedField, ViewVariables]
+    public Dictionary<BoneSeverity, FixedPoint2> BoneThresholds = new()
+    {
+        { BoneSeverity.Normal, 60 },
+        { BoneSeverity.Damaged, 36 },
+        { BoneSeverity.Broken, 0 },
+    };
+
+    [DataField, AutoNetworkedField, ViewVariables]
+    public FixedPoint2 BoneRegenerationRate = 0.1f;
+
     [AutoNetworkedField, ViewVariables]
     public BoneSeverity BoneSeverity = BoneSeverity.Normal;
 

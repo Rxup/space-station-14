@@ -154,3 +154,43 @@
     useDelay: 0.5
     icon: { sprite: Objects/Tools/seclite.rsi, state: seclite }
     event: !type:ToggleActionEvent
+
+- type: entity
+  name: протокинетический ускоритель "Возмездие"
+  id: WeaponProtoKineticAcceleratorHoly
+  parent: [WeaponProtoKineticAcceleratorBase, BaseCargoContraband]
+  description: Fires low-damage kinetic bolts at a short range.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    layers:
+    - state: icon
+      map: [ "enum.WeaponVisualLayers.Base" ]
+    - state: bayonet
+      map: [ "enum.WeaponVisualLayers.Bayonet" ]
+      visible: false
+    - state: flight
+      map: [ "enum.WeaponVisualLayers.FlightOff" ]
+      visible: false
+    - state: flight-on
+      map: [ "enum.WeaponVisualLayers.FlightOn" ]
+      visible: false
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+  - type: PressureDamageChange
+    appliedModifier: 0.65
+  - type: UpgradeableGun
+    maxUpgradeCount: 300
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticHoly
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container

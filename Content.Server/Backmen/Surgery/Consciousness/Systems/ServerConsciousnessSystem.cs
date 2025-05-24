@@ -1,25 +1,50 @@
 using System.Linq;
+using Content.Server.Body.Components;
+using Content.Server.DoAfter;
+using Content.Server.Popups;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Body.Events;
+using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
+using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
+using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Surgery.Consciousness.Systems;
 
 public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!;
+
+    private float _cprTraumaChance = 0.1f;
+
+    [ValidatePrototypeId<DamageTypePrototype>]
+    private string AsphyxiationDamageType = "Asphyxiation";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -29,14 +54,20 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
 
+        SubscribeLocalEvent<ConsciousnessComponent, InteractHandEvent>(OnConsciousnessInteract);
+        SubscribeLocalEvent<ConsciousnessComponent, CprDoAfterEvent>(OnCprDoAfter);
+
         // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(SharedBodySystem)]);
+        SubscribeLocalEvent<ConsciousnessComponent, HandleUnhandledWoundsEvent>(OnHandleUnhandledDamage);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartAddedEvent>(OnBodyPartAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
+
+        Subs.CVar(_cfg, CCVars.CprTraumaChance, value => _cprTraumaChance = value, true);
     }
 
     private const string NerveSystemIdentifier = "nerveSystem";
@@ -148,8 +179,9 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         args.Handled = true;
     }
 
-    private void OnMobStateChanged(EntityUid uid, ConsciousnessComponent component, MobStateChangedEvent args)
+    private void OnMobStateChanged(Entity<ConsciousnessComponent> consciousness, ref MobStateChangedEvent args)
     {
+        var (uid, component) = consciousness;
         if (args.NewMobState != MobState.Dead)
             return;
 
@@ -169,8 +201,188 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
     }
 
-    private void OnRejuvenate(EntityUid uid, ConsciousnessComponent component, RejuvenateEvent args)
+    private bool CanPerformCpr(Entity<ConsciousnessComponent> consciousness, EntityUid user)
     {
+        if (!TryComp(consciousness.Owner, out MobStateComponent? mobState))
+            return false;
+
+        if (!consciousness.Comp.NerveSystem.HasValue)
+            return false;
+
+        if (!TryGetConsciousnessModifier(
+                consciousness,
+                consciousness.Comp.NerveSystem.Value,
+                out _,
+                "Suffocation"))
+            return false;
+
+        if (MobStateSys.IsDead(consciousness, mobState))
+        {
+            _popup.PopupEntity(Loc.GetString("cpr-cant-perform-dead"), consciousness, user, PopupType.Medium);
+            return false;
+        }
+
+        if (mobState.CurrentState is not MobState.Critical)
+        {
+            _popup.PopupEntity(Loc.GetString("cpr-cant-perform-not-crit"), consciousness, user, PopupType.Medium);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void OnConsciousnessInteract(Entity<ConsciousnessComponent> consciousness, ref InteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!CanPerformCpr(consciousness, args.User))
+            return;
+
+        _popup.PopupEntity(
+            Loc.GetString("user-began-cpr", ("user", args.User), ("target", args.Target)),
+            args.Target);
+
+        args.Handled = _doAfter.TryStartDoAfter(new
+            DoAfterArgs(EntityManager,
+            args.User,
+            consciousness.Comp.CprDoAfterDuration,
+            new CprDoAfterEvent(),
+            args.Target,
+            args.Target)
+        {
+            NeedHand = true,
+            BreakOnMove = true,
+            BreakOnHandChange = true,
+            CancelDuplicate = true,
+            BlockDuplicate = true,
+        });
+    }
+
+    private void OnCprDoAfter(Entity<ConsciousnessComponent> consciousness, ref CprDoAfterEvent args)
+    {
+        if (!consciousness.Comp.NerveSystem.HasValue)
+            return;
+
+        if (!CanPerformCpr(consciousness, args.User))
+            return;
+
+        if (!TryGetNerveSystem(consciousness, out var nerveSys))
+            return;
+        var modifier = consciousness.Comp.Modifiers[(nerveSys.Value.Owner, "Suffocation")];
+
+        var sex = Sex.Unsexed;
+        if (TryComp<HumanoidAppearanceComponent>(consciousness, out var humanoid))
+            sex = humanoid.Sex;
+
+        var lungs = Body.GetBodyOrganEntityComps<LungComponent>(consciousness.Owner);
+        if (_trauma.TryGetBodyTraumas(consciousness, out var traumas, TraumaType.OrganDamage))
+        {
+            var hearts = Body.GetBodyOrganEntityComps<HeartComponent>(consciousness.Owner);
+            var cprableOrgans = new List<EntityUid>();
+
+            cprableOrgans.AddRange(lungs.Select(lung => lung.Owner));
+            cprableOrgans.AddRange(hearts.Select(heart => heart.Owner));
+
+            var cprableOrgansDamaged = false;
+            foreach (var trauma in traumas)
+            {
+                if (!trauma.Comp.TraumaTarget.HasValue)
+                    continue;
+
+                if (!cprableOrgans.Contains(trauma.Comp.TraumaTarget.Value))
+                    continue;
+
+                cprableOrgansDamaged = true;
+                break;
+            }
+
+            if (cprableOrgansDamaged)
+            {
+                foreach (var lung in lungs)
+                {
+                    if (!_trauma.TryChangeOrganDamageModifier(
+                            lung.Owner,
+                            consciousness.Comp.CprSuffocationHealAmount,
+                            consciousness,
+                            "FailedCPR",
+                            lung.Comp2))
+                    {
+                        _trauma.TryAddOrganDamageModifier(lung.Owner,
+                            consciousness.Comp.CprSuffocationHealAmount,
+                            consciousness,
+                            "FailedCPR",
+                            lung.Comp2);
+                    }
+                }
+
+                Pain.CleanupPainSounds(nerveSys.Value, nerveSys);
+                Pain.PlayPainSound(
+                    consciousness,
+                    nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
+                    AudioParams.Default.WithVolume(6f));
+
+                return;
+            }
+        }
+
+        var threshold = consciousness.Comp.CprSuffocationHealAmount * consciousness.Comp.CprSuffocationHealThreshold;
+        if (FixedPoint2.Abs(modifier.Change) < threshold)
+        {
+            if (Random.Prob(_cprTraumaChance))
+            {
+                // Apply the damage equal to suffocation heal of CPR to all lungs.
+                // I can already see people popping people's organs with fucking CPR..
+                foreach (var lung in lungs)
+                {
+                    if (!_trauma.TryChangeOrganDamageModifier(
+                            lung.Owner,
+                            consciousness.Comp.CprSuffocationHealAmount,
+                            consciousness,
+                            "FailedCPR",
+                            lung.Comp2))
+                    {
+                        _trauma.TryAddOrganDamageModifier(lung.Owner,
+                            consciousness.Comp.CprSuffocationHealAmount,
+                            consciousness,
+                            "FailedCPR",
+                            lung.Comp2);
+                    }
+                }
+
+                Pain.CleanupPainSounds(nerveSys.Value, nerveSys);
+                Pain.PlayPainSound(
+                    consciousness,
+                    nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
+                    AudioParams.Default.WithVolume(6f));
+            }
+            else
+            {
+                Pain.CleanupPainSounds(nerveSys.Value, nerveSys);
+                Pain.PlayPainSound(
+                    consciousness,
+                    nerveSys.Value.Comp.PainGrunts[sex],
+                    AudioParams.Default.WithVolume(6f));
+            }
+
+            return;
+        }
+
+        ChangeConsciousnessModifier(
+            consciousness,
+            nerveSys.Value,
+            consciousness.Comp.CprSuffocationHealAmount,
+            "Suffocation");
+
+        _popup.PopupEntity(
+            Loc.GetString("user-finished-cpr-successfully", ("user", args.User), ("target", consciousness)),
+            consciousness);
+    }
+
+    private void OnRejuvenate(Entity<ConsciousnessComponent> consciousness, ref RejuvenateEvent args)
+    {
+        var (uid, component) = consciousness;
+
         if (component.NerveSystem.HasValue)
         {
             foreach (var painModifier in component.NerveSystem.Value.Comp.Modifiers)
@@ -200,7 +412,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         foreach (var key in component.Multipliers
-                    .Where(multiplier => multiplier.Value.Type != ConsciousnessModType.Pain)
+                    .Where(multiplier => multiplier.Value.Type == ConsciousnessModType.Pain)
                     .Select(multiplier => multiplier.Key)
                     .ToArray())
         {
@@ -208,7 +420,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         foreach (var key in component.Modifiers
-                     .Where(modifier => modifier.Value.Type != ConsciousnessModType.Pain)
+                     .Where(modifier => modifier.Value.Type == ConsciousnessModType.Pain)
                      .Select(modifier => modifier.Key)
                      .ToArray())
         {
@@ -216,7 +428,36 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         CheckRequiredParts(uid, component);
-        ForceConscious(uid, TimeSpan.FromSeconds(1f), component);
+        ForceConscious(uid, TimeSpan.FromSeconds(5f), component);
+    }
+
+    private void OnHandleUnhandledDamage(Entity<ConsciousnessComponent> consciousness, ref HandleUnhandledWoundsEvent args)
+    {
+        if (!TryGetNerveSystem(consciousness, out var nerveSys))
+            return;
+
+        foreach (var damagePiece in args.UnhandledDamage.ToArray())
+        {
+            if (damagePiece.Key != AsphyxiationDamageType)
+                continue;
+
+            if (!ChangeConsciousnessModifier(
+                    consciousness,
+                    nerveSys.Value,
+                    -damagePiece.Value,
+                    "Suffocation",
+                    consciousness: consciousness))
+            {
+                AddConsciousnessModifier(
+                    consciousness,
+                    nerveSys.Value,
+                    -damagePiece.Value,
+                    "Suffocation",
+                    consciousness: consciousness);
+            }
+
+            args.UnhandledDamage.Remove(damagePiece.Key);
+        }
     }
 
     private void OnBodyPartAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartAddedEvent args)
@@ -230,10 +471,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
     {
-        if (args.Part.Comp.Body == null ||
-            !ConsciousnessQuery.TryComp(args.Part.Comp.Body.Value, out var consciousness) ||
-            TerminatingOrDeleted(args.Part.Comp.Body)
-            )
+        if (args.Part.Comp.Body == null || !ConsciousnessQuery.TryComp(args.Part.Comp.Body.Value, out var consciousness))
             return;
 
         if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
@@ -255,7 +493,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
         if (component.Identifier == NerveSystemIdentifier)
         {
-            var nerveSys = Comp<NerveSystemComponent>(uid);
+            var nerveSys = EnsureComp<NerveSystemComponent>(uid);
             nerveSys.RootNerve = args.Part;
             consciousness.NerveSystem = (uid, nerveSys);
         }
@@ -265,7 +503,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnOrganRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganRemovedFromBodyEvent args)
     {
-        if (TerminatingOrDeleted(args.OldBody) || !ConsciousnessQuery.TryComp(args.OldBody, out var consciousness))
+        if (!ConsciousnessQuery.TryComp(args.OldBody, out var consciousness))
             return;
 
         if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
@@ -343,15 +581,14 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         ConsciousnessComponent? consciousness = null,
         MobStateComponent? mobState = null)
     {
-        if (TerminatingOrDeleted(target) ||
-            !ConsciousnessQuery.Resolve(target, ref consciousness, false)
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false)
             || !MobStateQuery.Resolve(target, ref mobState, false))
             return false;
 
         var shouldBeConscious =
             consciousness.Consciousness > consciousness.Threshold || consciousness is { ForceUnconscious: false, ForceConscious: true };
 
-        var ev = new ConsciousnessUpdatedEvent(shouldBeConscious);
+        var ev = new ConsciousUpdateEvent(consciousness, shouldBeConscious);
         RaiseLocalEvent(target, ref ev);
 
         SetConscious(target, shouldBeConscious, consciousness);
@@ -369,8 +606,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return;
 
-        consciousness.PassedOut = true;
         consciousness.PassedOutTime = Timing.CurTime + time;
+        consciousness.PassedOut = true;
 
         CheckConscious(target, consciousness);
     }
@@ -384,8 +621,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
             return;
 
-        consciousness.ForceConscious = true;
         consciousness.ForceConsciousnessTime = Timing.CurTime + time;
+        consciousness.ForceConscious = true;
 
         CheckConscious(target, consciousness);
     }

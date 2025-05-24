@@ -1,4 +1,5 @@
-﻿using Content.Shared.Backmen.Surgery.Pain;
+﻿using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
@@ -29,8 +30,17 @@ public sealed class ConsciousnessComponentState : ComponentState
     public bool IsConscious;
 }
 
+[Serializable, NetSerializable]
+public sealed partial class CprDoAfterEvent : SimpleDoAfterEvent;
+
 [ByRefEvent]
-public record struct ConsciousnessUpdatedEvent(bool IsConscious);
+public record struct ConsciousUpdateEvent(ConsciousnessComponent Consciousness, bool IsConscious);
+
+[ByRefEvent]
+public record struct ConsciousnessChangedEvent(
+    ConsciousnessComponent Component,
+    FixedPoint2 NewConsciousness,
+    FixedPoint2 OldConsciousness);
 
 [Serializable, DataRecord]
 public record struct ConsciousnessModifier(FixedPoint2 Change, TimeSpan? Time, ConsciousnessModType Type = ConsciousnessModType.Generic);

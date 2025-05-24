@@ -20,6 +20,13 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     public EntityUid? Body;
 
     /// <summary>
+    /// The body part the organ is in.
+    /// Backmen edit;
+    /// </summary>
+    [DataField]
+    public EntityUid? BodyPart;
+
+    /// <summary>
     ///     Relevant body this organ originally belonged to.
     ///     ///     FOR WHATEVER FUCKING REASON AUTONETWORKING THIS CRASHES GIBTEST AAAAAAAAAAAAAAA
     /// </summary>
@@ -40,7 +47,7 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     public FixedPoint2 OrganIntegrity = 15;
 
     /// <summary>
-    ///     Current Organ severity, dynamically updated based on organ integrity
+    ///     Current Organ severity, dynamically updates based on organ integrity
     /// </summary>
     [DataField, AutoNetworkedField]
     public OrganSeverity OrganSeverity = OrganSeverity.Normal;
