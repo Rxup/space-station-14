@@ -41,16 +41,17 @@
     {
       "name": "pda-blue"
     },
-	{
-	  "name": "pda-Roboticist"
-	},
+    {
+    "name": "pda-Roboticist"
+    },
     {
       "name": "equipped-BELT",
       "directions": 4
     },
     {
       "name": "equipped-IDCARD",
-      "diractions": 4
+      "directions": 4
+    },
     {
       "name": "id_overlay"
     },
