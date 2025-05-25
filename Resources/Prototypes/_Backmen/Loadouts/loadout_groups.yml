@@ -26,44 +26,66 @@
   - BKCCCargoDuffel
   - CommonMessenger
 
-# Security
-
 # BlueShield
 - type: loadoutGroup
-  id: ClothingUniformJumpsuitBlueShield
+  id: BlueshieldJumpsuit
   name: loadout-group-blueshield-jumpsuit
   loadouts:
-  - ClothingJumpsuitBlueShield
-  - ClothingUniformBlueShield
-  - ClothingSkirtBlueShield
+  - ClothingUniformJumpsuitBlueShield
+  - ClothingUniformJumpskirtBlueShield
+  - ClothingUniformBlueShieldTurtleneck
+  - ClothingUniformJumpskirtBlueShieldTurtleneck
 
 - type: loadoutGroup
-  id: ClothingHeadHatBlueShield
-  name: loadout-group-BlueShield-hat
-  minLimit: 0
-  loadouts:
-  - ClothingHeadHatBeretBlueShield
-  - ClothingHeadHatBlueShieldCap
-  - ClothingHeadHatUshankaBlueShield
-  - ClothingHeadHelmetEGov
-  - ClothingHeadHelmetXenonauten
-
-- type: loadoutGroup
-  id: ClothingOuterBlueShield
-  name: loadout-group-BlueShield-outer
-  loadouts:
-  - ClothingOuterNavyVest
-  - ClothingOuterXenonautenLight
-  - ClothingOuterCoatArmorBlueShield
-  - ClothingOuterCoatArmorBlueShieldAlt
-
-- type: loadoutGroup
-  id: EyeBlueShield
-  name: loadout-group-BlueShield-eyes
-  minLimit: 0
+  id: BlueShieldEyes
+  name: loadout-group-blueshield-eyes
+  minLimit: 1
+  maxLimit: 1
   loadouts:
   - ClothingEyesGlassesBlueShield
-  - ClothingEyeslensesBlueShield
+  - ClothingEyesBlueshieldVisor
+
+- type: loadoutGroup
+  id: BlueShieldHat
+  name: loadout-group-blueshield-hat
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingHeadHatBlackBeretBlueShield
+  - ClothingHeadHatLightBeretBlueShield
+
+- type: loadoutGroup
+  id: BlueshieldNeck
+  name: loadout-group-blueshield-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckMantleBlueShield
+
+- type: loadoutGroup
+  id: BlueshieldBackpack
+  name: loadout-group-blueshield-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ClothingBackpackBlueshield
+  - ClothingBackpackSatchelBlueshield
+  - ClothingBackpackDuffelBlueshield
+  - ClothingBackpackMessengerBlueshield
+
+- type: loadoutGroup
+  id: BlueshieldOuterClothing
+  name: loadout-group-blueshield-outer
+  loadouts:
+  - ClothingOuterArmorBlueshield
+  - ClothingOuterCoatArmorBlueShield
+
+- type: loadoutGroup
+  id: BlueShieldPersonalWeapon
+  name: loadout-group-security-pocket
+  loadouts:
+  - WeaponMultiphaseEnergyGun
+  - WeaponPistolUCS
+  - WeaponPistolVP78
 
 # Operator
 #- type: loadoutGroup

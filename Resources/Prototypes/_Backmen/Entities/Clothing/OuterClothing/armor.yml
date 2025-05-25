@@ -30,10 +30,10 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterBaseLarge
-  id: ClothingOuterArmorBlueshieldCarapace
-  name: "бронежилет офицера Синего Щита"
-  description: "Бронежилет для защиты глав. Сделан из лучших материалов, что бы пережить даже взрыв ядерной бомбы! (Защита владельца не гарантирована)"
+  parent: [ ClothingOuterArmorBase, AllowSuitStorageClothing]
+  id: ClothingOuterArmorBlueshield
+  name: officer "Blueshield"'s vest
+  description: Redesigned security vest with increased protection.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
@@ -41,20 +41,21 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Armor
     coverage:
-    - Groin
     - Chest
     - Arm
     - Tail
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Caustic: 0.5
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.4
+        ArmorPiercing: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.60
+    damageCoefficient: 0.5
   - type: GroupExamine
+  - type: Contraband
+    allowedJobs: [ BlueShield ]
 
 - type: entity
   parent: ClothingOuterBaseLarge
