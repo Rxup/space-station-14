@@ -249,15 +249,15 @@
         - id: EnergyMag
           amount: 6
 
-- type: entity
-  parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZBigEnergyFilled
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: StorageFill
-      contents:
-        - id: BigEnergyMag
-          amount: 6
+#- type: entity
+#  parent: ClothingPounchMTF
+#  id: ClothingPounchRXBZZBigEnergyFilled
+#  categories: [ HideSpawnMenu ]
+#  components:
+#    - type: StorageFill
+#      contents:
+#        - id: BigEnergyMag
+#          amount: 6
 
 - type: entity
   parent: ClothingPounchMTF
