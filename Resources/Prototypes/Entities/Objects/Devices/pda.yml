@@ -1479,7 +1479,7 @@
   suffix: Chameleon
   components:
   - type: PdaBorderColor
-    borderColor: "#717059"
+    borderColor: "#b1b1b1"
   - type: Tag
     tags: # ignore "WhitelistChameleon" tag
     - DoorBumpOpener
