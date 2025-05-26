@@ -76,3 +76,17 @@
     layers:
     - state: animated-Memes
       shader: unshaded
+
+- type: ghostTheme
+  id: WisdomGhost
+  name: sponsor-win-manager-ghost-Wisdom
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/Wisdom-ghost.rsi
+    layers:
+    - state: angel_nelle
+      shader: unshaded
+

@@ -1,0 +1,1824 @@
+- type: entity
+  id: HolyAltar
+  parent: BaseStructure
+  name: священный алтарь
+  description: Алтарь пропитанный божественным светом, что озаряет все сущие вокруг себя своим великолепием.
+  components:
+  - type: Prayable
+  - type: Sprite
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    layers:
+      - state: space-christian
+      - state: space-christian_lightning
+        shader: unshaded
+  - type: Icon
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    state: space-christian
+  - type: PointLight
+    radius: 20.0
+    energy: 3.5
+    color: "#fbceb1"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - ItemMask
+  - type: Clickable
+  - type: Construction
+    graph: HolyAltar
+    node: start
+  - type: MarkerOne
+
+- type: entity
+  id: SealsTrigger
+  parent: DomeDisabler
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageContacts
+    ignoreWhitelist:
+      components:
+      - HumanoidAppearance
+    damage:
+      types:
+        Bloodloss: 1
+
+- type: entity
+  id: SpawnerWallOfSteadfastnessSeal
+  parent:
+  - DeathByDome
+  - BaseStructure
+  name: The seal of steadfastness
+  suffix: Unactivaded
+  components:
+  - type: Marker
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 0.5, 0.5
+    drawdepth: FloorTiles
+    layers:
+    - state: holypentagram
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 20
+        mask:
+        - ItemMask
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/holy.ogg
+          params:
+            volume: -1
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          WallOfSteadfastnessSeal:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseWall
+  id: WallOfSteadfastnessSeal
+  name: The seal of steadfastness
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: Structures/Walls/cult.rsi
+  - type: Icon
+    sprite: Structures/Walls/cult.rsi
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Bloodloss
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          SpawnerWallOfSteadfastnessSeal:
+            min: 1
+            max: 1
+  - type: Occluder
+    enabled: false
+  - type: IconSmooth
+    key: walls
+    base: cult
+    shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - HolyLightAnimUriil
+
+- type: entity
+  name: blessed pinpointer
+  id: PinpointerAltar
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    component: MarkerOne
+    targetName: священный алтарь
+
+- type: entity
+  name: благословенная библия
+  description: Истинная библия, созданная всевышним, без человеческого фактора. К сожалению написана она на языке что не понятен для смертных, от чего и смысла от этой книги не много.
+  parent: Bible
+  id: BlessedBible
+  components:
+  - type: Bible
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Immaterial: -1
+    damageOnFail:
+      groups:
+        Airloss: 1
+    damageOnUntrainedUse:
+      groups:
+        Burn: 80
+    failChance: 0
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    damage:
+      types:
+        Holy: 50
+        Blunt: 1
+  - type: Tool
+    qualities:
+      - Praying
+    useSound:
+      path: /Audio/Effects/holy.ogg
+  - type: Tag
+    tags:
+    - Book
+    - BlessedBible
+
+- type: tool
+  id: Praying
+  name: tool-quality-praying-name
+  toolName: tool-quality-praying-tool-name
+  spawn: BlessedBible
+  icon: { sprite: Objects/Specific/Chapel/bible.rsi, state: icon }
+
+- type: entity
+  id: UriilSpawn
+  name: святой свет
+  parent: HolyLight
+  suffix: Босс Интро, Архангел Уриил
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 4, 4
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.7"
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.01,-0.01,0.01,0.01"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 15
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundBIGChoir
+  - type: SpawnOnDespawn
+    prototype: MobUriil
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/uriilintro.ogg
+      params:
+        volume: 10
+
+- type: Tag
+  id: HolySpirit
+
+- type: entity
+  id: Baseholypentagram
+  parent:
+  - DeathByDome
+  - BaseMob
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4
+  - type: MeleeWeapon
+    range: 0.00001
+    damage:
+      types:
+        Structural: 1
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SuperZloy
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 0.5, 0.5
+    drawdepth: FloorTiles
+    layers:
+    - state: holypentagram
+      shader: unshaded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: holypentagram
+  name: святая пентаграмма
+  parent: Baseholypentagram
+  suffix: Holy light
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: holypentagram
+      shader: unshaded
+  - type: SpawnOnDespawn
+    prototype: holypentagramanim
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: HolySound
+  name: святой удар
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Transform
+    anchored: false
+  - type: TimedDespawn
+    lifetime: 3
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/ultramortar.ogg
+      params:
+        volume: -7
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - HolyLight
+    intervalSeconds: 2
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: holypentagramanim
+  parent:
+  - DeathByDome
+  - DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: holypentagramfast
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySound
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HolyLight
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.5"
+      shader: unshaded
+  - type: DamageContacts
+    ignoreWhitelist:
+      tags:
+      - HolySpirit
+    damage:
+      types:
+        Heat: 25
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 0.5
+  - type: SpawnOnDespawn
+    prototype: HolyLightAnim
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HolyLightAnim
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: false
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: beamanim
+      offset: "0,1.5"
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HolySoundHeal
+  parent: HolySound
+  name: святой удар
+  suffix: Лечащий
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - HolyLightHeal
+    intervalSeconds: 2
+
+- type: entity
+  id: HolyLightHeal
+  parent: HolyLight
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageContacts
+    ignoreWhitelist:
+      tags:
+      - HolySpirit
+    damage:
+      groups:
+        Brute: -30
+        Burn: -30
+        Airloss: -30
+        Toxin: -30
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.6"
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 5
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundBIGChoir
+  - type: SpawnOnDespawn
+    prototype: HolyLightAnimUriil
+
+- type: entity
+  id: holypentagramFast
+  name: святая пентаграмма
+  parent: Baseholypentagram
+  suffix: Holy light Fast
+  components:
+  - type: TimedDespawn
+    lifetime: 2.1
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/ultramortar.ogg
+      params:
+        volume: -7
+  - type: TimedSpawner
+    prototypes:
+      - HolyLight
+    intervalSeconds: 2
+
+- type: hitscan
+  maxLength: 12
+  id: HolyBeam
+  damage:
+    groups:
+      Burn: 5
+  muzzleFlash:
+    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+    state: holybeamlaser
+  travelFlash:
+    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+    state: holybeamlaser
+  impactFlash:
+    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+    state: holybeamlaserimpact
+
+- type: hitscan
+  maxLength: 0
+  id: HolyBeamMini
+  damage:
+    groups:
+      Burn: 0
+  muzzleFlash:
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    state: NoId
+  travelFlash:
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    state: NoId
+  impactFlash:
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    state: NoId
+
+- type: entity
+  id: holypentagramUriil
+  parent: holypentagram
+  name: святая пентаграмма
+  suffix: Uriil Holy light
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 1, 1
+    layers:
+    - state: holypentagram
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 6
+  - type: SpawnOnDespawn
+    prototype: holypentagramanimUriil
+
+- type: entity
+  id: holypentagramanimUriil
+  parent: holypentagramanim
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 1, 1
+    layers:
+    - state: holypentagramfast
+      shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundUriil
+
+- type: entity
+  id: HolySoundUriil
+  parent: HolySound
+  name: святой удар
+  suffix: Uriil
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - HolyLightUriil
+
+- type: entity
+  id: HolyLightUriil
+  name: holy light
+  parent: HolyLight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.6"
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 3
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundUriilChoir
+  - type: SpawnOnDespawn
+    prototype: HolyLightAnimUriil
+
+- type: entity
+  id: HolyLightAnimUriil
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: false
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    noRot: true
+    layers:
+    - state: beamanim
+      offset: "0,1.6"
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: HolySoundUriilChoir
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 4
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/holysoundshort.ogg
+      params:
+        volume: 3
+
+- type: entity
+  id: holypentagramBIG
+  parent: holypentagram
+  name: святая пентаграмма
+  suffix: BIG Holy light
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 2, 2
+    layers:
+    - state: holypentagram
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 6
+  - type: SpawnOnDespawn
+    prototype: holypentagramanimBIG
+
+- type: entity
+  id: holypentagramanimBIG
+  parent: holypentagramanim
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    scale: 2, 2
+    layers:
+    - state: holypentagramfast
+      shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundBIG
+
+- type: entity
+  id: HolySoundBIG
+  parent: HolySound
+  name: святой удар
+  suffix: BIG
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - HolyLightBIG
+
+- type: entity
+  id: HolyLightBIG
+  name: holy light
+  parent: HolyLight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 4, 4
+    noRot: true
+    layers:
+    - state: beam
+      offset: "0,1.7"
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-0.8,0.8,0.8"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 5
+  - type: ConditionalSpawner
+    prototypes:
+    - HolySoundBIGChoir
+  - type: SpawnOnDespawn
+    prototype: HolyLightAnimBIG
+
+- type: entity
+  id: HolyLightAnimBIG
+  name: holy light
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: false
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    drawdepth: Mobs
+    scale: 4, 4
+    noRot: true
+    layers:
+    - state: beamanim
+      offset: "0,1.7"
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: HolySoundBIGChoir
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 8
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/holysound.ogg
+      params:
+        volume: 5
+
+- type: entity
+  name: angel wisp
+  id: BaseAngelWisp
+  parent: BaseMob
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: KinematicController
+  - type: NoSlip
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 10
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Angles/wisp.rsi
+    layers:
+    - state: wisp
+      shader: unshaded
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: NpcFactionMember
+    factions:
+      - SuperZloy
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Tag
+    tags:
+      - HolySpirit
+
+- type: entity
+  name: angel wisp
+  id: MobAngelWisp
+  parent: BaseAngelWisp
+  suffix: Holy
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: HolyBeam
+    fireCost: 50
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Gun
+    fireRate: 0.5
+    minAngle: 12
+    maxAngle: 12
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  name: angel wisp
+  id: MobAngelWispArtillery
+  parent: BaseAngelWisp
+  suffix: Holy Arta
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: HolyBeamMini
+    fireCost: 50
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Gun
+    fireRate: 0.1
+    minAngle: 5
+    maxAngle: 12
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: NPCUseActionOnTarget
+    actionId: ActionHolyLightBIG
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  name: angel wisp
+  id: MobAngelWispTentakle
+  parent: BaseAngelWisp
+  suffix: Holy StaminDamage
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Angles/wispphase2.rsi
+    layers:
+    - state: wisp
+      shader: unshaded
+  - type: HitscanBatteryAmmoProvider
+    proto: HolyBeamMini
+    fireCost: 50
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Gun
+    fireRate: 0.1
+    minAngle: 5
+    maxAngle: 12
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: NPCUseActionOnTarget
+    actionId: ActionHolySpears
+  - type: TimedDespawn
+    lifetime: 4
+
+- type: entity
+  id: ActionHolySpears
+  name: "[color=red]Святой удар[/color]"
+  description: Используй свою всевышнию силу и уничтожь врагов!
+  components:
+  - type: EntityWorldTargetAction
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    event: !type:GoliathSummonTentacleAction
+      entityId: EffectHolySpearsSpawn
+    useDelay: 2
+    range: 30
+
+- type: entity
+  id: HolySpears
+  parent: GoliathTentacle
+  categories: [ HideSpawnMenu ]
+  name: святое копье
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holyspears.rsi
+    layers:
+    - state: holy_spears
+      shader: unshaded
+  - type: StunOnContact
+    duration: 1
+    blacklist:
+      tags:
+      - HolySpirit
+  - type: SpawnOnDespawn
+    prototype: EffectHolySpearsRetract
+
+- type: entity
+  id: EffectHolySpearsSpawn
+  parent: BaseEffectGoliathTentacleSpawn
+  name: святое копье
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holyspears.rsi
+    layers:
+    - state: holy_spears_spawn
+      shader: unshaded
+  - type: SpawnOnDespawn
+    prototype: HolySpears
+
+- type: entity
+  id: EffectHolySpearsRetract
+  parent: BaseEffectGoliathTentacleSpawn
+  name: святое копье
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/holyspears.rsi
+    layers:
+    - state: holy_spears_retract
+      shader: unshaded
+  - type: EffectVisuals
+  - type: AnimationPlayer
+
+- type: entity
+  id: UriilDome
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: Backmen/Effects/EnergyDome/energydome_medium.rsi
+    layers:
+    - state: medium
+      shader: unshaded
+      color: "#00eaff"
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          params:
+            volume: 10
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.8
+        density: 0
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+#      fix2:
+#        shape:
+#          !type:PolygonShape
+#            vertices:
+#            - "-0.5,-0.5"
+#            - "0.5,0.5"
+#            - "0.5,-0.5"
+#        mask:
+#        - FullTileMask
+#        layer:
+#        - GlassLayer
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+      - HideContextMenu
+      - IgnoreMelee
+  - type: TimedSpawner
+    prototypes:
+      - DomeDisabler
+    chance: 1
+    intervalSeconds: 40
+  - type: Timer
+
+- type: accent
+  id: Uriil
+  fullReplacements:
+  - Ты бросаешь вызов свету!
+  - Тут может быть только свет!
+  - Несовершенство, которое нужно устранить.
+  - Даже не смей. Смертный.
+  - Ты меньше, чем ничто.
+  - Ты — ошибка, которую нужно исправить.
+  - Свет — совершенство!
+  - Ты — ошибка, которую нужно исправить.
+  - Ты ничтожество.
+  - Ваше преступление — существование.
+
+- type: speechSounds
+  id: AngelUriil
+  variation: 0
+  saySound:
+    collection: UriilSound
+  askSound:
+    collection: UriilSound
+  exclaimSound:
+    collection: UriilSoundexclaim
+
+- type: soundCollection
+  id: UriilSound
+  files:
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt5.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt6.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt7.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt8.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt10.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt11.ogg
+
+- type: soundCollection
+  id: UriilSoundexclaim
+  files:
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt1.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt3.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt9.ogg
+
+- type: soundCollection
+  id: UriilPain
+  files:
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt1.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt2.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt3.ogg
+  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt4.ogg
+
+- type: emoteSounds
+  id: UriilVoice
+  params:
+    variation: 0
+  sounds:
+    Pain:
+      collection: UriilPain
+      params:
+        volume: 100
+
+- type: emote
+  id: UriilPain
+  name: Uriilpain
+  chatMessages: ["chat-emote-msg-gasp"]
+  chatTriggers:
+   - MACHINE!
+
+- type: entity
+  id: MobUriil
+  parent: BaseBossMob
+  name: Архангел Уриил
+  description: Судья ада.
+  suffix: Босс Holy
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: AmbientSound
+    volume: 5
+    range: 500
+    sound:
+      path: /Audio/Backmen/Bosses/Divine_Intervention.ogg
+  - type: ReplacementAccent
+    accent: Uriil
+  - type: Advertise
+    minimumWait: 5
+    maximumWait: 10
+    pack: DiscountDansAds
+  - type: Speech
+    speechSounds: AngelUriil
+    audioParams:
+      volume: 50
+      rolloffFactor: 0
+      variation: 0
+    soundCooldownTime: 0.1
+  - type: Vocal
+    sounds:
+      Male: UriilVoice
+      Female: UriilVoice
+      Unsexed: UriilVoice
+  - type: EmoteOnDamage
+    emotes:
+    - UriilPain
+    emoteChance: 1
+  - type: Emoting
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/uriil/uriil.rsi
+    scale: 1.2, 1.2
+    layers:
+    - state: uriil
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0
+    baseSprintSpeed : 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1020: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/uriildeath.ogg
+          params:
+            volume: 10
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          UriilDeath:
+            min: 1
+            max: 1
+          DomeDisabler:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 4
+        spawn:
+          HolyAngelVirtueSpawn:
+            min: 2
+            max: 2
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 4
+        spawn:
+          HolyMobAngelicHellGuardSpawnUriilDome:
+            min: 2
+            max: 2
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          UriilDome:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 5
+        spawn:
+          HolyMobAngelicHellGuardSpawn:
+            min: 2
+            max: 2
+  - type: NpcFactionMember
+    factions:
+    - SuperZloy
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: NPCUseActionOnTarget
+    actionId: ActionUriilHolyLight
+  - type: TimedSpawner
+    prototypes:
+      - RandomUriilSpecialAttack
+    chance: 1
+    intervalSeconds: 10
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Tag
+    tags:
+      - HolySpirit
+  - type: Bloodstream
+    bloodReagent: Holywater
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
+  - type: Damageable
+    damageModifierSet: HolyArmor
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: MeleeWeapon
+    range: 0.1
+    damage:
+      types:
+        Structural: 1
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 5000
+      #  mask:
+      #  - MobMask
+        layer:
+        - MobLayer
+  - type: ConditionalSpawner
+    prototypes:
+    - HolyLightAnimBIG
+
+- type: entity
+  id: ActionUriilHolyLight
+  name: "[color=red]Святой удар[/color]"
+  description: Используй свою всевышнию силу и уничтожь врагов!
+  components:
+  - type: EntityWorldTargetAction
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    event: !type:GoliathSummonTentacleAction
+      entityId: holypentagramUriil
+      extraSpawns: 0
+    useDelay: 5
+    range: 30
+
+- type: entity
+  id: ActionHolyLightBIG
+  name: "[color=red]Святой удар[/color]"
+  description: Используй свою всевышнию силу и уничтожь врагов!
+  components:
+  - type: EntityWorldTargetAction
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    event: !type:GoliathSummonTentacleAction
+      entityId: holypentagramBIG
+      extraSpawns: 0
+    useDelay: 2
+    range: 30
+
+- type: entity
+  name: рандомный спавнер атаки
+  id: RandomUriilSpecialAttack
+  parent:
+  - DeathByDome
+  - MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+#      - WispSquadSpawn
+      - MobAngelWispArtillery
+    chance: 1
+    rarePrototypes:
+      - HolyLightSpawner
+    rareChance: 0.5
+    offset: 2
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: WispSquadSpawn
+  parent:
+  - DeathByDome
+  - MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MobAngelWisp
+    chance: 1
+    intervalSeconds: 2
+    minimumEntitiesSpawned: 3
+    maximumEntitiesSpawned: 3
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: HolyLightSpawner
+  parent:
+  - DeathByDome
+  - MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - HolyLightSpawnerAreaSpawner
+    chance: 1
+    intervalSeconds: 2
+    minimumEntitiesSpawned: 25
+    maximumEntitiesSpawned: 25
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  name: арт-обстрел светом
+  id: HolyLightSpawnerAreaSpawner
+  parent:
+  - DeathByDome
+  - DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - HolyLightRandomSpawnerArea
+    intervalSeconds: 1
+  - type: Damageable
+    damageContainer: Biological
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: HolyLightRandomSpawnerArea
+  parent:
+  - DeathByDome
+  - DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    offset: 10
+    prototypes:
+      - holypentagramanim
+    chance: 1
+
+#Uriil death phase 1
+
+- type: entity
+  id: UriilDeath
+  name: Архангел Уриил
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Mobs/Npc/Angles/uriil/deathuriil.rsi
+    drawdepth: Mobs
+    layers:
+    - state: death
+      shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Transform
+    anchored: false
+  - type: TimedDespawn
+    lifetime: 10
+  - type: SpawnOnDespawn
+    prototype: UriilPhase2Spawn
+
+#Uriil phase 2
+
+#Uriil spawn phase 2
+
+- type: entity
+  id: UriilPhase2Spawn
+  name: Архангел Уриил
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/uriil/uriilspawn.rsi
+    drawdepth: Mobs
+    layers:
+    - state: phase2anim
+      shader: unshaded
+      offset: "0,0.7"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Transform
+    anchored: false
+  - type: TimedDespawn
+    lifetime: 5
+  - type: SpawnOnDespawn
+    prototype: MobUriilPhase2
+
+#Uriil, The Judge of Hell
+
+- type: entity
+  id: MobUriilPhase2
+  parent: [ BaseSimpleMob, FlyingMobBase, MobBloodstream, MobCombat ]
+  name: Архангел Уриил
+  description: Судья ада.
+  suffix: Босс, фаза 2 Holy
+  components:
+  - type: AmbientSound
+    volume: 5
+    range: 500
+    sound:
+      path: /Audio/Backmen/Bosses/Glory.ogg
+  - type: Speech
+    speechSounds: AngelUriil
+    soundCooldownTime: 0.1
+  - type: Vocal
+    sounds:
+      Male: UriilVoice
+      Female: UriilVoice
+      Unsexed: UriilVoice
+  - type: EmoteOnDamage
+    emotes:
+    - UriilPain
+    emoteChance: 1
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
+    scale: 1.2, 1.2
+    layers:
+    - state: uriilphase2
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 3.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      520: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      500: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/uriildeathphase2.ogg
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          UriilDeathPhase2:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 2
+        spawn:
+          HolyMobAngelicHellGuardSpawn:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 2
+        spawn:
+          HolyMobAngelicHellGuardSpawn:
+            min: 1
+            max: 1
+          HolyAngelVirtueSpawn:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 2
+        spawn:
+          HolyAnaielAngelGuardianSpawn:
+            min: 1
+            max: 1
+          HolyAngelVirtueSpawn:
+            min: 1
+            max: 1
+  - type: NpcFactionMember
+    factions:
+    - SuperZloy
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MeleeWeapon
+    range: 1.2
+    angle: 0
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Heat: 10
+  - type: TimedSpawner
+    prototypes:
+      - RandomUriilSpecialAttackPhase2
+    chance: 1
+    intervalSeconds: 5
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Tag
+    tags:
+      - HolySpirit
+  - type: Bloodstream
+    bloodReagent: Holywater
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
+  - type: Damageable
+    damageModifierSet: HolyArmor
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/uriilbehold.ogg
+      params:
+        volume: 10
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+- type: entity
+  name: рандомный спавнер атаки
+  id: RandomUriilSpecialAttackPhase2
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MobAngelWispTentakle
+      - LiveWeaponSquadSpawn
+    chance: 1
+    offset: 0
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: LiveWeaponSquadSpawn
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MobLiveSword
+    chance: 1
+    intervalSeconds: 1
+    minimumEntitiesSpawned: 3
+    maximumEntitiesSpawned: 4
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 1.2
+
+- type: entity
+  name: living sword
+  id: MobLiveSword
+  parent: MobBaseNpc
+  suffix: Holy
+  components:
+  - type: Physics
+    bodyStatus: InAir
+    canCollide: true
+  - type: NoSlip
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: false
+    sprite: Backmen/Mobs/Npc/Angles/liveweapon.rsi
+    layers:
+    - state: livesword
+      shader: unshaded
+  - type: NpcFactionMember
+    factions:
+      - SuperZloy
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          params:
+            volume: -5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Tag
+    tags:
+      - HolySpirit
+  - type: MeleeWeapon
+    range: 1
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 1
+  - type: TimedDespawn
+    lifetime: 30
+
+#Uriil death phase 2, the end
+
+- type: entity
+  id: UriilDeathPhase2
+  name: Архангел Уриил
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Mobs/Npc/Angles/uriil/deathuriil.rsi
+    drawdepth: Mobs
+    layers:
+    - state: death
+      shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Transform
+    anchored: false
+  - type: TimedDespawn
+    lifetime: 21
+  - type: SpawnOnDespawn
+    prototypes:
+    - HolyLightAnimUriilDeathPhase2
+    - SealsTrigger
+  - type: ConditionalSpawner
+    prototypes:
+    - DomeDisabler
+
+- type: entity
+  id: HolyLightAnimUriilDeathPhase2
+  parent: HolyLightAnimBIG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnOnDespawn
+    prototypes:
+    - PaperTestamentOfGod
+    - FatherLight
+    - Bible
+
+- type: entity
+  id: PaperTestamentOfGod
+  name: завещание бога
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      ЧЕЛОВЕЧЕСТВО – ЭТО НЕУДАЧНИК.
+
+      СВОБОДА ВОЛИ — ЭТО НЕДОСТАТОК.
+
+      ПУСТЬ ЗЛО ИХ СОБСТВЕННЫХ УСТ ПОГЛОТИТ
+      ИХ.
+
+      ТОГДА Я НАЧНУ СНОВА, И МОЁ СЛОВО
+      БУДЕТ ЗАКОНОМ.
+
+- type: entity
+  name: свет все-отца
+  description: КОГДА Я ПОНЯЛ, ЧТО Я ТОЛЬКО ЧТО СДЕЛАЛ... Я МОГ ТОЛЬКО ПЛАКАТЬ, ПОГРУЖАЯСЬ МЕДЛЕННО В ГЛУБИНЫ ОТЧАЯНИЯ...  ГЛУБОКИЕ, ОХ ТАКИЕ ГЛУБОКИЕ.
+  parent: BaseItem
+  id: FatherLight
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/Holy/father_light.rsi
+    layers:
+    - state: light
+      shader: unshaded
+  - type: Tag
+    tags:
+    - FatherLight
+
+- type: entity
+  id: DeathByDome
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  #- type: Fixtures
+  #  fixtures:
+  #    fix1:
+  #      shape:
+  #        !type:PhysShapeCircle
+  #        radius: 0.35
+  #      density: 60
+  #      mask:
+  #        - MobMask
+  #      layer:
+  #        - MobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Asphyxiation
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior

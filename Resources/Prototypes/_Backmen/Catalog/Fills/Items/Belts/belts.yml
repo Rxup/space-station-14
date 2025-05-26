@@ -480,6 +480,18 @@
       - id: Stimpack
 
 - type: entity
+  id: ClothingBeltBlueshieldWebbingFilled
+  parent: ClothingBeltBlueshieldWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedkitCombatFilled
+      - id: Stunbaton
+      - id: Handcuffs
+      - id: Handcuffs
+
+- type: entity
   parent: ClothingBeltMilitaryWebbingCMO
   id: ClothingBeltMilitaryWebbingCMOFilled
   name: chief medical officer's chest rig
@@ -497,3 +509,4 @@
       - id: Gauze
       - id: EmergencyMedipen
         amount: 3
+

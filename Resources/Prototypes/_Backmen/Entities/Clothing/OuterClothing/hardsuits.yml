@@ -492,10 +492,10 @@
     clothingPrototype: ClothingHeadHelmetHardsuitChronoLegionnaire
 
 - type: entity
-  parent: ClothingOuterHardsuitSecurityRed
+  parent: [ClothingOuterHardsuitSecurityRed, BaseBlueShieldContraband]
   id: ClothingOuterHardsuitBlueShield
-  name: боевой скафандр Синего Щита
-  description: Модицифированный военный скафандр разведки ОПЗ, имеет литые тяжелые бронеплиты и гидро-экзоскелет, в разы увеличивает физические способности, а так же морской камуфляж, который позволяет прятаться в море.
+  name: officer "Blueshield"'s combat hardsuit
+  description: A hardsuit designed for Blueshield officers with enhanced protection and night vision.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi

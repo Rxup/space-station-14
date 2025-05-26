@@ -1,65 +1,32 @@
-#Suit
+- type: loadoutEffectGroup
+  id: MasterBlueShield
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 288000 #80 hrs
+
+#suit
 - type: loadout
-  id: ClothingJumpsuitBlueShield
+  id: ClothingUniformJumpsuitBlueShield
   equipment:
-    jumpsuit: ClothingJumpsuitBlueShield
+    jumpsuit: ClothingUniformJumpsuitBlueShield
 
 - type: loadout
-  id: ClothingUniformBlueShield
+  id: ClothingUniformJumpskirtBlueShield
   equipment:
-    jumpsuit: ClothingUniformBlueShield
+    jumpsuit: ClothingUniformJumpskirtBlueShield
 
 - type: loadout
-  id: ClothingSkirtBlueShield
+  id: ClothingUniformBlueShieldTurtleneck
   equipment:
-    jumpsuit: ClothingSkirtBlueShield
-
-#Head
-- type: loadout
-  id: ClothingHeadHatBeretBlueShield
-  equipment:
-    head: ClothingHeadHatBeretBlueShield
+    jumpsuit: ClothingUniformBlueShieldTurtleneck
 
 - type: loadout
-  id: ClothingHeadHatBlueShieldCap
+  id: ClothingUniformJumpskirtBlueShieldTurtleneck
   equipment:
-    head: ClothingHeadHatBlueShieldCap
-
-- type: loadout
-  id: ClothingHeadHatUshankaBlueShield
-  equipment:
-    head: ClothingHeadHatUshankaBlueShield
-
-- type: loadout
-  id: ClothingHeadHelmetEGov
-  equipment:
-    head: ClothingHeadHelmetEGov
-
-- type: loadout
-  id: ClothingHeadHelmetXenonauten
-  equipment:
-    head: ClothingHeadHelmetXenonauten
-
-#outerClothing
-- type: loadout
-  id: ClothingOuterNavyVest
-  equipment:
-    outerClothing: ClothingOuterNavyVest
-
-- type: loadout
-  id: ClothingOuterXenonautenLight
-  equipment:
-    outerClothing: ClothingOuterXenonautenLight
-
-- type: loadout
-  id: ClothingOuterCoatArmorBlueShield
-  equipment:
-    outerClothing: ClothingOuterCoatArmorBlueShield
-
-- type: loadout
-  id: ClothingOuterCoatArmorBlueShieldAlt
-  equipment:
-    outerClothing: ClothingOuterCoatArmorBlueShieldAlt
+    jumpsuit: ClothingUniformJumpskirtBlueShieldTurtleneck
 
 #eyes
 - type: loadout
@@ -68,6 +35,72 @@
     eyes: ClothingEyesGlassesBlueShield
 
 - type: loadout
-  id: ClothingEyeslensesBlueShield
+  id: ClothingEyesBlueshieldVisor
   equipment:
-    eyes: ClothingEyeslensesBlueShield
+    eyes: ClothingEyesBlueshieldVisor
+
+#hat
+- type: loadout
+  id: ClothingHeadHatBlackBeretBlueShield
+  equipment:
+    head: ClothingHeadHatBlackBeretBlueShield
+
+- type: loadout
+  id: ClothingHeadHatLightBeretBlueShield
+  equipment:
+    head: ClothingHeadHatLightBeretBlueShield
+
+#back
+- type: loadout
+  id: ClothingBackpackBlueshield
+  equipment:
+    back: ClothingBackpackBlueshield
+
+- type: loadout
+  id: ClothingBackpackSatchelBlueshield
+  equipment:
+    back: ClothingBackpackSatchelBlueshield
+
+- type: loadout
+  id: ClothingBackpackDuffelBlueshield
+  equipment:
+    back: ClothingBackpackDuffelBlueshield
+
+- type: loadout
+  id: ClothingBackpackMessengerBlueshield
+  equipment:
+    back: ClothingBackpackMessengerBlueshield
+
+#outerClothing
+- type: loadout
+  id: ClothingOuterArmorBlueshield
+  equipment:
+    outerClothing: ClothingOuterArmorBlueshield
+
+- type: loadout
+  id: ClothingOuterCoatArmorBlueShield
+  equipment:
+    outerClothing: ClothingOuterCoatArmorBlueShield
+
+#neck
+- type: loadout
+  id: ClothingNeckMantleBlueShield
+  equipment:
+    neck: ClothingNeckMantleBlueShield
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterBlueShield
+
+#weapon
+- type: loadout
+  id: WeaponMultiphaseEnergyGun
+  equipment:
+    pocket1: WeaponMultiphaseEnergyGun
+
+- type: loadout
+  id: WeaponPistolUCS
+  dummyEntity: WeaponPistolUCS
+  storage:
+    back:
+    - WeaponPistolUCS
+    - MagazinePistol57x28Extd

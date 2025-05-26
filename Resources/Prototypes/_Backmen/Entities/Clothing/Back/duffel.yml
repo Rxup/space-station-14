@@ -24,3 +24,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Duffels/inteq_duffel_med.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
+  id: ClothingBackpackDuffelBlueshield
+  name: officer "Blueshield" duffel bag
+  description: A large duffel bag for storing extra reinforced guard supplies.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Duffels/blueshield.rsi
