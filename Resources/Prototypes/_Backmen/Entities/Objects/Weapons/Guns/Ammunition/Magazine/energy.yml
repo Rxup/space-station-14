@@ -102,8 +102,6 @@
     - state: o4
       map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       shader: unshaded
-  - type: PowerCell
-    powerCellVisualsLevels: 4
   - type: Appearance
 
 - type: entity
