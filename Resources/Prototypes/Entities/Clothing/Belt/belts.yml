@@ -541,7 +541,7 @@
           tags:
           - CaptainSabre
   - type: Appearance
-  
+
 - type: entity # backmen
   parent: [ClothingBeltBase, ClothingSlotBase]
   id: ClothingBeltYamato
@@ -573,7 +573,7 @@
           tags:
           - YamatoSabre
   - type: Appearance
-  
+
 - type: entity # backmen
   id: ClothingBeltYamatoFilled
   parent: ClothingBeltYamato
