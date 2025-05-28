@@ -1856,6 +1856,9 @@
           UriilDeathPhase2:
             min: 1
             max: 1
+          FatherLight: #бонус за убийство в ярости
+            min: 1
+            max: 1
     - trigger:
         !type:DamageTrigger
         damage: 150

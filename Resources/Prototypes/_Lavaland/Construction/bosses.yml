@@ -26,7 +26,7 @@
       - to: bible
         steps:
           - material: Bluespace
-            amount: 2
+            amount: 1
             doAfter: 5
     - node: bible
       entity: BlessedBible
