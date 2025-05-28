@@ -10,6 +10,18 @@
     {
         "name": "uriilphase2",
         "directions": 4
+    },
+    {
+        "name": "nimb",
+        "directions": 4
+    },
+    {
+        "name": "nimbback",
+        "directions": 4
+    },
+    {
+        "name": "swordoflight",
+        "directions": 4
     }
   ]
 }
