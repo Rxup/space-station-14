@@ -1820,7 +1820,7 @@
 
 - type: entity
   id: MobUriilPhase2ENRAGED
-  parent: MobUriilPhase2
+  parent: [MobUriilPhase2, StripableInventoryBase]
   name: Архангел Уриил
   description: Судья ада.
   suffix: Босс В ЯРОСТИ, фаза 2 Holy
