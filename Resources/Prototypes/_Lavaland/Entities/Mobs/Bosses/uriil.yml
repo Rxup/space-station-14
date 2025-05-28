@@ -1917,6 +1917,9 @@
   parent: BaseItem
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    state: NoId
   - type: AmbientSound
     volume: 1
     range: 10
