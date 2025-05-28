@@ -24,7 +24,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 10
+        Blunt: 20
 
 - type: entity
   id: PelletKinetic
@@ -35,7 +35,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 15
+        Blunt: 8
 
 - type: entity
   id: PelletKineticSpread
