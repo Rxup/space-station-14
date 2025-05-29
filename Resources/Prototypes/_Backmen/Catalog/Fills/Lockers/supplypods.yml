@@ -35,8 +35,8 @@
     contents:
         - id: ClothingOuterHardsuitBlueShield
         - id: ClothingMaskGasBlueShield
-        - id: DoubleEmergencyOxygenTank
-        - id: DoubleEmergencyNitrogenTank
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
 
 #pilot
 
