@@ -1597,7 +1597,12 @@
     sprite: Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
     scale: 1.2, 1.2
     layers:
+    - state: nimb
+      shader: unshaded
     - state: uriilphase2
+    - state: nimbback
+      shader: unshaded
+    - state: swordoflight
       shader: unshaded
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
