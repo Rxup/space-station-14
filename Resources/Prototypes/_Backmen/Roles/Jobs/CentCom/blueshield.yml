@@ -37,7 +37,7 @@
         - type: AntagImmune
   startingGear: BlueShieldGear
   icon: "JobIconBlueShield"
-  supervisors: job-supervisors-hoh
+  supervisors: job-supervisors-centcom
   accessGroups:
     - AllAccessWithoutHeads
   access:
