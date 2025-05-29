@@ -220,3 +220,16 @@
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersFemale1.ogg
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersFemale2.ogg
   - /Audio/Voice/BrutalDeathRattles/OrganDamageWhimpersFemale3.ogg
+
+- type: soundCollection
+  id: SiliconScreams
+  files:
+    - /Audio/Machines/robotscream_1.ogg
+    - /Audio/Machines/robotscream_2.ogg
+    - /Audio/Machines/robotscream_3.ogg
+    - /Audio/Machines/robotscream_4.ogg
+    - /Audio/Machines/robotscream_5.ogg
+    - /Audio/Machines/robotscream_6.ogg
+    - /Audio/Machines/robotscream_7.ogg
+    - /Audio/Machines/robotscream_8.ogg
+    - /Audio/Machines/robotscream_9.ogg

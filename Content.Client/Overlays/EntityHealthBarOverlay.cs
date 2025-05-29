@@ -29,6 +29,7 @@ public sealed class EntityHealthBarOverlay : Overlay
     private readonly MobStateSystem _mobStateSystem;
     private readonly MobThresholdSystem _mobThresholdSystem;
     private readonly StatusIconSystem _statusIconSystem;
+    private readonly SpriteSystem _spriteSystem;
     private readonly ProgressColorSystem _progressColor;
 
 
@@ -44,6 +45,7 @@ public sealed class EntityHealthBarOverlay : Overlay
         _mobStateSystem = _entManager.System<MobStateSystem>();
         _mobThresholdSystem = _entManager.System<MobThresholdSystem>();
         _statusIconSystem = _entManager.System<StatusIconSystem>();
+        _spriteSystem = _entManager.System<SpriteSystem>();
         _progressColor = _entManager.System<ProgressColorSystem>();
     }
 
@@ -77,7 +79,7 @@ public sealed class EntityHealthBarOverlay : Overlay
                 continue;
 
             // we use the status icon component bounds if specified otherwise use sprite
-            var bounds = _entManager.GetComponentOrNull<StatusIconComponent>(uid)?.Bounds ?? spriteComponent.Bounds;
+            var bounds = _entManager.GetComponentOrNull<StatusIconComponent>(uid)?.Bounds ?? _spriteSystem.GetLocalBounds((uid, spriteComponent));
             var worldPos = _transform.GetWorldPosition(xform, xformQuery);
 
             if (!bounds.Translated(worldPos).Intersects(args.WorldAABB))
@@ -144,13 +146,18 @@ public sealed class EntityHealthBarOverlay : Overlay
                     Math.Clamp(1 - ((consciousness.Threshold - consciousness.Consciousness) / consciousness.Threshold).Float(), 0, 1);
                 return (ratio, true);
             }
+
         }
         else // backmen edit end
         {
             // Typical management
             if (_mobStateSystem.IsAlive(uid, component))
             {
-                if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds))
+                if (dmg.HealthBarThreshold != null && dmg.TotalDamage < dmg.HealthBarThreshold)
+                    return null;
+
+                if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds) &&
+                    !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out threshold, thresholds))
                     return (1, false);
 
                 var ratio = 1 - ((FixedPoint2)(dmg.TotalDamage / threshold)).Float();
@@ -165,9 +172,7 @@ public sealed class EntityHealthBarOverlay : Overlay
                     return (1, true);
                 }
 
-                var ratio = 1 -
-                            ((dmg.TotalDamage - critThreshold) /
-                             (deadThreshold - critThreshold)).Value.Float();
+                var ratio = 1 - ((dmg.TotalDamage - critThreshold) / (deadThreshold - critThreshold)).Value.Float();
 
                 return (ratio, true);
             }

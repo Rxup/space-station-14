@@ -253,8 +253,11 @@
     - WhitelistChameleon
   - type: HideLayerClothing
     slots:
+    - Hair
     - Snout
     - SnoutOverlay # Backmen
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -267,8 +270,11 @@
     - WhitelistChameleon
   - type: HideLayerClothing
     slots:
+    - Hair
     - Snout
     - SnoutOverlay # Backmen
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingMaskClown
@@ -441,6 +447,8 @@
     - Hair
     - Snout
     - SnoutOverlay # Backmen
+    - HeadTop
+    - HeadSide
     hideOnToggle: true
   - type: Armor
     traumaDeductions:
@@ -533,6 +541,11 @@
     sprite: Clothing/Mask/squadron.rsi
   - type: Clothing
     sprite: Clothing/Mask/squadron.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
   - type: Armor
     traumaDeductions:
       Dismemberment: 0
