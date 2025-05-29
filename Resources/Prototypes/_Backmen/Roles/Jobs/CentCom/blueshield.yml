@@ -39,7 +39,7 @@
   icon: "JobIconBlueShield"
   supervisors: job-supervisors-hoh
   accessGroups:
-    - AllAccessWithOutHeads
+    - AllAccessWithoutHeads
   access:
     - CCOfficer
     - CentralCommand
@@ -56,7 +56,6 @@
     id: BlueShieldPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
-    shoes: ClothingShoesBootsCombat
     belt: ClothingBeltBlueshieldWebbingFilled
   storage:
     back:

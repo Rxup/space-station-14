@@ -80,6 +80,15 @@
   - ClothingOuterCoatArmorBlueShield
 
 - type: loadoutGroup
+  id: BlueShieldShoes
+  name: loadout-group-blueshield-shoes
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - JackBoots
+  - ClothingShoesBootsCombat
+
+- type: loadoutGroup
   id: BlueShieldPersonalWeapon
   name: loadout-group-security-pocket
   loadouts:

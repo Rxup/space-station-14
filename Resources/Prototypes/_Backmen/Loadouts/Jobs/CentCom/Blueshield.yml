@@ -82,6 +82,12 @@
   equipment:
     outerClothing: ClothingOuterCoatArmorBlueShield
 
+#shoes
+- type: loadout
+  id: ClothingShoesBootsCombat
+  equipment:
+    shoes: ClothingShoesBootsCombat
+
 #neck
 - type: loadout
   id: ClothingNeckMantleBlueShield
