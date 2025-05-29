@@ -72788,10 +72788,7 @@ entities:
       parent: 4812
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: SeedExtractor
   entities:
   - uid: 1086
@@ -80037,10 +80034,7 @@ entities:
       parent: 4812
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
     - type: MaterialStorage
       materialWhiteList:
       - Cloth

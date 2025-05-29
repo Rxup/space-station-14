@@ -41,6 +41,7 @@ namespace Content.Server.Hands.Systems
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+        [Dependency] private readonly SharedVirtualItemSystem _virtual = default!;
 
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -177,7 +178,7 @@ namespace Content.Server.Hands.Systems
             if (TryComp<PullerComponent>(args.PullerUid, out var pullerComp) && !pullerComp.NeedsHands)
                 return;
 
-            if (!_virtualItemSystem.TrySpawnVirtualItemInHand(args.PulledUid, uid))
+            if (!_virtual.TrySpawnVirtualItemInHand(args.PulledUid, uid))
             {
                 DebugTools.Assert("Unable to find available hand when starting pulling??");
             }

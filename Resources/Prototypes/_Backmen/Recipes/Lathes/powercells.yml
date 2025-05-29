@@ -11,18 +11,6 @@
     Gold: 75
 
 - type: latheRecipe
-  id: PowerCellHyper
-  result: PowerCellHyperPrinted
-  categories:
-  - Parts
-  completetime: 10
-  materials:
-    Steel: 400
-    Glass: 520
-    Plastic: 300
-    Gold: 120
-
-- type: latheRecipe
   id: PowerCellBluespace
   result: PowerCellBluespacePrinted
   categories:

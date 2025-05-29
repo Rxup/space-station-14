@@ -13535,10 +13535,7 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: SeedExtractor
   entities:
   - uid: 1836
@@ -15577,13 +15574,6 @@ entities:
     components:
     - type: Transform
       pos: 13.5,7.5
-      parent: 2
-- proto: VendingMachineSnack
-  entities:
-  - uid: 2125
-    components:
-    - type: Transform
-      pos: 1.5,3.5
       parent: 2
 - proto: VendingMachineSustenance
   entities:

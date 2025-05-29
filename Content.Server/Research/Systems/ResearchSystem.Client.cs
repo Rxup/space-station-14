@@ -25,7 +25,7 @@ public sealed partial class ResearchSystem
 
     private void OnClientSelected(EntityUid uid, ResearchClientComponent component, ResearchClientServerSelectedMessage args)
     {
-        if (!TryGetServerById(args.ServerId, xform.MapID, out var serveruid, out var serverComponent))
+        if (!TryGetServerById(uid, args.ServerId, out var serveruid, out var serverComponent))
             return;
 
         // Validate that we can access this server.

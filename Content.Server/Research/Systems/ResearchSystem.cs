@@ -56,11 +56,6 @@ namespace Content.Server.Research.Systems
             var query = GetServers(client).ToList();
             foreach (var (uid, server) in query)
             {
-                // backmen edit: RnD servers are local for a map
-                if (xform.MapID != mapId)
-                    continue;
-                // backmen edit end
-
                 if (server.Id != id)
                     continue;
                 serverUid = uid;
@@ -115,7 +110,7 @@ namespace Content.Server.Research.Systems
             _lookup.GetGridEntities(grid, ClientLookup);
             return ClientLookup;
         }
-        
+
         public override void Update(float frameTime)
         {
             var query = EntityQueryEnumerator<ResearchServerComponent>();

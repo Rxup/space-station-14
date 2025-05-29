@@ -77294,10 +77294,7 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: SeedExtractor
   entities:
   - uid: 3159
@@ -84787,10 +84784,7 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: Vaccinator
   entities:
   - uid: 12157

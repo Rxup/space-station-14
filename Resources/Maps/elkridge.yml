@@ -93988,10 +93988,7 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: SeedExtractor
   entities:
   - uid: 13683
@@ -103540,10 +103537,7 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: UniformShortsRed
   entities:
   - uid: 10487

@@ -21852,10 +21852,7 @@ entities:
       parent: 8364
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: BlastDoor
   entities:
   - uid: 46
@@ -147464,10 +147461,7 @@ entities:
       parent: 8364
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: SeedExtractor
   entities:
   - uid: 8685
@@ -160359,10 +160353,7 @@ entities:
       parent: 8364
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
       - Arsenal
-      - Experimental
-      - CivilianServices
     - type: MaterialStorage
       materialWhiteList:
       - Cloth
