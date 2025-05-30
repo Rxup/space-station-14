@@ -1,0 +1,8 @@
+- type: reagent
+  id: MSYeasts
+  name: Дрожжи
+  parent: BaseDrink
+  desc: Мелкая живность, секрет пивоварения
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: MSYeasts
+  color: "#bca583"

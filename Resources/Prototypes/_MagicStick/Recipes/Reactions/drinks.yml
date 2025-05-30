@@ -1,0 +1,65 @@
+- type: reaction
+  id: MSYeasts
+  requiredMixerCategories:
+  - MSfermentation
+  minTemp: 303
+  reactants:
+    Water:
+      amount: 3
+      catalyst: true
+    Sugar:
+      amount: 1
+    Nutriment:
+      amount: 1
+  products:
+    MSYeasts: 2
+
+- type: reaction
+  id: FiredMSYeasts
+  minTemp: 313
+  reactants:
+    MSYeasts:
+      amount: 1
+  products:
+    Ash: 0.5
+
+- type: reaction
+  id: MSEtanol
+  requiredMixerCategories:
+  - MSfermentation
+  minTemp: 303
+  reactants:
+    Water:
+      amount: 3
+      catalyst: true
+    Sugar:
+      amount: 4
+    MSYeasts:
+      amount: 1
+      catalyst: true
+  products:
+    Ethanol: 2
+
+- type: reaction
+  id: MSEtanolkillYeasts
+  minTemp: 303
+  reactants:
+    Ethanol:
+      amount: 70
+      catalyst: true
+    MSYeasts:
+      amount: 1
+  products:
+    Ethanol: 0.1
+
+- type: reaction
+  id: MSVODKA
+  requiredMixerCategories:
+  - Shake
+  reactants:
+    Ethanol:
+      amount: 2
+    Water:
+      amount: 3
+  products:
+    Vodka: 5
