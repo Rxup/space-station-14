@@ -233,16 +233,20 @@ public sealed partial class AdjustTraumas : EntityEffect
         }
         else
         {
-            try
+            foreach (var component in TargetComponents
+                         .Select(component => component.Value.GetType()))
             {
-                return
-                    TargetComponents
-                        .Select(component => component.Value.GetType())
-                        .Any(compToPass => entMan.HasComponent(target, compToPass));
-            }
-            catch (KeyNotFoundException)
-            {
-                return false;
+                try
+                {
+                    if (entMan.HasComponent(target, component))
+                    {
+                        return true;
+                    }
+                }
+                catch (KeyNotFoundException)
+                {
+                    return false;
+                }
             }
         }
 
