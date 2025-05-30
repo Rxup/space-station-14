@@ -70,7 +70,7 @@ namespace Content.Client.LateJoin
             {
                 var (station, jobId) = x;
                 _sawmill.Info($"Late joining as ID: {jobId}");
-                _consoleHost.ExecuteCommand($"joingame {CommandParsing.Escape(jobId)} {station}");
+                _consoleHost.ExecuteCommand($"notice {CommandParsing.Escape(jobId)} {station}");
                 Close();
             };
 
