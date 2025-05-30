@@ -245,7 +245,7 @@ public sealed partial class AdjustTraumas : EntityEffect
                 }
                 catch (KeyNotFoundException)
                 {
-                    return false;
+                    continue;
                 }
             }
         }
