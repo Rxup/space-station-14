@@ -1,6 +1,6 @@
 - type: accessLevel
   id: SecurityTechnician
-  name: техник СБ
+  name: id-card-access-level-securitytechnician
 
 - type: accessLevel
   id: Virology
