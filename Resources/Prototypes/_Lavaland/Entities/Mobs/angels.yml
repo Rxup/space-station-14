@@ -201,7 +201,15 @@
     drawdepth: Mobs
     sprite: Backmen/Mobs/Npc/Angles/virtue.rsi
     layers:
-    - state: virtue
+    - state: wings
+      shader: unshaded
+    - state: shell
+      shader: unshaded
+    - state: core
+      shader: unshaded
+    - state: crown
+      shader: unshaded
+    - state: chains
       shader: unshaded
   - type: CombatMode
     toggleMouseRotator: false
@@ -407,6 +415,107 @@
   - type: TimedDespawn
     lifetime: 1
 
+#Angels IN RAGE
+
+- type: entity
+  id: RagedSound
+  abstract: true
+  components:
+  - type: AmbientSound
+    volume: -10
+    range: 6
+    sound:
+      path: /Audio/Backmen/Bosses/rage.ogg
+
+- type: entity
+  id: MobAngelicHellGuardENRAGED
+  parent:
+  - RagedSound
+  - MobAngelicHellGuard
+  suffix: ENRAGED Holy melee
+  components:
+  - type: MeleeWeapon
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Heat: 5
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/lesser_angel.rsi
+    drawdepth: Mobs
+    layers:
+    - state: angel
+    - state: angel_nimb_raged
+      shader: unshaded
+    - state: spearoflight
+      shader: unshaded
+
+- type: entity
+  id: MobAngelVirtueENRAGED
+  parent:
+  - RagedSound
+  - MobAngelVirtue
+  suffix: ENRAGED Holy
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Angles/virtue.rsi
+    layers:
+    - state: wings_raged
+      shader: unshaded
+    - state: shell_raged
+      shader: unshaded
+    - state: core
+      shader: unshaded
+    - state: crown
+      shader: unshaded
+    - state: chains
+      shader: unshaded
+  - type: NPCUseActionOnTarget
+    actionId: ActionHolyLightBIG
+
+- type: entity
+  id: MobAnaielAngelGuardianENRAGED
+  parent:
+  - RagedSound
+  - MobAnaielAngelGuardian
+  suffix: ENRAGED Holy Мини-босс
+  components:
+  - type: MeleeWeapon
+    animation: WeaponArcSlash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 10
+          Heat: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/angel_guardian.rsi
+    drawdepth: Mobs
+    layers:
+    - state: wings_raged
+      shader: unshaded
+    - state: high_angel
+    - state: fire_sword
+      shader: unshaded
+  - type: NPCUseActionOnTarget
+    actionId: ActionHolySpears
+  - type: TimedSpawner
+    prototypes:
+      - MobAngelWispBeam
+    chance: 1
+    intervalSeconds: 4
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
 #Angels Spawners
 
 - type: entity
@@ -472,3 +581,27 @@
       path: /Audio/Backmen/Bosses/Portal3.ogg
       params:
         volume: 2
+
+- type: entity #Enraged
+  id: HolyAngelVirtueSpawnENRAGED
+  parent: BaseHolySpawner
+  suffix: ENRAGED Спавнер Благодетеля
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAngelVirtueENRAGED
+
+- type: entity
+  id: HolyMobAngelicHellGuardSpawnENRAGED
+  parent: BaseHolySpawner
+  suffix: ENRAGED Спавнер Святой страж
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAngelicHellGuardENRAGED
+
+- type: entity
+  id: HolyAnaielAngelGuardianSpawnENRAGED
+  parent: BaseHolySpawner
+  suffix: ENRAGED Спавнер Ангел хранитель
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobAnaielAngelGuardianENRAGED

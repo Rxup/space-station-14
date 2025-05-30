@@ -43,6 +43,7 @@
     ignoreWhitelist:
       components:
       - HumanoidAppearance
+      - TimedDespawn
     damage:
       types:
         Bloodloss: 1
@@ -104,6 +105,7 @@
   - type: Tag
     tags:
       - Wall
+      - IgnoreMelee
   - type: Sprite
     sprite: Structures/Walls/cult.rsi
   - type: Icon
@@ -739,6 +741,15 @@
     lifetime: 0.1
 
 - type: entity
+  id: HolyLightAnimBIGUriil
+  name: holy light
+  parent: HolyLightAnimBIG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnOnDespawn
+    prototype: RageTrigger
+
+- type: entity
   id: HolySoundBIGChoir
   categories: [ HideSpawnMenu ]
   components:
@@ -983,6 +994,18 @@
           path: /Audio/Backmen/Bosses/virtuedeath.ogg
           params:
             volume: 10
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          params:
+            volume: 10
   - type: Fixtures
     fixtures:
       fix1:
@@ -1012,7 +1035,6 @@
   - type: Tag
     tags:
       - HideContextMenu
-      - IgnoreMelee
   - type: TimedSpawner
     prototypes:
       - DomeDisabler
@@ -1135,12 +1157,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      1020: Dead
+      1520: Dead
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 1500
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -1171,7 +1193,7 @@
             max: 2
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 687
       behaviors:
       - !type:SpawnEntitiesBehavior
         offset: 4
@@ -1181,7 +1203,7 @@
             max: 2
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 687
       behaviors:
       - !type:SpawnEntitiesBehavior
         offset: 0
@@ -1191,7 +1213,7 @@
             max: 1
     - trigger:
         !type:DamageTrigger
-        damage: 800
+        damage: 1200
       behaviors:
       - !type:SpawnEntitiesBehavior
         offset: 5
@@ -1249,7 +1271,7 @@
         - MobLayer
   - type: ConditionalSpawner
     prototypes:
-    - HolyLightAnimBIG
+    - HolyLightAnimBIGUriil
 
 - type: entity
   id: ActionUriilHolyLight
@@ -1398,6 +1420,83 @@
       - holypentagramanim
     chance: 1
 
+#Faster kill phase 1, rage phase 2
+- type: entity
+  id: RageTrigger
+  parent:
+  - SpawnerWallOfSteadfastnessSeal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 300
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Bloodloss
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          RageActivator:
+            min: 1
+            max: 1
+
+- type: entity
+  id: RageTriggerActivator
+  parent: DomeDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageContacts
+    ignoreWhitelist:
+      components:
+      - HumanoidAppearance
+      tags:
+      - Wall
+    damage:
+      types:
+        Bloodloss: 1
+
+- type: Tag
+  id: ArchangelUriil
+
+- type: entity
+  id: RageActivator
+  parent: ProjectilePolyboltFly
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: RageUriil
+  - type: TriggerWhitelist
+    whitelist:
+      tags:
+      - ArchangelUriil
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.85,-0.85,0.85,0.85"
+        mask:
+        - Impassable
+        - BulletImpassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 40
+
+- type: polymorph
+  id: RageUriil
+  configuration:
+    entity: MobUriilPhase2ENRAGED
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: false
+    revertOnCrit: false
+    duration: 300
+
 #Uriil death phase 1
 
 - type: entity
@@ -1429,7 +1528,9 @@
   - type: TimedDespawn
     lifetime: 10
   - type: SpawnOnDespawn
-    prototype: UriilPhase2Spawn
+    prototypes:
+    - UriilPhase2Spawn
+    - RageTriggerActivator
 
 #Uriil phase 2
 
@@ -1496,7 +1597,12 @@
     sprite: Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
     scale: 1.2, 1.2
     layers:
+    - state: nimb
+      shader: unshaded
     - state: uriilphase2
+    - state: nimbback
+      shader: unshaded
+    - state: swordoflight
       shader: unshaded
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
@@ -1504,15 +1610,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      520: Dead
+      820: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      500: 1
+      820: 1
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 800
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -1528,7 +1634,7 @@
             max: 1
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 150
       behaviors:
       - !type:SpawnEntitiesBehavior
         offset: 2
@@ -1538,7 +1644,7 @@
             max: 1
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 350
       behaviors:
       - !type:SpawnEntitiesBehavior
         offset: 2
@@ -1551,7 +1657,7 @@
             max: 1
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 600
       behaviors:
       - !type:SpawnEntitiesBehavior
         offset: 2
@@ -1588,6 +1694,7 @@
   - type: Tag
     tags:
       - HolySpirit
+      - ArchangelUriil
   - type: Bloodstream
     bloodReagent: Holywater
     bloodMaxVolume: 30
@@ -1713,6 +1820,119 @@
           Blunt: 1
   - type: TimedDespawn
     lifetime: 30
+
+#Raged Uriil
+
+- type: entity
+  id: MobUriilPhase2ENRAGED
+  parent: [MobUriilPhase2, StripableInventoryBase]
+  name: Архангел Уриил
+  description: Судья ада.
+  suffix: Босс В ЯРОСТИ, фаза 2 Holy
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
+    scale: 1.2, 1.2
+    layers:
+    - state: nimb
+      shader: unshaded
+      color: Red
+    - state: uriilphase2
+    - state: nimbback
+      shader: unshaded
+      color: Red
+    - state: swordoflight
+      shader: unshaded
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/uriildeathphase2.ogg
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          UriilDeathPhase2:
+            min: 1
+            max: 1
+          FatherLight: #бонус за убийство в ярости
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 2
+        spawn:
+          HolyMobAngelicHellGuardSpawnENRAGED:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 2
+        spawn:
+          HolyMobAngelicHellGuardSpawnENRAGED:
+            min: 1
+            max: 1
+          HolyAngelVirtueSpawnENRAGED:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        offset: 2
+        spawn:
+          HolyAnaielAngelGuardianSpawnENRAGED:
+            min: 1
+            max: 1
+          HolyAngelVirtueSpawnENRAGED:
+            min: 1
+            max: 1
+  - type: TimedSpawner
+    prototypes:
+      - RandomUriilSpecialAttackPhase2
+    chance: 1
+    intervalSeconds: 3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Tag
+    tags:
+      - HolySpirit
+  - type: Inventory
+    templateId: carman
+  - type: Loadout
+    prototypes: [UriilSound]
+
+- type: startingGear
+  id: UriilSound
+  equipment:
+    pocket1: RageSoundItem
+
+- type: entity
+  id: RageSoundItem
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    state: NoId
+  - type: AmbientSound
+    volume: 1
+    range: 10
+    sound:
+      path: /Audio/Backmen/Bosses/rage.ogg
 
 #Uriil death phase 2, the end
 

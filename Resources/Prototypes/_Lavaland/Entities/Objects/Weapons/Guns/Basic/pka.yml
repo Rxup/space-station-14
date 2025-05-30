@@ -30,7 +30,7 @@
     capacity: 1
     count: 1
   - type: UpgradeableGun
-    maxUpgradeCount: 60
+    maxUpgradeCount: 2
     whitelist:
       tags:
       - PKAUpgrade
@@ -68,7 +68,7 @@
       visible: false
       map: [ "empty-icon" ]
   - type: Gun
-    fireRate: 2.5
+    fireRate: 3
     selectedMode: SemiAuto
     minAngle: 10
     maxAngle: 30
@@ -83,10 +83,10 @@
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
     proto: RapidBulletKinetic
-    capacity: 3
-    count: 3
+    capacity: 4
+    count: 4
   - type: UpgradeableGun
-    maxUpgradeCount: 60
+    maxUpgradeCount: 5
     whitelist:
       tags:
       - PKAUpgrade
