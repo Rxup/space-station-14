@@ -90,3 +90,17 @@
     - state: angel_nelle
       shader: unshaded
 
+
+- type: ghostTheme
+  id: WendorGhost
+  name: sponsor-win-manager-ghost-Wendor
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/Wendor-ghost.rsi
+    layers:
+    - state: Wend
+      shader: unshaded
+
