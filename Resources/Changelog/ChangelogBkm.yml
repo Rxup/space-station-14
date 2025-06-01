@@ -3473,3 +3473,10 @@
   id: 230
   time: '2025-05-30T08:26:04.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1363
+- author: Romann299, saharochek, trest100
+  changes:
+  - message: "\u043D\u043E\u0432\u0430\u044F \u043A\u0430\u0440\u0442\u0430! BackmenTrain"
+    type: Add
+  id: 231
+  time: '2025-06-01T15:48:26.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1368
