@@ -79,7 +79,7 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
-  - type: BadFood
+ # - type: BadFood
   - type: Tag
     tags:
       - Meat
@@ -89,11 +89,11 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 5
+    #  food:
+    #    maxVol: 5
+    #    reagents:
+    #    - ReagentId: GreyMatter
+    #      Quantity: 5
   - type: FlavorProfile
     flavors:
       - people
