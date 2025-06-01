@@ -79,7 +79,7 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
-  - type: BadFood
+  - type: Food
     delay: 30
   - type: Tag
     tags:
