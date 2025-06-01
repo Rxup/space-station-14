@@ -40,11 +40,12 @@ namespace Content.Client.Lobby.UI
                     CharacterSetupState.Visible = false;
                     Center.Visible = true;
                     LabelName.Visible = true;
-                    Changelog.Visible = true;
+                    Changelog.Visible = false;
                     // BACKMEN EDIT END
                     break;
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
+                    DefaultState.Visible = false;
                     // BACKMEN EDIT START
                     Center.Visible = false;
                     RightSide.Visible = true;
