@@ -37,6 +37,7 @@ namespace Content.Client.Lobby.UI
                 case LobbyGuiState.Default:
                     RightSide.Visible = true;
                     // BACKMEN EDIT START
+                    ServerListBox.Visible = true;
                     CharacterSetupState.Visible = false;
                     Center.Visible = true;
                     LabelName.Visible = true;
