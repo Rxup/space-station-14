@@ -37567,9 +37567,6 @@ entities:
       containers:
         solution@food: !type:ContainerSlot
           ent: 18363
-    - type: StoreRefund
-      boughtTime: 2271.1977288
-      storeEntity: invalid
     - type: Forensics
       residues: []
       dnas: []
@@ -92584,9 +92581,6 @@ entities:
       nextSound: -2294.0643726
     - type: Physics
       canCollide: False
-    - type: StoreRefund
-      boughtTime: 2141.4645252
-      storeEntity: invalid
     - type: Forensics
       residues: []
       dnas: []
