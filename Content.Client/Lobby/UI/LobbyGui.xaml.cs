@@ -45,8 +45,8 @@ namespace Content.Client.Lobby.UI
                     break;
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
-                    DefaultState.Visible = false;
                     // BACKMEN EDIT START
+                    ServerListBox.Visible = false;
                     Center.Visible = false;
                     RightSide.Visible = true;
                     LabelName.Visible = false;
