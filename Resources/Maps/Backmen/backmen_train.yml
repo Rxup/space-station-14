@@ -2,9 +2,9 @@ meta:
   format: 7
   category: Map
   engineVersion: 260.2.0
-  forkId: backmen
-  forkVersion: 7a86f2f00322ceaecacb7acb8ab0a0899c1412e0
-  time: 05/31/2025 10:55:47
+  forkId: ""
+  forkVersion: ""
+  time: 06/01/2025 15:08:58
   entityCount: 18392
 maps:
 - 1
@@ -8639,7 +8639,7 @@ entities:
       pos: 5.5,-363.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -7262.6567
+      secondsUntilStateChange: -7389.0273
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -48779,7 +48779,7 @@ entities:
       pos: -1.5,-329.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -3404.5715
+      secondsUntilStateChange: -3530.9421
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -78982,7 +78982,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -188636.16
+      secondsUntilStateChange: -188762.53
       state: Closing
   - uid: 11995
     components:
@@ -82047,7 +82047,7 @@ entities:
     - type: Transform
       pos: 4.5,-217.5
       parent: 2
-- proto: PlayerStationAiEmpty
+- proto: PlayerStationAi
   entities:
   - uid: 12466
     components:
