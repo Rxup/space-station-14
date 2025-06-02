@@ -1,0 +1,24 @@
+- type: rcdGroup
+  id: WallsAndFlooring
+  name: rcd-component-walls-and-flooring
+  sprite: /Textures/Interface/Radial/RCD/walls_and_flooring.png
+
+- type: rcdGroup
+  id: WindowsAndGrilles
+  name: rcd-component-windows-and-grilles
+  sprite: /Textures/Interface/Radial/RCD/windows_and_grilles.png
+
+- type: rcdGroup
+  id: Airlocks
+  name: rcd-component-airlocks
+  sprite: /Textures/Interface/Radial/RCD/airlocks.png
+
+- type: rcdGroup
+  id: Electrical
+  name: rcd-component-electrical
+  sprite: /Textures/Interface/Radial/RCD/multicoil.png
+
+- type: rcdGroup
+  id: Lighting
+  name: rcd-component-lighting
+  sprite: /Textures/Interface/Radial/RCD/lighting.png

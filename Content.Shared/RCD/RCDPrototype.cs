@@ -28,12 +28,13 @@ public sealed class RCDPrototype : IPrototype
 
     /// <summary>
     /// The name of the radial container that this prototype will be listed under on the RCD menu
+    /// This corresponds to the ID of an RCDGroupPrototype.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string Category { get; private set; } = "Undefined";
 
     /// <summary>
-    /// Texture path for this prototypes menu icon
+    /// Texture path for this prototype's menu icon
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SpriteSpecifier? Sprite { get; private set; }
@@ -119,6 +120,28 @@ public sealed class RCDPrototype : IPrototype
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public RcdRotation Rotation { get; private set; } = RcdRotation.User;
+}
+
+/// <summary>
+/// Represents a group/category of RCD actions in the radial UI.
+/// </summary>
+[Prototype("rcdGroup")]
+public sealed class RCDGroupPrototype : IPrototype
+{
+    [IdDataField]
+    public string ID { get; private set; } = default!;
+
+    /// <summary>
+    /// Localized name of the group (used for tooltips and labels)
+    /// </summary>
+    [DataField(required: true)]
+    public string Name { get; private set; } = default!;
+
+    /// <summary>
+    /// Icon used in the radial menu for this group
+    /// </summary>
+    [DataField(required: true)]
+    public SpriteSpecifier? Sprite { get; private set; } = default!;
 }
 
 public enum RcdMode : byte

@@ -39,6 +39,9 @@ rpd-component-pumpsvalves = Насосы & Вентили
 rpd-component-vents = Вентиляция
 rpd-component-atmosphericutility = Атмосферные Утилиты
 
+### SecPilot RCD category name
+rcd-component-defense = Оборона
+
 ### Prototype names (note: constructable items will be puralized)
 
 rcd-component-deconstruct = демонтаж

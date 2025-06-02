@@ -4,7 +4,6 @@ using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Shared.Collections;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -14,22 +13,6 @@ namespace Content.Client.RCD;
 [UsedImplicitly]
 public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 {
-    private const string TopLevelActionCategory = "Main";
-
-    private static readonly Dictionary<string, (string Tooltip, SpriteSpecifier Sprite)> PrototypesGroupingInfo
-        = new Dictionary<string, (string Tooltip, SpriteSpecifier Sprite)>
-        {
-            ["WallsAndFlooring"] = ("rcd-component-walls-and-flooring", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/walls_and_flooring.png"))),
-            ["WindowsAndGrilles"] = ("rcd-component-windows-and-grilles", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/windows_and_grilles.png"))),
-            ["Airlocks"] = ("rcd-component-airlocks", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/airlocks.png"))),
-            ["Electrical"] = ("rcd-component-electrical", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/multicoil.png"))),
-            ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
-            ["Piping"] = ("rpd-component-piping", new SpriteSpecifier.Texture(new ResPath("/Textures/Backmen/Interface/Radial/RPD/fourway.png"))),
-            ["PumpsValves"] = ("rpd-component-pumpsvalves", new SpriteSpecifier.Texture(new ResPath("/Textures/Backmen/Interface/Radial/RPD/pump_volume.png"))),
-            ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/Backmen/Interface/Radial/RPD/vent_passive.png"))),
-            ["AtmosphericUtility"] = ("rpd-component-atmosphericutility", new SpriteSpecifier.Texture(new ResPath("/Textures/Backmen/Interface/Radial/RPD/port.png"))),
-        };
-
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
@@ -57,67 +40,49 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 
     private IEnumerable<RadialMenuOption> ConvertToButtons(HashSet<ProtoId<RCDPrototype>> prototypes)
     {
-        Dictionary<string, List<RadialMenuActionOption>> buttonsByCategory = new();
-        ValueList<RadialMenuActionOption> topLevelActions = new();
+        var categories = new Dictionary<string, (List<RadialMenuActionOption> Actions, SpriteSpecifier? Sprite, string? Tooltip)>();
+        var options = new List<RadialMenuOption>();
+
         foreach (var protoId in prototypes)
         {
-            var prototype = _prototypeManager.Index(protoId);
-            if (prototype.Category == TopLevelActionCategory)
+            var proto = _prototypeManager.Index(protoId);
+            var button = new RadialMenuActionOption<RCDPrototype>(HandleMenuOptionClick, proto)
             {
-                var topLevelActionOption = new RadialMenuActionOption<RCDPrototype>(HandleMenuOptionClick, prototype)
-                {
-                    Sprite = prototype.Sprite,
-                    ToolTip = GetTooltip(prototype)
-                };
-                topLevelActions.Add(topLevelActionOption);
+                Sprite = proto.Sprite,
+                ToolTip = GetTooltip(proto)
+            };
+
+            if (!_prototypeManager.TryIndex<RCDGroupPrototype>(proto.Category, out var group))
+            {
+                options.Add(button);
                 continue;
             }
 
-            if (!PrototypesGroupingInfo.TryGetValue(prototype.Category, out var groupInfo))
-                continue;
-
-            if (!buttonsByCategory.TryGetValue(prototype.Category, out var list))
+            if (!categories.TryGetValue(proto.Category, out var entry))
             {
-                list = new List<RadialMenuActionOption>();
-                buttonsByCategory.Add(prototype.Category, list);
+                var sprite = group.Sprite;  
+                entry = (new List<RadialMenuActionOption>(), sprite, Loc.GetString(group.Name));
+                categories[proto.Category] = entry;
             }
 
-            var actionOption = new RadialMenuActionOption<RCDPrototype>(HandleMenuOptionClick, prototype)
-            {
-                Sprite = prototype.Sprite,
-                ToolTip = GetTooltip(prototype)
-            };
-            list.Add(actionOption);
+            entry.Actions.Add(button);
         }
 
-        var models = new RadialMenuOption[buttonsByCategory.Count + topLevelActions.Count];
-        var i = 0;
-        foreach (var (key, list) in buttonsByCategory)
+        foreach (var (category, (actions, sprite, tooltip)) in categories)
         {
-            var groupInfo = PrototypesGroupingInfo[key];
-            models[i] = new RadialMenuNestedLayerOption(list)
+            options.Add(new RadialMenuNestedLayerOption(actions)
             {
-                Sprite = groupInfo.Sprite,
-                ToolTip = Loc.GetString(groupInfo.Tooltip)
-            };
-            i++;
+                Sprite = sprite,
+                ToolTip = tooltip
+            });
         }
 
-        foreach (var action in topLevelActions)
-        {
-            models[i] = action;
-            i++;
-        }
-
-        return models;
+        return options;
     }
 
     private void HandleMenuOptionClick(RCDPrototype proto)
     {
-        // A predicted message cannot be used here as the RCD UI is closed immediately
-        // after this message is sent, which will stop the server from receiving it
         SendMessage(new RCDSystemMessage(proto.ID));
-
 
         if (_playerManager.LocalSession?.AttachedEntity == null)
             return;
@@ -128,16 +93,13 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
         {
             var name = Loc.GetString(proto.SetName);
 
-            if (proto.Prototype != null &&
-                _prototypeManager.TryIndex(proto.Prototype, out var entProto, logError: false))
+            if (proto.Prototype != null && _prototypeManager.TryIndex(proto.Prototype, out var entProto, logError: false))
                 name = entProto.Name;
 
             msg = Loc.GetString("rcd-component-change-build-mode", ("name", name));
         }
 
-        // Popup message
-        var popup = EntMan.System<PopupSystem>();
-        popup.PopupClient(msg, Owner, _playerManager.LocalSession.AttachedEntity);
+        EntMan.System<PopupSystem>().PopupClient(msg, Owner, _playerManager.LocalSession.AttachedEntity);
     }
 
     private string GetTooltip(RCDPrototype proto)
@@ -155,7 +117,7 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             tooltip = Loc.GetString(proto.SetName);
         }
 
-        tooltip = OopsConcat(char.ToUpper(tooltip[0]).ToString(), tooltip.Remove(0, 1));
+        tooltip = OopsConcat(char.ToUpper(tooltip[0]).ToString(), tooltip[1..]);
 
         return tooltip;
     }
