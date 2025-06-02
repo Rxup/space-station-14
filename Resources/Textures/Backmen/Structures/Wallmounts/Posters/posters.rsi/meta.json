@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from TG",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "xenomorph_poster1"
+    },
+    {
+      "name": "xenomorph_poster2"
+    }
+  ]
+}

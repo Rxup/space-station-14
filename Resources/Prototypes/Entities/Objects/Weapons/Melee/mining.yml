@@ -98,6 +98,8 @@
   description: An early design of the proto-kinetic accelerator.
   components:
   - type: Sharp
+  - type: Execution
+    doAfterDuration: 4.0
   - type: UnpoweredFlashlight
   - type: PointLight
     color: "#ffeead"
@@ -196,6 +198,11 @@
   - type: Tag
     tags:
     - Knife
+  #Backmen-edit-start
+  - type: Construction
+    graph: HolyWeapon
+    node: start
+  #Backmen-edit-end
 
 # Like a crusher... but better
 - type: entity
@@ -226,3 +233,8 @@
   - type: Tag
     tags:
       - Pickaxe
+  #Backmen-edit-start
+  - type: Construction
+    graph: HolyWeapon
+    node: Lamb
+  #Backmen-edit-end

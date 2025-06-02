@@ -889,9 +889,10 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/shtab.rsi
 
 - type: entity
-  parent: ClothingUniformBase
-  id: ClothingJumpsuitBlueShield
-  name: комбинезон Синего Щита
+  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  id: ClothingUniformJumpsuitBlueShield
+  name: officer "Blueshield"'s jumpsuit
+  description: A jumpsuit specifically for a Blueshield officers.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit.rsi
@@ -899,9 +900,10 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit.rsi
 
 - type: entity
-  parent: ClothingUniformBase
-  id: ClothingUniformBlueShield
-  name: одежда Синего Щита
+  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  id: ClothingUniformBlueShieldTurtleneck
+  name: officer "Blueshield"'s turtleneck
+  description: A turtleneck specifically for a Blueshield officers.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi

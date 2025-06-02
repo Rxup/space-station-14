@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.1.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/22/2025 13:42:42
-  entityCount: 299
+  time: 05/16/2025 02:37:44
+  entityCount: 301
 maps: []
 grids:
 - 2
@@ -474,6 +474,17 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: Roof
+      data:
+        -1,0: 18228597655288478720
+        0,0: 18446744073709551391
+        1,0: 505255309959694080
+        1,1: 506381192686667527
+        0,1: 18446744073709551615
+        -1,1: 18229723538015452412
+        1,2: 775
+        0,2: 2097151
+        -1,2: 64764
 - proto: AirlockExternalCommandLocked
   entities:
   - uid: 3
@@ -486,7 +497,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         4:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
   - uid: 4
     components:
     - type: Transform
@@ -497,7 +509,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         3:
-        - DoorStatus: DoorBolt
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockFreezer
   entities:
   - uid: 6
@@ -1542,7 +1555,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         7:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
   - uid: 176
     components:
     - type: Transform
@@ -1554,7 +1568,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6:
-        - Pressed: DoorBolt
+        - - Pressed
+          - DoorBolt
 - proto: SprayBottleSpaceCleaner
   entities:
   - uid: 177
@@ -1645,6 +1660,40 @@ entities:
     components:
     - type: Transform
       pos: 0.5,12.5
+      parent: 2
+- proto: TriggerInstantSpawnerXENGuard
+  entities:
+  - uid: 164
+    components:
+    - type: Transform
+      pos: 3.5,11.5
+      parent: 2
+  - uid: 180
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 2
+- proto: TriggerInstantSpawnerXENScience
+  entities:
+  - uid: 1
+    components:
+    - type: Transform
+      pos: 1.5,11.5
+      parent: 2
+  - uid: 161
+    components:
+    - type: Transform
+      pos: 0.5,6.5
+      parent: 2
+  - uid: 162
+    components:
+    - type: Transform
+      pos: 3.5,5.5
+      parent: 2
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 2.5,14.5
       parent: 2
 - proto: WallReinforced
   entities:

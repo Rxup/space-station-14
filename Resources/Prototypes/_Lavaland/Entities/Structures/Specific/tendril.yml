@@ -138,7 +138,7 @@
     mobsToDefeat: 10
     spawnDelay: 8.0
     spawns:
-    - MobHeadcrab
+    - MobHeadcrabNPC
     - MobHeadcrabZombieScience
     - MobHeadcrabZombieSecurity
 
@@ -154,7 +154,7 @@
     mobsToDefeat: 10
     spawnDelay: 8.0
     spawns:
-    - MobHeadcrab
+    - MobHeadcrabNPC
     - MobHeadcrabZombieScience
     - MobHeadcrabZombieSecurity
     - MobHeadcrabZombieHecu

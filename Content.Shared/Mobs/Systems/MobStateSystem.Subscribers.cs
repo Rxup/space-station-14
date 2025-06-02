@@ -39,7 +39,7 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, DropAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, PickupAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, StartPullAttemptEvent>(CheckAct);
-        SubscribeLocalEvent<MobStateComponent, UpdateCanMoveEvent>(CheckAct);
+        SubscribeLocalEvent<MobStateComponent, UpdateCanMoveEvent>(CheckCanMove); // Backmen edit
         SubscribeLocalEvent<MobStateComponent, StandAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, PointAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, TryingToSleepEvent>(OnSleepAttempt);
@@ -63,6 +63,7 @@ public partial class MobStateSystem
         switch (ent.Comp.CurrentState)
         {
             case MobState.Dead:
+            case MobState.SoftCritical:
             case MobState.Critical:
                 args.Cancelled = true;
                 break;
@@ -76,6 +77,7 @@ public partial class MobStateSystem
             case MobState.Alive:
                 //unused
                 break;
+            case MobState.SoftCritical:
             case MobState.Critical:
                 _standing.Stand(target);
                 break;
@@ -104,6 +106,10 @@ public partial class MobStateSystem
             case MobState.Alive:
                 _standing.Stand(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
+                break;
+            case MobState.SoftCritical: // backmen edit: soft crit
+                _standing.Down(target);
+                _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
                 break;
             case MobState.Critical:
                 _standing.Down(target);
@@ -155,11 +161,25 @@ public partial class MobStateSystem
         switch (component.CurrentState)
         {
             case MobState.Dead:
+            case MobState.SoftCritical:
             case MobState.Critical:
                 args.Cancel();
                 break;
         }
     }
+
+    // backmen edit start
+    private void CheckCanMove(EntityUid target, MobStateComponent component, CancellableEntityEventArgs args)
+    {
+        switch (component.CurrentState)
+        {
+            case MobState.Dead:
+            case MobState.Critical:
+                args.Cancel();
+                break;
+        }
+    }
+    // backmen edit end
 
     private void OnEquipAttempt(EntityUid target, MobStateComponent component, IsEquippingAttemptEvent args)
     {

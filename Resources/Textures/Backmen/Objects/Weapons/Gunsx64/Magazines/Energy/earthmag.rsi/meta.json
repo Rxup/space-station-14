@@ -11,16 +11,16 @@
             "name": "base"
         },
         {
-            "name": "mag-1"
+            "name": "o1"
         },
         {
-            "name": "mag-2"
+            "name": "o2"
         },
         {
-            "name": "mag-3"
+            "name": "o3"
         },
         {
-            "name": "mag-4"
+            "name": "o4"
         }
     ]
 }

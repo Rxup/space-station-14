@@ -130,8 +130,8 @@
 - type: entity
   parent: BasePDA
   id: BlueShieldPDA
-  name: Blue Shield PDA
-  description: Standart PDA of Blue Shield officers.
+  name: officer "Blueshield" PDA
+  description: He took a bullet and was unharmed.
   components:
     - type: Sprite
       sprite: Backmen/Objects/Devices/pda.rsi
@@ -151,6 +151,8 @@
         enum.PdaVisuals.PdaType:
           !type:String
           pda-blue
+    - type: PdaBorderColor
+      borderColor: "#3f3f74"
     - type: Pda
       id: BlueShieldIDCard
       penSlot:
@@ -188,8 +190,8 @@
           !type:String
           pda-surgeon
     - type: PdaBorderColor
-      borderColor: "#696969"
-      accentVColor: "#4682B4"
+      borderColor: "#333333"
+      accentVColor: "#5fa4cc"
     - type: Pda
       id: SurgeonIDCard
       penSlot:
@@ -227,7 +229,7 @@
           !type:String
           pda-virology
     - type: PdaBorderColor
-      borderColor: "#d7d7d0"
+      borderColor: "#fafafa"
       accentVColor: "#90EE90"
     - type: Pda
       id: VirologistIDCard

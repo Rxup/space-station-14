@@ -114,7 +114,7 @@
   tier: 1
   cost: 500
   recipeUnlocks:
-#   - BorgModuleCable
+   - BorgModuleCable
    - BorgModuleFireExtinguisher
 #   - BorgModuleRadiationDetection
    - BorgModuleTool
@@ -264,5 +264,5 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - CyborgModules
-  - MassExcavation
+  - SalvageEquipmentAdvanced
   position: 10,-4

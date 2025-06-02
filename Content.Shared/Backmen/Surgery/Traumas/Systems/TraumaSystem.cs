@@ -3,8 +3,10 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
@@ -35,17 +37,20 @@ public abstract partial class TraumaSystem : EntitySystem
     [Dependency] protected readonly PainSystem Pain = default!;
     [Dependency] protected readonly ConsciousnessSystem Consciousness = default!;
 
+    [Dependency] protected readonly MobStateSystem MobState = default!;
+
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
 
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtual = default!;
 
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
+    protected EntityQuery<WoundableComponent> WoundableQuery;
+    protected EntityQuery<BodyPartComponent> BodyPartQuery;
     protected EntityQuery<OrganComponent> OrganQuery;
     protected EntityQuery<BoneComponent> BoneQuery;
 
@@ -72,6 +77,8 @@ public abstract partial class TraumaSystem : EntitySystem
         InitBones();
         InitOrgans();
 
+        WoundableQuery = GetEntityQuery<WoundableComponent>();
+        BodyPartQuery = GetEntityQuery<BodyPartComponent>();
         OrganQuery = GetEntityQuery<OrganComponent>();
         BoneQuery = GetEntityQuery<BoneComponent>();
 

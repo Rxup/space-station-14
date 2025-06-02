@@ -3,6 +3,7 @@ docking-console-ftl = БСС
 docking-console-call = Вызвать шаттл
 mining-console-window-title = Консоль Шахтёрского Шаттла
 shuttle-destination-lavaland = Лаваленд
+shuttle-destination-glacier-surface = Glacier Surface
 shuttle-destination-glacier = Айсмун
 docking-console-ftl-message-Unknown = Проверка статуса БСС...
 docking-console-ftl-message-Ready = Все системы готовы.

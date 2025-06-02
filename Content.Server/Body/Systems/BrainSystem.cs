@@ -35,7 +35,6 @@ namespace Content.Server.Body.Systems
             if (!CheckOtherBrains(args.OldBody))
             {
                 // Prevents revival, should kill the user within a given timespan too.
-                EnsureComp<DebrainedComponent>(args.OldBody);
                 EnsureComp<DelayedDeathComponent>(args.OldBody);
                 HandleMind(uid, args.OldBody);
             }
@@ -48,7 +47,6 @@ namespace Content.Server.Body.Systems
 
             if (!CheckOtherBrains(args.Body))
             {
-                RemComp<DebrainedComponent>(args.Body);
                 if (_bodySystem.TryGetBodyOrganEntityComps<HeartComponent>(args.Body, out var _))
                     RemComp<DelayedDeathComponent>(args.Body);
                 HandleMind(args.Body, uid);

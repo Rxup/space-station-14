@@ -39,7 +39,6 @@ mood-effect-SurgeryNoLeg = Я не чувствую своей ноги!
 mood-effect-SurgeryNoHand = Я не чувствую своей руки!
 mood-effect-SurgeryNoTorso = Я не чувствую своего тела!
 mood-effect-SurgeryPain = В моём теле проводят операцию, я чувствую сильнейшую боль!
-
 # Addictions
 mood-effect-LotoTranscendence =
     Я ВИЖУ ВСЁ СУЩЕЕ, КОТОРОЕ ВСЕГДА БЫЛО И ВСЕГДА БУДЕТ. ВСЁ МИРОЗДАНИЕ ОТКРЫЛОСЬ МОЕМУ РАЗУМУ!

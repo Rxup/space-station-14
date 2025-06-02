@@ -53,7 +53,7 @@ public partial class MobStateSystem : EntitySystem
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))
             return false;
-        return component.CurrentState == MobState.Critical;
+        return component.CurrentState is MobState.Critical or MobState.SoftCritical; // Backmen edit: Soft crit
     }
 
     /// <summary>

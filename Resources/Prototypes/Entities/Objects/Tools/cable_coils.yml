@@ -33,6 +33,13 @@
     guides:
     - VoltageNetworks
     - Power
+  # backmen start
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/saw.ogg # TODO: SOUND
+  - type: Stitches
+    speed: 0.4
+  # backmen end
 
 - type: entity
   id: CableHVStack

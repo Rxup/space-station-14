@@ -1,0 +1,28 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by no_mad",
+    "size": {
+      "x": 64,
+      "y": 64
+    },
+    "states": [
+    {
+        "name": "uriilphase2",
+        "directions": 4
+    },
+    {
+        "name": "nimb",
+        "directions": 4
+    },
+    {
+        "name": "nimbback",
+        "directions": 4
+    },
+    {
+        "name": "swordoflight",
+        "directions": 4
+    }
+  ]
+}
+

@@ -45,38 +45,38 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
-  id: BigEnergyMag
-  name: big energy magazine
-  description: Standart EarthGov type of energys magazines.
-  parent: BasePowerCell
-  components:
-  - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
-    fireCost: 100
-  - type: Tag
-    tags:
-      - BigEnergyMag
-  - type: Item
-    size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
-  - type: Sprite
-    netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-4
-      map: ["enum.GunVisualLayers.Mag"]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: false
-  - type: Appearance
+#- type: entity
+#  id: BigEnergyMag
+#  name: big energy magazine
+#  description: Standart EarthGov type of energys magazines.
+#  parent: BasePowerCell
+#  components:
+#  - type: Battery
+#    maxCharge: 1500
+#    startingCharge: 1500
+#  - type: HitscanBatteryAmmoProvider
+#    proto: RedHeavyLaser
+#    fireCost: 100
+#  - type: Tag
+#    tags:
+#      - BigEnergyMag
+#  - type: Item
+#    size: Small
+#    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
+#  - type: Sprite
+#    netsync: false
+#    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
+#    layers:
+#    - state: base
+#      map: ["enum.GunVisualLayers.Base"]
+#    - state: mag-4
+#      map: ["enum.GunVisualLayers.Mag"]
+#      shader: unshaded
+#  - type: MagazineVisuals
+#    magState: mag
+#    steps: 5
+#    zeroVisible: false
+#  - type: Appearance
 
 - type: entity
   id: EnergyMag
@@ -87,9 +87,6 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 50
   - type: Tag
     tags:
       - EnergyMag
@@ -101,14 +98,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
     layers:
     - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-4
-      map: ["enum.GunVisualLayers.Mag"]
+      map: [ "enum.PowerCellVisualLayers.Base" ]
+    - state: o4
+      map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: false
   - type: Appearance
 
 - type: entity
@@ -120,9 +113,6 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
-  - type: HitscanBatteryAmmoProvider
-    proto: Pulse
-    fireCost: 100
   - type: Tag
     tags:
       - EnergyMag

@@ -1,5 +1,7 @@
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Components;
 
@@ -10,7 +12,7 @@ public sealed partial class BleedInflicterComponent : Component
     public bool IsBleeding = false;
 
     /// <summary>
-    ///     The severity it requires for the wound to have, so bleeds can be induced
+    ///     The minimum severity it requires for the wound to have for the bleeds to be applied
     /// </summary>
     [DataField, AutoNetworkedField]
     public FixedPoint2 SeverityThreshold = FixedPoint2.Zero;
@@ -21,7 +23,7 @@ public sealed partial class BleedInflicterComponent : Component
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 BleedingAmountRaw = FixedPoint2.Zero;
 
-    // these are calculated when wound is spawned.
+    // these are calculated when the wound is spawned.
     /// <summary>
     ///     The time at which the scaling of bleeding started
     /// </summary>
@@ -45,6 +47,9 @@ public sealed partial class BleedInflicterComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public FixedPoint2 ScalingLimit = FixedPoint2.New(1.4);
+
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<DamageTypePrototype>))]
+    public List<string> CauterizedBy = [];
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public Dictionary<string, (int Priority, bool CanBleed)> BleedingModifiers = new();

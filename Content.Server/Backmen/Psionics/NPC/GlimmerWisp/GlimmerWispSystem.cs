@@ -9,6 +9,7 @@ using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Rejuvenate;
 using Content.Shared.ActionBlocker;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.NPC.Systems;
@@ -24,8 +25,7 @@ public sealed class GlimmerWispSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly MobStateSystem _mobs = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly PopupSystem _popups = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
@@ -48,7 +48,7 @@ public sealed class GlimmerWispSystem : EntitySystem
             return;
         if (!HasComp<PsionicComponent>(args.Target))
             return;
-        if (!_mobs.IsCritical(args.Target))
+        if (!_mob.IsCritical(args.Target))
             return;
 
         InnateVerb verb = new()
@@ -128,8 +128,9 @@ public sealed class GlimmerWispSystem : EntitySystem
         _audioSystem.PlayPvs(component.DrainFinishSoundPath, uid);
 
         DamageSpecifier damage = new();
-        damage.DamageDict.Add("Asphyxiation", 200);
+        damage.DamageDict.Add("Holy", 200);
         _damageable.TryChangeDamage(args.Args.Target.Value, damage, true, origin:uid);
+        _consciousness.ClearForceEffects(uid);
     }
 
 
