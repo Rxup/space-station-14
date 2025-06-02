@@ -60,7 +60,7 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 
             if (!categories.TryGetValue(proto.Category, out var entry))
             {
-                var sprite = group.Sprite;  
+                var sprite = group.Sprite;
                 entry = (new List<RadialMenuActionOption>(), sprite, Loc.GetString(group.Name));
                 categories[proto.Category] = entry;
             }
