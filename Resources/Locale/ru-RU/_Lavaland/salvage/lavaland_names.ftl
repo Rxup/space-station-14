@@ -17,7 +17,6 @@ lavaland-ruin-big-shuttle = Огромный разрушенный шаттл
 lavaland-ruin-biodome = Биокупол
 lavaland-ruin-syndicate = База Синдиката
 lavaland-ruin-hierophant = Межпространственный сигнал
-
 lavaland-ruin-bmc-research-facility = Исследовательская лаборатория Чёрной Мезы
 lavaland-ruin-bmc-research-outpost = Аванпост Чёрной Мезы
 lavaland-ruin-bmc-research-spot = Место исследований Чёрной Мезы
@@ -25,3 +24,4 @@ lavaland-ruin-bmc-oblom-met = Разрушенная химическая лаб
 lavaland-ruin-bmc-research-station = Станция Чёрной Мезы
 lavaland-ruin-bmc-military-shuttle = Шаттл Чёрной Мезы
 lavaland-ruin-bmc-evacuation-shuttle = Эвакуационный шаттл Чёрной Мезы
+lavaland-ruin-chapel = Часовня

@@ -79,7 +79,7 @@ public partial class TraumaSystem
         if (args.NewSeverity != OrganSeverity.Destroyed)
             return;
 
-        if (Consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !_mobState.IsDead(body.Value))
+        if (Consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !MobState.IsDead(body.Value))
         {
             var sex = Sex.Unsexed;
             if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
@@ -95,16 +95,18 @@ public partial class TraumaSystem
                     nerveSys.Value,
                     bodyPart.Owner,
                     OrganDestroyedPainIdentifier,
-                    args.Organ.Comp.IntegrityCap,
-                    nerveSys.Value.Comp))
+                    args.Organ.Comp.IntegrityCap * 1.6f,
+                    nerveSys.Value.Comp,
+                    TimeSpan.FromMinutes(4f)))
             {
                 Pain.TryAddPainModifier(
                     nerveSys.Value,
                     bodyPart.Owner,
                     OrganDestroyedPainIdentifier,
-                    args.Organ.Comp.IntegrityCap,
+                    args.Organ.Comp.IntegrityCap * 1.6f,
                     PainDamageTypes.TraumaticPain,
-                    nerveSys.Value.Comp);
+                    nerveSys.Value.Comp,
+                    TimeSpan.FromMinutes(4f));
             }
 
             _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
@@ -139,7 +141,7 @@ public partial class TraumaSystem
     #region Public API
 
     [PublicAPI]
-    public virtual bool TryCreateOrganDamageModifier(EntityUid uid,
+    public virtual bool TryAddOrganDamageModifier(EntityUid uid,
         FixedPoint2 severity,
         EntityUid effectOwner,
         string identifier,

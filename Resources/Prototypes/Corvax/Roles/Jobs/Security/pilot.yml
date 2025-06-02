@@ -41,5 +41,5 @@
   storage:
     back:
     - Flash
-    - securityTechnicianRCD    #backmen
+    - SecurityTechnicianRCD    #backmen
    #- MagazinePistol  (backmen)

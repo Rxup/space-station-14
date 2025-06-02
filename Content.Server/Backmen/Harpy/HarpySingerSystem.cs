@@ -66,7 +66,7 @@ namespace Content.Server.Backmen.Harpy
 
         private void OnMobStateChangedEvent(EntityUid uid, InstrumentComponent component, MobStateChangedEvent args)
         {
-            if (args.NewMobState is MobState.Critical or MobState.Dead)
+            if (args.NewMobState is not MobState.Alive)
                 CloseMidiUi(args.Target);
         }
 

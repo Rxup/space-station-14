@@ -19,10 +19,10 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
-using Content.Shared.Stunnable;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -39,7 +39,6 @@ public sealed class ServerPainSystem : PainSystem
 
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
 
     [Dependency] private readonly SharedBodySystem _body = default!;
 
@@ -49,7 +48,7 @@ public sealed class ServerPainSystem : PainSystem
     [Dependency] private readonly WoundSystem _wound = default!;
 
     private const string PainAdrenalineIdentifier = "PainAdrenaline";
-    private const string PainPhantomPainIdentfier = "PhantomPain";
+    private const string PainPhantomPainIdentifier = "PhantomPain";
 
     private const string PainModifierIdentifier = "WoundPain";
     private const string PainTraumaticModifierIdentifier = "TraumaticPain";
@@ -59,6 +58,9 @@ public sealed class ServerPainSystem : PainSystem
 
     private bool _painEnabled = true;
     private bool _painReflexesEnabled = true;
+
+    private EntityQuery<MobStateComponent> _mobStateQuery;
+    private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearanceQuery;
 
     public override void Initialize()
     {
@@ -76,6 +78,9 @@ public sealed class ServerPainSystem : PainSystem
 
         Subs.CVar(Cfg, CCVars.PainEnabled, value => _painEnabled = value, true);
         Subs.CVar(Cfg, CCVars.PainReflexesEnabled, value => _painReflexesEnabled = value, true);
+
+        _mobStateQuery = GetEntityQuery<MobStateComponent>();
+        _humanoidAppearanceQuery = GetEntityQuery<HumanoidAppearanceComponent>();
     }
 
     public override void Update(float frameTime)
@@ -85,18 +90,21 @@ public sealed class ServerPainSystem : PainSystem
         if (!_painEnabled)
             return;
 
-        var q = EntityQueryEnumerator<NerveSystemComponent, MetaDataComponent>();
-        while (q.MoveNext(out var uid, out var nerveSys, out var meta))
+        var q = EntityQueryEnumerator<NerveSystemComponent, OrganComponent, MetaDataComponent>();
+        while (q.MoveNext(out var uid, out var nerveSys, out var organ, out var meta))
         {
             if (Paused(uid, meta))
                 continue;
 
-            if (!TryComp<OrganComponent>(uid, out var nerveSysOrgan))
-                return;
+            var body = organ.Body;
+            if (!body.HasValue)
+                continue;
 
-            var body = nerveSysOrgan.Body;
-            if (body == null)
-                return;
+            if (!_mobStateQuery.TryComp(body.Value, out var mobState))
+                continue;
+
+            if (nerveSys.ForcePainCritEnd < Timing.CurTime)
+                nerveSys.ForcePainCrit = false;
 
             if (nerveSys.LastPainThreshold != nerveSys.Pain)
             {
@@ -104,49 +112,83 @@ public sealed class ServerPainSystem : PainSystem
                     nerveSys.LastPainThreshold = nerveSys.Pain;
 
                 if (Timing.CurTime > nerveSys.ReactionUpdateTime)
-                    UpdatePainThreshold(uid, nerveSys);
+                    UpdatePainThreshold(uid, body.Value, nerveSys);
             }
 
-            if (Timing.CurTime > nerveSys.NextCritScream && _mobState.IsCritical(body.Value))
+            var sex = Sex.Unsexed;
+            if (_humanoidAppearanceQuery.TryComp(body.Value, out var humanoid))
+                sex = humanoid.Sex;
+
+            if (Timing.CurTime > nerveSys.NextPainScream)
             {
-                var sex = Sex.Unsexed;
-                if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
-                    sex = humanoid.Sex;
+                switch (mobState.CurrentState)
+                {
+                    case MobState.Alive:
+                        if (nerveSys.Pain > nerveSys.PainThresholds[PainThresholdTypes.Agony])
+                        {
+                            CleanupPainSounds(uid, nerveSys);
 
-                CleanupPainSounds(uid, nerveSys);
-                if (_trauma.HasBodyTrauma(body.Value, TraumaType.OrganDamage))
-                {
-                    // If the person suffers organ damage, do funny gaggling sound :3
-                    PlayPainSound(body.Value,
-                        uid,
-                        nerveSys.OrganDamageWhimpersSounds[sex],
-                        AudioParams.Default.WithVolume(-14f),
-                        nerveSys);
-                }
-                else
-                {
-                    if (_random.Prob(0.34f))
-                    {
-                        // Play screaming with less chance
-                        PlayPainSound(
-                            body.Value,
-                            uid,
-                            nerveSys.PainShockScreams[sex],
-                            AudioParams.Default.WithVolume(12f),
-                            nerveSys);
-                    }
-                    else
-                    {
-                        // Whimpering
+                            var sound = nerveSys.PainedWhimpers[sex];
+                            PlayPainSound(
+                                body.Value,
+                                uid,
+                                sound,
+                                AudioParams.Default.WithVariation(0.05f).WithVolume(-12f),
+                                nerveSys);
+
+                            nerveSys.NextPainScream =
+                                Timing.CurTime
+                                + IHaveNoMouthAndIMustScream.GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(sound))
+                                + _random.Next(nerveSys.PainScreamsIntervalMin, nerveSys.PainScreamsIntervalMax);
+                        }
+
+                        break;
+                    case MobState.Critical:
+                        CleanupPainSounds(uid, nerveSys);
+
+                        SoundSpecifier? sound1;
+                        if (_trauma.HasBodyTrauma(body.Value, TraumaType.OrganDamage))
+                        {
+                            // If the person suffers organ damage, do funny gaggling sound :3
+                            sound1 = nerveSys.OrganDamageWhimpersSounds[sex];
+                        }
+                        else
+                        {
+                            // Whimpering
+                            sound1 = _random.Prob(0.21f) ? nerveSys.PainedWhimpers[sex] : nerveSys.CritWhimpers[sex];
+                        }
+
                         PlayPainSound(body.Value,
-                            uid,                   // Pained or normal
-                            _random.Prob(0.34f) ? nerveSys.PainShockWhimpers[sex] : nerveSys.CritWhimpers[sex],
-                            AudioParams.Default.WithVolume(-15f),
+                            uid,
+                            sound1,
+                            AudioParams.Default.WithVariation(0.05f).WithVolume(-16f),
                             nerveSys);
-                    }
-                }
 
-                nerveSys.NextCritScream = Timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
+                        nerveSys.NextPainScream =
+                            Timing.CurTime
+                            + IHaveNoMouthAndIMustScream.GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(sound1))
+                            + _random.Next(nerveSys.PainScreamsIntervalMin, nerveSys.PainScreamsIntervalMax);
+
+                        break;
+                    case MobState.SoftCritical:
+                        CleanupPainSounds(uid, nerveSys);
+
+                        var sound2 = nerveSys.ExtremePainSounds[sex];
+                        PlayPainSound(body.Value,
+                            uid,
+                            sound2,
+                            AudioParams.Default.WithVariation(0.05f).WithVolume(12f),
+                            nerveSys);
+
+                        nerveSys.NextPainScream =
+                            Timing.CurTime
+                            + IHaveNoMouthAndIMustScream.GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(sound2))
+                            + _random.Next(nerveSys.PainScreamsIntervalMin, nerveSys.PainScreamsIntervalMax);
+
+                        break;
+                    case MobState.Dead:
+                        break;
+                }
             }
 
             foreach (var (key, value) in nerveSys.PainSoundsToPlay)
@@ -218,7 +260,7 @@ public sealed class ServerPainSystem : PainSystem
             if (!TryChangePainModifier(
                     brainUid.Value,
                     brainUid.Value.Comp.RootNerve,
-                    PainPhantomPainIdentfier,
+                    PainPhantomPainIdentifier,
                     pain,
                     brainUid.Value,
                     TimeSpan.FromMinutes(1f),
@@ -227,7 +269,7 @@ public sealed class ServerPainSystem : PainSystem
                 TryAddPainModifier(
                     brainUid.Value,
                     brainUid.Value.Comp.RootNerve,
-                    PainPhantomPainIdentfier,
+                    PainPhantomPainIdentifier,
                     pain,
                     PainDamageTypes.TraumaticPain,
                     brainUid.Value,
@@ -291,23 +333,10 @@ public sealed class ServerPainSystem : PainSystem
 
     private void OnMobStateChanged(EntityUid uid, NerveSystemComponent nerveSys, MobStateChangedEvent args)
     {
-        switch (args.NewMobState)
-        {
-            case MobState.Critical:
-                var sex = Sex.Unsexed;
-                if (TryComp<HumanoidAppearanceComponent>(args.Target, out var humanoid))
-                    sex = humanoid.Sex;
+        if (args.NewMobState != MobState.Dead)
+            return;
 
-                CleanupPainSounds(uid, nerveSys);
-                PlayPainSound(args.Target, uid, nerveSys.CritWhimpers[sex], AudioParams.Default.WithVolume(-12f), nerveSys);
-                nerveSys.NextCritScream = Timing.CurTime + _random.Next(nerveSys.CritScreamsIntervalMin, nerveSys.CritScreamsIntervalMax);
-
-                break;
-            case MobState.Dead:
-                CleanupPainSounds(uid, nerveSys);
-
-                break;
-        }
+        CleanupPainSounds(uid, nerveSys);
     }
 
     #endregion
@@ -356,7 +385,7 @@ public sealed class ServerPainSystem : PainSystem
         if (!NerveSystemQuery.Resolve(uid, ref nerveSys))
             return;
 
-        if (!TryComp<OrganComponent>(uid, out var organ) || organ.Body == null)
+        if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
             return;
 
         var totalPain = FixedPoint2.Zero;
@@ -372,10 +401,15 @@ public sealed class ServerPainSystem : PainSystem
 
         var newPain = FixedPoint2.Clamp(woundPain, 0, nerveSys.SoftPainCap) + totalPain - woundPain;
 
+        // throw away the scream, so they instantly do not overlap pain sounds
+        nerveSys.NextPainScream = Timing.CurTime + _random.Next(nerveSys.PainScreamsIntervalMin, nerveSys.PainScreamsIntervalMax);
+
         nerveSys.UpdateTime = Timing.CurTime + nerveSys.ThresholdUpdateTime;
         if (nerveSys.Pain != newPain)
             nerveSys.ReactionUpdateTime = Timing.CurTime + nerveSys.PainReactionTime;
         nerveSys.Pain = newPain;
+
+        Dirty(uid, nerveSys);
 
         if (!_consciousness.SetConsciousnessModifier(
                 organ.Body.Value,
@@ -393,7 +427,7 @@ public sealed class ServerPainSystem : PainSystem
         }
     }
 
-    private void UpdatePainThreshold(EntityUid uid, NerveSystemComponent nerveSys)
+    private void UpdatePainThreshold(EntityUid uid, EntityUid body, NerveSystemComponent nerveSys)
     {
         var painInput = nerveSys.Pain - nerveSys.LastPainThreshold;
 
@@ -413,21 +447,20 @@ public sealed class ServerPainSystem : PainSystem
         if (nerveSys.LastThresholdType == nearestReflex && Timing.CurTime < nerveSys.UpdateTime)
             return;
 
-        if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
-            return;
-
         var ev1 = new PainThresholdTriggered((uid, nerveSys), nearestReflex, painInput);
-        RaiseLocalEvent(organ.Body.Value, ref ev1);
+        RaiseLocalEvent(body, ref ev1);
 
-        if (ev1.Cancelled || _mobState.IsDead(organ.Body.Value))
+        if (ev1.Cancelled || _mobState.IsDead(body))
             return;
 
         var ev2 = new PainThresholdEffected((uid, nerveSys), nearestReflex, painInput);
-        RaiseLocalEvent(organ.Body.Value, ref ev2);
+        RaiseLocalEvent(body, ref ev2);
 
         nerveSys.LastThresholdType = nearestReflex;
 
-        ApplyPainReflexesEffects(organ.Body.Value, (uid, nerveSys), nearestReflex);
+        ApplyPainReflexesEffects(body, (uid, nerveSys), nearestReflex);
+
+        Dirty(uid, nerveSys);
     }
 
     private void ApplyPainReflexesEffects(EntityUid body, Entity<NerveSystemComponent> nerveSys, PainThresholdTypes reaction)
@@ -443,7 +476,7 @@ public sealed class ServerPainSystem : PainSystem
         {
             case PainThresholdTypes.PainGrunt:
                 CleanupPainSounds(nerveSys, nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], nerveSys: nerveSys.Comp);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], AudioParams.Default.WithVariation(0.05f).WithVolume(-9f), nerveSys.Comp);
 
                 break;
             case PainThresholdTypes.PainFlinch:
@@ -456,27 +489,25 @@ public sealed class ServerPainSystem : PainSystem
                 break;
             case PainThresholdTypes.Agony:
                 CleanupPainSounds(nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], AudioParams.Default.WithVolume(12f), nerveSys);
-
-                // We love violence, don't we?
+                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], nerveSys: nerveSys);
 
                 _popup.PopupPredicted(Loc.GetString("screams-in-agony", ("entity", body)), body, null, PopupType.MediumCaution);
-                _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime / 1.4, true, 30f, 12f);
+                _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration / 1.4f, true, 30f, 12f);
 
                 break;
             case PainThresholdTypes.PainShock:
                 CleanupPainSounds(nerveSys);
 
                 var screamSpecifier = nerveSys.Comp.PainShockScreams[sex];
-                PlayPainSound(body, nerveSys, screamSpecifier, AudioParams.Default.WithVolume(12f));
+                PlayPainSound(body, nerveSys, screamSpecifier, nerveSys: nerveSys);
 
-                var sound = nerveSys.Comp.PainShockWhimpers[sex];
+                var sound = nerveSys.Comp.PainedWhimpers[sex];
                 PlayPainSound(
                     nerveSys,
                     sound,
                     IHaveNoMouthAndIMustScream
                         .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(screamSpecifier)) + TimeSpan.FromSeconds(2),
-                    AudioParams.Default.WithVolume(-15f),
+                    AudioParams.Default.WithVolume(-8f),
                     nerveSys);
 
                 IHaveNoMouthAndIMustScream.PlayPvs(
@@ -484,12 +515,12 @@ public sealed class ServerPainSystem : PainSystem
                     body,
                     AudioParams.Default.WithVolume(-12f));
 
-                TryAddPainMultiplier(
+                _consciousness.AddConsciousnessModifier(
+                    body,
                     nerveSys,
+                    40,
                     PainAdrenalineIdentifier,
-                    0.7f,
-                    PainDamageTypes.WoundPain,
-                    nerveSys,
+                    ConsciousnessModType.Pain,
                     nerveSys.Comp.PainShockAdrenalineTime);
 
                 _popup.PopupPredicted(
@@ -500,26 +531,27 @@ public sealed class ServerPainSystem : PainSystem
                     null,
                     PopupType.MediumCaution);
 
-                _stun.TryParalyze(body, nerveSys.Comp.PainShockStunTime, true);
-                _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime, true, 20f, 7f);
+                ForcePainCrit(nerveSys, nerveSys.Comp.PainShockCritDuration, nerveSys);
+                _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration, true, 20f, 7f);
 
                 // For the funnies :3
-                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime);
+                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 0.99f);
 
                 break;
             case PainThresholdTypes.PainShockAndAgony:
                 CleanupPainSounds(nerveSys);
 
                 var agonySpecifier = nerveSys.Comp.AgonyScreams[sex];
-                PlayPainSound(body, nerveSys, agonySpecifier, AudioParams.Default.WithVolume(12f));
+                PlayPainSound(body, nerveSys, agonySpecifier);
 
-                var painWhimpers = nerveSys.Comp.PainShockWhimpers[sex];
+                var painWhimpers = nerveSys.Comp.PainedWhimpers[sex];
                 PlayPainSound(
                     nerveSys,
                     painWhimpers,
                     IHaveNoMouthAndIMustScream
                         .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(agonySpecifier)) - TimeSpan.FromSeconds(2),
-                    AudioParams.Default.WithVolume(-15f));
+                    AudioParams.Default.WithVolume(-8f),
+                    nerveSys);
 
                 IHaveNoMouthAndIMustScream.PlayPvs(
                     nerveSys.Comp.PainRattles,
@@ -534,10 +566,18 @@ public sealed class ServerPainSystem : PainSystem
                     null,
                     PopupType.MediumCaution);
 
-                _stun.TryParalyze(body, nerveSys.Comp.PainShockStunTime * 1.4, true);
-                _jitter.DoJitter(body, nerveSys.Comp.PainShockStunTime * 1.4, true, 20f, 7f);
+                _consciousness.AddConsciousnessModifier(
+                    body,
+                    nerveSys,
+                    40 * 1.4,
+                    PainAdrenalineIdentifier,
+                    ConsciousnessModType.Pain,
+                    nerveSys.Comp.PainShockAdrenalineTime * 1.4);
 
-                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockStunTime * 1.4);
+                ForcePainCrit(nerveSys, nerveSys.Comp.PainShockCritDuration * 1.4f, nerveSys);
+                _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration * 1.4f, true, 20f, 7f);
+
+                _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 1.39f);
 
                 break;
             case PainThresholdTypes.None:
@@ -548,6 +588,20 @@ public sealed class ServerPainSystem : PainSystem
     #endregion
 
     #region Helpers
+
+    [PublicAPI]
+    public override void ForcePainCrit(EntityUid ent, TimeSpan time, NerveSystemComponent? nerveSys = null)
+    {
+        if (!Resolve(ent, ref nerveSys, false))
+            return;
+
+        nerveSys.ForcePainCritEnd = Timing.CurTime + time;
+        nerveSys.ForcePainCrit = true;
+
+        var organComp = Comp<OrganComponent>(ent);
+        if (organComp.Body.HasValue)
+            _consciousness.CheckConscious(organComp.Body.Value);
+    }
 
     [PublicAPI]
     public override void CleanupPainSounds(EntityUid ent, NerveSystemComponent? nerveSys = null)

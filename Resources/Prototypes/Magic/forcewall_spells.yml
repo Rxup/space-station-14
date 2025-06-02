@@ -4,7 +4,7 @@
   description: Creates a magical barrier.
   components:
   - type: InstantAction
-    useDelay: 10
+    useDelay: 15
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
@@ -13,4 +13,6 @@
       state: shield
     event: !type:InstantSpawnSpellEvent
       prototype: WallForce
-      speech: action-speech-spell-forcewall
+      posData: !type:TargetInFront
+  - type: SpeakOnAction
+    sentence: action-speech-spell-forcewall

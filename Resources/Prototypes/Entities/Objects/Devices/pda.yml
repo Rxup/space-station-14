@@ -189,7 +189,7 @@
   - type: Pda
     id: PassengerIDCard
   - type: PdaBorderColor
-    borderColor: "#717059"
+    borderColor: "#b1b1b1"
 
 - type: entity
   parent: BasePDA
@@ -205,8 +205,8 @@
        !type:String
        pda-interntech
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#949137"
+    borderColor: "#b1b1b1"
+    accentVColor: "#cbc737"
   - type: Icon
     state: pda-interntech
 
@@ -224,8 +224,8 @@
        !type:String
        pda-internmed
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#447987"
+    borderColor: "#b1b1b1"
+    accentVColor: "#3886b6"
   - type: Icon
     state: pda-internmed
   - type: GuideHelp
@@ -246,8 +246,8 @@
        !type:String
        pda-interncadet
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#A32D26"
+    borderColor: "#b1b1b1"
+    accentVColor: "#88242d"
   - type: Icon
     state: pda-interncadet
 
@@ -265,8 +265,8 @@
        !type:String
        pda-internsci
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#8900c9"
+    borderColor: "#b1b1b1"
+    accentVColor: "#a03fa8"
   - type: Icon
     state: pda-internsci
 
@@ -284,8 +284,8 @@
        !type:String
        pda-internservice
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#00cc35"
+    borderColor: "#b1b1b1"
+    accentVColor: "#84e54b"
   - type: Icon
     state: pda-internservice
 
@@ -303,7 +303,7 @@
        !type:String
        pda-cook
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
+    borderColor: "#ffffff"
   - type: Icon
     state: pda-cook
   - type: ReplacementAccent # for random sentience event
@@ -323,8 +323,8 @@
        !type:String
        pda-hydro
   - type: PdaBorderColor
-    borderColor: "#44843c"
-    accentVColor: "#00cc35"
+    borderColor: "#50e193"
+    accentVColor: "#004da6"
   - type: Icon
     state: pda-hydro
 
@@ -351,7 +351,7 @@
        !type:String
        pda-clown
   - type: PdaBorderColor
-    borderColor: "#C18199"
+    borderColor: "#84e54b"
   - type: Icon
     state: pda-clown
   - type: Slippery # secretly made of bananium
@@ -480,8 +480,8 @@
        !type:String
        pda-qm
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#a23e3e"
+    borderColor: "#c99840"
+    accentVColor: "#83683d"
   - type: Icon
     state: pda-qm
 
@@ -499,7 +499,7 @@
        !type:String
        pda-cargo
   - type: PdaBorderColor
-    borderColor: "#e39751"
+    borderColor: "#c99840"
   - type: Icon
     state: pda-cargo
 
@@ -517,8 +517,8 @@
        !type:String
        pda-miner
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentVColor: "#8900c9"
+    borderColor: "#927444"
+    accentVColor: "#613590"
   - type: Icon
     state: pda-miner
   - type: CartridgeLoader
@@ -549,7 +549,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BaseWidePDA
+  parent: BasePDA # backmen
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -632,7 +632,7 @@
        !type:String
        pda-janitor
   - type: PdaBorderColor
-    borderColor: "#5D2D56"
+    borderColor: "#933ea8"
   - type: Icon
     state: pda-janitor
 
@@ -656,7 +656,7 @@
        !type:String
        pda-captain
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#e3a72b"
   - type: Icon
     state: pda-captain
 
@@ -680,8 +680,8 @@
        !type:String
        pda-hop
   - type: PdaBorderColor
-    borderColor: "#789876"
-    accentHColor: "#447987"
+    borderColor: "#374f7e"
+    accentHColor: "#3c94c5"
   - type: Icon
     state: pda-hop
 
@@ -699,8 +699,9 @@
        !type:String
        pda-ce
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentHColor: "#447987"
+    borderColor: "#deb63d"
+    accentHColor: "#3c94c5"
+    accentVColor: "#FFFFFF"
   - type: Icon
     state: pda-ce
 
@@ -718,8 +719,8 @@
        !type:String
        pda-engineer
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
+    borderColor: "#d99a2e"
+    accentVColor: "#cbc737"
   - type: Icon
     state: pda-engineer
 
@@ -737,8 +738,8 @@
        !type:String
        pda-cmo
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
+    borderColor: "#fafafa"
+    accentHColor: "#3c94c5"
     accentVColor: "#447987"
   - type: Icon
     state: pda-cmo
@@ -757,8 +758,8 @@
        !type:String
        pda-medical
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#447987"
+    borderColor: "#fafafa"
+    accentVColor: "#3886b6"
   - type: Icon
     state: pda-medical
   - type: GuideHelp
@@ -790,7 +791,7 @@
        !type:String
        pda-paramedic
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
+    borderColor: "#fafafa"
     accentVColor: "#2a4b5b"
   - type: Icon
     state: pda-paramedic
@@ -809,8 +810,8 @@
        !type:String
        pda-chemistry
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#B34200"
+    borderColor: "#fafafa"
+    accentVColor: "#d15900"
   - type: Icon
     state: pda-chemistry
 
@@ -828,9 +829,9 @@
        !type:String
        pda-rd
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#8900c9"
+    borderColor: "#fafafa"
+    accentHColor: "#3c94c5"
+    accentVColor: "#a03fa8"
   - type: Icon
     state: pda-rd
 
@@ -848,8 +849,8 @@
        !type:String
        pda-science
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#8900c9"
+    borderColor: "#fafafa"
+    accentVColor: "#a03fa8"
   - type: Icon
     state: pda-science
 
@@ -867,8 +868,8 @@
        !type:String
        pda-hos
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
+    borderColor: "#88242d"
+    accentHColor: "#3c94c5"
   - type: Icon
     state: pda-hos
   - type: CartridgeLoader
@@ -894,8 +895,8 @@
        !type:String
        pda-warden
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#949137"
+    borderColor: "#363636"
+    accentVColor: "#88242d"
   - type: Icon
     state: pda-warden
 
@@ -913,7 +914,7 @@
        !type:String
        pda-security
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#88242d"
   - type: Icon
     state: pda-security
 
@@ -1039,8 +1040,8 @@
        !type:String
        pda-atmos
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#447987"
+    borderColor: "#eedc43"
+    accentVColor: "#1a89ad"
   - type: Icon
     state: pda-atmos
 
@@ -1058,7 +1059,7 @@
        !type:String
        pda-clear
   - type: PdaBorderColor
-    borderColor: "#288e4d"
+    borderColor: "#c0e5ff"
   - type: Icon
     state: pda-clear
 
@@ -1247,7 +1248,7 @@
        !type:String
        pda-zookeeper
   - type: PdaBorderColor
-    borderColor: "#ffe685"
+    borderColor: "#b99c5f"
   - type: Icon
     state: pda-zookeeper
 
@@ -1284,7 +1285,7 @@
        !type:String
        pda-detective
   - type: PdaBorderColor
-    borderColor: "#774705"
+    borderColor: "#805a2f"
   - type: Icon
     state: pda-detective
   - type: CartridgeLoader
@@ -1365,8 +1366,8 @@
        !type:String
        pda-seniorengineer
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#CD6900"
+    borderColor: "#d99a2e"
+    accentVColor: "#cd610a"
   - type: Icon
     state: pda-seniorengineer
 
@@ -1384,9 +1385,9 @@
        !type:String
        pda-seniorresearcher
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#8900c9"
-    accentVColor: "#8900c9"
+    borderColor: "#fafafa"
+    accentHColor: "#dca01b"
+    accentVColor: "#a03fa8"
   - type: Icon
     state: pda-seniorresearcher
 
@@ -1404,9 +1405,9 @@
        !type:String
        pda-seniorphysician
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#B34200"
+    borderColor: "#fafafa"
+    accentHColor: "#3886b6"
+    accentVColor: "#ea6400"
   - type: Icon
     state: pda-seniorphysician
 
@@ -1424,8 +1425,8 @@
        !type:String
        pda-seniorofficer
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#DFDFDF"
+    borderColor: "#a52f29"
+    accentVColor: "#e0e0e0"
   - type: Icon
     state: pda-seniorofficer
 
@@ -1460,6 +1461,7 @@
        pda-syndi-agent
   - type: PdaBorderColor
     borderColor: "#891417"
+    accentVColor: "#e0e0e0"
   - type: Icon
     state: pda-syndi-agent
   - type: CartridgeLoader
@@ -1477,7 +1479,7 @@
   suffix: Chameleon
   components:
   - type: PdaBorderColor
-    borderColor: "#717059"
+    borderColor: "#b1b1b1"
   - type: Tag
     tags: # ignore "WhitelistChameleon" tag
     - DoorBumpOpener

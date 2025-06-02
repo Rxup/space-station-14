@@ -1,6 +1,6 @@
 - type: entity
   id: SpeedLoaderLightRifle
-  name: "speed loader (.30 rifle)"
+  name: "speed loader (7,62x54)" #Backmen-weapons
   parent: [ BaseItem, BaseSecurityContraband ]
   description: 5-round 'stripper clip' for quickly reloading the Kardashev-Mosin. Holds 5 rounds of .30 rifle.
   components:
@@ -12,9 +12,9 @@
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeLightRifle
+      - CartridgeRifle762 #Backmen-weapons
     capacity: 5
-    proto: CartridgeLightRifle
+    proto: CartridgeRifleLight762 #Backmen-weapons
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
     layers:

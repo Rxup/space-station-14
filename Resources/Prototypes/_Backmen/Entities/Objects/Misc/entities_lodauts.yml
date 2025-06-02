@@ -108,7 +108,7 @@
     state: base
   content:
   - WeaponEarthGovLaserSniperCell
-  - ClothingPounchRXBZZBigEnergyFilled
+  - ClothingPounchRXBZZEnergyFilled
 
 - type: thiefBackpackSet
   id: SR127Set

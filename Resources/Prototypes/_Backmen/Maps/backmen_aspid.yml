@@ -69,3 +69,24 @@
             Prisoner: [ 2, 3]
             BlueShield: [1, 1] # backmen-BlueShield
             StationAi: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - SecurityTraining
+          - ShuttleMed
+          - ShuttleSec
+          - ShuttleRnd
+          - ShuttleSrv
+          - ShuttleEmergency
+          - Theatre
+          - CellAI
+          - Botany
+          - Bunker
+          - XenobiologyRepair
+          - VirusologyAmbusol

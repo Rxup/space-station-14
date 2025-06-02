@@ -29,3 +29,6 @@ sponsor-win-manager-tier-24 = Старший состав
 sponsor-win-manager-tier-25 = Совет
 sponsor-win-manager-ghost-Veta = Вета
 sponsor-win-manager-ghost-Boroven = Кор
+sponsor-win-manager-ghost-Memes = Memes
+sponsor-win-manager-ghost-Wisdom = Nelle
+sponsor-win-manager-ghost-Wendor = Wendor

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
@@ -89,13 +90,25 @@ public abstract class SharedArmorSystem : EntitySystem
 
         if (!component.ArmourCoverageHidden)
         {
-            foreach (var coveragePart in coverage.Where(coveragePart => coveragePart != BodyPartType.Other))
+            var coverageMsg = new StringBuilder();
+            for (var i = 0; i < coverage.Count; i++)
             {
-                msg.PushNewline();
-
+                var coveragePart = coverage[i];
                 var bodyPartType = Loc.GetString("armor-coverage-type-" + coveragePart.ToString().ToLower());
-                msg.AddMarkupOrThrow(Loc.GetString("armor-coverage-value", ("type", bodyPartType)));
+
+                // Last one in the list
+                if (i != coverage.Count - 1)
+                {
+                    coverageMsg.Append($"{bodyPartType}, ");
+                }
+                else
+                {
+                    coverageMsg.Append(bodyPartType);
+                }
             }
+
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("armor-coverage-value", ("type", coverageMsg)));
         }
 
         if (!component.ArmourModifiersHidden)

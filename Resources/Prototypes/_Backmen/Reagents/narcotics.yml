@@ -33,7 +33,7 @@
           component: StutteringAccent
       - !type:Jitter
       - !type:SuppressPain
-        amount: 1.2
+        amount: 3
         time: 60 # it accumulated 1.2*quantity and then exists for 60 seconds.
       - !type:GenericStatusEffect
         key: Stun
@@ -82,6 +82,12 @@
     Poison:
       metabolismRate: 0.25
       effects:
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        amount: 0.2
+        randomise: false # SKYROCKETS your pain feels
       - !type:Emote
         conditions:
         - !type:ReagentThreshold
@@ -119,8 +125,8 @@
       metabolismRate: 0.25
       effects:
         - !type:SuppressPain
-          amount: 100 # Literally painkiller
-          time: 30
+          amount: 100
+          time: 60
         - !type:GenericStatusEffect
           conditions:
           - !type:ReagentThreshold

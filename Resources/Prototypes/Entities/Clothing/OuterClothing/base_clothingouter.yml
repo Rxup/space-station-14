@@ -3,9 +3,28 @@
   parent: Clothing
   id: ClothingOuterBase
   components:
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -9
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -9
+  - type: EmitSoundOnLand
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -9
   - type: Clothing
     slots:
     - outerClothing
+    equipSound:
+      collection: GenericEquip
+  # backmen edit end
   - type: Sprite
     state: icon
 
@@ -105,8 +124,9 @@
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
-  - type: CoveredSlot # Backmen
-    slots: [innerclothing, gloves, feet, undershirt, underpants, socks]
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [innerclothing, gloves, feet, undershirt, underpants, socks] # Backmen-Edit
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -163,6 +183,23 @@
     slots: OUTERCLOTHING
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.4
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/backpack_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/backpack_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/backpack_drop.ogg
+      params:
+        volume: -4
+  # backmen edit end
 
 - type: entity
   abstract: true
@@ -170,8 +207,9 @@
   id: ClothingOuterEVASuitBase
   name: base EVA Suit
   components:
-  - type: CoveredSlot # Backmen
-    slots: [innerclothing, gloves, feet, undershirt, underpants, socks]
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [innerclothing, gloves, feet, undershirt, underpants, socks] # Backmen-Edit
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000

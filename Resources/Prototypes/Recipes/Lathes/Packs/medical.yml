@@ -30,6 +30,7 @@
   id: SurgeryStatic
   recipes:
   - Scalpel
+  - MedicalStitches
   - Retractor
   - Cautery
   - Drill
@@ -94,6 +95,8 @@
   - SyringeCryostasis
   - BluespaceBeaker
   - SyringeBluespace
+  - LauncherSyringe
+  - MiniSyringe
 
 - type: latheRecipePack
   id: MedicalBoards

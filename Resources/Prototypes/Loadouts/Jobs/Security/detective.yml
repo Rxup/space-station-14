@@ -60,33 +60,43 @@
 # Weapon #Backmen
 - type: loadout
   id: WeaponRevolverCMB
+  dummyEntity: WeaponRevolverCMB
   storage:
-    belt:
+    back:
     - WeaponRevolverCMB
+    - SpeedLoader38Special
 
 - type: loadout
   id: WeaponRevolverR44
+  dummyEntity: WeaponRevolverR44
   storage:
-    belt:
+    back:
     - WeaponRevolverR44
+    - SpeedLoader357Magnum
 
 - type: loadout
   id: WeaponRevolverRebota
+  dummyEntity: WeaponRevolverRebota
   storage:
-    belt:
+    back:
     - WeaponRevolverRebota
+    - SpeedLoader38Special
 
 - type: loadout
   id: WeaponRevolverNY
+  dummyEntity: WeaponRevolverNY
   storage:
-    belt:
+    back:
     - WeaponRevolverNY
+    - SpeedLoader38Special
 
 - type: loadout
   id: WeaponRevolverInspector
+  dummyEntity: WeaponRevolverInspector
   storage:
-    belt:
+    back:
     - WeaponRevolverInspector
+    - SpeedLoader357Magnum
 
 - type: loadout
   id: DetectiveCoatGrey

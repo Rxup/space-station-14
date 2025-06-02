@@ -31,16 +31,15 @@
       implants: [ MindShieldImplant ]
     - !type:AddComponentSpecial
       components:
-        - type: CommandStaff
         - type: NpcFactionMember
           factions:
             - CentralCommand
         - type: AntagImmune
   startingGear: BlueShieldGear
   icon: "JobIconBlueShield"
-  supervisors: job-supervisors-hoh
+  supervisors: job-supervisors-centcom
   accessGroups:
-    - AllAccessWithOutHeads
+    - AllAccessWithoutHeads
   access:
     - CCOfficer
     - CentralCommand
@@ -57,12 +56,9 @@
     id: BlueShieldPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
-    shoes: ClothingShoesBootsCombat
-    back: ClothingBackpackSatchelLeather
-    neck: CombatKnifeSpetsnaz
-    belt: ClothingBeltSecurityCentComSecurity
-    pocket1: WeaponPistolUCS
-    pocket2: RadioBlueShieldSupplyPod
+    belt: ClothingBeltBlueshieldWebbingFilled
   storage:
     back:
     - BlueShieldSetLoadouts
+    - RadioBlueShieldSupplyPod
+    - CombatKnifeSpetsnaz

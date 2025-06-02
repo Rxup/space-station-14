@@ -130,7 +130,7 @@
 
 #------------------------РСУ СБ------------------------#
 - type: entity
-  id: securityTechnicianRCD
+  id: SecurityTechnicianRCD
   parent: [ RCD, BaseSecurityContraband ]
   name: security technician RCD
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function. This model has the ability to place turrets and mines, all of these structures are in the electronics section.

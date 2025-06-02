@@ -249,15 +249,15 @@
         - id: EnergyMag
           amount: 6
 
-- type: entity
-  parent: ClothingPounchMTF
-  id: ClothingPounchRXBZZBigEnergyFilled
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: StorageFill
-      contents:
-        - id: BigEnergyMag
-          amount: 6
+#- type: entity
+#  parent: ClothingPounchMTF
+#  id: ClothingPounchRXBZZBigEnergyFilled
+#  categories: [ HideSpawnMenu ]
+#  components:
+#    - type: StorageFill
+#      contents:
+#        - id: BigEnergyMag
+#          amount: 6
 
 - type: entity
   parent: ClothingPounchMTF
@@ -456,7 +456,7 @@
         - id: SpetsnazMedipen
           amount: 3
         - id: PaperManualCodes
-        - id: SpeedLoaderMagnumAP
+        - id: SpeedLoader357MagnumAP
           amount: 4
         - id: PinpointerNuclear
 
@@ -478,3 +478,35 @@
       - id: EmergencyMedipen
         amount: 3
       - id: Stimpack
+
+- type: entity
+  id: ClothingBeltBlueshieldWebbingFilled
+  parent: ClothingBeltBlueshieldWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedkitCombatFilled
+      - id: Stunbaton
+      - id: Handcuffs
+      - id: Handcuffs
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbingCMO
+  id: ClothingBeltMilitaryWebbingCMOFilled
+  name: chief medical officer's chest rig
+  description: "A medical chest rig with deep pockets, for use by paramedics and health professionals."
+  components:
+  - type: StorageFill
+    contents:
+      - id: EnergyCautery
+      - id: EnergyScalpel
+      - id: AdvancedRetractor
+      - id: BoneGel
+      - id: Brutepack
+      - id: Ointment
+      - id: Bloodpack
+      - id: Gauze
+      - id: EmergencyMedipen
+        amount: 3
+
