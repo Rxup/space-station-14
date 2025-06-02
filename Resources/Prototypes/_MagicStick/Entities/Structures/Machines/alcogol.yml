@@ -1,0 +1,76 @@
+- type: entity
+  id: MSBaseTabletopChemicalMachine
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: SolutionContainerMixer
+  - type: ReactionMixer
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      mixer:
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ContainerContainer
+    containers:
+      mixer: !type:ContainerSlot
+  - type: Anchorable
+    delay: 2
+  - type: AccessReader
+  - type: Construction
+    graph: MSEtanolBarrelGraph
+    node: mse
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MSEtanolBarrel
+  parent: MSBaseTabletopChemicalMachine
+  name: Бочка для брожения
+  description: Позволяет продуктам бродить в ней, для начала брожения постучать.
+  components:
+  - type: SolutionContainerMixer
+    mixDuration: 300
+  - type: ReactionMixer
+    reactionTypes:
+    - MSfermentation
+  - type: Sprite
+    sprite: _MagicStick/Structures/MSEtanolBarrel.rsi
+    state: icon
+
+- type: entity
+  id: MSEtanolBarrelBS
+  parent: MSBaseTabletopChemicalMachine
+  name: Блюспейс бочка для брожения
+  description: ВОЛЕЙ ИМПЕРАТОРА, ПРИКАЗЫВАЮ БРОДИТЬ!
+  components:
+  - type: SolutionContainerMixer
+    mixDuration: 1
+  - type: ReactionMixer
+    reactionTypes:
+    - MSfermentation
+  - type: Sprite
+    sprite: _MagicStick/Structures/MSEtanolBarrelBS.rsi
+    state: icon

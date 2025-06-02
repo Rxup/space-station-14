@@ -1,0 +1,28 @@
+﻿- type: constructionGraph
+  id: MSEtanolBarrelGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: mse
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 2
+
+    - node: mse
+      entity: MSEtanolBarrel
+      edges:
+        - to: start
+          completed:
+          - !type:SpawnPrototype
+                prototype: MaterialWoodPlank1
+                amount: 5
+          - !type:DeleteEntity {}
+          steps:
+            - tool: Anchoring
+              doAfter: 5
+            - tool: Prying
+              doAfter: 5

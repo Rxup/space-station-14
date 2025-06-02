@@ -1,0 +1,6 @@
+- type: mixingCategory
+  id: MSfermentation
+  verbText: Брожение
+  icon:
+    sprite: Structures/Machines/Medical/electrolysis.rsi
+    state: base
