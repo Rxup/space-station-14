@@ -18,6 +18,10 @@
     {
         "name": "spearoflight",
         "directions": 4
+    },
+    {
+        "name": "angel_nimb_raged",
+        "directions": 4
     }
   ]
 }

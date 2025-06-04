@@ -19,9 +19,12 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly IAdminLogManager _adminLog = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+        [Dependency] private readonly EntityLookupSystem _lookup = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
+
+        private static readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new();
 
         public override void Initialize()
         {
@@ -36,27 +39,23 @@ namespace Content.Server.Research.Systems
         }
 
         /// <summary>
-        /// Gets a server based on it's unique numeric id.
+        /// Gets a server based on its unique numeric id.
         /// backmen change: Also requires MapId to check a map
         /// </summary>
+        /// <param name="client"></param>
         /// <param name="id"></param>
         /// <param name="mapId"></param> // backmen change
         /// <param name="serverUid"></param>
         /// <param name="serverComponent"></param>
         /// <returns></returns>
-        public bool TryGetServerById(int id, MapId mapId, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
+        public bool TryGetServerById(EntityUid client, int id, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
         {
             serverUid = null;
             serverComponent = null;
 
-            var query = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out var server, out var xform))
+            var query = GetServers(client).ToList();
+            foreach (var (uid, server) in query)
             {
-                // backmen edit: RnD servers are local for a map
-                if (xform.MapID != mapId)
-                    continue;
-                // backmen edit end
-
                 if (server.Id != id)
                     continue;
                 serverUid = uid;
@@ -70,15 +69,14 @@ namespace Content.Server.Research.Systems
         /// Gets the names of all the servers.
         /// </summary>
         /// <returns></returns>
-        [Obsolete("Backmen API change: use GetAvailableServerNames with specified MapId instead")] // backmen change
-        public string[] GetServerNames()
+        public string[] GetServerNames(EntityUid client)
         {
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            var allServers = GetServers(client).ToArray();
             var list = new string[allServers.Length];
 
             for (var i = 0; i < allServers.Length; i++)
             {
-                list[i] = allServers[i].ServerName;
+                list[i] = allServers[i].Comp.ServerName;
             }
 
             return list;
@@ -88,40 +86,30 @@ namespace Content.Server.Research.Systems
         /// Gets the ids of all the servers
         /// </summary>
         /// <returns></returns>
-        [Obsolete("Backmen API change: use GetAvailableServerIds with specified MapId instead")] // backmen change
-        public int[] GetServerIds()
+        public int[] GetServerIds(EntityUid client)
         {
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            var allServers = GetServers(client).ToArray();
             var list = new int[allServers.Length];
 
             for (var i = 0; i < allServers.Length; i++)
             {
-                list[i] = allServers[i].Id;
+                list[i] = allServers[i].Comp.Id;
             }
 
             return list;
         }
 
-        // backmen changes start
-        /// <summary>
-        /// Gets the names of all the servers.
-        /// </summary>
-        public IEnumerable<Entity<ResearchServerComponent>> GetAvailableServers(MapId mapId)
+        public HashSet<Entity<ResearchServerComponent>> GetServers(EntityUid client)
         {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent, TransformComponent>();
+            ClientLookup.Clear();
 
-            while (allServers.MoveNext(out var uid, out var server, out var xform))
-            {
-                // backmen edit: RnD servers are local for a map
-                if (xform.MapID != mapId)
-                    continue;
-                // backmen edit end
+            var clientXform = Transform(client);
+            if (clientXform.GridUid is not { } grid)
+                return ClientLookup;
 
-
-                yield return (uid, server);
-            }
+            _lookup.GetGridEntities(grid, ClientLookup);
+            return ClientLookup;
         }
-        // backmen changes end
 
         public override void Update(float frameTime)
         {
@@ -132,7 +120,7 @@ namespace Content.Server.Research.Systems
                     continue;
                 server.NextUpdateTime = _timing.CurTime + server.ResearchConsoleUpdateTime;
 
-                UpdateServer(uid, (int) server.ResearchConsoleUpdateTime.TotalSeconds, server);
+                UpdateServer(uid, (int)server.ResearchConsoleUpdateTime.TotalSeconds, server);
             }
         }
     }

@@ -23,16 +23,13 @@
   graph:
     - node: start
       edges:
-      - to: start
-        completed:
-          - !type:SpawnPrototype
-            prototype: BlessedBible
-            amount: 1
-          - !type:DeleteEntity
+      - to: bible
         steps:
           - material: Bluespace
             amount: 1
             doAfter: 5
+    - node: bible
+      entity: BlessedBible
 
 - type: constructionGraph
   id: ArchangelSword

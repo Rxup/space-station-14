@@ -445,8 +445,20 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 4
+      - !type:SatiateThirst
+        factor: 4
+    Gas:
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: true
+        conditions:
+        - !type:OrganType
+          type: Slime
+          shouldHave: true
+        damage:
+          types:
+            Heat: 3
 
 - type: reagent
   id: Ice
