@@ -10,7 +10,6 @@ using Robust.Shared.Enums;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 
-
 namespace Content.Client.RCD;
 
 public sealed class RCDConstructionGhostSystem : EntitySystem
