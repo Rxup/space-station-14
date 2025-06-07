@@ -187,6 +187,7 @@
     - id: DoorRemoteEngineering
     - id: CargoRequestEngineeringComputerCircuitboard
     - id: RCD
+    - id: RPD
     - id: RCDAmmo
     - id: RubberStampCE
     - id: AntiPsychicKnife # backmen

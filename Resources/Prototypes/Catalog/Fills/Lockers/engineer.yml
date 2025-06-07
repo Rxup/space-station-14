@@ -114,6 +114,7 @@
       - id: MedkitOxygenFilled
       - id: HolofanProjector
       - id: RCD
+      - id: RPD
       - id: RCDAmmo
       - id: AirGrenade
 
@@ -131,6 +132,7 @@
       - id: MedkitOxygenFilled
       - id: HolofanProjector
       - id: RCD
+      - id: RPD
       - id: RCDAmmo
       - id: AirGrenade
 
