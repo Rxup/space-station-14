@@ -191,12 +191,6 @@
     path: /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_TheHunter.ogg
 
 - type: jukebox
-  id: TearsOfAutumn
-  name: M8L8TH - Слёзы Осени
-  path:
-    path: /Audio/Backmen/Jukebox/M8L8TH/M8L8TH_SljozyOseni.ogg
-
-- type: jukebox
   id: CityOfChildhood
   name: Гражданская оборона - Город детства
   path:
