@@ -2670,7 +2670,6 @@ entities:
       - 5000
       - 3854
       - 3873
-      - 3874
       - 3816
   - uid: 28
     components:
@@ -23669,7 +23668,6 @@ entities:
       - 3869
       - 3870
       - 3873
-      - 3874
       - 3871
       - 3872
       - 3868
@@ -24354,17 +24352,6 @@ entities:
       pos: 18.5,0.5
       parent: 2
     - type: DeviceNetwork
-      deviceLists:
-      - 3800
-      - 27
-  - uid: 3874
-    components:
-    - type: Transform
-      pos: 18.5,-0.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 3800
       - 27
