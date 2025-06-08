@@ -3495,3 +3495,14 @@
   id: 232
   time: '2025-06-04T00:02:08.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1369
+- author: KayzelW
+  changes:
+  - message: "\u0423\u0431\u0440\u0430\u043D \u0442\u0440\u0435\u043A \"M8L8TH - \u0421\
+      \u043B\u0451\u0437\u044B \u041E\u0441\u0435\u043D\u0438\"."
+    type: Remove
+  - message: "\u0430\u043F\u0441\u0442\u0440\u0438\u043C(\u043C\u0430\u043B\u0435\u043D\
+      \u044C\u043A\u0438\u0439) 07,06,2025"
+    type: Tweak
+  id: 233
+  time: '2025-06-07T11:22:58.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1375
