@@ -34,7 +34,7 @@
     delay: 2
   - type: AccessReader
   - type: Construction
-    graph: MSEtanolBarrelGraph
+    graph: EtanolBarrelGraph
     node: mse
   - type: Destructible
     thresholds:
@@ -55,9 +55,9 @@
     mixDuration: 300
   - type: ReactionMixer
     reactionTypes:
-    - MSfermentation
+    - fermentation
   - type: Sprite
-    sprite: _MagicStick/Structures/MSEtanolBarrel.rsi
+    sprite: _MagicStick/Structures/EtanolBarrel.rsi
     state: icon
 
 - type: entity
@@ -70,7 +70,7 @@
     mixDuration: 1
   - type: ReactionMixer
     reactionTypes:
-    - MSfermentation
+    - fermentation
   - type: Sprite
-    sprite: _MagicStick/Structures/MSEtanolBarrelBS.rsi
+    sprite: _MagicStick/Structures/EtanolBarrelBS.rsi
     state: icon
