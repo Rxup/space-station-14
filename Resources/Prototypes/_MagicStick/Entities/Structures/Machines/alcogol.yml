@@ -1,5 +1,5 @@
 - type: entity
-  id: MSBaseTabletopChemicalMachine
+  id: BaseBarrel
   parent: BaseStructure
   abstract: true
   components:
@@ -46,8 +46,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  id: MSEtanolBarrel
-  parent: MSBaseTabletopChemicalMachine
+  id: EtanolBarrel
+  parent: BaseBarrel
   name: Бочка для брожения
   description: Позволяет продуктам бродить в ней, для начала брожения постучать.
   components:
@@ -61,8 +61,8 @@
     state: icon
 
 - type: entity
-  id: MSEtanolBarrelBS
-  parent: MSBaseTabletopChemicalMachine
+  id: EtanolBarrelBS
+  parent: BaseBarrel
   name: Блюспейс бочка для брожения
   description: ВОЛЕЙ ИМПЕРАТОРА, ПРИКАЗЫВАЮ БРОДИТЬ!
   components:
