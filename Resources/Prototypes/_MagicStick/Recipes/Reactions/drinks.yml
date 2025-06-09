@@ -1,7 +1,7 @@
 - type: reaction
-  id: MSYeasts
+  id: Yeasts
   requiredMixerCategories:
-  - MSfermentation
+  - fermentation
   minTemp: 303
   reactants:
     Water:
@@ -15,7 +15,7 @@
     MSYeasts: 2
 
 - type: reaction
-  id: FiredMSYeasts
+  id: FiredYeasts
   minTemp: 313
   reactants:
     MSYeasts:
@@ -24,9 +24,9 @@
     Ash: 0.5
 
 - type: reaction
-  id: MSEtanol
+  id: Etanol
   requiredMixerCategories:
-  - MSfermentation
+  - fermentation
   minTemp: 303
   reactants:
     Water:
@@ -41,8 +41,7 @@
     Ethanol: 2
 
 - type: reaction
-  id: MSEtanolkillYeasts
-  minTemp: 303
+  id: EtanolkillYeasts
   reactants:
     Ethanol:
       amount: 70
@@ -53,7 +52,7 @@
     Ethanol: 0.1
 
 - type: reaction
-  id: MSVODKA
+  id: VODKA
   requiredMixerCategories:
   - Shake
   reactants:
