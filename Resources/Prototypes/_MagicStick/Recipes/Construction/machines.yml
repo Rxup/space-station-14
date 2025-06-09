@@ -1,6 +1,6 @@
 - type: construction
-  id: MSEtanolBarrel
-  graph: MSEtanolBarrelGraph
+  id: EtanolBarrel
+  graph: EtanolBarrelGraph
   startNode: start
   targetNode: mse
   category: construction-category-machines
