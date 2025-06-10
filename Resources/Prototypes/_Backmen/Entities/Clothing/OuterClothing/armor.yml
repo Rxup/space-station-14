@@ -480,3 +480,14 @@
     clothingPrototype: ClothingHeadHelmetInteQIronTombstone
   - type: PointLight
     color: "#FF8C00"
+
+- type: entity
+  parent: ClothingOuterArmorCaptainCarapace
+  id: ClothingOuterArmorCaptainCarapaceWhite
+  name: captain's white carapace
+  description: An armored breastplate that provides protection while offering mobility and flexibility. Issued only to the best members of the station. White color - symbol of cleanliness and order.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/captain_carapace.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/captain_carapace.rsi

@@ -25,6 +25,8 @@
     ClothingHeadHatCapcapWhite: 1
     ClothingNeckCloakRoyalCaptain: 1
     ClothingNeckWhiteMantleCaptain: 1
+    ClothingNeckMantleCaptainWhiteShoulder: 1
+    ClothingOuterArmorCaptainCarapaceWhite: 1
     ClothingOuterCoatCaptainWhite: 1
     ClothingUniformJumpskirtWhiteCaptain: 1
     ClothingUniformJumpsuitWhiteCaptain: 1
@@ -44,6 +46,7 @@
     ClothingBackpackCaptain: 1
     ClothingBackpackDuffelCaptain: 1
     ClothingBackpackSatchelCaptain: 1
+    ClothingBackpackDuffelWhiteCaptain: 1
    # Stuff
     MedalCase: 1
     FlippoEngravedLighter: 1

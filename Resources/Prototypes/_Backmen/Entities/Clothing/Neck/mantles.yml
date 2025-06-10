@@ -3,6 +3,7 @@
   id: ClothingNeckMantleBlueShield
   name: officer "Blueshield"'s mantle
   description: A mantle specially tailored for Blueshield officers. On the inside of the cloak you can see a tag with the worn inscription “SecInstuct”.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
@@ -45,3 +46,13 @@
     sprite: Backmen/Clothing/Neck/mantles/unathimantle.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Neck/mantles/unathimantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleCaptainWhiteShoulder
+  name: captain's white mantle
+  description: The perfect white captain's shoulder mantle. The purity makes it brutal.
+  suffix: Wendor
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Mantle/white_captains_mantle.rsi
