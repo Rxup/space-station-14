@@ -55,4 +55,6 @@
   suffix: Wendor
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Mantle/white_captains_mantle.rsi
+    sprite: Backmen/Clothing/Neck/Mantle/white_captain_mantle.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Mantle/white_captain_mantle.rsi
