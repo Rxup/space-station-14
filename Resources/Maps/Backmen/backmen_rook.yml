@@ -2666,7 +2666,6 @@ entities:
       - 5025
       - 5027
       - 4958
-      - 5067
       - 3854
       - 3873
       - 3816
@@ -33795,11 +33794,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 26.5,-2.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 27
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 5068
