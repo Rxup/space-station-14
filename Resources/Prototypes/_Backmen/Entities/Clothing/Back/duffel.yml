@@ -33,3 +33,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Duffels/blueshield.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: ClothingBackpackDuffelWhiteCaptain
+  name: captain's white duffel bag
+  description: A large duffel bag for holding extra captainly goods, but now in white.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Duffels/white_captain_duffel.rsi
