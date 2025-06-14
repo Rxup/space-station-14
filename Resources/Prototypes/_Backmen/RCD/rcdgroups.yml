@@ -1,0 +1,4 @@
+- type: rcdGroup
+  id: Defense
+  name: rcd-component-defense
+  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-base.png
