@@ -9,33 +9,42 @@
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
     xmlns:animatedBackground="clr-namespace:Content.Client.Backmen.UI.AnimatedBackground"
-    xmlns:buttons="clr-namespace:Content.Client.Backmen.UI.Buttons">
+    xmlns:buttons="clr-namespace:Content.Client.Backmen.UI.Buttons"
+    xmlns:controls1="clr-namespace:Robust.Client.UserInterface.Controls;assembly=Robust.Client"
+    xmlns:userInterface="clr-namespace:Robust.Client.UserInterface;assembly=Robust.Client">
     <!-- Background -->
-    <animatedBackground:AnimatedBackgroundControl Access="Public" Name="Background" VerticalExpand="True" HorizontalExpand="True"
+    <animatedBackground:AnimatedBackgroundControl Access="Public" Name="Background" VerticalExpand="True"
+                                                  HorizontalExpand="True"
                                                   Stretch="KeepAspectCovered" />
-    <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal"
-                  Margin="10 10 10 10" SeparationOverride="2">
-        <SplitContainer State="Auto" ResizeMode="NotResizable" HorizontalExpand="True">
+    <controls1:BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal"
+                            Margin="10 10 10 10" SeparationOverride="2">
+        <controls1:SplitContainer State="Auto" ResizeMode="NotResizable" HorizontalExpand="True">
             <!-- LHS Controls -->
-            <BoxContainer Name="LeftSide" Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True">
-                <Control Name="DefaultState" VerticalExpand="True">
+            <controls1:BoxContainer Name="LeftSide" Orientation="Vertical" SeparationOverride="4"
+                                    HorizontalExpand="True">
+                <userInterface:Control Name="DefaultState" VerticalExpand="True">
                     <!-- Left Panel  -->
 
-                    <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True"  VerticalAlignment="Bottom">
-                        <controls:HLine Color="#404040" Thickness="1" Margin="0 1"/>
-                        <lobbyUi:ServerListBox Name="ServerListBox" Access="Public" MinSize="0 30" VerticalExpand="True" HorizontalExpand="False"  HorizontalAlignment="Stretch"/>
+                    <controls1:BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True"
+                                            VerticalAlignment="Bottom">
+                        <controls:HLine Color="#404040" Thickness="1" Margin="0 1" />
+                        <lobbyUi:ServerListBox Name="ServerListBox" Access="Public" MinSize="0 30"
+                                               VerticalExpand="True" HorizontalExpand="False"
+                                               HorizontalAlignment="Stretch" />
 
-                    </BoxContainer>
+                    </controls1:BoxContainer>
 
                     <!-- Character Setup State -->
-                    <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
+                    <userInterface:Control Access="Public" Visible="False" Name="CharacterSetupState"
+                                           VerticalExpand="True" />
                     <!-- Vote Container -->
-                    <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer" Access="Public"
-                                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
+                    <controls1:BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
+                                            Access="Public"
+                                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
                     <!-- Vertical Padding -->
-                    <Control VerticalExpand="True" />
-                    <RichTextLabel Name="LabelName" Access="Public" HorizontalAlignment="Left"
-                                   VerticalAlignment="Center" Margin="20 0 0 450" />
+                    <userInterface:Control VerticalExpand="True" />
+                    <controls1:RichTextLabel Name="LabelName" Access="Public" HorizontalAlignment="Left"
+                                             VerticalAlignment="Center" Margin="20 0 0 450" />
 
 
                     <PanelContainer HorizontalAlignment="Left" Name="Center" VerticalAlignment="Center">
@@ -94,10 +103,11 @@
                                           StyleClasses="LobbyBackground" />
                         </BoxContainer>
                     </PanelContainer>
-                </Control>
-            </BoxContainer>
+                </userInterface:Control>
+            </controls1:BoxContainer>
             <!-- Right Panel -->
-            <PanelContainer Name="RightSide" Access="Public" StyleClasses="LobbyBackground" HorizontalAlignment="Right" VerticalExpand="True"
+            <PanelContainer Name="RightSide" Access="Public" StyleClasses="LobbyBackground" HorizontalAlignment="Right"
+                            VerticalExpand="True"
                             VerticalAlignment="Stretch">
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                     <!-- Top row -->
@@ -113,7 +123,8 @@
                     <controls:NanoHeading Text="{Loc 'ui-lobby-server-info-block'}" />
                     <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 100" VerticalExpand="false"
                                      Margin="3 3 3 3" MaxWidth="400" HorizontalAlignment="Left" />
-                    <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
+                    <Label Name="StationTime" Access="Public"
+                           FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
                            Margin="3 3 3 3" HorizontalAlignment="Left" />
                     <Label Name="StartTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
                            Margin="3 3 3 3" StyleClasses="Label" HorizontalExpand="True" />
@@ -125,14 +136,14 @@
                     <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" Margin="3 3 3 3" MinHeight="50" />
                 </BoxContainer>
                 <TextureButton Name="CollapseButton"
-                                TexturePath="filled_right_arrow.svg.192dpi"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Margin="0 2 2 0"
-                                ModulateSelfOverride="#DEDEDE"
-                                Scale="0.5 0.5"/>
+                               TexturePath="filled_right_arrow.svg.192dpi"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Margin="0 2 2 0"
+                               ModulateSelfOverride="#DEDEDE"
+                               Scale="0.5 0.5" />
             </PanelContainer>
-        </SplitContainer>
+        </controls1:SplitContainer>
         <PanelContainer Name="ExpandPanel"
                         StyleClasses="AngleRect"
                         HorizontalAlignment="Right"
@@ -140,11 +151,11 @@
                         Margin="0 2 2 0"
                         Visible="False">
             <TextureButton Name="ExpandButton"
-                        TexturePath="filled_left_arrow.svg.192dpi"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        ModulateSelfOverride="#DEDEDE"
-                        Scale="0.5 0.5"/>
+                           TexturePath="filled_left_arrow.svg.192dpi"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           ModulateSelfOverride="#DEDEDE"
+                           Scale="0.5 0.5" />
         </PanelContainer>
-    </BoxContainer>
+    </controls1:BoxContainer>
 </lobbyUi:LobbyGui>

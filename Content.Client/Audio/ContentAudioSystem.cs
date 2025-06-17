@@ -34,6 +34,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float TtsAnnounceMultiplier = 2f; // Corvax-TTS
 
 
+    public const float VoiceChatMultiplier = 5f;
+
     public override void Initialize()
     {
         base.Initialize();
