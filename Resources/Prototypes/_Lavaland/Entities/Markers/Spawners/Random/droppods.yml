@@ -1,0 +1,82 @@
+- type: entity
+  id: TriggerSpawnerGutterDropdop
+  suffix: Marker Random Gutters
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: RandomDroppodSpawner
+
+- type: entity
+  id: TriggerSpawnerRocketDropdop
+  suffix: Marker Rocket Area Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: DropPodLauncherRocket
+
+- type: entity
+  id: RandomDroppodSpawner
+  name: random gutter spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: guttertank
+        sprite: Backmen/Mobs/Npc/guttertank.rsi
+  - type: SpawnOnDespawn
+    prototypes:
+    - DropPodLauncherGutter
+    - DropPodLauncherGutter
+
+- type: entity
+  id: DropPodLauncherGutter
+  parent: Baseholypentagram
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    layers:
+    - state: NoId
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: SpawnOnDespawn
+    prototype: RandomGutterSpawner
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  id: RandomGutterSpawner
+  name: random gutter spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: gutterman
+        sprite: Backmen/Mobs/Npc/gutterman.rsi
+  - type: RandomSpawner
+    prototypes:
+      - DropPodMarkerGutterman
+      - DropPodMarkerGuttertank
+    chance: 1
+
+- type: entity
+  id: DropPodLauncherRocket
+  parent: DropPodLauncherGutter
+  components:
+  - type: SpawnOnDespawn
+    prototype: MissileDropSpawnerAreaSpawner
