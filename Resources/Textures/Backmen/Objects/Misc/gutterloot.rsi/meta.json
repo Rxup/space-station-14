@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by no_mad",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "armorman"
+        },
+        {
+            "name": "armortank"
+        },
+        {
+            "name": "armtank"
+        },
+        {
+            "name": "brain"
+        },
+        {
+            "name": "gunman"
+        },
+        {
+            "name": "guntank"
+        },
+        {
+            "name": "headman"
+        },
+        {
+            "name": "heart"
+        },
+        {
+            "name": "shoulderman"
+        },
+        {
+            "name": "spring"
+        },
+        {
+            "name": "spring2"
+        },
+        {
+            "name": "spring3"
+        },
+        {
+            "name": "spring4"
+        },
+        {
+            "name": "spring5"
+        }
+    ]
+}
