@@ -28,6 +28,8 @@
     prototypes:
     - DropPodLauncherGutter
     - DropPodLauncherGutter
+  - type: TimedDespawn
+    lifetime: 0.1
 
 - type: entity
   id: DropPodLauncherGutter
@@ -53,6 +55,8 @@
         true
       NavSmash: !type:Bool
         true
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 8
   - type: SpawnOnDespawn
     prototype: RandomGutterSpawner
   - type: TimedDespawn

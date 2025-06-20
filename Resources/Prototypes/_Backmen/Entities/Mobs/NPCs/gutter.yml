@@ -853,9 +853,6 @@
     capacity: 1
     count: 1
 
-- type: Tag
-  id: Guttertank
-
 - type: entity
   id: GuttertankSpeedster
   parent: GuttermanShooter
