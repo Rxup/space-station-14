@@ -20,6 +20,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
@@ -27,6 +28,8 @@ public abstract partial class WoundSystem : EntitySystem
 {
     [Dependency] protected readonly IRobustRandom Random = default!;
     [Dependency] protected readonly IConfigurationManager Cfg = default!;
+
+    [Dependency] protected readonly IGameTiming Timing = default!;
 
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;

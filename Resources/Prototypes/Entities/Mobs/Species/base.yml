@@ -98,6 +98,12 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+    - Alive
+    - SoftCritical
+    - Critical
+    - Dead
   - type: FloorOcclusion
   - type: Mood
   - type: RangedDamageSound

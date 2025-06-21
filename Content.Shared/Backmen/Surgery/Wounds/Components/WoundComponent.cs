@@ -42,6 +42,18 @@ public sealed partial class WoundComponent : Component
     public WoundType WoundType = WoundType.External;
 
     /// <summary>
+    /// Self-explanatory
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan DamagedLastTime;
+
+    /// <summary>
+    /// Self-explanatory, right now only applies for passive healing; Basically: Clotting
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public TimeSpan CanHealAfter = TimeSpan.FromSeconds(15f);
+
+    /// <summary>
     /// Damage group of this wound.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]

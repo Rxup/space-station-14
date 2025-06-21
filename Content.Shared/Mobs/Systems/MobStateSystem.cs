@@ -43,6 +43,21 @@ public partial class MobStateSystem : EntitySystem
         return component.CurrentState == MobState.Alive;
     }
 
+    // backmen edit
+    /// <summary>
+    ///  Check if a Mob is Critical. ACTUALLY critical
+    /// </summary>
+    /// <param name="target">Target Entity</param>
+    /// <param name="component">The MobState component owned by the target</param>
+    /// <returns>If the entity is Critical</returns>
+    public bool IsHardCritical(EntityUid target, MobStateComponent? component = null)
+    {
+        if (!_mobStateQuery.Resolve(target, ref component, false))
+            return false;
+        return component.CurrentState is MobState.Critical;
+    }
+    // backmen edit
+
     /// <summary>
     ///  Check if a Mob is Critical
     /// </summary>

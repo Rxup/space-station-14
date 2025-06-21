@@ -99,3 +99,4 @@
   name: damage-type-holy
   armorCoefficientPrice: 1
   armorFlatPrice: 1
+  woundHealingMultiplier: 5
