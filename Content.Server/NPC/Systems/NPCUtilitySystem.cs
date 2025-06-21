@@ -343,7 +343,7 @@ public sealed class NPCUtilitySystem : EntitySystem
             }
             case TargetIsCritCon:
             {
-                return _mobState.IsCritical(targetUid) ? 1f : 0f;
+                return _mobState.IsHardCritical(targetUid) ? 1f : 0f; // backmen edit: soft crit
             }
             case TargetIsDeadCon:
             {

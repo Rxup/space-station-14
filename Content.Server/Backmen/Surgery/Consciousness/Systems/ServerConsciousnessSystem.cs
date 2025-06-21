@@ -43,7 +43,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     private float _cprTraumaChance = 0.1f;
 
     [ValidatePrototypeId<DamageTypePrototype>]
-    private string AsphyxiationDamageType = "Asphyxiation";
+    private const string AsphyxiationDamageType = "Asphyxiation";
 
     public override void Initialize()
     {
@@ -218,13 +218,13 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
         if (MobStateSys.IsDead(consciousness, mobState))
         {
-            _popup.PopupEntity(Loc.GetString("cpr-cant-perform-dead"), consciousness, user, PopupType.Medium);
+            _popup.PopupPredicted(Loc.GetString("cpr-cant-perform-dead"), consciousness, user, PopupType.Medium);
             return false;
         }
 
         if (mobState.CurrentState is not MobState.Critical)
         {
-            _popup.PopupEntity(Loc.GetString("cpr-cant-perform-not-crit"), consciousness, user, PopupType.Medium);
+            _popup.PopupPredicted(Loc.GetString("cpr-cant-perform-not-crit"), consciousness, user, PopupType.Medium);
             return false;
         }
 
@@ -279,10 +279,10 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (_trauma.TryGetBodyTraumas(consciousness, out var traumas, TraumaType.OrganDamage))
         {
             var hearts = Body.GetBodyOrganEntityComps<HeartComponent>(consciousness.Owner);
-            var cprableOrgans = new List<EntityUid>();
+            var cprableOrgans = new HashSet<EntityUid>();
 
-            cprableOrgans.AddRange(lungs.Select(lung => lung.Owner));
-            cprableOrgans.AddRange(hearts.Select(heart => heart.Owner));
+            cprableOrgans.UnionWith(lungs.Select(lung => lung.Owner));
+            cprableOrgans.UnionWith(hearts.Select(heart => heart.Owner));
 
             var cprableOrgansDamaged = false;
             foreach (var trauma in traumas)
@@ -374,6 +374,12 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             consciousness.Comp.CprSuffocationHealAmount,
             "Suffocation");
 
+        if (consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
+        {
+            // No fuck you
+            RemoveConsciousnessModifier(consciousness, nerveSys.Value, "Suffocation", consciousness.Comp);
+        }
+
         _popup.PopupEntity(
             Loc.GetString("user-finished-cpr-successfully", ("user", args.User), ("target", consciousness)),
             consciousness);
@@ -454,6 +460,12 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                     -damagePiece.Value,
                     "Suffocation",
                     consciousness: consciousness);
+            }
+
+            if (consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
+            {
+                // No fuck you
+                RemoveConsciousnessModifier(consciousness, nerveSys.Value, "Suffocation", consciousness.Comp);
             }
 
             args.UnhandledDamage.Remove(damagePiece.Key);

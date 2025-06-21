@@ -12,7 +12,6 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -94,12 +93,15 @@ public sealed class ServerWoundSystem : WoundSystem
                 continue;
 
             var woundsToHeal =
-                GetWoundableWounds(ent, woundable).Where(wound => CanHealWound(wound, wound)).ToList();
+                GetWoundableWounds(ent, woundable)
+                    .Where(wound => CanHealWound(wound, wound))
+                    .Where(wound => wound.Comp.DamagedLastTime + wound.Comp.CanHealAfter < Timing.CurTime)
+                    .ToArray();
 
-            if (woundsToHeal.Count == 0)
+            if (woundsToHeal.Length == 0)
                 continue;
 
-            var healAmount = -woundable.HealAbility / woundsToHeal.Count;
+            var healAmount = -woundable.HealAbility / woundsToHeal.Length;
 
             Entity<WoundableComponent> owner = (ent, woundable);
             foreach (var x in woundsToHeal)

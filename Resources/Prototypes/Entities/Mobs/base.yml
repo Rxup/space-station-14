@@ -97,7 +97,6 @@
   - type: MobState
     allowedStates:
     - Alive
-    - SoftCritical
     - Critical
     - Dead
   - type: MobThresholds

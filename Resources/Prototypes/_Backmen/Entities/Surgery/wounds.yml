@@ -163,7 +163,7 @@
     scarWound: BurnScar
     integrityMultiplier: 0.34 # boiling people
   - type: TraumaInflicter
-    severityThreshold: 17
+    severityThreshold: 24
     allowedTraumas:
     - OrganDamage
     - BoneDamage
@@ -224,7 +224,7 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
-    integrityMultiplier: 0.6
+    integrityMultiplier: 0.34
   - type: TraumaInflicter
     severityThreshold: 0
     allowedTraumas:
@@ -252,7 +252,7 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
-    integrityMultiplier: 0.34
+    integrityMultiplier: 0 # Rotting does not gib people
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -334,16 +334,6 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     integrityMultiplier: 0
-  - type: TraumaInflicter
-    severityThreshold: 0
-    allowedTraumas:
-    - NerveDamage
-    traumasChances:
-      Dismemberment: 0
-      OrganDamage: 0
-      BoneDamage: 0
-      VeinsDamage: 0
-      NerveDamage: 0.777
   - type: PainInflicter
     painType: TraumaticPain
     multiplier: 0.333
