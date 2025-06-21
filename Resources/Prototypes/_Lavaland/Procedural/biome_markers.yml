@@ -22,14 +22,14 @@
 
 - type: biomeMarkerLayer
   id: RandomDroppodGutterLavaland
-  prototype: TriggerSpawnerGutterDropdop
+  prototype: TriggerSpawnerGutterDroppop
   radius: 24
   maxCount: 64
   size: 512
 
 - type: biomeMarkerLayer
   id: RandomRocketLaunchLavaland
-  prototype: TriggerSpawnerRocketDropdop
+  prototype: TriggerSpawnerRocketDroppop
   radius: 24
   maxCount: 64
   size: 512
