@@ -375,7 +375,6 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 3
   - type: MeleeThrowOnHit
-    sound: /Audio/Weapons/boxingpunch1.ogg
   - type: MeleeWeapon
     attackRate: 1.1
     range: 1
