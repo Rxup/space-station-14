@@ -52,7 +52,6 @@
   id: ClothingNeckMantleCaptainWhiteShoulder
   name: captain's white mantle
   description: The perfect white captain's shoulder mantle. The purity makes it brutal.
-  suffix: Wendor
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Mantle/white_captain_mantle.rsi
