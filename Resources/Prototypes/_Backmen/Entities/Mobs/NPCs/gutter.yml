@@ -307,6 +307,7 @@
         - CrateMask
         layer:
         - MachineLayer
+  - type: Transform
   - type: NpcFactionMember
     factions:
       - MalfunctioningRobot
