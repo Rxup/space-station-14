@@ -95,7 +95,7 @@ public sealed class ServerWoundSystem : WoundSystem
             var woundsToHeal =
                 GetWoundableWounds(ent, woundable)
                     .Where(wound => CanHealWound(wound, wound))
-                    .Where(wound => wound.Comp.DamagedLastTime < Timing.CurTime + wound.Comp.CanHealAfter)
+                    .Where(wound => wound.Comp.DamagedLastTime + wound.Comp.CanHealAfter < Timing.CurTime)
                     .ToArray();
 
             if (woundsToHeal.Length == 0)
