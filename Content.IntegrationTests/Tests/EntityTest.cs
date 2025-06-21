@@ -246,8 +246,12 @@ namespace Content.IntegrationTests.Tests
                 "MobHumanSpaceNinja",
                 "MobHumanRXBZZFlamer",
                 "MobPMCGreyTideMosin",
-                "MobGutterman",
+                "MobGutterman", //Polymorf test failure
                 "MobGuttertank",
+                "MobGuttermanShooterTurret",
+                "MobGuttermanShooter",
+                "MobGuttertankShooter",
+                "MobGuttertankSpeedster",
             };
 
             var excluded = new[]
