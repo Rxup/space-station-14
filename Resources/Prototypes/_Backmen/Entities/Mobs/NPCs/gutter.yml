@@ -3,7 +3,7 @@
 - type: entity
   id: MobBaseMachine
   parent: MobBaseNpcSalvage
-  categories: [ HideSpawnMenu ]
+  abstract: true
   suffix: Машина
   components:
   - type: NpcFactionMember
@@ -66,6 +66,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Transform
   - type: Damageable
     damageModifierSet: MachineArmor
   - type: RequireProjectileTarget
