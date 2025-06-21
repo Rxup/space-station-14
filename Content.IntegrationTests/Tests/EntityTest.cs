@@ -246,6 +246,8 @@ namespace Content.IntegrationTests.Tests
                 "MobHumanSpaceNinja",
                 "MobHumanRXBZZFlamer",
                 "MobPMCGreyTideMosin",
+                "MobGutterman",
+                "MobGuttertank",
             };
 
             var excluded = new[]
