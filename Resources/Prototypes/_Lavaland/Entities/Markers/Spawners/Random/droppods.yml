@@ -55,6 +55,17 @@
         true
       NavSmash: !type:Bool
         true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
   - type: MovementSpeedModifier
     baseSprintSpeed: 8
   - type: SpawnOnDespawn
