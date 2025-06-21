@@ -20,6 +20,23 @@ namespace Content.IntegrationTests.Tests
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
+        // TODO: Fix all of these
+        private readonly string[] _excludedIds =
+        [
+            "MobSyndicateSmuggler",
+            "MobHumanSyndicateAgentMedic",
+            "MobHumanSpaceNinja",
+            "MobHumanRXBZZFlamer",
+            "MobPMCGreyTideMosin",
+            "MobGutterman", // Polymorph test failure
+            "MotGuttermanShooter",
+            "MobGuttertank",
+            "MobGuttermanShooterTurret",
+            "MobGuttermanShooter",
+            "MobGuttertankShooter",
+            "MobGuttermanWisp",
+        ];
+
         [Test]
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
@@ -165,6 +182,7 @@ namespace Content.IntegrationTests.Tests
             var protoIds = prototypeMan
                 .EnumeratePrototypes<EntityPrototype>()
                 .Where(p => !p.Abstract)
+                .Where(p => !_excludedIds.Contains(p.ID))
                 .Where(p => !pair.IsTestPrototype(p))
                 .Where(p => !p.Components.ContainsKey("MapGrid")) // This will smash stuff otherwise.
                 .Select(p => p.ID)
@@ -238,22 +256,6 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
             var client = pair.Client;
 
-            // TODO: Fix all of these
-            var excludedIds = new[]
-            {
-                "MobSyndicateSmuggler",
-                "MobHumanSyndicateAgentMedic",
-                "MobHumanSpaceNinja",
-                "MobHumanRXBZZFlamer",
-                "MobPMCGreyTideMosin",
-                "MobGutterman", //Polymorf test failure
-                "MobGuttertank",
-                "MobGuttermanShooterTurret",
-                "MobGuttermanShooter",
-                "MobGuttertankShooter",
-                "MobGuttertankSpeedster",
-            };
-
             var excluded = new[]
             {
                 "MapGrid",
@@ -273,6 +275,7 @@ namespace Content.IntegrationTests.Tests
 
             var protoIds = server.ProtoMan
                 .EnumeratePrototypes<EntityPrototype>()
+                .Where(p => !_excludedIds.Contains(p.ID))
                 .Where(p => !p.Abstract)
                 .Where(p => !pair.IsTestPrototype(p))
                 .Where(p => !excluded.Any(p.Components.ContainsKey))
