@@ -563,7 +563,6 @@
     useKey: false
     soundGunshot: /Audio/Weapons/Guns/Gunshots/minigun.ogg
   - type: AutoShootGun
-    enabled: true
   - type: RepeatingTrigger
     delay: 0.1
   - type: HTN
