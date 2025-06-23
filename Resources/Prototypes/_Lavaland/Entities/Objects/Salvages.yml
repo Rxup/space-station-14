@@ -230,3 +230,181 @@
   - type: Construction
     graph: AncientWeapon
     node: superweapon
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGutterSpring
+  name: mechanical spring
+  description:
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    layers:
+    - state: spring
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          spring: ""
+      - enum.DamageStateVisualLayers.Base:
+          spring2: ""
+      - enum.DamageStateVisualLayers.Base:
+          spring3: ""
+      - enum.DamageStateVisualLayers.Base:
+          spring4: ""
+      - enum.DamageStateVisualLayers.Base:
+          spring5: ""
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Construction
+    graph: SalvageSpring
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGuttermanArmor
+  name: gutterman armor
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: armorman
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Construction
+    graph: ArmorGutterman
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGuttertankArmor
+  name: guttertank armor
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: armortank
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Construction
+    graph: ArmorGuttertank
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGuttertankArm
+  name: guttertank arm
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: armtank
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Construction
+    graph: Armtank
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGutterBrain
+  name: brain
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: brain
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGutterHeart
+  name: heart
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: brain
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGuttlingGun
+  name: guttling gun
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: gunman
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Construction
+    graph: gunman
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageRocketGutlaucher
+  name: guttlaucher
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: guntank
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,3
+  - type: Construction
+    graph: guntank
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGuttermanHead
+  name: headman
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: headman
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,3
+  - type: Construction
+    graph: headman
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: SalvageGuttermanShoulder
+  name: shoulder
+  description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    state: shoulderman
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Construction
+    graph: shoulder
+    node: start

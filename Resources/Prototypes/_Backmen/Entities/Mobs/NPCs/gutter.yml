@@ -1,0 +1,904 @@
+#Machines
+
+- type: entity
+  id: MobBaseMachine
+  parent: MobBaseNpcSalvage
+  abstract: true
+  suffix: Машина
+  components:
+  - type: NpcFactionMember
+    factions:
+      - MalfunctioningRobot
+  - type: NoSlip
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: TemperatureProtection
+  - type: Temperature
+    damageCap: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 1
+  - type: Bloodstream
+    bloodReagent: Oil
+    bloodMaxVolume: 30
+    bloodlossThreshold: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Transform
+  - type: Damageable
+    damageModifierSet: MachineArmor
+  - type: RequireProjectileTarget
+    active: true
+
+- type: damageModifierSet
+  id: MachineArmor
+  coefficients:
+    Piercing: 0.3
+    Heat: 0.01
+    Radiation: 0.01
+    Caustic: 0.01
+    Stun: 0.1
+
+#StreetCleaner
+- type: entity
+  id: DropPodMarkerStreetCleaner
+  parent: DropPodMarker
+  suffix: Спавнер машины, Стритклинер
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationStreetCleaner
+    intervalSeconds: 2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: DropPodLaunchAnimationStreetCleaner
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodStreetCleaner
+
+- type: entity
+  id: SupplyDropPodStreetCleaner
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: supplypod
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: ConditionalSpawner
+    prototypes:
+    - StreetCleanerTeamSpawner
+
+- type: entity
+  id: StreetCleanerTeamSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MobStreetCleaner
+    chance: 1
+    intervalSeconds: 1
+    minimumEntitiesSpawned: 3
+    maximumEntitiesSpawned: 3
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 1.2
+
+- type: entity
+  name: Street soldier
+  description: Робот созданный из уличного мусора.
+  parent: MobBaseMachine
+  id: MobStreetCleaner
+  suffix: Машина, Стритклинер
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/machine/Negative_Notification_25.ogg
+  - type: NpcFactionMember
+    factions:
+      - MalfunctioningRobot
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Sprite
+    sprite: Backmen/Mobs/Npc/streetcleaner.rsi
+    layers:
+    - state: streetcleaner
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifleBigJohn
+    capacity: 5
+    count: 5
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 8
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.01
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: EmoteOnDamage
+    emotes:
+    - GutterPain
+    emoteChance: 1
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Male: GutterHurt
+      Female: GutterHurt
+      Unsexed: GutterHurt
+  - type: RequireProjectileTarget
+    active: false
+
+#Gutterman
+- type: entity
+  id: DropPodMarkerGutterman
+  parent: DropPodMarker
+  suffix: Спавнер машины, Гаттерман
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationGutterman
+    intervalSeconds: 2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: DropPodLaunchAnimationGutterman
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodGutterman
+
+- type: entity
+  id: SupplyDropPodGutterman
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: supplypod
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGutterman
+
+- type: entity
+  name: Gutterman
+  description: Человек из сточной канавы.
+  parent: MobBaseMachine
+  id: MobGuttermanBase
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/gutter/GuttertankDeath.ogg
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          SalvageGutterSpring:
+            min: 1
+            max: 5
+          SalvageGuttermanArmor:
+            min: 1
+            max: 1
+          SalvageGutterBrain:
+            min: 0
+            max: 1
+          SalvageGutterHeart:
+            min: 0
+            max: 1
+          SalvageGuttlingGun:
+            min: 0
+            max: 1
+          SalvageGuttermanHead:
+            min: 0
+            max: 1
+          SalvageGuttermanShoulder:
+            min: 1
+            max: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - CrateMask
+        layer:
+        - MachineLayer
+  - type: Transform
+  - type: NpcFactionMember
+    factions:
+      - MalfunctioningRobot
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Backmen/Bosses/gutter/GuttertankStep.ogg
+      params:
+        volume: -2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Sprite
+    scale: 1.3, 1.3
+    sprite: Backmen/Mobs/Npc/gutterman.rsi
+    layers:
+    - state: gutterman
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Tag
+    tags:
+      - Gutterman
+      - FootstepSound
+  - type: EmoteOnDamage
+    emotes:
+    - GutterPain
+    emoteChance: 1
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Male: GutterHurt
+      Female: GutterHurt
+      Unsexed: GutterHurt
+
+- type: emoteSounds
+  id: GutterHurt
+  params:
+    variation: 0.125
+  sounds:
+    GutterPain:
+      collection: GutterPain
+      params:
+        volume: 1
+
+- type: emote
+  id: GutterPain
+  name: gutterpain
+  chatMessages: ["chat-emote-msg-gasp"]
+  chatTriggers:
+   - gutterpain
+
+- type: soundCollection
+  id: GutterPain
+  files:
+    - /Audio/Backmen/Bosses/gutter/GuttertankHurt1.ogg
+    - /Audio/Backmen/Bosses/gutter/GuttertankHurt2.ogg
+    - /Audio/Backmen/Bosses/gutter/GuttertankHurt3.ogg
+    - /Audio/Backmen/Bosses/gutter/GuttertankHurt4.ogg
+
+- type: entity
+  parent: MobGuttermanBase
+  id: MobGutterman
+  suffix: Машина, гаттерман
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3
+  - type: MeleeThrowOnHit
+  - type: MeleeWeapon
+    attackRate: 1.1
+    range: 1
+    angle: 0
+    animation: WeaponArcSlash
+    soundHit:
+        collection: Punch
+    damage:
+        types:
+          Blunt: 30
+  - type: NpcFactionMember
+    factions:
+      - MalfunctioningRobot
+  - type: Polymorphable
+    innatePolymorphs:
+    - GuttermanShooter
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - MobGuttermanWisp
+    chance: 1
+    intervalSeconds: 5
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  id: MobGuttermanWisp
+  parent: BaseAngelWisp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    layers:
+      - state: NoId
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 1
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+      - MalfunctioningRobot
+  - type: BasicEntityAmmoProvider
+    proto: GuttermanShooter
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 0
+    soundGunshot:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: Tag
+  id: Gutterman
+
+- type: entity
+  id: GuttermanShooter
+  parent: ProjectilePolyboltFly
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: KinematicController
+  - type: PolymorphOnTrigger
+    polymorph: GuttermanShooter
+  - type: TriggerWhitelist
+    whitelist:
+      tags:
+      - Gutterman
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.85,-0.85,0.85,0.85"
+        mask:
+        - Impassable
+        - BulletImpassable
+        hard: false
+
+- type: polymorph
+  id: GuttermanShooter
+  configuration:
+    entity: MobGuttermanShooter
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 5
+
+- type: entity
+  parent: MobGuttermanShooter
+  id: MobGuttermanShooterTurret
+  suffix: Машина турель, гаттерман
+  components:
+  - type: HTN
+    rootTask:
+      task: TurretHuyiniCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        1
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Backmen/Bosses/gutter/GuttertankPrep.ogg
+      VisionRadius: !type:Single
+        40
+      AggroVisionRadius: !type:Single
+        40
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+
+- type: htnCompound
+  id: TurretHuyiniCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyGunTargets
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              # TODO: Non-scuffed
+              rangeKey: AggroVisionRadius
+            - !type:TargetInLOSPrecondition
+              targetKey: Target
+              rangeKey: AggroVisionRadius
+          operator: !type:GunOperator
+            targetKey: Target
+            requireLOS: true
+          services:
+            - !type:UtilityService
+              id: RangedService
+              proto: NearbyGunTargets
+              key: Target
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleSpinAndKeepFiringCompound
+
+- type: entity
+  parent: MobGuttermanBase
+  id: MobGuttermanShooter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 0
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.01
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifleGutterman
+    capacity: 50
+    count: 50
+  - type: Gun
+    fireRate: 10
+    minAngle: 1
+    maxAngle: 10
+    useKey: false
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/minigun.ogg
+  - type: RepeatingTrigger
+    delay: 0.1
+  - type: HTN
+    rootTask:
+      task: TurretHuyiniCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        1
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Backmen/Bosses/gutter/GuttertankPrep.ogg
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: MouseRotator
+    angleTolerance: 5
+    rotationSpeed: 40
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Damageable
+    damageModifierSet: MachineGuttermanArmor
+
+- type: damageModifierSet
+  id: MachineGuttermanArmor
+  coefficients:
+    Piercing: 0.1
+    Blunt: 0.5
+    Heat: 0.01
+    Radiation: 0.01
+    Caustic: 0.01
+    Stun: 0.1
+
+- type: entity
+  id: BulletRifleGutterman
+  name: пуля
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+
+#Guttertank - miniboss
+- type: entity
+  id: DropPodMarkerGuttertank
+  parent: DropPodMarker
+  suffix: Спавнер машины, Гаттертанк
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - DropPodLaunchAnimationGuttertank
+    intervalSeconds: 2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: DropPodLaunchAnimationGuttertank
+  parent: DropPodLaunchAnimationGutterman
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodGuttertank
+
+- type: entity
+  id: SupplyDropPodGuttertank
+  parent: SupplyDropPodGutterman
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuttertank
+
+- type: entity
+  name: Guttertank
+  description: Танк из сточной канавы.
+  parent: MobGuttermanBase
+  id: MobGuttertankBase
+  abstract: true
+  components:
+  - type: AmbientSound
+    volume: -4
+    range: 5
+    sound:
+      path: /Audio/Backmen/Bosses/gutter/GuttertankStatic.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Backmen/Bosses/gutter/GuttertankDeath.ogg
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          SalvageGutterSpring:
+            min: 1
+            max: 5
+          SalvageGuttertankArmor:
+            min: 1
+            max: 1
+          SalvageGutterBrain:
+            min: 0
+            max: 1
+          SalvageGutterHeart:
+            min: 0
+            max: 1
+          SalvageRocketGutlaucher:
+            min: 1
+            max: 1
+          SalvageGuttertankArm:
+            min: 1
+            max: 1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: Sprite
+    scale: 1.3, 1.3
+    sprite: Backmen/Mobs/Npc/guttertank.rsi
+    layers:
+    - state: guttertank
+  - type: Tag
+    tags:
+      - Guttertank
+      - FootstepSound
+
+- type: entity
+  parent: MobGuttertankBase
+  id: MobGuttertank
+  suffix: Машина, гаттертанк
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3
+  - type: TelescopicBaton
+  - type: MeleeThrowOnHit
+  - type: StaminaDamageOnHit
+    damage: 16
+    sound: /Audio/Weapons/boxingpunch1.ogg
+  - type: MeleeWeapon
+    attackRate: 1.1
+    range: 1
+    angle: 0
+    animation: WeaponArcSlash
+    soundHit:
+        collection: Punch
+    damage:
+        types:
+          Blunt: 25
+  - type: NpcFactionMember
+    factions:
+      - MalfunctioningRobot
+  - type: Polymorphable
+    innatePolymorphs:
+    - GuttertankShooter
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - MobGuttertankWisp
+      - MobGuttertankWispSpeedster
+    chance: 1
+    intervalSeconds: 3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+#guttertank-shooter
+
+- type: entity
+  id: MobGuttertankWisp
+  parent: MobGuttermanWisp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: GuttertankShooter
+    capacity: 1
+    count: 1
+
+- type: Tag
+  id: Guttertank
+
+- type: entity
+  id: GuttertankShooter
+  parent: GuttermanShooter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: GuttertankShooter
+  - type: TriggerWhitelist
+    whitelist:
+      tags:
+      - Guttertank
+
+- type: polymorph
+  id: GuttertankShooter
+  configuration:
+    entity: MobGuttertankShooter
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 2
+
+- type: entity
+  parent: MobGuttertankBase
+  id: MobGuttertankShooter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 0
+  - type: BasicEntityAmmoProvider
+    proto: BulletGuttertankRocket
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Backmen/Bosses/gutter/GuttertankPrep.ogg
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+
+- type: entity
+  id: BulletGuttertankRocket
+  name: rocket
+  parent: BulletWeakRocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 1
+    maxIntensity: 150
+    canCreateVacuum: false
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+#guttertank-speedster
+
+- type: entity
+  id: MobGuttertankWispSpeedster
+  parent: MobGuttermanWisp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: GuttertankSpeedster
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: GuttertankSpeedster
+  parent: GuttermanShooter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: GuttertankSpeedster
+  - type: TriggerWhitelist
+    whitelist:
+      tags:
+      - Guttertank
+
+- type: polymorph
+  id: GuttertankSpeedster
+  configuration:
+    entity: MobGuttertankSpeedster
+    transferName: true
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 3
+
+- type: entity
+  parent: MobGuttertankBase
+  id: MobGuttertankSpeedster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5
+    friction: 0
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Bosses/gutter/GuttertankPunchPrep.ogg
+      params:
+        volume: 5
+  - type: TelescopicBaton
+  - type: MeleeThrowOnHit
+  - type: StaminaDamageOnHit
+    damage: 36
+    sound: /Audio/Weapons/boxingpunch1.ogg
+  - type: MeleeWeapon
+    attackRate: 1.1
+    range: 1
+    angle: 0
+    animation: WeaponArcSlash
+    soundHit:
+        collection: Punch
+    damage:
+        types:
+          Blunt: 15

@@ -404,3 +404,212 @@
             doAfter: 2
     - node: Upgraded
       entity: PKAUpgradeFireRateTier2
+
+- type: constructionGraph
+  id: SalvageSpring
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 3
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 2
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: ArmorGutterman
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 10
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialHEVPiece
+            amount: 6
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: ArmorGuttertank
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialHEVPiece
+            amount: 10
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: Armtank
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialHEVPiece
+            amount: 5
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 5
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: gunman
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 8
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 11
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: guntank
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 8
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialHEVPiece
+            amount: 3
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 8
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: headman
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 10
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialHEVPiece
+            amount: 1
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemMaterialCableGold
+            amount: 5
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+    - node: Unload
+
+- type: constructionGraph
+  id: shoulder
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: Unload
+        completed:
+          - !type:SpawnPrototype
+            prototype: ChanceSpawnerItemM9Steel
+            amount: 4
+          - !type:DeleteEntity
+        steps:
+          - tool: Screwing
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+          - tool: Prying
+            doAfter: 1
+    - node: Unload

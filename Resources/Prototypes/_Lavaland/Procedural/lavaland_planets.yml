@@ -33,3 +33,7 @@
   - OreArtifactFragment
   - OreDiamond
   #- BSCrystal
+  # DroppopLaunchers-Start
+  - RandomDroppodGutterLavaland
+  - RandomRocketLaunchLavaland
+  # DroppopLaunchers-End

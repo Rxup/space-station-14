@@ -9,6 +9,7 @@
     bodyType: Static
   - type: Transform
     anchored: true
+  - type: Marker
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite

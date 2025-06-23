@@ -238,16 +238,6 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
             var client = pair.Client;
 
-            // TODO: Fix all of these
-            var excludedIds = new[]
-            {
-                "MobSyndicateSmuggler",
-                "MobHumanSyndicateAgentMedic",
-                "MobHumanSpaceNinja",
-                "MobHumanRXBZZFlamer",
-                "MobPMCGreyTideMosin",
-            };
-
             var excluded = new[]
             {
                 "MapGrid",

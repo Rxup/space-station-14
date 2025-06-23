@@ -17,3 +17,19 @@
 #  radius: 32
 #  maxCount: 96
 #  size: 128
+
+# Random Droppods launch
+
+- type: biomeMarkerLayer
+  id: RandomDroppodGutterLavaland
+  prototype: TriggerSpawnerGutterDroppop
+  radius: 24
+  maxCount: 64
+  size: 512
+
+- type: biomeMarkerLayer
+  id: RandomRocketLaunchLavaland
+  prototype: TriggerSpawnerRocketDroppop
+  radius: 24
+  maxCount: 64
+  size: 512

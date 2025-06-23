@@ -1,0 +1,97 @@
+- type: entity
+  id: TriggerSpawnerGutterDroppop
+  suffix: Marker Random Gutters
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: RandomDroppodSpawner
+
+- type: entity
+  id: TriggerSpawnerRocketDroppop
+  suffix: Marker Rocket Area Spawner
+  parent: TriggerSpawnerXEN
+  components:
+  - type: SpawnOnTrigger
+    proto: DropPodLauncherRocket
+
+- type: entity
+  id: RandomDroppodSpawner
+  name: random gutter spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: guttertank
+        sprite: Backmen/Mobs/Npc/guttertank.rsi
+  - type: SpawnOnDespawn
+    prototypes:
+    - DropPodLauncherGutter
+    - DropPodLauncherGutter #Два спавнера машин, чтобы утилям жизнь медом не казалось
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: DropPodLauncherGutter
+  parent: Baseholypentagram
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    layers:
+    - state: NoId
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        16
+      AggroVisionRadius: !type:Single
+        20
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 8
+  - type: SpawnOnDespawn
+    prototype: RandomGutterSpawner
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  id: RandomGutterSpawner
+  name: random gutter spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: gutterman
+        sprite: Backmen/Mobs/Npc/gutterman.rsi
+  - type: RandomSpawner
+    prototypes:
+      - DropPodMarkerGutterman
+      - DropPodMarkerGuttertank
+    chance: 1
+
+- type: entity
+  id: DropPodLauncherRocket
+  parent: DropPodLauncherGutter
+  components:
+  - type: SpawnOnDespawn
+    prototype: MissileDropSpawnerAreaSpawner
