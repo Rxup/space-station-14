@@ -20,23 +20,6 @@ namespace Content.IntegrationTests.Tests
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
-        // TODO: Fix all of these
-        private readonly string[] _excludedIds =
-        [
-            "MobSyndicateSmuggler",
-            "MobHumanSyndicateAgentMedic",
-            "MobHumanSpaceNinja",
-            "MobHumanRXBZZFlamer",
-            "MobPMCGreyTideMosin",
-            "MobGutterman", // Polymorph test failure
-            "MotGuttermanShooter",
-            "MobGuttertank",
-            "MobGuttermanShooterTurret",
-            "MobGuttermanShooter",
-            "MobGuttertankShooter",
-            "MobGuttermanWisp",
-        ];
-
         [Test]
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
@@ -275,7 +258,6 @@ namespace Content.IntegrationTests.Tests
 
             var protoIds = server.ProtoMan
                 .EnumeratePrototypes<EntityPrototype>()
-                .Where(p => !_excludedIds.Contains(p.ID))
                 .Where(p => !p.Abstract)
                 .Where(p => !pair.IsTestPrototype(p))
                 .Where(p => !excluded.Any(p.Components.ContainsKey))
