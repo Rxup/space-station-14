@@ -1,5 +1,6 @@
 using Content.Client.Administration.Managers;
 using Content.Client.Audio;
+using Content.Goobstation.Common.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Corvax.CCCVars;
 using Robust.Client.Audio;
@@ -71,12 +72,18 @@ public sealed partial class AudioTab : Control
             SliderVolumeInterface,
             scale: ContentAudioSystem.InterfaceMultiplier);
 
+        Control.AddOptionPercentSlider(
+            GoobCVars.VoiceChatVolume,
+            SliderVolumeVoiceChat,
+            -8, 10);
+
         Control.AddOptionSlider(
             CCVars.MaxAmbientSources,
             SliderMaxAmbienceSounds,
             _cfg.GetCVar(CCVars.MinMaxAmbientSourcesConfigured),
             _cfg.GetCVar(CCVars.MaxMaxAmbientSourcesConfigured));
 
+        Control.AddOptionCheckBox(GoobCVars.VoiceChatHearSelf, HearSelfCheckBox);
         Control.AddOptionCheckBox(CCVars.LobbyMusicEnabled, LobbyMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.RestartSoundsEnabled, RestartSoundsCheckBox);
         Control.AddOptionCheckBox(CCVars.EventMusicEnabled, EventMusicCheckBox);
