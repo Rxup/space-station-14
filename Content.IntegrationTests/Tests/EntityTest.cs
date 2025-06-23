@@ -165,7 +165,6 @@ namespace Content.IntegrationTests.Tests
             var protoIds = prototypeMan
                 .EnumeratePrototypes<EntityPrototype>()
                 .Where(p => !p.Abstract)
-                .Where(p => !_excludedIds.Contains(p.ID))
                 .Where(p => !pair.IsTestPrototype(p))
                 .Where(p => !p.Components.ContainsKey("MapGrid")) // This will smash stuff otherwise.
                 .Select(p => p.ID)
