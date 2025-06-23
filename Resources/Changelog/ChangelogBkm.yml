@@ -3544,3 +3544,12 @@
   id: 235
   time: '2025-06-22T08:53:49.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1378
+- author: no_mad
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0443\u0440\u043E\u0432\
+      \u0435\u043D\u044C 7-2 \u043D\u0430 \u043B\u0430\u0432\u0430\u043B\u044D\u043D\
+      \u0434"
+    type: Add
+  id: 236
+  time: '2025-06-23T16:11:47.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1384
