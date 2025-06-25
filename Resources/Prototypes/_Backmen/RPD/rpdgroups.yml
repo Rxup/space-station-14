@@ -1,0 +1,19 @@
+- type: rcdGroup
+  id: Piping
+  name: rpd-component-piping
+  sprite: /Textures/Backmen/Interface/Radial/RPD/fourway.png
+
+- type: rcdGroup
+  id: PumpsValves
+  name: rpd-component-pumpsvalves
+  sprite: /Textures/Backmen/Interface/Radial/RPD/pump_volume.png
+
+- type: rcdGroup
+  id: Vents
+  name: rpd-component-vents
+  sprite: /Textures/Backmen/Interface/Radial/RPD/vent_passive.png
+
+- type: rcdGroup
+  id: AtmosphericUtility
+  name: rpd-component-atmosphericutility
+  sprite: /Textures/Backmen/Interface/Radial/RPD/port.png
