@@ -28,10 +28,6 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -121,6 +117,7 @@ entities:
         path: /Audio/Effects/alert.ogg
     - type: RadiationGridResistance
     - type: SpreaderGrid
+    - type: GridTree
     - type: GridPathfinding
     - type: DecalGrid
       chunkCollection:

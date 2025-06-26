@@ -24,10 +24,6 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -88,5 +84,6 @@ entities:
         version: 2
         nodes: []
     - type: SpreaderGrid
+    - type: GridTree
     - type: GridPathfinding
 ...

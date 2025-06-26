@@ -58,10 +58,6 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -2881,6 +2877,7 @@ entities:
             1890: 11.006704,39.178288
     - type: RadiationGridResistance
     - type: SpreaderGrid
+    - type: GridTree
     - type: GridPathfinding
 - proto: Airlock
   entities:
