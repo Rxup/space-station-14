@@ -10,10 +10,10 @@
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages
     speaks:
-    - Shark
+    - EvePishtu
     - TauCetiBasic
     understands:
-    - Shark
+    - EvePishtu
     - TauCetiBasic
   - type: Icon
     sprite: _ADT/Mobs/Shark/parts.rsi

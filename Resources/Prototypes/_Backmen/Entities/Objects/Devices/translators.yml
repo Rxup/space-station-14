@@ -297,13 +297,13 @@
   - type: HandheldTranslator
     spoken:
     - TauCetiBasic
-    - Demonic
+    - Carshnil
     understood:
     - TauCetiBasic
-    - Demonic
+    - Carshnil
     requires:
     - TauCetiBasic
-    - Demonic
+    - Carshnil
 
 - type: entity
   id: EvePishtuTranslator
@@ -314,10 +314,10 @@
   - type: HandheldTranslator
     spoken:
     - TauCetiBasic
-    - Shark
+    - EvePishtu
     understood:
     - TauCetiBasic
-    - Shark
+    - EvePishtu
     requires:
     - TauCetiBasic
-    - Shark
+    - EvePishtu

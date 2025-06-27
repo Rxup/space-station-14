@@ -196,9 +196,9 @@
   components:
   - type: TranslatorImplant
     understood:
-    - Demonic
+    - Carshnil
     spoken:
-    - Demonic
+    - Carshnil
     requires:
     - TauCetiBasic
 
@@ -211,8 +211,8 @@
   components:
   - type: TranslatorImplant
     understood:
-    - Shark
+    - EvePishtu
     spoken:
-    - Shark
+    - EvePishtu
     requires:
     - TauCetiBasic
