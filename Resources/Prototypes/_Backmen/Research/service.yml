@@ -217,7 +217,7 @@
   - ShadokinTranslator
   - ValyrianStandardTranslator
   - CarshnilTranslator
-  - Eve-pishtuTranslator
+  - EvePishtuTranslator
   position: 7,6
 
 - type: technology
@@ -274,7 +274,7 @@
   - ShadokinStandardTranslatorImplanter
   - ValyrianStandardTranslatorImplanter
   - CarshnilTranslatorImplanter
-  - Eve-pishtuTranslatorImplanter
+  - EvePishtuTranslatorImplanter
   technologyPrerequisites:
   - TranslationImplanter
   - TranslationDeviceAdvanced

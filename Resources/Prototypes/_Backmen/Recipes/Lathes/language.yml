@@ -289,8 +289,8 @@
     Silver: 50
 
 - type: latheRecipe
-  id: Eve-pishtuTranslatorImplanter
-  result: Eve-pishtuTranslatorImplanter
+  id: EvePishtuTranslatorImplanter
+  result: EvePishtuTranslatorImplanter
   completetime: 2
   materials:
     Steel: 500
@@ -310,8 +310,8 @@
     Gold: 50
 
 - type: latheRecipe
-  id: Eve-pishtuTranslator
-  result: Eve-pishtuTranslator
+  id: EvePishtuTranslator
+  result: EvePishtuTranslator
   completetime: 2
   materials:
     Steel: 500

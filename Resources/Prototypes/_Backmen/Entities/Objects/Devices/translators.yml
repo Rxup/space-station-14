@@ -292,7 +292,7 @@
   id: CarshnilTranslator
   parent: [ TranslatorPoweredBase ]
   name: Carshnil translator
-  description: Translates speech between Carshnil and Galactic Common, allowing your local yeepers to communicate with the locals and vice versa!
+  description: Translates speech between Carshnil and Galactic Common
   components:
   - type: HandheldTranslator
     spoken:
@@ -306,10 +306,10 @@
     - Demonic
 
 - type: entity
-  id: Eve-pishtuTranslator
+  id: EvePishtuTranslator
   parent: [ TranslatorPoweredBase ]
   name: Eve-pishtu translator
-  description: Translates speech between Eve-pishtu and Galactic Common, allowing your local yeepers to communicate with the locals and vice versa!
+  description: Translates speech between Eve-pishtu and Galactic Common
   components:
   - type: HandheldTranslator
     spoken:

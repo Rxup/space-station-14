@@ -35,8 +35,8 @@
   - ShadokinStandardTranslatorImplanter
   - ValyrianStandardTranslatorImplanter
   - CarshnilTranslatorImplanter
-  - Eve-pishtuTranslatorImplanter
-  - Eve-pishtuTranslator
+  - EvePishtuTranslatorImplanter
+  - EvePishtuTranslator
   - CarshnilTranslator
   # end-backmen: languages
 

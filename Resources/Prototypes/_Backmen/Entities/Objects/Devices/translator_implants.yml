@@ -201,9 +201,10 @@
     - Demonic
     requires:
     - TauCetiBasic
+
 - type: entity
   parent: BaseSubdermalImplant
-  id: Eve-pishtuStandardTranslatorImplant
+  id: EvePishtuStandardTranslatorImplant
   name: Eve-pishtu standart translator implant
   description: An implant giving the ability to understand and speak Eve-pishtu Standard.
   categories: [ HideSpawnMenu ]
