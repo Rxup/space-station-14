@@ -190,8 +190,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: CarshnilStandardTranslatorImplant
-  name: carshnil standart translator implant
-  description: An implant giving the ability to understand and speak carshnil Standard.
+  name: Carshnil standard translator implant
+  description: An implant that allows the user to understand and speak the Carshnil language.
   categories: [ HideSpawnMenu ]
   components:
   - type: TranslatorImplant
@@ -201,7 +201,6 @@
     - Demonic
     requires:
     - TauCetiBasic
-
 - type: entity
   parent: BaseSubdermalImplant
   id: Eve-pishtuStandardTranslatorImplant
