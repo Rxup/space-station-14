@@ -34,6 +34,10 @@
   - DwarvenStandardTranslatorImplanter
   - ShadokinStandardTranslatorImplanter
   - ValyrianStandardTranslatorImplanter
+  - CarshnilTranslatorImplanter
+  - Eve-pishtuTranslatorImplanter
+  - Eve-pishtuTranslator
+  - CarshnilTranslator
   # end-backmen: languages
 
 - type: latheRecipePack

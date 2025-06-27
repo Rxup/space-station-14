@@ -1,0 +1,56 @@
+- type: body
+  id: ADTSharkBody
+  name: "Shark"
+  root: chest
+  slots:
+    head:
+      part: HeadShark
+      connections:
+      - chest
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    chest:
+      part: ChestShark
+      connections: # Goobstation - fix some species having their hands the wrong way around
+      - right arm
+      - left arm
+      - groin
+      - head
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganAnimalLungs
+    groin: # Backmen edit: chest, groin separation
+      part: GroinShark
+      connections:
+      - right leg
+      - left leg
+      organs:
+        stomach: OrganSharkStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmShark
+      connections:
+        - right hand
+    left arm:
+      part: LeftArmShark
+      connections:
+        - left hand
+    right hand:
+      part: RightHandShark
+    left hand:
+      part: LeftHandShark
+    right leg:
+      part: RightLegShark
+      connections:
+        - right foot
+    left leg:
+      part: LeftLegShark
+      connections:
+        - left foot
+    right foot:
+      part: RightFootShark
+    left foot:
+      part: LeftFootShark
+

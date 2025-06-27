@@ -32,13 +32,3 @@
   supportedGroups:
     - Brute
     - Burn
-
-- type: damageContainer
-  id: RaceDemon
-  supportedGroups:
-  - Brute
-  - Burn
-  - Toxin
-  - Airloss
-  - Genetic
-  - Immaterial

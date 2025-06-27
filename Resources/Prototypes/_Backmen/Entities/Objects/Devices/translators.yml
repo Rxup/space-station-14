@@ -287,3 +287,37 @@
     requires:
     - TauCetiBasic
     - Elvish
+
+- type: entity
+  id: CarshnilTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Carshnil translator
+  description: Translates speech between Carshnil and Galactic Common, allowing your local yeepers to communicate with the locals and vice versa!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Demonic
+    understood:
+    - TauCetiBasic
+    - Demonic
+    requires:
+    - TauCetiBasic
+    - Demonic
+
+- type: entity
+  id: Eve-pishtuTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Eve-pishtu translator
+  description: Translates speech between Eve-pishtu and Galactic Common, allowing your local yeepers to communicate with the locals and vice versa!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Shark
+    understood:
+    - TauCetiBasic
+    - Shark
+    requires:
+    - TauCetiBasic
+    - Shark

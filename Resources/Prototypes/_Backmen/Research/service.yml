@@ -216,6 +216,8 @@
   - DwarvenTranslator
   - ShadokinTranslator
   - ValyrianStandardTranslator
+  - CarshnilTranslator
+  - Eve-pishtuTranslator
   position: 7,6
 
 - type: technology
@@ -271,6 +273,8 @@
   - DwarvenStandardTranslatorImplanter
   - ShadokinStandardTranslatorImplanter
   - ValyrianStandardTranslatorImplanter
+  - CarshnilTranslatorImplanter
+  - Eve-pishtuTranslatorImplanter
   technologyPrerequisites:
   - TranslationImplanter
   - TranslationDeviceAdvanced
