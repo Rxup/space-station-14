@@ -63,7 +63,6 @@
     damageContainers:
     - Biological
     - HalfSpirit
-    - RaceDemon
   - type: IdentityBlocker
     coverage: EYES
 
