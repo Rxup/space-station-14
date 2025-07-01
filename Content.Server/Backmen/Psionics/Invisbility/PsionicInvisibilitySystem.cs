@@ -53,7 +53,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
             return;
 
         if (HasComp<PsionicInvisibilityUsedComponent>(uid))
-            _invisSystem.ToggleInvisibility(uid);
+            RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
 
         if (TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMemberComponent))
         {
@@ -70,8 +70,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
                 _npcFactonSystem.RemoveFaction(ent, GlimmerMonster);
             }
         }
-
-
+        
         SetCanSeePsionicInvisiblity(uid, true);
     }
 

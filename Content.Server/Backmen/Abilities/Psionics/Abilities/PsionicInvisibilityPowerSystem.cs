@@ -41,9 +41,9 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, component.ActionPsionicInvisibility);
 
-        if (_actions.TryGetActionData(component.PsionicInvisibilityPowerAction, out var action) && action?.UseDelay != null)
-            _actions.SetCooldown(component.PsionicInvisibilityPowerAction, _gameTiming.CurTime,
-                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
+        var actionEnt = _actions.GetAction(component.PsionicInvisibilityPowerAction);
+        if (actionEnt is { Comp.UseDelay: {} delay })
+            _actions.SetCooldown(component.PsionicInvisibilityPowerAction, delay);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PsionicInvisibilityPowerAction;

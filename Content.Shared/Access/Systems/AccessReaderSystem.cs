@@ -423,13 +423,6 @@ public sealed class AccessReaderSystem : EntitySystem
         RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
     }
 
-    public void ClearAccesses(Entity<AccessReaderComponent> ent)
-    {
-        ent.Comp.AccessLists.Clear();
-        Dirty(ent);
-        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
-    }
-
     public void RemoveAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
     {
         foreach (var set in ent.Comp.AccessLists.Where(x => x.Contains(access)))

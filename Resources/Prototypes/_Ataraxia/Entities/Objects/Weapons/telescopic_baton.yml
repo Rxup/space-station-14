@@ -9,7 +9,7 @@
     sprite: _Ataraxia/Objects/Weapons/Melee/telescopic_baton.rsi
     layers:
     - state: telescopic_baton_off
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: ItemToggleSize
     activatedSize: Large
     activatedShape:
@@ -26,8 +26,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-     enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: telescopic_baton_on}
           False: {state: telescopic_baton_off}
   - type: ToggleableLightVisuals

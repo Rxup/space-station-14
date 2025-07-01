@@ -131,12 +131,10 @@
   - type: Tag
     tags:
       - FullBodyOuter
+      - CorgiWearable
+      - WhitelistChameleon
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]

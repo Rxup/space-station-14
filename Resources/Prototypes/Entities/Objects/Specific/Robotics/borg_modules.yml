@@ -1129,7 +1129,7 @@
         - state: base-stripes-inhand-right
           color: "#7B0F12"
     - type: StaticPrice
-          price: 2000
+      price: 2000
 
 # Shitmed Modules
 

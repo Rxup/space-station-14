@@ -1284,11 +1284,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Oni
-  - type: MobThresholds # Goobstation
-    thresholds:
-      0: Alive
-      120: Critical
-      220: Dead
   - type: SlowOnDamage # Goobstation
     speedModifierThresholds:
       80: 0.7
@@ -3337,7 +3332,7 @@
     factions:
     - Syndicate
   - type: Access
-    tags: 
+    tags:
     - NuclearOperative
     - SyndicateAgent
   - type: MeleeWeapon

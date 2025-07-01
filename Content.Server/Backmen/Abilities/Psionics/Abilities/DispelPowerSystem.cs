@@ -50,8 +50,9 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
     {
         _actions.AddAction(uid, ref component.DispelPowerAction, ActionDispel);
 
-        if (_actions.TryGetActionData(component.DispelPowerAction, out var action) && action?.UseDelay != null)
-            _actions.SetCooldown(component.DispelPowerAction, _gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
+        var actionEnt = _actions.GetAction(component.DispelPowerAction);
+        if (actionEnt is { Comp.UseDelay: {} delay })
+            _actions.SetCooldown(component.DispelPowerAction, delay);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.DispelPowerAction;

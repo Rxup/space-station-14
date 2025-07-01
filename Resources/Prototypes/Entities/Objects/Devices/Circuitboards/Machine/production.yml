@@ -33,7 +33,7 @@
   description: A machine printed circuit board for a protolathe.
   components:
     - type: Sprite
-    state: science
+      state: science
     - type: MachineBoard
       prototype: Protolathe
       stackRequirements:
@@ -42,7 +42,7 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
-          
+
 - type: entity
   id: ProtolatheCashMachineCircuitboard
   parent: BaseMachineCircuitboard

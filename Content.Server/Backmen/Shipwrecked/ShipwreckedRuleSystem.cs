@@ -1392,12 +1392,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.AnnounceTransit:
                 {
                     // try to fix KeyNotFound in FindNewContacsts in client without /resetallents
+                    /*
                     var q = EntityQueryEnumerator<PhysicsMapComponent,MetaDataComponent>();
                     while (q.MoveNext(out var owner, out var comp, out var md))
                     {
                         Dirty(owner,comp,md);
                     }
-
+*/
                     // We have to wait for the dungeon atlases to be ready, so do this here.
                     SpawnPlanetaryStructures(uid, component);
 

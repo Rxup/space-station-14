@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Server;
-using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
@@ -13,6 +12,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools.Components;

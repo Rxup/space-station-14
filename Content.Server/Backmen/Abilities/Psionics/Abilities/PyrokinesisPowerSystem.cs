@@ -34,9 +34,9 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
     {
         _actions.AddAction(uid, ref component.PyrokinesisPowerAction, ActionPyrokinesis);
 
-        if (_actions.TryGetActionData(component.PyrokinesisPowerAction, out var action) && action?.UseDelay != null)
-            _actions.SetCooldown(component.PyrokinesisPowerAction, _gameTiming.CurTime,
-                _gameTiming.CurTime + (TimeSpan) action?.UseDelay!);
+        var actionEnt = _actions.GetAction(component.PyrokinesisPowerAction);
+        if (actionEnt is { Comp.UseDelay: {} delay })
+            _actions.SetCooldown(component.PyrokinesisPowerAction, delay);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PyrokinesisPowerAction;
@@ -64,11 +64,11 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
         _psionics.LogPowerUsed(args.Performer, "pyrokinesis");
 
         args.Handled = true;
-
-        if (TryComp<NoosphericZapPowerComponent>(args.Performer, out var powerComponent)
-            && _actions.TryGetActionData(powerComponent.NoosphericZapPowerAction, out var action))
+        
+        if (TryComp<NoosphericZapPowerComponent>(args.Performer, out var powerComponent))
         {
-            _actions.SetCooldown(powerComponent.NoosphericZapPowerAction, action.UseDelay ?? TimeSpan.FromMinutes(1));
+            var actionEnt = _actions.GetAction(powerComponent.NoosphericZapPowerAction);
+            _actions.SetCooldown(powerComponent.NoosphericZapPowerAction, actionEnt?.Comp.UseDelay ?? TimeSpan.FromMinutes(1));
         }
     }
 }

@@ -39,8 +39,8 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         SubscribeLocalEvent<PsionicComponent, PsionicPowerUsedEvent>(OnPowerUsed);
         SubscribeLocalEvent<PsionicComponent, MobStateChangedEvent>(OnMobStateChanged);
 
-        SubscribeLocalEvent<PsiActionComponent, ValidateActionEntityTargetEvent>(OnTryPowerEntityTarget);
-        SubscribeLocalEvent<PsiActionComponent, ValidateActionWorldTargetEvent>(OnTryPowerWorldTarget);
+        SubscribeLocalEvent<PsiActionComponent, ActionAttemptEvent>(OnActionAttempt);
+        SubscribeLocalEvent<PsiActionComponent, ActionValidateEvent>(OnActionValidate);
         SubscribeLocalEvent<PsiActionComponent, ActionAttemptEvent>(OnTryUsePower);
 
         _psionicallyInvisibleQuery = GetEntityQuery<PsionicallyInvisibleComponent>();
@@ -65,15 +65,36 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 
     }
 
-    private void OnTryPowerWorldTarget(Entity<PsiActionComponent> ent, ref ValidateActionWorldTargetEvent args)
+    private void OnActionValidate(Entity<PsiActionComponent> ent, ref ActionValidateEvent args)
     {
-        if (!CanUsePsionicAbilities(args.User, args.Target))
-            args.Cancelled = true;
+        if (args.Input.EntityTarget is { } target &&
+            TryGetEntity(target, out var targetEnt) &&
+            !CanUsePsionicAbilities(args.User, targetEnt.Value))
+        {
+            args.Invalid = true;
+            return;
+        }
+
+        if (args.Input.EntityCoordinatesTarget is { } netCoord)
+        {
+            var coord = GetCoordinates(netCoord);
+            if (!coord.IsValid(EntityManager))
+            {
+                args.Invalid = true;
+                return;
+            }
+
+            if (!CanUsePsionicAbilities(args.User, coord))
+            {
+                args.Invalid = true;
+                return;
+            }
+        }
     }
 
-    private void OnTryPowerEntityTarget(Entity<PsiActionComponent> ent, ref ValidateActionEntityTargetEvent args)
+    private void OnActionAttempt(Entity<PsiActionComponent> ent, ref ActionAttemptEvent args)
     {
-        if (!CanUsePsionicAbilities(args.User, args.Target))
+        if (_psionicInsulationQuery.HasComp(args.User))
             args.Cancelled = true;
     }
 

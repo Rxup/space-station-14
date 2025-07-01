@@ -26,7 +26,7 @@
       color: "#e8b59b"
       sprite: Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_head
-    - map: [ "enum.ToggleVisuals.Layer" ]
+    - map: [ "enum.ToggleableVisuals.Layer" ]
       sprite: Backmen/Mobs/Species/Golem/cult.rsi
       state: lights
       visible: false
@@ -251,8 +251,8 @@
   - type: Golem
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
       enum.CreamPiedVisuals.Creamed:
@@ -326,7 +326,7 @@
       color: "#e8b59b"
       sprite: Backmen/Mobs/Species/Golem/wood.rsi
       state: head
-    - map: [ "enum.ToggleVisuals.Layer" ]
+    - map: [ "enum.ToggleableVisuals.Layer" ]
       sprite: Backmen/Mobs/Species/Golem/wood.rsi
       state: lights
       visible: false
@@ -427,7 +427,7 @@
       available:
         - enum.DamageStateVisualLayers.Base:
             silver_base: ""
-          enum.ToggleVisuals.Layer:
+          enum.ToggleableVisuals.Layer:
             lights: Sixteen
     - type: Sprite
       drawdepth: Mobs
@@ -440,7 +440,7 @@
           sprite: Objects/Misc/handcuffs.rsi
           state: body-overlay-2
           visible: false
-        - map: [ "enum.ToggleVisuals.Layer" ]
+        - map: [ "enum.ToggleableVisuals.Layer" ]
           sprite: Backmen/Mobs/Species/Golem/silver.rsi
           state: lights
           color: "#40a7d7"

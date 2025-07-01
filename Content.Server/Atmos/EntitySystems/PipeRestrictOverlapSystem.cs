@@ -1,16 +1,13 @@
 using System.Linq;
 using Content.Server.Atmos.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Shared.Atmos;
-using Content.Shared.Backmen.CCVar; // backmen: pipe stacks
 using Content.Shared.Atmos.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.NodeContainer;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.EntitySystems;
@@ -20,21 +17,18 @@ namespace Content.Server.Atmos.EntitySystems;
 /// </summary>
 public sealed class PipeRestrictOverlapSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // backmen: pipe stacks
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly TransformSystem _xform = default!;
 
     private readonly List<EntityUid> _anchoredEntities = new();
     private EntityQuery<NodeContainerComponent> _nodeContainerQuery;
-    public bool StrictPipeStacking; // backmen: pipe stacks
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<PipeRestrictOverlapComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
         SubscribeLocalEvent<PipeRestrictOverlapComponent, AnchorAttemptEvent>(OnAnchorAttempt);
-        Subs.CVar(_cfg, CCVars.StrictPipeStacking, (val) => {StrictPipeStacking = val;}); // backmen: pipe stacks
 
         _nodeContainerQuery = GetEntityQuery<NodeContainerComponent>();
     }
@@ -85,8 +79,6 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
         _anchoredEntities.Clear();
         _map.GetAnchoredEntities((grid, gridComp), indices, _anchoredEntities);
 
-        var takenDirs = PipeDirection.None; // backmen: pipe stacks
-
         foreach (var otherEnt in _anchoredEntities)
         {
             // this should never actually happen but just for safety
@@ -96,19 +88,14 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
             if (!_nodeContainerQuery.TryComp(otherEnt, out var otherComp))
                 continue;
 
-            // start-backmen: pipe stacks
-            var (overlapping, which) = PipeNodesOverlap(ent, (otherEnt, otherComp, Transform(otherEnt)), takenDirs);
-            takenDirs |= which;
-
-            if (overlapping)
+            if (PipeNodesOverlap(ent, (otherEnt, otherComp, Transform(otherEnt))))
                 return true;
-            // end-backmen: pipe stacks
         }
 
         return false;
     }
 
-    public (bool, PipeDirection) PipeNodesOverlap(Entity<NodeContainerComponent, TransformComponent> ent, Entity<NodeContainerComponent, TransformComponent> other, PipeDirection takenDirs)
+    public bool PipeNodesOverlap(Entity<NodeContainerComponent, TransformComponent> ent, Entity<NodeContainerComponent, TransformComponent> other)
     {
         var entDirsAndLayers = GetAllDirectionsAndLayers(ent).ToList();
         var otherDirsAndLayers = GetAllDirectionsAndLayers(other).ToList();
@@ -122,9 +109,7 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
             }
         }
 
-        // If no strict pipe stacking, then output ("are all entDirs occupied", takenDirs)
-        return (!StrictPipeStacking && (takenDirs & entDirsCollapsed) == entDirsCollapsed, takenDirs);
-        
+        return false;
 
         IEnumerable<(PipeDirection, AtmosPipeLayer)> GetAllDirectionsAndLayers(Entity<NodeContainerComponent, TransformComponent> pipe)
         {

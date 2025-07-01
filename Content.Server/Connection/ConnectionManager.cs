@@ -399,7 +399,6 @@ namespace Content.Server.Connection
         }
 
         // Corvax-Queue-Start: Make these conditions in one place, for checks in the connection and in the queue
-        [Dependency] private readonly IEntityManager _entityManager = default!;
         public async Task<bool> HavePrivilegedJoin(NetUserId userId)
         {
 

@@ -50,8 +50,8 @@ public sealed class SpiderVampireSystem : EntitySystem
         _action.AddAction(uid, ref component.SpiderVampireEggAction, SpiderVampireEggAction);
         //_action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
         //    _gameTiming.CurTime + (TimeSpan) component.InitCooldown);
-        if (component.SpiderVampireEggAction.HasValue)
-            _charges.AddCharges(component.SpiderVampireEggAction.Value, component.Charges);
+        //if (component.SpiderVampireEggAction.HasValue)
+        //   _charges.AddCharges(component.SpiderVampireEggAction.Value, component.Charges);
     }
 
     #endregion
@@ -113,14 +113,14 @@ public sealed class SpiderVampireSystem : EntitySystem
             return;
         if (args.Cancelled)
         {
-            if (_action.TryGetActionData(component.SpiderVampireEggAction, out var data))
-            {
-                if (component.SpiderVampireEggAction.HasValue)
-                    _charges.AddCharges(component.SpiderVampireEggAction.Value, 1);
-                _action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
-                    _gameTiming.CurTime + TimeSpan.FromSeconds(1));
-                _action.SetEnabled(component.SpiderVampireEggAction, true);
-            }
+            if (_action.GetAction(component.SpiderVampireEggAction) is not { } data)
+                return;
+
+            if (component.SpiderVampireEggAction.HasValue)
+                _charges.AddCharges(component.SpiderVampireEggAction.Value, 1);
+
+            _action.SetCooldown(component.SpiderVampireEggAction, TimeSpan.FromSeconds(1));
+            _action.SetEnabled(component.SpiderVampireEggAction, true);
             return;
         }
 

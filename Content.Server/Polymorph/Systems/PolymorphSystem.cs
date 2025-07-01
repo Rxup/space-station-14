@@ -390,11 +390,11 @@ public sealed partial class PolymorphSystem : EntitySystem
             return;
 
         // start-backmen: action fix
-        if (_actions.TryGetActionData(actionId, out var actionComponent))
+        if (_actions.GetAction(actionId) is {} actionComponent)
         {
             if (polyProto.Configuration.Cooldown != TimeSpan.Zero)
             {
-                actionComponent.UseDelay = polyProto.Configuration.Cooldown;
+                _actions.SetUseDelay((actionComponent, actionComponent), polyProto.Configuration.Cooldown);
                 _actions.SetCooldown(actionId, polyProto.Configuration.Cooldown);
             }
         }
