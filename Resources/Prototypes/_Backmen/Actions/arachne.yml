@@ -1,20 +1,25 @@
 - type: entity
   id: SpiderWebArachneClassicAction
+  parent: BaseCritAction
   name: spider-web-action-name
   description: spider-web-action-description
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 180
       icon: Interface/Actions/web.png
+    - type: InstantAction
       event: !type:SpiderWebActionEvent
 
 - type: entity
   id: ActionSpiderVampireEgg
+  parent: BaseAction
   name: name-Spider-Vampire-Egg
   description: description-Spider-Vampire-Egg
   components:
-    - type: InstantAction
+    - type: Action
       icon: { sprite: Backmen/Objects/Misc/eggspider.rsi, state: icon }
       priority: -10
-      event: !type:SpiderVampireEggActionEvent
       useDelay: 30
+      startDelay: true
+    - type: InstantAction
+      event: !type:SpiderVampireEggActionEvent
