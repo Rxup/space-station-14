@@ -114,6 +114,8 @@ public sealed partial class ResearchSystem
         _uiSystem.SetUiState(uid, ResearchClientUiKey.Key, state);
     }
 
+    [Dependency] private readonly PowerReceiverSystem _power = default!; // backmen: power
+
     /// <summary>
     /// Tries to get the server belonging to a client
     /// </summary>
@@ -138,6 +140,14 @@ public sealed partial class ResearchSystem
 
         if (!TryComp(component.Server, out serverComponent))
             return false;
+
+        // start-backmen: power
+        if(!_power.IsPowered(uid))
+            return false;
+
+        if(!_power.IsPowered(component.Server.Value))
+            return false;
+        // end-backmen: power
 
         server = component.Server;
         return true;
