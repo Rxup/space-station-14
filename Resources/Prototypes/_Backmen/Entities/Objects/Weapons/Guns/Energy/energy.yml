@@ -295,9 +295,9 @@
 #    - FullAuto
 #    soundGunshot:
 #      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-#  - type: ClothingSlotAmmoProvider
+#  - type: SlotBasedConnectedContainer
 #    targetSlot: BACK
-#    providerWhitelist:
+#    containerWhitelist:
 #      tags:
 #      - PowerpackEnergy
 #  - type: Appearance

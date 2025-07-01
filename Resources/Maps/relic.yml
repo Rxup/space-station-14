@@ -4,7 +4,7 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/11/2025 22:11:12
+  time: 07/04/2025 07:44:01
   entityCount: 8332
 maps:
 - 1
@@ -1272,6 +1272,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -1287,6 +1295,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -1317,6 +1333,14 @@ entities:
           - 0
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -3975,6 +3999,11 @@ entities:
       parent: 2
 - proto: BackmenVendingMachineDiscount
   entities:
+  - uid: 1497
+    components:
+    - type: Transform
+      pos: 30.5,31.5
+      parent: 2
   - uid: 6721
     components:
     - type: Transform
@@ -35472,14 +35501,14 @@ entities:
     - type: Transform
       pos: 43.5,-7.5
       parent: 2
-- proto: GunSafePistolMk58
+- proto: GunSafePistolGlock
   entities:
   - uid: 1365
     components:
     - type: Transform
       pos: 41.5,-7.5
       parent: 2
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleAR18
   entities:
   - uid: 960
     components:
@@ -35493,19 +35522,12 @@ entities:
     - type: Transform
       pos: 43.5,-4.5
       parent: 2
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun
   entities:
   - uid: 1298
     components:
     - type: Transform
       pos: 44.5,-7.5
-      parent: 2
-- proto: GunSafeSubMachineGunDrozd
-  entities:
-  - uid: 1345
-    components:
-    - type: Transform
-      pos: 42.5,-4.5
       parent: 2
 - proto: GunSafeSubMachineGunMP5
   entities:
@@ -35513,6 +35535,13 @@ entities:
     components:
     - type: Transform
       pos: 44.5,-4.5
+      parent: 2
+- proto: GunSafeSubMachineGunVector
+  entities:
+  - uid: 1345
+    components:
+    - type: Transform
+      pos: 42.5,-4.5
       parent: 2
 - proto: Handcuffs
   entities:
@@ -36658,7 +36687,7 @@ entities:
     - type: Transform
       pos: 53.5,0.5
       parent: 2
-- proto: MagazinePistolSubMachineGunUranium
+- proto: MagazinePistolSubMachineGun9x17
   entities:
   - uid: 718
     components:
@@ -36943,6 +36972,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 1318
     components:
     - type: Transform
@@ -36962,6 +36999,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -40569,10 +40614,15 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: SeedExtractor
   entities:
   - uid: 1981
@@ -45290,10 +45340,15 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: VendingMachineBooze
   entities:
   - uid: 1374
@@ -45342,13 +45397,6 @@ entities:
     components:
     - type: Transform
       pos: 27.5,-7.5
-      parent: 2
-- proto: VendingMachineDiscount
-  entities:
-  - uid: 1497
-    components:
-    - type: Transform
-      pos: 30.5,31.5
       parent: 2
 - proto: VendingMachineEngivend
   entities:

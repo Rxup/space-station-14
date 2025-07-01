@@ -7,8 +7,7 @@
 - type: entity
   id: ActionEatMouse
   parent: BaseAction
-  name: action-name-eat-mouse
-  description: action-description-eat-mouse
+  name: action eat mouse
   components:
     - type: Action
       useDelay: 10
@@ -20,8 +19,7 @@
 - type: entity
   id: ActionMetapsionicPulse
   parent: BaseActionPsi
-  name: action-name-metapsionic
-  description: action-description-metapsionic
+  name: action metapsionic
   components:
     - type: Action
       useDelay: 45
@@ -33,8 +31,7 @@
 - type: entity
   id: ActionDispel
   parent: BaseActionPsi
-  name: action-name-dispel
-  description: action-description-dispel
+  name: action dispel
   components:
     - type: Action
       useDelay: 45
@@ -42,17 +39,17 @@
       itemIconStyle: BigAction
       icon: Backmen/Interface/VerbIcons/dispel.png
     - type: EntityTargetAction
+      canTargetSelf: false
       event: !type:DispelPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 6
-      canTargetSelf: false
 
 
 - type: entity
   id: ActionMassSleep
   parent: BaseActionPsi
-  name: action-name-mass-sleep
-  description: action-description-mass-sleep
+  name: action mass sleep
   components:
     - type: Action
       itemIconStyle: BigAction
@@ -61,6 +58,7 @@
       startDelay: true
     - type: WorldTargetAction
       event: !type:MassSleepPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 8
 
@@ -68,8 +66,7 @@
 - type: entity
   id: ActionPsionicInvisibility
   parent: BaseActionPsi
-  name: action-name-psionic-invisibility
-  description: action-description-psionic-invisibility
+  name: action psionic invisibility
   components:
     - type: Action
       useDelay: 120
@@ -81,27 +78,28 @@
 - type: entity
   id: ActionPsionicInvisibilityOff
   parent: BaseCritAction
-  name: action-description-psionic-invisibility-off
-  description: action-description-psionic-invisibility
+  name: action psionic invisibility off
   components:
     - type: Action
+      useDelay: 3
+      startDelay: true
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
-      temporary: true
+      #temporary: true
     - type: InstantAction
       event: !type:PsionicInvisibilityPowerOffActionEvent
 
 - type: entity
   id: ActionMindSwapPsionic
   parent: BaseActionPsi
-  name: action-name-mind-swap
-  description: action-description-mind-swap
+  name: action mind swap
   components:
     - type: Action
       itemIconStyle: BigAction
       useDelay: 240
-    - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/mind_swap.png
+    - type: EntityTargetAction
       event: !type:MindSwapPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 8
 
@@ -109,23 +107,21 @@
 - type: entity
   id: ActionMindSwapReturn
   parent: BaseAction
-  name: action-name-mind-swap-return
-  description: action-description-mind-swap-return
+  name: mind swap return
   components:
     - type: Action
-      temporary: true
+      #temporary: true
       useDelay: 20
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       startDelay: true
-    - type: InstantAction
       checkCanInteract: false
+    - type: InstantAction
       event: !type:MindSwapPowerReturnActionEvent
 
 - type: entity
   id: ActionTelegnosis
   parent: BaseActionPsi
-  name: action-name-telegnosis
-  description: action-description-telegnosis
+  name: action telegnosis
   components:
     - type: Action
       icon: Backmen/Interface/VerbIcons/telegnosis.png
@@ -136,23 +132,21 @@
 - type: entity
   id: ActionTelegnosisReturn
   parent: BaseCritAction
-  name: action-name-telegnosis
-  description: action-description-telegnosis
+  name: action telegnosis
   components:
     - type: Action
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       useDelay: 20
-      temporary: true
+      startDelay: true
+      #temporary: true
+      checkCanInteract: false
     - type: InstantAction
       event: !type:TelegnosisPowerReturnActionEvent
-      checkCanInteract: false
-
 
 - type: entity
   id: ActionPsionicRegeneration
   parent: BaseActionPsi
-  name: action-name-psionic-regeneration
-  description: action-description-psionic-regeneration
+  name: action regeneration
   components:
     - type: Action
       icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
@@ -163,8 +157,7 @@
 - type: entity
   id: ActionNoosphericZap
   parent: BaseActionPsi
-  name: action-name-noospheric-zap
-  description: action-description-noospheric-zap
+  name: action noospheric zap
   components:
     - type: Action
       itemIconStyle: BigAction
@@ -172,14 +165,14 @@
       useDelay: 100
     - type: EntityTargetAction
       event: !type:NoosphericZapPowerActionEvent
+    - type: TargetAction
       range: 5
 
 
 - type: entity
   id: ActionPyrokinesis
   parent: BaseActionPsi
-  name: action-name-pyrokinesis
-  description: action-description-pyrokinesis
+  name: action pyrokinesis
   components:
     - type: Action
       itemIconStyle: BigAction
@@ -187,6 +180,7 @@
       icon: Backmen/Interface/VerbIcons/pyrokinesis.png
     - type: EntityTargetAction
       event: !type:PyrokinesisPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 6
 
@@ -194,8 +188,7 @@
 - type: entity
   id: ActionPsychokinesis
   parent: BaseActionPsi
-  name: action-name-psychokinesis
-  description: action-description-psychokinesis
+  name: action psychokinesis
   components:
     - type: Action
       useDelay: 20
@@ -203,28 +196,28 @@
       icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
     - type: WorldTargetAction
       event: !type:PsychokinesisPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 30
 
 - type: entity
   id: ActionSpinWeb
   parent: BaseCritAction
-  name: action-name-spin-web
-  description: action-desc-spin-web
+  name: spin web
   components:
     - type: Action
       icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
       itemIconStyle: BigAction
     - type: WorldTargetAction
       event: !type:SpinWebActionEvent
+    - type: TargetAction
       range: 1.5
 
 
 - type: entity
   id: ActionHairball
   parent: BaseCritAction
-  name: hairball-action
-  description: hairball-action-desc
+  name: hairball action
   components:
     - type: Action
       priority: -10

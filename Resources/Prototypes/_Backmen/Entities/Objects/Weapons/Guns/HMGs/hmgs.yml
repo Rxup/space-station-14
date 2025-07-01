@@ -137,9 +137,9 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns64/LMGs/minigunSG.ogg
-  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - PowerpackRifle
   - type: Appearance
@@ -183,9 +183,9 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - PowerpackEnergy
   - type: Appearance

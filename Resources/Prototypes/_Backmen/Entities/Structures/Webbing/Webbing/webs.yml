@@ -167,7 +167,7 @@
 - type: entity
   id: CocoonSmall
   parent: CocoonedHumanoid
-  name: cocoon
+  name: кокон
   description: What could be inside...?
   placement:
     mode: SnapgridCenter

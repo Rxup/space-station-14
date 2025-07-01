@@ -4,7 +4,7 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/16/2025 11:37:57
+  time: 07/04/2025 07:47:01
   entityCount: 1017
 maps: []
 grids:
@@ -433,9 +433,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -5438,7 +5454,7 @@ entities:
     - type: Transform
       pos: 13.599765,-7.300016
       parent: 2
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 100
     components:

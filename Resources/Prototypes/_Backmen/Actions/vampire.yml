@@ -12,8 +12,7 @@
 - type: entity
   id: ActionConvertToVampier
   parent: BaseAction
-  name: vampire-action-convert-name
-  description: vampire-action-convert-desc
+  name: vampire action convert
   components:
   - type: Action
     priority: -1
@@ -21,8 +20,9 @@
     icon:
       sprite: Backmen/Interface/Actions/vampire.rsi
       state: bat
+    checkCanInteract: true
   - type: EntityTargetAction
     event: !type:InnateNewVampierActionEvent
+  - type: TargetAction
     checkCanAccess: true
-    checkCanInteract: true
     range: 3

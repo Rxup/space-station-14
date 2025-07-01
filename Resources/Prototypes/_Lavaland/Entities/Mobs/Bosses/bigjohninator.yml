@@ -226,10 +226,11 @@
 
 - type: entity
   id: ActionSpawnMine
+  parent: BaseAction
   name: "[color=red]Спавн мин[/color]"
   description: Используй свою всевышнию силу и уничтожь врагов!
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     raiseOnUser: true
     icon:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
@@ -237,10 +238,12 @@
     iconOn:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
+    useDelay: 5
+  - type: WorldTargetAction
     event: !type:GoliathSummonTentacleAction
       entityId: MissileDropMarkerBigJohn
       extraSpawns: 0
-    useDelay: 5
+  - type: TargetAction
     range: 30
 
 - type: entity

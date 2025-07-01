@@ -31,7 +31,7 @@
                             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="800">
                                 <info:LinkBanner Name="LinkBanner" VerticalExpand="false" HorizontalAlignment="Center"
                                                  Margin="3 3 3 3" />
-                                <controls:StripeBack>
+                                <!--<controls:StripeBack>
                                     <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="3 3 3 3">
                                         <Label Name="StartTime"
                                                Access="Public"
@@ -39,13 +39,13 @@
                                                FontColorOverride="{x:Static maths:Color.DarkGray}"
                                                StyleClasses="LabelBig" HorizontalExpand="True" />
                                     </BoxContainer>
-                                </controls:StripeBack>
+                                </controls:StripeBack>-->
                                 <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
                             </BoxContainer>
                         </PanelContainer>
                         <!-- Voting Popups -->
-                        <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
-                                      Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
+                        <!--<BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
+                                      Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />-->
                     </BoxContainer>
 
                     <!-- Character Setup State -->

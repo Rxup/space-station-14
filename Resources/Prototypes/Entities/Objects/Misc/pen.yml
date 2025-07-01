@@ -98,7 +98,7 @@
   - type: Item
     heldPrefix: overpriced_pen
   - type: StaticPrice
-    price: 500
+    price: 136
 
 - type: entity
   name: CentComm pen

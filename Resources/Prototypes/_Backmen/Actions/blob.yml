@@ -6,8 +6,7 @@
 - type: entity
   id: ActionCreateBlobFactory
   parent: BaseActionBlob
-  name: blob-create-factory-action-name
-  description: blob-create-factory-action-desc
+  name: blob create factory
   components:
     - type: Action
       icon:
@@ -20,14 +19,14 @@
         transformFrom: Normal
         tileType: Factory
         nodeSearchRadius: 3.0
+    - type: TargetAction
       range: 200
 
 
 - type: entity
   id: ActionCreateBlobResource
   parent: BaseActionBlob
-  name: blob-create-resource-action-name
-  description: blob-create-resource-action-desc
+  name: blob create resource
   components:
     - type: Action
       icon:
@@ -40,14 +39,14 @@
         transformFrom: Normal
         tileType: Resource
         nodeSearchRadius: 3.0
+    - type: TargetAction
       range: 200
 
 
 - type: entity
   id: ActionCreateBlobStorage
   parent: BaseActionBlob
-  name: blob-create-storage-action-name
-  description: blob-create-storage-action-desc
+  name: blob create storage
   components:
     - type: Action
       useDelay: 0.5
@@ -60,13 +59,13 @@
         transformFrom: Normal
         tileType: Storage
         nodeSearchRadius: 3.0
+    - type: TargetAction
       range: 200
 
 - type: entity
   id: ActionCreateBlobNode
   parent: BaseActionBlob
-  name: blob-create-node-action-name
-  description: blob-create-node-action-desc
+  name: Создать блоб узел
   components:
     - type: Action
       useDelay: 0.5
@@ -79,13 +78,13 @@
         transformFrom: Normal
         tileType: Node
         tileSearchRadius: 4.5
+    - type: TargetAction
       range: 200
 
 - type: entity
   id: ActionCreateBlobbernaut
   parent: BaseActionBlob
-  name: blob-produce-blobbernaut-action-name
-  description: blob-produce-blobbernaut-action-desc
+  name: blob produce blobbernaut
   components:
     - type: Action
       icon:
@@ -95,13 +94,13 @@
       useDelay: 0.5
     - type: WorldTargetAction
       event: !type:BlobCreateBlobbernautActionEvent
+    - type: TargetAction
       range: 200
 
 - type: entity
   id: ActionSplitBlobCore
   parent: BaseActionBlob
-  name: blob-split-core-action-name
-  description: blob-split-core-action-desc
+  name: blob split core
   components:
     - type: Action
       icon:
@@ -111,13 +110,13 @@
       useDelay: 0.5
     - type: WorldTargetAction
       event: !type:BlobSplitCoreActionEvent
+    - type: TargetAction
       range: 200
 
 - type: entity
   id: ActionSwapBlobCore
   parent: BaseActionBlob
-  name: blob-swap-core-action-name
-  description: blob-swap-core-action-desc
+  name: swap core
   components:
     - type: Action
       icon:
@@ -127,13 +126,13 @@
       useDelay: 0.5
     - type: WorldTargetAction
       event: !type:BlobSwapCoreActionEvent
+    - type: TargetAction
       range: 200
 
 - type: entity
   id: ActionTeleportBlobToCore
   parent: BaseActionBlob
-  name: blob-teleport-to-core-action-name
-  description: blob-teleport-to-core-action-desc
+  name: blob teleport to core
   components:
     - type: Action
       useDelay: 0.5
@@ -147,8 +146,7 @@
 - type: entity
   id: ActionSwapBlobChem
   parent: BaseActionBlob
-  name: blob-swap-chem-action-name
-  description: blob-swap-chem-action-desc
+  name: blob swap chem
   components:
     - type: Action
       icon:
@@ -160,8 +158,8 @@
 - type: entity
   id: ActionTransformToBlob
   parent: BaseActionBlob
-  name: blob-carrier-transform-to-blob-action-name
-  description: blob-carrier-transform-to-blob-action-desc
+  name: Превратиться в блоба
+  description: Мгновенно разрывает ваше тело и создает ядро блоба. Учтите что если под вами не будет тайлов - вы исчезнете.
   components:
     - type: Action
       icon:
@@ -173,8 +171,7 @@
 - type: entity
   id: ActionDowngradeBlob
   parent: BaseActionBlob
-  name: blob-downgrade-action-name
-  description: blob-downgrade-action-desc
+  name: blob downgrade
   components:
     - type: Action
       useDelay: 0.5
@@ -186,4 +183,5 @@
       event: !type:BlobTransformTileActionEvent
         transformFrom: Invalid
         tileType: Normal
+    - type: TargetAction
       range: 200

@@ -13,8 +13,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
 
     private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary = new();
 
-    private ISawmill _sawmill = default!;
-
     [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
@@ -27,8 +25,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         _powerDictionary.Add(ShadowkinPowerThreshold.Okay, Loc.GetString("shadowkin-power-okay"));
         _powerDictionary.Add(ShadowkinPowerThreshold.Tired, Loc.GetString("shadowkin-power-tired"));
         _powerDictionary.Add(ShadowkinPowerThreshold.Min, Loc.GetString("shadowkin-power-min"));
-
-        _sawmill = Logger.GetSawmill("ShadowkinPowerSystem");
     }
 
     /// <param name="powerLevel">The current power level.</param>
@@ -76,7 +72,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            _sawmill.Error("Tried to update alert of entity without shadowkin component.");
+            Log.Error("Tried to update alert of entity without shadowkin component.");
             return;
         }
 
@@ -121,7 +117,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            _sawmill.Error("Tried to update power level of entity without shadowkin component.");
+            Log.Error("Tried to update power level of entity without shadowkin component.");
             return;
         }
 
@@ -163,7 +159,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            _sawmill.Error("Tried to add to power level of entity without shadowkin component.");
+            Log.Error("Tried to add to power level of entity without shadowkin component.");
             return;
         }
 
@@ -188,7 +184,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            _sawmill.Error("Tried to set power level of entity without shadowkin component.");
+            Log.Error("Tried to set power level of entity without shadowkin component.");
             return;
         }
 
@@ -223,7 +219,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Get shadowkin component
         if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            _sawmill.Error("Tried to blackeye entity without shadowkin component.");
+            Log.Error("Tried to blackeye entity without shadowkin component.");
             return;
         }
 

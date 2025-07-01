@@ -121,6 +121,11 @@
   tier: 3
   cost: 30000
   recipeUnlocks:
+  - SpeedLoaderMagnumPractice
+  - MagazinePistolSubMachineGunPractice
+  - MagazinePistolPractice
+  - MagazineRiflePractice
+  - MagazineLightRiflePractice
   - MagazinePacketPistol50AEAP
   - MagazinePacketRifle762x39AP
   - MagazinePacketRifle556UEGAP

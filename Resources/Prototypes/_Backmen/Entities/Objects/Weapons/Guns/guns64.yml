@@ -49,9 +49,9 @@
       path: /Audio/Weapons/Guns64/Flamethrowers/flamethrower.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns64/Flamethrowers/flamethrower_empty.ogg
-  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - PowerpackFlame
   - type: Appearance

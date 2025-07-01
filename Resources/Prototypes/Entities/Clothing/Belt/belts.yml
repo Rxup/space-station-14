@@ -661,7 +661,7 @@
         - BallisticAmmoProvider
         - CartridgeAmmo
   - type: StaticPrice
-    price: 500
+    price: 198
 
 - type: entity
   parent: ClothingBeltSecurity

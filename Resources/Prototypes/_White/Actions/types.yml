@@ -15,4 +15,5 @@
     useDelay: 6
   - type: WorldTargetAction
     event: !type:JumpActionEvent
+  - type: TargetAction
     range: 160

@@ -731,8 +731,8 @@
 - type: entity
   id: ActionHunterInvisibility
   parent: BaseAction
-  name: action-name-psionic-invisibility
-  description: action-description-psionic-invisibility
+  name: Псионическая невидимость
+  description: Сделайте себя невидимым для любой сущности, которая потенциально может быть псиоником. Борги, животные и так далее не затрагиваются.
   categories: [ HideSpawnMenu ]
   components:
     - type: Action

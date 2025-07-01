@@ -23,21 +23,24 @@
 
 - type: entity
   id: ActionCallAirSupportMissiles
+  parent: BaseAction
   name: Вызов арт-обстрела
   description: Запросить артиллерийской поддержки по указаной вами точке.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 240
-    range: 80
     itemIconStyle: BigAction
     icon:
       sprite: Backmen/Structures/Storage/supplypod.rsi
       state: missilepod_falling
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: MissileDropSpawnerAreaSpawner
         amount: 1
       offset: 0, 1
+  - type: TargetAction
+    range: 80
 
 - type: entity
   name: рация вызова снабжения

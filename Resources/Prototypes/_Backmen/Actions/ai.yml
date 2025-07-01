@@ -8,11 +8,9 @@
     icon: Backmen/Actions/AI/camera_stun.png
     useDelay: 3
     priority: 17
-    range: -1
+    checkCanInteract: false
   - type: WorldTargetAction
     event: !type:AIEyeCampShootActionEvent
-    checkCanInteract: false
-    checkCanAccess: false
 
 - type: entity
   id: AIEyeCamAction
@@ -24,6 +22,6 @@
     icon: Backmen/Actions/AI/camera.png
     useDelay: 5
     priority: 17
+    checkCanInteract: false
   - type: InstantAction
     event: !type:AIEyeCampActionEvent
-    checkCanInteract: false

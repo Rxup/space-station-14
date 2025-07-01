@@ -24,7 +24,7 @@ public sealed partial class PressureThreshold : EntityEffectCondition
         if (WorksOnLavaland && args.EntityManager.HasComponent<LavalandMapComponent>(transform.MapUid))
             return true;
 
-        var mix = args.EntityManager.System<AtmosphereSyste>().GetTileMixture((args.TargetEntity, transform));
+        var mix = args.EntityManager.System<SharedAtmosphereSystem>().GetTileMixture((args.TargetEntity, transform));
         var pressure = mix?.Pressure ?? 0f;
         return pressure >= Min && pressure <= Max;
     }

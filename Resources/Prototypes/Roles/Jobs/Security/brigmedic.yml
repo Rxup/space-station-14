@@ -33,3 +33,13 @@
           flatBonus: 0.025
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic
+  equipment:
+    shoes: ClothingShoesBootsJackSec # Corvax-Resprite
+    gloves: ClothingHandsGlovesNitrile
+    eyes: ClothingEyesHudMedSec
+    id: BrigmedicPDA
+    belt: ClothingBeltMedicalFilled

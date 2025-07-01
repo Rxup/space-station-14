@@ -1,8 +1,7 @@
 ﻿- type: entity
   id: ActionOpticZoom
   parent: BaseAction
-  name: action-name-optic-zoom
-  description: action-description-optic-zoom
+  name: optic zoom
   components:
   - type: Action
     useDelay: 10

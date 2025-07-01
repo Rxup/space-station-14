@@ -34,7 +34,7 @@
 
 - type: chameleonOutfit
   id: CentralCommandOfficialOutfit
-  job: CentralCommandOfficial
+  job: BKCCOfficial
   hasMindShield: true
   equipment:
     neck: ClothingNeckScarfStripedCentcom

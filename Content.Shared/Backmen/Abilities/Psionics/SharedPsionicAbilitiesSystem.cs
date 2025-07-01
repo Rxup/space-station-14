@@ -39,7 +39,6 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         SubscribeLocalEvent<PsionicComponent, PsionicPowerUsedEvent>(OnPowerUsed);
         SubscribeLocalEvent<PsionicComponent, MobStateChangedEvent>(OnMobStateChanged);
 
-        SubscribeLocalEvent<PsiActionComponent, ActionAttemptEvent>(OnActionAttempt);
         SubscribeLocalEvent<PsiActionComponent, ActionValidateEvent>(OnActionValidate);
         SubscribeLocalEvent<PsiActionComponent, ActionAttemptEvent>(OnTryUsePower);
 
@@ -90,12 +89,6 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
                 return;
             }
         }
-    }
-
-    private void OnActionAttempt(Entity<PsiActionComponent> ent, ref ActionAttemptEvent args)
-    {
-        if (_psionicInsulationQuery.HasComp(args.User))
-            args.Cancelled = true;
     }
 
     public bool CanUsePsionicAbilities(EntityUid performer, EntityUid target, bool popup = true)

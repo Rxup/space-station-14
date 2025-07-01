@@ -1,10 +1,8 @@
 - type: entity
   id: ShadowkinTeleport
-  name: action-name-shadowkin-teleport
-  description: action-description-shadowkin-teleport
+  name: shadowkin teleport
   components:
     - type: Action
-      repeat: true
       priority: -20
       itemIconStyle: NoItem
       useDelay: 15
@@ -16,13 +14,14 @@
         powerCost: 40
         staminaCost: 20
         speech: action-description-shadowkin-teleport
-      checkCanAccess: true
+    - type: TargetAction
       range: 32
+      checkCanAccess: true
+      repeat: true
 
 - type: entity
   id: ShadowkinDarkSwap
-  name: action-name-shadowkin-darkswap
-  description: action-description-shadowkin-darkswap
+  name: shadowkin darkswap
   components:
     - type: Action
       useDelay: 5
@@ -41,8 +40,7 @@
 
 - type: entity
   id: ShadowkinRest
-  name: action-name-shadowkin-rest
-  description: action-description-shadowkin-rest
+  name: shadowkin rest
   components:
     - type: Action
       useDelay: 60
@@ -51,7 +49,7 @@
       icon:
         sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
         state: rest
-    - type: InstantAction
-      event: !type:ShadowkinRestEvent
       checkCanInteract: false
       checkConsciousness: false
+    - type: InstantAction
+      event: !type:ShadowkinRestEvent

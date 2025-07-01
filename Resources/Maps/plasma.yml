@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 261.1.0
+  engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/03/2025 04:03:17
-  entityCount: 26381
+  time: 07/04/2025 07:43:58
+  entityCount: 26377
 maps:
 - 1
 grids:
@@ -9863,11 +9863,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -9893,9 +9909,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -9923,6 +9955,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -9938,11 +9978,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 0
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -13525,7 +13581,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -33.5,-80.5
       parent: 2
-- proto: AirlockHatchMaintenance
+- proto: AirlockHatchMaint
   entities:
   - uid: 9597
     components:
@@ -24084,6 +24140,99 @@ entities:
       desc: Backgammon time, baybeeeeeeee!
     - type: Transform
       pos: -85.50101,-42.44152
+      parent: 2
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 9185
+    components:
+    - type: Transform
+      pos: -73.5,-28.5
+      parent: 2
+  - uid: 9221
+    components:
+    - type: Transform
+      pos: -107.5,-55.5
+      parent: 2
+  - uid: 9387
+    components:
+    - type: Transform
+      pos: -100.5,-31.5
+      parent: 2
+  - uid: 20437
+    components:
+    - type: Transform
+      pos: -134.5,-4.5
+      parent: 2
+  - uid: 20934
+    components:
+    - type: Transform
+      pos: -55.5,-40.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 6076
+    components:
+    - type: MetaData
+      desc: Despite everything else being delapidated, this coffee machine is brand new. Still tastes like crap.
+      name: New Coffee Machine
+    - type: Transform
+      pos: -32.5,-46.5
+      parent: 2
+  - uid: 7325
+    components:
+    - type: Transform
+      pos: -130.5,-42.5
+      parent: 2
+  - uid: 8358
+    components:
+    - type: Transform
+      pos: -18.5,20.5
+      parent: 2
+  - uid: 9046
+    components:
+    - type: Transform
+      pos: -45.5,-69.5
+      parent: 2
+  - uid: 10989
+    components:
+    - type: Transform
+      pos: -65.5,2.5
+      parent: 2
+  - uid: 17124
+    components:
+    - type: Transform
+      pos: -94.5,-36.5
+      parent: 2
+  - uid: 25525
+    components:
+    - type: Transform
+      pos: -127.5,-58.5
+      parent: 2
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 11818
+    components:
+    - type: Transform
+      pos: -6.5,-6.5
+      parent: 2
+  - uid: 17009
+    components:
+    - type: Transform
+      pos: -96.5,-34.5
+      parent: 2
+- proto: BackmenVendingMachinePwrGame
+  entities:
+  - uid: 9726
+    components:
+    - type: Transform
+      pos: -115.5,22.5
+      parent: 2
+- proto: BackmenVendingMachineSoda
+  entities:
+  - uid: 9457
+    components:
+    - type: Transform
+      pos: -96.5,-33.5
       parent: 2
 - proto: BananaPhoneInstrument
   entities:
@@ -55285,6 +55434,13 @@ entities:
     - type: Transform
       pos: -38.552986,-16.48195
       parent: 2
+- proto: CaptainDrobe
+  entities:
+  - uid: 2900
+    components:
+    - type: Transform
+      pos: -45.5,2.5
+      parent: 2
 - proto: CaptainIDCard
   entities:
   - uid: 22261
@@ -64602,6 +64758,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 13666
     components:
     - type: Transform
@@ -64851,6 +65015,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -65174,13 +65346,6 @@ entities:
     - type: Transform
       pos: -116.47996,12.489793
       parent: 2
-- proto: ClothingNeckCloakLesbian
-  entities:
-  - uid: 22951
-    components:
-    - type: Transform
-      pos: -24.48211,-68.415665
-      parent: 2
 - proto: ClothingNeckClownmedal
   entities:
   - uid: 3277
@@ -65188,20 +65353,6 @@ entities:
     - type: Transform
       pos: -75.67967,-3.2953148
       parent: 2
-- proto: ClothingNeckGoldAutismPin
-  entities:
-  - uid: 2395
-    components:
-    - type: Transform
-      pos: -21.527897,-69.71385
-      parent: 2
-  - uid: 9590
-    components:
-    - type: Transform
-      parent: 21062
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingNeckGoldmedal
   entities:
   - uid: 4302
@@ -66105,14 +66256,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -133.5,-48.5
       parent: 2
-- proto: ComputerSalvageExpedition
-  entities:
-  - uid: 26344
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -96.5,33.5
-      parent: 2
 - proto: ComputerSalvageJobBoard
   entities:
   - uid: 16998
@@ -66138,6 +66281,14 @@ entities:
     components:
     - type: Transform
       pos: -91.5,25.5
+      parent: 2
+- proto: ComputerShuttleMiningLavaland
+  entities:
+  - uid: 26344
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -96.5,33.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -66905,6 +67056,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -66968,6 +67127,14 @@ entities:
         moles:
         - 1.606311
         - 6.042789
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67185,6 +67352,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 17839
     components:
     - type: Transform
@@ -67208,6 +67383,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67242,6 +67425,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67288,6 +67479,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67369,6 +67568,14 @@ entities:
         moles:
         - 1.8856695
         - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -67519,6 +67726,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -77265,13 +77480,6 @@ entities:
     - type: Transform
       pos: -51.5,-38.5
       parent: 2
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 2900
-    components:
-    - type: Transform
-      pos: -45.5,2.5
-      parent: 2
 - proto: DresserChiefEngineerFilled
   entities:
   - uid: 6289
@@ -82111,6 +82319,18 @@ entities:
     - type: Transform
       pos: -21.5,-17.5
       parent: 2
+- proto: FlagSyndicate
+  entities:
+  - uid: 2406
+    components:
+    - type: Transform
+      pos: -13.5,19.5
+      parent: 2
+    - type: Contraband
+      allowedJobs: []
+      allowedDepartments:
+      - Security
+      severity: Syndicate
 - proto: Flash
   entities:
   - uid: 22312
@@ -125043,35 +125263,35 @@ entities:
     - type: Transform
       pos: -86.5,-25.5
       parent: 2
-- proto: GunSafeLaserCarbine
+- proto: GunSafeLaserCarbineUEG
   entities:
   - uid: 1890
     components:
     - type: Transform
       pos: -81.5,-18.5
       parent: 2
-- proto: GunSafePistolMk58
+- proto: GunSafePistolGlock
   entities:
   - uid: 19229
     components:
     - type: Transform
       pos: -86.5,-20.5
       parent: 2
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleAR18
   entities:
   - uid: 1852
     components:
     - type: Transform
       pos: -80.5,-18.5
       parent: 2
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun
   entities:
   - uid: 3260
     components:
     - type: Transform
       pos: -82.5,-18.5
       parent: 2
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 1906
     components:
@@ -126563,8 +126783,6 @@ entities:
     - type: Transform
       pos: -100.47148,-27.318197
       parent: 2
-    - type: HandheldLight
-      toggleActionEntity: 3278
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
@@ -127101,13 +127319,20 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 9590
           - 21064
           - 21063
         paper_label: !type:ContainerSlot
@@ -127355,6 +127580,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -127431,6 +127664,14 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -128045,7 +128286,7 @@ entities:
     - type: Transform
       pos: -112.5,-38.5
       parent: 2
-- proto: MagazinePistol
+- proto: MagazinePistol9x17
   entities:
   - uid: 4573
     components:
@@ -128062,7 +128303,7 @@ entities:
     - type: Transform
       pos: -88.74439,-22.559776
       parent: 2
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazinePistolTopSubMachineGun
   entities:
   - uid: 8276
     components:
@@ -138202,10 +138443,15 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: SeedExtractor
   entities:
   - uid: 6131
@@ -138471,7 +138717,7 @@ entities:
     - type: Transform
       pos: -90.44827,-72.54804
       parent: 2
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 17779
     components:
@@ -144087,6 +144333,13 @@ entities:
     - type: Transform
       pos: -53.5,-1.5
       parent: 2
+- proto: SpawnMobGorillaLargo
+  entities:
+  - uid: 12764
+    components:
+    - type: Transform
+      pos: -88.5,33.5
+      parent: 2
 - proto: SpawnMobMcGriff
   entities:
   - uid: 22277
@@ -144107,13 +144360,6 @@ entities:
     components:
     - type: Transform
       pos: -126.5,-18.5
-      parent: 2
-- proto: SpawnMobRaccoonMorticia
-  entities:
-  - uid: 12764
-    components:
-    - type: Transform
-      pos: -88.5,33.5
       parent: 2
 - proto: SpawnMobShiva
   entities:
@@ -147513,18 +147759,6 @@ entities:
       - SurveillanceCameraEntertainment
       nameSet: True
       id: LiveLeak
-- proto: SyndieFlag
-  entities:
-  - uid: 2406
-    components:
-    - type: Transform
-      pos: -13.5,19.5
-      parent: 2
-    - type: Contraband
-      allowedJobs: []
-      allowedDepartments:
-      - Security
-      severity: Syndicate
 - proto: SyndieHandyFlag
   entities:
   - uid: 18682
@@ -151467,10 +151701,15 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: Vaccinator
   entities:
   - uid: 4174
@@ -151551,33 +151790,6 @@ entities:
     - type: Transform
       pos: -40.5,-19.5
       parent: 2
-- proto: VendingMachineCigs
-  entities:
-  - uid: 9185
-    components:
-    - type: Transform
-      pos: -73.5,-28.5
-      parent: 2
-  - uid: 9221
-    components:
-    - type: Transform
-      pos: -107.5,-55.5
-      parent: 2
-  - uid: 9387
-    components:
-    - type: Transform
-      pos: -100.5,-31.5
-      parent: 2
-  - uid: 20437
-    components:
-    - type: Transform
-      pos: -134.5,-4.5
-      parent: 2
-  - uid: 20934
-    components:
-    - type: Transform
-      pos: -55.5,-40.5
-      parent: 2
 - proto: VendingMachineClothing
   entities:
   - uid: 3782
@@ -151595,46 +151807,6 @@ entities:
     - type: Transform
       pos: -51.5,-36.5
       parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 6076
-    components:
-    - type: MetaData
-      desc: Despite everything else being delapidated, this coffee machine is brand new. Still tastes like crap.
-      name: New Coffee Machine
-    - type: Transform
-      pos: -32.5,-46.5
-      parent: 2
-  - uid: 7325
-    components:
-    - type: Transform
-      pos: -130.5,-42.5
-      parent: 2
-  - uid: 8358
-    components:
-    - type: Transform
-      pos: -18.5,20.5
-      parent: 2
-  - uid: 9046
-    components:
-    - type: Transform
-      pos: -45.5,-69.5
-      parent: 2
-  - uid: 10989
-    components:
-    - type: Transform
-      pos: -65.5,2.5
-      parent: 2
-  - uid: 17124
-    components:
-    - type: Transform
-      pos: -94.5,-36.5
-      parent: 2
-  - uid: 25525
-    components:
-    - type: Transform
-      pos: -127.5,-58.5
-      parent: 2
 - proto: VendingMachineCuraDrobe
   entities:
   - uid: 3851
@@ -151648,18 +151820,6 @@ entities:
     components:
     - type: Transform
       pos: -55.5,-33.5
-      parent: 2
-- proto: VendingMachineDonut
-  entities:
-  - uid: 11818
-    components:
-    - type: Transform
-      pos: -6.5,-6.5
-      parent: 2
-  - uid: 17009
-    components:
-    - type: Transform
-      pos: -96.5,-34.5
       parent: 2
 - proto: VendingMachineEngiDrobe
   entities:
@@ -151734,20 +151894,6 @@ entities:
     - type: Transform
       pos: -45.5,-18.5
       parent: 2
-- proto: VendingMachinePride
-  entities:
-  - uid: 16887
-    components:
-    - type: Transform
-      pos: -60.5,-58.5
-      parent: 2
-- proto: VendingMachinePwrGame
-  entities:
-  - uid: 9726
-    components:
-    - type: Transform
-      pos: -115.5,22.5
-      parent: 2
 - proto: VendingMachineRoboDrobe
   entities:
   - uid: 2483
@@ -151808,13 +151954,6 @@ entities:
     components:
     - type: Transform
       pos: -85.5,-47.5
-      parent: 2
-- proto: VendingMachineSoda
-  entities:
-  - uid: 9457
-    components:
-    - type: Transform
-      pos: -96.5,-33.5
       parent: 2
 - proto: VendingMachineSustenance
   entities:
@@ -167746,6 +167885,14 @@ entities:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -168180,7 +168327,7 @@ entities:
       - 25854
       - 25852
       - 25851
-- proto: WeaponEnergyTurretStation
+- proto: WeaponEnergyTurretSecurity
   entities:
   - uid: 4564
     components:
@@ -168222,7 +168369,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 5916
-- proto: WeaponEnergyTurretStationControlPanel
+- proto: WeaponEnergyTurretSecurityControlPanel
   entities:
   - uid: 5916
     components:
@@ -168254,7 +168401,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponSubMachineGunWt550
+- proto: WeaponSubMachineGunP90
   entities:
   - uid: 14639
     components:

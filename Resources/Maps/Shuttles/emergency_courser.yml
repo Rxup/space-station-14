@@ -4,7 +4,7 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/09/2025 18:23:08
+  time: 07/04/2025 07:47:00
   entityCount: 675
 maps: []
 grids:
@@ -499,11 +499,27 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 1400.0662
           - 5266.916
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -733,6 +749,20 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-11.5
+      parent: 656
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 634
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 656
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 633
+    components:
+    - type: Transform
+      pos: -2.5,2.5
       parent: 656
 - proto: Bed
   entities:
@@ -3200,7 +3230,7 @@ entities:
     - type: Transform
       pos: -3.5,-11.5
       parent: 656
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 225
     components:
@@ -3691,13 +3721,6 @@ entities:
     - type: Transform
       pos: -3.5,11.5
       parent: 656
-- proto: VendingMachineCigs
-  entities:
-  - uid: 634
-    components:
-    - type: Transform
-      pos: 2.5,2.5
-      parent: 656
 - proto: VendingMachineMedical
   entities:
   - uid: 191
@@ -3711,13 +3734,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,7.5
-      parent: 656
-- proto: VendingMachineSnack
-  entities:
-  - uid: 633
-    components:
-    - type: Transform
-      pos: -2.5,2.5
       parent: 656
 - proto: WallShuttle
   entities:

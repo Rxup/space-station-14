@@ -114,7 +114,7 @@
     sprite: null
     size: Normal
   - type: StaticPrice
-    price: 1500
+    price: 290
 
 - type: entity
   parent: BaseAction

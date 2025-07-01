@@ -1,8 +1,8 @@
 - type: entity
   id: ActionPumpCursedHeart
   parent: BaseAction
-  name: action-pump-heart
-  description: action-pump-heart-desc
+  name: Сердцебиение
+  description: Качайте кровь к своему сердцу чтобы жить!
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -11,8 +11,8 @@
     icon:
       sprite: _Lavaland/Objects/Specific/Lavaland/loot.rsi
       state: cursed_heart
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:PumpHeartActionEvent
 

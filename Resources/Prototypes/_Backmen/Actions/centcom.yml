@@ -1,8 +1,8 @@
 - type: entity
   id: ActionCentcomFtlAction
   parent: BaseAction
-  name: centcom-ftl-action-name
-  description: centcom-ftl-action-description
+  name: Ключ навигации ЦентКомма
+  description: Позволяет совершить прыжок на станцию ЦентКомма
   components:
     - type: Action
       useDelay: 180

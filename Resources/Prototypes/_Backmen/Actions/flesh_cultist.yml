@@ -40,8 +40,8 @@
         sprite: Actions/Implants/implants.rsi
         state: freedom
       useDelay: 10
-    - type: InstantAction
       checkCanInteract: false
+    - type: InstantAction
       event: !type:FleshCultistBreakCuffsActionEvent
 
 - type: entity
@@ -91,6 +91,7 @@
       useDelay: 60
     - type: WorldTargetAction
       event: !type:FleshCultistAcidSpitActionEvent
+    - type: TargetAction
       range: 200
 
 - type: entity
@@ -192,6 +193,7 @@
       useDelay: 10
     - type: WorldTargetAction
       event: !type:FleshWormJumpActionEvent
+    - type: TargetAction
       range: 160
 
 - type: entity
@@ -205,8 +207,9 @@
       itemIconStyle: NoItem
       useDelay: 120
     - type: WorldTargetAction
-      range: 200
       event: !type:FleshPudgeThrowWormActionEvent
+    - type: TargetAction
+      range: 200
 
 - type: entity
   id: ActionAcidSpit
@@ -219,8 +222,9 @@
       itemIconStyle: NoItem
       useDelay: 20
     - type: WorldTargetAction
-      range: 200
       event: !type:FleshPudgeAcidSpitActionEvent
+    - type: TargetAction
+      range: 200
 
 - type: entity
   id: ActionAbsorbBloodPool

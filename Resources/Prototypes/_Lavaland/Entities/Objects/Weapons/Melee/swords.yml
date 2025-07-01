@@ -52,10 +52,11 @@
 
 - type: entity
   id: ActionDashJustice
+  parent: BaseAction
   name: holy dash
   description: Dash with power of ANGELS.
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: blink
@@ -64,8 +65,10 @@
       path: /Audio/Backmen/Bosses/Portal3.ogg
       params:
         volume: 5
-    event: !type:DashEvent
     useDelay: 1
+  - type: WorldTargetAction
+    event: !type:DashEvent
+  - type: TargetAction
     checkCanAccess: true
     range: 7
 

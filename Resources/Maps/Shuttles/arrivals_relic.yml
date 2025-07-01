@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 260.0.0
+  engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/09/2025 21:38:40
+  time: 07/04/2025 07:46:58
   entityCount: 317
 maps: []
 grids:
@@ -128,6 +128,14 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
@@ -143,9 +151,18 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: ImplicitRoof
 - proto: AirlockCommandGlassLocked
   entities:
   - uid: 67

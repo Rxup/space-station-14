@@ -17,6 +17,7 @@ using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
@@ -54,32 +55,28 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         _actions.RemoveAction(uid, component.ShadowkinTeleportAction);
     }
 
-
-    private void Teleport(EntityUid uid, ShadowkinTeleportPowerComponent component, ShadowkinTeleportEvent args)
+    private static SoundSpecifier _soundTeleport = new SoundPathSpecifier("/Audio/Backmen/Effects/Shadowkin/Powers/teleport.ogg");
+    public bool DoTeleport(EntityUid user, EntityCoordinates target, SoundSpecifier? sound = null, float? soundVolume = 5f)
     {
-        // Need power to drain power
-        if (!TryComp<ShadowkinComponent>(args.Performer, out var comp))
-            return;
-
-        // Don't activate abilities if handcuffed
-        // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
-            return;
-
-        if(!_interaction.InRangeUnobstructed(args.Performer, args.Target, 0,
+        if(!_interaction.InRangeUnobstructed(user,
+               target,
+               0,
                CollisionGroup.Opaque,
                predicate: (ent) => _tagSystem.HasTag(ent, "Structure"),
                popup:true))
-            return;
+            return false;
 
-        var transform = Transform(args.Performer);
-        if (transform.MapID != args.Target.GetMapId(EntityManager) || transform.GridUid == null)
-            return;
+        var userPos = Transform(user);
+
+        if (userPos.MapID != _transform.GetMapId(target) ||
+            userPos.GridUid == null ||
+            _transform.GetGrid(target) is not {} grid)
+            return false;
 
         PullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
-        if (TryComp<PullerComponent>(args.Performer, out var puller) &&
+        if (TryComp<PullerComponent>(user, out var puller) &&
             puller.Pulling != null &&
-            TryComp<PullableComponent>(puller.Pulling, out pullable) &&
+            TryComp(puller.Pulling, out pullable) &&
             pullable.BeingPulled)
         {
             // Temporarily stop pulling to avoid not teleporting to the target
@@ -87,27 +84,43 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         }
 
         // Teleport the performer to the target
-        _transform.SetCoordinates(args.Performer, args.Target);
-        _transform.AttachToGridOrMap(args.Performer);
+        _transform.SetCoordinates(user, target);
+        _transform.AttachToGridOrMap(user);
 
-        if (pullable != null && puller != null)
+        if (pullable != null && puller?.Pulling != null)
         {
             // Get transform of the pulled entity
-            var pulledTransform = Transform(puller.Pulling!.Value);
+            //var pulledTransform = Transform(puller.Pulling!.Value);
 
             // Teleport the pulled entity to the target
             // TODO: Relative position to the performer
-            _transform.SetCoordinates(puller.Pulling.Value, args.Target);
+            _transform.SetCoordinates(puller.Pulling.Value, target);
             _transform.AttachToGridOrMap(puller.Pulling!.Value);
 
             // Resume pulling
             // TODO: This does nothing? // This does things sometimes, but the client never knows
-            _pulling.TryStartPull(args.Performer, puller.Pulling.Value, puller, pullable);
+            _pulling.TryStartPull(user, puller.Pulling.Value, puller, pullable);
         }
 
-
         // Play the teleport sound
-        _audio.PlayPvs(args.Sound, args.Performer, AudioParams.Default.WithVolume(args.Volume));
+        _audio.PlayPvs(sound ?? _soundTeleport, user, AudioParams.Default.WithVolume(soundVolume ?? 5f));
+
+        return true;
+    }
+
+    private void Teleport(EntityUid uid, ShadowkinTeleportPowerComponent component, ShadowkinTeleportEvent args)
+    {
+        // Need power to drain power
+        if (!HasComp<ShadowkinComponent>(args.Performer))
+            return;
+
+        // Don't activate abilities if handcuffed
+        // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
+        if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
+            return;
+
+        if(!DoTeleport(args.Performer, args.Target, args.Sound, args.Volume))
+            return;
 
         // Take power and deal stamina damage
         _power.TryAddPowerLevel(args.Performer, -args.PowerCost);

@@ -26,28 +26,11 @@ public sealed class TelegnosisPowerSystem : EntitySystem
         SubscribeLocalEvent<TelegnosisPowerComponent, TelegnosisPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<TelegnosisPowerComponent, MobStateChangedEvent>(OnMobStateChanged);
 
-
-        SubscribeLocalEvent<TelegnosticProjectionComponent, ComponentStartup>(OnProjectionInit);
-        SubscribeLocalEvent<TelegnosticProjectionComponent, ComponentShutdown>(OnProjectionShutdown);
         SubscribeLocalEvent<TelegnosticProjectionComponent, TelegnosisPowerReturnActionEvent>(OnPowerReturnUsed);
-
-
-
         SubscribeLocalEvent<TelegnosticProjectionComponent, MindRemovedMessage>(OnMindRemoved);
     }
 
-    private void OnProjectionShutdown(EntityUid uid, TelegnosticProjectionComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.TelegnosisPowerAction);
-    }
-
-    private void OnProjectionInit(EntityUid uid, TelegnosticProjectionComponent component, ComponentStartup args)
-    {
-        _actions.AddAction(uid, ref component.TelegnosisPowerAction, ActionTelegnosisReturn);
-    }
-
     [ValidatePrototypeId<EntityPrototype>] private const string ActionTelegnosis = "ActionTelegnosis";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTelegnosisReturn = "ActionTelegnosisReturn";
 
     private void OnInit(EntityUid uid, TelegnosisPowerComponent component, ComponentInit args)
     {

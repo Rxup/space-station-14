@@ -32,12 +32,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: absorb_dna
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
+    canTargetSelf: false
     whitelist:
       components:
       - Body
-    canTargetSelf: false
-    interactOnMiss: false
     event: !type:AbsorbDNAEvent {}
   - type: ChangelingAction
     chemicalCost: 25
@@ -56,12 +57,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_extractdna
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
+    canTargetSelf: false
     whitelist:
       components:
       - Body
-    canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingExtractDNAEvent {}
   - type: ChangelingAction
     chemicalCost: 25
@@ -116,9 +118,9 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: stasis_enter
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:EnterStasisEvent {}
   - type: ChangelingAction
     biomassCost: 1
@@ -136,9 +138,9 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: stasis_exit
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:ExitStasisEvent {}
   - type: ChangelingAction
     chemicalCost: 60
@@ -291,12 +293,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_blind
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingBlindEvent {}
   - type: ChangelingAction
     chemicalCost: 35
@@ -314,12 +317,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_cryo
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingCryoEvent {}
   - type: ChangelingAction
     chemicalCost: 35
@@ -337,12 +341,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_lethargic
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingLethargicEvent {}
   - type: ChangelingAction
     chemicalCost: 35
@@ -360,12 +365,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_mute
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingMuteEvent {}
   - type: ChangelingAction
     chemicalCost: 35
@@ -383,12 +389,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_armblade
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingFakeArmbladeEvent {}
   - type: ChangelingAction
     chemicalCost: 50
@@ -406,12 +413,13 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_transform
+  - type: TargetAction
+    interactOnMiss: false
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     canTargetSelf: false
-    interactOnMiss: false
     event: !type:StingTransformEvent {}
   - type: ChangelingAction
     chemicalCost: 75
@@ -431,9 +439,9 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: anatomic_panacea
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:ActionAnatomicPanaceaEvent {}
   - type: ChangelingAction
     chemicalCost: 30
@@ -451,8 +459,8 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: augmented_eyesight
-  - type: InstantAction
     checkCanInteract: false
+  - type: InstantAction
     event: !type:ActionAugmentedEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 0
@@ -470,8 +478,8 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: biodegrade
-  - type: InstantAction
     checkCanInteract: false
+  - type: InstantAction
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
     chemicalCost: 30
@@ -489,9 +497,9 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: chameleon_skin
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:ActionChameleonSkinEvent {}
   - type: ChangelingAction
     chemicalCost: 20
@@ -509,9 +517,9 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: epinephrine_overdose
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:ActionEphedrineOverdoseEvent {}
   - type: ChangelingAction
     chemicalCost: 30
@@ -530,8 +538,8 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: fleshmend
-  - type: InstantAction
     checkCanInteract: false
+  - type: InstantAction
     event: !type:ActionFleshmendEvent {}
   - type: ChangelingAction
     chemicalCost: 35
@@ -550,8 +558,8 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: lesser_form
-  - type: InstantAction
     checkCanInteract: false
+  - type: InstantAction
     event: !type:ActionLesserFormEvent {}
   - type: ChangelingAction
     chemicalCost: 20
@@ -586,9 +594,9 @@
     icon:
       sprite: Backmen/Changeling/changeling_abilities.rsi
       state: hivemind_access
-  - type: InstantAction
     checkCanInteract: false
     checkConsciousness: false
+  - type: InstantAction
     event: !type:ActionHivemindAccessEvent {}
   - type: ChangelingAction
     chemicalCost: 0

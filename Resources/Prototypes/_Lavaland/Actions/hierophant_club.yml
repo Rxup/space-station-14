@@ -2,8 +2,7 @@
 - type: entity
   id: ActionHierophantPlaceMarker
   parent: BaseAction
-  name: action-hierophant-place-marker
-  description: action-hierophant-place-marker-desc
+  name: hierophant place marker
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -18,8 +17,7 @@
 # Teleportation
 - type: entity
   id: ActionHierophantTeleport
-  name: action-hierophant-teleport
-  description: action-hierophant-teleport-desc
+  name: hierophant teleport
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -34,8 +32,7 @@
 # Spawn cross
 - type: entity
   id: ActionHierophantSpawnCross
-  name: action-hierophant-spawn-cross
-  description: action-hierophant-spawn-cross-desc
+  name: hierophant spawn cross
   components:
   - type: Action
     priority: -21
@@ -46,5 +43,6 @@
     itemIconStyle: NoItem
   - type: WorldTargetAction
     event: !type:HierophantClubActivateCrossEvent
+  - type: TargetAction
     checkCanAccess: true
     range: 8

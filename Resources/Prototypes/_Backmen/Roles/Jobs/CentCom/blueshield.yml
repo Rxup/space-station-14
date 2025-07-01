@@ -62,3 +62,13 @@
     - BlueShieldSetLoadouts
     - RadioBlueShieldSupplyPod
     - CombatKnifeSpetsnaz
+
+- type: chameleonOutfit
+  id: BlueShieldChameleonOutfit
+  job: BlueShield
+  hasMindShield: true
+  equipment:
+    id: BlueShieldPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltCommand
+    belt: ClothingBeltBlueshieldWebbingFilled

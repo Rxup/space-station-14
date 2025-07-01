@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 260.2.0
+  engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/01/2025 15:08:58
+  time: 07/04/2025 07:44:50
   entityCount: 18392
 maps:
 - 1
@@ -84,9 +84,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: Parallax
@@ -5632,9 +5630,6 @@ entities:
     components:
     - type: Transform
       parent: 5
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 5
 - proto: ActionToggleInternals
   entities:
   - uid: 8
@@ -5643,27 +5638,18 @@ entities:
     components:
     - type: Transform
       parent: 7
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 7
   - uid: 11
     mapInit: true
     paused: true
     components:
     - type: Transform
       parent: 10
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 10
   - uid: 18360
     mapInit: true
     paused: true
     components:
     - type: Transform
       parent: 18359
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 18359
 - proto: ActionToggleJetpack
   entities:
   - uid: 9
@@ -5672,18 +5658,12 @@ entities:
     components:
     - type: Transform
       parent: 7
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 7
   - uid: 12
     mapInit: true
     paused: true
     components:
     - type: Transform
       parent: 10
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 10
 - proto: AirAlarm
   entities:
   - uid: 13
@@ -32488,25 +32468,6 @@ entities:
     - type: Transform
       pos: -7.3107276,-91.34308
       parent: 2
-- proto: CapacitorStockPart
-  entities:
-  - uid: 4958
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5550447,-304.56104
-      parent: 2
-  - uid: 4959
-    components:
-    - type: Transform
-      pos: -6.343737,-304.3674
-      parent: 2
-  - uid: 4960
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.6078706,-304.26178
-      parent: 2
 - proto: CaptainDrobe
   entities:
   - uid: 4961
@@ -38066,8 +38027,6 @@ entities:
       parent: 2
     - type: GasTank
       toggleActionEntity: 8
-    - type: Jetpack
-      toggleActionEntity: 9
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
@@ -79347,8 +79306,6 @@ entities:
       parent: 2
     - type: GasTank
       toggleActionEntity: 11
-    - type: Jetpack
-      toggleActionEntity: 12
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
@@ -80811,13 +80768,6 @@ entities:
     - type: Transform
       pos: 19.673317,-257.24585
       parent: 2
-- proto: MatterBinStockPart
-  entities:
-  - uid: 12268
-    components:
-    - type: Transform
-      pos: -1.6846497,-303.9585
-      parent: 2
 - proto: MedicalBed
   entities:
   - uid: 12269
@@ -80965,6 +80915,28 @@ entities:
       parent: 2
 - proto: MicroManipulatorStockPart
   entities:
+  - uid: 4958
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5550447,-304.56104
+      parent: 2
+  - uid: 4959
+    components:
+    - type: Transform
+      pos: -6.343737,-304.3674
+      parent: 2
+  - uid: 4960
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.6078706,-304.26178
+      parent: 2
+  - uid: 12268
+    components:
+    - type: Transform
+      pos: -1.6846497,-303.9585
+      parent: 2
   - uid: 12294
     components:
     - type: Transform
@@ -96888,8 +96860,6 @@ entities:
     - type: Transform
       pos: -3.3447917,-7.302464
       parent: 2
-    - type: Blocking
-      blockingToggleActionEntity: 6
     - type: ActionsContainer
     - type: ContainerContainer
       containers:

@@ -4,7 +4,7 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/09/2025 18:53:35
+  time: 07/04/2025 07:47:00
   entityCount: 957
 maps: []
 grids:
@@ -514,9 +514,25 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           immutable: True
           moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -534,6 +550,14 @@ entities:
           moles:
           - 1400.0662
           - 5266.916
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -4598,7 +4622,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-9.5
       parent: 1
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 745
     components:
