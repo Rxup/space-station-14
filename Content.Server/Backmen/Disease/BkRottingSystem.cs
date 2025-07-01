@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Disease;
 
-public sealed class BkRottingSystem : EntitySystem
+public sealed class BkRottingSystem : SharedBkRottingSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -14,7 +14,6 @@ public sealed class BkRottingSystem : EntitySystem
     /// Miasma outbreaks are not per-entity,
     /// so this ensures that each entity in the same incident
     /// receives the same disease.
-
     public readonly List<ProtoId<DiseasePrototype>> MiasmaDiseasePool = new()
     {
         "VentCough",
@@ -55,7 +54,7 @@ public sealed class BkRottingSystem : EntitySystem
         _poolDisease = _random.Pick(MiasmaDiseasePool);
     }
 
-    public string RequestPoolDisease()
+    public override string RequestPoolDisease()
     {
         // We reset the current time on this outbreak so people don't get unlucky at the transition time
         _diseaseTime = _timing.CurTime + _poolRepickTime;

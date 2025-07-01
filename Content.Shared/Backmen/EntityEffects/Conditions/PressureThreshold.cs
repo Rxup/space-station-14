@@ -1,15 +1,14 @@
+using Content.Shared._Lavaland.Procedural.Components;
+using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server._Lavaland.Procedural.Components;
-using Content.Shared._Lavaland.Procedural.Components;
 
-namespace Content.Server.EntityEffects.EffectConditions;
+namespace Content.Shared.Backmen.EntityEffects.Conditions;
 
 public sealed partial class PressureThreshold : EntityEffectCondition
 {
     [DataField]
-    public bool WorksOnLavaland = false;
+    public bool WorksOnLavaland;
 
     [DataField]
     public float Min = float.MinValue;
@@ -25,7 +24,7 @@ public sealed partial class PressureThreshold : EntityEffectCondition
         if (WorksOnLavaland && args.EntityManager.HasComponent<LavalandMapComponent>(transform.MapUid))
             return true;
 
-        var mix = args.EntityManager.System<AtmosphereSystem>().GetTileMixture((args.TargetEntity, transform));
+        var mix = args.EntityManager.System<AtmosphereSyste>().GetTileMixture((args.TargetEntity, transform));
         var pressure = mix?.Pressure ?? 0f;
         return pressure >= Min && pressure <= Max;
     }

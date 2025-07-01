@@ -1,10 +1,9 @@
-using Content.Shared.Chemistry.Reagent;
-using Content.Server.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Chemistry.ReagentEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 /// <summary>
 /// Rerolls psionics once.
@@ -22,7 +21,7 @@ public sealed partial class ChemRemovePsionic : EntityEffect
         if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale != 1f)
             return;
 
-        var psySys = args.EntityManager.EntitySysManager.GetEntitySystem<PsionicAbilitiesSystem>();
+        var psySys = args.EntityManager.System<SharedPsionicsSystem>();
 
         psySys.RemovePsionics(args.TargetEntity);
     }

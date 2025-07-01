@@ -1,10 +1,9 @@
-using Content.Shared.Chemistry.Reagent;
-using Content.Server.Backmen.Psionics;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Chemistry.ReagentEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 /// <summary>
 /// Rerolls psionics once.
@@ -25,7 +24,7 @@ public sealed partial class ChemRerollPsionic : EntityEffect
 
     public override void Effect(EntityEffectBaseArgs args)
     {
-        var psySys = args.EntityManager.EntitySysManager.GetEntitySystem<PsionicsSystem>();
+        var psySys = args.EntityManager.System<SharedPsionicsSystem>();
 
         psySys.RerollPsionics(args.TargetEntity, bonusMuliplier: BonusMuliplier);
     }

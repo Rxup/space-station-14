@@ -200,12 +200,14 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 
         _glimmerSystem.Glimmer += _robustRandom.Next(minGlimmer, maxGlimmer);
     }
+
+
 }
 
 public sealed class PsionicPowerUsedEvent : HandledEntityEventArgs
 {
     public EntityUid User { get; }
-    public string Power = string.Empty;
+    public string Power;
 
     public PsionicPowerUsedEvent(EntityUid user, string power)
     {

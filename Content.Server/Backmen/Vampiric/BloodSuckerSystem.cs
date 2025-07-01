@@ -197,7 +197,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         vmpRule.TotalBloodsuckers++;
     }
 
-    public void ForceMakeVampire(EntityUid uid)
+    public override void ForceMakeVampire(EntityUid uid)
     {
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;

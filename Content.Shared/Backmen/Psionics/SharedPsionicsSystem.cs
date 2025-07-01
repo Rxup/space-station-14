@@ -46,7 +46,7 @@ public abstract class SharedPsionicsSystem : EntitySystem
 
     private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");
 
-    protected virtual void RemovePsionics(Entity<PotentialPsionicComponent?> ent)
+    public virtual void RemovePsionics(Entity<PotentialPsionicComponent?> ent)
     {
 
     }
@@ -61,6 +61,10 @@ public abstract class SharedPsionicsSystem : EntitySystem
         return false;
     }
 
+    public virtual void RerollPsionics(Entity<PotentialPsionicComponent?> ent, float bonusMuliplier = 1f)
+    {
+
+    }
 
     private void GetVerbs(Entity<PotentialPsionicComponent> ent, ref GetVerbsEvent<Verb> args)
     {
@@ -100,8 +104,6 @@ public abstract class SharedPsionicsSystem : EntitySystem
             args.Verbs.Add(verb);
         }
     }
-
-
 
     private void OnMeleeHit(EntityUid uid, AntiPsionicWeaponComponent component, MeleeHitEvent args)
     {

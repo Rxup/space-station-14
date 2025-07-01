@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Body.Part;
@@ -9,10 +8,10 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Backmen.EntityEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 [UsedImplicitly]
-public sealed partial class SuppressPain : EntityEffect // backmen effect
+public sealed partial class SuppressPain : EntityEffect
 {
     [DataField(required: true)]
     public FixedPoint2 Amount;

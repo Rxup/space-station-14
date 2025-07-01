@@ -1,8 +1,8 @@
-﻿using Content.Server.Backmen.Vampiric;
+﻿using Content.Shared.Backmen.Vampiric;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Chemistry.ReagentEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 public sealed partial class ChemBloodSucker : EntityEffect
 {
@@ -15,6 +15,6 @@ public sealed partial class ChemBloodSucker : EntityEffect
         if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale < 1f)
             return;
 
-        args.EntityManager.SystemOrNull<BloodSuckerSystem>()?.ForceMakeVampire(args.TargetEntity);
+        args.EntityManager.System<SharedBloodSuckerSystem>().ForceMakeVampire(args.TargetEntity);
     }
 }

@@ -1,12 +1,10 @@
-﻿using Content.Server.Backmen.Disease;
-using Content.Shared.Backmen.Disease;
-using Content.Shared.Chemistry.Reagent;
+﻿using Content.Shared.Backmen.Disease;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Backmen.Chemistry.ReagentEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 /// <summary>
 /// Default metabolism for medicine reagents.
@@ -23,21 +21,20 @@ public sealed partial class ChemCauseDisease : EntityEffect
     /// <summary>
     /// Chance it has each tick to cause disease, between 0 and 1
     /// </summary>
-    [DataField("causeChance")]
+    [DataField]
     public float CauseChance = 0.15f;
 
     /// <summary>
     /// The disease to add.
     /// </summary>
-    [DataField("disease", customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>), required: true)]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public string Disease = default!;
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>), required: true)]
+    public string Disease;
 
     public override void Effect(EntityEffectBaseArgs args)
     {
         if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale != 1f)
             return;
 
-        args.EntityManager.System<DiseaseSystem>().TryAddDisease(args.TargetEntity, Disease);
+        args.EntityManager.System<SharedDiseaseSystem>().TryAddDisease(args.TargetEntity, Disease);
     }
 }

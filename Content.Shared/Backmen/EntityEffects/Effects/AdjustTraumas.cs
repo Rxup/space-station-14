@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Body.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas;
@@ -7,6 +6,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
@@ -14,7 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Backmen.EntityEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 [UsedImplicitly]
 public sealed partial class AdjustTraumas : EntityEffect
@@ -44,7 +44,7 @@ public sealed partial class AdjustTraumas : EntityEffect
         EntityUid target,
         FixedPoint2 changeAmount,
         IEntityManager entMan,
-        BodySystem bodySys,
+        SharedBodySystem bodySys,
         TraumaSystem traumaSys)
     {
         if (entMan.TryGetComponent<OrganComponent>(target, out var organComp))
@@ -262,7 +262,7 @@ public sealed partial class AdjustTraumas : EntityEffect
             scale = reagentArgs.Quantity * reagentArgs.Scale;
         }
 
-        var bodySys = args.EntityManager.System<BodySystem>();
+        var bodySys = args.EntityManager.System<SharedBodySystem>();
         var traumaSys = args.EntityManager.System<TraumaSystem>();
 
         var possibleTraumaTargets = new List<EntityUid>();

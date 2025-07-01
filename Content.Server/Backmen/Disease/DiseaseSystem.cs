@@ -29,7 +29,7 @@ namespace Content.Server.Backmen.Disease;
 /// <summary>
 /// Handles disease propagation & curing
 /// </summary>
-public sealed class DiseaseSystem : EntitySystem
+public sealed class DiseaseSystem : SharedDiseaseSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISerializationManager _serializationManager = default!;
@@ -423,12 +423,12 @@ public sealed class DiseaseSystem : EntitySystem
         /// to not be guaranteed you are looking
         /// for TryInfect.
         /// </summary>
-        public void TryAddDisease(EntityUid host, DiseasePrototype addedDisease, DiseaseCarrierComponent? target = null)
+        public override void TryAddDisease(EntityUid host, DiseasePrototype addedDisease, DiseaseCarrierComponent? target = null)
         {
             TryAddDisease(host, addedDisease.ID, target);
         }
 
-        public void TryAddDisease(EntityUid host, ProtoId<DiseasePrototype> addedDisease, DiseaseCarrierComponent? target = null)
+        public override void TryAddDisease(EntityUid host, ProtoId<DiseasePrototype> addedDisease, DiseaseCarrierComponent? target = null)
         {
             if (!Resolve(host, ref target, false))
                 return;

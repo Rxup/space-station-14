@@ -1,11 +1,9 @@
-﻿using Content.Server.Atmos.Rotting;
-using Content.Server.Backmen.Disease;
-using Content.Shared.Chemistry.Reagent;
+﻿using Content.Shared.Backmen.Disease;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.Chemistry.ReagentEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 /// <summary>
 /// The miasma system rotates between 1 disease at a time.
@@ -23,8 +21,8 @@ public sealed partial class ChemMiasmaPoolSource : EntityEffect
         if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale != 1f)
             return;
 
-        var disease = args.EntityManager.System<BkRottingSystem>().RequestPoolDisease();
+        var disease = args.EntityManager.System<SharedBkRottingSystem>().RequestPoolDisease();
 
-        args.EntityManager.System<DiseaseSystem>().TryAddDisease(args.TargetEntity, disease);
+        args.EntityManager.System<SharedDiseaseSystem>().TryAddDisease(args.TargetEntity, disease);
     }
 }

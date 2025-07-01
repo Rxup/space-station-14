@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.EntityEffects;
@@ -6,7 +5,7 @@ using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.EntityEffects;
+namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 [UsedImplicitly]
 public sealed partial class AdjustConsciousness : EntityEffect

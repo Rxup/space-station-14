@@ -56,7 +56,7 @@ public sealed class PsionicsSystem : SharedPsionicsSystem
         _mindSwapped = GetEntityQuery<MindSwappedComponent>();
     }
 
-    protected override void RemovePsionics(Entity<PotentialPsionicComponent?> ent)
+    public override void RemovePsionics(Entity<PotentialPsionicComponent?> ent)
     {
         if (!PotentialPsionicQuery.Resolve(ent, ref ent.Comp, false))
             return;
@@ -173,7 +173,7 @@ public sealed class PsionicsSystem : SharedPsionicsSystem
             _psionicAbilitiesSystem.AddPsionics(ent, warn);
     }
 
-    public void RerollPsionics(Entity<PotentialPsionicComponent?> ent, float bonusMuliplier = 1f)
+    public override void RerollPsionics(Entity<PotentialPsionicComponent?> ent, float bonusMuliplier = 1f)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
