@@ -1,160 +1,189 @@
 ﻿- type: entity
+  id: BaseActionBlob
+  parent: BaseCritAction
+  abstract: true
+
+- type: entity
   id: ActionCreateBlobFactory
+  parent: BaseActionBlob
   name: blob-create-factory-action-name
   description: blob-create-factory-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobFactory
+      itemIconStyle: BigAction
+      useDelay: 0.5
+    - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
         tileType: Factory
         nodeSearchRadius: 3.0
-      itemIconStyle: BigAction
       range: 200
-      useDelay: 0.5
+
 
 - type: entity
   id: ActionCreateBlobResource
+  parent: BaseActionBlob
   name: blob-create-resource-action-name
   description: blob-create-resource-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobResource
+      itemIconStyle: BigAction
+      useDelay: 0.5
+    - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
         tileType: Resource
         nodeSearchRadius: 3.0
-      itemIconStyle: BigAction
       range: 200
-      useDelay: 0.5
+
 
 - type: entity
   id: ActionCreateBlobStorage
+  parent: BaseActionBlob
   name: blob-create-storage-action-name
   description: blob-create-storage-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
+      useDelay: 0.5
+      itemIconStyle: BigAction
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobStorage
+    - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
         tileType: Storage
         nodeSearchRadius: 3.0
-      itemIconStyle: BigAction
       range: 200
-      useDelay: 0.5
 
 - type: entity
   id: ActionCreateBlobNode
+  parent: BaseActionBlob
   name: blob-create-node-action-name
   description: blob-create-node-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
+      useDelay: 0.5
+      itemIconStyle: BigAction
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobNode
+    - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
         tileType: Node
         tileSearchRadius: 4.5
-      itemIconStyle: BigAction
       range: 200
-      useDelay: 0.5
 
 - type: entity
   id: ActionCreateBlobbernaut
+  parent: BaseActionBlob
   name: blob-produce-blobbernaut-action-name
   description: blob-produce-blobbernaut-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobBlobbernaut
-      event: !type:BlobCreateBlobbernautActionEvent
       itemIconStyle: BigAction
-      range: 200
       useDelay: 0.5
+    - type: WorldTargetAction
+      event: !type:BlobCreateBlobbernautActionEvent
+      range: 200
 
 - type: entity
   id: ActionSplitBlobCore
+  parent: BaseActionBlob
   name: blob-split-core-action-name
   description: blob-split-core-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobSplit
-      event: !type:BlobSplitCoreActionEvent
       itemIconStyle: BigAction
-      range: 200
       useDelay: 0.5
+    - type: WorldTargetAction
+      event: !type:BlobSplitCoreActionEvent
+      range: 200
 
 - type: entity
   id: ActionSwapBlobCore
+  parent: BaseActionBlob
   name: blob-swap-core-action-name
   description: blob-swap-core-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobSwap
-      event: !type:BlobSwapCoreActionEvent
       itemIconStyle: BigAction
-      range: 200
       useDelay: 0.5
+    - type: WorldTargetAction
+      event: !type:BlobSwapCoreActionEvent
+      range: 200
 
 - type: entity
   id: ActionTeleportBlobToCore
+  parent: BaseActionBlob
   name: blob-teleport-to-core-action-name
   description: blob-teleport-to-core-action-desc
   components:
-    - type: InstantAction
+    - type: Action
+      useDelay: 0.5
+      itemIconStyle: BigAction
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobToCore
+    - type: InstantAction
       event: !type:BlobToCoreActionEvent
-      itemIconStyle: BigAction
-      useDelay: 0.5
 
 - type: entity
   id: ActionSwapBlobChem
+  parent: BaseActionBlob
   name: blob-swap-chem-action-name
   description: blob-swap-chem-action-desc
   components:
-    - type: InstantAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobChemSwap
+    - type: InstantAction
       event: !type:BlobSwapChemActionEvent
 
 - type: entity
   id: ActionTransformToBlob
+  parent: BaseActionBlob
   name: blob-carrier-transform-to-blob-action-name
   description: blob-carrier-transform-to-blob-action-desc
   components:
-    - type: InstantAction
+    - type: Action
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobToCore
+    - type: InstantAction
       event: !type:TransformToBlobActionEvent
 
 - type: entity
   id: ActionDowngradeBlob
+  parent: BaseActionBlob
   name: blob-downgrade-action-name
   description: blob-downgrade-action-desc
   components:
-    - type: WorldTargetAction
+    - type: Action
+      useDelay: 0.5
+      itemIconStyle: BigAction
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobDowngrade
+    - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Invalid
         tileType: Normal
-      itemIconStyle: BigAction
       range: 200
-      useDelay: 0.5
