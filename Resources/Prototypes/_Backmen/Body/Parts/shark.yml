@@ -1,4 +1,3 @@
-# TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
   id: PartShark
@@ -8,23 +7,6 @@
   components:
   - type: Damageable
     damageContainer: OrganicPart # #Backmen-Edit
-  - type: BodyPart
-  - type: ContainerContainer #Backmen-Edit
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice #Backmen-Edit
-    price: 100
-  - type: Tag #Backmen-Edit
-    tags:
-    - Trash
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: Blood
-        Quantity: 10
 
 - type: entity
   id: ChestShark

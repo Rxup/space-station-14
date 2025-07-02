@@ -150,6 +150,7 @@
     - Biological
     - Inorganic
     - Silicon
+    - RaceDemon
   - type: EyeProtection
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag

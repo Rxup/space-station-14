@@ -10,3 +10,4 @@ marking-LizardHornsCurled1 = рожки (Завитые)
 marking-LizardHornsRam1 = рожки (Бараньи)
 marking-LizardHornsSimple1 = рожки
 marking-LizardHornsDouble1 = рожки (Двойные)
+marking-LizardHornsShort1 = рожки (Короткие)

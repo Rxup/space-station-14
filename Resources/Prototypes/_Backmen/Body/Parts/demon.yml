@@ -8,16 +8,6 @@
   components:
   - type: Damageable
     damageContainer: OrganicPart # #Backmen-Edit
-  - type: BodyPart
-  - type: ContainerContainer #Backmen-Edit
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice #Backmen-Edit
-    price: 100
-  - type: Tag #Backmen-Edit
-    tags:
-    - Trash
   - type: Extractable
     juiceSolution:
       reagents:
