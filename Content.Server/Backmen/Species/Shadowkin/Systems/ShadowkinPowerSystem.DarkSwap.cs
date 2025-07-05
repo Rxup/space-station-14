@@ -171,10 +171,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
             return;
 
-
         var hasComp = HasComp<ShadowkinDarkSwappedComponent>(args.Performer);
 
-        if (hasComp && HasComp<StealthComponent>(args.Performer))
+        if (!hasComp && HasComp<StealthComponent>(args.Performer))
             return;
 
         SetDarkened(

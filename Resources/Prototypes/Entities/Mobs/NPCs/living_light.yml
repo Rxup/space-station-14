@@ -148,6 +148,10 @@
   name: luminous entity
   description: A blinding translucent entity, the bright eye seems dangerous and scalding.
   components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Dead
   - type: Sprite
     sprite: Mobs/Elemental/living_light/luminous_entity.rsi
     layers:
