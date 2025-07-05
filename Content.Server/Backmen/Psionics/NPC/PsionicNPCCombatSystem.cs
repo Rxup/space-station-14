@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Server.NPC.Events;
 using Content.Server.NPC.Components;
+using Content.Shared.Actions.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Robust.Shared.Timing;
 
@@ -18,26 +19,29 @@ public sealed class PsionicNPCCombatSystem : EntitySystem
 
     private void ZapCombat(EntityUid uid, NoosphericZapPowerComponent component, ref NPCSteeringEvent args)
     {
-        if (!_actions.TryGetActionData(component.NoosphericZapPowerAction, out var action))
+        if(component.NoosphericZapPowerAction is null ||
+           _actions.GetAction(component.NoosphericZapPowerAction.Value) is not {} action ||
+           !TryComp<EntityTargetActionComponent>(action, out var skill) ||
+           skill.Event is null)
             return;
 
-        var skill = (EntityTargetActionComponent?) action;
-        if (skill?.Event == null)
-            return;
 
-        if (skill.Cooldown.HasValue && skill.Cooldown.Value.End > _timing.CurTime)
+        if (_actions.IsCooldownActive(action,_timing.CurTime))
             return;
 
         if (!TryComp<NPCRangedCombatComponent>(uid, out var combat))
             return;
 
-        if (_actions.ValidateEntityTarget(uid, combat.Target,  (component.NoosphericZapPowerAction.Value,skill)))
+        if (_actions.ValidateEntityTarget(uid, combat.Target,(action,skill)))
         {
-            var ev = skill.Event;
+            var ev = (EntityTargetActionEvent?) _actions.GetEvent(action);
+            if (ev == null)
+                return;
+
             ev.Performer = uid;
             ev.Target = combat.Target;
 
-            _actions.PerformAction(uid, null, component.NoosphericZapPowerAction!.Value, skill, ev,_timing.CurTime, false);
+            _actions.PerformAction(uid, action, ev);
             args.Steering.CanSeek = false;
         }
     }

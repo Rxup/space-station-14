@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 260.2.0
-  forkId: backmen
-  forkVersion: fd1a8334a809acca1afe7737700d32874bc1078d
-  time: 06/03/2025 22:46:03
-  entityCount: 8720
+  engineVersion: 262.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 07/04/2025 07:44:37
+  entityCount: 8718
 maps:
 - 1
 grids:
@@ -64,9 +64,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
   - uid: 2
@@ -2466,17 +2464,12 @@ entities:
     components:
     - type: Transform
       parent: 11
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 11
 - proto: ActionToggleLight
   entities:
   - uid: 15
     components:
     - type: Transform
       parent: 14
-    - type: InstantAction
-      container: 14
 - proto: AirAlarm
   entities:
   - uid: 16
@@ -37250,8 +37243,6 @@ entities:
     - type: Transform
       pos: -29.75276,-4.160072
       parent: 2
-    - type: HandheldLight
-      toggleActionEntity: 15
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
@@ -38757,7 +38748,7 @@ entities:
       parent: 2
     - type: Paper
       content: >-
-        Армянский хоровац 
+        Армянский хоровац
 
 
         Мясо: баранина или свинина если ты не из гордых.
@@ -38772,7 +38763,7 @@ entities:
         Жарь: на углях, как хач из соседнего двора — с дымом и бахвальством.
 
 
-        Подавай: на лаваше, с гранатом и криком «Ахпер, где коньяк?!» 
+        Подавай: на лаваше, с гранатом и криком «Ахпер, где коньяк?!»
 
 
         Секрет: если мясо сухое — это не хоровац, а позор. Спрячься в пещере Арарата.

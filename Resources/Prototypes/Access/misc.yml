@@ -35,3 +35,8 @@
   - Virology
   - GenpopEnter
   - GenpopLeave
+
+- type: accessGroup
+  id: General
+  tags:
+  - Maintenance

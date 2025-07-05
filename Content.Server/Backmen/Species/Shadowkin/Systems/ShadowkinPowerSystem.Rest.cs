@@ -52,7 +52,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
     private void Rest(EntityUid uid, ShadowkinRestPowerComponent component, ShadowkinRestEvent args)
     {
         // Need power to modify power
-        if (!HasComp<ShadowkinComponent>(args.Performer))
+        if (!HasComp<ShadowkinComponent>(args.Performer) || component.ShadowkinRestAction is null)
             return;
 
         // Rest is a funny ability, keep it :)
@@ -60,14 +60,20 @@ public sealed class ShadowkinRestSystem : EntitySystem
         // if (_entity.HasComponent<HandcuffComponent>(args.Performer))
         //     return;
 
+        SleepingComponent? sleepingComponent = null;
+
         // Resting
-        if (!TryComp<SleepingComponent>(args.Performer, out var sleepingComponent))
+        var isSleepingByPower = HasComp<ShadowkinRestPowerUsedComponent>(args.Performer);
+        if (!isSleepingByPower)
         {
             if (HasComp<StunnedComponent>(args.Performer))
                 return;
 
             if(!_sleeping.TrySleeping(args.Performer))
                 return;
+
+            EnsureComp<ShadowkinRestPowerUsedComponent>(args.Performer);
+
             // Sleepy time
             EnsureComp<ForcedSleepingComponent>(args.Performer);
             // No waking up normally (it would do nothing)
@@ -79,11 +85,13 @@ public sealed class ShadowkinRestSystem : EntitySystem
             args.Handled = false;
         }
         // Waking
-        else
+        else if(isSleepingByPower && TryComp(args.Performer, out sleepingComponent))
         {
             // Wake up
             // Action cooldown
+            RemCompDeferred<ShadowkinRestPowerUsedComponent>(args.Performer);
             args.Handled = _sleeping.TryWaking((args.Performer,sleepingComponent), true);
+            _actions.SetCooldown(component.ShadowkinRestAction.Value, TimeSpan.FromMinutes(1));
         }
     }
 }

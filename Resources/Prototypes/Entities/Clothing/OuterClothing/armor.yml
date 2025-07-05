@@ -4,10 +4,10 @@
 
 #Basic armor vest for inheritance
 - type: entity
+  abstract: true
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterArmorBase
   name: armor vest
-  abstract: true
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
@@ -42,6 +42,11 @@
 - type: entity
   parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
   id: ClothingOuterArmorBasic
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -115,88 +120,6 @@
       - Energy
     reflectingInHands: false
 
-#Web vest
-- type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
-  id: ClothingOuterVestWeb
-  name: web vest
-  description: A synthetic armor vest. This one has added webbing and ballistic plates.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Vests/webvest.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Vests/webvest.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    #    - Arm
-    #    - Hand
-    #    - Leg
-    #    - Foot
-    modifiers:
-      coefficients:
-        Blunt: 0.5 #ballistic plates = better protection
-        Slash: 0.5
-        Piercing: 0.1
-        ArmorPiercing: 0.4 #Plates
-        Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-
-#Elite web vest
-- type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
-  id: ClothingOuterVestWebElite
-  name: elite web vest
-  description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
-  - type: TemperatureProtection
-    heatingCoefficient: 0.1
-    coolingCoefficient: 0.1
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.7
-        Heat: 0.3
-        Radiation: 0.5
-        Caustic: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: FireProtection
-    reduction: 0.85
-
-#Mercenary web vest
-- type: entity
-  parent: [ BaseMajorContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
-  id: ClothingOuterVestWebMerc
-  name: mercenary web vest
-  description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    modifiers:
-      coefficients:
-        Blunt: 0.45 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
-        Slash: 0.45
-        Piercing: 0.5
-        ArmorPiercing: 0.7
-        Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-
 #Detective's vest
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
@@ -229,6 +152,103 @@
     sprintModifier: 1.0
   - type: HeldSpeedModifier
   - type: GroupExamine
+
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
+  id: ClothingOuterArmorCentcommCarapace
+  name: centcomm carapace
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to centcomm officials and agents.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+
+#Web vest
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  id: ClothingOuterVestWeb
+  name: web vest
+  description: A synthetic armor vest. This one has added webbing and ballistic plates.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/webvest.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/webvest.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    #    - Arm
+    #    - Hand
+    #    - Leg
+    #    - Foot
+    modifiers:
+      coefficients:
+        Blunt: 0.5 #ballistic plates = better protection
+        Slash: 0.5
+        Piercing: 0.1
+        ArmorPiercing: 0.4 #Plates
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: StaticPrice
+    price: 1500
+
+#Elite web vest
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  id: ClothingOuterVestWebElite
+  name: elite web vest
+  description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.7
+        Heat: 0.3
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.85
+  - type: StaticPrice
+    price: 2500
+
+#Mercenary web vest
+- type: entity
+  parent: [ BaseMajorContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
+  id: ClothingOuterVestWebMerc
+  name: mercenary web vest
+  description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Chest
+    - Groin
+    modifiers:
+      coefficients:
+        Blunt: 0.45 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
+        Slash: 0.45
+        Piercing: 0.5
+        ArmorPiercing: 0.7
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseCommandContraband]
@@ -266,17 +286,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
-
-- type: entity
-  parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
-  id: ClothingOuterArmorCentcommCarapace
-  name: centcomm carapace
-  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to centcomm officials and agents.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
 
 # Armor covering multiple body parts including limbs
 - type: entity
@@ -326,7 +335,7 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   #Shoulder mounted flashlight
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
       outerClothing:
@@ -335,6 +344,7 @@
       outerClothing-vox:
       - state: equipped-OUTERCLOTHING-light-vox
         shader: unshaded
+  - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight
     addPrefix: false
@@ -566,7 +576,7 @@
         Heat: 0.9
         Radiation: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
+    walkModifier: 0.65
     sprintModifier: 0.65
   - type: HeldSpeedModifier
   - type: ExplosionResistance
@@ -655,6 +665,7 @@
         Piercing: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ExplosionResistance
     damageCoefficient: 0.4

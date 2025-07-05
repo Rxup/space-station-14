@@ -1,22 +1,23 @@
 ﻿- type: entity
   id: HealingSpell
+  parent: BaseAction
   name: action-name-spell-healing
   description: action-description-spell-healing
   components:
-  - type: EntityTargetAction
+  - type: Action
     useDelay: 30
-    range: 64
     itemIconStyle: BigAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: true
-    interactOnMiss: false
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/staff_healing.ogg
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: magicmissile
+
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: true
     event: !type:HealSpellEvent
       healAmount:
         groups:
@@ -25,3 +26,6 @@
           Airloss: -999
           Toxin: -999
       speech: action-speech-spell-healing
+  - type: TargetAction
+    range: 64
+    interactOnMiss: false

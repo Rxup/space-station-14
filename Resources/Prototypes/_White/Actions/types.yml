@@ -1,16 +1,19 @@
 - type: entity
   id: ActionHeadcrabJump
+  parent: BaseAction
   name: Jump
   description: Do super jump.
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon:
       sprite: _White/Interface/Actions/headcrab.rsi
       state: jump-off
     iconOn:
       sprite: _White/Interface/Actions/headcrab.rsi
       state: jump-on
-    event: !type:JumpActionEvent
     useDelay: 6
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
+  - type: TargetAction
     range: 160

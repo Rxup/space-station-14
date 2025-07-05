@@ -103,17 +103,20 @@
 
 - type: entity
   id: ActionPhaseDash
+  parent: BaseAction
   name: phase dash
   description: Teleport to anywhere you can see.
   categories: [ HideSpawnMenu ]
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: blink
     itemIconStyle: NoItem
     priority: -12
+  - type: WorldTargetAction
     event: !type:DashEvent
+  - type: TargetAction
     range: 0
 
 - type: entity

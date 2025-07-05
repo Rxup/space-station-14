@@ -19,4 +19,9 @@ public abstract class SharedBloodSuckerSystem : EntitySystem
         args.Message.PushNewline();
         args.Message.TryAddMarkup(Loc.GetString("bloodsucked-health-examine", ("target", uid)), out _);
     }
+
+    public virtual void ForceMakeVampire(EntityUid uid)
+    {
+        // Server-only
+    }
 }

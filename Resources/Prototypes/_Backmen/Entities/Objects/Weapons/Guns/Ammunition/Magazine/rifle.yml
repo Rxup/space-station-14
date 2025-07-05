@@ -31,10 +31,12 @@
     proto: CartridgeRifleFire
   - type: Sprite
     layers:
-    - state: practice
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#dbdbdb"
 
 - type: entity
   id: MagazineAntiMaterielRifleSR

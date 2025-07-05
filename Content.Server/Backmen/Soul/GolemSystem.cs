@@ -163,7 +163,7 @@ public sealed class GolemSystem : SharedGolemSystem
         _throwing.TryThrow(soul, direction, _robustRandom.Next(1, 10));
 
         if (TryComp<AppearanceComponent>(ent, out var appearance))
-            _appearance.SetData(ent, ToggleVisuals.Toggled, false, appearance);
+            _appearance.SetData(ent, ToggleableVisuals.Enabled, false, appearance);
 
         _metaDataSystem.SetEntityName(ent, Loc.GetString("golem-base-name"));
         _metaDataSystem.SetEntityDescription(ent, Loc.GetString("golem-base-desc"));
@@ -246,7 +246,7 @@ public sealed class GolemSystem : SharedGolemSystem
         _mindSystem.TransferTo(mindId, uid);
 
         if (TryComp<AppearanceComponent>(uid, out var appearance))
-            _appearance.SetData(uid, ToggleVisuals.Toggled, true, appearance);
+            _appearance.SetData(uid, ToggleableVisuals.Enabled, true, appearance);
 
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.High, $"{ToPrettyString(args.Actor):player} created a golem named {ToPrettyString(uid):target} obeying a master named {(component.Master)}");
 

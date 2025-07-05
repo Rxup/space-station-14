@@ -903,10 +903,11 @@
 
 - type: entity
   id: ActionHolySpears
+  parent: BaseAction
   name: "[color=red]Святой удар[/color]"
   description: Используй свою всевышнию силу и уничтожь врагов!
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     raiseOnUser: true
     icon:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
@@ -914,9 +915,11 @@
     iconOn:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
+    useDelay: 2
+  - type: WorldTargetAction
     event: !type:GoliathSummonTentacleAction
       entityId: EffectHolySpearsSpawn
-    useDelay: 2
+  - type: TargetAction
     range: 30
 
 - type: entity
@@ -1275,10 +1278,11 @@
 
 - type: entity
   id: ActionUriilHolyLight
+  parent: BaseAction
   name: "[color=red]Святой удар[/color]"
   description: Используй свою всевышнию силу и уничтожь врагов!
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     raiseOnUser: true
     icon:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
@@ -1286,18 +1290,21 @@
     iconOn:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
+    useDelay: 5
+  - type: WorldTargetAction
     event: !type:GoliathSummonTentacleAction
       entityId: holypentagramUriil
       extraSpawns: 0
-    useDelay: 5
+  - type: TargetAction
     range: 30
 
 - type: entity
   id: ActionHolyLightBIG
+  parent: BaseAction
   name: "[color=red]Святой удар[/color]"
   description: Используй свою всевышнию силу и уничтожь врагов!
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     raiseOnUser: true
     icon:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
@@ -1305,10 +1312,12 @@
     iconOn:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
+    useDelay: 2
+  - type: WorldTargetAction
     event: !type:GoliathSummonTentacleAction
       entityId: holypentagramBIG
       extraSpawns: 0
-    useDelay: 2
+  - type: TargetAction
     range: 30
 
 - type: entity

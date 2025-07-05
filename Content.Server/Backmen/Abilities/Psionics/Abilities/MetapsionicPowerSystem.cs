@@ -79,9 +79,9 @@ public sealed class MetapsionicPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.MetapsionicPowerAction, ActionMetapsionicPulse);
 
-        if (_actions.TryGetActionData(component.MetapsionicPowerAction, out var action) && action?.UseDelay != null)
-            _actions.SetCooldown(component.MetapsionicPowerAction, _gameTiming.CurTime,
-                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
+        var actionEnt = _actions.GetAction(component.MetapsionicPowerAction);
+        if (actionEnt is { Comp.UseDelay: {} delay })
+            _actions.SetCooldown(component.MetapsionicPowerAction, delay);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MetapsionicPowerAction;

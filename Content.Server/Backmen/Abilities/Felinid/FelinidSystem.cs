@@ -76,11 +76,9 @@ public sealed class FelinidSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.HairballAction, ActionHairball);
 
-        if (_actions.TryGetActionData(component.HairballAction, out var action) && action?.UseDelay != null)
-        {
-            _actions.SetCooldown(component.HairballAction,
-                _gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
-        }
+        var actionEnt = _actions.GetAction(component.HairballAction);
+        if (actionEnt is { Comp.UseDelay: {} delay })
+            _actions.SetCooldown(component.HairballAction, delay);
     }
 
     private void OnEquipped(EntityUid uid, FelinidComponent component, DidEquipHandEvent args)
@@ -148,7 +146,7 @@ public sealed class FelinidSystem : EntitySystem
             return;
         }
 
-        if (component.HairballAction != null && _actions.TryGetActionData(component.HairballAction, out var skill))
+        if (component.HairballAction != null)
         {
             _chargesSystem.AddCharges(component.HairballAction.Value, 1);
             _actionsSystem.SetEnabled(component.HairballAction, true);

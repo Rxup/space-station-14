@@ -71,8 +71,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerReinforcementCentCom
-  name: reinforcement-console-title
-  description: allows you to call for special reasons persons to solve these reasons
+  name: reinforcement console
   components:
   - type: Construction
     graph: nullgraph
@@ -113,8 +112,7 @@
 - type: entity
   parent: BaseItem
   id: HandheldReinforcementCentCom
-  name: handheld-reinforcement-console-title
-  description: handheld-reinforcement-console-desc
+  name: Ручная консоль вызова подкрепления
   components:
   - type: ReinforcementConsole
     min: 1

@@ -1,6 +1,6 @@
 - type: tile
   id: FloorWoodParquet
-  name: tiles-wood-parquet
+  name: wood parquet
   sprite: /Textures/Corvax/Tiles/wood_parquet.png
   variants: 4
   placementVariants:
@@ -20,7 +20,7 @@
 
 - type: tile
   id: FloorWoodChess
-  name: tiles-wood-chess
+  name: wood chess
   sprite: /Textures/Corvax/Tiles/wood_chess.png
   variants: 4
   placementVariants:
@@ -40,7 +40,7 @@
 
 - type: tile
   id: FloorWoodBlack
-  name: tiles-wood-black
+  name: tiles wood black
   sprite: /Textures/Corvax/Tiles/wood_black.png
   variants: 4
   placementVariants:
@@ -60,7 +60,7 @@
 
 - type: tile
   id: FloorWoodLargeBlack
-  name: tiles-wood-large-black
+  name: wood large black
   sprite: /Textures/Corvax/Tiles/wood_large_black.png
   variants: 4
   placementVariants:
@@ -80,7 +80,7 @@
 
 - type: tile
   id: FloorWoodParquetBlack
-  name: tiles-wood-parquet-black
+  name: wood parquet black
   sprite: /Textures/Corvax/Tiles/wood_parquet_black.png
   variants: 4
   placementVariants:
@@ -100,7 +100,7 @@
 
 - type: tile
   id: FloorWoodChessBlack
-  name: tiles-wood-chess-black
+  name: wood chess black
   sprite: /Textures/Corvax/Tiles/wood_chess_black.png
   variants: 4
   placementVariants:
@@ -120,7 +120,7 @@
 
 - type: tile
   id: FloorWoodDark
-  name: tiles-wood-dark
+  name: wood dark
   sprite: /Textures/Corvax/Tiles/wood_dark.png
   variants: 4
   placementVariants:
@@ -140,7 +140,7 @@
 
 - type: tile
   id: FloorWoodLargeDark
-  name: tiles-wood-large-dark
+  name: wood large dark
   sprite: /Textures/Corvax/Tiles/wood_large_dark.png
   variants: 4
   placementVariants:
@@ -160,7 +160,7 @@
 
 - type: tile
   id: FloorWoodParquetDark
-  name: tiles-wood-parquet-dark
+  name: wood parquet dark
   sprite: /Textures/Corvax/Tiles/wood_parquet_dark.png
   variants: 4
   placementVariants:
@@ -180,7 +180,7 @@
 
 - type: tile
   id: FloorWoodChessDark
-  name: tiles-wood-chess-dark
+  name: wood chess dark
   sprite: /Textures/Corvax/Tiles/wood_chess_dark.png
   variants: 4
   placementVariants:
@@ -200,7 +200,7 @@
 
 - type: tile
   id: FloorWoodLight
-  name: tiles-wood-light
+  name: деревянный светлый пол
   sprite: /Textures/Corvax/Tiles/wood_light.png
   variants: 4
   placementVariants:
@@ -220,7 +220,7 @@
 
 - type: tile
   id: FloorWoodLargeLight
-  name: tiles-wood-large-light
+  name: wood large light
   sprite: /Textures/Corvax/Tiles/wood_large_light.png
   variants: 4
   placementVariants:
@@ -240,7 +240,7 @@
 
 - type: tile
   id: FloorWoodParquetLight
-  name: tiles-wood-parquet-light
+  name: wood parquet light
   sprite: /Textures/Corvax/Tiles/wood_parquet_light.png
   variants: 4
   placementVariants:
@@ -260,7 +260,7 @@
 
 - type: tile
   id: FloorWoodChessLight
-  name: tiles-wood-chess-light
+  name: wood chess light
   sprite: /Textures/Corvax/Tiles/wood_chess_light.png
   variants: 4
   placementVariants:
@@ -280,7 +280,7 @@
 
 - type: tile
   id: FloorWoodRed
-  name: tiles-wood-red
+  name: деревянный красный пол
   sprite: /Textures/Corvax/Tiles/wood_red.png
   variants: 4
   placementVariants:
@@ -300,7 +300,7 @@
 
 - type: tile
   id: FloorWoodLargeRed
-  name: tiles-wood-large-red
+  name: wood large red
   sprite: /Textures/Corvax/Tiles/wood_large_red.png
   variants: 4
   placementVariants:
@@ -320,7 +320,7 @@
 
 - type: tile
   id: FloorWoodParquetRed
-  name: tiles-wood-parquet-red
+  name: wood parquet red
   sprite: /Textures/Corvax/Tiles/wood_parquet_red.png
   variants: 4
   placementVariants:
@@ -340,7 +340,7 @@
 
 - type: tile
   id: FloorWoodChessRed
-  name: tiles-wood-chess-red
+  name: wood chess red
   sprite: /Textures/Corvax/Tiles/wood_chess_red.png
   variants: 4
   placementVariants:
@@ -360,7 +360,7 @@
 
 - type: tile
   id: FloorConcreteOutside
-  name: tiles-concrete-outside
+  name: concrete outside
   parent: FloorConcrete
   baseTurf: Plating
   isSubfloor: false
@@ -370,7 +370,7 @@
 
 - type: tile
   id: FloorConcreteOutsideMono
-  name: tiles-concrete-outside-slab
+  name: concrete outside slab
   parent: FloorConcreteMono
   baseTurf: Plating
   isSubfloor: false
@@ -380,7 +380,7 @@
 
 - type: tile
   id: FloorConcreteOutsideSmooth
-  name: tiles-concrete-outside-smooth
+  name: concrete outside smooth
   parent: FloorConcreteSmooth
   baseTurf: Plating
   isSubfloor: false
@@ -390,7 +390,7 @@
 
 - type: tile
   id: FloorGrayConcreteOutside
-  name: tiles-gray-concrete-outside
+  name: gray concrete outside
   parent: FloorGrayConcrete
   baseTurf: Plating
   isSubfloor: false
@@ -400,7 +400,7 @@
 
 - type: tile
   id: FloorGrayConcreteOutsideMono
-  name: tiles-gray-concrete-outside-slab
+  name: gray concrete outside slab
   parent: FloorGrayConcreteMono
   baseTurf: Plating
   isSubfloor: false
@@ -410,7 +410,7 @@
 
 - type: tile
   id: FloorGrayConcreteOutsideSmooth
-  name: tiles-gray-concrete-outside-smooth
+  name: gray concrete outside smooth
   parent: FloorGrayConcreteSmooth
   baseTurf: Plating
   isSubfloor: false
@@ -420,7 +420,7 @@
 
 - type: tile
   id: FloorOldConcreteOutside
-  name: tiles-old-concrete-outside
+  name: old concrete outside
   parent: FloorOldConcrete
   baseTurf: Plating
   isSubfloor: false
@@ -430,7 +430,7 @@
 
 - type: tile
   id: FloorOldConcreteOutsideMono
-  name: tiles-old-concrete-outside-slab
+  name: old concrete outside slab
   parent: FloorOldConcreteMono
   baseTurf: Plating
   isSubfloor: false
@@ -440,7 +440,7 @@
 
 - type: tile
   id: FloorOldConcreteOutsideSmooth
-  name: tiles-old-concrete-outside-smooth
+  name: old concrete outside smooth
   parent: FloorOldConcreteSmooth
   baseTurf: Plating
   isSubfloor: false

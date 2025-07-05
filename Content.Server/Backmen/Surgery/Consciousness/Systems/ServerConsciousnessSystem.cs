@@ -483,6 +483,9 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
     {
+        if(TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.Part))
+            return;
+        
         if (args.Part.Comp.Body == null || !ConsciousnessQuery.TryComp(args.Part.Comp.Body.Value, out var consciousness))
             return;
 

@@ -25,26 +25,30 @@
 
 - type: entity
   id: NVToggleAction
+  parent: BaseAction
   name: Переключение ПНВ
   description: Переключает ваше ПНВ
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 2.5
     icon:
       sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
       state: icon
+  - type: InstantAction
     event: !type:NVInstantActionEvent
 
 - type: entity
   id: SwitchNightVision
+  parent: BaseAction
   name: Переключение ночного зрения
   description: Переключает ночное зрение
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 2.5
     icon:
       sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
       state: icon
+  - type: InstantAction
     event: !type:NVInstantActionEvent

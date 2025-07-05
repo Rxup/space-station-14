@@ -1,26 +1,27 @@
 ﻿- type: entity
   id: AIEyeCamShootAction
+  parent: BaseAction
   name: stun shot
   description: destabilizing shot in some point
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: Backmen/Actions/AI/camera_stun.png
-    event: !type:AIEyeCampShootActionEvent
-    checkCanInteract: false
-    checkCanAccess: false
     useDelay: 3
     priority: 17
-    range: -1
-
+    checkCanInteract: false
+  - type: WorldTargetAction
+    event: !type:AIEyeCampShootActionEvent
 
 - type: entity
   id: AIEyeCamAction
+  parent: BaseAction
   name: AI cameras
   description: Can jump on target cameras.
   components:
-  - type: InstantAction
+  - type: Action
     icon: Backmen/Actions/AI/camera.png
-    event: !type:AIEyeCampActionEvent
-    checkCanInteract: false
     useDelay: 5
     priority: 17
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:AIEyeCampActionEvent

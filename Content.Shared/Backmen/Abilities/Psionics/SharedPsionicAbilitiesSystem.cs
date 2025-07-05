@@ -39,8 +39,7 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         SubscribeLocalEvent<PsionicComponent, PsionicPowerUsedEvent>(OnPowerUsed);
         SubscribeLocalEvent<PsionicComponent, MobStateChangedEvent>(OnMobStateChanged);
 
-        SubscribeLocalEvent<PsiActionComponent, ValidateActionEntityTargetEvent>(OnTryPowerEntityTarget);
-        SubscribeLocalEvent<PsiActionComponent, ValidateActionWorldTargetEvent>(OnTryPowerWorldTarget);
+        SubscribeLocalEvent<PsiActionComponent, ActionValidateEvent>(OnActionValidate);
         SubscribeLocalEvent<PsiActionComponent, ActionAttemptEvent>(OnTryUsePower);
 
         _psionicallyInvisibleQuery = GetEntityQuery<PsionicallyInvisibleComponent>();
@@ -65,16 +64,31 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 
     }
 
-    private void OnTryPowerWorldTarget(Entity<PsiActionComponent> ent, ref ValidateActionWorldTargetEvent args)
+    private void OnActionValidate(Entity<PsiActionComponent> ent, ref ActionValidateEvent args)
     {
-        if (!CanUsePsionicAbilities(args.User, args.Target))
-            args.Cancelled = true;
-    }
+        if (args.Input.EntityTarget is { } target &&
+            TryGetEntity(target, out var targetEnt) &&
+            !CanUsePsionicAbilities(args.User, targetEnt.Value))
+        {
+            args.Invalid = true;
+            return;
+        }
 
-    private void OnTryPowerEntityTarget(Entity<PsiActionComponent> ent, ref ValidateActionEntityTargetEvent args)
-    {
-        if (!CanUsePsionicAbilities(args.User, args.Target))
-            args.Cancelled = true;
+        if (args.Input.EntityCoordinatesTarget is { } netCoord)
+        {
+            var coord = GetCoordinates(netCoord);
+            if (!coord.IsValid(EntityManager))
+            {
+                args.Invalid = true;
+                return;
+            }
+
+            if (!CanUsePsionicAbilities(args.User, coord))
+            {
+                args.Invalid = true;
+                return;
+            }
+        }
     }
 
     public bool CanUsePsionicAbilities(EntityUid performer, EntityUid target, bool popup = true)
@@ -179,12 +193,14 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 
         _glimmerSystem.Glimmer += _robustRandom.Next(minGlimmer, maxGlimmer);
     }
+
+
 }
 
 public sealed class PsionicPowerUsedEvent : HandledEntityEventArgs
 {
     public EntityUid User { get; }
-    public string Power = string.Empty;
+    public string Power;
 
     public PsionicPowerUsedEvent(EntityUid user, string power)
     {

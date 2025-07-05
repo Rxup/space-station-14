@@ -30,3 +30,10 @@
   jobEntity: PlayerBorgBattery
   startingGear: RobotGear # backmen
   applyTraits: false
+
+- type: chameleonOutfit # backmen: fix tests
+  id: BorgChameleonOutfit
+  job: Borg
+  equipment:
+    head: ClothingHeadHatCardborg
+    outerClothing: ClothingOuterCardborg

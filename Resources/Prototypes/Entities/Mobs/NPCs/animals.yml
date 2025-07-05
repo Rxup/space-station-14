@@ -1262,6 +1262,15 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+    blackboard:
+        NavClimb: !type:Bool
+          true
+        NavInteract: !type:Bool
+          true
+        NavPry: !type:Bool
+          true
+        NavSmash: !type:Bool
+          true
   - type: Puller
     needsHands: false
   - type: Oni
@@ -1275,15 +1284,23 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Oni
-  - type: MobThresholds # Goobstation
-    thresholds:
-      0: Alive
-      120: Critical
-      220: Dead
   - type: SlowOnDamage # Goobstation
     speedModifierThresholds:
       80: 0.7
       100: 0.5
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      250: Dead
+  - type: StaminaResistance
+    damageCoefficient: 0.40
 
 - type: entity
   name: kangaroo
@@ -3314,6 +3331,10 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -4026,3 +4047,6 @@
     - DoorBumpOpener
   - type: StatusIcon # marks them as crew
     bounds: -0.5,-0.5,0.5,0.5
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen

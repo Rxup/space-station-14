@@ -39,3 +39,11 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     id: SurgeonPDA
+
+- type: chameleonOutfit
+  id: SurgeonChameleonOutfit
+  job: BkmSurgeon
+  equipment:
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+    id: SurgeonPDA

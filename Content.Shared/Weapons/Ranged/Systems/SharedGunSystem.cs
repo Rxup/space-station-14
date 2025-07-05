@@ -11,6 +11,7 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
@@ -66,6 +67,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!; // backmen: lava
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -184,7 +186,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Lavaland Change: Check equipped entities for a gun.
-        if (_inventory.TryGetSlotEntity(entity, "gloves", out var gloves) &&
+        if (_inventorySystem.TryGetSlotEntity(entity, "gloves", out var gloves) &&
             TryComp<GunComponent>(gloves.Value, out var glovesGun))
         {
             gunEntity = gloves.Value;

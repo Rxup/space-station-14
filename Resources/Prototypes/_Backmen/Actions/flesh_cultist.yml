@@ -1,193 +1,239 @@
 ﻿- type: entity
+  id: BaseActionFleshCult
+  parent: BaseAction
+  abstract: true
+
+
+- type: entity
   id: FleshCultistShop
+  parent: BaseActionFleshCult
   name: Evolution Shop
   description: Here you can purchase active skills and passive enhancements.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistShop.png
+    - type: InstantAction
       event: !type:FleshCultistShopActionEvent
 
 - type: entity
   id: FleshCultistBlade
+  parent: BaseActionFleshCult
   name: Flesh Blade
   description: Transforms the active hand into a deadly blade made of flesh and bones.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistBlade.png
-      event: !type:FleshCultistBladeActionEvent
       useDelay: 10
+    - type: InstantAction
+      event: !type:FleshCultistBladeActionEvent
 
 - type: entity
   id: FleshCultistBreakCuffs
+  parent: BaseActionFleshCult
   name: Break Cuffs
   description: You can break free from any handcuffs or straightjacket.
   components:
-    - type: InstantAction
-      checkCanInteract: false
+    - type: Action
       itemIconStyle: BigAction
       priority: -20
       icon:
         sprite: Actions/Implants/implants.rsi
         state: freedom
-      event: !type:FleshCultistBreakCuffsActionEvent
       useDelay: 10
+      checkCanInteract: false
+    - type: InstantAction
+      event: !type:FleshCultistBreakCuffsActionEvent
 
 - type: entity
   id: FleshCultistAdrenalin
+  parent: BaseActionFleshCult
   name: Adrenaline Synthesis
   description: The parasite synthesizes and injects a dose of adrenaline into you, increasing your speed and stun resistance.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistAdrenalin.png
-      event: !type:FleshCultistAdrenalinActionEvent
       useDelay: 150
+    - type: InstantAction
+      event: !type:FleshCultistAdrenalinActionEvent
 
 - type: entity
   id: FleshCultistCreateFleshHeart
+  parent: BaseActionFleshCult
   name: Create Flesh Heart
   description: Creates a flesh heart in front of you. It is your key objective on the station. To activate it, you need to use 3 bodies of evolved flesh creatures. After activation, be prepared to defend it against security personnel.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistFleshHeart.png
-      event: !type:FleshCultistCreateFleshHeartActionEvent
       useDelay: 360
+    - type: InstantAction
+      event: !type:FleshCultistCreateFleshHeartActionEvent
 
 - type: entity
   id: FleshCultistThrowWorm
+  parent: BaseActionFleshCult
   name: Worm Vomit
   description: Vomits a flesh worm to throw at enemy faces.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistThrowWorm.png
-      event: !type:FleshCultistThrowWormActionEvent
       useDelay: 60
+    - type: InstantAction
+      event: !type:FleshCultistThrowWormActionEvent
 
 - type: entity
   id: FleshCultistAcidSpit
+  parent: BaseActionFleshCult
   name: Acid Spit
   description: Spit acid at your enemies.
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: Interface/Actions/fleshAcidSpit.png
-      event: !type:FleshCultistAcidSpitActionEvent
-      range: 200
       useDelay: 60
+    - type: WorldTargetAction
+      event: !type:FleshCultistAcidSpitActionEvent
+    - type: TargetAction
+      range: 200
 
 - type: entity
   id: FleshCultistClaw
+  parent: BaseActionFleshCult
   name: Flesh Claw
   description: Transforms the active hand into a functional claw made of flesh and bones.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistClaw.png
-      event: !type:FleshCultistClawActionEvent
       useDelay: 10
+    - type: InstantAction
+      event: !type:FleshCultistClawActionEvent
 
 - type: entity
   id: FleshCultistFist
+  parent: BaseActionFleshCult
   name: Flesh Fist
   description: Transforms the active hand into a massive flesh fist that can easily break through any structures.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistFist.png
-      event: !type:FleshCultistFistActionEvent
       useDelay: 10
+    - type: InstantAction
+      event: !type:FleshCultistFistActionEvent
 
 - type: entity
   id: FleshCultistSpikeGun
+  parent: BaseActionFleshCult
   name: Spike Gun Hand
   description: Transforms the active hand into a deadly spike gun made of flesh.
   components:
-    - type: InstantAction
-      icon: Interface/Actions/fleshCultistSpikeGun.png
-      event: !type:FleshCultistSpikeHandGunActionEvent
+    - type: Action
       useDelay: 10
+      icon: Interface/Actions/fleshCultistSpikeGun.png
+    - type: InstantAction
+      event: !type:FleshCultistSpikeHandGunActionEvent
 
 - type: entity
   id: FleshCultistArmor
+  parent: BaseActionFleshCult
   name: Flesh Armor
   description: Covers you in armor made of flesh and bones.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistArmor.png
-      event: !type:FleshCultistArmorActionEvent
       useDelay: 30
+    - type: InstantAction
+      event: !type:FleshCultistArmorActionEvent
 
 - type: entity
   id: FleshCultistSpiderlegs
+  parent: BaseActionFleshCult
   name: Spider Form
   description: Transforms a part of your body into a spider-like form, providing moderate protection and a significant increase in speed.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistSpiderLegs.png
-      event: !type:FleshCultistSpiderLegsActionEvent
       useDelay: 30
+    - type: InstantAction
+      event: !type:FleshCultistSpiderLegsActionEvent
 
 - type: entity
   id: FleshCultistAbsorbBloodPool
+  parent: BaseActionFleshCult
   name: Blood Pool Absorption
   description: Allows you to absorb clean blood puddles for healing.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
-      event: !type:FleshCultistAbsorbBloodPoolActionEvent
       useDelay: 10
+    - type: InstantAction
+      event: !type:FleshCultistAbsorbBloodPoolActionEvent
 
 - type: entity
   id: FleshCultistDevour
+  parent: BaseActionFleshCult
   name: Corpse Devour
   description: You can devour any flesh creature to gain evolution points and heal wounds.
   components:
-    - type: EntityTargetAction
+    - type: Action
       icon: Interface/Actions/fleshCultistDevour.png
-      event: !type:FleshCultistDevourActionEvent
       useDelay: 15
+    - type: EntityTargetAction
+      event: !type:FleshCultistDevourActionEvent
       whitelist:
         components:
           - MobState
 
 - type: entity
   id: ActionWormJump
+  parent: BaseActionFleshCult
   name: Worm Jump
   description: Jump into mouse target
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: Interface/Actions/fleshPudgeThrowWorm.png
       itemIconStyle: NoItem
-      event: !type:FleshWormJumpActionEvent
       useDelay: 10
+    - type: WorldTargetAction
+      event: !type:FleshWormJumpActionEvent
+    - type: TargetAction
       range: 160
 
 - type: entity
   id: ActionThrowWorm
+  parent: BaseActionFleshCult
   name: Worm Jump
   description: Jump into mouse target
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: Interface/Actions/fleshPudgeThrowWorm.png
       itemIconStyle: NoItem
-      range: 200
-      event: !type:FleshPudgeThrowWormActionEvent
       useDelay: 120
+    - type: WorldTargetAction
+      event: !type:FleshPudgeThrowWormActionEvent
+    - type: TargetAction
+      range: 200
 
 - type: entity
   id: ActionAcidSpit
+  parent: BaseActionFleshCult
   name: Acid Spit
   description: Spit acid at your enemies.
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: Interface/Actions/fleshAcidSpit.png
       itemIconStyle: NoItem
-      range: 200
-      event: !type:FleshPudgeAcidSpitActionEvent
       useDelay: 20
+    - type: WorldTargetAction
+      event: !type:FleshPudgeAcidSpitActionEvent
+    - type: TargetAction
+      range: 200
 
 - type: entity
   id: ActionAbsorbBloodPool
+  parent: BaseActionFleshCult
   name: Blood Pool Absorption
   description: Allows you to absorb clean blood puddles for healing.
   components:
-    - type: InstantAction
+    - type: Action
       icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
-      event: !type:FleshPudgeAbsorbBloodPoolActionEvent
       useDelay: 15
+    - type: InstantAction
+      event: !type:FleshPudgeAbsorbBloodPoolActionEvent

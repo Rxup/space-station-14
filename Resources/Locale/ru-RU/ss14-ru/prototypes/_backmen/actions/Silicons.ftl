@@ -1,18 +1,18 @@
 
 
-ent-ActionBPLAActionCableApcStack = CableApcStack-action-name
-    .desc = CableApcStack-action-description
-ent-ActionBPLAActionCableMVStack = CableMVStack-action-name
-    .desc = CableMVStack-action-description
-ent-ActionBPLAActionCableHVStack = CableHVStack-action-name
-    .desc = CableHVStack-action-description
-ent-ActionBPLAActionSheetSteel = SheetSteel-action-name
-    .desc = SheetSteel-action-description
-ent-ActionBPLAActionSheetPlasteel = SheetPlasteel-action-name
-    .desc = SheetPlasteel-action-description
-ent-ActionBPLAActionSheetGlass = SheetGlass-action-name
-    .desc = SheetGlass-action-description
-ent-ActionBPLAActionSheetRGlass = SheetRGlass-action-name
-    .desc = SheetRGlass-action-description
-ent-ActionBPLAActionSheetPlastic = SheetPlastic-action-name
-    .desc = SheetPlastic-action-description
+ent-ActionBPLAActionCableApcStack = НВ провода
+    .desc = Создаёт полный стак НВ проводов
+ent-ActionBPLAActionCableMVStack = СВ провода
+    .desc = Создаёт полный стак СВ проводов
+ent-ActionBPLAActionCableHVStack = ХВ провода
+    .desc = Создаёт полный стак ХВ проводов
+ent-ActionBPLAActionSheetSteel = Сталь
+    .desc = Создаёт полный стак стали
+ent-ActionBPLAActionSheetPlasteel = Пласталь
+    .desc = Создаёт полный стак пластали
+ent-ActionBPLAActionSheetGlass = Стекло
+    .desc = Создаёт полный стак стекла
+ent-ActionBPLAActionSheetRGlass = Укреплённое стекло
+    .desc = Создаёт полный стак укреплённого стекла
+ent-ActionBPLAActionSheetPlastic = Пластик
+    .desc = Создаёт полный стак пластика

@@ -2,7 +2,6 @@
 using Content.Server.Backmen.Abilities.Felinid;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Ghost.Roles.Events;
-using Content.Server.Nutrition.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Station.Components;
 using Robust.Shared.Map;
@@ -10,10 +9,9 @@ using Robust.Shared.Random;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Players;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Station.Components;
 using Robust.Server.Player;
-using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
