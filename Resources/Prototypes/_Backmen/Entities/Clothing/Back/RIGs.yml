@@ -150,14 +150,16 @@
 
 - type: entity
   id: ActionToggleSuitInvisiblePower
+  parent: BaseAction
   name: Включить маскировку
   description: Включает маскировку в местности, вас не видно от слова совсем.
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
       state: icon
     useDelay: 2
+  - type: InstantAction
     event: !type:PsionicInvisibilityPowerActionEvent

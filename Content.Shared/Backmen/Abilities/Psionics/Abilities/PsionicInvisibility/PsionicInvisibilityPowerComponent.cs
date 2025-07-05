@@ -1,5 +1,4 @@
-
-using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;

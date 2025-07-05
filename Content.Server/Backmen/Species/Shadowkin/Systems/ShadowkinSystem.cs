@@ -29,6 +29,7 @@ public sealed class ShadowkinSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
+    [Dependency] private readonly ShadowkinTeleportSystem _teleport = default!;
 
 
     private EntityQuery<HandcuffComponent> _activeHandcuff;
@@ -144,7 +145,6 @@ public sealed class ShadowkinSystem : EntitySystem
             // I can't figure out how to get this to go to the 100% filled state in the above if statement 😢
             _power.UpdateAlert(uid, true, shadowkin.PowerLevel);
 
-
             // Don't randomly activate abilities if handcuffed
             // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
             if (_activeHandcuff.HasComponent(uid))
@@ -233,39 +233,20 @@ public sealed class ShadowkinSystem : EntitySystem
 
     private void ForceTeleport(EntityUid uid, ShadowkinComponent component)
     {
-        // Create the event we'll later raise, and set it to our Shadowkin.
-        var args = new ShadowkinTeleportEvent { Performer = uid };
-
         // Pick a random location on the map until we find one that can be reached.
         var coords = Transform(uid).Coordinates;
-        EntityCoordinates? target = null;
-
         // It'll iterate up to 8 times, shrinking in distance each time, and if it doesn't find a valid location, it'll return.
         for (var i = 8; i != 0; i--)
         {
             var angle = Angle.FromDegrees(_random.Next(360));
             var offset = new Vector2((float) (i * Math.Cos(angle)), (float) (i * Math.Sin(angle)));
 
-            target = coords.Offset(offset);
+            var target = coords.Offset(offset);
 
-            if (!_interaction.InRangeUnobstructed(uid,
-                    target.Value,
-                    0,
-                    CollisionGroup.WallLayer))
+            if (_teleport.DoTeleport(uid, target))
             {
-                break;
+                return;
             }
-
-            target = null;
         }
-
-        // If we didn't find a valid location, return.
-        if (target == null)
-            return;
-
-        args.Target = target.Value;
-
-        // Raise the event to teleport the Shadowkin.
-        RaiseLocalEvent(uid, args);
     }
 }

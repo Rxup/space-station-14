@@ -27,8 +27,11 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-      #components: # backmen: thief is not pacified
-      #- type: Pacified
+      components: 
+      #- type: Pacified # backmen: thief is not pacified
+      - type: Thieving
+        stripTimeReduction: 2
+        stealthy: true
       mindRoles:
       - MindRoleThief
       briefing:

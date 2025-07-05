@@ -2,36 +2,42 @@
 
 - type: entity
   id: ActionBPLAMEDActionBrutepack
-  name: Brutepack-action-name
-  description: Brutepack-action-description
+  parent: BaseAction
+  name: Пакет от ушибов
+  description: Создаёт полный стак пакетов от ушибов
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon: Objects/Specific/Medical/medical.rsi/brutepack.png
+    - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Brutepack
         energy: 280
 
 - type: entity
   id: ActionBPLAMEDActionOintment
-  name: Ointment-action-name
-  description: Ointment-action-description
+  parent: BaseAction
+  name: Мазь от ожогов
+  description: Создаёт полный стак мази от ожогов
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon: Objects/Specific/Medical/medical.rsi/ointment.png
+    - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Ointment
         energy: 200
 
 - type: entity
   id: ActionBPLAMEDActionBloodpack
-  name: Bloodpack-action-name
-  description: Bloodpack-action-description
+  parent: BaseAction
+  name: Пакет крови
+  description: Создаёт полный стак пакетов крови
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 180
       icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
+    - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Bloodpack
         energy: 500
@@ -40,96 +46,104 @@
 
 - type: entity
   id: ActionBPLAActionCableApcStack
-  name: CableApcStack-action-name
-  description: CableApcStack-action-description
+  parent: BaseAction
+  name: НВ провода
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 120
     icon: Objects/Tools/cable-coils.rsi/coillv-30.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableApcStack
       energy: 50
 
 - type: entity
   id: ActionBPLAActionCableMVStack
-  name: CableMVStack-action-name
-  description: CableMVStack-action-description
+  parent: BaseAction
+  name: СВ провода
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 120
     icon: Objects/Tools/cable-coils.rsi/coilmv-30.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableMVStack
       energy: 50
 
 - type: entity
   id: ActionBPLAActionCableHVStack
-  name: CableHVStack-action-name
-  description: CableHVStack-action-description
+  parent: BaseAction
+  name: ХВ провода
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 120
     icon: Objects/Tools/cable-coils.rsi/coilhv-30.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableHVStack
       energy: 50
 
 - type: entity
   id: ActionBPLAActionSheetSteel
-  name: SheetSteel-action-name
-  description: SheetSteel-action-description
+  parent: BaseAction
+  name: Сталь
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 90
     icon: Objects/Materials/Sheets/metal.rsi/steel_3.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetSteel
       energy: 200
 
 - type: entity
   id: ActionBPLAActionSheetPlasteel
-  name: SheetPlasteel-action-name
-  description: SheetPlasteel-action-description
+  parent: BaseAction
+  name: Пласталь
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 120
     icon: Objects/Materials/Sheets/metal.rsi/plasteel_3.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlasteel
       energy: 450
 
 - type: entity
   id: ActionBPLAActionSheetGlass
-  name: SheetGlass-action-name
-  description: SheetGlass-action-description
+  parent: BaseAction
+  name: Стекло
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 90
     icon: Objects/Materials/Sheets/glass.rsi/glass_3.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetGlass
       energy: 150
 
 - type: entity
   id: ActionBPLAActionSheetRGlass
-  name: SheetRGlass-action-name
-  description: SheetRGlass-action-description
+  parent: BaseAction
+  name: Укреплённое стекло
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 120
     icon: Objects/Materials/Sheets/glass.rsi/rglass_3.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetRGlass
       energy: 450
 
 - type: entity
   id: ActionBPLAActionSheetPlastic
-  name: SheetPlastic-action-name
-  description: SheetPlastic-action-description
+  parent: BaseAction
+  name: Пластик
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 180
     icon: Objects/Materials/Sheets/other.rsi/plastic_3.png
+  - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlastic
       energy: 200

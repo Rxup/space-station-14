@@ -52,8 +52,6 @@ namespace Content.IntegrationTests.Tests
         {
             "/Maps/centcomm.yml",
             "/Maps/bagel.yml", // Contains mime's rubber stamp --> Either fix this, remove the category, or remove this comment if intentional.
-            "/Maps/gate.yml", // Contains positronic brain and LSE-1200c "Perforator"
-            "/Maps/meta.yml", // Contains warden's rubber stamp
             "/Maps/reach.yml", // Contains handheld crew monitor
             "/Maps/Shuttles/ShuttleEvent/cruiser.yml", // Contains LSE-1200c "Perforator"
             "/Maps/Shuttles/ShuttleEvent/honki.yml", // Contains golden honker, clown's rubber stamp
@@ -70,11 +68,9 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] GameMaps =
         {
             // Corvax-Start
-            "CorvaxAvrite",
             "CorvaxDelta",
             "CorvaxSilly",
             "CorvaxOutpost",
-            "CorvaxAstra",
             "CorvaxGelta",
 			"CorvaxMaus",
 			"CorvaxIshimura",
@@ -82,22 +78,17 @@ namespace Content.IntegrationTests.Tests
 			"CorvaxCute",
             "CorvaxPilgrim",
             "CorvaxSplit",
-            "CorvaxTerra",
             "CorvaxFrame",
             "CorvaxPearl",
             "CorvaxTushkan",
-            "CorvaxAwesome",
             // Corvax-End
             "Dev",
             "TestTeg",
             "Fland",
-            "Meta",
             "Packed",
-            "Omega",
             "Bagel",
             "CentComm",
             "Box",
-            "Core",
             "Marathon",
             "MeteorArena",
             //start-backmen
@@ -120,18 +111,14 @@ namespace Content.IntegrationTests.Tests
             //end-backmen
             "Saltern",
             "Reach",
-            "Train",
             "Oasis",
-            "Gate",
             "Amber",
-            "Loop",
             "Plasma",
             "Elkridge",
-            "Convex",
             "Relic",
             "Lavatest", // Lavaland Change
-            "dm01-entryway"
-
+            "dm01-entryway",
+            "Exo",
         };
 
         /// <summary>

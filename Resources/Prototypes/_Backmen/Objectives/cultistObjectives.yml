@@ -2,8 +2,7 @@
   parent: BaseObjective
   id: CreateFleshHeartObjective
   categories: [ HideSpawnMenu ]
-  name: objective-condition-create-flesh-heart-title
-  description: objective-condition-create-flesh-heart-description
+  name: Create and awaken the flesh heart.
   components:
     - type: Objective
       issuer: objective-issuer-flesh-cult
@@ -18,8 +17,7 @@
   parent: BaseObjective
   id: FleshCultistSurvivalObjective
   categories: [ HideSpawnMenu ]
-  name: objective-condition-flesh-cultist-survival-title
-  description: objective-condition-flesh-cultist-survival-description
+  name: Survive and maintain a human appearance.
   components:
     - type: Objective
       issuer: objective-issuer-flesh-cult

@@ -62,6 +62,10 @@ public sealed class PoolTestLogHandler : ILogHandler
         if (FailureLevel == null || level < FailureLevel)
             return;
 
+        // tests no have config file!
+        if(rendered == "Cannot save the config file, because one was never loaded.")
+            return;
+
         testContext.Flush();
         Assert.Fail($"{line} Exception: {message.Exception}");
     }

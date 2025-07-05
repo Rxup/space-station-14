@@ -7,7 +7,7 @@
     - type: Sprite
       sprite: Backmen/Objects/Misc/spiderwebArachne.rsi
       layers:
-        - state: spider_web_1
+        - state: web_0
           map: ["spiderWebLayer"]
       drawdepth: WallMountedItems
       netsync: false

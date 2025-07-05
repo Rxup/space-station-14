@@ -1,9 +1,10 @@
 ﻿- type: entity
   id: ActionOpticZoom
-  name: action-name-optic-zoom
-  description: action-description-optic-zoom
+  parent: BaseAction
+  name: optic zoom
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 10
     icon: Backmen/Interface/VerbIcons/telegnosis.png
+  - type: InstantAction
     event: !type:OpticZoomEffectActionEvent

@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Actions;
 using Content.Server.NPC.Components;
-using Content.Server.Nutrition.Components;
-using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
@@ -14,6 +12,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;

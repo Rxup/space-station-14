@@ -158,75 +158,89 @@
       tags:
       - NukeOpsUplink
 
-#- type: listing
-#  id: UplinkSniperBundle
-#  name: uplink-sniper-bundle-name
-#  description: uplink-sniper-bundle-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
-#  productEntity: BriefcaseSyndieSniperBundleFilled
-#  discountCategory: usualDiscounts
-#  discountDownTo:
-#    Telecrystal: 6
-#  cost:
-#    Telecrystal: 12
-#  categories:
-#  - UplinkWeaponry
-#
-#- type: listing
-#  id: UplinkC20RBundle
-#  name: uplink-c20r-bundle-name
-#  description: uplink-c20r-bundle-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
-#  productEntity: ClothingBackpackDuffelSyndicateFilledSMG
-#  discountCategory: veryRareDiscounts
-#  discountDownTo:
-#    Telecrystal: 10
-#  cost:
-#    Telecrystal: 17
-#  categories:
-#  - UplinkWeaponry
-#
-#- type: listing
-#  id: UplinkBulldogBundle
-#  name: uplink-buldog-bundle-name
-#  description: uplink-buldog-bundle-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
-#  productEntity: ClothingBackpackDuffelSyndicateFilledShotgun
-#  discountCategory: veryRareDiscounts
-#  discountDownTo:
-#    Telecrystal: 12
-#  cost:
-#    Telecrystal: 20
-#  categories:
-#  - UplinkWeaponry
-#
-#- type: listing
-#  id: UplinkGrenadeLauncherBundle
-#  name: uplink-grenade-launcher-bundle-name
-#  description: uplink-grenade-launcher-bundle-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
-#  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
-#  discountCategory: veryRareDiscounts
-#  discountDownTo:
-#    Telecrystal: 20
-#  cost:
-#    Telecrystal: 25
-#  categories:
-#  - UplinkWeaponry
-#
-#- type: listing
-#  id: UplinkL6SawBundle
-#  name: uplink-l6-saw-bundle-name
-#  description: uplink-l6-saw-bundle-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
-#  productEntity: ClothingBackpackDuffelSyndicateFilledLMG
-#  discountCategory: veryRareDiscounts
-#  discountDownTo:
-#    Telecrystal: 24
-#  cost:
-#    Telecrystal: 30
-#  categories:
-#  - UplinkWeaponry
+- type: listing
+  id: UplinkSniperBundle
+  name: uplink-sniper-bundle-name
+  description: uplink-sniper-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  productEntity: BriefcaseSyndieSniperBundleFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkC20RBundle
+  name: uplink-c20r-bundle-name
+  description: uplink-c20r-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSMG
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkEstocBundle
+  name: uplink-estoc-bundle-name
+  description: uplink-estoc-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledRifle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 11
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkBulldogBundle
+  name: uplink-buldog-bundle-name
+  description: uplink-buldog-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledShotgun
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 12
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkGrenadeLauncherBundle
+  name: uplink-grenade-launcher-bundle-name
+  description: uplink-grenade-launcher-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkL6SawBundle
+  name: uplink-l6-saw-bundle-name
+  description: uplink-l6-saw-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledLMG
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 24
+  cost:
+    Telecrystal: 30
+  categories:
+  - UplinkWeaponry
 
 # Explosives
 
@@ -501,6 +515,29 @@
 #  categories:
 #  - UplinkAmmo
 
+# For the Bulldog
+- type: listing
+  id: UplinkMagazineShotgunPellet
+  name: uplink-magazine-bulldog-pellet-name
+  description: uplink-magazine-bulldog-pellet-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineShotgunSlug
+  name: uplink-magazine-bulldog-slug-name
+  description: uplink-magazine-bulldog-slug-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: MagazineShotgunSlug
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+
 # For the Cobra
 - type: listing
   id: UplinkMagazinePistolCaselessRifle
@@ -535,6 +572,17 @@
 #    Telecrystal: 4 #backmen-ammonation
 #  categories:
 #  - UplinkAmmo
+
+# For the Estoc
+- type: listing
+  id: UplinkEstocAmmo
+  name: uplink-estoc-ammo-name
+  description: uplink-estoc-ammo-desc
+  productEntity: MagazineRifle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
 
 # for the hristov
 #- type: listing
@@ -1571,20 +1619,6 @@
     Telecrystal: 1
   cost:
     Telecrystal: 2
-  categories:
-  - UplinkWearables
-
-# TODO: Revert back to normal thieving gloves when clothes dyeing is added
-- type: listing
-  id: UplinkgClothingThievingGloves
-  name: uplink-clothing-chameleon-thieving-gloves-name
-  description: uplink-clothing-chameleon-thieving-gloves-desc
-  productEntity: ClothingHandsChameleonThief
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5
   categories:
   - UplinkWearables
 

@@ -19,8 +19,8 @@
     size: Ginormous
   - type: GenericVisualizer
     visuals:
-     enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon_on}
           False: {state: icon_off}
   - type: ToggleableLightVisuals

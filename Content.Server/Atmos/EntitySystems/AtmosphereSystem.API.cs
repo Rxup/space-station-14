@@ -146,7 +146,7 @@ public partial class AtmosphereSystem
         return mixtures;
     }
 
-    public GasMixture? GetTileMixture (Entity<TransformComponent?> entity, bool excite = false)
+    public override GasMixture? GetTileMixture (Entity<TransformComponent?> entity, bool excite = false)
     {
         if (!Resolve(entity.Owner, ref entity.Comp))
             return null;

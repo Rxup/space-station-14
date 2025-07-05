@@ -33,9 +33,9 @@ public sealed class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
     {
         _actions.AddAction(uid, ref component.PsychokinesisPowerAction, ActionPsychokinesis);
 
-        if (_actions.TryGetActionData(component.PsychokinesisPowerAction, out var action) && action?.UseDelay != null)
-            _actions.SetCooldown(component.PsychokinesisPowerAction, _gameTiming.CurTime,
-                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
+        var actionEnt = _actions.GetAction(component.PsychokinesisPowerAction);
+        if (actionEnt is { Comp.UseDelay: {} delay })
+            _actions.SetCooldown(component.PsychokinesisPowerAction, delay);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PsychokinesisPowerAction;

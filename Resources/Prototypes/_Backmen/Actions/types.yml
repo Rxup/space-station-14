@@ -1,202 +1,240 @@
 ﻿- type: entity
-  id: ActionEatMouse
-  name: action-name-eat-mouse
-  description: action-description-eat-mouse
+  id: BaseActionPsi
+  abstract: true
   components:
-    - type: InstantAction
+  - type: PsiAction
+
+- type: entity
+  id: ActionEatMouse
+  parent: BaseAction
+  name: action eat mouse
+  components:
+    - type: Action
       useDelay: 10
+      startDelay: true
       icon: Backmen/Icons/verbiconfangs.png
+    - type: InstantAction
       event: !type:EatMouseActionEvent
 
 - type: entity
   id: ActionMetapsionicPulse
-  name: action-name-metapsionic
-  description: action-description-metapsionic
+  parent: BaseActionPsi
+  name: action metapsionic
   components:
-    - type: PsiAction
-    - type: InstantAction
+    - type: Action
       useDelay: 45
+      startDelay: true
       icon: Backmen/Interface/VerbIcons/metapsionic.png
+    - type: InstantAction
       event: !type:MetapsionicPowerActionEvent
 
 - type: entity
   id: ActionDispel
-  name: action-name-dispel
-  description: action-description-dispel
+  parent: BaseActionPsi
+  name: action dispel
   components:
-    - type: PsiAction
-    - type: EntityTargetAction
-      icon: Backmen/Interface/VerbIcons/dispel.png
-      event: !type:DispelPowerActionEvent
+    - type: Action
       useDelay: 45
+      startDelay: true
+      itemIconStyle: BigAction
+      icon: Backmen/Interface/VerbIcons/dispel.png
+    - type: EntityTargetAction
+      canTargetSelf: false
+      event: !type:DispelPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 6
-      canTargetSelf: false
-      itemIconStyle: BigAction
+
 
 - type: entity
   id: ActionMassSleep
-  name: action-name-mass-sleep
-  description: action-description-mass-sleep
+  parent: BaseActionPsi
+  name: action mass sleep
   components:
-    - type: PsiAction
-    - type: WorldTargetAction
-      icon: Backmen/Interface/VerbIcons/mass_sleep.png
-      event: !type:MassSleepPowerActionEvent
+    - type: Action
+      itemIconStyle: BigAction
       useDelay: 60
+      icon: Backmen/Interface/VerbIcons/mass_sleep.png
+      startDelay: true
+    - type: WorldTargetAction
+      event: !type:MassSleepPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 8
-      itemIconStyle: BigAction
+
 
 - type: entity
   id: ActionPsionicInvisibility
-  name: action-name-psionic-invisibility
-  description: action-description-psionic-invisibility
+  parent: BaseActionPsi
+  name: action psionic invisibility
   components:
-    - type: PsiAction
-    - type: InstantAction
+    - type: Action
       useDelay: 120
+      startDelay: true
       icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+    - type: InstantAction
       event: !type:PsionicInvisibilityPowerActionEvent
 
 - type: entity
   id: ActionPsionicInvisibilityOff
-  name: action-description-psionic-invisibility-off
-  description: action-description-psionic-invisibility
+  parent: BaseCritAction
+  name: action psionic invisibility off
   components:
-    - type: InstantAction
+    - type: Action
+      useDelay: 3
+      startDelay: true
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+      #temporary: true
+    - type: InstantAction
       event: !type:PsionicInvisibilityPowerOffActionEvent
 
 - type: entity
   id: ActionMindSwapPsionic
-  name: action-name-mind-swap
-  description: action-description-mind-swap
+  parent: BaseActionPsi
+  name: action mind swap
   components:
-    - type: PsiAction
-    - type: EntityTargetAction
-      icon: Backmen/Interface/VerbIcons/mind_swap.png
-      event: !type:MindSwapPowerActionEvent
+    - type: Action
+      itemIconStyle: BigAction
       useDelay: 240
+      icon: Backmen/Interface/VerbIcons/mind_swap.png
+    - type: EntityTargetAction
+      event: !type:MindSwapPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 8
-      itemIconStyle: BigAction
+
 
 - type: entity
   id: ActionMindSwapReturn
-  name: action-name-mind-swap-return
-  description: action-description-mind-swap-return
+  parent: BaseAction
+  name: mind swap return
   components:
-    - type: InstantAction
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
-      checkCanInteract: false
+    - type: Action
+      #temporary: true
       useDelay: 20
+      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+      startDelay: true
+      checkCanInteract: false
+    - type: InstantAction
       event: !type:MindSwapPowerReturnActionEvent
 
 - type: entity
   id: ActionTelegnosis
-  name: action-name-telegnosis
-  description: action-description-telegnosis
+  parent: BaseActionPsi
+  name: action telegnosis
   components:
-    - type: PsiAction
-    - type: InstantAction
+    - type: Action
       icon: Backmen/Interface/VerbIcons/telegnosis.png
       useDelay: 150
+    - type: InstantAction
       event: !type:TelegnosisPowerActionEvent
 
 - type: entity
   id: ActionTelegnosisReturn
-  name: action-name-telegnosis
-  description: action-description-telegnosis
+  parent: BaseCritAction
+  name: action telegnosis
   components:
-    - type: InstantAction
+    - type: Action
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
-      event: !type:TelegnosisPowerReturnActionEvent
-      checkCanInteract: false
       useDelay: 20
+      startDelay: true
+      #temporary: true
+      checkCanInteract: false
+    - type: InstantAction
+      event: !type:TelegnosisPowerReturnActionEvent
 
 - type: entity
   id: ActionPsionicRegeneration
-  name: action-name-psionic-regeneration
-  description: action-description-psionic-regeneration
+  parent: BaseActionPsi
+  name: action regeneration
   components:
-    - type: PsiAction
-    - type: InstantAction
+    - type: Action
       icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
       useDelay: 120
+    - type: InstantAction
       event: !type:PsionicRegenerationPowerActionEvent
 
 - type: entity
   id: ActionNoosphericZap
-  name: action-name-noospheric-zap
-  description: action-description-noospheric-zap
+  parent: BaseActionPsi
+  name: action noospheric zap
   components:
-    - type: PsiAction
-    - type: EntityTargetAction
-      icon: Backmen/Interface/VerbIcons/noospheric_zap.png
-      event: !type:NoosphericZapPowerActionEvent
-      useDelay: 100
-      range: 5
+    - type: Action
       itemIconStyle: BigAction
+      icon: Backmen/Interface/VerbIcons/noospheric_zap.png
+      useDelay: 100
+    - type: EntityTargetAction
+      event: !type:NoosphericZapPowerActionEvent
+    - type: TargetAction
+      range: 5
+
 
 - type: entity
   id: ActionPyrokinesis
-  name: action-name-pyrokinesis
-  description: action-description-pyrokinesis
+  parent: BaseActionPsi
+  name: action pyrokinesis
   components:
-    - type: PsiAction
-    - type: EntityTargetAction
-      icon: Backmen/Interface/VerbIcons/pyrokinesis.png
-      event: !type:PyrokinesisPowerActionEvent
+    - type: Action
+      itemIconStyle: BigAction
       useDelay: 50
+      icon: Backmen/Interface/VerbIcons/pyrokinesis.png
+    - type: EntityTargetAction
+      event: !type:PyrokinesisPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 6
-      itemIconStyle: BigAction
 
 
 - type: entity
   id: ActionPsychokinesis
-  name: action-name-psychokinesis
-  description: action-description-psychokinesis
+  parent: BaseActionPsi
+  name: action psychokinesis
   components:
-    - type: PsiAction
-    - type: WorldTargetAction
-      icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
-      event: !type:PsychokinesisPowerActionEvent
+    - type: Action
       useDelay: 20
       itemIconStyle: BigAction
+      icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
+    - type: WorldTargetAction
+      event: !type:PsychokinesisPowerActionEvent
+    - type: TargetAction
       checkCanAccess: false
       range: 30
 
 - type: entity
   id: ActionSpinWeb
-  name: action-name-spin-web
-  description: action-desc-spin-web
+  parent: BaseCritAction
+  name: spin web
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
-      event: !type:SpinWebActionEvent
-      range: 1.5
       itemIconStyle: BigAction
+    - type: WorldTargetAction
+      event: !type:SpinWebActionEvent
+    - type: TargetAction
+      range: 1.5
+
 
 - type: entity
   id: ActionHairball
-  name: hairball-action
-  description: hairball-action-desc
+  parent: BaseCritAction
+  name: hairball action
   components:
-    - type: InstantAction
-#      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
+    - type: Action
       priority: -10
-      event: !type:HairballActionEvent
       useDelay: 30
+      #      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
+    - type: InstantAction
+      event: !type:HairballActionEvent
     - type: LimitedCharges
       maxCharges: 3
 
 - type: entity
   id: ActionToggleDome
+  parent: BaseAction
   name: Toggle energy dome
   description: Turn the energy barrier on or off.
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  - type: InstantAction
     event: !type:ToggleActionEvent

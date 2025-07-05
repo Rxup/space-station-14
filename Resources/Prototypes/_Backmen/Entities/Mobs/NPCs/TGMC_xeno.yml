@@ -299,9 +299,10 @@
   description: Пригодится в любом гнезде.
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi, state: icon }
     useDelay: 150
+  - type: InstantAction
     event: !type:EggLayInstantActionEvent
 
 # PRAETORIAN #
@@ -729,13 +730,15 @@
 
 - type: entity
   id: ActionHunterInvisibility
-  name: action-name-psionic-invisibility
-  description: action-description-psionic-invisibility
+  parent: BaseAction
+  name: Псионическая невидимость
+  description: Сделайте себя невидимым для любой сущности, которая потенциально может быть псиоником. Борги, животные и так далее не затрагиваются.
   categories: [ HideSpawnMenu ]
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 30
       icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+    - type: InstantAction
       event: !type:PsionicInvisibilityPowerActionEvent
 
 # RAVAGER #
@@ -1413,10 +1416,11 @@
   description: Взращивает липкие корни
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi/full.png
-    event: !type:SpiderWebActionEvent
     useDelay: 1
+  - type: InstantAction
+    event: !type:SpiderWebActionEvent
 
 - type: entity
   id: XenoWeed
@@ -1789,11 +1793,13 @@
 
 - type: entity
   id: ActionToLarva
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   components:
+  - type: Action
+    itemIconStyle: NoItem
   - type: InstantAction
     event: !type:PolymorphActionEvent
-    itemIconStyle: NoItem
 
 - type: polymorph
   id: EggToLarva

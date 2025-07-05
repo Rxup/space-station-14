@@ -1,12 +1,11 @@
 ﻿using System.Linq;
 using Content.Server.Backmen.Disease.Components;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Events;
+using Content.Shared.Body.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -16,6 +15,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -29,7 +29,7 @@ namespace Content.Server.Backmen.Disease;
 /// <summary>
 /// Handles disease propagation & curing
 /// </summary>
-public sealed class DiseaseSystem : EntitySystem
+public sealed class DiseaseSystem : SharedDiseaseSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISerializationManager _serializationManager = default!;
@@ -423,12 +423,12 @@ public sealed class DiseaseSystem : EntitySystem
         /// to not be guaranteed you are looking
         /// for TryInfect.
         /// </summary>
-        public void TryAddDisease(EntityUid host, DiseasePrototype addedDisease, DiseaseCarrierComponent? target = null)
+        public override void TryAddDisease(EntityUid host, DiseasePrototype addedDisease, DiseaseCarrierComponent? target = null)
         {
             TryAddDisease(host, addedDisease.ID, target);
         }
 
-        public void TryAddDisease(EntityUid host, ProtoId<DiseasePrototype> addedDisease, DiseaseCarrierComponent? target = null)
+        public override void TryAddDisease(EntityUid host, ProtoId<DiseasePrototype> addedDisease, DiseaseCarrierComponent? target = null)
         {
             if (!Resolve(host, ref target, false))
                 return;

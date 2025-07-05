@@ -13,7 +13,7 @@ delivery-unlocked-others =
        *[neuter] разблокировало
     } { $delivery } используя свой отпечаток пальца.
 delivery-opened-others =
-    { CAPITALIZE($recipient) } { GENDER($recipient) ->
+    { CAPITALIZE($recipient) } { GENDER($possadj) ->
         [male] вскрыл
         [female] вскрыл
         [epicene] вскрыл

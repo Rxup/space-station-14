@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 7200 
+      time: 7200
   startingGear: BkmVirologistGear
   icon: "JobIconVirologist"
   supervisors: job-supervisors-cmo
@@ -36,6 +36,14 @@
 
 - type: startingGear
   id: BkmVirologistGear
+  equipment:
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+    id: VirologistPDA
+
+- type: chameleonOutfit
+  id: BkmVirologistChameleonOutfit
+  job: BkmVirologist
   equipment:
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled

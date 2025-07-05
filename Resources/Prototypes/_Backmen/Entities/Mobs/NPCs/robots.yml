@@ -14,7 +14,7 @@
         - sprite: Effects/electricity.rsi
           state: electrified
           shader: unshaded
-        - map: [ "enum.ToggleVisuals.Layer" ]
+        - map: [ "enum.ToggleableVisuals.Layer" ]
           state: robot-flashlight
           shader: unshaded
     - type: DoAfter
@@ -261,7 +261,7 @@
         - sprite: Effects/electricity.rsi
           state: electrified
           shader: unshaded
-        - map: [ "enum.ToggleVisuals.Layer" ]
+        - map: [ "enum.ToggleableVisuals.Layer" ]
           state: robot-flashlight
           shader: unshaded
     - type: MovementSpeedModifier

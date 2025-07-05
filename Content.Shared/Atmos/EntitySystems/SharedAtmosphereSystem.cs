@@ -34,5 +34,13 @@ namespace Content.Shared.Atmos.EntitySystems
         public GasPrototype GetGas(Gas gasId) => GasPrototypes[(int) gasId];
 
         public IEnumerable<GasPrototype> Gases => GasPrototypes;
+
+        // backmen edit start
+        public virtual GasMixture? GetTileMixture (Entity<TransformComponent?> entity, bool excite = false)
+        {
+            // server-only of course
+            return GasMixture.SpaceGas;
+        }
+        // backmen edit end
     }
 }

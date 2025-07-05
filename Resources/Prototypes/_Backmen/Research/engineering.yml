@@ -9,8 +9,7 @@
   cost: 500
   recipeUnlocks:
   - MicroManipulatorStockPart
-  - MatterBinStockPart
-  - CapacitorStockPart
+  - MicroManipulatorStockPart
   - PowerCellSmall
   - PowerCellMedium
   position: -3,2

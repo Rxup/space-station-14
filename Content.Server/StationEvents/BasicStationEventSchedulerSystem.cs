@@ -79,8 +79,7 @@ namespace Content.Server.StationEvents
         private EntityTableSystem? _entityTable;
         private IComponentFactory? _compFac;
         private IRobustRandom? _random;
-
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
+        private IPrototypeManager? _protoMan;
 
 
         /// <summary>
@@ -98,12 +97,13 @@ namespace Content.Server.StationEvents
         ///     to even exist) so I think it's fine.
         /// </remarks>
         [CommandImplementation("simulate")]
-        public IEnumerable<(string, float)> Simulate([CommandArgument] ProtoId<EntityPrototype> eventSchedulerProto, [CommandArgument] int rounds, [CommandArgument] int playerCount, [CommandArgument] float roundEndMean, [CommandArgument] float roundEndStdDev)
+        public IEnumerable<(string, float)> Simulate([CommandArgument] EntProtoId eventSchedulerProto, [CommandArgument] int rounds, [CommandArgument] int playerCount, [CommandArgument] float roundEndMean, [CommandArgument] float roundEndStdDev)
         {
             _stationEvent ??= GetSys<EventManagerSystem>();
             _entityTable ??= GetSys<EntityTableSystem>();
             _compFac ??= IoCManager.Resolve<IComponentFactory>();
             _random ??= IoCManager.Resolve<IRobustRandom>();
+            _protoMan ??= IoCManager.Resolve<IPrototypeManager>();
 
             var occurrences = new Dictionary<string, int>();
 
@@ -112,7 +112,7 @@ namespace Content.Server.StationEvents
                 occurrences.Add(ev.Key.ID, 0);
             }
 
-            var eventScheduler = _prototype.Index(eventSchedulerProto);
+            var eventScheduler = _protoMan.Index(eventSchedulerProto);
 
             if (!eventScheduler.TryGetComponent<BasicStationEventSchedulerComponent>(out var basicScheduler, _compFac))
             {
@@ -147,16 +147,17 @@ namespace Content.Server.StationEvents
                 }
             }
 
-            return occurrences.Select(p => (p.Key, (float) p.Value)).OrderByDescending(p => p.Item2);
+            return occurrences.Select(p => (p.Key, (float)p.Value)).OrderByDescending(p => p.Item2);
         }
 
         [CommandImplementation("lsprob")]
-        public IEnumerable<(string, float)> LsProb([CommandArgument] ProtoId<EntityPrototype> eventSchedulerProto)
+        public IEnumerable<(string, float)> LsProb([CommandArgument] EntProtoId eventSchedulerProto)
         {
             _compFac ??= IoCManager.Resolve<IComponentFactory>();
             _stationEvent ??= GetSys<EventManagerSystem>();
+            _protoMan ??= IoCManager.Resolve<IPrototypeManager>();
 
-            var eventScheduler = _prototype.Index(eventSchedulerProto);
+            var eventScheduler = _protoMan.Index(eventSchedulerProto);
 
             if (!eventScheduler.TryGetComponent<BasicStationEventSchedulerComponent>(out var basicScheduler, _compFac))
                 yield break;
@@ -174,12 +175,13 @@ namespace Content.Server.StationEvents
         }
 
         [CommandImplementation("lsprobtheoretical")]
-        public IEnumerable<(string, float)> LsProbTime([CommandArgument] ProtoId<EntityPrototype> eventSchedulerProto, [CommandArgument] int playerCount, [CommandArgument] float time)
+        public IEnumerable<(string, float)> LsProbTime([CommandArgument] EntProtoId eventSchedulerProto, [CommandArgument] int playerCount, [CommandArgument] float time)
         {
             _compFac ??= IoCManager.Resolve<IComponentFactory>();
             _stationEvent ??= GetSys<EventManagerSystem>();
+            _protoMan ??= IoCManager.Resolve<IPrototypeManager>();
 
-            var eventScheduler = _prototype.Index(eventSchedulerProto);
+            var eventScheduler = _protoMan.Index(eventSchedulerProto);
 
             if (!eventScheduler.TryGetComponent<BasicStationEventSchedulerComponent>(out var basicScheduler, _compFac))
                 yield break;
@@ -201,12 +203,13 @@ namespace Content.Server.StationEvents
         }
 
         [CommandImplementation("prob")]
-        public float Prob([CommandArgument] ProtoId<EntityPrototype> eventSchedulerProto, [CommandArgument] string eventId)
+        public float Prob([CommandArgument] EntProtoId eventSchedulerProto, [CommandArgument] string eventId)
         {
             _compFac ??= IoCManager.Resolve<IComponentFactory>();
             _stationEvent ??= GetSys<EventManagerSystem>();
+            _protoMan ??= IoCManager.Resolve<IPrototypeManager>();
 
-            var eventScheduler = _prototype.Index(eventSchedulerProto);
+            var eventScheduler = _protoMan.Index(eventSchedulerProto);
 
             if (!eventScheduler.TryGetComponent<BasicStationEventSchedulerComponent>(out var basicScheduler, _compFac))
                 return 0f;

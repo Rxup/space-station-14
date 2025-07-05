@@ -28,4 +28,9 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     {
         args.StatusIcons.Add(_statusIconPrototype);
     }
+
+    public override void ForceMakeVampire(EntityUid uid)
+    {
+        // server-only handling
+    }
 }

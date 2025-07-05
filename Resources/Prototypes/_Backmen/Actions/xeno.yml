@@ -3,15 +3,17 @@
   name: Spit slerm
   description: Spit the violet acid on your enemies.
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: Interface/Actions/fleshAcidSpit.png
       #itemIconStyle: NoItem
-      event: !type:XenoAcidSpitActionEvent
-      checkCanAccess: true
       useDelay: 60
-      range: 32
-      repeat: true
       priority: -20
+    - type: WorldTargetAction
+      event: !type:XenoAcidSpitActionEvent
+    - type: TargetAction
+      range: 32
+      checkCanAccess: true
+      repeat: true
 
 - type: entity
   id: BulletSplashMaidAcid

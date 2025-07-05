@@ -1,2 +1,2 @@
-ent-ActionOpticZoom = action-name-optic-zoom
-    .desc = action-description-optic-zoom
+ent-ActionOpticZoom = Орлиный взор
+    .desc = Приближает или отдаляет камеру.

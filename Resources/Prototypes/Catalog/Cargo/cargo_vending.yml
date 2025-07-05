@@ -32,7 +32,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockClothesFilled
-  cost: 2610 # backmen cost fix
+  cost: 2650 # backmen cost fix
   category: cargoproduct-category-name-service
   group: market
 

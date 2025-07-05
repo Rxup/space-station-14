@@ -262,10 +262,11 @@
 
 - type: entity
   id: ActionHolyLightVirtue
+  parent: BaseAction
   name: "[color=red]Святой удар[/color]"
   description: Используй свою всевышнию силу и уничтожь врагов!
   components:
-  - type: EntityWorldTargetAction
+  - type: Action
     raiseOnUser: true
     icon:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
@@ -273,10 +274,12 @@
     iconOn:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
+    useDelay: 3
+  - type: WorldTargetAction
     event: !type:GoliathSummonTentacleAction
       entityId: holypentagramFast
       extraSpawns: 0
-    useDelay: 3
+  - type: TargetAction
     range: 30
 
 - type: entity

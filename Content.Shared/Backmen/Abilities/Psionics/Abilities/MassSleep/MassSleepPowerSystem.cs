@@ -33,8 +33,10 @@ public sealed class MassSleepPowerSystem : EntitySystem
         _actions.AddAction(uid, ref component.MassSleepPowerAction, ActionMassSleep);
 
 #if !DEBUG
-        if (_actions.TryGetActionData(component.MassSleepPowerAction, out var action) && action?.UseDelay != null)
-            _actions.SetCooldown(component.MassSleepPowerAction, (TimeSpan) action?.UseDelay!);
+        var actionEnt = _actions.GetAction(component.MassSleepPowerAction);
+        if (actionEnt is { Comp.UseDelay: {} delay }) {
+            _actions.SetCooldown(component.MassSleepPowerAction, delay);
+        }
 #endif
 
 

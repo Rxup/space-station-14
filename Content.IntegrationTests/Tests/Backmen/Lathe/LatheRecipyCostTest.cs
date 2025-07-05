@@ -43,17 +43,24 @@ public sealed class LatheRecipyCostTest
                     continue;
 
                 matPrice = Math.Round(matPrice);
+                var diff = resultPrice - matPrice;
 
-                if (resultPrice > matPrice + Tolerance)
+                if (diff > Tolerance)
                 {
-                    fails.Add($"ID: {recipe.ID} Materials: {matPrice} Result: {resultPrice} Dif: {resultPrice - matPrice}");
+                    fails.Add($"ID: {recipe.ID}\n" +
+                              $"Materials: {matPrice}\n" +
+                              $"Result: {resultPrice}\n" +
+                              $"Difference: {diff} (max allowed: {Tolerance})\n" +
+                              $"RECOMMENDED FIX: Set result price to ≤ {matPrice + Tolerance}");
                 }
             }
         });
 
         if (fails.Count > 0)
         {
-            var msg = string.Join("\n", fails) + "\n" + "Following RecipePrototypes are giving Arbitrage when printed!";
+            var msg = "Found arbitrage opportunities:\n\n" +
+                      string.Join("\n\n", fails) +
+                      "\n\nAdjust lathe recipe prices or material costs.";
             Assert.Fail(msg);
         }
 

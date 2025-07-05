@@ -345,15 +345,18 @@
 
 - type: entity
   id: ActionLongjumpModule
+  parent: BaseAction
   name: Longjump module
   description: Jump into mouse target
   categories: [ HideSpawnMenu ]
   components:
-    - type: WorldTargetAction
+    - type: Action
       icon: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi/icon.png
       itemIconStyle: NoItem
-      event: !type:FleshWormJumpActionEvent
       useDelay: 5
+    - type: WorldTargetAction
+      event: !type:FleshWormJumpActionEvent
+    - type: TargetAction
       range: 160
 
 - type: entity

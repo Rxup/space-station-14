@@ -101,3 +101,13 @@
         - Cargo
         - Maintenance
         - Salvage
+
+- type: chameleonOutfit
+  id: BKCCCargoChameleonOutfit
+  job: BKCCCargo
+  equipment:
+    id: CCCargoPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: AppraisalTool
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatCargosoft

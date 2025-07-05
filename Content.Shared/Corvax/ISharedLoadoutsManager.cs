@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Network;
 
 namespace Content.Corvax.Interfaces.Shared;
@@ -13,6 +14,11 @@ public interface ISharedLoadoutsManager
     }
 
     public List<string> GetClientPrototypes()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<LoadoutPrototype> GetClientLoadoutPrototypes()
     {
         throw new NotImplementedException();
     }
