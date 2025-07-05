@@ -3553,3 +3553,21 @@
   id: 236
   time: '2025-06-23T16:11:47.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1384
+- author: Rxup
+  changes:
+  - message: "\u0440\u043D\u0434 \u0441\u0435\u0440\u0432\u0435\u0440 \u043D\u0435\
+      \ \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0431\u0435\u0437 \u044D\
+      \u043D\u0435\u0440\u0433\u0438\u0438"
+    type: Tweak
+  - message: fix upstream
+    type: Tweak
+  id: 237
+  time: '2025-07-05T14:41:07.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1387
+- author: KayzelW
+  changes:
+  - message: "\u0410\u043F\u0441\u0442\u0440\u0438\u043C 26.06.2025"
+    type: Tweak
+  id: 238
+  time: '2025-07-05T12:26:14.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1385
