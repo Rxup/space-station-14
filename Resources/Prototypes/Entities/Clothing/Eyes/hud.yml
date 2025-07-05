@@ -252,10 +252,6 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - HalfSpirit
-      - RaceDemon
   - type: Tag
     tags:
     - CorgiWearable
