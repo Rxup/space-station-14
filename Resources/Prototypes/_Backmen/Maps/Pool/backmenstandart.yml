@@ -9,20 +9,15 @@
   - BackmenShoukou
   #- BackmenRook
   - BackmenDelta
-  #- CorvaxSplit
+  - BackmenTrain
   - Amber
   - Bagel
-  #- Convex
-  #- Core
+  - Box
   - Elkridge
   - Fland
-  #- Gate
-  #- Loop
   - Marathon
-  #- Meta
   - Oasis
-  #- Omega
   - Packed
   - Plasma
-  #- Reach
-  - BackmenTrain
+  - Reach
+  - Exo

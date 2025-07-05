@@ -37,9 +37,9 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
     {
         _actions.AddAction(uid, ref component.NoosphericZapPowerAction, ActionNoosphericZap);
 
-        var actionEnt = _actions.GetAction(component.NoosphericZapPowerAction);
+        /*var actionEnt = _actions.GetAction(component.NoosphericZapPowerAction);
         if (actionEnt is { Comp.UseDelay: {} delay })
-            _actions.SetCooldown(component.NoosphericZapPowerAction, delay);
+            _actions.SetCooldown(component.NoosphericZapPowerAction, delay);*/
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.NoosphericZapPowerAction;
