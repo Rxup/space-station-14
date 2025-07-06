@@ -29,17 +29,8 @@
                         <PanelContainer StyleClasses="AngleRect" HorizontalAlignment="Left" Name="LeftSideTop"
                                         VerticalAlignment="Top">
                             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="800">
-                                <info:LinkBanner Name="LinkBanner" VerticalExpand="false" HorizontalAlignment="Center"
-                                                 Margin="3 3 3 3" />
-                                <!--<controls:StripeBack>
-                                    <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="3 3 3 3">
-                                        <Label Name="StartTime"
-                                               Access="Public"
-                                               Align="Left"
-                                               FontColorOverride="{x:Static maths:Color.DarkGray}"
-                                               StyleClasses="LabelBig" HorizontalExpand="True" />
-                                    </BoxContainer>
-                                </controls:StripeBack>-->
+                                <!-- <info:LinkBanner Name="LinkBanner" VerticalExpand="false" HorizontalAlignment="Center"
+                                                 Margin="3 3 3 3" />-->
                                 <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
                             </BoxContainer>
                         </PanelContainer>
