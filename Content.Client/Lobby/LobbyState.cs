@@ -216,6 +216,10 @@ namespace Content.Client.Lobby
             }
 
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
+            if (minutesToday <= 60)
+            {
+                Lobby!.PlaytimeComment.Visible = false;
+            }
             if (minutesToday > 60)
             {
                 Lobby!.PlaytimeComment.Visible = true;
