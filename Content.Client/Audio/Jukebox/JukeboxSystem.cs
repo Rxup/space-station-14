@@ -1,18 +1,32 @@
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.Backmen.CCVar;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Audio.Jukebox;
-
 
 public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+
+    // backmen edit start
+    /// <summary>
+    /// The volume at which the boombox won't be heard
+    /// </summary>
+    private const float MinimalVolume = -30f;
+
+    private float _volume;
+    // backmen edit end
 
     public override void Initialize()
     {
@@ -22,6 +36,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, AfterAutoHandleStateEvent>(OnJukeboxAfterState);
 
         _protoManager.PrototypesReloaded += OnProtoReload;
+
+        Subs.CVar(_cfg, CCVars.BoomboxVolume, value => _volume = value, true); // backmen edit
     }
 
     public override void Shutdown()
@@ -143,4 +159,20 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layer, true);
         _sprite.LayerSetRsiState(sprite.AsNullable(), layer, state);
     }
+
+    // backmen edit start
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        var q = EntityQueryEnumerator<JukeboxComponent>();
+        while (q.MoveNext(out _, out var jukebox))
+        {
+            Audio.SetVolume(jukebox.AudioStream, Math.Max(MinimalVolume, _volume));
+        }
+    }
+    // backmen edit end
 }

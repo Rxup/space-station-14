@@ -319,7 +319,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             -dockRadius * UIScale,
             (Size.X + dockRadius) * UIScale,
             (Size.Y + dockRadius) * UIScale);
-        
+
         if (_docks.TryGetValue(nent, out var docks))
         {
             foreach (var state in docks)
@@ -366,9 +366,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             var positionInView = Vector2.Transform(position, gridToView);
             if (!viewBounds.Contains(positionInView))
-            {
                 continue;
-            }
 
             var color = detectable.Color ?? Color.ToSrgb(Color.DarkRed);
             switch (detectable.DrawType)
@@ -378,11 +376,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            positionInView + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize),
+                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize), gridToView),
                             detectable.Name);
                     }
 
-                    handle.DrawCircle(positionInView, detectable.DetectableSize, color);
+                    handle.DrawCircle(position, detectable.DetectableSize, color);
                     break;
 
                 case DetectableDrawType.Rectangle:
@@ -390,11 +388,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            positionInView + new Vector2(-detectable.DetectableSize * 3f, detectable.DetectableSize),
+                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 3f, detectable.DetectableSize), gridToView),
                             detectable.Name);
                     }
 
-                    var rect = UIBox2.FromDimensions(positionInView,
+                    var rect = UIBox2.FromDimensions(position,
                         new Vector2(detectable.DetectableSize * 1.5f, detectable.DetectableSize));
 
                     handle.DrawRect(rect, color);
@@ -405,11 +403,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            positionInView + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize),
+                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize), gridToView),
                             detectable.Name);
                     }
 
-                    var square = UIBox2.FromDimensions(positionInView,
+                    var square = UIBox2.FromDimensions(position,
                         new Vector2(detectable.DetectableSize, detectable.DetectableSize));
 
                     handle.DrawRect(square, color);
@@ -420,15 +418,14 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            // I fucking hate this
-                            positionInView + new Vector2(-detectable.DetectableSize * 10f, detectable.DetectableSize * 15f),
+                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 10f, detectable.DetectableSize * 15f), gridToView),
                             detectable.Name);
                     }
 
                     handle.DrawEntity(
                         EntManager.GetEntity(detectable.Entity),
-                        positionInView,
-                        new Vector2(detectable.DetectableSize, detectable.DetectableSize),
+                        position,
+                        Vector2.Transform(new Vector2(detectable.DetectableSize, detectable.DetectableSize), gridToView),
                         detectable.Angle);
                     break;
             }

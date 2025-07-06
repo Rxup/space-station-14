@@ -129,11 +129,10 @@ public sealed class ServerPainSystem : PainSystem
                             CleanupPainSounds(uid, nerveSys);
 
                             var sound = nerveSys.PainedWhimpers[sex];
-                            PlayPainSound(
-                                body.Value,
+                            PlayPainSound(body.Value,
                                 uid,
                                 sound,
-                                AudioParams.Default.WithVariation(0.05f).WithVolume(-12f),
+                                AudioParams.Default.WithVariation(0.1f).WithVolume(-8f),
                                 nerveSys);
 
                             nerveSys.NextPainScream =
@@ -161,7 +160,7 @@ public sealed class ServerPainSystem : PainSystem
                         PlayPainSound(body.Value,
                             uid,
                             sound1,
-                            AudioParams.Default.WithVariation(0.05f).WithVolume(-16f),
+                            AudioParams.Default.WithVariation(0.1f).WithVolume(-12f),
                             nerveSys);
 
                         nerveSys.NextPainScream =
@@ -177,7 +176,7 @@ public sealed class ServerPainSystem : PainSystem
                         PlayPainSound(body.Value,
                             uid,
                             sound2,
-                            AudioParams.Default.WithVariation(0.05f).WithVolume(12f),
+                            AudioParams.Default.WithVariation(0.1f).WithVolume(12f),
                             nerveSys);
 
                         nerveSys.NextPainScream =
@@ -476,12 +475,12 @@ public sealed class ServerPainSystem : PainSystem
         {
             case PainThresholdTypes.PainGrunt:
                 CleanupPainSounds(nerveSys, nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], AudioParams.Default.WithVariation(0.05f).WithVolume(-9f), nerveSys.Comp);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], AudioParams.Default.WithVariation(0.1f).WithVolume(-4f), nerveSys.Comp);
 
                 break;
             case PainThresholdTypes.PainFlinch:
                 CleanupPainSounds(nerveSys, nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainScreams[sex], nerveSys: nerveSys.Comp);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.PainScreams[sex], AudioParams.Default.WithVariation(0.1f).WithVolume(4f), nerveSys: nerveSys.Comp);
 
                 _popup.PopupPredicted(Loc.GetString("screams-and-flinches-pain", ("entity", body)), body, null, PopupType.MediumCaution);
                 _jitter.DoJitter(body, TimeSpan.FromSeconds(0.9f), true, 24f, 1f);
@@ -489,7 +488,7 @@ public sealed class ServerPainSystem : PainSystem
                 break;
             case PainThresholdTypes.Agony:
                 CleanupPainSounds(nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], nerveSys: nerveSys);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], AudioParams.Default.WithVariation(0.1f).WithVolume(6f), nerveSys: nerveSys);
 
                 _popup.PopupPredicted(Loc.GetString("screams-in-agony", ("entity", body)), body, null, PopupType.MediumCaution);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration / 1.4f, true, 30f, 12f);
@@ -499,7 +498,7 @@ public sealed class ServerPainSystem : PainSystem
                 CleanupPainSounds(nerveSys);
 
                 var screamSpecifier = nerveSys.Comp.PainShockScreams[sex];
-                PlayPainSound(body, nerveSys, screamSpecifier, nerveSys: nerveSys);
+                PlayPainSound(body, nerveSys, screamSpecifier, AudioParams.Default.WithVolume(8f), nerveSys);
 
                 var sound = nerveSys.Comp.PainedWhimpers[sex];
                 PlayPainSound(
@@ -514,14 +513,6 @@ public sealed class ServerPainSystem : PainSystem
                     nerveSys.Comp.PainRattles,
                     body,
                     AudioParams.Default.WithVolume(-12f));
-
-                _consciousness.AddConsciousnessModifier(
-                    body,
-                    nerveSys,
-                    40,
-                    PainAdrenalineIdentifier,
-                    ConsciousnessModType.Pain,
-                    nerveSys.Comp.PainShockAdrenalineTime);
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)
@@ -541,8 +532,8 @@ public sealed class ServerPainSystem : PainSystem
             case PainThresholdTypes.PainShockAndAgony:
                 CleanupPainSounds(nerveSys);
 
-                var agonySpecifier = nerveSys.Comp.AgonyScreams[sex];
-                PlayPainSound(body, nerveSys, agonySpecifier);
+                var agonySpecifier = nerveSys.Comp.ExtremePainSounds[sex]; // hell yeah
+                PlayPainSound(body, nerveSys, agonySpecifier, AudioParams.Default.WithVolume(12f));
 
                 var painWhimpers = nerveSys.Comp.PainedWhimpers[sex];
                 PlayPainSound(
@@ -550,13 +541,13 @@ public sealed class ServerPainSystem : PainSystem
                     painWhimpers,
                     IHaveNoMouthAndIMustScream
                         .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(agonySpecifier)) - TimeSpan.FromSeconds(2),
-                    AudioParams.Default.WithVolume(-8f),
+                    AudioParams.Default.WithVariation(0.05f).WithVolume(-8f),
                     nerveSys);
 
                 IHaveNoMouthAndIMustScream.PlayPvs(
                     nerveSys.Comp.PainRattles,
                     body,
-                    AudioParams.Default.WithVolume(-12f));
+                    AudioParams.Default.WithVolume(-8f));
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)
@@ -565,14 +556,6 @@ public sealed class ServerPainSystem : PainSystem
                     body,
                     null,
                     PopupType.MediumCaution);
-
-                _consciousness.AddConsciousnessModifier(
-                    body,
-                    nerveSys,
-                    40 * 1.4,
-                    PainAdrenalineIdentifier,
-                    ConsciousnessModType.Pain,
-                    nerveSys.Comp.PainShockAdrenalineTime * 1.4);
 
                 ForcePainCrit(nerveSys, nerveSys.Comp.PainShockCritDuration * 1.4f, nerveSys);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration * 1.4f, true, 20f, 7f);

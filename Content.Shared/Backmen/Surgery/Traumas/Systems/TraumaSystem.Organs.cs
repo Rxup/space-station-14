@@ -89,7 +89,7 @@ public partial class TraumaSystem
             Pain.PlayPainSound(
                 body.Value,
                 nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
-                AudioParams.Default.WithVolume(6f));
+                AudioParams.Default.WithVolume(12f));
 
             if (!Pain.TryChangePainModifier(
                     nerveSys.Value,

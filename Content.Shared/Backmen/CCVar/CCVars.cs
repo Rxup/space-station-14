@@ -83,11 +83,17 @@ public sealed partial class CCVars
         CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
 
     /*
-     * Immersive
+     * Immersion
      */
 
     public static readonly CVarDef<bool> ImmersiveEnabled =
         CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Default volume setting of the boombox audio
+    /// </summary>
+    public static readonly CVarDef<float> BoomboxVolume =
+        CVarDef.Create("boombox.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
      * Bind Standing - Ataraxia
