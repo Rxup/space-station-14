@@ -57,7 +57,7 @@ public sealed class ServerWoundSystem : WoundSystem
             if (woundable.Wounds == null || woundable.Wounds.Count == 0)
                 continue;
 
-            if (!bodyPart.Body.HasValue || MobState.IsDead(bodyPart.Body.Value))
+            if (bodyPart.Body is not { } body || MobState.IsDead(body))
                 continue;
 
             if (woundable.WoundableSeverity is WoundableSeverity.Critical or WoundableSeverity.Loss)
@@ -82,14 +82,7 @@ public sealed class ServerWoundSystem : WoundSystem
                 wound.Comp2.BleedingAmountRaw -= bleedTreatment;
             }
 
-            var bleeding = false;
-            foreach (var wound in bleedWounds)
-            {
-                if (wound.Comp2.IsBleeding)
-                    bleeding = true;
-            }
-
-            if (bleeding)
+            if (bleedWounds.Any(wound => wound.Comp2.IsBleeding))
                 continue;
 
             var woundsToHeal =

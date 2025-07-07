@@ -43,7 +43,6 @@ public sealed partial class AudioTab : Control
             scale: ContentAudioSystem.BoomboxVolumeMultiplier);
         // Backmen boombox slider end
 
-
         Control.AddOptionPercentSlider(
             CVars.MidiVolume,
             SliderVolumeMidi,

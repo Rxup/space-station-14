@@ -15,7 +15,6 @@ namespace Content.Server.Audio.Jukebox;
 
 public sealed class JukeboxSystem : SharedJukeboxSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
 
     public override void Initialize()
@@ -40,39 +39,32 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         }
     }
 
-    private void OnJukeboxPlay(EntityUid uid, JukeboxComponent component, ref JukeboxPlayingMessage args)
+    private void OnJukeboxPlay(Entity<JukeboxComponent> ent, ref JukeboxPlayingMessage args)
     {
-        if (Exists(component.AudioStream))
-        {
-            Audio.SetState(component.AudioStream, AudioState.Playing);
-        }
-        else
-        {
-            component.AudioStream = Audio.Stop(component.AudioStream);
+        if (ent.Comp.Selecting)
+            return;
 
-            if (string.IsNullOrEmpty(component.SelectedSongId) ||
-                !_protoManager.TryIndex(component.SelectedSongId, out var jukeboxProto))
-            {
-                return;
-            }
-
-            component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f))?.Entity;
-            Dirty(uid, component);
-        }
+        RaiseNetworkEvent(new JukeboxPlaySongEvent(GetNetEntity(ent.Owner)), Filter.Pvs(ent.Owner));
     }
 
     private void OnJukeboxPause(Entity<JukeboxComponent> ent, ref JukeboxPauseMessage args)
     {
-        Audio.SetState(ent.Comp.AudioStream, AudioState.Paused);
+        if (ent.Comp.Selecting)
+            return;
+
+        RaiseNetworkEvent(new JukeboxPauseSongEvent(GetNetEntity(ent.Owner)), Filter.Pvs(ent.Owner));
     }
 
     private void OnJukeboxSetTime(EntityUid uid, JukeboxComponent component, JukeboxSetTimeMessage args)
     {
-        if (TryComp(args.Actor, out ActorComponent? actorComp))
-        {
-            var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
-            Audio.SetPlaybackPosition(component.AudioStream, args.SongTime + offset);
-        }
+        if (component.Selecting)
+            return;
+
+        if (!TryComp(args.Actor, out ActorComponent? actorComp))
+            return;
+
+        var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
+        RaiseNetworkEvent(new JukeboxSetPlaybackEvent(GetNetEntity(uid), args.SongTime + offset), Filter.Pvs(uid));
     }
 
     private void OnPowerChanged(Entity<JukeboxComponent> entity, ref PowerChangedEvent args)
@@ -92,21 +84,15 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void Stop(Entity<JukeboxComponent> entity)
     {
-        Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped);
-        Dirty(entity);
+        RaiseNetworkEvent(new JukeboxStopSongEvent(GetNetEntity(entity.Owner)), Filter.Pvs(entity.Owner));
     }
 
     private void OnJukeboxSelected(EntityUid uid, JukeboxComponent component, JukeboxSelectedMessage args)
     {
-        if (!Audio.IsPlaying(component.AudioStream))
-        {
-            component.SelectedSongId = args.SongId;
-            DirectSetVisualState(uid, JukeboxVisualState.Select);
-            component.Selecting = true;
-            component.AudioStream = Audio.Stop(component.AudioStream);
-        }
-
-        Dirty(uid, component);
+        component.SelectedSongId = args.SongId;
+        DirectSetVisualState(uid, JukeboxVisualState.Select);
+        component.Selecting = true;
+        Stop((uid, component));
     }
 
     public override void Update(float frameTime)
@@ -116,23 +102,23 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var query = EntityQueryEnumerator<JukeboxComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.Selecting)
-            {
-                comp.SelectAccumulator += frameTime;
-                if (comp.SelectAccumulator >= 0.5f)
-                {
-                    comp.SelectAccumulator = 0f;
-                    comp.Selecting = false;
+            if (!comp.Selecting)
+                continue;
 
-                    TryUpdateVisualState(uid, comp);
-                }
-            }
+            comp.SelectAccumulator += frameTime;
+            if (comp.SelectAccumulator < 0.5f)
+                continue;
+
+            comp.SelectAccumulator = 0f;
+            comp.Selecting = false;
+
+            TryUpdateVisualState(uid, comp);
         }
     }
 
     private void OnComponentShutdown(EntityUid uid, JukeboxComponent component, ComponentShutdown args)
     {
-        component.AudioStream = Audio.Stop(component.AudioStream);
+        Stop((uid, component));
     }
 
     private void DirectSetVisualState(EntityUid uid, JukeboxVisualState state)

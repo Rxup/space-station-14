@@ -60,6 +60,39 @@ public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMe
     public float SongTime { get; } = songTime;
 }
 
+// backmen edit start
+[Serializable, NetSerializable]
+public sealed class JukeboxPlaySongEvent(NetEntity jukebox) : EntityEventArgs
+{
+    public NetEntity Jukebox = jukebox;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxPauseSongEvent(NetEntity jukebox) : EntityEventArgs
+{
+    public NetEntity Jukebox = jukebox;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxStopSongEvent(NetEntity jukebox) : EntityEventArgs
+{
+    public NetEntity Jukebox = jukebox;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxSetPlaybackEvent : EntityEventArgs
+{
+    public NetEntity Jukebox;
+    public float Position;
+
+    public JukeboxSetPlaybackEvent(NetEntity jukebox, float position)
+    {
+        Jukebox = jukebox;
+        Position = position;
+    }
+}
+// backmen edit end
+
 [Serializable, NetSerializable]
 public enum JukeboxVisuals : byte
 {

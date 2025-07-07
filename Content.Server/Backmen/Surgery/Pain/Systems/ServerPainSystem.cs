@@ -132,7 +132,7 @@ public sealed class ServerPainSystem : PainSystem
                             PlayPainSound(body.Value,
                                 uid,
                                 sound,
-                                AudioParams.Default.WithVariation(0.1f).WithVolume(-8f),
+                                AudioParams.Default.WithVariation(0.04f).WithVolume(-8f),
                                 nerveSys);
 
                             nerveSys.NextPainScream =
@@ -160,7 +160,7 @@ public sealed class ServerPainSystem : PainSystem
                         PlayPainSound(body.Value,
                             uid,
                             sound1,
-                            AudioParams.Default.WithVariation(0.1f).WithVolume(-12f),
+                            AudioParams.Default.WithVariation(0.04f).WithVolume(-12f),
                             nerveSys);
 
                         nerveSys.NextPainScream =
@@ -176,7 +176,7 @@ public sealed class ServerPainSystem : PainSystem
                         PlayPainSound(body.Value,
                             uid,
                             sound2,
-                            AudioParams.Default.WithVariation(0.1f).WithVolume(12f),
+                            AudioParams.Default.WithVariation(0.02f).WithVolume(12f),
                             nerveSys);
 
                         nerveSys.NextPainScream =
@@ -488,7 +488,7 @@ public sealed class ServerPainSystem : PainSystem
                 break;
             case PainReflexType.Agony:
                 CleanupPainSounds(nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], AudioParams.Default.WithVariation(0.1f).WithVolume(6f), nerveSys: nerveSys);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], AudioParams.Default.WithVariation(0.04f).WithVolume(6f), nerveSys: nerveSys);
 
                 _popup.PopupPredicted(Loc.GetString("screams-in-agony", ("entity", body)), body, null, PopupType.MediumCaution);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration / 1.4f, true, 30f, 12f);
@@ -541,7 +541,7 @@ public sealed class ServerPainSystem : PainSystem
                     painWhimpers,
                     IHaveNoMouthAndIMustScream
                         .GetAudioLength(IHaveNoMouthAndIMustScream.ResolveSound(agonySpecifier)) - TimeSpan.FromSeconds(2),
-                    AudioParams.Default.WithVariation(0.05f).WithVolume(-8f),
+                    AudioParams.Default.WithVolume(-8f),
                     nerveSys);
 
                 IHaveNoMouthAndIMustScream.PlayPvs(
