@@ -207,10 +207,8 @@ public sealed partial class RevenantSystem
 
         //KILL THEMMMM
 
-        if (!_mobThresholdSystem.TryGetThresholdForState(args.Args.Target.Value, MobState.Dead, out var damage))
-            return;
         DamageSpecifier dspec = new();
-        dspec.DamageDict.Add("Cold", damage.Value);
+        dspec.DamageDict.Add("Asphyxiation", 1000f); // Backmen edit
         _damage.TryChangeDamage(args.Args.Target, dspec, true, origin: uid);
 
         args.Handled = true;
