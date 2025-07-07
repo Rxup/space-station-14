@@ -392,7 +392,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            Vector2.Transform(position, gridToView),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.1f, detectable.DetectableSize * 0.1f), gridToView),
                             detectable.Name);
                     }
 
@@ -407,7 +407,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            Vector2.Transform(position, gridToView),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.1f, detectable.DetectableSize * 0.1f), gridToView),
                             detectable.Name);
                     }
 
@@ -422,7 +422,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 10f, detectable.DetectableSize * 15f), gridToView),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.6f, detectable.DetectableSize * 0.6f), gridToView),
                             detectable.Name);
                     }
 
