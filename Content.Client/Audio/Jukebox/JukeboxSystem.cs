@@ -171,7 +171,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var q = EntityQueryEnumerator<JukeboxComponent>();
         while (q.MoveNext(out _, out var jukebox))
         {
-            Audio.SetVolume(jukebox.AudioStream, Math.Max(MinimalVolume, _volume));
+            if (jukebox.AudioStream != null)
+                Audio.SetVolume(jukebox.AudioStream, Math.Max(MinimalVolume, _volume));
         }
     }
     // backmen edit end

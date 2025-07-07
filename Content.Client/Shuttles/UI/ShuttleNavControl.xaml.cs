@@ -178,7 +178,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             DrawGrid(handle, ourGridToView, (ourGridId.Value, ourGrid), color);
             DrawDocks(handle, ourGridId.Value, ourGridToView);
-            DrawDetectables(handle, ourGridToView); // backmen edit
+            DrawDetectables(handle, ourGridId.Value, ourGridToView); // backmen edit
         }
 
         // Draw radar position on the station
@@ -349,7 +349,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     }
 
     // backmen edit start
-    private void DrawDetectables(DrawingHandleScreen handle, Matrix3x2 gridToView)
+    private void DrawDetectables(DrawingHandleScreen handle, EntityUid ourGrid, Matrix3x2 gridToView)
     {
         if (!ShowDetectables)
             return;
@@ -364,6 +364,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         {
             var position = detectable.Coordinates.Position;
 
+            var ent = EntManager.GetEntity(detectable.Entity);
+            if (_transform.GetGrid(ent) == null)
+                position = Vector2.Transform(position, _transform.GetInvWorldMatrix(ourGrid)); // No parent, getting relative position manually.
+
             var positionInView = Vector2.Transform(position, gridToView);
             if (!viewBounds.Contains(positionInView))
                 continue;
@@ -376,11 +380,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize), gridToView),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.1f, detectable.DetectableSize * 0.1f), gridToView),
                             detectable.Name);
                     }
 
-                    handle.DrawCircle(position, detectable.DetectableSize, color);
+                    handle.DrawCircle(positionInView, detectable.DetectableSize, color);
                     break;
 
                 case DetectableDrawType.Rectangle:
@@ -388,12 +392,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 3f, detectable.DetectableSize), gridToView),
+                            Vector2.Transform(position, gridToView),
                             detectable.Name);
                     }
 
-                    var rect = UIBox2.FromDimensions(position,
-                        new Vector2(detectable.DetectableSize * 1.5f, detectable.DetectableSize));
+                    var rect =
+                        UIBox2.FromDimensions(positionInView, new Vector2(detectable.DetectableSize * 1.5f, detectable.DetectableSize));
 
                     handle.DrawRect(rect, color);
                     break;
@@ -403,12 +407,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            Vector2.Transform(position + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize), gridToView),
+                            Vector2.Transform(position, gridToView),
                             detectable.Name);
                     }
 
-                    var square = UIBox2.FromDimensions(position,
-                        new Vector2(detectable.DetectableSize, detectable.DetectableSize));
+                    var square =
+                        UIBox2.FromDimensions(positionInView, new Vector2(detectable.DetectableSize, detectable.DetectableSize));
 
                     handle.DrawRect(square, color);
                     break;
@@ -423,9 +427,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     }
 
                     handle.DrawEntity(
-                        EntManager.GetEntity(detectable.Entity),
-                        position,
-                        Vector2.Transform(new Vector2(detectable.DetectableSize, detectable.DetectableSize), gridToView),
+                        ent,
+                        positionInView,
+                        new Vector2(detectable.DetectableSize, detectable.DetectableSize),
                         detectable.Angle);
                     break;
             }

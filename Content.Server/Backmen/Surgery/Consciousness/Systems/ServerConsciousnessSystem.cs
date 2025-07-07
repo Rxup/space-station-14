@@ -222,12 +222,6 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
         }
 
-        if (mobState.CurrentState is not MobState.Critical)
-        {
-            _popup.PopupPredicted(Loc.GetString("cpr-cant-perform-not-crit"), consciousness, user, PopupType.Medium);
-            return false;
-        }
-
         return true;
     }
 
@@ -459,6 +453,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                     nerveSys.Value,
                     -damagePiece.Value,
                     "Suffocation",
+                    ConsciousnessModType.Pain,
                     consciousness: consciousness);
             }
 

@@ -92,6 +92,7 @@ public record struct WoundsDeltaChanged(
 
 /// <summary>
 /// lets you know alllll the unhandled consciousness wounds' damage and stuff for whatever implementation you want.
+/// If you actually implemented the handling of a specific damage type, remove the damage type from the dict and you are fine to go!
 /// </summary>
 [ByRefEvent]
 public record struct HandleUnhandledWoundsEvent(Dictionary<string, FixedPoint2> UnhandledDamage);

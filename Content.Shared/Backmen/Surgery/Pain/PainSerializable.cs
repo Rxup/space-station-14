@@ -6,14 +6,14 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Backmen.Surgery.Pain;
 
 [Serializable, NetSerializable]
-public enum PainDamageTypes
+public enum PainType
 {
     WoundPain,
     TraumaticPain,
 }
 
 [Serializable, NetSerializable]
-public enum PainThresholdTypes
+public enum PainReflexType
 {
     None,
     PainGrunt,
@@ -63,19 +63,19 @@ public sealed class NerveComponentState : ComponentState
 }
 
 [Serializable, DataRecord]
-public record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", PainDamageTypes PainDamageType = PainDamageTypes.WoundPain, TimeSpan? Time = null);
+public record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", PainType PainType = PainType.WoundPain, TimeSpan? Time = null);
 
 [Serializable, DataRecord]
 public record struct PainFeelingModifier(FixedPoint2 Change, TimeSpan? Time = null);
 
 [Serializable, DataRecord]
-public record struct PainModifier(FixedPoint2 Change, string Identifier = "Unspecified", PainDamageTypes PainDamageType = PainDamageTypes.WoundPain, TimeSpan? Time = null); // Easier to manage pain with modifiers.
+public record struct PainModifier(FixedPoint2 Change, string Identifier = "Unspecified", PainType PainType = PainType.WoundPain, TimeSpan? Time = null); // Easier to manage pain with modifiers.
 
 [ByRefEvent]
-public record struct PainThresholdTriggered(Entity<NerveSystemComponent> NerveSystem, PainThresholdTypes ThresholdType, FixedPoint2 PainInput, bool Cancelled = false);
+public record struct PainThresholdTriggered(Entity<NerveSystemComponent> NerveSystem, PainReflexType ReflexType, FixedPoint2 PainInput, bool Cancelled = false);
 
 [ByRefEvent]
-public record struct PainThresholdEffected(Entity<NerveSystemComponent> NerveSystem, PainThresholdTypes ThresholdType, FixedPoint2 PainInput);
+public record struct PainThresholdEffected(Entity<NerveSystemComponent> NerveSystem, PainReflexType ReflexType, FixedPoint2 PainInput);
 
 [ByRefEvent]
 public record struct PainFeelsChangedEvent(EntityUid NerveSystem, EntityUid NerveEntity, FixedPoint2 CurrentPainFeels);

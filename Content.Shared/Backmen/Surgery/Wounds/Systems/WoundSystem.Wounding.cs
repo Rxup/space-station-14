@@ -524,10 +524,7 @@ public partial class WoundSystem
             }
             else
             {
-                if (damagePiece.Value <= 0)
-                    continue;
-
-                if (!CanAddWound(
+                if (damagePiece.Value <= 0 || !CanAddWound(
                         woundable,
                         damagePiece.Key,
                         damagePiece.Value,

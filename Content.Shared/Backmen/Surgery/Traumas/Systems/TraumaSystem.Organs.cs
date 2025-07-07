@@ -65,7 +65,7 @@ public partial class TraumaSystem
                 bodyPart.Owner,
                 OrganDamagePainIdentifier,
                 organPainDamage,
-                PainDamageTypes.TraumaticPain,
+                PainType.TraumaticPain,
                 nerveSys.Value.Comp);
         }
     }
@@ -104,7 +104,7 @@ public partial class TraumaSystem
                     bodyPart.Owner,
                     OrganDestroyedPainIdentifier,
                     args.Organ.Comp.IntegrityCap * 1.6f,
-                    PainDamageTypes.TraumaticPain,
+                    PainType.TraumaticPain,
                     nerveSys.Value.Comp,
                     TimeSpan.FromMinutes(4f));
             }

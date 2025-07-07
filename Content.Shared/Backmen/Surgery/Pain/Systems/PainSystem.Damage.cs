@@ -88,7 +88,7 @@ public partial class PainSystem
         EntityUid nerveUid,
         FixedPoint2 pain,
         NerveSystemComponent nerveSys,
-        PainDamageTypes painType,
+        PainType painType,
         NerveComponent? nerve = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
@@ -100,7 +100,7 @@ public partial class PainSystem
 
         var toMultiply =
             nerveSys.Multipliers
-                .Where(markiplier => markiplier.Value.PainDamageType == painType)
+                .Where(markiplier => markiplier.Value.PainType == painType)
                 .Aggregate(FixedPoint2.Zero, (current, markiplier) => current + markiplier.Value.Change);
 
         return modifiedPain * toMultiply / nerveSys.Multipliers.Count; // o(*^＠^*)o
@@ -125,7 +125,7 @@ public partial class PainSystem
         FixedPoint2 change,
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null,
-        PainDamageTypes? painType = null)
+        PainType? painType = null)
     {
         // Server-only execution
         return false;
@@ -176,7 +176,7 @@ public partial class PainSystem
         EntityUid nerveUid,
         string identifier,
         FixedPoint2 change,
-        PainDamageTypes painType = PainDamageTypes.WoundPain,
+        PainType painType = PainType.WoundPain,
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null)
     {
@@ -354,7 +354,7 @@ public partial class PainSystem
         EntityUid uid,
         string identifier,
         FixedPoint2 change,
-        PainDamageTypes painType = PainDamageTypes.WoundPain,
+        PainType painType = PainType.WoundPain,
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null)
     {
@@ -379,7 +379,7 @@ public partial class PainSystem
         string identifier,
         FixedPoint2 change,
         TimeSpan? time = null,
-        PainDamageTypes? painType = null,
+        PainType? painType = null,
         NerveSystemComponent? nerveSys = null)
     {
         // Server-only execution
@@ -402,7 +402,7 @@ public partial class PainSystem
         string identifier,
         TimeSpan time,
         FixedPoint2? change = null,
-        PainDamageTypes? painType = null,
+        PainType? painType = null,
         NerveSystemComponent? nerveSys = null)
     {
         // Server-only execution
@@ -423,7 +423,7 @@ public partial class PainSystem
     public virtual bool TryChangePainMultiplier(
         EntityUid uid,
         string identifier,
-        PainDamageTypes painType,
+        PainType painType,
         FixedPoint2? change = null,
         TimeSpan? time = null,
         NerveSystemComponent? nerveSys = null)
