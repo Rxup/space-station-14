@@ -65,7 +65,7 @@ public partial class TraumaSystem
                 bodyPart.Owner,
                 OrganDamagePainIdentifier,
                 organPainDamage,
-                PainDamageTypes.TraumaticPain,
+                PainType.TraumaticPain,
                 nerveSys.Value.Comp);
         }
     }
@@ -89,7 +89,7 @@ public partial class TraumaSystem
             Pain.PlayPainSound(
                 body.Value,
                 nerveSys.Value.Comp.OrganDestructionReflexSounds[sex],
-                AudioParams.Default.WithVolume(6f));
+                AudioParams.Default.WithVolume(12f));
 
             if (!Pain.TryChangePainModifier(
                     nerveSys.Value,
@@ -104,7 +104,7 @@ public partial class TraumaSystem
                     bodyPart.Owner,
                     OrganDestroyedPainIdentifier,
                     args.Organ.Comp.IntegrityCap * 1.6f,
-                    PainDamageTypes.TraumaticPain,
+                    PainType.TraumaticPain,
                     nerveSys.Value.Comp,
                     TimeSpan.FromMinutes(4f));
             }

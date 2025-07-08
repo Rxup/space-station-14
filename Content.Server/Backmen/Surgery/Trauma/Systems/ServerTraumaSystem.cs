@@ -137,7 +137,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
                                 target.Owner,
                                 "BoneDamage",
                                 severity * 2,
-                                PainDamageTypes.TraumaticPain,
+                                PainType.TraumaticPain,
                                 nerveSysB.Value.Comp);
                     }
 

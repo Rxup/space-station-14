@@ -17,6 +17,9 @@ public sealed partial class DiseaseReagentCure : DiseaseCure
     [DataField("reagent")]
     public ReagentId? Reagent;
 
+    [ViewVariables]
+    public FixedPoint2 MetabolizedAmount = FixedPoint2.Zero;
+
     public override string CureText()
     {
         var prototypeMan = IoCManager.Resolve<IPrototypeManager>();
@@ -40,19 +43,7 @@ public sealed partial class DiseaseCureSystem
 
         args.Handled = true;
 
-        if (!_bloodstreamQuery.TryGetComponent(args.DiseasedEntity, out var bloodstream)
-            || bloodstream.ChemicalSolution == null)
-            return;
-
-        var chemicalSolution = bloodstream.ChemicalSolution.Value;
-
-        var quant = FixedPoint2.Zero;
-        if (args.DiseaseCure.Reagent != null && chemicalSolution.Comp.Solution.ContainsReagent(args.DiseaseCure.Reagent.Value))
-        {
-            quant = chemicalSolution.Comp.Solution.GetReagentQuantity(args.DiseaseCure.Reagent.Value);
-        }
-
-        if (quant >= args.DiseaseCure.Min)
+        if (args.DiseaseCure.MetabolizedAmount >= args.DiseaseCure.Min)
         {
             _disease.CureDisease(args.DiseasedEntity, args.Disease);
         }

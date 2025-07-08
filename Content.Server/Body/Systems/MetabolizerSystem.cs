@@ -168,7 +168,6 @@ namespace Content.Server.Body.Systems
                 if (reagents >= ent.Comp1.MaxReagentsProcessable)
                     return;
 
-
                 // loop over all our groups and see which ones apply
                 if (ent.Comp1.MetabolismGroups is null)
                     continue;
@@ -227,6 +226,12 @@ namespace Content.Server.Body.Systems
                     // We have processed a reagant, so count it towards the cap
                     reagents += 1;
                 }
+
+                if (ent.Comp2?.Body is not { } body)
+                    continue;
+
+                var ev = new ReagentMetabolised(reagent, mostToRemove);
+                RaiseLocalEvent(body, ref ev);
             }
 
             _solutionContainerSystem.UpdateChemicals(soln.Value);

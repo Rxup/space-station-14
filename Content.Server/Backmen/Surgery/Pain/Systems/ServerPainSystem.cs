@@ -124,16 +124,15 @@ public sealed class ServerPainSystem : PainSystem
                 switch (mobState.CurrentState)
                 {
                     case MobState.Alive:
-                        if (nerveSys.Pain > nerveSys.PainThresholds[PainThresholdTypes.Agony])
+                        if (nerveSys.Pain > nerveSys.PainThresholds[PainReflexType.Agony])
                         {
                             CleanupPainSounds(uid, nerveSys);
 
                             var sound = nerveSys.PainedWhimpers[sex];
-                            PlayPainSound(
-                                body.Value,
+                            PlayPainSound(body.Value,
                                 uid,
                                 sound,
-                                AudioParams.Default.WithVariation(0.05f).WithVolume(-12f),
+                                AudioParams.Default.WithVariation(0.04f).WithVolume(-8f),
                                 nerveSys);
 
                             nerveSys.NextPainScream =
@@ -161,7 +160,7 @@ public sealed class ServerPainSystem : PainSystem
                         PlayPainSound(body.Value,
                             uid,
                             sound1,
-                            AudioParams.Default.WithVariation(0.05f).WithVolume(-16f),
+                            AudioParams.Default.WithVariation(0.04f).WithVolume(-12f),
                             nerveSys);
 
                         nerveSys.NextPainScream =
@@ -177,7 +176,7 @@ public sealed class ServerPainSystem : PainSystem
                         PlayPainSound(body.Value,
                             uid,
                             sound2,
-                            AudioParams.Default.WithVariation(0.05f).WithVolume(12f),
+                            AudioParams.Default.WithVariation(0.02f).WithVolume(12f),
                             nerveSys);
 
                         nerveSys.NextPainScream =
@@ -264,14 +263,14 @@ public sealed class ServerPainSystem : PainSystem
                     pain,
                     brainUid.Value,
                     TimeSpan.FromMinutes(1f),
-                    PainDamageTypes.TraumaticPain))
+                    PainType.TraumaticPain))
             {
                 TryAddPainModifier(
                     brainUid.Value,
                     brainUid.Value.Comp.RootNerve,
                     PainPhantomPainIdentifier,
                     pain,
-                    PainDamageTypes.TraumaticPain,
+                    PainType.TraumaticPain,
                     brainUid.Value,
                     TimeSpan.FromMinutes(1f));
             }
@@ -301,7 +300,7 @@ public sealed class ServerPainSystem : PainSystem
         {
             switch (wound.Comp2.PainType)
             {
-                case PainDamageTypes.TraumaticPain:
+                case PainType.TraumaticPain:
                     traumaticPain += wound.Comp2.Pain;
                     break;
                 default:
@@ -321,7 +320,7 @@ public sealed class ServerPainSystem : PainSystem
                 args.Component.HoldingWoundable,
                 PainTraumaticModifierIdentifier,
                 traumaticPain,
-                PainDamageTypes.TraumaticPain))
+                PainType.TraumaticPain))
         {
             TryChangePainModifier(
                 nerveSys.Value,
@@ -393,10 +392,10 @@ public sealed class ServerPainSystem : PainSystem
 
         foreach (var modifier in nerveSys.Modifiers)
         {
-            if (modifier.Value.PainDamageType == PainDamageTypes.WoundPain)
-                woundPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainDamageType);
+            if (modifier.Value.PainType == PainType.WoundPain)
+                woundPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainType);
 
-            totalPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainDamageType);
+            totalPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainType);
         }
 
         var newPain = FixedPoint2.Clamp(woundPain, 0, nerveSys.SoftPainCap) + totalPain - woundPain;
@@ -431,7 +430,7 @@ public sealed class ServerPainSystem : PainSystem
     {
         var painInput = nerveSys.Pain - nerveSys.LastPainThreshold;
 
-        var nearestReflex = PainThresholdTypes.None;
+        var nearestReflex = PainReflexType.None;
         foreach (var (reflex, threshold) in nerveSys.PainThresholds.OrderByDescending(kv => kv.Value))
         {
             if (painInput < threshold)
@@ -441,10 +440,10 @@ public sealed class ServerPainSystem : PainSystem
             break;
         }
 
-        if (nearestReflex == PainThresholdTypes.None)
+        if (nearestReflex == PainReflexType.None)
             return;
 
-        if (nerveSys.LastThresholdType == nearestReflex && Timing.CurTime < nerveSys.UpdateTime)
+        if (nerveSys.LastReflexType == nearestReflex && Timing.CurTime < nerveSys.UpdateTime)
             return;
 
         var ev1 = new PainThresholdTriggered((uid, nerveSys), nearestReflex, painInput);
@@ -456,14 +455,14 @@ public sealed class ServerPainSystem : PainSystem
         var ev2 = new PainThresholdEffected((uid, nerveSys), nearestReflex, painInput);
         RaiseLocalEvent(body, ref ev2);
 
-        nerveSys.LastThresholdType = nearestReflex;
+        nerveSys.LastReflexType = nearestReflex;
 
         ApplyPainReflexesEffects(body, (uid, nerveSys), nearestReflex);
 
         Dirty(uid, nerveSys);
     }
 
-    private void ApplyPainReflexesEffects(EntityUid body, Entity<NerveSystemComponent> nerveSys, PainThresholdTypes reaction)
+    private void ApplyPainReflexesEffects(EntityUid body, Entity<NerveSystemComponent> nerveSys, PainReflexType reaction)
     {
         if (!_painReflexesEnabled)
             return;
@@ -474,32 +473,32 @@ public sealed class ServerPainSystem : PainSystem
 
         switch (reaction)
         {
-            case PainThresholdTypes.PainGrunt:
+            case PainReflexType.PainGrunt:
                 CleanupPainSounds(nerveSys, nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], AudioParams.Default.WithVariation(0.05f).WithVolume(-9f), nerveSys.Comp);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.PainGrunts[sex], AudioParams.Default.WithVariation(0.1f).WithVolume(-4f), nerveSys.Comp);
 
                 break;
-            case PainThresholdTypes.PainFlinch:
+            case PainReflexType.PainFlinch:
                 CleanupPainSounds(nerveSys, nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.PainScreams[sex], nerveSys: nerveSys.Comp);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.PainScreams[sex], AudioParams.Default.WithVariation(0.1f).WithVolume(4f), nerveSys: nerveSys.Comp);
 
                 _popup.PopupPredicted(Loc.GetString("screams-and-flinches-pain", ("entity", body)), body, null, PopupType.MediumCaution);
                 _jitter.DoJitter(body, TimeSpan.FromSeconds(0.9f), true, 24f, 1f);
 
                 break;
-            case PainThresholdTypes.Agony:
+            case PainReflexType.Agony:
                 CleanupPainSounds(nerveSys);
-                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], nerveSys: nerveSys);
+                PlayPainSound(body, nerveSys, nerveSys.Comp.AgonyScreams[sex], AudioParams.Default.WithVariation(0.04f).WithVolume(6f), nerveSys: nerveSys);
 
                 _popup.PopupPredicted(Loc.GetString("screams-in-agony", ("entity", body)), body, null, PopupType.MediumCaution);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration / 1.4f, true, 30f, 12f);
 
                 break;
-            case PainThresholdTypes.PainShock:
+            case PainReflexType.PainShock:
                 CleanupPainSounds(nerveSys);
 
                 var screamSpecifier = nerveSys.Comp.PainShockScreams[sex];
-                PlayPainSound(body, nerveSys, screamSpecifier, nerveSys: nerveSys);
+                PlayPainSound(body, nerveSys, screamSpecifier, AudioParams.Default.WithVolume(8f), nerveSys);
 
                 var sound = nerveSys.Comp.PainedWhimpers[sex];
                 PlayPainSound(
@@ -514,14 +513,6 @@ public sealed class ServerPainSystem : PainSystem
                     nerveSys.Comp.PainRattles,
                     body,
                     AudioParams.Default.WithVolume(-12f));
-
-                _consciousness.AddConsciousnessModifier(
-                    body,
-                    nerveSys,
-                    40,
-                    PainAdrenalineIdentifier,
-                    ConsciousnessModType.Pain,
-                    nerveSys.Comp.PainShockAdrenalineTime);
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)
@@ -538,11 +529,11 @@ public sealed class ServerPainSystem : PainSystem
                 _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 0.99f);
 
                 break;
-            case PainThresholdTypes.PainShockAndAgony:
+            case PainReflexType.PainShockAndAgony:
                 CleanupPainSounds(nerveSys);
 
-                var agonySpecifier = nerveSys.Comp.AgonyScreams[sex];
-                PlayPainSound(body, nerveSys, agonySpecifier);
+                var agonySpecifier = nerveSys.Comp.ExtremePainSounds[sex]; // hell yeah
+                PlayPainSound(body, nerveSys, agonySpecifier, AudioParams.Default.WithVolume(12f));
 
                 var painWhimpers = nerveSys.Comp.PainedWhimpers[sex];
                 PlayPainSound(
@@ -556,7 +547,7 @@ public sealed class ServerPainSystem : PainSystem
                 IHaveNoMouthAndIMustScream.PlayPvs(
                     nerveSys.Comp.PainRattles,
                     body,
-                    AudioParams.Default.WithVolume(-12f));
+                    AudioParams.Default.WithVolume(-8f));
 
                 _popup.PopupPredicted(
                     _standing.IsDown(body)
@@ -566,21 +557,13 @@ public sealed class ServerPainSystem : PainSystem
                     null,
                     PopupType.MediumCaution);
 
-                _consciousness.AddConsciousnessModifier(
-                    body,
-                    nerveSys,
-                    40 * 1.4,
-                    PainAdrenalineIdentifier,
-                    ConsciousnessModType.Pain,
-                    nerveSys.Comp.PainShockAdrenalineTime * 1.4);
-
                 ForcePainCrit(nerveSys, nerveSys.Comp.PainShockCritDuration * 1.4f, nerveSys);
                 _jitter.DoJitter(body, nerveSys.Comp.PainShockCritDuration * 1.4f, true, 20f, 7f);
 
                 _consciousness.ForceConscious(body, nerveSys.Comp.PainShockCritDuration * 1.39f);
 
                 break;
-            case PainThresholdTypes.None:
+            case PainReflexType.None:
                 break;
         }
     }
@@ -654,7 +637,7 @@ public sealed class ServerPainSystem : PainSystem
         FixedPoint2 change,
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null,
-        PainDamageTypes? painType = null)
+        PainType? painType = null)
     {
         if (!NerveSystemQuery.Resolve(uid, ref nerveSys, false))
             return false;
@@ -663,7 +646,7 @@ public sealed class ServerPainSystem : PainSystem
             return false;
 
         var modifierToSet =
-            modifier with {Change = change, Time = Timing.CurTime + time ?? modifier.Time, PainDamageType = painType ?? modifier.PainDamageType};
+            modifier with {Change = change, Time = Timing.CurTime + time ?? modifier.Time, PainType = painType ?? modifier.PainType};
         nerveSys.Modifiers[(nerveUid, identifier)] = modifierToSet;
 
         var ev = new PainModifierChangedEvent(uid, nerveUid, modifier.Change);
@@ -681,7 +664,7 @@ public sealed class ServerPainSystem : PainSystem
         EntityUid nerveUid,
         string identifier,
         FixedPoint2 change,
-        PainDamageTypes painType = PainDamageTypes.WoundPain,
+        PainType painType = PainType.WoundPain,
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null)
     {
@@ -840,7 +823,7 @@ public sealed class ServerPainSystem : PainSystem
         EntityUid uid,
         string identifier,
         FixedPoint2 change,
-        PainDamageTypes painType = PainDamageTypes.WoundPain,
+        PainType painType = PainType.WoundPain,
         NerveSystemComponent? nerveSys = null,
         TimeSpan? time = null)
     {
@@ -863,7 +846,7 @@ public sealed class ServerPainSystem : PainSystem
         string identifier,
         FixedPoint2 change,
         TimeSpan? time = null,
-        PainDamageTypes? painType = null,
+        PainType? painType = null,
         NerveSystemComponent? nerveSys = null)
     {
         if (!NerveSystemQuery.Resolve(uid, ref nerveSys, false))
@@ -873,7 +856,7 @@ public sealed class ServerPainSystem : PainSystem
             return false;
 
         var multiplierToSet =
-            multiplier with {Change = change, Time = Timing.CurTime + time ?? multiplier.Time, PainDamageType = painType ?? multiplier.PainDamageType};
+            multiplier with {Change = change, Time = Timing.CurTime + time ?? multiplier.Time, PainType = painType ?? multiplier.PainType};
         nerveSys.Multipliers[identifier] = multiplierToSet;
 
         UpdateNerveSystemPain(uid, nerveSys);
@@ -888,7 +871,7 @@ public sealed class ServerPainSystem : PainSystem
         string identifier,
         TimeSpan time,
         FixedPoint2? change = null,
-        PainDamageTypes? painType = null,
+        PainType? painType = null,
         NerveSystemComponent? nerveSys = null)
     {
         if (!NerveSystemQuery.Resolve(uid, ref nerveSys, false))
@@ -898,7 +881,7 @@ public sealed class ServerPainSystem : PainSystem
             return false;
 
         var multiplierToSet =
-            multiplier with {Change = change ?? multiplier.Change, Time = Timing.CurTime + time, PainDamageType = painType ?? multiplier.PainDamageType};
+            multiplier with {Change = change ?? multiplier.Change, Time = Timing.CurTime + time, PainType = painType ?? multiplier.PainType};
         nerveSys.Multipliers[identifier] = multiplierToSet;
 
         UpdateNerveSystemPain(uid, nerveSys);
@@ -911,7 +894,7 @@ public sealed class ServerPainSystem : PainSystem
     public override bool TryChangePainMultiplier(
         EntityUid uid,
         string identifier,
-        PainDamageTypes painType,
+        PainType painType,
         FixedPoint2? change = null,
         TimeSpan? time = null,
         NerveSystemComponent? nerveSys = null)
@@ -923,7 +906,7 @@ public sealed class ServerPainSystem : PainSystem
             return false;
 
         var multiplierToSet =
-            multiplier with {Change = change ?? multiplier.Change, Time = Timing.CurTime + time ?? multiplier.Time, PainDamageType = painType};
+            multiplier with {Change = change ?? multiplier.Change, Time = Timing.CurTime + time ?? multiplier.Time, PainType = painType};
         nerveSys.Multipliers[identifier] = multiplierToSet;
 
         UpdateNerveSystemPain(uid, nerveSys);

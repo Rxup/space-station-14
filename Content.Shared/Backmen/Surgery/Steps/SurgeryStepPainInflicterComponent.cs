@@ -8,7 +8,7 @@ namespace Content.Shared.Backmen.Surgery.Steps;
 public sealed partial class SurgeryStepPainInflicterComponent : Component
 {
     [DataField]
-    public PainDamageTypes PainType = PainDamageTypes.WoundPain;
+    public PainType PainType = PainType.WoundPain;
 
     [DataField]
     public FixedPoint2 SleepModifier = 1f;

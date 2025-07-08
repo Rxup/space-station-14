@@ -1,5 +1,6 @@
 using Content.Server.Body.Systems;
 using Content.Shared.Body.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -82,4 +83,9 @@ namespace Content.Server.Body.Components
         [DataField("rateModifier")]
         public FixedPoint2 MetabolismRateModifier = 1.0;
     }
+
+    // backmen edit start
+    [ByRefEvent]
+    public record struct ReagentMetabolised(ReagentId Reagent, FixedPoint2 Amount);
+    // backmen edit end
 }

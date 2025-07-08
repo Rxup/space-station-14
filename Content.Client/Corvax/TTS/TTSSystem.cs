@@ -34,7 +34,7 @@ public sealed class TTSSystem : EntitySystem
     /// <summary>
     /// The volume at which the TTS sound will not be heard.
     /// </summary>
-    private const float MinimalVolume = -10f;
+    private const float MinimalVolume = -30f;
 
     private float _volume = 0.0f;
     private ulong _fileIdx = 0;

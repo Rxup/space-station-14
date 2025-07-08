@@ -1,5 +1,6 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -20,42 +21,42 @@ public sealed partial class GibActionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GibActionComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<GibActionComponent, MobStateChangedEvent>(OnMobStateChanged, after: [typeof(WoundSystem)]);
+        // backmen edit, make sure there is still something remaining of the entity after mob state change
         SubscribeLocalEvent<GibActionComponent, GibActionEvent>(OnGibAction);
     }
 
     private void OnMobStateChanged(EntityUid uid, GibActionComponent comp, MobStateChangedEvent args)
     {
-        // When the mob changes state, check if they're dead and give them the action if so. 
+        // When the mob changes state, check if they're dead and give them the action if so.
         if (!TryComp<MobStateComponent>(uid, out var mobState))
             return;
 
         if (!_protoManager.TryIndex<EntityPrototype>(comp.ActionPrototype, out var actionProto))
             return;
 
-
         foreach (var allowedState in comp.AllowedStates)
         {
-            if(allowedState == mobState.CurrentState)
-            {
-                // The mob should never have more than 1 state so I don't see this being an issue
-                _actionsSystem.AddAction(uid, ref comp.ActionEntity, comp.ActionPrototype);
-                return;
-            }
+            if (allowedState != mobState.CurrentState)
+                continue;
+
+            // The mob should never have more than 1 state so I don't see this being an issue
+            _actionsSystem.AddAction(uid, ref comp.ActionEntity, comp.ActionPrototype);
+            return;
         }
 
         // If they aren't given the action, remove it.
         _actionsSystem.RemoveAction(uid, comp.ActionEntity);
     }
-    
+
     private void OnGibAction(EntityUid uid, GibActionComponent comp, GibActionEvent args)
     {
         // When they use the action, gib them.
         _popupSystem.PopupClient(Loc.GetString(comp.PopupText, ("name", uid)), uid, uid);
         _bodySystem.GibBody(uid, true);
     }
-       
 
 
-    public sealed partial class GibActionEvent : InstantActionEvent { } 
+
+    public sealed partial class GibActionEvent : InstantActionEvent { }
 }

@@ -1,27 +1,48 @@
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.Backmen.CCVar;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Audio.Jukebox;
-
 
 public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+
+    // backmen edit start
+    /// <summary>
+    /// The volume at which the boombox won't be heard
+    /// </summary>
+    private const float MinimalVolume = -30f;
+
+    private float _volume;
+    // backmen edit end
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<JukeboxComponent, AppearanceChangeEvent>(OnAppearanceChange);
         SubscribeLocalEvent<JukeboxComponent, AnimationCompletedEvent>(OnAnimationCompleted);
-        SubscribeLocalEvent<JukeboxComponent, AfterAutoHandleStateEvent>(OnJukeboxAfterState);
+
+        SubscribeNetworkEvent<JukeboxPlaySongEvent>(OnSongPlay);
+        SubscribeNetworkEvent<JukeboxPauseSongEvent>(OnSongPause);
+        SubscribeNetworkEvent<JukeboxStopSongEvent>(OnSongStop);
+        SubscribeNetworkEvent<JukeboxSetPlaybackEvent>(OnSetPlaybackPosition);
 
         _protoManager.PrototypesReloaded += OnProtoReload;
+
+        Subs.CVar(_cfg, CCVars.BoomboxVolume, OnBoomboxValueChanged, true); // backmen edit
     }
 
     public override void Shutdown()
@@ -36,7 +57,6 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             return;
 
         var query = AllEntityQuery<JukeboxComponent, UserInterfaceComponent>();
-
         while (query.MoveNext(out var uid, out _, out var ui))
         {
             if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>((uid, ui), JukeboxUiKey.Key, out var bui))
@@ -46,13 +66,15 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         }
     }
 
-    private void OnJukeboxAfterState(Entity<JukeboxComponent> ent, ref AfterAutoHandleStateEvent args)
+    // backmen edit start
+    public void UpdateJukeboxUi(Entity<JukeboxComponent> ent)
     {
         if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent.Owner, JukeboxUiKey.Key, out var bui))
             return;
 
         bui.Reload();
     }
+    // backmen edit end
 
     private void OnAnimationCompleted(EntityUid uid, JukeboxComponent component, AnimationCompletedEvent args)
     {
@@ -143,4 +165,85 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layer, true);
         _sprite.LayerSetRsiState(sprite.AsNullable(), layer, state);
     }
+
+    // backmen edit start
+    private void OnBoomboxValueChanged(float volume)
+    {
+        _volume = volume;
+
+        var q = EntityQueryEnumerator<JukeboxComponent>();
+        while (q.MoveNext(out _, out var component))
+        {
+            if (component.AudioStream != null)
+                Audio.SetGain(component.AudioStream, Math.Max(MinimalVolume, _volume));
+        }
+    }
+
+    private void OnSongPlay(JukeboxPlaySongEvent ev)
+    {
+        if (!TryGetEntity(ev.Jukebox, out var ent))
+            return;
+
+        if (!TryComp<JukeboxComponent>(ent, out var component))
+            return;
+
+        if (Exists(component.AudioStream))
+        {
+            Audio.SetState(component.AudioStream, AudioState.Playing);
+        }
+        else
+        {
+            component.AudioStream = Audio.Stop(component.AudioStream);
+
+            if (string.IsNullOrEmpty(component.SelectedSongId) ||
+                !_protoManager.TryIndex(component.SelectedSongId, out var jukeboxProto))
+            {
+                return;
+            }
+
+            component.AudioStream =
+                Audio.PlayPvs(
+                        jukeboxProto.Path,
+                        ent.Value,
+                        AudioParams.Default.WithMaxDistance(10f).WithVolume(Math.Max(MinimalVolume, SharedAudioSystem.GainToVolume(_volume))))
+                    ?.Entity;
+        }
+
+        UpdateJukeboxUi((ent.Value, component));
+    }
+
+    private void OnSongPause(JukeboxPauseSongEvent ev)
+    {
+        if (!TryGetEntity(ev.Jukebox, out var ent))
+            return;
+
+        if (!TryComp<JukeboxComponent>(ent, out var component))
+            return;
+
+        Audio.SetState(component.AudioStream, AudioState.Paused);
+    }
+
+    private void OnSongStop(JukeboxStopSongEvent ev)
+    {
+        if (!TryGetEntity(ev.Jukebox, out var ent))
+            return;
+
+        if (!TryComp<JukeboxComponent>(ent, out var component))
+            return;
+
+        Audio.SetState(component.AudioStream, AudioState.Stopped);
+        UpdateJukeboxUi((ent.Value, component));
+    }
+
+    private void OnSetPlaybackPosition(JukeboxSetPlaybackEvent ev)
+    {
+        if (!TryGetEntity(ev.Jukebox, out var ent))
+            return;
+
+        if (!TryComp<JukeboxComponent>(ent, out var component))
+            return;
+
+        Audio.SetPlaybackPosition(component.AudioStream, ev.Position);
+    }
+    // backmen edit end
 }

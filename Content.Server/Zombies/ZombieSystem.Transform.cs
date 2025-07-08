@@ -231,20 +231,20 @@ public sealed partial class ZombieSystem
         // Backmen Edit start
         if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
         {
+            _consciousness.ForceConscious(target, TimeSpan.FromSeconds(12f));
+            _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
+
             _pain.TryAddPainMultiplier(
                 nerveSys.Value,
                 "Zombified",
                 -1f,
-                PainDamageTypes.WoundPain,
+                PainType.WoundPain,
                 nerveSys.Value);
             _pain.TryAddPainMultiplier(nerveSys.Value,
                 "ZombifiedTraumatic",
                 -1f,
-                PainDamageTypes.TraumaticPain,
+                PainType.TraumaticPain,
                 nerveSys.Value);
-
-            _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
-            _consciousness.ForceConscious(target, TimeSpan.FromSeconds(12f));
         }
         // Backmen Edit end
 

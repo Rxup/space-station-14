@@ -13,9 +13,9 @@ namespace Content.Client.Backmen.Surgery.Pain.Systems;
 public sealed class ClientPainSystem : PainSystem
 {
     /// <summary>
-    /// The volume at which the pain rattles won't be heard
+    /// The volume at which the pain rattles won't (lies) be heard
     /// </summary>
-    private const float MinimalVolume = -20f;
+    private const float MinimalVolume = -15f;
 
     private float _volume;
 

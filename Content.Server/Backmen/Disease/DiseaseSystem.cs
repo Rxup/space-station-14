@@ -1,14 +1,19 @@
 ﻿using System.Linq;
 using Content.Server.Backmen.Disease.Components;
+using Content.Server.Backmen.Disease.Cures;
+using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Events;
 using Content.Shared.Body.Events;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Clothing.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -56,18 +61,47 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseProtectionComponent, GotUnequippedEvent>(OnUnequipped);
         // Handling stuff from other systems
         SubscribeLocalEvent<DiseaseCarrierComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-
-        _carrierQuery = GetEntityQuery<DiseaseCarrierComponent>();
+        SubscribeLocalEvent<DiseaseCarrierComponent, ReagentMetabolised>(OnReagentMetabolised);
 
         _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v=> _enabled = v, true);
     }
 
     private bool _enabled = true;
 
-    private EntityQuery<DiseaseCarrierComponent> _carrierQuery;
-
     private readonly HashSet<EntityUid> _addQueue = new();
     private readonly HashSet<(Entity<DiseaseCarrierComponent> carrier, ProtoId<DiseasePrototype> disease)> _cureQueue = new();
+
+    public void TryMetabolize(Entity<DiseaseCarrierComponent?> ent, ReagentId reagentId, FixedPoint2 amount)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        foreach (var disease in ent.Comp.Diseases)
+        {
+            var (stage, _) = GetStage(disease);
+            foreach (var cure in disease.Cures)
+            {
+                if (!cure.Stages.Contains(stage) || cure is not DiseaseReagentCure cureReagent || cureReagent.Reagent != reagentId)
+                    continue;
+                cureReagent.MetabolizedAmount += amount;
+            }
+        }
+    }
+
+    public (int Stage, float LastThreshold) GetStage(DiseasePrototype disease)
+    {
+        var stage = 0;
+        var lastThreshold = 0f;
+        for (var j = 0; j < disease.Stages.Count; j++)
+        {
+            if (!(disease.TotalAccumulator >= disease.Stages[j]) || !(disease.Stages[j] > lastThreshold))
+                continue;
+            lastThreshold = disease.Stages[j];
+            stage = j;
+        }
+
+        return (stage, lastThreshold);
+    }
 
     /// <summary>
     /// First, adds or removes diseased component from the queues and clears them.
@@ -161,16 +195,7 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         var doEffects = owner.Comp1.CarrierDiseases?.Contains(disease.ID) != true;
         disease.Accumulator -= disease.TickTime;
 
-        var stage = 0; //defaults to stage 0 because you should always have one
-        var lastThreshold = 0f;
-
-        for (var j = 0; j < disease.Stages.Count; j++)
-        {
-            if (!(disease.TotalAccumulator >= disease.Stages[j]) || !(disease.Stages[j] > lastThreshold))
-                continue;
-            lastThreshold = disease.Stages[j];
-            stage = j;
-        }
+        var (stage, _) = GetStage(disease);
 
         foreach (var cure in disease.Cures)
         {
@@ -414,6 +439,11 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
 
             var disease = _random.Pick(diseasedCarrier.Diseases);
             TryInfect((target,carrier), disease, 0.4f);
+        }
+
+        private void OnReagentMetabolised(Entity<DiseaseCarrierComponent> ent, ref ReagentMetabolised args)
+        {
+            TryMetabolize((ent, ent), args.Reagent, args.Amount);
         }
 
         /// <summary>

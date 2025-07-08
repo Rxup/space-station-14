@@ -24,7 +24,7 @@ public sealed partial class PainInflicterComponent : Component
     /// What type of pain should this PainInflicter inflict?
     /// </summary>
     [DataField, AutoNetworkedField]
-    public PainDamageTypes PainType = PainDamageTypes.WoundPain;
+    public PainType PainType = PainType.WoundPain;
 
     // Some wounds hurt harder.
     [DataField("multiplier"), ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]

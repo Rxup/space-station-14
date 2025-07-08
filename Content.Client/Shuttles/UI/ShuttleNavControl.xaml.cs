@@ -178,7 +178,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             DrawGrid(handle, ourGridToView, (ourGridId.Value, ourGrid), color);
             DrawDocks(handle, ourGridId.Value, ourGridToView);
-            DrawDetectables(handle, ourGridToView); // backmen edit
+            DrawDetectables(handle, ourGridId.Value, ourGridToView); // backmen edit
         }
 
         // Draw radar position on the station
@@ -319,7 +319,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             -dockRadius * UIScale,
             (Size.X + dockRadius) * UIScale,
             (Size.Y + dockRadius) * UIScale);
-        
+
         if (_docks.TryGetValue(nent, out var docks))
         {
             foreach (var state in docks)
@@ -349,7 +349,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     }
 
     // backmen edit start
-    private void DrawDetectables(DrawingHandleScreen handle, Matrix3x2 gridToView)
+    private void DrawDetectables(DrawingHandleScreen handle, EntityUid ourGrid, Matrix3x2 gridToView)
     {
         if (!ShowDetectables)
             return;
@@ -364,11 +364,13 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         {
             var position = detectable.Coordinates.Position;
 
+            var ent = EntManager.GetEntity(detectable.Entity);
+            if (_transform.GetGrid(ent) == null)
+                position = Vector2.Transform(position, _transform.GetInvWorldMatrix(ourGrid)); // No parent, getting relative position manually.
+
             var positionInView = Vector2.Transform(position, gridToView);
             if (!viewBounds.Contains(positionInView))
-            {
                 continue;
-            }
 
             var color = detectable.Color ?? Color.ToSrgb(Color.DarkRed);
             switch (detectable.DrawType)
@@ -378,7 +380,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            positionInView + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.15f, detectable.DetectableSize * 0.15f), gridToView),
                             detectable.Name);
                     }
 
@@ -390,12 +392,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            positionInView + new Vector2(-detectable.DetectableSize * 3f, detectable.DetectableSize),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.2f, detectable.DetectableSize * 0.2f), gridToView),
                             detectable.Name);
                     }
 
-                    var rect = UIBox2.FromDimensions(positionInView,
-                        new Vector2(detectable.DetectableSize * 1.5f, detectable.DetectableSize));
+                    var rect =
+                        UIBox2.FromDimensions(positionInView, new Vector2(detectable.DetectableSize * 1.5f, detectable.DetectableSize));
 
                     handle.DrawRect(rect, color);
                     break;
@@ -405,12 +407,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            positionInView + new Vector2(-detectable.DetectableSize * 2f, detectable.DetectableSize),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.2f, detectable.DetectableSize * 0.2f), gridToView),
                             detectable.Name);
                     }
 
-                    var square = UIBox2.FromDimensions(positionInView,
-                        new Vector2(detectable.DetectableSize, detectable.DetectableSize));
+                    var square =
+                        UIBox2.FromDimensions(positionInView, new Vector2(detectable.DetectableSize, detectable.DetectableSize));
 
                     handle.DrawRect(square, color);
                     break;
@@ -420,13 +422,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     {
                         handle.DrawString(
                             _font,
-                            // I fucking hate this
-                            positionInView + new Vector2(-detectable.DetectableSize * 10f, detectable.DetectableSize * 15f),
+                            Vector2.Transform(position + new Vector2(detectable.DetectableSize * 0.6f, detectable.DetectableSize * 0.6f), gridToView),
                             detectable.Name);
                     }
 
                     handle.DrawEntity(
-                        EntManager.GetEntity(detectable.Entity),
+                        ent,
                         positionInView,
                         new Vector2(detectable.DetectableSize, detectable.DetectableSize),
                         detectable.Angle);

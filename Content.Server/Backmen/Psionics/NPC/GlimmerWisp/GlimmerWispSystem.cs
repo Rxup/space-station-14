@@ -128,7 +128,7 @@ public sealed class GlimmerWispSystem : EntitySystem
         _audioSystem.PlayPvs(component.DrainFinishSoundPath, uid);
 
         DamageSpecifier damage = new();
-        damage.DamageDict.Add("Holy", 200);
+        damage.DamageDict.Add("Asphyxiation", 1000f);
         _damageable.TryChangeDamage(args.Args.Target.Value, damage, true, origin:uid);
         _consciousness.ClearForceEffects(uid);
     }

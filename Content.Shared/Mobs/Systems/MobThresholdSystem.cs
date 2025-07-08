@@ -353,7 +353,7 @@ public sealed class MobThresholdSystem : EntitySystem
     public void VerifyThresholds(EntityUid target, MobThresholdsComponent? threshold = null,
         MobStateComponent? mobState = null, DamageableComponent? damageable = null, BodyComponent? body = null)
     {
-        if (!Resolve(target, ref mobState, ref threshold))
+        if (!Resolve(target, ref mobState, ref threshold, false))
             return;
 
         if (damageable != null)

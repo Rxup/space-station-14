@@ -29,7 +29,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
-    public const float BrutalDeathRattlesMultiplier = 2f; // Backmen: ReBELL
+    public const float BrutalDeathRattlesMultiplier = 4f; // Backmen: ReBELL
+    public const float BoomboxVolumeMultiplier = 5f; // Backmen: Boombox audio can be changed
     public const float TtsMultiplier = 5f; // Corvax-TTS
     public const float TtsAnnounceMultiplier = 2f; // Corvax-TTS
 

@@ -26,6 +26,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
     [Dependency] protected readonly WoundSystem Wound = default!;
 
     [Dependency] protected readonly MobStateSystem MobStateSys = default!;
+    [Dependency] protected readonly MobThresholdSystem MobThresholds = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
     protected EntityQuery<MobStateComponent> MobStateQuery;
@@ -131,6 +132,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             newMobState = MobState.Dead;
 
         MobStateSys.ChangeMobState(target, newMobState, mobState);
+        MobThresholds.VerifyThresholds(target, mobState: mobState);
     }
 
     protected void CheckRequiredParts(
