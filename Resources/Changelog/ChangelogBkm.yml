@@ -3584,3 +3584,14 @@
   id: 239
   time: '2025-07-06T18:47:05.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1388
+- author: MightBeNotReal
+  changes:
+  - message: Dobavlena vosmoschnost vikrutit etot ebuchiy boombox v 0!!!!!
+    type: Add
+  - message: Mnogo krutix drugix zvukovix pravok ReBELLa
+    type: Tweak
+  - message: Nekotorie nebolschie bug fixi ReBELLa
+    type: Fix
+  id: 240
+  time: '2025-07-08T20:10:09.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1389
