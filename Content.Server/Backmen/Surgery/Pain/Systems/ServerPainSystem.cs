@@ -326,7 +326,8 @@ public sealed class ServerPainSystem : PainSystem
                 nerveSys.Value,
                 args.Component.HoldingWoundable,
                 PainTraumaticModifierIdentifier,
-                traumaticPain);
+                traumaticPain,
+                painType: PainType.TraumaticPain);
         }
     }
 

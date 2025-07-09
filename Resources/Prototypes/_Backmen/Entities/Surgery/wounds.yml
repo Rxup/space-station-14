@@ -20,7 +20,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: BluntScar
-    integrityMultiplier: 1 #heheheha
+    integrityMultiplier: 0.3 #heheheha
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -57,7 +57,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: PiercingScar
-    integrityMultiplier: 0.25
+    integrityMultiplier: 0.12
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -93,7 +93,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: PiercingScar
-    integrityMultiplier: 0.44
+    integrityMultiplier: 0.05
   - type: TraumaInflicter
     severityThreshold: 6
     allowedTraumas:
@@ -126,7 +126,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: SlashScar
-    integrityMultiplier: 0.25
+    integrityMultiplier: 0.17
   - type: TraumaInflicter
     severityThreshold: 9
     allowedTraumas:
@@ -161,7 +161,7 @@
     woundType: External
     woundVisibility: Always
     scarWound: BurnScar
-    integrityMultiplier: 0.34 # boiling people
+    integrityMultiplier: 0.21 # boiling people
   - type: TraumaInflicter
     severityThreshold: 24
     allowedTraumas:
@@ -224,7 +224,7 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
-    integrityMultiplier: 0.34
+    integrityMultiplier: 0.1
   - type: TraumaInflicter
     severityThreshold: 0
     allowedTraumas:
@@ -278,7 +278,7 @@
     woundType: Internal
     woundVisibility: HandScanner
     scarWound: RadiationScar
-    integrityMultiplier: 0.12
+    integrityMultiplier: 0.06
   - type: TraumaInflicter
     severityThreshold: 11
     allowedTraumas:
@@ -348,7 +348,7 @@
     woundType: Internal
     woundVisibility: HandScanner
     scarWound: BurnScar
-    integrityMultiplier: 0.12
+    integrityMultiplier: 0.07
   - type: TraumaInflicter
     severityThreshold: 9
     allowedTraumas:

@@ -381,40 +381,17 @@ public partial class TraumaSystem
         return Random.Prob((float) chance);
     }
 
+    /// <summary>
+    /// Soon to be removed
+    /// </summary>
+    [Obsolete]
     [PublicAPI]
-    public bool RandomNerveDamageChance(
+    private bool RandomNerveDamageChance(
         Entity<WoundableComponent> target,
         Entity<TraumaInflicterComponent> woundInflicter)
     {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // No entity to apply pain to
-
-        if (!TryComp<NerveComponent>(target, out var nerve))
-            return false;
-
-        if (nerve.PainFeels < _nerveDamageThreshold)
-            return false;
-
-        var deduction = GetTraumaChanceDeduction(
-            woundInflicter,
-            bodyPart.Body.Value,
-            target,
-            Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
-            TraumaType.NerveDamage,
-            bodyPart.PartType);
-
-        // literally dismemberment chance, but lower by default
-        var chance =
-            FixedPoint2.Clamp(
-                target.Comp.WoundableIntegrity / target.Comp.IntegrityCap / 20
-                - deduction
-                + woundInflicter.Comp.TraumasChances[TraumaType.NerveDamage]
-                + target.Comp.PassiveTraumaChances[TraumaType.NerveDamage],
-                0,
-                1);
-
-        return Random.Prob((float) chance);
+        // no fuck you
+        return false;
     }
 
     [PublicAPI]

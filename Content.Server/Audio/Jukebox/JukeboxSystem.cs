@@ -93,6 +93,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         DirectSetVisualState(uid, JukeboxVisualState.Select);
         component.Selecting = true;
         Stop((uid, component));
+        Dirty(uid, component);
     }
 
     public override void Update(float frameTime)
