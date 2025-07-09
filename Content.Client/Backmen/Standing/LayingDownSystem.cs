@@ -1,4 +1,3 @@
-using Content.Shared.ActionBlocker;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Buckle;
@@ -22,6 +21,9 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
+    [Dependency] private readonly SpriteSystem _sprites = default!;
+
+    private bool _autoGetUp;
 
     public override void Initialize()
     {
@@ -29,7 +31,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         SubscribeLocalEvent<LayingDownComponent, MoveEvent>(OnMovementInput);
         SubscribeLocalEvent<LayingDownComponent, AfterAutoHandleStateEvent>(OnChangeDraw);
-        SubscribeLocalEvent<StandingStateComponent,AfterAutoHandleStateEvent>(OnChangeStanding);
+        SubscribeLocalEvent<StandingStateComponent, AfterAutoHandleStateEvent>(OnChangeStanding);
 
         _cfg.OnValueChanged(CCVars.AutoGetUp, b => _autoGetUp = b, true);
 
@@ -48,32 +50,31 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         if (ent.Comp.Standing)
         {
-            sprite.Rotation = Angle.Zero;
+            _sprites.SetRotation((ent, sprite), Angle.Zero);
             return;
         }
 
         if (sprite.Rotation != Angle.FromDegrees(270) && sprite.Rotation != Angle.FromDegrees(90))
         {
-            sprite.Rotation = Angle.FromDegrees(270);
+            _sprites.SetRotation((ent, sprite), Angle.FromDegrees(270));
         }
     }
 
     private void OnChangeDraw(Entity<LayingDownComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if(!TryComp<SpriteComponent>(ent, out var sprite))
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        if (ent.Comp.DrawDowned)
+        switch (ent.Comp.DrawDowned)
         {
-            sprite.DrawDepth = (int) Shared.DrawDepth.DrawDepth.SmallMobs;
-        }
-        else if (!ent.Comp.DrawDowned && sprite.DrawDepth == (int) Shared.DrawDepth.DrawDepth.SmallMobs)
-        {
-            sprite.DrawDepth = (int) Shared.DrawDepth.DrawDepth.Mobs;
+            case true:
+                _sprites.SetDrawDepth((ent, sprite), (int) Shared.DrawDepth.DrawDepth.SmallMobs);
+                break;
+            case false when sprite.DrawDepth == (int) Shared.DrawDepth.DrawDepth.SmallMobs:
+                _sprites.SetDrawDepth((ent, sprite), (int) Shared.DrawDepth.DrawDepth.Mobs);
+                break;
         }
     }
-
-    private bool _autoGetUp;
 
     protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
     {
@@ -84,8 +85,10 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     {
         if (!_timing.IsFirstTimePredicted)
             return;
+
         if(!_standing.IsDown(uid) || _animation.HasRunningAnimation(uid, "rotate") || _buckle.IsBuckled(uid))
             return;
+
         if(TerminatingOrDeleted(uid))
             return;
 
@@ -105,14 +108,14 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
             _rotationVisuals.SetHorizontalAngle((entity.Owner, entity.Comp3), Angle.FromDegrees(270));
-            if(entity.Comp2 != null)
-                entity.Comp2.Rotation = Angle.FromDegrees(270);
+            if (entity.Comp2 != null)
+                _sprites.SetRotation((entity.Owner, entity.Comp2), Angle.FromDegrees(270));
             return;
         }
 
         _rotationVisuals.ResetHorizontalAngle((entity.Owner, entity.Comp3));
-        if(entity.Comp2 != null)
-            entity.Comp2.Rotation = entity.Comp3.DefaultRotation;
+        if (entity.Comp2 != null)
+            _sprites.SetRotation((entity.Owner, entity.Comp2), entity.Comp3.DefaultRotation);
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -120,7 +123,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if(TerminatingOrDeleted(ent))
+        if (TerminatingOrDeleted(ent))
             return;
 
         var transform = Transform(ent);
