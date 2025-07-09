@@ -20,7 +20,6 @@ public sealed class ChangeTTSCommand : ToolshedCommand
 
     [CommandImplementation]
     public EntityUid? ChangeTTS(
-        [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
         [CommandArgument] ProtoId<TTSVoicePrototype> prototype
     )
@@ -41,9 +40,8 @@ public sealed class ChangeTTSCommand : ToolshedCommand
 
     [CommandImplementation]
     public IEnumerable<EntityUid> ChangeTTS(
-        [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
         [CommandArgument] ProtoId<TTSVoicePrototype> prototype
     )
-        => input.Select(x => ChangeTTS(ctx, x, prototype)).Where(x => x is not null).Select(x => (EntityUid) x!);
+        => input.Select(x => ChangeTTS(x, prototype)).Where(x => x is not null).Select(x => (EntityUid) x!);
 }

@@ -159,6 +159,11 @@
       glimmerBurnLower: 18
       glimmerBurnUpper: 40
     - type: PsionicCatGotYourTongueRule
+    - type: StationEvent
+      weight: 12
+      earliestStart: 30
+      reoccurrenceDelay: 20
+      minimumPlayers: 20
 
 - type: entity
   id: MassMindSwap
@@ -329,7 +334,7 @@
       startAnnouncement: station-event-vent-creatures-start-announcement
       startAudio:
         path: /Audio/Announcements/attention.ogg
-      minimumPlayers: 15
+      minimumPlayers: 25
       earliestStart: 30
       reoccurrenceDelay: 50
       weight: 6
@@ -352,7 +357,7 @@
       path: /Audio/Effects/metal_break1.ogg
     weight: 6
     duration: 1
-    minimumPlayers: 15
+    minimumPlayers: 25
     earliestStart: 30
     reoccurrenceDelay: 50
   - type: RandomSpawnRule

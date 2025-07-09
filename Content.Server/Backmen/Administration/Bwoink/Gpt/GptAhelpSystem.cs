@@ -2,6 +2,8 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -29,11 +31,34 @@ public sealed class GptAhelpSystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly AdminSystem _adminSystem = default!;
     private readonly HttpClient _httpClient = new(
-        /*
+
         new SocketsHttpHandler()
         {
-            Proxy = new WebProxy("http://localhost:8888")
-        }*/
+            SslOptions = new SslClientAuthenticationOptions
+            {
+                RemoteCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+                {
+                    // Разрешаем, если ошибок нет
+                    if (sslPolicyErrors == SslPolicyErrors.None)
+                        return true;
+
+                    // Разрешаем только если единственная ошибка - UntrustedRoot
+                    if (sslPolicyErrors == SslPolicyErrors.RemoteCertificateChainErrors && chain?.ChainStatus is {} chainStatus)
+                    {
+                        // Проверяем все статусы в цепочке
+                        foreach (var status in chainStatus)
+                        {
+                            // Если есть ошибка, отличная от UntrustedRoot - блокируем
+                            if (status.Status != X509ChainStatusFlags.UntrustedRoot)
+                                return false;
+                        }
+                        return true; // Только UntrustedRoot - пропускаем
+                    }
+                    return false; // Другие ошибки (недействительное имя, просроченный и т.д.)
+                }
+            }
+            //Proxy = new WebProxy("http://localhost:8888")
+        }
         )
     {
         Timeout = TimeSpan.FromMinutes(3),
