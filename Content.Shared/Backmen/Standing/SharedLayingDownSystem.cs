@@ -60,7 +60,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
-    protected bool CrawlUnderTables = false;
+    protected bool CrawlUnderTables;
 
     public override void Initialize()
     {
@@ -83,32 +83,35 @@ public abstract class SharedLayingDownSystem : EntitySystem
         Subs.CVar(_config, CCVars.CrawlUnderTables, b => CrawlUnderTables = b, true);
     }
 
+    public bool HasLegs(Entity<LayingDownComponent> ent)
+    {
+        if (!TryComp<BodyComponent>(ent, out var body))
+            return false;
+
+        return HasComp<BorgChassisComponent>(ent) || body.LegEntities.Count >= body.RequiredLegs && body.LegEntities.Count != 0;
+    }
+
     private void OnCheckLegs(Entity<LayingDownComponent> ent, ref StandAttemptEvent args)
     {
-        if(!TryComp<BodyComponent>(ent, out var body))
-            return;
-
-        if (!HasComp<BorgChassisComponent>(ent) && (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0))
-            args.Cancel(); // no legs bro
+        if (!HasLegs(ent))
+            args.Cancel();
     }
 
     private void OnBoundUserInterface(BoundUserInterfaceMessageAttempt args)
     {
-        if(
-            args.Cancelled ||
-            !TryComp<ActivatableUIComponent>(args.Target, out var uiComp) ||
-            !TryComp<StandingStateComponent>(args.Actor, out var standingStateComponent) ||
-            standingStateComponent.CurrentState != StandingState.Lying)
+        if (args.Cancelled ||
+           !TryComp<ActivatableUIComponent>(args.Target, out var uiComp) ||
+           !TryComp<StandingStateComponent>(args.Actor, out var standingStateComponent) ||
+           standingStateComponent.CurrentState != StandingState.Lying)
             return;
 
-        if(uiComp.RequiresComplex)
+        if (uiComp.RequiresComplex)
             args.Cancel();
     }
 
     private void OnChangeMobState(Entity<LayingDownComponent> ent, ref MobStateChangedEvent args)
     {
-        if(
-            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
+        if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
             standingStateComponent.CurrentState != StandingState.Lying)
             return;
 
@@ -126,15 +129,13 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
     }
 
-
-
     private void OnUnBuckled(Entity<LayingDownComponent> ent, ref UnbuckledEvent args)
     {
-        if(!TryComp<StandingStateComponent>(ent, out var standingStateComponent))
+        if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent))
             return;
 
         if (TryComp<BodyComponent>(ent, out var body) &&
-            ((body.RequiredLegs > 0 && body.LegEntities.Count < body.RequiredLegs) || body.LegEntities.Count == 0)
+            (body.RequiredLegs > 0 && body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0)
             && standingStateComponent.CurrentState != StandingState.Lying)
         {
             _standing.Down(ent, true, true, true);
@@ -143,38 +144,37 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         TryProcessAutoGetUp(ent);
 
-        if (CrawlUnderTables && standingStateComponent.CurrentState == StandingState.Lying)
-        {
-            ent.Comp.DrawDowned = true;
-            Dirty(ent,ent.Comp);
-        }
+        if (!CrawlUnderTables || standingStateComponent.CurrentState != StandingState.Lying)
+            return;
+
+        ent.Comp.DrawDowned = true;
+        Dirty(ent,ent.Comp);
     }
 
     private void OnBuckled(Entity<LayingDownComponent> ent, ref BuckledEvent args)
     {
-        if(
-            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
+        if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
             standingStateComponent.CurrentState != StandingState.Lying)
             return;
 
-        if (CrawlUnderTables)
-        {
-            ent.Comp.DrawDowned = false;
-            Dirty(ent, ent.Comp);
-        }
+        if (!CrawlUnderTables)
+            return;
+
+        ent.Comp.DrawDowned = false;
+        Dirty(ent, ent.Comp);
     }
 
     protected abstract bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session);
 
     public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
     {
-        if(_buckle.IsBuckled(ent))
+        if (_buckle.IsBuckled(ent))
             return;
 
-        if(_pulling.IsPulled(ent))
+        if (_pulling.IsPulled(ent))
             return;
 
-        if(!IsSafeStanUp(ent, out _))
+        if (!IsSafeToStandUp(ent, out _))
             return;
 
         var autoUp = !_playerManager.TryGetSessionByEntity(ent, out var player) ||
@@ -244,7 +244,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     private void OnStandingUpDoAfter(EntityUid uid, StandingStateComponent component, StandingUpDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || HasComp<KnockedDownComponent>(uid) ||
-            _mobState.IsIncapacitated(uid) || !IsSafeStanUp(uid, out _) || !_standing.Stand(uid))
+            _mobState.IsIncapacitated(uid) || !IsSafeToStandUp(uid, out _) || !_standing.Stand(uid))
         {
             component.CurrentState = StandingState.Lying;
             Dirty(uid,component);
@@ -276,8 +276,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
         _standing.Stand(uid, standingState);
     }
 
-    private const int NotSafeStanUp = (int)CollisionGroup.MidImpassable | (int)CollisionGroup.BlobImpassable;
-    public bool IsSafeStanUp(EntityUid entity, [NotNullWhen(false)] out EntityUid? obj)
+    private const int NotSafeToStandUp = (int)CollisionGroup.MidImpassable | (int)CollisionGroup.BlobImpassable;
+    public bool IsSafeToStandUp(EntityUid entity, [NotNullWhen(false)] out EntityUid? obj)
     {
         var xform = Transform(entity);
         if (
@@ -289,9 +289,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return true;
         }
 
-        Entity<FixturesComponent?, Robust.Shared.Physics.Components.PhysicsComponent?> entObj = (entity, fixEnt, physEnt);
         foreach (var ent in _physics.GetEntitiesIntersectingBody(entity,
-                     NotSafeStanUp,
+                     NotSafeToStandUp,
                      body: physEnt,
                      xform: xform,
                      fixtureComp: fixEnt)
@@ -314,7 +313,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
                 {
                     if(
                         entFix.Hard &&
-                        (entFix.CollisionLayer & NotSafeStanUp) == 0)
+                        (entFix.CollisionLayer & NotSafeToStandUp) == 0)
                         continue;
 
                     if(!entFix.Hard)
@@ -328,6 +327,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             obj = ent;
             return false;
         }
+
         obj = null;
         return true;
     }
@@ -347,7 +347,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
         }
 
-        if (!IsSafeStanUp(uid, out var obj))
+        if (!IsSafeToStandUp(uid, out var obj))
         {
             _popup.PopupPredicted(
                 Loc.GetString("bonkable-success-message-user",("bonkable", obj.Value)),
@@ -395,7 +395,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
         return true;
     }
 
-    // WWDP
     public void LieDownInRange(EntityUid uid, EntityCoordinates coords, float range = 0.4f)
     {
         var ents = new HashSet<Entity<LayingDownComponent>>();

@@ -7,7 +7,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Standing;
 
-public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
+public sealed class LayingDownSystem : SharedLayingDownSystem
 {
     [Dependency] private readonly INetConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -21,32 +21,37 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
         SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStoodEvent);
         SubscribeLocalEvent<LayingDownComponent, DownedEvent>(OnDownedEvent);
     }
+
+    protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
+    {
+        return _cfg.GetClientCVar(session.Channel, CCVars.AutoGetUp);
+    }
+
     private void OnDownedEvent(Entity<LayingDownComponent> ent, ref DownedEvent args)
     {
         // Raising this event will lower the entity's draw depth to the same as a small mob.
-        if (CrawlUnderTables)
-        {
-            ent.Comp.DrawDowned = true;
-            Dirty(ent,ent.Comp);
-        }
+        if (!CrawlUnderTables)
+            return;
+
+        ent.Comp.DrawDowned = true;
+        Dirty(ent,ent.Comp);
     }
 
     private void OnStoodEvent(Entity<LayingDownComponent> ent, ref StoodEvent args)
     {
-        if (CrawlUnderTables)
-        {
-            ent.Comp.DrawDowned = false;
-            Dirty(ent,ent.Comp);
-        }
+        if (!CrawlUnderTables)
+            return;
+
+        ent.Comp.DrawDowned = false;
+        Dirty(ent,ent.Comp);
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)
     {
-        if(!TryComp<EyeComponent>(ent, out var eyeComp) || !TryComp<RotationVisualsComponent>(ent, out var rotationVisualsComp))
+        if (!TryComp<EyeComponent>(ent, out var eyeComp) || !TryComp<RotationVisualsComponent>(ent, out var rotationVisualsComp))
             return;
 
         var xform = Transform(ent);
-
         var rotation = xform.LocalRotation + (eyeComp.Rotation - (xform.LocalRotation - _transform.GetWorldRotation(xform)));
 
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
@@ -58,10 +63,6 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
         _rotationVisuals.ResetHorizontalAngle((ent, rotationVisualsComp));
     }
 
-    protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
-    {
-        return _cfg.GetClientCVar(session.Channel, CCVars.AutoGetUp);
-    }
 /*
     private void OnCheckAutoGetUp(CheckAutoGetUpEvent ev, EntitySessionEventArgs args)
     {

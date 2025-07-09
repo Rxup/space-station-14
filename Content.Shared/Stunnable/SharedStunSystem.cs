@@ -34,7 +34,7 @@ public abstract class SharedStunSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly SharedLayingDownSystem _layingDown = default!; // Ataraxia EDIT
+    [Dependency] private readonly SharedLayingDownSystem _layingDown = default!; // Backmen edit
 
     /// <summary>
     /// Friction modifier for knocked down players.
@@ -134,31 +134,19 @@ public abstract class SharedStunSystem : EntitySystem
     private void OnKnockInit(EntityUid uid, KnockedDownComponent component, ComponentInit args)
     {
         _standingState.Down(uid);
-        // start-backmen: Laying System
-        if (TryComp<LayingDownComponent>(uid, out var layingDownComponent))
-        {
-            _layingDown.TryProcessAutoGetUp((uid, layingDownComponent));
-            _layingDown.TryLieDown(uid, layingDownComponent, null, DropHeldItemsBehavior.DropIfStanding); // Ataraxia EDIT
-        }
-        // end-backmen: Laying System
-
     }
-
 
     private void OnKnockShutdown(EntityUid uid, KnockedDownComponent component, ComponentShutdown args)
     {
         // start-backmen: Laying System
-        if (!TryComp(uid, out StandingStateComponent? standing))
-            return;
-
         if (TryComp(uid, out LayingDownComponent? layingDown))
         {
             _layingDown.TryProcessAutoGetUp((uid,layingDown));
             return;
         }
-
-        _standingState.Stand(uid, standing);
         // end-backmen: Laying System
+
+        _standingState.Stand(uid);
     }
 
     private void OnStandAttempt(EntityUid uid, KnockedDownComponent component, StandAttemptEvent args)
