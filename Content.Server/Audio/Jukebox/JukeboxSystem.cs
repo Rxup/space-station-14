@@ -3,12 +3,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Components;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using JukeboxComponent = Content.Shared.Audio.Jukebox.JukeboxComponent;
 
 namespace Content.Server.Audio.Jukebox;
 
@@ -41,25 +36,16 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxPlay(Entity<JukeboxComponent> ent, ref JukeboxPlayingMessage args)
     {
-        if (ent.Comp.Selecting)
-            return;
-
         RaiseNetworkEvent(new JukeboxPlaySongEvent(GetNetEntity(ent.Owner)), Filter.Pvs(ent.Owner));
     }
 
     private void OnJukeboxPause(Entity<JukeboxComponent> ent, ref JukeboxPauseMessage args)
     {
-        if (ent.Comp.Selecting)
-            return;
-
         RaiseNetworkEvent(new JukeboxPauseSongEvent(GetNetEntity(ent.Owner)), Filter.Pvs(ent.Owner));
     }
 
     private void OnJukeboxSetTime(EntityUid uid, JukeboxComponent component, JukeboxSetTimeMessage args)
     {
-        if (component.Selecting)
-            return;
-
         if (!TryComp(args.Actor, out ActorComponent? actorComp))
             return;
 
