@@ -30,9 +30,8 @@ public sealed class GptAhelpSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly AdminSystem _adminSystem = default!;
-    private readonly HttpClient _httpClient = new(
 
-        new SocketsHttpHandler()
+    private static readonly SocketsHttpHandler _socketsHttpHandler = new()
         {
             SslOptions = new SslClientAuthenticationOptions
             {
@@ -58,8 +57,8 @@ public sealed class GptAhelpSystem : EntitySystem
                 }
             }
             //Proxy = new WebProxy("http://localhost:8888")
-        }
-        )
+        };
+    private readonly HttpClient _httpClient = new(_socketsHttpHandler)
     {
         Timeout = TimeSpan.FromMinutes(3),
 
@@ -123,7 +122,7 @@ public sealed class GptAhelpSystem : EntitySystem
         if(_gigaTocExpire > DateTimeOffset.Now)
             return;
 
-        using var client = new HttpClient();
+        using var client = new HttpClient(_socketsHttpHandler);
         using var request = new HttpRequestMessage(HttpMethod.Post, "https://ngw.devices.sberbank.ru:9443/api/v2/oauth");
         request.Headers.Add("Accept", "application/json");
         request.Headers.Add("RqUID", Guid.NewGuid().ToString());
