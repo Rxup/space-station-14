@@ -187,7 +187,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         if (!TryComp<JukeboxComponent>(ent, out var component))
             return;
 
-        if (Exists(component.AudioStream))
+        if (component.AudioStream is { } audio && Comp<AudioComponent>(audio).State == AudioState.Paused)
         {
             Audio.SetState(component.AudioStream, AudioState.Playing);
         }
