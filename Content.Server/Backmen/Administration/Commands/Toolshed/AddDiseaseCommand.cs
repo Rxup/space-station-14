@@ -33,5 +33,7 @@ public sealed class AddDiseaseCommand : ToolshedCommand
         [PipedArgument] IEnumerable<EntityUid> input,
         [CommandArgument] ProtoId<DiseasePrototype> prototype
     )
-        => input.Select(x => AddDisease(x, prototype)).Where(x => x is not null).Select(x => (EntityUid) x!);
+    {
+        return input.Select(x => AddDisease(x, prototype)).Where(x => x is not null).Select(x => (EntityUid)x!);
+    }
 }

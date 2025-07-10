@@ -1,19 +1,46 @@
 - type: entity
-  parent: SpiderWeb
+  parent: SpiderWebBase
   id: SpiderWebArache
   name: Паутина Арахны классической
   description: Замедляет всех кроме арахн.
   components:
-    - type: Sprite
-      sprite: Backmen/Objects/Misc/spiderwebArachne.rsi
-      layers:
-        - state: web_0
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-      netsync: false
-    - type: SpeedModifierContacts
-      walkSpeedModifier: 0.5
-      sprintSpeedModifier: 0.5
-      ignoreWhitelist:
-        components:
-            - IgnoreSpiderWebArachneClassic
+  - type: Sprite
+    color: "#b428c9ee"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 7
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - soda
+  - type: Food
+    delay: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Slerm
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 1
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+    ignoreWhitelist:
+      components:
+          - IgnoreSpiderWebArachneClassic

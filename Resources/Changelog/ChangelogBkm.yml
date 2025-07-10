@@ -3595,3 +3595,14 @@
   id: 240
   time: '2025-07-08T20:10:09.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/1389
+- author: MightBeNotReal
+  changes:
+  - message: Ybrana RANDOMNAYA BOL iz rebella, v chest pererabotki travm! yra!
+    type: Remove
+  - message: Nemnogo izmeneni parametri yrona po chastyam tela ot woundov
+    type: Tweak
+  - message: Zvukopodavlenie boomboxov okazalos slischkom effektivnim
+    type: Fix
+  id: 241
+  time: '2025-07-09T19:07:32.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/1391
