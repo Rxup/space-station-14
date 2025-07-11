@@ -2,9 +2,9 @@ meta:
   format: 7
   category: Map
   engineVersion: 262.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 07/04/2025 07:44:07
+  forkId: backmen
+  forkVersion: 0702e6ff53e8c35afa6b8d1a73f81a8ffbffce4e
+  time: 07/10/2025 23:51:36
   entityCount: 20266
 maps:
 - 1
@@ -15419,7 +15419,7 @@ entities:
       pos: 11.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -151063.17
+      secondsUntilStateChange: -151711.92
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54404,37 +54404,6 @@ entities:
     - type: Transform
       pos: 29.5,19.5
       parent: 2
-  - uid: 7746
-    components:
-    - type: Transform
-      pos: -8.5,77.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 3.4430928
-        - 12.952587
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
   - uid: 7747
     components:
     - type: Transform
@@ -59022,6 +58991,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 30.5,-12.5
       parent: 2
+- proto: ComputerFundingAllocation
+  entities:
+  - uid: 7746
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,77.5
+      parent: 2
 - proto: ComputerId
   entities:
   - uid: 8087
@@ -60481,7 +60458,7 @@ entities:
       pos: 4.5,65.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -15841.364
+      secondsUntilStateChange: -16490.121
       state: Closing
   - uid: 8242
     components:
@@ -68295,7 +68272,7 @@ entities:
       pos: 7.5,-33.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -105490.26
+      secondsUntilStateChange: -106139.016
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -99926,13 +99903,6 @@ entities:
     components:
     - type: Transform
       pos: -38.613434,-12.656909
-      parent: 2
-- proto: IntercomAll
-  entities:
-  - uid: 14077
-    components:
-    - type: Transform
-      pos: -0.5,114.5
       parent: 2
 - proto: IntercomAssembly
   entities:
@@ -136717,6 +136687,53 @@ entities:
     - type: Transform
       pos: -4.498686,64.592
       parent: 2
+- proto: WeaponEnergyTurretAI
+  entities:
+  - uid: 7981
+    components:
+    - type: Transform
+      pos: -2.5,113.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 20026
+  - uid: 14077
+    components:
+    - type: Transform
+      pos: 0.5,107.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 20026
+  - uid: 20024
+    components:
+    - type: Transform
+      pos: 1.5,113.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 20026
+  - uid: 20025
+    components:
+    - type: Transform
+      pos: -1.5,107.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 20026
+- proto: WeaponEnergyTurretAIControlPanel
+  entities:
+  - uid: 20026
+    components:
+    - type: Transform
+      pos: -0.5,114.5
+      parent: 2
+    - type: DeviceList
+      devices:
+      - 14077
+      - 20025
+      - 7981
+      - 20024
 - proto: WeaponLaserCarabinCell
   entities:
   - uid: 20009
@@ -136806,30 +136823,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5024486,64.689415
-      parent: 2
-- proto: WeaponTurretNanoSAI
-  entities:
-  - uid: 20024
-    components:
-    - type: Transform
-      pos: 0.5,107.5
-      parent: 2
-  - uid: 20025
-    components:
-    - type: Transform
-      pos: -1.5,107.5
-      parent: 2
-  - uid: 20026
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,113.5
-      parent: 2
-  - uid: 20027
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,113.5
       parent: 2
 - proto: WeaponTurretSyndicateBroken
   entities:
