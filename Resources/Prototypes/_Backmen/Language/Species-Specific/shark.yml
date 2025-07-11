@@ -1,0 +1,15 @@
+- type: language
+  id: EvePishtu
+  speech:
+    color: "#7fffd4"  # pinky
+    #fontId: UnderdogRegular
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    - Тк-тк
+    - Шшшкх
+    - Вууу-ун
+    - Кракх
+    - Тхунн

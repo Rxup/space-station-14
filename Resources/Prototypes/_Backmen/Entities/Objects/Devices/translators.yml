@@ -287,3 +287,37 @@
     requires:
     - TauCetiBasic
     - Elvish
+
+- type: entity
+  id: CarshnilTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Carshnil translator
+  description: Translates speech between Carshnil and Galactic Common
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Carshnil
+    understood:
+    - TauCetiBasic
+    - Carshnil
+    requires:
+    - TauCetiBasic
+    - Carshnil
+
+- type: entity
+  id: EvePishtuTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Eve-pishtu translator
+  description: Translates speech between Eve-pishtu and Galactic Common
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - EvePishtu
+    understood:
+    - TauCetiBasic
+    - EvePishtu
+    requires:
+    - TauCetiBasic
+    - EvePishtu

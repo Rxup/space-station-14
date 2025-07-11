@@ -70,3 +70,5 @@
     - type: ShowHealthIcons
       damageContainers:
       - Biological
+      - RaceDemon
+      - HalfSpirit

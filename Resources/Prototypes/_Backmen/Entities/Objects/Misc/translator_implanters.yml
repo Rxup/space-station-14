@@ -107,3 +107,19 @@
   components:
   - type: Implanter
     implant: ElvishStandardTranslatorImplant
+
+- type: entity
+  id: CarshnilTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Carshnil translator implant
+  components:
+  - type: Implanter
+    implant: CarshnilStandardTranslatorImplant
+
+- type: entity
+  id: EvePishtuTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Eve-pishtu translator implant
+  components:
+  - type: Implanter
+    implant: EvePishtuStandardTranslatorImplant
