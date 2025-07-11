@@ -1,0 +1,8 @@
+- type: reagent
+  id: Yeasts
+  name: Дрожжи
+  parent: BaseDrink
+  desc: Мелкая живность, секрет пивоварения
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: Yeasts
+  color: "#bca583"
