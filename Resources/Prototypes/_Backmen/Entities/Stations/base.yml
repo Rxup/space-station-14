@@ -12,6 +12,13 @@
     - type: StationBankAccount
 #      balance: 75000
     - type: StationCargoOrderDatabase
+      orders:
+        Cargo: [ ]
+        Engineering: [ ]
+        Medical: [ ]
+        Science: [ ]
+        Security: [ ]
+        Service: [ ]
     - type: StationCargoBountyDatabase
     - type: TradeStation
     - type: StationCargoShuttle
