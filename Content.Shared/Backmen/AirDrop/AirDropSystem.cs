@@ -25,7 +25,7 @@ public sealed class AirDropSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AirDropItemComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<AirDropComponent, ComponentStartup>(OnInitialStartup);
+        SubscribeLocalEvent<AirDropComponent, MapInitEvent>(OnInitialStartup);
         SubscribeLocalEvent<AirDropComponent, AirDropSpawnEvent>(OnAirDropSpawn);
         SubscribeLocalEvent<AirDropComponent, AirDropTargetSpawnEvent>(OnAirDropTargetSpawn);
         SubscribeLocalEvent<AirDropItemComponent, MapInitEvent>(OnMapInit);
@@ -65,7 +65,7 @@ public sealed class AirDropSystem : EntitySystem
         ev.Handled = true;
     }
 
-    private void OnInitialStartup(Entity<AirDropComponent> ent, ref ComponentStartup args)
+    private void OnInitialStartup(Entity<AirDropComponent> ent, ref MapInitEvent args)
     {
         var marker = EntityUid.Invalid;
 
