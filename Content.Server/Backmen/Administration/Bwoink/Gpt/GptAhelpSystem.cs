@@ -58,7 +58,7 @@ public sealed class GptAhelpSystem : EntitySystem
             }
             //Proxy = new WebProxy("http://localhost:8888")
         };
-    private readonly HttpClient _httpClient = new(_socketsHttpHandler)
+    private readonly HttpClient _httpClient = new(_socketsHttpHandler, false)
     {
         Timeout = TimeSpan.FromMinutes(3),
 
@@ -122,7 +122,7 @@ public sealed class GptAhelpSystem : EntitySystem
         if(_gigaTocExpire > DateTimeOffset.Now)
             return;
 
-        using var client = new HttpClient(_socketsHttpHandler);
+        using var client = new HttpClient(_socketsHttpHandler, false);
         using var request = new HttpRequestMessage(HttpMethod.Post, "https://ngw.devices.sberbank.ru:9443/api/v2/oauth");
         request.Headers.Add("Accept", "application/json");
         request.Headers.Add("RqUID", Guid.NewGuid().ToString());
@@ -309,8 +309,6 @@ public sealed class GptAhelpSystem : EntitySystem
         try
         {
             await UpdateGigaToken();
-            SetTyping(userId, true);
-
             await ProcessRequest(shell, userId, history);
 
             shell.WriteLine("ГОТОВО!");
@@ -323,17 +321,22 @@ public sealed class GptAhelpSystem : EntitySystem
 
     private async Task ProcessRequest(IConsoleShell shell, NetUserId userId, GptUserInfo history)
     {
+        SetTyping(userId, true);
         var (info, err) = await SendApiRequest(history, userId);
         if (!string.IsNullOrEmpty(err))
         {
+            SetTyping(userId, false);
             shell.WriteError(err);
             return;
         }
         if (info == null)
         {
+            SetTyping(userId, false);
             shell.WriteError($"Ошибка! GptChat: ответ = null");
             return;
         }
+
+        SetTyping(userId, true);
 
         await ProcessResponse(shell, userId, history, info);
     }
