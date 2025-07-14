@@ -9,6 +9,8 @@ namespace Content.Client.Backmen.GhostTheme;
 public sealed class GhostThemeSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -26,14 +28,13 @@ public sealed class GhostThemeSystem : EntitySystem
         Apply(uid, ghostThemePrototype);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string MobObserver = "MobObserver";
+
     public void Apply(EntityUid uid, GhostThemePrototype ghostThemePrototype)
     {
-        foreach (var entry in ghostThemePrototype.Components.Values)
-        {
-            if (entry.Component is SpriteComponent spriteComponent && EntityManager.TryGetComponent<SpriteComponent>(uid, out var targetsprite))
-            {
-                targetsprite.CopyFrom(spriteComponent);
-            }
-        }
+        var rendered = Spawn(MobObserver, ghostThemePrototype.Components);
+        _spriteSystem.CopySprite(rendered, uid);
+        QueueDel(rendered);
     }
 }
