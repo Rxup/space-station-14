@@ -45,6 +45,6 @@ public sealed class AirDropSystem : SharedAirDropSystem
 
         _appearance.OnChangeData(renderedItem, renderedSprite);
         _spriteSystem.CopySprite((renderedItem, renderedSprite), (ent.Owner, sprite));
-        Del(renderedItem);
+        QueueDel(renderedItem);
     }
 }
