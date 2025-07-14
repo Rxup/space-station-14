@@ -31,7 +31,7 @@ public sealed class RoarAccentSystem : EntitySystem
         message = R2.Replace(message, "RRR");
         // ADT-Localization-Start
         // р => ррр
-        R3.Replace(message, v=>_random.Pick(R3R));
+        message = R3.Replace(message, _=>_random.Pick(R3R));
         // ADT-Localization-End
         args.Message = message;
     }
