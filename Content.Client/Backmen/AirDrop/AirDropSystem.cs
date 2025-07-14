@@ -2,6 +2,7 @@ using Content.Client.Storage.Visualizers;
 using Content.Shared.Backmen.AirDrop;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.AirDrop;
 
@@ -39,7 +40,9 @@ public sealed class AirDropSystem : SharedAirDropSystem
             return;
 
         var renderedItem = Spawn(ent.Comp.SupplyDropOverride ?? airDrop.SupplyDropProto, airDrop.SupplyDrop);
+        DebugTools.Assert(!HasComp<AirDropVisualizerComponent>(renderedItem), $"Удали AirDropVisualizerComponent c `{Prototype(renderedItem)?.ID}`");
         var renderedSprite = Comp<SpriteComponent>(renderedItem);
+
         _appearance.OnChangeData(renderedItem, renderedSprite);
         _spriteSystem.CopySprite((renderedItem, renderedSprite), (ent.Owner, sprite));
         QueueDel(renderedItem);
