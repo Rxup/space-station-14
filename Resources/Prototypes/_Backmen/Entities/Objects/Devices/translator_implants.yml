@@ -186,3 +186,33 @@
     - Elvish
     requires:
     - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: CarshnilStandardTranslatorImplant
+  name: Carshnil standard translator implant
+  description: An implant that allows the user to understand and speak the Carshnil language.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Carshnil
+    spoken:
+    - Carshnil
+    requires:
+    - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: EvePishtuStandardTranslatorImplant
+  name: Eve-pishtu standart translator implant
+  description: An implant giving the ability to understand and speak Eve-pishtu Standard.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - EvePishtu
+    spoken:
+    - EvePishtu
+    requires:
+    - TauCetiBasic

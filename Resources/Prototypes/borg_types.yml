@@ -157,9 +157,9 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - RaceDemon
+    - HalfSpirit
   - type: ShowHealthIcons
-    damageContainers:
-    - Biological
 
   # Visual
   inventoryTemplateId: borgDutch
