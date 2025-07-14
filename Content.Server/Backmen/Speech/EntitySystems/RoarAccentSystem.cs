@@ -1,12 +1,19 @@
 using System.Text.RegularExpressions;
-using Content.Server.Speech.Components;
+using Content.Server.Backmen.Speech.Components;
+using Content.Server.Speech;
 using Robust.Shared.Random;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server.Backmen.Speech.EntitySystems;
 
 public sealed class RoarAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+
+    private static readonly Regex R1 = new(@"r+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly Regex R2 = new(@"R+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+    private static readonly Regex R3 = new(@"р+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static readonly List<string> R3R = ["рр", "ррр"];
 
     public override void Initialize()
     {
@@ -19,17 +26,12 @@ public sealed class RoarAccentSystem : EntitySystem
         var message = args.Message;
 
         // roarrr
-        message = Regex.Replace(message, "r+", "rrr");
+        message = R1.Replace(message, "rrr");
         // roarRR
-        message = Regex.Replace(message, "R+", "RRR");
-
+        message = R2.Replace(message, "RRR");
         // ADT-Localization-Start
         // р => ррр
-        message = Regex.Replace(
-            message,
-            "р+",
-            _random.Pick(new List<string>() { "рр", "ррр" })
-        );
+        R3.Replace(message, v=>_random.Pick(R3R));
         // ADT-Localization-End
         args.Message = message;
     }

@@ -1,4 +1,4 @@
-namespace Content.Server.Speech.Components;
+namespace Content.Server.Backmen.Speech.Components;
 
 /// <summary>
 ///     Roar!
