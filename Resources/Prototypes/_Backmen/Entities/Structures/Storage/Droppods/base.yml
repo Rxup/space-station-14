@@ -185,3 +185,35 @@
       path: /Audio/Backmen/Misc/mortar_long_whistle.ogg
       params:
         volume: 5
+
+- type: entity
+  name: голографический маяк
+  id: DropPodMarkerSimple
+  categories: [ HideSpawnMenu ]
+  parent: DropPodMarkerBase
+  suffix: Component
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Backmen/Objects/Misc/marker.rsi
+    drawdepth: FloorTiles
+    layers:
+    - state: marker
+      shader: unshaded
+
+- type: entity
+  id: DropPodLaunchAnimationSimple
+  parent: DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  suffix: Component
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Backmen/Misc/mortar_long_whistle.ogg
+      params:
+        volume: 5
