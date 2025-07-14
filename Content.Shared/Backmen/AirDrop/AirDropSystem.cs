@@ -5,6 +5,7 @@ using Content.Shared.Timing;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -30,6 +31,14 @@ public sealed class AirDropSystem : EntitySystem
         SubscribeLocalEvent<AirDropComponent, AirDropTargetSpawnEvent>(OnAirDropTargetSpawn);
         SubscribeLocalEvent<AirDropItemComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AirDropItemSpawnEvent>(OnSpawnLoot);
+        SubscribeNetworkEvent<AirDropStartEvent>(OnStartAirDrop);
+    }
+
+    private void OnStartAirDrop(AirDropStartEvent ev)
+    {
+        if(_net.IsServer || !TryGetEntity(ev.Uid, out var supplyPod))
+            return;
+        StartAirDrop(supplyPod.Value, ev.Pos);
     }
 
     private void OnSpawnLoot(AirDropItemSpawnEvent ev)
@@ -67,9 +76,27 @@ public sealed class AirDropSystem : EntitySystem
 
     private void OnInitialStartup(Entity<AirDropComponent> ent, ref MapInitEvent args)
     {
+        var pos = _transform.GetMapCoordinates(ent);
+        StartAirDrop((ent,ent), pos);
+        if (_net.IsServer && TryGetNetEntity(ent, out var airDrop))
+        {
+            RaiseNetworkEvent(new AirDropStartEvent
+                {
+                    Uid = airDrop.Value,
+                    Pos = pos
+                },
+                Filter.Pvs(ent)
+            );
+        }
+    }
+
+    private void StartAirDrop(Entity<AirDropComponent?> ent, MapCoordinates pos)
+    {
+        if(!Resolve(ent, ref ent.Comp))
+            return;
+
         var marker = EntityUid.Invalid;
 
-        var pos = _transform.GetMapCoordinates(ent);
         if (_net.IsClient)
         {
             marker = Spawn(ent.Comp.DropTargetProto, pos, ent.Comp.DropTarget);
