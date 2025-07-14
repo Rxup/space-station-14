@@ -249,6 +249,7 @@
 - type: entity
   id: MissileDropMarkerBigJohn
   categories: [ HideSpawnMenu ]
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: ExplosionBigJohn

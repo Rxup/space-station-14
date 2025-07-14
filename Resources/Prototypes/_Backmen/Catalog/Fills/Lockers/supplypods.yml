@@ -3,11 +3,13 @@
   id: SupplyDropPodEmpty
   parent: SupplyPodBase
   categories: [ HideSpawnMenu ]
+  save: false
 
 - type: entity
   id: SupplyDropPodEmptyOpen
   parent: SupplyPodBase
   categories: [ HideSpawnMenu ]
+  save: false
   components:
   - type: EntityStorage
     open: true
@@ -18,11 +20,13 @@
   id: SupplyDropPodSyndicateStore
   parent: [ SupplyPodBase, StorePresetUplink ]
   categories: [ HideSpawnMenu ]
+  save: false
 
 - type: entity
   id: SupplyDropPodRadio
   parent: [ SupplyPodBase, ReinforcementRadio ]
   categories: [ HideSpawnMenu ]
+  save: false
   components:
   - type: AirDropGhostRole
     afterTakePod: SupplyDropPodEmptyOpen
@@ -33,6 +37,7 @@
 - type: entity
   id: DropPodMarkerSyndicate
   suffix: Empty, syndicate
+  save: false
   components:
   - type: AirDrop
     inAir:
@@ -58,6 +63,7 @@
   id: DropPodMarkerSyndicateJuggernaut
   parent: DropPodMarkerSyndicate
   suffix: Juggernaut, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropTable: SyndicateDropPodJuggernaut
@@ -76,6 +82,7 @@
   id: DropPodMarkerSyndicateSurplusBundle
   parent: DropPodMarkerSyndicate
   suffix: Surplus Bundle, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodSyndicateStore
@@ -87,6 +94,7 @@
   id: DropPodMarkerSyndicateSuperSurplusBundle
   parent: DropPodMarkerSyndicate
   suffix: super surplus bundle, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodSyndicateStore
@@ -100,6 +108,7 @@
   id: DropPodMarkerReinforcementSyndicate
   parent: DropPodMarkerSyndicate
   suffix: Reinforcement, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodRadio
@@ -145,6 +154,7 @@
   id: DropPodMarkerReinforcementSyndicateNukeops
   parent: DropPodMarkerSyndicate
   suffix: Reinforcement Nukeops, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodRadio
@@ -165,6 +175,7 @@
   id: DropPodMarkerReinforcementSyndicateAncestor
   parent: DropPodMarkerSyndicate
   suffix: Reinforcement Ancestor, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodRadio
@@ -207,6 +218,7 @@
   id: DropPodMarkerReinforcementSyndicateAncestorNukeops
   parent: DropPodMarkerSyndicate
   suffix: Reinforcement Ancestor Nukeops, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodRadio
@@ -248,6 +260,7 @@
   id: DropPodMarkerReinforcementSyndicateCyborgAssault
   parent: DropPodMarkerSyndicate
   suffix: Reinforcement Cyborg Assault, syndicate
+  save: false
   components:
   - type: AirDrop
     supplyDropProto: SupplyDropPodRadio
@@ -289,6 +302,7 @@
   id: MissileDrop
   parent: MissileBase
   categories: [ HideSpawnMenu ]
+  save: false
   components:
   - type: AirDrop
     timeOfTarget: 4
@@ -316,6 +330,7 @@
   categories: [ HideSpawnMenu ]
   name: неразорвавшийся снаряд
   description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
+  save: false
   components:
   - type: AirDrop
     timeOfTarget: 3
@@ -354,6 +369,7 @@
 - type: entity
   id: MissileDropRandomSpawner
   categories: [ HideSpawnMenu ]
+  save: false
   components:
   - type: RandomSpawner
     prototypes:
@@ -367,6 +383,7 @@
   name: арт-обстрел
   id: MissileDropSpawnerAreaSpawner
   parent: DropPodMarkerBase
+  save: false
   components:
   - type: TimedSpawner
     prototypes:
@@ -380,6 +397,7 @@
   id: MissileDropRandomSpawnerArea
   parent: DropPodMarkerBase
   categories: [ HideSpawnMenu ]
+  save: false
   components:
   - type: RandomSpawner
     offset: 10
