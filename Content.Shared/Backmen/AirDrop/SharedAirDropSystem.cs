@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.AirDrop;
 
-public sealed class AirDropSystem : EntitySystem
+public abstract class SharedAirDropSystem : EntitySystem
 {
     [Dependency] private readonly UseDelaySystem _delay = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -36,14 +36,14 @@ public sealed class AirDropSystem : EntitySystem
 
     private void OnStartAirDrop(AirDropStartEvent ev)
     {
-        if(_net.IsServer || !TryGetEntity(ev.Uid, out var supplyPod))
+        if (_net.IsServer || !TryGetEntity(ev.Uid, out var supplyPod))
             return;
         StartAirDrop(supplyPod.Value, ev.Pos);
     }
 
     private void OnSpawnLoot(AirDropItemSpawnEvent ev)
     {
-        if(ev.Handled)
+        if (ev.Handled)
             return;
 
         var supplyTransform = Transform(ev.SupplyPod);
@@ -77,7 +77,7 @@ public sealed class AirDropSystem : EntitySystem
     private void OnInitialStartup(Entity<AirDropComponent> ent, ref MapInitEvent args)
     {
         var pos = _transform.GetMapCoordinates(ent);
-        StartAirDrop((ent,ent), pos);
+        StartAirDrop((ent, ent), pos);
         if (_net.IsServer && TryGetNetEntity(ent, out var airDrop))
         {
             RaiseNetworkEvent(new AirDropStartEvent
@@ -92,7 +92,7 @@ public sealed class AirDropSystem : EntitySystem
 
     private void StartAirDrop(Entity<AirDropComponent?> ent, MapCoordinates pos)
     {
-        if(!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp))
             return;
 
         var marker = EntityUid.Invalid;
@@ -105,7 +105,7 @@ public sealed class AirDropSystem : EntitySystem
         Timer.Spawn(TimeSpan.FromSeconds(ent.Comp.TimeOfTarget),
             () =>
             {
-                if(!TerminatingOrDeleted(ent))
+                if (!TerminatingOrDeleted(ent))
                 {
                     RaiseLocalEvent(ent,
                         new AirDropTargetSpawnEvent
@@ -114,14 +114,14 @@ public sealed class AirDropSystem : EntitySystem
                         });
                 }
 
-                if(_net.IsClient)
+                if (_net.IsClient)
                     Del(marker);
             });
     }
 
     private void OnAirDropTargetSpawn(Entity<AirDropComponent> ent, ref AirDropTargetSpawnEvent args)
     {
-        if(args.Handled)
+        if (args.Handled)
             return;
 
         var pos = args.Pos;
@@ -135,7 +135,7 @@ public sealed class AirDropSystem : EntitySystem
         Timer.Spawn(TimeSpan.FromSeconds(ent.Comp.TimeToDrop),
             () =>
             {
-                if(!TerminatingOrDeleted(ent))
+                if (!TerminatingOrDeleted(ent))
                 {
                     RaiseLocalEvent(ent,
                         new AirDropSpawnEvent
@@ -144,7 +144,7 @@ public sealed class AirDropSystem : EntitySystem
                         });
                 }
 
-                if(_net.IsClient)
+                if (_net.IsClient)
                     Del(marker);
             });
 
@@ -153,7 +153,7 @@ public sealed class AirDropSystem : EntitySystem
 
     private async void OnAirDropSpawn(EntityUid uid, AirDropComponent comp, AirDropSpawnEvent args)
     {
-        if(args.Handled)
+        if (args.Handled)
             return;
 
         if (!_net.IsServer)
@@ -162,6 +162,14 @@ public sealed class AirDropSystem : EntitySystem
         var pos = args.Pos;
         var supply = Spawn(comp.SupplyDropProto, pos, comp.SupplyDrop);
         _transform.AttachToGridOrMap(supply);
+        if (Prototype(uid) is { } proto)
+        {
+            EnsureComp<AirDropVisualizerComponent>(supply).SupplyDrop = proto.ID;
+            if (TryComp<AirDropGhostRoleComponent>(supply, out var dropGhost))
+            {
+                dropGhost.SupplyDrop = proto.ID;
+            }
+        }
 
         QueueDel(uid);
         args.Handled = true;
@@ -195,6 +203,7 @@ public sealed class AirDropSystem : EntitySystem
         _delay.TryResetDelay((ent, useDelay));
         Spawn(ent.Comp.AirDropProto, Transform(ent).Coordinates);
     }
+
     private void OnMapInit(Entity<AirDropItemComponent> ent, ref MapInitEvent args)
     {
         if (!TryComp(ent, out UseDelayComponent? useDelay))

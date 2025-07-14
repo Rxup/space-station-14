@@ -1,7 +1,33 @@
+# pods
 - type: entity
   id: SupplyDropPodEmpty
   parent: SupplyPodBase
   categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: SupplyDropPodEmptyOpen
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityStorage
+    open: true
+  - type: ConditionalSpawner
+    prototypes: []
+
+- type: entity
+  id: SupplyDropPodSyndicateStore
+  parent: [ SupplyPodBase, StorePresetUplink ]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: SupplyDropPodRadio
+  parent: [ SupplyPodBase, ReinforcementRadio ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AirDropGhostRole
+    afterTakePod: SupplyDropPodEmptyOpen
+  - type: EmitSoundOnSpawn
+
 
 #syndi
 - type: entity
@@ -52,6 +78,7 @@
   suffix: Surplus Bundle, syndicate
   components:
   - type: AirDrop
+    supplyDropProto: SupplyDropPodSyndicateStore
     supplyDrop:
     - type: SurplusBundle
       totalPrice: 50
@@ -62,6 +89,7 @@
   suffix: super surplus bundle, syndicate
   components:
   - type: AirDrop
+    supplyDropProto: SupplyDropPodSyndicateStore
     supplyDrop:
     - type: SurplusBundle
       totalPrice: 125
@@ -74,21 +102,44 @@
   suffix: Reinforcement, syndicate
   components:
   - type: AirDrop
-    supplyDropProto: ReinforcementDroppodSyndicate
-
-- type: entity
-  parent: ReinforcementRadioSyndicate
-  id: ReinforcementDroppodSyndicate
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: Static
-    canCollide: False
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: syndiepod_door
-      drawdepth: BlastDoors
+    supplyDropProto: SupplyDropPodRadio
+    supplyDrop:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-reinforcement-spy-name
+      description: ghost-role-information-syndicate-reinforcement-spy-description
+      rules: ghost-role-information-syndicate-reinforcement-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanSyndicateAgentSpy
+      selectablePrototypes: ["SyndicateAgentMedic", "SyndicateAgentSpy", "SyndicateAgentThief"]
+    - type: EmitSoundOnUse
+      sound: /Audio/Effects/Emotes/parp1.ogg
+    - type: UseDelay
+      delay: 300
+    # Corvax-HiddenDesc-Start
+    - type: HiddenDescription
+      entries:
+      - label: corvax-hidden-desc-ReinforcementRadioSyndicate-syndicate
+        whitelistMind:
+          mindRoles:
+          - TraitorRole
+          - NukeopsRole
+      - label: corvax-hidden-desc-ReinforcementRadio-engineering
+        jobRequired:
+        - ChiefEngineer
+        - AtmosphericTechnician
+        - StationEngineer
+        - TechnicalAssistant
+      - label: corvax-hidden-desc-ReinforcementRadio-research
+        jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    # Corvax-HiddenDesc-End
 
 - type: entity
   id: DropPodMarkerReinforcementSyndicateNukeops
@@ -96,96 +147,151 @@
   suffix: Reinforcement Nukeops, syndicate
   components:
   - type: AirDrop
-    supplyDropProto: ReinforcementDroppodSyndicateNukeops
+    supplyDropProto: SupplyDropPodRadio
+    supplyDrop:
+    - type: GhostRole
+      name: ghost-role-information-nukeop-reinforcement-name
+      description: ghost-role-information-nukeop-reinforcement-description
+      rules: ghost-role-information-nukeop-reinforcement-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanSyndicateAgentNukeops
 
-- type: entity
-  parent: ReinforcementRadioSyndicateNukeops
-  id: ReinforcementDroppodSyndicateNukeops
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: Static
-    canCollide: False
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: syndiepod_door
-      drawdepth: BlastDoors
 
 - type: entity
   id: DropPodMarkerReinforcementSyndicateAncestor
-  parent: DropPodMarker
+  parent: DropPodMarkerSyndicate
   suffix: Reinforcement Ancestor, syndicate
   components:
   - type: AirDrop
-    supplyDropProto: ReinforcementDroppodSyndicateAncestor
+    supplyDropProto: SupplyDropPodRadio
+    supplyDrop:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-monkey-reinforcement-name
+      description: ghost-role-information-syndicate-monkey-reinforcement-description
+      rules: ghost-role-information-syndicate-reinforcement-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobMonkeySyndicateAgent
+      selectablePrototypes: ["SyndicateMonkey", "SyndicateKobold"]
+    # Corvax-HiddenDesc-Start
+    - type: HiddenDescription
+      entries:
+      - label: corvax-hidden-desc-ReinforcementRadioSyndicateMonkey-syndicate
+        whitelistMind:
+          mindRoles:
+          - TraitorRole
+          - NukeopsRole
+      - label: corvax-hidden-desc-ReinforcementRadio-engineering
+        jobRequired:
+        - ChiefEngineer
+        - AtmosphericTechnician
+        - StationEngineer
+        - TechnicalAssistant
+      - label: corvax-hidden-desc-ReinforcementRadio-research
+        jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    # Corvax-HiddenDesc-End
 
-- type: entity
-  parent: ReinforcementRadioSyndicateAncestor
-  id: ReinforcementDroppodSyndicateAncestor
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: Static
-    canCollide: False
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: syndiepod_door
-      drawdepth: BlastDoors
 
 - type: entity
   id: DropPodMarkerReinforcementSyndicateAncestorNukeops
-  parent: DropPodMarker
+  parent: DropPodMarkerSyndicate
   suffix: Reinforcement Ancestor Nukeops, syndicate
   components:
   - type: AirDrop
-    supplyDropProto: ReinforcementDroppodSyndicateAncestorNukeops
-
-- type: entity
-  parent: ReinforcementRadioSyndicateAncestorNukeops
-  id: ReinforcementDroppodSyndicateAncestorNukeops
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: Static
-    canCollide: False
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: syndiepod_door
-      drawdepth: BlastDoors
+    supplyDropProto: SupplyDropPodRadio
+    supplyDrop:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-monkey-reinforcement-name
+      description: ghost-role-information-syndicate-monkey-reinforcement-description
+      rules: ghost-role-information-nukeop-reinforcement-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobMonkeySyndicateAgentNukeops
+      selectablePrototypes: ["SyndicateMonkeyNukeops", "SyndicateKoboldNukeops"]
+    # Corvax-HiddenDesc-Start
+    - type: HiddenDescription
+      entries:
+      - label: corvax-hidden-desc-ReinforcementRadioSyndicateMonkey-syndicate
+        whitelistMind:
+          mindRoles:
+          - TraitorRole
+          - NukeopsRole
+      - label: corvax-hidden-desc-ReinforcementRadio-engineering
+        jobRequired:
+        - ChiefEngineer
+        - AtmosphericTechnician
+        - StationEngineer
+        - TechnicalAssistant
+      - label: corvax-hidden-desc-ReinforcementRadio-research
+        jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    # Corvax-HiddenDesc-End
 
 - type: entity
   id: DropPodMarkerReinforcementSyndicateCyborgAssault
-  parent: DropPodMarker
+  parent: DropPodMarkerSyndicate
   suffix: Reinforcement Cyborg Assault, syndicate
   components:
   - type: AirDrop
-    supplyDropProto: ReinforcementDroppodSyndicateCyborgAssault
-
-- type: entity
-  parent: ReinforcementRadioSyndicateCyborgAssault
-  id: ReinforcementDroppodSyndicateCyborgAssault
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: Static
-    canCollide: False
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: syndiepod_door
-      drawdepth: BlastDoors
+    supplyDropProto: SupplyDropPodRadio
+    supplyDrop:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-assault-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles:
+      - MindRoleGhostRoleSilicon
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgSyndicateAssaultBattery
+    # Corvax-HiddenDesc-Start
+    - type: HiddenDescription
+      entries:
+      - label: corvax-hidden-desc-ReinforcementRadioSyndicateCyborgAssault-syndicate
+        whitelistMind:
+          mindRoles:
+          - TraitorRole
+          - NukeopsRole
+      - label: corvax-hidden-desc-ReinforcementRadio-engineering
+        jobRequired:
+        - ChiefEngineer
+        - AtmosphericTechnician
+        - StationEngineer
+        - TechnicalAssistant
+      - label: corvax-hidden-desc-ReinforcementRadio-research
+        jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    # Corvax-HiddenDesc-End
 
 #missiles
-
 - type: entity
   id: MissileDrop
   parent: MissileBase
   categories: [ HideSpawnMenu ]
   components:
   - type: AirDrop
+    timeOfTarget: 4
     inAir:
     - type: Sprite
       sprite: Backmen/Effects/droppod_falling.rsi
@@ -212,6 +318,7 @@
   description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
   components:
   - type: AirDrop
+    timeOfTarget: 3
     inAir:
     - type: Sprite
       sprite: Backmen/Effects/droppod_falling.rsi
@@ -246,7 +353,6 @@
 
 - type: entity
   id: MissileDropRandomSpawner
-  parent: DropPodLaunchAnimation
   categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
