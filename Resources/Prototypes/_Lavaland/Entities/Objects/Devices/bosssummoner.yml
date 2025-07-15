@@ -16,6 +16,7 @@
     delay: 5
   - type: AirDropItem
     airDropProto: SalvageAncientCommunicatorSummonerBigJohninatorAirDrop
+    lavaLandOnly: true
 
 - type: entity
   id: SalvageAncientCommunicatorSummonerBigJohninatorAirDrop

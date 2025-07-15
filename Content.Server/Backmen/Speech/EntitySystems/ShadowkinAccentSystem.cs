@@ -33,20 +33,20 @@ public sealed class ShadowkinAccentSystem : EntitySystem
         {
             var current = c.ToString();
 
-            // Английские замены (шанс 10%)
-            if (mRegex.IsMatch(current) && _random.Prob(0.1f))
+            // Английские замены (шанс 30%)
+            if (_random.Prob(0.3f) && mRegex.IsMatch(current))
                 current = "m";
-            else if (aRegex.IsMatch(current) && _random.Prob(0.1f))
+            if (_random.Prob(0.3f) && aRegex.IsMatch(current))
                 current = "a";
-            else if (rRegex.IsMatch(current) && _random.Prob(0.1f))
+            if (_random.Prob(0.1f) && rRegex.IsMatch(current))
                 current = "r";
 
-            // Русские замены (шанс 10%)
-            if (mRegexRu.IsMatch(current) && _random.Prob(0.1f))
+            // Русские замены (шанс 30%)
+            if (_random.Prob(0.3f) && mRegexRu.IsMatch(current))
                 current = "м";
-            else if (aRegexRu.IsMatch(current) && _random.Prob(0.1f))
+            if (_random.Prob(0.3f) && aRegexRu.IsMatch(current))
                 current = "а";
-            else if (rRegexRu.IsMatch(current) && _random.Prob(0.1f))
+            if (_random.Prob(0.3f) && rRegexRu.IsMatch(current))
                 current = "р";
 
             result.Append(current);
