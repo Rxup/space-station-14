@@ -42,11 +42,11 @@ public sealed class ShadowkinAccentSystem : EntitySystem
                 current = "r";
 
             // Русские замены (шанс 30%)
-            if (_random.Prob(0.1f) && mRegexRu.IsMatch(current))
+            if (_random.Prob(0.3f) && mRegexRu.IsMatch(current))
                 current = "м";
-            if (_random.Prob(0.1f) && aRegexRu.IsMatch(current))
+            if (_random.Prob(0.3f) && aRegexRu.IsMatch(current))
                 current = "а";
-            if (_random.Prob(0.1f) && rRegexRu.IsMatch(current))
+            if (_random.Prob(0.3f) && rRegexRu.IsMatch(current))
                 current = "р";
 
             result.Append(current);

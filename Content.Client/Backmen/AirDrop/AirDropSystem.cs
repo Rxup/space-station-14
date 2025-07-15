@@ -14,7 +14,6 @@ public sealed class AirDropSystem : SharedAirDropSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteTreeSystem _tree = default!;
 
     private readonly Queue<Entity<AirDropVisualizerComponent>> _updateQueue = new();
 
