@@ -11,14 +11,6 @@
             "name": "icon"
         },
         {
-            "name": "equipped-HELMET",
-            "directions": 4
-        },
-        {
-            "name": "equipped-HELMET-vox",
-            "directions": 4
-        },
-        {
             "name": "equipped-HELMET-monkey",
             "directions": 4
         },

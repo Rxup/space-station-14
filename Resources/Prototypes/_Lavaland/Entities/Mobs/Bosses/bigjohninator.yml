@@ -248,46 +248,11 @@
 
 - type: entity
   id: MissileDropMarkerBigJohn
-  parent: DropPodMarker
   categories: [ HideSpawnMenu ]
+  save: false
   components:
-  - type: TimedSpawner
-    prototypes:
-      -  MissileDropLaunchAnimationBigJohn
-    intervalSeconds: 1
-  - type: TimedDespawn
-    lifetime: 1.1
-
-- type: entity
-  id: MissileDropLaunchAnimationBigJohn
-  parent: MissileDropLaunchAnimation
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: TimedSpawner
-    prototypes:
-      - MissileDropRandomSpawnerBigJohn
-    intervalSeconds: 2
-
-- type: entity
-  id: MissileDropRandomSpawnerBigJohn
-  parent: DropPodLaunchAnimation
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: RandomSpawner
-    prototypes:
-      - MissileDropBigJohn
-    chance: 1
-
-- type: entity
-  id: MissileDropBigJohn
-  parent: MissileDrop
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SpawnOnDespawn
-    prototype: ExplosionInstantBigJohn
-  - type: ConditionalSpawner
-    prototypes:
-    - ExplosionBigJohn
+  - type: AirDrop
+    supplyDropProto: ExplosionBigJohn
 
 - type: polymorph
   id: SwoopFly

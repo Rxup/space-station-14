@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseShelterCapsule
+  parent: BaseItem
   id: SalvageAncientCommunicatorSummonerBigJohninator
   name: ancient communication device
   description: On one of the pieces of the communicator you repaired, there is a call button, as you understand, it calls a signal to headquarters, if anyone will answer?
@@ -13,14 +13,34 @@
     shape:
     - 0,0,0,1
   - type: UseDelay
-    delay: 0
-  - type: ShelterCapsule # avoid spawn him on station
-    deployTime: 0
-    preloadedGrid: 1tileblockwithbossBigJohninator
-    boxSize: 1,1
+    delay: 5
+  - type: AirDropItem
+    airDropProto: SalvageAncientCommunicatorSummonerBigJohninatorAirDrop
+    lavaLandOnly: true
 
-# Grids
-- type: preloadedGrid
-  id: 1tileblockwithbossBigJohninator
-  path: /Maps/Backmen/Lavaland/BigJohninator.yml
-  copies: 1
+- type: entity
+  id: SalvageAncientCommunicatorSummonerBigJohninatorAirDrop
+  name: Капсула призыва босса BigJohn
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AirDrop
+    inAir:
+    - type: Sprite
+      sprite: Backmen/Effects/droppod_falling.rsi
+      layers:
+      - state: supplypod_falling_animation
+        offset: "0,3.3"
+    supplyDrop:
+    - type: Sprite
+      sprite: Backmen/Structures/Storage/supplypod.rsi
+      layers:
+      - state: supplypod
+    supplyDropTable: BigJohninatorAirDropSpawnTable
+    forceOpenSupplyDrop: true
+
+- type: entityTable
+  id: BigJohninatorAirDropSpawnTable
+  table: !type:AllSelector
+    children:
+    - id: MobBigJohninator

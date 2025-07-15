@@ -56,9 +56,28 @@
     heldPrefix: radio
   - type: SpawnItemsOnUse
     items:
-      - id: DropPodMarkerBlueShield
+      - id: RadioBlueShieldSupplyPodAirDrop
     sound:
       path: /Audio/Corvax/Effects/Footsteps/off2.ogg
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: RadioBlueShieldSupplyPodAirDrop
+  id: RadioBlueShieldSupplyPodAirDrop
+  save: false
+  components:
+  - type: AirDrop
+    supplyDropTable: BlueShieldSupplyPodSpawnTable
+
+- type: entityTable
+  id: BlueShieldSupplyPodSpawnTable
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitBlueShield
+    - id: ClothingMaskGasBlueShield
+    - id: DoubleEmergencyOxygenTankFilled
+    - id: DoubleEmergencyNitrogenTankFilled
+
 
 - type: entity
   name: supply call radio
@@ -75,6 +94,21 @@
     heldPrefix: radio
   - type: SpawnItemsOnUse
     items:
-      - id: DropPodMarkerSecurityPilot
+      - id: AirDropSecurityPilot
     sound:
       path: /Audio/Corvax/Effects/Footsteps/off2.ogg
+
+- type: entity
+  id: AirDropSecurityPilot
+  categories: [ HideSpawnMenu ]
+  suffix: SecurityPilot, supply
+  save: false
+  components:
+  - type: AirDrop
+    supplyDropTable: AirDropSecurityPilotSpawnTable
+
+- type: entityTable
+  id: AirDropSecurityPilotSpawnTable
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitSecurityPilot

@@ -10,11 +10,11 @@
     threshold: 70
   - type: LanguageKnowledge #backmen: languages
     speaks:
-    - Demonic
+    - Carshnil
     - TauCetiBasic
     understands:
     - TauCetiBasic
-    - Demonic
+    - Carshnil
   - type: Icon
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: full_m

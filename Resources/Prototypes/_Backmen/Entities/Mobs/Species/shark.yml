@@ -1,0 +1,75 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobPlaf
+  abstract: true
+  components:
+  - type: Consciousness # some fucking exclusivity for demons, harder to put them into crit, but they die more quickly.
+    cap: 180
+    threshold: 130
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - EvePishtu
+    - TauCetiBasic
+    understands:
+    - EvePishtu
+    - TauCetiBasic
+  - type: Icon
+    sprite: _ADT/Mobs/Shark/parts.rsi
+    state: shark_m
+  - type: HumanoidAppearance
+    species: Shark
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - Tail
+  - type: Body
+    prototype: ADTSharkBody
+    requiredLegs: 2
+  - type: RoarAccent
+  - type: Hunger
+  - type: Thirst
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Scale
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    angle: 30
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Piercing: 5
+  - type: Temperature
+    heatDamageThreshold: 400
+    coldDamageThreshold: 200
+    currentTemperature: 310.15
+    specificHeat: 46
+    coldDamage:
+      types:
+        Cold : 0.2 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 0.1 #per second, scales with temperature & other constants
+  - type: Perishable
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-lizard"
+    rightBarePrint: "footprint-right-bare-lizard"
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobPlafDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Shark
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - Tail

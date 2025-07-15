@@ -37,12 +37,11 @@
   name: medical hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
   components:
-  - type: ClothingGrant
-    component:
-    - type: ShowHealthBars
-      damageContainers:
+  - type: ShowHealthBars
+    damageContainers:
         - Biological
         - HalfSpirit
+        - RaceDemon
   - type: Sprite
     sprite: Clothing/Eyes/Hud/med.rsi
   - type: Clothing
@@ -181,7 +180,7 @@
     node: medsecHud
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons]
   id: ClothingEyesHudMultiversal
   name: multiversal hud
   description: Filler
@@ -194,6 +193,8 @@
     damageContainers:
     - Biological
     - Inorganic
+    - RaceDemon
+    - HalfSpirit
   - type: ShowSyndicateIcons
 
 - type: entity
@@ -210,6 +211,8 @@
     damageContainers:
     - Biological
     - Inorganic
+    - HalfSpirit
+    - RaceDemon
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons
@@ -219,6 +222,7 @@
       damageContainers:
         - Biological
         - HalfSpirit
+        - RaceDemon
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
