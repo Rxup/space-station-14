@@ -16,6 +16,12 @@ public sealed partial class AirDropItemComponent : Component
 
     [DataField]
     public bool StartCooldown { get; private set; } = false;
+
+    [DataField]
+    public bool DeleteOnUse { get; private set; } = true;
+
+    [DataField]
+    public bool LavaLandOnly { get; private set; } = false;
 }
 
 [RegisterComponent, NetworkedComponent]
