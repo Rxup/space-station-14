@@ -19319,9 +19319,9 @@ entities:
         DoorStatus: True
         DockStatus: True
     - type: Door
-      secondsUntilStateChange: -27516.236
+      secondsUntilStateChange: 0
       changeAirtight: False
-      state: Opening
+      state: Closed
   - uid: 335
     components:
     - type: Transform
@@ -19453,8 +19453,8 @@ entities:
       pos: 28.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -50157.88
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19464,8 +19464,8 @@ entities:
       pos: 24.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -190337.64
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -20965,8 +20965,8 @@ entities:
       pos: 9.5,25.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -103594.16
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -97879,8 +97879,8 @@ entities:
       pos: -34.5,-14.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -184526.19
-      state: Closing
+      secondsUntilStateChange: 0
+      state: Closed
   - uid: 14278
     components:
     - type: Transform

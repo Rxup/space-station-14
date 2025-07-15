@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 262.0.0
   forkId: backmen
-  forkVersion: 0702e6ff53e8c35afa6b8d1a73f81a8ffbffce4e
-  time: 07/10/2025 21:26:20
-  entityCount: 10802
+  forkVersion: 3f9b6f4e8cc8ca70b010521224091fa80fccf55d
+  time: 07/15/2025 17:39:54
+  entityCount: 10803
 maps:
 - 1
 grids:
@@ -11636,8 +11636,8 @@ entities:
       pos: 16.5,75.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -111785.6
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11845,8 +11845,8 @@ entities:
       pos: 68.5,79.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -113971.164
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -31504,8 +31504,8 @@ entities:
       pos: 1.5,62.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114376.03
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
   - uid: 3507
     components:
     - type: Transform
@@ -37495,8 +37495,6 @@ entities:
       pos: 55.5,48.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 27
   - uid: 4306
@@ -67541,6 +67539,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 77.42655,48.57556
+      parent: 2
+- proto: SpaceCash30000
+  entities:
+  - uid: 8187
+    components:
+    - type: Transform
+      pos: 70.5,49.5
       parent: 2
 - proto: SpaceHeaterAnchored
   entities:

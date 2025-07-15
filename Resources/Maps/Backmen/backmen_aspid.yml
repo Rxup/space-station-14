@@ -15419,8 +15419,8 @@ entities:
       pos: 11.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -151711.92
-      state: Opening
+      secondsUntilStateChange: 0
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -60458,8 +60458,8 @@ entities:
       pos: 4.5,65.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16490.121
-      state: Closing
+      secondsUntilStateChange: 0
+      state: Closed
   - uid: 8242
     components:
     - type: Transform
