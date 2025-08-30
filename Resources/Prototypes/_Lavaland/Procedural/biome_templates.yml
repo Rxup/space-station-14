@@ -8,7 +8,7 @@
         frequency: 1
         seed: 15
       allowedTiles:
-        - FloorBasalt
+        - FloorBasaltLavaland
       entities:
         - BasaltOne
         - BasaltTwo
@@ -17,7 +17,7 @@
         - BasaltFive
     - !type:BiomeDecalLayer
       allowedTiles:
-        - FloorBasalt
+        - FloorBasaltLavaland
       threshold: 0.95
       divisions: 1
       noise:
@@ -40,7 +40,7 @@
         noiseType: OpenSimplex2
         frequency: 2
       allowedTiles:
-        - FloorBasalt
+        - FloorBasaltLavaland
       entities:
         - FloraRockSolid
     - !type:BiomeEntityLayer
@@ -53,13 +53,13 @@
         lacunarity: 2
         gain: 0.4
       allowedTiles:
-        - FloorBasalt
+        - FloorBasaltLavaland
       entities:
         - FloorLavaEntity
     # Rock formations
     - !type:BiomeEntityLayer
       allowedTiles:
-        - FloorBasalt
+        - FloorBasaltLavaland
       threshold: -0.25
       noise:
         seed: 5
@@ -77,4 +77,4 @@
     # Fill basalt
     - !type:BiomeTileLayer
       threshold: -1
-      tile: FloorBasalt
+      tile: FloorBasaltLavaland

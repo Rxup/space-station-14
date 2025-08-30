@@ -1,4 +1,4 @@
-﻿using Content.Server._Lavaland.Procedural.Systems;
+using Content.Server._Lavaland.Procedural.Systems;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
@@ -18,7 +18,7 @@ public sealed class LavalandListingCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        var lavalands = _entityManager.System<LavalandPlanetSystem>().GetLavalands();
+        var lavalands = _entityManager.System<LavalandSystem>().GetLavalands();
 
         foreach (var (owner, comp) in lavalands)
         {

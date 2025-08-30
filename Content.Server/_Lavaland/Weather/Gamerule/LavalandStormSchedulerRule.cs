@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Lavaland.Procedural.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules;
@@ -14,7 +14,7 @@ public sealed class LavalandStormSchedulerRule : GameRuleSystem<LavalandStormSch
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly LavalandPlanetSystem _lavaland = default!;
+    [Dependency] private readonly LavalandSystem _lavaland = default!;
     [Dependency] private readonly LavalandWeatherSystem _lavalandWeather = default!;
 
     public override void Update(float frameTime)

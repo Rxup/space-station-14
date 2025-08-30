@@ -3,12 +3,16 @@
   name: lavaland-ruin-hierophant
   path: /Maps/_Lavaland/Lavaland/ruin_hierophant_arena.yml
   priority: -1 # highest priority
+  patchToPlanet: false
+  componentsToGrant:
+  - type: HierophantBeat
 
 - type: lavalandGridRuin
   id: SyndicateBase
   name: lavaland-ruin-syndicate
   path: /Maps/_Lavaland/Lavaland/ruin_syndicate_base.yml
   priority: -1 # highest priority
+  patchToPlanet: false
 
 - type: lavalandGridRuin # Backmen
   id: InteQSizo
@@ -21,6 +25,7 @@
   name: lavaland-ruin-chapel
   path: /Maps/Backmen/Lavaland/uriilArena.yml
   priority: 1
+  patchToPlanet: false
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaResearchFacility
@@ -33,6 +38,7 @@
   name: lavaland-ruin-bmc-research-outpost
   path: /Maps/Backmen/Lavaland/xenoutpost.yml
   priority: 2
+  patchToPlanet: false
 
 - type: lavalandGridRuin # backmen-edit
   id: BlackMesaSpot
@@ -105,6 +111,7 @@
   name: lavaland-ruin-shelter
   path: /Maps/_Lavaland/Lavaland/ruin_mining_outpost.yml
   priority: 10
+  patchToPlanet: false
 
 - type: lavalandGridRuin
   id: Hermit
@@ -123,6 +130,7 @@
   name: lavaland-ruin-seed-vault
   path: /Maps/_Lavaland/Lavaland/ruin_seed_vault.yml
   priority: 13
+  patchToPlanet: false
 
 - type: lavalandGridRuin
   id: Graveyard

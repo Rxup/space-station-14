@@ -20,8 +20,7 @@
   - AshfallHeavy
   markers:
   - RandomTendrilLavaland
-  #- RandomMobLavaland
-  - ChasmLavaland
+  - RandomMobLavaland
   - OreIron
   - OreCoal
   - OreQuartz
@@ -32,8 +31,4 @@
   - OreBananium
   - OreArtifactFragment
   - OreDiamond
-  #- BSCrystal
-  # DroppopLaunchers-Start
-  - RandomDroppodGutterLavaland
-  - RandomRocketLaunchLavaland
-  # DroppopLaunchers-End
+  - BSCrystal

@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Lavaland.Procedural.Prototypes;
@@ -14,11 +14,20 @@ public sealed partial class LavalandGridRuinPrototype : IPrototype
     [DataField] public LocId Name = "lavaland-ruin-unknown";
 
     [DataField(required: true)]
-    public ResPath Path { get; } = default!;
+    public ResPath Path { get; }
 
     [DataField]
     public int SpawnAttemps = 8;
 
+    [DataField]
+    public bool PatchToPlanet = true;
+
     [DataField(required: true)]
     public int Priority = int.MinValue;
+
+    /// <summary>
+    /// List of components to grant to entities that enter the ruin.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry ComponentsToGrant = new();
 }

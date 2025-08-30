@@ -1,4 +1,4 @@
-﻿using Content.Server._Lavaland.Procedural.Systems;
+using Content.Server._Lavaland.Procedural.Systems;
 using Content.Server.Administration;
 using Content.Shared._Lavaland.Procedural.Prototypes;
 using Content.Shared.Administration;
@@ -58,7 +58,7 @@ public sealed class LavalandMappingCommand : IConsoleCommand
         }
 
         shell.WriteLine("Starting lavaland map...");
-        var lavalandSys = _entityManager.System<LavalandPlanetSystem>();
+        var lavalandSys = _entityManager.System<LavalandSystem>();
 
         if (lavalandSys.GetPreloaderEntity() == null)
             lavalandSys.EnsurePreloaderMap();

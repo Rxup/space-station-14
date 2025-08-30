@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Lavaland.Procedural.Prototypes;
 
@@ -11,13 +11,13 @@ public sealed partial class LavalandRuinPoolPrototype : IPrototype
     /// Distance in-between ruins.
     /// </summary>
     [DataField]
-    public float RuinDistance = 24;
+    public int RuinDistance = 24;
 
     /// <summary>
     /// Max distance that Ruins can generate.
     /// </summary>
     [DataField]
-    public float MaxDistance = 336;
+    public int MaxDistance = 336;
 
     /// <summary>
     /// List of all grid ruins and their count.
