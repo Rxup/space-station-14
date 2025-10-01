@@ -7,10 +7,10 @@ issuer-Donk-Pocket-Corp = [color=DarkRed]Donk Pocket Corp[/color]
     Вы агент все-мирной организации, мы не одобряем бездумные убийства невинных работников, "вошел, сделал, вышел" - вот наш девиз.
     Члены Waffle Corp должны быть убиты на месте; нам нужна месть за их последний налет на наши объекты.
 objective-issuer-Donk-Pocket-Corp = [color=DarkRed]Donk Pocket Corp[/color]
-issuer-Gorlex-Marauders = [color=Red]Gorlex Confederation[/color]
+issuer-Gorlex-Marauders = [color=Red]Gorlex Backmen[/color]
     Мы объявлены в ОПЗ как террористическая организация, нам наплевать на то, как нас будут освещать общественность.
     Просто убейте всех, даже других агентов синдиката, мы не имеем союзных отношений с кем-то, кроме нас самих.
-objective-issuer-Gorlex-Marauders = [color=Red]Gorlex Confederation[/color]
+objective-issuer-Gorlex-Marauders = [color=Red]Gorlex Backmen[/color]
 issuer-Interdyne-Pharmaceutics = [color=LightBlue]Interdyne Pharmaceutics[/color]
     Вы агент передовой корпорации, вашу личность не должны узнать, даже остальные члены Синдиката.
     Вы можете выполнять свои задачи так, как считаете нужным, но сделайте это чисто, и вы получите свои премиальные.
