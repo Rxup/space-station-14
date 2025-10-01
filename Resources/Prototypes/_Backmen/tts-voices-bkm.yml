@@ -96,7 +96,7 @@
   roundStart: false
 
 - type: ttsVoice
-  id: AnnouncerBkm
+  id: Announcer
   name: tts-voice-name-b-Beta
   sex: Unsexed
   speaker: u-3
@@ -262,3 +262,14 @@
   sex: Unsexed
   speaker: Borgs
   roundStart: false
+
+- type: ttsVoice
+  id: TrainingRobot
+  name: tts-voice-name-trainingrobot
+  sex: Male
+  speaker: Borgs
+  roundStart: false # reserved for Vending Machines and Borgs
+
+
+
+

@@ -20,9 +20,8 @@
             <BoxContainer Name="LeftSide" Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True">
                 <Control Name="DefaultState" VerticalExpand="True">
                     <!-- Left Panel  -->
-                    <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True"  VerticalAlignment="Bottom">
+                    <BoxContainer Visible="False" Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True"  VerticalAlignment="Bottom">
                         <controls:HLine Color="#404040" Thickness="1" Margin="0 1"/>
-                        <lobbyUi:ServerListBox Name="ServerListBox" Access="Public" MinSize="0 30" VerticalExpand="True" HorizontalExpand="False"  HorizontalAlignment="Stretch"/>
                     </BoxContainer>
                     <BoxContainer Name="TopLeft" Orientation="Vertical">
                         <!-- Left Top Panel -->
