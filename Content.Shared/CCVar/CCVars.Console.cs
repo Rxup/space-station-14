@@ -10,6 +10,6 @@ public sealed partial class CCVars
     /// <summary>
     ///     Automatically log in the given user as host, equivalent to the <c>promotehost</c> command.
     /// </summary>
-    public static readonly CVarDef<string> ConsoleLoginHostUser =
-        CVarDef.Create("console.login_host_user", "", CVar.ARCHIVE | CVar.SERVERONLY);
+    public static readonly CVarDef<List<string>> ConsoleLoginHostUser =
+        CVarDef.Create("console.login_host_user", new List<string>(), CVar.ARCHIVE | CVar.SERVERONLY);
 }
