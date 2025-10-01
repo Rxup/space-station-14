@@ -37,7 +37,6 @@ namespace Content.Client.Lobby.UI
                 case LobbyGuiState.Default:
                     RightSide.Visible = true;
                     // BACKMEN EDIT START
-                    ServerListBox.Visible = true;
                     CharacterSetupState.Visible = false;
                     Center.Visible = true;
                     LabelName.Visible = true;
@@ -47,7 +46,6 @@ namespace Content.Client.Lobby.UI
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
                     // BACKMEN EDIT START
-                    ServerListBox.Visible = false;
                     Center.Visible = false;
                     RightSide.Visible = true;
                     LabelName.Visible = false;
