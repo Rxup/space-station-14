@@ -266,7 +266,7 @@
     guides:
     - AltarsGolemancy
   - type: TTS
-    voice: Dude
+    voice: Npc1
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge
