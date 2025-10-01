@@ -1,5 +1,6 @@
-<div class="header" align="center">  
-[<img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg">](https://github.com/Rxup/space-station-14)
+<div class="header" align="center">
+<img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg">
+(https://github.com/Rxup/space-station-14)
 </div>
 
 ---
@@ -10,17 +11,11 @@ Space Station 14 - это ремейк SS13, который работает н�
 
 ## Ссылки
 
-<div class="header" align="center">  
+<div class="header" align="center">
 
-[Website](https://backmen.ru/) | [Discord](https://discord.com/invite/B7gWj7hB8b) | [Forum](https://backmen.ru/) | [Boosty](https://boosty.to/deadstation14) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.com/about/nightlies/)
+[Discord](https://discord.com/invite/4Thsjv6QsX) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.com/about/nightlies/)
 
 </div>
-
-[<img src="https://i.imgur.com/xMzKtYK.png" alt="Discord" width="150" align="left">](https://discord.gg/ss-14-backmen-ru-1053200453829132298)
-**Discord Server**<br>В космосе вас никто не услышит.
-
-[<img src="https://imagizer.imageshack.com/img922/4959/8KTh9r.png" alt="Wiki" width="150" align="left">](https://wiki.backmen.ru)
-**Wiki**<br>Что за блобы и с чем их едят?
 
 ## Сборка
 
@@ -38,14 +33,14 @@ Space Station 14 - это ремейк SS13, который работает н�
 ### Linux
 1. Clone this repo:
 ```shell
-git clone https://github.com/space-wizards/space-station-14.git
+git clone https://github.com/Rxup/space-station-14.git
 ```
 2. Go to the project folder and run `RUN_THIS.py` to initialize the submodules and load the engine:
 ```shell
 cd space-station-14
 python RUN_THIS.py
 ```
-3. Compile the solution:  
+3. Compile the solution:
 
 Build the server using `dotnet build`.
 
@@ -54,10 +49,6 @@ Build the server using `dotnet build`.
 > 3. Запускайте `Scripts/sh/buildAllDebug.sh` после любых изменений в коде проекта.
 > 4. Запустите `Scripts/sh/runQuickAll.sh`, чтобы запустить клиент и сервер.
 > 5. Подключитесь к локальному серверу и играйте.
-
-### MacOS
-
-> Предположительно, также, как и на Линуксе, сами разберётесь.
 
 ---
 
