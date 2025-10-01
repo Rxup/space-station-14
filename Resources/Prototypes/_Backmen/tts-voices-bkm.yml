@@ -1,4 +1,34 @@
 - type: ttsVoice
+  id: Aidar
+  name: tts-voice-name-aidar
+  sex: Male
+  speaker: aidar
+
+- type: ttsVoice
+  id: Baya
+  name: tts-voice-name-baya
+  sex: Unsexed
+  speaker: baya
+
+- type: ttsVoice
+  id: Kseniya
+  name: tts-voice-name-kseniya
+  sex: Female
+  speaker: kseniya
+
+- type: ttsVoice
+  id: Xenia
+  name: tts-voice-name-xenia
+  sex: Female
+  speaker: xenia
+
+- type: ttsVoice
+  id: Eugene
+  name: tts-voice-name-eugene
+  sex: Male
+  speaker: eugene
+
+- type: ttsVoice
   id: Oleg
   name: tts-voice-name-oleg
   sex: Male
