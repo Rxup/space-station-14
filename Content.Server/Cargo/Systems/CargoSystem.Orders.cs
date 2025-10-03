@@ -661,7 +661,7 @@ namespace Content.Server.Cargo.Systems
         {
             component.Accounts[component.PrimaryAccount] = Math.Max(0, component.Accounts[component.PrimaryAccount] - amount);
         }
-        
+
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)
         {
             if (_station.GetOwningStation(ent) is not { } station ||

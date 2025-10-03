@@ -507,7 +507,7 @@
   - type: Speech # Backmen
     speechSounds: Tenor
   - type: TTS # Backmen
-    voice: Glados
+    voice: TrainingRobot
   - type: Grammar # Backmen
     attributes:
       gender: female

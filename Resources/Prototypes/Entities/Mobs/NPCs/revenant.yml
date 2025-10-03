@@ -24,7 +24,7 @@
     damageContainer: ManifestedSpirit
     damageModifierSet: ManifestedSpirit
   - type: TTS # Corvax-TTS
-    voice: Monolith2
+    voice: rihter
   - type: NoSlip
   - type: Eye
     drawFov: false

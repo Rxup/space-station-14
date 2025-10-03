@@ -109,6 +109,6 @@
   - type: Prayable
   - type: SpriteFade
   - type: TTS
-    voice: Monolith2
+    voice: rihter
   - type: Tag
     tags: []
