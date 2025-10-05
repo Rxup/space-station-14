@@ -38,6 +38,13 @@ public sealed partial class BloodstreamComponent : Component
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(3);
 
     /// <summary>
+    ///     Based on percents, how much of blood lost will equal to this entity dying?
+    ///     Backmen edit: This is used for consciousness based entities
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 LethalBloodlossThreshold = 0.67;
+
+    /// <summary>
     /// Multiplier applied to <see cref="UpdateInterval"/> for adjusting based on metabolic rate multiplier.
     /// </summary>
     [DataField, AutoNetworkedField]

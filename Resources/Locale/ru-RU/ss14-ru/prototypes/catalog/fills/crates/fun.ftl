@@ -1,3 +1,5 @@
+ent-CratePlants = plant crate
+    .desc = A variety pack of potted plants to spruce up your station!
 ent-CrateFunSharkPlushieBulk = bulk soft toy shark crate
     .desc = A crate filled with a variety of everyone's favorite finned friend. Rawr!
 ent-CrateFunPlushie = ящик плюшевых игрушек
@@ -44,3 +46,5 @@ ent-CrateFunMysteryFigurines = ящик минифигурок Загадочн�
     .desc = Коллекция из 10 коробок загадочных минифигурок. Дубликаты возврату не подлежат.
 ent-CrateFunDartsSet = набор для дартса
     .desc = Коробка со всем необходимым для увлекательной игры в дартс.
+ent-CrateFunScurret = hydrated scurret
+    .desc = Wait, what?

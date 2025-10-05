@@ -181,23 +181,26 @@ namespace Content.Server.Hands.Systems
             }
         }
 
-        private void HandlePullStopped(EntityUid uid, HandsComponent component, PullStoppedMessage args)
+        private void HandlePullStopped(Entity<HandsComponent?> ent, PullStoppedMessage args)
         {
-            if (args.PullerUid != uid)
+            if (!Resolve(ent, ref ent.Comp, false))
+                return;
+
+            if (args.PullerUid != ent.Owner)
                 return;
 
             // Try find hand that is doing this pull.
             // and clear it.
-            foreach (var hand in component.Hands.Values)
+            foreach (var held in EnumerateHeld(ent))
             {
-                if (hand.HeldEntity == null
-                    || !TryComp(hand.HeldEntity, out VirtualItemComponent? virtualItem)
+
+                if (!TryComp(held, out VirtualItemComponent? virtualItem)
                     || virtualItem.BlockingEntity != args.PulledUid)
                 {
                     continue;
                 }
 
-                TryDrop(args.PullerUid, hand, handsComp: component);
+                TryDrop(args.PullerUid, held);
                 break;
             }
         }

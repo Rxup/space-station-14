@@ -1,5 +1,13 @@
+ent-BaseAction = { "" }
+    .desc = { "" }
+ent-BaseMentalAction = { ent-BaseAction }
+    .desc = { ent-BaseAction.desc }
 ent-BaseSuicideAction = { "" }
     .desc = { "" }
+ent-BaseImplantAction = { ent-BaseAction }
+    .desc = { ent-BaseAction.desc }
+ent-BaseToggleAction = { ent-BaseAction }
+    .desc = { ent-BaseAction.desc }
 ent-ActionScream = Крикнуть
     .desc = ААААААААААААААААААААААААА
 ent-ActionTurnUndead = Обратиться в зомби
@@ -54,5 +62,11 @@ ent-ActionToggleWagging = Махать хвостом
     .desc = Начать/перестать махать хвостом.
 ent-FakeMindShieldToggleAction = [color=green]Переключить фальшивый Щит разума[/color]
     .desc = Переключить трансляцию фальшивого Щита разума
+ent-ActionGravityJump = Jump
+    .desc = Activating the advanced propulsion system, you propel yourself a short distance in the direction of your gaze.
+ent-ActionToggleRootable = Rootable
+    .desc = Begin or stop being rooted to the floor.
+ent-ActionChameleonController = Control clothing
+    .desc = Change your entire outfit fast!
 ent-ActionToggleParamedicSiren = Переключить сирену парамедика
     .desc = Включает или выключает сирену парамедика.

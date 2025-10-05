@@ -1,6 +1,8 @@
 ﻿using Content.Shared.DoAfter;
 using Content.Shared.Hands;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
@@ -18,6 +20,7 @@ public abstract class SharedPseudoItemSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedStorageSystem _storageSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     protected EntityQuery<StorageComponent> StorageQuery;
     public override void Initialize()
@@ -93,17 +96,17 @@ public abstract class SharedPseudoItemSystem : EntitySystem
         if (args.User == args.Target)
             return;
 
-        if (args.Hands?.ActiveHandEntity == null)
+        if (!_handsSystem.TryGetActiveItem((uid, args.Hands), out var item))
             return;
 
-        if (!StorageQuery.HasComponent(args.Hands.ActiveHandEntity))
+        if (!StorageQuery.HasComponent(item))
             return;
 
         AlternativeVerb verb = new()
         {
             Act = () =>
             {
-                StartInsertDoAfter(args.User, uid, args.Hands.ActiveHandEntity.Value, component);
+                StartInsertDoAfter(args.User, uid, item.Value, component);
             },
             Text = Loc.GetString("action-name-insert-other", ("target", args.Target)),
             Priority = 2

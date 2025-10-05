@@ -8,7 +8,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
 
-using Content.Server.Players; // backmen: whitelist
+using Content.Server.Players;
+using Robust.Shared.Random; // backmen: whitelist
 
 namespace Content.Server.Whitelist;
 
@@ -17,7 +18,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     public override string Command => "whitelistadd";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -28,6 +29,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
             shell.WriteLine(Help);
             return;
         }
+        var _whitelistSystem = _entityManager.System<WhitelistSystem>();
 
         var name = string.Join(' ', args).Trim();
         var data = await _locator.LookupIdByNameOrIdAsync(name);
@@ -67,7 +69,7 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public override string Command => "whitelistremove";
 
@@ -79,6 +81,7 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
             shell.WriteLine(Help);
             return;
         }
+        var _whitelistSystem = _entityManager.System<WhitelistSystem>();
 
         var name = string.Join(' ', args).Trim();
         var data = await _locator.LookupIdByNameOrIdAsync(name);
@@ -120,7 +123,7 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public override string Command => "kicknonwhitelisted";
 
@@ -132,6 +135,7 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
             shell.WriteLine(Help);
             return;
         }
+        var _whitelistSystem = _entityManager.System<WhitelistSystem>();
 
         if (!_configManager.GetCVar(CCVars.WhitelistEnabled))
             return;

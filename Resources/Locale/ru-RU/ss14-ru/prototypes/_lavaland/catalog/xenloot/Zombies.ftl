@@ -1,0 +1,15 @@
+ent-BasePacketWithLoot = { ent-BaseItem }
+    .suffix = Loot
+    .desc = { ent-BaseItem.desc }
+ent-HecuMarineLoot = сумка снаряжение хеку
+    .desc = { ent-BasePacketWithLoot.desc }
+ent-ScienceLoot = сумка снаряжение ученого
+    .desc = { ent-BasePacketWithLoot.desc }
+ent-SecurityLoot = сумка снаряжение охраны
+    .desc = { ent-BasePacketWithLoot.desc }
+ent-SecurityRangerLoot = сумка снаряжение охраны
+    .desc = { ent-BasePacketWithLoot.desc }
+ent-SecurityHeavyLoot = сумка снаряжение охраны
+    .desc = { ent-BasePacketWithLoot.desc }
+ent-HEVLoot = сумка снаряжение экспедитора
+    .desc = { ent-BasePacketWithLoot.desc }

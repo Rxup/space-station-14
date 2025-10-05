@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -17,6 +18,9 @@ public sealed partial class HealingComponent : Component
     /// </remarks>
     [DataField(required: true), AutoNetworkedField]
     public DamageSpecifier Damage = default!;
+
+    [DataField("healBleedsThreshold")]
+    public FixedPoint2 UnableToHealBleedsThreshold = 4.5f;
 
     /// <remarks>
     /// This should generally be negative,

@@ -16458,10 +16458,10 @@ entities:
       parent: 60
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Shaft
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Scientific
+      - Service
 - proto: Biogenerator
   entities:
   - uid: 16143
@@ -127299,10 +127299,10 @@ entities:
       parent: 60
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Shaft
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Scientific
+      - Service
 - proto: SeedExtractor
   entities:
   - uid: 149
@@ -140633,10 +140633,10 @@ entities:
       parent: 60
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Shaft
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Scientific
+      - Service
     - type: MaterialStorage
       materialWhiteList:
       - Cloth

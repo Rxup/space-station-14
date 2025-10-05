@@ -229,7 +229,7 @@ public sealed partial class BorgSystem
         for (int i = 0; i < component.Hands; i++)
         {
             var handId2 = $"{uid}-FH{i}";
-            _hands.AddHand(chassis, handId2, HandLocation.Middle, hands);
+            _hands.AddHand((chassis, hands), handId2, HandLocation.Middle);
         }
 
         if (!HasComp<EmaggedComponent>(uid))
@@ -272,7 +272,7 @@ public sealed partial class BorgSystem
         for (int i = 0; i < component.Hands; i++)
         {
             var handId = $"{uid}-FH{i}";
-            _hands.RemoveHand(chassis, handId, hands);
+            _hands.RemoveHand((chassis, hands), handId);
         }
 
         if (!HasComp<EmaggedComponent>(uid))

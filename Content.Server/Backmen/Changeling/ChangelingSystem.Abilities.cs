@@ -11,19 +11,17 @@ using Content.Shared.Popups;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Prototypes;
-using Content.Server.Objectives.Components;
 using Content.Server.Light.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Server.Flash.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
-using Content.Server.Radio.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Changeling;
 using Content.Shared.Backmen.Changeling.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Flash.Components;
 
 namespace Content.Server.Backmen.Changeling;
 
@@ -349,7 +347,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         DoScreech(uid, comp);
 
         var power = comp.ShriekPower;
-        _flash.FlashArea(uid, uid, power, power * 2f * 1000f);
+        _flash.FlashArea(uid, uid, power, TimeSpan.FromSeconds(power * 2f));
 
         var lookup = _lookup.GetEntitiesInRange(uid, power);
         var lights = GetEntityQuery<PoweredLightComponent>();

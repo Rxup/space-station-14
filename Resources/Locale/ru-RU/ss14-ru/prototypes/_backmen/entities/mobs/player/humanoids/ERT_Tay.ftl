@@ -1,0 +1,9 @@
+ent-MobHumanERTLeaderTay39 = Tay - 39 командир ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHumanERTLeaderEVAV2_1.desc }
+ent-MobHumanERTMedicTay39 = Tay - 39 медик ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHumanERTMedicalEVAV2_1.desc }
+ent-MobHumanERTSecurityTay39 = Tay - 39 оперативник ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHumanERTSecurityEVAV2_1.desc }

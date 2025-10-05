@@ -196,5 +196,6 @@ marking-HumanHairLongest2 = Очень длинная (Через глаз)
 marking-HumanHairVeryshortovereyealternate = Очень короткая (Через глаз альт.)
 marking-HumanHairVlongfringe = Очень короткая (Чёлка)
 marking-HumanHairVolaju = Воладзю
+marking-HumanHairLongWithBangs = Длинная с челкой
 marking-HumanHairWisp = Пряди
 marking-HumanHairShavedFemale = Женская с выбритым боком

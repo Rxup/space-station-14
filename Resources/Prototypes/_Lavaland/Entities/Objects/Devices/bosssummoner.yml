@@ -15,11 +15,11 @@
   - type: UseDelay
     delay: 5
   - type: AirDropItem
-    airDropProto: SalvageAncientCommunicatorSummonerBigJohninatorAirDrop
+    airDropProto: SummonerBigJohninatorAirDrop
     lavaLandOnly: true
 
 - type: entity
-  id: SalvageAncientCommunicatorSummonerBigJohninatorAirDrop
+  id: SummonerBigJohninatorAirDrop
   name: Капсула призыва босса BigJohn
   save: false
   categories: [ HideSpawnMenu ]

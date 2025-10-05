@@ -25,3 +25,5 @@ tool-quality-digging-tool-name = Лопата
 # White Dream
 tool-quality-advanced-prying-name = Продвинутое монтирование
 tool-quality-advanced-prying-tool-name = Топор
+tool-quality-brushing-name = Brushing
+tool-quality-brushing-tool-name = Wire Brush

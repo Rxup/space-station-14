@@ -1,0 +1,14 @@
+ent-TriggerSpawnerGutterDroppop = { ent-TriggerSpawnerXEN }
+    .suffix = Marker Random Gutters
+    .desc = { ent-TriggerSpawnerXEN.desc }
+ent-TriggerSpawnerRocketDroppop = { ent-TriggerSpawnerXEN }
+    .suffix = Marker Rocket Area Spawner
+    .desc = { ent-TriggerSpawnerXEN.desc }
+ent-RandomDroppodSpawner = random gutter spawner
+    .desc = { ent-MarkerBase.desc }
+ent-DropPodLauncherGutter = { ent-Baseholypentagram }
+    .desc = { ent-Baseholypentagram.desc }
+ent-RandomGutterSpawner = random gutter spawner
+    .desc = { ent-MarkerBase.desc }
+ent-DropPodLauncherRocket = { ent-DropPodLauncherGutter }
+    .desc = { ent-DropPodLauncherGutter.desc }

@@ -14,6 +14,8 @@ using System.Linq;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Body.Systems;
@@ -255,14 +257,13 @@ public partial class SharedBodySystem
         if (legEnt.Comp.PartType != BodyPartType.Leg)
             return;
 
-        if (!_timing.ApplyingState
-            && partEnt.Comp.IsVital
-            && !GetBodyChildrenOfType(bodyEnt, partEnt.Comp.PartType, bodyEnt.Comp).Any()
-        )
+        bodyEnt.Comp.LegEntities.Remove(legEnt);
+        UpdateMovementSpeed(bodyEnt);
+        Dirty(bodyEnt, bodyEnt.Comp);
+
+        if (!bodyEnt.Comp.LegEntities.Any())
         {
-            // TODO BODY SYSTEM KILL : remove this when wounding and required parts are implemented properly
-            var damage = new DamageSpecifier(Prototypes.Index(BloodlossDamageType), 300);
-            Damageable.TryChangeDamage(bodyEnt, damage);
+            Standing.Down(bodyEnt);
         }
     }
 

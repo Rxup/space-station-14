@@ -15,12 +15,12 @@ public sealed partial class StandingStateComponent : Component
     public StandingState CurrentState { get; set; } = StandingState.Standing;
     // BACKMEN EDIT END
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public SoundSpecifier? DownSound { get; private set; } = new SoundCollectionSpecifier("BodyFall");
-
-    [DataField, AutoNetworkedField]
-    public bool Standing { get; set; } = true;
+    public bool Standing
+    {
+        get => CurrentState == StandingState.Standing;
+        set => CurrentState = value ? StandingState.Standing : StandingState.Lying;
+    }
 
     /// <summary>
     /// Time it takes us to stand up

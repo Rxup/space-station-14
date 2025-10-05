@@ -61,7 +61,7 @@
     prototypes:
       - BoxMagazinePistolCaselessRiflePractice
       - BoxMagazineLightRiflePractice
-      - BoxMagazineMagnumSubMachineGunPractice
+#      - BoxMagazineMagnumSubMachineGunPractice
       - BoxMagazinePistolPractice
       - BoxMagazinePistolHighCapacityPractice
       - BoxMagazinePistolSubMachineGunPractice
@@ -82,7 +82,7 @@
       - BoxMagazinePistolCaselessRifle
       - BoxMagazineLightRifle
       - BoxMagazineLightRifle
-      - BoxMagazineMagnumSubMachineGun
+#      - BoxMagazineMagnumSubMachineGun
       - BoxMagazinePistolSubMachineGunTopMounted
       - BoxMagazinePistol
       - BoxMagazinePistolHighCapacity

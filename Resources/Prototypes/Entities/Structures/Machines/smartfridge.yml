@@ -4,24 +4,6 @@
   name: SmartFridge
   description: A refrigerated storage unit for keeping items cold and fresh.
   components:
-  # Corvax-Next-SmartFridge-Start
-  - type: SmartFridge
-    storageWhitelist:
-      tags:
-      - PillCanister
-      - Meat
-      - Cooked
-      - ChemDispensable
-      - Bottle
-      - Syringe
-  - type: ActivatableUI
-    key: enum.SmartFridgeUiKey.Key
-  - type: ActivatableUIRequiresPower
-  - type: UserInterface
-    interfaces:
-      enum.SmartFridgeUiKey.Key:
-        type: SmartFridgeBoundUserInterface
-  # Corvax-Next-SmartFridge-End
   - type: StationAiWhitelist
   - type: Vocalizer
     hideChat: true
@@ -40,9 +22,6 @@
       map: ["enum.StorageVisualLayers.Door"]
       shader: unshaded
   # Corvax-Next-SmartFridge-Start
-  - type: ApcPowerReceiver
-    powerLoad: 100
-  - type: ExtensionCableReceiver
   - type: LightningTarget
     priority: 1
   # Corvax-Next-SmartFridge-End

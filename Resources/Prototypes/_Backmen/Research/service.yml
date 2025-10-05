@@ -48,6 +48,7 @@
   - DrinkShotGlass
   - DrinkGlassCoupeShaped
   - CustomDrinkJug
+  - WireBrush
   technologyPrerequisites:
   - ServiceMachines
   position: 2,8

@@ -565,7 +565,7 @@ public sealed class EntityEffectSystem : EntitySystem
         }
         else
         {
-            _bloodstream.FlushChemicals(args.Args.TargetEntity, null, cleanseRate);
+            _bloodstream.FlushChemicals(args.Args.TargetEntity, string.Empty, cleanseRate);
         }
     }
 
