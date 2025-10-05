@@ -115,20 +115,32 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
-        // start-backmen: language
-        var plr = Transform(uid).ParentUid;
-        if (TryComp(plr, out ActorComponent? actor))
-        {
-            var msg = args.ChatMsg;
-            if (args.Language != null && args.LanguageObfuscatedChatMsg != null &&
-                !_language.CanUnderstand(plr, args.Language.ID))
-                msg = args.LanguageObfuscatedChatMsg;
+        
+        // TODO: change this when a code refactor is done
+        // this is currently done this way because receiving radio messages on an entity otherwise requires that entity
+        // to have an ActiveRadioComponent
 
-            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
-            _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
+        var parent = Transform(uid).ParentUid;
+
+        if (parent.IsValid())
+        {
+            var relayEvent = new HeadsetRadioReceiveRelayEvent(args);
+            RaiseLocalEvent(parent, ref relayEvent);
         }
 
-        // end-backmen: language
+        if (TryComp(parent, out ActorComponent? actor))
+        {
+            // start-backmen: language
+            var msg = args.ChatMsg;
+            if (args.Language != null 
+                && args.LanguageObfuscatedChatMsg != null 
+                && !_language.CanUnderstand(parent, args.Language.ID))
+                msg = args.LanguageObfuscatedChatMsg;
+            // end-backmen: language
+
+            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
+        }
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)

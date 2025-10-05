@@ -9,8 +9,11 @@
     <GuideEntityEmbed Entity="ParadoxCloneDummy"/>
   </Box>
 
-  A perfect copy of a random crewmember that was thrown into our universe by a space-time anomaly. To fix the paradox and survive they have to find and kill their original counterpart. They have no special abilities, but are have identical appearance, DNA, fingerprints, clothing, equipment and IDs, making it hard to figure out who is the orginal and who is the clone, unless you know your fellow crewmembers well.
+  Идеальная копия случайного члена экипажа, выброшенная в наш мир из-за пространственно-временной аномалии.  
+  Чтобы исправить парадокс и выжить, клону придётся найти и уничтожить своего оригинала.
 
+  Особых способностей у него нет, но внешне, по ДНК, отпечаткам пальцев, одежде, снаряжению и ID он полностью идентичен оригиналу.  
+  Разобраться, кто из них настоящий, а кто подделка — практически невозможно... если только вы не слишком хорошо знаете своих коллег.
   
   # Ревенант
 
@@ -39,7 +42,13 @@
     <GuideEntityEmbed Entity="MobRatKing" Scale="2.4" Caption="The Rat King"/>
   </Box>
 
-  Крысиный король - это гигантская крыса, способная устроить гнездо и создать крыс, которые будут выполнять её приказы (обычно для получения пищи).
+  Крысиные короли — это ненормально огромные грызуны, способные [color=yellow]поднимать целые крысиные армии[/color], если сожрут достаточно еды.  
+  - У вас есть несколько способностей, но все они тратят вашу [bold]сытость.[/bold]  
+  - Одна из них — [color=yellow][italic]Поднять армию[/italic][/color]. Она призывает [bold]Крысиного слугу[/bold]. Вы можете [bold]приказывать[/bold] своим слугам стоять на месте, следовать за вами, нападать на выбранную цель или просто бросаться на всё подряд.  
+  - Используя [color=purple][italic]Владения Крысиного Короля[/italic][/color], вы можете создать облако [color=#77b58e]аммиака[/color]. Этот фиолетовый газ слегка ядовит для людей, но лечит крыс.  
+  - [color=#9daa98][italic]Порывшись[/italic][/color] в мусорке через контекстное меню, можно найти [bold]остатки еды[/bold], чтобы подкормить себя и растить армию.  
+  - Кроме того, [bold]вы сильнее большинства других животных.[/bold] Вы и ваши крысы умеете говорить и достаточно мелкие, чтобы пролезать под шлюзами и столами.  
+  - [bold]Ваши подчинённые всё ещё очень хрупки![/bold] Берегитесь разгерметизаций, взрывов и всяких психов с монтировками.
 
   ## Способности
 
@@ -83,5 +92,5 @@
 
   Slimes and spiders have no remarkable features, but will [color=cyan]infest the station[/color] from time to time regardless. Both will give chase and attack anything they see.
   - Slimes may [bold]deal extra cellular or poison damage[/bold], based upon their color. Water hurts them just as it would hurt a slime person.
-  - Spiders have a venomous bite and can [bold]create webs[/bold] that are hard to move though. Webs are easily destroyed with a blade. They can also pry open doors, windoors, and airlocks.
+  - Spiders have a venomous bite and can [bold]create webs[/bold] that are hard to move through, but are easily destroyed with a blade. They can also pry open doors, windoors, and airlocks.
 </Document>

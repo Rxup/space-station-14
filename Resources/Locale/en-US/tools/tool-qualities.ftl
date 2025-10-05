@@ -38,3 +38,6 @@ tool-quality-digging-tool-name = Shovel
 tool-quality-advanced-prying-name = Advanced Prying
 tool-quality-advanced-prying-tool-name = Axe
 # White Dream
+
+tool-quality-brushing-name = Brushing
+tool-quality-brushing-tool-name = Wire Brush

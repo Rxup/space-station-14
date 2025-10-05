@@ -6,6 +6,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -19,6 +20,7 @@ namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> BloodlossDamageType = "Bloodloss";
     private void InitializeParts()
     {
         // TODO: This doesn't handle comp removal on child ents.
@@ -253,10 +255,15 @@ public partial class SharedBodySystem
         if (legEnt.Comp.PartType != BodyPartType.Leg)
             return;
 
-        bodyEnt.Comp.LegEntities.Remove(legEnt);
-        UpdateMovementSpeed(bodyEnt);
-        Dirty(bodyEnt, bodyEnt.Comp);
-        Standing.Down(bodyEnt);
+        if (!_timing.ApplyingState
+            && partEnt.Comp.IsVital
+            && !GetBodyChildrenOfType(bodyEnt, partEnt.Comp.PartType, bodyEnt.Comp).Any()
+        )
+        {
+            // TODO BODY SYSTEM KILL : remove this when wounding and required parts are implemented properly
+            var damage = new DamageSpecifier(Prototypes.Index(BloodlossDamageType), 300);
+            Damageable.TryChangeDamage(bodyEnt, damage);
+        }
     }
 
     /// <summary>
