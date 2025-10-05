@@ -25,6 +25,7 @@
   - MineralScannerEmpty
   - WeaponPlasmaCutter # Goobstation
   - ClothingMaskWeldingGas
+  - ClothingShoesBootsJump
   position: 10,1
 
 - type: technology
