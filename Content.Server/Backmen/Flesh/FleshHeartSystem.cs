@@ -56,7 +56,6 @@ public sealed class FleshHeartSystem : EntitySystem
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _sharedHuApp = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
@@ -301,7 +300,7 @@ public sealed class FleshHeartSystem : EntitySystem
 
             if (TryComp<AppearanceComponent>(args.Climber, out var appComponent))
             {
-                _sharedAppearance.SetData(args.Climber, DamageVisualizerKeys.Disabled, true, appComponent);
+                _appearance.SetData(args.Climber, DamageVisualizerKeys.Disabled, true, appComponent);
                 _damageableSystem.TryChangeDamage(args.Climber,
                     new DamageSpecifier() { DamageDict = { { "Slash", 100 } } });
             }

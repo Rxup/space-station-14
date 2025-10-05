@@ -1,5 +1,6 @@
 // Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
 
+using System.Linq;
 using Content.Shared.Paper;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -18,6 +19,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Hands.Components;
 using Content.Shared.Database;
 using Content.Server.GameTicking;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.UserInterface;
 using Content.Shared.Power;
 
@@ -35,6 +37,7 @@ public sealed class PhotocopierSystem : EntitySystem
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     private const string PaperSlotId = "Paper";
 
@@ -200,7 +203,7 @@ public sealed class PhotocopierSystem : EntitySystem
             Act = () =>
             {
                 if (EntityManager.TryGetComponent(args.User, out HandsComponent? hands)
-                    && hands.ActiveHandEntity is { } held
+                    && _handsSystem.TryGetHeldItem((uid, hands), hands.ActiveHandId, out var held)
                     && EntityManager.TryGetComponent(held, out TonerCartridgeComponent? toner))
                 {
                     if (component.TonerLeft == component.MaxTonerAmount)

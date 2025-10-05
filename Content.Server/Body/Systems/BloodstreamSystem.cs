@@ -461,7 +461,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
 
         Dirty(uid, component);
     }
-    // backmene dit end
+    // backmen edit end
 
     /// <summary>
     ///     Shows text on health examine, based on bleed rate and blood level.
@@ -499,37 +499,6 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
             args.Message.PushNewline();
             args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-looks-pale", ("target", ent.Owner)));
         }
-    }
-
-    private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref BeingGibbedEvent args)
-    {
-        SpillAllSolutions(ent, ent);
-    }
-
-    private void OnApplyMetabolicMultiplier(
-        Entity<BloodstreamComponent> ent,
-        ref ApplyMetabolicMultiplierEvent args)
-    {
-        // TODO REFACTOR THIS
-        // This will slowly drift over time due to floating point errors.
-        // Instead, raise an event with the base rates and allow modifiers to get applied to it.
-        if (args.Apply)
-        {
-            ent.Comp.UpdateInterval *= args.Multiplier;
-            return;
-        }
-        ent.Comp.UpdateInterval /= args.Multiplier;
-    }
-
-    private void OnRejuvenate(Entity<BloodstreamComponent> entity, ref RejuvenateEvent args)
-    {
-        TryModifyBleedAmount(entity.Owner, -entity.Comp.BleedAmount, entity.Comp);
-
-        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
-            TryModifyBloodLevel(entity.Owner, bloodSolution.AvailableVolume, entity.Comp);
-
-        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.ChemicalSolutionName, ref entity.Comp.ChemicalSolution))
-            _solutionContainerSystem.RemoveAllSolution(entity.Comp.ChemicalSolution.Value);
     }
 
     /// <summary>

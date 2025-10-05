@@ -44,10 +44,10 @@ public sealed class InnateToolSystem : EntitySystem
     public const string DefaultHandPrototype = "LeftHandHuman";
 
 
-    private void AddHand(EntityUid entity, int handCounter, HandsComponent handsComponent)
+    private void AddHand(Entity<HandsComponent?> ent, int handCounter)
     {
-        var handId = $"it-{entity}-item{handCounter}";
-        _sharedHandsSystem.AddHand(entity, handId, HandLocation.Middle, handsComponent);
+        var handId = $"it-{ent.Owner}-item{handCounter}";
+        _sharedHandsSystem.AddHand(ent, handId, HandLocation.Middle);
     }
 
     //end-backmen: fix
@@ -64,7 +64,7 @@ public sealed class InnateToolSystem : EntitySystem
         var hands = EnsureComp<HandsComponent>(uid);
         for (var i = 0; i < component.Tools.Count; i++)
         {
-            AddHand(uid,i,hands);
+            AddHand((uid, hands), i);
         }
         //end-backmen: fix
     }

@@ -210,8 +210,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             // vomit blood
             if (random == 1)
             {
-                if (TryComp<StatusEffectsComponent>(uid, out var status))
-                    _stun.TrySlowdown(uid, TimeSpan.FromSeconds(1.5f), true, 0.5f, 0.5f, status);
+                if (HasComp<StatusEffectsComponent>(uid))
+                    _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(1.5f));
 
                 var solution = new Solution();
 

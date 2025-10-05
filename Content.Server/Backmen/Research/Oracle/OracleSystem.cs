@@ -354,10 +354,10 @@ public sealed class OracleSystem : EntitySystem
         return _random.Pick(GetAllProtos());
     }
 
-    public List<string> GetAllProtos()
+    public List<EntProtoId> GetAllProtos()
     {
         var allTechs = _prototypeManager.EnumeratePrototypes<TechnologyPrototype>();
-        var allRecipes = new List<string>();
+        var allRecipes = new List<EntProtoId>();
 
         foreach (var tech in allTechs)
         {
@@ -365,13 +365,13 @@ public sealed class OracleSystem : EntitySystem
             {
                 var recipeProto = _prototypeManager.Index(recipe);
                 if (recipeProto.Result != null)
-                    allRecipes.Add(recipeProto.Result);
+                    allRecipes.Add(recipeProto.Result.Value);
             }
         }
 
         var allPlants = _prototypeManager.EnumeratePrototypes<SeedPrototype>()
             .Select(x => x.ProductPrototypes[0])
-            .Where( x=>!x.StartsWith("FloorTile"))
+            .Where( x=> !x.Id.StartsWith("FloorTile"))
             .ToList();
         var allProtos = allRecipes.Concat(allPlants).ToList();
         foreach (var proto in BlacklistedProtos)

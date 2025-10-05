@@ -126,7 +126,7 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (!HasComp<ForcedSleepingComponent>(args.Body))
+        if (!HasComp<ForcedSleepingStatusEffectComponent>(args.Body))
             RaiseLocalEvent(args.Body, new MoodEffectEvent("SurgeryPain"));
 
         if (!_inventory.TryGetSlotEntity(args.User, "gloves", out var _)
@@ -688,7 +688,7 @@ public abstract partial class SharedSurgerySystem
             return;
 
         var painToInflict = ent.Comp.Amount;
-        if (HasComp<ForcedSleepingComponent>(args.Body))
+        if (HasComp<ForcedSleepingStatusEffectComponent>(args.Body))
             painToInflict *= ent.Comp.SleepModifier;
 
         if (!_pain.TryChangePainModifier(

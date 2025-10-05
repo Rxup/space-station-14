@@ -1,6 +1,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Radio.Components;
 using Content.Server.Vocalization.Components;
+using Content.Shared.Backmen.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;

@@ -76,7 +76,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
 
             // Sleepy time
             _sleeping.TrySleeping(args.Performer);
-            EnsureComp<ForcedSleepingComponent>(args.Performer);
+            EnsureComp<ForcedSleepingStatusEffectComponent>(args.Performer);
 
             // No waking up normally (it would do nothing)
             //_actions.RemoveAction(args.Performer, new InstantAction(_prototype.Index<InstantActionPrototype>("Wake")));
@@ -96,7 +96,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
             // Wake up
             // Action cooldown
             RemCompDeferred<ShadowkinRestPowerUsedComponent>(args.Performer);
-            RemComp<ForcedSleepingComponent>(args.Performer);
+            RemComp<ForcedSleepingStatusEffectComponent>(args.Performer);
             args.Handled = _sleeping.TryWaking((args.Performer,sleepingComponent), true);
             _actions.SetCooldown(component.ShadowkinRestAction.Value, TimeSpan.FromMinutes(1));
         }

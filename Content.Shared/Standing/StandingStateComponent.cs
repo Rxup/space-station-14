@@ -15,10 +15,6 @@ public sealed partial class StandingStateComponent : Component
     public StandingState CurrentState { get; set; } = StandingState.Standing;
     // BACKMEN EDIT END
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField]
-    public SoundSpecifier? DownSound { get; private set; } = new SoundCollectionSpecifier("BodyFall");
-
     [DataField, AutoNetworkedField]
     public bool Standing { get; set; } = true;
 

@@ -35,7 +35,7 @@ public sealed class AddBodyPartCommand : LocalizedEntityCommands
 
         if (Enum.TryParse<BodyPartType>(args[3], out var partType)
             && Enum.TryParse<BodyPartSymmetry>(args[4], out var symmetry) // backmen edit: part symmetry
-            && bodySystem.TryCreatePartSlotAndAttach(parentId, args[2], childId, partType, symmetry))
+            && _bodySystem.TryCreatePartSlotAndAttach(parentId.Value, args[2], childId.Value, partType, symmetry))
         {
             shell.WriteLine($@"Added {childId} to {parentId}.");
         }

@@ -2,16 +2,12 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Language;
-using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Flash.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.Popups;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Temperature.Components;
 using Content.Server.Weapons.Ranged.Systems;
@@ -28,6 +24,7 @@ using Content.Shared.Backmen.Flesh;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning.Events;
+using Content.Shared.Flash.Components;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Hands.Components;
@@ -65,7 +62,6 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _sharedHuApp = default!;
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -75,7 +71,6 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
@@ -117,8 +112,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (!TryComp<HumanoidAppearanceComponent>(args.CloneUid, out var huAppComponent))
             return;
 
-        var speciesProto = _prototype.Index(huAppComponent.Species);
-        var skeletonSprites = _prototype.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
+        var speciesProto = _proto.Index(huAppComponent.Species);
+        var skeletonSprites = _proto.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
         foreach (var (key, id) in skeletonSprites.Sprites)
         {
             _sharedHuApp.SetBaseLayerId(args.CloneUid, key, id, humanoid: huAppComponent);
@@ -133,26 +128,23 @@ public sealed partial class FleshCultistSystem : EntitySystem
             case MobState.Critical:
             {
                 EnsureComp<CuffableComponent>(uid);
-                var hands = _handsSystem.EnumerateHands(uid);
-                var enumerateHands = hands as Hand[] ?? hands.ToArray();
-                foreach (var enumerateHand in enumerateHands)
+                var hands = _handsSystem.EnumerateHands(uid).ToArray();
+                foreach (var enumerateHand in hands)
                 {
-                    if (enumerateHand.Container == null)
+                    if (_handsSystem.TryGetHeldItem(uid, enumerateHand, out var item))
                         continue;
-                    foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
-                    {
-                        if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
-                            continue;
-                        if (metaData.EntityPrototype == null)
-                            continue;
-                        if (metaData.EntityPrototype.ID != component.BladeSpawnId &&
-                            metaData.EntityPrototype.ID != component.ClawSpawnId &&
-                            metaData.EntityPrototype.ID != component.SpikeHandGunSpawnId &&
-                            metaData.EntityPrototype.ID != component.FistSpawnId)
-                            continue;
-                        QueueDel(containerContainedEntity);
-                        _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                    }
+
+                    if (!TryComp(item, out MetaDataComponent? metaData))
+                        continue;
+                    if (metaData.EntityPrototype == null)
+                        continue;
+                    if (metaData.EntityPrototype.ID != component.BladeSpawnId &&
+                        metaData.EntityPrototype.ID != component.ClawSpawnId &&
+                        metaData.EntityPrototype.ID != component.SpikeHandGunSpawnId &&
+                        metaData.EntityPrototype.ID != component.FistSpawnId)
+                        continue;
+                    QueueDel(item);
+                    _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                 }
 
                 break;
@@ -170,7 +162,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             {
                                 EntityManager.DeleteEntity(shoes.Value);
                                 _movement.RefreshMovementSpeedModifiers(uid);
-                                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                                _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                             }
                         }
                     }
@@ -187,7 +179,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             {
                                 EntityManager.DeleteEntity(outerClothing.Value);
                                 _movement.RefreshMovementSpeedModifiers(uid);
-                                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                                _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                             }
                         }
                     }
@@ -489,14 +481,14 @@ public sealed partial class FleshCultistSystem : EntitySystem
             QueueDel(args.Args.Target.Value);
         }
 
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
+        if (_solution.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
             var transferSolution = new Solution();
             foreach (var reagent in component.HealDevourReagents)
             {
                 transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * healPoint);
             }
-            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
+            _solution.TryAddSolution(injectableSolution.Value, transferSolution);
         }
 
         component.Hunger += saturation;
@@ -673,7 +665,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         foreach (var (puddle, solution) in puddles)
         {
-            if (!_solutionSystem.TryGetSolution(puddle, solution, out _, out var puddleSolution))
+            if (!_solution.TryGetSolution(puddle, solution, out _, out var puddleSolution))
             {
                 continue;
             }
@@ -703,7 +695,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             return;
         }
 
-        _audioSystem.PlayPvs(component.BloodAbsorbSound, uid, component.BloodAbsorbSound.Params);
+        _audio.PlayPvs(component.BloodAbsorbSound, uid, component.BloodAbsorbSound.Params);
         _popup.PopupEntity(Loc.GetString("flesh-cultist-absorb-puddle", ("Entity", uid)),
             uid, uid, PopupType.Large);
 
@@ -712,9 +704,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * (totalBloodQuantity / 10));
         }
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
+        if (_solution.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
-            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
+            _solution.TryAddSolution(injectableSolution.Value, transferSolution);
         }
         args.Handled = true;
     }

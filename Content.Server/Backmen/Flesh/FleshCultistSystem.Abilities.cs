@@ -34,16 +34,13 @@ namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshCultistSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly CuffableSystem _cuffable = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _sharedTransform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
 
     private void InitializeAbilities()
     {
@@ -55,7 +52,8 @@ public sealed partial class FleshCultistSystem
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistSpiderLegsActionEvent>(OnSpiderLegsActionEvent);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistBreakCuffsActionEvent>(OnBreakCuffsActionEvent);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistAdrenalinActionEvent>(OnAdrenalinActionEvent);
-        SubscribeLocalEvent<FleshCultistComponent, FleshCultistCreateFleshHeartActionEvent>(OnCreateFleshHeartActionEvent);
+        SubscribeLocalEvent<FleshCultistComponent, FleshCultistCreateFleshHeartActionEvent>(
+            OnCreateFleshHeartActionEvent);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistThrowWormActionEvent>(OnThrowWorm);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistAcidSpitActionEvent>(OnAcidSpit);
     }
@@ -70,84 +68,91 @@ public sealed partial class FleshCultistSystem
         var xform = Transform(uid);
         var acidBullet = Spawn(component.BulletAcidSpawnId, xform.Coordinates);
 
-        var mapCoords = _sharedTransform.ToMapCoordinates(args.Target);
-        var direction = mapCoords.Position - _sharedTransform.GetMapCoordinates(xform).Position;
+        var mapCoords = _transformSystem.ToMapCoordinates(args.Target);
+        var direction = mapCoords.Position - _transformSystem.GetMapCoordinates(xform).Position;
         var userVelocity = _physics.GetMapLinearVelocity(uid);
 
         _gunSystem.ShootProjectile(acidBullet, direction, userVelocity, uid, uid);
-        _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+        _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
     }
 
     private void OnBladeActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistBladeActionEvent args)
     {
         if (args.Handled)
             return;
-        var hands = _handsSystem.EnumerateHands(uid);
-        var enumerateHands = hands as Hand[] ?? hands.ToArray();
-        foreach (var enumerateHand in enumerateHands)
+        var hands = _handsSystem.EnumerateHands(uid).ToArray();
+        foreach (var hand in hands)
         {
-            if (enumerateHand.Container == null)
+            var containerContainedEntity = _handsSystem.GetHeldItem(uid, hand);
+
+            if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
                 continue;
-            foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
+            if (metaData.EntityPrototype == null)
+                continue;
+            if (!(metaData.EntityPrototype.ID == component.BladeSpawnId ||
+                  metaData.EntityPrototype.ID == component.ClawSpawnId ||
+                  metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId ||
+                  metaData.EntityPrototype.ID == component.FistSpawnId))
             {
-                if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
+                if (hand != hands.First())
                     continue;
-                if (metaData.EntityPrototype == null)
+                var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
+                if (metaData.EntityPrototype.ID == component.BladeSpawnId)
                     continue;
-                if (!(metaData.EntityPrototype.ID == component.BladeSpawnId ||
-                      metaData.EntityPrototype.ID == component.ClawSpawnId ||
-                      metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId ||
-                      metaData.EntityPrototype.ID == component.FistSpawnId))
+                if (isDrop)
+                    continue;
+                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
+                    uid,
+                    uid,
+                    PopupType.Large);
+                return;
+            }
+
+            {
+                if (hand != hands.First())
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (metaData.EntityPrototype.ID != component.BladeSpawnId)
                         continue;
-                    var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
-                    if (metaData.EntityPrototype.ID == component.BladeSpawnId)
-                        continue;
-                    if (isDrop)
-                        continue;
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                        uid, uid, PopupType.Large);
-                    return;
+                    QueueDel(containerContainedEntity);
                 }
+                else
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (metaData.EntityPrototype.ID != component.BladeSpawnId)
                     {
-                        if (metaData.EntityPrototype.ID != component.BladeSpawnId)
-                            continue;
-                        QueueDel(containerContainedEntity);
+                        _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
+                            uid,
+                            uid,
+                            PopupType.Large);
                     }
                     else
                     {
-                        if (metaData.EntityPrototype.ID != component.BladeSpawnId)
-                        {
-                            _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                                uid, uid, PopupType.Large);
-                        }
-                        else
-                        {
-                            QueueDel(containerContainedEntity);
-                            _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-blade-in-hand",
-                                ("Entity", uid)), uid, PopupType.LargeCaution);
-                            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                            EnsureComp<CuffableComponent>(uid);
-                            args.Handled = true;
-                        }
-
-                        return;
+                        QueueDel(containerContainedEntity);
+                        _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-blade-in-hand",
+                                ("Entity", uid)),
+                            uid,
+                            PopupType.LargeCaution);
+                        _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                        EnsureComp<CuffableComponent>(uid);
+                        args.Handled = true;
                     }
+
+                    return;
                 }
             }
         }
 
         var blade = Spawn(component.BladeSpawnId, Transform(uid).Coordinates);
-        var isPickup = _handsSystem.TryPickup(uid, blade, checkActionBlocker: false,
-            animateUser: false, animate: false);
+        var isPickup = _handsSystem.TryPickup(uid,
+            blade,
+            checkActionBlocker: false,
+            animateUser: false,
+            animate: false);
         if (isPickup)
         {
-            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+            _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-hand-in-blade", ("Entity", uid)),
-                uid, PopupType.LargeCaution);
+                uid,
+                PopupType.LargeCaution);
             if (TryComp<CuffableComponent>(uid, out var cuffableComponent))
             {
                 RemComp<CuffableComponent>(uid);
@@ -158,6 +163,7 @@ public sealed partial class FleshCultistSystem
             Log.Error("Failed to equip blade to hand, removing blade");
             QueueDel(blade);
         }
+
         args.Handled = true;
     }
 
@@ -166,71 +172,79 @@ public sealed partial class FleshCultistSystem
         if (args.Handled)
             return;
 
-        var hands = _handsSystem.EnumerateHands(uid);
-        var enumerateHands = hands as Hand[] ?? hands.ToArray();
-        foreach (var enumerateHand in enumerateHands)
+        var hands = _handsSystem.EnumerateHands(uid).ToArray();
+        foreach (var hand in hands)
         {
-            if (enumerateHand.Container == null)
+            var containerContainedEntity = _handsSystem.GetHeldItem(uid, hand);
+
+            if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
                 continue;
-            foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
+            if (metaData.EntityPrototype == null)
+                continue;
+            if (!(metaData.EntityPrototype.ID == component.BladeSpawnId ||
+                  metaData.EntityPrototype.ID == component.ClawSpawnId ||
+                  metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId ||
+                  metaData.EntityPrototype.ID == component.FistSpawnId))
             {
-                if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
+                if (hand != hands.First())
                     continue;
-                if (metaData.EntityPrototype == null)
+                var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
+                if (metaData.EntityPrototype.ID == component.ClawSpawnId)
                     continue;
-                if (!(metaData.EntityPrototype.ID == component.BladeSpawnId ||
-                      metaData.EntityPrototype.ID == component.ClawSpawnId ||
-                      metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId ||
-                      metaData.EntityPrototype.ID == component.FistSpawnId))
+                if (isDrop)
+                    continue;
+                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
+                    uid,
+                    uid,
+                    PopupType.Large);
+                return;
+            }
+
+            {
+                if (hand != hands.First())
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (metaData.EntityPrototype.ID != component.ClawSpawnId)
                         continue;
-                    var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
-                    if (metaData.EntityPrototype.ID == component.ClawSpawnId)
-                        continue;
-                    if (isDrop)
-                        continue;
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                        uid, uid, PopupType.Large);
-                    return;
+                    QueueDel(containerContainedEntity);
                 }
+                else
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (metaData.EntityPrototype.ID != component.ClawSpawnId)
                     {
-                        if (metaData.EntityPrototype.ID != component.ClawSpawnId)
-                            continue;
-                        QueueDel(containerContainedEntity);
+                        _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
+                            uid,
+                            uid,
+                            PopupType.Large);
                     }
                     else
                     {
-                        if (metaData.EntityPrototype.ID != component.ClawSpawnId)
-                        {
-                            _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                                uid, uid, PopupType.Large);
-                        }
-                        else
-                        {
-                            QueueDel(containerContainedEntity);
-                            _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-claw-in-hand",
-                                ("Entity", uid)), uid, PopupType.LargeCaution);
-                            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                            EnsureComp<CuffableComponent>(uid);
-                            args.Handled = true;
-                        }
-                        return;
+                        QueueDel(containerContainedEntity);
+                        _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-claw-in-hand",
+                                ("Entity", uid)),
+                            uid,
+                            PopupType.LargeCaution);
+                        _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                        EnsureComp<CuffableComponent>(uid);
+                        args.Handled = true;
                     }
+
+                    return;
                 }
             }
         }
 
         var claw = Spawn(component.ClawSpawnId, Transform(uid).Coordinates);
-        var isPickup = _handsSystem.TryPickup(uid, claw, checkActionBlocker: false,
-            animateUser: false, animate: false);
+        var isPickup = _handsSystem.TryPickup(uid,
+            claw,
+            checkActionBlocker: false,
+            animateUser: false,
+            animate: false);
         if (isPickup)
         {
-            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+            _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-hand-in-claw", ("Entity", uid)),
-                uid, PopupType.LargeCaution);
+                uid,
+                PopupType.LargeCaution);
             if (TryComp<CuffableComponent>(uid, out var cuffableComponent))
             {
                 RemComp<CuffableComponent>(uid);
@@ -240,6 +254,7 @@ public sealed partial class FleshCultistSystem
         {
             QueueDel(claw);
         }
+
         args.Handled = true;
     }
 
@@ -249,13 +264,10 @@ public sealed partial class FleshCultistSystem
         if (args.Handled)
             return;
 
-        var hands = _handsSystem.EnumerateHands(uid);
-        var enumerateHands = hands as Hand[] ?? hands.ToArray();
-        foreach (var enumerateHand in enumerateHands)
+        var hands = _handsSystem.EnumerateHands(uid).ToArray();
+        foreach (var hand in hands)
         {
-            if (enumerateHand.Container == null)
-                continue;
-            foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
+            var containerContainedEntity = _handsSystem.GetHeldItem(uid, hand);
             {
                 if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
                     continue;
@@ -266,7 +278,7 @@ public sealed partial class FleshCultistSystem
                       metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId ||
                       metaData.EntityPrototype.ID == component.FistSpawnId))
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (hand != hands.First())
                         continue;
                     var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
                     if (metaData.EntityPrototype.ID == component.FistSpawnId)
@@ -274,11 +286,14 @@ public sealed partial class FleshCultistSystem
                     if (isDrop)
                         continue;
                     _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                        uid, uid, PopupType.Large);
+                        uid,
+                        uid,
+                        PopupType.Large);
                     return;
                 }
+
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (hand != hands.First())
                     {
                         if (metaData.EntityPrototype.ID != component.FistSpawnId)
                             continue;
@@ -289,17 +304,22 @@ public sealed partial class FleshCultistSystem
                         if (metaData.EntityPrototype.ID != component.FistSpawnId)
                         {
                             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                                uid, uid, PopupType.Large);
+                                uid,
+                                uid,
+                                PopupType.Large);
                         }
                         else
                         {
                             QueueDel(containerContainedEntity);
                             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-claw-in-hand",
-                                ("Entity", uid)), uid, PopupType.LargeCaution);
-                            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                                    ("Entity", uid)),
+                                uid,
+                                PopupType.LargeCaution);
+                            _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                             EnsureComp<CuffableComponent>(uid);
                             args.Handled = true;
                         }
+
                         return;
                     }
                 }
@@ -307,13 +327,17 @@ public sealed partial class FleshCultistSystem
         }
 
         var fist = Spawn(component.FistSpawnId, Transform(uid).Coordinates);
-        var isPickup = _handsSystem.TryPickup(uid, fist, checkActionBlocker: false,
-            animateUser: false, animate: false);
+        var isPickup = _handsSystem.TryPickup(uid,
+            fist,
+            checkActionBlocker: false,
+            animateUser: false,
+            animate: false);
         if (isPickup)
         {
-            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+            _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-hand-in-claw", ("Entity", uid)),
-                uid, PopupType.LargeCaution);
+                uid,
+                PopupType.LargeCaution);
             if (TryComp<CuffableComponent>(uid, out var cuffableComponent))
             {
                 EntityManager.RemoveComponent<CuffableComponent>(uid);
@@ -323,21 +347,21 @@ public sealed partial class FleshCultistSystem
         {
             QueueDel(fist);
         }
+
         args.Handled = true;
     }
 
-    private void OnSpikeHandGunActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistSpikeHandGunActionEvent args)
+    private void OnSpikeHandGunActionEvent(EntityUid uid,
+        FleshCultistComponent component,
+        FleshCultistSpikeHandGunActionEvent args)
     {
         if (args.Handled)
             return;
 
-        var hands = _handsSystem.EnumerateHands(uid);
-        var enumerateHands = hands as Hand[] ?? hands.ToArray();
-        foreach (var enumerateHand in enumerateHands)
+        var hands = _handsSystem.EnumerateHands(uid).ToArray();
+        foreach (var hand in hands)
         {
-            if (enumerateHand.Container == null)
-                continue;
-            foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
+            var containerContainedEntity = _handsSystem.GetHeldItem(uid, hand);
             {
                 if (!TryComp(containerContainedEntity, out MetaDataComponent? metaData))
                     continue;
@@ -348,7 +372,7 @@ public sealed partial class FleshCultistSystem
                       metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId ||
                       metaData.EntityPrototype.ID == component.FistSpawnId))
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (hand != hands.First())
                         continue;
                     var isDrop = _handsSystem.TryDrop(uid, checkActionBlocker: false);
                     if (metaData.EntityPrototype.ID == component.SpikeHandGunSpawnId)
@@ -356,11 +380,14 @@ public sealed partial class FleshCultistSystem
                     if (isDrop)
                         continue;
                     _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                        uid, uid, PopupType.Large);
+                        uid,
+                        uid,
+                        PopupType.Large);
                     return;
                 }
+
                 {
-                    if (enumerateHand != enumerateHands.First())
+                    if (hand != hands.First())
                     {
                         if (metaData.EntityPrototype.ID != component.SpikeHandGunSpawnId)
                             continue;
@@ -371,17 +398,22 @@ public sealed partial class FleshCultistSystem
                         if (metaData.EntityPrototype.ID != component.SpikeHandGunSpawnId)
                         {
                             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-user-hand-blocked"),
-                                uid, uid, PopupType.Large);
+                                uid,
+                                uid,
+                                PopupType.Large);
                         }
                         else
                         {
                             QueueDel(containerContainedEntity);
                             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-spike-gun-in-hand",
-                                ("Entity", uid)), uid, PopupType.LargeCaution);
-                            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                                    ("Entity", uid)),
+                                uid,
+                                PopupType.LargeCaution);
+                            _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                             EnsureComp<CuffableComponent>(uid);
                             args.Handled = true;
                         }
+
                         return;
                     }
                 }
@@ -389,13 +421,17 @@ public sealed partial class FleshCultistSystem
         }
 
         var claw = Spawn(component.SpikeHandGunSpawnId, Transform(uid).Coordinates);
-        var isPickup = _handsSystem.TryPickup(uid, claw, checkActionBlocker: false,
-            animateUser: false, animate: false);
+        var isPickup = _handsSystem.TryPickup(uid,
+            claw,
+            checkActionBlocker: false,
+            animateUser: false,
+            animate: false);
         if (isPickup)
         {
-            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+            _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
             _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-hand-in-spike-gun", ("Entity", uid)),
-                uid, PopupType.LargeCaution);
+                uid,
+                PopupType.LargeCaution);
             if (TryComp<CuffableComponent>(uid, out var cuffableComponent))
             {
                 RemComp<CuffableComponent>(uid);
@@ -405,6 +441,7 @@ public sealed partial class FleshCultistSystem
         {
             QueueDel(claw);
         }
+
         args.Handled = true;
     }
 
@@ -421,10 +458,13 @@ public sealed partial class FleshCultistSystem
             if (metaData.EntityPrototype.ID == component.SpiderLegsSpawnId)
             {
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-armor-blocked"),
-                    uid, uid, PopupType.Large);
+                    uid,
+                    uid,
+                    PopupType.Large);
                 return;
             }
         }
+
         if (outerClothing != null)
         {
             if (!TryComp(outerClothing, out MetaDataComponent? metaData))
@@ -442,17 +482,21 @@ public sealed partial class FleshCultistSystem
                 }
                 else
                 {
-                    _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                    _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                     _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-armor-on",
-                        ("Entity", uid)), uid, PopupType.LargeCaution);
+                            ("Entity", uid)),
+                        uid,
+                        PopupType.LargeCaution);
                     args.Handled = true;
                 }
             }
             else
             {
-                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-armor-off",
-                    ("Entity", uid)), uid, PopupType.LargeCaution);
+                        ("Entity", uid)),
+                    uid,
+                    PopupType.LargeCaution);
                 EntityManager.DeleteEntity(outerClothing.Value);
                 _movement.RefreshMovementSpeedModifiers(uid);
                 args.Handled = true;
@@ -468,15 +512,19 @@ public sealed partial class FleshCultistSystem
             }
             else
             {
-                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-armor-on",
-                        ("Entity", uid)), uid, PopupType.LargeCaution);
+                        ("Entity", uid)),
+                    uid,
+                    PopupType.LargeCaution);
                 args.Handled = true;
             }
         }
     }
 
-    private void OnSpiderLegsActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistSpiderLegsActionEvent args)
+    private void OnSpiderLegsActionEvent(EntityUid uid,
+        FleshCultistComponent component,
+        FleshCultistSpiderLegsActionEvent args)
     {
         _inventory.TryGetSlotEntity(uid, "shoes", out var shoes);
         _inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing);
@@ -489,10 +537,13 @@ public sealed partial class FleshCultistSystem
             if (metaData.EntityPrototype.ID == component.ArmorSpawnId)
             {
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-spider-legs-blocked"),
-                    uid, uid, PopupType.Large);
+                    uid,
+                    uid,
+                    PopupType.Large);
                 return;
             }
         }
+
         if (shoes != null)
         {
             if (!TryComp(shoes, out MetaDataComponent? metaData))
@@ -511,17 +562,21 @@ public sealed partial class FleshCultistSystem
                 }
                 else
                 {
-                    _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                    _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                     _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-spider-legs-on",
-                        ("Entity", uid)), uid, PopupType.LargeCaution);
+                            ("Entity", uid)),
+                        uid,
+                        PopupType.LargeCaution);
                     args.Handled = true;
                 }
             }
             else
             {
-                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-spider-legs-off",
-                    ("Entity", uid)), uid, PopupType.LargeCaution);
+                        ("Entity", uid)),
+                    uid,
+                    PopupType.LargeCaution);
                 EntityManager.DeleteEntity(shoes.Value);
                 _movement.RefreshMovementSpeedModifiers(uid);
                 args.Handled = true;
@@ -538,15 +593,19 @@ public sealed partial class FleshCultistSystem
             }
             else
             {
-                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+                _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-spider-legs-on",
-                    ("Entity", uid)), uid, PopupType.LargeCaution);
+                        ("Entity", uid)),
+                    uid,
+                    PopupType.LargeCaution);
                 args.Handled = true;
             }
         }
     }
 
-    private void OnBreakCuffsActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistBreakCuffsActionEvent args)
+    private void OnBreakCuffsActionEvent(EntityUid uid,
+        FleshCultistComponent component,
+        FleshCultistBreakCuffsActionEvent args)
     {
         if (!TryComp<CuffableComponent>(uid, out var cuffs) || cuffs.Container.ContainedEntities.Count < 1)
             return;
@@ -555,27 +614,32 @@ public sealed partial class FleshCultistSystem
         args.Handled = true;
     }
 
-    private void OnAdrenalinActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistAdrenalinActionEvent args)
+    private void OnAdrenalinActionEvent(EntityUid uid,
+        FleshCultistComponent component,
+        FleshCultistAdrenalinActionEvent args)
     {
-        if (!_solutionContainerSystem.TryGetInjectableSolution(uid, out var soln, out var injectableSolution))
+        if (!_solution.TryGetInjectableSolution(uid, out var soln, out var injectableSolution))
             return;
         var transferSolution = new Solution();
         foreach (var reagent in component.AdrenalinReagents)
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity);
         }
-        _solutionContainerSystem.TryAddSolution(soln.Value, transferSolution);
+
+        _solution.TryAddSolution(soln.Value, transferSolution);
         args.Handled = true;
     }
 
-    private void OnCreateFleshHeartActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistCreateFleshHeartActionEvent args)
+    private void OnCreateFleshHeartActionEvent(EntityUid uid,
+        FleshCultistComponent component,
+        FleshCultistCreateFleshHeartActionEvent args)
     {
         var xform = Transform(uid);
         var radius = 1.5f;
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart",
-                ("Entity", uid)),
+                    ("Entity", uid)),
                 uid,
                 PopupType.Large);
             return;
@@ -584,10 +648,11 @@ public sealed partial class FleshCultistSystem
         var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
         var isCargo = HasComp<CargoShuttleComponent>(xform.GridUid.Value) ||
                       HasComp<SalvageShuttleComponent>(xform.GridUid.Value);
-        if (station == null || !HasComp<StationEventEligibleComponent>(station) || isCargo || !HasComp<BecomesStationComponent>(xform.GridUid.Value))
+        if (station == null || !HasComp<StationEventEligibleComponent>(station) || isCargo ||
+            !HasComp<BecomesStationComponent>(xform.GridUid.Value))
         {
             _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart",
-                ("Entity", uid)),
+                    ("Entity", uid)),
                 uid,
                 PopupType.Large);
             return;
@@ -595,31 +660,36 @@ public sealed partial class FleshCultistSystem
 
         var offsetValue = xform.LocalRotation.ToWorldVec();
         var targetCord = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager);
-        var tilerefs = new Box2(targetCord.Position + new Vector2(-radius, -radius), targetCord.Position + new Vector2(radius, radius));
+        var tilerefs = new Box2(targetCord.Position + new Vector2(-radius, -radius),
+            targetCord.Position + new Vector2(radius, radius));
 
-        foreach (var entity in _lookupSystem.GetEntitiesIntersecting(xform.GridUid.Value, tilerefs, LookupFlags.Uncontained))
+        foreach (var entity in _lookup.GetEntitiesIntersecting(xform.GridUid.Value,
+                     tilerefs,
+                     LookupFlags.Uncontained))
         {
-            if(entity == uid)
+            if (entity == uid)
                 continue;
 
-            if(HasComp<SubFloorHideComponent>(entity))
+            if (HasComp<SubFloorHideComponent>(entity))
                 continue;
 
-            if(HasComp<WarpPointComponent>(entity))
+            if (HasComp<WarpPointComponent>(entity))
                 continue;
 
             if (HasComp<MobStateComponent>(entity) || // Is it a mob?
-                !TryComp<PhysicsComponent>(entity, out var physics) || (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0 ||
+                !TryComp<PhysicsComponent>(entity, out var physics) ||
+                (physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0 ||
                 HasComp<ConstructionComponent>(entity)) // Is construction?
             {
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart-here",
-                    ("Entity", entity)),
+                        ("Entity", entity)),
                     uid,
                     PopupType.Large);
                 return;
             }
         }
-        _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
+
+        _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
         Spawn(component.FleshHeartId, targetCord);
         args.Handled = true;
     }
@@ -634,12 +704,17 @@ public sealed partial class FleshCultistSystem
         _handsSystem.TryPickup(uid, worm, checkActionBlocker: false, animateUser: false, animate: false);
         if (component.SoundThrowWorm != null)
         {
-            _audioSystem.PlayPvs(component.SoundThrowWorm, uid, component.SoundThrowWorm.Params);
+            _audio.PlayPvs(component.SoundThrowWorm, uid, component.SoundThrowWorm.Params);
         }
-        _popup.PopupEntity(Loc.GetString("flesh-cultist-throw-worm"), uid, uid,
+
+        _popup.PopupEntity(Loc.GetString("flesh-cultist-throw-worm"),
+            uid,
+            uid,
             PopupType.LargeCaution);
         _popup.PopupEntity(Loc.GetString("flesh-cultist-throw-worm-others", ("Entity", uid)),
-            uid, Filter.PvsExcept(uid), true, PopupType.LargeCaution);
+            uid,
+            Filter.PvsExcept(uid),
+            true,
+            PopupType.LargeCaution);
     }
-
 }

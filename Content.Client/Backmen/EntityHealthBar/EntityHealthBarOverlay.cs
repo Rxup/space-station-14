@@ -198,7 +198,7 @@ public sealed class BkmEntityHealthBarOverlay : Overlay
         if (!crit)
         {
             var hue = (5f / 18f) * progress;
-            return Color.FromHsv((hue, 1f, 0.75f, 1f));
+            return Color.FromHsv(new Vector4(hue, 1f, 0.75f, 1f));
         }
         else
         {
