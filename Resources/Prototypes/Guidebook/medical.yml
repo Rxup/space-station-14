@@ -57,24 +57,24 @@
   name: guide-entry-surgery
   text: "/ServerInfo/Guidebook/Medical/Surgery.xml"
   children:
-  - Part Manipulation
-  - Organ Manipulation
-  - Utility Surgeries
+  - Part_Manipulation
+  - Organ_Manipulation
+  - Utility_Surgeries
 
 - type: guideEntry
-  id: Part Manipulation
+  id: Part_Manipulation
   name: guide-entry-partmanipulation
   text: "/ServerInfo/Guidebook/Medical/PartManipulation.xml"
   filterEnabled: true
 
 - type: guideEntry
-  id: Organ Manipulation
+  id: Organ_Manipulation
   name: guide-entry-organmanipulation
   text: "/ServerInfo/Guidebook/Medical/OrganManipulation.xml"
   filterEnabled: true
 
 - type: guideEntry
-  id: Utility Surgeries
+  id: Utility_Surgeries
   name: guide-entry-utilitysurgeries
   text: "/ServerInfo/Guidebook/Medical/UtilitySurgeries.xml"
   filterEnabled: true

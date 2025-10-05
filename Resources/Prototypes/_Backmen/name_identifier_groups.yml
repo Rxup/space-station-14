@@ -1,20 +1,20 @@
 ﻿- type: nameIdentifierGroup
   id: Drone
-  prefix: ДР
+  format: name-identifier-format-drone
   fullName: true
   minValue: 10000
   maxValue: 99999
 
 - type: nameIdentifierGroup
   id: BSSDroneMED
-  prefix: МЕД
+  format: name-identifier-format-bpla-med
   fullName: true
   minValue: 10000
   maxValue: 99999
 
 - type: nameIdentifierGroup
   id: BSSDrone
-  prefix: ИНЖ
+  format: name-identifier-format-bpla
   fullName: true
   minValue: 10000
   maxValue: 99999

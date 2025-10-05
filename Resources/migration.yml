@@ -16,11 +16,6 @@ ClothingBackpackBrigmedicFilled: null
 
 
 # 2023-05-04
-BoxMagazineMagnumSubMachineGun: BoxMagazinePistolSubMachineGun
-BoxMagazineMagnumSubMachineGunPractice: BoxMagazinePistolSubMachineGunPractice
-
-MagazineMagnumSubMachineGun: MagazinePistolSubMachineGun
-MagazineMagnumSubMachineGunPractice: MagazinePistolSubMachineGunPractice
 WeaponSubMachineGunVector: WeaponSubMachineGunDrozd
 
 MagazineBoxAntiMaterial: MagazineBoxAntiMateriel
@@ -755,7 +750,6 @@ MagazineLightRifleEmpty: null
 MagazineLightRiflePractice: MagazineRifleLight762x39
 MagazineLightRifleUranium: MagazineRifleLight762x39
 MagazineLightRifleIncendiary: MagazineRifleLight762x39Incendiary
-MagazineLightRiflePkBox: MagazineLightMachineGun762x39
 CartridgeRifle: CartridgeRifleLight556UEG
 CartridgeRiflePractice: CartridgeRifleLight556UEG
 CartridgeRifleIncendiary: CartridgeRifleLight556UEGIncendiary

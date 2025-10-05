@@ -127,7 +127,7 @@
 
 - type: nameIdentifierGroup
   id: Xeno
-  prefix: X
+  format: name-identifier-format-xeno
   minValue: 333
   maxValue: 999
 

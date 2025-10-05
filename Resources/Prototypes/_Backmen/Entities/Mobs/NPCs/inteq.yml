@@ -26,8 +26,8 @@
     - InteQAgentNamesPrefix
     - NameSpets
     nameFormat: name-format-standard
-  - type: Advertise
-    pack: InteQAgent
+  - type: DatasetVocalizer
+    dataset: InteQAgent
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - TauCetiBasic

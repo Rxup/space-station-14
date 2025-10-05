@@ -8,3 +8,10 @@ name-identifier-format-positronic-brain = ПМ-{$number}
 name-identifier-format-silicon = КР-{$number}
 name-identifier-format-station-ai = ИИ-{$number}
 name-identifier-format-telepad = ТЕЛЕ-{$number}
+name-identifier-format-xeno = X-{$number}
+name-identifier-format-drone = БПЛА-{$number}
+name-identifier-format-bpla-med = МЕД-{$number}
+name-identifier-format-bpla = ИНЖ-{$number}
+
+
+

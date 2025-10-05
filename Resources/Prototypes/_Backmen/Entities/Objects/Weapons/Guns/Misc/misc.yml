@@ -143,9 +143,9 @@
   - type: Sprite
     drawdepth: Effects
     sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
-    shader: unshaded
     layers:
     - state: tesla_projectile
+      shader: unshaded
   - type: Physics
     bodyType: Dynamic
     linearDamping: 0

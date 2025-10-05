@@ -73,10 +73,11 @@
             max: 1
   - type: ReplacementAccent
     accent: BigJohn
-  - type: Advertise
-    minimumWait: 3
-    maximumWait: 5
-    pack: DiscountDansAds
+  - type: DatasetVocalizer
+    dataset: DiscountDansAds
+  - type: Vocalizer
+    minVocalizeInterval: 3
+    maxVocalizeInterval: 5
   - type: Speech
     speechSounds: BigJohn
     audioParams:
