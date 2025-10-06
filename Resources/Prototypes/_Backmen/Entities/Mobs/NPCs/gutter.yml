@@ -84,67 +84,34 @@
 #StreetCleaner
 - type: entity
   id: DropPodMarkerStreetCleaner
-  parent: DropPodMarker
   suffix: Спавнер машины, Стритклинер
+  save: false
   components:
-  - type: TimedSpawner
-    prototypes:
-      -  DropPodLaunchAnimationStreetCleaner
-    intervalSeconds: 2
-  - type: TimedDespawn
-    lifetime: 3
+  - type: AirDrop
+    supplyDropTable: DropPodStreetCleaner
+    forceOpenSupplyDrop: true
 
-- type: entity
-  id: DropPodLaunchAnimationStreetCleaner
-  parent: DropPodLaunchAnimation
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/Effects/droppod_falling.rsi
-    layers:
-    - state: supplypod_falling_animation
-      offset: "0,3.3"
-  - type: TimedSpawner
-    prototypes:
-      - SupplyDropPodStreetCleaner
+- type: entityTable
+  id: DropPodStreetCleaner
+  table: !type:AllSelector
+    children:
+    - id: SupplyDropPodStreetCleaner
 
 - type: entity
   id: SupplyDropPodStreetCleaner
-  parent: MissileBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: supplypod
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 100
-        mask:
-        - TableMask
-  - type: ConditionalSpawner
-    prototypes:
-    - StreetCleanerTeamSpawner
+  - type: AirDrop
+    supplyDropTable: StreetCleanerTeamSpawner
+    forceOpenSupplyDrop: true
 
-- type: entity
+- type: entityTable
   id: StreetCleanerTeamSpawner
-  parent: MarkerBase
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: TimedSpawner
-    prototypes:
-      - MobStreetCleaner
-    chance: 1
-    intervalSeconds: 1
-    minimumEntitiesSpawned: 3
-    maximumEntitiesSpawned: 3
-  - type: Timer
-  - type: TimedDespawn
-    lifetime: 1.2
+  table: !type:AllSelector
+    children:
+    - id: MobStreetCleaner
+    - id: MobStreetCleaner
+    - id: MobStreetCleaner
 
 - type: entity
   name: Street soldier
@@ -208,51 +175,17 @@
 #Gutterman
 - type: entity
   id: DropPodMarkerGutterman
-  parent: DropPodMarker
   suffix: Спавнер машины, Гаттерман
   components:
-  - type: TimedSpawner
-    prototypes:
-      -  DropPodLaunchAnimationGutterman
-    intervalSeconds: 2
-  - type: TimedDespawn
-    lifetime: 3
+  - type: AirDrop
+    supplyDropTable: DropPodGutterman
+    forceOpenSupplyDrop: true
 
-- type: entity
-  id: DropPodLaunchAnimationGutterman
-  parent: DropPodLaunchAnimation
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/Effects/droppod_falling.rsi
-    layers:
-    - state: supplypod_falling_animation
-      offset: "0,3.3"
-  - type: TimedSpawner
-    prototypes:
-      - SupplyDropPodGutterman
-
-- type: entity
-  id: SupplyDropPodGutterman
-  parent: MissileBase
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: supplypod
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 100
-        mask:
-        - TableMask
-  - type: ConditionalSpawner
-    prototypes:
-    - MobGutterman
+- type: entityTable
+  id: DropPodGutterman
+  table: !type:AllSelector
+    children:
+    - id: MobGutterman
 
 - type: entity
   name: Gutterman
@@ -619,33 +552,17 @@
 #Guttertank - miniboss
 - type: entity
   id: DropPodMarkerGuttertank
-  parent: DropPodMarker
   suffix: Спавнер машины, Гаттертанк
   components:
-  - type: TimedSpawner
-    prototypes:
-      - DropPodLaunchAnimationGuttertank
-    intervalSeconds: 2
-  - type: TimedDespawn
-    lifetime: 3
+  - type: AirDrop
+    supplyDropTable: DropPodGuttertank
+    forceOpenSupplyDrop: true
 
-- type: entity
-  id: DropPodLaunchAnimationGuttertank
-  parent: DropPodLaunchAnimationGutterman
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: TimedSpawner
-    prototypes:
-      - SupplyDropPodGuttertank
-
-- type: entity
-  id: SupplyDropPodGuttertank
-  parent: SupplyDropPodGutterman
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ConditionalSpawner
-    prototypes:
-    - MobGuttertank
+- type: entityTable
+  id: DropPodGuttertank
+  table: !type:AllSelector
+    children:
+    - id: MobGuttertank
 
 - type: entity
   name: Guttertank
