@@ -1,5 +1,3 @@
-
-
 ent-OBRGavnaIDCard2 = ID карта пехотинца ОБР
     .desc = { ent-OBRGavnaIDCard.desc }
 ent-OBRGavnaMedicIDCard2 = ID карта медика ОБР
@@ -20,7 +18,6 @@ ent-OBRGavnaMedicIDCardTay39 = ID карта медика ОБР
     .desc = { ent-OBRGavnaMedicIDCard.desc }
 ent-OBRGavnaIDCardTay39 = ID карта лидера ОБР Tay 39
     .desc = { ent-OBRGavnaIDCard.desc }
-
 ent-CentcomBaseIDCard = ID карта
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 ent-IdCardRXBZZLeader = ID card leader CBURN
@@ -41,4 +38,3 @@ ent-ChronoGavnaIDCard = Id карта Chrono Legionnaire
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 ent-BlueShieldIDCard = officer "Blueshield" ID Card
     .desc = { ent-IDCardStandard.desc }
-

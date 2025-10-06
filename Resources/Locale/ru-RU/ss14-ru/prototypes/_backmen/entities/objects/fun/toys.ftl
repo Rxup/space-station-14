@@ -1,5 +1,3 @@
-
-
 ent-PlushieArachne = arachne plushie
     .desc = A plushie of an Arachne, a half human, half spider creature. Why does it look familiar?
 ent-PlushieJester = jester plushie
@@ -67,4 +65,3 @@ ent-PlushieCatWhite = white cat plushie
 ent-ThronglerToy = The Throngler
     .desc = Why would you make this?
     .suffix = Toy
-

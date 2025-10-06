@@ -94,7 +94,6 @@ ent-BorgModuleMusique = музыкальный модуль киборга
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleGardening = модуль киборга: садоводство
     .desc = { ent-BaseBorgModule.desc }
-
 ent-XenoborgModuleBasic = basic xenoborg module
     .desc = Essential items for any xenoborg.
 ent-XenoborgModuleTool = tool xenoborg module

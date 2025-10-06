@@ -1,5 +1,3 @@
-
-
 ent-AirlockBlueShieldLocked = { ent-AirlockBlueShield }
     .suffix = Blue Shield, Locked
     .desc = { ent-AirlockBlueShield.desc }
@@ -9,7 +7,6 @@ ent-AirlockBlueShieldGlassLocked = { ent-AirlockBlueShieldGlass }
 ent-WindoorCCOfficerLocked = { ent-WindoorSecureArmoryLocked }
     .suffix = CentCom Officer, Locked
     .desc = { ent-WindoorSecureArmoryLocked.desc }
-
 ent-AirlockMTFCommandGlassLocked = { ent-AirlockCommandGlass }
     .suffix = МТФ Command
     .desc = { ent-AirlockCommandGlass.desc }
@@ -25,7 +22,6 @@ ent-HighSecMTFLeaderLocked = { ent-HighSecDoor }
 ent-AirlockMTFCommandExternalLocked = external airlock
     .suffix = МТФ Command
     .desc = { ent-AirlockExternal.desc }
-
 ent-AirlockMTFCplsGlassLocked = { ent-AirlockCommandGlass }
     .suffix = МТФ Cpls
     .desc = { ent-AirlockCommandGlass.desc }
@@ -41,7 +37,6 @@ ent-HighSecMTFCplsLocked = { ent-HighSecDoor }
 ent-AirlockMTFCplsExternalLocked = external airlock
     .suffix = МТФ Cpls
     .desc = { ent-AirlockExternal.desc }
-
 ent-AirlockMTFMedicalLocked = { ent-AirlockMedical }
     .suffix = МТФ Medical
     .desc = { ent-AirlockMedical.desc }
@@ -57,7 +52,6 @@ ent-HighSecMTFMedicalLocked = { ent-HighSecDoor }
 ent-AirlockMTFMedicalExternalLocked = external airlock
     .suffix = МТФ Medical
     .desc = { ent-AirlockExternal.desc }
-
 ent-AirlockMTFEngineeringLocked = { ent-AirlockEngineering }
     .suffix = МТФ Engineering
     .desc = { ent-AirlockEngineering.desc }
@@ -73,7 +67,6 @@ ent-HighSecMTFEngineeringLocked = { ent-HighSecDoor }
 ent-AirlockMTFEngineeringExternalLocked = external airlock
     .suffix = МТФ Engineering
     .desc = { ent-AirlockExternal.desc }
-
 ent-AirlockMTFSecurityGlassLocked = { ent-AirlockSecurityGlass }
     .suffix = МТФ Security
     .desc = { ent-AirlockSecurityGlass.desc }
@@ -89,7 +82,6 @@ ent-HighSecMTFSecurityLocked = { ent-HighSecDoor }
 ent-AirlockMTFSecurityExternalLocked = external airlock
     .suffix = МТФ Security
     .desc = { ent-AirlockExternal.desc }
-
 ent-AirlockMTFJanitorGlassLocked = { ent-AirlockGlass }
     .suffix = МТФ Janitor
     .desc = { ent-AirlockGlass.desc }
@@ -129,7 +121,6 @@ ent-HighSecMTFLocked = { ent-HighSecDoor }
 ent-AirlockMTFExternalLocked = external airlock
     .suffix = МТФ
     .desc = { ent-AirlockExternal.desc }
-
 ent-AirlockEGov = { ent-Airlock }
     .suffix = EarthGov
     .desc = { ent-Airlock.desc }
@@ -148,4 +139,3 @@ ent-WindoorEGMedical = { ent-WindoorSecureArmoryLocked }
 ent-WindoorEGCommand = { ent-WindoorSecureArmoryLocked }
     .suffix = EGMC Command
     .desc = { ent-WindoorSecureArmoryLocked.desc }
-

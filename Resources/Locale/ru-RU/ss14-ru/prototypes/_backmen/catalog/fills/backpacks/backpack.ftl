@@ -1,4 +1,3 @@
-
 ent-ClothingBackpackERTLeaderFilledV2_1 = { ent-ClothingBackpackERTLeader }
     .desc = { ent-ClothingBackpackERTLeader.desc }
 ent-ClothingBackpackERTEngineerFilledV2_1 = { ent-ClothingBackpackERTEngineer }
@@ -9,7 +8,6 @@ ent-ClothingBackpackERTMedicalFilledV2_1 = { ent-ClothingBackpackERTMedical }
     .desc = { ent-ClothingBackpackERTMedical.desc }
 ent-ClothingBackpackERTJanitorFilledV2_1 = { ent-ClothingBackpackERTJanitor }
     .desc = { ent-ClothingBackpackERTJanitor.desc }
-
 ent-ClothingBackpackDuffelRXBZZMedic = { ent-ClothingBackpackDuffelMilitary }
     .desc = { ent-ClothingBackpackDuffelMilitary.desc }
 ent-ClothingBackpackDuffelRockets = { ent-ClothingBackpackDuffelMilitary }
@@ -18,7 +16,6 @@ ent-ClothingBackpackDuffelMachingunFilled = { ent-ClothingBackpackDuffelMilitary
     .desc = { ent-ClothingBackpackDuffelMilitary.desc }
 ent-ClothingBackpackDuffelMachingunM41Filled = { ent-ClothingBackpackDuffelMilitary }
     .desc = { ent-ClothingBackpackDuffelMilitary.desc }
-
 ent-ClothingBackpackERTLeaderAlpha1 = { ent-ClothingBackpackERTLeader }
     .desc = { ent-ClothingBackpackERTLeader.desc }
 ent-ClothingBackpackERTOperativeAlpha1 = { ent-ClothingBackpackERTLeader }
@@ -29,4 +26,3 @@ ent-ClothingBackpackERTMedicTay39 = { ent-ClothingBackpackERTMedical }
     .desc = { ent-ClothingBackpackERTMedical.desc }
 ent-ClothingBackpackERTSecurityTay39 = { ent-ClothingBackpackERTSecurity }
     .desc = { ent-ClothingBackpackERTSecurity.desc }
-

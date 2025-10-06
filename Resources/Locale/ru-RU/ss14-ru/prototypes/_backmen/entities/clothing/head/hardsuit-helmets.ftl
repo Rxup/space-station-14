@@ -1,5 +1,3 @@
-
-
 ent-ClothingHeadHelmetHardsuitSpecialForce = шлем скафандра спецназа
     .desc = { ent-ClothingHeadHardsuitBase.desc }
 ent-ClothingHeadHelmetHardsuitRTU = шлем скафандра РФ
@@ -21,4 +19,3 @@ ent-ChangelingClothingHeadHelmetHardsuit = органический космич
     .suffix = Неудаляемый
 ent-ClothingHeadHelmetHardsuitSecurityPilot = шлем скафандра пилота безопасности
     .desc = Бронированный шлем для нужд безопасности.
-

@@ -1,8 +1,5 @@
-
-
 ent-SpawnPointBlueShield = BlueShield
     .desc = { ent-SpawnPointJobBase.desc }
-
 ent-SpawnPointShipAI = ship AI
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnFreelancer = spawn point freelancer

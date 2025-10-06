@@ -1,4 +1,3 @@
-
 ent-BlobRule = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-BlobGameMode = { ent-BaseGameRule }
@@ -11,7 +10,6 @@ ent-VampiresGameRule = { ent-BaseVampiresGameRule }
     .desc = { ent-BaseVampiresGameRule.desc }
 ent-VampireOutbreak = { ent-BaseVampiresGameRule }
     .desc = { ent-BaseVampiresGameRule.desc }
-
 ent-Changeling = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-ExtendedThief = { ent-BaseGameRule }

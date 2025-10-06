@@ -21,8 +21,8 @@ lobby-state-player-status-round-time =
     }
 lobby-state-song-text = Играет: [color=white]{ $songArtist }[/color] - [color=white]{ $songTitle }[/color]
 lobby-state-song-no-song-text = В лобби не играет песня.
-lobby-state-song-unknown-title =  [color=dimgray]Неизвестное название[/color]
-lobby-state-song-unknown-artist =  [color=dimgray]Неизвестный исполнитель[/color]
+lobby-state-song-unknown-title = [color=dimgray]Неизвестное название[/color]
+lobby-state-song-unknown-artist = [color=dimgray]Неизвестный исполнитель[/color]
 lobby-state-playtime-comment-normal =
     You've spent { $hours } { $hours ->
         [1] hour

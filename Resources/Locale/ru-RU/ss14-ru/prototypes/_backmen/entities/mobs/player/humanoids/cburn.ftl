@@ -1,6 +1,5 @@
 ent-MobHumanRXBZZBase = РХБЗЗ Base
     .desc = { ent-MobHuman.desc }
-
 ent-MobHumanRXBZZMedic = РХБЗЗ Медик
     .suffix = ready
     .desc = { ent-MobHumanRXBZZBase.desc }

@@ -1,5 +1,3 @@
-
-
 ent-ActionBPLAActionCableApcStack = НВ провода
     .desc = Создаёт полный стак НВ проводов
 ent-ActionBPLAActionCableMVStack = СВ провода

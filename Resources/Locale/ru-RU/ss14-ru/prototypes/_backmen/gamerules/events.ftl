@@ -1,9 +1,7 @@
 ent-PsiScheduler = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
-
 ent-BluespaceGoat = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
-
 ent-FreeProberEarlyHiPop = { ent-BaseGlimmerEvent }
     .desc = { ent-BaseGlimmerEvent.desc }
 ent-FreeProberEarlyMedPop = { ent-FreeProberEarlyHiPop }
@@ -18,6 +16,5 @@ ent-FreeProberMedPop = { ent-FreeProberHiPop }
     .desc = { ent-FreeProberHiPop.desc }
 ent-FreeProberLowPop = { ent-FreeProberHiPop }
     .desc = { ent-FreeProberHiPop.desc }
-
 ent-InteQAgentInvasion = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }

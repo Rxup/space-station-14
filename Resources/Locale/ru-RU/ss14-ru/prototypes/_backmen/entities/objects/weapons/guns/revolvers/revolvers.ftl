@@ -1,4 +1,3 @@
-
 ent-WeaponRevolverCMB = CMB autorevolver
     .desc = An automatic revolver chambered in .45 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies.
 ent-WeaponRevolverR44 = R-44 SAA revolver

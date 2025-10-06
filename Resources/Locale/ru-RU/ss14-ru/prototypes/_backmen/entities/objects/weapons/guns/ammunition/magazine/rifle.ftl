@@ -2,7 +2,6 @@ ent-MagazineLightRifleAI = magazine (.30 rifle)
     .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineRiflePan = дисковый магазин (5.56 UEG)
     .desc = { ent-BaseMagazineRifle.desc }
-
 ent-MagazineAntiMaterielRifleSR = rifle magazine (.50 BMG)
     .desc = Standart EarthGov type of heavy magazines.
 ent-MagazineAntiMaterielRifleSRAP = rifle magazine (.50 BMG AP)
@@ -11,7 +10,6 @@ ent-MagazineHeavyRifleBR64 = rifle magazine (.308 win)
     .desc = Standart EarthGov type of heavy magazines.
 ent-MagazineHeavyRifleBR64AP = rifle magazine (.308 win AP)
     .desc = { ent-MagazineHeavyRifleBR64.desc }
-
 ent-MagazineRifleLightSniper = rifle magazine (7,62x54)
     .desc = Standart USSP type of heavy magazines.
 ent-MagazineRifleLightSniperAP = rifle magazine (7,62x54 AP)

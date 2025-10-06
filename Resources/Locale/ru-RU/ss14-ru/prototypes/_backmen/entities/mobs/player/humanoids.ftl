@@ -1,5 +1,3 @@
-
-
 ent-UristMcWizardBase = Urist McWizard
     .suffix = base
     .desc = { ent-MobHuman.desc }

@@ -1,8 +1,5 @@
-
-
 ent-ClothingHeadHatStetson = Stetson
     .desc = Feel like a cowboy!
-
 ent-ClothingHeadHatSoldier = фуражка солдата СССП
     .desc = Гласит приказ "Ни шагу назад"!
 ent-ClothingHeadHatCapSec = Фуражка офицера СБ
@@ -27,7 +24,6 @@ ent-ClothingHeadHatMVDBeret = берет полиции ОПЗ
     .desc = Берет офицеров полиции ОПЗ, имеет эмблему министерства внутренних дел ОПЗ.
 ent-ClothingHeadHatMVDOfficerCap = фуражка ОПЗ
     .desc = Фуражка полиции ОПЗ, имеет какарду с винками министерства внутренних дел ОПЗ.
-
 ent-ClothingAnonMask = Маска Анонимуса
     .desc = Анон!
 ent-ClothingMaskBal = баллаклава SWAT
@@ -46,4 +42,3 @@ ent-ClothingHeadHatUshankaBlueShield = ушанка Синего Щита
     .desc = Довольно старая ушанка флота СССП, переделанная под нужды офицеров Синего Щита (Добавлена их эмблема).
 ent-ClothingHeadCapSecurityPilot = фуражка пилота СБ
     .desc = Фуражка пилота службы безопасности... Содержит признаки коммунизма...
-

@@ -1,5 +1,3 @@
-
-
 ent-ClothingNeckCloakTGMCCloak = Офицерский плащ
     .desc = На воротнике видна подпись-MK II-Dusya
 ent-ClothingNeckCloakPoncho = Пончо милитарист
@@ -14,4 +12,3 @@ ent-ClothingNeckCloakSanabi = Чёрный плащ "Санаби"
     .desc = Чёрный плащ, с красной оконтовкой, на очень маленькой бирке написано Санаби!
 ent-ClothingNeckCloakTGMCwhite = белый боевой плащ
     .desc = Белый боевой плащ из лёгкой ткани.
-

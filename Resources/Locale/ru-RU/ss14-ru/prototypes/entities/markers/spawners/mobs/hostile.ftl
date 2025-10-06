@@ -1,5 +1,3 @@
-
-
 ent-SpawnMobWatcherIcewing = Watcher Icewing Spawner
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobWatcherLavaland = Watcher Lavaland Spawner

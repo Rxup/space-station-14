@@ -1,5 +1,3 @@
-
-
 ent-SpawnMobHumanRXBZZLeader = РХБЗЗ лидер
     .suffix = спавнер спецсил
     .desc = { ent-SpawnSpecforce.desc }
@@ -18,7 +16,6 @@ ent-SpawnMobHumanERTOperativeAlpha1 = Альфа лидер
 ent-SpawnMobHumanERTLeaderAlpha1 = Альфа Опер
     .suffix = спавнер спецсил
     .desc = { ent-SpawnSpecforce.desc }
-
 ent-SpawnSpestnazHeavyWeaponGuy = Спецназ лидер
     .suffix = спавнер спецсил
     .desc = { ent-SpawnSpecforce.desc }

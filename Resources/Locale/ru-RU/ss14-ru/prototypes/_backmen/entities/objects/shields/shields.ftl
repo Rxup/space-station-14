@@ -3,4 +3,3 @@ ent-EgovShield = assault tower shield
 ent-ChangelingShield = oraganic shield
     .desc = A large, fleshy shield.
     .suffix = Unremoveable
-

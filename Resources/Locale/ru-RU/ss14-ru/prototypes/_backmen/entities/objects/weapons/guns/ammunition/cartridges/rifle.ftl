@@ -1,5 +1,3 @@
-
-
 ent-BaseCartridgeRifleLightSniper = cartridge (7,62 rifle)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgeRifleLight762x39 = cartridge (7,62x39)

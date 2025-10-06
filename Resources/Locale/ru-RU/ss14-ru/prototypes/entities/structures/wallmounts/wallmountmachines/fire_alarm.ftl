@@ -1,5 +1,3 @@
-
-
 ent-FireAlarmXeno = { ent-FireAlarm }
     .desc = An alien fire alarm. Works just the same!
 ent-FireAlarmAssemblyXeno = { ent-FireAlarmAssembly }

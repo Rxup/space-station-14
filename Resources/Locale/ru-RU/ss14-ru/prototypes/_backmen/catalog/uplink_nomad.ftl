@@ -1,14 +1,9 @@
-
-
 ent-ClothingBackpackDuffelSyndicateFilledVector = набор "Vector"
     .desc = { ent-ClothingBackpackDuffelSyndicate.desc }
-
 ent-ClothingBackpackDuffelSyndicateFilledM81 = набор "M-81"
     .desc = { ent-ClothingBackpackDuffelSyndicate.desc }
-
 ent-ClothingBackpackDuffelSyndicateFilledMG42 = набор "MG42"
     .desc = { ent-ClothingBackpackDuffelSyndicate.desc }
-
 ent-ClothingBackpackDuffelSyndicateFilledSVD = набор "SVD"
     .desc = { ent-ClothingBackpackDuffelSyndicate.desc }
 ent-ClothingBackpackDuffelSyndicateFilledSPAS12 = набор "SPAS-12"

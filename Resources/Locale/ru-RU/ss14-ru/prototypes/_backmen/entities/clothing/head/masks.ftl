@@ -1,8 +1,5 @@
-
-
 ent-ClothingMaskKitsune = Маска Кицунэ
     .desc = Обмани эту станцию!
-
 ent-ClothingMaskGasERTV2_1 = { ent-ClothingMaskGasERT }
     .desc = { ent-ClothingMaskGasERT.desc }
 ent-ClothingMaskGasDeathSquadV2_1 = { ent-ClothingMaskGasDeathSquad }

@@ -1,5 +1,3 @@
-
-
 ent-ClothingSkirtEGovOffice = office skirt
     .desc = { ent-ClothingUniformSkirtBase.desc }
 ent-ClothingSkirtEGovShtab = staff officer skirt
@@ -26,4 +24,3 @@ ent-ClothingJumpsuitDress = короткое платье
     .desc = Платье, которые держат парочку ниток от самопроизвольного раздевания. Выглядит надёжно.
 ent-ClothingJumpsuitDressTutu = нижнее белье с прозрачной юбкой
     .desc = Нижнее белье для дам, используется для получения +10 к харизме.
-

@@ -1,4 +1,2 @@
-
 ent-PlayerSiliconBase = { "" }
     .desc = { "" }
-

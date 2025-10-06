@@ -6,4 +6,3 @@ ent-EGovWallBanner = EarthGov wall banner
     .desc = Glory to EarthGov! All hail to Earth Govertment! For the humanity!
 ent-BannerBroken = broken banner
     .desc = You can't make out anything from the banner's original print. It's ruined.
-

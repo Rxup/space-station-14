@@ -9,11 +9,11 @@ health-examinable-carbon-Slash-200 = [color=crimson]{ CAPITALIZE(POSS-ADJ($targe
 health-examinable-carbon-Blunt-8 = [color=yellow]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } лёгкий синяк.[/color]
 health-examinable-carbon-Blunt-15 = [color=yellow]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько синяков.[/color]
 health-examinable-carbon-Blunt-30 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-BE($target) } { GENDER($target) ->
-    [male] избит
-    [female] избита
-    [epicene] избито
-    *[other] избит
-}.[/color]
+        [male] избит
+        [female] избита
+        [epicene] избито
+       *[other] избит
+    }.[/color]
 health-examinable-carbon-Blunt-75 = [color=crimson]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } сильные ушибы по всему телу![/color]
 health-examinable-carbon-Slash-10 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько лёгких порезов.[/color]
 health-examinable-carbon-Blunt-100 = [color=red]{ CAPITALIZE(POSS-ADJ($target)) } тело обезображено и имеет многочисленные ушибы.[/color]

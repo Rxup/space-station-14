@@ -1,4 +1,3 @@
-
 ent-ClothingOuterArmorBlueshield = бронежилет офицера "Синий Щит"
     .desc = Переработанный бронежилет службы безопасности с повышенной защитой.
 ent-ClothingOuterArmorIOG = Костюм биологической защиты ИОГ
@@ -7,10 +6,8 @@ ent-ClothingOuterArmorKendoBogu = bogu
     .desc = A set of armor used in Kendo. It covers the waist, torso, and hands.
 ent-ClothingOuterArmorBulletproofwhite = бронежилет
     .desc = Тяжелый пуленепробиваемый жилет III типа, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
-
 ent-ClothingOuterMVDVest = tactical armor vest
     .desc = A synthetic armor vest. This one has added ballistic plates.
-
 ent-ClothingOuterXenonautenMedium = shell armor
     .desc = A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant.
 ent-ClothingOuterXenonautenHeavy = heavy shell armor
@@ -26,6 +23,5 @@ ent-ChangelingClothingOuterArmor = chitinous armor
     .suffix = Unremoveable
 ent-ClothingOuterArmorCentcom = бронежилет Центком
     .desc = Бронежилет бренда "Центком".
-
 ent-ClothingOuterArmorCaptainCarapaceWhite = белый панцирь капитана
     .desc = Бронированный нагрудник, обеспечивающий защиту и при этом обладающий мобильностью и гибкостью. Выдаётся только лучшим представителям станции. Белый цвет - символ чистоты и порядка.

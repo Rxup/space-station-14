@@ -1,5 +1,3 @@
-
-
 ent-EncryptionKeyEarthGov = ключ шифрования EarthGov
     .desc = An encryption key used by captain's bosses.
 ent-EncryptionKeyCentComOfficer = ключ шифрования Центрального Офицера
@@ -18,4 +16,3 @@ ent-EncryptionKeyCentComDeath = ключ шифрования Эскадрона
     .desc = An encryption key used by captain's bosses.
 ent-EncryptionKeyCentComOperative = ключ шифрования Центрального Оператора
     .desc = An encryption key used by captain's bosses.
-

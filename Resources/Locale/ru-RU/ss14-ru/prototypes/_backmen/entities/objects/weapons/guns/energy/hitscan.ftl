@@ -1,4 +1,3 @@
-
 ent-X01Attack = лазерная пуля
     .desc = { ent-EmitterBolt.desc }
 ent-BulletEnergyGunLaserMk2 = лазерная пуля

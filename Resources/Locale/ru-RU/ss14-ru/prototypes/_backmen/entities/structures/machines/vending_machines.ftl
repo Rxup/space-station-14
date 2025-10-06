@@ -1,5 +1,3 @@
-
-
 ent-VendingMachineMedicalNanoTrasen = НаноМед Гипер
     .desc = Это медицинский раздатчик препаратов. Только натуральные химикаты!
     .suffix = МТФ
@@ -20,4 +18,3 @@ ent-VendingMachineMREDispancer = Раздатчик ИРП
 ent-VendingMachineBackmen = Торгомат ViF
     .suffix = backmen
     .desc = { ent-VendingMachine.desc }
-

@@ -1,7 +1,6 @@
 ent-ClothingBeltKatanaSheathFilled = { ent-ClothingBeltKatanaSheath }
     .suffix = Filled
     .desc = { ent-ClothingBeltKatanaSheath.desc }
-
 ent-ClothingBeltSheathFilledRapier = { ent-ClothingBeltRapier }
     .suffix = Filled
     .desc = { ent-ClothingBeltRapier.desc }
@@ -26,7 +25,6 @@ ent-ClothingBeltMedicalEps11Filled = { ent-ClothingBeltMedical }
     .desc = { ent-ClothingBeltMedical.desc }
 ent-MedkitBattleSpaceMedipen = { ent-Medkit }
     .desc = { ent-Medkit.desc }
-
 ent-ClothingBeltMilitaryWebbingFlamer = { ent-ClothingBeltMilitaryWebbing }
     .desc = { ent-ClothingBeltMilitaryWebbing.desc }
 ent-ClothingMedicalPounchRXBZZFilled = { ent-ClothingMedicalPounch }
@@ -60,12 +58,10 @@ ent-ClothingBeltERTWebbingSecurityTay39Filled = { ent-ClothingBeltAmmo }
 ent-ClothingBeltShellShotgunFill = { ent-ClothingBeltShellShotgun }
     .suffix = Filled
     .desc = { ent-ClothingBeltShellShotgun.desc }
-
 ent-ClothingBeltSecurityCentComSecurity = пояс охраны спецсил
     .desc = Может вмещать различное снаряжение службы безопасности, такое как наручники и вспышки.
 ent-ClothingBeltGeneralG6FilledSpetsnaz = { ent-ClothingBeltGeneralG6 }
     .desc = { ent-ClothingBeltGeneralG6.desc }
-
 ent-ClothingBeltBlueshieldWebbingFilled = { ent-ClothingBeltBlueshieldWebbing }
     .suffix = Заполненный
     .desc = { ent-ClothingBeltBlueshieldWebbing.desc }

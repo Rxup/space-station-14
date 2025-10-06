@@ -1,2 +1,2 @@
-ent-ClothingOuterCoatLabSurgeon = лабораторный халат хирурга
-    .desc = Силуэт, защищающий от бактерий и вирусов. На плечах чёрная полоска.
+ent-ClothingOuterCoatLabSurgeon = surgeon lab coat
+    .desc = A suit that protects against bacteria and viruses. Has an black stripe on the shoulder.

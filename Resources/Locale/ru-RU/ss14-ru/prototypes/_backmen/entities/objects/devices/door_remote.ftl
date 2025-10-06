@@ -1,5 +1,3 @@
-
-
 ent-DoorRemoteAIBase = ai door remote
     .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteAIOpenClose = ai door remote
