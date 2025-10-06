@@ -2,14 +2,16 @@
 
 ## Window
 
+air-alarm-ui-title = Аэратор
 air-alarm-ui-access-denied = Недостаточный уровень доступа!
 air-alarm-ui-window-pressure-label = Давление
 air-alarm-ui-window-temperature-label = Температура
 air-alarm-ui-window-alarm-state-label = Статус
 air-alarm-ui-window-address-label = Адрес
-air-alarm-ui-window-device-count-label = Всего устройств
-air-alarm-ui-window-resync-devices-label = Ресинхр
+air-alarm-ui-window-device-count-label = Кол-во устройств
+air-alarm-ui-window-resync-devices-label = Пересинхронизировать устройства
 air-alarm-ui-window-mode-label = Режим
+air-alarm-ui-window-mode-select-locked-label = [bold][color=red] Ошибка выбора режима! [/color][/bold]
 air-alarm-ui-window-auto-mode-label = Авто-режим
 -air-alarm-state-name =
     { $state ->

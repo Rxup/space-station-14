@@ -1,0 +1,12 @@
+ent-AirSensorSupermatterBase = { ent-AirSensorBase }
+    .suffix = Supermatter
+    .desc = { ent-AirSensorBase.desc }
+ent-AirSensorSupermatter = { ent-AirSensorSupermatterBase }
+    .desc = { ent-AirSensorSupermatterBase.desc }
+ent-GasVentPumpSupermatter = { ent-AirSensorSupermatterBase }
+    .desc = { ent-AirSensorSupermatterBase.desc }
+ent-GasVentScrubberSupermatter = { ent-AirSensorSupermatterBase }
+    .desc = { ent-AirSensorSupermatterBase.desc }
+ent-AirAlarmSupermatter = { ent-AirAlarmVox }
+    .suffix = Supermatter
+    .desc = { ent-AirAlarmVox.desc }

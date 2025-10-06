@@ -1,0 +1,15 @@
+ent-ReinforcementRadioMTFLeaderEgg = Еpsilon - 11 рация подкрепления
+    .suffix = МТФ Egg лидер
+    .desc = { ent-BaseItem.desc }
+ent-ReinforcementRadioMTFEngineerEgg = Еpsilon - 11 рация подкрепления
+    .suffix = МТФ Egg инженер
+    .desc = { ent-ReinforcementRadioMTFLeaderEgg.desc }
+ent-ReinforcementRadioMTFSecurityEgg = Еpsilon - 11 рация подкрепления
+    .suffix = МТФ Egg пехотинец
+    .desc = { ent-ReinforcementRadioMTFLeaderEgg.desc }
+ent-ReinforcementRadioMTFMedicalEgg = Еpsilon - 11 рация подкрепления
+    .suffix = МТФ Egg медик
+    .desc = { ent-ReinforcementRadioMTFLeaderEgg.desc }
+ent-ReinforcementRadioMTFJunitorEgg = Еpsilon - 11 рация подкрепления
+    .suffix = МТФ Egg уборщик
+    .desc = { ent-ReinforcementRadioMTFLeaderEgg.desc }

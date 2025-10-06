@@ -1,4 +1,5 @@
+ent-BaseActionPsi = { "" }
+    .desc = { "" }
 
-
-ent-ActionToggleDome = Toggle energy dome
-    .desc = Turn the energy barrier on or off.
+ent-ActionToggleDome = Переключить энергетический купол
+    .desc = Включает/выключает энергетический барьер

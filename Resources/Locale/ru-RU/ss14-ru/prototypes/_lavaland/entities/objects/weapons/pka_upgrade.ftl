@@ -1,0 +1,11 @@
+ent-PKAUpgradeLight = PKA modkit (light)
+    .desc = { ent-BasePKAUpgrade.desc }
+ent-PKAUpgradeDamageTier2 = PKA modkit (damage t2)
+    .suffix = Tier 2
+    .desc = { ent-PKAUpgradeDamage.desc }
+ent-PKAUpgradeRangeTier2 = PKA modkit (range t2)
+    .suffix = Tier 2
+    .desc = { ent-PKAUpgradeRange.desc }
+ent-PKAUpgradeFireRateTier2 = PKA modkit (fire rate t2)
+    .suffix = Tier 2
+    .desc = { ent-PKAUpgradeFireRate.desc }

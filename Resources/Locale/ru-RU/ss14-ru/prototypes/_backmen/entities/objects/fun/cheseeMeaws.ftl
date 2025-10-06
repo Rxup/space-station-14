@@ -1,0 +1,12 @@
+ent-NyrFoodCheese1 = Чумной сыыыр!
+    .desc = { ent-FoodCheese.desc }
+ent-NyrFoodCheese2 = Инженерный сыр-работяга
+    .desc = { ent-FoodCheese.desc }
+ent-NyrFoodCheese3 = Защитный сыр с корочкой!
+    .desc = { ent-FoodCheese.desc }
+ent-NyrFoodCheese4 = Важный сыр!
+    .desc = { ent-FoodCheese.desc }
+ent-NyrFoodCheese5 = Умный сыр!
+    .desc = { ent-FoodCheese.desc }
+ent-NyrFoodCheese6 = Сыр на продажу
+    .desc = { ent-FoodCheese.desc }

@@ -80,3 +80,7 @@ ent-FoodCakeSuppermatter = суперматерия
     .desc = Чрезвычайно плотная и мощная пища.
 ent-FoodCakeSuppermatterSlice = осколок суперматерии
     .desc = Одна порция мощи.
+ent-FoodCakeCotton = cotton cake
+    .desc = A cake with a fiber frosting and a wad of cotton on top.
+ent-FoodCakeCottonSlice = slice of cotton cake
+    .desc = A slice of cotton cake. You can just lick the frosting, it's fine.

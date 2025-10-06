@@ -1,3 +1,5 @@
+
+
 ent-ClothingBackpackDuffelBlueshield = вещмешок офицера "Синий Щит"
     .desc = Большой вещмешок для хранения дополнительных припасов усиленной охраны.
 ent-ClothingBackpackDuffelWhiteCaptain = белый вещмешок капитана

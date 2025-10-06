@@ -5,7 +5,7 @@ random-sentience-event-data-2 = наши сложные статистическ
 random-sentience-event-data-3 = полученную информацию
 random-sentience-event-data-4 = коммуникационный трафик с вашей станции
 random-sentience-event-data-5 = обнаруженные нами энергетические всплески
-random-sentience-event-data-6 = [УДАЛЕНО]
+random-sentience-event-data-6 =  [УДАЛЕНО]
 
 ## Phrases used to describe the level of intelligence, though it doesn't actually affect anything.
 
@@ -39,3 +39,4 @@ station-event-random-sentience-flavor-primate = приматы
 station-event-random-sentience-flavor-kobold = кобольды
 station-event-random-sentience-flavor-slime = слаймы
 station-event-random-sentience-flavor-inanimate = неодушевлённые предметы
+station-event-random-sentience-flavor-scurret = scurret

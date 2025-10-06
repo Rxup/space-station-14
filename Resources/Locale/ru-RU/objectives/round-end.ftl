@@ -10,5 +10,7 @@ objectives-player-named = [color=White]{ $name }[/color]
 objectives-no-objectives = { $custody }{ $title } – { $agent }.
 objectives-with-objectives = { $custody }{ $title } – { $agent } со следующими целями:
 objectives-objective-success = { $objective } | [color={ $markupColor }]Успех![/color]
+objectives-objective-partial-success = { $objective } | [color=yellow]Частичный успех![/color] ({ TOSTRING($progress, "P0") })
+objectives-objective-partial-failure = { $objective } | [color=orange]Частичная неудача![/color] ({ TOSTRING($progress, "P0") })
 objectives-objective-fail = { $objective } | [color={ $markupColor }]Провал![/color] ({ $progress }%)
 objectives-in-custody = [bold][color=red]| АРЕСТОВАН | [/color][/bold]

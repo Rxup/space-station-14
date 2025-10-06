@@ -1,0 +1,9 @@
+ent-MobPMCGreyTide = ГрейТайд
+    .suffix = AI
+    .desc = { ent-BaseMobHuman.desc }
+ent-MobPMCGreyTideSuperZloy = ГрейТайд
+    .suffix = AISuperZloy
+    .desc = { ent-BaseMobHuman.desc }
+ent-MobPMCGreyTideMosin = ГрейТайд
+    .suffix = AIMosin
+    .desc = { ent-BaseMobHuman.desc }

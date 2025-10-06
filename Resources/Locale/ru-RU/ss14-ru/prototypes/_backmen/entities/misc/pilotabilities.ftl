@@ -1,0 +1,12 @@
+ent-WeaponTurretSecBase = pistol security turret
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-WeaponTurretSecRifle = rifle security turret
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-WeaponTurretSecDisabler = disabler security turret
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-WeaponTurretSecLaser = laser security turret
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-LandMineWeakExplosive = explosive mine
+    .desc = { ent-BaseLandMine.desc }
+ent-SecurityTechnicianRCD = security technician RCD
+    .desc = The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function. This model has the ability to place turrets and mines, all of these structures are in the electronics section.
