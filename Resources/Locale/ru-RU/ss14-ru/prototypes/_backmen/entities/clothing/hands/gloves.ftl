@@ -1,0 +1,12 @@
+ent-ClothingHandsGlovesmantis = клинки богомола
+    .desc = Боевой кибернетический имплант. Клинки исходят из предплечья, что позволяет использовать их как оружие ближнего боя.
+ent-ClothingHandsGlovesSpetsnazcombat = боевые перчатки спецназа
+    .desc = Эти тактические перчатки огнеупорны и ударопрочны.
+ent-ClothingHandsBint = боксерский бинт
+    .desc = полоса ткани, которую используют боксёры и представители других спортивных единоборств .
+ent-ClothingHandsChronoLegionnaire = chrono legionnaire combat gloves
+    .desc = High-quality combat gloves form pa... Future.
+ent-ActionPhaseDash = phase dash
+    .desc = Teleport to anywhere you can see.
+ent-ClothingHandsGlovesTGMCwhite = белые боевые перчатки
+    .desc = Эти тактические белые перчатки огнеупорны и ударопрочны.

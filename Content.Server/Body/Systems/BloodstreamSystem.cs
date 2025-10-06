@@ -35,10 +35,14 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Forensics;
 
 namespace Content.Server.Body.Systems;
 
-public sealed class BloodstreamSystem : EntitySystem
+public sealed class BloodstreamSystem : SharedBloodstreamSystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -73,15 +77,6 @@ public sealed class BloodstreamSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BloodstreamComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<BloodstreamComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<BloodstreamComponent, EntityUnpausedEvent>(OnUnpaused);
-        SubscribeLocalEvent<BloodstreamComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<BloodstreamComponent, HealthBeingExaminedEvent>(OnHealthBeingExamined);
-        SubscribeLocalEvent<BloodstreamComponent, BeingGibbedEvent>(OnBeingGibbed);
-        SubscribeLocalEvent<BloodstreamComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-        SubscribeLocalEvent<BloodstreamComponent, ReactionAttemptEvent>(OnReactionAttempt);
-        SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
-        SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
 
         // backmen edit start
@@ -296,15 +291,18 @@ public sealed class BloodstreamSystem : EntitySystem
         // backmen edit end
     }
 
+    // not sure if we can move this to shared or not
+    // it would certainly help if SolutionContainer was documented
+    // but since we usually don't add the component dynamically to entities we can keep this unpredicted for now
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)
     {
-        if (!_solutionContainerSystem.EnsureSolution(entity.Owner,
+        if (!SolutionContainer.EnsureSolution(entity.Owner,
                 entity.Comp.ChemicalSolutionName,
                 out var chemicalSolution) ||
-            !_solutionContainerSystem.EnsureSolution(entity.Owner,
+            !SolutionContainer.EnsureSolution(entity.Owner,
                 entity.Comp.BloodSolutionName,
                 out var bloodSolution) ||
-            !_solutionContainerSystem.EnsureSolution(entity.Owner,
+            !SolutionContainer.EnsureSolution(entity.Owner,
                 entity.Comp.BloodTemporarySolutionName,
                 out var tempSolution))
             return;
@@ -463,7 +461,7 @@ public sealed class BloodstreamSystem : EntitySystem
 
         Dirty(uid, component);
     }
-    // backmene dit end
+    // backmen edit end
 
     /// <summary>
     ///     Shows text on health examine, based on bleed rate and blood level.
@@ -501,37 +499,6 @@ public sealed class BloodstreamSystem : EntitySystem
             args.Message.PushNewline();
             args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-looks-pale", ("target", ent.Owner)));
         }
-    }
-
-    private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref BeingGibbedEvent args)
-    {
-        SpillAllSolutions(ent, ent);
-    }
-
-    private void OnApplyMetabolicMultiplier(
-        Entity<BloodstreamComponent> ent,
-        ref ApplyMetabolicMultiplierEvent args)
-    {
-        // TODO REFACTOR THIS
-        // This will slowly drift over time due to floating point errors.
-        // Instead, raise an event with the base rates and allow modifiers to get applied to it.
-        if (args.Apply)
-        {
-            ent.Comp.UpdateInterval *= args.Multiplier;
-            return;
-        }
-        ent.Comp.UpdateInterval /= args.Multiplier;
-    }
-
-    private void OnRejuvenate(Entity<BloodstreamComponent> entity, ref RejuvenateEvent args)
-    {
-        TryModifyBleedAmount(entity.Owner, -entity.Comp.BleedAmount, entity.Comp);
-
-        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
-            TryModifyBloodLevel(entity.Owner, bloodSolution.AvailableVolume, entity.Comp);
-
-        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.ChemicalSolutionName, ref entity.Comp.ChemicalSolution))
-            _solutionContainerSystem.RemoveAllSolution(entity.Comp.ChemicalSolution.Value);
     }
 
     /// <summary>
@@ -705,9 +672,10 @@ public sealed class BloodstreamSystem : EntitySystem
             _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, currentVolume, null, GetEntityBloodData(uid));
     }
 
+    // forensics is not predicted yet
     private void OnDnaGenerated(Entity<BloodstreamComponent> entity, ref GenerateDnaEvent args)
     {
-        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
+        if (SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
         {
             foreach (var reagent in bloodSolution.Contents)
             {

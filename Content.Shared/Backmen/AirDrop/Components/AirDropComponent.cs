@@ -39,7 +39,7 @@ public sealed partial class AirDropComponent : Component
     /// в секундах
     /// </summary>
     [DataField]
-    public float TimeOfTarget { get; set; } = 2;
+    public float TimeOfTarget { get; set; } = 1;
 
     /// <summary>
     /// Время анимации панедения до спавна пода

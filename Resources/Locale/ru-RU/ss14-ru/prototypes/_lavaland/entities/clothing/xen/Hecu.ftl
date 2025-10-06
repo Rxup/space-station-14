@@ -1,0 +1,16 @@
+ent-ClothingOuterArmorVestPCV = Энергетический боевой жилет P.C.V.
+    .desc = Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
+ent-ClothingHeadHelmetHECU = защитный шлем от P.C.V.
+    .desc = Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
+ent-ClothingHeadHelmetHECUNVG = защитный шлем от P.C.V. с прибором ночного зрения
+    .desc = Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
+ent-ClothingSathelHECU = сумка отряда H.E.C.U.
+    .desc = { ent-ClothingBackpackERTSecurity.desc }
+ent-ClothingBeltHECU = пояс отряда H.E.C.U.
+    .desc = { ent-ClothingBeltMilitaryWebbing.desc }
+ent-ClothingUniformJumpsuitHECUURBAN = H.E.C.U. marine uniform
+    .desc = Jumpsuit made of dense camouflage fabric. Doesn't make you invisible.
+ent-ClothingMaskHECUGasMask = H.E.C.U. gas mask
+    .desc = A military-grade gas mask that can be connected to an air supply.
+ent-ClothingMaskGasSEVA = seva gas mask
+    .desc = { ent-ClothingMaskGas.desc }

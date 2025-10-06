@@ -106,7 +106,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
             _actions.RemoveAction(uid, invisibilityPowerComponent.PsionicInvisibilityPowerActionOff);
         }
 
-        _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(invisibilityPowerComponent?.StunSecond ?? 8), false);
+        _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(invisibilityPowerComponent?.StunSecond ?? 8));
         DirtyEntity(uid);
     }
 

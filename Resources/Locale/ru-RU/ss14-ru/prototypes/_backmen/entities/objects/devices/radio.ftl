@@ -1,0 +1,14 @@
+ent-RadioMTFHandheld = рация
+    .desc = Рация которая связывается с ближайшей блю-спейс артиллерийской платформой.
+ent-ActionCallAirSupportMissiles = Вызов арт-обстрела
+    .desc = Запросить артиллерийской поддержки по указаной вами точке.
+ent-RadioBlueShieldSupplyPod = рация вызова снабжения
+    .desc = Портативная рация для связи с отделом снабжения, настроена на одностороний разговор.
+ent-RadioBlueShieldSupplyPodAirDrop = RadioBlueShieldSupplyPodAirDrop
+    .desc = { "" }
+ent-RadioSecurityPilotSupplyPod = supply call radio
+    .desc = A portable radio for communication with the supply department, configured for one-way conversation.
+    .suffix = security pilot
+ent-AirDropSecurityPilot = { "" }
+    .suffix = SecurityPilot, supply
+    .desc = { "" }

@@ -39,6 +39,8 @@ ghost-role-information-mouse-name = Мышь
 ghost-role-information-mouse-description = Голодная и озорная мышь.
 ghost-role-information-mothroach-name = Таракамоль
 ghost-role-information-mothroach-description = Милая озорная таракамоль.
+ghost-role-information-moproach-name = Мопроач
+ghost-role-information-moproach-description = Милый моль-кактус с ещё более милыми ботинками, напоминающими мопы.
 ghost-role-information-snail-name = Улитка
 ghost-role-information-snail-description = Маленькая улитка, которая не против немного побыть на свободе. Только не убегай за пределы клетки!
 ghost-role-information-snailspeed-name = Улитка
@@ -245,3 +247,5 @@ ghost-role-information-gingerbread-description =
     Распространяйте паточную вкуснятину и хорошее настроение.
 ghost-role-information-wizard-name = Волшебник
 ghost-role-information-wizard-desc = ТЫ ВОЛШЕБНИК! Покажи станции, из чего сделана твоя магия.
+ghost-role-information-emotional-support-scurret-name = Эмоциональный поддерживающий Скуррет
+ghost-role-information-emotional-support-scurret-description = Поддерживает экипаж, милует и много говорит «ва».

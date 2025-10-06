@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Components;
@@ -65,9 +66,11 @@ public sealed class BackStabSystem : EntitySystem
 
         var xform = Transform(target);
         var userXform = Transform(user);
+
         var v1 = -_transform.GetWorldRotation(xform).ToWorldVec();
         var v2 = _transform.GetWorldPosition(userXform) - _transform.GetWorldPosition(xform);
-        var angle = Vector3.CalculateAngle(new Vector3(v1), new Vector3(v2));
+
+        var angle = CalculateAngle(v1, v2);
 
         if (angle > tolerance.Theta)
             return false;
@@ -75,6 +78,19 @@ public sealed class BackStabSystem : EntitySystem
         BackstabEffects(target, showPopup, playSound);
         return true;
     }
+
+    private static float CalculateAngle(Vector2 v1, Vector2 v2)
+    {
+        var dot = Vector2.Dot(v1, v2);
+        var magProduct = v1.Length() * v2.Length();
+
+        if (magProduct == 0f)
+            return 0f;
+
+        var cosTheta = Math.Clamp(dot / magProduct, -1f, 1f);
+        return MathF.Acos(cosTheta);
+    }
+
 
     private void BackstabEffects(EntityUid target, bool showPopup = true, bool playSound = true)
     {

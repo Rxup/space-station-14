@@ -1,0 +1,16 @@
+ent-MagazinePistolSubMachineGun9x17 = SMG magazine (9x17 mm)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGun57x28 = MP7 magazine (5,7x28)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGunVector45ACP = Vector magazine (.45 Auto)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGunVector45ACPExt = Vector magazine Extended (.45 Auto)
+    .desc = { ent-MagazinePistolSubMachineGunVector45ACP.desc }
+ent-MagazinePistolSubMachineGunScorpion9x17 = Scorpion magazine (9x17 mm)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolBoxSubMachineGun = SMG box magazine (9x17 mm)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolDrumSubMachineGun = SMG Drum magazine (9x17 mm)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolTopSubMachineGun = SMG top mounted magazine (9x17 mm)
+    .desc = { ent-BaseItem.desc }

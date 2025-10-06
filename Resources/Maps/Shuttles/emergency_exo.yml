@@ -4,8 +4,8 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:01
-  entityCount: 1017
+  time: 07/01/2025 12:52:53
+  entityCount: 1020
 maps: []
 grids:
 - 2
@@ -398,7 +398,7 @@ entities:
           2,-2:
             0: 7644
           2,-3:
-            0: 3584
+            2: 3584
           3,-2:
             0: 40951
           3,-3:
@@ -433,14 +433,6 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           immutable: True
           moles:
@@ -454,6 +446,13 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 1400.0662
+          - 5266.916
           - 0
           - 0
           - 0
@@ -938,6 +937,23 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 17.5,1.5
+      parent: 2
+- proto: AtmosFixAirMarker
+  entities:
+  - uid: 1018
+    components:
+    - type: Transform
+      pos: 9.5,-9.5
+      parent: 2
+  - uid: 1019
+    components:
+    - type: Transform
+      pos: 10.5,-9.5
+      parent: 2
+  - uid: 1020
+    components:
+    - type: Transform
+      pos: 11.5,-9.5
       parent: 2
 - proto: BaseComputer
   entities:
@@ -5454,7 +5470,7 @@ entities:
     - type: Transform
       pos: 13.599765,-7.300016
       parent: 2
-- proto: ShotGunCabinetFilledBackmen
+- proto: ShotGunCabinetFilled
   entities:
   - uid: 100
     components:

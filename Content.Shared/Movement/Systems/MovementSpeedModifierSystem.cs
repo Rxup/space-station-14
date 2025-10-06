@@ -6,7 +6,7 @@ using System.Text.Json.Serialization.Metadata;
 using Content.Shared.CCVar;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
+using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
@@ -15,7 +15,7 @@ namespace Content.Shared.Movement.Systems
     public sealed class MovementSpeedModifierSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private   readonly IConfigurationManager _configManager = default!;
+        [Dependency] private readonly IConfigurationManager _configManager = default!;
 
         private float _frictionModifier;
         private float _airDamping;
@@ -30,6 +30,8 @@ namespace Content.Shared.Movement.Systems
         {
             base.Initialize();
             SubscribeLocalEvent<MovementSpeedModifierComponent, MapInitEvent>(OnModMapInit);
+            SubscribeLocalEvent<MovementSpeedModifierComponent, DownedEvent>(OnDowned);
+            SubscribeLocalEvent<MovementSpeedModifierComponent, StoodEvent>(OnStand);
 
             Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
             Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
@@ -53,6 +55,18 @@ namespace Content.Shared.Movement.Systems
             ent.Comp.Friction = _frictionModifier * ent.Comp.BaseFriction;
             ent.Comp.FrictionNoInput = _frictionModifier * ent.Comp.BaseFriction;
             Dirty(ent);
+        }
+
+        private void OnDowned(Entity<MovementSpeedModifierComponent> entity, ref DownedEvent args)
+        {
+            RefreshFrictionModifiers(entity);
+            RefreshMovementSpeedModifiers(entity);
+        }
+
+        private void OnStand(Entity<MovementSpeedModifierComponent> entity, ref StoodEvent args)
+        {
+            RefreshFrictionModifiers(entity);
+            RefreshMovementSpeedModifiers(entity);
         }
 
         public void RefreshWeightlessModifiers(EntityUid uid, MovementSpeedModifierComponent? move = null)

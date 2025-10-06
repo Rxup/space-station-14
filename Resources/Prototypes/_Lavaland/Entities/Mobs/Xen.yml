@@ -95,7 +95,6 @@
       - id: FoodMeatChicken
         amount: 2
     - type: DamageStateVisuals
-      rotate: false
       states:
         Alive:
           Base: headcrab
@@ -619,7 +618,6 @@
       groups:
         Brute: 12
   - type: DamageStateVisuals
-    rotate: false
     states:
       Alive:
         Base: bullsquid
@@ -691,7 +689,6 @@
       0: Alive
       100: Dead
   - type: DamageStateVisuals
-    rotate: false
     states:
       Alive:
         Base: vortigaunt

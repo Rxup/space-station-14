@@ -158,7 +158,7 @@ public sealed class SacrificialAltarSystem : SharedSacrificialAltarSystem
         {
             if (component.StunTime == null || _timing.CurTime > component.StunTime)
             {
-                _stunSystem.TryParalyze(patient, component.SacrificeTime + TimeSpan.FromSeconds(1), true);
+                _stunSystem.TryUpdateParalyzeDuration(patient, component.SacrificeTime + TimeSpan.FromSeconds(1));
                 component.StunTime = _timing.CurTime + component.StunCD;
             }
         }

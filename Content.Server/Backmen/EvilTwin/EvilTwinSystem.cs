@@ -566,7 +566,7 @@ public sealed class EvilTwinSystem : EntitySystem
             EnsureComp<DetailExaminableComponent>(twinUid).Content = detail.Content;
         }
 
-        _humanoidSystem.LoadProfile(twinUid, pref);
+        _humanoid.LoadProfile(twinUid, pref);
 
         if (pref.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
         {
@@ -659,7 +659,6 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;

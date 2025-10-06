@@ -26,6 +26,8 @@ construction-graph-tag-medical-hud = медицинский HUD
 construction-graph-tag-sun-glasses = солнечные очки
 construction-graph-tag-security-helmet = защитный шлем
 # materials
+construction-graph-tag-manipulator = модульная часть машины
+# materials
 construction-graph-tag-capacitor = конденсатор
 construction-graph-tag-voice-trigger = голосовой триггер
 construction-graph-tag-signal-trigger = сигнальный триггер
@@ -60,6 +62,10 @@ construction-graph-tag-rifle-stock = приклад винтовки
 construction-graph-tag-match-stick = спичка
 construction-graph-tag-potato = картофель
 construction-graph-tag-wheat-bushel = сноп пшеницы
+construction-graph-tag-apron = апрон
+construction-graph-tag-utility-belt = полезный пояс
+soil-construction-graph-any-mushroom = любая шляпка
+construction-graph-tag-mop-basic = протига
 construction-graph-tag-corgi-hide = шкура корги
 # toys
 construction-graph-tag-rubber-ducky = резиновая уточка
@@ -123,5 +129,7 @@ construction-graph-tag-torch = факел
 # atmos
 construction-graph-tag-fire-extinguisher = огнетушитель
 construction-graph-tag-fire-helmet = пожарный шлем
+# clothing
+construction-graph-tag-backpack = рюкзак
 # salvage
 construction-graph-tag-spationaut-hardsuit = скафандр утилизатора

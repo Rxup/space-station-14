@@ -96,7 +96,7 @@ public sealed partial class FleshWormSystem : EntitySystem
             ("entity", args.Target)), args.Target, Filter.PvsExcept(uid), true, PopupType.Large);
 
         EnsureComp<PacifiedComponent>(uid);
-        _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+        _stunSystem.TryUpdateParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime));
         _damageableSystem.TryChangeDamage(args.Target, component.Damage);
     }
 
@@ -189,7 +189,7 @@ public sealed partial class FleshWormSystem : EntitySystem
                 ("entity", entity)), entity, Filter.PvsExcept(entity), true, PopupType.Large);
 
             EnsureComp<PacifiedComponent>(uid);
-            _stunSystem.TryParalyze(entity, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+            _stunSystem.TryUpdateParalyzeDuration(entity, TimeSpan.FromSeconds(component.ParalyzeTime));
             _damageableSystem.TryChangeDamage(entity, component.Damage, origin: entity);
             break;
         }

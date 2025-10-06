@@ -4,6 +4,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 
@@ -109,13 +110,8 @@ public partial class TraumaSystem
                     TimeSpan.FromMinutes(4f));
             }
 
-            _stun.TryParalyze(body.Value, nerveSys.Value.Comp.OrganDamageStunTime, true);
-            _stun.TrySlowdown(
-                body.Value,
-                nerveSys.Value.Comp.OrganDamageStunTime * _organTraumaSlowdownTimeMultiplier,
-                true,
-                _organTraumaWalkSpeedSlowdown,
-                _organTraumaRunSpeedSlowdown);
+            _stun.TryAddParalyzeDuration(body.Value, nerveSys.Value.Comp.OrganDamageStunTime);
+            _stun.TryUpdateStunDuration(body.Value, nerveSys.Value.Comp.OrganDamageStunTime * _organTraumaSlowdownTimeMultiplier);
         }
 
         if (TryGetWoundableTrauma(bodyPart, out var traumas, TraumaType.OrganDamage, bodyPart))

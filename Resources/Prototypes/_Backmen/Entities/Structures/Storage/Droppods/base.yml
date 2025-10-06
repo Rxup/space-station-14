@@ -144,50 +144,6 @@
 
 - type: entity
   name: голографический маяк
-  id: DropPodMarker
-  parent: DropPodMarkerBase
-  suffix: Empty, supply
-  components:
-  - type: Sprite
-    noRot: true
-    sprite: Backmen/Objects/Misc/marker.rsi
-    drawdepth: FloorTiles
-    layers:
-    - state: marker
-      shader: unshaded
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      -  DropPodLaunchAnimation
-    intervalSeconds: 9
-  - type: TimedDespawn
-    lifetime: 10
-
-- type: entity
-  id: DropPodLaunchAnimation
-  parent: DropPodMarkerBase
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/Effects/droppod_falling.rsi
-    layers:
-    - state: supplypod_falling_animation
-      offset: "0,3.3"
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - SupplyDropPodEmpty
-    intervalSeconds: 2
-  - type: TimedDespawn
-    lifetime: 3
-  - type: EmitSoundOnSpawn
-    sound:
-      path: /Audio/Backmen/Misc/mortar_long_whistle.ogg
-      params:
-        volume: 5
-
-- type: entity
-  name: голографический маяк
   id: DropPodMarkerSimple
   categories: [ HideSpawnMenu ]
   parent: DropPodMarkerBase

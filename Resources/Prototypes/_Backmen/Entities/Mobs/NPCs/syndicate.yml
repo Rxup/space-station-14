@@ -63,7 +63,7 @@
   name: Ядерный агент
   parent: MobHumanCombine
   suffix: Vova
-  id: MobHumanSyndicateNukeOpsV3.0
+  id: MobHumanSyndicateNukeOpsV3_0
   components:
   - type: Speech
     speechSounds: Alto

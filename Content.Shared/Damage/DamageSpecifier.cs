@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json.Serialization;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage.Prototypes;
@@ -77,6 +78,11 @@ namespace Content.Shared.Damage
         /// </summary>
         [JsonIgnore]
         public bool Empty => DamageDict.Count == 0;
+
+        public override string ToString()
+        {
+            return "DamageSpecifier(" + string.Join("; ", DamageDict.Select(x => x.Key + ":" + x.Value)) + ")";
+        }
 
         #region constructors
         /// <summary>

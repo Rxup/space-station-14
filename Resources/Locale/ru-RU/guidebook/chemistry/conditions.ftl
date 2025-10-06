@@ -56,3 +56,13 @@ reagent-effect-condition-guidebook-has-tag =
        *[false] имеет
     } метку { $tag }
 reagent-effect-condition-guidebook-this-reagent = этот реагент
+reagent-effect-condition-guidebook-breathing =
+    метаболизатор { $isBreathing ->
+        [true] дышит нормально
+       *[false] задушен
+    }
+reagent-effect-condition-guidebook-internals =
+    метаболизатор { $usingInternals ->
+        [true] использует внутренние системы
+       *[false] дышит атмосферным воздухом
+    }

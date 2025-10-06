@@ -1,0 +1,14 @@
+ent-UristMcWizardBase = Urist McWizard
+    .suffix = base
+    .desc = { ent-MobHuman.desc }
+ent-UristMcWizardViolet2 = Urist McWizard
+    .suffix = violet
+    .desc = { ent-UristMcWizardBase.desc }
+ent-UristMcWizardRed2 = Urist McWizard
+    .suffix = red
+    .desc = { ent-UristMcWizardBase.desc }
+ent-UristMcWizardBlue2 = Urist McWizard
+    .suffix = blue
+    .desc = { ent-UristMcWizardBase.desc }
+ent-UristMcNars = Urist McNars
+    .desc = { ent-MobHuman.desc }

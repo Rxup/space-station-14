@@ -53,6 +53,7 @@
     - TauCetiBasic
     - SpaceMob
   - type: CanBeBorgNTEnemy
+  - type: StunVisuals
 
 - type: entity
   save: false

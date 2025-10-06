@@ -1,0 +1,10 @@
+ent-ChanceSpawnerItemM9Steel = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }
+ent-ChanceSpawnerItemMaterialCableGold = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }
+ent-ChanceSpawnerItemMaterialMaterialGunMaterial = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }
+ent-ChanceSpawnerItemSalvagePCVPlate = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }
+ent-ChanceSpawnerItemMaterialHEVPiece = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }

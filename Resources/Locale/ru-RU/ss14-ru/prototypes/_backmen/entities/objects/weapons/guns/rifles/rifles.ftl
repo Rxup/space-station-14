@@ -1,0 +1,10 @@
+ent-WeaponRifleM28Rubber = { ent-WeaponRifleM28 }
+    .desc = { ent-WeaponRifleM28.desc }
+ent-WeaponAKMSRifleAI = { ent-WeaponAKMSRifle }
+    .desc = { ent-WeaponAKMSRifle.desc }
+ent-WeaponRifleLecterPan = { ent-WeaponRifleM28Tactical }
+    .desc = Первоклассная армейская штурмовая винтовка. Использует патроны калибра .20 винтовочный.
+    .suffix = Дисковый
+ent-WeaponRifleUTAPM1 = UTAP Mark 1
+    .desc = Штурмовая винтовка производства "Interdyne", облегченный вариант Марк 2, используется зачастую частными охранными организациями.
+    .suffix = Автомат
