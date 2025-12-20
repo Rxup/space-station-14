@@ -460,13 +460,17 @@
     weight: 5
     duration: 60
   - type: VentCrittersRule
-    entries:
-    - id: MobAdultSlimesBlueAngry
-      prob: 0.02
-    - id: MobAdultSlimesGreenAngry
-      prob: 0.02
-    - id: MobAdultSlimesYellowAngry
-      prob: 0.02
+# Backmen-Edit: Replaced
+#    entries:
+#    - id: MobAdultSlimesBlueAngry
+#      prob: 0.02
+#    - id: MobAdultSlimesGreenAngry
+#      prob: 0.02
+#    - id: MobAdultSlimesYellowAngry
+#      prob: 0.02
+    table: !type:GroupSelector # Backmen: Nuke Wizden slimes
+      children:
+      - id: XenobioSlimeBabySpawner
 
 - type: entity
   id: SnakeSpawn

@@ -1,3 +1,4 @@
+using Content.Goobstation.Common.Effects;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
@@ -19,6 +20,7 @@ public sealed class EmagProviderSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedNinjaGlovesSystem _gloves = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SparksSystem _sparks = default!; // goob edit - sparks everywhere
 
     public override void Initialize()
     {
@@ -53,6 +55,7 @@ public sealed class EmagProviderSystem : EntitySystem
             return;
 
         _audio.PlayPredicted(comp.EmagSound, uid, uid);
+        _sparks.DoSparks(Transform(args.Target).Coordinates); // goob edit - sparks everywhere
 
         _adminLogger.Add(LogType.Emag, LogImpact.High, $"{ToPrettyString(uid):player} emagged {ToPrettyString(target):target} with flag(s): {ent.Comp.EmagType}");
         var ev = new EmaggedSomethingEvent(target);

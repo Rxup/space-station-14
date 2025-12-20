@@ -251,7 +251,11 @@ namespace Content.IntegrationTests.Tests
                 "HierophantFieldGenerator", // Lavaland Change
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
-                "AirDrop", // spawn DropPodMarkerSimple on mapinit
+                // Backmen-Start
+                "AirDrop",
+                "PendingSlimeSpawn",
+                "Slime"
+                // Backmen-End
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);

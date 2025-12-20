@@ -13,4 +13,27 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-      - 0,0,6,2
+    - 0,0,6,2
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+
+- type: entity
+  parent: ChemBag
+  id: ClothingBeltChemBagXenobiology
+  name: xenobiology pouch
+  description: A slime-resistant pouch intended for use by Xenobiologists. Smells of.. plasma?
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/xenobag.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/xenobag.rsi
+  - type: Storage
+    whitelist:
+      tags:
+      - Syringe
+      - Dropper
+      components:
+      - SyringeGun
+      - SurgeryTool
+      - SolutionTransfer
+      - SlimeExtract

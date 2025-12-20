@@ -216,7 +216,15 @@ namespace Content.Shared.Movement.Systems
         public float WalkSpeedModifier { get; private set; } = 1.0f;
         public float SprintSpeedModifier { get; private set; } = 1.0f;
 
-        public void ModifySpeed(float walk, float sprint)
+        /// <summary>
+        ///    Goobstation Change: Whether or not this entity is immune to most movement speed modifiers.
+        ///    Bypassable by setting bypassImmunity to true.
+        /// </summary
+        // what the fuck is this?
+        private bool _isImmune = false;
+
+        // <Goobstation Change>
+        public void ModifySpeed(float walk, float sprint, bool bypassImmunity = false)
         {
             WalkSpeedModifier *= walk;
             SprintSpeedModifier *= sprint;
