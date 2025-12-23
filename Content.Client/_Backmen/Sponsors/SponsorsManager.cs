@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Content.Corvax.Interfaces.Shared;
+// ReSharper disable once RedundantUsingDirective
+using Content.Shared._Backmen.GhostTheme;
 using Content.Shared._Backmen.Sponsors;
 using Content.Shared.Backmen;
 using Robust.Shared.Network;
