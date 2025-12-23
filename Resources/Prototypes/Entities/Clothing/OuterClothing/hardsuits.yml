@@ -513,8 +513,8 @@
         Caustic: 0.6
         Stun: 0.1
   - type: ClothingSpeedModifier
-    walkModifier: 0.9       #Backmen edit
-    sprintModifier: 0.9     #Backmen edit
+    walkModifier: 0.9       # Backmen edit
+    sprintModifier: 0.9     # Backmen edit
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap
@@ -783,11 +783,11 @@
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndicate.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/syndicate.rsi # Backmen resprite
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndicate.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/syndicate.rsi # Backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -858,9 +858,9 @@
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi # Backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -900,7 +900,7 @@
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
-    sprintModifier: 1.0  #backmen-speedoznik
+    sprintModifier: 1.0  # Backmen-speedoznik
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -918,9 +918,9 @@
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi # Backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -970,9 +970,9 @@
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/cybersun.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/cybersun.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/cybersun.rsi #backmen resprite
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/cybersun.rsi # Backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -1327,7 +1327,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 1
 
 #CBURN Hardsuit
@@ -1382,7 +1382,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURN
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.6
 
 #MISC. HARDSUITS
@@ -1435,9 +1435,9 @@
   description: A custom-made mime hardsuit.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
   - type: Construction
     graph: MimeHardsuit
     node: mimeHardsuit

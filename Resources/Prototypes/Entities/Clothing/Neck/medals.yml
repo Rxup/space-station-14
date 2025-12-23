@@ -8,13 +8,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/bronzeheart.rsi
@@ -34,13 +34,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/gold.rsi
@@ -62,13 +62,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/cargomedal.rsi
@@ -88,13 +88,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/engineermedal.rsi
@@ -114,13 +114,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/medicalmedal.rsi
@@ -140,13 +140,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/sciencemedal.rsi
@@ -166,13 +166,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/securitymedal.rsi
@@ -192,13 +192,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   # backmen edit end
   - type: Sprite
     sprite: Clothing/Neck/Medals/clownmedal.rsi

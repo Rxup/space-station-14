@@ -1,3 +1,4 @@
+using Content.Shared._Backmen.Arrivals;
 using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
@@ -91,7 +92,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
         }
 
         // start-backmen: protection system
-        var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, coords);
+        var ev = new FlatPackUserAttemptUseEvent(args.User, comp.Entity, coords);
         if (xform.GridUid is { } gridUid)
         {
             RaiseLocalEvent(gridUid, ref ev, true);

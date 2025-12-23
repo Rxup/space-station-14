@@ -6,7 +6,7 @@
     noRot: true
     overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/luna.rsi
+    sprite: _Backmen/Mobs/Ghost/luna.rsi
     layers:
       - state: pony
         shader: unshaded
@@ -19,7 +19,7 @@
     noRot: true
     overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/p03.rsi
+    sprite: _Backmen/Mobs/Ghost/p03.rsi
     layers:
       - state: p03
         shader: unshaded
@@ -32,7 +32,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/astronaut.rsi
+    sprite: _Backmen/Mobs/Ghost/astronaut.rsi
     layers:
       - state: astronaut
         shader: unshaded
@@ -45,7 +45,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/Boroven-ghost.rsi
+    sprite: _Backmen/Mobs/Ghost/Boroven-ghost.rsi
     layers:
     - state: animated-Boroven
       shader: unshaded
@@ -58,7 +58,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/Vetochka-ghost.rsi
+    sprite: _Backmen/Mobs/Ghost/Vetochka-ghost.rsi
     layers:
     - state: animated-Veta
       shader: unshaded
@@ -72,7 +72,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/Memes-ghost.rsi
+    sprite: _Backmen/Mobs/Ghost/Memes-ghost.rsi
     layers:
     - state: animated-Memes
       shader: unshaded
@@ -85,7 +85,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/Wisdom-ghost.rsi
+    sprite: _Backmen/Mobs/Ghost/Wisdom-ghost.rsi
     layers:
     - state: angel_nelle
       shader: unshaded
@@ -99,7 +99,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/Wendor-ghost.rsi
+    sprite: _Backmen/Mobs/Ghost/Wendor-ghost.rsi
     layers:
     - state: Wend
       shader: unshaded

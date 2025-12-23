@@ -14,7 +14,9 @@ using Content.Shared.Item;
 using Content.Shared.Bed.Sleep;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Backmen.Disease;
 using Content.Server.Revenant.Components;
+using Content.Shared._Backmen.Disease;
 using Content.Shared.Physics;
 using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
@@ -327,14 +329,14 @@ public sealed partial class RevenantSystem
         // TODO: When disease refactor is in.
 
         // backmen-start: Disease
-        var disSys = EntityManager.System<Backmen.Disease.DiseaseSystem>();
-        var emo = GetEntityQuery<Shared.Backmen.Disease.DiseaseCarrierComponent>();
+        var disSys = EntityManager.System<DiseaseSystem>();
+        var emo = GetEntityQuery<DiseaseCarrierComponent>();
         foreach (var ent in _lookup.GetEntitiesInRange(uid, component.BlightRadius))
         {
             if (emo.TryComp(ent, out var comp))
                 disSys.TryAddDisease(ent, component.BlightDiseasePrototypeId, comp);
         }
-        EntityManager.System<Shared.Backmen.Abilities.Psionics.SharedPsionicAbilitiesSystem>().LogPowerUsed(uid, Loc.GetString("revenant-psionic-power"), 6, 10);
+        EntityManager.System<Shared._Backmen.Abilities.Psionics.SharedPsionicAbilitiesSystem>().LogPowerUsed(uid, Loc.GetString("revenant-psionic-power"), 6, 10);
         // backmen-end: Disease
     }
 

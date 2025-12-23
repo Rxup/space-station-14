@@ -5,7 +5,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: super
@@ -32,7 +32,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: bluespace
@@ -59,7 +59,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: bluespace_reactor
@@ -91,7 +91,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: vortex
@@ -121,7 +121,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: interdyne

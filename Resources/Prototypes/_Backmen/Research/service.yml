@@ -95,7 +95,7 @@
   id: EntertainmentAdvanced
   name: research-technology-entertainment-advanced
   icon:
-    sprite: Backmen/Objects/Weapons/Grenades/confetti.rsi
+    sprite: _Backmen/Objects/Weapons/Grenades/confetti.rsi
     state: icon
   discipline: Service
   tier: 2
@@ -199,7 +199,7 @@
   id: TranslationDevice
   name: research-technology-translation-device
   icon:
-    sprite: Backmen/Objects/Devices/translator.rsi
+    sprite: _Backmen/Objects/Devices/translator.rsi
     state: icon
   discipline: Service
   tier: 1
@@ -239,7 +239,7 @@
   id: TranslationDeviceAdvanced
   name: research-technology-translation-device-advanced
   icon:
-    sprite: Backmen/Objects/Devices/translator.rsi
+    sprite: _Backmen/Objects/Devices/translator.rsi
     state: icon
   discipline: Service
   tier: 1

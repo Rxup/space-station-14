@@ -16,7 +16,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -60,7 +60,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Boxes/svd.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Ammunition/Boxes/svd.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -132,7 +132,7 @@
   name: ammunition packet (5.56 UEG)
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Boxes/cartonka.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Ammunition/Boxes/cartonka.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -153,7 +153,7 @@
   name: ammunition packet incendiary (5.56 UEG)
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Boxes/cartonka.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Ammunition/Boxes/cartonka.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -170,7 +170,7 @@
   name: ammunition packet (5.56 UEG AP)
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Boxes/cartonka.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Ammunition/Boxes/cartonka.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

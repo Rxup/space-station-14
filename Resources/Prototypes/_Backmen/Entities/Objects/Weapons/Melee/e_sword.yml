@@ -5,16 +5,16 @@
   components:
   - type: ItemToggle
     soundActivate:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_on.ogg
+      path: /Audio/_Backmen/Weapons/Melee/plasma/plasma_on.ogg
       params:
         volume: 3
     soundDeactivate:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_off.ogg
+      path: /Audio/_Backmen/Weapons/Melee/plasma/plasma_off.ogg
       params:
         volume: 3
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_hit.ogg
+      path: /Audio/_Backmen/Weapons/Melee/plasma/plasma_hit.ogg
       params:
         variation: 0.250
     activatedSoundOnHitNoDamage:
@@ -23,7 +23,7 @@
         variation: 0.250
         volume: -10
     activatedSoundOnSwing:
-      path: /Audio/Backmen/Weapons/Melee/plasma/plasma_swing.ogg
+      path: /Audio/_Backmen/Weapons/Melee/plasma/plasma_swing.ogg
       params:
         variation: 0.125
   - type: Welder
@@ -64,7 +64,7 @@
   description: Blade is made of pure plasma heated from two to nine thousand degrees at the request of the owner. Power module made in the form of a handle heats up the gas and maintains its shape with a strong magnetic field. It seems that such blades have not been produced since the discovery of lightsabers.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Melee/plasma_sword.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/plasma_sword.rsi
     layers:
     - state: icon
     - state: icon-on
@@ -73,7 +73,7 @@
       shader: unshaded
       map: [ "blade" ]
   - type: Item
-    sprite: Backmen/Objects/Weapons/Melee/plasma_sword-inhands.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/plasma_sword-inhands.rsi
 
 - type: entity
   parent: PlasmaSword
@@ -82,9 +82,9 @@
   description: Blade is made of pure plasma heated from two to nine thousand degrees at the request of the owner. Power module made in the form of a handle heats up the gas and maintains its shape with a strong magnetic field. It seems that such blades have not been produced since the discovery of lightsabers.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/plasma_sword_alt.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt-inhands.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/plasma_sword_alt-inhands.rsi
 
 - type: entity
   parent: [BaseMeleeWeaponPlasma, EnergySwordDouble]
@@ -93,9 +93,9 @@
   description: This can be stored in pockets.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Melee/e_sword_double.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/e_sword_double.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Melee/e_sword_double-inhands.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: SolutionContainerManager
     solutions:
       plasma:

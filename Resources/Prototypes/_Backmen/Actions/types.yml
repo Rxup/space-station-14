@@ -12,7 +12,7 @@
     - type: Action
       useDelay: 10
       startDelay: true
-      icon: Backmen/Icons/verbiconfangs.png
+      icon: _Backmen/Icons/verbiconfangs.png
     - type: InstantAction
       event: !type:EatMouseActionEvent
 
@@ -24,7 +24,7 @@
     - type: Action
       useDelay: 45
       startDelay: true
-      icon: Backmen/Interface/VerbIcons/metapsionic.png
+      icon: _Backmen/Interface/VerbIcons/metapsionic.png
     - type: InstantAction
       event: !type:MetapsionicPowerActionEvent
 
@@ -37,7 +37,7 @@
       useDelay: 45
       startDelay: true
       itemIconStyle: BigAction
-      icon: Backmen/Interface/VerbIcons/dispel.png
+      icon: _Backmen/Interface/VerbIcons/dispel.png
     - type: EntityTargetAction
       canTargetSelf: false
       event: !type:DispelPowerActionEvent
@@ -54,7 +54,7 @@
     - type: Action
       itemIconStyle: BigAction
       useDelay: 60
-      icon: Backmen/Interface/VerbIcons/mass_sleep.png
+      icon: _Backmen/Interface/VerbIcons/mass_sleep.png
       startDelay: true
     - type: WorldTargetAction
       event: !type:MassSleepPowerActionEvent
@@ -71,7 +71,7 @@
     - type: Action
       useDelay: 120
       startDelay: true
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+      icon: _Backmen/Interface/VerbIcons/psionic_invisibility.png
     - type: InstantAction
       event: !type:PsionicInvisibilityPowerActionEvent
 
@@ -83,7 +83,7 @@
     - type: Action
       useDelay: 3
       startDelay: true
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+      icon: _Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       #temporary: true
     - type: InstantAction
       event: !type:PsionicInvisibilityPowerOffActionEvent
@@ -96,7 +96,7 @@
     - type: Action
       itemIconStyle: BigAction
       useDelay: 240
-      icon: Backmen/Interface/VerbIcons/mind_swap.png
+      icon: _Backmen/Interface/VerbIcons/mind_swap.png
     - type: EntityTargetAction
       event: !type:MindSwapPowerActionEvent
     - type: TargetAction
@@ -112,7 +112,7 @@
     - type: Action
       #temporary: true
       useDelay: 20
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+      icon: _Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       startDelay: true
       checkCanInteract: false
     - type: InstantAction
@@ -124,7 +124,7 @@
   name: action telegnosis
   components:
     - type: Action
-      icon: Backmen/Interface/VerbIcons/telegnosis.png
+      icon: _Backmen/Interface/VerbIcons/telegnosis.png
       useDelay: 150
     - type: InstantAction
       event: !type:TelegnosisPowerActionEvent
@@ -135,7 +135,7 @@
   name: action telegnosis
   components:
     - type: Action
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+      icon: _Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       useDelay: 20
       startDelay: true
       #temporary: true
@@ -149,7 +149,7 @@
   name: action regeneration
   components:
     - type: Action
-      icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
+      icon: _Backmen/Interface/VerbIcons/psionic_regeneration.png
       useDelay: 120
     - type: InstantAction
       event: !type:PsionicRegenerationPowerActionEvent
@@ -161,7 +161,7 @@
   components:
     - type: Action
       itemIconStyle: BigAction
-      icon: Backmen/Interface/VerbIcons/noospheric_zap.png
+      icon: _Backmen/Interface/VerbIcons/noospheric_zap.png
       useDelay: 100
     - type: EntityTargetAction
       event: !type:NoosphericZapPowerActionEvent
@@ -177,7 +177,7 @@
     - type: Action
       itemIconStyle: BigAction
       useDelay: 50
-      icon: Backmen/Interface/VerbIcons/pyrokinesis.png
+      icon: _Backmen/Interface/VerbIcons/pyrokinesis.png
     - type: EntityTargetAction
       event: !type:PyrokinesisPowerActionEvent
     - type: TargetAction
@@ -206,7 +206,7 @@
   name: spin web
   components:
     - type: Action
-      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
+      icon: { sprite: _Backmen/Structures/web.rsi, state: web1 }
       itemIconStyle: BigAction
     - type: WorldTargetAction
       event: !type:SpinWebActionEvent
@@ -222,7 +222,7 @@
     - type: Action
       priority: -10
       useDelay: 30
-      #      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
+      #      icon: { sprite: _Backmen/Structures/web.rsi, state: web1 }
     - type: InstantAction
       event: !type:HairballActionEvent
     - type: LimitedCharges

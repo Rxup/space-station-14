@@ -1,7 +1,7 @@
 using System.Linq;
+using Content.Server._Backmen.Administration.Bwoink.Gpt;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind;
@@ -56,7 +56,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly Backmen.Administration.Bwoink.Gpt.GptAhelpSystem _gpt = default!;
+    [Dependency] private readonly GptAhelpSystem _gpt = default!;
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 

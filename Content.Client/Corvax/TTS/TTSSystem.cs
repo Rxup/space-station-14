@@ -62,7 +62,7 @@ public sealed class TTSSystem : EntitySystem
         _contentRoot.Dispose();
     }
 
-    public void RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType text, string voiceId)
+    public void RequestGlobalTTS(Content.Shared._Backmen.TTS.VoiceRequestType text, string voiceId)
     {
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }

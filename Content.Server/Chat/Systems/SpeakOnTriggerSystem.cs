@@ -1,5 +1,5 @@
 using Content.Server.Explosion.EntitySystems;
-using Content.Shared.Backmen.Chat;
+using Content.Shared._Backmen.Chat;
 using Content.Shared.Timing;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;

@@ -58,7 +58,7 @@
   components:
   - type: Marker
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 0.5, 0.5
     drawdepth: FloorTiles
     layers:
@@ -123,7 +123,7 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          path: /Audio/_Backmen/Bosses/virtuedeath.ogg
       - !type:SpawnEntitiesBehavior
         offset: 0
         spawn:
@@ -199,7 +199,7 @@
   suffix: Босс Интро, Архангел Уриил
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 4, 4
     noRot: true
@@ -227,7 +227,7 @@
     prototype: MobUriil
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/uriilintro.ogg
+      path: /Audio/_Backmen/Bosses/uriilintro.ogg
       params:
         volume: 10
 
@@ -268,7 +268,7 @@
     factions:
     - SuperZloy
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 0.5, 0.5
     drawdepth: FloorTiles
     layers:
@@ -285,7 +285,7 @@
   suffix: Holy light
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 0.5, 0.5
     layers:
     - state: holypentagram
@@ -317,7 +317,7 @@
     lifetime: 3
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/ultramortar.ogg
+      path: /Audio/_Backmen/Bosses/ultramortar.ogg
       params:
         volume: -7
   - type: Timer
@@ -341,7 +341,7 @@
   - type: Physics
     bodyType: Static
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 0.5, 0.5
     layers:
     - state: holypentagramfast
@@ -367,7 +367,7 @@
     canCollide: true
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     noRot: true
     layers:
@@ -412,7 +412,7 @@
     canCollide: false
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     noRot: true
     layers:
@@ -453,7 +453,7 @@
         Airloss: -30
         Toxin: -30
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 1.5, 1.5
     noRot: true
@@ -490,7 +490,7 @@
     lifetime: 2.1
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/ultramortar.ogg
+      path: /Audio/_Backmen/Bosses/ultramortar.ogg
       params:
         volume: -7
   - type: TimedSpawner
@@ -505,13 +505,13 @@
     groups:
       Burn: 5
   muzzleFlash:
-    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/laserbeam.rsi
     state: holybeamlaser
   travelFlash:
-    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/laserbeam.rsi
     state: holybeamlaser
   impactFlash:
-    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/laserbeam.rsi
     state: holybeamlaserimpact
 
 - type: hitscan
@@ -521,13 +521,13 @@
     groups:
       Burn: 0
   muzzleFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
     state: NoId
   travelFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
     state: NoId
   impactFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
     state: NoId
 
 - type: entity
@@ -537,7 +537,7 @@
   suffix: Uriil Holy light
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 1, 1
     layers:
     - state: holypentagram
@@ -553,7 +553,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 1, 1
     layers:
     - state: holypentagramfast
@@ -579,7 +579,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 1.5, 1.5
     noRot: true
@@ -618,7 +618,7 @@
     canCollide: false
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 1.5, 1.5
     noRot: true
@@ -637,7 +637,7 @@
     lifetime: 4
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/holysoundshort.ogg
+      path: /Audio/_Backmen/Bosses/holysoundshort.ogg
       params:
         volume: 3
 
@@ -648,7 +648,7 @@
   suffix: BIG Holy light
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 2, 2
     layers:
     - state: holypentagram
@@ -664,7 +664,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
+    sprite: _Backmen/Objects/Misc/Holy/pentagram.rsi
     scale: 2, 2
     layers:
     - state: holypentagramfast
@@ -690,7 +690,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 4, 4
     noRot: true
@@ -729,7 +729,7 @@
     canCollide: false
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 4, 4
     noRot: true
@@ -757,7 +757,7 @@
     lifetime: 8
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/holysound.ogg
+      path: /Audio/_Backmen/Bosses/holysound.ogg
       params:
         volume: 5
 
@@ -805,7 +805,7 @@
         20
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Angles/wisp.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/wisp.rsi
     layers:
     - state: wisp
       shader: unshaded
@@ -878,7 +878,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Angles/wispphase2.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/wispphase2.rsi
     layers:
     - state: wisp
       shader: unshaded
@@ -929,7 +929,7 @@
   name: святое копье
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holyspears.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holyspears.rsi
     layers:
     - state: holy_spears
       shader: unshaded
@@ -947,7 +947,7 @@
   name: святое копье
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holyspears.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holyspears.rsi
     layers:
     - state: holy_spears_spawn
       shader: unshaded
@@ -961,7 +961,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holyspears.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holyspears.rsi
     layers:
     - state: holy_spears_retract
       shader: unshaded
@@ -975,7 +975,7 @@
   - type: Sprite
     drawdepth: Effects
     noRot: true
-    sprite: Backmen/Effects/EnergyDome/energydome_medium.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_medium.rsi
     layers:
     - state: medium
       shader: unshaded
@@ -994,7 +994,7 @@
       - !type:ExplodeBehavior
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          path: /Audio/_Backmen/Bosses/virtuedeath.ogg
           params:
             volume: 10
     - trigger:
@@ -1006,7 +1006,7 @@
       - !type:ExplodeBehavior
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          path: /Audio/_Backmen/Bosses/virtuedeath.ogg
           params:
             volume: 10
   - type: Fixtures
@@ -1072,27 +1072,27 @@
 - type: soundCollection
   id: UriilSound
   files:
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt5.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt6.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt7.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt8.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt10.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt11.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt5.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt6.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt7.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt8.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt10.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt11.ogg
 
 - type: soundCollection
   id: UriilSoundexclaim
   files:
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt1.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt3.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Taunt9.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt1.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt3.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Taunt9.ogg
 
 - type: soundCollection
   id: UriilPain
   files:
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt1.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt2.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt3.ogg
-  - /Audio/Backmen/Bosses/Gabriel/Gab_Hurt4.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Hurt1.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Hurt2.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Hurt3.ogg
+  - /Audio/_Backmen/Bosses/Gabriel/Gab_Hurt4.ogg
 
 - type: emoteSounds
   id: UriilVoice
@@ -1124,7 +1124,7 @@
     volume: 5
     range: 500
     sound:
-      path: /Audio/Backmen/Bosses/Divine_Intervention.ogg
+      path: /Audio/_Backmen/Bosses/Divine_Intervention.ogg
   - type: ReplacementAccent
     accent: Uriil
   - type: Advertise
@@ -1149,7 +1149,7 @@
     emoteChance: 1
   - type: Emoting
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/uriil/uriil.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/uriil/uriil.rsi
     scale: 1.2, 1.2
     layers:
     - state: uriil
@@ -1171,7 +1171,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/uriildeath.ogg
+          path: /Audio/_Backmen/Bosses/uriildeath.ogg
           params:
             volume: 10
       - !type:ExplodeBehavior
@@ -1515,7 +1515,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Backmen/Mobs/Npc/Angles/uriil/deathuriil.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/uriil/deathuriil.rsi
     drawdepth: Mobs
     layers:
     - state: death
@@ -1551,7 +1551,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/uriil/uriilspawn.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/uriil/uriilspawn.rsi
     drawdepth: Mobs
     layers:
     - state: phase2anim
@@ -1589,7 +1589,7 @@
     volume: 5
     range: 500
     sound:
-      path: /Audio/Backmen/Bosses/Glory.ogg
+      path: /Audio/_Backmen/Bosses/Glory.ogg
   - type: Speech
     speechSounds: AngelUriil
     soundCooldownTime: 0.1
@@ -1603,7 +1603,7 @@
     - UriilPain
     emoteChance: 1
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
     scale: 1.2, 1.2
     layers:
     - state: nimb
@@ -1633,7 +1633,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/uriildeathphase2.ogg
+          path: /Audio/_Backmen/Bosses/uriildeathphase2.ogg
       - !type:ExplodeBehavior
       - !type:SpawnEntitiesBehavior
         offset: 0
@@ -1712,7 +1712,7 @@
     damageModifierSet: HolyArmor
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/uriilbehold.ogg
+      path: /Audio/_Backmen/Bosses/uriilbehold.ogg
       params:
         volume: 10
   - type: Fixtures
@@ -1782,7 +1782,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: false
-    sprite: Backmen/Mobs/Npc/Angles/liveweapon.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/liveweapon.rsi
     layers:
     - state: livesword
       shader: unshaded
@@ -1802,7 +1802,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/virtuedeath.ogg
+          path: /Audio/_Backmen/Bosses/virtuedeath.ogg
           params:
             volume: -5
   - type: Fixtures
@@ -1840,7 +1840,7 @@
   suffix: Босс В ЯРОСТИ, фаза 2 Holy
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/uriil/uriilphase2.rsi
     scale: 1.2, 1.2
     layers:
     - state: nimb
@@ -1862,7 +1862,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/uriildeathphase2.ogg
+          path: /Audio/_Backmen/Bosses/uriildeathphase2.ogg
       - !type:ExplodeBehavior
       - !type:SpawnEntitiesBehavior
         offset: 0
@@ -1935,13 +1935,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
     state: NoId
   - type: AmbientSound
     volume: 1
     range: 10
     sound:
-      path: /Audio/Backmen/Bosses/rage.ogg
+      path: /Audio/_Backmen/Bosses/rage.ogg
 
 #Uriil death phase 2, the end
 
@@ -1952,7 +1952,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Backmen/Mobs/Npc/Angles/uriil/deathuriil.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/uriil/deathuriil.rsi
     drawdepth: Mobs
     layers:
     - state: death
@@ -2016,7 +2016,7 @@
   id: FatherLight
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/father_light.rsi
+    sprite: _Backmen/Objects/Misc/Holy/father_light.rsi
     layers:
     - state: light
       shader: unshaded

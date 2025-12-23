@@ -7,7 +7,7 @@
   flavor: RedOrdenDrinkFlavour
   color: "#8B0000"
   metamorphicSprite:
-    sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
     state: icon
   metabolisms:
     Drink:
@@ -62,7 +62,7 @@
   flavor: soju
   color: "#DDDDDD"
   metamorphicSprite:
-    sprite: Backmen/Objects/Consumable/Drinks/sojuglass.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/sojuglass.rsi
     state: icon
   metabolisms:
     Drink:

@@ -261,7 +261,7 @@
   parent: [WeaponLaserCarbinePractice, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
-  categories: [ HideSpawnMenu ] #Backmen-weapons
+  categories: [ HideSpawnMenu ] # Backmen-weapons
   components:
   - type: StaticPrice
     price: 420
@@ -624,12 +624,12 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Gun
-    projectileSpeed: 40   #Backmen edit
+    projectileSpeed: 40   # Backmen edit
     soundGunshot:
-      path: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg   #Backmen edit
+      path: /Audio/_Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg   # Backmen edit
       params:
           volume: -2
-  - type: ProjectileBatteryAmmoProvider   #Backmen edit
+  - type: ProjectileBatteryAmmoProvider   # Backmen edit
     proto: BulletEnergyGunLaserMk2
     fireCost: 100
   - type: BatterySelfRecharger
@@ -646,7 +646,7 @@
     - Sidearm
     - WeaponAntiqueLaser
   - type: StaticPrice
-    price: 5750   #Backmen edit
+    price: 5750   # Backmen edit
   - type: StealTarget
     stealGroup: WeaponAntiqueLaser
   - type: SentienceTarget # I hope this is only the captain's gun

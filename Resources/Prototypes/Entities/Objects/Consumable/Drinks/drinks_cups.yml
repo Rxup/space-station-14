@@ -9,10 +9,10 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/other/Cup/pickup.ogg
+      path: /Audio/_Backmen/Items/other/Cup/pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/other/Cup/drop.ogg
+      path: /Audio/_Backmen/Items/other/Cup/drop.ogg
   # backmen edit end
   - type: SolutionContainerManager
     solutions:

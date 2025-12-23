@@ -172,7 +172,7 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.2
 ####
 

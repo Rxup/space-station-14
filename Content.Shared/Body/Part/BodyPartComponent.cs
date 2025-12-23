@@ -1,5 +1,5 @@
-using Content.Shared.Backmen.Surgery.Tools;
-using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared._Backmen.Surgery.Tools;
+using Content.Shared._Backmen.Surgery.Wounds;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Containers.ItemSlots;

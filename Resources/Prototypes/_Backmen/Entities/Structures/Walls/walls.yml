@@ -5,9 +5,9 @@
   description: It looks sturdy enough.
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Walls/drywall.rsi
+      sprite: _Backmen/Structures/Walls/drywall.rsi
     - type: Icon
-      sprite: Backmen/Structures/Walls/drywall.rsi
+      sprite: _Backmen/Structures/Walls/drywall.rsi
     - type: Damageable
       damageContainer: Inorganic
       damageModifierSet: Wood
@@ -64,9 +64,9 @@
   description: Helps to contain the repeated screams of martial artists.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Walls/paper.rsi
+    sprite: _Backmen/Structures/Walls/paper.rsi
   - type: Icon
-    sprite: Backmen/Structures/Walls/paper.rsi
+    sprite: _Backmen/Structures/Walls/paper.rsi
   - type: Destructible
     thresholds:
     - trigger:

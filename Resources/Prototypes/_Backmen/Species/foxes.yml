@@ -62,101 +62,101 @@
 - type: humanoidBaseSprite
   id: MobHumanoidFoxHead
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxHeadMale
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxHeadFemale
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxChest
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: chest_m
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxChestMale
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: chest_m
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxChestFemale
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: chest_f
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxGroin
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: groin_m
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxGroinMale
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: groin_m
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxGroinFemale
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: groin_f
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxLLeg
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxLHand
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxLArm
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxLFoot
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxRLeg
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxRHand
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxRArm
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobHumanoidFoxRFoot
   baseSprite:
-    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    sprite: _Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: r_foot

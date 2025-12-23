@@ -7,11 +7,11 @@
   components:
   - type: Clickable
   - type: Sprite
-    sprite: Backmen/Structures/Floor/single_catwalk.rsi
+    sprite: _Backmen/Structures/Floor/single_catwalk.rsi
     state: hardiron
     drawdepth: FloorTiles
   - type: Icon
-    sprite: Backmen/Structures/Floor/single_catwalk.rsi
+    sprite: _Backmen/Structures/Floor/single_catwalk.rsi
     state: hardiron
   - type: Transform
     anchored: true

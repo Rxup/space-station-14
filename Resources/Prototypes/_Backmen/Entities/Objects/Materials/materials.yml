@@ -5,7 +5,7 @@
   name: bluespace crystal
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Materials/materials.rsi
+      sprite: _Backmen/Objects/Materials/materials.rsi
       layers:
         - state: bluespace_3
           map: ["base"]
@@ -64,7 +64,7 @@
   description: A thin layer of mothroach hide.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Materials/mothroach.rsi
+      sprite: _Backmen/Objects/Materials/mothroach.rsi
       state: mothroachhide
     - type: Tag
       tags:

@@ -6,7 +6,7 @@
   cost: 1
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   whitelist:

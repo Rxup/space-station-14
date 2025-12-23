@@ -1,6 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.NPC.Components;
-using Content.Shared.Backmen.Chat;
+using Content.Shared._Backmen.Chat;
 using Content.Shared.NPC.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;

@@ -113,7 +113,7 @@
         - CannotSuicide
     - type: LanguageSpeaker
       currentLanguage: Nekomimetic
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - Nekomimetic
       - TauCetiBasic

@@ -1,7 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using Content.Server.Damage.Systems;
-using Content.Shared.Backmen.CCVar;
+using Content.Shared._Backmen.CCVar;
 using Content.Shared.Slippery;
 using Content.Shared.Stunnable;
 using Robust.Shared.GameObjects;

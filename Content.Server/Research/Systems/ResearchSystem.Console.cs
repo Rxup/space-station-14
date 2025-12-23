@@ -3,7 +3,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
-using Content.Shared.Backmen.Chat;
+using Content.Shared._Backmen.Chat;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;

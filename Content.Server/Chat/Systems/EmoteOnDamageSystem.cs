@@ -1,4 +1,4 @@
-using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared._Backmen.Surgery.Wounds;
 
 namespace Content.Server.Chat.Systems;
 

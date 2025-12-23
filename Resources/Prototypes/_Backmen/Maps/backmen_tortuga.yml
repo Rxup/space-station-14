@@ -1,7 +1,7 @@
 - type: gameMap
   id: BackmenTortuga
   mapName: 'Tortuga'
-  mapPath: /Maps/Backmen/backmen_tortuga.yml
+  mapPath: /Maps/_Backmen/backmen_tortuga.yml
   minPlayers: 10
   stations:
     Tortuga:

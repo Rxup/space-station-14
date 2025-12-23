@@ -1,7 +1,7 @@
 using System.Numerics;
 using Content.Client.StatusIcon;
 using Content.Client.UserInterface.Systems;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared._Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;

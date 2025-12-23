@@ -1,12 +1,12 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._Backmen.Ghost;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
-using Content.Server.Warps;
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -30,7 +30,6 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Warps;
 using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -603,7 +602,7 @@ namespace Content.Server.Ghost
 
             if (_minds.TryGetSession(mind, out var mindSession))
             {
-                EntityManager.SystemOrNull<Backmen.Ghost.GhostReJoinSystem>()?.AttachGhost(ghost.Value, mindSession); // backmen: ReturnToRound
+                EntityManager.SystemOrNull<GhostReJoinSystem>()?.AttachGhost(ghost.Value, mindSession); // backmen: ReturnToRound
             }
 
             return true;

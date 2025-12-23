@@ -30,7 +30,7 @@
     - alertType: Magboots
     - alertType: Rooted
     - alertType: Pacified
-    - alertType: Offer #Ataraxia
+    - alertType: Offer # Orion
     - alertType: Stealthy
 
 - type: entity
@@ -99,7 +99,7 @@
   name: alerts-on-fire-name
   description: alerts-on-fire-desc
 
-- type: alert #Ataraxia
+- type: alert # Orion
   id: Offer
   clickEvent: !type:AcceptOfferAlertEvent
   icons:

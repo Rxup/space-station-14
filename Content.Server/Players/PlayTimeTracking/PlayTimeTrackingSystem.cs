@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Backmen.RoleWhitelist;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
@@ -35,7 +36,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
-    [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
+    [Dependency] private readonly WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
 
     [Dependency]
     private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles

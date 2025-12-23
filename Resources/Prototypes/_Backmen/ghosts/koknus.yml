@@ -6,7 +6,7 @@
     noRot: true
     overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Aliens/Guardians/guardians.rsi
+    sprite: _Backmen/Mobs/Aliens/Guardians/guardians.rsi
     layers:
       - state: magic_base
         shader: unshaded
@@ -22,7 +22,7 @@
     noRot: true
     overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/mujik.rsi
+    sprite: _Backmen/Mobs/Ghost/mujik.rsi
     layers:
       - state: mujik
         shader: unshaded

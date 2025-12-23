@@ -5,7 +5,7 @@
   description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Energy/x01.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -13,11 +13,11 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Energy/x01.rsi
   - type: Gun
     projectileSpeed: 40
     soundGunshot:
-      path: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
+      path: /Audio/_Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
       params:
           volume: -2
   - type: Item
@@ -49,7 +49,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Energy/x01.rsi
     layers:
     - state: redtrac
       shader: unshaded
@@ -112,7 +112,7 @@
   description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -120,7 +120,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
   - type: Gun
     fireRate: 2
     projectileSpeed: 75
@@ -170,13 +170,13 @@
   description: The Pulse Rifle is the standard-issue service rifle of the Earth Defense Force and is also common among corporate security officers.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/big.rsi
     state: base
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
     size: Huge
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -185,7 +185,7 @@
     maxAngle: 45
     fireRate: 8
     soundGunshot:
-      path: /Audio/Backmen/Weapons/Energy/giperperdesh.ogg
+      path: /Audio/_Backmen/Weapons/Energy/giperperdesh.ogg
       params:
         volume: -1
   - type: ItemSlots

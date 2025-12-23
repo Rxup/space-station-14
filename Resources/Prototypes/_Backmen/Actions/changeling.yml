@@ -11,7 +11,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: evolution_menu
   - type: InstantAction
     event: !type:OpenEvolutionMenuEvent {}
@@ -30,7 +30,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: absorb_dna
   - type: TargetAction
     interactOnMiss: false
@@ -55,7 +55,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_extractdna
   - type: TargetAction
     interactOnMiss: false
@@ -79,7 +79,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: transform_cycle
   - type: InstantAction
     event: !type:ChangelingTransformCycleEvent {}
@@ -98,7 +98,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: transform
   - type: InstantAction
     event: !type:ChangelingTransformEvent {}
@@ -116,7 +116,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: stasis_enter
     checkCanInteract: false
     checkConsciousness: false
@@ -136,7 +136,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: stasis_exit
     checkCanInteract: false
     checkConsciousness: false
@@ -158,7 +158,7 @@
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: armblade
   - type: InstantAction
     event: !type:ToggleArmbladeEvent {}
@@ -176,7 +176,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: bone_shard
   - type: InstantAction
     event: !type:CreateBoneShardEvent {}
@@ -194,7 +194,7 @@
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: chitinous_armor
   - type: InstantAction
     event: !type:ToggleChitinousArmorEvent {}
@@ -213,7 +213,7 @@
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: organic_shield
   - type: InstantAction
     event: !type:ToggleOrganicShieldEvent {}
@@ -232,7 +232,7 @@
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: shriek_dissonant
   - type: InstantAction
     event: !type:ShriekDissonantEvent {}
@@ -252,7 +252,7 @@
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: shriek_resonant
   - type: InstantAction
     event: !type:ShriekResonantEvent {}
@@ -272,7 +272,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: strained_muscles
   - type: InstantAction
     event: !type:ToggleStrainedMusclesEvent {}
@@ -291,7 +291,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_blind
   - type: TargetAction
     interactOnMiss: false
@@ -315,7 +315,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_cryo
   - type: TargetAction
     interactOnMiss: false
@@ -339,7 +339,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_lethargic
   - type: TargetAction
     interactOnMiss: false
@@ -363,7 +363,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_mute
   - type: TargetAction
     interactOnMiss: false
@@ -387,7 +387,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_armblade
   - type: TargetAction
     interactOnMiss: false
@@ -411,7 +411,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: sting_transform
   - type: TargetAction
     interactOnMiss: false
@@ -437,7 +437,7 @@
     useDelay: 30
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: anatomic_panacea
     checkCanInteract: false
     checkConsciousness: false
@@ -457,7 +457,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: augmented_eyesight
     checkCanInteract: false
   - type: InstantAction
@@ -476,7 +476,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: biodegrade
     checkCanInteract: false
   - type: InstantAction
@@ -495,7 +495,7 @@
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: chameleon_skin
     checkCanInteract: false
     checkConsciousness: false
@@ -515,7 +515,7 @@
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: epinephrine_overdose
     checkCanInteract: false
     checkConsciousness: false
@@ -536,7 +536,7 @@
     useDelay: 30
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: fleshmend
     checkCanInteract: false
   - type: InstantAction
@@ -556,7 +556,7 @@
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: lesser_form
     checkCanInteract: false
   - type: InstantAction
@@ -575,7 +575,7 @@
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: space_adaptation
   - type: InstantAction
     event: !type:ActionSpacesuitEvent {}
@@ -592,7 +592,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Backmen/Changeling/changeling_abilities.rsi
+      sprite: _Backmen/Changeling/changeling_abilities.rsi
       state: hivemind_access
     checkCanInteract: false
     checkConsciousness: false

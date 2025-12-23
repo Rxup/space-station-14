@@ -152,13 +152,13 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
-  - type: NightVision #backmen: night vision
+  - type: NightVision # Backmen: night vision
     isToggle: true
     color: "#808080"
     playSoundOn: false
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker # Backmen: languages
     currentLanguage: Carp
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Carp
     - Dragon

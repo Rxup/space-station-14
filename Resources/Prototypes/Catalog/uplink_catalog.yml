@@ -497,7 +497,7 @@
 #  name: uplink-pistol-magazine-name
 #  description: uplink-pistol-magazine-desc
 #  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-#  productEntity: MagazinePistol9x17 #backmen-ammonation
+#  productEntity: MagazinePistol9x17 # Backmen-ammonation
 #  cost:
 #    Telecrystal: 1
 #  categories:
@@ -509,7 +509,7 @@
 #  name: uplink-pistol-magazine-c20r-name
 #  description: uplink-pistol-magazine-c20r-desc
 #  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-#  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
+#  productEntity: MagazinePistolSubMachineGun9x17 # Backmen-ammonation
 #  cost:
 #    Telecrystal: 2
 #  categories:
@@ -556,7 +556,7 @@
   name: uplink-speedloader-magnum-name
   description: uplink-speedloader-magnu-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoader357MagnumAP #Backmen-edit
+  productEntity: SpeedLoader357MagnumAP # Backmen-edit
   cost:
     Telecrystal: 3
   categories:
@@ -567,9 +567,9 @@
 #  id: UplinkMosinAmmo
 #  name: uplink-mosin-ammo-name
 #  description: uplink-mosin-ammo-desc
-#  productEntity: MagazineBoxHeavyRifle762 #backmen-ammonation
+#  productEntity: MagazineBoxHeavyRifle762 # Backmen-ammonation
 #  cost:
-#    Telecrystal: 4 #backmen-ammonation
+#    Telecrystal: 4 # Backmen-ammonation
 #  categories:
 #  - UplinkAmmo
 
@@ -589,7 +589,7 @@
 #  id: UplinkHristovAmmo
 #  name: uplink-sniper-ammo-name
 #  description: uplink-sniper-ammo-desc
-#  productEntity: MagazinePacketHeavyRifle50BMG #backmen-ammonation
+#  productEntity: MagazinePacketHeavyRifle50BMG # Backmen-ammonation
 #  cost:
 #    Telecrystal: 2
 #  categories:
@@ -1115,7 +1115,7 @@
   id: UplinkSurplusBundle
   name: uplink-surplus-bundle-name
   description: uplink-surplus-bundle-desc
-  productEntity: DropPodMarkerSyndicateSurplusBundle #backmen-droppod
+  productEntity: DropPodMarkerSyndicateSurplusBundle # Backmen-droppod
   cost:
     Telecrystal: 20
   categories:
@@ -1134,7 +1134,7 @@
   id: UplinkSuperSurplusBundle
   name: uplink-super-surplus-bundle-name
   description: uplink-super-surplus-bundle-desc
-  productEntity: DropPodMarkerSyndicateSuperSurplusBundle #backmen-droppod
+  productEntity: DropPodMarkerSyndicateSuperSurplusBundle # Backmen-droppod
   cost:
     Telecrystal: 40
   categories:
@@ -1217,7 +1217,7 @@
   id: UplinkReinforcementRadioSyndicate
   name: uplink-reinforcement-radio-name
   description: uplink-reinforcement-radio-traitor-desc
-  productEntity: DropPodMarkerReinforcementSyndicate #backmen-droppod
+  productEntity: DropPodMarkerReinforcementSyndicate # Backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1236,7 +1236,7 @@
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
   name: uplink-reinforcement-radio-nukeops-name
   description: uplink-reinforcement-radio-nukeops-desc
-  productEntity: DropPodMarkerReinforcementSyndicateNukeops #backmen-droppod
+  productEntity: DropPodMarkerReinforcementSyndicateNukeops # Backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
   cost:
     Telecrystal: 30
@@ -1252,7 +1252,7 @@
   id: UplinkReinforcementRadioSyndicateCyborgAssault
   name:  uplink-reinforcement-radio-cyborg-assault-name
   description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: DropPodMarkerReinforcementSyndicateCyborgAssault #backmen-droppod
+  productEntity: DropPodMarkerReinforcementSyndicateCyborgAssault # Backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
   cost:
     Telecrystal: 65
@@ -1268,7 +1268,7 @@
   id: UplinkReinforcementRadioSyndicateAncestor
   name: uplink-reinforcement-radio-ancestor-name
   description: uplink-reinforcement-radio-ancestor-desc
-  productEntity: DropPodMarkerReinforcementSyndicateAncestor #backmen-droppod
+  productEntity: DropPodMarkerReinforcementSyndicateAncestor # Backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1287,7 +1287,7 @@
   id: UplinkReinforcementRadioSyndicateAncestorNukeops # Version for Nukeops that spawns a syndicate monkey with the NukeOperative component.
   name: uplink-reinforcement-radio-ancestor-name
   description: uplink-reinforcement-radio-ancestor-desc
-  productEntity: DropPodMarkerReinforcementSyndicateAncestorNukeops #backmen-droppod
+  productEntity: DropPodMarkerReinforcementSyndicateAncestorNukeops # Backmen-droppod
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1740,7 +1740,7 @@
   name: uplink-clothing-outer-hardsuit-juggernaut-name
   description: uplink-clothing-outer-hardsuit-juggernaut-desc
   icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
-  productEntity: DropPodMarkerSyndicateJuggernaut #backmen-droppod
+  productEntity: DropPodMarkerSyndicateJuggernaut # Backmen-droppod
   cost:
     Telecrystal: 12
   categories:

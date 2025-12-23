@@ -13,4 +13,4 @@
           Quantity: 30
   - type: Drink
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi

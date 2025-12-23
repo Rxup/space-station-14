@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Corvax.Interfaces.Server;
 using Content.Server.Database;
 using Content.Corvax.Interfaces.Server;
+using Content.Server.Backmen;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -60,7 +61,7 @@ namespace Content.Server.GameTicking
                     // timer time must be > tick length
                     // Corvax-Queue-Start
                     if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
-                        EntityManager.System<Server.Backmen.PlayerManagerSystem>().JoinGame(args.Session);
+                        EntityManager.System<PlayerManagerSystem>().JoinGame(args.Session);
                         //Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
                     // Corvax-Queue-End
 

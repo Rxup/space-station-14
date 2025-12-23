@@ -109,9 +109,9 @@
       drawdepth: Mobs
       layers:
         - state: male_template
-          sprite: Backmen/Mobs/Npc/Base.rsi
+          sprite: _Backmen/Mobs/Npc/Base.rsi
         - state: alive
-          sprite: Backmen/Mobs/Npc/simple_syndicate/blade.rsi
+          sprite: _Backmen/Mobs/Npc/simple_syndicate/blade.rsi
     - type: NpcFactionMember
       factions:
         - SuperZloy
@@ -151,9 +151,9 @@
       drawdepth: Mobs
       layers:
         - state: male_template
-          sprite: Backmen/Mobs/Npc/Base.rsi
+          sprite: _Backmen/Mobs/Npc/Base.rsi
         - state: alive
-          sprite: Backmen/Mobs/Npc/simple_syndicate/knife.rsi
+          sprite: _Backmen/Mobs/Npc/simple_syndicate/knife.rsi
     - type: NpcFactionMember
       factions:
         - SuperZloy
@@ -190,9 +190,9 @@
       drawdepth: Mobs
       layers:
         - state: male_template
-          sprite: Backmen/Mobs/Npc/Base.rsi
+          sprite: _Backmen/Mobs/Npc/Base.rsi
         - state: alive
-          sprite: Backmen/Mobs/Npc/simple_syndicate/pistol.rsi
+          sprite: _Backmen/Mobs/Npc/simple_syndicate/pistol.rsi
     - type: NpcFactionMember
       factions:
         - SuperZloy
@@ -234,9 +234,9 @@
       drawdepth: Mobs
       layers:
         - state: male_template
-          sprite: Backmen/Mobs/Npc/Base.rsi
+          sprite: _Backmen/Mobs/Npc/Base.rsi
         - state: alive
-          sprite: Backmen/Mobs/Npc/simple_syndicate/shotgun.rsi
+          sprite: _Backmen/Mobs/Npc/simple_syndicate/shotgun.rsi
     - type: NpcFactionMember
       factions:
         - SuperZloy
@@ -278,9 +278,9 @@
       drawdepth: Mobs
       layers:
         - state: male_template
-          sprite: Backmen/Mobs/Npc/Base.rsi
+          sprite: _Backmen/Mobs/Npc/Base.rsi
         - state: alive
-          sprite: Backmen/Mobs/Npc/simple_syndicate/smg.rsi
+          sprite: _Backmen/Mobs/Npc/simple_syndicate/smg.rsi
     - type: NpcFactionMember
       factions:
         - SuperZloy

@@ -9,7 +9,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.StepTrigger.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
-using Content.Shared.Backmen.Mood;
+using Content.Shared._Backmen.Mood;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;

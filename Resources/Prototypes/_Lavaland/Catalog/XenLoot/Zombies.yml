@@ -19,7 +19,7 @@
   name: сумка снаряжение хеку
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
     layers:
       - state: icon
   - type: SpawnItemsOnUse

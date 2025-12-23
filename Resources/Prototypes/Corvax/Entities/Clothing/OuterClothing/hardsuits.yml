@@ -41,5 +41,5 @@
     damageCoefficient: 0.7
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNLeader
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.5

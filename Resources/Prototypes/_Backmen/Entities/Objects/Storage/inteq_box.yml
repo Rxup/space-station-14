@@ -6,7 +6,7 @@
   description: Brown box with a golden shield on its lid.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Storage/inteq_box.rsi
+    sprite: _Backmen/Objects/Storage/inteq_box.rsi
     state: icon
   - type: Storage
     maxItemSize: Normal

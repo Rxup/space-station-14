@@ -6,11 +6,11 @@
   description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/tiny.rsi
   - type: RevolverAmmoProvider
     soundInsert:
       path: /Audio/Weapons/Guns64/Revolvers/revolver_load.ogg
@@ -36,9 +36,9 @@
   description: An automatic revolver chambered in .45 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
   - type: RevolverAmmoProvider
     capacity: 5
     chambers: [ True, True, True, True, True ]
@@ -70,9 +70,9 @@
   description: A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .45 Magnum rounds.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
   - type: RevolverAmmoProvider
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
@@ -96,9 +96,9 @@
   description: The Nagant-Yamasaki is an efficient killing machine developed by an old generation country, namely Russia. It can often be found in the hands of criminals or mercenaries.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
   - type: RevolverAmmoProvider
     capacity: 8
     chambers: [ True, True, True, True, True, True, True, True ]
@@ -128,9 +128,9 @@
   description: Uses .45 magnum. Timeless design, from antiquity to the future. This one is well known among the police as a versatile and unpretentious weapon.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
   - type: Item
     size: Small
     shape:

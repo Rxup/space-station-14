@@ -5,7 +5,7 @@
   description: An unusual variation of the PDA that draws energy from redspace crystals inside.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
         state: "pda-orden"
@@ -33,7 +33,7 @@
     - type: PdaBorderColor
       borderColor: "#8b0000"
     - type: Icon
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       state: pda-orden
 
 - type: entity
@@ -43,7 +43,7 @@
   description: Пахнет пиццой
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
         state: "pda-Delivery"
@@ -71,7 +71,7 @@
     - type: PdaBorderColor
       borderColor: "#00a000"
     - type: Icon
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       state: pda-Delivery
 
 
@@ -98,7 +98,7 @@
   description:  An old black PDA with machine oil stains, scratches and other signs of age
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
         state: "pda-Roboticist"
@@ -124,7 +124,7 @@
           tags:
           - Write
     - type: Icon
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       state: pda-Roboticist
 
 - type: entity
@@ -134,7 +134,7 @@
   description: He took a bullet and was unharmed.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
         state: "pda-blue"
@@ -162,7 +162,7 @@
           tags:
           - Write
     - type: Icon
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       state: pda-blue
 
 - type: entity
@@ -172,7 +172,7 @@
   description: Standart PDA of station surgeon.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       layers:
       - map: [ "enum.PdaVisualLayers.Base" ]
         state: "pda-surgeon"
@@ -201,7 +201,7 @@
           tags:
           - Write
     - type: Icon
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       state: pda-surgeon
 
 - type: entity

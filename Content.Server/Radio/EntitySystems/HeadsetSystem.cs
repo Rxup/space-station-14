@@ -1,4 +1,4 @@
-using Content.Server.Backmen.Language;
+using Content.Server._Backmen.Language;
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Radio.Components;
@@ -109,7 +109,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     // start-backmen: radio sound
 
     private static readonly SoundSpecifier DefaultOnSound =
-        new SoundPathSpecifier("/Audio/Backmen/Radio/common.ogg", AudioParams.Default.WithVolume(-6).WithMaxDistance(2));
+        new SoundPathSpecifier("/Audio/_Backmen/Radio/common.ogg", AudioParams.Default.WithVolume(-6).WithMaxDistance(2));
 
     // end-backmen: radio sound
 

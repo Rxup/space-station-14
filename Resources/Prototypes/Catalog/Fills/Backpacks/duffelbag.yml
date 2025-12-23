@@ -84,7 +84,7 @@
   - type: StorageFill
     contents:
       - id: WeaponRevolverPythonAP
-      - id: SpeedLoader357MagnumAP #Backmen-edit
+      - id: SpeedLoader357MagnumAP # Backmen-edit
         amount: 2
 
 - type: entity

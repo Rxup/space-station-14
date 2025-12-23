@@ -65,7 +65,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Backmen/Mobs/Customization/fox_markings.rsi # backmen
+    - sprite: _Backmen/Mobs/Customization/fox_markings.rsi # backmen
       state: tail_fox_waggin
     # - sprite: Corvax/Mobs/Customization/vulpkanin.rsi # backmen
       # state: tail_fox_inner_waggin

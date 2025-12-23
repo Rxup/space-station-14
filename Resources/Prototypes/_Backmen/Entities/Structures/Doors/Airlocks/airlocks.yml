@@ -4,7 +4,7 @@
   suffix: Blue Shield
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Airlocks/Airlock/blueshield.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Airlock/blueshield.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -12,4 +12,4 @@
   suffix: Blue Shield
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Airlocks/Glass/blueshield.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/blueshield.rsi

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Content.Server.Administration.Systems;
-using Content.Server.Backmen.Arrivals.CentComm;
+using Content.Server._Backmen.Arrivals.CentComm;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
@@ -57,12 +57,12 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/ShuttleEvent/honki.yml", // Contains golden honker, clown's rubber stamp
             "/Maps/Shuttles/ShuttleEvent/instigator.yml", // Contains EXP-320g "Friendship"
             "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
-            "/Maps/Backmen/corvax_centcomm_bkm.yml",
-            "/Maps/Backmen/CentComBackmen.yml",
-            "/Maps/Backmen/backmen_centcom.yml",
+            "/Maps/_Backmen/corvax_centcomm_bkm.yml",
+            "/Maps/_Backmen/CentComBackmen.yml",
+            "/Maps/_Backmen/backmen_centcom.yml",
             "/Maps/Shuttles/ert_corvaxcentcomm.yml",
-            "/Maps/Backmen/ForSale/teamA1.yml",
-            "/Maps/Backmen/ForSale/teamB1.yml",
+            "/Maps/_Backmen/ForSale/teamA1.yml",
+            "/Maps/_Backmen/ForSale/teamB1.yml",
         };
 
         private static readonly string[] GameMaps =
@@ -205,8 +205,8 @@ namespace Content.IntegrationTests.Tests
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .Where(x=>!x.CanonPath.StartsWith("/Maps/Corvax")) // skip all corvax
-                .Where(x=>!x.CanonPath.StartsWith("/Maps/Backmen/Adminbuse")) // skip adminbuse
-                .Where(x=>!x.CanonPath.StartsWith("/Maps/Backmen/ForSale/shipvsship")) // skip svs
+                .Where(x=>!x.CanonPath.StartsWith("/Maps/_Backmen/Adminbuse")) // skip adminbuse
+                .Where(x=>!x.CanonPath.StartsWith("/Maps/_Backmen/ForSale/shipvsship")) // skip svs
                 .ToArray();
 
             var v7Maps = new List<ResPath>();

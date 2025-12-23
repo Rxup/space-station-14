@@ -45,10 +45,10 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/drinkglass_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/drinkglass_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/drinkglass_drop.ogg
+      path: /Audio/_Backmen/Items/handling/drinkglass_drop.ogg
   # backmen edit end
   - type: Damageable
     damageContainer: Inorganic
@@ -2760,5 +2760,5 @@
         - ReagentId: BacchusBlessing
           Quantity: 30
   - type: Icon
-    sprite: Backmen/Objects/Consumable/Drinks/bacchus.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/bacchus.rsi
     state: icon

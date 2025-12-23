@@ -1,8 +1,8 @@
 using System.Linq;
 using Content.Server.Administration.Systems;
 using Content.Server.Atmos.Components;
-using Content.Shared.Backmen.CCVar;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared._Backmen.CCVar;
+using Content.Shared._Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Execution;

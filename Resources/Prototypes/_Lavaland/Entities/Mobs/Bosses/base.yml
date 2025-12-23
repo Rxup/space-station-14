@@ -60,7 +60,7 @@
     damageModifierSet: HolyArmor
   - type: Sprite
     scale: 1.5, 1.5
-    sprite: Backmen/Mobs/Npc/big_john.rsi
+    sprite: _Backmen/Mobs/Npc/big_john.rsi
     layers:
     - state: bigjohn
   - type: MovementSpeedModifier
@@ -91,11 +91,11 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
     layers:
       - state: NoId
   - type: AmbientSound
     volume: 5
     range: 50
     sound:
-      path: /Audio/Backmen/Bosses/ThemeOfCancer.ogg
+      path: /Audio/_Backmen/Bosses/ThemeOfCancer.ogg

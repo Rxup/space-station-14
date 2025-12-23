@@ -66,9 +66,9 @@
       types:
         Blunt: 15
     openSound:
-      path: /Audio/Backmen/Machines/airlock_open.ogg # backmen edit
+      path: /Audio/_Backmen/Machines/airlock_open.ogg # backmen edit
     closeSound:
-      path: /Audio/Backmen/Machines/airlock_close.ogg # backmen edit
+      path: /Audio/_Backmen/Machines/airlock_close.ogg # backmen edit
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
   - type: ContainerContainer

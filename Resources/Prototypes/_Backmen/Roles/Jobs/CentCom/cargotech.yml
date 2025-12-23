@@ -51,7 +51,7 @@
   parent: JobIcon
   id: JobIconCCCargoTech
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/_Backmen/Icons/jobicon.rsi
     state: CargoTechnician
 
 
@@ -76,7 +76,7 @@
     - type: PdaBorderColor
       borderColor: "#00842e"
     - type: Icon
-      sprite: Backmen/Objects/Devices/pda.rsi
+      sprite: _Backmen/Objects/Devices/pda.rsi
       state: pda-centcomcargo
 
 - type: entity

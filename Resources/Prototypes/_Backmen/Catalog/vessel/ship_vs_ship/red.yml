@@ -6,7 +6,7 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/shipvsship/red/tumler_dast.yml
+  shuttlePath: /Maps/_Backmen/ForSale/shipvsship/red/tumler_dast.yml
   
 - type: vessel
   id: ShuttleForsaleBattleRedLuso
@@ -16,7 +16,7 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/shipvsship/red/luso_perf.yml
+  shuttlePath: /Maps/_Backmen/ForSale/shipvsship/red/luso_perf.yml
 
 - type: vessel
   id: ShuttleForsaleBattleRedGemme
@@ -26,7 +26,7 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/shipvsship/red/gemme_perf.yml
+  shuttlePath: /Maps/_Backmen/ForSale/shipvsship/red/gemme_perf.yml
 
 - type: vessel
   id: ShuttleForsaleBattleRedShuttler
@@ -36,7 +36,7 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/shipvsship/red/shuttler_perf.yml
+  shuttlePath: /Maps/_Backmen/ForSale/shipvsship/red/shuttler_perf.yml
   
 - type: vessel
   id: ShuttleForsaleBattleRedGaul
@@ -46,7 +46,7 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/shipvsship/red/gaul_dast.yml
+  shuttlePath: /Maps/_Backmen/ForSale/shipvsship/red/gaul_dast.yml
   
 - type: vessel
   id: ShuttleForsaleBattleRedSpear
@@ -56,4 +56,4 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/shipvsship/red/spear_dast.yml
+  shuttlePath: /Maps/_Backmen/ForSale/shipvsship/red/spear_dast.yml

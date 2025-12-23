@@ -1,4 +1,5 @@
 using System.Globalization;
+using Content.Server._Backmen.Reinforcement.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
@@ -178,7 +179,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         // if we have a session, we use that to add back in all the job slots the player had.
         if (userId != null
-            && !HasComp<Backmen.Reinforcement.Components.ReinforcementMemberComponent>(ent) // backmen: reinforcement system
+            && !HasComp<ReinforcementMemberComponent>(ent) // backmen: reinforcement system
            )
         {
             foreach (var uniqueStation in _station.GetStationsSet())
@@ -224,7 +225,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
 
 
-        RaiseLocalEvent(ent, new Content.Shared.Backmen.Cryostorage.MovedToStorageEvent{ Storage = (cryostorageEnt.Value, cryostorageComponent) });// backmen: reinforcement system
+        RaiseLocalEvent(ent, new Content.Shared._Backmen.Cryostorage.MovedToStorageEvent{ Storage = (cryostorageEnt.Value, cryostorageComponent) });// backmen: reinforcement system
 
         if (!TryComp<StationRecordsComponent>(station, out var stationRecords))
             return;

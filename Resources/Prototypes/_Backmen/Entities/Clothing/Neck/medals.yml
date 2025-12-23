@@ -6,18 +6,18 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Medals/nkvd.rsi
+    sprite: _Backmen/Clothing/Neck/Medals/nkvd.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/Clothing/Neck/Medals/nkvd.rsi
+    sprite: _Backmen/Clothing/Neck/Medals/nkvd.rsi
   - type: Item
     size: Tiny
 
@@ -29,18 +29,18 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Medals/solgov.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Medals/solgov.rsi
     state: solgov-accessory_iron_star
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Medals/solgov.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Medals/solgov.rsi
     clothingVisuals:
       neck:
       - state: iron_star
@@ -57,13 +57,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_iron_sol
   - type: Clothing
@@ -79,13 +79,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_bronze_sol
   - type: Clothing
@@ -101,13 +101,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_silver_sword
   - type: Clothing
@@ -123,13 +123,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_silver_sol
   - type: Clothing
@@ -145,13 +145,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_gold_star
   - type: Clothing
@@ -167,13 +167,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_gold_sun
   - type: Clothing
@@ -189,13 +189,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_gold_crest
   - type: Clothing
@@ -211,13 +211,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_gold_sol
   - type: Clothing
@@ -233,13 +233,13 @@
   components:
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/accessory_drop.ogg
+      path: /Audio/_Backmen/Items/handling/accessory_drop.ogg
   - type: Sprite
     state: solgov-accessory_pin_pilot
   - type: Clothing

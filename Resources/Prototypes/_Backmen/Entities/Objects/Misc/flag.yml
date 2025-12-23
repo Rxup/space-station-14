@@ -5,5 +5,5 @@
   description: Thats looks cool, shut up and take my money.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Fun/inteq_flag_mini.rsi
+      sprite: _Backmen/Objects/Fun/inteq_flag_mini.rsi
       state: icon

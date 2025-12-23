@@ -5,7 +5,7 @@
   description: Finally, some decent reception around here...
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/Computers/tv.rsi # BACKMEN-EDIT
+    sprite: _Backmen/Structures/Machines/Computers/tv.rsi # BACKMEN-EDIT
     noRot: true
     drawdepth: SmallObjects
     layers:

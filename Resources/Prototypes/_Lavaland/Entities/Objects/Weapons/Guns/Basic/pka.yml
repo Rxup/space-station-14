@@ -163,7 +163,7 @@
   description: Fires low-damage kinetic bolts at a short range.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
     layers:
     - state: icon
       map: [ "enum.WeaponVisualLayers.Base" ]
@@ -180,9 +180,9 @@
       visible: false
       map: [ "empty-icon" ]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
   - type: PressureDamageChange
     appliedModifier: 0.65
   - type: UpgradeableGun

@@ -6,16 +6,16 @@
   description: The M-60 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/tiny.rsi
   - type: Gun
     fireRate: 12
     soundGunshot:
@@ -58,16 +58,16 @@
   description: Пулемёт ОПЗ периода Второй мировой войны. Разработан фирмой Metall-und Lackwarenfabrik Johannes Großfuß в 1942 году. После войны поставки данного пулемета возобновили в 2342 году.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4
   - type: GunWieldBonus
@@ -120,10 +120,10 @@
   description: A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
     state: icon
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
     size: Ginormous
   - type: Gun
     minAngle: 1
@@ -160,13 +160,13 @@
   description: NanoTrasen Heavy Energy Minigun "Devastator", a machine gun manufactured by NanoTrasen (not for sale!), used by NanoTrasen security companies and defense services, mainly used as a heavy machine gun for defense against pirate ships and xenos invasion.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
     state: icon
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
     size: Ginormous
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
     quickEquip: false
     slots:
     - Back

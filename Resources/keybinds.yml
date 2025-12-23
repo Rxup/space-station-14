@@ -268,10 +268,10 @@ binds:
   mod1: Shift
 - function: OpenBackpack
   type: State
-  key: U # Ataraxia-EDIT
+  key: U # Orion-Edit
 - function: OpenBelt
   type: State
-  key: U # Ataraxia-EDIT
+  key: U # Orion-Edit
   mod1: Shift
 - function: ShowDebugConsole
   type: State

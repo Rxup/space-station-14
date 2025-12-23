@@ -1,6 +1,6 @@
 // Shitmed Change Start
 
-using Content.Shared.Backmen.Smoking.Systems;
+using Content.Shared._Backmen.Smoking.Systems;
 
 namespace Content.Client.Smoking;
 

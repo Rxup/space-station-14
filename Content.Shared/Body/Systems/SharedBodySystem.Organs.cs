@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Backmen.Surgery.Body.Organs;
+using Content.Shared._Backmen.Surgery.Body.Organs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;

@@ -99,7 +99,7 @@
     - NamesOperationSuffix
     nameFormat: name-format-nuclear-operation
   - type: NukeopsRule
-    warDeclarationMinOps: 3 #Backmen terror
+    warDeclarationMinOps: 3 # Backmen terror
   - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
@@ -117,7 +117,7 @@
   - type: GameRule
     minPlayers: 10
   - type: LoadMapRule
-    mapPath: /Maps/Backmen/Nonstations/nukieoutpost.yml # backmen nuke map
+    mapPath: /Maps/_Backmen/Nonstations/nukieoutpost.yml # backmen nuke map
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -136,7 +136,7 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
-      - type: LanguageKnowledge #backmen: languages
+      - type: LanguageKnowledge # Backmen: languages
         speaks:
         - TauCetiBasic
         - Codespeak

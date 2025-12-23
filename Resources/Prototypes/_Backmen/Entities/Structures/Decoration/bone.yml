@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Backmen/Structures/Decoration/bone_large.rsi
+    sprite: _Backmen/Structures/Decoration/bone_large.rsi
     state: rib
     drawdepth: Mobs
     offset: "0.0,0.5"

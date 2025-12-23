@@ -54,13 +54,13 @@ namespace Content.Server.Database
             });
 
             cfg.OnValueChanged(CCVars.DatabasePgFakeLag, v => _msLag = v, true);
-            cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.PlayTimeServerUrl, v => _playtimeServerUrl = v, true);
-            cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.PlayTimeServerApiKey, v =>
+            cfg.OnValueChanged(Shared._Backmen.CCVar.CCVars.PlayTimeServerUrl, v => _playtimeServerUrl = v, true);
+            cfg.OnValueChanged(Shared._Backmen.CCVar.CCVars.PlayTimeServerApiKey, v =>
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", v);
             }, true);
-            cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.PlayTimeServerSaveLocally, v => _playtimeServerSaveLocally = v, true);
-            cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.PlayTimeServerEnabled, v => _playtimeServerEnabled = v, true);
+            cfg.OnValueChanged(Shared._Backmen.CCVar.CCVars.PlayTimeServerSaveLocally, v => _playtimeServerSaveLocally = v, true);
+            cfg.OnValueChanged(Shared._Backmen.CCVar.CCVars.PlayTimeServerEnabled, v => _playtimeServerEnabled = v, true);
 
             InitNotificationListener(connectionString);
         }

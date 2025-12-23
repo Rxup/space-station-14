@@ -10,7 +10,7 @@
     - state: icon
       sprite: Mobs/Aliens/Carps/space.rsi
     - state: syndicate
-      sprite: Backmen/Markers/factions.rsi
+      sprite: _Backmen/Markers/factions.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobCarpFactionSyndicate
@@ -24,7 +24,7 @@
     layers:
     - state: green
     - state: goat
-      sprite: Backmen/Mobs/Animals/bluespacegoat.rsi
+      sprite: _Backmen/Mobs/Animals/bluespacegoat.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobGoatBluespace

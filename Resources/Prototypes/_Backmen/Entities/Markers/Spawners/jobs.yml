@@ -62,7 +62,7 @@
         - state: green
         - state: qm
         - state: jobicon
-          sprite: Backmen/Markers/jobs.rsi
+          sprite: _Backmen/Markers/jobs.rsi
 
 - type: entity
   id: SpawnPointBKCCAssistant
@@ -72,7 +72,7 @@
     - type: SpawnPoint
       job_id: BKCCAssistant
     - type: Sprite
-      sprite: Backmen/Markers/jobs.rsi
+      sprite: _Backmen/Markers/jobs.rsi
       layers:
         - state: green
         - state: centcom_intern
@@ -90,7 +90,7 @@
         - state: green
         - state: security_officer
         - state: jobicon
-          sprite: Backmen/Markers/jobs.rsi
+          sprite: _Backmen/Markers/jobs.rsi
 
 - type: entity
   id: SpawnPointDelivery
@@ -100,7 +100,7 @@
     - type: SpawnPoint
       job_id: Deliveryman
     - type: Sprite
-      sprite: Backmen/Markers/jobs.rsi
+      sprite: _Backmen/Markers/jobs.rsi
       layers:
         - state: green
         - state: Delivery
@@ -127,7 +127,7 @@
   - type: SpawnPoint
     job_id: Roboticist
   - type: Sprite
-    sprite: Backmen/Markers/jobs.rsi
+    sprite: _Backmen/Markers/jobs.rsi
     layers:
       - state: green
       - state: roboticist
@@ -141,7 +141,7 @@
   - type: SpawnPoint
     job_id: BlueShield
   - type: Sprite
-    sprite: Backmen/Markers/jobs.rsi
+    sprite: _Backmen/Markers/jobs.rsi
     layers:
       - state: green
       - state: blueshield
@@ -316,7 +316,7 @@
     - state: green
     - state: ai
     - state: jobicon
-      sprite: Backmen/Markers/jobs.rsi
+      sprite: _Backmen/Markers/jobs.rsi
 
 - type: entity
   id: SpawnFreelancer
@@ -330,7 +330,7 @@
     - state: green
     - state: ai
     - state: jobicon
-      sprite: Backmen/Markers/jobs.rsi
+      sprite: _Backmen/Markers/jobs.rsi
 
 - type: entity
   id: SpawnPointBkmSurgeon
@@ -343,7 +343,7 @@
     layers:
     - state: green
     - state: jobicon
-      sprite: Backmen/Markers/jobs.rsi
+      sprite: _Backmen/Markers/jobs.rsi
 
 - type: entity
   id: SpawnJobBkmVirologist
@@ -357,4 +357,4 @@
     - state: green
     - state: virologist
     - state: jobicon
-      sprite: Backmen/Markers/jobs.rsi
+      sprite: _Backmen/Markers/jobs.rsi

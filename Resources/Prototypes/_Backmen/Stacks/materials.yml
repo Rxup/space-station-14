@@ -1,13 +1,13 @@
 ﻿- type: stack
   id: Bluespace
   name: stack-bluespace
-  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }
+  icon: { sprite: _Backmen/Objects/Materials/materials.rsi, state: bluespace }
   spawn: MaterialBluespace
   maxCount: 30
 
 - type: stack
   id: NormalityCrystal
   name: stack-normality-crystal
-  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: normalitycrystal }
+  icon: { sprite: _Backmen/Objects/Materials/materials.rsi, state: normalitycrystal }
   spawn: CrystalNormality
   maxCount: 30

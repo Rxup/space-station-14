@@ -22,7 +22,7 @@
   name: park bench
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/parkbench_wooden.rsi
+    sprite: _Backmen/Structures/Benches/parkbench_wooden.rsi
 
 - type: entity
   parent: BenchParkMiddle
@@ -47,7 +47,7 @@
   name: park bench
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/parkbench_bamboo.rsi
+    sprite: _Backmen/Structures/Benches/parkbench_bamboo.rsi
 
 - type: entity
   parent: BenchParkBambooMiddle
@@ -72,7 +72,7 @@
   name: pew
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/pews.rsi
+    sprite: _Backmen/Structures/Benches/pews.rsi
 
 - type: entity
   parent: BenchPewMiddle
@@ -97,7 +97,7 @@
   name: steel bench
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/steel_bench.rsi
+    sprite: _Backmen/Structures/Benches/steel_bench.rsi
 
 - type: entity
   parent: BenchSteelMiddle
@@ -122,7 +122,7 @@
   name: white steel bench
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/steel_bench_white.rsi
+    sprite: _Backmen/Structures/Benches/steel_bench_white.rsi
 
 - type: entity
   parent: BenchSteelWhiteMiddle
@@ -147,7 +147,7 @@
   name: sofa
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/sofa.rsi
+    sprite: _Backmen/Structures/Benches/sofa.rsi
 
 - type: entity
   parent: BenchSofaMiddle
@@ -188,7 +188,7 @@
   name: grey sofa
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Benches/sofa_corp.rsi
+    sprite: _Backmen/Structures/Benches/sofa_corp.rsi
 
 - type: entity
   parent: BenchSofaCorpMiddle

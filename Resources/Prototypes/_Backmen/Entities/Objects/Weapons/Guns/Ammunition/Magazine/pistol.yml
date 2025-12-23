@@ -31,7 +31,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -63,7 +63,7 @@
     size: Small
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/divet.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/divet.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -90,7 +90,7 @@
       tags:
         - CartridgePistol45ACP
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_45acp.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_45acp.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -124,7 +124,7 @@
       tags:
         - CartridgePistol57x28
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -158,7 +158,7 @@
       tags:
         - CartridgePistol57x28
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -190,7 +190,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -225,7 +225,7 @@
       tags:
         - CartridgePistol9x17
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

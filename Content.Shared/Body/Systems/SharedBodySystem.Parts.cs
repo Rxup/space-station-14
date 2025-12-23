@@ -10,9 +10,9 @@ using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using Content.Shared.Backmen.Surgery.Body.Events;
-using Content.Shared.Backmen.Surgery.Body.Organs;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared._Backmen.Surgery.Body.Events;
+using Content.Shared._Backmen.Surgery.Body.Organs;
+using Content.Shared._Backmen.Targeting;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Body.Systems;

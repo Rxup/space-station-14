@@ -7,7 +7,7 @@
     stampedName: stamp-component-stamped-name-RO
     stampState: "paper_stamp-warden"
   - type: Sprite
-    sprite: Backmen/Objects/Misc/bureaucracyRO.rsi
+    sprite: _Backmen/Objects/Misc/bureaucracyRO.rsi
     state: stamp-redorden
 
 - type: entity
@@ -19,7 +19,7 @@
     stampedName: stamp-component-stamped-name-CSH
     stampState: "paper_stamp-rd"
   - type: Sprite
-    sprite: Backmen/Objects/Misc/bureaucracyCSH.rsi
+    sprite: _Backmen/Objects/Misc/bureaucracyCSH.rsi
     state: stamp-CSH
 
 - type: entity
@@ -31,7 +31,7 @@
     stampedName: stamp-component-stamped-name-InteQ
     stampState: "paper_stamp-inteq"
   - type: Sprite
-    sprite: Backmen/Objects/Misc/inteq_bur.rsi
+    sprite: _Backmen/Objects/Misc/inteq_bur.rsi
     state: stamp-inteq
 
 - type: entity
@@ -41,7 +41,7 @@
   name: secret document folder
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/inteq_bur.rsi
+    sprite: _Backmen/Objects/Misc/inteq_bur.rsi
     layers:
     - state: secret_folder
 
@@ -52,7 +52,7 @@
   name: secret documents
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/inteq_bur.rsi
+    sprite: _Backmen/Objects/Misc/inteq_bur.rsi
     layers:
     - state: secret_docs
   - type: Item
@@ -77,7 +77,7 @@
           map: ["enum.PaperVisualLayers.Stamp"]
           visible: false
     - type: PaperVisuals
-      headerImagePath: "/Textures/Backmen/Interface/Paper/passenger_manifest.svg.96dpi.png"
+      headerImagePath: "/Textures/_Backmen/Interface/Paper/passenger_manifest.svg.96dpi.png"
       headerMargin: 0.0, 0.0, 0.0, 16.0
       backgroundImagePath: "/Textures/Interface/Paper/paper_background_dotmatrix.svg.96dpi.png"
       backgroundImageTile: true

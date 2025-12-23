@@ -7,7 +7,7 @@
   components:
     - type: LanguageSpeaker
       currentLanguage: TauCetiBasic
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - TauCetiBasic
       - Garpy
@@ -91,7 +91,7 @@
         - map: [ "mask" ]
         - map: [ "head" ]
         - map: [ "singingLayer" ]
-          sprite: Backmen/Effects/harpysinger.rsi
+          sprite: _Backmen/Effects/harpysinger.rsi
           state: singing_music_notes
           visible: false
     - type: HumanoidAppearance
@@ -200,7 +200,7 @@
   components:
     - type: Action
       checkCanInteract: false
-      icon: Backmen/Interface/Actions/Harpy/harpy_sing.png
+      icon: _Backmen/Interface/Actions/Harpy/harpy_sing.png
     - type: InstantAction
       event: !type:OpenUiActionEvent
         key: enum.InstrumentUiKey.Key
@@ -213,7 +213,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
-      icon: Backmen/Interface/Actions/Harpy/harpy_syrinx.png
+      icon: _Backmen/Interface/Actions/Harpy/harpy_syrinx.png
       itemIconStyle: BigAction
     - type: InstantAction
       event: !type:VoiceMaskSetNameEvent

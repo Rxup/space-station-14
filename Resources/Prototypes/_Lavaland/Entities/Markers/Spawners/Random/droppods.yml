@@ -23,7 +23,7 @@
     layers:
       - state: red
       - state: guttertank
-        sprite: Backmen/Mobs/Npc/guttertank.rsi
+        sprite: _Backmen/Mobs/Npc/guttertank.rsi
   - type: SpawnOnDespawn
     prototypes:
     - DropPodLauncherGutter
@@ -36,7 +36,7 @@
   parent: Baseholypentagram
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
     layers:
     - state: NoId
   - type: HTN
@@ -82,7 +82,7 @@
     layers:
       - state: red
       - state: gutterman
-        sprite: Backmen/Mobs/Npc/gutterman.rsi
+        sprite: _Backmen/Mobs/Npc/gutterman.rsi
   - type: RandomSpawner
     prototypes:
       - DropPodMarkerGutterman

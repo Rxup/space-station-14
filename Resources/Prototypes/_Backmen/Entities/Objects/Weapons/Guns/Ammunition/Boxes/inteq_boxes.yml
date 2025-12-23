@@ -15,7 +15,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Storage/inteq_ammobox.rsi
+    sprite: _Backmen/Objects/Storage/inteq_ammobox.rsi
     layers:
       - state: icon
   - type: Appearance

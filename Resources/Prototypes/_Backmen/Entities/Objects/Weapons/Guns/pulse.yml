@@ -42,7 +42,7 @@
   - type: Wieldable
   - type: MagazineAmmoProvider
     autoEject: true
-    soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
+    soundAutoEject: /Audio/_Backmen/Misc/empty_alarm.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -50,7 +50,7 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/weapons/Pulse/pickup1.ogg
+      path: /Audio/_Backmen/Items/weapons/Pulse/pickup1.ogg
   - type: EmitSoundOnDrop
     sound:
       collection: RiflesDrop
@@ -66,7 +66,7 @@
   description: The AP Motorized Pulse Rifle is a military-grade, rapid-fire assault rifle with large magazine ammunition capacity. The Pulse Rifle is the standard-issue service rifle of the Earth Special Force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/big.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -76,10 +76,10 @@
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/tiny.rsi
     size: Large
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -87,7 +87,7 @@
     minAngle: 24
     maxAngle: 45
     fireRate: 6
-    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundEmpty: /Audio/_Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/ap12j.ogg
       params:
@@ -111,7 +111,7 @@
   description: The XM Motorized Pulse Long Rifle is a military-grade, assault rifle with large magazine ammunition capacity. The Long Pulse Rifle is the standard-issue service rifle of the Earth Special Force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/big.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -121,10 +121,10 @@
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
     size: Large
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -132,7 +132,7 @@
     minAngle: 24
     maxAngle: 45
     fireRate: 5
-    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundEmpty: /Audio/_Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/xmlg.ogg
       params:
@@ -156,7 +156,7 @@
   description: The Auto Impulse shotgun, used motorizeded firing mechanism. The Pulse Shotgun is the standard-issue service shotgun of the Earth Special Force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/big.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -166,15 +166,15 @@
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/tiny.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/tiny.rsi
   - type: Gun
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundEmpty: /Audio/_Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/hellhammer.ogg
       params:
@@ -199,7 +199,7 @@
   description: The AP Motorized Pulse SMP is a military-grade, rapid-fire assault rifle with large magazine ammunition capacity. The Pulse SMG is the standard-issue service rifle of the Earth Special Force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/big.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -209,10 +209,10 @@
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/tiny.rsi
     size: Large
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -44
@@ -222,7 +222,7 @@
     angleIncrease: 3
     angleDecay: 16
     fireRate: 9
-    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundEmpty: /Audio/_Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/xmlg.ogg
       params:
@@ -251,7 +251,7 @@
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi
+      sprite: _Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi
       state: muzzle_pulse
   - type: EffectVisuals
   - type: Tag
@@ -266,7 +266,7 @@
   - type: TimedDespawn
     lifetime: 0.25
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi
     netsync: false
     drawdepth: Effects
     layers:
@@ -285,7 +285,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi
     layers:
     - state: pulse
       shader: unshaded
@@ -350,10 +350,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/standart.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/standart.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/standart.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/standart.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -390,10 +390,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/batteryMag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/batteryMag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/batteryMag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/batteryMag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -419,7 +419,7 @@
   - type: CartridgeAmmo
     proto: PulseBulletSpread
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/battary.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/battary.rsi
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
@@ -460,10 +460,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/smg.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/smg.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/smg.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/smg.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

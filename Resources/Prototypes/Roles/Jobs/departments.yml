@@ -7,7 +7,7 @@
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
-  accountNumber: 1315 #backmen: currency
+  accountNumber: 1315 # Backmen: currency
 
 - type: department
   id: Civilian
@@ -35,7 +35,7 @@
   - ServiceWorker
   #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
   #- ResearchAssistant
-  accountNumber: 1316 #backmen: currency
+  accountNumber: 1316 # Backmen: currency
 
 - type: department
   id: CentralCommand
@@ -52,7 +52,7 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  - SpecialOperationsOfficer #Backmen-ERTRoles
+  - SpecialOperationsOfficer # Backmen-ERTRoles
   editorHidden: true
   weight: 120
 
@@ -61,7 +61,7 @@
   name: department-Command
   description: department-Command-description
   color: "#334E6D"
-  accountNumber: 1317 #backmen: currency
+  accountNumber: 1317 # Backmen: currency
   roles:
   - Captain
   - IAA # Corvax-IAA
@@ -93,7 +93,7 @@
   - ChiefEngineer
   - StationEngineer
   - TechnicalAssistant
-  accountNumber: 1318 #backmen: currency
+  accountNumber: 1318 # Backmen: currency
 
 - type: department
   id: Medical
@@ -107,9 +107,9 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
-  - BkmSurgeon #backmen
-  - BkmVirologist #backmen
-  accountNumber: 1319 #backmen: currency
+  - BkmSurgeon # Backmen
+  - BkmVirologist # Backmen
+  accountNumber: 1319 # Backmen: currency
 
 - type: department
   id: Security
@@ -124,8 +124,8 @@
   - Pilot # Corvax-Pilot
   - Detective
   - Warden
-  - Brigmedic #backmen
-  accountNumber: 1320  #backmen: currency
+  - Brigmedic # Backmen
+  accountNumber: 1320  # Backmen: currency
 
 - type: department
   id: Science
@@ -134,10 +134,10 @@
   color: "#D381C9"
   roles:
   - ResearchDirector
-  - Roboticist         #backmen: currency
+  - Roboticist         # Backmen: currency
   - Scientist
   - ResearchAssistant
-  accountNumber: 1321  #backmen: currency
+  accountNumber: 1321  # Backmen: currency
 
 - type: department
   id: Silicon
@@ -149,7 +149,7 @@
   - StationAi
   - BKBPLATech
   - BKBPLAMED
-  accountNumber: 1351  #backmen: currency
+  accountNumber: 1351  # Backmen: currency
 
 - type: department
   id: Specific
@@ -162,7 +162,7 @@
   - Reporter
   - Zookeeper
   - Psychologist
-  - Prisoner #backmen
+  - Prisoner # Backmen
   - Pilot # Corvax-Pilot
-  accountNumber: 1322  #backmen: currency
+  accountNumber: 1322  # Backmen: currency
   primary: false

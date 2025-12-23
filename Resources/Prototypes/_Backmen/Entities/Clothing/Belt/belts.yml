@@ -5,10 +5,10 @@
   description: A special scabbard created exclusively for the sabers of the Red Order.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+    sprite: _Backmen/Clothing/Belt/orden_sheath.rsi
     state: sheath
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+    sprite: _Backmen/Clothing/Belt/orden_sheath.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots
@@ -37,10 +37,10 @@
   description: An ornate belt designed to hold a pair of samurai's blades, or daisho.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/katanasheath.rsi
+    sprite: _Backmen/Clothing/Belt/katanasheath.rsi
     state: sheath
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/katanasheath.rsi
+    sprite: _Backmen/Clothing/Belt/katanasheath.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots
@@ -77,7 +77,7 @@
         whitelist:
           tags:
           - Katana
-    sprite: Backmen/Clothing/Belt/belt_overlay.rsi
+    sprite: _Backmen/Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
 - type: entity
@@ -96,7 +96,7 @@
   - type: Sprite
     netsync: false
     state: icon
-    sprite: Backmen/Clothing/Belt/Gear/generalpounch.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/generalpounch.rsi
   - type: Clothing
     slots:
       - Pocket
@@ -116,7 +116,7 @@
   - type: Sprite
     netsync: false
     state: icon
-    sprite: Backmen/Clothing/Belt/Gear/ammopounch.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/ammopounch.rsi
   - type: Clothing
     slots:
       - Pocket
@@ -141,7 +141,7 @@
   - type: Sprite
     netsync: false
     state: icon
-    sprite: Backmen/Clothing/Belt/Gear/medicalpounch.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/medicalpounch.rsi
   - type: Clothing
     slots:
       - Pocket
@@ -178,7 +178,7 @@
   - type: Sprite
     netsync: false
     state: icon
-    sprite: Backmen/Clothing/Belt/Gear/pistolpounch.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/pistolpounch.rsi
   - type: Clothing
     slots:
       - Pocket
@@ -201,7 +201,7 @@
   - type: Sprite
     netsync: false
     state: icon
-    sprite: Backmen/Clothing/Belt/Gear/shotgunpounch.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/shotgunpounch.rsi
   - type: Clothing
     slots:
       - Pocket
@@ -222,9 +222,9 @@
   description: A tactical assault belt.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/ammobelt.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/ammobelt.rsi
   - type: Storage
     maxItemSize: Small
     grid:
@@ -245,9 +245,9 @@
   description: A tactical assault belt.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/Gear/generalbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/generalbelt.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/Gear/generalbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/generalbelt.rsi
   - type: Storage
     grid:
     - 0,0,3,3
@@ -260,9 +260,9 @@
   description: Can hold various medical equipment.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/Gear/medicalbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/medicalbelt.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/Gear/medicalbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/medicalbelt.rsi
   - type: Storage
     maxItemSize: Small
     grid:
@@ -292,9 +292,9 @@
   description: Can hold various pistol equipment.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/Gear/pistolbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/pistolbelt.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/Gear/pistolbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/pistolbelt.rsi
   - type: Storage
     grid:
     - 0,0,5,1
@@ -312,11 +312,11 @@
   description: A tactical assault belt.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
+    sprite: _Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
   - type: Storage
     grid:
     - 0,0,7,6
@@ -332,9 +332,9 @@
   description: Бронеразгрузка для ваших боеприпасов или иных нужных штучек для слежки.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
+    sprite: _Backmen/Clothing/Belt/webbingtgmcwhite.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
+    sprite: _Backmen/Clothing/Belt/webbingtgmcwhite.rsi
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseMinorContraband]
@@ -343,9 +343,9 @@
   description: Unique and versatile chest mount in which you can store weapons and ammunition.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/inteq_webbing.rsi
+    sprite: _Backmen/Clothing/Belt/inteq_webbing.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/inteq_webbing.rsi
+    sprite: _Backmen/Clothing/Belt/inteq_webbing.rsi
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseMinorContraband]
@@ -354,9 +354,9 @@
   description: Improved unloading for storing various items
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/inteq_droppouch.rsi
+    sprite: _Backmen/Clothing/Belt/inteq_droppouch.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/inteq_droppouch.rsi
+    sprite: _Backmen/Clothing/Belt/inteq_droppouch.rsi
 
 - type: entity
   parent: [ ClothingBeltBase, BaseMajorContraband ]
@@ -367,9 +367,9 @@
   - type: Item
     size: Ginormous
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/inteq_shieldbelt.rsi
+    sprite: _Backmen/Clothing/Belt/inteq_shieldbelt.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/inteq_shieldbelt.rsi
+    sprite: _Backmen/Clothing/Belt/inteq_shieldbelt.rsi
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -400,6 +400,6 @@
   description: A unique and versatile chest mount capable of holding blueshield gear.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/bswebbing.rsi
+    sprite: _Backmen/Clothing/Belt/bswebbing.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/bswebbing.rsi
+    sprite: _Backmen/Clothing/Belt/bswebbing.rsi

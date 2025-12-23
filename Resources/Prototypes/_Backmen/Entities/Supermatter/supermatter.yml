@@ -27,7 +27,7 @@
     range: 5
     volume: 0
     sound:
-      path: /Audio/Backmen/Supermatter/calm.ogg
+      path: /Audio/_Backmen/Supermatter/calm.ogg
   - type: Physics
   - type: Speech
     speechSounds: Pai
@@ -49,10 +49,10 @@
   - type: InteractionOutline
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: Backmen/Supermatter/supermatter.rsi
+    sprite: _Backmen/Supermatter/supermatter.rsi
     state: supermatter
   - type: Icon
-    sprite: Backmen/Supermatter/supermatter.rsi
+    sprite: _Backmen/Supermatter/supermatter.rsi
     state: supermatter
   - type: PointLight
     enabled: true

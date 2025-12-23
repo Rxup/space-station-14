@@ -5,10 +5,10 @@
   description: Ножны для рапиры
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/rapier.rsi
+    sprite: _Backmen/Clothing/Belt/rapier.rsi
     state: sheath
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/rapier.rsi
+    sprite: _Backmen/Clothing/Belt/rapier.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots

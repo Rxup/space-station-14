@@ -5,7 +5,7 @@
   description: Mini-Mecha action figure! 'Mecha InteQ. 1/2' is written on the back.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Fun/inteq_mech_figurines.rsi
+      sprite: _Backmen/Objects/Fun/inteq_mech_figurines.rsi
       state: ares
 
 - type: entity
@@ -15,5 +15,5 @@
   description: Mini-Mecha action figure! 'Mecha InteQ. 2/2' is written on the back.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Fun/inteq_mech_figurines.rsi
+      sprite: _Backmen/Objects/Fun/inteq_mech_figurines.rsi
       state: hermes

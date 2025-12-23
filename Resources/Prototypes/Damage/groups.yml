@@ -5,7 +5,7 @@
     - Blunt
     - Slash
     - Piercing
-    - ArmorPiercing #backmen-Armoures
+    - ArmorPiercing # Backmen-Armoures
 
 - type: damageGroup
   id: Burn

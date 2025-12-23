@@ -2505,7 +2505,7 @@
   flavor: bacchusblessing
   color: "#331303"
   metamorphicSprite:
-    sprite: Backmen/Objects/Consumable/Drinks/bacchus.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/bacchus.rsi
     state: icon
   metabolisms:
     Drink:

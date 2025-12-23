@@ -1,5 +1,5 @@
-using Content.Shared.Backmen.Surgery.Traumas;
-using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared._Backmen.Surgery.Traumas;
+using Content.Shared._Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;

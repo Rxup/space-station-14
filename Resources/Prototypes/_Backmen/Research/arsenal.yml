@@ -12,10 +12,10 @@
   - BoxShellTranquilizer
   - BoxBeanbag
   - BoxShotgunPractice
-#  - MagazineBoxLightRiflePractice #Backmen-ammunation
-#  - MagazineBoxMagnumPractice #Backmen-ammunation
-#  - MagazineBoxPistolPractice #Backmen-ammunation
-#  - MagazineBoxRiflePractice #Backmen-ammunation
+#  - MagazineBoxLightRiflePractice # Backmen-ammunation
+#  - MagazineBoxMagnumPractice # Backmen-ammunation
+#  - MagazineBoxPistolPractice # Backmen-ammunation
+#  - MagazineBoxRiflePractice # Backmen-ammunation
 #  technologyPrerequisites:
 #  - RiotControl
   position: -2,-2
@@ -115,7 +115,7 @@
   id: ArmorPiercingAmmo
   name: research-technology-armorpiercingammo
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/large_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/large_casing.rsi
     state: base
   discipline: Arsenal
   tier: 3
@@ -237,7 +237,7 @@
   id: EnergyBarriers
   name: research-technology-energy_barriers
   icon:
-    sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
+    sprite: _Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
   tier: 1
@@ -252,7 +252,7 @@
   id: EarthArmoriesBase
   name: research-technology-Earth-Armories
   icon:
-    sprite: Backmen/Structures/Decoration/banner.rsi
+    sprite: _Backmen/Structures/Decoration/banner.rsi
     state: banner
   discipline: Arsenal
   tier: 1
@@ -264,7 +264,7 @@
   name: research-technology-pistol-base
   discipline: Arsenal
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
     state: icon
   tier: 1
   cost: 1000
@@ -288,7 +288,7 @@
   id: LightAutoWeaponBase
   name: research-technology-auto-poroh
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     state: icon
   discipline: Arsenal
   tier: 2
@@ -304,7 +304,7 @@
   id: AdvancedAutoWeaponBase
   name: research-technology-advancedauto-poroh
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
     state: icon
   discipline: Arsenal
   tier: 3
@@ -332,7 +332,7 @@
   id: EarthArmoriesPistols
   name: research-technology-EarthArmories-pistols
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
     state: icon
   discipline: Arsenal
   tier: 2
@@ -350,7 +350,7 @@
   id: EarthArmoriesLightAutoWeapons
   name: research-technology-EarthArmories-lightautoweapons
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
     state: icon
   discipline: Arsenal
   tier: 2
@@ -369,7 +369,7 @@
   id: EarthArmoriesReinforcedWeapons
   name: research-technology-EarthArmories-reinforcedweapons
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
     state: icon
   discipline: Arsenal
   tier: 3
@@ -387,7 +387,7 @@
   id: EarthArmoriesRiflesWeapons
   name: research-technology-EarthArmories-rifles
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
     state: icon
   discipline: Arsenal
   tier: 2
@@ -404,7 +404,7 @@
   id: EarthArmoriesRiflesHeavyWeapons
   name: research-technology-EarthArmories-heavyrifles
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi
     state: icon
   discipline: Arsenal
   tier: 3
@@ -422,7 +422,7 @@
   id: EarthArmoriesRiflesAutoWeapons
   name: research-technology-EarthArmories-autorifles
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
     state: icon
   discipline: Arsenal
   tier: 3
@@ -443,7 +443,7 @@
   id: EarthArmoriesRiflesAutoHeavyWeapons
   name: research-technology-EarthArmories-heavyautorifles
   icon:
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
     state: icon
   discipline: Arsenal
   tier: 3

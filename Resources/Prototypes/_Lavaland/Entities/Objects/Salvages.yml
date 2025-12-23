@@ -238,7 +238,7 @@
   description:
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     layers:
     - state: spring
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -269,7 +269,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: armorman
   - type: Item
     size: Large
@@ -286,7 +286,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: armortank
   - type: Item
     size: Large
@@ -303,7 +303,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: armtank
   - type: Item
     size: Large
@@ -320,7 +320,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: brain
   - type: Item
     size: Large
@@ -334,7 +334,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: brain
   - type: Item
     size: Large
@@ -348,7 +348,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: gunman
   - type: Item
     size: Large
@@ -365,7 +365,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: guntank
   - type: Item
     size: Large
@@ -382,7 +382,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: headman
   - type: Item
     size: Large
@@ -399,7 +399,7 @@
   description: Damaged PCV body armor, looking at its fragment, you can understand that the one who wore this suit is already dead.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/gutterloot.rsi
+    sprite: _Backmen/Objects/Misc/gutterloot.rsi
     state: shoulderman
   - type: Item
     size: Large

@@ -7,13 +7,13 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/cardboardbox_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/cardboardbox_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/cardboardbox_drop.ogg
+      path: /Audio/_Backmen/Items/handling/cardboardbox_drop.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/cardboardbox_drop.ogg
+      path: /Audio/_Backmen/Items/handling/cardboardbox_drop.ogg
   # backmen edit end
   - type: Item
     size: Normal

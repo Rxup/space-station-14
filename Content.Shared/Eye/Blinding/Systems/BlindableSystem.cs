@@ -1,7 +1,7 @@
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Components;
-using Content.Shared.Backmen.Surgery.Body.Organs;
-using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared._Backmen.Surgery.Body.Organs;
+using Content.Shared._Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;

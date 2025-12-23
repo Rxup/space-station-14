@@ -90,7 +90,7 @@
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
   - type: StationMap
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker # Backmen: languages
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge
     speaks:

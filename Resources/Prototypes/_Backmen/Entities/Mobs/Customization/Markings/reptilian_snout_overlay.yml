@@ -4,7 +4,7 @@
   markingCategory: SnoutOverlay
   speciesRestriction: [Reptilian]
   sprites:
-    - sprite: Backmen/Mobs/Customization/reptilian_snout_overlay.rsi
+    - sprite: _Backmen/Mobs/Customization/reptilian_snout_overlay.rsi
       state: reptilian_tongue
 
 - type: marking
@@ -13,7 +13,7 @@
   markingCategory: SnoutOverlay
   speciesRestriction: [Reptilian]
   sprites:
-    - sprite: Backmen/Mobs/Customization/reptilian_snout_overlay.rsi
+    - sprite: _Backmen/Mobs/Customization/reptilian_snout_overlay.rsi
       state: reptilian_tongue_fast
 
 - type: marking
@@ -22,5 +22,5 @@
   markingCategory: SnoutOverlay
   speciesRestriction: [Reptilian]
   sprites:
-    - sprite: Backmen/Mobs/Customization/reptilian_snout_overlay.rsi
+    - sprite: _Backmen/Mobs/Customization/reptilian_snout_overlay.rsi
       state: reptilian_tongue_slow

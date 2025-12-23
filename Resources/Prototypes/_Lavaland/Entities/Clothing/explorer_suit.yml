@@ -255,7 +255,7 @@
   - type: Clothing
     sprite: _Lavaland/Equipment/explorer_suit.rsi
     equippedState: hev1-equipped-OUTERCLOTHING
-    equipSound: /Audio/Backmen/test/base/ogg/blackmesa/hev/01_hev_logon.ogg
+    equipSound: /Audio/_Backmen/test/base/ogg/blackmesa/hev/01_hev_logon.ogg
     quickEquip: false
     equipDelay: 10
     unequipDelay: 10
@@ -329,7 +329,7 @@
     - type: FleshWorm
       paralyzeTime: 0
       soundWormJump:
-        path: /Audio/Backmen/test/base/ogg/blackmesa/hev/longjump_pick.ogg
+        path: /Audio/_Backmen/test/base/ogg/blackmesa/hev/longjump_pick.ogg
       chansePounce: 0
       damage:
         types:
@@ -351,7 +351,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
-      icon: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi/icon.png
+      icon: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi/icon.png
       itemIconStyle: NoItem
       useDelay: 5
     - type: WorldTargetAction
@@ -366,10 +366,10 @@
   description: Hazardous Environment Suit — закрывающий всё тело защитный костюм, разработанный в Чёрной Мезе для защиты учёных, работающих в опасных условиях.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hevhelmet.rsi
     equippedState: equipped-HELMET
   - type: Armor
     coverage:
@@ -392,10 +392,10 @@
   description: Explorer suit with many elements of the HEV suit.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
     equippedState: equipped-OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototype: LavalandEquipmentExplorerHoodReinforcedHEV3

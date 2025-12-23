@@ -26,7 +26,7 @@
     volume: 35
     range: 5
     sound:
-      path: /Audio/Backmen/Effects/energyshield_ambient.ogg
+      path: /Audio/_Backmen/Effects/energyshield_ambient.ogg
   - type: EnergyDome
   - type: Tag
     tags:
@@ -39,7 +39,7 @@
   parent: EnergyDomeBase
   components:
   - type: Sprite
-    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_small.rsi
     layers:
     - state: small
       color: "#f5166b"
@@ -57,7 +57,7 @@
   - type: Sprite
     drawdepth: Effects
     noRot: true
-    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_small.rsi
     layers:
     - state: small
       color: "#64b9de"
@@ -85,7 +85,7 @@
         - BulletImpassable
         - Opaque
   - type: Sprite
-    sprite: Backmen/Effects/EnergyDome/energydome_medium.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_medium.rsi
     layers:
     - state: medium
       color: "#b00000"
@@ -103,7 +103,7 @@
   - type: Sprite
     drawdepth: Effects
     noRot: true
-    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_small.rsi
     layers:
     - state: small
       color: "#b00000"
@@ -131,7 +131,7 @@
         - BulletImpassable
         - Opaque
   - type: Sprite
-    sprite: Backmen/Effects/EnergyDome/energydome_medium.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_medium.rsi
     layers:
     - state: medium
       color: "#64b9de"
@@ -160,7 +160,7 @@
 
   - type: Sprite
     drawdepth: LowFloors
-    sprite: Backmen/Effects/EnergyDome/energydome_slowdown_big.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_slowdown_big.rsi
     layers:
     - state: big
       color: "#a3d177"
@@ -181,7 +181,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    sprite: _Backmen/Effects/EnergyDome/energydome_small.rsi
     layers:
     - state: small
       color: "#E97E0C"

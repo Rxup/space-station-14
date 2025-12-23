@@ -8,27 +8,27 @@
     # backmen edit start
     - type: EmitSoundOnPickup
       sound:
-        path: /Audio/Backmen/Items/handling/card_pickup.ogg
+        path: /Audio/_Backmen/Items/handling/card_pickup.ogg
         params:
           volume: -7
     - type: EmitSoundOnDrop
       sound:
-        path: /Audio/Backmen/Items/handling/card_drop.ogg
+        path: /Audio/_Backmen/Items/handling/card_drop.ogg
         params:
           volume: -7
     - type: EmitSoundOnLand
       sound:
-        path: /Audio/Backmen/Items/handling/card_drop.ogg
+        path: /Audio/_Backmen/Items/handling/card_drop.ogg
         params:
           volume: -7
     # backmen edit end
     - type: Sprite
-      sprite: Backmen/Objects/Misc/id_cards.rsi # Backmen
+      sprite: _Backmen/Objects/Misc/id_cards.rsi # Backmen
       scale: 0.9, 0.9 # Backmen
     - type: Clothing
       slots:
         - idcard
-      sprite: Backmen/Objects/Misc/id_cards.rsi # Backmen
+      sprite: _Backmen/Objects/Misc/id_cards.rsi # Backmen
     - type: Item
       size: Small
       heldPrefix: default

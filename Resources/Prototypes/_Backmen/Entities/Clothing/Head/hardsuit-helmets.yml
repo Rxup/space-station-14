@@ -5,9 +5,9 @@
   description: Хоть в нем ничего не видно, но лучшему мазиле это и не надо!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -19,9 +19,9 @@
   description: An indispensable part of the suit, it has small scratches.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
   - type: PointLight
     color:  red
   - type: PressureProtection
@@ -47,9 +47,9 @@
   description: An indispensable part of the suit, it has small scratches.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
   - type: PointLight
     color:  White
   - type: PressureProtection
@@ -77,9 +77,9 @@
   description: Специальный космический шлем Корпорат сделаный для различных ситуация с хорошим фанариком лоялиста НаноТрайзен.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -149,9 +149,9 @@
   description: A special hardsuit helmet worn by members of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
   - type: PointLight
     color: cyan
 
@@ -162,9 +162,9 @@
   description: A special hardsuit helmet worn by members of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
   - type: PointLight
     color: cyan
 
@@ -175,10 +175,10 @@
   name: special force hardsuit helmet
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/specialforce.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/specialforce.rsi
   - type: Clothing
     equippedPrefix: off
-    sprite: Backmen/Clothing/Head/Hardsuits/specialforce.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/specialforce.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitRTULeader
@@ -187,9 +187,9 @@
   description: A rescue troop unit helmet designed specifically for combat in space and the harsh far-off worlds.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitRTULeader
@@ -197,9 +197,9 @@
   name: RTU hardsuit helmet
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitRTULeader
@@ -207,9 +207,9 @@
   name: RTU hardsuit helmet
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
 
 - type: entity
   parent: ClothingHeadHardsuitBase
@@ -217,10 +217,10 @@
   name: RTU hardsuit helmet
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
   - type: Clothing
     equippedPrefix: off
-    sprite: Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -229,9 +229,9 @@
   description: A marine helmet designed specifically for combat in space and the harsh far-off worlds.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/marinehardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/marinehardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/marinehardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/marinehardsuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
@@ -251,9 +251,9 @@
   description: Модифицированный шлем скафандра разведчиков ОПЗ, специализирован для ведения разведки на дальних расстояниях, оснащен устройством ночного видиния.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
 
 #Chrono
 - type: entity
@@ -263,9 +263,9 @@
   description: An advanced and stylish helmet right from the future. Or from the past?
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/chronolegionnaire.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/chronolegionnaire.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/chronolegionnaire.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/chronolegionnaire.rsi
   - type: PointLight
     color: "#3385ff"
   - type: PressureProtection
@@ -282,9 +282,9 @@
   components:
   - type: Item
   - type: Sprite
-    sprite: Backmen/Changeling/ling_spacesuit_helmet.rsi
+    sprite: _Backmen/Changeling/ling_spacesuit_helmet.rsi
   - type: Clothing
-    sprite: Backmen/Changeling/ling_spacesuit_helmet.rsi
+    sprite: _Backmen/Changeling/ling_spacesuit_helmet.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
@@ -297,9 +297,9 @@
   description: Armored hardsuit helmet for security needs.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/sec-pilot-hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/sec-pilot-hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/sec-pilot-hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/sec-pilot-hardsuit.rsi
   - type: PointLight
     color: blue
     radius: 7
@@ -312,9 +312,9 @@
   description: A variant of the syndicate helmet designed by the InteQ to be exceptionally fireproof and pressure proof.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/elite_inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/elite_inteq_hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/elite_inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/elite_inteq_hardsuit.rsi
   - type: PointLight
     radius: 6
     energy: 3
@@ -332,9 +332,9 @@
   description: A variant of the syndicate helmet designed by the InteQ to be exceptionally fireproof and pressure proof.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/inteq_hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/inteq_hardsuit.rsi
   - type: PointLight
     radius: 6
     energy: 3
@@ -352,9 +352,9 @@
   description: A variant of the syndicate helmet designed by the InteQ to be exceptionally fireproof and pressure proof.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/inteq_syn_hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/inteq_syn_hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/inteq_syn_hardsuit.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/inteq_syn_hardsuit.rsi
   - type: PointLight
     radius: 5
     energy: 3

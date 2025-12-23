@@ -13,7 +13,7 @@
 - type: specForceTeam
   id: ERT
   specForceName: spec-forces-system-ert-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/dart.yml
+  shuttlePath: Maps/_Backmen/Shuttles/SpecForces/dart.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertcall-title
@@ -34,7 +34,7 @@
   id: BaseRXBZZ
   abstract: true
   specForceName: spec-forces-system-RXBZZ-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NT-CC-SRV-013.yml
+  shuttlePath: Maps/_Backmen/Shuttles/SpecForces/NT-CC-SRV-013.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-RXBZZ-annonce
   announcementTitle: spec-forces-system-RXBZZ-title
@@ -46,7 +46,7 @@
 - type: specForceTeam
   id: DeathSquad
   specForceName: spec-forces-system-deathsquad-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/Invincible.yml
+  shuttlePath: Maps/_Backmen/Shuttles/SpecForces/Invincible.yml
   spawnMarker: MarkerSpecforce
   maxRolesAmount: 5
   guaranteedSpawn:
@@ -61,7 +61,7 @@
 - type: specForceTeam
   id: ERTAlpha
   specForceName: spec-forces-system-alpha-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NTSF-Palm-AL1.yml
+  shuttlePath: Maps/_Backmen/Shuttles/SpecForces/NTSF-Palm-AL1.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertAlpha-title
@@ -80,7 +80,7 @@
 - type: specForceTeam
   id: ERTEpsilon
   specForceName: spec-forces-system-epsilon-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NT-DF-Kolibri-011.yml
+  shuttlePath: Maps/_Backmen/Shuttles/SpecForces/NT-DF-Kolibri-011.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertEpsilon-title
@@ -101,7 +101,7 @@
 - type: specForceTeam
   id: ERTTay
   specForceName: spec-forces-system-tay-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NT-QRF-TH39.yml
+  shuttlePath: Maps/_Backmen/Shuttles/SpecForces/NT-QRF-TH39.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertTay-title

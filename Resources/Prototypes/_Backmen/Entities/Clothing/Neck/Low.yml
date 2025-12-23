@@ -5,7 +5,7 @@
   description: Чёрная Накидка. Пыль и грязь делает эту накидку брутальной
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/low.rsi 
+    sprite: _Backmen/Clothing/Neck/Cloaks/low.rsi 
     state: icon
   - type: StealTarget
     stealGroup: HeadCloak

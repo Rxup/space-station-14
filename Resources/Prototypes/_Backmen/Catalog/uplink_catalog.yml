@@ -111,7 +111,7 @@
   id: UplinkBogomol
   name: Имплант клинков богомола
   description: Клинки богомола, в качестве импланта, скрытные, смертоносные, а самое главное стильные.
-  icon: { sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi, state: icon }
+  icon: { sprite: _Backmen/Clothing/Hands/Gloves/mantis.rsi, state: icon }
   productEntity: mantisImplanter
   discountCategory: usualDiscounts
   discountDownTo:
@@ -196,7 +196,7 @@
   id: UplinkBrassknuckles
   name: Кастеты
   description: Пара кастетов, для ваших жертв
-  icon: { sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Melee/brassknuckles.rsi, state: icon }
   productEntity: ClothingHandsGlovesBrassknuckles
   cost:
     Telecrystal: 1
@@ -217,7 +217,7 @@
   id: UplinkBookCodespeakLanguage
   name: uplink-book-codespeak-language-name
   description: uplink-book-codespeak-language-desc
-  icon: { sprite: /Textures/Backmen/Objects/Misc/books.rsi, state: syndicate }
+  icon: { sprite: /Textures/_Backmen/Objects/Misc/books.rsi, state: syndicate }
   productEntity: ManualCodespeak
   cost:
     Telecrystal: 2

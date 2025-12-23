@@ -27,7 +27,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/security.rsi
     - state: equipped-HAND
@@ -81,7 +81,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/security.rsi
     - state: equipped-HAND
@@ -157,7 +157,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/security.rsi
     - state: equipped-HAND
@@ -171,7 +171,7 @@
     - state: equipped-BELT
       sprite: Clothing/Belt/security.rsi
     - state: inhand-right
-      sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
+      sprite: _Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
 
 - type: entity
   id: MobGuardSecurityNTPistol
@@ -257,7 +257,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/ert_security.rsi
     - state: equipped-HAND
@@ -269,7 +269,7 @@
     - state: equipped-OUTERCLOTHING
       sprite: Clothing/OuterClothing/Armor/security.rsi
     - state: wielded-inhand-left
-      sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
+      sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
 
 - type: entity
   id: MobGuardERTUnitSecurity
@@ -286,7 +286,7 @@
   locationPreference: Left
   layer: Mod
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/_Backmen/Icons/jobicon.rsi
     state: NanotrasenSec
 
 - type: securityIcon

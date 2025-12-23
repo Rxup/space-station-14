@@ -9,9 +9,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Backmen.Mood;
+using Content.Shared._Backmen.Mood;
 using Robust.Shared.Configuration;
-using Content.Shared.Backmen.CCVar;
+using Content.Shared._Backmen.CCVar;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Nutrition.EntitySystems;

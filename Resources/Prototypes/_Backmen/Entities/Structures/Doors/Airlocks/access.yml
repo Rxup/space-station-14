@@ -660,7 +660,7 @@
   suffix: EarthGov
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Airlocks/Airlock/UEG.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Airlock/UEG.rsi
 
 - type: entity
   parent: AirlockEGov

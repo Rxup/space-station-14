@@ -5,7 +5,7 @@
 #  categories: [ HideSpawnMenu ]
 #  components:
 #    - type: WorldTargetAction
-#      icon: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi/headcrab.png
+#      icon: _Backmen/test/base/rsi/Textures/Mob/headcrab.rsi/headcrab.png
 #      itemIconStyle: NoItem
 #      event: !type:FleshWormJumpActionEvent
 #      useDelay: 3

@@ -38,7 +38,7 @@
       pack: AmmoVendAds
     - type: Speech
     - type: Sprite
-      sprite: Backmen/Structures/Machines/VendingMachines/lootbox.rsi
+      sprite: _Backmen/Structures/Machines/VendingMachines/lootbox.rsi
       layers:
         - state: "off"
           map: ["enum.VendingMachineVisualLayers.Base"]
@@ -547,7 +547,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/boxingdrobe.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/boxingdrobe.rsi
     layers:
     - state: off
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -733,7 +733,7 @@
   suffix: backmen
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/backmen.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/backmen.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -800,7 +800,7 @@
   - type: Advertise
     pack: InteQDrobeAds
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/inteqdrobe.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/inteqdrobe.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]

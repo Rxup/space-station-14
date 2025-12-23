@@ -1,3 +1,4 @@
+using Content.Server._Backmen.RoleWhitelist;
 using Content.Server.Administration;
 using Content.Server.Database;
 using Content.Shared.Administration;
@@ -6,8 +7,6 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
-
-using Content.Server.Players; // backmen: whitelist
 
 namespace Content.Server.Whitelist;
 
@@ -30,7 +29,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
 
         var name = string.Join(' ', args).Trim();
         var data = await loc.LookupIdByNameOrIdAsync(name);
-        var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
+        var wlSystem = IoCManager.Resolve<EntityManager>().System<WhitelistSystem>(); // backmen: whitelist
 
         if (data != null)
         {
@@ -81,7 +80,7 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
 
         var name = string.Join(' ', args).Trim();
         var data = await loc.LookupIdByNameAsync(name);
-        var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
+        var wlSystem = IoCManager.Resolve<EntityManager>().System<WhitelistSystem>(); // backmen: whitelist
 
         if (data != null)
         {
@@ -136,7 +135,7 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
         var db = IoCManager.Resolve<IServerDbManager>();
         var net = IoCManager.Resolve<IServerNetManager>();
 
-        var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
+        var wlSystem = IoCManager.Resolve<EntityManager>().System<WhitelistSystem>(); // backmen: whitelist
 
         foreach (var session in player.NetworkedSessions)
         {

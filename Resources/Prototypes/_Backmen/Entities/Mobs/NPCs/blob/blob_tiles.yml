@@ -16,7 +16,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+        - sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
           state: blob_nuke_overlay
 
 - type: entity
@@ -51,7 +51,7 @@
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
   - type: Sprite
-    sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+    sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -115,7 +115,7 @@
     blobTileType: Core
   - type: LanguageSpeaker
     currentLanguage: Blob
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Blob
     understands:
@@ -153,7 +153,7 @@
   - type: BlobResource
     pointsPerPulsed: 5
   - type: Sprite
-    sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+    sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -203,7 +203,7 @@
               acts: [ "Destruction" ]
     - type: BlobFactory
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -241,7 +241,7 @@
               acts: [ "Destruction" ]
     - type: BlobResource
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -281,7 +281,7 @@
               acts: [ "Destruction" ]
     - type: BlobNode
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -321,7 +321,7 @@
               acts: [ "Destruction" ]
     - type: BlobStorage
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -356,7 +356,7 @@
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
   - type: Sprite
-    sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+    sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -395,7 +395,7 @@
     reflects:
     - Energy
   - type: Sprite
-    sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
+    sprite: _Backmen/Mobs/Aliens/Blob/blob.rsi
     drawdepth: BlobTiles
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]

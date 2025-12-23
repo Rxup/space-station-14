@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Backmen.Drone;
 using Content.Shared.NPC.Prototypes;
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
@@ -10,9 +11,9 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Roles;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Backmen.Surgery.Pain;
-using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared._Backmen.Surgery.Consciousness.Systems;
+using Content.Shared._Backmen.Surgery.Pain;
+using Content.Shared._Backmen.Surgery.Pain.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Damage;
@@ -261,7 +262,7 @@ namespace Content.Server.Zombies
 
                 if (!TryComp<MobStateComponent>(entity, out var mobState))
                     continue;
-                if (HasComp<Backmen.Drone.BSSDroneComponent>(entity)) //Backmen
+                if (HasComp<BSSDroneComponent>(entity)) //Backmen
                     continue;
 
                 if (HasComp<ZombieComponent>(entity))

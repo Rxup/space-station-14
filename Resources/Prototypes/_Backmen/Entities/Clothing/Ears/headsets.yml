@@ -73,9 +73,9 @@
       key_slots:
       - EncryptionKeyEarthGov
   - type: Sprite
-    sprite: Backmen/Clothing/Ears/Headsets/ueg.rsi
+    sprite: _Backmen/Clothing/Ears/Headsets/ueg.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Ears/Headsets/ueg.rsi
+    sprite: _Backmen/Clothing/Ears/Headsets/ueg.rsi
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
@@ -189,6 +189,6 @@
       key_slots:
       - EncryptionKeyInteQ
   - type: Sprite
-    sprite: Backmen/Clothing/Ears/inteq_headset.rsi
+    sprite: _Backmen/Clothing/Ears/inteq_headset.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Ears/inteq_headset.rsi
+    sprite: _Backmen/Clothing/Ears/inteq_headset.rsi

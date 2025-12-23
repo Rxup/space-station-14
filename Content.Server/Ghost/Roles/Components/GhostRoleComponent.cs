@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Ghost.Roles.Components;
 
 [RegisterComponent]
-[Access(typeof(GhostRoleSystem),typeof(Content.Shared.Backmen.Reinforcement.SharedReinforcementSystem))]
+[Access(typeof(GhostRoleSystem),typeof(Content.Shared._Backmen.Reinforcement.SharedReinforcementSystem))]
 public sealed partial class GhostRoleComponent : Component
 {
     [DataField("name")] private string _roleName = "Unknown";

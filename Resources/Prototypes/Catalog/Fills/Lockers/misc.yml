@@ -14,7 +14,7 @@
         - id: ClothingUniformJumpskirtOperative
         - id: ClothingHeadsetAltSyndicate
         - id: ClothingEyesHudSyndicate
-        - id: BogdaPlush #backmen
+        - id: BogdaPlush # Backmen
           prob: 0.1        
 
 - type: entityTable

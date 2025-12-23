@@ -51,7 +51,7 @@
   id: PowercellsBluespace
   name: research-technology-powercells-bluespace
   icon:
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     state: bluespace
   discipline: Engineering
   tier: 1
@@ -67,7 +67,7 @@
   id: PowercellsBluespaceReactor
   name: research-technology-powercells-bluespace-reactor
   icon:
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     state: bluespace_reactor
   discipline: Engineering
   tier: 1
@@ -82,7 +82,7 @@
   id: PowercellsVortex
   name: research-technology-powercells-vortex
   icon:
-    sprite: Backmen/Objects/Power/power_cells.rsi
+    sprite: _Backmen/Objects/Power/power_cells.rsi
     state: vortex
   discipline: Engineering
   tier: 1

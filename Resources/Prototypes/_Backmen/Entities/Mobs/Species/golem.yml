@@ -16,45 +16,45 @@
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_chest
     - map: [ "enum.HumanoidVisualLayers.Groin" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_groin
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_head
     - map: [ "enum.ToggleableVisuals.Layer" ]
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: lights
       visible: false
       shader: unshaded
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_r_arm
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_l_arm
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_r_leg
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_l_leg
     - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_l_hand
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_r_hand
     - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
       color: "#ffffff"
@@ -139,7 +139,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: full
   - type: Physics
     bodyType: KinematicController
@@ -280,7 +280,7 @@
 - type: emoteSounds
   id: GolemEmote
   sound:
-    path: /Audio/Backmen/test/base/ogg/off.ogg
+    path: /Audio/_Backmen/test/base/ogg/off.ogg
     params:
       variation: 0.125
 
@@ -324,10 +324,10 @@
       state: groin_m
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
-      sprite: Backmen/Mobs/Species/Golem/wood.rsi
+      sprite: _Backmen/Mobs/Species/Golem/wood.rsi
       state: head
     - map: [ "enum.ToggleableVisuals.Layer" ]
-      sprite: Backmen/Mobs/Species/Golem/wood.rsi
+      sprite: _Backmen/Mobs/Species/Golem/wood.rsi
       state: lights
       visible: false
       shader: unshaded
@@ -431,7 +431,7 @@
             lights: Sixteen
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/Mobs/Species/Golem/silver.rsi
+      sprite: _Backmen/Mobs/Species/Golem/silver.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: silver_base
@@ -441,13 +441,13 @@
           state: body-overlay-2
           visible: false
         - map: [ "enum.ToggleableVisuals.Layer" ]
-          sprite: Backmen/Mobs/Species/Golem/silver.rsi
+          sprite: _Backmen/Mobs/Species/Golem/silver.rsi
           state: lights
           color: "#40a7d7"
           shader: unshaded
           visible: false
     - type: Icon
-      sprite: Backmen/Mobs/Species/Golem/silver.rsi
+      sprite: _Backmen/Mobs/Species/Golem/silver.rsi
       state: full
     - type: Fixtures
       fixtures:
@@ -468,7 +468,7 @@
       angle: 30
       animation: WeaponArcFist
       soundHit:
-        path: /Audio/Nyanotrasen/Mobs/SilverGolem/sonic_jackhammer.ogg
+        path: /Audio/_Nyanotrasen/Mobs/SilverGolem/sonic_jackhammer.ogg
       attackRate: 1.5
       damage:
         types:

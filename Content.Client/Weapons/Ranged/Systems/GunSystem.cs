@@ -3,7 +3,7 @@ using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
-using Content.Shared.Backmen.Camera.Components;
+using Content.Shared._Backmen.Camera.Components;
 using Content.Shared.Camera;
 using Content.Shared.CombatMode;
 using Content.Shared.Weapons.Ranged;
@@ -88,7 +88,7 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
 
-        _bkmCameraRecoilQuery = GetEntityQuery<Shared.Backmen.Camera.Components.BkmGunWieldBonusComponent>(); // backmen: KickMagnitudeMax
+        _bkmCameraRecoilQuery = GetEntityQuery<Shared._Backmen.Camera.Components.BkmGunWieldBonusComponent>(); // backmen: KickMagnitudeMax
     }
 
     private void OnUpdateClientAmmo(EntityUid uid, AmmoCounterComponent ammoComp, ref UpdateClientAmmoEvent args)

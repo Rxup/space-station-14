@@ -26,13 +26,13 @@
   description: The M-60 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi
     state: base
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
     size: Large
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
     slots:
       - BACK
       - SUITSTORAGE
@@ -100,7 +100,7 @@
     size: Ginormous
   - type: Clothing
     slots: BACK
-    sprite: Backmen/Clothing/Back/Powerpacks/flamepack.rsi
+    sprite: _Backmen/Clothing/Back/Powerpacks/flamepack.rsi
   - type: BallisticAmmoProvider
     proto: FireThrowerBall
     mayTransfer: true
@@ -112,7 +112,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Powerpacks/flamepack.rsi
+    sprite: _Backmen/Clothing/Back/Powerpacks/flamepack.rsi
     layers:
     - state: mag-0
       map: ["enum.GunVisualLayers.Base"]
@@ -132,16 +132,16 @@
   description: Nomadov's jet flamethrower, an amazing thing, on the weapon there is an inscription "Death to the enemies of mankind!"
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
   - type: Gun
     projectileSpeed: 5
     fireRate: 10
@@ -230,9 +230,9 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi
     state: base
     netsync: false
   - type: Appearance
@@ -315,7 +315,7 @@
   - type: Physics
   - type: Sprite
     layers:
-    - sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/flame.rsi
+    - sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/flame.rsi
       state: fire
       shader: unshaded
       map: [ "unshaded" ]

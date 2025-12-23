@@ -5,7 +5,7 @@
   price: 23000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/pts.yml
+  shuttlePath: /Maps/_Backmen/ForSale/pts.yml
 
 - type: vessel
   id: FleetMain
@@ -14,7 +14,7 @@
   price: 3500000
   category: Cruiser
   group: Fleet
-  shuttlePath: /Maps/Backmen/ForSale/fleet/main.yml
+  shuttlePath: /Maps/_Backmen/ForSale/fleet/main.yml
 
 - type: vessel
   id: Barge
@@ -23,7 +23,7 @@
   price: 45000
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/barge.yml
+  shuttlePath: /Maps/_Backmen/ForSale/barge.yml
 
 - type: vessel
   id: Helix
@@ -32,7 +32,7 @@
   price: 38500
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/helix.yml
+  shuttlePath: /Maps/_Backmen/ForSale/helix.yml
 
 - type: vessel
   id: Prospecter
@@ -41,7 +41,7 @@
   price: 15000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/prospecter.yml
+  shuttlePath: /Maps/_Backmen/ForSale/prospecter.yml
 
 - type: vessel
   id: Nomad
@@ -50,7 +50,7 @@
   price: 21000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/ntcv-nomad.yml
+  shuttlePath: /Maps/_Backmen/ForSale/ntcv-nomad.yml
 
 - type: vessel
   id: Tote
@@ -59,7 +59,7 @@
   price: 20000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/ntsv-tote.yml
+  shuttlePath: /Maps/_Backmen/ForSale/ntsv-tote.yml
 
 - type: vessel
   id: Pulse
@@ -68,4 +68,4 @@
   price: 50000
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/ntv-pulse.yml
+  shuttlePath: /Maps/_Backmen/ForSale/ntv-pulse.yml

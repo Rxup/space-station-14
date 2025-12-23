@@ -257,7 +257,7 @@
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Binary
     - TauCetiBasic

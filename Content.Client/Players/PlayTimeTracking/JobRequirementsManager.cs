@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+using Content.Client._Backmen.WL;
 using Content.Client.Lobby;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
@@ -54,7 +55,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     //start-backmen: whitelist
     public bool IsWhitelisted()
     {
-        return _entManager.SystemOrNull<Backmen.WL.WhitelistSystem>()?.Whitelisted ?? false;
+        return _entManager.SystemOrNull<WhitelistSystem>()?.Whitelisted ?? false;
     }
     //end-backmen: whitelist
 

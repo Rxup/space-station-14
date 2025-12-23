@@ -5,7 +5,7 @@
   description: looks wet.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-creek
   - type: SolutionContainerManager
     solutions:
@@ -26,7 +26,7 @@
   description: There's something hissing in it.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-artificer
   - type: SolutionContainerManager
     solutions:
@@ -53,7 +53,7 @@
     flavors:
       - Heavy
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-gourmet
   - type: SolutionContainerManager
     solutions:
@@ -70,7 +70,7 @@
   description: Seems rotting.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-hunter
   - type: SolutionContainerManager
     solutions:
@@ -94,7 +94,7 @@
     flavors:
       - Friendly
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-monk    
   - type: SolutionContainerManager
     solutions:
@@ -115,7 +115,7 @@
   description: Ascension in one donut.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-saint
   - type: SolutionContainerManager
     solutions:
@@ -136,7 +136,7 @@
   description: Does he have needles?
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-spear_master
   - type: SolutionContainerManager
     solutions:
@@ -160,7 +160,7 @@
     flavors:
       - Singularity
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Baked/donut.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Baked/donut.rsi
     state: jelly-slug-UwU
   - type: SolutionContainerManager
     solutions:

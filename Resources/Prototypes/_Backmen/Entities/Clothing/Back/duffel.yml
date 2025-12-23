@@ -5,7 +5,7 @@
   description: A large duffel bag for holding weapons and supplies.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Duffels/inteq_duffel.rsi
+    sprite: _Backmen/Clothing/Back/Duffels/inteq_duffel.rsi
 
 - type: entity
   parent: ClothingBackpackDuffelInteQ
@@ -14,7 +14,7 @@
   description: A large duffel bag for holding weapons and ammunition.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Duffels/inteq_duffel_ammo.rsi
+    sprite: _Backmen/Clothing/Back/Duffels/inteq_duffel_ammo.rsi
 
 - type: entity
   parent: ClothingBackpackDuffelInteQ
@@ -23,7 +23,7 @@
   description: A large duffel bag for holding weapons and medical things.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Duffels/inteq_duffel_med.rsi
+    sprite: _Backmen/Clothing/Back/Duffels/inteq_duffel_med.rsi
 
 - type: entity
   parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
@@ -32,7 +32,7 @@
   description: A large duffel bag for storing extra reinforced guard supplies.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Duffels/blueshield.rsi
+    sprite: _Backmen/Clothing/Back/Duffels/blueshield.rsi
 
 - type: entity
   parent: [ClothingBackpackDuffel, BaseCommandContraband]
@@ -41,4 +41,4 @@
   description: A large duffel bag for holding extra captainly goods, but now in white.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Duffels/white_captain_duffel.rsi
+    sprite: _Backmen/Clothing/Back/Duffels/white_captain_duffel.rsi

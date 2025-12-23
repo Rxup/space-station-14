@@ -28,17 +28,17 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
     /// Raised whenever combat mode changes.
     /// </summary>
     public event Action<bool>? LocalPlayerCombatModeUpdated;
-    private EntityQuery<SpriteComponent> _spriteQuery; // Ataraxia
+    private EntityQuery<SpriteComponent> _spriteQuery; // Orion
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CombatModeComponent, AfterAutoHandleStateEvent>(OnHandleState);
-        SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(UpdateCombatModeIndicator); // Ataraxia
+        SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(UpdateCombatModeIndicator); // Orion
         Subs.CVar(_cfg, CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
 
-        _spriteQuery = GetEntityQuery<SpriteComponent>(); // Ataraxia
+        _spriteQuery = GetEntityQuery<SpriteComponent>(); // Orion
     }
 
     private void OnHandleState(EntityUid uid, CombatModeComponent component, ref AfterAutoHandleStateEvent args)
@@ -103,7 +103,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     }
 
-    // Ataraxia START
+    // Orion-Start
     private void UpdateCombatModeIndicator(EntityUid uid, CombatModeComponent comp, ref GetStatusIconsEvent _)
     {
         if (!_spriteQuery.TryComp(uid, out var sprite))
@@ -113,7 +113,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         {
             if (!sprite.LayerMapTryGet("combat_mode_indicator", out var layer))
             {
-                layer = sprite.AddLayer(new SpriteSpecifier.Rsi(new ResPath("Backmen/Effects/combat_mode.rsi"), "combat_mode"));
+                layer = sprite.AddLayer(new SpriteSpecifier.Rsi(new ResPath("_Backmen//Effects/combat_mode.rsi"), "combat_mode"));
                 sprite.LayerMapSet("combat_mode_indicator", layer);
             }
         }
@@ -124,5 +124,5 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
                 sprite.RemoveLayer(layerToRemove);
             }
         }
-    } // Ataraxia END
+    } // Orion-End
 }

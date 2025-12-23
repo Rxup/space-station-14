@@ -39,7 +39,7 @@ function fixExtent(ext) {
 function getYamlFiles() {
     const patterns = [
         'Resources/Maps/*.yml',          // файлы в Resources/Maps
-        'Resources/Maps/Backmen/*.yml'   // файлы в Resources/Maps/Backmen
+        'Resources/Maps/_Backmen/*.yml'   // файлы в Resources/Maps/Backmen
     ];
 
     // Используем glob для поиска файлов по маскам

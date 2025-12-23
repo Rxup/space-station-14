@@ -415,9 +415,9 @@
     - SecurityBoards
     - SecurityExplosives
     - BackmenAmmo # backmen
-#    - SecurityWeapons #backmen-gumsmiths
+#    - SecurityWeapons # Backmen-gumsmiths
     - SecurityDisablers
-    - BackmenCircuboardArsenal #backmen-gumsmiths
+    - BackmenCircuboardArsenal # Backmen-gumsmiths
   - type: MaterialStorage
     whitelist:
       tags:

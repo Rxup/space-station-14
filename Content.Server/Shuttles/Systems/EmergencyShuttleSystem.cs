@@ -69,7 +69,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly Content.Server.Backmen.Arrivals.CentcommSystem _centcommSystem = default!;
+    [Dependency] private readonly Content.Server._Backmen.Arrivals.CentcommSystem _centcommSystem = default!;
 
 
     private const float ShuttleSpawnBuffer = 1f;
@@ -503,7 +503,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 // start-backmen: centcom
     private void AddCentcomm(EntityUid station, StationCentcommComponent component)
     {
-        var centcom = EntityManager.System<Content.Server.Backmen.Arrivals.CentcommSystem>();
+        var centcom = EntityManager.System<Content.Server._Backmen.Arrivals.CentcommSystem>();
         DebugTools.Assert(LifeStage(station)>= EntityLifeStage.MapInitialized);
         if (component.MapEntity != null || component.Entity != null)
         {

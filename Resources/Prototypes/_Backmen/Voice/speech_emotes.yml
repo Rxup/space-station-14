@@ -92,7 +92,7 @@
   id: Hiss
   category: Vocal
   name: chat-emote-name-hiss
-  icon: Backmen/Interface/Emotes/hiss.png
+  icon: _Backmen/Interface/Emotes/hiss.png
   whitelist:
     components:
     - Vocal

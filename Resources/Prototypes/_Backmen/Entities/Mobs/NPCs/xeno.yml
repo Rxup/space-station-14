@@ -16,7 +16,7 @@
       path: /Audio/Effects/hit_kick.ogg
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Aliens/Xenos/maidxenos.rsi
+    sprite: _Backmen/Mobs/Aliens/Xenos/maidxenos.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running

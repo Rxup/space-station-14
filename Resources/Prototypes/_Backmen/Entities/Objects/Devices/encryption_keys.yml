@@ -8,7 +8,7 @@
     - CSH
     defaultChannel: CSH
   - type: Sprite
-    sprite: Backmen/Objects/Devices/encryption_keysCSH.rsi
+    sprite: _Backmen/Objects/Devices/encryption_keysCSH.rsi
     layers:
     - state: crypt_CSH
     - state: CSH_label
@@ -23,7 +23,7 @@
     - Fleet
     defaultChannel: Fleet
   - type: Sprite
-    sprite: Backmen/Objects/Devices/encryption_keysFleet.rsi
+    sprite: _Backmen/Objects/Devices/encryption_keysFleet.rsi
     layers:
     - state: crypt_green
     - state: nano_label
@@ -38,7 +38,7 @@
     - UEG
     defaultChannel: UEG
   - type: Sprite
-    sprite: Backmen/Objects/Devices/encryption_keysUEG.rsi
+    sprite: _Backmen/Objects/Devices/encryption_keysUEG.rsi
     layers:
     - state: crypt_ueg
     - state: ueg_label
@@ -194,7 +194,7 @@
       - InteQ
       defaultChannel: InteQ
     - type: Sprite
-      sprite: Backmen/Objects/Devices/encryption_keys.rsi
+      sprite: _Backmen/Objects/Devices/encryption_keys.rsi
       layers:
       - state: crypt_brown
       - state: inteq_label

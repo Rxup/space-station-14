@@ -5,7 +5,7 @@
   description: What tormented soul is imprisoned in this vile stone... or is it the right place to become a just resource.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/crystals.rsi
+    sprite: _Backmen/Objects/Misc/crystals.rsi
     state: blood
     color: red
   - type: GhostTakeoverAvailable
@@ -36,7 +36,7 @@
   - type: BlockMovement
   - type: LanguageSpeaker
     currentLanguage: Nekomimetic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Nekomimetic
     - TauCetiBasic

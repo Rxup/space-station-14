@@ -15,7 +15,7 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -43,7 +43,7 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_mp7.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_mp7.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -71,7 +71,7 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -117,7 +117,7 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_scorpion.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_scorpion.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -149,7 +149,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_boxmag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_boxmag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -182,7 +182,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_drummag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_drummag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -215,7 +215,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_top_moumted_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_top_moumted_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

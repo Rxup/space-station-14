@@ -10,7 +10,7 @@
   - type: Item
     size: Small
     shape:
-    - 0,0,2,0 #Backmen-Weapons
+    - 0,0,2,0 # Backmen-Weapons
     - 0,1,0,1
   - type: Tag
     tags:
@@ -40,7 +40,7 @@
       tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum
-    proto: CartridgeRevolver357Magnum #Backmen-revolvers
+    proto: CartridgeRevolver357Magnum # Backmen-revolvers
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
@@ -104,7 +104,7 @@
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
-  - type: PumpAction #Backmen-Weapons
+  - type: PumpAction # Backmen-Weapons
     sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
 
 - type: entity
@@ -127,10 +127,10 @@
   parent: WeaponRevolverMateba
   id: WeaponRevolverMatebaAP # For deathsquad
   suffix: armor-piercing
-  categories: [ HideSpawnMenu ] #Backmen-Weapons
+  categories: [ HideSpawnMenu ] # Backmen-Weapons
   components:
   - type: RevolverAmmoProvider
-    proto: CartridgeRevolver357MagnumAP #Backmen-revolvers
+    proto: CartridgeRevolver357MagnumAP # Backmen-revolvers
 
 - type: entity
   name: Python
@@ -164,7 +164,7 @@
       tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum
-    proto: CartridgeRevolver357MagnumAP #Backmen-revolvers
+    proto: CartridgeRevolver357MagnumAP # Backmen-revolvers
 
 
 - type: entity
@@ -186,7 +186,7 @@
     capacity: 5
     chambers: [ True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null ]
-  - type: PumpAction #Backmen-Weapons
+  - type: PumpAction # Backmen-Weapons
     sound: /Audio/Weapons/Guns64/Revolvers/revolver_cocked.ogg
 
 - type: entity

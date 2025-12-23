@@ -17,7 +17,7 @@
     drawdepth: Mobs
     layers:
     - state: officer
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
 
 - type: entity
   name: сотрудник депо
@@ -38,7 +38,7 @@
     drawdepth: Mobs
     layers:
     - state: woman
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
 
 - type: entity
   name: пилот
@@ -59,7 +59,7 @@
     drawdepth: Mobs
     layers:
     - state: pilot
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
 
 - type: entity
   name: Полицеский
@@ -90,7 +90,7 @@
     drawdepth: Mobs
     layers:
     - state: police
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
     - state: on-inhand-right
       sprite: Objects/Weapons/Melee/stunbaton.rsi
 
@@ -141,9 +141,9 @@
     drawdepth: Mobs
     layers:
     - state: police
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
     - state: inhand-right
-      sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
+      sprite: _Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
 
 - type: entity
   id: MobGuardPoliceUEGPistol
@@ -187,9 +187,9 @@
     drawdepth: Mobs
     layers:
     - state: heavy
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
     - state: wielded-inhand-left
-      sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
+      sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
 
 - type: entity
   id: MobGuardPoliceUEGShotgun
@@ -206,7 +206,7 @@
   locationPreference: Left
   layer: Mod
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/_Backmen/Icons/jobicon.rsi
     state: Earth
 
 - type: securityIcon
@@ -215,5 +215,5 @@
   locationPreference: Left
   layer: Mod
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/_Backmen/Icons/jobicon.rsi
     state: mvd

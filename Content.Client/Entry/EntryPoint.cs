@@ -21,7 +21,7 @@ using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
-using Content.Client.Backmen.Explosion; // Ataraxia
+using Content.Client._Backmen.Explosion; // Orion
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
@@ -185,7 +185,7 @@ namespace Content.Client.Entry
             _parallaxManager.LoadDefaultParallax();
 
             _overlayManager.AddOverlay(new SingularityOverlay());
-            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay()); // Ataraxia
+            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay()); // Orion
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();

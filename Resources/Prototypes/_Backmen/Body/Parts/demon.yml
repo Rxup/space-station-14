@@ -7,7 +7,7 @@
   abstract: true
   components:
   - type: Damageable
-    damageContainer: OrganicPart # #Backmen-Edit
+    damageContainer: OrganicPart # # Backmen-Edit
   - type: Extractable
     juiceSolution:
       reagents:
@@ -21,7 +21,7 @@
   name: "demon chest"
   parent: [BaseChest, PartDemon]
   components:
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Chest
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -39,7 +39,7 @@
   name: "demon groin"
   parent: [BaseGroin, PartDemon]
   components:
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Groin
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
@@ -57,11 +57,11 @@
   name: "demon head"
   parent: [BaseHead, PartDemon]
   components:
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Head
-  - type: Input #Backmen-Edit
+  - type: Input # Backmen-Edit
     context: "ghost"
-  - type: Tag #Backmen-Edit
+  - type: Tag # Backmen-Edit
     tags:
     - Head
   - type: Sprite
@@ -83,7 +83,7 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_arm"
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Arm
     symmetry: Left
 
@@ -96,7 +96,7 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_arm"
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Arm
     symmetry: Right
 
@@ -108,7 +108,7 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_hand"
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Hand
     symmetry: Left
 
@@ -120,7 +120,7 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_hand"
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Hand
     symmetry: Right
 
@@ -135,7 +135,7 @@
   - type: MovementBodyPart
     walkSpeed : 2.5
     sprintSpeed : 4.5
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Leg
     symmetry: Left
 
@@ -150,7 +150,7 @@
   - type: MovementBodyPart
     walkSpeed : 2.5
     sprintSpeed : 4.5
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Leg
     symmetry: Right
 
@@ -162,7 +162,7 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_foot"
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Foot
     symmetry: Left
 
@@ -174,6 +174,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_foot"
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Foot
     symmetry: Right

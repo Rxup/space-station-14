@@ -10,7 +10,7 @@
     bodyType: Static
   - type: Anchorable
   - type: Sprite
-    sprite: Backmen/Structures/Furniture/cock_spike.rsi
+    sprite: _Backmen/Structures/Furniture/cock_spike.rsi
     state: cock_spike
   - type: Strap
     position: Down

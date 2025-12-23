@@ -4,7 +4,7 @@
   name: Раздатчик формы
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Marine.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -57,7 +57,7 @@
   name: Раздатчик вооружения
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Armory.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Armory.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -135,7 +135,7 @@
   - type: Advertise
     pack: NanoMedAds
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/MarineMed.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/MarineMed.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -181,7 +181,7 @@
   - type: Advertise
     pack: NanoMedAds
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Medick.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Medick.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -223,7 +223,7 @@
   name: Раздатчик офицерской формы
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Marine.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -281,7 +281,7 @@
   name: Раздатчик медицинской формы
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Marine.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -335,7 +335,7 @@
   name: Раздатчик формы специалиста
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Marine.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Marine.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -390,7 +390,7 @@
   name: Раздатчик вооружения специалиста
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Smartgunner.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Smartgunner.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -451,7 +451,7 @@
   name: офицерский раздатчик вооружения
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/VendingMachines/Leader.rsi
+    sprite: _Backmen/Structures/Machines/VendingMachines/Leader.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]

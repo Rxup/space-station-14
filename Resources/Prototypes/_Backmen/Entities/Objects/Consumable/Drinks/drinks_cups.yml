@@ -11,7 +11,7 @@
         - ReagentId: Sake
           Quantity: 20
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Drinks/sakecup.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/sakecup.rsi
     state: icon
   - type: TrashOnSolutionEmpty
     solution: drink

@@ -3,7 +3,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Backmen/Mobs/Customization/human_hair.rsi
+    - sprite: _Backmen/Mobs/Customization/human_hair.rsi
       state: long_bedhead
 
 - type: marking
@@ -11,7 +11,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Backmen/Mobs/Customization/human_hair.rsi
+    - sprite: _Backmen/Mobs/Customization/human_hair.rsi
       state: rick
 
 - type: marking
@@ -19,5 +19,5 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Backmen/Mobs/Customization/human_hair.rsi
+    - sprite: _Backmen/Mobs/Customization/human_hair.rsi
       state: morty

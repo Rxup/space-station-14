@@ -286,7 +286,7 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker # Backmen: languages
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge
     speaks:

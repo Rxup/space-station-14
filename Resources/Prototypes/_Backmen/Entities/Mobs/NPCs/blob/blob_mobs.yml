@@ -22,7 +22,7 @@
       damageModifierSet: BlobMob
     - type: Clothing
       quickEquip: false
-      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       equippedPrefix: blobPod
       slots:
         - HEAD
@@ -52,7 +52,7 @@
     - type: BlobSpeak
     - type: LanguageSpeaker
       currentLanguage: Blob
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - Blob
       understands:
@@ -102,7 +102,7 @@
       baseSprintSpeed: 4
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       state: blobpod
     - type: GuideHelp
       guides:
@@ -139,7 +139,7 @@
 #      accent: genericAggressive
     - type: LanguageSpeaker
       currentLanguage: Blob
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - Blob
       understands:
@@ -195,7 +195,7 @@
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       drawdepth: Mobs
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -232,7 +232,7 @@
     - type: BlobSpeak
     - type: LanguageSpeaker
       currentLanguage: Blob
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - Blob
       understands:
@@ -271,7 +271,7 @@
     - type: Examiner
       skipChecks: true
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
+      sprite: _Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       color: "#fc8403"
       state: marker
       noRot: true

@@ -8,7 +8,7 @@
     grid:
     - 0,0,7,4
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -17,7 +17,7 @@
   description: Space ninja backpack
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/ninja_backpacks.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/ninja_backpacks.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -25,7 +25,7 @@
   name: satchel
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/mvd.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/mvd.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -37,7 +37,7 @@
     grid:
     - 0,0,7,4
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/centcom_backpack.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/centcom_backpack.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -46,7 +46,7 @@
   description: Comfortable and stylish backpack.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/inteq_backpack.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/inteq_backpack.rsi
 
 - type: entity
   parent: [ClothingBackpack, BaseBlueShieldContraband]
@@ -55,4 +55,4 @@
   description: It's a very blue robust backpack.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/blueshield_backpack.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/blueshield_backpack.rsi

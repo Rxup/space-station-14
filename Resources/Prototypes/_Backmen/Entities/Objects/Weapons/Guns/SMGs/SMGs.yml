@@ -6,16 +6,16 @@
   description: The RivArms SMG-5 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4
   - type: GunWieldBonus
@@ -74,16 +74,16 @@
   description: An archaic design going back hundreds of years, the SMG-7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -2
   - type: GunWieldBonus
@@ -134,16 +134,16 @@
   description: The Vector used by police special force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4
   - type: GunWieldBonus
@@ -197,7 +197,7 @@
   description: A robust, 20th century firearm that's a combination of pistol and submachinegun.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/skorpion.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/skorpion.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -246,16 +246,16 @@
   description: The MP-38 is a old and cheap machinepistol used by rebels, it presents solid performance at longer ranges in a compact package, although suffers due to a slow rate of fire for its class.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4
   - type: GunWieldBonus
@@ -306,7 +306,7 @@
   description: A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/uzi.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/uzi.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -355,16 +355,16 @@
   description: The PPSh-41 or /"Papasha/" is a USSP model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4
   - type: GunWieldBonus
@@ -417,16 +417,16 @@
   description: The P-90 is the EarthGov standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.2
   - type: GunWieldBonus
@@ -479,14 +479,14 @@
   description: Пистолет пулемет витязь, стоит на вооружении у военных сил СССП. использует .20 калибр
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/SMG/vityazbel.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/SMG/vityazbel.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Guns/SMG/vityazbel.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/SMG/vityazbel.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
@@ -526,9 +526,9 @@
   description: Firearm that is often used by the InteQ. Uses 5.7x28 ammo. It is painted in the InteQ brand color.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/SMG/inteq_smg.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/SMG/inteq_smg.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Guns/SMG/inteq_smg.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/SMG/inteq_smg.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 6

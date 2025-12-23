@@ -29,7 +29,7 @@
           layer:
             - MachineLayer
     - type: Sprite
-      sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+      sprite: _Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
       drawdepth: Mobs
       noRot: true
       layers:
@@ -109,7 +109,7 @@
   suffix: NanoTrasen
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
     layers:
       - state: stand
       - state: nanotrasen
@@ -163,9 +163,9 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-      soundEmpty: /Audio/Backmen/test/base/ogg/error.ogg
+      soundEmpty: /Audio/_Backmen/test/base/ogg/error.ogg
     - type: Sprite
-      sprite: Backmen/test/base/rsi/Textures/Weapons/Turrets/UA-580.rsi
+      sprite: _Backmen/test/base/rsi/Textures/Weapons/Turrets/UA-580.rsi
       drawdepth: Mobs
       noRot: true
       layers:

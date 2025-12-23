@@ -20,10 +20,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_chest"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_chest"
   - type: BodyPart
     partType: Chest
@@ -34,10 +34,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_groin"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_groin"
   - type: BodyPart
     partType: Groin
@@ -48,10 +48,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_head"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_head"
   - type: BodyPart
     partType: Head
@@ -68,10 +68,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_l_arm"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_l_arm"
   - type: BodyPart
     partType: Arm
@@ -83,10 +83,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_r_arm"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_r_arm"
   - type: BodyPart
     partType: Arm
@@ -98,10 +98,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_l_hand"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_l_hand"
   - type: BodyPart
     partType: Hand
@@ -113,10 +113,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_r_hand"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_r_hand"
   - type: BodyPart
     partType: Hand
@@ -128,10 +128,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_l_leg"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_l_leg"
   - type: BodyPart
     partType: Leg
@@ -143,10 +143,10 @@
   parent: PartGolem
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_r_leg"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    sprite: _Backmen/Mobs/Species/Golem/cult.rsi
     state: "cultgolem_r_leg"
   - type: BodyPart
     partType: Leg

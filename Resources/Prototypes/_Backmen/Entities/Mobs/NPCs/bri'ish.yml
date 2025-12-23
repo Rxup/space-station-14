@@ -18,7 +18,7 @@
     - Britan
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/britishSoldier.rsi
+    sprite: _Backmen/Mobs/Npc/britishSoldier.rsi
     layers:
     - state: britishmelee1
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -74,7 +74,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/britishSoldier.rsi
+    sprite: _Backmen/Mobs/Npc/britishSoldier.rsi
     layers:
     - state: britishranged1
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -124,7 +124,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/SpanishSoldier.rsi
+    sprite: _Backmen/Mobs/Npc/SpanishSoldier.rsi
     layers:
     - state: spanish_rifleman
   - type: NpcFactionMember
@@ -160,7 +160,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/SpanishSoldier.rsi
+    sprite: _Backmen/Mobs/Npc/SpanishSoldier.rsi
     layers:
     - state: spanish_soldier
   - type: NpcFactionMember
@@ -185,7 +185,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Pirate.rsi
+    sprite: _Backmen/Mobs/Npc/Pirate.rsi
     layers:
     - state: pirateranged
   - type: NpcFactionMember
@@ -201,7 +201,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Pirate.rsi
+    sprite: _Backmen/Mobs/Npc/Pirate.rsi
     layers:
     - state: piratemelee
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -226,7 +226,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    sprite: _Backmen/Mobs/Npc/Civilian.rsi
     layers:
     - state: civ1
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -279,7 +279,7 @@
           Blunt: 5
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    sprite: _Backmen/Mobs/Npc/Civilian.rsi
     layers:
     - state: civilian_1
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -315,7 +315,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    sprite: _Backmen/Mobs/Npc/Civilian.rsi
     layers:
     - state: barmaiden
 
@@ -328,6 +328,6 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    sprite: _Backmen/Mobs/Npc/Civilian.rsi
     layers:
     - state: big_lenny

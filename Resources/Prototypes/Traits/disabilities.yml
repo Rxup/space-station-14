@@ -11,7 +11,7 @@
       - Blindable
   blacklist:
     components:
-      - BSSDrone #backmen: bssdrone
+      - BSSDrone # Backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
   components:
@@ -25,7 +25,7 @@
   category: Disabilities
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   whitelist:
@@ -40,7 +40,7 @@
   name: trait-narcolepsy-name
   blacklist:
     components:
-      - BSSDrone #backmen: bssdrone
+      - BSSDrone # Backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
   description: trait-narcolepsy-desc
@@ -56,7 +56,7 @@
   description: trait-unrevivable-desc
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   category: Disabilities
@@ -79,7 +79,7 @@
   category: Disabilities
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   components:
@@ -91,7 +91,7 @@
   description: trait-paracusia-desc
   blacklist:
     components:
-      - BSSDrone #backmen: bssdrone
+      - BSSDrone # Backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
   category: Disabilities

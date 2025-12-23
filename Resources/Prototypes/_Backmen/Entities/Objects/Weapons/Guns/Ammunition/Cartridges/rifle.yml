@@ -20,7 +20,7 @@
     proto: BulletRifle
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 20combat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -58,7 +58,7 @@
     deleteOnSpawn: true
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 45combat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -95,7 +95,7 @@
     proto: BulletRifle
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 30combat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -221,7 +221,7 @@
   - type: CartridgeAmmo
     proto: Bullet50BMG
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/large_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/large_casing.rsi
     layers:
     - state: 50combat
       map: ["enum.AmmoVisualLayers.Base"]

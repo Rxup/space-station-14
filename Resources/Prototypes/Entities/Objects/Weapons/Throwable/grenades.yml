@@ -52,7 +52,7 @@
     intensitySlope: 3
     totalIntensity: 120 # about a ~4 tile radius
     canCreateVacuum: false
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: OnUseTimerTrigger
     beepSound:
@@ -133,7 +133,7 @@
         acts: ["Destruction"]
   - type: OnUseTimerTrigger
     delay: 5
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: ExplodeOnTrigger
   - type: Explosive
@@ -164,7 +164,7 @@
     intensitySlope: 30
     maxIntensity: 125
     canCreateVacuum: true
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: OnUseTimerTrigger
     delay: 4.5
@@ -201,7 +201,7 @@
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
       volume: 5
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: AnchorOnTrigger
     removeOnTrigger: true
@@ -298,7 +298,7 @@
   - type: OnUseTimerTrigger
     delay: 5
   - type: ExplodeOnTrigger
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: Explosive
     explosionType: Default
@@ -378,7 +378,7 @@
   - type: EmpOnTrigger
     range: 5.5
     energyConsumption: 50000
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: DeleteOnTrigger
   - type: Appearance
@@ -405,7 +405,7 @@
     canCreateVacuum: true
   - type: OnUseTimerTrigger
     delay: 3 # by canon
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: PointLight
     radius: 7

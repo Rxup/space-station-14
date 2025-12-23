@@ -14,10 +14,10 @@
       collection: GenericEquip
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/generic_small_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/generic_small_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/generic_small_drop.ogg
+      path: /Audio/_Backmen/Items/handling/generic_small_drop.ogg
   # backmen edit end
   - type: StaticPrice
     price: 25

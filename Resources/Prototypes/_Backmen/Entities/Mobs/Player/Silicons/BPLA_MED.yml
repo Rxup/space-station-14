@@ -162,7 +162,7 @@
     drawdepth: SmallMobs
     layers:
     - state: shell
-      sprite: Backmen/Mobs/Silicon/BPLAMED.rsi
+      sprite: _Backmen/Mobs/Silicon/BPLAMED.rsi
       #sprite: Mobs/Silicon/drone.rsi
       map: ["base"]
   - type: MovementIgnoreGravity
@@ -188,7 +188,7 @@
 #    accent: silicon
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Binary
     understands:

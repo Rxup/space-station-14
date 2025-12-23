@@ -2,7 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.Components;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared._Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;

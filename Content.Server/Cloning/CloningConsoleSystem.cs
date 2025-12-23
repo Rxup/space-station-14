@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Backmen.Cloning;
 using Content.Server.Administration.Logs;
 using Content.Server.Cloning.Components;
 using Content.Server.DeviceLinking.Systems;
@@ -170,7 +171,7 @@ namespace Content.Server.Cloning
 
             // start-backmen: MetempsychoticMachine
             var fail = scannerComp.CloningFailChanceMultiplier;
-            if (HasComp<Backmen.Cloning.MetempsychoticMachineComponent>(cloningPodUid))
+            if (HasComp<MetempsychoticMachineComponent>(cloningPodUid))
             {
                 fail = 0;
             }

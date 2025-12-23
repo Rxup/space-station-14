@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
   - type: EmitSoundOnUse
     sound:
       collection: ToySqueak
@@ -41,21 +41,21 @@
     state: pig
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Backmen/Items/Toys/khryu.ogg
+      path: /Audio/_Backmen/Items/Toys/khryu.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/Toys/khryu.ogg
+      path: /Audio/_Backmen/Items/Toys/khryu.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/Backmen/Items/Toys/khryu.ogg
+      path: /Audio/_Backmen/Items/Toys/khryu.ogg
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/Backmen/Items/Toys/khryu.ogg
+      path: /Audio/_Backmen/Items/Toys/khryu.ogg
   - type: Slippery
     slipData:
       paralyzeTime: 0
     slipSound:
-      path: /Audio/Backmen/Items/Toys/khryu.ogg
+      path: /Audio/_Backmen/Items/Toys/khryu.ogg
       params:
         variation: 0.125
   - type: StepTrigger
@@ -160,7 +160,7 @@
   description: A plushie of an Arachne, a half human, half spider creature. Why does it look familiar?
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: plushie_arachne
   - type: EmitSoundOnUse
     sound:
@@ -189,7 +189,7 @@
   description: A dubious little creature getting up to mischief.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: plushie_jester
 
 - type: entity
@@ -199,7 +199,7 @@
   description: The silent cleaner, the one that you dont hear say "Weh"!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: plushie_slips
   - type: EmitSoundOnUse
     sound:
@@ -250,7 +250,7 @@
   description: A stuffed toy that resembles a gnome! or a drawf...
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: gnome
 
 - type: entity
@@ -260,7 +260,7 @@
   description: A stuffed toy that resembles... a creature.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: loveable
 
 - type: entity
@@ -270,7 +270,7 @@
   description: A stuffed toy that resembles a deer!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: deer
 
 - type: entity
@@ -280,7 +280,7 @@
   description: A stuffed toy that resembles a ipc!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: ipc
 
 - type: entity
@@ -290,7 +290,7 @@
   description: A stuffed toy that resembles a grey!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: grey
 
 - type: entity
@@ -300,7 +300,7 @@
   description: A stuffed toy that resembles an abductor!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: abductor
 
 - type: entity
@@ -310,7 +310,7 @@
   description: A stuffed toy that resembles an abductor agent!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: abductor_agent
 
 - type: entity
@@ -320,7 +320,7 @@
   description: A cute plushie that look like a red foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: red
 
 - type: entity
@@ -330,7 +330,7 @@
   description: A cute plushie that look like a purple foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: purple
 
 - type: entity
@@ -340,7 +340,7 @@
   description: A cute plushie that look like a pink foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: pink
 
 - type: entity
@@ -350,7 +350,7 @@
   description: A cute plushie that look like a orange foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: orange
 
 - type: entity
@@ -360,7 +360,7 @@
   description: A cute plushie that look like a marble foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: marble
 
 - type: entity
@@ -370,7 +370,7 @@
   description: A cute plushie that look like a crimson foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: crimson
 
 - type: entity
@@ -380,7 +380,7 @@
   description: A cute plushie that look like a coffee foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: coffee
 
 - type: entity
@@ -390,7 +390,7 @@
   description: A cute plushie that look like a blue foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: blue
 
 - type: entity
@@ -400,7 +400,7 @@
   description: A cute plushie that look like a black foxxo!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/foxplushie.rsi
+    sprite: _Backmen/Objects/Fun/foxplushie.rsi
     state: black
 
 - type: entity
@@ -410,9 +410,9 @@
   description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: plushie_vulp
-#  - type: EmitSoundOnUse # Ataraxia-REMOVE | Dont have barks - TODO: Get barks
+#  - type: EmitSoundOnUse # Orion-Edit: Dont have barks - TODO: Get barks
 #    sound:
 #      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
 #  - type: EmitSoundOnLand
@@ -432,7 +432,7 @@
   description: The ones who yeeps!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
+    sprite: _Backmen/Objects/Fun/toys.rsi
     state: plushie_trystan
 
 - type: entity
@@ -442,7 +442,7 @@
   description: The ian plushie edition!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/corgiplushie.rsi
+    sprite: _Backmen/Objects/Fun/corgiplushie.rsi
     state: corgi
 
 - type: entity
@@ -451,7 +451,7 @@
   name: girly corgi plushie
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/corgiplushie.rsi
+    sprite: _Backmen/Objects/Fun/corgiplushie.rsi
     state: girlycorgi
 
 - type: entity
@@ -460,7 +460,7 @@
   name: robot corgi plushie
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/corgiplushie.rsi
+    sprite: _Backmen/Objects/Fun/corgiplushie.rsi
     state: robotcorgi
 
 - type: entity
@@ -470,19 +470,19 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/catplushie.rsi
+    sprite: _Backmen/Objects/Fun/catplushie.rsi
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+      path: /Audio/_Nyanotrasen/Voice/Felinid/cat_meow1.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+      path: /Audio/_Nyanotrasen/Voice/Felinid/cat_meow1.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+      path: /Audio/_Nyanotrasen/Voice/Felinid/cat_meow1.ogg
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+      path: /Audio/_Nyanotrasen/Voice/Felinid/cat_meow1.ogg
 
 - type: entity
   parent: BasePlushieCat
@@ -575,11 +575,11 @@
   description: Merch, it looks cool.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/inteq_balloon.rsi
+    sprite: _Backmen/Objects/Fun/inteq_balloon.rsi
     state: inteq
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Fun/inteq_balloon.rsi
+    sprite: _Backmen/Objects/Fun/inteq_balloon.rsi
   - type: Damageable
     damageContainer: Inorganic
   - type: Tag
@@ -593,9 +593,9 @@
   description: Avantgarde Dishwasher is always ready to perform tasks
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: lapina_plush
-    
+
 - type: entity
   parent: BasePlushieBk
   id: RaNlikPlushie
@@ -603,7 +603,7 @@
   description: Oh no! He's escaped again!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: cefa_plush
   - type: EmitSoundOnUse
     sound:
@@ -619,7 +619,7 @@
   description: ECO product. Definitely does not contain materials of animal origin.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: yuri_plush
 
 - type: entity
@@ -629,17 +629,17 @@
   description: The ball suspension is 70% softer!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: ddh_plush
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Backmen/Items/Toys/fantomas.ogg
+      path: /Audio/_Backmen/Items/Toys/fantomas.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/Backmen/Items/Toys/fantomas.ogg
+      path: /Audio/_Backmen/Items/Toys/fantomas.ogg
   - type: UseDelay
-    delay: 2      
-      
+    delay: 2
+
 - type: entity
   parent: BasePlushieBk
   id: KreydPlush
@@ -647,17 +647,17 @@
   description: Plush Crade. Horror!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: kreyd_plush
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Backmen/Items/Toys/Boykisser_Meowing.ogg
+      path: /Audio/_Backmen/Items/Toys/Boykisser_Meowing.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/Backmen/Items/Toys/Boykisser_Meowing.ogg
+      path: /Audio/_Backmen/Items/Toys/Boykisser_Meowing.ogg
   - type: UseDelay
     delay: 1
-      
+
 - type: entity
   parent: BasePlushieBk
   id: BogdaPlush
@@ -665,7 +665,7 @@
   description: "Have you heard about Robust? I worked with it."
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: bogda_plush
   - type: EmitSoundOnUse
     sound:
@@ -681,5 +681,5 @@
   description: "Made by masters in honor of a little cat with a big soul."
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/players.rsi
+    sprite: _Backmen/Objects/Fun/players.rsi
     state: mika_plush

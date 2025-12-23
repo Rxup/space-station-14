@@ -13,7 +13,7 @@
        - id: ClothingShoesColorBlack
          amount: 2
        - id: ClothingMaskMuzzle
-       - id: RaNlikPlushie #backmen
+       - id: RaNlikPlushie # Backmen
          prob: 0.1
 
 #- type: entity

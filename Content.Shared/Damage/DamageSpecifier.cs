@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared._Backmen.Surgery.Wounds;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;

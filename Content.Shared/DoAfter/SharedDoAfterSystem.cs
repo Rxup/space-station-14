@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared._Backmen.Surgery.Wounds;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Tag;

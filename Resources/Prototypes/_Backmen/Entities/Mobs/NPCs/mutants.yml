@@ -17,7 +17,7 @@
 #    layers:
 #    - map: [ "enum.DamageStateVisualLayers.Base" ]
 #      state: produce
-#      sprite: Backmen/Mobs/Mutants/killer_tomato.rsi
+#      sprite: _Backmen/Mobs/Mutants/killer_tomato.rsi
 #  - type: Fixtures
 #    fixtures:
 #      fix1:
@@ -78,7 +78,7 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: Spider
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Spider
     understands:

@@ -6,9 +6,9 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/parts.rsi
   - type: Icon
-    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/parts.rsi
 
 - type: entity
   id: ChestShadowkin

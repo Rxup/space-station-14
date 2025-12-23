@@ -6,13 +6,13 @@
   suffix: Пневморужье
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/big.rsi
     layers:
     - state: icon
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
     quickEquip: false
     slots:
     - Back
@@ -26,9 +26,9 @@
   description: Поистине невероятное пальто.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Coats/bizzare.rsi
 
 
 # Wisdom RD HardSuit
@@ -40,9 +40,9 @@
   description: Специальный костюм, защищающий от опасной среды с низким давлением. Имеет дополнительный слой брони. Стоп, он с сиськами?
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRdWisdom
 
@@ -54,9 +54,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/WisdomHardSuit/helmet.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -68,7 +68,7 @@
     grid:
     - 0,0,7,4
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Backpacks/WisdomBackPack/backpack.rsi
+    sprite: _Backmen/Clothing/Back/Backpacks/WisdomBackPack/backpack.rsi
 
 - type: loadout
   id: WisdomRdLoadOutBkm

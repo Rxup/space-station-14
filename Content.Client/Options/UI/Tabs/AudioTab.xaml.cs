@@ -31,14 +31,14 @@ public sealed partial class AudioTab : Control
 
         // Backmen-ReBELL-Start
         Control.AddOptionPercentSlider(
-            Shared.Backmen.CCVar.CCVars.BrutalDeathRattlesVolume,
+            Shared._Backmen.CCVar.CCVars.BrutalDeathRattlesVolume,
             SliderVolumeBrutalDeathRattles,
             scale: ContentAudioSystem.BrutalDeathRattlesMultiplier);
         // Backmen-ReBELL-End
 
         // Backmen boombox slider start
         Control.AddOptionPercentSlider(
-            Shared.Backmen.CCVar.CCVars.BoomboxVolume,
+            Shared._Backmen.CCVar.CCVars.BoomboxVolume,
             SliderVolumeBoombox,
             scale: ContentAudioSystem.BoomboxVolumeMultiplier);
         // Backmen boombox slider end

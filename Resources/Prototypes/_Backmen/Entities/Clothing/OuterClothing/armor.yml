@@ -5,9 +5,9 @@
   description: An armored vest with heavy padding to protect against melee attacks, perfect for fighting delinquents around the station. For the Golden Empire!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_crusader.rsi
   - type: Armor
     coverage:
     - Groin
@@ -36,9 +36,9 @@
   description: Redesigned security vest with increased protection.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Armor
     coverage:
     - Chest
@@ -64,9 +64,9 @@
   description: "Костюм биологической защиты ИОГ 3 класса. На груди виден бронежилет."
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
   - type: Armor
     coverage:
     - Groin
@@ -86,7 +86,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.60
   - type: GroupExamine
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.4
 
 - type: entity
@@ -96,9 +96,9 @@
   description: A set of armor used in Kendo. It covers the waist, torso, and hands.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/bogu.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/bogu.rsi
   - type: Armor
     coverage:
     - Groin
@@ -121,9 +121,9 @@
   description: Тяжелый пуленепробиваемый жилет III типа, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/whitevest.rsi
   - type: Armor
     coverage:
     - Groin
@@ -146,9 +146,9 @@
   description: A synthetic armor vest. This one has added ballistic plates.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/navy.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/navy.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/navy.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/navy.rsi
   - type: Armor
     coverage:
     - Groin
@@ -170,9 +170,9 @@
   description: A synthetic armor vest. This one has added ballistic plates.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
   - type: Armor
     coverage:
     - Groin
@@ -195,9 +195,9 @@
   description: A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/chestplate.rsi
   - type: Armor
     coverage:
     - Groin
@@ -220,9 +220,9 @@
   description: A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/chestplate2.rsi
   - type: Armor
     coverage:
     - Groin
@@ -252,9 +252,9 @@
   description: A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/chestplate3.rsi
   - type: Armor
     coverage:
     - Groin
@@ -284,9 +284,9 @@
   description: A synthetic armor vest. This one has added ballistic plates.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_light.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_light.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/armor_light.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/armor_light.rsi
 
 - type: entity
   parent: ClothingOuterArmorBasic
@@ -295,9 +295,9 @@
   description: A medic's armor vest, with little pockets for little things.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
+      sprite: _Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
+      sprite: _Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
 
 # backmen
 - type: entity
@@ -307,9 +307,9 @@
   description: Тяжелый пуленепробиваемый жилет, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
   - type: Armor
     coverage:
     - Groin
@@ -336,9 +336,9 @@
   suffix: Unremoveable
   components:
   - type: Sprite
-    sprite: Backmen/Changeling/ling_armor.rsi
+    sprite: _Backmen/Changeling/ling_armor.rsi
   - type: Clothing
-    sprite: Backmen/Changeling/ling_armor.rsi
+    sprite: _Backmen/Changeling/ling_armor.rsi
   - type: Armor
     coverage:
     - Groin
@@ -372,9 +372,9 @@
   description: Бронежилет бренда "Центком".
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
   - type: Armor
     coverage:
     - Groin
@@ -400,9 +400,9 @@
   description: Anti-heretic armour.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_dark_templar.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetInteQDarkTemplar
   - type: ContainerContainer
@@ -431,9 +431,9 @@
   suffix: InteQ
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_alt_dark_templar.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_alt_dark_templar.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_alt_dark_templar.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_alt_dark_templar.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetInteQDarkTemplarAlt
 
@@ -444,9 +444,9 @@
   description: High-quality raincoat with an armored plate made of multilayer plasteel. It combines lightness and durability, has a buffer lining and fits perfectly to the body without making unnecessary sounds when worn.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: Armor
@@ -473,9 +473,9 @@
   description: Ancient, but no less formidable suit of armor. It provides incredible protection from bullets and shrapnel, but it hinders movement. Or so it was before the technical department attached a passive exoskeleton to the base.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_tombstone.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_tombstone.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/inteq_tombstone.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/inteq_tombstone.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetInteQIronTombstone
   - type: PointLight
@@ -488,6 +488,6 @@
   description: An armored breastplate that provides protection while offering mobility and flexibility. Issued only to the best members of the station. White color - symbol of cleanliness and order.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/white_captain_carapace.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/white_captain_carapace.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/white_captain_carapace.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/white_captain_carapace.rsi

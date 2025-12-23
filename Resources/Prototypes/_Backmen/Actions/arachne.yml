@@ -17,7 +17,7 @@
   description: description-Spider-Vampire-Egg
   components:
     - type: Action
-      icon: { sprite: Backmen/Objects/Misc/eggspider.rsi, state: icon }
+      icon: { sprite: _Backmen/Objects/Misc/eggspider.rsi, state: icon }
       priority: -10
       useDelay: 30
       startDelay: true

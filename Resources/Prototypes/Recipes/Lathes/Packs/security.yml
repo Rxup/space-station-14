@@ -16,10 +16,10 @@
   id: SecurityPracticeStatic
   recipes:
   - BoxShotgunPractice
-#  - MagazineBoxLightRiflePractice #Backmen-ammo
-#  - MagazineBoxMagnumPractice #Backmen-ammo
-#  - MagazineBoxPistolPractice #Backmen-ammo
-#  - MagazineBoxRiflePractice #Backmen-ammo
+#  - MagazineBoxLightRiflePractice # Backmen-ammo
+#  - MagazineBoxMagnumPractice # Backmen-ammo
+#  - MagazineBoxPistolPractice # Backmen-ammo
+#  - MagazineBoxRiflePractice # Backmen-ammo
   - WeaponDisablerPractice
   - WeaponLaserCarbinePractice
   - MagazineLightRiflePractice

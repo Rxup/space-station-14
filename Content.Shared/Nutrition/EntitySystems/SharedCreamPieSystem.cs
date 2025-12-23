@@ -1,7 +1,7 @@
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
-using Content.Shared.Backmen.Mood;
+using Content.Shared._Backmen.Mood;
 using JetBrains.Annotations;
 
 namespace Content.Shared.Nutrition.EntitySystems

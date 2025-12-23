@@ -128,7 +128,7 @@
     key: enum.ReinforcementConsoleKey.Key
     singleUser: true
   - type: Sprite
-    sprite: Backmen/Objects/Devices/pda_modern.rsi
+    sprite: _Backmen/Objects/Devices/pda_modern.rsi
     state: pda-captain
   - type: PointLight
     radius: 1.5

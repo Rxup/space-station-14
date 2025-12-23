@@ -7,7 +7,7 @@
     components:
     - FleshCultist
   icon:
-    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/antag_icon.rsi
     state: flesh
 
 - type: factionIcon
@@ -17,7 +17,7 @@
     components:
     - BkmVampire
   icon:
-    sprite: /Textures/Backmen/Interface/Misc/antag_icon10x.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/antag_icon10x.rsi
     state: vampire
 
 - type: factionIcon
@@ -30,7 +30,7 @@
     - ZombieBlob
     - Blobbernaut
   icon:
-    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/antag_icon.rsi
     state: blob
 
 
@@ -44,7 +44,7 @@
     - TdmMember
     - StationAiVision
   icon:
-    sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/svs_icon.rsi
     state: team_0
 
 - type: factionIcon
@@ -55,7 +55,7 @@
     - TdmMember
     - StationAiVision
   icon:
-    sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/svs_icon.rsi
     state: team_a
 
 - type: factionIcon
@@ -66,7 +66,7 @@
     - TdmMember
     - StationAiVision
   icon:
-    sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/svs_icon.rsi
     state: team_b
 
 - type: factionIcon

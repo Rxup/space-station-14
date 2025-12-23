@@ -5,7 +5,7 @@
   description: destabilizing shot in some point
   components:
   - type: Action
-    icon: Backmen/Actions/AI/camera_stun.png
+    icon: _Backmen/Actions/AI/camera_stun.png
     useDelay: 3
     priority: 17
     checkCanInteract: false
@@ -19,7 +19,7 @@
   description: Can jump on target cameras.
   components:
   - type: Action
-    icon: Backmen/Actions/AI/camera.png
+    icon: _Backmen/Actions/AI/camera.png
     useDelay: 5
     priority: 17
     checkCanInteract: false

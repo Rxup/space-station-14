@@ -373,14 +373,14 @@
     sprite: Clothing/Head/Hardsuits/capspace.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/capspace.rsi
-  - type: PointLight               #Backmen edit
+  - type: PointLight               # Backmen edit
     color: cyan
     radius: 7
     energy: 3
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Armor #Backmen edit: armour coverage
+  - type: Armor # Backmen edit: armour coverage
     traumaDeductions:
       Dismemberment: 0
       OrganDamage: 0.14
@@ -525,9 +525,9 @@
   description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/syndicate.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/syndicate.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/syndicate.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/syndicate.rsi # Backmen resprite
   - type: PointLight
     color: green
   - type: PressureProtection
@@ -599,9 +599,9 @@
   description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/syndieelite.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/syndieelite.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/syndieelite.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/syndieelite.rsi # Backmen resprite
   - type: PointLight
     color: red
   - type: PressureProtection
@@ -642,9 +642,9 @@
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/syndiecommander.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/syndiecommander.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/syndiecommander.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/syndiecommander.rsi # Backmen resprite
   - type: PointLight
     color: green
   - type: PressureProtection
@@ -680,9 +680,9 @@
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/cybersun.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/cybersun.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/cybersun.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/cybersun.rsi # Backmen resprite
   - type: PointLight # Corvax-Resprite
     color: red
   - type: PressureProtection
@@ -718,9 +718,9 @@
   description: A bizarre gem-encrusted helmet that radiates magical energies.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/wizard.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/wizard.rsi # Backmen resprite
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/wizard.rsi #backmen resprite
+    sprite: _Backmen/Clothing/Head/Hardsuits/wizard.rsi # Backmen resprite
   - type: PointLight
     color: "#ffadfb"
   - type: PressureProtection
@@ -1000,7 +1000,7 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.3
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.4
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
@@ -1041,7 +1041,7 @@
         Heat: 0.3
         Radiation: 0.4
         Caustic: 0.45
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 1
 
 #MISC. HARDSUITS
@@ -1069,9 +1069,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/mime.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/mime.rsi
 
 #Santas Hardsuit
 - type: entity

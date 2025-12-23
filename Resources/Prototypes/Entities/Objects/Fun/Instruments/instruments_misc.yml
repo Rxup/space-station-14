@@ -53,10 +53,10 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/phone_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/phone_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/phone_drop.ogg
+      path: /Audio/_Backmen/Items/handling/phone_drop.ogg
   # backmen edit end
   - type: EmitSoundOnLand
     sound:

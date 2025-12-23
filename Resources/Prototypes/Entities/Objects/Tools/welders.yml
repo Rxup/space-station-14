@@ -7,7 +7,7 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/weldingtool_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/weldingtool_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/welder_drop.ogg

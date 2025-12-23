@@ -12,7 +12,7 @@
       OutputTeamA: false
       OutputTeamB: false
   - type: Sprite
-    sprite: Backmen/Teams/CTP/greenbox.rsi
+    sprite: _Backmen/Teams/CTP/greenbox.rsi
     layers:
     - state: captured_by_n
       map: ["TeamNeutral"]
@@ -59,7 +59,7 @@
           True: { visible: true }
           False: { visible: false }
   - type: Icon
-    sprite: Backmen/Teams/CTP/greenbox.rsi
+    sprite: _Backmen/Teams/CTP/greenbox.rsi
     state: captured_by_n
 
 - type: entity

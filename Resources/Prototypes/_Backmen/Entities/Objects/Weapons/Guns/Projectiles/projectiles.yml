@@ -5,7 +5,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Effects/muzzle/divet.rsi
+    sprite: _Backmen/Effects/muzzle/divet.rsi
     layers:
     - state: projectiles_divet
       shader: unshaded

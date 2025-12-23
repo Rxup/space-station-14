@@ -24,7 +24,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Backmen.Mood;
+using Content.Server._Backmen.Arrivals;
+using Content.Shared._Backmen.Mood;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Store.Components;
 
@@ -40,7 +41,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
-    [Dependency] private readonly Backmen.Arrivals.CentcommSystem _centcommSystem = default!; // backmen: centcom
+    [Dependency] private readonly CentcommSystem _centcommSystem = default!; // backmen: centcom
 
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
@@ -502,7 +503,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         SetWinType(ent, WinType.CrewMajor, false);
 
-        if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing. 
+        if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing.
             return; // Shouldn't actually try to end the round in the case of nothing though.
 
         _roundEndSystem.DoRoundEndBehavior(nukeops.RoundEndBehavior,

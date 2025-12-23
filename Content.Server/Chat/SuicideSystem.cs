@@ -1,6 +1,6 @@
 using Content.Server.Ghost;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared._Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Database;

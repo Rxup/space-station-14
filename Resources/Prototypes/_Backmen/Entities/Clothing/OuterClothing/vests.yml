@@ -5,7 +5,7 @@
   description: A high-visibility vest used in work zones. It has a layer of dense fabric that provides a little protection.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Vests/hazard-sec-vest.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Vests/hazard-sec-vest.rsi
     layers:
     - state: icon
     - state: icon-unshaded

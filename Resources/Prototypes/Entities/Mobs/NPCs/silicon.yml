@@ -7,7 +7,7 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: Binary
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Binary
     understands:
@@ -330,7 +330,7 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Binary
     - TauCetiBasic

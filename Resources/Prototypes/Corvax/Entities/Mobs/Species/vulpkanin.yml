@@ -7,7 +7,7 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - TauCetiBasic
     - Canilunzt

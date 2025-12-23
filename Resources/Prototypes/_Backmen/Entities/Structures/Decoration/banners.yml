@@ -5,7 +5,7 @@
   description: A Flag displaying the EarthGov logo. It looks rather cheap.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/flag.rsi
+    sprite: _Backmen/Structures/Decoration/flag.rsi
     state: banner
 
 - type: entity
@@ -15,7 +15,7 @@
   description: A banner displaying the EarthGov logo. It looks rather cheap.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/banner.rsi
+    sprite: _Backmen/Structures/Decoration/banner.rsi
     state: banner
 
 - type: entity
@@ -37,7 +37,7 @@
     damageModifierSet: Metallic
   - type: Sprite
     drawdepth: WallTops
-    sprite: Backmen/Structures/Decoration/wallbanner.rsi
+    sprite: _Backmen/Structures/Decoration/wallbanner.rsi
     state: egov
   - type: Destructible
     thresholds:
@@ -65,7 +65,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Backmen/Structures/Decoration/wallbanner.rsi
+    sprite: _Backmen/Structures/Decoration/wallbanner.rsi
     state: egov_broken
   - type: Destructible
     thresholds:
@@ -86,5 +86,5 @@
   description: Banner displaying the InteQ logo.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/banner.rsi
+    sprite: _Backmen/Structures/Decoration/banner.rsi
     state: banner_inteq

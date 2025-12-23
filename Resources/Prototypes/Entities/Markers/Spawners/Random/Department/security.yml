@@ -71,8 +71,8 @@
     - type: RandomSpawner
       rarePrototypes:
         - ClothingHeadHelmetSwat
-        - WeaponShotgun12 #Backmen-weapons
-#        - WeaponShotgunEnforcer #Backmen-weapons
+        - WeaponShotgun12 # Backmen-weapons
+#        - WeaponShotgunEnforcer # Backmen-weapons
 #        - WeaponRifleAk
       rareChance: 0.05
       prototypes:
@@ -91,12 +91,12 @@
 #        - WeaponSubMachineGunDrozd
 #        - WeaponLaserCarbine
 #        - WeaponShotgunKammerer
-        #Backmen-weapons-start
+        # Backmen-weapons-start
         - WeaponShotgunPaladin12
         - WeaponSubMachineGunMP5
         - WeaponRifleAR18
         - WeaponRifleFamas
-        #Backmen-weapons-end
+        # Backmen-weapons-end
       chance: 0.95
       offset: 0.0
 
@@ -113,8 +113,8 @@
           state: icon
     - type: RandomSpawner
       rarePrototypes:
-        - WeaponShotgun12 #Backmen-weapons
-#        - WeaponShotgunEnforcer #Backmen-weapons
+        - WeaponShotgun12 # Backmen-weapons
+#        - WeaponShotgunEnforcer # Backmen-weapons
 #        - WeaponRifleAk
       rareChance: 0.05
       prototypes:
@@ -125,12 +125,12 @@
 #        - WeaponSubMachineGunDrozd
 #        - WeaponLaserCarbine
 #        - WeaponShotgunKammerer
-        #Backmen-weapons-start
+        # Backmen-weapons-start
         - WeaponShotgunPaladin12
         - WeaponSubMachineGunMP5
         - WeaponRifleAR18
         - WeaponRifleFamas
-        #Backmen-weapons-end
+        # Backmen-weapons-end
       chance: 0.95
       offset: 0.0
 

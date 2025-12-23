@@ -64,7 +64,7 @@
         conditions:
         - !type:OrganType
           type: Animal
-      - !type:Oxygenate # Ataraxia
+      - !type:Oxygenate # Orion
         conditions:
         - !type:OrganType
           type: AnthroAnimal

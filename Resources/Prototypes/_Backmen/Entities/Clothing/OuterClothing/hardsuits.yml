@@ -5,9 +5,9 @@
   description: Самая лучшая броня, для самого лучшего мазилы!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Armor/hardsuit/hardsuit_berserk.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/hardsuit/hardsuit_berserk.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Armor/hardsuit/hardsuit_berserk.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Armor/hardsuit/hardsuit_berserk.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 10000
@@ -48,9 +48,9 @@
   description: Extremely valuable and desirable for any corporation. an unreadable name engraved on the shoulder
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 10000
@@ -91,9 +91,9 @@
   description: Extremely valuable and desirable for any corporation. an unreadable name engraved on the shoulder
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 10000
@@ -135,9 +135,9 @@
   description: Специальный космический костюм Корпорат сделаный для различных ситуация и весьма лёгкий в ношении.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/centcom_corparat.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/centcom_corparat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/centcom_corparat.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/centcom_corparat.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -175,9 +175,9 @@
   description: Обычный скафандр С.О.Н который выдаётся оперативникам С.О.Н и некоторым офицерам ОПЗ
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ueg-hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ueg-hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ueg-hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ueg-hardsuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -247,9 +247,9 @@
   description: A protective hardsuit worn by the leader of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertSpecialOperative.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertSpecialOperative.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertSpecialOperative.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertSpecialOperative.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTOperativeAlpha1
   - type: ExplosionResistance
@@ -263,9 +263,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertSpecialOperative.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertSpecialOperative.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertSpecialOperative.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertSpecialOperative.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -289,9 +289,9 @@
   description: A protective hardsuit worn by the leader of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeaderTay39
 
@@ -302,9 +302,9 @@
   description: A special hardsuit helmet worn by members of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamLeader.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamLeader.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamLeader.rsi
+    sprite: _Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamLeader.rsi
   - type: PointLight
     color: cyan
 
@@ -315,9 +315,9 @@
   description: A protective hardsuit worn by the leader of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTTay39
 
@@ -328,9 +328,9 @@
   description: A protective hardsuit worn by the leader of an emergency response team.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedicTay39
   - type: Armor
@@ -360,11 +360,11 @@
   name: EarthGov special force hardsuit
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/specialforce.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/specialforce.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/specialforce.rsi
-    equipSound: /Audio/Backmen/Misc/suit/nominal.ogg
-    unequipSound: /Audio/Backmen/Misc/suit/mechmove03.ogg
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/specialforce.rsi
+    equipSound: /Audio/_Backmen/Misc/suit/nominal.ogg
+    unequipSound: /Audio/_Backmen/Misc/suit/mechmove03.ogg
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSpecialForce
 
@@ -376,9 +376,9 @@
   description: A rescue troop unit suit designed specifically for combat in space and the harsh far-off worlds.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRTU
 
@@ -389,9 +389,9 @@
   name: EarthGov medic RTU hardsuit
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRTUMedick
 
@@ -402,9 +402,9 @@
   name: EarthGov engineer RTU hardsuit
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRTUEnginegr
 
@@ -415,11 +415,11 @@
   name: EarthGov commander RTU hardsuit
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
-    equipSound: /Audio/Backmen/Misc/suit/nominal.ogg
-    unequipSound: /Audio/Backmen/Misc/suit/mechmove03.ogg
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+    equipSound: /Audio/_Backmen/Misc/suit/nominal.ogg
+    unequipSound: /Audio/_Backmen/Misc/suit/mechmove03.ogg
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRTULeader
 
@@ -430,9 +430,9 @@
   description: A marine suit designed specifically for combat in space and the harsh far-off worlds.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinespecialhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/marinespecialhardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinespecialhardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/marinespecialhardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityEgov
 
@@ -443,9 +443,9 @@
   description: A marine suit designed specifically for combat in space and the harsh far-off worlds.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinehardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/marinehardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinehardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/marinehardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityEgov
 
@@ -456,9 +456,9 @@
   description: An advanced and stylish hardsuit right from the future.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/chronolegionnaire.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/chronolegionnaire.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/chronolegionnaire.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/chronolegionnaire.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -498,9 +498,9 @@
   description: A hardsuit designed for Blueshield officers with enhanced protection and night vision.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueShield
   - type: ClothingSpeedModifier
@@ -516,9 +516,9 @@
   suffix: Unremoveable
   components:
   - type: Sprite
-    sprite: Backmen/Changeling/ling_spacesuit.rsi
+    sprite: _Backmen/Changeling/ling_spacesuit.rsi
   - type: Clothing
-    sprite: Backmen/Changeling/ling_spacesuit.rsi
+    sprite: _Backmen/Changeling/ling_spacesuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
@@ -555,9 +555,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor. Lightened especially for the pilot.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/sec-pilot-hardsuit.rsi
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -572,9 +572,9 @@
   description: An upgraded version of the syndicate hardsuit that features enhanced fireproofing, pressure resist, and superior armor.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/elite_inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/elite_inteq_hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/elite_inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/elite_inteq_hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInteQElite
 
@@ -585,9 +585,9 @@
   description: An upgraded version of the syndicate hardsuit that features enhanced fireproofing, pressure resist, and superior armor.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/inteq_hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/inteq_hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInteQ
 
@@ -598,8 +598,8 @@
   description: An upgraded version of the syndicate hardsuit that features enhanced fireproofing, pressure resist, and superior armor.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_syn_hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/inteq_syn_hardsuit.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_syn_hardsuit.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/inteq_syn_hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndicateInteQ

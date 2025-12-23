@@ -553,10 +553,10 @@
   description: Ножны для Ямато. Найдено в секторе "Бекман"
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Belt/yamato.rsi
+    sprite: _Backmen/Clothing/Belt/yamato.rsi
     state: sheath
   - type: Clothing
-    sprite: Backmen/Clothing/Belt/yamato.rsi
+    sprite: _Backmen/Clothing/Belt/yamato.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots
