@@ -200,6 +200,13 @@ namespace Content.Server.Chemistry.EntitySystems
             if (message.Number == 0 || !_storageSystem.HasSpace((container, storage)))
                 return;
 
+            if (message.Number > 50)
+            {
+                _adminLogger.Add(LogType.Unknown, LogImpact.Extreme,
+                    $"{ToPrettyString(user):user} attempted to create {message.Number} pills (exceeds limit of 50) using {ToPrettyString(chemMaster)}");
+                return;
+            }
+
             // Ensure the amount is valid.
             if (message.Dosage == 0 || message.Dosage > chemMaster.Comp.PillDosageLimit)
                 return;
