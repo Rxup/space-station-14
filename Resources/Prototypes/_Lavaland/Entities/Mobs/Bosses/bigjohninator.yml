@@ -1,43 +1,4 @@
-#Big John Spawner
-
-- type: entity
-  id: DropPodMarkerBigJohn
-  parent: DropPodMarker
-  suffix: Босс, Big Johninator
-  components:
-  - type: TimedSpawner
-    prototypes:
-      -  DropPodLaunchAnimationBigJohn
-
-- type: entity
-  id: DropPodLaunchAnimationBigJohn
-  parent: DropPodLaunchAnimation
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/Effects/droppod_falling.rsi
-    layers:
-    - state: supplypod_falling_animation
-      offset: "0,3.3"
-  - type: TimedSpawner
-    prototypes:
-      - SupplyDropPodBigJohn
-
-- type: entity
-  id: SupplyDropPodBigJohn
-  parent: MissileBase
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/Structures/Storage/supplypod.rsi
-    layers:
-    - state: supplypod
-  - type: ConditionalSpawner
-    prototypes:
-    - MobBigJohninator
-
-#John
-
+#Big John
 - type: entity
   name: Big Johninator
   description: Большой Джонни уже тут! Ха-ха!
@@ -73,10 +34,11 @@
             max: 1
   - type: ReplacementAccent
     accent: BigJohn
-  - type: Advertise
-    minimumWait: 3
-    maximumWait: 5
-    pack: DiscountDansAds
+  - type: DatasetVocalizer
+    dataset: DiscountDansAds
+  - type: Vocalizer
+    minVocalizeInterval: 3
+    maxVocalizeInterval: 5
   - type: Speech
     speechSounds: BigJohn
     audioParams:

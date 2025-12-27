@@ -1,7 +1,13 @@
 health-examinable-silicon-none = Видимые повреждения корпуса отсутствуют.
+health-examinable-silicon-Blunt-15 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } небольшие вмятины на корпусе { POSS-ADJ($target) }.[/color]
 health-examinable-silicon-Blunt-25 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } небольшие вмятины на оболочке.[/color]
+health-examinable-silicon-Blunt-100 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } корпус почти полностью разрушен![/color]
+health-examinable-silicon-Slash-8 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько небольших царапин.[/color]
+health-examinable-silicon-Slash-30 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } значительные царапины на корпусе { POSS-ADJ($target) }.[/color]
 health-examinable-silicon-Blunt-50 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } оболочка имеет серьёзные вмятины![/color]
+health-examinable-silicon-Slash-100 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } корпус полностью разорван![/color]
 health-examinable-silicon-Blunt-75 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } оболочка почти разваливается![/color]
+health-examinable-silicon-Heat-15 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } поверхностные ожоги по корпусу { POSS-ADJ($target) }.[/color]
 health-examinable-silicon-Slash-10 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько царапин.[/color]
 health-examinable-silicon-Slash-25 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } серьёзные царапины![/color]
 health-examinable-silicon-Slash-50 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } покрытие оболочки усыпано глубокими царапинами![/color]

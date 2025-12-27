@@ -1127,10 +1127,11 @@
       path: /Audio/Backmen/Bosses/Divine_Intervention.ogg
   - type: ReplacementAccent
     accent: Uriil
-  - type: Advertise
-    minimumWait: 5
-    maximumWait: 10
-    pack: DiscountDansAds
+  - type: DatasetVocalizer
+    dataset: DiscountDansAds
+  - type: Vocalizer
+    minVocalizeInterval: 5
+    maxVocalizeInterval: 10
   - type: Speech
     speechSounds: AngelUriil
     audioParams:

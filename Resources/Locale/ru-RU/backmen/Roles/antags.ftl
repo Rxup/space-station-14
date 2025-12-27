@@ -1,2 +1,2 @@
-roles-antag-fugitive-name = Беглец
-roles-antag-fugitive-description = Выживите. Бегите.
+roles-antag-fugitive-name = Fugitive
+roles-antag-fugitive-description = Survive. Escape.

@@ -31,3 +31,13 @@ hud-chatbox-channel-CollectiveMind = Коллективный Разум
 hud-chatbox-channel-Visual = Визуальный
 hud-chatbox-channel-Damage = Повреждения
 hud-chatbox-channel-Unspecified = Неопределённый
+hud-chatbox-highlights = Выделения:
+hud-chatbox-highlights-button = Отправить
+hud-chatbox-highlights-tooltip =
+    Слова необходимо разделять переводом строки,
+    если они обернуты в "", они будут выделены
+    только при разделении пробелами или пунктуацией.
+hud-chatbox-highlights-placeholder =
+    McHands
+    "Judge"
+    Медицинский

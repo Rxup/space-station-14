@@ -43,6 +43,9 @@ ui-options-quality-label = Качество
 ui-options-misc-label = Разное
 ui-options-interface-label = Интерфейс
 ui-options-bdr-volume = Громкость жестоких звуков:
+ui-options-auto-fill-highlights = Автозаполнение выделений информацией персонажа
+ui-options-highlights-color = Цвет подсветки:
+ui-options-highlights-color-example = Это выделенный текст!
 ui-options-boombox-volume = Громкость Boombox'ов:
 
 ## Graphics menu
@@ -82,6 +85,9 @@ ui-options-hud-layout-separated = Разделённый
 ui-options-vp-stretch = Растянуть изображение для соответствия окну игры
 ui-options-vp-scale = Фиксированный масштаб окна игры:
 ui-options-vp-scale-value = x{ $scale }
+ui-options-filter-label = Фильтр масштабирования:
+ui-options-filter-nearest = Ближайший (без сглаживания)
+ui-options-filter-bilinear = Билинейный (сглаженный)
 ui-options-vp-integer-scaling = Использовать целочисленное масштабирование (может вызывать появление чёрных полос/обрезания)
 ui-options-vp-integer-scaling-tooltip =
     Если эта опция включена, область просмотра будет масштабироваться,
@@ -93,6 +99,7 @@ ui-options-vp-vertical-fit-tooltip =
     Когда функция включена, основное окно просмотра не будет учитывать горизонтальную ось
     при подгонке под ваш экран. Если ваш экран меньше, чем окно просмотра,
     то это приведёт к его обрезанию по горизонтальной оси.
+ui-options-ambient-occlusion = Показать оклюзию окружения
 ui-options-vp-low-res = Изображение низкого разрешения
 ui-options-parallax-low-quality = Низкокачественный параллакс (фон)
 ui-options-fps-counter = Показать счётчик FPS
@@ -128,6 +135,7 @@ ui-options-hotkey-toggle-walk = Переключать шаг\бег
 ui-options-function-move-up = Двигаться вверх
 ui-options-function-move-left = Двигаться налево
 ui-options-function-move-down = Двигаться вниз
+ui-options-function-toggle-knockdown = Переключить ползание
 ui-options-function-move-right = Двигаться направо
 ui-options-function-walk = Идти
 ui-options-function-camera-rotate-left = Повернуть налево
@@ -145,6 +153,7 @@ ui-options-function-alt-activate-item-in-hand = Альтернативно ис�
 ui-options-function-activate-item-in-world = Использовать предмет в мире
 ui-options-function-alt-activate-item-in-world = Альтернативно использовать предмет в мире
 ui-options-function-drop = Положить предмет
+ui-options-function-swap-hands-reverse = Обменять руки (в противоположном направлении)
 ui-options-function-examine-entity = Осмотреть
 ui-options-function-swap-hands = Поменять руки
 ui-options-function-move-stored-item = Переместить хранящийся объект
@@ -221,6 +230,16 @@ ui-options-function-hotbar5 = 5 слот хотбара
 ui-options-function-hotbar6 = 6 слот хотбара
 ui-options-function-hotbar7 = 7 слот хотбара
 ui-options-function-hotbar8 = 8 слот хотбара
+ui-options-function-hotbar-shift1 = Горячая клавиша Shift+1
+ui-options-function-hotbar-shift2 = Горячая клавиша Shift+2
+ui-options-function-hotbar-shift3 = Горячая клавиша Shift+3
+ui-options-function-hotbar-shift4 = Горячая клавиша Shift+4
+ui-options-function-hotbar-shift5 = Горячая клавиша Shift+5
+ui-options-function-hotbar-shift6 = Горячая клавиша Shift+6
+ui-options-function-hotbar-shift7 = Горячая клавиша Shift+7
+ui-options-function-hotbar-shift8 = Горячая клавиша Shift+8
+ui-options-function-hotbar-shift9 = Горячая клавиша Shift+9
+ui-options-function-hotbar-shift0 = Горячая клавиша Shift+0
 ui-options-function-hotbar9 = 9 слот хотбара
 ui-options-function-hotbar0 = 0 слот хотбара
 ui-options-function-hotbarshift1 = Shift+1 слот хотбара

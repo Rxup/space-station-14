@@ -53,7 +53,7 @@
       path: /Audio/Backmen/Items/Toys/khryu.ogg
   - type: Slippery
     slipData:
-      paralyzeTime: 0
+      knockdownTime: 0
     slipSound:
       path: /Audio/Backmen/Items/Toys/khryu.ogg
       params:
@@ -218,7 +218,7 @@
     - Soap
   - type: Slippery
     slipData:
-      paralyzeTime: 0.7
+      knockdownTime: 0.7
       launchForwardsMultiplier: 0.5
   - type: StepTrigger
     intersectRatio: 0.2
@@ -595,7 +595,7 @@
   - type: Sprite
     sprite: Backmen/Objects/Fun/players.rsi
     state: lapina_plush
-    
+
 - type: entity
   parent: BasePlushieBk
   id: RaNlikPlushie
@@ -638,8 +638,8 @@
     sound:
       path: /Audio/Backmen/Items/Toys/fantomas.ogg
   - type: UseDelay
-    delay: 2      
-      
+    delay: 2
+
 - type: entity
   parent: BasePlushieBk
   id: KreydPlush
@@ -657,7 +657,7 @@
       path: /Audio/Backmen/Items/Toys/Boykisser_Meowing.ogg
   - type: UseDelay
     delay: 1
-      
+
 - type: entity
   parent: BasePlushieBk
   id: BogdaPlush

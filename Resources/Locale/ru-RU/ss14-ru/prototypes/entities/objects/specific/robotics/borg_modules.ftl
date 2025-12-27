@@ -94,7 +94,6 @@ ent-BorgModuleMusique = музыкальный модуль киборга
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleGardening = модуль киборга: садоводство
     .desc = { ent-BaseBorgModule.desc }
-
 ent-XenoborgModuleBasic = basic xenoborg module
     .desc = Essential items for any xenoborg.
 ent-XenoborgModuleTool = tool xenoborg module
@@ -112,6 +111,8 @@ ent-XenoborgModuleHeavyLaser = heavy laser xenoborg module
 ent-XenoborgModuleSpaceMovement = space movement xenoborg module
     .desc = Module that helps a xenoborg move better in space.
 ent-XenoborgModuleSword = sword xenoborg module
+    .desc = Module with an energy dagger.
+ent-XenoborgModuleEnergySword = energy sword xenoborg module
     .desc = Module with an energy dagger.
 ent-XenoborgModuleFastSword = fast sword xenoborg module
     .desc = Module with a crusher dagger.

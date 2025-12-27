@@ -28,12 +28,12 @@ public sealed partial class ResearchSystem
         if (TryGetClientServer(uid, out var serverUid, out var server, clientComponent) &&
             TryComp<TechnologyDatabaseComponent>(serverUid, out var db))
         {
-            var unlockedTechs = new HashSet<string>(db.UnlockedTechnologies);
+            var unlockedTechs = db.UnlockedTechnologies.ToHashSet();
             techList = allTechs.ToDictionary(
                 proto => proto.ID,
                 proto =>
                 {
-                    if (unlockedTechs.Contains(proto.ID))
+                    if (unlockedTechs.Contains(proto))
                         return ResearchAvailability.Researched;
 
                     var prereqsMet = proto.TechnologyPrerequisites.All(p => unlockedTechs.Contains(p));

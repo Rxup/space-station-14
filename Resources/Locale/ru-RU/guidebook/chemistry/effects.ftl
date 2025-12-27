@@ -77,6 +77,21 @@ reagent-effect-guidebook-health-change =
                *[both] изменяют здоровье на
             }
     } { $changes }
+reagent-effect-guidebook-even-health-change =
+    { $chance ->
+        [1]
+            { $healsordeals ->
+                [heals] Равномерно лечит
+                [deals] Равномерно наносит урон
+               *[both] Равномерно изменяет здоровье на
+            }
+       *[other]
+            { $healsordeals ->
+                [heals] равномерно лечит
+                [deals] равномерно наносит урон
+               *[both] равномерно меняет здоровье на
+            }
+    } { $changes }
 reagent-effect-guidebook-status-effect =
     { $type ->
         [add]
@@ -225,6 +240,11 @@ reagent-effect-guidebook-drunk =
         [1] Вызывает
        *[other] вызывают
     } опьянение
+reagent-effect-guidebook-emote =
+    { $chance ->
+        [1] Побудет заставить
+       *[other] заставить
+    } метаболизатору [bold][color=white]{ $emote }[/color][/bold]
 reagent-effect-guidebook-electrocute =
     { $chance ->
         [1] Бьёт током
@@ -339,6 +359,7 @@ reagent-effect-guidebook-artifact-unlock =
         [1] Помогает
        *[other] Помогают
     } разблокировать инопланетный артефакт.
+reagent-effect-guidebook-artifact-durability-restore = Восстанавливает { $restored } прочность активных узлов чужеродного артефакта.
 reagent-effect-guidebook-add-to-solution-reaction =
     { $chance ->
         [1] Заставляет

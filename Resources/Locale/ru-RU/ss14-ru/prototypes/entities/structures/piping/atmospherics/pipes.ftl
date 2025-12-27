@@ -1,3 +1,5 @@
+ent-GasPipeSansLayers = gas pipe
+    .desc = Holds gas.
 ent-GasPipeBase = труба
     .desc = Содержит газ.
 ent-GasPipeNoOverlap = { ent-GasPipeBase }
@@ -19,3 +21,5 @@ ent-GasPipeFourway = { ent-GasPipeBase }
     .desc = { ent-GasPipeBase.desc }
 ent-GasPipeBroken = сломанная труба
     .desc = Раньше в ней содержался газ.
+ent-GasPipeManifold = gas pipe manifold
+    .desc = Allows gas pipes of different configurations to be connected together.

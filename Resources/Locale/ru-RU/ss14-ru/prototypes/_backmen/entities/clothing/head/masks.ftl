@@ -1,0 +1,14 @@
+ent-ClothingMaskKitsune = Маска Кицунэ
+    .desc = Обмани эту станцию!
+ent-ClothingMaskGasERTV2_1 = { ent-ClothingMaskGasERT }
+    .desc = { ent-ClothingMaskGasERT.desc }
+ent-ClothingMaskGasDeathSquadV2_1 = { ent-ClothingMaskGasDeathSquad }
+    .desc = { ent-ClothingMaskGasDeathSquad.desc }
+ent-ClothingMaskGasRXBZZ = армейский противогаз
+    .desc = Противогаз армейского класса, который можно подключить к дыхательному баллону.
+ent-ClothingMaskGasERTTay39 = { ent-ClothingMaskGasERT }
+    .desc = { ent-ClothingMaskGasERT.desc }
+ent-ClothingMaskTacticalGas = тактический противогаз
+    .desc = Противогаз армейского газа, который можно подключить к баллону для дыхания.
+ent-ClothingMaskTGMCwhite = белая боевая маска
+    .desc = Белая боевая маска, помогает не дышать пылью.

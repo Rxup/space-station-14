@@ -22,6 +22,8 @@ alerts-walking-name = Шаг
 alerts-walking-desc = Вы идёте шагом, двигаясь в медленном темпе.
 alerts-stunned-name = [color=yellow]Оглушены[/color]
 alerts-stunned-desc = Вы [color=yellow]оглушены[/color]! Что-то мешает вам двигаться или взаимодействовать с объектами.
+alerts-knockdown-name = [color=yellow]Knocked Down[/color]
+alerts-knockdown-desc = You're [color=yellow]Knocked Down[/color]! Something has slipped or pushed you over, encumbering your movement.
 alerts-handcuffed-name = [color=yellow]В наручниках[/color]
 alerts-handcuffed-desc = На вас [color=yellow]надели наручники[/color] и вы не можете использовать руки. Если кто-нибудь вас потащит, вы не сможете сопротивляться.
 alerts-ensnared-name = [color=yellow]Захваченный[/color]
@@ -80,5 +82,9 @@ alerts-changeling-chemicals-name = Химические вещества
 alerts-changeling-chemicals-desc = Тратится на использование ваших способностей. Постепенно восстанавливается.
 alerts-offer-name = передать
 alerts-offer-desc = кто-то передаёт вам предмет
+alerts-rooted-name = Закреплён
+alerts-rooted-desc = Вы прикреплены к земле. Невозможно скользить, но вы поглощаете жидкости под собой.
+alerts-stealthy-name = Кража из карманов
+alerts-stealthy-desc = Вы в процессе кражи из карманов. Щёлкните, чтобы переключить.
 alerts-changeling-biomass-name = Биомасса
 alerts-changeling-biomass-desc = Это ваше здоровье. Если оно достигнет 0 - это [color=red]конец игры[/color]. Поглощайте гуманоидов, чтобы восстановить часть биомассы.

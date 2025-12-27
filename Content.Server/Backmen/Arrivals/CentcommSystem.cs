@@ -42,8 +42,6 @@ namespace Content.Server.Backmen.Arrivals;
 
 public sealed class CentcommSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -52,7 +50,7 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -130,7 +128,7 @@ public sealed class CentcommSystem : EntitySystem
 
     private void OnCentComEndRound(RoundEndedEvent ev)
     {
-        if (CentComMapUid != null && _shuttleSystem.TryAddFTLDestination(CentComMap, true, out var ftl))
+        if (CentComMapUid != null && _shuttle.TryAddFTLDestination(CentComMap, true, out var ftl))
         {
             EnableFtl((CentComMapUid.Value, ftl));
         }
@@ -222,7 +220,7 @@ public sealed class CentcommSystem : EntitySystem
             return;
 
         _audio.PlayPvs(SparkSound, ent);
-        _popupSystem.PopupEntity(Loc.GetString("shuttle-console-component-upgrade-emag-requirement"), ent);
+        _popup.PopupEntity(Loc.GetString("shuttle-console-component-upgrade-emag-requirement"), ent);
         args.Handled = true;
         EnsureComp<AllowFtlToCentComComponent>(shuttle.Value); // для обновления консоли нужно чтобы компонент был до вызыва RefreshShuttleConsoles
         _console.RefreshShuttleConsoles();
@@ -435,12 +433,12 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 */
-        if (!_shuttleSystem.CanFTL(shuttle.GridUid.Value, out var reason))
+        if (!_shuttle.CanFTL(shuttle.GridUid.Value, out var reason))
         {
             _popup.PopupEntity(reason, args.Performer, args.Performer);
             return;
         }
 
-        _shuttleSystem.FTLToDock(shuttle.GridUid.Value, comp, centcomm.Entity.Value);
+        _shuttle.FTLToDock(shuttle.GridUid.Value, comp, centcomm.Entity.Value);
     }
 }

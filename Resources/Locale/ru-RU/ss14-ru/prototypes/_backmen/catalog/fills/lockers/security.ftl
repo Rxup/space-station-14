@@ -1,3 +1,17 @@
+ent-GunSafeRifleAR18 = сейф для AR-стрелков
+    .desc = { ent-GunSafeBaseSecure.desc }
+ent-GunSafeSubMachineGunVector = сейф Vector
+    .desc = { ent-GunSafeBaseSecure.desc }
+ent-GunSafeShotgunShotgun39 = сейф XM1014
+    .desc = { ent-GunSafeBaseSecure.desc }
+ent-GunSafeShotgunTrenchgun = сейф trenchgun
+    .desc = { ent-GunSafeBaseSecure.desc }
+ent-GunSafeSubMachineGunMP5 = сейф MP5
+    .desc = { ent-GunSafeBaseSecure.desc }
+ent-GunSafeLaserCarbineUEG = сейф лазерного карабина
+    .desc = { ent-GunSafeBaseSecure.desc }
+ent-GunSafePistolGlock = сейф G22
+    .desc = { ent-GunSafeBaseSecure.desc }
 ent-LockerSecurityPilotFilled = { ent-LockerSecurityPilot }
     .suffix = Заполненный
     .desc = { ent-LockerSecurityPilot.desc }

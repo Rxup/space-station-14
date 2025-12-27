@@ -12,9 +12,6 @@
     layers:
       - state: box
       - state: bodybags
-    whitelist:
-      tags:
-        - BodyBag
 
 - type: entity
   parent: BoxCardboard
@@ -30,9 +27,6 @@
     layers:
       - state: box
       - state: bodybags
-    whitelist:
-      tags:
-        - BodyBag
 
 - type: entity
   parent: BoxCardboard
@@ -48,9 +42,6 @@
     layers:
       - state: box
       - state: bodybags
-    whitelist:
-      tags:
-        - BodyBag
 
 - type: entity
   parent: BoxCardboard
@@ -66,9 +57,6 @@
     layers:
       - state: box
       - state: bodybags
-    whitelist:
-      tags:
-        - BodyBag
 
 - type: entity
   parent: BoxCardboard
@@ -84,6 +72,3 @@
     layers:
       - state: box_of_doom
       - state: bodybags
-    whitelist:
-      tags:
-        - BodyBag

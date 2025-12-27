@@ -15,8 +15,8 @@
   - type: ApcPowerReceiver
     powerLoad: 200
     priority: Low
-  # - type: Advertise
-  #   pack: CuddlyCritterAds # TODO Change this
+  # - type: DatasetVocalizer
+  #   dataset: CuddlyCritterAds # TODO Change this
   - type: PointLight
     radius: 1.5
     energy: 1.6

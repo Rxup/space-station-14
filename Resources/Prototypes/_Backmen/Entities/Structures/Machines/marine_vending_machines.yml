@@ -73,8 +73,8 @@
     normalState: normal
     ejectState: eject
     denyState: deny-unshaded
-  - type: Advertise
-    pack: AmmoVendAds
+  - type: DatasetVocalizer
+    dataset: AmmoVendAds
   - type: AccessReader
     access: [["EarthGov"]]
 
@@ -132,8 +132,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     ejectDelay: 0.6
-  - type: Advertise
-    pack: NanoMedAds
+  - type: DatasetVocalizer
+    dataset: NanoMedAds
   - type: Sprite
     sprite: Backmen/Structures/Machines/VendingMachines/MarineMed.rsi
     layers:
@@ -178,8 +178,8 @@
     ejectState: eject
     denyState: deny-unshaded
     ejectDelay: 0.6
-  - type: Advertise
-    pack: NanoMedAds
+  - type: DatasetVocalizer
+    dataset: NanoMedAds
   - type: Sprite
     sprite: Backmen/Structures/Machines/VendingMachines/Medick.rsi
     layers:
@@ -406,8 +406,8 @@
     normalState: normal
     ejectState: eject
     denyState: deny-unshaded
-  - type: Advertise
-    pack: AmmoVendAds
+  - type: DatasetVocalizer
+    dataset: AmmoVendAds
   - type: AccessReader
     access: [["EarthGovSpecialits"]]
 
@@ -467,8 +467,8 @@
     normalState: normal
     ejectState: eject
     denyState: deny-unshaded
-  - type: Advertise
-    pack: AmmoVendAds
+  - type: DatasetVocalizer
+    dataset: AmmoVendAds
   - type: AccessReader
     access: [["EarthGovCommand"]]
 

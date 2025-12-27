@@ -24,7 +24,7 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
 {
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
@@ -33,6 +33,7 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -106,7 +107,7 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
 
     private bool TryCheckWall(EntityCoordinates coords)
     {
-        if (!coords.TryGetTileRef(out var tile)
+        if (!_turf.TryGetTileRef(coords, out var tile)
             || !TryComp<MapGridComponent>(tile.Value.GridUid, out var mapGridComponent))
             return false;
 
