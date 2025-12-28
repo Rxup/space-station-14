@@ -40,6 +40,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleHuman
@@ -82,6 +86,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: MaleReptilian
@@ -106,6 +114,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -130,6 +142,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: MaleSlime
@@ -172,6 +188,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
 
@@ -216,6 +236,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
 
@@ -246,6 +270,8 @@
       path: /Audio/Effects/Gasp/vox_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
+    BCatMeow:
+      collection: BCatMeowSound
   params:
     variation: 0.125
     # TODO: We need vox sounds for the other emotes
@@ -269,6 +295,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
 
@@ -295,6 +325,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -335,6 +369,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
     pitch: 0.75
@@ -378,6 +416,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
   params:
     variation: 0.125
     pitch: 0.75
@@ -407,6 +449,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MothDeathGasp
+    BCatMeow:
+      collection: BCatMeowSound
+    Hiss: # Backmen
+      collection: ReptilianHisses
 
 - type: emoteSounds
   id: UnisexSilicon
@@ -620,58 +666,81 @@
 
 - type: emoteSounds
   id: Mouse
-  sound:
-    path: /Audio/Animals/mouse_squeak.ogg
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Cluwne
-  sound:
-    collection: CluwneScreams
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Cluwne/cluwnelaugh1.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Bear
-  sound:
-    path: /Audio/Animals/bear.ogg
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/bear.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Cerberus
-  sound:
-    path: /Audio/Animals/cerberus.ogg
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/cerberus.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Kangaroo
-  sound:
-    path: /Audio/Animals/kangaroo_grunt.ogg
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/kangaroo_grunt.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Nymph
   sounds:
     Chirp:
       path: /Audio/Animals/nymph_chirp.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
 
 - type: emoteSounds
   id: Parrot
-  sound:
-    path: /Audio/Animals/parrot_raught.ogg
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/parrot_raught.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Goat
-  sound:
-    path: /Audio/Animals/goat_bah.ogg
-    params:
-      variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/goat_bah.ogg
+    BCatMeow:
+      path: /Audio/Corvax/Effects/Growl/growl1.ogg
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: Scurret
@@ -720,3 +789,27 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: WawaDeath
+
+
+#backmen start
+- type: emoteSounds
+  id: FleshPudgeEmote
+  sound:
+    path: /Audio/Animals/Flesh/flesh_pudge_dead.ogg
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: FleshWormEmote
+  sound:
+    path: /Audio/Animals/Flesh/flesh_worm_scream.ogg
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: FleshAbomEmote
+  sound:
+    path: /Audio/Animals/Flesh/abom_scream.ogg
+    params:
+      variation: 0.125
+#backmen end

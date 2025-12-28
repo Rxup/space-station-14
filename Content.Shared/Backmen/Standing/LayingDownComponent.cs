@@ -12,9 +12,6 @@ public sealed partial class LayingDownComponent : Component
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public float SpeedModify { get; set; } = 0.25f;
 
-    [ViewVariables, AutoNetworkedField]
-    public bool DrawDowned { get; set; } = false;
-
     [ViewVariables]
     public int? OriginalDrawDepth { get; set; } = (int)DrawDepth.DrawDepth.Mobs;
 }

@@ -127,8 +127,8 @@ public sealed class DamageOverlayUiController : UIController
 
                     _overlay.CritLevel = 0;
                     _overlay.DeadLevel = 0;
-                    break;
                 }
+                break;
                 case MobState.Critical:
                 {
                     if (!_mobThresholdSystem.TryGetDeadPercentage(entity,

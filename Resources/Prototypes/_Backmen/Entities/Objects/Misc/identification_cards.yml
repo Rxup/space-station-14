@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: IDCardStandard
   id: RoboticistIDCard
   name: Roboticist ID Card
@@ -722,3 +722,66 @@
     tags:
     - InteQVanguard
     - Maintenance
+
+- type: entity
+  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  id: SyndiOperativeIDCard
+  name: syndicate operative ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: card_black # Backmen
+        - state: sub_department # Backmen
+          color: "#a00815"
+        - state: frame_default # Backmen
+          color: "#a00815"
+        - state: idsyndicate # Backmen
+    - type: Access
+      tags:
+        - NuclearOperative
+        - SyndicateAgent
+    - type: IdCard
+      jobTitle: job-title-nuclear-operative
+      jobIcon: JobIconSyndicate
+
+- type: entity
+  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  id: SyndiCorpsmanIDCard
+  name: syndicate corpsman ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: card_black # Backmen
+        - state: sub_department # Backmen
+          color: "#a00815"
+        - state: frame_default # Backmen
+          color: "#a00815"
+        - state: idsyndicate # Backmen
+    - type: Access
+      tags:
+        - NuclearOperative
+        - SyndicateAgent
+    - type: IdCard
+      jobTitle: job-title-nuclear-operative-agent
+      jobIcon: JobIconSyndicate
+
+- type: entity
+  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  id: SyndiCommanderIDCard
+  name: syndicate commander ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: card_black # Backmen
+        - state: sub_department # Backmen
+          color: "#a00815"
+        - state: frame_default # Backmen
+          color: "#a00815"
+        - state: idsyndicate # Backmen
+    - type: Access
+      tags:
+        - NuclearOperative
+        - SyndicateAgent
+    - type: IdCard
+      jobTitle: job-title-nuclear-operative-commander
+      jobIcon: JobIconSyndicate

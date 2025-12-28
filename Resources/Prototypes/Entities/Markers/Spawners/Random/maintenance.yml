@@ -100,20 +100,20 @@
       # Cloaks
       - !type:GroupSelector
         children:
-        - id: ClothingNeckCloakTrans
+#        - id: ClothingNeckCloakTrans
         - id: ClothingNeckCloakAdmin
         - id: ClothingNeckCloakMoth
         - id: ClothingNeckCloakVoid
         - id: ClothingNeckCloakGoliathCloak
-        - id: ClothingNeckCloakAce
-        - id: ClothingNeckCloakAro
-        - id: ClothingNeckCloakAroace
-        - id: ClothingNeckCloakBi
-        - id: ClothingNeckCloakIntersex
-        - id: ClothingNeckCloakLesbian
-        - id: ClothingNeckCloakGay
-        - id: ClothingNeckCloakEnby
-        - id: ClothingNeckCloakPan
+#        - id: ClothingNeckCloakAce
+#        - id: ClothingNeckCloakAro
+#        - id: ClothingNeckCloakAroace
+#        - id: ClothingNeckCloakBi
+#        - id: ClothingNeckCloakIntersex
+#        - id: ClothingNeckCloakLesbian
+#        - id: ClothingNeckCloakGay
+#        - id: ClothingNeckCloakEnby
+#        - id: ClothingNeckCloakPan
       - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
       # Cult

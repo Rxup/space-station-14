@@ -1726,7 +1726,7 @@ namespace Content.Client.Stylesheets
                     .Prop(Label.StylePropertyFontColor, NanoGold),
                 // Pinned button style
                 new StyleRule(
-                    new SelectorElement(typeof(TextureButton), new[] { StyleClassPinButtonPinned }, null, null),
+                    new SelectorElement(typeof(TextureButton), new[] { ContainerButton.StyleClassButton }, null, null),
                     new[]
                     {
                         new StyleProperty(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Bwoink/pinned.png"))
@@ -1734,7 +1734,7 @@ namespace Content.Client.Stylesheets
 
                 // Unpinned button style
                 new StyleRule(
-                    new SelectorElement(typeof(TextureButton), new[] { StyleClassPinButtonUnpinned }, null, null),
+                    new SelectorElement(typeof(TextureButton), new[] { ContainerButton.StyleClassButton }, null, null),
                     new[]
                     {
                         new StyleProperty(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Bwoink/un_pinned.png"))

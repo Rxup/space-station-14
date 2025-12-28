@@ -12,9 +12,9 @@
       effects:
         - !type:SatiateHunger
           conditions:
-            - !type:OrganType
-              type: Vampiric
-              shouldHave: false
+            - !type:MetabolizerTypeCondition
+              type: [Bloodsucker]
+              inverted: true
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 1.5
@@ -35,8 +35,8 @@
       effects:
       - !type:HealthChange
         conditions:
-          - !type:OrganType
-            type: Vampiric
+          - !type:MetabolizerTypeCondition
+            type: [Bloodsucker]
         probability: 0.5
         damage:
           groups:
@@ -46,14 +46,14 @@
       - !type:ModifyBleed
         amount: -0.25
         conditions:
-          - !type:OrganType
-            type: Vampiric
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [Bloodsucker]
+            inverted: true
       - !type:SatiateHunger #Numbers are balanced with this in mind + it helps limit how much healing you can get from food
         conditions:
-          - !type:OrganType
-            type: Vampiric
-            shouldHave: false
+          - !type:MetabolizerTypeCondition
+            type: [Bloodsucker]
+            inverted: true
   # Lets plants benefit too
   plantMetabolism:
   - !type:PlantAdjustNutrition
@@ -100,9 +100,9 @@
         - !type:ReagentCondition #Only satiates when eaten with nutriment
           reagent: Nutriment
           min: 0.1
-        - !type:OrganType
-          type: Vampiric
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [Bloodsucker]
+          inverted: true
         factor: 1
   plantMetabolism:
   - !type:PlantAdjustNutrition

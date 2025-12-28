@@ -1,4 +1,4 @@
-﻿- type: gameMap
+- type: gameMap
   id: ShwrAdventurer
   mapName: Транспортник
   mapPath: /Maps/Backmen/Shipwrecked/adventurer.yml

@@ -1,4 +1,4 @@
-﻿- type: shipwreckFaction
+- type: shipwreckFaction
   id: ZombieOutbreak
   objectiveDefender: RandomHumanoidSpawnerZombieBrute
   active:

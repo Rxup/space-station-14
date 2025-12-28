@@ -129,25 +129,5 @@ public sealed partial class BatterySystem : SharedBatterySystem
 
             SetCharge((uid, bat), bat.CurrentCharge + comp.AutoRechargeRate * frameTime);
         }
-
-        // Goobstation
-        public int GetChargeDifference(EntityUid uid, BatteryComponent? battery = null) // Debug
-        {
-            if (!Resolve(uid, ref battery))
-                return 0;
-
-            return Convert.ToInt32(battery.MaxCharge - battery.CurrentCharge);
-        }
-        public float AddCharge(EntityUid uid, float value, BatteryComponent? battery = null)
-        {
-            if (value <= 0 || !Resolve(uid, ref battery))
-                return 0;
-
-            var newValue = Math.Clamp(battery.CurrentCharge + value, 0, battery.MaxCharge);
-            battery.CurrentCharge = newValue;
-            var ev = new ChargeChangedEvent(battery.CurrentCharge, battery.MaxCharge);
-            RaiseLocalEvent(uid, ref ev);
-            return newValue;
-        }
     }
 }

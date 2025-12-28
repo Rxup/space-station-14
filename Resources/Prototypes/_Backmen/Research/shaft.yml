@@ -1,17 +1,4 @@
 - type: technology
-  id: SalvageWeapons
-  name: research-technology-salvage-weapons
-  icon:
-    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
-    state: icon
-  discipline: Shaft
-  tier: 1
-  cost: 3500
-  recipeUnlocks:
-  - WeaponProtoKineticAccelerator
-  position: 11,1
-
-- type: technology
   id: SalvageEquipment
   name: research-technology-salvage-equipment
   icon:

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Gorilla Largo Spawner
   id: SpawnMobGorillaLargo
   parent: MarkerBase

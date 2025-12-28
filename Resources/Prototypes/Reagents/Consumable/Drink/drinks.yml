@@ -504,9 +504,9 @@
         - !type:SatiateHunger
           factor: 1
           conditions:
-            - !type:OrganType
-              type: Vampiric
-              shouldHave: false
+            - !type:MetabolizerTypeCondition
+              type: [Bloodsucker]
+              inverted: true
 
 - type: reagent
   id: HotRamen
@@ -522,9 +522,9 @@
         - !type:SatiateHunger
           factor: 4
           conditions:
-            - !type:OrganType
-              type: Vampiric
-              shouldHave: false
+            - !type:MetabolizerTypeCondition
+              type: [Bloodsucker]
+              inverted: true
 
 - type: reagent
   id: ArnoldPalmer

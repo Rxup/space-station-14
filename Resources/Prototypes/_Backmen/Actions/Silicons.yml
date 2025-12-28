@@ -1,4 +1,4 @@
-﻿#BPLA MED
+#BPLA MED
 
 - type: entity
   id: ActionBPLAMEDActionBrutepack
@@ -8,7 +8,9 @@
   components:
     - type: Action
       useDelay: 90
-      icon: Objects/Specific/Medical/medical.rsi/brutepack.png
+      icon:
+        sprite: Objects/Specific/Medical/medical.rsi
+        state: brutepack
     - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Brutepack
@@ -22,7 +24,9 @@
   components:
     - type: Action
       useDelay: 90
-      icon: Objects/Specific/Medical/medical.rsi/ointment.png
+      icon:
+        sprite: Objects/Specific/Medical/medical.rsi
+        state: ointment
     - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Ointment
@@ -36,7 +40,9 @@
   components:
     - type: Action
       useDelay: 180
-      icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
+      icon:
+        sprite: Objects/Specific/Medical/medical.rsi
+        state: bloodpack
     - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Bloodpack
@@ -51,7 +57,9 @@
   components:
   - type: Action
     useDelay: 120
-    icon: Objects/Tools/cable-coils.rsi/coillv-30.png
+    icon:
+      sprite: Objects/Tools/cable-coils.rsi
+      state: coillv-30
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableApcStack
@@ -64,7 +72,9 @@
   components:
   - type: Action
     useDelay: 120
-    icon: Objects/Tools/cable-coils.rsi/coilmv-30.png
+    icon:
+      sprite: Objects/Tools/cable-coils.rsi
+      state: coilmv-30
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableMVStack
@@ -77,7 +87,9 @@
   components:
   - type: Action
     useDelay: 120
-    icon: Objects/Tools/cable-coils.rsi/coilhv-30.png
+    icon:
+      sprite: Objects/Tools/cable-coils.rsi
+      state: coilhv-30
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableHVStack
@@ -90,7 +102,9 @@
   components:
   - type: Action
     useDelay: 90
-    icon: Objects/Materials/Sheets/metal.rsi/steel_3.png
+    icon:
+      sprite: Objects/Materials/Sheets/metal.rsi
+      state: steel_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetSteel
@@ -103,7 +117,9 @@
   components:
   - type: Action
     useDelay: 120
-    icon: Objects/Materials/Sheets/metal.rsi/plasteel_3.png
+    icon:
+      sprite: Objects/Materials/Sheets/metal.rsi
+      state: plasteel_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlasteel
@@ -116,7 +132,9 @@
   components:
   - type: Action
     useDelay: 90
-    icon: Objects/Materials/Sheets/glass.rsi/glass_3.png
+    icon:
+      sprite: Objects/Materials/Sheets/glass.rsi
+      state: glass_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetGlass
@@ -129,7 +147,9 @@
   components:
   - type: Action
     useDelay: 120
-    icon: Objects/Materials/Sheets/glass.rsi/rglass_3.png
+    icon:
+      sprite: Objects/Materials/Sheets/glass.rsi
+      state: rglass_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetRGlass
@@ -142,7 +162,9 @@
   components:
   - type: Action
     useDelay: 180
-    icon: Objects/Materials/Sheets/other.rsi/plastic_3.png
+    icon:
+      sprite: Objects/Materials/Sheets/other.rsi
+      state: plastic_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlastic

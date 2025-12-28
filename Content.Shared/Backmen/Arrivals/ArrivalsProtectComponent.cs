@@ -1,6 +1,9 @@
-﻿namespace Content.Shared.Backmen.Arrivals;
+﻿using Robust.Shared.GameStates;
 
-public sealed class ArrivalsProtectComponent
+namespace Content.Shared.Backmen.Arrivals;
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ArrivalsProtectComponent : Component
 {
-    
+
 }

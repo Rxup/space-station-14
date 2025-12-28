@@ -365,7 +365,6 @@
         visualType: Medium
         messages: [ "frezon-euphoric" ]
         probability: 0.1
-        conditions:
         minScale: 2
     Gas:
       effects:

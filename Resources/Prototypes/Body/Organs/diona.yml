@@ -13,7 +13,6 @@
       Normal: 24
       Damaged: 15
       Destroyed: 0
-  - type: Food
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ

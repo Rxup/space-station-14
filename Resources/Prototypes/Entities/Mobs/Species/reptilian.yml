@@ -9,9 +9,9 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
-    - HeadTop
+    - SnoutOverlay # Backmen
+#    - HeadTop # Backmen-REMOVE
     - HeadSide
-    - Tail
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
   - type: Puller
@@ -20,9 +20,13 @@
   - type: Icon
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: full
+  - type: Consciousness # Idk they are kinda more resistant to pain
+    threshold: 100
+    cap: 290
   - type: Body
     prototype: Reptilian
     requiredLegs: 2
+  - type: Perishable
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -76,29 +80,35 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Human/displacement.rsi
+            sprite: Corvax/Mobs/Species/displacement.rsi # Corvax-Digitigrade
             state: jumpsuit-female
-      head:
+    # Corvax-Digitigrade-Start
+      shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: shoes
     displacements:
-      head:
+      jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask:
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: jumpsuit
+      shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: shoes
+    # Corvax-Digitigrade-End
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -110,7 +120,8 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
-    - HeadTop
+    - SnoutOverlay # Backmen
+#    - HeadTop # Backmen-REMOVE
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Inventory
@@ -119,28 +130,25 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
+            sprite: Corvax/Mobs/Species/displacement.rsi # Corvax-Digitigrade
             state: jumpsuit-female
-      head:
+    # Corvax-Digitigrade-Start
+      shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: shoes
     displacements:
-      head:
+      jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask:
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: jumpsuit
+      shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
+            sprite: Corvax/Mobs/Species/displacement.rsi
+            state: shoes
+    # Corvax-Digitigrade-End
 
 #Weh

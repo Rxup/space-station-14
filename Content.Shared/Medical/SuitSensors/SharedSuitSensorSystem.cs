@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Clothing;
 using Content.Shared.Damage.Components;
 using Content.Shared.DeviceNetwork;
@@ -40,6 +42,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
     [Dependency] private readonly SharedIdCardSystem _idCardSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly WoundSystem _wound = default!; // backmen edit
 
     private EntityQuery<SuitSensorComponent> _sensorQuery;
     public override void Initialize()
@@ -383,6 +386,14 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         int? totalDamageThreshold = null;
         if (_mobThresholdSystem.TryGetThresholdForState(sensor.User.Value, MobState.Critical, out var critThreshold))
             totalDamageThreshold = critThreshold.Value.Int();
+
+        // backmen edit start
+        if (TryComp<ConsciousnessComponent>(sensor.User.Value, out var consciousness))
+        {
+            totalDamage = (int) _wound.GetBodySeverityPoint(sensor.User.Value);
+            totalDamageThreshold = (int) consciousness.Threshold;
+        }
+        // backmen edit end
 
         // finally, form suit sensor status
         var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments);

@@ -33,7 +33,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     private readonly List<string> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
-    public ImmutableList<string> RoleBans => _roleBans.ToImmutableList(); // backmen: antag
+    public ImmutableList<string> RoleBans => _antagBans.ToImmutableList(); // backmen: antag
 
     private ISawmill _sawmill = default!;
 
@@ -158,7 +158,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         //start-backmen: allRoles
         if (_sponsorsManager.IsClientAllRoles())
+        {
+            reason = null;
             return true;
+        }
         //end-backmen
 
         //start-backmen: discord
@@ -209,7 +212,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     }
 
     // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
-    private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 

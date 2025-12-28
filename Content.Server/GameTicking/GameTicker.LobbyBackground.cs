@@ -16,7 +16,9 @@ public sealed partial class GameTicker
 
     private void InitializeLobbyBackground()
     {
-        _lobbyBackgrounds = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>().Select(proto=>new ProtoId<LobbyBackgroundPrototype>(proto.ID)).ToList();
+        _lobbyBackgrounds = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>()
+            .Select(proto=>new ProtoId<AnimatedLobbyScreenPrototype>(proto.ID))
+            .ToList();
 
         RandomizeLobbyBackground();
     }

@@ -1,5 +1,5 @@
 using Content.Server.Chat.Systems;
-using Content.Shared.Backmen.Chat;
+
 using Content.Shared.Chat;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;
@@ -36,12 +36,12 @@ public sealed partial class SpeakOperator : HTNOperator
         LocId speechLocId;
         switch (Speech)
         {
-            case LocalizedSetSpeakOperatorSpeech localizedDataSet:
+            case SpeakOperatorSpeech.LocalizedSetSpeakOperatorSpeech localizedDataSet:
                 if (!_proto.TryIndex(localizedDataSet.LineSet, out var speechSet))
                     return HTNOperatorStatus.Failed;
                 speechLocId = _random.Pick(speechSet);
                 break;
-            case SingleSpeakOperatorSpeech single:
+            case SpeakOperatorSpeech.SingleSpeakOperatorSpeech single:
                 speechLocId = single.Line;
                 break;
             default:

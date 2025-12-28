@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganFelinidStomach
   parent: OrganReptilianStomach
   categories: [ HideSpawnMenu ]

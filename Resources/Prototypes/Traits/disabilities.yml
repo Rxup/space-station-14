@@ -9,6 +9,11 @@
   whitelist:
     components:
       - Blindable
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
+      - StationAiCustomization  # backmen: AI
+      - BorgChassis
   components:
     - type: PermanentBlindness
 
@@ -18,6 +23,11 @@
   description: trait-poor-vision-desc
   traitGear: ClothingEyesGlasses
   category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAiCustomization  # backmen: AI
+    - BorgChassis
   whitelist:
     components:
       - Blindable
@@ -28,6 +38,11 @@
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
+      - StationAiCustomization  # backmen: AI
+      - BorgChassis
   description: trait-narcolepsy-desc
   category: Disabilities
   components:
@@ -41,6 +56,11 @@
   id: Unrevivable
   name: trait-unrevivable-name
   description: trait-unrevivable-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAiCustomization  # backmen: AI
+    - BorgChassis
   category: Disabilities
   components:
     - type: Unrevivable
@@ -61,7 +81,9 @@
   category: Disabilities
   blacklist:
     components:
-      - BorgChassis
+    - BSSDrone #backmen: bssdrone
+    - StationAiCustomization  # backmen: AI
+    - BorgChassis
   components:
     - type: Muted
 
@@ -69,6 +91,11 @@
   id: Paracusia
   name: trait-paracusia-name
   description: trait-paracusia-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
+      - StationAiCustomization  # backmen: AI
+      - BorgChassis
   category: Disabilities
   components:
     - type: Paracusia

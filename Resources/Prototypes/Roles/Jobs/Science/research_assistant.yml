@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: ResearchAssistant
   name: job-name-research-assistant
   description: job-description-research-assistant
@@ -15,6 +15,12 @@
   access:
   - Research
   - Maintenance
+  #start-backmen: currency
+  minBankBalance: 150
+  maxBankBalance: 250
+  wageDepartment: Science
+  wage: 25
+  #end-backmen: currency
 
 - type: startingGear
   id: ResearchAssistantGear

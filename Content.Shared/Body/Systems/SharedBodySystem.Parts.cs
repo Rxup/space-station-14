@@ -235,6 +235,7 @@ public partial class SharedBodySystem
         RaiseLocalEvent(partEnt, ref ev1);
 
         RemoveLeg(partEnt, bodyEnt);
+        PartRemoveDamage(bodyEnt, partEnt);
     }
 
     private void AddLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)
@@ -279,11 +280,10 @@ public partial class SharedBodySystem
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
             return;
 
-        bodyEnt.Comp.LegEntities.Remove(legEnt);
-        UpdateMovementSpeed(bodyEnt);
-        Dirty(bodyEnt, bodyEnt.Comp);
-
-        if (!bodyEnt.Comp.LegEntities.Any())
+        if (!_timing.ApplyingState
+            && partEnt.Comp.IsVital
+            && !GetBodyChildrenOfType(bodyEnt, partEnt.Comp.PartType, bodyEnt.Comp).Any()
+           )
         {
             // TODO BODY SYSTEM KILL : remove this when wounding and required parts are implemented properly
             var damage = new DamageSpecifier(Prototypes.Index(BloodlossDamageType), 300);

@@ -46,7 +46,7 @@
           #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]
-            Boxer: [ 2, 2 ]
+#            Boxer: [ 2, 2 ]
             Chef: [ 2, 3 ]
             Clown: [ 1, 2 ]
             HeadOfPersonnel: [ 1, 1 ]

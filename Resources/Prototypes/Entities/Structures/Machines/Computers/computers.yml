@@ -891,7 +891,7 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
-    board: CargoShuttleComputerCircuitboard
+    board: CargoShuttleConsoleCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6

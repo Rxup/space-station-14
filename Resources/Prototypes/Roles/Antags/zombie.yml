@@ -8,6 +8,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h
+  discordRequired: true # backmen: antag
 
 - type: antag
   id: Zombie

@@ -19,6 +19,23 @@
         Slash: 10
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/knife_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/knife_drop.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/knife_drop.ogg
+      params:
+        volume: -8
+  # backmen edit end
   - type: Sprite
   - type: Item
     size: Small
@@ -27,11 +44,18 @@
       - Slicing
     useSound:
       path: /Audio/Items/Culinary/chop.ogg
+  - type: Scalpel # Shitmed
+    speed: 0.65
+  - type: SurgeryTool # Shitmed
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel2.ogg
 
 - type: entity
+  name: kitchen knife
   parent: BaseKnife
   id: KitchenKnife
-  name: kitchen knife
   description: A general purpose Chef's Knife made by Asters Merchant Guild. Guaranteed to stay sharp for years to come..
   components:
   - type: Tag
@@ -43,26 +67,10 @@
     state: icon
   - type: Item
     sprite: Objects/Weapons/Melee/kitchen_knife.rsi
-    storedOffset: -1,1
-    storedRotation: -45
   - type: GuideHelp
     guides:
     - Chef
     - FoodRecipes
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PolygonShape
-          vertices:
-          - -0.475,-0.225
-          - -0.225,-0.475
-          - 0.525,0.275
-          - 0.275,0.525
-        density: 20 # derived from base_item
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
 
 - type: entity
   name: butcher's cleaver
@@ -90,20 +98,10 @@
     guides:
     - Chef
     - FoodRecipes
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PolygonShape
-          vertices:
-          - -0.58,-0.12
-          - -0.34,-0.55
-          - 0.6,-0.075
-          - 0.375,0.375
-        density: 20 # derived from base_item
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
+  - type: Scalpel # Shitmed
+    speed: 0.3
+  - type: BoneSaw # Shitmed: Better than tg 25% because its a cleaver its meant to hack off limbs
+    speed: 0.5
 
 - type: entity
   name: combat knife
@@ -145,6 +143,7 @@
     fixtures:
       fix1:
         shape: !type:PolygonShape
+          radius: 0.01
           vertices:
           - -0.4,-0.2
           - -0.2,-0.4
@@ -170,6 +169,7 @@
     storedSprite:
       state: storage
       sprite: Objects/Weapons/Melee/survival_knife.rsi
+  - type: AttachmentBayonet # Lavaland Change
 
 - type: entity
   name: kukri knife
@@ -254,20 +254,6 @@
     sprite: Objects/Weapons/Melee/shiv.rsi
   - type: DisarmMalus
     malus: 0.225
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PolygonShape
-          vertices:
-          - -0.365,-0.265
-          - 0.077,-0.45
-          - 0.364,0.323
-          - -0.0735,0.49
-        density: 20 # derived from base_item
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
 
 - type: entity
   name: reinforced shiv

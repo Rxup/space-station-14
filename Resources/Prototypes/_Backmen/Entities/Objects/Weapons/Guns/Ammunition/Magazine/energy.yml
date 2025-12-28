@@ -54,7 +54,7 @@
 #  - type: Battery
 #    maxCharge: 1500
 #    startingCharge: 1500
-#  - type: HitscanBatteryAmmoProvider
+#  - type: BatteryAmmoProvider
 #    proto: RedHeavyLaser
 #    fireCost: 100
 #  - type: Tag

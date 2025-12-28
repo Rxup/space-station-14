@@ -24,7 +24,6 @@
       Normal: 15
       Damaged: 6
       Destroyed: 0
-  - type: Food
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
@@ -81,7 +80,7 @@
   - type: Examiner
   - type: BlockMovement
   - type: BadFood
-  - type: Food
+  - type: Edible
     delay: 30
   - type: Tag
     tags:

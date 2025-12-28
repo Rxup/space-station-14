@@ -20,16 +20,38 @@
       - !type:SatiateThirst
         factor: 1.0
         conditions:
-          - !type:MetabolizerTypeCondition
-            type: [ Human ]
-            inverted: true
+        - !type:MetabolizerTypeCondition
+          type: [ Human ]
+          inverted: true
+      - !type:AdjustReagent # backmen
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        reagent: Omnizine
+        amount: 0.1
+      - !type:SatiateThirst # backmen
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+      - !type:SatiateHunger # backmen
+        factor: 0.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
     Food:
       effects:
-        - !type:AdjustReagent
-          reagent: UncookedAnimalProteins
-          amount: 0.1
+      - !type:AdjustReagent
+        reagent: UncookedAnimalProteins
+        amount: 0.1
     Medicine:
       effects:
+      - !type:SuppressPain # backmen
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        amount: 10
+        time: 15
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -39,8 +61,8 @@
             Brute: -3
             Burn: -1.25
   plantMetabolism:
-    - !type:PlantAdjustWater
-      amount: 0.5
+  - !type:PlantAdjustWater
+    amount: 0.5
   footstepSound:
     collection: FootstepBlood
     params:
@@ -69,7 +91,7 @@
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
   tileReactions:
-    - !type:SpillTileReaction
+  - !type:SpillTileReaction
   metabolisms:
     Food:
       # Delicious!
@@ -101,7 +123,7 @@
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.10
   tileReactions:
-    - !type:SpillTileReaction
+  - !type:SpillTileReaction
   metabolisms:
     Food:
       # Sweet!
@@ -174,7 +196,7 @@
       effects:
       - !type:SatiateThirst
         factor: 1.5
-    # Dragon doesn't require airloss healing, so omnizine is still best for humans.
+      # Dragon doesn't require airloss healing, so omnizine is still best for humans.
       - !type:ModifyBloodLevel
         amount: 3
       - !type:EvenHealthChange

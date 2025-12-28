@@ -195,7 +195,7 @@
     possibleSpawns:
     - MobAbomination
 
-# It inherits FoodComponent from PlushieCarp, but is de-facto inedible
+# It inherits EdibleComponent from PlushieCarp, but is de-facto inedible
 # PlushieCarp has requiresSpecialDigestion:true, and this one is not whitelisted anywhere, so it behaves like it's not edible
 - type: entity
   parent: [PlushieCarp, RehydratableItem, BaseSyndicateContraband]

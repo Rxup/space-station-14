@@ -315,14 +315,6 @@
     state: ServiceWorker
   jobName: job-name-serviceworker
 
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconZookeeper
-  icon:
-    sprite: *icon-rsi
-    state: Zookeeper
-  jobName: job-name-zookeeper
-
 # Entertainer (like service, but not actually service)
 
 - type: jobIcon

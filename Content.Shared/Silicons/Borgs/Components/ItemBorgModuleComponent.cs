@@ -36,9 +36,6 @@ public sealed partial class ItemBorgModuleComponent : Component
     /// </summary>
     [DataField]
     public string HoldingContainer = "holding_container";
-
-    [DataField("hands")]
-    public int Hands = 0; // backmen: borg hands
 }
 
 /// <summary>

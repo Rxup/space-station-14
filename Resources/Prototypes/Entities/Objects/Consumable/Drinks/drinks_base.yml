@@ -196,3 +196,10 @@
       map: ["enum.OpenableVisuals.Layer"]
     - state: fill-5 # this will need to be different with a different maxFillLevels
       map: ["enum.SolutionContainerLayers.Fill"]
+
+## Base for glass drinks
+# Base prototype for glass drinks used by mods
+- type: entity
+  abstract: true
+  parent: DrinkBase
+  id: DrinkGlassBase

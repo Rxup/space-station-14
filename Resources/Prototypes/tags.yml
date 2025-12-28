@@ -34,6 +34,9 @@
   id: AppraisalTool # Storage whitelist: BaseClothingBeltEngineering
 
 - type: Tag
+  id: BroneArachne #backmen
+
+- type: Tag
   id: Apron # ConstructionGraph: scraparmor
 
 - type: Tag
@@ -501,6 +504,9 @@
 - type: Tag
   id: Duck # Reproductive partner key. MetamorphRecipe: FoodBurgerDuck
 
+- type: Tag
+  id: Debug #backmen
+
 ## E ##
 
 - type: Tag
@@ -609,6 +615,9 @@
 
 - type: Tag
   id: Fruit # SpecialDigestible: OrganReptilianStomach. CargoBounty: BountyFruit
+
+- type: Tag
+  id: FullBodyOuter #backmen # this outerclothing wraps around the feet and legs
 
 ## G ##
 
@@ -733,7 +742,13 @@
   id: HideCorgi # corgi hide for crafting, not for making corgis invisible
 
 - type: Tag
+  id: HidesNose #backmen
+
+- type: Tag
   id: HidesHair # Used by MagicMirrorSystem to prevent haircuts if a tagged entity is worn.
+
+- type: Tag
+  id: HidesLegs # backmen
 
 - type: Tag
   id: HighRiskItem # Storage blacklist: ClothingHeadHatDetGadget. Blacklisted on MaterialReclaimerComponent by both entities
@@ -843,6 +858,9 @@
   id: KnockdownImmune # Tagged mob entity is immune to knockdown I'm guessing. (no implementations of MobStandStatusEffectBase).
                       # Blacklist on MobStandStatusEffectBase.
 
+- type: Tag
+  id: Katana #backmen
+
 ## L ##
 
 - type: Tag
@@ -902,6 +920,13 @@
 
 - type: Tag
   id: MagazineShotgun # WeaponShotgunBulldog
+
+- type: Tag
+  id: MagazineHeavyRifle #backmen
+
+
+- type: Tag
+  id: MagazineCaselessRifle #backmen
 
 #endregion
 
@@ -1576,5 +1601,9 @@
   id: XenoborgModuleStealth # Cyborg module category for evil stealth xenoborg
 
 ## Y ##
+
+- type: Tag
+  id: YamatoSabre #backmen
+
 ## Z ##
 # ALPHABETICAL

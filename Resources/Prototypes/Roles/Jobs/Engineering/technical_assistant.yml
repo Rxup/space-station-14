@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: TechnicalAssistant
   name: job-name-technical-assistant
   description: job-description-technical-assistant
@@ -18,6 +18,12 @@
   - Maintenance
   - Engineering
   - External
+  #start-backmen: currency
+  minBankBalance: 150
+  maxBankBalance: 250
+  wageDepartment: Engineering
+  wage: 25
+  #end-backmen: currency
 
 - type: startingGear
   id: TechnicalAssistantGear

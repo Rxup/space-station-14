@@ -94,7 +94,7 @@ public sealed class MealsRecipesJsonGenerator
 
 
         var mixableRecipes = new Dictionary<string, Dictionary<string, string>>(); // this is a list because we have https://station14.ru/wiki/Модуль:Chemistry_Lookup that already has everything we need and does everything for us.
-
+/*
         foreach (var react in reactionPrototypes)
         {
             foreach (var effect in react.Effects)
@@ -108,7 +108,7 @@ public sealed class MealsRecipesJsonGenerator
                             mixableRecipes[react.Id]["type"] = "mixableRecipes";
                         }
                 }
-        }
+        }*/
         // reaction-related items end
 
         output["microwaveRecipes"] = microwaveRecipes;

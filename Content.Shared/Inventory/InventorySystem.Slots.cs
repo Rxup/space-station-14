@@ -7,6 +7,7 @@ using Content.Shared.Random;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Inventory;
@@ -16,6 +17,8 @@ public partial class InventorySystem : EntitySystem
     [Dependency] private readonly IViewVariablesManager _vvm = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly ISerializationManager _serializationManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+
     private void InitializeSlots()
     {
         SubscribeLocalEvent<InventoryComponent, ComponentInit>(OnInit);
@@ -218,35 +221,6 @@ public partial class InventorySystem : EntitySystem
         {
             yield return slotDef.Name;
         }
-    }
-
-    public void SetSlotStatus(EntityUid uid, string slotName, bool isDisabled, InventoryComponent? inventory = null)
-    {
-        if (!Resolve(uid, ref inventory))
-            return;
-
-        foreach (var slot in inventory.Slots)
-        {
-            if (slot.Name != slotName)
-                continue;
-
-
-            if (!TryGetSlotContainer(uid, slotName, out var container, out _, inventory))
-                break;
-
-            if (isDisabled)
-            {
-                if (container.ContainedEntity is { } entityUid && TryComp(entityUid, out TransformComponent? transform) && _gameTiming.IsFirstTimePredicted)
-                {
-                    _transform.AttachToGridOrMap(entityUid, transform);
-                    _randomHelper.RandomOffset(entityUid, 0.5f);
-                }
-            }
-            //slot.Disabled = isDisabled; // Backmen: surgery TURNED OFF FEATURE, would be fixed today maybe with proper limbs cutting disables appropriate slot(-s)
-            break;
-        }
-
-        Dirty(uid, inventory);
     }
 
     /// <summary>

@@ -11,6 +11,7 @@
         reagents:
         - ReagentId: RedOrdenDrink
           Quantity: 30
-  - type: Drink
+  - type: Edible
+    edible: Drink
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi

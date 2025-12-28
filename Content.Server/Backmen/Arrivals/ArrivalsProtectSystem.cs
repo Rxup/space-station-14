@@ -26,17 +26,14 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Gravity;
+using Content.Shared.Light.Components;
 using Content.Shared.Prying.Components;
+using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 
 namespace Content.Server.Backmen.Arrivals;
-
-[RegisterComponent]
-public sealed partial class ArrivalsProtectComponent : Component
-{
-
-}
 
 public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 {

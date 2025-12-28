@@ -1,4 +1,4 @@
-﻿- type: npcFaction
+- type: npcFaction
   id: MalfunctioningRobot
   hostile:
     - NanoTrasen
@@ -216,16 +216,6 @@
   - InteQHostile
 
 - type: npcFaction
-  id: Changeling
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Zombie
-  - Revolutionary
-  - InteQ
-  - InteQHostile
-
-- type: npcFaction
   id: InteQ
   hostile:
   - SimpleHostile
@@ -261,4 +251,4 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
-  - Changeling # Backmen-Factions-END
+  # Backmen-Factions-END

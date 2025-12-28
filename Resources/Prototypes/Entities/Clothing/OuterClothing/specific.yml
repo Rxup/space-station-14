@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: [ClothingOuterBase, BaseChameleon]
   id: ClothingOuterChameleon
   name: vest

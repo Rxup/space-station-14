@@ -23,8 +23,6 @@ public sealed class MenuButton : ContainerButton
 
     private const float HorPad = 8f;
     private const float VertPad = 4f;
-    private Color NormalColor => HasStyleClass(StyleClassRedTopButton) ? ColorRedNormal : ColorNormal;
-    private Color HoveredColor => HasStyleClass(StyleClassRedTopButton) ? ColorRedHovered : ColorHovered;
 
     private BoundKeyFunction? _function;
     private readonly BoxContainer _root;

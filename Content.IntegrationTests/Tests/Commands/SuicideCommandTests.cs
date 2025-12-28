@@ -253,6 +253,7 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
+        var damageableSystem = entManager.System<DamageableSystem>();
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
@@ -327,6 +328,7 @@ public sealed class SuicideCommandTests
         var mindSystem = entManager.System<SharedMindSystem>();
         var mobStateSystem = entManager.System<MobStateSystem>();
         var transformSystem = entManager.System<TransformSystem>();
+        var damageableSystem = entManager.System<DamageableSystem>();
 
         // We need to know the player and whether they can be hurt, killed, and whether they have a mind
         var player = playerMan.Sessions.First().AttachedEntity!.Value;
@@ -336,6 +338,8 @@ public sealed class SuicideCommandTests
         MobStateComponent mobStateComp = default;
         MobThresholdsComponent mobThresholdsComp = default;
         HandsComponent handsComponent = default;
+        DamageableComponent damageableComp = default;
+
         await server.WaitPost(() =>
         {
             if (mind != null)
@@ -344,6 +348,7 @@ public sealed class SuicideCommandTests
             mobStateComp = entManager.GetComponent<MobStateComponent>(player);
             mobThresholdsComp = entManager.GetComponent<MobThresholdsComponent>(player);
             handsComponent = entManager.GetComponent<HandsComponent>(player);
+            damageableComp = entManager.GetComponent<DamageableComponent>(player);
         });
 
         // Spawn the weapon of choice and put it in the player's hands

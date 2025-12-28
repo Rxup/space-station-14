@@ -1,4 +1,4 @@
-﻿# base
+# base
 
 - type: entity
   id: VendingMachine
@@ -2153,36 +2153,36 @@
 
 # Pride Vending Machine
 
-- type: entity
-  parent: VendingMachine
-  id: VendingMachinePride
-  name: Pride-O-Mat
-  description: A vending machine containing pride.
-  components:
-  - type: VendingMachine
-    pack: PrideDrobeInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-  - type: DatasetVocalizer
-    dataset: PrideDrobeAds
-  - type: SpeakOnUIClosed
-    pack: PrideDrobeGoodbyes
-  - type: Speech
-  - type: PointLight
-    radius: 1.5
-    energy: 2.0 # reduced energy since the color is pure white
-    color: "#FFFFFF"
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/pride.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+#- type: entity
+#  parent: VendingMachine
+#  id: VendingMachinePride
+#  name: Pride-O-Mat
+#  description: A vending machine containing pride.
+#  components:
+#  - type: VendingMachine
+#    pack: PrideDrobeInventory
+#    offState: off
+#    brokenState: broken
+#    normalState: normal-unshaded
+#  - type: DatasetVocalizer
+#    dataset: PrideDrobeAds
+#  - type: SpeakOnUIClosed
+#    pack: PrideDrobeGoodbyes
+#  - type: Speech
+#  - type: PointLight
+#    radius: 1.5
+#    energy: 2.0 # reduced energy since the color is pure white
+#    color: "#FFFFFF"
+#  - type: Sprite
+#    sprite: Structures/Machines/VendingMachines/pride.rsi
+#    layers:
+#    - state: "off"
+#      map: ["enum.VendingMachineVisualLayers.Base"]
+#    - state: "off"
+#      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+#      shader: unshaded
+#    - state: panel
+#      map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 # Gas Tank Dispenser
 

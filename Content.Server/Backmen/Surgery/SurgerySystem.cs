@@ -22,6 +22,7 @@ using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Medical.Surgery;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
@@ -107,7 +108,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
         }
         else
         {
-            _damageable.TryChangeDamage(body,
+            _damageable.ChangeDamage(body,
                 damage,
                 true,
                 origin: user,

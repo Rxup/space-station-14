@@ -534,7 +534,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         {
             door.CurrentlyCrushing.Add(entity);
             if (door.CrushDamage != null)
-                _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid, targetPart: TargetBodyPart.BodyMiddle); // backmen: surgery
+                _damageableSystem.ChangeDamage(entity, door.CrushDamage, origin: uid, targetPart: TargetBodyPart.BodyMiddle); // backmen: surgery
 
             _stunSystem.TryUpdateParalyzeDuration(entity, stunTime);
         }

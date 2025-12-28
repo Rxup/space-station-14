@@ -148,3 +148,145 @@
     proto: SeniorOfficer
   equipment:
     id: SeniorOfficerPDA
+
+
+#backmen start
+
+- type: loadout #Backmen
+  id: ClothingHeadHatCapSec
+  equipment:
+    head: ClothingHeadHatCapSec
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: loadout #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment:
+    head: ClothingHeadHatPilotkaSec
+
+- type: loadoutEffectGroup
+  id: SecurityStarWorthy #Security Star
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 360000 #100 hrs
+
+- type: loadout #Backmen
+  id: ClothingOuterCoatSecurityOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOvercoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingOuterCoatSecurityOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOvercoat
+
+- type: loadout #Backmen
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
+
+
+- type: loadout
+  id: WeaponPistolMk58
+  dummyEntity: WeaponPistolMk58
+  storage:
+    back:
+    - WeaponPistolMk58
+    - MagazinePistol9x17
+
+- type: loadout
+  id: WeaponPistolG22
+  dummyEntity: WeaponPistolG22
+  storage:
+    back:
+    - WeaponPistolG22
+    - MagazinePistol9x17
+
+- type: loadout
+  id: WeaponPistolACP14
+  dummyEntity: WeaponPistolACP14
+  storage:
+    back:
+    - WeaponPistolACP14
+    - MagazinePistol45ACP
+
+- type: loadout
+  id: WeaponPistolG23
+  dummyEntity: WeaponPistolG23
+  storage:
+    back:
+    - WeaponPistolG23
+    - MagazinePistol9x17
+
+- type: loadout
+  id: WeaponPistolVP78
+  dummyEntity: WeaponPistolVP78
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  storage:
+    back:
+    - WeaponPistolVP78
+    - MagazinePistol57x28Extd
+
+- type: loadout
+  id: WeaponPistolDEagle
+  dummyEntity: WeaponPistolDEagle
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  storage:
+    back:
+    - WeaponPistolDEagle
+    - MagazinePistol50AE
+
+- type: loadout
+  id: WeaponPistolM1911
+  dummyEntity: WeaponPistolM1911
+  storage:
+    back:
+    - WeaponPistolM1911
+    - MagazinePistol57x28
+
+# Pocket 2 #Backmen
+
+- type: loadout
+  id: MagazinePistol
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket2: MagazinePistol9x17
+
+- type: loadout
+  id: MagazinePistolHighCapacity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket2: MagazinePistol57x28Extd
+
+- type: loadout
+  id: MagazinePistol50AE
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket2: MagazinePistol50AE
+
+#backmen end

@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server.Decals;
 using Content.Server.Backmen.Explosion.Components;
 using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Trigger;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Map;

@@ -122,7 +122,7 @@ public sealed class SpraySystem : SharedSpraySystem
 
         // Lavaland Shitcode Start - You should spray yourself NOW.
         // Too lazy to learn this system, so you get a copypaste job!
-        if ((clickMapPos.Position - userMapPos.Position).Length() < 0.5f)
+        if ((clickMapPos.Position - sprayerMapPos.Position).Length() < 0.5f)
         {
             // Split a portion of the solution for the self-spray
             var adjustedSolutionAmount = entity.Comp.TransferAmount;
@@ -132,7 +132,7 @@ public sealed class SpraySystem : SharedSpraySystem
             {
                 // Spawn vapor with a slight offset to create movement
                 var offset = new Vector2(0.1f, 0); // Small offset to ensure collision
-                var vapor = Spawn(entity.Comp.SprayedPrototype, userMapPos.Offset(offset));
+                var vapor = Spawn(entity.Comp.SprayedPrototype, sprayerMapPos.Offset(offset));
                 var vaporXform = xformQuery.GetComponent(vapor);
 
                 if (TryComp(vapor, out AppearanceComponent? appearance))
@@ -149,21 +149,19 @@ public sealed class SpraySystem : SharedSpraySystem
                 var rotation = Angle.FromDegrees(45);
                 var impulseDirection = -offset.Normalized();
                 var time = 0.5f;  // Shorter duration for self-spray
-                var target = userMapPos.Offset(impulseDirection * 0.5f);  // Small movement distance
+                var target = sprayerMapPos.Offset(impulseDirection * 0.5f);  // Small movement distance
 
                 _vapor.Start(ent, vaporXform, impulseDirection * 0.5f, entity.Comp.SprayVelocity, target, time, user);
 
                 if (TryComp<PhysicsComponent>(user, out var body))
                 {
-                    if (_gravity.IsWeightless(user, body))
-                        _physics.ApplyLinearImpulse(user, -impulseDirection.Normalized() * entity.Comp.PushbackAmount, body: body);
+                    if (_gravity.IsWeightless(user.Value))
+                        _physics.ApplyLinearImpulse(user.Value, -impulseDirection.Normalized() * entity.Comp.PushbackAmount, body: body);
                 }
 
                 _audio.PlayPvs(entity.Comp.SpraySound, entity, entity.Comp.SpraySound.Params.WithVariation(0.125f));
 
-                if (useDelay != null)
-                    _useDelay.TryResetDelay((entity, useDelay));
-
+                _useDelay.TryResetDelay(entity);
                 return;
             }
         }

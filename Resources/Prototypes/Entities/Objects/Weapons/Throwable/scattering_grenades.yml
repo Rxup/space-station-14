@@ -1,4 +1,4 @@
-﻿# ScatteringGrenade is intended for grenades that spawn entities, especially those with timers
+# ScatteringGrenade is intended for grenades that spawn entities, especially those with timers
 - type: entity
   abstract: true
   parent: BaseItem

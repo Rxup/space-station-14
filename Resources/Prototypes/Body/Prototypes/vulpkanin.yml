@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Vulpkanin
   name: vulpkanin
   root: torso
@@ -11,7 +11,7 @@
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
     torso:
-      part: TorsoVulpkanin
+      part: ChestVulpkanin
       connections:
       - right arm
       - left arm
@@ -23,6 +23,11 @@
         stomach: OrganVulpkaninStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
+    groin: # Backmen edit: chest, groin separation
+      part: GroinVulpkanin
+      connections:
+      - right leg
+      - left leg
     right arm:
       part: RightArmVulpkanin
       connections:

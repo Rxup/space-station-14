@@ -223,10 +223,10 @@
       effects:
       - !type:ChemMiasmaPoolSource
         conditions:
-        - !type:OrganType
-          type: Rat
-          shouldHave: false
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [Rat]
+          inverted: true
+        - !type:ReagentCondition
           reagent: Ammonia
           min: 1
       - !type:HealthChange

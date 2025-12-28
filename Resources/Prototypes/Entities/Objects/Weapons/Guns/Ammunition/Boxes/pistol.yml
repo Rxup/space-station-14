@@ -4,6 +4,17 @@
   id: BaseMagazineBoxPistol
   name: ammunition box (.35 auto)
   components:
+  # backmen edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/ammobox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Backmen/Items/handling/ammobox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/handling/ammobox_drop.ogg
+  # backmen edit end
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -29,6 +40,7 @@
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistol
   name: ammunition box (.35 auto)
+  categories: [ HideSpawnMenu ]
   description: A cardboard box of .35 auto rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -44,7 +56,8 @@
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolPractice
   name: ammunition box (.35 auto practice)
-  description: A cardboard box of .35 auto rounds. Intended to hold harmless practice ammunition.
+  categories: [ HideSpawnMenu ]
+  description: A cardboard box of .35 auto rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -60,6 +73,7 @@
   id: MagazineBoxPistolIncendiary
   parent: BaseMagazineBoxPistol
   name: ammunition box (.35 auto incendiary)
+  categories: [ HideSpawnMenu ]
   description: A cardboard box of .35 auto rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -73,9 +87,10 @@
     - state: incendiary
 
 - type: entity
-  parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolUranium
+  parent: BaseMagazineBoxPistol
   name: ammunition box (.35 auto uranium)
+  categories: [ HideSpawnMenu ]
   description: A cardboard box of .35 auto rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider

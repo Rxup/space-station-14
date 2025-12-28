@@ -126,6 +126,11 @@
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi
+  - type: FootstepModifier  #Backmen EDIT
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -2
 
 - type: entity
   parent: BaseAction

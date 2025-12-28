@@ -13,7 +13,9 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Body.Systems;
 using Content.Shared.Climbing.Events;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind.Components;
@@ -53,7 +55,7 @@ public sealed class FleshHeartSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _sharedHuApp = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;

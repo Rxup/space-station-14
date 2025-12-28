@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Базированная База НПЦ
   id: MobBaseNpc
   parent: [SimpleSpaceMobBase, StripableInventoryBase]
@@ -81,10 +81,12 @@
     speedModifierThresholds:
       50: 0.5
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: Bloodstream
-    bloodReagent: Blood
-    bloodMaxVolume: 30
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 30
     bloodlossThreshold: 0
   - type: Destructible
     thresholds:

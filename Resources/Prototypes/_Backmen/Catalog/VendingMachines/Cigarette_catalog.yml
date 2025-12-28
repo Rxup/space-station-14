@@ -1,4 +1,4 @@
-﻿- type: listing
+- type: listing
   id: CigaretteMachineInventory1
   productEntity: CigPackGreen
   cost:

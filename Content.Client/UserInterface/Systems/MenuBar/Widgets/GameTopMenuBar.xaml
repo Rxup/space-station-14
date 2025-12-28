@@ -22,7 +22,7 @@
             ToolTip="{Loc 'game-hud-open-escape-menu-button-tooltip'}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonOpenRight}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonOpenRight}"
         />
 
 
@@ -34,7 +34,7 @@
             BoundKey = "{x:Static is:ContentKeyFunctions.OpenEmotesMenu}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
 
         <ui:MenuButton
@@ -45,7 +45,7 @@
             BoundKey = "{x:Static is:ContentKeyFunctions.OpenGuidebook}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
 
         <ui:MenuButton
@@ -56,7 +56,7 @@
             BoundKey = "{x:Static is:ContentKeyFunctions.OpenCharacterMenu}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
         <ui:MenuButton
             Name="CraftingButton"
@@ -66,7 +66,7 @@
             ToolTip="{Loc 'game-hud-open-crafting-menu-button-tooltip'}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonOpenRight}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonOpenRight}"
             />
     </BoxContainer>
     <BoxContainer Orientation="Horizontal">
@@ -78,7 +78,7 @@
             ToolTip="{Loc 'game-hud-open-actions-menu-button-tooltip'}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
             />
         <ui:MenuButton
             Name="AdminButton"
@@ -88,7 +88,7 @@
             ToolTip="{Loc 'game-hud-open-admin-menu-button-tooltip'}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
             />
         <ui:MenuButton
             Name="LanguageButton"
@@ -98,7 +98,7 @@
             ToolTip="Open the Language Menu"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
         <ui:MenuButton
             Name="SandboxButton"
@@ -108,7 +108,7 @@
             ToolTip="{Loc 'game-hud-open-sandbox-menu-button-tooltip'}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
             />
         <ui:MenuButton
             Name="AHelpButton"
@@ -118,7 +118,7 @@
             ToolTip="{Loc 'ui-options-function-open-a-help'}"
             MinSize="96 32"
             HorizontalExpand="True"
-            AppendStyleClass="{x:Static style:StyleBase.ButtonOpenLeft}"
+            AppendStyleClass="{x:Static style:StyleClass.ButtonOpenLeft}"
             />
     </BoxContainer>
 </widgets:GameTopMenuBar>

@@ -586,7 +586,7 @@ public sealed class AccessReaderSystem : EntitySystem
     /// Clears the entity's <see cref="AccessReaderComponent.AccessLists"/>.
     /// </summary>
     /// <param name="ent">The access reader entity which is having its access permissions cleared.</param>
-    private void ClearAccesses(Entity<AccessReaderComponent> ent)
+    public void ClearAccesses(Entity<AccessReaderComponent> ent)
     {
         ent.Comp.AccessLists.Clear();
 

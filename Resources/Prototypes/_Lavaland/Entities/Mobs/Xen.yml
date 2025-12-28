@@ -64,7 +64,7 @@
       price: 50
     - type: Puller
       needsHands: false
-    - type: Food
+    - type: Edible
     - type: Hunger
       thresholds:
         Overfed: 35
@@ -634,7 +634,10 @@
     capacity: 1
     count: 1
   - type: Bloodstream
-    bloodMaxVolume: 30
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 30
     bloodlossThreshold: 0
   - type: Gun
     fireRate: 0.75
@@ -694,7 +697,7 @@
         Base: vortigaunt
       Dead:
         Base: vortigaunt
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Lightning
     fireCost: 50
   - type: BatterySelfRecharger
@@ -754,19 +757,25 @@
     description: Monster from Xen
   - type: GhostTakeoverAvailable
 
-- type: hitscan
-  maxLength: 7
-  id: Lightning
-  damage:
-    groups:
-      Brute: 5
-      Burn: 20
-  muzzleFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
-    state: blue_lightning
-  travelFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
-    state: blue_lightning
-  impactFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
-    state: blue_lightning
+#- type: entity
+#  parent: BasicHitscan
+#  id: Lightning
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: HitscanBasicRaycast
+#    maxDistance: 7
+#  - type: HitscanBasicDamage
+#    damage:
+#      groups:
+#        Brute: 5
+#        Burn: 20
+#  - type: HitscanBasicVisuals
+#    muzzleFlash:
+#      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+#      state: blue_lightning
+#    travelFlash:
+#      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+#      state: blue_lightning
+#    impactFlash:
+#      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+#      state: blue_lightning

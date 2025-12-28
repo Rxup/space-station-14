@@ -3,6 +3,7 @@ using Content.Server.Light.Components;
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Jobs;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Light.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;

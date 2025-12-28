@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: FirelockFrame
   parent: BaseStructureDynamic
   name: firelock frame

@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: MedicalIntern
   name: job-name-intern
   description: job-description-intern
@@ -15,6 +15,12 @@
   access:
   - Medical
   - Maintenance
+  #start-backmen: currency
+  minBankBalance: 150
+  maxBankBalance: 250
+  wageDepartment: Medical
+  wage: 25
+  #end-backmen: currency
 
 - type: startingGear
   id: MedicalInternGear

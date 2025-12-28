@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: BPLA Spawner
   id: SpawnMobBPLA
   parent: MarkerBase

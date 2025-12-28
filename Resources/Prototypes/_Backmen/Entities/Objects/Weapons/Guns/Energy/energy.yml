@@ -36,10 +36,10 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -84,10 +84,10 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 7500
     startingCharge: 7500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -137,10 +137,10 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: Wieldable
@@ -166,7 +166,7 @@
     - state: mag-unshaded-2
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
   - type: MagazineVisuals
@@ -215,10 +215,10 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 100
   - type: Wieldable
@@ -262,10 +262,10 @@
     magState: mag
     steps: 6
     zeroVisible: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: XrayLaser
     fireCost: 100
   - type: Wieldable

@@ -54,6 +54,15 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
+  - type: TTS # Corvax-TTS
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - SpaceMob
+    understands:
+    - TauCetiBasic
+    - SpaceMob
+  - type: CanBeBorgNTEnemy
 
 - type: entity
   save: false

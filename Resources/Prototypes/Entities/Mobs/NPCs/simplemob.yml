@@ -19,6 +19,7 @@
     baseSprintSpeed : 4
   - type: StatusEffects
     allowed:
+    - Stutter
     - Electrocution
     - TemporaryBlindness
     - Pacified
@@ -32,7 +33,6 @@
     tags:
     - DoorBumpOpener
     - StunImmune
-  - type: Blindable
 
 - type: entity
   abstract: true
@@ -103,9 +103,11 @@
     baseDecayRate: 0.04
   - type: StatusEffects
     allowed:
+    - Stutter
     - Electrocution
     - TemporaryBlindness
     - Pacified
+    - StaminaModifier
     - Flashed
     - RadiationProtection
     - Adrenaline

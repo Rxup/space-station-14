@@ -48,7 +48,7 @@ public sealed partial class DiseaseEffectSystem
         if (!TryComp<BloodstreamComponent>(args.DiseasedEntity, out var bloodstream))
             return;
 
-        var stream = bloodstream.ChemicalSolution;
+        var stream = bloodstream.BloodSolution;
         if (stream == null)
             return;
 

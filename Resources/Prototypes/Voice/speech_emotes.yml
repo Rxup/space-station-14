@@ -319,6 +319,12 @@
   - howls
   - howling
   - howled
+  - воет
+  - воет.
+  - воет!
+  - завывает
+  - завывает.
+  - завывает!
 
 - type: emote
   id: Growl
@@ -337,6 +343,9 @@
   - growls
   - growled
   - growling
+  - рычит
+  - рычит.
+  - рычит!
 
 # hand emotes
 - type: emote

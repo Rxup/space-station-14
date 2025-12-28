@@ -7,10 +7,12 @@ using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Mobs;
@@ -287,7 +289,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
             case BlobChemType.ElectromagneticWeb:
             {
                 if (_random.Prob(0.2f))
-                    _empSystem.EmpPulse(_transform.GetMapCoordinates(target), 3f, 50f, 3f);
+                    _empSystem.EmpPulse(_transform.GetMapCoordinates(target), 3f, 50f, TimeSpan.FromSeconds(3f), ent.Comp.Observer ?? ent);
                 break;
             }
             case BlobChemType.BlazingOil:
@@ -295,7 +297,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
                 if (TryComp<FlammableComponent>(target, out var flammable))
                 {
                     flammable.FireStacks += 2;
-                    _flammable.Ignite(target, from, flammable);
+                    _flammable.Ignite(target, ent.Comp.Observer ?? ent, flammable);
                 }
 
                 break;

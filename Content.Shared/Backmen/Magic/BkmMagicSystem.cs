@@ -2,6 +2,7 @@
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Backmen.Magic;
 
@@ -23,6 +24,6 @@ public abstract class SharedBkmMagicSystem : EntitySystem
         if (!HasComp<BodyComponent>(ev.Target))
             return;
 
-        DamageableSystem.TryChangeDamage(ev.Target, ev.HealAmount, true, origin: ev.Target, targetPart: TargetBodyPart.All); // backmen: surgery
+        DamageableSystem.ChangeDamage(ev.Target, ev.HealAmount, true, origin: ev.Target, targetPart: TargetBodyPart.All); // backmen: surgery
     }
 }

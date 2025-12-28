@@ -6,7 +6,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
+    - StationAiCore # backmen: Station AI
     - BorgChassis
   sponsorOnly: true
   components:
@@ -20,7 +20,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
+    - StationAiCore # backmen: Station AI
     - BorgChassis
   sponsorOnly: true
   components:
@@ -34,7 +34,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
+    - StationAiCore # backmen: Station AI
     - BorgChassis
   sponsorOnly: true
   components:

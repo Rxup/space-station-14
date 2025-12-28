@@ -1,5 +1,4 @@
 using Content.Server.Medical.Components;
-using Content.Server.PowerCell;
 using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
@@ -48,7 +47,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     public override void Initialize()
     {

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseBigBox
   name: cardboard box #it's still just a box
   description: Huh? Just a box...

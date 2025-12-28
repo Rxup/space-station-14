@@ -324,9 +324,9 @@
       - timer
     - type: Explosive
       explosionType: Default
-      totalIntensity: 3500
-      intensitySlope: 15
-      maxIntensity: 70
+      totalIntensity: 4000 # Backmen-Edit
+      intensitySlope: 5 # Backmen-Edit
+      maxIntensity: 50 # Backmen-Edit
       canCreateVacuum: true
     - type: Tag
       tags:

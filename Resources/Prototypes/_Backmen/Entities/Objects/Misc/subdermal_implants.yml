@@ -14,7 +14,7 @@
     - type: ContainerContainer
       containers:
         toggleable-clothing: !type:ContainerSlot {}
-    - type: TriggerImplantAction
+    - type: TriggerOnActivateImplant
 
 - type: entity
   id: ActionToggleMantis
@@ -54,5 +54,6 @@
   description: This implant will inform the InteQ radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
-  - type: Rattle
+  - type: RattleOnTrigger
     radioChannel: InteQ
+    targetUser: true

@@ -205,26 +205,6 @@
 
 - type: entity
   parent: BaseGameRule
-  id: Changeling
-  components:
-  - type: ChangelingRule
-  - type: GameRule
-    minPlayers: 20
-    delay:
-      min: 30
-      max: 60
-  - type: AntagSelection
-    agentName: changeling-roundend-name
-    definitions:
-    - prefRoles: [ Changeling ]
-      max: 8
-      playerRatio: 10
-      lateJoinAdditional: true
-      mindRoles:
-      - MindRoleChangeling
-
-- type: entity
-  parent: BaseGameRule
   id: ExtendedThief
   components:
   - type: ThiefRule

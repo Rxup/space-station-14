@@ -1,6 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
-using Content.Shared.Backmen.Chat;
+using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 
@@ -9,6 +9,9 @@ namespace Content.Server.Backmen.Chat.Commands;
 [AnyCommand]
 internal sealed class TSayCommand : IConsoleCommand
 {
+    [Dependency] private readonly IEntityManager _entities = default!;
+    private ChatSystem? _chatSystem;
+
     public string Command => "tsay";
     public string Description => "Send chat messages to the telepathic.";
     public string Help => "tsay <text>";
@@ -37,7 +40,9 @@ internal sealed class TSayCommand : IConsoleCommand
         if (string.IsNullOrEmpty(message))
             return;
 
-        IoCManager.Resolve<EntityManager>().System<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.Telepathic,
+        _chatSystem ??= _entities.System<ChatSystem>();
+
+        _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Telepathic,
             ChatTransmitRange.Normal, false, shell, player);
     }
 }

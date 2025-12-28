@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -11,6 +12,7 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed partial class DamageableSystem
 {
+
     public override void Initialize()
     {
         SubscribeLocalEvent<DamageableComponent, ComponentInit>(DamageableInit);
@@ -207,7 +209,24 @@ public sealed partial class DamageableSystem
 ///     Raised before damage is done, so stuff can cancel it if necessary.
 /// </summary>
 [ByRefEvent]
-public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid? Origin = null, bool Cancelled = false);
+public record struct BeforeDamageChangedEvent(
+    DamageSpecifier Damage,
+    EntityUid? Origin = null,
+    bool Cancelled = false);
+
+// backmen edit start
+/// <summary>
+///     Raised before damage is done and registered, so the system can check if you want to handle it manually.
+///     Currently used for wounds.
+/// </summary>
+[ByRefEvent]
+public record struct HandleCustomDamage(
+    DamageSpecifier Damage,
+    TargetBodyPart? TargetPart,
+    EntityUid? Origin = null,
+    bool Handled = false,
+    DamageSpecifier? ResultDamage = null);
+// backmen edit end
 
 /// <summary>
 ///     Raised on an entity when damage is about to be dealt,
@@ -216,7 +235,10 @@ public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid?
 ///
 ///     For example, armor.
 /// </summary>
-public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
+public sealed class DamageModifyEvent(
+    DamageSpecifier damage,
+    EntityUid? origin = null,  // backmen
+    TargetBodyPart? targetPart = null) // backmen
     : EntityEventArgs, IInventoryRelayEvent
 {
     // Whenever locational damage is a thing, this should just check only that bit of armour.
@@ -224,6 +246,9 @@ public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin 
 
     public readonly DamageSpecifier OriginalDamage = damage;
     public DamageSpecifier Damage = damage;
+
+    public EntityUid? Origin = origin; // backmen
+    public readonly TargetBodyPart? TargetPart = targetPart; // backmen
 }
 
 public sealed class DamageChangedEvent : EntityEventArgs

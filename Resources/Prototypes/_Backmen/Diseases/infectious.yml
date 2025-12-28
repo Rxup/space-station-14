@@ -1,4 +1,4 @@
-﻿- type: disease
+- type: disease
   id: SpaceCold
   name: disease-proto-space-cold
   cureResist: 0

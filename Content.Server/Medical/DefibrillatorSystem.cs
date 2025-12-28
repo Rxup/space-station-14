@@ -5,9 +5,8 @@ using Content.Server.Electrocution;
 using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
-using Content.Server.PowerCell;
 using Content.Server.Revenant.Components;
-using Content.Shared.Backmen.Chat;
+
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Targeting;
@@ -240,7 +239,7 @@ public sealed class DefibrillatorSystem : EntitySystem
                 }
                 else // backmen edit end
                 {
-                    _damageable.TryChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
+                    _damageable.ChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
                 }
             }
 

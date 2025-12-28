@@ -1,4 +1,4 @@
-﻿- type: currency
+- type: currency
   id: SpaceCash
   displayName: store-currency-display-spacecash
   cash:

@@ -1,4 +1,4 @@
-﻿- type: alert
+- type: alert
   id: MutationPoint
   icons:
     - sprite: /Textures/Interface/Alerts/flesh_point.rsi

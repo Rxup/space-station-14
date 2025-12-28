@@ -8,7 +8,7 @@
     time: 86400
   weight: 30
   icon: JobIconStationAI
-  supervisors: "all crew"
+  supervisors: "job-supervisors-allcrew"
   accessGroups:
   - AllAccess
   canBeAntag: false

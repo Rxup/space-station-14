@@ -56,10 +56,13 @@
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
   - type: Appearance
   - type: Bloodstream
-    bloodMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 0
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
@@ -257,7 +260,7 @@
       0: Alive
       600: Dead
   - type: Stamina
-    critThreshold: 1500
+    baseCritThreshold: 1500
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.8
     baseSprintSpeed : 4.5
@@ -352,7 +355,7 @@
       behaviors:
       - !type:GibBehavior { }
   - type: Stamina
-    critThreshold: 1000
+    baseCritThreshold: 1000
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.8
     baseSprintSpeed : 4.5
@@ -473,7 +476,7 @@
       0: Alive
       150: Dead
   - type: Stamina
-    critThreshold: 200
+    baseCritThreshold: 200
   - type: SlowOnDamage
     speedModifierThresholds:
       100: 0.8
@@ -644,7 +647,7 @@
       0: Alive
       140: Dead
   - type: Stamina
-    critThreshold: 250
+    baseCritThreshold: 250
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 7.0
@@ -705,7 +708,7 @@
       0: Alive
       150: Dead
   - type: Stamina
-    critThreshold: 250
+    baseCritThreshold: 250
   - type: PsionicInvisibilityPower
     actionPsionicInvisibility: ActionHunterInvisibility
     stunSecond: 0
@@ -790,7 +793,7 @@
       behaviors:
       - !type:GibBehavior { }
   - type: Stamina
-    critThreshold: 2000
+    baseCritThreshold: 2000
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 4
@@ -1417,7 +1420,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi/full.png
+    icon:
+      sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
+      state: full
     useDelay: 1
   - type: InstantAction
     event: !type:SpiderWebActionEvent

@@ -1,4 +1,4 @@
-﻿- type: disease
+- type: disease
   id: Ultragigacancer
   name: disease-proto-ultragigacancer
   infectious: false

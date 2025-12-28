@@ -1,4 +1,4 @@
-﻿- type: spaceBiome
+- type: spaceBiome
   id: Failsafe
   priority: -999999 # This DEFINITELY shouldn't get selected!
   noiseRanges: {}

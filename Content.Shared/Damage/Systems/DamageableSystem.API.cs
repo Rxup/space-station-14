@@ -1,5 +1,9 @@
 using System.Linq;
 using System.Net.Sockets;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -97,12 +101,22 @@ public sealed partial class DamageableSystem
         bool ignoreResistances = false,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-        bool ignoreGlobalModifiers = false
+        bool ignoreGlobalModifiers = false,
+        float partMultiplier = 1.00f,
+        TargetBodyPart? targetPart = null
     )
     {
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
-        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers);
+        newDamage = ChangeDamage(
+            ent,
+            damage,
+            ignoreResistances,
+            interruptsDoAfters,
+            origin,
+            ignoreGlobalModifiers,
+            partMultiplier,
+            targetPart);
         return !damage.Empty;
     }
 
@@ -123,7 +137,9 @@ public sealed partial class DamageableSystem
         bool ignoreResistances = false,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-        bool ignoreGlobalModifiers = false
+        bool ignoreGlobalModifiers = false,
+        float partMultiplier = 1.00f, // backmen
+        TargetBodyPart? targetPart = null // backmen
     )
     {
         var damageDone = new DamageSpecifier();
@@ -151,7 +167,7 @@ public sealed partial class DamageableSystem
 
             // TODO DAMAGE
             // byref struct event.
-            var ev = new DamageModifyEvent(damage, origin);
+            var ev = new DamageModifyEvent(damage, origin, targetPart); // backmen
             RaiseLocalEvent(ent, ev);
             damage = ev.Damage;
 
@@ -160,8 +176,21 @@ public sealed partial class DamageableSystem
         }
 
         if (!ignoreGlobalModifiers)
+        {
             damage = ApplyUniversalAllModifiers(damage);
+            damage *= partMultiplier; // backmen
+        }
 
+        // backmen edit start
+        var specialHandlerEvent = new HandleCustomDamage(
+            damage,
+            targetPart,
+            origin);
+        RaiseLocalEvent(ent, ref specialHandlerEvent);
+
+        if (specialHandlerEvent.Handled)
+            return specialHandlerEvent.Damage;
+        // backmen edit end
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 
@@ -419,6 +448,23 @@ public sealed partial class DamageableSystem
         // Setting damage does not count as 'dealing' damage, even if it is set to a larger value, so we pass an
         // empty damage delta.
         OnEntityDamageChanged((ent, ent.Comp), new DamageSpecifier());
+
+        // backmen edit start
+        // Синхронизация severity ран с общим уроном (для rejuvenate и т.п.)
+        if (TryComp<BodyComponent>(ent, out var body) && TryComp<ConsciousnessComponent>(ent, out _))
+        {
+            foreach (var (part, _) in _body.GetBodyChildren(ent.Owner, body))
+            {
+                if (!TryComp(part, out WoundableComponent? woundable))
+                    continue;
+
+                foreach (var wound in _wounds.GetWoundableWounds(part, woundable))
+                {
+                    _wounds.SetWoundSeverity(wound, newValue, wound);
+                }
+            }
+        }
+        // backmen edit end
     }
 
     /// <summary>

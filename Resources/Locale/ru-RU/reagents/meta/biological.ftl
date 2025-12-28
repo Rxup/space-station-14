@@ -1,7 +1,3 @@
-reagent-name-syntheticblood = синтетическая кровь
-reagent-desc-syntheticblood = Я надеюсь, что это кетчуп.
-reagent-name-inactiveblood = неактивная кровь
-reagent-desc-inactiveblood = Я надеюсь, что это кетчуп.
 reagent-name-flesh-acid = flesh acid
 reagent-desc-flesh-acid = Она всё время бурлит и шипит.
 reagent-name-blood = кровь

@@ -69,6 +69,14 @@ public abstract class SharedDoorRemoteSystem : EntitySystem
             return;
         }
 
+        // start-backmen: protect
+        if (HasComp<Backmen.Arrivals.ArrivalsProtectComponent>(args.Target))
+        {
+            _popup.PopupClient(Loc.GetString("door-remote-denied"), args.User, args.User);
+            return;
+        }
+        // end-backmen: protect
+
         var accessTarget = args.Used;
         // This covers the accesses the REMOTE has, and is not effected by the user's ID card.
         if (entity.Comp.IncludeUserAccess) // Allows some door remotes to inherit the user's access.

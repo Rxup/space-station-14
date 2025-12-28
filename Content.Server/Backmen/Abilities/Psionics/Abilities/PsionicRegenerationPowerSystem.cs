@@ -12,6 +12,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Examine;
 using Robust.Server.Audio;
 using static Content.Shared.Examine.ExamineSystemShared;
@@ -22,7 +23,7 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 public sealed class PsionicRegenerationPowerSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -110,7 +111,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
 
         var solution = new Solution();
         solution.AddReagent("PsionicRegenerationEssence", FixedPoint2.New(component.EssenceAmount * percentageComplete));
-        _bloodstreamSystem.TryAddToChemicals(uid, solution, stream);
+        _bloodstreamSystem.TryAddToBloodstream((uid, stream), solution);
     }
 }
 

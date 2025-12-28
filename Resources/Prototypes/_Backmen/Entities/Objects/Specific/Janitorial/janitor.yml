@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BagOfSummoningGarbage
   id: TrashBagHolding
   name: trash bag of holding

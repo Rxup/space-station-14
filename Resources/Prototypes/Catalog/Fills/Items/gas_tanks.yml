@@ -47,11 +47,6 @@
       moles:
         Oxygen: 0.270782035 # oxygen
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: EmergencyNitrogenTankFilled
@@ -66,11 +61,6 @@
       moles:
         Nitrogen: 0.270782035 # nitrogen
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: ExtendedEmergencyOxygenTankFilled
@@ -85,11 +75,6 @@
       moles:
         Oxygen: 0.615413715 # oxygen
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: ExtendedEmergencyNitrogenTankFilled
@@ -104,11 +89,6 @@
       moles:
         Nitrogen: 0.615413715 # nitrogen
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: DoubleEmergencyOxygenTankFilled
@@ -123,11 +103,6 @@
       moles:
         Oxygen: 1.025689525 # oxygen
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: DoubleEmergencyNitrogenTankFilled
@@ -142,11 +117,6 @@
       moles:
         Nitrogen: 1.025689525 # nitrogen
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: EmergencyFunnyOxygenTankFilled
@@ -163,11 +133,6 @@
         NitrousOxide: 0.014251686  # backmen edit: 5% N2O
         # 0.285033721 total
       temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
 
 - type: entity
   id: AirTankFilled

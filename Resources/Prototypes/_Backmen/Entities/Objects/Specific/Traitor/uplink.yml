@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseItem
   id: InjectorBloodsuckerNocturine
   name: nocturine gland injector

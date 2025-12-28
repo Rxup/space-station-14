@@ -1,4 +1,4 @@
-﻿- type: stack
+- type: stack
   id: Bluespace
   name: stack-bluespace
   icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }

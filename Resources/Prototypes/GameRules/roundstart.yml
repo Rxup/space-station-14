@@ -561,3 +561,28 @@
     - id: BasicDecalDirtMonospaceVariationPass
       prob: 0.50
       orGroup: monospaceDecals
+
+
+#backmen start
+
+- type: entity
+  id: StandardStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: BasicGameRulesTable
+
+- type: entity
+  id: CalmStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 360 # 6 min
+    minMaxEventTiming:
+      min: 480 # 8 min
+      max: 960 # 16 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: DynamicGameRulesTable
+
+#backmen end

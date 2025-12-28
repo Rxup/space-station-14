@@ -1,4 +1,4 @@
-﻿- type: moodEffect
+- type: moodEffect
   id: Handcuffed
   moodChange: -3
   hidden: true
