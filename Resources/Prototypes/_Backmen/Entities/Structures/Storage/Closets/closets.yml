@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Structures/Storage/navy.rsi
+    sprite: _Backmen/Structures/Storage/navy.rsi
     noRot: true
     layers:
     - state: egov
@@ -33,7 +33,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Structures/Storage/blue.rsi
+    sprite: _Backmen/Structures/Storage/blue.rsi
     noRot: true
     layers:
     - state: egov
@@ -61,7 +61,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Structures/Storage/sec-pilot.rsi
+    sprite: _Backmen/Structures/Storage/sec-pilot.rsi
     noRot: true
     layers:
     - state: sec
@@ -86,7 +86,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Structures/Storage/inteq.rsi
+    sprite: _Backmen/Structures/Storage/inteq.rsi
     noRot: true
     layers:
     - state: inteq
@@ -113,7 +113,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Structures/Storage/inteq.rsi
+    sprite: _Backmen/Structures/Storage/inteq.rsi
     noRot: true
     layers:
     - state: inteq

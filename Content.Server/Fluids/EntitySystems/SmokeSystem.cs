@@ -21,7 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
-using Content.Shared.Backmen.Smoking;
+using Content.Shared._Backmen.Smoking;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Fluids.EntitySystems;
@@ -150,9 +150,9 @@ public sealed class SmokeSystem : EntitySystem
             var coords = _map.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
             var ent = Spawn(prototype.ID, coords);
             // start-backmen: smoke color
-            if (TryComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(entity, out var smokeColorComponent))
+            if (TryComp<Shared._Backmen.Blob.Chemistry.BlobSmokeColorComponent>(entity, out var smokeColorComponent))
             {
-                EnsureComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(ent).Color =
+                EnsureComp<Shared._Backmen.Blob.Chemistry.BlobSmokeColorComponent>(ent).Color =
                     smokeColorComponent.Color;
             }
             // end-backmen: smoke color

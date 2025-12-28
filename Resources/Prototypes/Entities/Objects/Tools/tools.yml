@@ -7,7 +7,7 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/wirecutter_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/wirecutter_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/wirecutter_drop.ogg
@@ -74,7 +74,7 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/screwdriver_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/screwdriver_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/screwdriver_drop.ogg
@@ -135,7 +135,7 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/wrench_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/wrench_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/wrench_drop.ogg
@@ -185,7 +185,7 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/multitool_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/multitool_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/multitool_drop.ogg

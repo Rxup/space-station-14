@@ -130,7 +130,7 @@
   id: PsionicCountermeasures
   name: research-technology-psionic-countermeasures
   icon:
-    sprite: Backmen/Clothing/Head/Hats/cage.rsi
+    sprite: _Backmen/Clothing/Head/Hats/cage.rsi
     state: icon
   discipline: Scientific
   tier: 2

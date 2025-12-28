@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Backmen.RoleWhitelist;
 using Content.Server.Administration.Logs;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.Components;
@@ -53,7 +54,7 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
+    [Dependency] private readonly WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
     [Dependency] private readonly JobWhitelistManager _wlRole = default!; // backmen: whitelist
     [Dependency] private readonly Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _discordAuthManager = default!; // backmen: whitelist
 
@@ -486,7 +487,7 @@ public sealed class GhostRoleSystem : EntitySystem
             return false;
 
         // start-backmen: whitelist
-        if (role.Comp.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
+        if (role.Comp.WhitelistRequired && _cfg.GetCVar(Shared._Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
             return false;
         // end-backmen: whitelist
 

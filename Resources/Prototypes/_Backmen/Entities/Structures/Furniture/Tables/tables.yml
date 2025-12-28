@@ -5,9 +5,9 @@
   description: A classic wooden table. Extra robust.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Furniture/Tables/rwood.rsi
+    sprite: _Backmen/Structures/Furniture/Tables/rwood.rsi
   - type: Icon
-    sprite: Backmen/Structures/Furniture/Tables/rwood.rsi
+    sprite: _Backmen/Structures/Furniture/Tables/rwood.rsi
   - type: Damageable
     damageModifierSet: Wood
   - type: Destructible

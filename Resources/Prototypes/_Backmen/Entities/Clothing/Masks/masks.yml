@@ -12,9 +12,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Backmen/Clothing/Mask/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/Mask/inteq_infiltrator.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Mask/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/Mask/inteq_infiltrator.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -46,9 +46,9 @@
   description: An improved version of the SWAT gas mask with increased protection.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Mask/blueshield.rsi
+    sprite: _Backmen/Clothing/Mask/blueshield.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Mask/blueshield.rsi
+    sprite: _Backmen/Clothing/Mask/blueshield.rsi
   - type: Tag
     tags:
     - WhitelistChameleon

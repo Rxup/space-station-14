@@ -7,7 +7,7 @@
   components:
   - type: Objective
     icon:
-      sprite: Backmen/Interface/Actions/vampire.rsi
+      sprite: _Backmen/Interface/Actions/vampire.rsi
       state: bat
   - type: BloodsuckerDrinkCondition
     min: 400

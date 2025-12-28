@@ -1,5 +1,5 @@
-using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared._Backmen.Surgery.Wounds;
+using Content.Shared._Backmen.Targeting;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.MedicalScanner;

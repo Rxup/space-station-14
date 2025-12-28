@@ -5,7 +5,7 @@
   description: "The Bartender is always there to hear your woes and get you plastered all at the same time. Go have a visit!"
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: BAR
 
 - type: entity
@@ -15,7 +15,7 @@
   description: "Botany is always hard at work! Stop by and enjoy the best they can offer!"
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: BotanyFood
 
 - type: entity
@@ -25,7 +25,7 @@
   description: "You have been lied to. There is no \"Big Bread.\" It is not real. Please stop looking for it."
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: BreadLies
 
 - type: entity
@@ -35,7 +35,7 @@
   description: "Bite into a blast of flavour with any of our #1 rated fattening and unhealthy products for your enjoyment! DONK!"
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: DONK
 
 - type: entity
@@ -45,7 +45,7 @@
   description: "Who needs fruit or veggies? EAT MEAT! Build those muscles and go fight in the arena to show them gains!"
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: EATMEAT
 
 - type: entity
@@ -55,7 +55,7 @@
   description: "There is not enough bread! MAKE MORE!"
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: MoreBread
 
 - type: entity
@@ -65,7 +65,7 @@
   description: "Pies are healthy and delicious! Beg your chef to start making some."
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: PIE
 
 - type: entity
@@ -75,7 +75,7 @@
   description: "In the darkest of times there is only one hope, PIZZA! Harass your local Quartermaster to order an emergency crate of pizza now!"
   components:
     - type: Sprite
-      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      sprite: _Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: PIZZA
 
 - type: entity
@@ -85,7 +85,7 @@
   description: Вступай в корпус морской пехоты ОПЗ!
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/UEG.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/UEG.rsi
     state: poster1
 
 - type: entity
@@ -205,7 +205,7 @@
   description: Recruitment to the InteQ.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster1
 
 - type: entity
@@ -215,7 +215,7 @@
   description: Workship with InteQ.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster2
 
 - type: entity
@@ -225,7 +225,7 @@
   description: Workship with InteQ.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster3
 
 - type: entity
@@ -235,7 +235,7 @@
   description: InteQ.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster4
 
 - type: entity
@@ -245,7 +245,7 @@
   description: NO SEX!!!
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster5
 
 - type: entity
@@ -255,7 +255,7 @@
   description: We even take furry freaks, join us!
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster6
 
 - type: entity
@@ -265,7 +265,7 @@
   description: Most beautiful lizards in the whole universe, join us!
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/inteq_posters.rsi
     state: inteq_poster7
 
 - type: entity
@@ -275,7 +275,7 @@
   description: Heretical poster depicting the titular star of an equally heretical book.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/posters.rsi
     state: xenomorph_poster1
 
 - type: entity
@@ -285,5 +285,5 @@
   description: Get a load, or give, of these all natural Xenos!
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/posters.rsi
+    sprite: _Backmen/Structures/Wallmounts/Posters/posters.rsi
     state: xenomorph_poster2

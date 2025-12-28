@@ -24,7 +24,7 @@
         layer:
         - WallLayer
   - type: Sprite
-    sprite: Backmen/Structures/Shuttles/Thrusters/medium.rsi
+    sprite: _Backmen/Structures/Shuttles/Thrusters/medium.rsi
     offset: -0.5, 0.5
     layers:
     - state: base
@@ -76,7 +76,7 @@
         layer:
         - WallLayer
   - type: Sprite
-    sprite: Backmen/Structures/Shuttles/Thrusters/large.rsi
+    sprite: _Backmen/Structures/Shuttles/Thrusters/large.rsi
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]

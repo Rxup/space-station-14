@@ -19,7 +19,7 @@
     pointspersecond: 20
     active: true
   - type: Sprite
-    sprite: Backmen/Structures/Machines/glimmer_machines.rsi
+    sprite: _Backmen/Structures/Machines/glimmer_machines.rsi
     noRot: true
     layers:
     - state: base
@@ -103,7 +103,7 @@
     graph: GlimmerDevices
     node: glimmerDrain
   - type: Sprite
-    sprite: Backmen/Structures/Machines/glimmer_machines.rsi
+    sprite: _Backmen/Structures/Machines/glimmer_machines.rsi
     noRot: true
     layers:
     - state: base
@@ -170,7 +170,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: Backmen/Structures/Machines/glimmer_machines.rsi
+      sprite: _Backmen/Structures/Machines/glimmer_machines.rsi
       noRot: true
       layers:
       - state: base

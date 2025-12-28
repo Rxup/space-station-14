@@ -5,9 +5,9 @@
   description: A way to inform others about your presence, or just to annoy everyone around you!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Misc/bellcollar.rsi
+    sprite: _Backmen/Clothing/Neck/Misc/bellcollar.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Neck/Misc/bellcollar.rsi
+    sprite: _Backmen/Clothing/Neck/Misc/bellcollar.rsi
   - type: EmitsSoundOnMove
     soundCollection:
       collection: FootstepJester
@@ -19,6 +19,6 @@
   description: A traditional Unathi garment.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Misc/unathirobe.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/unathirobe.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Misc/unathirobe.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/unathirobe.rsi

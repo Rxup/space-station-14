@@ -23,8 +23,8 @@
   rules:
   - VampiresGameRule
   - StandardStationEventScheduler # TODO: set back to Basic when Vampires will get reworked and become more dangerous
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - SubGamemodesRule
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
@@ -40,8 +40,8 @@
   rules:
   - CalmStationEventScheduler
   - BlobGameMode
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   - SubGamemodesRule
   - CalmMeteorSwarmScheduler
@@ -56,8 +56,8 @@
   rules:
   - XenoAgentGameMode
   - CalmStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   - SubGamemodesRule
   - CalmMeteorSwarmScheduler
@@ -74,8 +74,8 @@
   rules:
   - FleshCult
   - CalmStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   - SubGamemodesRule
   - CalmMeteorSwarmScheduler
@@ -93,8 +93,8 @@
   - FleshCult
   - Traitor
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
   - LavalandStormScheduler # Lavaland Change
@@ -111,8 +111,8 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
     - LavalandStormScheduler # Lavaland Change
@@ -131,8 +131,8 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Traitor
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
     - LavalandStormScheduler # Lavaland Change
@@ -151,8 +151,8 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Nukeops
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
     - LavalandStormScheduler # Lavaland Change
@@ -172,8 +172,8 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - Traitor
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
@@ -194,8 +194,8 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - Nukeops
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
@@ -214,8 +214,8 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - Traitor
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
@@ -232,8 +232,8 @@
   description: survival-nukeops-description
   rules:
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - Nukeops
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
@@ -249,8 +249,8 @@
   description: changeling-gamemode-description
   showInVote: false
   rules:
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - Changeling
   - SubGamemodesRule
   - StandardStationEventScheduler # backmen: gamerules rework
@@ -268,8 +268,8 @@
   showInVote: false
   rules:
   - StandardStationEventScheduler # backmen: gamerules rework
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - Changeling
   - Traitor
   - SubGamemodesRule
@@ -289,8 +289,8 @@
   rules:
   - ExtendedThief
   - StandardStationEventScheduler # backmen: gamerules rework
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
   - LavalandStormScheduler # Lavaland Change
@@ -308,8 +308,8 @@
   - Revolutionary
   - ExtendedThief
   - Traitor
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
   - LavalandStormScheduler # Lavaland Change
@@ -326,8 +326,8 @@
   showInVote: false
   rules:
   - CalmStationEventScheduler # Calm because it's already scary.
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - BasicRoundstartVariation
   # Oh my god.
   - KesslerSyndromeScheduler
@@ -348,8 +348,8 @@
   description: calm-description
   rules:
   - CalmStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - CalmMeteorSwarmScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change
@@ -364,7 +364,7 @@
   - BabelTower
   - CalmStationEventScheduler
   - WageScheduler
-  - PsiScheduler #backmen: psi
+  - PsiScheduler # Backmen: psi
   - CalmMeteorSwarmScheduler
   - BasicRoundstartVariation
   - ExtendedThief # Uhh guess that's for more instability?
@@ -377,8 +377,8 @@
   description: standard-description
   rules:
   - StandardStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change
@@ -392,8 +392,8 @@
   description: secret-description
   rules:
   - StandardStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change
@@ -407,8 +407,8 @@
   description: secret-description
   rules:
   - CalmStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - CalmMeteorSwarmScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change

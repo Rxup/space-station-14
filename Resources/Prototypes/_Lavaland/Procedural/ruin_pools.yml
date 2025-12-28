@@ -27,7 +27,7 @@
     Shelter: 2
     OwOLab: 1
     MiningPost: 2
-    #Backmen-edit-start
+    # Backmen-edit-start
     UriilChapelArena: 1
     InteQSizo: 1
     BlackMesaResearchFacility: 1
@@ -38,6 +38,6 @@
     BlackMesaResearchOblom: 2
     BlackMesaResearchShuttleCrush: 1
     BlackMesaTelega: 1
-    #Backmen-edit-end
+    # Backmen-edit-end
   dungeonRuins:
     CommonRuin5x5: 30

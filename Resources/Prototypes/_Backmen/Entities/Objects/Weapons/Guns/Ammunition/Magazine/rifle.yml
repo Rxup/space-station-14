@@ -59,10 +59,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -104,10 +104,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/big_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/big_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/big_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/big_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -148,10 +148,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/v31_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/v31_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/v31_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/v31_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -185,10 +185,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/svd_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/svd_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/svd_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/svd_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -220,7 +220,7 @@
       tags:
         - CartridgeRifle762x39
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ak_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ak_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -263,7 +263,7 @@
       tags:
         - CartridgeRifle762x39
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ak_long_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ak_long_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -290,7 +290,7 @@
       tags:
         - CartridgeRifle556UEG
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -333,7 +333,7 @@
       tags:
         - CartridgeRifle762UEG
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ar_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/ar_mag.rsi
     scale: 0.7, 0.7
     layers:
     - state: base
@@ -377,7 +377,7 @@
       tags:
         - CartridgeRifle556UEG
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/famas_mag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/famas_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

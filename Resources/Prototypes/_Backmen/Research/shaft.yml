@@ -15,7 +15,7 @@
   id: SalvageEquipment
   name: research-technology-salvage-equipment
   icon:
-    sprite: Goobstation/Objects/Weapons/Guns/Battery/cutter.rsi
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/cutter.rsi
     state: icon
   discipline: Shaft
   tier: 1

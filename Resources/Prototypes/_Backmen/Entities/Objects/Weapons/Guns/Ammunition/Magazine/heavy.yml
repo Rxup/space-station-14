@@ -38,7 +38,7 @@
   - type: BallisticAmmoProvider
     proto: Cartridge50BMG
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -57,7 +57,7 @@
       tags:
         - CartridgeRifle556UEG
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -85,7 +85,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg42.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -118,7 +118,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg60.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg60.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -151,7 +151,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/rpd.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/rpd.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

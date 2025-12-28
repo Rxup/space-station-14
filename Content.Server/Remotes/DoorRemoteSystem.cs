@@ -52,7 +52,7 @@ namespace Content.Shared.Remotes
             }
 
             // start-backmen: protect
-            if (HasComp<Server.Backmen.Arrivals.ArrivalsProtectComponent>(args.Target))
+            if (HasComp<Server._Backmen.Arrivals.ArrivalsProtectComponent>(args.Target))
             {
                 Popup.PopupEntity(Loc.GetString("door-remote-denied"), args.User, args.User);
                 return;

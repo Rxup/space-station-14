@@ -5,7 +5,7 @@
   description: The bag looks like a mail bag and has brown-yellow inserts.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Satchels/inteq_satchel.rsi
+    sprite: _Backmen/Clothing/Back/Satchels/inteq_satchel.rsi
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseBlueShieldContraband]
@@ -14,4 +14,4 @@
   description: A robust satchel for officer "Blueshield" needs.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Satchels/blueshield_satchel.rsi
+    sprite: _Backmen/Clothing/Back/Satchels/blueshield_satchel.rsi

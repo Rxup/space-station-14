@@ -1,7 +1,7 @@
 ﻿#- type: latheRecipe
 #  id: QSI
 #  icon:
-#    sprite: Backmen/Objects/Devices/QSI.rsi
+#    sprite: _Backmen/Objects/Devices/QSI.rsi
 #    state: icon
 #  result: QSI
 #  completetime: 5

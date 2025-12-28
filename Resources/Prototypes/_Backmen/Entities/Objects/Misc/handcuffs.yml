@@ -5,7 +5,7 @@
   description: Чтоб не наврядить ваши кисти, лучше использовать более мягкие штуки.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/purplecuff.rsi
+    sprite: _Backmen/Objects/Misc/purplecuff.rsi
     state: cuff
   - type: Item
     inhandVisuals:
@@ -14,5 +14,5 @@
       right:
         - state: inhand-right
   - type: Handcuff
-    cuffedRSI: Backmen/Objects/Misc/purplecuff.rsi
+    cuffedRSI: _Backmen/Objects/Misc/purplecuff.rsi
     bodyIconState: body-overlay

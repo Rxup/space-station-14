@@ -6,7 +6,7 @@
     - type: Sprite
       layers:
         - state: green
-        - sprite: Backmen/Mobs/Silicon/BPLA.rsi
+        - sprite: _Backmen/Mobs/Silicon/BPLA.rsi
           state: shell
     - type: SpawnPoint
       job_id: BKBPLATech
@@ -19,7 +19,7 @@
     - type: Sprite
       layers:
         - state: green
-        - sprite: Backmen/Mobs/Silicon/BPLAMED.rsi
+        - sprite: _Backmen/Mobs/Silicon/BPLAMED.rsi
           state: shell
     - type: SpawnPoint
       job_id: BKBPLAMED 

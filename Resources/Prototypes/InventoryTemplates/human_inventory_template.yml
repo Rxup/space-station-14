@@ -22,7 +22,7 @@
       uiWindowPos: 1,1
       strippingWindowPos: 1,2
       displayName: Suit
-      #backmen:underclothing-start
+      # Backmen:underclothing-start
     - name: undershirt
       slotTexture: undershirt
       slotFlags: UNDERSHIRT
@@ -44,7 +44,7 @@
       uiWindowPos: 0,4
       strippingWindowPos: 3,3
       displayName: Socks
-      #backmen:underclothing-end
+      # Backmen:underclothing-end
     - name: gloves
       slotTexture: gloves
       slotFlags: GLOVES

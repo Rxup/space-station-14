@@ -22,17 +22,17 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/knife_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/knife_pickup.ogg
       params:
         volume: -8
   - type: EmitSoundOnDrop
-    sound: 
-      path: /Audio/Backmen/Items/handling/knife_drop.ogg
+    sound:
+      path: /Audio/_Backmen/Items/handling/knife_drop.ogg
       params:
         volume: -8
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/knife_drop.ogg
+      path: /Audio/_Backmen/Items/handling/knife_drop.ogg
       params:
         volume: -8
   # backmen edit end

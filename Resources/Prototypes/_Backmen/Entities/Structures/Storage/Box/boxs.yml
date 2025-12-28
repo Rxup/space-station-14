@@ -28,7 +28,7 @@
   - type: Climbable
   - type: Sprite
     noRot: true
-    sprite: Backmen/Structures/Storage/armybox.rsi
+    sprite: _Backmen/Structures/Storage/armybox.rsi
     layers:
     - state: box
       map: [ "enum.DamageStateVisualLayers.Base" ]

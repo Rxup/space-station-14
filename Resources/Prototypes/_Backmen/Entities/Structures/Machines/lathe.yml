@@ -24,7 +24,7 @@
   - type: Transform
     noRot: false
   - type: Sprite
-    sprite: Backmen/Structures/Machines/prizecounter.rsi
+    sprite: _Backmen/Structures/Machines/prizecounter.rsi
     snapCardinals: true
     layers:
     - state: icon
@@ -86,7 +86,7 @@
   description: Распечатывает "фальшивые", неофициальные кредиты, в обход систем и бюррократии, за счет бумаги и некоторых связных материалов
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Machines/protoprint.rsi
+    sprite: _Backmen/Structures/Machines/protoprint.rsi
     snapCardinals: true
     layers:
     - state: icon

@@ -8,8 +8,8 @@
   rules:
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
@@ -25,8 +25,8 @@
   showInVote: false # secret
   description: kessler-syndrome-description
   rules:
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - KesslerSyndromeScheduler
     - CalmStationEventScheduler # backmen change: Meteors are already enough to destroy the station.
 #    - SpaceTrafficControlEventScheduler
@@ -42,8 +42,8 @@
   showInVote: false
   rules:
     # start-backmen
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - VampiresGameRule # backmen: vampire
     - FleshCult # backmen: flesh cult
     - ExtendedThief # backmen: extended-thief
@@ -72,8 +72,8 @@
   showInVote: false #Please god dont do this
   rules:
     # start-backmen
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - BlobGameMode
     - VampiresGameRule
     - FleshCult
@@ -105,8 +105,8 @@
   description: extended-description
   rules:
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - MeteorSwarmScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
@@ -123,9 +123,9 @@
   rules:
   - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
-  - WageScheduler #backmen: currency
+  - WageScheduler # Backmen: currency
   - LavalandStormScheduler # Lavaland Change
-  - PsiScheduler #backmen: psi
+  - PsiScheduler # Backmen: psi
 
 - type: gamePreset
   id: Secret
@@ -147,8 +147,8 @@
   description: secret-description
   rules:
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - MeteorSwarmScheduler
 #    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -162,8 +162,8 @@
   showInVote: false #Admin Use
   description: secret-description
   rules:
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
   - LavalandStormScheduler # Lavaland Change
@@ -192,8 +192,8 @@
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -219,17 +219,17 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: true #backmen terror
-  minPlayers: 30 #backmen terror
+  showInVote: true # Backmen terror
+  minPlayers: 30 # Backmen terror
   rules:
     - Nukeops
     - DummyNonAntagChance
     - SubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
-    - CalmMeteorSwarmScheduler #backmen: calm-scheduler
+    - WageScheduler # Backmen: currency
+    - PsiScheduler # Backmen: psi
+    - CalmMeteorSwarmScheduler # Backmen: calm-scheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
@@ -250,9 +250,9 @@
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - WageScheduler #backmen: currency
+    - WageScheduler # Backmen: currency
     - LavalandStormScheduler # Lavaland Change
-    - PsiScheduler #backmen: psi
+    - PsiScheduler # Backmen: psi
 
 - type: gamePreset
   id: Wizard
@@ -282,8 +282,8 @@
   showInVote: false
   rules:
   - Zombie
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - MeteorSwarmScheduler
 #  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
@@ -299,8 +299,8 @@
   description: zombieteors-description
   showInVote: false
   rules:
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
+  - WageScheduler # Backmen: currency
+  - PsiScheduler # Backmen: psi
   - Zombie
   - CalmStationEventScheduler # backmen: gamerules rework
   - KesslerSyndromeScheduler

@@ -1,7 +1,7 @@
 - type: inventoryTemplate
   id: golem
   slots:
-  #backmen:underclothing-start
+  # Backmen:underclothing-start
     - name: undershirt
       slotTexture: undershirt
       slotFlags: UNDERSHIRT
@@ -23,7 +23,7 @@
       uiWindowPos: 4,2
       strippingWindowPos: 3,3
       displayName: Socks
-    #backmen:underclothing-end
+    # Backmen:underclothing-end
     - name: shoes
       slotTexture: shoes
       slotFlags: FEET

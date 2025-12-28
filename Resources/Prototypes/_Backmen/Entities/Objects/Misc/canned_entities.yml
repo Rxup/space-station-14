@@ -6,10 +6,10 @@
   description: Fun-Clo tins are produced by Honk! Co mainly for their clowns all over the universe, no one knows the composition of the food. this can of classic taste.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     state: icon
   - type: Item
-    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     heldPrefix: packet
     size: Small
   - type: Destructible
@@ -39,10 +39,10 @@
   description: Fun-Clo tins are produced by Honk! Co mainly for their clowns all over the universe, no one knows the composition of the food. this can of classic taste, wait... Clown face?!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     state: clown
   - type: Item
-    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    sprite: _Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     heldPrefix: packet
     size: Small
   - type: GhostRole

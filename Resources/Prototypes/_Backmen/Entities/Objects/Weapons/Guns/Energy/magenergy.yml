@@ -6,7 +6,7 @@
   suffix: Rifle
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -14,13 +14,13 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
     size: Large
   - type: GunWieldBonus
     minAngle: -6
@@ -61,7 +61,7 @@
   description: A Earth Government heavy sniper rifle for a extended combat situation.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -69,13 +69,13 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
   - type: GunRequiresWield
   - type: ClothingSpeedModifier
     walkModifier: 1

@@ -8,7 +8,7 @@
     flavors:
       - fortunecookie
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/inteq_cookies.rsi
+    sprite: _Backmen/Objects/Consumable/Food/inteq_cookies.rsi
     state: inteq_cookies
   - type: Item
   - type: Food
@@ -22,5 +22,5 @@
   name: InteQ cookies packet
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Food/inteq_cookies.rsi
+    sprite: _Backmen/Objects/Consumable/Food/inteq_cookies.rsi
     state: inteq_cookies_trash

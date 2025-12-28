@@ -5,7 +5,7 @@
   description: Music speaker, portable jukebox.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Devices/boombox.rsi
+    sprite: _Backmen/Objects/Devices/boombox.rsi
     layers:
     - state: "off"
       map: ["enum.JukeboxVisualLayers.Base"]
@@ -14,7 +14,7 @@
     offState: off
     selectState: select
   - type: Item
-    sprite: Backmen/Objects/Devices/boombox.rsi
+    sprite: _Backmen/Objects/Devices/boombox.rsi
     size: Large
     shape:
     - 0,0,3,2

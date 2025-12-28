@@ -30,7 +30,7 @@
   suffix: 2 uses
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/books.rsi
+    sprite: _Backmen/Objects/Misc/books.rsi
     layers:
     - state: syndicate
   - type: LanguageLearn
@@ -46,7 +46,7 @@
   suffix: 2 uses
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/books.rsi
+    sprite: _Backmen/Objects/Misc/books.rsi
     layers:
     - state: inteq
   - type: LanguageLearn

@@ -4,7 +4,7 @@
   name: bone shard
   components:
   - type: Sprite
-    sprite: Backmen/Changeling/bone_shard.rsi
+    sprite: _Backmen/Changeling/bone_shard.rsi
     layers:
     - state: icon
       map: ["base"]

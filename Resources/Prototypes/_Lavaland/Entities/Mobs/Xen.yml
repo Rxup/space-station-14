@@ -32,7 +32,7 @@
         task: HeadCrabCompound
       blackboard:
         SoundTargetInLOS: !type:SoundPathSpecifier
-          path: /Audio/Backmen/test/base/ogg/blackmesa/headcrab/alert1.ogg
+          path: /Audio/_Backmen/test/base/ogg/blackmesa/headcrab/alert1.ogg
     - type: ReplacementAccent
       accent: genericAggressive
     - type: CombatMode
@@ -42,7 +42,7 @@
     - type: MeleeWeapon
       hidden: true
       soundHit:
-        path: /Audio/Backmen/test/base/ogg/blackmesa/headcrab/headbite.ogg
+        path: /Audio/_Backmen/test/base/ogg/blackmesa/headcrab/headbite.ogg
       angle: 0
       animation: WeaponArcSmash
       damage:
@@ -109,7 +109,7 @@
       baseSprintSpeed: 4
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
+      sprite: _Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
       layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: headcrab
@@ -172,7 +172,7 @@
     angle: 0
     animation: WeaponArcClaw
     soundHit:
-        path: /Audio/Backmen/test/base/ogg/blackmesa/zombies/claw_strike.ogg
+        path: /Audio/_Backmen/test/base/ogg/blackmesa/zombies/claw_strike.ogg
         params:
           volume: 5
     damage:
@@ -256,7 +256,7 @@
           Structural: 35
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
     layers:
     - state: hecu_zombie
   - type: MobThresholds
@@ -282,7 +282,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
     layers:
     - state: scientist_zombie
   - type: MobThresholds
@@ -303,7 +303,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
     - state: equipped-HAND
@@ -313,7 +313,7 @@
     - state: equipped-OUTERCLOTHING
       sprite: Clothing/OuterClothing/Armor/security.rsi
     - state: headcrab_zombie
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -334,7 +334,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
     - state: equipped-HAND
@@ -344,9 +344,9 @@
     - state: equipped-OUTERCLOTHING
       sprite: Clothing/OuterClothing/Armor/security.rsi
     - state: headcrab_zombie
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
     - state: inhand-right
-      sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
+      sprite: _Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -383,7 +383,7 @@
     drawdepth: Mobs
     layers:
     - state: male_template
-      sprite: Backmen/Mobs/Npc/Base.rsi
+      sprite: _Backmen/Mobs/Npc/Base.rsi
     - state: equipped-INNERCLOTHING
       sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
     - state: equipped-HAND
@@ -391,9 +391,9 @@
     - state: equipped-FEET
       sprite: Clothing/Shoes/Boots/combatboots.rsi
     - state: equipped-OUTERCLOTHING
-      sprite: Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
+      sprite: _Backmen/Clothing/OuterClothing/Armor/heavy_armor.rsi
     - state: headcrab_zombie
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: Damageable
     damageModifierSet: CombineArmorElite
   - type: Loadout
@@ -408,7 +408,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
     layers:
     - state: hev_zombie
   - type: MeleeWeapon
@@ -466,12 +466,12 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    sprite: _Backmen/Mobs/Npc/Civilian.rsi
     layers:
     - state: civ1
       map: [ "enum.DamageStateVisualLayers.Base" ]
     - state: headcrab_zombie
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: RandomSprite
     available:
       - enum.DamageStateVisualLayers.Base:
@@ -542,7 +542,7 @@
     drawdepth: Mobs
     layers:
     - state: blackops_ranged
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: TemperatureProtection
   - type: Temperature
     damageCap: 0
@@ -578,7 +578,7 @@
     drawdepth: Mobs
     layers:
     - state: blackops
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: MovementSpeedModifier
     baseSprintSpeed: 6
     baseWalkSpeed: 4
@@ -600,7 +600,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: bullsquid
@@ -612,7 +612,7 @@
     altDisarm: false
     angle: 0
     soundHit:
-     path: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/attack1.ogg
+     path: /Audio/_Backmen/test/base/ogg/blackmesa/bullsquid/attack1.ogg
     animation: WeaponArcBite
     damage:
       groups:
@@ -642,7 +642,7 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/goo_attack3.ogg
+    soundGunshot: /Audio/_Backmen/test/base/ogg/blackmesa/bullsquid/goo_attack3.ogg
   - type: TemperatureProtection
   - type: Temperature
     damageCap: 0
@@ -673,7 +673,7 @@
       task: SimpleRangedHostileCompound
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
     layers:
     - state: vortigaunt
       map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -762,11 +762,11 @@
       Brute: 5
       Burn: 20
   muzzleFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
     state: blue_lightning
   travelFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
     state: blue_lightning
   impactFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
     state: blue_lightning

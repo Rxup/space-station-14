@@ -26,7 +26,7 @@
   category: Small
   group: TeamA
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/teamA1.yml
+  shuttlePath: /Maps/_Backmen/ForSale/teamA1.yml
 
 
 - type: vessel
@@ -37,4 +37,4 @@
   category: Small
   group: TeamB
   private: true
-  shuttlePath: /Maps/Backmen/ForSale/teamB1.yml
+  shuttlePath: /Maps/_Backmen/ForSale/teamB1.yml

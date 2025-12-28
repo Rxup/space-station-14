@@ -12,7 +12,7 @@
         - ReagentId: Sake
           Quantity: 100
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Drinks/saketokkuri.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/saketokkuri.rsi
 
 - type: entity
   parent: DrinkBottleGlassBaseFull
@@ -27,4 +27,4 @@
         - ReagentId: Soju
           Quantity: 100
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Drinks/sojubottle.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/sojubottle.rsi

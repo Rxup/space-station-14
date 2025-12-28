@@ -14,7 +14,7 @@
     difficulty: 1
     #unique: false
     icon:
-      sprite: Backmen/Clothing/Head/Hats/tinfoil.rsi
+      sprite: _Backmen/Clothing/Head/Hats/tinfoil.rsi
       state: icon
   - type: ObjectiveBlacklistRequirement
     blacklist:
@@ -38,7 +38,7 @@
     difficulty: 1
     #unique: false
     icon:
-      sprite: Backmen/Mobs/Species/Golem/cult.rsi
+      sprite: _Backmen/Mobs/Species/Golem/cult.rsi
       state: full
   - type: ObjectiveBlacklistRequirement
     blacklist:
@@ -56,7 +56,7 @@
     difficulty: 2.5
     #unique: false
     icon:
-      sprite: Backmen/Icons/psi.rsi
+      sprite: _Backmen/Icons/psi.rsi
       state: psi
   - type: RaiseGlimmerCondition
     target: 500

@@ -26,7 +26,7 @@
         Piercing: 0.5
         ArmorPiercing: 0.7
         Heat: 0.55
-        Stun: 0.4 #Backmen-edit
+        Stun: 0.4 # Backmen-edit
   - type: ExplosionResistance
     damageCoefficient: 0.15
   - type: GroupExamine
@@ -202,7 +202,7 @@
         Piercing: 0.8
         ArmorPiercing: 0.9
         Heat: 0.8
-        Stun: 0.4 #Backmen-edit
+        Stun: 0.4 # Backmen-edit
   # phase cloak
   - type: ToggleClothing
     action: ActionTogglePhaseCloak

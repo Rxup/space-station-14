@@ -5,14 +5,14 @@
   description: The 711-MarkCL Rivet Gun is the latest refinement from Timson Tools' long line of friendly tools. Useful for rapid repairs at a distance!
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -42,7 +42,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/Backmen/Weapons/Misc/rivet_fire.ogg
+      path: /Audio/_Backmen/Weapons/Misc/rivet_fire.ogg
       params:
         volume: -10
 
@@ -68,7 +68,7 @@
     size: Small
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Misc/rivet.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Misc/rivet.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -94,7 +94,7 @@
       - CartridgeNail
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/nail.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/nail.rsi
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
@@ -115,7 +115,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/muzzle/divet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Effects/muzzle/divet.rsi
     layers:
     - state: projectiles_divet
       shader: unshaded

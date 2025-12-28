@@ -9,7 +9,7 @@
 - type: latheRecipe
   id: InsulativeHeadcage
   icon:
-    sprite: Backmen/Clothing/Head/Hats/cage.rsi
+    sprite: _Backmen/Clothing/Head/Hats/cage.rsi
     state: icon
   result: ClothingHeadCage
   completetime: 4

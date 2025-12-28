@@ -6,9 +6,9 @@
   description: Скафандр EVA изготовленный специально для отдела снабжения.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/eva_cargo.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/eva_cargo.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/eva_cargo.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/eva_cargo.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCargoEVA
   - type: ContainerContainer
@@ -22,9 +22,9 @@
   description: Has a tag on the back that reads - Property of InteQ
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_eva.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/inteq_eva.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/inteq_eva.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Hardsuits/inteq_eva.rsi
   - type: Item
     size: Normal
     shape:

@@ -1,6 +1,6 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared._Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;

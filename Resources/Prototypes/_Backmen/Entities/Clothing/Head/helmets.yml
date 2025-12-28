@@ -5,9 +5,9 @@
   description: Баллистический Шлем корпорации CSH для бойцов МОГ, покрыт желтым слоем стекла, обеспечивает защиту от осколков, разработан инженером CSH Беловым.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/mog_helmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/mog_helmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/mog_helmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/mog_helmet.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -27,9 +27,9 @@
   description: Шлем биологической защиты ИОГ. Оснащен прокладками из прочного материала, способного сдержать выстрел мелкокалиберного оружия.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
   - type: Armor
     coverage:
     - Head
@@ -47,9 +47,9 @@
   description: Тяжелый шлем марки АЛТЫН, способен выдержать выстрел крупнокалиберного оружия.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/altinbelov.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/altinbelov.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/altinbelov.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/altinbelov.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -69,9 +69,9 @@
   description: Довольно старый шлем, который потрепало временем.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/germanhelmetbelov.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/germanhelmetbelov.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/germanhelmetbelov.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/germanhelmetbelov.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -88,9 +88,9 @@
   description: Легкий шлем советских войск
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helmetssspbel.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmetssspbel.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helmetssspbel.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmetssspbel.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -109,9 +109,9 @@
   description: Тяжелый шлем неизвестной корпорации, никто не знает кому принадлежат бойцы которые носят данный шлем.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/ihscombathelmetbelsuper.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/ihscombathelmetbelsuper.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/ihscombathelmetbelsuper.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/ihscombathelmetbelsuper.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -132,9 +132,9 @@
   description: Встроенный шлем скафандра EVA отдела снабжения. Есть фонарик.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/eva_cargo.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/eva_cargo.rsi
   - type: PointLight
     color: "#ffdbad"
   - type: Armor
@@ -152,9 +152,9 @@
   description: Вы чувствуете жажду. Не только скорости.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetred.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetred.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetred.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetred.rsi
   - type: Armor
     coverage:
     - Head
@@ -172,9 +172,9 @@
   description: Вы чувствуете жажду. Не только скорости.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
 
 - type: entity
   parent: ClothingHeadHelmetRed
@@ -183,9 +183,9 @@
   description: Вы чувствуете жажду. Не только скорости.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
 
 - type: entity
   parent: ClothingHeadHelmetRed
@@ -194,9 +194,9 @@
   description: Вы чувствуете жажду. Не только скорости.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
 
 - type: entity
   parent: ClothingHeadHelmetRed
@@ -205,9 +205,9 @@
   description: Вы чувствуете жажду. Не только скорости.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetwhite.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetwhite.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetwhite.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetwhite.rsi
 
 - type: entity
   parent: ClothingHeadHelmetRed
@@ -216,9 +216,9 @@
   description: Вы чувствуете жажду. Не только скорости.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
 
 - type: entity
   parent: ClothingHeadHelmetEGov
@@ -226,9 +226,9 @@
   name: pilot helmet
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/pilothelmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/pilothelmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/pilothelmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/pilothelmet.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -237,9 +237,9 @@
   description: A helmet using by UEG marine corp.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
   - type: Armor
     coverage:
     - Head
@@ -262,9 +262,9 @@
   description: A usual helmet.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmet.rsi
   - type: Armor
     coverage:
     - Head
@@ -284,9 +284,9 @@
   description: Обычный шлем с желтым визором.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helmetmvd.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmetmvd.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helmetmvd.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmetmvd.rsi
   - type: Armor
     coverage:
     - Head
@@ -314,7 +314,7 @@
     - WhitelistChameleon
   - type: IngestionBlocker
   - type: IdentityBlocker
-  - type: TinfoilHat #Backmen
+  - type: TinfoilHat # Backmen
     destroyOnFry: false
   - type: HideLayerClothing
     slots:
@@ -328,9 +328,9 @@
   description:  Шлем SWATа, способен выдержать выстрел оружия.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helm.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helm.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helm.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helm.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -349,9 +349,9 @@
   description:  Шлем милитарист, способен выдержать выстрел оружия.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmetgrin.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmetgrin.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -370,9 +370,9 @@
   description:  Белый боевой шлем, способен выдержать выстрел оружия.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -391,9 +391,9 @@
   description:  Белый боевой-медицинский шлем, способен выдержать выстрел оружия.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
   - type: IngestionBlocker
   - type: Armor
     coverage:
@@ -414,9 +414,9 @@
   suffix: Unremoveable
   components:
   - type: Sprite
-    sprite: Backmen/Changeling/ling_armor_helmet.rsi
+    sprite: _Backmen/Changeling/ling_armor_helmet.rsi
   - type: Clothing
-    sprite: Backmen/Changeling/ling_armor_helmet.rsi
+    sprite: _Backmen/Changeling/ling_armor_helmet.rsi
   - type: Armor
     coverage:
     - Head
@@ -435,9 +435,9 @@
   description: Модифицированный шлем службы безопасности, предназначенный для нужд охраны станций Центрального командования.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/centcom_sec_helmet.rsi
   - type: Armor
     coverage:
     - Head
@@ -457,9 +457,9 @@
   description: Standard security pilot gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/helmet-sec-pilot.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmet-sec-pilot.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/helmet-sec-pilot.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/helmet-sec-pilot.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -473,9 +473,9 @@
   description: An extremely robust helmet, commonly used by paramilitary forces. It is adorned in a nefarious orange and black stripe pattern.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/inteq_swat.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_swat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/inteq_swat.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_swat.rsi
 
 - type: entity
   parent: [ClothingHeadHelmetBasic, BaseMajorContraband]
@@ -484,9 +484,9 @@
   description: Anti-eretic.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/inteq_dark_templar.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_dark_templar.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/inteq_dark_templar.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_dark_templar.rsi
 
 - type: entity
   parent: ClothingHeadHelmetInteQDarkTemplar
@@ -494,9 +494,9 @@
   name: dark crusader helmet
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/inteq_alt_dark_templar.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_alt_dark_templar.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/inteq_alt_dark_templar.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_alt_dark_templar.rsi
 
 - type: entity
   parent: [ClothingHeadHelmetSwat, BaseMajorContraband]
@@ -505,9 +505,9 @@
   description: Lightweight helmet with panoramic visor. It is covered with a protective film that protects the wearer from bright flashes, and the reinforced visor can withstand more than one bullet during your stealth mission.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/inteq_infiltrator
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_infiltrator
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/inteq_infiltrator
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_infiltrator
   - type: FlashImmunity
 
 - type: entity
@@ -517,7 +517,7 @@
   description: Heavy.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/inteq_tombstone.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_tombstone.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/inteq_tombstone.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/inteq_tombstone.rsi
   - type: FlashImmunity

@@ -5,7 +5,7 @@
   description: Quite a comfortable dark chair.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Furniture/chairs.rsi
+    sprite: _Backmen/Structures/Furniture/chairs.rsi
     state: dark-comfy
   - type: Construction
     graph: Seat

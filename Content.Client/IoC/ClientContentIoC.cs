@@ -1,8 +1,10 @@
-﻿using Content.Client.Administration.Managers;
+﻿using Content.Client._Backmen.DiscordAuth;
+using Content.Client._Backmen.JoinQueue;
+using Content.Client._Backmen.Sponsors;
+using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
-using Content.Client.Corvax.TTS;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.Fullscreen;
@@ -22,6 +24,8 @@ using Content.Client.Voting;
 using Content.Shared.Administration.Logs;
 using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
+using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
@@ -34,11 +38,11 @@ namespace Content.Client.IoC
         public static void Register()
         {
             var collection = IoCManager.Instance!;
-            collection.Register<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager,Backmen.Sponsors.SponsorsManager>(); // Corvax-Sponsors
-            collection.Register<Content.Corvax.Interfaces.Client.ISponsorWindowCreator,Backmen.Sponsors.SponsorWindowCreator>(); // Corvax-Sponsors
-            collection.Register<Content.Corvax.Interfaces.Client.IClientJoinQueueManager,Backmen.JoinQueue.JoinQueueManager>(); // Corvax-Queue
-            collection.Register<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager,Backmen.DiscordAuth.DiscordAuthManager>(); // Corvax-DiscordAuth
-            collection.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>(); // Corvax-Sponsors
+            collection.Register<ISharedSponsorsManager, SponsorsManager>(); // Corvax-Sponsors
+            collection.Register<ISponsorWindowCreator, SponsorWindowCreator>(); // Corvax-Sponsors
+            collection.Register<IClientJoinQueueManager, JoinQueueManager>(); // Corvax-Queue
+            collection.Register<IClientDiscordAuthManager, DiscordAuthManager>(); // Corvax-DiscordAuth
+            collection.Register<ISharedLoadoutsManager, LoadoutsManager>(); // Corvax-Sponsors
 
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<GeneratedParallaxCache>();

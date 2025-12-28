@@ -6,7 +6,7 @@
   components:
     - type: Sprite
       noRot: true
-      sprite: Backmen/Structures/Machines/washer.rsi
+      sprite: _Backmen/Structures/Machines/washer.rsi
       layers:
         # GenericVisualizer doesn't have a way to deal with multiple conditions at
         # once. So have all the layers ready to go, but don't show them unless
@@ -74,9 +74,9 @@
       grid:
       -  0,0,7,3
       storageOpenSound:
-        path: /Audio/Nyanotrasen/Machines/washer_open.ogg
+        path: /Audio/_Nyanotrasen/Machines/washer_open.ogg
       storageCloseSound:
-        path: /Audio/Nyanotrasen/Machines/washer_close.ogg
+        path: /Audio/_Nyanotrasen/Machines/washer_close.ogg
     - type: ContainerContainer
       containers:
         storagebase: !type:Container

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Backmen.StationEvents.Components;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.StationEvents.Components;
@@ -257,12 +258,12 @@ public sealed class EventManagerSystem : EntitySystem
         }
 
         // start-backmen: Glimmer
-        if (prototype.TryGetComponent<Backmen.StationEvents.Components.GlimmerEventComponent>(
+        if (prototype.TryGetComponent<GlimmerEventComponent>(
                 out var glimmerEventComponent,
                 _componentFactory))
         {
-            var glimmer = EntityManager.SystemOrNull<Shared.Backmen.Psionics.Glimmer.GlimmerSystem>()?.Glimmer ?? 0;
-            var glimmerOn = _configurationManager.GetCVar(Shared.Backmen.CCVar.CCVars.GlimmerEnabled);
+            var glimmer = EntityManager.SystemOrNull<Shared._Backmen.Psionics.Glimmer.GlimmerSystem>()?.Glimmer ?? 0;
+            var glimmerOn = _configurationManager.GetCVar(Shared._Backmen.CCVar.CCVars.GlimmerEnabled);
 
             if(!glimmerOn)
                 return false;

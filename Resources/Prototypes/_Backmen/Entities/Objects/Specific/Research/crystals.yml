@@ -5,7 +5,7 @@
   description: It looks... normal.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Materials/materials.rsi
+    sprite: _Backmen/Objects/Materials/materials.rsi
     layers:
       - state: normalitycrystal_3
         map: ["base"] 
@@ -61,7 +61,7 @@
   description: Contains a soul. Placeholder sprite.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/crystals.rsi
+    sprite: _Backmen/Objects/Misc/crystals.rsi
     state: purple_soul
   - type: Speech
   - type: Psionic

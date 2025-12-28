@@ -8,7 +8,7 @@
     shape:
     - 0,0,1,1
   - type: Sprite
-    sprite: Backmen/Objects/Tools/handheld_camera_monitor.rsi
+    sprite: _Backmen/Objects/Tools/handheld_camera_monitor.rsi
     state: off
     layers:
       - state: off
@@ -54,7 +54,7 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
   - type: Sprite
-    sprite: Backmen/Objects/Tools/handheld_camera_monitor.rsi
+    sprite: _Backmen/Objects/Tools/handheld_camera_monitor.rsi
     state: off
     layers:
       - state: off

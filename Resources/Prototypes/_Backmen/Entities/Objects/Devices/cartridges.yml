@@ -16,7 +16,7 @@
     - type: Cartridge
       programName: bank-program-name
       icon:
-        sprite: Backmen/Structures/Wallmounts/atm.rsi
+        sprite: _Backmen/Structures/Wallmounts/atm.rsi
         state: off
     - type: BankCartridge
 
@@ -27,16 +27,16 @@
   description: A cartridge that keeps track of glimmer.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Devices/cartridge.rsi
+    sprite: _Backmen/Objects/Devices/cartridge.rsi
     state: cart-psi
   - type: Icon
-    sprite: Backmen/Objects/Devices/cartridge.rsi
+    sprite: _Backmen/Objects/Devices/cartridge.rsi
     state: cart-psi
   - type: UIFragment
     ui: !type:GlimmerMonitorUi
   - type: Cartridge
     programName: glimmer-monitor-program-name
     icon:
-      sprite: Backmen/Icons/psi.rsi
+      sprite: _Backmen/Icons/psi.rsi
       state: psi
   - type: GlimmerMonitorCartridge

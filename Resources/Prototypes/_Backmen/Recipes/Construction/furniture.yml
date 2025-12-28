@@ -313,7 +313,7 @@
 #  category: construction-category-furniture
 #  description: A square piece of wood standing on four metal legs. Extra robust.
 #  icon:
-#    sprite: Backmen/Structures/Furniture/Tables/rwood.rsi
+#    sprite: _Backmen/Structures/Furniture/Tables/rwood.rsi
 #    state: full
 #  objectType: Structure
 #  placementMode: SnapgridCenter

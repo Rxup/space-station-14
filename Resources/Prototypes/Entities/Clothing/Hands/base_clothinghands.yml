@@ -9,7 +9,7 @@
     slots: [gloves]
   # backmen edit start
     equipSound:
-      path: /Audio/Backmen/Items/handling/generic_equip2.ogg
+      path: /Audio/_Backmen/Items/handling/generic_equip2.ogg
       params:
         volume: -4
   # backmen edit end
@@ -42,7 +42,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.1
 
 - type: entity

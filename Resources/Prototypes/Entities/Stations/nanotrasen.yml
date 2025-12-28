@@ -40,12 +40,12 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-    - BkmCCBaseStationCargo #Backmen
-    - BaseStationJobsSpawning #Backmen
-    - BaseStationRecords #Backmen
-    - BkmCCBaseStationShuttles #Backmen
-    - BaseStationExpeditions #Backmen
-    - BaseStationMagnet #Backmen
+    - BkmCCBaseStationCargo # Backmen
+    - BaseStationJobsSpawning # Backmen
+    - BaseStationRecords # Backmen
+    - BkmCCBaseStationShuttles # Backmen
+    - BaseStationExpeditions # Backmen
+    - BaseStationMagnet # Backmen
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform

@@ -5,9 +5,9 @@
   description: Удобная обувь наемников IHS, защищает от взрывов
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
   - type: FootstepModifier # Corvax-Sounds
     footstepSoundCollection:
       collection: FootstepBoots
@@ -71,10 +71,10 @@
   description: Minimalist shoes with magnetic soles, allowing the wearer to move at an impressive speed and not worry about clowns with banana peels.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/chrono.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/chrono.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/chrono.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/chrono.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1.5
     sprintModifier: 1.5
@@ -93,9 +93,9 @@
   description: Удобная обувь с шнурками.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/berrci.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/berrci.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/berrci.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/berrci.rsi
   - type: FootstepModifier # Corvax-Sounds
     footstepSoundCollection:
       collection: FootstepBoots
@@ -107,9 +107,9 @@
   description: Специальная обувь служащих Центрального командования.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
   - type: NoSlip
 
 - type: entity
@@ -119,9 +119,9 @@
   description: Pair of insidious boots with special noise muffling soles which very slightly drown out your footsteps. They would be absolutely perfect for stealth operations were it not for the iconic Syndicate flairs.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/inteq_infiltrator.rsi
   - type: NoSlip
   - type: FootstepModifier
     footstepSoundCollection:

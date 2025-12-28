@@ -5,7 +5,7 @@
   description: Giant10-desc
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   sponsorOnly: true
@@ -19,7 +19,7 @@
   description: Giant20-desc
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   sponsorOnly: true
@@ -33,7 +33,7 @@
   description: Giant30-desc
   blacklist:
     components:
-    - BSSDrone #backmen: bssdrone
+    - BSSDrone # Backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
   sponsorOnly: true

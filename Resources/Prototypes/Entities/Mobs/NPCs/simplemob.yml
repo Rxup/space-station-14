@@ -68,7 +68,7 @@
   - type: Perishable
   - type: LanguageSpeaker
     currentLanguage: SpaceMob
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - SpaceMob
     understands:
@@ -111,9 +111,9 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
-    - PsionicsDisabled #backmen
-    - PsionicallyInsulated #backmen
-    - SeeAll #backmen
+    - PsionicsDisabled # Backmen
+    - PsionicallyInsulated # Backmen
+    - SeeAll # Backmen
   - type: Bloodstream
     bloodMaxVolume: 150
   - type: MobPrice

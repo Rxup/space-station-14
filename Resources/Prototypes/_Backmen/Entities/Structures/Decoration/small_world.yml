@@ -7,7 +7,7 @@
   description: For your foots?...
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/SmallWorld/roads.rsi
+    sprite: _Backmen/Structures/Decoration/SmallWorld/roads.rsi
     state: roadfourway
   - type: Transform
     anchored: true
@@ -77,7 +77,7 @@
   description: NOT for your foots!!!
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/SmallWorld/buildings.rsi
+    sprite: _Backmen/Structures/Decoration/SmallWorld/buildings.rsi
     state: smallbusiness
   - type: InteractionOutline
   - type: Transform

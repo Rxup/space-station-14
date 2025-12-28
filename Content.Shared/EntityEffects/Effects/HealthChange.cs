@@ -6,7 +6,7 @@ using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Text.Json.Serialization;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared._Backmen.Targeting;
 
 namespace Content.Shared.EntityEffects.Effects
 {

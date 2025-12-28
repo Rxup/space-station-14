@@ -9,7 +9,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: goat
-      sprite: Backmen/Mobs/Animals/bluespacegoat.rsi
+      sprite: _Backmen/Mobs/Animals/bluespacegoat.rsi
   - type: DamageStateVisuals
     states:
       Alive:

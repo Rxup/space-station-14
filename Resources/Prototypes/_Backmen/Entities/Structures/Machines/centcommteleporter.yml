@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Backmen/Structures/Machines/centcommteleporter.rsi
+    sprite: _Backmen/Structures/Machines/centcommteleporter.rsi
     layers:
     - state: teleport
       map: ["base"]

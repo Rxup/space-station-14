@@ -8,7 +8,7 @@
     proto: CartridgeRevolver38Special
     whitelist:
       tags:
-        - CartridgeRevolver38Special #Backmen-revolver
+        - CartridgeRevolver38Special # Backmen-revolver
   - type: Tag
     tags:
       - SpeedLoader38Special

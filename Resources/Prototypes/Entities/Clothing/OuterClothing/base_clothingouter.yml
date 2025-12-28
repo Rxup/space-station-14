@@ -181,22 +181,22 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.4
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/backpack_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/backpack_pickup.ogg
       params:
         volume: -4
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/backpack_drop.ogg
+      path: /Audio/_Backmen/Items/handling/backpack_drop.ogg
       params:
         volume: -4
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Backmen/Items/handling/backpack_drop.ogg
+      path: /Audio/_Backmen/Items/handling/backpack_drop.ogg
       params:
         volume: -4
   # backmen edit end
@@ -231,7 +231,7 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.3
 
 - type: entity

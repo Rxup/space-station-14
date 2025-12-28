@@ -7,7 +7,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/stained_glass.rsi
+    sprite: _Backmen/Structures/Decoration/stained_glass.rsi
     state: gabriel
     scale: 0.5, 0.5
     offset: 0, 0.5

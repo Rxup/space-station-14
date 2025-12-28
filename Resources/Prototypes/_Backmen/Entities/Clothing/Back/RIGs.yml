@@ -5,7 +5,7 @@
   description: It's a very robust RIG.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/specialforce.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/specialforce.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitSpecialForce
     slot: outerClothing
@@ -33,7 +33,7 @@
   description: It's a very robust backpack.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/RTU.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitRTU
 
@@ -44,7 +44,7 @@
   description: It's a very robust backpack.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/RTU.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitRTUMedick
   - type: ContainerContainer
@@ -65,7 +65,7 @@
   description: It's a very robust backpack.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/RTU.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitRTUEnginegr
   - type: ContainerContainer
@@ -90,7 +90,7 @@
     grid:
     - 0,0,10,5
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/RTUL.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/RTUL.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitRTULeader
     slot: outerClothing
@@ -114,7 +114,7 @@
   description: It's a very robust RIG.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/specialforce.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/specialforce.rsi
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -127,7 +127,7 @@
   description: An advanced and stylish RIG right from the future.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
+    sprite: _Backmen/Clothing/Back/RIGs/chrono.rsi
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -158,7 +158,7 @@
   - type: Action
     itemIconStyle: BigAction
     icon:
-      sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
+      sprite: _Backmen/Clothing/Back/RIGs/chrono.rsi
       state: icon
     useDelay: 2
   - type: InstantAction

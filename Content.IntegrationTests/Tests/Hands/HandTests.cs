@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server.Damage.Systems;
 using Content.Server.Storage.EntitySystems;
-using Content.Shared.Backmen.CCVar;
+using Content.Shared._Backmen.CCVar;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Server.GameObjects;

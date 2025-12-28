@@ -5,9 +5,9 @@
   description: "Отлично подходит для Сибири, да?"
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/ushankaSSSP.rsi
+    sprite: _Backmen/Clothing/Head/Hats/ushankaSSSP.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/ushankaSSSP.rsi
+    sprite: _Backmen/Clothing/Head/Hats/ushankaSSSP.rsi
   - type: AddAccentClothing
     accent: RussianAccent
 
@@ -18,9 +18,9 @@
   description: Довольно старая фуражка офицера руководящего немецкими войсками
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/germancapofficerbel.rsi
+      sprite: _Backmen/Clothing/Head/Hats/germancapofficerbel.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/germancapofficerbel.rsi
+      sprite: _Backmen/Clothing/Head/Hats/germancapofficerbel.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -29,9 +29,9 @@
   description: Современная версия фуражки офицера руководящего войсками СССП
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/sovietcapbel.rsi
+      sprite: _Backmen/Clothing/Head/Hats/sovietcapbel.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/sovietcapbel.rsi
+      sprite: _Backmen/Clothing/Head/Hats/sovietcapbel.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -40,9 +40,9 @@
   description: Шляпа охотника за мифическими существами, а именно ведьмами в стиле средневековья
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/whitshunterbelov.rsi
+      sprite: _Backmen/Clothing/Head/Hats/whitshunterbelov.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/whitshunterbelov.rsi
+      sprite: _Backmen/Clothing/Head/Hats/whitshunterbelov.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -51,9 +51,9 @@
   description: Стильный чёрный берет с зелёным значком показывает кто тут следит запорядком.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/cchos_beret.rsi
+      sprite: _Backmen/Clothing/Head/Hats/cchos_beret.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/cchos_beret.rsi
+      sprite: _Backmen/Clothing/Head/Hats/cchos_beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -62,9 +62,9 @@
   description: Protects you from all manner of psionic assaults.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/tinfoil.rsi
+      sprite: _Backmen/Clothing/Head/Hats/tinfoil.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/tinfoil.rsi
+      sprite: _Backmen/Clothing/Head/Hats/tinfoil.rsi
     - type: TinfoilHat
     - type: Armor
       modifiers:
@@ -84,9 +84,9 @@
   description: Псионически изолирует голову того, кто находится внутри нее. Требуется время, чтобы устоять.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/cage.rsi
+      sprite: _Backmen/Clothing/Head/Hats/cage.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/cage.rsi
+      sprite: _Backmen/Clothing/Head/Hats/cage.rsi
     - type: HeadCage
     - type: ClothingSpeedModifier
       walkModifier: 0.80
@@ -99,9 +99,9 @@
   description: Psionically insulates whoevers head is inside it. It has some protection from physical damage.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Helmets/insulative_skullcap.rsi
+      sprite: _Backmen/Clothing/Head/Helmets/insulative_skullcap.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Helmets/insulative_skullcap.rsi
+      sprite: _Backmen/Clothing/Head/Helmets/insulative_skullcap.rsi
     - type: Armor
       modifiers:
         coefficients:
@@ -117,9 +117,9 @@
   description: Smells like a good pension.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/mailman.rsi
+      sprite: _Backmen/Clothing/Head/Hats/mailman.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/mailman.rsi
+      sprite: _Backmen/Clothing/Head/Hats/mailman.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -128,9 +128,9 @@
   description: Feel like a cowboy!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/stetson.rsi
+    sprite: _Backmen/Clothing/Head/Hats/stetson.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/stetson.rsi
+    sprite: _Backmen/Clothing/Head/Hats/stetson.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -144,9 +144,9 @@
   description: The quintessential head armor of the kendo practitioner.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Helmets/men.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/men.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/men.rsi
+    sprite: _Backmen/Clothing/Head/Helmets/men.rsi
   - type: Armor
     coverage:
     - Head
@@ -163,9 +163,9 @@
   description: Гласит приказ "Ни шагу назад"!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/capsssp.rsi
+    sprite: _Backmen/Clothing/Head/Hats/capsssp.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/capsssp.rsi
+    sprite: _Backmen/Clothing/Head/Hats/capsssp.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -178,9 +178,9 @@
   description: Фуражка сотрудника СБ, имеет эмблему НТ.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/seccap.rsi
+      sprite: _Backmen/Clothing/Head/Hats/seccap.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/seccap.rsi
+      sprite: _Backmen/Clothing/Head/Hats/seccap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -189,9 +189,9 @@
   description: Зелёный берет ветерана, в милитарическом стиле.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
+      sprite: _Backmen/Clothing/Head/Hats/beretvet.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
+      sprite: _Backmen/Clothing/Head/Hats/beretvet.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -200,9 +200,9 @@
   description: Шляпа из верблюжьей шерсти, крайне похожа на древний головной убор священника.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/headchap.rsi
+      sprite: _Backmen/Clothing/Head/Hats/headchap.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/headchap.rsi
+      sprite: _Backmen/Clothing/Head/Hats/headchap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -211,9 +211,9 @@
   description: Navy officer cap. Better than any stripes will emphasize your importance and rank.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/officer_cap.rsi
+    sprite: _Backmen/Clothing/Head/Hats/officer_cap.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/officer_cap.rsi
+    sprite: _Backmen/Clothing/Head/Hats/officer_cap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -222,9 +222,9 @@
   description: Officer cap. Better than any stripes will emphasize your importance and rank.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/shtab.rsi
+    sprite: _Backmen/Clothing/Head/Hats/shtab.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/shtab.rsi
+    sprite: _Backmen/Clothing/Head/Hats/shtab.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -233,9 +233,9 @@
   description: Officer cap. Better than any stripes will emphasize your importance and rank.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/shtabguard.rsi
+    sprite: _Backmen/Clothing/Head/Hats/shtabguard.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/shtabguard.rsi
+    sprite: _Backmen/Clothing/Head/Hats/shtabguard.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -244,9 +244,9 @@
   description: Officer cap. Better than any stripes will emphasize your importance and rank.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/officer.rsi
+    sprite: _Backmen/Clothing/Head/Hats/officer.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/officer.rsi
+    sprite: _Backmen/Clothing/Head/Hats/officer.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -255,9 +255,9 @@
   description: Officer cap. Better than any stripes will emphasize your importance and rank.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/flot.rsi
+    sprite: _Backmen/Clothing/Head/Hats/flot.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/flot.rsi
+    sprite: _Backmen/Clothing/Head/Hats/flot.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -266,9 +266,9 @@
   description: Beret made of dense camouflage fabric. Doesn't make you invisible.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/beret.rsi
+    sprite: _Backmen/Clothing/Head/Hats/beret.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/beret.rsi
+    sprite: _Backmen/Clothing/Head/Hats/beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -277,9 +277,9 @@
   description: Берет офицеров полиции ОПЗ, имеет эмблему министерства внутренних дел ОПЗ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/mvdberet.rsi
+    sprite: _Backmen/Clothing/Head/Hats/mvdberet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/mvdberet.rsi
+    sprite: _Backmen/Clothing/Head/Hats/mvdberet.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -288,9 +288,9 @@
   description: Фуражка полиции ОПЗ, имеет какарду с винками министерства внутренних дел ОПЗ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/mvdcapofficer.rsi
+    sprite: _Backmen/Clothing/Head/Hats/mvdcapofficer.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/mvdcapofficer.rsi
+    sprite: _Backmen/Clothing/Head/Hats/mvdcapofficer.rsi
 
 - type: entity
   parent: ClothingHeadHatPlaguedoctor
@@ -313,9 +313,9 @@
   description: Анон!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/anon.rsi
+    sprite: _Backmen/Clothing/Head/Hats/anon.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/anon.rsi
+    sprite: _Backmen/Clothing/Head/Hats/anon.rsi
 
 - type: entity # backmen
   parent: ClothingMaskBase
@@ -324,9 +324,9 @@
   description: аааа!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
+    sprite: _Backmen/Clothing/Head/Masks/balaclawa.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
+    sprite: _Backmen/Clothing/Head/Masks/balaclawa.rsi
 
 - type: entity # backmen
   parent: ClothingHeadBase
@@ -335,9 +335,9 @@
   description: Младший единокровный брат Короля и дядя Принца.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/jeester.rsi
+    sprite: _Backmen/Clothing/Head/Hats/jeester.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/jeester.rsi
+    sprite: _Backmen/Clothing/Head/Hats/jeester.rsi
 
 - type: entity # backmen
   parent: ClothingHeadBase
@@ -346,9 +346,9 @@
   description: Шляпа прямиком с восточной части земли, где она популярна среди туристов и земляков
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/hatfriz.rsi
+    sprite: _Backmen/Clothing/Head/Hats/hatfriz.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/hatfriz.rsi
+    sprite: _Backmen/Clothing/Head/Hats/hatfriz.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -357,9 +357,9 @@
   description: The officers' “Blueshield” black beret, instills a sense of tighter security.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/blueberet.rsi
+    sprite: _Backmen/Clothing/Head/Hats/blueberet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/blueberet.rsi
+    sprite: _Backmen/Clothing/Head/Hats/blueberet.rsi
   - type: Armor
     coverage: # backmen: armour coverage
     - Head
@@ -376,9 +376,9 @@
   description: The officers' “Blueshield” light beret, nice and beautiful.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/lightblueberet.rsi
+    sprite: _Backmen/Clothing/Head/Hats/lightblueberet.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/lightblueberet.rsi
+    sprite: _Backmen/Clothing/Head/Hats/lightblueberet.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -387,9 +387,9 @@
   description: Фуражка офицера Синего Щита, имеет эмблему Blue Shield Security.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/bluecap.rsi
+    sprite: _Backmen/Clothing/Head/Hats/bluecap.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/bluecap.rsi
+    sprite: _Backmen/Clothing/Head/Hats/bluecap.rsi
   - type: Armor
     coverage: # backmen: armour coverage
     - Head
@@ -406,9 +406,9 @@
   description: Довольно старая ушанка флота СССП, переделанная под нужды офицеров Синего Щита (Добавлена их эмблема).
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
+    sprite: _Backmen/Clothing/Head/Hats/blueushanka.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
+    sprite: _Backmen/Clothing/Head/Hats/blueushanka.rsi
   - type: Armor
     coverage: # backmen: armour coverage
     - Head
@@ -425,9 +425,9 @@
   description: The cap of the security service pilot... Contains signs of communism...
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Hats/secpilotcap.rsi
+      sprite: _Backmen/Clothing/Head/Hats/secpilotcap.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Hats/secpilotcap.rsi
+      sprite: _Backmen/Clothing/Head/Hats/secpilotcap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -436,9 +436,9 @@
   description: The surgeon's black headdress also has a small mirror.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/surgeon_hat.rsi
+    sprite: _Backmen/Clothing/Head/Hats/surgeon_hat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/surgeon_hat.rsi
+    sprite: _Backmen/Clothing/Head/Hats/surgeon_hat.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseMinorContraband]
@@ -447,9 +447,9 @@
   description: Brown beret with a gold emblem on it.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/inteq_beret.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_beret.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/inteq_beret.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_beret.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseMinorContraband]
@@ -458,9 +458,9 @@
   description: White beret with a emblem on it.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/inteq_honorable_beret.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_honorable_beret.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/inteq_honorable_beret.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_honorable_beret.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseMinorContraband]
@@ -469,9 +469,9 @@
   description: Master at arms hat, looks intimidating, I doubt that you will like to communicate with its owner...
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/inteq_peaked.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_peaked.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/inteq_peaked.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_peaked.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -480,6 +480,6 @@
   description: White headband - dont imagine yourself a Buster.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Hats/inteq_headband.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_headband.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Hats/inteq_headband.rsi
+    sprite: _Backmen/Clothing/Head/Hats/inteq_headband.rsi

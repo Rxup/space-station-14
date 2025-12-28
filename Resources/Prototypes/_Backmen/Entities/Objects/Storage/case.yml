@@ -35,5 +35,5 @@
   description: Brown briefcase with a gold logo, I wonder what's in there?
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Storage/inteq_case.rsi
+    sprite: _Backmen/Objects/Storage/inteq_case.rsi
     state: icon

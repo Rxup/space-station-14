@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/color.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/color.rsi
   - type: Storage
     grid:
     - 0,0,7,0
@@ -22,7 +22,7 @@
   description: A robust bag for keeping small stuff.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/messenger.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/messenger.rsi
 
 # DEPARTMENTAL
 # Command
@@ -33,7 +33,7 @@
   description: A robust bag made exclusively for Nanotrasen officers.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/captain.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/captain.rsi
 
 - type: entity
   parent: [ BaseCentcommContraband , ClothingBackpackMessengerBase ]
@@ -78,7 +78,7 @@
   description: A robust bag made of protective materials. Smells like emergy gun.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/blueshield.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/blueshield.rsi
 
 # Engineering
 - type: entity
@@ -88,7 +88,7 @@
   description: A robust bag made of fire resistant fibers. Smells like plasma.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/atmospherics.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/atmospherics.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -214,7 +214,7 @@
   description: A robust bag for transportation of letters and parcels.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/mailman.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/mailman.rsi
 
 # Medical
 - type: entity
@@ -224,7 +224,7 @@
   description: A robust bag for keeping extra medicine.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/medical.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/medical.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -233,7 +233,7 @@
   description: A robust bag for keeping extra beakers and vials.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/chemistry.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/chemistry.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -242,7 +242,7 @@
   description: A robust bag made of hypo-allergenic fibers to prevent the spread of disease.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/virology.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/virology.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -251,7 +251,7 @@
   description: A robust sterile bag with geneticist colours.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/genetics.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/genetics.rsi
 
 ## Science
 - type: entity
@@ -261,7 +261,7 @@
   description: A robust bag for holding research materials.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/science.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/science.rsi
 
 # Civilian
 - type: entity
@@ -271,7 +271,7 @@
   description: A robust bag for keeping extra pies.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/clown.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/clown.rsi
   - type: Storage
     storageOpenSound:
       collection: BikeHorn
@@ -283,7 +283,7 @@
   description: A robust bag for keeping the vow of silence.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Back/Messengers/mime.rsi
+      sprite: _Backmen/Clothing/Back/Messengers/mime.rsi
 
 - type: entity
   parent: ClothingBackpackMessengerBase
@@ -382,14 +382,14 @@
   description: A messenger bag that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Messengers/holding.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/holding.rsi
     state: icon
     layers:
     - state: icon
     - state: icon-unlit
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Clothing/Back/Messengers/holding.rsi
+    sprite: _Backmen/Clothing/Back/Messengers/holding.rsi
     clothingVisuals:
       back:
       - state: holding-equipped-BACKPACK

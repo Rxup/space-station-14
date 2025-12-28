@@ -16,7 +16,7 @@
 - type: gameMap
   id: BargeVsShip
   mapName: 'Бой на баржах'
-  mapPath: /Maps/Backmen/bargevsship.yml
+  mapPath: /Maps/_Backmen/bargevsship.yml
   minPlayers: 2
   stations:
     TeamA:

@@ -5,10 +5,10 @@
   description: Армейский образец магнитных сапог, дешевый и более массовый вариант продвинутых магниток, имеет встроенный джетпак.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/magboots-army.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/magboots-army.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/magboots-army.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/magboots-army.rsi
   - type: Magboots
   - type: GenericVisualizer
     visuals:
@@ -29,10 +29,10 @@
   description: Магнитные сапоги спец войск НаноТрейзен, дорогой и более продвинутый вариант продвинутых магниток, имеет встроенный джетпак.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/magboots-specialforce.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/magboots-specialforce.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/magboots-specialforce.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/magboots-specialforce.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.1
@@ -60,10 +60,10 @@
   description: Magnetic boots are standard equipment for security services for work in zero gravity and outer space.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/magboots-security.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/magboots-security.rsi
+    sprite: _Backmen/Clothing/Shoes/Boots/magboots-security.rsi
   - type: Magboots
   - type: GenericVisualizer
     visuals:

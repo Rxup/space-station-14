@@ -46,7 +46,7 @@
   - type: RequireProjectileTarget
     active: False
   - type: LanguageSpeaker
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - SpaceMob
     understands:

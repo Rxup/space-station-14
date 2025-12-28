@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: ShwrAdventurer
   mapName: Транспортник
-  mapPath: /Maps/Backmen/Shipwrecked/adventurer.yml
+  mapPath: /Maps/_Backmen/Shipwrecked/adventurer.yml
   minPlayers: 1
   maxPlayers: 15
   stations:
@@ -20,7 +20,7 @@
 - type: gameMap
   id: ShwrBig
   mapName: Баржа
-  mapPath: /Maps/Backmen/Shipwrecked/Shatlik.yml
+  mapPath: /Maps/_Backmen/Shipwrecked/Shatlik.yml
   minPlayers: 15
   maxPlayers: 30
   stations:
@@ -39,7 +39,7 @@
 - type: gameMap
   id: shwrDust
   mapName: KL-Dust
-  mapPath: /Maps/Backmen/Shipwrecked/shwr-dust.yml
+  mapPath: /Maps/_Backmen/Shipwrecked/shwr-dust.yml
   minPlayers: 30
   stations:
     shwrDust:

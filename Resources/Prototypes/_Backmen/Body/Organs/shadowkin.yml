@@ -3,7 +3,7 @@
   parent: OrganHumanBrain
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: brain
 
 - type: entity
@@ -12,7 +12,7 @@
   description: I see beyond anything you ever will!
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     layers:
       - state: eyes
 
@@ -22,7 +22,7 @@
   description: Hey, listen!
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: ears
 
 - type: entity
@@ -30,7 +30,7 @@
   parent: OrganHumanTongue
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: tongue
 
 - type: entity
@@ -38,7 +38,7 @@
   parent: OrganHumanAppendix
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     layers:
       - state: appendix
 
@@ -47,7 +47,7 @@
   parent: OrganHumanHeart
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: heart
   - type: Metabolizer
     maxReagents: 2
@@ -63,7 +63,7 @@
   description: '"Yummy!", says the stomach, although you are unable to hear it.'
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: stomach
   - type: SolutionContainerManager
     solutions:
@@ -87,7 +87,7 @@
   description: "Live 'er? I hardly know 'er!"
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: liver
   - type: Metabolizer
     maxReagents: 1
@@ -102,7 +102,7 @@
   description: Give the kid their knees back, please, this is the third time this week.
   components:
   - type: Sprite
-    sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/organs.rsi
     layers:
       - state: kidneys
   - type: Metabolizer

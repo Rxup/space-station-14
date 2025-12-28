@@ -24,7 +24,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Backmen.Mood;
+using Content.Server._Backmen.Arrivals;
+using Content.Shared._Backmen.Mood;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
@@ -40,8 +41,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly Backmen.Arrivals.CentcommSystem _centcommSystem = default!; // backmen: centcom
-    
+    [Dependency] private readonly CentcommSystem _centcommSystem = default!; // backmen: centcom
+
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
 

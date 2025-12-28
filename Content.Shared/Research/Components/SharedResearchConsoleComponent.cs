@@ -1,4 +1,4 @@
-using Content.Shared.Backmen.Research;
+using Content.Shared._Backmen.Research;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Research.Components

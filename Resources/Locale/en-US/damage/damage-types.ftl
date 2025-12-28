@@ -13,6 +13,6 @@ damage-type-slash = Slash
 damage-type-structural = Structural
 damage-type-holy = Holy
 
-#backmen
+# Backmen
 damage-type-stun = Stun
 damage-type-armorpiercing = Punching

@@ -1,5 +1,5 @@
 - type: soundCollection
   id: BossFightMusic
   files:
-  - /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_Omen.ogg
-  - /Audio/Backmen/Jukebox/RyanAmon/RyanAmon_TheHunter.ogg
+  - /Audio/_Backmen/Jukebox/RyanAmon/RyanAmon_Omen.ogg
+  - /Audio/_Backmen/Jukebox/RyanAmon/RyanAmon_TheHunter.ogg

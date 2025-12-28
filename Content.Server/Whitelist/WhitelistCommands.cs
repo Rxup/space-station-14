@@ -1,5 +1,5 @@
+using Content.Server._Backmen.RoleWhitelist;
 using Content.Server.Administration;
-using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -7,9 +7,6 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
-
-using Content.Server.Players;
-using Robust.Shared.Random; // backmen: whitelist
 
 namespace Content.Server.Whitelist;
 

@@ -86,7 +86,7 @@
   equipment:
     outerClothing: ClothingOuterWinterHoS
 
-# Pocket #Backmen
+# Pocket # Backmen
 
 - type: loadout
   id: WeaponRevolverMatebaNew
@@ -96,7 +96,7 @@
     - WeaponRevolverMatebaNew
     - SpeedLoader44Magnum
 
-# Pocket 2 #Backmen
+# Pocket 2 # Backmen
 
 - type: loadout
   id: SpeedLoaderMagnum

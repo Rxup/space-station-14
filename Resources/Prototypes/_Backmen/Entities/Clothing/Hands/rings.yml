@@ -5,10 +5,10 @@
   description: Repainted steel ring.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Rings/rings.rsi
+    sprite: _Backmen/Clothing/Hands/Rings/rings.rsi
     state: silverring
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Rings/rings.rsi
+    sprite: _Backmen/Clothing/Hands/Rings/rings.rsi
     equippedPrefix: silver
   - type: Item
     size: Tiny

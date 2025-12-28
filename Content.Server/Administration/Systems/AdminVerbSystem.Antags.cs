@@ -1,6 +1,6 @@
 using Content.Server.Antag;
-using Content.Server.Backmen.GameTicking.Rules.Components;
-using Content.Server.Backmen.Vampiric;
+using Content.Server._Backmen.GameTicking.Rules.Components;
+using Content.Server._Backmen.Vampiric;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Zombies;
@@ -68,10 +68,10 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-blob"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Backmen/Interface/Actions/blob.rsi"), "blobFactory"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Backmen/Interface/Actions/blob.rsi"), "blobFactory"),
             Act = () =>
             {
-                EnsureComp<Shared.Backmen.Blob.Components.BlobCarrierComponent>(args.Target).HasMind = HasComp<ActorComponent>(args.Target);
+                EnsureComp<Shared._Backmen.Blob.Components.BlobCarrierComponent>(args.Target).HasMind = HasComp<ActorComponent>(args.Target);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-blob"),
@@ -82,7 +82,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-vampire"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Backmen/Icons/verbiconfangs.png")),
+            Icon = new SpriteSpecifier.Texture(new ("/Textures/_Backmen/Icons/verbiconfangs.png")),
             Act = () =>
             {
                 if (!HasComp<ActorComponent>(args.Target))
@@ -105,7 +105,7 @@ public sealed partial class AdminVerbSystem
                 if (!TryComp<ActorComponent>(args.Target, out var actor))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
+                EntityManager.System<Content.Server._Backmen.GameTicking.Rules.FleshCultRuleSystem>()
                     .MakeCultist(actor.PlayerSession);
             },
             Impact = LogImpact.High,
@@ -123,7 +123,7 @@ public sealed partial class AdminVerbSystem
                 if (!TryComp<ActorComponent>(args.Target, out var actor))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
+                EntityManager.System<Content.Server._Backmen.GameTicking.Rules.FleshCultRuleSystem>()
                     .MakeCultist(actor.PlayerSession);
             },
             Impact = LogImpact.High,
@@ -139,7 +139,7 @@ public sealed partial class AdminVerbSystem
                 "poster3_legit"),
             Act = () =>
             {
-                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>()
+                EntityManager.System<Content.Server._Backmen.EvilTwin.EvilTwinSystem>()
                     .MakeTwin(out _, args.Target);
             },
             Impact = LogImpact.High,
@@ -242,7 +242,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-changeling"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Backmen/Changeling/changeling_abilities.rsi"), "transform"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Backmen/Changeling/changeling_abilities.rsi"), "transform"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, "Changeling");
@@ -252,7 +252,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(ling);
         //Changelings: end
-        
+
         var paradoxCloneName = Loc.GetString("admin-verb-text-make-paradox-clone");
         Verb paradox = new()
         {

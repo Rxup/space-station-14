@@ -1,6 +1,6 @@
-using Content.Shared.Backmen.Surgery.Tools;
-using Content.Shared.Backmen.Surgery.Traumas;
-using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared._Backmen.Surgery.Tools;
+using Content.Shared._Backmen.Surgery.Traumas;
+using Content.Shared._Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;

@@ -49,6 +49,6 @@
       unique: true
       issuer: objective-issuer-SpaceBank
       icon:
-        sprite: Backmen/Objects/Tools/rimbank.rsi
+        sprite: _Backmen/Objects/Tools/rimbank.rsi
         state: icon
     - type: MindNoteCondition

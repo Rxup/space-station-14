@@ -10,7 +10,7 @@
       anchored: true
     - type: Sprite
       layers:
-        - sprite: /Textures/Backmen/Objects/Devices/experimentalsyndicateteleporter.rsi
+        - sprite: /Textures/_Backmen/Objects/Devices/experimentalsyndicateteleporter.rsi
           state: in
           shader: unshaded
       netsync: false
@@ -30,7 +30,7 @@
       anchored: true
     - type: Sprite
       layers:
-        - sprite: /Textures/Backmen/Objects/Devices/experimentalsyndicateteleporter.rsi
+        - sprite: /Textures/_Backmen/Objects/Devices/experimentalsyndicateteleporter.rsi
           state: out
           shader: unshaded
       netsync: false

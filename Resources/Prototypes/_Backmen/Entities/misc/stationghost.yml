@@ -9,7 +9,7 @@
     layers:
       - shader: unshaded
         map: ["enum.EffectLayers.Unshaded"]
-        sprite: Backmen/Effects/stationghost/holobee.rsi
+        sprite: _Backmen/Effects/stationghost/holobee.rsi
         state: anim
   - type: PointLight
     enabled: true
@@ -27,7 +27,7 @@
   parent: MarkerBase
   components:
     - type: Sprite
-      sprite: Backmen/Effects/stationghost/holobee.rsi
+      sprite: _Backmen/Effects/stationghost/holobee.rsi
       layers:
         - state: blue
           sprite: Markers/cross.rsi

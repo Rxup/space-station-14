@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Backmen.RoleWhitelist;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag;
 using Content.Server.Players.PlayTimeTracking;
@@ -375,7 +376,7 @@ public sealed partial class StationJobsSystem
                     continue;
 
                 // start-backmen: whitelist
-                if (job.Whitelisted && !EntityManager.System<Backmen.RoleWhitelist.WhitelistSystem>().IsInWhitelist(player))
+                if (job.Whitelisted && !EntityManager.System<WhitelistSystem>().IsInWhitelist(player))
                 {
                     continue;
                 }

@@ -1171,7 +1171,7 @@
             - HighImpassable
     - type: GrapplingProjectile
 
-#BackmenCultOfFlash-start
+# BackmenCultOfFlash-start
 - type: entity
   id: BaseBulletHighVelocity
   name: base bullet high-velocity
@@ -1182,7 +1182,7 @@
       damage:
         types:
           Piercing: 17
-#BackmenCultOfFlash-end
+# BackmenCultOfFlash-end
 
 - type: entity
   id: BulletRobotBall

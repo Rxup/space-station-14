@@ -4,7 +4,7 @@
   suffix: TeamA
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
     layers:
     - state: stand
     - state: team_a
@@ -18,7 +18,7 @@
   suffix: TeamA
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
     layers:
     - state: stand
     - state: team_b
@@ -32,7 +32,7 @@
   suffix: Team Neutral
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    sprite: _Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
     layers:
     - state: stand
     - state: black

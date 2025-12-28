@@ -5,7 +5,7 @@
   description: Grenade that creates a small but devastating confetti explosion.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Grenades/confetti.rsi
+    sprite: _Backmen/Objects/Weapons/Grenades/confetti.rsi
   - type: DecalGrenade
     decalPrototypes:
     - Confetti1
@@ -15,10 +15,10 @@
     decalCount: 25
     decalRadius: 3
   - type: DeleteOnTrigger
-  - type: SpawnOnTrigger # Ataraxia
+  - type: SpawnOnTrigger # Orion
     proto: ExplosionEffectGrenadeShockWave
   - type: SoundOnTrigger
-    sound: /Audio/Backmen/Effects/yay_fnaf.ogg
+    sound: /Audio/_Backmen/Effects/yay_fnaf.ogg
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"

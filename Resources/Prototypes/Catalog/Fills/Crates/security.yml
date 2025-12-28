@@ -35,10 +35,10 @@
       - id: BoxFlashbang
       - id: Flash
         amount: 3
-      - id: WeaponShotgun39NonLethal #Backmen Rebalance Start
+      - id: WeaponShotgun39NonLethal # Backmen Rebalance Start
         amount: 2
       - id: BoxBeanbag
-        amount: 2 #Backmen Rebalance End
+        amount: 2 # Backmen Rebalance End
 #      - Pepperspray
 #      - GrenadeTeargas
 

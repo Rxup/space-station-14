@@ -5,9 +5,9 @@
   description: Убей этих ведьм!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -16,9 +16,9 @@
   description: Пора уволить срочников.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Misc/magistratenaki.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/magistratenaki.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Misc/magistratenaki.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/magistratenaki.rsi
 
 - type: entity
   parent: ClothingOuterPlagueSuit
@@ -34,9 +34,9 @@
   description: Странная чёрная накидка старшего последователя, пахнет мистикой.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Misc/glava.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/glava.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Misc/glava.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/glava.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -45,6 +45,6 @@
   description: Странная чёрная накидка последователя, пахнет мистикой.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Misc/posledov.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/posledov.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Misc/posledov.rsi
+    sprite: _Backmen/Clothing/OuterClothing/Misc/posledov.rsi

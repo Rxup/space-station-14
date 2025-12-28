@@ -112,7 +112,7 @@
     proto: slime
   - type: LanguageSpeaker
     currentLanguage: Slime
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Slime
     understands:

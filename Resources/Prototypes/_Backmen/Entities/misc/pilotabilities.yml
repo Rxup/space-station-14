@@ -30,7 +30,7 @@
   name: rifle security turret
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    sprite: _Backmen/Objects/Weapons/temp-turret.rsi
     drawdepth: Mobs
     layers:
       - state: temp-rifle
@@ -60,7 +60,7 @@
   name: disabler security turret
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    sprite: _Backmen/Objects/Weapons/temp-turret.rsi
     drawdepth: Mobs
     layers:
       - state: temp-disabler
@@ -90,7 +90,7 @@
   name: laser security turret
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/temp-turret.rsi
+    sprite: _Backmen/Objects/Weapons/temp-turret.rsi
     drawdepth: Mobs
     layers:
       - state: temp-laser
@@ -102,7 +102,7 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
+    soundGunshot: /Audio/_Backmen/Weapons/Energy/Resources_Audio_DeltaV_Weapons_Guns_Gunshots_laser.ogg
   - type: BallisticAmmoProvider
     proto: BulletEnergyGunLaserMk2
     capacity: 500
@@ -162,10 +162,10 @@
     - LaserTurretSpawn
     - LandMineWeakExplosiveSpawn
   - type: Sprite
-    sprite: Backmen/Objects/Tools/sec-tech-RCD.rsi
+    sprite: _Backmen/Objects/Tools/sec-tech-RCD.rsi
     state: icon
   - type: Clothing
-    sprite: Backmen/Objects/Tools/sec-tech-RCD.rsi
+    sprite: _Backmen/Objects/Tools/sec-tech-RCD.rsi
     quickEquip: false
     slots:
     - Belt
@@ -176,7 +176,7 @@
 - type: rcd
   id: BaseTurretSpawn
   category: Electrical
-  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-base.png
+  sprite: _Backmen/Interface/Radial/sec-tech-RCD/radial-temp-base.png
   mode: ConstructObject
   prototype: WeaponTurretSecBase
   cost: 10
@@ -188,7 +188,7 @@
 - type: rcd
   id: RifleTurretSpawn
   category: Electrical
-  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-rifle.png
+  sprite: _Backmen/Interface/Radial/sec-tech-RCD/radial-temp-rifle.png
   mode: ConstructObject
   prototype: WeaponTurretSecRifle
   cost: 10
@@ -200,7 +200,7 @@
 - type: rcd
   id: DisablerTurretSpawn
   category: Electrical
-  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-disabler.png
+  sprite: _Backmen/Interface/Radial/sec-tech-RCD/radial-temp-disabler.png
   mode: ConstructObject
   prototype: WeaponTurretSecDisabler
   cost: 10
@@ -212,7 +212,7 @@
 - type: rcd
   id: LaserTurretSpawn
   category: Electrical
-  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-temp-laser.png
+  sprite: _Backmen/Interface/Radial/sec-tech-RCD/radial-temp-laser.png
   mode: ConstructObject
   prototype: WeaponTurretSecLaser
   cost: 10
@@ -224,7 +224,7 @@
 - type: rcd
   id: LandMineWeakExplosiveSpawn
   category: Electrical
-  sprite: Backmen/Interface/Radial/sec-tech-RCD/radial-landmine.png
+  sprite: _Backmen/Interface/Radial/sec-tech-RCD/radial-landmine.png
   mode: ConstructObject
   prototype: LandMineWeakExplosive
   cost: 5

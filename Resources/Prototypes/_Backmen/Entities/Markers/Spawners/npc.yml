@@ -10,7 +10,7 @@
     layers:
     - state: green
     - state: civilian_1
-      sprite: Backmen/Mobs/Npc/Civilian.rsi
+      sprite: _Backmen/Mobs/Npc/Civilian.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobCivilianSuppa
@@ -25,7 +25,7 @@
     layers:
     - state: green
     - state: big_lenny
-      sprite: Backmen/Mobs/Npc/Civilian.rsi
+      sprite: _Backmen/Mobs/Npc/Civilian.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobCivilianLenny
@@ -42,7 +42,7 @@
     layers:
     - state: green
     - state: hecu_melee
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSecurityNT
@@ -57,7 +57,7 @@
     layers:
     - state: green
     - state: hecu_ranged
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSecurityNTDisabler
@@ -92,7 +92,7 @@
     layers:
     - state: green
     - state: hecu_ranged
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSecurityNTPistol
@@ -116,7 +116,7 @@
     layers:
     - state: green
     - state: hecu_ranged_smg
-      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      sprite: _Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobERTUnitSecurity
@@ -142,7 +142,7 @@
     layers:
     - state: green
     - state: officer
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobUEGKosmoportCaptain
@@ -157,7 +157,7 @@
     layers:
     - state: green
     - state: woman
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobUEGKosmoportService
@@ -172,7 +172,7 @@
     layers:
     - state: green
     - state: pilot
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobUEGPilot
@@ -187,7 +187,7 @@
     layers:
     - state: green
     - state: police
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobPoliceUEG
@@ -202,7 +202,7 @@
     layers:
     - state: green
     - state: police
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobGuardPoliceUEG
@@ -217,7 +217,7 @@
     layers:
     - state: green
     - state: police
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobPoliceUEGPistol
@@ -232,7 +232,7 @@
     layers:
     - state: green
     - state: police
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobGuardPoliceUEGPistol
@@ -247,7 +247,7 @@
     layers:
     - state: green
     - state: heavy
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobPoliceUEGShotgun
@@ -262,7 +262,7 @@
     layers:
     - state: green
     - state: heavy
-      sprite: Backmen/Mobs/Npc/UEG.rsi
+      sprite: _Backmen/Mobs/Npc/UEG.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobGuardPoliceUEGShotgun
@@ -278,7 +278,7 @@
     layers:
     - state: green
     - state: alive
-      sprite: Backmen/Mobs/Npc/simple_syndicate/blade.rsi
+      sprite: _Backmen/Mobs/Npc/simple_syndicate/blade.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSimpleSyndicateBlade
@@ -292,7 +292,7 @@
     layers:
     - state: green
     - state: alive
-      sprite: Backmen/Mobs/Npc/simple_syndicate/knife.rsi
+      sprite: _Backmen/Mobs/Npc/simple_syndicate/knife.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSimpleSyndicateKnife
@@ -306,7 +306,7 @@
     layers:
     - state: green
     - state: alive
-      sprite: Backmen/Mobs/Npc/simple_syndicate/pistol.rsi
+      sprite: _Backmen/Mobs/Npc/simple_syndicate/pistol.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSimpleSyndicatePistol
@@ -320,7 +320,7 @@
     layers:
     - state: green
     - state: alive
-      sprite: Backmen/Mobs/Npc/simple_syndicate/shotgun.rsi
+      sprite: _Backmen/Mobs/Npc/simple_syndicate/shotgun.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSimpleSyndicateShotgun
@@ -334,7 +334,7 @@
     layers:
     - state: green
     - state: alive
-      sprite: Backmen/Mobs/Npc/simple_syndicate/smg.rsi
+      sprite: _Backmen/Mobs/Npc/simple_syndicate/smg.rsi
   - type: ConditionalSpawner
     prototypes:
     - MobSimpleSyndicateSMG

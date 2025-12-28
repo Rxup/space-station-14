@@ -7,9 +7,9 @@
   description: Белое кружевное платье, для особ высшего света, которые венчуються.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/wedding.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/wedding.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/wedding.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/wedding.rsi
   - type: Tag
     tags:
       - FullBodyOuter
@@ -21,9 +21,9 @@
   description: Красное кружевное платье, для особ высшего света.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/dress.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/dress.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/dress.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/dress.rsi
   - type: Tag
     tags:
       - FullBodyOuter
@@ -35,9 +35,9 @@
   description: Красное платье, для особ высшего света.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/reddress.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/reddress.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/reddress.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/reddress.rsi
 
 - type: entity
   parent: ClothingRedSexyDress
@@ -46,9 +46,9 @@
   description: Красное платье, для особ ночного света.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/redvampdress.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/redvampdress.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/redvampdress.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/redvampdress.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -57,13 +57,13 @@
   description: A loose worn purple dress with a white belt, perfect for someone looking to relax.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
     layers:
     - state: icon-belt
     - state: icon
       color: "#9c0dff"
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING-belt
@@ -80,12 +80,12 @@
   description: A loose worn white dress with a white belt, perfect for someone looking to relax.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
     layers:
     - state: icon-belt
     - state: icon
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
+    sprite: _Backmen/Clothing/OuterClothing/ERPStuff/dresses/tango.rsi
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING-belt

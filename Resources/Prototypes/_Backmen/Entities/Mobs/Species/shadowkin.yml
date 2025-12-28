@@ -10,7 +10,7 @@
   - type: Consciousness
     threshold: 110
     cap: 220
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - TauCetiBasic
     - Shadokin
@@ -22,7 +22,7 @@
     species: Shadowkin
   - type: Hunger
   - type: Icon
-    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
+    sprite: _Backmen/Mobs/Species/Shadowkin/parts.rsi
     state: full
   - type: Body
     prototype: Shadowkin

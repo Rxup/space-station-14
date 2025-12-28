@@ -34,7 +34,7 @@
     items:
     - id: PaperNecropolis
     sound:
-      path: /Audio/Backmen/Bosses/virtuedeath.ogg
+      path: /Audio/_Backmen/Bosses/virtuedeath.ogg
       params:
         volume: 1
 

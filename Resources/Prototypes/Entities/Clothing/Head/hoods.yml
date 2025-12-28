@@ -31,7 +31,7 @@
     - SnoutOverlay # Backmen
     - HeadTop
     - HeadSide
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+  - type: DiseaseProtection # Backmen
     protection: 0.2
     
 

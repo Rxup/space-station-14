@@ -7,8 +7,8 @@
     - type: Summonable
       specialItem: SpawnPointGhostIfrit
     - type: Sprite
-      sprite: Backmen/Objects/Specific/Chapel/holylight.rsi
+      sprite: _Backmen/Objects/Specific/Chapel/holylight.rsi
       state: icon
     - type: Item
       size: Huge
-      sprite: Backmen/Objects/Specific/Chapel/holylight.rsi
+      sprite: _Backmen/Objects/Specific/Chapel/holylight.rsi

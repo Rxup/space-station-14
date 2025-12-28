@@ -8,7 +8,7 @@
   - type: Consciousness # some fucking exclusivity for demons, harder to put them into crit, but they die more quickly.
     cap: 220
     threshold: 70
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Carshnil
     - TauCetiBasic

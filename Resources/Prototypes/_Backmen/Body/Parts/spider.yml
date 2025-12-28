@@ -27,10 +27,10 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Backmen/Mobs/Species/Moth/parts.rsi # placeholder sprite
+    sprite: _Backmen/Mobs/Species/Moth/parts.rsi # placeholder sprite
     state: "chest_m"
   - type: Icon
-    sprite: Backmen/Mobs/Species/Moth/parts.rsi
+    sprite: _Backmen/Mobs/Species/Moth/parts.rsi
     state: "chest_m"
   - type: BodyPart #"Other" type
     slotId: thorax

@@ -31,7 +31,7 @@
         Structural: 15
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Backmen/Mobs/Species/mouseops.rsi
+    sprite: _Backmen/Mobs/Species/mouseops.rsi
     state: base
   - type: Physics
   - type: Fixtures

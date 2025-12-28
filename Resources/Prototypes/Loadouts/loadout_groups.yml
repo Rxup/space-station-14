@@ -1039,7 +1039,7 @@
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
 
-- type: loadoutGroup #Backmen
+- type: loadoutGroup # Backmen
   id: SecurityOfficerPocket
   name: loadout-group-security-pocket
   loadouts:
@@ -1051,7 +1051,7 @@
   - WeaponPistolVP78
   - WeaponRevolverMatebaNew
 
-- type: loadoutGroup #Backmen
+- type: loadoutGroup # Backmen
   id: SecurityOfficerPocket2
   name: loadout-group-security-pocket2
   minLimit: 0
@@ -1090,8 +1090,8 @@
   - SecurityHelmet
   - SecurityBeret
   - SecurityHat
-  - ClothingHeadHatCapSec #Backmen
-  - ClothingHeadHatPilotkaSec #Backmen
+  - ClothingHeadHatCapSec # Backmen
+  - ClothingHeadHatPilotkaSec # Backmen
   - TrooperHat
 
 - type: loadoutGroup
@@ -1127,8 +1127,8 @@
   - ArmorVestSec # Corvax
   - ArmorVest
   - ArmorVestSlim
-  - ClothingOuterCoatSecurityOvercoat #Backmen
-  - ClothingOuterCoatSecurityOfficerOvercoat #Backmen
+  - ClothingOuterCoatSecurityOvercoat # Backmen
+  - ClothingOuterCoatSecurityOfficerOvercoat # Backmen
   - SecurityOfficerWintercoat
 
 - type: loadoutGroup
@@ -1146,7 +1146,7 @@
   - SecurityPDA
   - SeniorOfficerPDA
 
-- type: loadoutGroup #Backmen
+- type: loadoutGroup # Backmen
   id: SecurityPocket
   name: loadout-group-security-pocket
   loadouts:
@@ -1156,7 +1156,7 @@
   - WeaponPistolG23
   - WeaponPistolM1911
 
-- type: loadoutGroup #Backmen
+- type: loadoutGroup # Backmen
   id: SecurityPocket2
   name: loadout-group-security-pocket2
   minLimit: 0
@@ -1195,7 +1195,7 @@
   - DetectiveCoat
   - DetectiveCoatGrey
 
-- type: loadoutGroup #Backmen
+- type: loadoutGroup # Backmen
   id: DetectiveRevolver
   name: loadout-group-security-pocket
   minLimit: 1

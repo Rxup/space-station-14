@@ -4,7 +4,7 @@ using Content.Client.UserInterface.Systems.Alerts.Widgets;
 using Content.Server.Administration.Systems;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
-using Content.Shared.Backmen.CCVar;
+using Content.Shared._Backmen.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Server.Player;
 using Robust.Shared.GameObjects;

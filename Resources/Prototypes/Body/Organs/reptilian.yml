@@ -3,7 +3,7 @@
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
-  - type: Stomach # Ataraxia-REMOVE
+  - type: Stomach # Orion-Edit: Removed special digestible
 #    specialDigestible:
 #      tags:
 #      - Fruit

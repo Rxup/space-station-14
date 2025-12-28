@@ -9,7 +9,7 @@
   components:
   - type: Sprite
     layers:
-      - sprite: Backmen/Structures/web.rsi
+      - sprite: _Backmen/Structures/web.rsi
         state: web1
         map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: RandomSprite
@@ -105,7 +105,7 @@
   components:
   - type: Sprite
     layers:
-      - sprite: Backmen/Structures/cocoon.rsi
+      - sprite: _Backmen/Structures/cocoon.rsi
         state: cocoon_large1
         map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: RandomSprite
@@ -176,7 +176,7 @@
   components:
   - type: Sprite
     layers:
-      - sprite: Backmen/Structures/cocoon.rsi
+      - sprite: _Backmen/Structures/cocoon.rsi
         state: cocoon1
         map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: RandomSprite

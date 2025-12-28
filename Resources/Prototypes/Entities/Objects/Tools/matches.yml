@@ -75,16 +75,16 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/matchbox_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/matchbox_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
       path: /Audio/Items/matchbox_drop.ogg
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/Backmen/Items/handling/matchbox_drop.ogg
+      path: /Audio/_Backmen/Items/handling/matchbox_drop.ogg
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Backmen/Items/handling/matchbox_use.ogg
+      path: /Audio/_Backmen/Items/handling/matchbox_use.ogg
   # backmen edit end
   - type: EmitSoundOnLand
     sound:

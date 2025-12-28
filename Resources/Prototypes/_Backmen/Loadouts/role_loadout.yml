@@ -1,22 +1,22 @@
 - type: roleLoadout
   id: JobBKCCCargo
   groups:
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
+  - Werx # Backmen
+  - Niz # Backmen
+  - Socks # Backmen
   - BKCCCargoJumpsuit
   - BKCCCargoNeck
   - BKCCCargoBackpack
   - Trinkets
-  - Medals #backmen
+  - Medals # Backmen
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBrigmedic
   groups:
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
+  - Werx # Backmen
+  - Niz # Backmen
+  - Socks # Backmen
   - ClothingUniformJumpsuitBrigmedic
   - ClothingBackpackBrigmedic
   - ClothingHeadHatBrigmedic
@@ -25,15 +25,15 @@
   - ClothingMaskBrigmedic
   - Trinkets
   - SurvivalMedical
-  - Medals #backmen
+  - Medals # Backmen
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBlueShield
   groups:
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
+  - Werx # Backmen
+  - Niz # Backmen
+  - Socks # Backmen
   - BlueShieldHat
   - BlueShieldEyes
   - BlueshieldNeck
@@ -44,16 +44,16 @@
   - BlueShieldPersonalWeapon
   - Trinkets
   - SurvivalSecurity
-  - Medals #backmen
+  - Medals # Backmen
   - GroupSpeciesBreathTool
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBkmSurgeon
   groups:
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
+  - Werx # Backmen
+  - Niz # Backmen
+  - Socks # Backmen
   - GroupTankHarness
   - SurgeonHead
   - MedicalMask
@@ -63,7 +63,7 @@
   - SurgeonOuterClothing
   - MedicalShoes
   - Glasses
-  - Medals #backmen
+  - Medals # Backmen
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -72,9 +72,9 @@
 - type: roleLoadout
   id: JobBkmVirologist
   groups:
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
+  - Werx # Backmen
+  - Niz # Backmen
+  - Socks # Backmen
   - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
@@ -84,7 +84,7 @@
   - VirologistBackpack
   - MedicalShoes
   - Glasses
-  - Medals #backmen
+  - Medals # Backmen
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical

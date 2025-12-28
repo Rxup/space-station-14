@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Backmen/Structures/Decoration/statue.rsi
+    sprite: _Backmen/Structures/Decoration/statue.rsi
     state: base
     drawdepth: Mobs
   - type: Transform

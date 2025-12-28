@@ -7,7 +7,7 @@
   components:
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/Mobs/Player/Borgs/cyborg.rsi
+      sprite: _Backmen/Mobs/Player/Borgs/cyborg.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: robot
@@ -79,7 +79,7 @@
       range: 5
       volume: -1
       sound:
-        path: /Audio/Nyanotrasen/Ambience/Objects/welding_sparks.ogg
+        path: /Audio/_Nyanotrasen/Ambience/Objects/welding_sparks.ogg
 
 - type: entity
   parent: BaseMobMalfunctioningRobot
@@ -164,7 +164,7 @@
   description: A robot hovering around erratically. There's a viscous bubbling sound coming from within it.
   components:
     - type: Sprite
-      sprite: Backmen/Mobs/Player/Borgs/cyborg_medical.rsi
+      sprite: _Backmen/Mobs/Player/Borgs/cyborg_medical.rsi
     - type: MovementAlwaysTouching
     - type: MovementSpeedModifier
       baseWalkSpeed: 1.5
@@ -251,7 +251,7 @@
   components:
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/Mobs/Player/Borgs/cyborg.rsi
+      sprite: _Backmen/Mobs/Player/Borgs/cyborg.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: robot
@@ -287,7 +287,7 @@
         task: SimpleHumanoidHostileCompound
       blackboard:
         SoundTargetInLOS: !type:SoundPathSpecifier
-          path: /Audio/Nyanotrasen/Effects/double_beep_whirr.ogg
+          path: /Audio/_Nyanotrasen/Effects/double_beep_whirr.ogg
         NavInteract: !type:Bool
           true
     - type: Butcherable
@@ -339,7 +339,7 @@
           layer:
             - MobLayer
     - type: StandingState
-      downSound: /Audio/Nyanotrasen/Mobs/Borg/robot_melt_down.ogg
+      downSound: /Audio/_Nyanotrasen/Mobs/Borg/robot_melt_down.ogg
     - type: FootstepModifier
       footstepSoundCollection:
-        path: /Audio/Nyanotrasen/Mobs/Borg/robot_treads.ogg
+        path: /Audio/_Nyanotrasen/Mobs/Borg/robot_treads.ogg

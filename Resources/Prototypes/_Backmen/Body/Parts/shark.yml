@@ -6,14 +6,14 @@
   abstract: true
   components:
   - type: Damageable
-    damageContainer: OrganicPart # #Backmen-Edit
+    damageContainer: OrganicPart # # Backmen-Edit
 
 - type: entity
   id: ChestShark
   name: "Shark chest"
   parent: [BaseChest, PartShark]
   components:
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Chest
   - type: Sprite
     sprite: _ADT/Mobs/Shark/parts.rsi
@@ -31,7 +31,7 @@
   name: "Shark groin"
   parent: [BaseGroin, PartShark]
   components:
-  - type: BodyPart #Backmen-Edit
+  - type: BodyPart # Backmen-Edit
     partType: Groin
   - type: Sprite
     sprite: _ADT/Mobs/Shark/parts.rsi

@@ -5,10 +5,10 @@
   description: Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/PCV.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/PCV.rsi
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/PCV.rsi
-    equipSound: /Audio/Backmen/test/base/ogg/blackmesa/pcv/01_pcv_logon.ogg
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/PCV.rsi
+    equipSound: /Audio/_Backmen/test/base/ogg/blackmesa/pcv/01_pcv_logon.ogg
     quickEquip: false
     equipDelay: 5
     unequipDelay: 2
@@ -52,9 +52,9 @@
   description: Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
   - type: Armor
     coverage:
     - Head
@@ -74,10 +74,10 @@
   description: Powered Combat Vest предназначен для защиты пользователя от химических, биологических, радиоактивных и физических угроз во время операций.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
     state: icon-nvg
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/hecuhelmet.rsi
     equippedState: equipped-HELMET-nvg
   - type: PNV
 
@@ -87,9 +87,9 @@
   name: сумка отряда H.E.C.U.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Backpack/Back/Satchels/hecu.rsi
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing
@@ -100,9 +100,9 @@
     grid:
     - 0,0,7,3
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Gear/hecubelt.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Gear/hecubelt.rsi
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Gear/hecubelt.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Gear/hecubelt.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -111,9 +111,9 @@
   description: Jumpsuit made of dense camouflage fabric. Doesn't make you invisible.
   components:
     - type: Sprite
-      sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/urbanCM.rsi
+      sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/urbanCM.rsi
     - type: Clothing
-      sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/urbanCM.rsi
+      sprite: _Backmen/test/base/rsi/Textures/Suits/blackmesa/urbanCM.rsi
 
 - type: entity
   parent: ClothingMaskGas
@@ -122,9 +122,9 @@
   description: A military-grade gas mask that can be connected to an air supply.
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Mask/hecu.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Mask/hecu.rsi
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Mask/hecu.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Mask/hecu.rsi
   - type: Armor
     coverage:
     - Head
@@ -141,6 +141,6 @@
   name: seva gas mask
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Mask/seva.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Mask/seva.rsi
   - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Mask/seva.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Mask/seva.rsi

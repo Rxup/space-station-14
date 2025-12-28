@@ -12,7 +12,7 @@
     proto: BulletMagnum
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 45combat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -47,7 +47,7 @@
   - type: CartridgeAmmo
     proto: BulletPistol9x17
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
       - state: 35combat
         map: [ "enum.AmmoVisualLayers.Base" ]
@@ -74,7 +74,7 @@
   - type: CartridgeAmmo
     proto: BulletPistolACP
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     scale: 0.75, 0.75
     layers:
       - state: 45combat
@@ -102,7 +102,7 @@
   - type: CartridgeAmmo
     proto: BulletPistol57x28
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     scale: 0.6, 0.6
     layers:
       - state: 20combat
@@ -130,7 +130,7 @@
   - type: CartridgeAmmo
     proto: BulletPistol50AE
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
       - state: 45combat
         map: [ "enum.AmmoVisualLayers.Base" ]
@@ -165,7 +165,7 @@
   - type: CartridgeAmmo
     proto: BulletRevolver357Magnum
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
       - state: 45combat
         map: [ "enum.AmmoVisualLayers.Base" ]
@@ -192,7 +192,7 @@
   - type: CartridgeAmmo
     proto: BulletRevolver38Special
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     scale: 0.8, 0.8
     layers:
       - state: 45combat
@@ -220,7 +220,7 @@
   - type: CartridgeAmmo
     proto: BulletRevolver44Magnum
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     scale: 1.2, 1.2
     layers:
       - state: 45combat

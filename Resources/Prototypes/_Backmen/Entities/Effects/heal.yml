@@ -7,7 +7,7 @@
   - type: Sprite
     noRot: true
     drawdepth: Effects
-    sprite: Backmen/Effects/heals.rsi
+    sprite: _Backmen/Effects/heals.rsi
     state: single
   - type: EffectVisuals
   - type: Tag

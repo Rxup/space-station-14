@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client.Backmen.UI.Buttons;
+using Content.Client._Backmen.UI.Buttons;
 using Content.Client.Audio;
 using Content.Client.Changelog;
 using Content.Client.GameTicking.Managers;
@@ -209,9 +209,6 @@ namespace Content.Client.Lobby
             {
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
                 Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20] Backmen [/font]"); // BACKMEN EDIT
-                    // Don't forget that you're the BACKMEN, that you've always gone against the system and made the best build.
-                    // Don't forget that you're the Ataraxia, that you have always stood for the players to be happy and get what they deserve.
-                    // Glory to BACKMEN, HOP on Ataraxia
                 Lobby!.ChangelogLabel.SetMarkup(Loc.GetString("ui-lobby-changelog")); // BACKMEN EDIT
             }
 

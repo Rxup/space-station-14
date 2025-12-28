@@ -1,3 +1,4 @@
+using Content.Shared._Backmen.WL;
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
@@ -97,7 +98,7 @@ public sealed partial class ReformSystem : EntitySystem
             _mindSystem.TransferTo(mindId, child, mind: mind);
 
         // start-bacmen: WL
-        EntityManager.SystemOrNull<Backmen.WL.SharedWhitelistSystem>()?.ProcessReform(child,(uid,comp));
+        EntityManager.SystemOrNull<SharedWhitelistSystem>()?.ProcessReform(child,(uid,comp));
         // end-backen: WL
 
         // Delete the old entity

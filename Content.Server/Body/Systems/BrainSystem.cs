@@ -1,11 +1,11 @@
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Components;
-using Content.Shared.Backmen.Surgery.Body;
+using Content.Shared._Backmen.Surgery.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Events;
-using Content.Server.Backmen.DelayedDeath;
-using Content.Shared.Backmen.Surgery.Body.Organs;
+using Content.Server._Backmen.DelayedDeath;
+using Content.Shared._Backmen.Surgery.Body.Organs;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Pointing;

@@ -5,7 +5,7 @@
   description: A bamboo sword, commonly used in kendo. Made some time after the realization that wooden swords hurt a lot.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Melee/shinai.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/shinai.rsi
     state: icon
   - type: MeleeWeapon
     attackRate: 1.25
@@ -20,7 +20,7 @@
     damage: 10
   - type: Item
     size: Huge
-    sprite: Backmen/Objects/Weapons/Melee/shinai.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/shinai.rsi
   - type: DisarmMalus
 
 - type: entity

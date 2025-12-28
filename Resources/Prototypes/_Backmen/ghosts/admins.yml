@@ -6,7 +6,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/angel.rsi
+    sprite: _Backmen/Mobs/Ghost/angel.rsi
     layers:
       - state: angel
         shader: unshaded

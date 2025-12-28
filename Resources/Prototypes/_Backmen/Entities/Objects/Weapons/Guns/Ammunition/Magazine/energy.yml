@@ -29,10 +29,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/sws.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/sws.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/sws.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/sws.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -62,10 +62,10 @@
 #      - BigEnergyMag
 #  - type: Item
 #    size: Small
-#    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
+#    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
 #  - type: Sprite
 #    netsync: false
-#    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
+#    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
 #    layers:
 #    - state: base
 #      map: ["enum.GunVisualLayers.Base"]
@@ -92,10 +92,10 @@
       - EnergyMag
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/earthmag.rsi
     layers:
     - state: base
       map: [ "enum.PowerCellVisualLayers.Base" ]
@@ -118,10 +118,10 @@
       - EnergyMag
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/pulsemag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/pulsemag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/pulsemag.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Energy/pulsemag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

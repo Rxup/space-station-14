@@ -5,7 +5,7 @@
   description: Pretty plant, it seems safe? Considering what it's made of.
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    sprite: _Backmen/Structures/Furniture/potted_plants.rsi
     state: plasma_plant
   - type: AlwaysHot # Funny
   - type: PointLight
@@ -19,7 +19,7 @@
   description: Large bushy hedge
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Furniture/potted_plants.rsi
+    sprite: _Backmen/Structures/Furniture/potted_plants.rsi
     offset: "0.0,0.0"
     state: hedge
   - type: Transform

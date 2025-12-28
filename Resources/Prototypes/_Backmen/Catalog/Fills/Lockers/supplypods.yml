@@ -42,13 +42,13 @@
   - type: AirDrop
     inAir:
     - type: Sprite
-      sprite: Backmen/Effects/droppod_falling.rsi
+      sprite: _Backmen/Effects/droppod_falling.rsi
       layers:
       - state: syndiepod_falling_animation
         offset: "0,3.3"
     supplyDrop:
     - type: Sprite
-      sprite: Backmen/Structures/Storage/supplypod.rsi
+      sprite: _Backmen/Structures/Storage/supplypod.rsi
       layers:
       - state: syndiepod
         map: [ "enum.StorageVisualLayers.Base" ]
@@ -308,13 +308,13 @@
     timeOfTarget: 4
     inAir:
     - type: Sprite
-      sprite: Backmen/Effects/droppod_falling.rsi
+      sprite: _Backmen/Effects/droppod_falling.rsi
       layers:
       - state: missile_falling_animation
         offset: "0,3.3"
     supplyDrop:
     - type: Sprite
-      sprite: Backmen/Structures/Storage/supplypod.rsi
+      sprite: _Backmen/Structures/Storage/supplypod.rsi
       layers:
       - state: missilepod
       - state: missilepod_door
@@ -336,13 +336,13 @@
     timeOfTarget: 3
     inAir:
     - type: Sprite
-      sprite: Backmen/Effects/droppod_falling.rsi
+      sprite: _Backmen/Effects/droppod_falling.rsi
       layers:
       - state: missile_falling_animation
         offset: "0,3.3"
     supplyDrop:
     - type: Sprite
-      sprite: Backmen/Structures/Storage/supplypod.rsi
+      sprite: _Backmen/Structures/Storage/supplypod.rsi
       layers:
       - state: missilepod
       - state: missilepod_door

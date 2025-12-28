@@ -1,6 +1,6 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared._Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Standing;

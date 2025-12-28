@@ -6,7 +6,7 @@
   components:
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/Mobs/Aliens/Guardians/guardians.rsi
+      sprite: _Backmen/Mobs/Aliens/Guardians/guardians.rsi
       layers:
         - state: magic_base
           map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -97,9 +97,9 @@
   description: Пылающая рука ифрита
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Tools/ifrit_hand.rsi
+      sprite: _Backmen/Objects/Tools/ifrit_hand.rsi
     - type: Item
-      sprite: Backmen/Objects/Tools/ifrit_hand.rsi
+      sprite: _Backmen/Objects/Tools/ifrit_hand.rsi
     - type: SolutionContainerManager
       solutions:
         Welder:

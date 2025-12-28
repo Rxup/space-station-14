@@ -1,4 +1,4 @@
-#backmen start
+# Backmen start
 ---
 - type: alertLevels
   id: stationAlerts
@@ -13,7 +13,7 @@
     blue:
       announcement: alert-level-blue-announcement
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/blue_code_new_style.ogg
+        path: /Audio/_Backmen/Misc/new-style-alerts/blue_code_new_style.ogg
         params:
           volume: -2
       color: DodgerBlue
@@ -21,14 +21,14 @@
       shuttleTime: 600
     violet:
       announcement: alert-level-violet-announcement
-      sound: /Audio/Backmen/Misc/new-style-alerts/purple_code_new_style.ogg
+      sound: /Audio/_Backmen/Misc/new-style-alerts/purple_code_new_style.ogg
       color: Violet
       emergencyLightColor: Violet
       forceEnableEmergencyLights: true
       shuttleTime: 600
     yellow:
       announcement: alert-level-yellow-announcement
-      sound: /Audio/Backmen/Misc/new-style-alerts/yellow_code_new_style.ogg
+      sound: /Audio/_Backmen/Misc/new-style-alerts/yellow_code_new_style.ogg
       color: Yellow
       emergencyLightColor: Goldenrod
       forceEnableEmergencyLights: true
@@ -36,7 +36,7 @@
     amber:
       announcement: alert-level-amber-announcement
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/amber_code_new_style.ogg
+        path: /Audio/_Backmen/Misc/new-style-alerts/amber_code_new_style.ogg
         params:
           volume: -2
       color: Orange
@@ -46,7 +46,7 @@
     red:
       announcement: alert-level-red-announcement
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/red_code_new_style.ogg
+        path: /Audio/_Backmen/Misc/new-style-alerts/red_code_new_style.ogg
         params:
           volume: -2
       color: Red
@@ -68,7 +68,7 @@
       announcement: alert-level-delta-announcement
       selectable: false
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/delta_code_new_style.ogg
+        path: /Audio/_Backmen/Misc/new-style-alerts/delta_code_new_style.ogg
         params:
           volume: -4
       disableSelection: true
@@ -80,7 +80,7 @@
       announcement: alert-level-epsilon-announcement
       selectable: false
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/epsilon_code_new_style.ogg
+        path: /Audio/_Backmen/Misc/new-style-alerts/epsilon_code_new_style.ogg
         params:
           volume: -2
       disableSelection: true
@@ -91,7 +91,7 @@
     sigma:
       announcement: alert-level-sigma-announcement
       selectable: false
-      sound: /Audio/Backmen/Misc/new-style-alerts/sigma_code_new_style.ogg
+      sound: /Audio/_Backmen/Misc/new-style-alerts/sigma_code_new_style.ogg
       disableSelection: true
       color: Pink
       emergencyLightColor: Aqua
@@ -100,11 +100,11 @@
     white:
       announcement: alert-level-white-announcement
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/white_code_new_style.ogg
+        path: /Audio/_Backmen/Misc/new-style-alerts/white_code_new_style.ogg
         params:
           volume: -2
       color: White
       emergencyLightColor: White
       forceEnableEmergencyLights: true
       shuttleTime: 600
-#backmen end
+# Backmen end

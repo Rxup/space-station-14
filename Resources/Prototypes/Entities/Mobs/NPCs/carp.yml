@@ -81,7 +81,7 @@
         - CannotSuicide
     - type: LanguageSpeaker
       currentLanguage: TauCetiBasic
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - SpaceMob
       - Carp

@@ -4,7 +4,7 @@
   name: жетон
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/dogtags.rsi
+    sprite: _Backmen/Objects/Misc/dogtags.rsi
     state: base
   - type: Clothing
     slots:
@@ -89,12 +89,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/pagon.rsi
+    sprite: _Backmen/Objects/Misc/pagon.rsi
   - type: Clothing
     quickEquip: false
     slots:
     - idcard
-    sprite: Backmen/Objects/Misc/pagon.rsi
+    sprite: _Backmen/Objects/Misc/pagon.rsi
   - type: Item
     heldPrefix: default
   - type: IdCard
@@ -368,11 +368,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Misc/id_badges.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Misc/id_badges.rsi
   - type: Clothing
     slots:
     - idcard
-    sprite: Backmen/test/base/rsi/Textures/Misc/id_badges.rsi
+    sprite: _Backmen/test/base/rsi/Textures/Misc/id_badges.rsi
   - type: Item
     heldPrefix: default
   - type: Access
@@ -438,7 +438,7 @@
   name: pmc badge
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/dogtags.rsi
+    sprite: _Backmen/Objects/Misc/dogtags.rsi
     state: pmc
   - type: Clothing
     slots:

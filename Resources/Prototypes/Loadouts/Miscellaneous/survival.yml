@@ -19,7 +19,7 @@
     - Moth
     - Reptilian
     - Vulpkanin # Corvax-MRP
-    #backmen-species-start
+    # Backmen-species-start
     - ArachneClassic
     - Felinid
     - HumanoidFoxes
@@ -28,7 +28,7 @@
     - Shadowkin
     - Demon
     - Shark
-    #backmen-species-end
+    # Backmen-species-end
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox

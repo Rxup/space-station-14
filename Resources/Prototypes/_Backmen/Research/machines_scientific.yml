@@ -81,7 +81,7 @@
   id: Metempsychosis
   name: research-technology-metempsychosis
   icon:
-    sprite: Backmen/Structures/Machines/metempsychotic.rsi
+    sprite: _Backmen/Structures/Machines/metempsychotic.rsi
     state: pod_0
   discipline: Scientific
   tier: 2

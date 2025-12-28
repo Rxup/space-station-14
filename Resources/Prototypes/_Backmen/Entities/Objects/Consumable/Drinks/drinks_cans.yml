@@ -17,6 +17,6 @@
     - DrinkCan
     - Recyclable
   - type: Sprite
-    sprite: Backmen/Objects/Consumable/Drinks/condensedmilk.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/condensedmilk.rsi
   - type: Item
-    sprite: Backmen/Objects/Consumable/Drinks/condensedmilk.rsi
+    sprite: _Backmen/Objects/Consumable/Drinks/condensedmilk.rsi

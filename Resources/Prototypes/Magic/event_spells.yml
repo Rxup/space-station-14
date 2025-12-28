@@ -31,7 +31,7 @@
   - type: InstantAction
     event: !type:RandomGlobalSpawnSpellEvent
       makeSurvivorAntagonist: true
-      spawns: #Backmen-weapon-upstream
+      spawns: # Backmen-weapon-upstream
       - id: WeaponPistolViper
         orGroup: Guns
       - id: WeaponPistolCobra
@@ -162,7 +162,7 @@
         orGroup: Guns
       - id: RevolverCapGunFake
         orGroup: Guns
-#Backmen-weapon-start
+# Backmen-weapon-start
       - id: WeaponDominatorNT
         orGroup: Guns
       - id: WeaponPistolRivet
@@ -323,7 +323,7 @@
         orGroup: Guns
       - id: WeaponRifleFamas
         orGroup: Guns
-#Backmen-weapon-end
+# Backmen-weapon-end
   - type: SpeakOnAction
     sentence: action-speech-spell-summon-guns
 

@@ -2,7 +2,7 @@
 #  id: killertomato
 #  name: killer tomato
 #  displayName: killer tomatoes
-#  plantRsi: Backmen/Mobs/Mutants/killer_tomato.rsi
+#  plantRsi: _Backmen/Mobs/Mutants/killer_tomato.rsi
 #  packetPrototype: KillerTomatoSeeds
 #  productPrototypes:
 #    - MobTomatoKiller

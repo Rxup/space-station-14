@@ -5,9 +5,9 @@
   description: Gloves given to important members of the Red Order. they are inlaid with gold.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Gloves/ordenhands.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/ordenhands.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Gloves/ordenhands.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/ordenhands.rsi
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-durathread
@@ -21,18 +21,18 @@
   description: Боевой кибернетический имплант. Клинки исходят из предплечья, что позволяет использовать их как оружие ближнего боя.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/mantis.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
-    equipSound: /Audio/Backmen/Weapons/Melee/bogomol/on.ogg
-    unequipSound: /Audio/Backmen/Weapons/Melee/bogomol/off.ogg
+    sprite: _Backmen/Clothing/Hands/Gloves/mantis.rsi
+    equipSound: /Audio/_Backmen/Weapons/Melee/bogomol/on.ogg
+    unequipSound: /Audio/_Backmen/Weapons/Melee/bogomol/off.ogg
   - type: MeleeWeapon
     attackRate: 3
     damage:
       types:
         Piercing: 10
-    soundSwing: /Audio/Backmen/Weapons/Melee/bogomol/miss.ogg
-    soundHit: /Audio/Backmen/Weapons/Melee/bogomol/hit.ogg
+    soundSwing: /Audio/_Backmen/Weapons/Melee/bogomol/miss.ogg
+    soundHit: /Audio/_Backmen/Weapons/Melee/bogomol/hit.ogg
   - type: StaticPrice
     price: 1000
 
@@ -43,9 +43,9 @@
   description: Эти тактические перчатки огнеупорны и ударопрочны.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Gloves/ihscombat.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/ihscombat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Gloves/ihscombat.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/ihscombat.rsi
   - type: Fiber
     fiberMaterial: fibers-durathread
   - type: FingerprintMask
@@ -70,9 +70,9 @@
   description: полоса ткани, которую используют боксёры и представители других спортивных единоборств .
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/binti.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/binti.rsi
   - type: MeleeWeapon
     attackRate: 1.7
     damage:
@@ -93,9 +93,9 @@
   description: High-quality combat gloves form pa... Future.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/chronogloves.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/chronogloves.rsi
   - type: Insulated
   - type: FingerprintMask
   - type: DashAbility
@@ -126,9 +126,9 @@
   description: Эти тактические белые перчатки огнеупорны и ударопрочны.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
+    sprite: _Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
   - type: Fiber
     fiberMaterial: fibers-durathread
   - type: FingerprintMask
@@ -153,9 +153,9 @@
   description: Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/inteq_maid_gloves.rsi
+    sprite: _Backmen/Clothing/Hands/inteq_maid_gloves.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/inteq_maid_gloves.rsi
+    sprite: _Backmen/Clothing/Hands/inteq_maid_gloves.rsi
 
 - type: entity
   parent: ClothingHandsGlovesCombat
@@ -164,9 +164,9 @@
   description: Specialized combat gloves for carrying people around. Transfers tactical kidnapping and tackling knowledge to the user via the use of nanochips.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Hands/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/Hands/inteq_infiltrator.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Hands/inteq_infiltrator.rsi
+    sprite: _Backmen/Clothing/Hands/inteq_infiltrator.rsi
   - type: Armor
     modifiers:
       coefficients:

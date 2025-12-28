@@ -12,7 +12,7 @@
   - type: Clothing
     slots:
     - Back
-    sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
+    sprite: _Backmen/Clothing/Back/Powerpacks/backpack.rsi
     equipDelay: 10
     unequipDelay: 10
   - type: BallisticAmmoProvider
@@ -25,7 +25,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
+    sprite: _Backmen/Clothing/Back/Powerpacks/backpack.rsi
     layers:
     - state: mag-0
       map: ["enum.GunVisualLayers.Base"]
@@ -51,7 +51,7 @@
   - type: Clothing
     slots:
     - Back
-    sprite: Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
+    sprite: _Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
     equipDelay: 10
     unequipDelay: 10
   - type: PowerCell
@@ -66,7 +66,7 @@
     walkModifier: 0.6
     sprintModifier: 0.6
   - type: Sprite
-    sprite: Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
+    sprite: _Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
     layers:
     - state: icon
       map: ["enum.GunVisualLayers.Base"]

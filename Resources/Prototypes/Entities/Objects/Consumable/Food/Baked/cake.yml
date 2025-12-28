@@ -1126,7 +1126,7 @@
         Brute: 1
   - type: LanguageSpeaker
     currentLanguage: Cat
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Cat
     understands:

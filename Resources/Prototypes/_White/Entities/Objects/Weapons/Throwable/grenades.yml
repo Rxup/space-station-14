@@ -5,7 +5,7 @@
   description: Instant cover.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Grenades/barrier.rsi
+    sprite: _Backmen/Objects/Weapons/Grenades/barrier.rsi
   - type: SoundOnTrigger
     sound:
       path: "/Audio/Effects/snap.ogg"

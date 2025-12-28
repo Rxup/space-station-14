@@ -1,8 +1,7 @@
 ﻿using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Shuttles.Components;
-using Content.Shared.Backmen.Arrivals;
+using Content.Shared._Backmen.Arrivals;
 using Content.Shared.Foldable;
-using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
 using Content.Shared.Tools.Components;
 using Robust.Shared.Prototypes;
@@ -25,7 +24,7 @@ public abstract class SharedNoLavalandUsageSystem : EntitySystem
             after: [typeof(SharedInteractionSystem)]);*/
         SubscribeLocalEvent<NoLavalandUsageComponent, FoldAttemptEvent>(OnOpenStorage);
         SubscribeLocalEvent<ToolUserAttemptUseEvent>(OnTryAnchor);
-        SubscribeLocalEvent<Backmen.Arrivals.FlatPackUserAttemptUseEvent>(OnTryUnPack);
+        SubscribeLocalEvent<FlatPackUserAttemptUseEvent>(OnTryUnPack);
 
         QueryLimit = GetEntityQuery<NoLavalandUsageComponent>();
     }

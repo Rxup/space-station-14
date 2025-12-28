@@ -15,7 +15,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Icons/inteq.rsi
+      - sprite: _Backmen/Icons/inteq.rsi
         state: logo
   - type: ConditionalSpawner
     prototypes:
@@ -29,7 +29,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Icons/inteq.rsi
+      - sprite: _Backmen/Icons/inteq.rsi
         state: logo
   - type: ConditionalSpawner
     prototypes:
@@ -43,7 +43,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Icons/inteq.rsi
+      - sprite: _Backmen/Icons/inteq.rsi
         state: logo
   - type: ConditionalSpawner
     prototypes:
@@ -57,7 +57,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Icons/inteq.rsi
+      - sprite: _Backmen/Icons/inteq.rsi
         state: logo
   - type: ConditionalSpawner
     prototypes:
@@ -73,7 +73,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+      - sprite: _Backmen/Mobs/Npc/gigachad_inteq.rsi
         state: alive
   - type: ConditionalSpawner
     prototypes:
@@ -88,7 +88,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Mobs/Npc/gigachad_inteq.rsi
+      - sprite: _Backmen/Mobs/Npc/gigachad_inteq.rsi
         state: alive
   - type: RandomSpawner
     prototypes:
@@ -103,7 +103,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Backmen/Mobs/Pets/inteq_carp.rsi
+      - sprite: _Backmen/Mobs/Pets/inteq_carp.rsi
         state: icon
   - type: ConditionalSpawner
     prototypes:
@@ -130,7 +130,7 @@
     - type: NpcFactionMember
       factions:
         - InteQ
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - TauCetiBasic
       - OldFastCodes

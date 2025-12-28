@@ -3,10 +3,10 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared.Backmen.Surgery.Consciousness;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Backmen.Targeting;
+using Content.Shared._Backmen.Surgery.Consciousness;
+using Content.Shared._Backmen.Surgery.Consciousness.Components;
+using Content.Shared._Backmen.Surgery.Consciousness.Systems;
+using Content.Shared._Backmen.Targeting;
 using Content.Shared.Body.Components;
 
 namespace Content.Shared.Chat;

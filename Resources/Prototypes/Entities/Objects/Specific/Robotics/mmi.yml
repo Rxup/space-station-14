@@ -49,7 +49,7 @@
     guides:
     - Cyborgs
     - Robotics
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker # Backmen: languages
     currentLanguage: Binary
   - type: LanguageKnowledge
     speaks:
@@ -141,7 +141,7 @@
       guides:
       - Cyborgs
       - Robotics
-    - type: LanguageSpeaker #backmen: languages
+    - type: LanguageSpeaker # Backmen: languages
       currentLanguage: Binary
     - type: LanguageKnowledge
       speaks:

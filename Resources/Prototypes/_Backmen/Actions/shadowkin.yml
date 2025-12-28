@@ -7,7 +7,7 @@
       itemIconStyle: NoItem
       useDelay: 15
       icon:
-        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+        sprite: _Backmen/Interface/Actions/shadowkin_icons.rsi
         state: teleport
     - type: WorldTargetAction
       event: !type:ShadowkinTeleportEvent
@@ -28,7 +28,7 @@
       itemIconStyle: NoItem
       priority: -21
       icon:
-        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+        sprite: _Backmen/Interface/Actions/shadowkin_icons.rsi
         state: darkswap
     - type: InstantAction
       event: !type:ShadowkinDarkSwapEvent
@@ -47,7 +47,7 @@
       itemIconStyle: NoItem
       priority: -22
       icon:
-        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+        sprite: _Backmen/Interface/Actions/shadowkin_icons.rsi
         state: rest
       checkCanInteract: false
       checkConsciousness: false

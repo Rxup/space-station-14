@@ -18,7 +18,7 @@
     priority: -1
     useDelay: 120
     icon:
-      sprite: Backmen/Interface/Actions/vampire.rsi
+      sprite: _Backmen/Interface/Actions/vampire.rsi
       state: bat
     checkCanInteract: true
   - type: EntityTargetAction

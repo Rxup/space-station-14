@@ -1,51 +1,51 @@
 - type: animatedLobbyScreen
   id: CentcommLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/centcomm.rsi
+  path: /Textures/_Backmen/LobbyScreens/centcomm.rsi
 
 - type: animatedLobbyScreen
   id: CubeLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/cube.rsi
+  path: /Textures/_Backmen/LobbyScreens/cube.rsi
 
 - type: animatedLobbyScreen
   id: MilkywayLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/milkyway.rsi
+  path: /Textures/_Backmen/LobbyScreens/milkyway.rsi
 
 - type: animatedLobbyScreen
   id: RocketLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/rocket.rsi
+  path: /Textures/_Backmen/LobbyScreens/rocket.rsi
 
 - type: animatedLobbyScreen
   id: SeaLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/sea.rsi
+  path: /Textures/_Backmen/LobbyScreens/sea.rsi
 
 - type: animatedLobbyScreen
   id: VangoghLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/vangogh.rsi
+  path: /Textures/_Backmen/LobbyScreens/vangogh.rsi
 
 - type: animatedLobbyScreen
   id: GachiLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/Gachi.rsi
+  path: /Textures/_Backmen/LobbyScreens/Gachi.rsi
 
 - type: animatedLobbyScreen
   id: PortalLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/Portal.rsi
+  path: /Textures/_Backmen/LobbyScreens/Portal.rsi
 
 - type: animatedLobbyScreen
   id: AzunaLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/Azuna.rsi
+  path: /Textures/_Backmen/LobbyScreens/Azuna.rsi
 
 - type: animatedLobbyScreen
   id: FleetLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/Fleet.rsi
+  path: /Textures/_Backmen/LobbyScreens/Fleet.rsi
 
 - type: animatedLobbyScreen
   id: HellDudeLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/HellDude.rsi
+  path: /Textures/_Backmen/LobbyScreens/HellDude.rsi
 
 - type: animatedLobbyScreen
   id: LongExpeditionLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/LongExpedition.rsi
+  path: /Textures/_Backmen/LobbyScreens/LongExpedition.rsi
 
 - type: animatedLobbyScreen
   id: SpaceCombatLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/SpaceCombat.rsi
+  path: /Textures/_Backmen/LobbyScreens/SpaceCombat.rsi

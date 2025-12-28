@@ -5,7 +5,7 @@
   description: Syndicate teleporter, when used, moves 3-8 meters forward. In case of teleportation into a wall, uses emergency teleportation. Has 4 charge.
   components:
   - type: Sprite
-    sprite: /Textures/Backmen/Objects/Devices/experimentalsyndicateteleporter.rsi
+    sprite: /Textures/_Backmen/Objects/Devices/experimentalsyndicateteleporter.rsi
     layers:
     - state: icon
   - type: ExperimentalTeleporter

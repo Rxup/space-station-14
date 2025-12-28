@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Alert;
-using Content.Shared.Backmen.Surgery.Consciousness;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared._Backmen.Surgery.Consciousness;
+using Content.Shared._Backmen.Surgery.Consciousness.Components;
+using Content.Shared._Backmen.Surgery.Wounds.Components;
+using Content.Shared._Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;

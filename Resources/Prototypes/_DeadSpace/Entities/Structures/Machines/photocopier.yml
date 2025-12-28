@@ -11,7 +11,7 @@
     layers:
     - state: icon
       map: [ "enum.PhotocopierVisuals.VisualState" ]
-  - type: Transform #Backmen-edit
+  - type: Transform # Backmen-edit
     noRot: false
   - type: Icon
     sprite: _DeadSpace/Structures/Machines/photocopier.rsi

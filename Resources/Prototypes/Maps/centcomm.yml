@@ -23,7 +23,7 @@
 - type: gameMap
   id: CentCommv2
   mapName: 'Central Command'
-  mapPath: /Maps/Backmen/corvax_centcomm_bkm.yml
+  mapPath: /Maps/_Backmen/corvax_centcomm_bkm.yml
   minPlayers: 20
   isGrid: false # backmen
   stations:
@@ -46,7 +46,7 @@
 - type: gameMap
   id: CentCommv3
   mapName: 'Central Command'
-  mapPath: /Maps/Backmen/CentComBackmen.yml
+  mapPath: /Maps/_Backmen/CentComBackmen.yml
   minPlayers: 20
   stations:
     centcomm:
@@ -69,7 +69,7 @@
 - type: gameMap
   id: CentCommv4
   mapName: 'Central Command'
-  mapPath: /Maps/Backmen/backmen_centcom.yml
+  mapPath: /Maps/_Backmen/backmen_centcom.yml
   minPlayers: 10
   stations:
     centcomm:

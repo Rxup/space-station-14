@@ -57,7 +57,7 @@
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadout
 
-# Weapon #Backmen
+# Weapon # Backmen
 - type: loadout
   id: WeaponRevolverCMB
   dummyEntity: WeaponRevolverCMB

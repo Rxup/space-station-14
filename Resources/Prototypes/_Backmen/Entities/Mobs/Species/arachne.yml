@@ -7,7 +7,7 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - TauCetiBasic
     - Spider
@@ -20,7 +20,7 @@
     drawdepth: Mobs
     layers:
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-        sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+        sprite: _Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
         state: spider_body
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
         color: "#e8b59b"
@@ -31,7 +31,7 @@
         sprite: Mobs/Species/Human/parts.rsi
         state: groin_m
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-        sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+        sprite: _Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
         state: spider_body_front
       - map: [ "enum.HumanoidVisualLayers.Head" ]
         color: "#e8b59b"
@@ -39,7 +39,7 @@
         state: head_m
       - map: [ "enum.HumanoidVisualLayers.Eyes" ]
         color: "#008800"
-        sprite: Backmen/Mobs/Species/ArachneClassic/eyes.rsi
+        sprite: _Backmen/Mobs/Species/ArachneClassic/eyes.rsi
         state: eyes
       - map: [ "enum.HumanoidVisualLayers.RArm" ]
         color: "#e8b59b"
@@ -54,7 +54,7 @@
         state: l_leg
       - shader: StencilMask
         map: [ "enum.HumanoidVisualLayers.StencilMask" ]
-        sprite: Backmen/Mobs/Customization/anytaur_masking_helpers.rsi
+        sprite: _Backmen/Mobs/Customization/anytaur_masking_helpers.rsi
         state: female_full
         visible: false
       - map: [ "jumpsuit" ]
@@ -193,7 +193,7 @@
     drawdepth: Mobs
     layers:
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+      sprite: _Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
       state: spider_body
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
       color: "#e8b59b"
@@ -204,7 +204,7 @@
       sprite: Mobs/Species/Human/parts.rsi
       state: groin_m
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+      sprite: _Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
       state: spider_body_front
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
@@ -212,7 +212,7 @@
       state: head_m
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
       color: "#008800"
-      sprite: Backmen/Mobs/Species/ArachneClassic/eyes.rsi
+      sprite: _Backmen/Mobs/Species/ArachneClassic/eyes.rsi
       state: eyes
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
       color: "#e8b59b"
@@ -227,7 +227,7 @@
       state: l_leg
     - shader: StencilMask
       map: [ "enum.HumanoidVisualLayers.StencilMask" ]
-      sprite: Backmen/Mobs/Customization/anytaur_masking_helpers.rsi
+      sprite: _Backmen/Mobs/Customization/anytaur_masking_helpers.rsi
       state: female_full
       visible: false
     - map: [ "jumpsuit" ]
@@ -287,7 +287,7 @@
       uiWindowPos: 0,1
       strippingWindowPos: 1,2
       displayName: Suit
-  #backmen:underclothing-start
+  # Backmen:underclothing-start
     - name: undershirt
       slotTexture: undershirt
       slotFlags: UNDERSHIRT
@@ -309,7 +309,7 @@
 #      uiWindowPos: 4,2
 #      strippingWindowPos: 3,3
 #      displayName: Socks
-  #backmen:underclothing-end
+  # Backmen:underclothing-end
     - name: gloves
       slotTexture: gloves
       slotFlags: GLOVES

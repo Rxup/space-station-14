@@ -8,9 +8,9 @@
     trash:
     - Eggshells
   - type: Sprite
-    sprite: Backmen/Objects/Misc/eggspider.rsi
+    sprite: _Backmen/Objects/Misc/eggspider.rsi
   - type: Item
-    sprite: Backmen/Objects/Misc/eggspider.rsi
+    sprite: _Backmen/Objects/Misc/eggspider.rsi
     size: Tiny
   - type: SolutionContainerManager
     solutions:
@@ -62,7 +62,7 @@
   suffix: Vampire
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/eggspider.rsi
+    sprite: _Backmen/Objects/Misc/eggspider.rsi
     layers:
       - state: icon
         map: [ "enum.DamageStateVisualLayers.Base" ]

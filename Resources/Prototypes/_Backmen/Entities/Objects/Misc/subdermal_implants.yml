@@ -28,7 +28,7 @@
     itemIconStyle: BigAction
     priority: -20
     icon:
-      sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+      sprite: _Backmen/Clothing/Hands/Gloves/mantis.rsi
       state: icon
   - type: InstantAction
     event: !type:ToggleClothingEvent

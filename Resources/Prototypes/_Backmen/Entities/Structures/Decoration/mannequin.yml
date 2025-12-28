@@ -4,11 +4,11 @@
   name: mannequin man
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/mannequin.rsi
+    sprite: _Backmen/Structures/Decoration/mannequin.rsi
     state: mannequin
     layers:
     - map: [ "mannequin" ]
-      sprite: Backmen/Structures/Decoration/mannequin.rsi
+      sprite: _Backmen/Structures/Decoration/mannequin.rsi
       state: mannequin
 
 - type: entity
@@ -17,9 +17,9 @@
   name: mannequin woman
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Decoration/mannequin.rsi
+    sprite: _Backmen/Structures/Decoration/mannequin.rsi
     state: mannequin_woman
     layers:
     - map: [ "mannequin" ]
-      sprite: Backmen/Structures/Decoration/mannequin.rsi
+      sprite: _Backmen/Structures/Decoration/mannequin.rsi
       state: mannequin_woman

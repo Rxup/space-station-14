@@ -5,9 +5,9 @@
   description: Angle Grinder with a diamond disc and a four-stroke liquid plasma engine. What else could be needed when you need to storm someones fortress?
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Melee/USHM.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/USHM.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Melee/USHM.rsi
+    sprite: _Backmen/Objects/Weapons/Melee/USHM.rsi
   - type: MeleeWeapon
     damage:
       types:

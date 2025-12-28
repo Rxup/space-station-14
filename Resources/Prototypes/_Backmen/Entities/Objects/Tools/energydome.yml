@@ -11,7 +11,7 @@
     slots:
     - Belt
   - type: Sprite
-    sprite: Backmen/Objects/Tools/EnergyDome/syndie.rsi
+    sprite: _Backmen/Objects/Tools/EnergyDome/syndie.rsi
     layers:
       - state: icon
   - type: ContainerContainer
@@ -44,7 +44,7 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
+    sprite: _Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
     layers:
     - state: icon
   - type: InteractionOutline
@@ -191,7 +191,7 @@
     slots:
     - Back
   - type: Sprite
-    sprite: Backmen/Objects/Tools/EnergyDome/syndie.rsi
+    sprite: _Backmen/Objects/Tools/EnergyDome/syndie.rsi
     layers:
       - state: icon
   - type: ContainerContainer
@@ -230,7 +230,7 @@
     slots:
     - Belt
   - type: Sprite
-    sprite: Backmen/Objects/Tools/EnergyDome/syndie.rsi
+    sprite: _Backmen/Objects/Tools/EnergyDome/syndie.rsi
     layers:
       - state: icon
   - type: ContainerContainer

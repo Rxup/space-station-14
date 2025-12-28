@@ -5,10 +5,10 @@
   description: Pill canister wich uses the Bluespace technology. Holds up to 50 pills.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
+    sprite: _Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
     state: bluespace_pill_canister
   - type: Item
-    sprite: Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
+    sprite: _Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
     size: Normal
   - type: Tag
     tags:

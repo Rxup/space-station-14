@@ -23,8 +23,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using System.Linq;
-using Content.Shared.Backmen.Chat;
-using Content.Shared.Backmen.Language;
+using Content.Shared._Backmen.Chat;
+using Content.Shared._Backmen.Language;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Silicons.Borgs.Components;
 

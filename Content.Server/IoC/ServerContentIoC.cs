@@ -1,3 +1,8 @@
+using Content.Corvax.Interfaces.Server;
+using Content.Corvax.Interfaces.Shared;
+using Content.Server._Backmen.DiscordAuth;
+using Content.Server._Backmen.JoinQueue;
+using Content.Server._Backmen.Sponsors;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -68,10 +73,10 @@ namespace Content.Server.IoC
             IoCManager.Register<DiscordWebhook>();
 
             // start-backmen: IoC
-            IoCManager.Register<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager, Backmen.Sponsors.SponsorsManager>();
-            IoCManager.Register<Content.Corvax.Interfaces.Server.IServerDiscordAuthManager, Backmen.DiscordAuth.DiscordAuthManager>();
-            IoCManager.Register<Content.Corvax.Interfaces.Server.IServerJoinQueueManager, Backmen.JoinQueue.JoinQueueManager>();
-            IoCManager.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>();
+            IoCManager.Register<ISharedSponsorsManager, SponsorsManager>();
+            IoCManager.Register<IServerDiscordAuthManager, DiscordAuthManager>();
+            IoCManager.Register<IServerJoinQueueManager, JoinQueueManager>();
+            IoCManager.Register<ISharedLoadoutsManager, LoadoutsManager>();
             // end-backmen: IoC
             IoCManager.Register<VoteWebhooks>();
             IoCManager.Register<ServerDbEntryManager>();

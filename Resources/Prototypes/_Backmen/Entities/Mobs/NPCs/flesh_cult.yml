@@ -54,7 +54,7 @@
 #      accent: genericAggressive
     - type: LanguageSpeaker
       currentLanguage: Flesh
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - Flesh
       understands:

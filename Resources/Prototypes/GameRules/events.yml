@@ -627,7 +627,7 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
-      - type: LanguageKnowledge #backmen: languages
+      - type: LanguageKnowledge # Backmen: languages
         speaks:
         - TauCetiBasic
         - Codespeak

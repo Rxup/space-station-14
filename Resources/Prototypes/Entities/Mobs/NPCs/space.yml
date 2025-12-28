@@ -103,7 +103,7 @@
 #    accent: genericAggressive
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - SpaceMob
     - Bear
@@ -183,7 +183,7 @@
       amount: 1
   - type: LanguageSpeaker # Backmen
     currentLanguage: Kangaroo
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - Kangaroo
     understands:
@@ -272,7 +272,7 @@
 #    accent: xeno
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - SpaceMob
     - Spider
@@ -386,7 +386,7 @@
 #      accent: xeno
     - type: LanguageSpeaker
       currentLanguage: TauCetiBasic
-    - type: LanguageKnowledge #backmen: languages
+    - type: LanguageKnowledge # Backmen: languages
       speaks:
       - SpaceMob
       - Snake

@@ -56,7 +56,7 @@
     noRot: true
     drawdepth: Mobs
     offset: "0.0,0.5"
-    sprite: Backmen/Structures/Decoration/statues.rsi
+    sprite: _Backmen/Structures/Decoration/statues.rsi
     layers:
     - state: oracle-0
     - map: ["enum.RecyclerVisualLayers.Main"]
@@ -74,7 +74,7 @@
     noRot: true
     drawdepth: Mobs
     offset: "0.0,0.5"
-    sprite: Backmen/Structures/Decoration/statues.rsi
+    sprite: _Backmen/Structures/Decoration/statues.rsi
     layers:
       - state: oracle-0
       - map: ["enum.SolutionContainerLayers.Fill"]

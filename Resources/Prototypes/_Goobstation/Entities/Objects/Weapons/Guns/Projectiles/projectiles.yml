@@ -10,7 +10,7 @@
       - NonEnergy
   - type: Sprite
     noRot: false
-    sprite: Goobstation/Objects/Weapons/Guns/Projectiles/bullet_cutter.rsi
+    sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/bullet_cutter.rsi
     layers:
     - state: icon
       shader: unshaded

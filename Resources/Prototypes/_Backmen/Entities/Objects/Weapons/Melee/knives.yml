@@ -21,10 +21,10 @@
           Piercing: 1.2
           Holy: 1.2
     - type: Sprite
-      sprite: Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
+      sprite: _Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
       state: icon
     - type: Item
-      sprite: Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
+      sprite: _Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
     - type: Tag
       tags:
         - ForensicBeltEquip

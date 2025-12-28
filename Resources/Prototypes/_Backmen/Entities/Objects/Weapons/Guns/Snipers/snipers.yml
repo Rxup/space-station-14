@@ -6,16 +6,16 @@
   description: A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -5
   - type: GunWieldBonus
@@ -78,16 +78,16 @@
   description: The Bauer SR-127 is the standard issue bolt action rifle used by the United Earth Gov. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses .60 anti-material magazines."
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -143,11 +143,11 @@
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: BallisticAmmoProvider
     capacity: 10
     proto: CartridgeRifleLight762
@@ -171,11 +171,11 @@
   description: The Carlford-1 is a remastered classic made by Carlford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications, other than that. It is a faithful recreation with the trademark ping sound and all.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/garand/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/garand/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/garand/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/garand/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/garand/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/garand/tiny.rsi
   - type: BallisticAmmoProvider
     capacity: 10
     proto: CartridgeRifleLight762UEG
@@ -202,11 +202,11 @@
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: Gun
     minAngle: 24
     maxAngle: 45
@@ -223,11 +223,11 @@
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/tiny.rsi
   - type: Gun
     fireRate: 0.8
   - type: Wieldable
@@ -243,11 +243,11 @@
   - type: Wieldable
   - type: GunRequiresWield
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
   - type: Gun
     fireRate: 1
     cameraRecoilScalar: 5
@@ -274,11 +274,11 @@
   description: Remington 700 охотничая винтовка под калибр 308 винчестер, был сделан по реплике чертежей Earth Armories сторонними компаниями, каркас винтовки исполнен из пластика.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/big.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/remington700/tiny.rsi
   - type: Gun
     fireRate: 0.8
     soundGunshot:
@@ -298,4 +298,4 @@
     delay: 2.8
   - type: UseDelayOnShoot
   - type: GunRequiresWield
-  - type: Telescope # Ataraxia
+  - type: Telescope # Orion

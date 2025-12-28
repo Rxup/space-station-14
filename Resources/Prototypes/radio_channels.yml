@@ -13,7 +13,7 @@
   color: "#2681a5"
   longRange: true
   onSendSound:
-    path: /Audio/Backmen/Radio/cc.ogg
+    path: /Audio/_Backmen//Radio/cc.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -25,7 +25,7 @@
   frequency: 1353
   color: "#fcdf03"
   onSendSound:
-    path: /Audio/Backmen/Radio/command.ogg
+    path: /Audio/_Backmen//Radio/command.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -37,7 +37,7 @@
   frequency: 1357
   color: "#ff733c"
   onSendSound:
-    path: /Audio/Backmen/Radio/eng.ogg
+    path: /Audio/_Backmen//Radio/eng.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -49,7 +49,7 @@
   frequency: 1355
   color: "#57b8f0"
   onSendSound:
-    path: /Audio/Backmen/Radio/med.ogg
+    path: /Audio/_Backmen//Radio/med.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -61,7 +61,7 @@
   frequency: 1351
   color: "#cd7ccd"
   onSendSound:
-    path: /Audio/Backmen/Radio/science.ogg
+    path: /Audio/_Backmen//Radio/science.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -73,7 +73,7 @@
   frequency: 1359
   color: "#ff4242"
   onSendSound:
-    path: /Audio/Backmen/Radio/security.ogg
+    path: /Audio/_Backmen//Radio/security.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -92,7 +92,7 @@
   frequency: 1347
   color: "#b48b57"
   onSendSound:
-    path: /Audio/Backmen/Radio/cargo.ogg
+    path: /Audio/_Backmen//Radio/cargo.ogg
     params:
       volume: -6
       maxDistance: 2
@@ -105,7 +105,7 @@
   color: "#8f4a4b"
   longRange: true
   onSendSound:
-    path: /Audio/Backmen/Radio/security.ogg
+    path: /Audio/_Backmen//Radio/security.ogg
     params:
       volume: -6
       maxDistance: 2

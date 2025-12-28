@@ -39,7 +39,7 @@
   equipment:
     head: ClothingHeadHatBeretSecurity
 
-- type: loadout #Backmen
+- type: loadout # Backmen
   id: ClothingHeadHatCapSec
   equipment:
     head: ClothingHeadHatCapSec
@@ -47,17 +47,17 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
 
-- type: startingGear #Backmen
+- type: startingGear # Backmen
   id: ClothingHeadHatCapSec
   equipment:
     head: ClothingHeadHatCapSec
 
-- type: loadout #Backmen
+- type: loadout # Backmen
   id: ClothingHeadHatPilotkaSec
   equipment:
     head: ClothingHeadHatPilotkaSec
 
-- type: startingGear #Backmen
+- type: startingGear # Backmen
   id: ClothingHeadHatPilotkaSec
   equipment:
     head: ClothingHeadHatPilotkaSec
@@ -147,7 +147,7 @@
   equipment:
     outerClothing: ClothingOuterArmorBasicSlim
 
-- type: loadout #Backmen
+- type: loadout # Backmen
   id: ClothingOuterCoatSecurityOvercoat
   equipment:
     outerClothing: ClothingOuterCoatSecurityOvercoat
@@ -155,12 +155,12 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
 
-- type: startingGear #Backmen
+- type: startingGear # Backmen
   id: ClothingOuterCoatSecurityOvercoat
   equipment:
     outerClothing: ClothingOuterCoatSecurityOvercoat
 
-- type: loadout #Backmen
+- type: loadout # Backmen
   id: ClothingOuterCoatSecurityOfficerOvercoat
   equipment:
     outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
@@ -168,7 +168,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
 
-- type: startingGear #Backmen
+- type: startingGear # Backmen
   id: ClothingOuterCoatSecurityOfficerOvercoat
   equipment:
     outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
@@ -208,7 +208,7 @@
   equipment:
     id: SeniorOfficerPDA
 
-# Pocket #Backmen
+# Pocket # Backmen
 - type: loadout
   id: WeaponPistolMk58
   dummyEntity: WeaponPistolMk58
@@ -271,7 +271,7 @@
     - WeaponPistolM1911
     - MagazinePistol57x28
 
-# Pocket 2 #Backmen
+# Pocket 2 # Backmen
 
 - type: loadout
   id: MagazinePistol

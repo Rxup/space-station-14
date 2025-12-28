@@ -74,7 +74,7 @@
       briefing:
         text: blob-carrier-role-greeting
         color: Plum
-        sound: /Audio/Backmen/Ambience/Antag/blob_start.ogg
+        sound: /Audio/_Backmen/Ambience/Antag/blob_start.ogg
       mindRoles:
       - MindRoleBlob
 
@@ -122,7 +122,7 @@
       briefing:
         text: vampire-role-greeting
         color: Plum
-        sound: /Audio/Backmen/Ambience/Antag/vampier_start.ogg
+        sound: /Audio/_Backmen/Ambience/Antag/vampier_start.ogg
       mindRoles:
       - MindRoleBloodsucker
 

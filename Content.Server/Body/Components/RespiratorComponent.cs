@@ -1,3 +1,4 @@
+using Content.Server._Backmen.Blob.Systems;
 using Content.Server.Body.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Chat.Prototypes;
@@ -106,7 +107,7 @@ namespace Content.Server.Body.Components
         /// <summary>
         /// Whether the entity is immuned to pressure (i.e possess the PressureImmunity component)
         /// </summary>
-        [ViewVariables, Access(typeof(Backmen.Blob.Systems.ZombieBlobSystem))]
+        [ViewVariables, Access(typeof(ZombieBlobSystem))]
         public bool HasImmunity = false;
     }
 }

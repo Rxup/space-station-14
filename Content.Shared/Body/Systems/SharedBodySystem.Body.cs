@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Backmen.Surgery.Traumas.Components;
-using Content.Shared.Backmen.Surgery.Traumas.Systems;
-using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared._Backmen.Surgery.Traumas.Components;
+using Content.Shared._Backmen.Surgery.Traumas.Systems;
+using Content.Shared._Backmen.Surgery.Wounds.Components;
+using Content.Shared._Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;

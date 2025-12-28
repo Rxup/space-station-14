@@ -28,7 +28,7 @@
   parent: BaseShellShotgun
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
@@ -48,7 +48,7 @@
   parent: BaseShellShotgun
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
     layers:
       - state: incendiary
         map: [ "enum.AmmoVisualLayers.Base" ]

@@ -6,16 +6,16 @@
   description: An iconic weapon of war. Uses 7.62x39 ammo.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/akms/bigsuper.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -36,7 +36,7 @@
   description: The M-28 assault rifle used to be the EarthGov army standard issue rifle.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/m28/bigsuper.rsi
     layers:
     - state: laser
       shader: unshaded
@@ -45,9 +45,9 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -71,7 +71,7 @@
   description: The H&K G-36 assault rifle used to be the EarthGov army standard issue rifle.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/g36/bigsuper.rsi
     layers:
     - state: laser
       shader: unshaded
@@ -80,9 +80,9 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -106,16 +106,16 @@
   description: The Vector used by police special force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/bigsuper.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tinysuper.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
@@ -138,7 +138,7 @@
   description: The RivArms SMG-5 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/bigsuper.rsi
     layers:
     - state: laser
       shader: unshaded
@@ -147,9 +147,9 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -173,15 +173,15 @@
   description: The Earth Armories XM1014 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the Earth Army squads. Uses .50 shotgun shells.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/bigsuper.rsi
     layers:
     - state: laser
       shader: unshaded
     - state: base
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tinysuper.rsi
   - type: UseDelay
     delay: 0.3
   - type: Gun
@@ -200,16 +200,16 @@
   suffix: Автомат Tactical
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/aksu/bigsuper.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/aksu/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/aksu/tinysuper.rsi
     size: NormalLarge
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
@@ -232,16 +232,16 @@
   suffix: Пистолет-пулемёт Tactical
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90/bigsuper.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -264,16 +264,16 @@
   description: A cheap and robust machinegun, sometimes better known as an 'RPD'. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost, high capacity and higher than usual caliber rounds.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/bigsuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/bigsuper.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus

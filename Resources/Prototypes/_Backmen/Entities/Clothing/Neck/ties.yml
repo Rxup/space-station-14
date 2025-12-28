@@ -5,9 +5,9 @@
   description: The Green Tie of the Walking Bureaucracy.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Ties/centcomtie.rsi
+    sprite: _Backmen/Clothing/Neck/Ties/centcomtie.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Neck/Ties/centcomtie.rsi
+    sprite: _Backmen/Clothing/Neck/Ties/centcomtie.rsi
   - type: Tag
     tags:
     - HamsterWearable

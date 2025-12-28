@@ -8,7 +8,7 @@
     threshold: 130
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - EvePishtu
     - TauCetiBasic

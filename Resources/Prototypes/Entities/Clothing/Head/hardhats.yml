@@ -6,10 +6,10 @@
   # backmen edit start
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/Backmen/Items/handling/helmet_pickup.ogg
+      path: /Audio/_Backmen/Items/handling/helmet_pickup.ogg
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/Backmen/Items/handling/helmet_drop.ogg
+      path: /Audio/_Backmen/Items/handling/helmet_drop.ogg
   # backmen edit end
   - type: Sprite
     layers:
@@ -93,7 +93,7 @@
     layers:
       Hair: HEAD
       HeadTop : HEAD
-      HeadSide : HEAD 
+      HeadSide : HEAD
 
 - type: entity
   parent: ClothingHeadHatHardhatBase

@@ -7,14 +7,14 @@
   components:
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
+  - type: LanguageKnowledge # Backmen: languages
     speaks:
     - TauCetiBasic
     - Dwarven
     understands:
     - TauCetiBasic
     - Dwarven
-  - type: MovementSpeedModifier #backmen: Race of race
+  - type: MovementSpeedModifier # Backmen: Race of race
     baseSprintSpeed: 4
   - type: Damageable
     damageModifierSet: DwarfSkin

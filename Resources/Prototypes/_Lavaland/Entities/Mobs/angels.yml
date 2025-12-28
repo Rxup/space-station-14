@@ -88,7 +88,7 @@
       0: Alive
       150: Dead
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/lesser_angel.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/lesser_angel.rsi
     drawdepth: Mobs
     layers:
     - state: angel
@@ -199,7 +199,7 @@
         20
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Angles/virtue.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/virtue.rsi
     layers:
     - state: wings
       shader: unshaded
@@ -230,7 +230,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Backmen/Bosses/VirtueDeathReal.ogg
+          path: /Audio/_Backmen/Bosses/VirtueDeathReal.ogg
           params:
             volume: 5
       - !type:ExplodeBehavior
@@ -291,7 +291,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/virtue_core.rsi
+    sprite: _Backmen/Objects/Misc/Holy/virtue_core.rsi
     layers:
     - state: virtue_core
       shader: unshaded
@@ -299,7 +299,7 @@
     items:
     - id: HolyLightHeal
     sound:
-      path: /Audio/Backmen/Bosses/virtuedeath.ogg
+      path: /Audio/_Backmen/Bosses/virtuedeath.ogg
       params:
         volume: 2
 
@@ -325,7 +325,7 @@
       0: Alive
       300: Dead
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/angel_guardian.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/angel_guardian.rsi
     drawdepth: Mobs
     layers:
     - state: wings
@@ -358,7 +358,7 @@
     bodyType: KinematicController
     canCollide: true
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 1.5, 1.5
     noRot: true
@@ -428,7 +428,7 @@
     volume: -10
     range: 6
     sound:
-      path: /Audio/Backmen/Bosses/rage.ogg
+      path: /Audio/_Backmen/Bosses/rage.ogg
 
 - type: entity
   id: MobAngelicHellGuardENRAGED
@@ -449,7 +449,7 @@
     baseWalkSpeed : 4.5
     baseSprintSpeed : 4.5
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/lesser_angel.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/lesser_angel.rsi
     drawdepth: Mobs
     layers:
     - state: angel
@@ -467,7 +467,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Angles/virtue.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/virtue.rsi
     layers:
     - state: wings_raged
       shader: unshaded
@@ -501,7 +501,7 @@
     baseWalkSpeed : 5
     baseSprintSpeed : 5
   - type: Sprite
-    sprite: Backmen/Mobs/Npc/Angles/angel_guardian.rsi
+    sprite: _Backmen/Mobs/Npc/Angles/angel_guardian.rsi
     drawdepth: Mobs
     layers:
     - state: wings_raged
@@ -527,7 +527,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
+    sprite: _Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
     scale: 1.5, 1.5
     noRot: true
@@ -581,7 +581,7 @@
     lifetime: 4
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Backmen/Bosses/Portal3.ogg
+      path: /Audio/_Backmen/Bosses/Portal3.ogg
       params:
         volume: 2
 

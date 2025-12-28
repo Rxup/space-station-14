@@ -6,7 +6,7 @@
   description: Когда нету флагштока, ты сам становишься флагштоком!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/pirate.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/pirate.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -15,7 +15,7 @@
   description: Cloak of the Order of the Red Dragon! This cloak was created by an ancient cult, and to this day no one knows how it got to the station.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/orden.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/orden.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -24,7 +24,7 @@
   description: Awarded for merit to the SSSP. You are the best. You can't hide it.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/SSSP.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/SSSP.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -33,7 +33,7 @@
   description: Выдаётся за особые заслуги перед Атмосией. Гордитесь собой ведь такой плащ есть только у единиц !
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/cloak_best_engineer_meibe.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/cloak_best_engineer_meibe.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -42,7 +42,7 @@
   description: Только истинный стратег сможет поднять его!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/chess.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/chess.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -51,7 +51,7 @@
   description: Плащ главы знаменитой ОПГ, Александра Белова.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/whitebelov.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/whitebelov.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -60,7 +60,7 @@
   description: Плащ арбитра идущий в комплекте с его костюмом. Настолько же ценен.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/arbitr.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/arbitr.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -69,7 +69,7 @@
   description: Как у дедушки...
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -78,7 +78,7 @@
   description: Выдаётся только верхушке ОПЗ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/eug-cloak.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/eug-cloak.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -87,7 +87,7 @@
   description: A fascinating cloak, there is clearly something in this void!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/emptiness.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/emptiness.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -96,7 +96,7 @@
   description: На воротнике видна подпись-MK II-Dusya
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/TGMCcloak.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/TGMCcloak.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -105,7 +105,7 @@
   description: Ваш верный друг в борьбе с дождём и вьюгой
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/poncho.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/poncho.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -114,7 +114,7 @@
   description: Удобство и скрытность, то что и важно для обладателя этой мантии
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/mantie.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/mantie.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -123,7 +123,7 @@
   description: Чёрная мантия, скрывает тайны?
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/black.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/black.rsi
 
 
 - type: entity
@@ -133,7 +133,7 @@
   description: Белая официальная мантия священника.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/white.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/white.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -142,7 +142,7 @@
   description: Чёрный плащ, с красной оконтовкой, на очень маленькой бирке написано Санаби!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/sanabi.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/sanabi.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -151,7 +151,7 @@
   description: Белый боевой плащ из лёгкой ткани.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Neck/Cloaks/tgmcwhite.rsi
+    sprite: _Backmen/Clothing/Neck/Cloaks/tgmcwhite.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -160,4 +160,4 @@
   description: Cloak of the members of the InteQ, with a gold lining inside and a stylish gold shield on the back.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Neck/Cloaks/inteq_cloak.rsi
+      sprite: _Backmen/Clothing/Neck/Cloaks/inteq_cloak.rsi

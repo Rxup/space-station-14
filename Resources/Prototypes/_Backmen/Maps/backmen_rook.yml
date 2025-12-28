@@ -1,7 +1,7 @@
 - type: gameMap
   id: BackmenRook
   mapName: 'Rook'
-  mapPath: /Maps/Backmen/backmen_rook.yml
+  mapPath: /Maps/_Backmen/backmen_rook.yml
   minPlayers: 0
   maxPlayers: 20
   stations:
@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Backmen/Shuttles/emergency_rook.yml
+          emergencyShuttlePath: /Maps/_Backmen/Shuttles/emergency_rook.yml
         - type: StationJobs
           availableJobs:
           #Service

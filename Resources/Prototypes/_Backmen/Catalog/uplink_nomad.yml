@@ -35,7 +35,7 @@
   id: UplinkFuelTankFirethrower
   name: Топливный бак
   description: Топливный бак для огнемёта.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/tank.rsi, state: base }
   productEntity: FuelTankFirethrower
   cost:
     Telecrystal: 1
@@ -46,7 +46,7 @@
   id: UplinkMagazineMagnumPistol
   name: пистолетный магазин (.50 AE)
   description: Магазин для того самого пустынного орла.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi, state: base }
   productEntity: MagazinePistol50AE
   cost:
     Telecrystal: 1
@@ -57,7 +57,7 @@
   id: UplinkMagazine50BMGMag
   name: магазин (.50 BMG)
   description: Магазин калибра 50 BMG, обычно с таким патроном идут на крупный рогатый скот.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi, state: base }
   productEntity: MagazineAntiMaterielRifleSR
   cost:
     Telecrystal: 2
@@ -68,7 +68,7 @@
   id: UplinkMagazine9x17
   name: магазин (9x17 mm)
   description: Магазин калибра 9x17 для ПП.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
   productEntity: MagazinePistolSubMachineGun9x17
   cost:
     Telecrystal: 1
@@ -79,7 +79,7 @@
   id: UplinkMagazinePistol9x17
   name: пистолетный магазин (9x17 mm)
   description: Магазин калибра 9x17 для пистолетов.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
   productEntity: MagazinePistol9x17
   cost:
     Telecrystal: 1
@@ -90,7 +90,7 @@
   id: UplinkMagazinePistol57x28
   name: пистолетный магазин (5,7x28)
   description: Магазин калибра 55,7x28 для пистолетов.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi, state: base }
   productEntity: MagazinePistol57x28
   cost:
     Telecrystal: 1
@@ -101,7 +101,7 @@
   id: UplinkMagazineSMG57x28
   name: магазин (5,7x28)
   description: Магазин калибра 55,7x28 для ПП.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_mp7.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_mp7.rsi, state: base }
   productEntity: MagazinePistolSubMachineGun57x28
   cost:
     Telecrystal: 1
@@ -112,7 +112,7 @@
   id: UplinkMagazineSMGVector45ACP
   name: магазин (.45 Auto)
   description: Магазин калибра .45 Auto для Вектора.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi, state: base }
   productEntity: MagazinePistolSubMachineGunVector45ACP
   cost:
     Telecrystal: 1
@@ -124,7 +124,7 @@
   id: UplinkP90Bundle
   name: набор "P90"
   description: Старый добрый п90 военного образца, стал символом специальных операций, в комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledP90
   cost:
     Telecrystal: 18
@@ -146,7 +146,7 @@
   id: UplinkAKMSBundle
   name: набор "AKMS"
   description: Символ войны, легендарное оружие зарекомендовавшие себя как самое надежное оружие в истории. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/akms/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledAKMS
   cost:
     Telecrystal: 17
@@ -168,7 +168,7 @@
 #  id: UplinkV31Bundle
 #  name: набор "V31"
 #  description: Основная винтовка вооруженных сил Сынов Марса, имеет реактивные патроны, эффективен против всего. В комплетке 3 магазина.
-#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
+#  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
 #  productEntity: ClothingBackpackDuffelSyndicateFilledV31
 #  cost:
 #    Telecrystal: 20
@@ -190,7 +190,7 @@
   id: UplinkAKSUBundle
   name: набор "AKSU"
   description: Оружие ГРУ СССП, надежное, компактное, а самое главное что ничем не отличается от своего более старшего брата, поэтому его и любят отряды особого назначения. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledAKSU
   cost:
     Telecrystal: 15
@@ -212,7 +212,7 @@
   id: UplinkStG44Bundle
   name: набор "StG44"
   description: Первая "Штурмовая Винтовка" в истории, в отличии от её образца 1944 года, имеет современные внутренности, из-за особенности конструкции имеет более высокую скорострельность. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledStG44
   cost:
     Telecrystal: 18
@@ -234,7 +234,7 @@
   id: UplinkVectorBundle
   name: набор "Vector"
   description: Оружие используемая спецназом, такой экзепляр стал очень быстро востребован на черном рынке, благодаря своей передовой системе глушение отдачи. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledVector
   cost:
     Telecrystal: 18
@@ -256,7 +256,7 @@
   id: UplinkMP7Bundle
   name: набор "MP7"
   description: Модель SMG7 с архаичным дизайном, насчитывающим сотни лет, была распространена в свое время. Сегодня он находит ограниченное применение в качестве дешевых компьютерных копий или семейных реликвий, хотя каким-то образом попал в руки колониальных повстанцев. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledMP7
   cost:
     Telecrystal: 15
@@ -278,7 +278,7 @@
   id: UplinkMP38Bundle
   name: набор "MP38"
   description: Дешевая, простая пушка с открытым затвором, не нуждается в обслуживании... Скорее всего это оружие с тех самых времен... В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledMP38
   cost:
     Telecrystal: 14
@@ -300,7 +300,7 @@
   id: UplinkPPSH41Bundle
   name: набор "PPSH41"
   description: ПиПиСиЭйч 41, стандартный пистолет-пулемет на вооружении СССП, попал на черный рынок из-за частых "набегов" на склады СССП, явно не проданных местными командирами. В комплетке 2 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledPPSH41
   cost:
     Telecrystal: 20
@@ -321,7 +321,7 @@
   id: UplinkDEagle
   name: Пустынный орёл
   description: Большой, стильный, мощный дигл на базе .45 калибра, был создан для охоты на слонов, но чем СБешник не слон? Не так-ли?
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi, state: icon }
   productEntity: WeaponPistolDEagle
   cost:
     Telecrystal: 10
@@ -332,7 +332,7 @@
   id: UplinkZauerBundle
   name: набор "Zauer"
   description: Простой и надеждный, штурмовой автоматически дробовик зауер. содержит 2 барабан пуль и 4 барабана дроби.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledZauer
   cost:
     Telecrystal: 20
@@ -357,7 +357,7 @@
   id: UplinkGrenadeLauncher79Bundle
   name: набор "GL-79"
   description: Новенький, ручной гранатомет с барабанным системой, имеет 12 гранат в комплекте
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/gl-64/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Launchers/gl-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledGL79
   cost:
     Telecrystal: 55
@@ -381,7 +381,7 @@
 #  id: UplinkGrenadeLauncherM81Bundle
 #  name: набор "M-81"
 #  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
-#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
+#  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
 #  productEntity: ClothingBackpackDuffelSyndicateFilledM81
 #  cost:
 #    Telecrystal: 13
@@ -405,7 +405,7 @@
   id: UplinkRPDBundle
   name: Набор "RPD"
   description: Старый добрый ПК, который был успешно "украден" со старых складов СССП, отличная дакка, подходит для всех возрастов террористов. имеет 3 коробки патронов.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledRPD
   cost:
     Telecrystal: 30
@@ -427,7 +427,7 @@
   id: UplinkMG42Bundle
   name: Набор "MG42"
   description: Очень старый общевойсковой пулемет Объеденненого Правительства Земли, все оригинальные компоненты были заменены более усовршенственными, а барабан был дополнен БлюСпейс технологией, для более бесперебойной стрельбы. Имеет 1 магазин и 2 ящика патронов.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledMG42
   cost:
     Telecrystal: 60
@@ -449,7 +449,7 @@
   id: UplinkBR64Bundle
   name: Набор "BR-64"
   description: Марксменская тяжелая винтовка, имеет автодосылатель затвора, что облегчает эксплоатирование оружия (но не его чистку). Имеет 3 магазина .60 калибра.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledBR64
   cost:
     Telecrystal: 17
@@ -471,7 +471,7 @@
   id: UplinkSVDBundle
   name: набор "SVD"
   description: Легендарное оружие, зарекомендовала себя за счёт платформы АК на которой он был создан. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledSVD
   cost:
     Telecrystal: 17
@@ -493,7 +493,7 @@
   id: UplinkSpas12Bundle
   name: набор "SPAS-12"
   description: Спас-12, великолепное оружие которое показала свою надежность и убойную силу. В комплетке 43 патрона.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledSPAS12
   cost:
     Telecrystal: 15
@@ -514,7 +514,7 @@
   id: UplinkFlamethrowerBundle
   name: набор "Огнемет М6"
   description: Огнемет имеющий шланг под специальный резервуар с огненой смесью, которая способна гореть даже в полном вакууме! Имеет в наборе 1 powerpack.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
   productEntity: CrateFlamethrowerBundle
   cost:
     Telecrystal: 12
@@ -537,7 +537,7 @@
   id: UplinkFlamethrower
   name: Огнемет М6
   description: Огнемет с небольшой специальным портом под маленькие баллоны с огненой смесью, которая способна гореть даже в полном вакууме!
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
   productEntity: FirethrowerGun
   cost:
     Telecrystal: 5
@@ -559,7 +559,7 @@
   id: UplinkSniperSR127Bundle
   name: uplink-sniper-bundle-name
   description: uplink-sniper-bundle-desc
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi, state: base }
+  icon: { sprite: _Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi, state: base }
   productEntity: BriefcaseSyndicateSniperBundleFilled
   cost:
     Telecrystal: 12

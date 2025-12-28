@@ -7,7 +7,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -15,9 +15,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -55,7 +55,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -63,9 +63,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/tiny.rsi
     size: Huge
   - type: GunWieldBonus
     minAngle: -40
@@ -107,7 +107,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -115,9 +115,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
     size: Large
   - type: GunWieldBonus
     minAngle: -6
@@ -159,7 +159,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns64/EG-P/shot.ogg
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-P.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-P.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -186,7 +186,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -194,9 +194,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
   - type: GunRequiresWield
   - type: ClothingSpeedModifier
     walkModifier: 1
@@ -235,7 +235,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/big.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -243,9 +243,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/tiny.rsi
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/tiny.rsi
+    sprite: _Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -280,10 +280,10 @@
 #  description: A gluon gun created in artisanal conditions, I would not recommend using this gun, and it also emits an unimaginable amount of radiation!
 #  components:
 #  - type: Sprite
-#    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
+#    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
 #    state: icon
 #  - type: Item
-#    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+#    sprite: _Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
 #    size: Normal
 #  - type: Gun
 #    minAngle: 1

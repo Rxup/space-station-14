@@ -3764,7 +3764,7 @@ entities:
       - - CentralCommand
     - type: GridFill
       addComponents: []
-      path: /Maps/Backmen/Grids/ntv-pickett.yml
+      path: /Maps/_Backmen/Grids/ntv-pickett.yml
   - uid: 119
     components:
     - type: Transform

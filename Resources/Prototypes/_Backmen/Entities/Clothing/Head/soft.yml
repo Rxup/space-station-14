@@ -5,9 +5,9 @@
   description: "It's a baseball hat painted in postal of Cargo colours."
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Soft/cargopostalsoft.rsi
+    sprite: _Backmen/Clothing/Head/Soft/cargopostalsoft.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Soft/cargopostalsoft.rsi
+    sprite: _Backmen/Clothing/Head/Soft/cargopostalsoft.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -33,9 +33,9 @@
   description: Пилотка сотрудников СБ НТ, в основном используется силами космической обороны. Имеет двойную окантовку и кокарду НТ.
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
+      sprite: _Backmen/Clothing/Head/Soft/secpilotka.rsi
     - type: Clothing
-      sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
+      sprite: _Backmen/Clothing/Head/Soft/secpilotka.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -44,9 +44,9 @@
   description: Cap made of thick camouflage fabric.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Soft/marine_cap.rsi
+    sprite: _Backmen/Clothing/Head/Soft/marine_cap.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Soft/marine_cap.rsi
+    sprite: _Backmen/Clothing/Head/Soft/marine_cap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -55,9 +55,9 @@
   description: Кепка полиции ОПЗ, имеет какарду министерства внутренних дел ОПЗ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
+    sprite: _Backmen/Clothing/Head/Soft/mvdcap.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
+    sprite: _Backmen/Clothing/Head/Soft/mvdcap.rsi
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -66,6 +66,6 @@
   description: A truly.. badass accessory.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Soft/inteq_softhat.rsi
+    sprite: _Backmen/Clothing/Head/Soft/inteq_softhat.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Soft/inteq_softhat.rsi
+    sprite: _Backmen/Clothing/Head/Soft/inteq_softhat.rsi

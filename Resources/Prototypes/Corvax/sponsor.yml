@@ -270,9 +270,9 @@
   suffix: Sponsor
   components:
     - type: Sprite
-      sprite: Backmen/Clothing/Uniforms/jumpsuit/sponsorUSSP.rsi # backmen-sprite
+      sprite: _Backmen/Clothing/Uniforms/jumpsuit/sponsorUSSP.rsi # backmen-sprite
     - type: Clothing
-      sprite: Backmen/Clothing/Uniforms/jumpsuit/sponsorUSSP.rsi # backmen-sprite
+      sprite: _Backmen/Clothing/Uniforms/jumpsuit/sponsorUSSP.rsi # backmen-sprite
 
 - type: entity
   parent: ClothingShoesBaseButcherable

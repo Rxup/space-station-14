@@ -5,7 +5,7 @@
   components:
   - type: Sprite
     drawdepth: FloorTiles
-    sprite: Backmen/Structures/Furniture/tatami.rsi
+    sprite: _Backmen/Structures/Furniture/tatami.rsi
   - type: Tag
     tags: [ Carpet ]
   - type: Physics

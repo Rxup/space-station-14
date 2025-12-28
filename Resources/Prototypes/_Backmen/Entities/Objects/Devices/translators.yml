@@ -7,7 +7,7 @@
   description: Translates speech.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Devices/translator.rsi
+    sprite: _Backmen/Objects/Devices/translator.rsi
     state: icon
     layers:
     - state: icon

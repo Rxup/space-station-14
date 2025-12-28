@@ -1,7 +1,7 @@
 - type: gameMap
   id: BackmenTrain
   mapName: 'Backmen Train'
-  mapPath: /Maps/Backmen/backmen_train.yml
+  mapPath: /Maps/_Backmen/backmen_train.yml
   maxRandomOffset: 0
   randomRotation: false
   # Corvax-start
@@ -66,7 +66,7 @@
             Musician: [ 1, 1 ]
             #silicon (2)
             Borg: [ 2, 2 ]
-            #backmen
+            # Backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 1] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons

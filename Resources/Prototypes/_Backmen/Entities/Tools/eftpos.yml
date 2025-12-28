@@ -5,7 +5,7 @@
   description: Swipe your ID card to make purchases electronically.
   components:
     - type: Sprite
-      sprite: Backmen/Objects/Tools/eftpos.rsi
+      sprite: _Backmen/Objects/Tools/eftpos.rsi
       state: eftpos
       netsync: false
     - type: Eftpos

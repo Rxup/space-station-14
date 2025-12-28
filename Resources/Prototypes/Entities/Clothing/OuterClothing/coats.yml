@@ -139,7 +139,7 @@
     sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
-  - type: Armor #Backmen-armorstun
+  - type: Armor # Backmen-armorstun
     coverageHidden: true
     coverage:
     - Arm
@@ -164,7 +164,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Armor #Backmen-armorstun
+  - type: Armor # Backmen-armorstun
     coverageHidden: true
     coverage:
     - Arm
@@ -585,7 +585,7 @@
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
-  - type: Armor #Backmen-armorstun
+  - type: Armor # Backmen-armorstun
     coverage:
     - Chest
     - Groin

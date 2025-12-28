@@ -17,10 +17,10 @@ using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.EffectConditions;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Body;
-using Content.Shared.Backmen.Surgery.Consciousness; // backmen
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared._Backmen.Mood;
+using Content.Shared._Backmen.Surgery.Body;
+using Content.Shared._Backmen.Surgery.Consciousness; // backmen
+using Content.Shared._Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;

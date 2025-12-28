@@ -32,7 +32,7 @@
       - BackmenVendingMachineStarkist
       - BackmenVendingMachineSpaceUp
       - BackmenVendingLootBox
-      - PrizeCounter # Ataraxia
+      - PrizeCounter # Orion
       - VendingMachineSmite
     chance: 1
 

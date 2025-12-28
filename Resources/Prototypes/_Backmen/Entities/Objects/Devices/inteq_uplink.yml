@@ -6,11 +6,11 @@
   suffix: Empty
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Devices/inteq_uplink.rsi
+    sprite: _Backmen/Objects/Devices/inteq_uplink.rsi
     layers:
     - state: inteq-uplink
   - type: Item
-    sprite: Backmen/Objects/Devices/inteq_uplink.rsi
+    sprite: _Backmen/Objects/Devices/inteq_uplink.rsi
     heldPrefix: inteq-uplink
 #  - type: UserInterface
 #    interfaces:

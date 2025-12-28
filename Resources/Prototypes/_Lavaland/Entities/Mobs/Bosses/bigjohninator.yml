@@ -1,4 +1,3 @@
-#Big John
 - type: entity
   name: Big Johninator
   description: Большой Джонни уже тут! Ха-ха!
@@ -48,7 +47,7 @@
     soundCooldownTime: 0.1
   - type: Sprite
     scale: 1.5, 1.5
-    sprite: Backmen/Mobs/Npc/big_john.rsi
+    sprite: _Backmen/Mobs/Npc/big_john.rsi
     layers:
     - state: bigjohn
     - state: bigjohn_unshaded
@@ -158,22 +157,22 @@
 - type: soundCollection
   id: BigJohnSound
   files:
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_4.ogg
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_7.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_4.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_7.ogg
 
 - type: soundCollection
   id: BigJohnSoundexclaim
   files:
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_1.ogg
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_2.ogg
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_5.ogg
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_6.ogg
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_8.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_1.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_2.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_5.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_6.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_8.ogg
 
 - type: soundCollection
   id: BigJohnSoundAsk
   files:
-  - /Audio/Backmen/Bosses/BigJohn/BigJohn_Taunt_3.ogg
+  - /Audio/_Backmen/Bosses/BigJohn/BigJohn_Taunt_3.ogg
 
 - type: entity
   id: BulletRifleBigJohn
@@ -273,14 +272,14 @@
   id: ActivatedGrenadeBigJohn
   components:
   - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/hlstaff/MK3A2.rsi
+    sprite: _Backmen/test/base/rsi/Textures/hlstaff/MK3A2.rsi
     layers:
     - state: primed
   - type: SpamEmitSound
     minInterval: 0.5
     maxInterval: 0.5
     sound:
-      path: "/Audio/Backmen/test/base/ogg/blackmesa/grenade/grenade_tick1.ogg"
+      path: "/Audio/_Backmen/test/base/ogg/blackmesa/grenade/grenade_tick1.ogg"
       params:
         volume: 5
   - type: SpawnOnDespawn
@@ -337,7 +336,7 @@
   id: ShockWaveBigJohn
   components:
     - type: Sprite
-      sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+      sprite: _Backmen/test/base/rsi/Textures/Effects/none.rsi
       layers:
         - state: NoId
     - type: RMCExplosionShockWave

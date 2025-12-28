@@ -1,7 +1,7 @@
 - type: gameMap
   id: BackmenDelta
   mapName: 'WonderDelta Station'
-  mapPath: /Maps/Backmen/WonderDelta.yml
+  mapPath: /Maps/_Backmen/WonderDelta.yml
   minPlayers: 30
   stations:
     Delta:

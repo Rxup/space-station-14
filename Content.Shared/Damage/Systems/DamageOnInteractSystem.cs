@@ -1,6 +1,5 @@
 using Content.Shared.Administration.Logs;
-using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Part;
+using Content.Shared._Backmen.Targeting;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;

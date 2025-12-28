@@ -5,7 +5,7 @@ using Content.Server._Lavaland.Biome;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Backmen.Shipwrecked.Components;
+using Content.Server._Backmen.Shipwrecked.Components;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Lavaland.Procedural.Components;
