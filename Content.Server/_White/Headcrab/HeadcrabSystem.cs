@@ -138,7 +138,7 @@ public sealed partial class HeadcrabSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("headcrab-eat-other-entity-face",
             ("entity", args.Equipee)), args.Equipee, Filter.PvsExcept(uid), true, PopupType.Large);
 
-        _stunSystem.TryParalyze(args.Equipee, component.ParalyzeTime, true);
+        _stunSystem.TryUpdateParalyzeDuration(args.Equipee, component.ParalyzeTime);
         _damageableSystem.TryChangeDamage(args.Equipee, component.Damage, origin: uid); // Damage Entity
         _damageableSystem.TryChangeDamage(uid, component.HealOnEquipped, true); // Heal headcrab
     }

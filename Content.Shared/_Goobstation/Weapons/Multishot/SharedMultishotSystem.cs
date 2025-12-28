@@ -10,7 +10,6 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
     protected void InitializeMultishot()
@@ -29,7 +28,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         // Need to prevent recursive shoot attempting
-        if (_handsSystem.GetActiveItem(args.User) != multishotWeapon)
+        if (_hands.GetActiveItem(args.User) != multishotWeapon)
             return;
 
         if (!TryComp<GunComponent>(comp.RelatedWeapon, out var relatedGun) || !TryComp<GunComponent>(multishotWeapon, out var gun))
@@ -68,7 +67,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         // Find first suitable weapon
-        foreach (var held in _handsSystem.EnumerateHeld(args.User, handsComp))
+        foreach (var held in _hands.EnumerateHeld((args.User, handsComp)))
         {
             if (held == multishotWeapon.Owner)
                 continue;

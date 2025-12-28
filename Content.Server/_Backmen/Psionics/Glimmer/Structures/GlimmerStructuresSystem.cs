@@ -71,7 +71,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
         if(HasComp<PsionicInsulationComponent>(target))
             return;
 
-        _stunSystem.TryParalyze(target, TimeSpan.FromSeconds(5), false);
+        _stunSystem.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(5));
         _statusEffectsSystem.TryAddStatusEffect(target, "Stutter", TimeSpan.FromSeconds(10), false, "StutteringAccent");
 
         if (HasComp<PsionicComponent>(target))

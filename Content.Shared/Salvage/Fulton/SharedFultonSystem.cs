@@ -35,7 +35,7 @@ public abstract partial class SharedFultonSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] protected readonly SharedNoLavalandUsageSystem NoLavalandSystem = default!;
 
-    [ValidatePrototypeId<EntityPrototype>] public const string EffectProto = "FultonEffect";
+    public static readonly EntProtoId EffectProto = "FultonEffect";
     protected static readonly Vector2 EffectOffset = Vector2.Zero;
 
     public override void Initialize()

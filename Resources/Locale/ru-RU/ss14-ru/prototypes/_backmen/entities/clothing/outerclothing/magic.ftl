@@ -1,0 +1,9 @@
+ent-ClothingOuterWizardVioletReal = { ent-ClothingOuterWizardViolet }
+    .suffix = magical
+    .desc = { ent-ClothingOuterWizardViolet.desc }
+ent-ClothingOuterWizardReal = { ent-ClothingOuterWizard }
+    .suffix = magical
+    .desc = { ent-ClothingOuterWizard.desc }
+ent-ClothingOuterWizardRedReal = { ent-ClothingOuterWizardRed }
+    .suffix = magical
+    .desc = { ent-ClothingOuterWizardRed.desc }

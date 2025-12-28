@@ -98,10 +98,10 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
         _bloodSucker.MakeVampire(args.Target.Value);
         _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
-        _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
+        _stun.TryUpdateStunDuration(args.Target.Value, TimeSpan.FromSeconds(30));
 
         _hunger.ModifyHunger(ent, -100);
-        _stun.TryStun(ent, TimeSpan.FromSeconds(_random.Next(1, 3)), true);
+        _stun.TryUpdateStunDuration(ent, TimeSpan.FromSeconds(_random.Next(1, 3)));
     }
 
     private void OnUseNewVamp(Entity<BkmVampireComponent> ent, ref InnateNewVampierActionEvent args)

@@ -8,7 +8,7 @@ using Content.Shared._Backmen.Psionics.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 
 namespace Content.Server._Backmen.StationEvents.Events;
 
@@ -34,8 +34,8 @@ internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleCo
             if (!_mobStateSystem.IsAlive(psion, mobStateComponent) || HasComp<PsionicInsulationComponent>(psion))
                 continue;
 
-            _stunSystem.TryParalyze(psion, TimeSpan.FromSeconds(5), false);
-            _statusEffectsSystem.TryAddStatusEffect(psion, "Stutter", TimeSpan.FromSeconds(10), false, "StutteringAccent");
+            _stunSystem.TryUpdateParalyzeDuration(psion, TimeSpan.FromSeconds(5));
+            _statusEffectsSystem.TryAddStatusEffectDuration(psion, "Stutter", TimeSpan.FromSeconds(10));
 
             if (HasComp<PsionicComponent>(psion))
                 _popupSystem.PopupEntity(Loc.GetString("noospheric-zap-seize"), psion, psion, Shared.Popups.PopupType.LargeCaution);

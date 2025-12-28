@@ -204,8 +204,9 @@ public sealed partial class NPCCombatSystem
             {
                 return;
             }
+            
             _gun.SetTarget(gun, comp.Target); // backmen: Laying System
-            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, comp.Target);
         }
     }
 }

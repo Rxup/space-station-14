@@ -127,7 +127,7 @@
 
 - type: nameIdentifierGroup
   id: Xeno
-  prefix: X
+  format: name-identifier-format-xeno
   minValue: 333
   maxValue: 999
 
@@ -1619,6 +1619,7 @@
     damageModifierSet: XenoSlimeModifier
   - type: IconSmooth
     key: xenowalls
+    mode: NoSprite
   - type: Destructible
     thresholds:
     - trigger:

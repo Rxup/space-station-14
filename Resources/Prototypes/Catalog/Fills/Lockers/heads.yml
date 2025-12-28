@@ -46,8 +46,8 @@
     - id: ClothingHeadsetAltCommand
 #    - id: ClothingOuterArmorCaptainCarapace # Backmen-CaptainDrobe
     - id: CommsComputerCircuitboard
-    - id: DoorRemoteCommand
-#    - id: MedalCase # Backmen-CaptainDrobe
+    - id: DoorRemoteCustom
+    - id: MedalCase
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: PlushieNuke

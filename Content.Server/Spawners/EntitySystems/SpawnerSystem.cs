@@ -1,4 +1,6 @@
+using System.Linq;
 using Content.Server.Spawners.Components;
+using NetCord;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -21,16 +23,26 @@ public sealed class SpawnerSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _timing.CurTime;
+
+        var q = new HashSet<Entity<TimedSpawnerComponent>>(); // backmen
+
         var query = EntityQueryEnumerator<TimedSpawnerComponent>();
         while (query.MoveNext(out var uid, out var timedSpawner))
         {
             if (timedSpawner.NextFire > curTime)
                 continue;
 
-            OnTimerFired(uid, timedSpawner);
+            q.Add((uid, timedSpawner)); // backmen
 
             timedSpawner.NextFire += timedSpawner.IntervalSeconds;
         }
+
+        // start-backmen
+        foreach (var ent in q)
+        {
+            OnTimerFired(ent, ent);
+        }
+        // end-backmen
     }
 
     private void OnMapInit(Entity<TimedSpawnerComponent> ent, ref MapInitEvent args)

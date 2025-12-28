@@ -18,24 +18,27 @@
     prob: 0.1
     orGroup: content
 
-- type: entitySpawnEntry
+- type: entityTable
   id: RuinedHospitalDoor
-  entries:
-  - id: AirlockGlass
+  table: !type:AllSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockGlass
 
 - type: dungeonConfig
   id: RuinedHospital
-#    whitelists:
-#      Rooms:
-#        tags:
-#        - RuinedHospital
   layers:
-  - !type:PrototypeDunGen
-    proto: NyanoCompound
-  - !type:CornerClutterDunGen
-    contents: BaseClutter
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - RuinedHospital
+    presets:
+    - NyanoCompound
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorWhitePlastic
   - !type:EntranceFlankDunGen
-    contents: BaseWindow
+    contents: DungeonWindow
     tile: FloorDark
   - !type:JunctionDunGen
     width: 1
@@ -44,44 +47,41 @@
   - !type:WallMountDunGen
     contents: ScienceLabsWalls
     tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorWhitePlastic
+    contents: RuinedHospitalDoor
+
+  - !type:RoomEntranceDunGen
+    tile: FloorWhitePlastic
+    contents: RuinedHospitalDoor
+
+  - !type:WallMountDunGen
+    contents: RuinedHospitalWalls
+    tile: Plating
+    prob: 0.05
+
   - !type:AutoCablingDunGen
     entity: CableApcExtension
 
+  - !type:BoundaryWallDunGen
+    tile: Plating
+    wall: WallDrywall
+    cornerWall: WallDrywall
 
-  #- !type:MiddleConnectionPostGen
-  #  count: 1
-  #  tile: FloorWhitePlastic
-  #  entities:
-  #    - CableApcExtension
-  #    - AirlockGlass
-
-  #- !type:EntrancePostGen
-  #  count: 2
-  #  tile: FloorWhitePlastic
-  #  entities:
-  #    - AirlockGlass
-
-  #- !type:WallMountPostGen
-  #  tile: Plating
-  #  prob: 0.05
-  #  spawns:
-  #    - id: RandomPainting
-  #      prob: 1
-  #      orGroup: content
-  #    - id: DefibrillatorCabinetFilled
-  #      prob: 0.2
-  #      orGroup: content
-  #    - id: ExtinguisherCabinetFilled
-  #      prob: 0.2
-  #      orGroup: content
-  #    - id: IntercomCommon
-  #      prob: 0.1
-  #      orGroup: content
-
-  #- !type:BoundaryWallPostGen
-  #  tile: Plating
-  #  wall: WallDrywall
-  #  cornerWall: WallDrywall
+- type: entityTable
+  id: RuinedHospitalWalls
+  table: !type:GroupSelector
+    children:
+      - id: RandomPainting
+        prob: 1
+      - id: DefibrillatorCabinetFilled
+        prob: 0.2
+      - id: ExtinguisherCabinetFilled
+        prob: 0.2
+      - id: IntercomCommon
+        prob: 0.1
 
 # ruined dwellings
 
@@ -99,17 +99,17 @@
 
 - type: dungeonConfig
   id: RuinedDwellings
-#    whitelists:
-#      Rooms:
-#        tags:
-#        - RuinedDwelling
   layers:
-  - !type:PrototypeDunGen
-    proto: NyanoStack
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - RuinedDwelling
+    presets:
+    - NyanoStack
   - !type:CornerClutterDunGen
     contents: BaseClutter
   - !type:EntranceFlankDunGen
-    contents: BaseWindow
+    contents: DungeonWindow
     tile: FloorDark
   - !type:JunctionDunGen
     width: 1
@@ -118,8 +118,6 @@
   - !type:WallMountDunGen
     contents: ScienceLabsWalls
     tile: FloorSteel
-  - !type:AutoCablingDunGen
-    entity: CableApcExtension
 
 #  - !type:MiddleConnectionPostGen
 #    count: 1
@@ -128,45 +126,61 @@
 #      - CableApcExtension
 #      - WoodDoor
 #
-#  - !type:EntrancePostGen
-#    count: 2
-#    tile: FloorWood
-#    entities:
-#      - WoodDoor
-#
-#  - !type:ExternalWindowPostGen
-#    tile: FloorWood
-#    entities:
-#      - Window
-#
-#  - !type:WallMountPostGen
-#    tile: Plating
-#    prob: 0.05
-#    spawns:
-#      - id: RandomPainting
-#        prob: 1
-#        orGroup: content
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorWood
+    contents: RuinedDwellingsAirlock
 
-  #- !type:BoundaryWallPostGen
-  #  tile: Plating
-  #  wall: WallDrywall
-  #  cornerWall: WallDrywall
+  - !type:RoomEntranceDunGen
+    tile: FloorWood
+    contents: RuinedDwellingsAirlock
+
+  - !type:ExternalWindowDunGen
+    tile: FloorWood
+    contents: DungeonWindow
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:WallMountDunGen
+    tile: Plating
+    prob: 0.05
+    contents: RuinedDwellingsWalls
+
+  - !type:BoundaryWallDunGen
+    tile: Plating
+    wall: WallDrywall
+    cornerWall: WallDrywall
+
+- type: entityTable
+  id: RuinedDwellingsWalls
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: RandomPainting
+
+- type: entityTable
+  id: RuinedDwellingsAirlock
+  table: !type:AllSelector
+    children:
+    - id: CableApcExtension
+    - id: WoodDoor
 
 # ruined shops
 
 - type: dungeonConfig
   id: RuinedShop
-#    whitelists:
-#      Rooms:
-#        tags:
-#        - RuinedShop
   layers:
-  - !type:PrototypeDunGen
-    proto: NyanoSolo9
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - RuinedShop
+    presets:
+    - NyanoSolo9
   - !type:CornerClutterDunGen
     contents: BaseClutter
   - !type:EntranceFlankDunGen
-    contents: BaseWindow
+    contents: DungeonWindow
     tile: FloorDark
   - !type:JunctionDunGen
     width: 1
@@ -175,8 +189,16 @@
   - !type:WallMountDunGen
     contents: ScienceLabsWalls
     tile: FloorSteel
-  - !type:AutoCablingDunGen
-    entity: CableApcExtension
+  - !type:BoundaryWallDunGen
+    tile: Plating
+    wall: WallDrywall
+    cornerWall: WallDrywall
+  - !type:DungeonEntranceDunGen
+    count: 4
+    tile: FloorWood
+    contents: RuinedDwellingsAirlock
+  #- !type:AutoCablingDunGen
+  #  entity: CableApcExtension
 
 - type: entitySpawnEntry
   id: ShopWoodDoor
@@ -187,6 +209,14 @@
   id: ShopWall
   entries:
   - id: WallDrywall
+
+- type: entityTable
+  id: DungeonWindow
+  table: !type:AllSelector
+    children:
+    - id: CableApcExtension
+    - id: Grille
+    - id: Window
 
 #  postGeneration:
 #    - !type:EntrancePostGen

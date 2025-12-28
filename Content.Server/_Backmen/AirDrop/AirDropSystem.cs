@@ -123,7 +123,7 @@ public sealed class AirDropSystem : SharedAirDropSystem
 
     private void OnSpawnLoot(AirDropItemSpawnEvent ev)
     {
-        if (ev.Handled)
+        if (ev.Handled || TerminatingOrDeleted(ev.SupplyPod))
             return;
 
         var supplyTransform = Transform(ev.SupplyPod);
@@ -148,7 +148,15 @@ public sealed class AirDropSystem : SharedAirDropSystem
 
         if (openDoorSupplyPod || ev.ForceOpenSupplyDrop)
         {
-            _storage.OpenStorage(ev.SupplyPod);
+            try
+            {
+                _storage.OpenStorage(ev.SupplyPod);
+            }
+            catch (Exception e)
+            {
+                Log.Warning($"Unable to open {ToPrettyString(ev.SupplyPod)}: {e}");
+            }
+
         }
 
         ev.Handled = true;

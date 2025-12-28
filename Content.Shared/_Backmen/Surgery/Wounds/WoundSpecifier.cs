@@ -67,7 +67,7 @@ public sealed partial class WoundSpecifier : IEquatable<WoundSpecifier>
         foreach (var damageType in group.DamageTypes)
         {
             var damage = remainingDamage / FixedPoint2.New(remainingTypes);
-            WoundDict.Add(damageType, damage);
+            WoundDict.Add(damageType.Id, damage);
             remainingDamage -= damage;
             remainingTypes -= 1;
         }

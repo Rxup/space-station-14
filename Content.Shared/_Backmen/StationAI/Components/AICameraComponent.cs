@@ -1,4 +1,6 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.DeviceNetwork;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Backmen.StationAI.Components;
 
@@ -13,10 +15,7 @@ public sealed partial class AICameraComponent : Component
     public string CameraName = "Unnamed";
 
     [DataField("cameraCategory"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public List<string> CameraCategories = new List<string>()
-    {
-        "Uncategorized"
-    };
+    public List<ProtoId<DeviceFrequencyPrototype>> CameraCategories = [];
 
     [ViewVariables]
     public HashSet<EntityUid> ActiveViewers { get; } = new();

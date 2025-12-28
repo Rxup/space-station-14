@@ -34,8 +34,8 @@
       offState: off
       brokenState: broken
       normalState: normal-unshaded
-    - type: Advertise
-      pack: AmmoVendAds
+    - type: DatasetVocalizer
+      dataset: AmmoVendAds
     - type: Speech
     - type: Sprite
       sprite: _Backmen/Structures/Machines/VendingMachines/lootbox.rsi
@@ -680,8 +680,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: AmmoVendAds
+  - type: DatasetVocalizer
+    dataset: AmmoVendAds
   - type: Speech
   - type: AccessReader
     access: [["MTF"]]
@@ -709,8 +709,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: MegaSeedAds
+  - type: DatasetVocalizer
+    dataset: MegaSeedAds
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/seeds.rsi
     layers:
@@ -797,8 +797,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
-    pack: InteQDrobeAds
+  - type: DatasetVocalizer
+    dataset: InteQDrobeAds
   - type: Sprite
     sprite: _Backmen/Structures/Machines/VendingMachines/inteqdrobe.rsi
     layers:

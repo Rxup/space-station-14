@@ -57,7 +57,7 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
 
         _beam.TryCreateBeam(args.Performer, args.Target, "LightningNoospheric");
 
-        _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(5), false);
+        _stunSystem.TryUpdateParalyzeDuration(args.Target, TimeSpan.FromSeconds(5));
         _statusEffectsSystem.TryAddStatusEffect(args.Target, "Stutter", TimeSpan.FromSeconds(10), false, "StutteringAccent");
 
         _psionics.LogPowerUsed(args.Performer, "noospheric zap");

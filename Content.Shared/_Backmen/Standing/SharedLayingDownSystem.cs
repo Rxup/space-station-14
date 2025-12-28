@@ -112,7 +112,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     private void OnChangeMobState(Entity<LayingDownComponent> ent, ref MobStateChangedEvent args)
     {
         if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
-            standingStateComponent.CurrentState != StandingState.Lying)
+            standingStateComponent.Standing)
             return;
 
         if (args.NewMobState == MobState.Alive)
@@ -154,7 +154,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     private void OnBuckled(Entity<LayingDownComponent> ent, ref BuckledEvent args)
     {
         if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
-            standingStateComponent.CurrentState != StandingState.Lying)
+            standingStateComponent.Standing)
             return;
 
         if (!CrawlUnderTables)
@@ -356,7 +356,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
                 uid,
                 PopupType.MediumCaution);
             _damageable.TryChangeDamage(uid, new DamageSpecifier{DamageDict = {{"Blunt", 5}}}, canBeCancelled: false, ignoreResistances: true, targetPart: TargetBodyPart.Head);
-            _stun.TryStun(uid, TimeSpan.FromSeconds(2), true);
+            _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(2));
             _audioSystem.PlayPredicted(_bonkSound, uid, obj.Value);
             return false;
         }

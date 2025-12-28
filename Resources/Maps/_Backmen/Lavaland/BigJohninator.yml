@@ -53,7 +53,7 @@ entities:
         version: 2
         nodes: []
     - type: ImplicitRoof
-- proto: DropPodMarkerBigJohn
+- proto: SummonerBigJohninatorAirDrop
   entities:
   - uid: 2
     components:

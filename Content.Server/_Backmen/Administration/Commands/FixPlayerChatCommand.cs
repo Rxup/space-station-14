@@ -65,7 +65,7 @@ namespace Content.Server._Backmen.Administration.Commands
 
             _entityManager.RemoveComponent<ActorComponent>(eUid);
             _entityManager.RemoveComponent<MindContainerComponent>(eUid);
-            _entityManager.RemoveComponent<ForcedSleepingComponent>(eUid);
+            _entityManager.RemoveComponent<ForcedSleepingStatusEffectComponent>(eUid);
             _entityManager.RemoveComponent<SleepingComponent>(eUid);
 
             // hm, does player have a mind? if not we may need to give them one

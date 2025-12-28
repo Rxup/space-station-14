@@ -109,7 +109,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
 
         var solution = new Solution();
         solution.AddReagent("PsionicRegenerationEssence", FixedPoint2.New(component.EssenceAmount * percentageComplete));
-        _bloodstreamSystem.TryAddToChemicals(uid, solution, stream);
+        _bloodstreamSystem.TryAddToChemicals(uid, solution);
     }
 }
 

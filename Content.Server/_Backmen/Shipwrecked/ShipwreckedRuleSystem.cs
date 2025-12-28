@@ -45,6 +45,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
 using Content.Shared._Backmen.CCVar;
 using Content.Shared._Backmen.Shipwrecked.Components;
+using Content.Shared.Body.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
@@ -245,15 +246,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void OnPinPointerSpawn(Entity<ShipwreckPinPointerComponent> ent, ref MapInitEvent args)
     {
-        if(!TryComp<PinpointerComponent>(ent, out var pinpointerComponent) || !QueryActiveRules().MoveNext(out var _, out var rule, out _))
+        if(!HasComp<PinpointerComponent>(ent) || !QueryActiveRules().MoveNext(out var _, out var rule, out _))
             return;
         ent.Comp.Rule = rule;
-    }
-
-    private void OnAttackAttempt(Entity<ShipwreckSurvivorComponent> ent, ref AttackAttemptEvent args)
-    {
-        if(HasComp<PacifiedComponent>(ent))
-            args.Cancel();
     }
 /*
     private void OnMapReady(PostGameMapLoad ev)
@@ -376,14 +371,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 */
-    [ValidatePrototypeId<LocalizedDatasetPrototype>]
-    private const string PlanetNames = "NamesBorer";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
 
     private const int MaxPreloadOffset  = 200;
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
-        if (component.PlanetMap.HasValue && !TerminatingOrDeleted(component.PlanetMap.Value) && component.PlanetMapId.HasValue && _mapManager.MapExists(component.PlanetMapId.Value))
+        if (component.PlanetMap.HasValue && !TerminatingOrDeleted(component.PlanetMap.Value) && component.PlanetMapId.HasValue && _mapSystem.MapExists(component.PlanetMapId.Value))
         {
             return;
         }
@@ -505,8 +499,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         EntityManager.System<SharedPhysicsSystem>().WakeBody(boundaryUid, body: boundaryPhysics);
         AddComp<BoundaryComponent>(boundaryUid);
 
-        _mapSystem.InitializeMap(planetMapId);
-        _mapSystem.SetPaused(planetMapId, true);
+        _mapSystem.InitializeMap(planetMapId, false);
 
         component.PlanetMapId = planetMapId;
         component.PlanetMap = planetMapUid;

@@ -3,13 +3,18 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Backmen.Surgery.Wounds.Components;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class WoundComponent : Component
+public sealed partial class WoundComponent : Component, IComponentDelta
 {
+    public GameTick LastFieldUpdate { get; set; }
+    public GameTick[] LastModifiedFields { get; set; }
+
     /// <summary>
     /// 'Parent' of wound. Basically the entity to which the wound was applied.
     /// </summary>
@@ -108,7 +113,7 @@ public sealed class WoundComponentState : ComponentState
 
     public WoundType WoundType;
 
-    public DamageGroupPrototype? DamageGroup;
+    public ProtoId<DamageGroupPrototype>? DamageGroup;
     public string? DamageType;
 
     public EntProtoId? ScarWound;
@@ -120,4 +125,20 @@ public sealed class WoundComponentState : ComponentState
     public WoundVisibility WoundVisibility;
 
     public bool CanBeHealed;
+
+    public WoundComponentState() { }
+    public WoundComponentState(WoundComponentState existing)
+    {
+        HoldingWoundable = existing.HoldingWoundable;
+        WoundSeverityPoint = existing.WoundSeverityPoint;
+        WoundableIntegrityMultiplier = existing.WoundableIntegrityMultiplier;
+        WoundType = existing.WoundType;
+        DamageGroup = existing.DamageGroup;
+        DamageType = existing.DamageType;
+        ScarWound = existing.ScarWound;
+        IsScar = existing.IsScar;
+        WoundSeverity = existing.WoundSeverity;
+        WoundVisibility = existing.WoundVisibility;
+        CanBeHealed = existing.CanBeHealed;
+    }
 }

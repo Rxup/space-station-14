@@ -201,7 +201,7 @@ public sealed partial class BorgSystem
             else
             {
                 item = component.ProvidedContainer.ContainedEntities
-                    .FirstOrDefault(ent => Prototype(ent)?.ID == itemProto);
+                    .FirstOrDefault(ent => Prototype(ent)?.ID == itemProto.Id);
                 if (!item.IsValid())
                 {
                     Log.Debug($"no items found: {component.ProvidedContainer.ContainedEntities.Count}");
@@ -219,8 +219,8 @@ public sealed partial class BorgSystem
 
             var handId = $"{uid}-item{component.HandCounter}";
             component.HandCounter++;
-            _hands.AddHand(chassis, handId, HandLocation.Middle, hands);
-            _hands.DoPickup(chassis, hands.Hands[handId], item, hands);
+            _hands.AddHand((chassis, hands), handId, HandLocation.Middle);
+            _hands.DoPickup(chassis, handId, item, hands);
             EnsureComp<UnremoveableComponent>(item);
             component.ProvidedItems.Add(handId, item);
 
@@ -229,7 +229,7 @@ public sealed partial class BorgSystem
         for (int i = 0; i < component.Hands; i++)
         {
             var handId2 = $"{uid}-FH{i}";
-            _hands.AddHand(chassis, handId2, HandLocation.Middle, hands);
+            _hands.AddHand((chassis, hands), handId2, HandLocation.Middle);
         }
 
         if (!HasComp<EmaggedComponent>(uid))
@@ -253,7 +253,7 @@ public sealed partial class BorgSystem
             foreach (var (hand, item) in component.ProvidedItems)
             {
                 QueueDel(item);
-                _hands.RemoveHand(chassis, hand, hands);
+                _hands.RemoveHand(chassis, hand);
             }
             component.ProvidedItems.Clear();
             return;
@@ -266,13 +266,13 @@ public sealed partial class BorgSystem
                 RemComp<UnremoveableComponent>(item);
                 _container.Insert(item, component.ProvidedContainer);
             }
-            _hands.RemoveHand(chassis, handId, hands);
+            _hands.RemoveHand(chassis, handId);
         }
 
         for (int i = 0; i < component.Hands; i++)
         {
             var handId = $"{uid}-FH{i}";
-            _hands.RemoveHand(chassis, handId, hands);
+            _hands.RemoveHand((chassis, hands), handId);
         }
 
         if (!HasComp<EmaggedComponent>(uid))

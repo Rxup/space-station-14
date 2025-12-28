@@ -73,7 +73,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     private void OnDispelled(Entity<ShadowkinDarkSwappedComponent> ent, ref DispelledEvent args)
     {
         RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
-        _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(5), true);
+        _stunSystem.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(5));
     }
 
     private void OnDamageInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref DamageChangedEvent args)
@@ -82,7 +82,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             return;
 
         RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
-        _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(3), false);
+        _stunSystem.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(3));
     }
 
     private void OnWoundedInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref WoundsChangedEvent args)
@@ -91,7 +91,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             return;
 
         RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
-        _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(3), false);
+        _stunSystem.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(3));
     }
 
     private void OnMoveInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref MoveEvent args)
@@ -146,7 +146,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             if (stamina.Critical || _activePsionicsDisabled.HasComponent(uid))
             {
                 RemCompDeferred<ShadowkinDarkSwappedComponent>(uid);
-                _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(5), true, statusEffectsComponent);
+                _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(5));
                 continue;
             }
 

@@ -1,7 +1,4 @@
-﻿using Content.Server.Bed.Components;
 using Content.Shared._Backmen.Disease;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Buckle.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Backmen.Disease.Cures;

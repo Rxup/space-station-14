@@ -15,6 +15,7 @@ using Content.Shared._Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Speech;
 using Robust.Server.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
@@ -36,7 +37,6 @@ public sealed class GolemSystem : SharedGolemSystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
 
@@ -147,7 +147,7 @@ public sealed class GolemSystem : SharedGolemSystem
         golem.Master = Name(args.User);
 
         var state = new GolemBoundUserInterfaceState(golem.GolemName, golem.Master);
-        _userInterfaceSystem.SetUiState(args.Target.Value, GolemUiKey.Key, state);
+        _uiSystem.SetUiState(args.Target.Value, GolemUiKey.Key, state);
     }
 
     public bool EjectSoul(Entity<GolemComponent> ent)

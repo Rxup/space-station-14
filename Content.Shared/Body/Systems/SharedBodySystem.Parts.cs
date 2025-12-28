@@ -6,6 +6,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -13,12 +14,14 @@ using System.Linq;
 using Content.Shared._Backmen.Surgery.Body.Events;
 using Content.Shared._Backmen.Surgery.Body.Organs;
 using Content.Shared._Backmen.Targeting;
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> BloodlossDamageType = "Bloodloss";
     private void InitializeParts()
     {
         // TODO: This doesn't handle comp removal on child ents.
@@ -256,7 +259,11 @@ public partial class SharedBodySystem
         bodyEnt.Comp.LegEntities.Remove(legEnt);
         UpdateMovementSpeed(bodyEnt);
         Dirty(bodyEnt, bodyEnt.Comp);
-        Standing.Down(bodyEnt);
+
+        if (!bodyEnt.Comp.LegEntities.Any())
+        {
+            Standing.Down(bodyEnt);
+        }
     }
 
     /// <summary>

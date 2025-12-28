@@ -3,7 +3,6 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Vector3 = Robust.Shared.Maths.Vector3;
 
 namespace Content.Client._Backmen.Overlays.Shaders;
 

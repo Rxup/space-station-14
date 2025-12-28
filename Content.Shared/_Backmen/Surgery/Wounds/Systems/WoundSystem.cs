@@ -87,7 +87,7 @@ public abstract partial class WoundSystem : EntitySystem
 
             WoundType = comp.WoundType,
 
-            DamageGroup = comp.DamageGroup,
+            DamageGroup = comp.DamageGroup?.ID,
             DamageType = comp.DamageType,
 
             ScarWound = comp.ScarWound,
@@ -158,7 +158,10 @@ public abstract partial class WoundSystem : EntitySystem
 
         component.WoundType = state.WoundType;
 
-        component.DamageGroup = state.DamageGroup;
+        if (_prototype.TryIndex(state.DamageGroup, out var damageGroup))
+        {
+            component.DamageGroup = damageGroup;
+        }
         if (state.DamageType != null)
             component.DamageType = state.DamageType;
 
