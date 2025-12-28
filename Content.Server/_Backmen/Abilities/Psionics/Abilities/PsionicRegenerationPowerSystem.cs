@@ -11,6 +11,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared._Backmen.Psionics.Events;
+using Content.Shared.Body.Components;
 using Content.Shared.Examine;
 using Robust.Server.Audio;
 using static Content.Shared.Examine.ExamineSystemShared;

@@ -10,6 +10,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared._Backmen.Abilities.Psionics;
 using Content.Shared._Backmen.Vampiric;
 using Content.Shared._Backmen.Vampiric.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
