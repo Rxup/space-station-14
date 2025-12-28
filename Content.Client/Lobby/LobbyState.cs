@@ -18,6 +18,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -35,6 +36,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly ChangelogManager _changelog = default!; // BACKMEN EDIT
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -193,15 +195,10 @@ namespace Content.Client.Lobby
             else
             {
                 Lobby!.StartTime.Text = string.Empty;
-                // BACKMEN EDIT START
-                if (Lobby!.ReadyButton.Pressed)
-                    MakeButtonReady(Lobby!.ReadyButton);
-                else
-                    MakeButtonUnReady(Lobby!.ReadyButton);
-                // BACKMEN EDIT END
+                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
+                Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
-                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ObserveButton.Disabled = true;
             }
 
@@ -268,15 +265,22 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyBackground()
         {
-            if (_gameTicker.LobbyBackground != null)
+            if (_protoMan.TryIndex(_gameTicker.LobbyBackground, out var proto))
             {
-                Lobby!.Background.SetRSI(_resourceCache.GetResource<RSIResource>(_gameTicker.LobbyBackground).RSI); // BACKMEN EDIT
+                Lobby!.Background.SetRSI(proto.RSI); // BACKMEN EDIT
+
+                var markup = Loc.GetString("lobby-state-background-text",
+                    ("backgroundTitle", Loc.GetString(proto.Title)),
+                    ("backgroundArtist", Loc.GetString(proto.Artist)));
+
+                Lobby!.LobbyBackground.SetMarkup(markup);
             }
             else
             {
                 Lobby!.Background.Texture = null;
-            }
 
+                Lobby!.LobbyBackground.SetMarkup(Loc.GetString("lobby-state-background-no-background-text"));
+            }
         }
 
         private void SetReady(bool newReady)
@@ -290,16 +294,6 @@ namespace Content.Client.Lobby
         }
 
         // BACKMEN EDIT START
-        private void MakeButtonReady(WhiteLobbyTextButton button)
-        {
-            button.ButtonText = Loc.GetString("lobby-state-ready-button-ready-up-state");
-        }
-
-        private void MakeButtonUnReady(WhiteLobbyTextButton button)
-        {
-            button.ButtonText = Loc.GetString("lobby-state-player-status-not-ready");
-        }
-
         private void MakeButtonJoinGame(WhiteLobbyTextButton button)
         {
             button.ButtonText = Loc.GetString("lobby-state-ready-button-join-state");

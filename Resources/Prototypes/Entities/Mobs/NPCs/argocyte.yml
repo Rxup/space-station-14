@@ -27,8 +27,10 @@
     - SpaceMob
     - Argocyte
   - type: Bloodstream
-    bloodReagent: FerrochromicAcid
-    bloodMaxVolume: 75 #we don't want the map to become pools of blood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FerrochromicAcid
+        Quantity: 75 #we don't want the map to become pools of blood
     bloodlossDamage:
       types:
         Bloodloss:

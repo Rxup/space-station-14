@@ -4,17 +4,6 @@
   id: BaseMagazineBoxLightRifle
   name: ammunition box (.30 rifle)
   components:
-  # backmen edit start
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/Backmen/Items/handling/ammobox_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/Backmen/Items/handling/ammobox_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Backmen/Items/handling/ammobox_drop.ogg
-  # backmen edit end
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -40,7 +29,6 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRifleBig
   name: ammunition box (.30 rifle)
-  categories: [ HideSpawnMenu ]
   suffix: Big
   components:
   - type: BallisticAmmoProvider
@@ -57,7 +45,6 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRifle
   name: ammunition box (.30 rifle)
-  categories: [ HideSpawnMenu ]
   description: A cardboard box of .30 rifle rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -73,8 +60,7 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRiflePractice
   name: ammunition box (.30 rifle practice)
-  categories: [ HideSpawnMenu ]
-  description: A cardboard box of .30 rifle rounds. Intended to hold non-harmful chalk ammunition.
+  description: A cardboard box of .30 rifle rounds. Intended to hold harmless practice ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
@@ -87,10 +73,9 @@
     - state: practice
 
 - type: entity
-  id: MagazineBoxLightRifleIncendiary
   parent: BaseMagazineBoxLightRifle
+  id: MagazineBoxLightRifleIncendiary
   name: ammunition box (.30 rifle incendiary)
-  categories: [ HideSpawnMenu ]
   description: A cardboard box of .30 rifle rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -107,7 +92,6 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRifleUranium
   name: ammunition box (.30 rifle uranium)
-  categories: [ HideSpawnMenu ]
   description: A cardboard box of .30 rifle rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider

@@ -7,8 +7,7 @@
   guides: [ Zombies ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 108000 # 30h # Corvax-RoleTime
-  discordRequired: true # backmen: antag
+    time: 1h
 
 - type: antag
   id: Zombie

@@ -1,4 +1,5 @@
 using Content.Shared.Inventory;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Robust.Shared.Containers;

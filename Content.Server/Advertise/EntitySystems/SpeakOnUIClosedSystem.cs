@@ -3,6 +3,7 @@ using Content.Shared.Backmen.Chat;
 using Content.Shared.Dataset;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
+using Content.Shared.Chat;
 using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -40,7 +41,7 @@ public sealed partial class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
         if (!entity.Comp.Enabled)
             return false;
 
-        if (!_prototypeManager.TryIndex(entity.Comp.Pack, out var messagePack))
+        if (!_prototypeManager.Resolve(entity.Comp.Pack, out var messagePack))
             return false;
 
         var message = Loc.GetString(_random.Pick(messagePack.Values), ("name", Name(entity)));

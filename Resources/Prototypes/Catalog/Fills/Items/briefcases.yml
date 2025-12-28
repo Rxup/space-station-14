@@ -3,10 +3,12 @@
   parent: BriefcaseBrown
   suffix: Filled, Paper
   components:
-  - type: StorageFill
-    contents:
-      - id: Paper
-        amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Paper
+          amount: 3
 
 - type: entity
   id: BriefcaseSyndieSniperBundleFilled
@@ -17,44 +19,49 @@
     size: Ginormous
   - type: Storage
     grid:
-    - 0,0,6,4
-  - type: StorageFill
-    contents:
-      - id: WeaponSniperHristov
-      - id: MagazineBoxAntiMateriel
-      - id: ClothingNeckTieRed
-      - id: ClothingHandsGlovesLatex
-      - id: ClothingUniformJumpsuitLawyerBlack
-      - id: BarberScissors
+    - 0,0,6,4  # backmen edit: увеличенный грид, чтобы всё влезло
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperHristov
+        - id: MagazineBoxAntiMateriel
+        - id: ClothingNeckTieRed
+        - id: ClothingHandsGlovesLatex
+        - id: ClothingUniformJumpsuitLawyerBlack
+        - id: BarberScissors
 
 - type: entity
   id: BriefcaseSyndieLobbyingBundleFilled
   parent: BriefcaseSyndie
   suffix: Syndicate, Spesos
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingEyesGlassesSunglasses
-      - id: CargoCash30000
-        amount: 1
-      - id: EncryptionKeySyndie
-      - id: RubberStampTrader
-      - id: PhoneInstrumentSyndicate
-      - id: ClothingUniformJumpsuitTacticool
-      - id: ClothingOuterCoatJensen
-      - id: ClothingHandsGlovesCombat
-      - id: ClothingMaskNeckGaiter
-      - id: SyndieHandyFlag
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesSunglasses
+        - id: CargoCash30000  # backmen edit: 30к вместо обычных 20к
+        - id: EncryptionKeySyndie
+        - id: RubberStampTrader
+        - id: PhoneInstrumentSyndicate
+        - id: ClothingUniformJumpsuitTacticool
+        - id: ClothingOuterCoatJensen
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingMaskNeckGaiter
+        - id: SyndieHandyFlag
 
 - type: entity
   id: BriefcaseThiefBribingBundleFilled
   parent: BriefcaseSyndie
   suffix: Thief, Spesos
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingEyesGlassesSunglasses
-      - id: SpaceCash2500
-        amount: 1
-      - id: ClothingOuterCoatJensen
-      - id: ClothingHandsGlovesColorBlack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesSunglasses
+        - id: SpaceCash2500  # backmen edit: 2500 вместо 20000 (или наоборот — как было у тебя в HEAD)
+          amount: 1
+        - id: ClothingOuterCoatJensen
+        - id: ClothingHandsGlovesColorBlack

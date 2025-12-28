@@ -17,6 +17,7 @@
     - CentralCommand
     - AllHostile
     - Wizard
+    - Xenoborg
     - InteQ # Backmen
     - InteQHostile # Backmen
 
@@ -52,6 +53,8 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
   - Mouse
   - SimpleHostile
@@ -63,7 +66,6 @@
   - SpecialForce
   - CombineForce
   - AllHostile
-  - Wizard
   - Dragon
 
 - type: npcFaction
@@ -237,5 +239,5 @@
   - Xeno # rivalry
 
   # cause they are hostile to them
-  - SimpleHostile 
+  - SimpleHostile
   - AllHostile

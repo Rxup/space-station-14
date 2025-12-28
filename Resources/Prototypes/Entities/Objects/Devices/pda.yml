@@ -62,11 +62,10 @@
     - idcard
     - Belt
   - type: UnpoweredFlashlight
-  - type: ShadowkinLight
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png # Backmen
     enabled: false
-    radius: 1.8 # Backmen-Edit
+    radius: 1.7
+    falloff: 3
     softness: 5
     autoRot: true
   - type: Ringer
@@ -83,8 +82,6 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - BankCartridge
-      - GlimmerMonitorCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
     cartridgeSlot:
@@ -126,13 +123,6 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
 
 - type: entity
   parent: BasePDA
@@ -189,7 +179,7 @@
   - type: Pda
     id: PassengerIDCard
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
+    borderColor: "#717059"
 
 - type: entity
   parent: BasePDA
@@ -205,8 +195,8 @@
        !type:String
        pda-interntech
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
-    accentVColor: "#cbc737"
+    borderColor: "#717059"
+    accentVColor: "#949137"
   - type: Icon
     state: pda-interntech
 
@@ -224,8 +214,8 @@
        !type:String
        pda-internmed
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
-    accentVColor: "#3886b6"
+    borderColor: "#717059"
+    accentVColor: "#447987"
   - type: Icon
     state: pda-internmed
   - type: GuideHelp
@@ -246,8 +236,8 @@
        !type:String
        pda-interncadet
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
-    accentVColor: "#88242d"
+    borderColor: "#717059"
+    accentVColor: "#A32D26"
   - type: Icon
     state: pda-interncadet
 
@@ -265,8 +255,8 @@
        !type:String
        pda-internsci
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
-    accentVColor: "#a03fa8"
+    borderColor: "#717059"
+    accentVColor: "#8900c9"
   - type: Icon
     state: pda-internsci
 
@@ -284,8 +274,8 @@
        !type:String
        pda-internservice
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
-    accentVColor: "#84e54b"
+    borderColor: "#717059"
+    accentVColor: "#00cc35"
   - type: Icon
     state: pda-internservice
 
@@ -303,7 +293,7 @@
        !type:String
        pda-cook
   - type: PdaBorderColor
-    borderColor: "#ffffff"
+    borderColor: "#d7d7d0"
   - type: Icon
     state: pda-cook
   - type: ReplacementAccent # for random sentience event
@@ -323,8 +313,8 @@
        !type:String
        pda-hydro
   - type: PdaBorderColor
-    borderColor: "#50e193"
-    accentVColor: "#004da6"
+    borderColor: "#44843c"
+    accentVColor: "#00cc35"
   - type: Icon
     state: pda-hydro
 
@@ -351,7 +341,7 @@
        !type:String
        pda-clown
   - type: PdaBorderColor
-    borderColor: "#84e54b"
+    borderColor: "#C18199"
   - type: Icon
     state: pda-clown
   - type: Slippery # secretly made of bananium
@@ -480,8 +470,8 @@
        !type:String
        pda-qm
   - type: PdaBorderColor
-    borderColor: "#c99840"
-    accentVColor: "#83683d"
+    borderColor: "#e39751"
+    accentVColor: "#a23e3e"
   - type: Icon
     state: pda-qm
   - type: CartridgeLoader
@@ -506,7 +496,7 @@
        !type:String
        pda-cargo
   - type: PdaBorderColor
-    borderColor: "#c99840"
+    borderColor: "#e39751"
   - type: Icon
     state: pda-cargo
 
@@ -524,8 +514,8 @@
        !type:String
        pda-miner
   - type: PdaBorderColor
-    borderColor: "#927444"
-    accentVColor: "#613590"
+    borderColor: "#af9366"
+    accentVColor: "#8900c9"
   - type: Icon
     state: pda-miner
   - type: CartridgeLoader
@@ -556,7 +546,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BasePDA # backmen
+  parent: BaseWidePDA
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -639,7 +629,7 @@
        !type:String
        pda-janitor
   - type: PdaBorderColor
-    borderColor: "#933ea8"
+    borderColor: "#5D2D56"
   - type: Icon
     state: pda-janitor
 
@@ -663,7 +653,7 @@
        !type:String
        pda-captain
   - type: PdaBorderColor
-    borderColor: "#e3a72b"
+    borderColor: "#7C5D00"
   - type: Icon
     state: pda-captain
 
@@ -687,8 +677,8 @@
        !type:String
        pda-hop
   - type: PdaBorderColor
-    borderColor: "#374f7e"
-    accentHColor: "#3c94c5"
+    borderColor: "#789876"
+    accentHColor: "#447987"
   - type: Icon
     state: pda-hop
 
@@ -706,9 +696,8 @@
        !type:String
        pda-ce
   - type: PdaBorderColor
-    borderColor: "#deb63d"
-    accentHColor: "#3c94c5"
-    accentVColor: "#FFFFFF"
+    borderColor: "#949137"
+    accentHColor: "#447987"
   - type: Icon
     state: pda-ce
 
@@ -726,8 +715,8 @@
        !type:String
        pda-engineer
   - type: PdaBorderColor
-    borderColor: "#d99a2e"
-    accentVColor: "#cbc737"
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
   - type: Icon
     state: pda-engineer
 
@@ -745,8 +734,8 @@
        !type:String
        pda-cmo
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentHColor: "#3c94c5"
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
     accentVColor: "#447987"
   - type: Icon
     state: pda-cmo
@@ -765,8 +754,8 @@
        !type:String
        pda-medical
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentVColor: "#3886b6"
+    borderColor: "#d7d7d0"
+    accentVColor: "#447987"
   - type: Icon
     state: pda-medical
   - type: GuideHelp
@@ -798,7 +787,7 @@
        !type:String
        pda-paramedic
   - type: PdaBorderColor
-    borderColor: "#fafafa"
+    borderColor: "#d7d7d0"
     accentVColor: "#2a4b5b"
   - type: Icon
     state: pda-paramedic
@@ -817,8 +806,8 @@
        !type:String
        pda-chemistry
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentVColor: "#d15900"
+    borderColor: "#d7d7d0"
+    accentVColor: "#B34200"
   - type: Icon
     state: pda-chemistry
 
@@ -836,9 +825,9 @@
        !type:String
        pda-rd
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentHColor: "#3c94c5"
-    accentVColor: "#a03fa8"
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
+    accentVColor: "#8900c9"
   - type: Icon
     state: pda-rd
 
@@ -856,8 +845,8 @@
        !type:String
        pda-science
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentVColor: "#a03fa8"
+    borderColor: "#d7d7d0"
+    accentVColor: "#8900c9"
   - type: Icon
     state: pda-science
 
@@ -875,8 +864,8 @@
        !type:String
        pda-hos
   - type: PdaBorderColor
-    borderColor: "#88242d"
-    accentHColor: "#3c94c5"
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
   - type: Icon
     state: pda-hos
   - type: CartridgeLoader
@@ -902,8 +891,8 @@
        !type:String
        pda-warden
   - type: PdaBorderColor
-    borderColor: "#363636"
-    accentVColor: "#88242d"
+    borderColor: "#A32D26"
+    accentVColor: "#949137"
   - type: Icon
     state: pda-warden
 
@@ -921,7 +910,7 @@
        !type:String
        pda-security
   - type: PdaBorderColor
-    borderColor: "#88242d"
+    borderColor: "#A32D26"
   - type: Icon
     state: pda-security
 
@@ -1020,8 +1009,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA
@@ -1048,8 +1037,8 @@
        !type:String
        pda-atmos
   - type: PdaBorderColor
-    borderColor: "#eedc43"
-    accentVColor: "#1a89ad"
+    borderColor: "#949137"
+    accentVColor: "#447987"
   - type: Icon
     state: pda-atmos
 
@@ -1067,7 +1056,7 @@
        !type:String
        pda-clear
   - type: PdaBorderColor
-    borderColor: "#c0e5ff"
+    borderColor: "#288e4d"
   - type: Icon
     state: pda-clear
 
@@ -1103,6 +1092,60 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+
+- type: entity
+  parent: [ SyndiPDA, BaseSyndicateContraband ]
+  id: SyndiOperativePDA
+  name: syndicate operative PDA
+  description: Death to NT!
+  components:
+  - type: Pda
+    id: SyndiOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-operative
+  - type: Icon
+    state: pda-syndi-operative
+
+- type: entity
+  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
+  id: SyndiCorpsmanPDA
+  name: syndicate corpsman PDA
+  description: Commander... I need to cook!
+  components:
+  - type: Pda
+    id: SyndiCorpsmanIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-corpsman
+  - type: Icon
+    state: pda-syndi-corpsman
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
+  id: SyndiCommanderPDA
+  name: syndicate commander PDA
+  description: So what are we, some kind of Nukie squad?
+  components:
+  - type: Pda
+    id: SyndiCommanderIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-commander
+  - type: Icon
+    state: pda-syndi-commander
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1256,7 +1299,7 @@
        !type:String
        pda-zookeeper
   - type: PdaBorderColor
-    borderColor: "#b99c5f"
+    borderColor: "#ffe685"
   - type: Icon
     state: pda-zookeeper
 
@@ -1293,7 +1336,7 @@
        !type:String
        pda-detective
   - type: PdaBorderColor
-    borderColor: "#805a2f"
+    borderColor: "#774705"
   - type: Icon
     state: pda-detective
   - type: CartridgeLoader
@@ -1374,8 +1417,8 @@
        !type:String
        pda-seniorengineer
   - type: PdaBorderColor
-    borderColor: "#d99a2e"
-    accentVColor: "#cd610a"
+    borderColor: "#949137"
+    accentVColor: "#CD6900"
   - type: Icon
     state: pda-seniorengineer
 
@@ -1393,9 +1436,9 @@
        !type:String
        pda-seniorresearcher
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentHColor: "#dca01b"
-    accentVColor: "#a03fa8"
+    borderColor: "#d7d7d0"
+    accentHColor: "#8900c9"
+    accentVColor: "#8900c9"
   - type: Icon
     state: pda-seniorresearcher
 
@@ -1413,9 +1456,9 @@
        !type:String
        pda-seniorphysician
   - type: PdaBorderColor
-    borderColor: "#fafafa"
-    accentHColor: "#3886b6"
-    accentVColor: "#ea6400"
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
+    accentVColor: "#B34200"
   - type: Icon
     state: pda-seniorphysician
 
@@ -1433,10 +1476,29 @@
        !type:String
        pda-seniorofficer
   - type: PdaBorderColor
-    borderColor: "#a52f29"
-    accentVColor: "#e0e0e0"
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorofficer
+
+- type: entity
+  parent: BasePDA
+  id: SeniorCourierPDA
+  name: senior courier PDA
+  description: Smells like postage stamps and shuttle fuel.
+  components:
+  - type: Pda
+    id: CargoIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorcourier
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorcourier
 
 - type: entity
   parent: [ BaseMajorContraband, SyndiPDA ]
@@ -1455,39 +1517,14 @@
     state: pda-pirate
 
 - type: entity
-  parent: [ BaseMedicalPDA, BaseSyndicateContraband ]
-  id: SyndiAgentPDA
-  name: syndicate corpsman PDA
-  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
-  components:
-  - type: Pda
-    id: SyndicateIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi-agent
-  - type: PdaBorderColor
-    borderColor: "#891417"
-    accentVColor: "#e0e0e0"
-  - type: Icon
-    state: pda-syndi-agent
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - MedTekCartridge
-
-- type: entity
-  parent: BasePDA
+  parent: [BasePDA, SelectableLock]
   id: ChameleonPDA
   name: passenger PDA
   description: Why isn't it gray?
   suffix: Chameleon
   components:
   - type: PdaBorderColor
-    borderColor: "#b1b1b1"
+    borderColor: "#717059"
   - type: Tag
     tags: # ignore "WhitelistChameleon" tag
     - DoorBumpOpener

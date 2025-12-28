@@ -8,17 +8,13 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobChemist
-      time: 18000 #5 hrs # Corvax-RoleTime
-#    - !type:RoleTimeRequirement
-#      role: JobMedicalDoctor
-#      time: 21600 #6 hrs
+      time: 2.5h
+    - !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 5h
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 54000 #15 hrs # Corvax-RoleTime
-#    - !type:OverallPlaytimeRequirement
-#      time: 144000 #40 hrs
-    - !type:AgeRequirement
-      requiredAge: 21
+      time: 10h
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
@@ -32,36 +28,19 @@
   - ChiefMedicalOfficer
   - Brig
   - Cryogenics
-  - Virology
-  #start-backmen: currency
-  minBankBalance: 400
-  maxBankBalance: 600
-  wageDepartment: Command
-  wage: 100
-  #end-backmen: currency
   special:
-  - !type:AddComponentSpecial
-    components:
-    - type: PsionicBonusChance
-      flatBonus: 0.025
-    - type: NpcFactionMember
-      factions:
-      - CentralCommand
-    - type: CommandStaff
-    #start-backmen: surgery
-    #- type: CPRTraining
-    - type: SurgerySpeedModifier
-      SpeedModifier: 2.5
-    #end-backmen: surgery
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: CMOGear
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetCMO
-    belt: ClothingBeltMilitaryWebbingCMOFilled # Goobstation
+    belt: ClothingBeltMedicalFilled
   storage:
     back:
     - Flash

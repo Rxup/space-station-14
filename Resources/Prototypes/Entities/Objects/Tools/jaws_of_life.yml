@@ -67,7 +67,8 @@
       - state: syn_inhand-right
     size: Normal
   - type: Prying
-    speedModifier: 2.0 # Backmen-Edit
+    force: true
+    speedModifier: 3.0
   - type: MultipleTool
     entries:
       - behavior: Prying
@@ -87,4 +88,4 @@
       types:
         Blunt: 14
   - type: StaticPrice
-    price: 515
+    price: 1000

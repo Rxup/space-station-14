@@ -19,8 +19,26 @@ public sealed partial class StandingStateComponent : Component
     public bool Standing
     {
         get => CurrentState == StandingState.Standing;
-        set => CurrentState = value ? StandingState.Standing : StandingState.Lying;
+        set => CurrentState = value ? StandingState.Standing
+         : StandingState.Lying;
     }
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public SoundSpecifier? DownSound { get; private set; } = new SoundCollectionSpecifier("BodyFall");
+
+    /// <summary>
+    /// Friction modifier applied to an entity in the downed state.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DownFrictionMod = 0.4f;
+
+    /// <summary>
+    ///     List of fixtures that had their collision mask changed when the entity was downed.
+    ///     Required for re-adding the collision mask.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<string> ChangedFixtures = new();
 
     /// <summary>
     /// Time it takes us to stand up

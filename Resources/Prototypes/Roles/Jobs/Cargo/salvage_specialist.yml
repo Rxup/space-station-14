@@ -6,9 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 10800 # 3 hrs
-#    - !type:OverallPlaytimeRequirement
-#      time: 36000 #10 hrs
+      time: 2.5h
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
@@ -17,12 +15,6 @@
   - Salvage
   - Maintenance
   - External
-  #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
-  wageDepartment: Cargo
-  wage: 50
-  #end-backmen: currency
 
 - type: startingGear
   id: SalvageSpecialistGear
@@ -30,9 +22,9 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     id: SalvagePDA
     ears: ClothingHeadsetCargo
-  storage: # DeltaV: Add mining voucher
-    back:
-    - MiningVoucher
+  #storage:
+    #back:
+    #- Stuff
 
 - type: chameleonOutfit
   id: SalvageSpecialistChameleonOutfit

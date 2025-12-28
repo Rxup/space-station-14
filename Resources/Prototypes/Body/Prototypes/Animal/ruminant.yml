@@ -16,7 +16,6 @@
       - legs
       organs:
         stomach: OrganAnimalRuminantStomach
-        stomach2: OrganAnimalRuminantStomach
         liver: OrganAnimalLiver
         kidneys: OrganAnimalKidneys
     legs:
