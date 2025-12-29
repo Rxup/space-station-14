@@ -35,7 +35,7 @@
     sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
     state: syndiebar-close
   - type: Item
-    heldPrefix: energybar
+    heldPrefix: syndiebar-close
   - type: SpawnItemsOnUse
     items:
       - id: FoodPacketSyndieBarTrash
