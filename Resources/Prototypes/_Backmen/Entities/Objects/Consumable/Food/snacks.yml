@@ -33,12 +33,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
-    state: syndiebar
+    state: syndiebar-close
   - type: Item
     heldPrefix: energybar
   - type: SpawnItemsOnUse
     items:
-      - id: FoodPacketEnergyTrash
+      - id: FoodPacketSyndieBarTrash
       - id: FoodSnackSyndieBar
     sound:
       path: /Audio/Effects/unwrap.ogg
