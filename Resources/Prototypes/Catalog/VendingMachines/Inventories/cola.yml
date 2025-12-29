@@ -12,5 +12,6 @@
   contrabandInventory:
     DrinkColaBottleFull: 2
     DrinkChangelingStingCan: 2
+    FoodSnackSyndie: 3 # Backmen
   emaggedInventory:
     DrinkNukieCan: 2
