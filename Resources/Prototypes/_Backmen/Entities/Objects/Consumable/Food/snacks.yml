@@ -35,7 +35,6 @@
     sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
     state: syndiebar-close
   - type: Item
-    heldPrefix: syndiebar-close
   - type: SpawnItemsOnUse
     items:
       - id: FoodPacketSyndieBarTrash
@@ -59,7 +58,6 @@
     sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
     state: syndiebar-open
   - type: Item
-    heldPrefix: syndiebar-open
 
 - type: entity
   categories: [ HideSpawnMenu ]
