@@ -24,3 +24,47 @@
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/inteq_cookies.rsi
     state: inteq_cookies_trash
+
+- type: entity
+  name: Syndie bar
+  parent: FoodSnackBase
+  id: FoodSnackSyndie
+  description: A bar for the cool ones
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
+    state: syndiebar-close
+  - type: Item
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodPacketSyndieBarTrash
+      - id: FoodSnackSyndieBar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: Syndie bar
+  parent: FoodSnackBase
+  id: FoodSnackSyndieBar
+  description: A bar for the cool ones
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nutty
+      - oats
+      - fiber
+      - sweet
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
+    state: syndiebar-open
+  - type: Item
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodPacketSyndieBarTrash
+  name: syndie bar packet
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/syndie_bar.rsi
+    state: syndiebar-trash

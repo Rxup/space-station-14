@@ -16,6 +16,7 @@
     ClothingNeckScarfStripedSyndieGreen: 2
     ClothingNeckScarfStripedSyndieRed: 2
     ClothingShoesBootsWinterSyndicate: 2
+    FoodSnackSyndie: 5 # Backmen
   contrabandInventory:
     ToyFigurineFootsoldier: 1
     ToyFigurineNukieElite: 1
@@ -26,6 +27,6 @@
     ClothingOuterWinterSyndieCapArmored: 1
     ClothingHeadHatTacticalMaidHeadband: 5
     ClothingUniformJumpskirtTacticalMaid: 5
-    ClothingHandsTacticalMaidGloves: 5 
+    ClothingHandsTacticalMaidGloves: 5
     ClothingUniformJumpsuitRichard: 1 # Backmen
     ClothingUniformJumpsuitbiker: 1 # Backmen
