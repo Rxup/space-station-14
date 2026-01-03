@@ -423,14 +423,6 @@
     PrizeTicket: 20
 
 - type: latheRecipe
-  id: PetRockCarrier
-  result: PetRockCarrier
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
-
-- type: latheRecipe
   id: PlushieXeno
   result: PlushieXeno
   applyMaterialDiscount: false

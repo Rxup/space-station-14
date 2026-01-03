@@ -19,7 +19,7 @@
     storageLimit: 0
     materialWhiteList: [Plasma]
     canEjectStoredMaterials: false
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatteryRecharge

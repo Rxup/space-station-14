@@ -199,7 +199,6 @@
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
-        - id: FoodTinClownSoupcan # backmen
   - type: Tag
     tags:
     - BoxCardboard

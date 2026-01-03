@@ -36,7 +36,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatteryAmmoProvider
@@ -84,7 +84,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 7500
     startingCharge: 7500
   - type: BatteryAmmoProvider
@@ -137,7 +137,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1000
     startingCharge: 1000
   - type: BatteryAmmoProvider
@@ -215,7 +215,7 @@
     magState: mag
     steps: 3
     zeroVisible: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatteryAmmoProvider
@@ -262,7 +262,7 @@
     magState: mag
     steps: 6
     zeroVisible: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatteryAmmoProvider
