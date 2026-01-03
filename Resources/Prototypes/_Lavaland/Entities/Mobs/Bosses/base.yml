@@ -74,7 +74,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Blood
-        Quantity: 0
+        Quantity: 0.1
     bloodlossThreshold: 0
   - type: ExplosionResistance
     damageCoefficient: 0

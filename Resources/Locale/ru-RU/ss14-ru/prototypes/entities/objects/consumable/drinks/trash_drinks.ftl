@@ -1,12 +1,12 @@
-ent-DrinkBottleBaseEmpty = base empty bottle
+ent-DrinkBottleBaseEmpty = базовая пустая бутылка
     .desc = Пустая бутылка.
     .suffix = Пустой
-ent-DrinkBottleBaseSmallEmpty = base empty bottle
+ent-DrinkBottleBaseSmallEmpty = базовая пустая бутылка
     .desc = { ent-DrinkBottleBaseEmpty.desc }
-ent-DrinkCartonBaseEmpty = base empty carton
+ent-DrinkCartonBaseEmpty = базовая пустая коробка
     .desc = Пустая упаковка.
     .suffix = Пустой
-ent-DrinkCartonBaseLargeEmpty = base empty bottle
+ent-DrinkCartonBaseLargeEmpty = базовая пустая бутылка
     .desc = { ent-DrinkCartonBaseEmpty.desc }
 ent-DrinkBottleAbsinthe = бутылка от Джейлбрейк Верте
     .desc = { ent-DrinkBottleBaseEmpty.desc }

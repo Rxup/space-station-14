@@ -13,7 +13,7 @@ names-moth-last-dataset-6 = Уста
 # Thysania agrippina
 names-moth-last-dataset-7 = Вайтвитч
 # Operophtera brumata
-names-moth-last-dataset-8 = Winter
+names-moth-last-dataset-8 = Винтер
 
 ## Other languages
 
@@ -22,7 +22,7 @@ names-moth-last-dataset-9 = Епилос
 # Conceivably any Old Norse descendant of mǫlr but probably more Danish than anything. "oe" digraph for ø.
 names-moth-last-dataset-10 = Моеллер
 # Literal pseudo-translation of German Nachtfalter
-names-moth-last-dataset-11 = Nightflitter
+names-moth-last-dataset-11 = Найтфлиттер
 
 ## Myth and legend
 
@@ -31,7 +31,7 @@ names-moth-last-dataset-12 = Херальд
 # Greek figure associated with Hero, and similar sounding to Oleander hawk-moth
 names-moth-last-dataset-13 = Лендер
 # Split between being a myth reference and actual possible surname given the actual Goodman, Hoffman, Newman, Coleman, etc.
-names-moth-last-dataset-14 = Mothman
+names-moth-last-dataset-14 = Мотмен
 
 ## Fun names
 

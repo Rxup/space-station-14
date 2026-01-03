@@ -32,6 +32,7 @@
           availableJobs:
             #command (6)
             Captain: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             ChiefMedicalOfficer: [ 1, 1 ]
@@ -56,7 +57,7 @@
             SecurityOfficer: [ 1, 2 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 2, 2 ] #intern, not counted
-            Lawyer: [ 1, 1 ]
+            #Lawyer: [ 1, 1 ] # Corvax-IAA
             #supply (0)
             #civilian (0+)
             Passenger: [ -1, -1 ] #infinite, not counted

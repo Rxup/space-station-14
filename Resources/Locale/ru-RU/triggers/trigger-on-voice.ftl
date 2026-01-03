@@ -1,0 +1,12 @@
+trigger-on-voice-examine = Дисплей показывает: "{ $keyphrase }"
+trigger-on-voice-uninitialized = Дисплей показывает: Не инициализировано...
+trigger-on-voice-record = Записать
+trigger-on-voice-stop = Остановить
+trigger-on-voice-clear = Очистить запись
+trigger-on-voice-default = Сбросить к умолчанию
+trigger-on-voice-start-recording = Запись начата.
+trigger-on-voice-stop-recording = Запись остановлена.
+trigger-on-voice-record-failed-too-long = Сообщение слишком длинное, попробуйте снова.
+trigger-on-voice-record-failed-too-short = Сообщение слишком короткое, попробуйте снова.
+trigger-on-voice-recorded = Записано успешно!
+trigger-on-voice-set-default = Установлено кодовое слово по умолчанию: "{ $keyphrase }"

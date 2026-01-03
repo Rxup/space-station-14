@@ -1,4 +1,4 @@
-ent-SpawnPointBlueShield = BlueShield
+ent-SpawnPointBlueShield = СинийЩит
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointShipAI = ship AI
     .desc = { ent-SpawnPointJobBase.desc }

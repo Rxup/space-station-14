@@ -8,6 +8,7 @@ construction-graph-tag-clown-bike-horn = велосипедный рог
 construction-graph-tag-clowne-horn = сломанный велосипедный рог
 construction-graph-tag-happy-honk-meal = счастливый обед с гудком
 construction-graph-tag-woeful-cluwne-meal = грустный обед клоуна
+construction-graph-tag-boxhug = коробка объятий
 # mime
 construction-graph-tag-suspenders = подтяжки
 construction-graph-tag-mime-meal = обед мима с счастливым гудком
@@ -93,6 +94,7 @@ construction-graph-tag-ripley-peripherals-control-module = управляющи�
 # structures
 construction-graph-tag-door-electronics-circuit-board = платка электроники дверей
 construction-graph-tag-firelock-electronics-circuit-board = платка электроники огнезапора
+construction-graph-tag-station-ai-core-electronics = электроника ядра ИИ станции
 construction-graph-tag-conveyor-belt-assembly = сборка конвейерного пояса
 # tools
 construction-graph-tag-multitool = мультитул
@@ -113,6 +115,7 @@ construction-graph-tag-wallmount-apu-circuit-board = платка APU для м�
 construction-graph-tag-wallmount-substation-circuit-board = платка подстанции для монтажа на стене
 construction-graph-tag-surveillance-camera-monitor-board = плата монитора камеры наблюдения
 construction-graph-tag-television-board = плата телевизора
+construction-graph-tag-turret-control-electronics = электроника панели управления охранной турелью
 construction-graph-tag-freezer-electronics = электроника морозильной камеры
 # crystals
 construction-graph-tag-cyan-crystal-shard = циановый осколок кристалла

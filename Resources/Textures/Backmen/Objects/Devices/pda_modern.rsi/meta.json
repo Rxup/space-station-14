@@ -8,7 +8,7 @@
   },
   "states": [
     {
-      "name": "",
+      "name": "default",
       "delays": [
         [
           0.2,

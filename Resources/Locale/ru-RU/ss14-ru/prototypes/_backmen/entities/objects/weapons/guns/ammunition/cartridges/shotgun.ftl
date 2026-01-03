@@ -1,4 +1,4 @@
-ent-ShellShotgunMagnum12 = shell (.12 gauge magnum)
+ent-ShellShotgunMagnum12 = патрон (.12 калибр магнум)
     .desc = { ent-BaseShellShotgun.desc }
-ent-ShellShotgunFRAG12 = shell (.12 gauge FRAG 12)
+ent-ShellShotgunFRAG12 = патрон (.12 калибр FRAG 12)
     .desc = { ent-BaseShellShotgun.desc }

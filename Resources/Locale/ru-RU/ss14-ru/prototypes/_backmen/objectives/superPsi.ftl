@@ -1,8 +1,8 @@
 ent-BaseSuperPsiObjective = { ent-BaseObjective }
     .desc = { ent-BaseObjective.desc }
-ent-EscapeSuperPsiShuttleObjective = Escape to centcomm alive and unrestrained.
+ent-EscapeSuperPsiShuttleObjective = Сбежать в центком живым и без ограничений.
     .desc = You don't want your illegal activities to be discovered by anyone, do you?
-ent-HijackSuperPsiShuttleObjective = Hijack emergency shuttle
+ent-HijackSuperPsiShuttleObjective = Захватить аварийный шаттл
     .desc = Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
 ent-KillRandomPersonSuperPsiObjective = { ent-BaseSuperPsiObjective }
     .desc = Do it however you like, just make sure they don't make it to centcomm.

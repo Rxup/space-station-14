@@ -5,3 +5,6 @@ ent-BriefcaseBrown = коричневый чемодан
 ent-BriefcaseSyndie = { ent-BriefcaseBrown }
     .suffix = Синдикат, Пустой
     .desc = { ent-BriefcaseBrown.desc }
+ent-WeaponSubMachineGunBriefcase = коричневый портфель
+    .desc = Useful for carrying items in your hands.
+    .suffix = Gun

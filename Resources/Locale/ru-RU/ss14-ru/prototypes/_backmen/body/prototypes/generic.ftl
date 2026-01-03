@@ -1,4 +1,4 @@
-ent-PizzaLeftArm = pizza left arm
+ent-PizzaLeftArm = левая рука-пицца
     .desc = For when you want to turn someone into a Space John's.
-ent-PizzaRightArm = pizza right arm
+ent-PizzaRightArm = правая рука-пицца
     .desc = For when you want to turn someone into a Space John's.

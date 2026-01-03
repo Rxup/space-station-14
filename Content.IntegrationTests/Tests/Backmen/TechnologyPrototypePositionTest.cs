@@ -16,7 +16,7 @@ public sealed class TechnologyPrototypePositionTests
         var protoManager = server.ResolveDependency<IPrototypeManager>();
 
         var fails = new List<string>();
-        var positions = new HashSet<Vector2>();
+        var positions = new Dictionary<Vector2, string>();
 
         await server.WaitAssertion(() =>
         {
@@ -24,9 +24,9 @@ public sealed class TechnologyPrototypePositionTests
             {
                 Vector2 position = techProto.Position;
 
-                if (!positions.Add(position))
+                if (!positions.TryAdd(position, techProto.Name))
                 {
-                    fails.Add($"ID: {techProto.ID} Position - {position}");
+                    fails.Add($"ID: {techProto.ID} Position - {position}. Conflicts with ID: {positions[position]}");
                 }
             }
         });

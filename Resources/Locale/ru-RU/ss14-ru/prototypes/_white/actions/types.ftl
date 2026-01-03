@@ -1,2 +1,2 @@
-ent-ActionHeadcrabJump = Jump
+ent-ActionHeadcrabJump = Прыжок
     .desc = Do super jump.

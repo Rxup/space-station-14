@@ -65,5 +65,5 @@ ent-ClothingBeltGeneralG6FilledSpetsnaz = { ent-ClothingBeltGeneralG6 }
 ent-ClothingBeltBlueshieldWebbingFilled = { ent-ClothingBeltBlueshieldWebbing }
     .suffix = Заполненный
     .desc = { ent-ClothingBeltBlueshieldWebbing.desc }
-ent-ClothingBeltMilitaryWebbingCMOFilled = chief medical officer's chest rig
+ent-ClothingBeltMilitaryWebbingCMOFilled = разгрузка главного медицинского офицера
     .desc = A medical chest rig with deep pockets, for use by paramedics and health professionals.

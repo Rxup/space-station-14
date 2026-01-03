@@ -1,3 +1,5 @@
+ent-BaseSiliconLawboard = { ent-BaseElectronics }
+    .desc = An electronics board containing a silicon lawset.
 ent-XenoborgCircuitBoard = плата законов (Ксеноборг)
     .desc = An electronics board containing the Xenoborg lawset.
     .suffix = Admeme

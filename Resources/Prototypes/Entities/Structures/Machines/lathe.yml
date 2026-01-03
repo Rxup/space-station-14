@@ -119,14 +119,15 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - MaterialsStatic
+    - PaperworkStatic
+    - TowelsStatic
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ToolsStatic
     - PartsStatic
     - AtmosStatic
     - CablesStatic
-    - PaperworkStatic
-    - TowelsStatic
     - CargoStatic
-    - MaterialsStatic
     - BasicChemistryStatic
     - RollerBedsStatic
     - LightsStatic
@@ -135,6 +136,7 @@
     - ElectronicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
+    - BackmenAmmoStatic # backmen
     - SecurityAmmoStatic
     - SyndicateAmmoStatic
   - type: BlueprintReceiver
@@ -190,10 +192,10 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ChemistryStatic
     - SurgeryStatic
-    dynamicPacks:
+    #    dynamicPacks: # Backmen-EDIT
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -207,8 +209,15 @@
     - Janitor
     - Instruments
     - Equipment
+    - FauxTiles
+    - BackmenTranslators # backmen
+    - BackmenProtolathe # backmen
+    - BackmenSurgery # backmen
+    - BackmenEngineerWeapon # backmen
+    - BackmenService # Backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
+    - BackmenAmmo # backmen
     - SecurityAmmo
     - SecurityExplosives
     - SecurityEquipment
@@ -249,12 +258,15 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - CircuitFloorsStatic
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ScienceBoardsStatic
     - ServiceBoardsStatic
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    dynamicPacks:
+    - BackmenBoardsStatic # backmen
+    #    dynamicPacks: # Backmen-EDIT
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -263,6 +275,7 @@
     - CameraBoards
     - MechBoards
     - ShuttleBoards
+    - BackmenBoards # backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityBoards
@@ -302,15 +315,17 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    dynamicPacks:
+    - BackmenShitmedModulesStatic # backmen
+    #    dynamicPacks: # Backmen-EDIT
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
+    - BackmenShitmedModules # backmen
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -381,20 +396,22 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    - BackmenAmmoStatic # backmen
     - SecurityWeaponsStatic
-    dynamicPacks:
+    #    dynamicPacks: # Backmen-EDIT
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
+    - BackmenAmmo # backmen
+#    - SecurityWeapons #backmen-gumsmiths
     - SecurityAmmo
-    - SecurityWeapons
     - SecurityDisablers
+    - BackmenCircuboardArsenal #backmen-gumsmiths
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
@@ -459,7 +476,7 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticPacks:
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
@@ -467,8 +484,12 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - SurgeryStatic
-    dynamicPacks:
+    - BackmenMedfabStatic # backmen
+    #    dynamicPacks: # Backmen-EDIT
     - Chemistry
+    - BackmenMedfab # backmen
+    - BackmenSurgery # backmen
+    - AdvancedBodybagsStatic # Backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -512,6 +533,7 @@
     - Scarves
     - Carpets
     - Bedsheets
+    - CorvaxClothing # Corvax-Clothing
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
@@ -588,10 +610,17 @@
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
+      ignoreMaterialWhiteList: true # Goob edit
+      connectToSilo: true # Goob edit
+      disconnectSiloOffMap: true # Goob edit
+      disallowOreEjection: false # Goob edit
       ignoreColor: true
       whitelist:
         tags:
           - Ore
+          - Sheet
+          - RawMaterial
+          - Ingot
     - type: Lathe
       idleState: icon
       runningState: building
@@ -599,6 +628,10 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
+    - type: MiningPoints # DeltaV - Source of mining points for miners
+    - type: MiningPointsLathe # DeltaV
+    - type: MaterialStorageMagnetPickup # Frontier
+    - type: NoLavalandUsage
 
 - type: entity
   parent: OreProcessor

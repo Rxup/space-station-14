@@ -9,11 +9,10 @@ arcade-villain-verbs-fight-7 = Заробасти
 arcade-villain-verbs-fight-8 = Добейся
 arcade-villain-verbs-fight-9 = Отымей
 arcade-villain-verbs-fight-10 = Заовни
-
 # Enemy names
 arcade-villain-names-enemy-first-1 = Автоматический
 arcade-villain-names-enemy-first-2 = Фермер
-arcade-villain-names-enemy-first-3 = General
+arcade-villain-names-enemy-first-3 = Генерал
 arcade-villain-names-enemy-first-4 = Лорд
 arcade-villain-names-enemy-first-5 = Профессор
 arcade-villain-names-enemy-first-6 = Кубинец
@@ -22,7 +21,6 @@ arcade-villain-names-enemy-first-8 = Грозный Король
 arcade-villain-names-enemy-first-9 = Космический
 arcade-villain-names-enemy-first-10 = Лорд
 arcade-villain-names-enemy-first-11 = Могучий
-
 arcade-villain-names-enemy-last-1 = Мелоноид
 arcade-villain-names-enemy-last-2 = Киллертрон
 arcade-villain-names-enemy-last-3 = Волшебник

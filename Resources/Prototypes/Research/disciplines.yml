@@ -9,6 +9,7 @@
     1: 0
     2: 0.75
     3: 0.75
+  uiName: IND
 
 - type: techDiscipline
   id: Arsenal
@@ -34,6 +35,7 @@
     1: 0
     2: 0.75
     3: 0.75
+  uiName: EXP
 
 - type: techDiscipline
   id: CivilianServices
@@ -46,3 +48,4 @@
     1: 0
     2: 0.75
     3: 0.75
+  uiName: CIV

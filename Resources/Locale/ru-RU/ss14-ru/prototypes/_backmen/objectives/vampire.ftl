@@ -1,6 +1,6 @@
-ent-BloodsuckerDrinkObjective = BloodsuckerDrink
+ent-BloodsuckerDrinkObjective = КровопийцаПить
     .desc = BloodsuckerDrink
-ent-BloodsuckerConvertObjective = BloodsuckerConvert
+ent-BloodsuckerConvertObjective = КровопийцаОбратить
     .desc = BloodsuckerConvert
 ent-EscapeShuttleObjectiveBloodsucker = Сбегите в Центком живым и свободным.
     .desc = Ваша задача дождатся конца смены и сбежать на Центком, живым и свободным!

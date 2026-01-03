@@ -1098,7 +1098,7 @@
   components:
   - type: Sprite
     layers:
-    - state: default
+    - state: card_default
   - type: Access
     tags:
     - Xenoborg

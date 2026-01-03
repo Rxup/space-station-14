@@ -51,7 +51,7 @@
 #  description: Standart EarthGov type of energys magazines.
 #  parent: BasePowerCell
 #  components:
-#  - type: Battery
+#  - type: PredictedBattery
 #    maxCharge: 1500
 #    startingCharge: 1500
 #  - type: BatteryAmmoProvider
@@ -84,7 +84,7 @@
   description: Standart EarthGov type of energys magazines.
   parent: BasePowerCell
   components:
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
   - type: Tag
@@ -110,7 +110,7 @@
   description: Special mag for NanoTrasen special force, using pulse energy.
   parent: BasePowerCell
   components:
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 5000
     startingCharge: 5000
   - type: Tag

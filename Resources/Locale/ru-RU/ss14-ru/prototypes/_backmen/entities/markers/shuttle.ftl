@@ -1,2 +1,2 @@
-ent-FTLPointEarthGov = FTL point EarthGov
+ent-FTLPointEarthGov = FTL точка EarthGov
     .desc = { ent-MarkerBase.desc }

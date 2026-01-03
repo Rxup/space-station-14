@@ -1,6 +1,6 @@
-ent-ActionHierophantPlaceMarker = hierophant place marker
+ent-ActionHierophantPlaceMarker = маркер размещения иерофанта
     .desc = { ent-BaseAction.desc }
-ent-ActionHierophantTeleport = hierophant teleport
+ent-ActionHierophantTeleport = телепорт иерофанта
     .desc = { "" }
-ent-ActionHierophantSpawnCross = hierophant spawn cross
+ent-ActionHierophantSpawnCross = крест спавна иерофанта
     .desc = { "" }

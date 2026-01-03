@@ -67,7 +67,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Blood
-        Quantity: 0
+        Quantity: 0.1
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false

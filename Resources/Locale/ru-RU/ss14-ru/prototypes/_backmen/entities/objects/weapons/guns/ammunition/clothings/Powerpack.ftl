@@ -1,2 +1,2 @@
-ent-BasePowerpackEnergy = powerpack (energy)
+ent-BasePowerpackEnergy = энергоблок (энергия)
     .desc = { ent-BaseItem.desc }

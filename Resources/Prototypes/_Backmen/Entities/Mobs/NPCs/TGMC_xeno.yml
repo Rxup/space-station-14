@@ -62,7 +62,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Blood
-        Quantity: 0
+        Quantity: 0.1
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
@@ -1212,6 +1212,10 @@
   parent: FoodInjectableBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     scale: 1.3, 2

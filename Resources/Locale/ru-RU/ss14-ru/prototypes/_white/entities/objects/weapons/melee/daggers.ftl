@@ -1,2 +1,2 @@
-ent-BetrayalKnife = betrayal knife
+ent-BetrayalKnife = нож предательства
     .desc = Watch your back!

@@ -1,4 +1,4 @@
-ent-BaseWeaponShotgun = BaseWeaponShotgun
+ent-BaseWeaponShotgun = Базовая Винтовка Дробовик
     .desc = Дерзай — налетай, целься и стреляй.
     .suffix = Дробовик
 ent-WeaponShotgunBulldog = Бульдог
@@ -37,3 +37,5 @@ ent-WeaponShotgunImprovised = самодельный дробовик
 ent-WeaponShotgunImprovisedLoaded = самодельный дробовик
     .suffix = Дробовик, Заряжен
     .desc = { ent-WeaponShotgunImprovised.desc }
+ent-WeaponShotgunHushpup = Тихий щенок
+    .desc = Малоизвестная модификация Энфорсера, оснащенная экспериментальным глушителем. Отлично подходит для тех, кто придерживается строгого морального кодекса. Использует патроны .50 для дробовика.

@@ -1,4 +1,4 @@
-ent-PaperAcquisitionSlip = acquisition slip
+ent-PaperAcquisitionSlip = квитанция приобретения
     .desc = A slip with order details on it. It can be given to Cargo to complete the order.
 ent-PaperAcquisitionSlipMedical = { ent-PaperAcquisitionSlip }
     .suffix = Medical

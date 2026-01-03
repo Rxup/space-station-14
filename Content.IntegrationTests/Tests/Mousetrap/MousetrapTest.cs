@@ -1,5 +1,6 @@
 using Content.IntegrationTests.Tests.Movement;
 using Content.Server.NPC.HTN;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
@@ -119,15 +120,20 @@ public sealed class MousetrapHumanMoveOverTest : MovementTest
 
         Assert.That(SEntMan.TryGetComponent<DamageableComponent>(SPlayer, out var damageComp),
             $"Player does not have a DamageableComponent.");
-        var startingDamage = damageComp.TotalDamage;
+
+        Assert.That(SEntMan.TryGetComponent<ConsciousnessComponent>(SPlayer, out var consciousnessComp), "Player does not have a ConsciousnessComponent."); // backmen
+
+        var startingDamage = consciousnessComp!.NerveSystem!.Value.Comp.Pain; // backmen damageComp.TotalDamage;
 
         // Move player over the trap
         await Move(DirectionFlag.East, 0.5f);
 
         Assert.That(Delta(), Is.LessThan(0.5), "Player did not move over mousetrap.");
 
+        await Server.WaitRunTicks(2);
+
         // Walking over the trap without shoes activates it
-        Assert.That(damageComp.TotalDamage, Is.GreaterThan(startingDamage), "Player did not take damage.");
+        Assert.That(consciousnessComp.NerveSystem.Value.Comp.Pain, Is.GreaterThan(startingDamage), "Player did not take damage.");
         Assert.That(itemToggleComp.Activated, Is.False, "Mousetrap was not deactivated after triggering.");
 
         // Reactivate the trap
@@ -135,7 +141,7 @@ public sealed class MousetrapHumanMoveOverTest : MovementTest
         {
             Assert.That(itemToggleSystem.TrySetActive(STarget.Value, true), "Could not activate the mouse trap.");
         });
-        var afterStepDamage = damageComp.TotalDamage;
+        var afterStepDamage = consciousnessComp.NerveSystem.Value.Comp.Pain; // backmen
 
         // Give the player some shoes
         await PlaceInHands(ShoesProtoId);
@@ -147,7 +153,7 @@ public sealed class MousetrapHumanMoveOverTest : MovementTest
         Assert.That(Delta(), Is.GreaterThan(0.5), "Player did not move back over mousetrap.");
 
         // Walking over the trap with shoes on does not activate it
-        Assert.That(damageComp.TotalDamage, Is.LessThanOrEqualTo(afterStepDamage), "Player took damage from trap!");
+        Assert.That(consciousnessComp.NerveSystem.Value.Comp.Pain, Is.LessThanOrEqualTo(afterStepDamage), "Player took damage from trap!"); // backmen
         Assert.That(itemToggleComp.Activated, "Mousetrap was deactivated despite the player being protected by shoes.");
     }
 }

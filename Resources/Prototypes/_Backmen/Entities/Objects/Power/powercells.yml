@@ -12,7 +12,7 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1250
     startingCharge: 1250
 
@@ -21,7 +21,7 @@
   id: PowerCellSuperPrinted
   suffix: Empty
   components:
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0
 
 - type: entity
@@ -39,7 +39,7 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2200
     startingCharge: 2200
 
@@ -48,7 +48,7 @@
   id: PowerCellBluespacePrinted
   suffix: Empty
   components:
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0
 
 - type: entity
@@ -66,13 +66,11 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1400
     startingCharge: 1400
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 15
-#    autoRechargePause: true
     autoRechargePauseTime: 2
 
 - type: entity
@@ -80,7 +78,7 @@
   id: PowerCellBluespaceReactorPrinted
   suffix: Empty
   components:
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0
 
 - type: entity
@@ -98,11 +96,11 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2200
     startingCharge: 2200
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
+    #autoRecharge: true
     autoRechargeRate: 15
 
 - type: entity
@@ -110,7 +108,7 @@
   id: PowerCellVortexPrinted
   suffix: Empty
   components:
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0
 
 - type: entity
@@ -128,9 +126,9 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1200
     startingCharge: 1200
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
+    #autoRecharge: true
     autoRechargeRate: 25 # IDK what to do with this mf

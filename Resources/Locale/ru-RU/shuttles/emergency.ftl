@@ -1,5 +1,6 @@
 # Commands
 
+
 ## Delay shuttle round end
 
 cmd-delayroundend-desc = Останавливает таймер, завершающий раунд, когда аварийный шаттл выходит из гиперпространства.

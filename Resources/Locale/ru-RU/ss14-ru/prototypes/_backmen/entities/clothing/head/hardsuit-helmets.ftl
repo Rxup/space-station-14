@@ -17,5 +17,4 @@ ent-ClothingHeadHelmetHardsuitChronoLegionnaire = шлем хроно легио
 ent-ChangelingClothingHeadHelmetHardsuit = органический космический шлем
     .desc = Космически пригодная биомасса из тканей, устойчивых к давлению и температуре.
     .suffix = Неудаляемый
-ent-ClothingHeadHelmetHardsuitSecurityPilot = шлем скафандра пилота безопасности
     .desc = Бронированный шлем для нужд безопасности.

@@ -1,8 +1,8 @@
-ent-IndoorEarthGovertment = EarthGov Indoor Flag
+ent-IndoorEarthGovertment = Внутренний флаг EarthGov
     .desc = A Flag displaying the EarthGov logo. It looks rather cheap.
-ent-BannerEarthGovertment = EarthGov banner
+ent-BannerEarthGovertment = баннер EarthGov
     .desc = A banner displaying the EarthGov logo. It looks rather cheap.
-ent-EGovWallBanner = EarthGov wall banner
+ent-EGovWallBanner = настенный баннер EarthGov
     .desc = Glory to EarthGov! All hail to Earth Govertment! For the humanity!
-ent-BannerBroken = broken banner
+ent-BannerBroken = сломанный баннер
     .desc = You can't make out anything from the banner's original print. It's ruined.

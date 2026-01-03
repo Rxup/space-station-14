@@ -1,10 +1,8 @@
-ent-PetRockCarrier = pet rock carrier
-    .desc = Your new and only best friend home!
-ent-BasePetRock = pet rock
+ent-BasePetRock = камень-питомец
     .desc = Your new and only best friend!
 ent-PetRock = { ent-BasePetRock }
     .desc = { ent-BasePetRock.desc }
-ent-PetRockFred = fred
+ent-PetRockFred = Фред
     .desc = { ent-BasePetRock.desc }
-ent-PetRockRoxie = roxie
+ent-PetRockRoxie = Рокси
     .desc = { ent-BasePetRock.desc }

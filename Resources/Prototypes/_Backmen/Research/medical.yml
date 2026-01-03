@@ -29,6 +29,8 @@
   - MedkitRadiation
   - MedkitCombat
   - WhiteCane
+  - OffsetCane
+  - OffsetCaneWood
   - BodyBag
   position: 4,-5
 

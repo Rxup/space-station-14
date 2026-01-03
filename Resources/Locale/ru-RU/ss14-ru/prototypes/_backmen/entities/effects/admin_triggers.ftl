@@ -1,2 +1,2 @@
-ent-ExplosionInstant = instant explosion
+ent-ExplosionInstant = мгновенный взрыв
     .desc = KA BOOOOM!

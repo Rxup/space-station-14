@@ -1,2 +1,2 @@
-ent-GrenadeBarrier = barrier grenade
+ent-GrenadeBarrier = барьерная граната
     .desc = Instant cover.

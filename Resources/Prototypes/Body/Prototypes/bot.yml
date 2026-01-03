@@ -15,9 +15,9 @@
     box:
       part: TorsoBorg
       connections:
-      - right_arm
-      - left_arm
-    right_arm:
+      - right arm
+      - left arm
+    right arm:
       part: RightArmBorg
-    left_arm:
+    left arm:
       part: LeftArmBorg

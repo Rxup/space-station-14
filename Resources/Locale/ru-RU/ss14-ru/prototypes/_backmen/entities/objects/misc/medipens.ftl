@@ -1,2 +1,2 @@
-ent-BloodsuckerMedipen = bloodsucker medipen
+ent-BloodsuckerMedipen = медипен кровопийцы
     .desc = Virus? And it's not a zombie...

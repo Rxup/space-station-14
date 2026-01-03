@@ -974,7 +974,15 @@
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
-  - type: BarkAccent
+#  - type: BarkAccent
+  - type: LanguageSpeaker
+    currentLanguage: Dog
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - TauCetiBasic
   - type: Speech
     speechSounds: Dog
     speechVerb: SmallMob

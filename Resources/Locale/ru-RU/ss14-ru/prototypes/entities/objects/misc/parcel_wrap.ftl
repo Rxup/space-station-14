@@ -1,6 +1,13 @@
-ent-ParcelWrap = parcel wrap
+ent-ParcelWrap = упаковочная пленка
     .desc = Paper used contain items for transport.
-ent-WrappedParcel = wrapped parcel
+ent-ParcelWrapAdmeme = блюспейс пленка
+    .desc = Paper used contain items for transport. This one seems to be able to store an unusual amount of space within it.
+    .suffix = Admeme
+ent-BaseWrappedParcel = упакованная посылка
     .desc = Something wrapped up in paper. I wonder what's inside...
-ent-ParcelWrapTrash = parcel wrap
+ent-WrappedParcel = упакованная посылка
+    .desc = Something wrapped up in paper. I wonder what's inside...
+ent-WrappedParcelHumanoid = { ent-BaseWrappedParcel }
+    .desc = Something wrapped up in paper. It's suspiciously human-shaped.
+ent-ParcelWrapTrash = упаковочная пленка
     .desc = The disappointing remnants of an unwrapped parcel.

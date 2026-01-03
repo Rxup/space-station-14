@@ -1,4 +1,4 @@
-ent-AntiAnomalyZone = anti anomaly zone
+ent-AntiAnomalyZone = зона против аномалий
     .desc = Anomalies will not be able to appear within a 10 block radius of this point.
     .suffix = range 10
 ent-AntiAnomalyZone20 = { ent-AntiAnomalyZone }

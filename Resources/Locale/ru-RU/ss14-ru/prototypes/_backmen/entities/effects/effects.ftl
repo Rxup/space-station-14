@@ -1,4 +1,4 @@
-ent-ExperimentalTeleporterInEffect = experimental syndicate teleporter in effect
+ent-ExperimentalTeleporterInEffect = экспериментальный телепорт синдиката в действии
     .desc = { "" }
-ent-ExperimentalTeleporterOutEffect = experimental syndicate teleporter out effect
+ent-ExperimentalTeleporterOutEffect = эффект выхода экспериментального телепорта синдиката
     .desc = { "" }

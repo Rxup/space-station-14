@@ -10,7 +10,7 @@
   skinColoration: Hues
   maleFirstNames: names_vulp_first_male
   femaleFirstNames: names_vulp_first_female
-  lastNames: names_vulp_last
+  lastNames: names_vulpkanin_last
 
 - type: speciesBaseSprites
   id: MobHumanoidFoxSprites

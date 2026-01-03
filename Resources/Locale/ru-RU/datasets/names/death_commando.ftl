@@ -1,4 +1,4 @@
-names-death-commando-dataset-1 = Куча пауков в костюме SWAT
+names-death-commando-dataset-1 = Куча пауков в костюме СОБР
 names-death-commando-dataset-2 = АМЕРИКА
 names-death-commando-dataset-3 = Бит Панчбиф
 names-death-commando-dataset-4 = Бласт Хардчиз

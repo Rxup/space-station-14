@@ -1,6 +1,6 @@
-ent-BaseBarrelChem = chemical barrel
+ent-BaseBarrelChem = химическая бочка
     .desc = A small metal drum. How tropical.
-ent-BaseBarrelChemRadioactive = radioactive barrel
+ent-BaseBarrelChemRadioactive = радиоактивная бочка
     .desc = It seems to be leaking a bit. I don't think you'd want to be around this for long.
 ent-BarrelChemEmpty = { ent-BaseBarrelChem }
     .suffix = Empty

@@ -1,11 +1,11 @@
 ent-PlaqueAtmos = атмосферная табличка
     .desc = { ent-BaseSign.desc }
     .suffix = Spawner
-ent-PlaqueAtmosFEA = FEA Atmospherics Division plaque
+ent-PlaqueAtmosFEA = табличка Отдела Атмосферы FEA
     .desc = This plaque commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle men who have died in its hands.
-ent-PlaqueAtmosLINDA = LINDA Atmospherics Division plaque
+ent-PlaqueAtmosLINDA = табличка Отдела Атмосферы LINDA
     .desc = This plaque commemorates the fall of the Atmos LINDA division. For all the charred, dizzy, and brittle men who have died in its hands.
-ent-PlaqueAtmosZAS = ZAS Atmospherics Division plaque
+ent-PlaqueAtmosZAS = табличка Отдела Атмосферы ZAS
     .desc = This plaque commemorates the fall of the Atmos ZAS division. For all the charred, dizzy, and brittle men who have died in its hands.
-ent-PlaqueAtmosZUM = ZUM Atmospherics Division plaque
+ent-PlaqueAtmosZUM = табличка Отдела Атмосферы ZUM
     .desc = This plaque commemorates the rise of the Atmos ZUM division. May they carry the torch that the Atmos ZAS, LINDA and FEA divisions left behind.

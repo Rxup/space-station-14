@@ -2,6 +2,7 @@ construction-recipe-red-comf-bench = удобный скамейка (красн
 construction-recipe-blue-comf-bench = удобный скамейка (синяя)
 construction-recipe-table-fancy-black = шикарный стол (черный)
 construction-recipe-table-fancy-blue = шикарный стол (синий)
+construction-recipe-table-fancy-sky-blue = шикарный стол (небесно-голубой)
 construction-recipe-table-fancy-cyan = шикарный стол (голубой)
 construction-recipe-table-fancy-green = шикарный стол (зеленый)
 construction-recipe-table-fancy-orange = шикарный стол (оранжевый)

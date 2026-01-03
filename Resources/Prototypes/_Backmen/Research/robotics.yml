@@ -92,6 +92,8 @@
   cost: 500
   recipeUnlocks:
    - BorgModuleCable
+   - BorgModuleInflatable
+   - BorgModuleArtistry
    - BorgModuleFireExtinguisher
 #   - BorgModuleRadiationDetection
    - BorgModuleTool

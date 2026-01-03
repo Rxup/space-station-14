@@ -1,5 +1,7 @@
 ﻿using Content.IntegrationTests.Tests.Interaction;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage.Components;
+using Content.Shared.FixedPoint;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
@@ -22,6 +24,7 @@ public sealed class WeaponTests : InteractionTest
 
         var urist = await SpawnTarget(MobHuman);
         var damageComp = Comp<DamageableComponent>(urist);
+        var consComp = Comp<ConsciousnessComponent>(urist); // backmen
 
         var mosinNet = await PlaceInHands(SniperMosin);
         var mosinEnt = ToServer(mosinNet);
@@ -56,8 +59,10 @@ public sealed class WeaponTests : InteractionTest
         updatedAmmo = gunSystem.GetAmmoCount(mosinEnt);
 
         Assert.That(updatedAmmo, Is.EqualTo(startAmmo - 1), "Mosin failed to discharge appropriate amount of ammo!");
-        Assert.That(damageComp.TotalDamage.Value,
-            Is.GreaterThan(0),
-            "Mosin was fired but urist sustained no damage!");
+        Assert.That(consComp.NerveSystem!.Value.Comp.Pain, Is.GreaterThan((FixedPoint2)0), "Mosin was fired but urist sustained no pain damage!"); // backmen
+
+        // Assert.That(damageComp.TotalDamage.Value,
+        //     Is.GreaterThan(0),
+        //     "Mosin was fired but urist sustained no damage!");
     }
 }

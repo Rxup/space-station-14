@@ -1,4 +1,6 @@
-﻿import typing
+#!/usr/bin/env python3
+
+import typing
 import logging
 
 from pydash import py_
@@ -126,7 +128,7 @@ class KeyFinder:
 
     def write_to_ru_files(self, ru_file, ru_file_parsed, en_file_parsed):
         for idx, en_message in enumerate(en_file_parsed.body):
-            if isinstance(en_message, ast.ResourceComment) or isinstance(en_message, ast.GroupComment) or isinstance(en_message, ast.Comment):
+            if isinstance(en_message, ast.ResourceComment) or isinstance(en_message, ast.GroupComment) or isinstance(en_message, ast.Comment) or isinstance(en_message, ast.Junk):
                 continue
 
             ru_message_analog_idx = py_.find_index(ru_file_parsed.body, lambda ru_message: self.find_duplicate_message_id_name(ru_message, en_message))
@@ -134,14 +136,17 @@ class KeyFinder:
 
             # Attributes
             if getattr(en_message, 'attributes', None) and ru_message_analog_idx != -1:
-                if not ru_file_parsed.body[ru_message_analog_idx].attributes:
-                    ru_file_parsed.body[ru_message_analog_idx].attributes = en_message.attributes
+                ru_message_analog = ru_file_parsed.body[ru_message_analog_idx]
+                if isinstance(ru_message_analog, ast.Junk):
+                    continue
+                if not ru_message_analog.attributes:
+                    ru_message_analog.attributes = en_message.attributes
                     have_changes = True
                 else:
                     for en_attr in en_message.attributes:
-                        ru_attr_analog = py_.find(ru_file_parsed.body[ru_message_analog_idx].attributes, lambda ru_attr: ru_attr.id.name == en_attr.id.name)
+                        ru_attr_analog = py_.find(ru_message_analog.attributes, lambda ru_attr: ru_attr.id.name == en_attr.id.name)
                         if not ru_attr_analog:
-                            ru_file_parsed.body[ru_message_analog_idx].attributes.append(en_attr)
+                            ru_message_analog.attributes.append(en_attr)
                             have_changes = True
 
             # New elements
@@ -159,7 +164,7 @@ class KeyFinder:
 
     def log_not_exist_en_files(self, en_file, ru_file_parsed, en_file_parsed):
         for idx, ru_message in enumerate(ru_file_parsed.body):
-            if isinstance(ru_message, ast.ResourceComment) or isinstance(ru_message, ast.GroupComment) or isinstance(ru_message, ast.Comment):
+            if isinstance(ru_message, ast.ResourceComment) or isinstance(ru_message, ast.GroupComment) or isinstance(ru_message, ast.Comment) or isinstance(ru_message, ast.Junk):
                 continue
 
             en_message_analog = py_.find(en_file_parsed.body, lambda en_message: self.find_duplicate_message_id_name(ru_message, en_message))

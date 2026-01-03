@@ -27,7 +27,7 @@ names-moth-first-female-dataset-13 = Рози
 # Cosmosoma myrodora, "Scarlet-bodied wasp moth"
 names-moth-first-female-dataset-14 = Скарлет
 # Acherontia styx
-names-moth-first-female-dataset-15 = Styx
+names-moth-first-female-dataset-15 = Стикс
 
 ## Other languages
 
@@ -40,7 +40,7 @@ names-moth-first-female-dataset-18 = Менодора
 # Romanian "moth"
 names-moth-first-female-dataset-19 = Моли
 # Spanish "moth"
-names-moth-first-female-dataset-20 = Polilla
+names-moth-first-female-dataset-20 = Полилья
 
 ## Myth and legend
 
@@ -53,7 +53,7 @@ names-moth-first-female-dataset-23 = Хель
 # Greek goddess of the moon
 names-moth-first-female-dataset-24 = Селена
 # Greek goddess of the night
-names-moth-first-female-dataset-25 = Nyx
+names-moth-first-female-dataset-25 = Никс
 
 ## Fun names
 

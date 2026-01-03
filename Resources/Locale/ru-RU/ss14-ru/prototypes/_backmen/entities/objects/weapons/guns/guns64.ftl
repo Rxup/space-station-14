@@ -1,6 +1,6 @@
-ent-BoxGrenadeNonLetal = grenade box
+ent-BoxGrenadeNonLetal = коробка гранат
     .desc = { ent-BoxCardboard.desc }
-ent-BoxGrenadeTearGas = grenade box
+ent-BoxGrenadeTearGas = коробка гранат
     .desc = { ent-BoxCardboard.desc }
-ent-UpgradeStation = upgrade pack
+ent-UpgradeStation = набор улучшений
     .desc = Pack of attechment for weapons.

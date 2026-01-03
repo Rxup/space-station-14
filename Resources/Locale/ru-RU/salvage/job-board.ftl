@@ -8,11 +8,11 @@ job-board-ui-label-rank = [bold]Ранг:[/bold]
 job-board-ui-label-items = Цель: [color=red]{ $item }[/color]
 job-board-label-text = [head=2]Задание по разбору[/head]
     { "[italic]Только для официальных внеслужебных поставок утиля.[/italic]" }
-
+    
     { "[bold]Цель:[/bold]" } { $target }
     { "[bold]Награда:[/bold]" } ${ $reward }
-
-
+    
+    
     { "[italic]Поставки подлежат проверке корпорацией Donk[/italic]" }
 salv-job-board-name-BountyTeethSpaceCarp = Космическая карась
 salv-job-board-name-BountySalvageScrap = Глубокий космос мусор
