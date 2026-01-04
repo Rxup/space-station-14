@@ -1,4 +1,4 @@
-﻿- type: language
+- type: language
   id: Elvish
   speech:
     color: "#8A2BE2"  # Синий фиолетовый цвет для эльфийского языка

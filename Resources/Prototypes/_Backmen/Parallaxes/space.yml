@@ -1,4 +1,4 @@
-﻿- type: parallax
+- type: parallax
   id: AngleStation
   layers:
     - texture:

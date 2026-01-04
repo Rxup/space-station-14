@@ -1,4 +1,4 @@
-﻿- type: startingGear
+- type: startingGear
   id: CentComCorvax
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficer

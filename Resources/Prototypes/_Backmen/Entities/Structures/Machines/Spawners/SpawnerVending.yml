@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BackmenRandomVending
   name: random vending machine spawner
   suffix: Any, Backmen

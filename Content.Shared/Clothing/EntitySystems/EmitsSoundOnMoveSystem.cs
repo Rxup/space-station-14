@@ -61,7 +61,7 @@ public sealed class EmitsSoundOnMoveSystem : EntitySystem
         if (Transform(uid).GridUid == null)
             return;
 
-        if (component.RequiresGravity && _gravity.IsWeightless(uid, physics, Transform(uid)))
+        if (component.RequiresGravity && _gravity.IsWeightless(uid))
             return;
 
         var parent = Transform(uid).ParentUid;

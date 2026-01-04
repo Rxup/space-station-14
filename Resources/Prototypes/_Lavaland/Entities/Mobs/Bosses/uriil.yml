@@ -235,50 +235,6 @@
   id: HolySpirit
 
 - type: entity
-  id: Baseholypentagram
-  parent:
-  - DeathByDome
-  - BaseMob
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        density: 20
-        mask:
-        - ItemMask
-        restitution: 0.3  # fite me
-        friction: 0.2
-  - type: MovementSpeedModifier
-    baseSprintSpeed: 4
-  - type: MeleeWeapon
-    range: 0.00001
-    damage:
-      types:
-        Structural: 1
-  - type: CombatMode
-    toggleMouseRotator: false
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-  - type: NpcFactionMember
-    factions:
-    - SuperZloy
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/pentagram.rsi
-    scale: 0.5, 0.5
-    drawdepth: FloorTiles
-    layers:
-    - state: holypentagram
-      shader: unshaded
-  - type: Tag
-    tags:
-    - HideContextMenu
-
-- type: entity
   id: holypentagram
   name: святая пентаграмма
   parent: Baseholypentagram
@@ -356,76 +312,6 @@
     - HideContextMenu
 
 - type: entity
-  id: HolyLight
-  name: holy light
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Transform
-    anchored: false
-  - type: Physics
-    bodyType: KinematicController
-    canCollide: true
-  - type: InteractionOutline
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
-    drawdepth: Mobs
-    noRot: true
-    layers:
-    - state: beam
-      offset: "0,1.5"
-      shader: unshaded
-  - type: DamageContacts
-    ignoreWhitelist:
-      tags:
-      - HolySpirit
-    damage:
-      types:
-        Heat: 25
-  - type: Fixtures
-    fixtures:
-      fix:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.3,-0.3,0.3,0.3"
-        mask:
-        - Impassable
-        layer:
-        - Impassable
-        hard: false
-  - type: TimedDespawn #do this shit by hand because of fucking course.
-    lifetime: 0.5
-  - type: SpawnOnDespawn
-    prototype: HolyLightAnim
-  - type: Tag
-    tags:
-    - HideContextMenu
-
-- type: entity
-  id: HolyLightAnim
-  name: holy light
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Transform
-    anchored: false
-  - type: Physics
-    bodyType: KinematicController
-    canCollide: false
-  - type: InteractionOutline
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
-    drawdepth: Mobs
-    noRot: true
-    layers:
-    - state: beamanim
-      offset: "0,1.5"
-      shader: unshaded
-  - type: TimedDespawn
-    lifetime: 0.1
-  - type: Tag
-    tags:
-    - HideContextMenu
-
-- type: entity
   id: HolySoundHeal
   parent: HolySound
   name: святой удар
@@ -498,37 +384,49 @@
       - HolyLight
     intervalSeconds: 2
 
-- type: hitscan
-  maxLength: 12
+- type: entity
+  parent: BasicHitscan
   id: HolyBeam
-  damage:
-    groups:
-      Burn: 5
-  muzzleFlash:
-    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
-    state: holybeamlaser
-  travelFlash:
-    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
-    state: holybeamlaser
-  impactFlash:
-    sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
-    state: holybeamlaserimpact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicRaycast
+    maxDistance: 12
+  - type: HitscanBasicDamage
+    damage:
+      groups:
+        Burn: 5
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+      state: holybeamlaser
+    travelFlash:
+      sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+      state: holybeamlaser
+    impactFlash:
+      sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
+      state: holybeamlaserimpact
 
-- type: hitscan
-  maxLength: 0
+- type: entity
+  parent: BasicHitscan
   id: HolyBeamMini
-  damage:
-    groups:
-      Burn: 0
-  muzzleFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
-    state: NoId
-  travelFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
-    state: NoId
-  impactFlash:
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
-    state: NoId
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicRaycast
+    maxDistance: 0
+  - type: HitscanBasicDamage
+    damage:
+      groups:
+        Burn: 0
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+      state: NoId
+    travelFlash:
+      sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+      state: NoId
+    impactFlash:
+      sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
+      state: NoId
 
 - type: entity
   id: holypentagramUriil
@@ -605,29 +503,6 @@
     - HolySoundUriilChoir
   - type: SpawnOnDespawn
     prototype: HolyLightAnimUriil
-
-- type: entity
-  id: HolyLightAnimUriil
-  name: holy light
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Transform
-    anchored: false
-  - type: Physics
-    bodyType: KinematicController
-    canCollide: false
-  - type: InteractionOutline
-  - type: Sprite
-    sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
-    drawdepth: Mobs
-    scale: 1.5, 1.5
-    noRot: true
-    layers:
-    - state: beamanim
-      offset: "0,1.6"
-      shader: unshaded
-  - type: TimedDespawn
-    lifetime: 0.1
 
 - type: entity
   id: HolySoundUriilChoir
@@ -763,72 +638,11 @@
 
 - type: entity
   name: angel wisp
-  id: BaseAngelWisp
-  parent: BaseMob
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: KinematicController
-  - type: NoSlip
-  - type: MovementAlwaysTouching
-  - type: CanMoveInAir
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.40
-        density: 10
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Damageable
-    damageContainer: Biological
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Asphyxiation
-        damage: 1
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:ExplodeBehavior
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
-    blackboard:
-      VisionRadius: !type:Single
-        16
-      AggroVisionRadius: !type:Single
-        20
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Backmen/Mobs/Npc/Angles/wisp.rsi
-    layers:
-    - state: wisp
-      shader: unshaded
-  - type: CombatMode
-    toggleMouseRotator: false
-  - type: NpcFactionMember
-    factions:
-      - SuperZloy
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      150: Dead
-  - type: Tag
-    tags:
-      - HolySpirit
-
-- type: entity
-  name: angel wisp
   id: MobAngelWisp
   parent: BaseAngelWisp
   suffix: Holy
   components:
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: HolyBeam
     fireCost: 50
   - type: Battery
@@ -851,7 +665,7 @@
   parent: BaseAngelWisp
   suffix: Holy Arta
   components:
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: HolyBeamMini
     fireCost: 50
   - type: Battery
@@ -882,7 +696,7 @@
     layers:
     - state: wisp
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: HolyBeamMini
     fireCost: 50
   - type: Battery
@@ -1249,8 +1063,10 @@
     tags:
       - HolySpirit
   - type: Bloodstream
-    bloodReagent: Holywater
-    bloodMaxVolume: 30
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Holywater
+        Quantity: 30
     bloodlossThreshold: 0
   - type: Damageable
     damageModifierSet: HolyArmor
@@ -1480,8 +1296,8 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: RageUriil
-  - type: TriggerWhitelist
-    whitelist:
+  - type: WhitelistTriggerCondition
+    userWhitelist:
       tags:
       - ArchangelUriil
   - type: Fixtures
@@ -1706,8 +1522,10 @@
       - HolySpirit
       - ArchangelUriil
   - type: Bloodstream
-    bloodReagent: Holywater
-    bloodMaxVolume: 30
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Holywater
+        Quantity: 30
     bloodlossThreshold: 0
   - type: Damageable
     damageModifierSet: HolyArmor

@@ -63,7 +63,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
         SubscribeLocalEvent<ShuttleConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChange);
-        SubscribeLocalEvent<ShuttleConsoleComponent, ActivatableUIOpenAttemptEvent>(OnConsoleUIOpenAttempt);
+        SubscribeLocalEvent<ShuttleConsoleComponent, AfterActivatableUIOpenEvent>(OnConsoleUIOpenAttempt);
         Subs.BuiEvents<ShuttleConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
@@ -158,10 +158,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RemovePilot(args.Actor);
     }
 
-    private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component, ActivatableUIOpenAttemptEvent args)
+    private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component,
+        AfterActivatableUIOpenEvent args)
     {
-        if (!TryPilot(args.User, uid))
-            args.Cancel();
+        TryPilot(args.User, uid);
     }
 
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component, ref AnchorStateChangedEvent args)
@@ -278,9 +278,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 Angle = xform.LocalRotation,
                 Entity = GetNetEntity(uid),
                 GridDockedWith =
-                    _xformQuery.TryGetComponent(comp.DockedWith, out var otherDockXform)
-                        ? GetNetEntity(otherDockXform.GridUid)
-                        : null,
+                    _xformQuery.TryGetComponent(comp.DockedWith, out var otherDockXform) ?
+                    GetNetEntity(otherDockXform.GridUid) :
+                    null,
+                Color = comp.RadarColor,
+                HighlightedColor = comp.HighlightedRadarColor
             };
 
             gridDocks.Add(state);

@@ -77,7 +77,6 @@
     unique: true
   - type: TargetObjective
     title: objective-condition-kill-head-title
-  - type: PickRandomHead
   - type: KillPersonCondition
     requireDead: true
 
@@ -91,7 +90,7 @@
   id: BaseCMOStealObjectiveInterdyne
   components:
   - type: NotJobRequirement
-    job: ChiefMedicalOfficer
+    jobs: [ChiefMedicalOfficer]
   - type: StealCondition
     owner: job-name-cmo
 
@@ -121,7 +120,7 @@
   id: CorgiMeatStealObjectiveInterdyne
   components:
   - type: NotJobRequirement
-    job: HeadOfPersonnel
+    jobs: [HeadOfPersonnel]
   - type: StealCondition
     stealGroup: FoodMeatCorgi
     owner: objective-condition-steal-Ian

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: anti anomaly zone
   description: Anomalies will not be able to appear within a 10 block radius of this point.
   id: AntiAnomalyZone

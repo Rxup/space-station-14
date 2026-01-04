@@ -6,6 +6,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
@@ -60,8 +61,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
-    protected bool CrawlUnderTables;
-
     public override void Initialize()
     {
         CommandBinds.Builder
@@ -75,12 +74,9 @@ public abstract class SharedLayingDownSystem : EntitySystem
         SubscribeLocalEvent<LayingDownComponent, EntParentChangedMessage>(OnParentChanged);
         SubscribeLocalEvent<LayingDownComponent, MobStateChangedEvent>(OnChangeMobState);
 
-        SubscribeLocalEvent<LayingDownComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LayingDownComponent, UnbuckledEvent>(OnUnBuckled);
         SubscribeLocalEvent<LayingDownComponent, StandAttemptEvent>(OnCheckLegs);
         SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
-
-        Subs.CVar(_config, CCVars.CrawlUnderTables, b => CrawlUnderTables = b, true);
     }
 
     public bool HasLegs(Entity<LayingDownComponent> ent)
@@ -119,13 +115,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
         {
             AutoGetUp(ent);
             TryStandUp(ent, ent, standingStateComponent);
-            return;
-        }
-
-        if (CrawlUnderTables)
-        {
-            ent.Comp.DrawDowned = false;
-            Dirty(ent,ent.Comp);
         }
     }
 
@@ -143,25 +132,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
 
         TryProcessAutoGetUp(ent);
-
-        if (!CrawlUnderTables || standingStateComponent.CurrentState != StandingState.Lying)
-            return;
-
-        ent.Comp.DrawDowned = true;
-        Dirty(ent,ent.Comp);
-    }
-
-    private void OnBuckled(Entity<LayingDownComponent> ent, ref BuckledEvent args)
-    {
-        if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
-            standingStateComponent.Standing)
-            return;
-
-        if (!CrawlUnderTables)
-            return;
-
-        ent.Comp.DrawDowned = false;
-        Dirty(ent, ent.Comp);
     }
 
     protected abstract bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session);
@@ -234,7 +204,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             !inputMover.CanMove)
             return;
 
-        if (_standing.IsDown(uid, standing))
+        if (_standing.IsDown((uid, standing)))
             TryStandUp(uid, layingDown, standing);
         else
             TryLieDown(uid, layingDown, standing);
@@ -355,7 +325,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
                 obj.Value,
                 uid,
                 PopupType.MediumCaution);
-            _damageable.TryChangeDamage(uid, new DamageSpecifier{DamageDict = {{"Blunt", 5}}}, canBeCancelled: false, ignoreResistances: true, targetPart: TargetBodyPart.Head);
+            _damageable.ChangeDamage(uid, new DamageSpecifier{DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, targetPart: TargetBodyPart.Head);
             _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(2));
             _audioSystem.PlayPredicted(_bonkSound, uid, obj.Value);
             return false;

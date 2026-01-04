@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   categories: [ HideSpawnMenu ]
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelDrone

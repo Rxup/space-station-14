@@ -15,7 +15,7 @@
         - reagents: [Water, SpaceCleaner]
           methods: [Touch]
           effects:
-            - !type:WashCreamPieReaction
+            - !type:WashCreamPie
     - type: DamageOnHighSpeedImpact
       damage:
         types:
@@ -142,9 +142,11 @@
 
     #- type: Bloodstream This is left commented out because it's not necessary for a robot, but you may want it.
     #  damageBleedModifiers: BloodlossIPC
-    #  bloodReagent: Oil
     #  bleedReductionAmount: 0
-    #  bloodMaxVolume: 500
+    #  bloodReferenceSolution:
+    #    reagents:
+    #    - ReagentId: Oil
+    #      Quantity: 500
     #  chemicalMaxVolume: 0
     #  bleedPuddleThreshold: 3
     #  bleedRefreshAmount: 0

@@ -2,6 +2,7 @@
 using Content.Server.Backmen.Abilities.Felinid;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Ghost.Roles.Events;
+using Content.Server.Nutrition.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Station.Components;
 using Robust.Shared.Map;
@@ -80,7 +81,7 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
             return;
 
         // Blob doesn't spawn when blob carrier was eaten.
-        RemComp<FoodComponent>(carrier);
+        AddComp<BadFoodComponent>(carrier);
         RemComp<FelinidFoodComponent>(carrier);
 
 

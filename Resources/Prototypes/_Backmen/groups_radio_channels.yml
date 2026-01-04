@@ -1,4 +1,4 @@
-﻿- type: radioChannel
+- type: radioChannel
   id: GROUPS_0
   name: bkm-radio-group0
   keycode: '0'

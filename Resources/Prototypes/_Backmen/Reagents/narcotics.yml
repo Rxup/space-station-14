@@ -13,19 +13,21 @@
     Narcotic:
       metabolismRate: 0.5
       effects:
-      - !type:MovespeedModifier # This is frickin' fast
+      - !type:MovementSpeedModifier # This is frickin' fast
         walkSpeedModifier: 1.5
         sprintSpeedModifier: 1.5
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: StimulantsSuper
             min: 16
         damage: # If you get robust too much, you can go to hell!
           types:
             Poison: 4
       - !type:AdjustPainFeels
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: StimulantsSuper
           min: 16
         amount: 0.4 # haha
       - !type:GenericStatusEffect
@@ -61,7 +63,7 @@
           factor: 1.0
         - !type:SatiateThirst
           factor: 1.0
-        - !type:ModifyBleedAmount # Tranexamic acid in recipe, so it also stops bleeding, but not that efficient
+        - !type:ModifyBleed # Tranexamic acid in recipe, so it also stops bleeding, but not that efficient
           amount: -1
         - !type:HealthChange
           damage:
@@ -84,13 +86,15 @@
       effects:
       - !type:AdjustPainFeels
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Morphine
           min: 20
         amount: 0.2
         randomise: false # SKYROCKETS your pain feels
       - !type:Emote
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Morphine
           min: 6
         emote: Yawn
         showInChat: true
@@ -98,24 +102,22 @@
       - !type:GenericStatusEffect
         key: Drowsiness
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Morphine
           min: 12
         component: Drowsiness
         time: 30
-        type: Add
-        refresh: true
       - !type:GenericStatusEffect
         key: ForcedSleeping
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Morphine
           min: 20
         component: ForcedSleeping
         time: 10
-        type: Add
-        refresh: true
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Morphine
           min: 25
         damage:
@@ -129,7 +131,8 @@
           time: 60
         - !type:GenericStatusEffect
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: Morphine
             min: 10
           key: Adrenaline
           component: IgnoreSlowOnDamage

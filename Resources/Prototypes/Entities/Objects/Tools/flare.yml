@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: emergency flare
   parent: BaseItem
   id: Flare

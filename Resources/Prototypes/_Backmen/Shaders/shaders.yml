@@ -1,4 +1,4 @@
-﻿- type: shader
+- type: shader
   id: ColorTint
   kind: source
   path: "/Textures/Backmen/Shaders/color_tint.swsl"

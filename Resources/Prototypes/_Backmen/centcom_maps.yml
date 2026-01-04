@@ -1,4 +1,4 @@
-﻿
+
 - type: weightedRandom
   id: DefaultCentcomPool
   weights:

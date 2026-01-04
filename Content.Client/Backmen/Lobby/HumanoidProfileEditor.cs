@@ -22,14 +22,22 @@ public sealed partial class HumanoidProfileEditor
         if (antag.DiscordRequired && _discordAuthMgr.IsEnabled && !_discordAuthMgr.IsVerified)
         {
             unlocked = false;
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-required-discord"));
+            if (reason is not { })
+            {
+                reason = new FormattedMessage();
+            }
+            reason.AddText("\n"+Loc.GetString("role-required-discord"));
             return;
         }
 
         if (_jobRequirementsMgr.RoleBans.Contains("Antag:" + antag.ID))
         {
             unlocked = false;
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            if (reason is not { })
+            {
+                reason = new FormattedMessage();
+            }
+            reason.AddText("\n"+Loc.GetString("role-ban"));
             return;
         }
     }

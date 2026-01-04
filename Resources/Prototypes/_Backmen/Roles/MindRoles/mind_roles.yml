@@ -62,18 +62,7 @@
     roleType: SoloAntagonist
   - type: VampireRole
 
-# Changeling
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleChangeling
-  name: Changeling Role
-  #  description: mind-role-changeling-description
-  components:
-  - type: MindRole
-    antagPrototype: Changeling
-    exclusiveAntag: true
-    roleType: FreeAgent
-  - type: ChangelingRole
+# Changeling - используем версию из базового файла Roles/MindRoles/mind_roles.yml
 
 # EvilTwin
 - type: entity

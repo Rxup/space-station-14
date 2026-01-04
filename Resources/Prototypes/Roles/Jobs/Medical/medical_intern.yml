@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: MedicalIntern
   name: job-name-intern
   description: job-description-intern
@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 36000 #10 hrs # Corvax-RoleTime
+      time: 5h
       inverted: true # stop playing intern if you're good at med!
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
@@ -21,14 +21,6 @@
   wageDepartment: Medical
   wage: 25
   #end-backmen: currency
-  special:
-  - !type:AddComponentSpecial
-    components:
-    #start-backmen: surgery
-    #- type: CPRTraining
-    - type: SurgerySpeedModifier
-      SpeedModifier: 1.5
-    #end-backmen: surgery
 
 - type: startingGear
   id: MedicalInternGear

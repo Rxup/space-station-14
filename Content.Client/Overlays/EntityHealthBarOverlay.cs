@@ -3,6 +3,7 @@ using Content.Client.StatusIcon;
 using Content.Client.UserInterface.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -58,7 +59,7 @@ public sealed class EntityHealthBarOverlay : Overlay
         const float scale = 1f;
         var scaleMatrix = Matrix3Helpers.CreateScale(new Vector2(scale, scale));
         var rotationMatrix = Matrix3Helpers.CreateRotation(-rotation);
-        _prototype.TryIndex(StatusIcon, out var statusIcon);
+        _prototype.Resolve(StatusIcon, out var statusIcon);
 
         var query = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent, SpriteComponent>();
         while (query.MoveNext(out var uid,

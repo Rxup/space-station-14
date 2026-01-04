@@ -40,7 +40,8 @@
           worksOnLavaland: true
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: MinersSalve
           min: 21
         damage:
           types:

@@ -52,7 +52,7 @@
     flavors:
       - sweet
       - funny
-  - type: Food
+  - type: Edible
     trash:
     - FoodTinClownSoupcanTrash
 

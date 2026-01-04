@@ -1,5 +1,4 @@
 using Content.Server.Medical.Components;
-using Content.Server.PowerCell;
 using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
@@ -7,6 +6,9 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -16,6 +18,8 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.PowerCell;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -26,6 +30,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Traits.Assorted;
+using Content.Server.Body.Systems;
 
 namespace Content.Server.Medical;
 
@@ -42,6 +47,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     public override void Initialize()
     {
@@ -108,7 +114,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(Entity<HealthAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !HasComp<MobStateComponent>(args.Target) || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Target == null || !args.CanReach || !HasComp<MobStateComponent>(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
@@ -128,7 +134,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
     private void OnDoAfter(Entity<HealthAnalyzerComponent> uid, ref HealthAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)
@@ -253,7 +259,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
                 ref bloodstream.BloodSolution, out var bloodSolution))
         {
-            bloodAmount = bloodSolution.FillFraction;
+            bloodAmount = _bloodstreamSystem.GetBloodLevel(target);
             bleeding = bloodstream.BleedAmount > 0;
         }
 

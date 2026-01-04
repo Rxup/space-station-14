@@ -5,13 +5,17 @@ using Content.Server.Electrocution;
 using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
-using Content.Server.PowerCell;
 using Content.Server.Revenant.Components;
-using Content.Shared.Backmen.Chat;
+
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
+using Content.Shared.PowerCell;
+using Content.Shared.Traits.Assorted;
+using Content.Shared.Chat;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle;
@@ -22,6 +26,9 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Timing;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.PowerCell;
+using Content.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
@@ -48,6 +55,7 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // backmen edit:
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -182,6 +190,18 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         _audio.PlayPvs(component.ZapSound, uid);
         _electrocution.TryDoElectrocution(target, null, component.ZapDamage, component.WritheDuration, true, ignoreInsulation: true);
+
+        var interacters = new HashSet<EntityUid>();
+        _interactionSystem.GetEntitiesInteractingWithTarget(target, interacters);
+        foreach (var other in interacters)
+        {
+            if (other == user)
+                continue;
+
+            // Anyone else still operating on the target gets zapped too
+            _electrocution.TryDoElectrocution(other, null, component.ZapDamage, component.WritheDuration, true);
+        }
+
         if (!TryComp<UseDelayComponent>(uid, out var useDelay))
             return;
         _useDelay.SetLength((uid, useDelay), component.ZapDelay, component.DelayId);
@@ -219,7 +239,7 @@ public sealed class DefibrillatorSystem : EntitySystem
                 }
                 else // backmen edit end
                 {
-                    _damageable.TryChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
+                    _damageable.ChangeDamage(target, component.ZapHeal, true, origin: uid, targetPart: TargetBodyPart.Chest); // backmen: surgery
                 }
             }
 

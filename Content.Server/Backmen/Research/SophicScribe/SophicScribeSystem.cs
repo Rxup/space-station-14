@@ -4,10 +4,10 @@ using Content.Server.Backmen.NPC.Events;
 using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.Backmen.NPC.Systems;
 using Content.Server.Backmen.StationEvents.Events;
-using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
 
 namespace Content.Server.Backmen.Research.SophicScribe;
 

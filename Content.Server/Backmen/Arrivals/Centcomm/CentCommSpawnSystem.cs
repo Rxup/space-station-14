@@ -4,6 +4,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.GameTicking;
+using Content.Shared.Station.Components;
 using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;

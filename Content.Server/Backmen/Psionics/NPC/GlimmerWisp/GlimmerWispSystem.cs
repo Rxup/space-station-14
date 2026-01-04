@@ -10,6 +10,7 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.ActionBlocker;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.NPC.Systems;

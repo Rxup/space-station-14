@@ -4,7 +4,7 @@
   description: An egg!
   abstract: true
   components:
-  - type: Food
+  - type: Edible
     trash:
     - Eggshells
   - type: Sprite

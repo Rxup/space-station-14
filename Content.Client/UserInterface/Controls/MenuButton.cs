@@ -13,7 +13,7 @@ public sealed class MenuButton : ContainerButton
 {
     [Dependency] private readonly IInputManager _inputManager = default!;
     public const string StyleClassLabelTopButton = "topButtonLabel";
-    public const string StyleClassRedTopButton = "topButtonLabel";
+    // public const string StyleClassRedTopButton = "topButtonLabel";
 
     private static readonly Color ColorNormal = Color.FromHex("#5a5a5a");
     private static readonly Color ColorRedNormal = Color.FromHex("#640000");
@@ -23,10 +23,8 @@ public sealed class MenuButton : ContainerButton
 
     private const float HorPad = 8f;
     private const float VertPad = 4f;
-    private Color NormalColor => HasStyleClass(StyleClassRedTopButton) ? ColorRedNormal : ColorNormal;
-    private Color HoveredColor => HasStyleClass(StyleClassRedTopButton) ? ColorRedHovered : ColorHovered;
 
-    private BoundKeyFunction _function;
+    private BoundKeyFunction? _function;
     private readonly BoxContainer _root;
     private readonly TextureRect? _buttonIcon;
     private readonly Label? _buttonLabel;
@@ -34,13 +32,13 @@ public sealed class MenuButton : ContainerButton
     public string AppendStyleClass { set => AddStyleClass(value); }
     public Texture? Icon { get => _buttonIcon!.Texture; set => _buttonIcon!.Texture = value; }
 
-    public BoundKeyFunction BoundKey
+    public BoundKeyFunction? BoundKey
     {
         get => _function;
         set
         {
             _function = value;
-            _buttonLabel!.Text = BoundKeyHelper.ShortKeyName(value);
+            _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
         }
     }
 
@@ -56,14 +54,14 @@ public sealed class MenuButton : ContainerButton
             VerticalAlignment = VAlignment.Center,
             VerticalExpand = true,
             Margin = new Thickness(0, VertPad),
-            ModulateSelfOverride = NormalColor,
+            ModulateSelfOverride = ColorNormal,
             Stretch = TextureRect.StretchMode.KeepCentered
         };
         _buttonLabel = new Label
         {
             Text = "",
             HorizontalAlignment = HAlignment.Center,
-            ModulateSelfOverride = NormalColor,
+            ModulateSelfOverride = ColorNormal,
             StyleClasses = {StyleClassLabelTopButton}
         };
         _root = new BoxContainer
@@ -96,16 +94,12 @@ public sealed class MenuButton : ContainerButton
 
     private void OnKeyBindingChanged(IKeyBinding obj)
     {
-        if(string.IsNullOrEmpty(_function.FunctionName)) return; //BACKMEN EDIT
-
-        _buttonLabel!.Text = BoundKeyHelper.ShortKeyName(_function);
+        _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
     }
 
     private void OnKeyBindingChanged()
     {
-        if(string.IsNullOrEmpty(_function.FunctionName)) return; //BACKMEN EDIT
-
-        _buttonLabel!.Text = BoundKeyHelper.ShortKeyName(_function);
+        _buttonLabel!.Text = _function == null ? "" : BoundKeyHelper.ShortKeyName(_function.Value);
     }
 
     protected override void StylePropertiesChanged()
@@ -121,8 +115,8 @@ public sealed class MenuButton : ContainerButton
         switch (DrawMode)
         {
             case DrawModeEnum.Normal:
-                _buttonIcon.ModulateSelfOverride = NormalColor;
-                _buttonLabel.ModulateSelfOverride = NormalColor;
+                _buttonIcon.ModulateSelfOverride = ColorNormal;
+                _buttonLabel.ModulateSelfOverride = ColorNormal;
                 break;
 
             case DrawModeEnum.Pressed:
@@ -131,8 +125,8 @@ public sealed class MenuButton : ContainerButton
                 break;
 
             case DrawModeEnum.Hover:
-                _buttonIcon.ModulateSelfOverride = HoveredColor;
-                _buttonLabel.ModulateSelfOverride = HoveredColor;
+                _buttonIcon.ModulateSelfOverride = ColorHovered;
+                _buttonLabel.ModulateSelfOverride = ColorHovered;
                 break;
 
             case DrawModeEnum.Disabled:

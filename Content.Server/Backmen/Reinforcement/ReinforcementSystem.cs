@@ -314,7 +314,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
             if (job.Requirements != null)
             {
-                ghost.Requirements = new HashSet<JobRequirement>(job.Requirements);
+                ghost.JobProto = job.ID;
             }
 
             ghost.JobProto = job.ID;

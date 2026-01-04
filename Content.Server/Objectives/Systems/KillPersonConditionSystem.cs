@@ -12,6 +12,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Server.Revolutionary.Components;
+using Content.Shared.Roles.Components;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -110,50 +111,6 @@ public sealed class KillPersonConditionSystem : EntitySystem
         }
     }
     // end-backmen: centcom
-
-    private void OnHeadAssigned(EntityUid uid, PickRandomHeadComponent comp, ref ObjectiveAssignedEvent args)
-    {
-        // invalid prototype
-        if (!TryComp<TargetObjectiveComponent>(uid, out var target))
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        // target already assigned
-        if (target.Target != null)
-            return;
-
-        // no other humans to kill
-        var allHumans = _mind.GetAliveHumans(args.MindId);
-        if (allHumans.Count == 0)
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        // start-backmen: centcom
-        FilterCentCom(allHumans);
-
-        if (allHumans.Count == 0)
-        {
-            args.Cancelled = true;
-            return;
-        }
-        // end-backmen: centcom
-
-        var allHeads = new HashSet<Entity<MindComponent>>();
-        foreach (var person in allHumans)
-        {
-            if (TryComp<MindComponent>(person, out var mind) && mind.OwnedEntity is { } ent && HasComp<CommandStaffComponent>(ent))
-                allHeads.Add(person);
-        }
-
-        if (allHeads.Count == 0)
-            allHeads = allHumans; // fallback to non-head target
-
-        _target.SetTarget(uid, _random.Pick(allHeads), target);
-    }
 
     private float GetProgress(EntityUid target, bool requireDead, bool requireMaroon)
     {

@@ -1,5 +1,3 @@
-ent-PetRockCarrier = pet rock carrier
-    .desc = Your new and only best friend home!
 ent-BasePetRock = pet rock
     .desc = Your new and only best friend!
 ent-PetRock = { ent-BasePetRock }

@@ -39,7 +39,6 @@ using Content.Server.SS220.Chat.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
-using Content.Server.Warps;
 using Content.Server.Zombies;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
@@ -52,6 +51,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Dataset;
 using Content.Shared.Doors.Components;
 using Content.Shared.Explosion;
@@ -80,10 +81,13 @@ using Content.Shared.Preferences;
 using Content.Shared.Procedural;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Station.Components;
 using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Warps;
@@ -1298,7 +1302,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             var limit = _destructibleSystem.DestroyedAt(ent);
             var smash = new DamageSpecifier();
             smash.DamageDict.Add("Structural", limit);
-            _damageableSystem.TryChangeDamage(ent, smash, ignoreResistances: true, damageable: damageableComponent);
+            _damageableSystem.ChangeDamage((ent, damageableComponent), smash, ignoreResistances: true);
         }
 
         var crashSound = new SoundPathSpecifier("/Audio/Nyanotrasen/Effects/crash_impact_metal.ogg");
@@ -1624,7 +1628,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         {
             var station = _stationSystem.GetStationInMap(GameTicker.DefaultMap);
             DebugTools.Assert(station != null);
-            var grid = _stationSystem.GetLargestGrid(Comp<StationDataComponent>(station.Value));
+            var grid = _stationSystem.GetLargestGrid((station.Value,Comp<StationDataComponent>(station.Value)));
             if (!AttachMap(grid ?? EntityUid.Invalid, component, true))
             {
                 _gameTicker.EndGameRule(uid, gameRule);

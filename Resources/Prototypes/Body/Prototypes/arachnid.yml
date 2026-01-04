@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Arachnid
   name: "arachnid"
   root: chest
@@ -25,6 +25,7 @@
       - right leg
       - left leg
       organs:
+        lungs: OrganArachnidLungs
         stomach: OrganArachnidStomach
         liver: OrganArachnidLiver
         kidneys: OrganArachnidKidneys

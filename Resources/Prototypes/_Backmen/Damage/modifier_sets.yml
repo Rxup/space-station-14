@@ -1,4 +1,4 @@
-﻿- type: damageModifierSet
+- type: damageModifierSet
   id: Spirit
   coefficients:
     Cold: 0.0

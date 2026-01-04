@@ -6,16 +6,12 @@
   - type: Clothing
     slots:
     - HEAD
-  # backmen edit start
-    equipSound:
-      collection: GenericEquip
-  # backmen edit end
   - type: Sprite
     state: icon
   - type: Item
     size: Small
     storedRotation: -90
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -145,8 +141,7 @@
     - Snout
     - HeadTop
     - HeadSide
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
+    - FacialHair
 
 - type: entity
   abstract: true
@@ -176,14 +171,6 @@
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: Armor
-    traumaDeductions:
-      Dismemberment: 0
-      OrganDamage: 0.12
-      BoneDamage: 0.12
-      VeinsDamage: 0
-      NerveDamage: 0
-    coverage: # backmen: armour coverage
-    - Head
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -203,8 +190,7 @@
     - Snout
     - HeadTop
     - HeadSide
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
+    - FacialHair
 
 - type: entity
   abstract: true
@@ -257,14 +243,11 @@
         startValue: 0.1
         endValue: 2.0
         isLooped: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 600 #lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
     startingCharge: 600
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 - type: entity
   abstract: true

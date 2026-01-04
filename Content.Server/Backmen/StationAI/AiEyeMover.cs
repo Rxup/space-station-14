@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
+using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues;

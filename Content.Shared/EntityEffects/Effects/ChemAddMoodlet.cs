@@ -1,6 +1,6 @@
 using Content.Shared.Backmen.Mood;
 using Content.Shared.EntityEffects;
-using Content.Shared.Backmen.Mood;
+using Content.Shared.Mobs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
@@ -9,22 +9,28 @@ namespace Content.Server.Chemistry.ReagentEffects;
 /// <summary>
 ///     Adds a moodlet to an entity.
 /// </summary>
+/// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
 [UsedImplicitly]
-public sealed partial class ChemAddMoodlet : EntityEffect
+public sealed partial class ChemAddMoodletEntityEffectSystem : EntityEffectSystem<MobStateComponent, ChemAddMoodlet>
 {
-    protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemAddMoodlet> args)
     {
-        var protoMan = IoCManager.Resolve<IPrototypeManager>();
-        return Loc.GetString("reagent-effect-guidebook-add-moodlet",
-            ("amount", protoMan.Index<MoodEffectPrototype>(MoodPrototype.Id).MoodChange),
-            ("timeout", protoMan.Index<MoodEffectPrototype>(MoodPrototype.Id).Timeout));
+        var ev = new MoodEffectEvent(args.Effect.MoodPrototype);
+        RaiseLocalEvent(entity, ev);
     }
+}
 
-    public override void Effect(EntityEffectBaseArgs args)
+[UsedImplicitly]
+public sealed partial class ChemAddMoodlet : EntityEffectBase<ChemAddMoodlet>
+{
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
-        var entityManager = IoCManager.Resolve<EntityManager>();
-        var ev = new MoodEffectEvent(MoodPrototype);
-        entityManager.EventBus.RaiseLocalEvent(args.TargetEntity, ev);
+        if (!prototype.TryIndex(MoodPrototype, out MoodEffectPrototype? moodProto))
+            return null;
+        
+        return Loc.GetString("reagent-effect-guidebook-add-moodlet",
+            ("amount", moodProto.MoodChange),
+            ("timeout", moodProto.Timeout));
     }
 
     /// <summary>

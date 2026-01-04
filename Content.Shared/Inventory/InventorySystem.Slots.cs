@@ -1,11 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.DisplacementMap;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Storage;
 using Content.Shared.Random;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Inventory;
@@ -15,6 +17,8 @@ public partial class InventorySystem : EntitySystem
     [Dependency] private readonly IViewVariablesManager _vvm = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly ISerializationManager _serializationManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+
     private void InitializeSlots()
     {
         SubscribeLocalEvent<InventoryComponent, ComponentInit>(OnInit);
@@ -57,7 +61,25 @@ public partial class InventorySystem : EntitySystem
         return false;
     }
 
-    private void OnInit(Entity<InventoryComponent> ent, ref ComponentInit args)
+    /// <summary>
+    /// Copy this component's datafields from one entity to another.
+    /// This can't use CopyComp because the template needs to be applied using the API method.
+    /// <summary>
+    public void CopyComponent(Entity<InventoryComponent?> source, EntityUid target)
+    {
+        if (!Resolve(source, ref source.Comp))
+            return;
+
+        var targetComp = EnsureComp<InventoryComponent>(target);
+        targetComp.SpeciesId = source.Comp.SpeciesId;
+        targetComp.Displacements = new Dictionary<string, DisplacementData>(source.Comp.Displacements);
+        targetComp.FemaleDisplacements = new Dictionary<string, DisplacementData>(source.Comp.FemaleDisplacements);
+        targetComp.MaleDisplacements = new Dictionary<string, DisplacementData>(source.Comp.MaleDisplacements);
+        SetTemplateId((target, targetComp), source.Comp.TemplateId);
+        Dirty(target, targetComp);
+    }
+
+    protected virtual void OnInit(Entity<InventoryComponent> ent, ref ComponentInit args)
     {
         UpdateInventoryTemplate(ent);
     }
@@ -94,6 +116,9 @@ public partial class InventorySystem : EntitySystem
             container.OccludesLight = false;
             ent.Comp.Containers[i] = container;
         }
+
+        var ev = new InventoryTemplateUpdated();
+        RaiseLocalEvent(ent, ref ev);
     }
 
     private void OnOpenSlotStorage(OpenSlotStorageNetworkMessage ev, EntitySessionEventArgs args)
@@ -196,35 +221,6 @@ public partial class InventorySystem : EntitySystem
         {
             yield return slotDef.Name;
         }
-    }
-
-    public void SetSlotStatus(EntityUid uid, string slotName, bool isDisabled, InventoryComponent? inventory = null)
-    {
-        if (!Resolve(uid, ref inventory))
-            return;
-
-        foreach (var slot in inventory.Slots)
-        {
-            if (slot.Name != slotName)
-                continue;
-
-
-            if (!TryGetSlotContainer(uid, slotName, out var container, out _, inventory))
-                break;
-
-            if (isDisabled)
-            {
-                if (container.ContainedEntity is { } entityUid && TryComp(entityUid, out TransformComponent? transform) && _gameTiming.IsFirstTimePredicted)
-                {
-                    _transform.AttachToGridOrMap(entityUid, transform);
-                    _randomHelper.RandomOffset(entityUid, 0.5f);
-                }
-            }
-            //slot.Disabled = isDisabled; // Backmen: surgery TURNED OFF FEATURE, would be fixed today maybe with proper limbs cutting disables appropriate slot(-s)
-            break;
-        }
-
-        Dirty(uid, inventory);
     }
 
     /// <summary>

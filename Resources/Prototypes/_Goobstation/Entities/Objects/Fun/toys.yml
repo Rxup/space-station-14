@@ -19,7 +19,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/mousesqueek.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/mousesqueek.ogg
@@ -77,7 +77,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Effects/adminhelp.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: false
     useSound:
       path: /Audio/Effects/adminhelp.ogg
@@ -106,7 +106,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Animals/fox1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: false
     useSound:
       path: /Audio/Animals/fox1.ogg
@@ -159,7 +159,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Items/trayhit1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Effects/explosion4.ogg

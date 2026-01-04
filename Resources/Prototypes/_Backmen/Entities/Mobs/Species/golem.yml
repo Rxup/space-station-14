@@ -101,7 +101,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   - type: Polymorphable
   - type: Identity
   - type: Hands
@@ -116,7 +116,7 @@
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
-    critThreshold: 300
+    baseCritThreshold: 300
   - type: IdExaminable
   - type: HealthExaminable
     examinableTypes:
@@ -409,7 +409,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   - type: Construction
     graph: GolemWood
     node: golem

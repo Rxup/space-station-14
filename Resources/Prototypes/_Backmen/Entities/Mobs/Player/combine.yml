@@ -13,7 +13,7 @@
   - type: Damageable
     damageModifierSet: CombineHuman
   - type: Stamina
-    critThreshold: 250
+    baseCritThreshold: 250
   - type: MobState
   - type: TriggerOnMobstateChange
     mobState:

@@ -60,7 +60,7 @@
     pricePerJoule: 0.15
     maxCharge: 500000
     startingCharge: 500000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     fireCost: 100
   - type: ClothingSpeedModifier
     walkModifier: 0.6
@@ -95,7 +95,7 @@
   name: powerpack (pulse)
   parent: BasePowerpackEnergy
   components:
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Pulse
 
 #- type: entity # потом, в пизду
@@ -105,7 +105,7 @@
 #  - BasePowerpackEnergy
 #  - ClothingSlotBase
 #  components:
-#  - type: HitscanBatteryAmmoProvider
+#  - type: BatteryAmmoProvider
 #    proto: Gluon
 #  - type: ItemSlots
 #    slots:

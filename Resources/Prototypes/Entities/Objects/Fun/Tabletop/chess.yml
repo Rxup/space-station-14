@@ -1,4 +1,4 @@
-﻿# Chessboard item (normal in game item you can hold in your hand)
+# Chessboard item (normal in game item you can hold in your hand)
 - type: entity
   parent: BaseBoardEntity
   id: ChessBoard

@@ -6,7 +6,6 @@ using Content.Server.Cuffs;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Server.Warps;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Flesh;
@@ -607,10 +606,13 @@ public sealed partial class FleshCultistSystem
         FleshCultistComponent component,
         FleshCultistBreakCuffsActionEvent args)
     {
-        if (!TryComp<CuffableComponent>(uid, out var cuffs) || cuffs.Container.ContainedEntities.Count < 1)
+        if (
+            !TryComp<CuffableComponent>(uid, out var cuffs) ||
+            cuffs.Container.ContainedEntities.Count < 1 ||
+            !_cuffable.TryGetLastCuff(uid, out var cuff))
             return;
 
-        _cuffable.Uncuff(uid, cuffs.LastAddedCuffs, cuffs.LastAddedCuffs);
+        _cuffable.Uncuff(uid, null, cuff.Value, cuffs);
         args.Handled = true;
     }
 

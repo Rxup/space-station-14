@@ -132,7 +132,10 @@
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Bloodstream
-    bloodReagent: DemonsBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DemonsBlood
+        Quantity: 300
   - type: BloodSucker
     webRequired: true
   - type: Arachne

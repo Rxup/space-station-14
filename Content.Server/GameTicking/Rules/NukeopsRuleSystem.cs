@@ -17,6 +17,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nuke;
 using Content.Shared.NukeOps;
+using Content.Shared.Roles.Components;
 using Content.Shared.Store;
 using Content.Shared.Tag;
 using Content.Shared.Zombies;
@@ -26,6 +27,7 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
 
@@ -41,7 +43,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly Backmen.Arrivals.CentcommSystem _centcommSystem = default!; // backmen: centcom
-    
+
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
 
@@ -112,6 +114,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         {
             args.AddLine(Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName)));
         }
+        args.AddLine("");
     }
 
     private void OnNukeExploded(NukeExplodedEvent ev)

@@ -107,7 +107,7 @@
   - type: Machine
     board: AutolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist:
+    whitelist: &StandardMaterialWhitelist
       tags:
         - Sheet
         - RawMaterial
@@ -119,13 +119,14 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
-    - MaterialsStatic
-    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ToolsStatic
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
     - CargoStatic
+    - MaterialsStatic
     - BasicChemistryStatic
     - RollerBedsStatic
     - LightsStatic
@@ -134,7 +135,8 @@
     - ElectronicsStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - BackmenAmmoStatic # backmen
+    - SecurityAmmoStatic
+    - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -181,21 +183,17 @@
   - type: Machine
     board: ProtolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    dynamicPacks: # Static > Dynamic | Backmen-EDIT
+    staticPacks:
     - ChemistryStatic
     - SurgeryStatic
-#    dynamicPacks: # Backmen-EDIT
+    dynamicPacks:
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -209,15 +207,9 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
-    - BackmenTranslators # backmen
-    - BackmenProtolathe # backmen
-    - BackmenSurgery # backmen
-    - BackmenEngineerWeapon # backmen
-    - BackmenService # Backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
-    - BackmenAmmo # backmen
+    - SecurityAmmo
     - SecurityExplosives
     - SecurityEquipment
     - SecurityWeapons
@@ -257,15 +249,12 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - CircuitFloorsStatic
-    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ScienceBoardsStatic
     - ServiceBoardsStatic
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - BackmenBoardsStatic # backmen
-#    dynamicPacks: # Backmen-EDIT
+    dynamicPacks:
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -274,16 +263,11 @@
     - CameraBoards
     - MechBoards
     - ShuttleBoards
-    - BackmenBoards # backmen
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityBoards
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: RequireProjectileTarget
 
@@ -318,23 +302,17 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
-    dynamicPacks: # Static > Dynamic | Backmen-EDIT
+    staticPacks:
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    - BackmenShitmedModulesStatic # backmen
-#    dynamicPacks: # Backmen-EDIT
+    dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
-    - BackmenShitmedModules # backmen
   - type: MaterialStorage
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
-      - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: GuideHelp
     guides:
@@ -403,27 +381,25 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    dynamicPacks: # Static > Dynamic | Backmen-EDIT
+    staticPacks:
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
-    - BackmenAmmoStatic # backmen
+    - SecurityAmmoStatic
     - SecurityWeaponsStatic
-#    dynamicPacks: # Backmen-EDIT
+    dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
-    - BackmenAmmo # backmen
-#    - SecurityWeapons #backmen-gumsmiths
+    - SecurityAmmo
+    - SecurityWeapons
     - SecurityDisablers
-    - BackmenCircuboardArsenal #backmen-gumsmiths
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SyndicateAmmoStatic
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
@@ -453,13 +429,12 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - BackmenAmmoStatic # backmen
+      - SecurityAmmoStatic
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+      - SyndicateAmmoStatic
     - type: MaterialStorage
-      whitelist:
-        tags:
-          - Sheet
-          - RawMaterial
-          - Ingot
+      whitelist: *StandardMaterialWhitelist
     - type: OreSiloClient
 
 - type: entity
@@ -484,7 +459,7 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    dynamicPacks: # Static > Dynamic | Backmen-EDIT
+    staticPacks:
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
@@ -492,12 +467,8 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - SurgeryStatic
-    - BackmenMedfabStatic # backmen
-#    dynamicPacks: # Backmen-EDIT
+    dynamicPacks:
     - Chemistry
-    - BackmenMedfab # backmen
-    - BackmenSurgery # backmen
-    - AdvancedBodybagsStatic # Backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -527,6 +498,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - TowelsStatic
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
@@ -540,17 +512,12 @@
     - Scarves
     - Carpets
     - Bedsheets
-    - CorvaxClothing # Corvax-Clothing
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
     - ClothingSyndie
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
 
 - type: entity
@@ -595,6 +562,10 @@
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BioGenEmagStatic
+    - HostileCubesStatic
 
 - type: entity
   parent: BaseLathe
@@ -617,17 +588,10 @@
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
-      ignoreMaterialWhiteList: true # Goob edit
-      connectToSilo: true # Goob edit
-      disconnectSiloOffMap: true # Goob edit
-      disallowOreEjection: false # Goob edit
       ignoreColor: true
       whitelist:
         tags:
           - Ore
-          - Sheet
-          - RawMaterial
-          - Ingot
     - type: Lathe
       idleState: icon
       runningState: building
@@ -635,11 +599,6 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
-    - type: MiningPoints # DeltaV - Source of mining points for miners
-    - type: MiningPointsLathe # DeltaV
-    - type: MaterialStorageMagnetPickup # Frontier
-    - type: NoLavalandUsage
-
 
 - type: entity
   parent: OreProcessor
@@ -716,13 +675,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - Metal
-        - Wooden
-        - RawMaterial
-        - Plastic
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

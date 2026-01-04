@@ -61,10 +61,13 @@
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 500
+    baseCritThreshold: 500
   - type: Appearance
   - type: Bloodstream
-    bloodMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 0
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false

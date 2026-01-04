@@ -83,7 +83,6 @@
       - PosterContrabandBeachStarYamamoto
       - PosterContrabandHighEffectEngineering
       - PosterContrabandNuclearDeviceInformational
-      - PosterLegitEnlist # Corvax-Lore
       - PosterContrabandRevolt
       - PosterContrabandRise
       - PosterContrabandMoth
@@ -93,27 +92,10 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
-      - PosterContrabandInteQRecruitment # BACKMEN-START
-      - PosterContrabandInteQWorkship
-      - PosterContrabandInteQWorkship2
-      - PosterContrabandInteQ
-      - PosterContrabandInteQNoSex
-      - PosterContrabandInteQVulp
-      - PosterContrabandInteQJulie
-      - PosterContrabandLustyXenomorph
-      - PosterContrabandBustyBackdoorXenoBabes6
-      - PosterContrabandInteQJulie # BACKMEN-END
       - PosterContrabandExoAcid
       - PosterContrabandExoRun
       - PosterContrabandExoChomp
-    chance: 0.99 # Сorvax-Next-EDIT
-      # Сorvax-Next-START
-    rarePrototypes:
-      - FlagCoder
-      - FlagSyndicate
-      - FlagInteQ
-    rareChance: 0.01
-      # Сorvax-Next-END
+    chance: 1
 
 - type: entity
   parent: MarkerBase
@@ -156,6 +138,7 @@
       - PosterLegit50thAnniversaryVintageReprint
       - PosterLegitFruitBowl
       - PosterLegitPDAAd
+      - PosterLegitEnlist
       - PosterLegitNanomichiAd
       - PosterLegit12Gauge
       - PosterLegitHighClassMartini
@@ -169,19 +152,6 @@
       - PosterLegitVacation
       - PosterLegitRenault
       - PosterLegitNTTGC
-      - PosterLegitEarthGovMC
-      - PosterLegitEarthGov
-      - PosterLegitEarthGov2
-      - PosterLegitEarthGov3
-      - PosterLegitEarthGov4
-      - PosterLegitEarthGov5
-#      - PosterLegitEarthGov6 //official censor ship
-      - PosterLegitEarthGov7
-      - PosterLegitEarthGov8
-      - PosterLegitEarthGov9
-      - PosterLegitEarthGov10
-      - PosterLegitEarthGov11
-      - PosterLegitEarthGov12
       - PosterLegitSafetyMothDelam
       - PosterLegitSafetyMothEpi
       - PosterLegitSafetyMothPiping
@@ -191,21 +161,5 @@
       - PosterLegitOppenhopper
       - PosterLegitTyrone
       - PosterLegitHelio
-    chance: 0.99 # Сorvax-Next-EDIT
-      # Сorvax-Next-START
-    rarePrototypes:
-      - FlagAgurk
-      - FlagHCA
-      - FlagLizard
-      - FlagMothic
-      - FlagNanoTrasen
-      - FlagShigu
-      - FlagSolfed
-      - FlagSolfedAlt
-      - FlagTizira
-      - FlagGoldRing
-      - FlagNRI
-      - FlagSovietUSSP
-      - FlagVulp
-    rareChance: 0.01
-      # Сorvax-Next-END
+      - PosterLegitBotanyFear
+    chance: 1

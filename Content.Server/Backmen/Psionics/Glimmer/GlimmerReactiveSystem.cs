@@ -15,6 +15,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Construction.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.MassMedia.Components;
 using Content.Shared.MassMedia.Systems;
 using Content.Shared.Power;

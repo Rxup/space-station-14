@@ -12,6 +12,7 @@ using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -120,7 +121,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
             return;
 
-        if (bloodstream.BloodReagent != "Blood" || bloodstream.BloodSolution == null)
+        if (bloodstream.BloodSolutionName != "Blood" || bloodstream.BloodSolution == null)
         {
             _popupSystem.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", args.Target)), args.Target, ent.Owner, Shared.Popups.PopupType.Medium);
             return;

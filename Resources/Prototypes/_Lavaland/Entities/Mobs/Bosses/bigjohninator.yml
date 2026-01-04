@@ -118,8 +118,8 @@
     fixtureID: projectile
   - type: PolymorphOnTrigger
     polymorph: SwoopFly
-  - type: TriggerWhitelist
-    whitelist:
+  - type: WhitelistTriggerCondition
+    userWhitelist:
       tags:
       - BigJohninator
   - type: Fixtures

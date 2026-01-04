@@ -1,39 +1,45 @@
 - type: entity
-  id: CrateArmorySMG
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmorySMG
   name: SMG crate
   description: Contains two SMGs with four mags. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunMP5
-        amount: 2
-      - id: MagazinePistolSubMachineGun9x17
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunMP5  # backmen edit: MP5 вместо WT550
+          amount: 2
+        - id: MagazinePistolSubMachineGun9x17  # backmen edit: магазины под 9x17
+          amount: 4
 
 - type: entity
-  id: CrateArmoryShotgun
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryShotgun
   name: shotgun crate
   description: For when the enemy absolutely needs to be replaced with lead. Contains two Enforcer Combat Shotguns, and some standard shotgun shells. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponShotguntrenchgun4034
-        amount: 2
-      - id: BoxLethalshot
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotguntrenchgun4034  # backmen edit: Trenchgun вместо Enforcer
+          amount: 2
+        - id: BoxLethalshot
+          amount: 4
 
 - type: entity
-  id: CrateTrackingImplants
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateTrackingImplants
   name: tracking implants
   description: Contains a handful of tracking implanters. Good for prisoners you'd like to release but still keep track of.
   components:
-  - type: StorageFill
-    contents:
-      - id: TrackingImplanter
-        amount: 5
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TrackingImplanter
+          amount: 5
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
@@ -41,69 +47,79 @@
   name: training bombs
   description: Contains three low-yield training bombs for security to learn defusal and safe ordnance disposal, EOD suit not included. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: TrainingBomb
-      amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TrainingBomb
+          amount: 3
 
 - type: entity
-  id: CrateArmoryLaser
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryLaser
   name: lasers crate
   description: Contains three standard-issue laser rifles. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponEarthGovLaserCarbine
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponEarthGovLaserCarbine  # backmen edit: EarthGov лазерный карабин вместо обычного
+          amount: 2  # backmen edit: 2 вместо 3
 
 - type: entity
-  id: CrateArmoryPistols
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryPistols
   name: pistols crate
   description: Contains two standard NT pistols with four mags. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponPistolG22
-      amount: 2
-    - id: MagazinePistol9x17
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolG22  # backmen edit: G22 вместо Mk58
+          amount: 2
+        - id: MagazinePistol9x17  # backmen edit: магазины под 9x17
+          amount: 4
 
 - type: entity
-  id: CrateSecurityRiot
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateSecurityRiot
   name: swat crate
   description: Contains two sets of riot armor, helmets, shields, and enforcers loaded with beanbags. Extra ammo is included. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingOuterArmorRiot
-      amount: 2
-    - id: ClothingHeadHelmetRiot
-      amount: 2
-    # start-backmen: rebalance
-    - id: WeaponLauncherM81
-      amount: 2
-    - id: BoxGrenadeTearGas
-      amount: 2
-    - id: BoxGrenadeNonLetal
-      amount: 2
-    # end-backmen: rebalance
-    - id: BoxBeanbag
-      amount: 2
-    - id: RiotShield
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorRiot
+          amount: 2
+        - id: ClothingHeadHelmetRiot
+          amount: 2
+        # backmen edit start: ребаланс riot-ящика — гранатомёты вместо резиновых дробовиков
+        - id: WeaponLauncherM81
+          amount: 2
+        - id: BoxGrenadeTearGas
+          amount: 2
+        - id: BoxGrenadeNonLetal
+          amount: 2
+        # backmen edit end
+        - id: BoxBeanbag
+          amount: 2
+        - id: RiotShield
+          amount: 2
 
 - type: entity
-  id: CrateArmoryRifle
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRifle
   name: rifle crate
   description: Contains two high-powered assault rifles with four mags. Requires Armory access to open.
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleLecter
-      amount: 2
-    - id: MagazineRifle
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleLecter
+          amount: 2
+        - id: MagazineRifle
+          amount: 4

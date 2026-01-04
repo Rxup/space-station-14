@@ -15,6 +15,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Random;

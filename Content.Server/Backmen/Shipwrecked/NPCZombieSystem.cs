@@ -5,6 +5,7 @@ using Content.Server.Humanoid.Systems;
 using Content.Server.RandomMetadata;
 using Content.Server.Zombies;
 using Content.Shared.Damage;
+using Content.Shared.Trigger;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;

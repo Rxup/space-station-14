@@ -13,44 +13,42 @@
         component: SeeingRainbows
         type: Add
         time: 8
-        refresh: false
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BZ
           min: 0.5
-        scaleByQuantity: true
         ignoreResistances: true
         damage:
           types:
             Cellular: 0.005
       - !type:PopupMessage
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BZ
           min: 1
-        - !type:OrganType
-          type: Slime
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
         type: Local
         visualType: Medium
         messages: [ "effect-sleepy" ]
         probability: 0.1
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BZ
           min: 1
-        - !type:OrganType
-          type: Slime
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BZ
           min: 1
-        - !type:OrganType
-          type: Slime
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
         key: ForcedSleep
         component: ForcedSleeping
         time: 3
@@ -71,28 +69,28 @@
       - !type:Oxygenate
         factor: 8
         conditions:
-        - !type:OrganType
-          type: Human
+        - !type:MetabolizerTypeCondition
+          type: [Human]
       - !type:Oxygenate
         factor: 8
         conditions:
-        - !type:OrganType
-          type: Animal
+        - !type:MetabolizerTypeCondition
+          type: [Animal]
       - !type:Oxygenate
         factor: 8
         conditions:
-        - !type:OrganType
-          type: Rat
+        - !type:MetabolizerTypeCondition
+          type: [Rat]
       - !type:Oxygenate
         factor: 8
         conditions:
-        - !type:OrganType
-          type: Plant
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
       - !type:ModifyLungGas
         conditions:
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [Vox]
+          inverted: true
         ratios:
           CarbonDioxide: 1.0
           Pluoxium: -1.0
@@ -119,42 +117,44 @@
   metabolisms:
     Gas:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         conditions:
-          - !type:ReagentThreshold
-            reagent: Nitrium
-            min: 3
-        statusLifetime: 0.25
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 3
+        time: 0.25
         walkSpeedModifier: 1.5
         sprintSpeedModifier: 1.5
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
-            min: 6
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 6
         key: Stun
         time: 1
         type: Remove
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
-            min: 6
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 6
         key: KnockedDown
         time: 5
         type: Remove
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
-            min: 6
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 6
         key: ForcedSleep
         component: ForcedSleeping
         time: 15
         type: Remove
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
-            reagent: Nitrium
-            min: 9
-        scaleByQuantity: true
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 9
         ignoreResistances: true
         damage:
           types:
@@ -174,7 +174,7 @@
       effects:
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Healium
           min: 2
         key: ForcedSleep
@@ -183,10 +183,9 @@
         type: Add
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Healium
           min: 2
-        scaleByQuantity: true
         ignoreResistances: true
         damage:
           groups:
@@ -228,11 +227,10 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Zauker
           min: 0.25
           max: 8
-        scaleByQuantity: true
         ignoreResistances: true
         damage:
           types:
@@ -242,10 +240,9 @@
             Bloodloss: 0.25
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Zauker
           min: 8
-        scaleByQuantity: true
         ignoreResistances: true
         damage:
           types:

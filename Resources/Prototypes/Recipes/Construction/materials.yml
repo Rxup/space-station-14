@@ -1,4 +1,4 @@
-﻿- type: construction
+- type: construction
   id: MetalRod
   graph: MetalRod
   startNode: start

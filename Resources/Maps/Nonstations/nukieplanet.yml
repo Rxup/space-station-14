@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 263.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:53
-  entityCount: 2554
+  time: 07/20/2025 06:14:13
+  entityCount: 2547
 maps:
 - 1295
 grids:
@@ -1597,14 +1597,6 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           temperature: 293.15
           moles:
@@ -1620,25 +1612,9 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -1686,14 +1662,6 @@ entities:
         moles:
         - 21.824879
         - 82.10312
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -6575,41 +6543,6 @@ entities:
     - type: Transform
       pos: 19.5,24.5
       parent: 104
-- proto: BackmenVendingMachineChang
-  entities:
-  - uid: 1208
-    components:
-    - type: Transform
-      pos: -10.5,7.5
-      parent: 104
-- proto: BackmenVendingMachineCigs
-  entities:
-  - uid: 117
-    components:
-    - type: MetaData
-      name: cigarette machine
-    - type: Transform
-      pos: 7.5,0.5
-      parent: 104
-- proto: BackmenVendingMachineCola
-  entities:
-  - uid: 116
-    components:
-    - type: Transform
-      pos: 5.5,0.5
-      parent: 104
-  - uid: 1244
-    components:
-    - type: Transform
-      pos: -9.5,7.5
-      parent: 104
-- proto: BackmenVendingMachineSnack
-  entities:
-  - uid: 2442
-    components:
-    - type: Transform
-      pos: 6.5,0.5
-      parent: 104
 - proto: BalloonSyn
   entities:
   - uid: 1327
@@ -6748,14 +6681,14 @@ entities:
   - uid: 1635
     components:
     - type: Transform
-      pos: 5.4970627,10.597828
+      pos: 5.568222,13.296588
       parent: 104
 - proto: BoxMagazinePistolSubMachineGunPractice
   entities:
   - uid: 1634
     components:
     - type: Transform
-      pos: 5.388983,13.953581
+      pos: 5.4014716,13.713544
       parent: 104
 - proto: BoxPillCanister
   entities:
@@ -10398,13 +10331,6 @@ entities:
     - type: Transform
       pos: 19.246769,6.507033
       parent: 104
-- proto: CombatKnife
-  entities:
-  - uid: 1694
-    components:
-    - type: Transform
-      pos: 5.483225,11.368477
-      parent: 104
 - proto: ComfyChair
   entities:
   - uid: 21
@@ -10497,18 +10423,6 @@ entities:
     - type: Transform
       pos: -0.5303154,-6.2851996
       parent: 104
-- proto: EmpGrenade
-  entities:
-  - uid: 2456
-    components:
-    - type: Transform
-      pos: 14.40774,-17.385033
-      parent: 104
-  - uid: 2457
-    components:
-    - type: Transform
-      pos: 14.62649,-17.385033
-      parent: 104
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 139
@@ -10570,13 +10484,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,0.5
-      parent: 104
-- proto: FlagSyndicate
-  entities:
-  - uid: 819
-    components:
-    - type: Transform
-      pos: 11.5,-9.5
       parent: 104
 - proto: FloorDrain
   entities:
@@ -10858,18 +10765,6 @@ entities:
       parent: 104
     - type: PointLight
       radius: 175.75
-- proto: GrenadeFlashBang
-  entities:
-  - uid: 2309
-    components:
-    - type: Transform
-      pos: 11.399388,-16.363453
-      parent: 104
-  - uid: 2310
-    components:
-    - type: Transform
-      pos: 11.571263,-16.363453
-      parent: 104
 - proto: Grille
   entities:
   - uid: 95
@@ -11220,12 +11115,12 @@ entities:
     - type: Transform
       pos: 3.5,-12.5
       parent: 104
-- proto: MagazinePistolSubMachineGun9x17
+- proto: MagazinePistolSubMachineGunPractice
   entities:
   - uid: 1648
     components:
     - type: Transform
-      pos: 5.7430096,13.989216
+      pos: 5.5473785,13.984566
       parent: 104
     - type: BallisticAmmoProvider
       unspawnedCount: 35
@@ -11250,55 +11145,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-16.5
-      parent: 104
-- proto: MedkitAdvancedFilled
-  entities:
-  - uid: 447
-    components:
-    - type: Transform
-      pos: 7.5183387,-10.279964
-      parent: 104
-- proto: MedkitBruteFilled
-  entities:
-  - uid: 138
-    components:
-    - type: Transform
-      pos: 7.5183387,-10.576839
-      parent: 104
-- proto: MedkitBurnFilled
-  entities:
-  - uid: 1894
-    components:
-    - type: Transform
-      pos: 7.5339637,-10.889339
-      parent: 104
-- proto: MedkitFilled
-  entities:
-  - uid: 770
-    components:
-    - type: Transform
-      pos: 0.48478004,-16.399067
-      parent: 104
-- proto: MedkitOxygenFilled
-  entities:
-  - uid: 1895
-    components:
-    - type: Transform
-      pos: 7.5339637,-11.186214
-      parent: 104
-- proto: MedkitRadiationFilled
-  entities:
-  - uid: 448
-    components:
-    - type: Transform
-      pos: 7.5495887,-11.733089
-      parent: 104
-- proto: MedkitToxinFilled
-  entities:
-  - uid: 1388
-    components:
-    - type: Transform
-      pos: 7.5339637,-11.436214
       parent: 104
 - proto: Mirror
   entities:
@@ -11351,6 +11197,63 @@ entities:
     components:
     - type: Transform
       pos: 12.149857,15.427643
+      parent: 104
+- proto: NukeOpsAmmoSpawner
+  entities:
+  - uid: 770
+    components:
+    - type: Transform
+      pos: 5.5,10.5
+      parent: 104
+- proto: NukeOpsGrenadeSpawner
+  entities:
+  - uid: 228
+    components:
+    - type: Transform
+      pos: 14.5,-17.5
+      parent: 104
+  - uid: 448
+    components:
+    - type: Transform
+      pos: 11.5,-16.5
+      parent: 104
+- proto: NukeOpsLootSpawner
+  entities:
+  - uid: 1703
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
+      parent: 104
+  - uid: 1704
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
+      parent: 104
+- proto: NukeOpsMedkitBruteSpawner
+  entities:
+  - uid: 447
+    components:
+    - type: Transform
+      pos: 7.5,-10.5
+      parent: 104
+- proto: NukeOpsMedkitSpawner
+  entities:
+  - uid: 306
+    components:
+    - type: Transform
+      pos: 7.5,-11.5
+      parent: 104
+- proto: NukeOpsWeaponSpawner
+  entities:
+  - uid: 1388
+    components:
+    - type: Transform
+      pos: 5.5,11.5
+      parent: 104
+  - uid: 1694
+    components:
+    - type: Transform
+      pos: 5.5,12.5
       parent: 104
 - proto: OperatingTable
   entities:
@@ -11539,18 +11442,6 @@ entities:
     - type: Transform
       pos: 8.5,-12.5
       parent: 104
-- proto: PosterContrabandLustyXenomorph
-  entities:
-  - uid: 754
-    components:
-    - type: Transform
-      pos: -3.5,-13.5
-      parent: 104
-  - uid: 2447
-    components:
-    - type: Transform
-      pos: 15.5,-15.5
-      parent: 104
 - proto: PosterContrabandMoth
   entities:
   - uid: 2462
@@ -11578,6 +11469,18 @@ entities:
     components:
     - type: Transform
       pos: 25.5,-12.5
+      parent: 104
+- proto: PosterContrabandRealExomorph
+  entities:
+  - uid: 754
+    components:
+    - type: Transform
+      pos: -3.5,-13.5
+      parent: 104
+  - uid: 2447
+    components:
+    - type: Transform
+      pos: 15.5,-15.5
       parent: 104
 - proto: PosterContrabandRebelsUnite
   entities:
@@ -13059,6 +12962,11 @@ entities:
       parent: 104
 - proto: SprayBottle
   entities:
+  - uid: 138
+    components:
+    - type: Transform
+      pos: 14.5635,-16.40939
+      parent: 104
   - uid: 1699
     components:
     - type: Transform
@@ -13319,6 +13227,13 @@ entities:
     components:
     - type: Transform
       pos: 1.4711013,-3.6405277
+      parent: 104
+- proto: SyndieFlag
+  entities:
+  - uid: 819
+    components:
+    - type: Transform
+      pos: 11.5,-9.5
       parent: 104
 - proto: SyndieHandyFlag
   entities:
@@ -13666,24 +13581,12 @@ entities:
     - type: Transform
       pos: 0.5,10.5
       parent: 104
-- proto: TearGasGrenade
-  entities:
-  - uid: 306
-    components:
-    - type: Transform
-      pos: 14.638793,-16.908663
-      parent: 104
-  - uid: 1703
-    components:
-    - type: Transform
-      pos: 14.341918,-16.877413
-      parent: 104
 - proto: Telecrystal1
   entities:
   - uid: 2474
     components:
     - type: Transform
-      pos: 2.9398513,-3.4842777
+      pos: 3.1330178,-3.4578767
       parent: 104
 - proto: TimerTrigger
   entities:
@@ -13731,7 +13634,7 @@ entities:
   - uid: 2470
     components:
     - type: Transform
-      pos: 2.5657434,-3.260709
+      pos: 2.3930676,-2.59717
       parent: 104
 - proto: ToyFigurineNukie
   entities:
@@ -13797,6 +13700,13 @@ entities:
     - type: Transform
       pos: -0.5,-8.5
       parent: 104
+- proto: VendingMachineChang
+  entities:
+  - uid: 1208
+    components:
+    - type: Transform
+      pos: -10.5,7.5
+      parent: 104
 - proto: VendingMachineChemicalsSyndicate
   entities:
   - uid: 1335
@@ -13804,12 +13714,40 @@ entities:
     - type: Transform
       pos: 4.5,-10.5
       parent: 104
+- proto: VendingMachineCigs
+  entities:
+  - uid: 117
+    components:
+    - type: MetaData
+      name: cigarette machine
+    - type: Transform
+      pos: 7.5,0.5
+      parent: 104
 - proto: VendingMachineClothing
   entities:
   - uid: 1617
     components:
     - type: Transform
       pos: 13.5,0.5
+      parent: 104
+- proto: VendingMachineCola
+  entities:
+  - uid: 116
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 104
+  - uid: 1244
+    components:
+    - type: Transform
+      pos: -9.5,7.5
+      parent: 104
+- proto: VendingMachineSnack
+  entities:
+  - uid: 2442
+    components:
+    - type: Transform
+      pos: 6.5,0.5
       parent: 104
 - proto: VendingMachineSyndieDrobe
   entities:
@@ -15188,35 +15126,12 @@ entities:
     - type: Transform
       pos: 11.5,-4.5
       parent: 104
-- proto: WeaponPistolCobra
-  entities:
-  - uid: 1705
-    components:
-    - type: Transform
-      pos: 5.4793262,12.166912
-      parent: 104
-- proto: WeaponShotgunSawn
-  entities:
-  - uid: 228
-    components:
-    - type: Transform
-      pos: 5.347948,13.528896
-      parent: 104
-    - type: BallisticAmmoProvider
-      unspawnedCount: 2
 - proto: WeaponSprayNozzle
   entities:
   - uid: 152
     components:
     - type: Transform
       pos: 9.67418,-4.571714
-      parent: 104
-- proto: WeaponSubMachineGunMP7
-  entities:
-  - uid: 1704
-    components:
-    - type: Transform
-      pos: 5.497257,12.817707
       parent: 104
 - proto: WelderIndustrial
   entities:

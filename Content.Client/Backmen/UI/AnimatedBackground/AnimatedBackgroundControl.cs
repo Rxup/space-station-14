@@ -48,6 +48,12 @@ public sealed class AnimatedBackgroundControl : TextureRect
         }
     }
 
+    public void SetRSI(string path)
+    {
+        _rsiPath = path;
+        _RSI = null;
+        InitializeStates();
+    }
     public void SetRSI(RSI? rsi)
     {
         _RSI = rsi;

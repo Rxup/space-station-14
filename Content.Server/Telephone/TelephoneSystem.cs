@@ -3,8 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Speech;
-using Content.Server.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Database;
@@ -14,6 +12,7 @@ using Content.Shared.Power;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Telephone;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -23,7 +22,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using System.Linq;
-using Content.Shared.Backmen.Chat;
+
 using Content.Shared.Backmen.Language;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Silicons.Borgs.Components;
@@ -360,7 +359,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         name = FormattedMessage.EscapeText(name);
 
         SpeechVerbPrototype speech;
-        if (ev.SpeechVerb != null && _prototype.TryIndex(ev.SpeechVerb, out var evntProto))
+        if (ev.SpeechVerb != null && _prototype.Resolve(ev.SpeechVerb, out var evntProto))
             speech = evntProto;
         else
             speech = _chat.GetSpeechVerb(messageSource, message);

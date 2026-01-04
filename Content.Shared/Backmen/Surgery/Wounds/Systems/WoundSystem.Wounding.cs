@@ -9,7 +9,9 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Popups;
@@ -52,7 +54,7 @@ public partial class WoundSystem
         SubscribeLocalEvent<WoundComponent, WoundSeverityChangedEvent>(OnWoundSeverityChanged);
         SubscribeLocalEvent<WoundableComponent, WoundableSeverityChangedEvent>(OnWoundableSeverityChanged);
 
-        SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(CheckDodge);
+        //SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(CheckDodge);
         SubscribeLocalEvent<WoundableComponent, WoundHealAttemptOnWoundableEvent>(HealWoundsOnWoundableAttempt);
 
         Subs.CVar(Cfg, CCVars.DodgeDistanceChance, val => _dodgeDistanceChance = val, true);
@@ -136,7 +138,7 @@ public partial class WoundSystem
         var bodyPart = Comp<BodyPartComponent>(woundable);
         if (bodyPart.Body.HasValue)
         {
-            var before = new BeforeDamageChangedEvent(args.Damage, args.Origin, args.CanBeCancelled); // heheheha
+            var before = new BeforeDamageChangedEvent(args.Damage, args.Origin); // heheheha
             RaiseLocalEvent(bodyPart.Body.Value, ref before);
 
             if (before.Cancelled)
@@ -207,7 +209,7 @@ public partial class WoundSystem
             args.ExcludedContainers.AddRange(new List<string> { WoundContainerId, BoneContainerId });
         }
     }
-
+/*
     private void CheckDodge(Entity<WoundableComponent> entity, ref BeforeDamageChangedEvent args)
     {
         var (uid, comp) = entity;
@@ -255,7 +257,7 @@ public partial class WoundSystem
 
         args.Cancelled = true;
     }
-
+*/
     private void HealWoundsOnWoundableAttempt(Entity<WoundableComponent> woundable, ref WoundHealAttemptOnWoundableEvent args)
     {
         if (woundable.Comp.WoundableSeverity == WoundableSeverity.Loss)

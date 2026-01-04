@@ -2,10 +2,13 @@ using Content.Client.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.Traits.Assorted;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -23,6 +26,7 @@ public sealed class DamageOverlayUiController : UIController
 
     [UISystemDependency] private readonly ClientConsciousnessSystem _consciousness = default!;
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+    [UISystemDependency] private readonly StatusEffectsSystem _statusEffects = default!;
     private Overlays.DamageOverlay _overlay = default!;
 
     public override void Initialize()
@@ -104,6 +108,7 @@ public sealed class DamageOverlayUiController : UIController
             switch (mobState.CurrentState)
             {
                 case MobState.Alive:
+                if (!_statusEffects.TryEffectsWithComp<PainNumbnessStatusEffectComponent>(entity, out _))
                 {
                     if (damageable.DamagePerGroup.TryGetValue("Brute", out var bruteDamage))
                     {
@@ -122,8 +127,8 @@ public sealed class DamageOverlayUiController : UIController
 
                     _overlay.CritLevel = 0;
                     _overlay.DeadLevel = 0;
-                    break;
                 }
+                break;
                 case MobState.Critical:
                 {
                     if (!_mobThresholdSystem.TryGetDeadPercentage(entity,

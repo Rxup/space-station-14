@@ -1,25 +1,26 @@
-﻿- type: body
+- type: body
   id: Vox
   name: "vox"
-  root: chest
+  root: torso
   slots:
     head:
       part: HeadVox
       connections:
-      - chest
+      - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-    chest:
-      part: ChestVox
+        eyes: OrganVoxEyes  # backmen edit: воксы имеют свои глаза
+    torso:
+      part: ChestVox # backmen torso -> chest
       connections:
       - groin
       - right arm
       - left arm
+      - head
       organs:
-        heart: OrganVoxHeart
-        lungs: OrganVoxLungs
-    groin: # Backmen edit: chest, groin separation
+        heart: OrganVoxHeart     # backmen edit: вокс-сердце
+        lungs: OrganVoxLungs     # backmen edit: вокс-лёгкие
+    groin: # backmen edit: отделённый groin от torso (как у людей)
       part: GroinVox
       connections:
       - right leg
@@ -27,7 +28,7 @@
       organs:
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
     right arm:
       part: RightArmVox
       connections:

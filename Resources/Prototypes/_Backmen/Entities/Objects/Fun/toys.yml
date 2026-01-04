@@ -171,7 +171,7 @@
   - type: EmitSoundOnActivate
     sound:
       path: /Audio/Voice/Human/womanlaugh.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Human/femalescream_4.ogg
@@ -402,28 +402,6 @@
   - type: Sprite
     sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: black
-
-- type: entity
-  parent: BasePlushie
-  id: PlushieVulp
-  name: vulpkanin plushie
-  description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
-    state: plushie_vulp
-#  - type: EmitSoundOnUse # Ataraxia-REMOVE | Dont have barks - TODO: Get barks
-#    sound:
-#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-#  - type: EmitSoundOnLand
-#    sound:
-#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-#  - type: EmitSoundOnActivate
-#    sound:
-#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-#  - type: MeleeWeapon
-#    soundHit:
-#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
 
 - type: entity
   parent: PlushieVulp

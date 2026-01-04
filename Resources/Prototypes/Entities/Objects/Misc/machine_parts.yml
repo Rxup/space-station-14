@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseStockPart
   name: stock part
   parent: BaseItem
@@ -22,6 +22,9 @@
       size: Tiny
     - type: Stack
       count: 1
+    - type: Tag
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: MicroManipulatorStockPart

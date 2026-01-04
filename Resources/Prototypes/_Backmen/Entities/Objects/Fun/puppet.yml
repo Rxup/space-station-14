@@ -1,29 +1,4 @@
 ## PET ROCK!
-
-- type: entity
-  id: PetRockCarrier
-  parent: HappyHonk
-  name: pet rock carrier
-  description: Your new and only best friend home!
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Storage/Happyhonk/rock_carrier.rsi
-    state: box
-  - type: Item
-    sprite: Backmen/Objects/Storage/Happyhonk/rock_carrier.rsi
-    heldPrefix: box
-  - type: StorageFill
-    contents:
-      - id: PetRock
-        prob: 0.8
-        orGroup: Rock
-      - id: PetRockFred
-        prob: 0.1
-        orGroup: Rock
-      - id: PetRockRoxie
-        prob: 0.1
-        orGroup: Rock
-
 - type: entity
   parent: [BaseItem, MrChips]
   id: BasePetRock

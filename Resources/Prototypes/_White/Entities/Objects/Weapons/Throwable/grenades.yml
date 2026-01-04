@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Grenades/barrier.rsi
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Effects/snap.ogg"
   - type: DeleteOnTrigger

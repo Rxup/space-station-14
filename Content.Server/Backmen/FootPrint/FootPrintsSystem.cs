@@ -109,7 +109,7 @@ public sealed class FootPrintsSystem : EntitySystem
         var (uid, comp) = ent;
         var transform = Transform(ent);
 
-        if (_gravity.IsWeightless(uid, xform: transform))
+        if (_gravity.IsWeightless(uid))
             return;
 
         if (!_mobThresholdQuery.TryComp(uid, out var mobThreshHolds) ||

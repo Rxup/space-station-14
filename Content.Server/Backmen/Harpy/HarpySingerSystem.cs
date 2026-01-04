@@ -19,6 +19,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.Harpy.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Backmen.Harpy
 {

@@ -4,7 +4,7 @@
   description: job-description-Deliveryman
   playTimeTracker: JobDeliveryman
   startingGear: DeliverymanGear
-  icon: "JobIconServiceWorker"
+  icon: JobIconServiceWorker
   supervisors: job-supervisors-service
   canBeAntag: false
   setPreference: true

@@ -154,6 +154,14 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
             return temp;
         }
     }
+
+    // TODO BODY Replace with a simulation of organs
+    /// <summary>
+    ///     Whether or not the owning <see cref="Body"/> will die if all
+    ///     <see cref="BodyComponent"/>s of this type are removed from it.
+    /// </summary>
+    [DataField("vital"), AutoNetworkedField]
+    public bool IsVital;
 }
 
 /// <summary>

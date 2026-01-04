@@ -6,6 +6,7 @@ using Content.Server.Emp;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
@@ -77,7 +78,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
         if (blobCoreComponent.CurrentChem == BlobChemType.ElectromagneticWeb)
         {
-            _empSystem.EmpPulse(_transform.GetMapCoordinates(uid), 3f, 50f, 3f);
+            _empSystem.EmpPulse(_transform.GetMapCoordinates(uid), 3f, 50f, TimeSpan.FromSeconds(3f), component.Core);
         }
     }
 
@@ -182,7 +183,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             healCore.DamageDict.TryAdd(keyValuePair.Key, keyValuePair.Value * modifier);
         }
 
-        _damageableSystem.TryChangeDamage(ent, healCore);
+        _damageableSystem.ChangeDamage(ent.Owner, healCore);
     }
 
     protected override void TryUpgrade(Entity<BlobTileComponent, BlobUpgradeableTileComponent> target, Entity<BlobCoreComponent> core, EntityUid observer)

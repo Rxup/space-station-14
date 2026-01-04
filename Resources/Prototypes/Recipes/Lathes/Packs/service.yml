@@ -5,7 +5,6 @@
   recipes:
   - Bucket
   - Ashtray
-  - TrashBag
   - DrinkMug
   - DrinkMugMetal
   - DrinkGlass
@@ -38,7 +37,7 @@
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
-  - PrinterDocMachineCircuitboard # Corvax-Printer
+  - SmartFridgeCircuitboard
 
 ## Dynamic
 

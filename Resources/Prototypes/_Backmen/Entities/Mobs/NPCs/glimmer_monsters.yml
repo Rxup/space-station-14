@@ -81,7 +81,7 @@
       60: 0.7
       80: 0.5
   - type: Stamina
-    critThreshold: 100
+    baseCritThreshold: 100
   - type: InputMover
   - type: MobMover
   - type: Examiner
@@ -102,7 +102,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: WispLash
     fireCost: 1
   - type: BatterySelfRecharger

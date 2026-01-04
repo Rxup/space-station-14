@@ -6,6 +6,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;

@@ -1,4 +1,4 @@
-﻿- type: entityList
+- type: entityList
   id: cowtools
   entities:
   - Haycutters

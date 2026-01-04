@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakCentcomBlack
   name: special operations officer cloak

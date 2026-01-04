@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingHandsBase
   id: ClothingHandsGlovesAerostatic
   name: aerostatic gloves

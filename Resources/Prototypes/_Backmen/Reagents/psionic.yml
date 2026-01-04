@@ -1,4 +1,4 @@
-﻿- type: reagent
+- type: reagent
   id: PsionicRegenerationEssence
   name: reagent-name-prometheum
   group: Biological
@@ -23,7 +23,7 @@
           factor: -3
         - !type:SatiateHunger
           factor: -3
-        - !type:ModifyBleedAmount
+        - !type:ModifyBleed
           amount: -1
         - !type:ModifyBloodLevel
           amount: 2
@@ -71,11 +71,10 @@
           component: SeeingRainbows
           type: Add
           time: 5
-          refresh: false
         - !type:ChemRerollPsionic
           bonusMultiplier: 4
           conditions:
-            - !type:ReagentThreshold
+            - !type:ReagentCondition
               reagent: LotophagoiOil
               min: 20
         - !type:GenericStatusEffect
@@ -87,7 +86,7 @@
         - !type:ChemAddMoodlet
           moodPrototype: LotoTranscendence
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             reagent: LotophagoiOil
             min: 6
 
@@ -112,6 +111,6 @@
               Toxin: 2
         - !type:ChemRemovePsionic
           conditions:
-            - !type:ReagentThreshold
+            - !type:ReagentCondition
               reagent: SoulbreakerToxin
               min: 5

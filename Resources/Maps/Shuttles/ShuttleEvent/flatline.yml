@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:19
-  entityCount: 238
+  time: 08/18/2025 00:22:49
+  entityCount: 232
 maps: []
 grids:
 - 1
@@ -294,25 +294,9 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           immutable: True
           moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -389,6 +373,8 @@ entities:
     - type: Transform
       pos: 1.5,-0.49999997
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 104
@@ -416,37 +402,17 @@ entities:
       parent: 1
 - proto: Bloodpack
   entities:
-  - uid: 112
-    components:
-    - type: Transform
-      pos: 0.53517246,-1.2409748
-      parent: 1
-  - uid: 113
-    components:
-    - type: Transform
-      pos: 0.56642246,-1.449308
-      parent: 1
   - uid: 114
     components:
     - type: Transform
-      pos: 0.81642246,-1.2409748
-      parent: 1
-  - uid: 115
-    components:
-    - type: Transform
-      pos: 0.8685057,-1.3763914
+      pos: 1.1232822,-1.2575787
       parent: 1
 - proto: Brutepack
   entities:
-  - uid: 235
-    components:
-    - type: Transform
-      pos: 1.8104452,-1.8881177
-      parent: 1
   - uid: 236
     components:
     - type: Transform
-      pos: 1.8104452,-2.0756176
+      pos: 1.3732822,-2.3513286
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -792,12 +758,7 @@ entities:
   - uid: 124
     components:
     - type: Transform
-      pos: 1.3126785,-1.980415
-      parent: 1
-  - uid: 125
-    components:
-    - type: Transform
-      pos: 1.3458732,-1.7341763
+      pos: 1.3524488,-1.965912
       parent: 1
 - proto: ClosetWallEmergencyFilledRandom
   entities:
@@ -825,14 +786,6 @@ entities:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -849,6 +802,8 @@ entities:
           - 212
           - 213
           - 215
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingEyesHudMedical
   entities:
   - uid: 233
@@ -908,7 +863,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitParamedicNT
+- proto: ClothingUniformJumpsuitParamedic
   entities:
   - uid: 213
     components:
@@ -955,6 +910,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: DoubleEmergencyOxygenTankFilled
   entities:
   - uid: 209
@@ -989,6 +946,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FloorDrain
   entities:
   - uid: 198
@@ -1199,20 +1158,10 @@ entities:
       color: '#FF1212FF'
 - proto: Gauze
   entities:
-  - uid: 116
-    components:
-    - type: Transform
-      pos: 1.6271232,-1.2133429
-      parent: 1
-  - uid: 117
-    components:
-    - type: Transform
-      pos: 1.4083732,-1.3175095
-      parent: 1
   - uid: 118
     components:
     - type: Transform
-      pos: 1.76254,-1.4529263
+      pos: 0.8107822,-1.528412
       parent: 1
 - proto: GeneratorBasic15kW
   entities:
@@ -1307,10 +1256,11 @@ entities:
       parent: 1
 - proto: HandheldHealthAnalyzerUnpowered
   entities:
-  - uid: 132
+  - uid: 112
     components:
     - type: Transform
-      pos: 1.7501786,-2.5637481
+      rot: -1.5707963267948966 rad
+      pos: 0.7066155,-1.2992454
       parent: 1
 - proto: IntercomMedical
   entities:
@@ -1320,6 +1270,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.49999997
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LightBulb
   entities:
   - uid: 217
@@ -1413,12 +1365,7 @@ entities:
   - uid: 130
     components:
     - type: Transform
-      pos: 1.4041953,-1.6485344
-      parent: 1
-  - uid: 237
-    components:
-    - type: Transform
-      pos: 1.6750284,-1.7527012
+      pos: 1.2795322,-1.6429952
       parent: 1
 - proto: OxygenTankFilled
   entities:
@@ -1585,11 +1532,11 @@ entities:
       parent: 1
 - proto: Scalpel
   entities:
-  - uid: 199
+  - uid: 115
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.0872557,-1.386808
+      pos: 0.4357822,-1.3825787
       parent: 1
 - proto: ShuttleWindow
   entities:
@@ -1681,6 +1628,8 @@ entities:
         220:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 43
@@ -1707,28 +1656,35 @@ entities:
   - uid: 120
     components:
     - type: Transform
-      pos: 1.41879,-2.1404262
+      pos: 1.5920322,-1.559662
       parent: 1
 - proto: SyringeDermaline
   entities:
   - uid: 121
     components:
     - type: Transform
-      pos: 1.66879,-2.119593
+      pos: 1.5607822,-2.111745
       parent: 1
 - proto: SyringeInaprovaline
   entities:
-  - uid: 123
+  - uid: 116
     components:
     - type: Transform
-      pos: 1.3979566,-2.4112594
+      pos: 1.6441156,-1.7575787
+      parent: 1
+- proto: SyringeSigynate
+  entities:
+  - uid: 117
+    components:
+    - type: Transform
+      pos: 1.6753656,-2.5492454
       parent: 1
 - proto: SyringeTranexamicAcid
   entities:
-  - uid: 122
+  - uid: 113
     components:
     - type: Transform
-      pos: 1.8042066,-2.1925094
+      pos: 1.6336988,-2.3513286
       parent: 1
 - proto: TableReinforced
   entities:
@@ -1791,16 +1747,29 @@ entities:
       parent: 1
 - proto: Tourniquet
   entities:
-  - uid: 133
-    components:
-    - type: Transform
-      pos: 1.9146119,-1.4193677
-      parent: 1
   - uid: 134
     components:
     - type: Transform
-      pos: 1.8625284,-1.221451
+      pos: 1.5086988,-1.2367454
       parent: 1
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 122
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 123
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: VisitorParamedicSpawner
   entities:
   - uid: 214

@@ -108,26 +108,6 @@
   position: 4,9
 
 - type: technology
-  id: FauxAstroTiles
-  name: research-technology-faux-astro-tiles
-  icon:
-    sprite: Objects/Tiles/tile.rsi
-    state: astroice
-  discipline: Service
-  tier: 1
-  cost: 2000
-  recipeUnlocks:
-  - FauxTileAstroGrass
-  - FauxTileMowedAstroGrass
-  - FauxTileJungleAstroGrass
-  - FauxTileAstroIce
-  - FauxTileAstroSnow
-  - FauxTileAstroAsteroidSand
-  technologyPrerequisites:
-  - Entertainment
-  position: 2,9
-
-- type: technology
   id: Cleaning
   name: research-technology-cleaning
   icon:
@@ -180,21 +160,6 @@
   technologyPrerequisites:
   - CleaningAdvanced
   position: 5,7
-
-- type: technology
-  id: PushHorn
-  name: research-technology-clowning-utilities
-  icon:
-    sprite: Objects/Fun/push_horn.rsi
-    state: icon
-  discipline: Service
-  tier: 2
-  cost: 4000
-  recipeUnlocks:
-  - PushHorn
-  technologyPrerequisites:
-  - EntertainmentAdvanced
-  position: 4,10
 
 - type: technology
   id: TranslationDevice

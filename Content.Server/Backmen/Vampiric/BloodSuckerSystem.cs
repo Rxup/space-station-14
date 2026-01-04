@@ -30,6 +30,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Forensics.Components;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Mind;
@@ -280,7 +281,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         if(HasComp<BibleUserComponent>(ent))
             return false;
 
-        return ent.Comp.BloodReagent == Blood && ent.Comp.BloodSolution != null;
+        return ent.Comp.BloodSolutionName == Blood && ent.Comp.BloodSolution != null;
     }
 
     public bool TryRetaliate(Entity<NPCRetaliationComponent> ent, EntityUid target)
@@ -349,7 +350,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         {
             if (TryComp<CuffableComponent>(victim, out var victimCuff) && _cuffableSystem.IsCuffed((victim, victimCuff)))
             {
-                _cuffableSystem.Uncuff(victim, bloodsucker, victimCuff.LastAddedCuffs, victimCuff);
+                _cuffableSystem.TryUncuff(victim, bloodsucker);
             }
             TryRetaliate((victim, npcRetaliationComponent), bloodsucker);
         }
@@ -461,7 +462,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
         _damageableSystem.TryChangeDamage(victim, damage, true, true, origin: bloodsucker);
 
-        if (bloodsuckerComp.InjectWhenSucc && _solutionSystem.TryGetSolution(victim, bloodstream.ChemicalSolutionName, out var chemical))
+        if (bloodsuckerComp.InjectWhenSucc && _solutionSystem.TryGetSolution(victim, bloodstream.BloodSolutionName, out var chemical))
         {
             _solutionSystem.TryAddReagent(chemical.Value, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
         }

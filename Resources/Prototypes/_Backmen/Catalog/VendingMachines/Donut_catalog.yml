@@ -1,4 +1,4 @@
-﻿- type: listing
+- type: listing
   id: DonutInventory1
   productEntity: FoodDonutChocolate
   cost:

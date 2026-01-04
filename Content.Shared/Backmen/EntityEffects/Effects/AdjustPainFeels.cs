@@ -3,14 +3,61 @@ using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
+/// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
 [UsedImplicitly]
-public sealed partial class AdjustPainFeels : EntityEffect
+public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustPainFeels>
+{
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<AdjustPainFeels> args)
+    {
+        var scale = FixedPoint2.New(args.Scale);
+
+        if (!_consciousness.TryGetNerveSystem(entity, out var nerveSys))
+            return;
+
+        foreach (var bodyPart in _body.GetBodyChildren(entity))
+        {
+            if (!_pain.TryGetPainFeelsModifier(bodyPart.Id, nerveSys.Value, args.Effect.ModifierIdentifier, out var modifier))
+            {
+                var add = args.Effect.Amount;
+                if (args.Effect.RandomiseAmount && _random.Prob(0.3f))
+                    add = -add;
+
+                _pain.TryAddPainFeelsModifier(
+                        nerveSys.Value,
+                        args.Effect.ModifierIdentifier,
+                        bodyPart.Id,
+                        add);
+            }
+            else
+            {
+                var add = args.Effect.Amount;
+                if (args.Effect.RandomiseAmount && _random.Prob(0.3f))
+                    add = -add;
+
+                _pain.TryChangePainFeelsModifier(
+                        nerveSys.Value,
+                        args.Effect.ModifierIdentifier,
+                        bodyPart.Id,
+                        add * scale);
+            }
+        }
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class AdjustPainFeels : EntityEffectBase<AdjustPainFeels>
 {
     [DataField(required: true)]
     public FixedPoint2 Amount;
@@ -21,50 +68,5 @@ public sealed partial class AdjustPainFeels : EntityEffect
     [DataField]
     public string ModifierIdentifier = "PainSuppressant";
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        var scale = FixedPoint2.New(1);
-
-        if (args is EntityEffectReagentArgs reagentArgs)
-        {
-            scale = reagentArgs.Quantity * reagentArgs.Scale;
-        }
-
-        if (!args.EntityManager.System<ConsciousnessSystem>().TryGetNerveSystem(args.TargetEntity, out var nerveSys))
-            return;
-
-        var random = IoCManager.Resolve<IRobustRandom>();
-        foreach (var bodyPart in args.EntityManager.System<SharedBodySystem>().GetBodyChildren(args.TargetEntity))
-        {
-            if (!args.EntityManager.System<PainSystem>()
-                    .TryGetPainFeelsModifier(bodyPart.Id, nerveSys.Value, ModifierIdentifier, out var modifier))
-            {
-                var add = Amount;
-                if (RandomiseAmount && random.Prob(0.3f))
-                    add = -add;
-
-                args.EntityManager.System<PainSystem>()
-                    .TryAddPainFeelsModifier(
-                        nerveSys.Value,
-                        ModifierIdentifier,
-                        bodyPart.Id,
-                        add);
-            }
-            else
-            {
-                var add = Amount;
-                if (RandomiseAmount && random.Prob(0.3f))
-                    add = -add;
-
-                args.EntityManager.System<PainSystem>()
-                    .TryChangePainFeelsModifier(
-                        nerveSys.Value,
-                        ModifierIdentifier,
-                        bodyPart.Id,
-                        add * scale);
-            }
-        }
-    }
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
 }

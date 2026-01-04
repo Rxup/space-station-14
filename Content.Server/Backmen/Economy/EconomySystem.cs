@@ -25,6 +25,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Objectives.Components;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;

@@ -1,4 +1,4 @@
-﻿- type: speechSounds
+- type: speechSounds
   id: Chitter
   saySound:
     path: /Audio/Nyanotrasen/Animals/moth_chitter.ogg

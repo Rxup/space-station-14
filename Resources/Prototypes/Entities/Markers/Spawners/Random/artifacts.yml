@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: RandomArtifactSpawner
   name: random artifact spawner
   parent: MarkerBase

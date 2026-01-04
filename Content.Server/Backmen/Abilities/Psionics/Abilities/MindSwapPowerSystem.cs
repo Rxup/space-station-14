@@ -15,6 +15,7 @@ using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Damage.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.NPC;

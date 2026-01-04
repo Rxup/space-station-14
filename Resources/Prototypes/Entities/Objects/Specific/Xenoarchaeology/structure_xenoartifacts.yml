@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: [BaseStructureDynamic, BaseXenoArtifact]
   id: BaseXenoArtifactStructure
   name: artifact

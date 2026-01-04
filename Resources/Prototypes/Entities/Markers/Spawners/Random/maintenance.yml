@@ -6,6 +6,9 @@
     - !type:GroupSelector
       weight: 75
       children:
+      - !type:NestedSelector
+        weight: 5 # Roughly 7% chance
+        tableId: AllToysTable
       # Smoker's specialty
       - !type:AllSelector
         children:
@@ -97,26 +100,22 @@
       # Cloaks
       - !type:GroupSelector
         children:
-        #- id: ClothingNeckCloakTrans
+#        - id: ClothingNeckCloakTrans
         - id: ClothingNeckCloakAdmin
         - id: ClothingNeckCloakMoth
         - id: ClothingNeckCloakVoid
         - id: ClothingNeckCloakGoliathCloak
-        #- id: ClothingNeckCloakAce
-        #- id: ClothingNeckCloakAro
-        #- id: ClothingNeckCloakBi
-        #- id: ClothingNeckCloakIntersex
-        #- id: ClothingNeckCloakLesbian
-        #- id: ClothingNeckCloakGay
-        #- id: ClothingNeckCloakEnby
-        #- id: ClothingNeckCloakPan
-      - id: ToySkeleton
-      - id: Basketball
-      - id: Football
-      - id: BalloonNT
-      - id: BalloonCorgi
+#        - id: ClothingNeckCloakAce
+#        - id: ClothingNeckCloakAro
+#        - id: ClothingNeckCloakAroace
+#        - id: ClothingNeckCloakBi
+#        - id: ClothingNeckCloakIntersex
+#        - id: ClothingNeckCloakLesbian
+#        - id: ClothingNeckCloakGay
+#        - id: ClothingNeckCloakEnby
+#        - id: ClothingNeckCloakPan
+      - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
-      - id: RubberChicken
       # Cult
       - !type:AllSelector
         children:
@@ -140,45 +139,34 @@
       # Pins
       - !type:GroupSelector
         children:
-        #- id: ClothingNeckLGBTPin
-        #- id: ClothingNeckAromanticPin
-        #- id: ClothingNeckAsexualPin
-        #- id: ClothingNeckBisexualPin
-        #- id: ClothingNeckGayPin
-        #- id: ClothingNeckIntersexPin
-        #- id: ClothingNeckLesbianPin
-        #- id: ClothingNeckNonBinaryPin
-        #- id: ClothingNeckPansexualPin
-        #- id: ClothingNeckOmnisexualPin
-        #- id: ClothingNeckTransPin
-        #- id: ClothingNeckAutismPin
-        #- id: ClothingNeckGoldAutismPin
-        # Corvax-Pins-Start
-        - id: ClothingNeckUSSPPin
-        - id: ClothingNeckDonkPin
-        - id: ClothingNeckEarthPin
-        - id: ClothingNeckLogistikaPin
-        - id: ClothingNeckDeForestPin
-        - id: ClothingNeckNakamuraPin
-        - id: ClothingNeckNanoTrasenPin
-        - id: ClothingNeckSyndicakePin
-        - id: ClothingNeckVitezstviPin
-        # Corvax-Pins-End
+        - id: ClothingNeckLGBTPin
+        - id: ClothingNeckAllyPin
+        - id: ClothingNeckAromanticPin
+        - id: ClothingNeckAsexualPin
+        - id: ClothingNeckAroacePin
+        - id: ClothingNeckBisexualPin
+        - id: ClothingNeckGayPin
+        - id: ClothingNeckIntersexPin
+        - id: ClothingNeckLesbianPin
+        - id: ClothingNeckNonBinaryPin
+        - id: ClothingNeckPansexualPin
+        - id: ClothingNeckPluralPin
+        - id: ClothingNeckOmnisexualPin
+        - id: ClothingNeckGenderqueerPin
+        - id: ClothingNeckGenderfluidPin
+        - id: ClothingNeckTransPin
+        - id: ClothingNeckAutismPin
+        - id: ClothingNeckGoldAutismPin
     # Rare Group
     - !type:GroupSelector
       weight: 2
       children:
-      - id: Skub
-      - id: PonderingOrb
-      - id: CluwneHorn
-      - id: ClothingShoesSkates
       - id: DrinkMugDog
       - id: CigarGold
       - id: ClothingUniformJumpsuitFamilyGuy
       - id: WristwatchGold
       - id: RubberStampGreytide
       - id: MysteryLighterBox
-      - id: GoldenPersonalAI
 
 - type: entity
   name: Maint Loot Spawner
@@ -232,7 +220,8 @@
       - id: Plunger
       - id: PowerCellMedium
       - id: PowerCellSmall
-      - id: Soap
+      - !type:NestedSelector
+        tableId: AllSoapsTable
       - id: Wirecutter
       - id: Screwdriver
       - id: Wrench
@@ -278,7 +267,7 @@
       - id: trayScanner
       - id: HandheldGPSBasic
       - id: HandLabeler
-      - id: GlowstickBase
+      - id: GlowstickGreen
       - id: Bucket
       - id: RadioHandheld
       - id: AppraisalTool
@@ -333,6 +322,7 @@
       weight: 95
       children:
       - id: Machete
+      - id: Claymore
       - id: BaseBallBat
       - id: CombatKnife
       - id: Spear
@@ -365,6 +355,8 @@
       - id: SawImprov
       - id: HydroponicsToolMiniHoe
       - id: ClothingHandsKnuckleDusters
+      - !type:NestedSelector
+        tableId: AllToyWeaponsTable
 
 - type: entity
   name: Maint Loot Spawner

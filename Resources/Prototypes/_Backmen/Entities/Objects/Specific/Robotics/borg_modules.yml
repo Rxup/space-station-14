@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   categories: [ HideSpawnMenu ]
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelBorgs
@@ -23,6 +23,6 @@
         - state: generic
         - state: icon-storage
     - type: ItemBorgModule
-      items:
-        - ClothingBackpackSatchelBorgs
-      hands: 2
+      hands:
+      - item: ClothingBackpackSatchelBorgs
+      - item: null

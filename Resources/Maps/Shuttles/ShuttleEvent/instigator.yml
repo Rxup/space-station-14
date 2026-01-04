@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:20
-  entityCount: 533
+  time: 08/18/2025 00:34:06
+  entityCount: 541
 maps: []
 grids:
 - 1
@@ -427,25 +427,9 @@ entities:
           - 0
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         - volume: 2500
           immutable: True
           moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -462,6 +446,28 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+- proto: ActionToggleInternals
+  entities:
+  - uid: 495
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 493
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 493
+- proto: ActionToggleJetpack
+  entities:
+  - uid: 494
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 493
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 493
 - proto: AirCanister
   entities:
   - uid: 441
@@ -601,6 +607,8 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 87
@@ -632,13 +640,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,4.5
-      parent: 1
-- proto: BackmenVendingMachineCoffee
-  entities:
-  - uid: 535
-    components:
-    - type: Transform
-      pos: 6.5,-1.5
       parent: 1
 - proto: Bed
   entities:
@@ -810,12 +811,12 @@ entities:
   - uid: 463
     components:
     - type: Transform
-      pos: -7.332144,10.686393
+      pos: -7.396112,7.4312053
       parent: 1
   - uid: 464
     components:
     - type: Transform
-      pos: -7.311311,7.5718102
+      pos: -7.271112,7.639539
       parent: 1
 - proto: ButtonFrameExit
   entities:
@@ -1788,11 +1789,47 @@ entities:
     - type: Transform
       pos: -7.5,9.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
   - uid: 460
     components:
     - type: Transform
       pos: -7.5,8.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CyberPen
   entities:
   - uid: 328
@@ -1805,7 +1842,7 @@ entities:
   - uid: 496
     components:
     - type: Transform
-      pos: 8.55729,9.557987
+      pos: 8.469106,9.509953
       parent: 1
 - proto: FaxMachineSyndie
   entities:
@@ -1813,18 +1850,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,1.5
-      parent: 1
-- proto: FlagSyndicate
-  entities:
-  - uid: 468
-    components:
-    - type: Transform
-      pos: -2.5,2.5
-      parent: 1
-  - uid: 469
-    components:
-    - type: Transform
-      pos: 3.5,2.5
       parent: 1
 - proto: GasPassiveVent
   entities:
@@ -2760,13 +2785,31 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
+- proto: HandheldHealthAnalyzer
+  entities:
+  - uid: 540
+    components:
+    - type: Transform
+      pos: -7.6773615,10.327039
+      parent: 1
 - proto: JetpackMiniFilled
   entities:
   - uid: 493
     components:
     - type: Transform
-      pos: 8.505206,10.057987
+      pos: 8.489939,10.312036
       parent: 1
+    - type: GasTank
+      toggleActionEntity: 495
+    - type: Jetpack
+      toggleActionEntity: 494
+    - type: ActionsContainer
+    - type: ContainerContainer
+      containers:
+        actions: !type:Container
+          ents:
+          - 494
+          - 495
 - proto: LockerSyndicate
   entities:
   - uid: 471
@@ -2782,14 +2825,6 @@ entities:
         moles:
         - 1.7459903
         - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -2830,6 +2865,34 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: MedkitAdvancedFilled
+  entities:
+  - uid: 538
+    components:
+    - type: Transform
+      pos: -7.6565285,10.806205
+      parent: 1
+- proto: MedkitBruteFilled
+  entities:
+  - uid: 537
+    components:
+    - type: Transform
+      pos: -7.250519,10.341591
+      parent: 1
+- proto: MedkitCombatFilled
+  entities:
+  - uid: 539
+    components:
+    - type: Transform
+      pos: 8.510773,9.89537
+      parent: 1
+- proto: MedkitFilled
+  entities:
+  - uid: 541
+    components:
+    - type: Transform
+      pos: -7.2296853,10.747841
+      parent: 1
 - proto: PhoneInstrumentSyndicate
   entities:
   - uid: 498
@@ -2928,6 +2991,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,3.5
+      parent: 1
+- proto: PowerCellRecharger
+  entities:
+  - uid: 536
+    components:
+    - type: Transform
+      pos: 8.5,10.5
       parent: 1
 - proto: PoweredlightRed
   entities:
@@ -3042,6 +3112,8 @@ entities:
         210:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 330
     components:
     - type: MetaData
@@ -3061,6 +3133,8 @@ entities:
         213:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 198
@@ -3168,6 +3242,22 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 1
+- proto: SyndieFlag
+  entities:
+  - uid: 468
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 469
+    components:
+    - type: Transform
+      pos: 3.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SyndieHandyFlag
   entities:
   - uid: 466
@@ -3340,6 +3430,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,6.5
+      parent: 1
+- proto: VendingMachineCoffee
+  entities:
+  - uid: 535
+    components:
+    - type: Transform
+      pos: 6.5,-1.5
       parent: 1
 - proto: VendingMachineSustenance
   entities:
@@ -4072,11 +4169,11 @@ entities:
   - uid: 461
     components:
     - type: Transform
-      pos: -7.4571443,7.4884768
+      pos: -7.5419455,7.639539
       parent: 1
   - uid: 462
     components:
     - type: Transform
-      pos: -7.4154773,10.488477
+      pos: -7.6356955,7.483289
       parent: 1
 ...

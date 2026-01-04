@@ -1,4 +1,4 @@
-﻿- type: nameIdentifierGroup
+- type: nameIdentifierGroup
   id: Drone
   format: name-identifier-format-drone
   fullName: true

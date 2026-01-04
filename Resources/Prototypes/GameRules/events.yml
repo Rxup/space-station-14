@@ -1,99 +1,70 @@
-# backmen change: Event tables are more split up
-
-# Strange or weird things that don't necessarily destroy the station
 - type: entityTable
-  id: AnomalousEventsTable
+  id: BasicCalmEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: AnomalySpawn
     - id: BluespaceArtifact
     - id: BluespaceLocker
+    - id: BreakerFlip
     - id: BureaucraticError
     - id: ClericalError
-    - id: MassHallucinations
-    - id: MimicVendorRule
-    - id: RandomSentience
-    - id: IonStorm # its calm like 90% of the time smh
-    - !type:NestedSelector # backmen change
-      tableId: AnomalousEventsTableBackmen
-
-# Events that can cause inner station destruction
-- type: entityTable
-  id: StationDestructiveEvents
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - id: BreakerFlip
+    - id: CockroachMigration
     - id: GasLeak
     - id: GreytideVirus
+    - id: IonStorm # its calm like 90% of the time smh
     - id: KudzuGrowth
-    - id: PowerGridCheck
-    - id: SolarFlare
-    - id: VentClog
-    - !type:NestedSelector # backmen change
-      tableId: StationDestructiveEventsBackmen
-
-# Dangerous vent events, also includes some migration ones.
-- type: entityTable
-  id: BasicVentSpawnEvents
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - id: CockroachMigration
+    - id: MassHallucinations
+    - id: MimicVendorRule
     - id: MouseMigration
+    - id: PowerGridCheck
+    - id: RandomSentience
     - id: SlimesSpawn
+    - id: SolarFlare
     - id: SnakeSpawn
     - id: SpiderClownSpawn
     - id: SpiderSpawn
-    - !type:NestedSelector # backmen change
-      tableId: BasicVentSpawnEventsBackmen
+    - id: VentClog
 
-# Basic antags that can't kill the station on their own.
 - type: entityTable
   id: BasicAntagEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: ClosetSkeleton
     - id: KingRatMigration
-    - id: NinjaSpawn
-    - id: ParadoxCloneSpawn
     - id: RevenantSpawn
-    - id: SleeperAgents
-    - id: DerelictCyborgSpawn
-    - !type:NestedSelector # backmen change
-      tableId: BasicAntagEventsTableBackmen
+    - !type:NestedSelector
+      tableId: DerelictBorgEventTable
 
-# Station-wide threats that CAN kill an entire
 - type: entityTable
-  id: SpicyAntagEventsTable
+  id: ModerateAntagEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: DragonSpawn
+    - id: NinjaSpawn
+    - id: ParadoxCloneSpawn
+    - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - !type:NestedSelector # backmen change
-      tableId: SpicyAntagEventsTableBackmen
+    - !type:NestedSelector
+      tableId: DerelictBorgEventTable
 
-# All basic events, but without antags.
 - type: entityTable
-  id: BasicCalmEventsTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+  id: DerelictBorgEventTable #For Derelict Borg spawns
+  table: !type:GroupSelector
     children:
-    - !type:NestedSelector
-      tableId: AnomalousEventsTable
-    - !type:NestedSelector
-      tableId: StationDestructiveEvents
-    - !type:NestedSelector
-      tableId: BasicVentSpawnEvents
-
-# All antag events.
-- type: entityTable
-  id: AllAntagsEventsTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - !type:NestedSelector
-      tableId: BasicAntagEventsTable
-    - !type:NestedSelector
-      tableId: SpicyAntagEventsTable
+    - !type:GroupSelector # Standard NT Borgs
+      weight: 85
+      children:
+        - id: DerelictEngineerCyborgSpawn
+        - id: DerelictGenericCyborgSpawn
+        - id: DerelictJanitorCyborgSpawn
+        - id: DerelictMedicalCyborgSpawn
+        - id: DerelictMiningCyborgSpawn
+    - !type:GroupSelector # Other Borgs
+      weight: 15
+      children:
+        - id: DerelictSyndicateAssaultCyborgSpawn
 
 - type: entity
   id: BaseStationEvent
@@ -132,9 +103,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Corvax/Announcements/flux.ogg # Corvax-Announcements
-      params:
-        volume: -4
+      path: /Audio/Announcements/announce.ogg
     weight: 8
     duration: 35
   - type: AnomalySpawnRule
@@ -150,9 +119,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Corvax/Announcements/blusp_anomalies.ogg # Corvax-Announcements
-      params:
-        volume: -4
+      path: /Audio/Announcements/announce.ogg
     weight: 8
     duration: 35
   - type: BluespaceArtifactRule
@@ -190,6 +157,10 @@
   - type: BureaucraticErrorRule
     ignoredJobs:
     - StationAi
+    - ResearchAssistant
+    - MedicalIntern
+    - SecurityCadet
+    - TechnicalAssistant
 
 - type: entity
   id: ClericalError
@@ -241,6 +212,8 @@
       pickPlayer: false
       mindRoles:
       - MindRoleDragon
+  - type: DynamicRuleCost
+    cost: 75
 
 - type: entity
   parent: BaseGameRule
@@ -291,6 +264,8 @@
         nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
+  - type: DynamicRuleCost
+    cost: 75
 
 - type: entity
   parent: BaseGameRule
@@ -327,6 +302,8 @@
         sound: /Audio/Misc/paradox_clone_greeting.ogg
       mindRoles:
       - MindRoleParadoxClone
+  - type: DynamicRuleCost
+    cost: 50
 
 - type: entity
   parent: BaseGameRule
@@ -396,15 +373,9 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/gasleak_start.ogg # Corvax-Announcements
-      params:
-        volume: -4
+      path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
-    endAudio:
-      path: /Audio/Announcements/gasleak_end.ogg # Corvax-Announcements
-      params:
-        volume: -4
   - type: GasLeakRule
 
 - type: entity
@@ -442,10 +413,8 @@
     weight: 8
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
-    startAudio: # Corvax-Announcements
-      path: /Audio/Corvax/Announcements/comms_blackout.ogg
-      params:
-        volume: -4
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -470,10 +439,8 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
-    #startAudio:
-    #  path: /Audio/Announcements/ventclog.ogg # Corvax-Announcements
-    #  params:
-    #    volume: -4
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -486,8 +453,8 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
-    #startAudio:
-    #  path: /Audio/Announcements/attention.ogg
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -565,6 +532,7 @@
     minimumPlayers: 40
     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
     duration: 1
+    occursDuringRoundEnd: false
   - type: ZombieRule
   - type: AntagSelection
     definitions:
@@ -586,13 +554,10 @@
       - type: ZombifyOnDeath
       - type: IncurableZombie
       - type: InitialInfected
-      # Corvax-MRP
-      - type: NpcFactionMember
-        addFriendlyFactions:
-        - Zombie
-      # Corvax
       mindRoles:
       - MindRoleInitialInfected
+  - type: DynamicRuleCost
+    cost: 200
 
 - type: entity
   parent: BaseNukeopsRule
@@ -602,7 +567,7 @@
     earliestStart: 35
     weight: 5.5
     minimumPlayers: 20
-    duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
+    duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end screen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
     gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
@@ -627,15 +592,10 @@
       - type: NpcFactionMember
         factions:
         - Syndicate
-      - type: LanguageKnowledge #backmen: languages
-        speaks:
-        - TauCetiBasic
-        - Codespeak
-        understands:
-        - TauCetiBasic
-        - Codespeak
       mindRoles:
-      - MindRoleNukeops
+      - MindRoleLoneops
+  - type: DynamicRuleCost
+    cost: 75
 
 - type: entity
   parent: BaseTraitorRule
@@ -644,7 +604,7 @@
   - type: StationEvent
     earliestStart: 30
     weight: 8
-    minimumPlayers: 20
+    minimumPlayers: 15
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:
@@ -738,10 +698,10 @@
 
 - type: entity
   parent: BaseGameRule
-  id: DerelictCyborgSpawn
+  id: DerelictEngineerCyborgSpawn
   components:
   - type: StationEvent
-    weight: 5
+    weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
     minimumPlayers: 4
@@ -749,10 +709,115 @@
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
-    prototype: PlayerBorgDerelict
+    prototype: PlayerEngineeringBorgDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictEngineeringCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictGenericCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 2.5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgDerelictGhostRole
   - type: AntagSelection
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictJanitorCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 2.5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerJanitorBorgDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictJanitorCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictMedicalCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 2.5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerMedicalBorgDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictMedicalCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictMiningCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 2.5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerMiningBorgDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictMiningCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictSyndicateAssaultCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 2.5
+    earliestStart: 25
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgSyndicateDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictSyndicateAssaultCyborg
       min: 1
       max: 1
       pickPlayer: false

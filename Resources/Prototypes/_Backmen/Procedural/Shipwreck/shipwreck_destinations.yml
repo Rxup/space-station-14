@@ -1,4 +1,4 @@
-﻿- type: shipwreckDestination
+- type: shipwreckDestination
   id: FrozenWastes
   biome: Snow
   components:

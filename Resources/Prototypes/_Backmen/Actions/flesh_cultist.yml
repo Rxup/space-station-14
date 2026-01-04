@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseActionFleshCult
   parent: BaseAction
   abstract: true

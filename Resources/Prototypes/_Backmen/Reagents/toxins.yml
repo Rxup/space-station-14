@@ -14,7 +14,7 @@
       effects:
       - !type:ChemBloodSucker
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BloodSuckerToxin
           min: 10
 
@@ -37,7 +37,7 @@
 # start-backmen: Disease
       - !type:ChemCauseDisease
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: SlermQueenPlus
           min: 1
         causeChance: 0.3
@@ -50,7 +50,7 @@
 # start-backmen: Disease
       - !type:ChemCauseDisease
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: SlermQueenPlus
           min: 5
         causeChance: 0.3
@@ -60,11 +60,10 @@
         component: SeeingRainbows
         type: Add
         time: 5
-        refresh: false
       - !type:ChemAddMoodlet
         moodPrototype: SpaceDrugsBenefit
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Slerm
           min: 6
 # end-backmen: Disease
@@ -85,11 +84,10 @@
         component: SeeingRainbows
         type: Add
         time: 5
-        refresh: false
       - !type:ChemAddMoodlet
         moodPrototype: SpaceDrugsBenefit
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Slerm
           min: 6
 # end-backmen: Disease

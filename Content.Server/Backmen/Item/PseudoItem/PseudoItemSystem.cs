@@ -17,6 +17,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
 using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;

@@ -11,7 +11,7 @@
   components:
   - type: Sprite
     layers:
-    - map: [ "enum.HumanoidVisualLayers.Groin" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ] # backmen
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
@@ -22,12 +22,12 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "socks" ] # Backmen
+    - map: [ "underpants" ] # Backmen
+    - map: [ "undershirt" ] # Backmen
     # - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["socks"] #backmen:underclothing
-    - map: ["underpants"] #backmen:underclothing
-    - map: ["undershirt"] #backmen:underclothing
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
@@ -58,21 +58,21 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  #- type: DamageVisuals
-  #  thresholds: [ 10, 20, 30, 50, 70, 100 ]
-  #  targetLayers:
-  #  - "enum.HumanoidVisualLayers.Chest"
-  #  - "enum.HumanoidVisualLayers.Head"
-  #  - "enum.HumanoidVisualLayers.LArm"
-  #  - "enum.HumanoidVisualLayers.LLeg"
-  #  - "enum.HumanoidVisualLayers.RArm"
-  #  - "enum.HumanoidVisualLayers.RLeg"
-  #  damageOverlayGroups:
-  #    Brute:
-  #      sprite: Mobs/Effects/brute_damage.rsi
-  #      color: "#FF0000"
-  #    Burn:
-  #      sprite: Mobs/Effects/burn_damage.rsi
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
@@ -124,7 +124,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   - type: StatusEffects
     allowed:
     - Stutter
@@ -326,7 +326,7 @@
     # TODO BODY Turn these into individual body parts?
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Groin" ]
+    - map: [ "enum.HumanoidVisualLayers.Groin" ] # backmen
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]

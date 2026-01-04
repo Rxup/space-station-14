@@ -1,4 +1,4 @@
-﻿- type: weightedRandom
+- type: weightedRandom
   id: PsionicArtifactPool
   weights:
     ClothingHandsDispelGloves: 1

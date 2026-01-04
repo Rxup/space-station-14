@@ -1,4 +1,4 @@
-﻿# 4 blocks of 27x27 arranged in a square.
+# 4 blocks of 27x27 arranged in a square.
 #
 # This makes use of the size-tagged rooms mentioned in dungeon_room_packs.yml
 - type: dungeonPreset

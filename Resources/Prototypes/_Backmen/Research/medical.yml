@@ -33,22 +33,6 @@
   position: 4,-5
 
 - type: technology
-  id: LauncherSyringe
-  name: research-technology-launcher-syringe
-  icon:
-    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
-    state: syringe_gun
-  discipline: Medical
-  tier: 3
-  cost: 22000
-  recipeUnlocks:
-  - LauncherSyringe
-  - MiniSyringe
-  technologyPrerequisites:
-  - Medicine
-  position: 4,-7
-
-- type: technology
   id: Surgery
   name: research-technology-surgery
   icon:
@@ -161,22 +145,6 @@
   technologyPrerequisites:
   - ChemistryMachines
   position: 2,-7
-
-- type: technology
-  id: BiochemicalStasis
-  name: research-technology-biochemical-stasis
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
-    state: beakernoreact
-  discipline: Medical
-  tier: 1
-  cost: 7200
-  recipeUnlocks:
-  - CryostasisBeaker
-  - SyringeCryostasis
-  technologyPrerequisites:
-  - Medicine
-  position: 5,-5
 
 - type: technology
   id: BodyBags

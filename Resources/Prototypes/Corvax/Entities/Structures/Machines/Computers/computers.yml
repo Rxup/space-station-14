@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ComputerComms
   id: CentcomComputerComms
   name: centcom communications computer

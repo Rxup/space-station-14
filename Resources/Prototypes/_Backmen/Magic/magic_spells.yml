@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: HealingSpell
   parent: BaseAction
   name: action-name-spell-healing

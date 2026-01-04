@@ -240,25 +240,6 @@
     - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
-  id: Changeling
-  alias:
-  - ling
-  - lings
-  - changeling
-  name: changeling-gamemode-title
-  description: changeling-gamemode-description
-  showInVote: false
-  rules:
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
-  - Changeling
-  - SubGamemodesRule
-  - StandardStationEventScheduler # backmen: gamerules rework
-  - BasicRoundstartVariation
-  - MeteorSwarmScheduler
-  - LavalandStormScheduler # Lavaland Change
-
-- type: gamePreset
   id: Traitorling
   alias:
   - lingtraitor

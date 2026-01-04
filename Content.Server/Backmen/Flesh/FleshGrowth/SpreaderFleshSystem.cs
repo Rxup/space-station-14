@@ -8,8 +8,9 @@ using Robust.Shared.Random;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
-using Content.Server.Destructible.Thresholds.Triggers;
+using Content.Shared.Destructible;
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared.Destructible.Thresholds.Triggers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
@@ -175,12 +176,12 @@ public sealed class SpreaderFleshSystem : EntitySystem
                     {
                         Trigger = new DamageTrigger { Damage = 5 }
                     };
-                    damageThreshold.AddBehavior(new SpawnEntitiesBehavior
+                    damageThreshold.Behaviors.Add(new SpawnEntitiesBehavior
                     {
                         Spawn = new Dictionary<EntProtoId, MinMax> { { entityStrucrureId, new MinMax{Min = 1, Max = 1} } },
                         Offset = 0f
                     });
-                    damageThreshold.AddBehavior(new DoActsBehavior
+                    damageThreshold.Behaviors.Add(new DoActsBehavior
                     {
                         Acts = ThresholdActs.Destruction
                     });
@@ -190,7 +191,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
                 foreach (var entityUid in entityUids)
                 {
                     if (_tagSystem.HasAnyTag(entityUid, "Wall", "Window"))
-                        EntityManager.DeleteEntity(entityUid);
+                        QueueDel(entityUid);
                 }
             }
         }

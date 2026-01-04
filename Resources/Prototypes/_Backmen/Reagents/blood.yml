@@ -1,0 +1,20 @@
+﻿- type: reagent
+  parent: Blood
+  id: SyntheticBlood
+  name: reagent-name-syntheticblood
+  group: Biological
+  desc: reagent-desc-syntheticblood
+  flavor: metallic
+  color: "#800000"
+  physicalDesc: reagent-physical-desc-ferrous
+  #  slippery: false
+
+- type: reagent
+  id: InactiveBlood
+  name: reagent-name-inactiveblood
+  group: Biological
+  desc: reagent-desc-inactiveblood
+  flavor: metallic
+  color: "#800000"
+  physicalDesc: reagent-physical-desc-ferrous
+  #  slippery: false

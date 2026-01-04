@@ -1,4 +1,4 @@
-﻿- type: moodEffect
+- type: moodEffect
   id: BeingHugged
   moodChange: 3
   timeout: 90

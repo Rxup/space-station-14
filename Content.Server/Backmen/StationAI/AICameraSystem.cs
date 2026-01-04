@@ -8,6 +8,7 @@ using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;

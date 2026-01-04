@@ -1,4 +1,4 @@
-﻿- type: listing
+- type: listing
   id: BodaInventory
   productEntity: DrinkSodaWaterCan
   cost:

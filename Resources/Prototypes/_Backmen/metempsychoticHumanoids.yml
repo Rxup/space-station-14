@@ -1,4 +1,4 @@
-﻿- type: weightedRandom
+- type: weightedRandom
   id: MetempsychoticHumanoidPool # Species prototypes
   weights:
     Human: 1

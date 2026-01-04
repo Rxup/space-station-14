@@ -1,4 +1,4 @@
-﻿- type: weightedRandom
+- type: weightedRandom
   id: RandomPsionicPowerPool
   weights:
     MetapsionicPower: 1

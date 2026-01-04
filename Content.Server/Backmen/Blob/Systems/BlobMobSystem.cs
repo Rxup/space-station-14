@@ -1,7 +1,6 @@
 using Content.Server.Backmen.Language;
 using Content.Server.Chat.Systems;
 using Content.Server.Radio;
-using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
@@ -9,6 +8,8 @@ using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -108,7 +109,7 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
 
     private void OnPulsed(EntityUid uid, BlobMobComponent component, BlobMobGetPulseEvent args)
     {
-        _damageableSystem.TryChangeDamage(uid, component.HealthOfPulse, targetPart: TargetBodyPart.All);
+        _damageableSystem.ChangeDamage(uid, component.HealthOfPulse, targetPart: TargetBodyPart.All);
     }
 
 

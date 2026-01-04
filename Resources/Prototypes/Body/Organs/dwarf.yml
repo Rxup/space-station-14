@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganDwarfHeart
   parent: OrganHumanHeart
   name: dwarf heart

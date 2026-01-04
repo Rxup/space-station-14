@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -283,7 +284,7 @@ namespace Content.Client.HealthAnalyzer.UI
             AlertsContainer.Visible = showAlerts;
 
             if (showAlerts)
-                AlertsContainer.DisposeAllChildren();
+                AlertsContainer.RemoveAllChildren();
 
             if (msg.Unrevivable == true) // Right now this does nothing, but we have it just for parity :)
             {
