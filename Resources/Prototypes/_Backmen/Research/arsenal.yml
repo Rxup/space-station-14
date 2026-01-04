@@ -87,8 +87,6 @@
   recipeUnlocks:
   - WeaponLaserSvalinn
   - WeaponLaserPistol
-  technologyPrerequisites:
-  - CombatLaser
   position: -2,-4
 
 - type: technology
