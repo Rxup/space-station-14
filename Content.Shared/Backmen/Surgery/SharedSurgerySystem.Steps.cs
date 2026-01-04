@@ -26,6 +26,7 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Interaction;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Surgery;
@@ -37,6 +38,7 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnToolStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteCheckEvent>(OnToolCheck);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnToolCanPerform);
+        SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnAccessable);
 
         //SubSurgery<SurgeryCutLarvaRootsStepComponent>(OnCutLarvaRootsStep, OnCutLarvaRootsCheck);
 
@@ -61,6 +63,18 @@ public abstract partial class SharedSurgerySystem
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
         });
+    }
+
+    private void OnAccessable(Entity<SurgeryTargetComponent> ent, ref AccessibleOverrideEvent args)
+    {
+        var actorTransform = _transform.GetMapCoordinates(args.User);
+        var targetTransform = _transform.GetMapCoordinates(args.Target);
+
+        if (actorTransform.InRange(targetTransform, 1.5f))
+        {
+            args.Accessible = true;
+            args.Handled = true;
+        }
     }
 
     private void SubSurgery<TComp>(EntityEventRefHandler<TComp, SurgeryStepEvent> onStep,
