@@ -29,8 +29,6 @@
   - MedkitRadiation
   - MedkitCombat
   - WhiteCane
-  - OffsetCane
-  - OffsetCaneWood
   - BodyBag
   position: 4,-5
 
@@ -64,7 +62,7 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
     state: e-scalpel-on
   discipline: Medical
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - EnergyScalpel
@@ -81,7 +79,7 @@
     sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
     state: eyes
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 15000
   recipeUnlocks:
   - JawsOfLifeLeftArm
@@ -102,7 +100,7 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi
     state: omnimed
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 15000
   recipeUnlocks:
   - OmnimedTool
@@ -129,24 +127,9 @@
   - PillCanister
   - ChemistryEmptyBottle01
   - Syringe
-  position: 2,-5
-
-- type: technology
-  id: ChemistryBluespace
-  name: research-technology-chemistry-bluespace
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
-    state: beakerbluespace
-  discipline: Medical
-  tier: 3
-  cost: 12000
-  recipeUnlocks:
-  - BluespaceBeaker
-  - SyringeBluespace
-  - BluespacePillCanister # backmen
   technologyPrerequisites:
-  - ChemistryMachines
-  position: 2,-7
+  - Medicine
+  position: 2,-5
 
 - type: technology
   id: BodyBags
@@ -172,7 +155,7 @@
     sprite: _CorvaxNext/Objects/Specific/Medical/BodyBags/bluespace.rsi
     state: bluespacebag_folded
   discipline: Medical
-  tier: 1
+  tier: 3
   cost: 9500
   recipeUnlocks:
   - BluespaceBodyBag

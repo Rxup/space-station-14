@@ -11,7 +11,7 @@
    - LightTube
    - LightBulb
    - WarmLightBulb
-  position: 2,6
+  position: 2,7
 
 - type: technology
   id: LightningAdvanced
@@ -30,7 +30,7 @@
    - DimLightBulb
   technologyPrerequisites:
    - Lightning
-  position: 2,7
+  position: 1,7
 
 - type: technology
   id: Bootlegging
@@ -48,7 +48,6 @@
   - DrinkShotGlass
   - DrinkGlassCoupeShaped
   - CustomDrinkJug
-  - WireBrush
   technologyPrerequisites:
   - ServiceMachines
   position: 2,8
@@ -130,38 +129,6 @@
   position: 4,6
 
 - type: technology
-  id: CleaningAdvanced
-  name: research-technology-cleaning-advanced
-  icon:
-    sprite: Objects/Specific/Janitorial/advmop.rsi
-    state: advmop
-  discipline: Service
-  tier: 1
-  cost: 8000
-  recipeUnlocks:
-   - AdvMopItem
-  technologyPrerequisites:
-  - Cleaning
-  position: 4,7
-
-- type: technology
-  id: SprayAdvanced
-  name: research-technology-spray-advanced
-  icon:
-    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
-    state: icon
-  discipline: Service
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - WeaponSprayNozzle
-  - ClothingBackpackWaterTank
-  - MegaSprayBottle
-  technologyPrerequisites:
-  - CleaningAdvanced
-  position: 5,7
-
-- type: technology
   id: TranslationDevice
   name: research-technology-translation-device
   icon:
@@ -182,8 +149,6 @@
   - DwarvenTranslator
   - ShadokinTranslator
   - ValyrianStandardTranslator
-  - CarshnilTranslator
-  - EvePishtuTranslator
   position: 7,6
 
 - type: technology
@@ -208,7 +173,7 @@
     sprite: Backmen/Objects/Devices/translator.rsi
     state: icon
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 12000
   recipeUnlocks:
   - XenoTranslator
@@ -224,7 +189,7 @@
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
   discipline: Service
-  tier: 1
+  tier: 2
   cost: 15000
   recipeUnlocks:
   - AdvancedGalaticCommonTranslatorImplanter
@@ -239,8 +204,6 @@
   - DwarvenStandardTranslatorImplanter
   - ShadokinStandardTranslatorImplanter
   - ValyrianStandardTranslatorImplanter
-  - CarshnilTranslatorImplanter
-  - EvePishtuTranslatorImplanter
   technologyPrerequisites:
   - TranslationImplanter
   - TranslationDeviceAdvanced

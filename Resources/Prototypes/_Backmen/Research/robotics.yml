@@ -37,29 +37,6 @@
   position: 6,1
 
 - type: technology
-  id: CritterMech
-  name: research-technology-critter-mech
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: hamtr
-  discipline: Robotics
-  tier: 1
-  cost: 7500
-  recipeUnlocks:
-  - HamtrHarness
-  - HamtrLArm
-  - HamtrRArm
-  - HamtrLLeg
-  - HamtrRLeg
-  - HamtrCentralElectronics
-  - HamtrPeripheralsElectronics
-  - MechEquipmentGrabberSmall
-  - VimHarness
-  technologyPrerequisites:
-  - RoboticsMachines
-  position: 8,-1
-
-- type: technology
   id: RipleyAPLUMech
   name: research-technology-ripley-aplu-mech
   icon:
@@ -92,8 +69,6 @@
   cost: 500
   recipeUnlocks:
    - BorgModuleCable
-   - BorgModuleInflatable
-   - BorgModuleArtistry
    - BorgModuleFireExtinguisher
 #   - BorgModuleRadiationDetection
    - BorgModuleTool
@@ -102,30 +77,13 @@
   position: 6,-2
 
 - type: technology
-  id: MechanizedTreatmentModules
-  name: research-technology-mechanized-treatment-modules
-  icon:
-   sprite: Interface/Actions/actions_borg.rsi
-   state: defib-module
-  discipline: Robotics
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - BorgModuleSurgery
-#  - BorgModuleAdvancedTreatment
-#  - BorgModuleDefibrillator
-  technologyPrerequisites:
-  - CyborgModules
-  position: 7,-2
-
-- type: technology
   id: AdvancedSurgeryModules
   name: research-technology-advanced-surgery-modules
   icon:
    sprite: Interface/Actions/actions_borg.rsi
    state: adv-surgery-module
   discipline: Robotics
-  tier: 1
+  tier: 2
   cost: 1500
   recipeUnlocks:
   - BorgModuleAdvancedSurgery
@@ -156,14 +114,14 @@
     sprite: Interface/Actions/actions_borg.rsi
     state: adv-tools-module
   discipline: Robotics
-  tier: 1
+  tier: 2
   cost: 3500
   recipeUnlocks:
   - BorgModuleAdvancedTool
   technologyPrerequisites:
   - CyborgModules
 #  - EngineeringAdvancedTools
-  position: 9,-3
+  position: 8,-3
 
 - type: technology
   id: HydroponicsModules
@@ -215,6 +173,22 @@
 #  position: 8,-4
 
 - type: technology
+  id: MechanizedTreatment
+  name: research-technology-mechanized-treatment
+  icon:
+    sprite: Mobs/Silicon/Chassis/medical.rsi
+    state: borg
+  discipline: Robotics
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedChemical
+  technologyPrerequisites:
+  - CyborgModules
+  - BiochemicalStasis
+  position: 6,-5
+
+- type: technology
   id: MassExcavation
   name: research-technology-excavation-borg
   icon:
@@ -226,6 +200,5 @@
   recipeUnlocks:
   - BorgModuleAdvancedMining
   technologyPrerequisites:
-  - CyborgModules
   - SalvageEquipmentAdvanced
   position: 10,-4

@@ -37,15 +37,14 @@
     sprite: Structures/Machines/protolathe_hypercon.rsi
     state: building
   discipline: Engineering
-  tier: 1
-  cost: 12000
+  tier: 3
+  cost: 18000
   recipeUnlocks:
    - AutolatheHyperConvectionMachineCircuitboard
    - ProtolatheHyperConvectionMachineCircuitboard
    - CircuitImprinterHyperConvectionMachineCircuitboard
    - SheetifierMachineCircuitboard
   technologyPrerequisites:
-  - EngineeringMachines
   - PowerGenerationAdvancedMachines
   position: -4,4
 
@@ -56,7 +55,7 @@
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen0
   discipline: Engineering
-  tier: 1
+  tier: 2
   cost: 7500
   recipeUnlocks:
   - PortableGeneratorPacmanMachineCircuitboard
@@ -76,7 +75,7 @@
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen0
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 8500
   recipeUnlocks:
   - TurboItemRechargerCircuitboard
@@ -93,7 +92,7 @@
     sprite: Structures/Machines/flatpacker.rsi
     state: base
   discipline: Engineering
-  tier: 1
+  tier: 3
   cost: 8500
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
@@ -111,9 +110,9 @@
   tier: 1
   cost: 5500
   recipeUnlocks:
-   - ThermomachineFreezerMachineCircuitBoard
-   - GasRecyclerMachineCircuitboard
-   - SpaceHeaterMachineCircuitBoard
+  - ThermomachineFreezerMachineCircuitBoard
+  - GasRecyclerMachineCircuitboard
+  - PortableScrubberMachineCircuitBoard
   technologyPrerequisites:
   - EngineeringMachines
   - AtmosphericTools
@@ -126,11 +125,12 @@
     sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
     state: freezerOn
   discipline: Engineering
-  tier: 1
-  cost: 8500
+  tier: 3
+  cost: 12500
   recipeUnlocks:
   - HellfireFreezerMachineCircuitBoard
-  - PortableScrubberMachineCircuitBoard
+  - HellfireHeaterMachineCircuitBoard
+  - SpaceHeaterMachineCircuitBoard
   technologyPrerequisites:
   - AtmosphericMachines
   position: -2,4
