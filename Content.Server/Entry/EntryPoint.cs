@@ -84,6 +84,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _serverDiscordAuthManager = default!;
         [Dependency] private readonly Content.Corvax.Interfaces.Server.IServerJoinQueueManager _serverJoinQueueManager = default!;
         [Dependency] private readonly Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager _sharedLoadoutsManager = default!;
+        [Dependency] private readonly TTSManager _ttsManager = default!;
         // end-backmen: IoC
 
         public override void PreInit()
@@ -145,6 +146,7 @@ namespace Content.Server.Entry
             _serverDiscordAuthManager.Initialize();
             _serverJoinQueueManager.Initialize();
             _sharedLoadoutsManager.Initialize();
+            _ttsManager.Initialize();
             // end-backmen: IoC
         }
 
