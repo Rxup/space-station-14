@@ -82,9 +82,10 @@ namespace Content.Client.Entry
 
 
         // start-backmen: ioc
-        //[Dependency] private readonly Content.Corvax.Interfaces.Client.IClientSponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
-        //[Dependency] private readonly Content.Corvax.Interfaces.Client.IClientJoinQueueManager _queueManager = default!; // Corvax-Queue
-        //[Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!; // Corvax-DiscordAuth
+        [Dependency] private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
+        [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientJoinQueueManager _queueManager = default!; // Corvax-Queue
+        [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!; // Corvax-DiscordAuth
+        [Dependency] private readonly Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager _sharedLoadoutsManager = default!;
         // end-backmen: ioc
 
         public override void PreInit()
@@ -192,10 +193,10 @@ namespace Content.Client.Entry
             _titleWindowManager.Initialize();
 
             // start-backmen: ioc
-            IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager>().Initialize();
-            IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientJoinQueueManager>().Initialize();
-            IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager>().Initialize();
-            IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager>().Initialize();
+            _sponsorsManager.Initialize();
+            _queueManager.Initialize();
+            _discordAuthManager.Initialize();
+            _sharedLoadoutsManager.Initialize();
             // end-backmen: ioc
 
             _baseClient.RunLevelChanged += (_, args) =>
