@@ -87,8 +87,6 @@
   cost: 1500
   recipeUnlocks:
   - BorgModuleAdvancedSurgery
-  technologyPrerequisites:
-  - MechanizedTreatmentModules
   position: 8,-2
 
 #- type: technology
@@ -171,22 +169,6 @@
 #  - CyborgModules
 ##  - XenoArcheologyMachines
 #  position: 8,-4
-
-- type: technology
-  id: MechanizedTreatment
-  name: research-technology-mechanized-treatment
-  icon:
-    sprite: Mobs/Silicon/Chassis/medical.rsi
-    state: borg
-  discipline: Robotics
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedChemical
-  technologyPrerequisites:
-  - CyborgModules
-  - BiochemicalStasis
-  position: 6,-5
 
 - type: technology
   id: MassExcavation

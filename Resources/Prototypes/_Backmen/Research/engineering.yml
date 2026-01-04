@@ -9,8 +9,6 @@
   cost: 500
   recipeUnlocks:
   - MicroManipulatorStockPart
-  - MatterBinStockPart
-  - CapacitorStockPart
   - PowerCellSmall
   - PowerCellMedium
   position: -3,2
@@ -58,7 +56,7 @@
    - PowerCellBluespace
   technologyPrerequisites:
   - PowercellsPrototypes
-  - BluespaceTheory
+#  - BluespaceTheory
   - PowerGenerationAdvancedMachines
   position: 0,6
 

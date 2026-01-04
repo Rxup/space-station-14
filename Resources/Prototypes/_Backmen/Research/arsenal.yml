@@ -73,8 +73,6 @@
   cost: 8000
   recipeUnlocks:
   - WeaponLaserCannon
-  technologyPrerequisites:
-  - CombatLaser
   position: 0,-3
 
 - type: technology
@@ -104,8 +102,6 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
-  technologyPrerequisites:
-  - RiotControlAdvanced
   position: 2,-1
 
 - type: technology

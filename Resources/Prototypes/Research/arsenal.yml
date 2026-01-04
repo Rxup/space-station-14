@@ -184,11 +184,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  # Backmen-Edit-Start
-  technologyPrerequisites:
-  - CombatLaser
-  position: -2,-3
-  # Backmen-Edit-End
+  position: -2,-3 # Backmen-Edit
 
 - type: technology
   id: KineticModifications
@@ -263,7 +259,6 @@
   - PortableRecharger
   # Backmen-Edit-Start
   technologyPrerequisites:
-  - CombatLaser
   - CombatLaserConcentrated
   position: 0,-4
   # Backmen-Edit-End

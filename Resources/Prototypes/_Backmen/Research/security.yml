@@ -66,6 +66,4 @@
   recipeUnlocks:
   - ClothingBackpackElectropack
   - WeaponParticleDecelerator
-  technologyPrerequisites:
-  - RiotControlAdvanced
   position: 2,-3

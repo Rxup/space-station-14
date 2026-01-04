@@ -167,7 +167,7 @@
   technologyPrerequisites:
   - CyborgModules
   - BiochemicalStasis
-  position: 7,-2 # Backmen-Edit
+  position: 6,-5 # Backmen-Edit
 
 - type: technology
   id: AdvancedCleaning
@@ -223,11 +223,7 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-  # Backmen-Edit-Start
-  technologyPrerequisites:
-  - CleaningAdvanced
-  position: 5,7
-  # Backmen-Edit-End
+  position: 5,7 # Backmen-Edit
 
 - type: technology
   id: BluespaceCargoTransport

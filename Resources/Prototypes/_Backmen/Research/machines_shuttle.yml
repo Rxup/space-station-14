@@ -45,7 +45,6 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - ShuttleWeaponMachines
-  - ShuttleWeaponAdvanced
   position: 11,-2
 
 - type: technology

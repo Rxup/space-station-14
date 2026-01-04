@@ -129,7 +129,6 @@
   cost: 12500
   recipeUnlocks:
   - HellfireFreezerMachineCircuitBoard
-  - HellfireHeaterMachineCircuitBoard
   - SpaceHeaterMachineCircuitBoard
   technologyPrerequisites:
   - AtmosphericMachines
