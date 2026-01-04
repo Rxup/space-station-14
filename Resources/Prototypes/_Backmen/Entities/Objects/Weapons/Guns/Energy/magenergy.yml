@@ -145,9 +145,11 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: PowerCellSlot
+    cellSlotId: gun_magazine
   - type: ItemSlots
     slots:
-      cell_slot:
+      gun_magazine:
         name: Magazine
         startingItem: PulseMag
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
