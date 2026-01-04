@@ -457,7 +457,7 @@ public abstract partial class SharedMoverController : VirtualController
         var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
 
         _aroundColliderSet.Clear();
-        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet);
+        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Uncontained);
         foreach (var otherEntity in _aroundColliderSet)
         {
             if (otherEntity == uid)
