@@ -36,6 +36,20 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
+  # Backmen-Start
+  - MagazinePacketPistolACPIncendiary
+  - MagazinePacketPistol9x17Incendiary
+  - MagazinePacketRifle762x39Incendiary
+  - MagazinePacketRifle556UEGIncendiary
+  - MagazinePacketRifle762UEGIncendiary
+  - MagazinePacketPistol57x28Incendiary
+  - MagazineRifle762UEGIncendiary
+  - MagazineRifleFamas556UEGIncendiary
+  - MagazineRifle556UEGIncendiary
+  - MagazinePistol45ACPincendiary
+  - MagazinePistol57x28Incendiary
+  - MagazinePistol9x17Incendiary
+  # Backmen-End
   # Backmen-Edit-Start
   technologyPrerequisites:
   - LethalAmmunition
@@ -76,6 +90,13 @@
   - WeaponDisabler
   - BoxShotgunPractice
   - SprayPainterAmmo
+  # Backmen-Start
+  - MagazineLightRiflePractice
+  - MagazineRiflePractice
+  - MagazinePistolPractice
+  - SpeedLoaderMagnumPractice
+  - MagazinePistolSubMachineGunPractice
+  # Backmen-End
   position: -2,-2 # Backmen-EDIT
 
 - type: technology

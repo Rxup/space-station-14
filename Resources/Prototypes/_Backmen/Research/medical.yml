@@ -30,6 +30,8 @@
   - MedkitCombat
   - WhiteCane
   - BodyBag
+  - OffsetCane
+  - OffsetCaneWood
   position: 4,-5
 
 - type: technology

@@ -164,6 +164,9 @@
   - Igniter
   - ClothingOuterVestTank
   - Pickaxe
+  - VoiceSensor
+  - UtilityKnife
+  - WireBrush
   position: -2,1
 
 - type: technology

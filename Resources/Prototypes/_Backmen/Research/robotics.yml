@@ -72,6 +72,9 @@
    - BorgModuleFireExtinguisher
 #   - BorgModuleRadiationDetection
    - BorgModuleTool
+   - BorgModuleInflatable
+   - BorgModuleArtistry
+   - BorgModuleSurgery
   technologyPrerequisites:
   - RoboticsAdvanced
   position: 6,-2
