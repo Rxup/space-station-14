@@ -1,4 +1,4 @@
-ent-FleshHeart = Flesh Heart
-    .desc = You haven't seen such shit before.
-flesh-heart-cant-absorb-targer = The heart refuses to absorb this.
-flesh-heart-activate-warning = Attention! An anomalous biological signature has been detected on the station. All security personnel are instructed to immediately eliminate the target.
+ent-FleshHeart = Плотосердце
+    .desc = Ты раньше не видел такого дерьма.
+flesh-heart-cant-absorb-targer = Сердце отказывается поглотить это.
+flesh-heart-activate-warning = Внимание! На станции обнаружена аномальная биологическая сигнатура. Весь персонал службы безопасности должен немедленно устранить цель.

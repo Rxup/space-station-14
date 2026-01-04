@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: [ ClothingEyesBase, BasePsionicContraband ]
   id: ClothingEyesTelegnosisSpectacles
   suffix: Псионика

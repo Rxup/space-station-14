@@ -17,9 +17,9 @@
   - type: DeleteOnTrigger
   - type: SpawnOnTrigger # Ataraxia
     proto: ExplosionEffectGrenadeShockWave
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound: /Audio/Backmen/Effects/yay_fnaf.ogg
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"
       params:

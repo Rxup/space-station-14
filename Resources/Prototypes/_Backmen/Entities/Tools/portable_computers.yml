@@ -19,13 +19,14 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.PowerCellSlotVisuals.Enabled:
+      enum.BatteryVisuals.State:
         enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
+          Full: { visible: true }
+          Neither: { visible: true }
+          Empty: { visible: false }
   - type: PowerCellDraw
     drawRate: 3
-    useRate: 100
+    useCharge: 100
   - type: ActivatableUIRequiresPowerCell
   - type: ToggleCellDraw
   - type: ActivatableUI
@@ -43,7 +44,7 @@
     receiveFrequencyId: SurveillanceCamera
     transmitFrequencyId: SurveillanceCamera
   - type: WiredNetworkConnection
-  
+
 - type: entity
   id: HandHeldCamerasEmpty
   parent: HandHeldCameras

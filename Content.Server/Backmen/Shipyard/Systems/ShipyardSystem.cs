@@ -13,6 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard.Prototypes;
+using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
@@ -94,12 +95,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var price = _pricing.AppraiseGrid((EntityUid) shuttleGrid, null);
-        var targetGrid = _station.GetLargestGrid(stationData);
+        var targetGrid = _station.GetLargestGrid((stationUid,stationData));
 
 
         if (targetGrid == null) //how are we even here with no station grid
         {
-            _mapManager.DeleteGrid((EntityUid) shuttleGrid);
+            Del(shuttleGrid);
             shuttle = null;
             return false;
         }

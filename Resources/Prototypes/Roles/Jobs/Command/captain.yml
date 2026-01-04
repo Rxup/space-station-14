@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: Captain
   name: job-name-captain
   description: job-description-captain
@@ -6,20 +6,19 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 72000 #20 hrs # Corvax-RoleTime
+      time: 4h
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 72000 #20 hrs # Corvax-RoleTime
+      time: 4h
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 4h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 #20 hrs # Corvax-RoleTime
-#    - !type:DepartmentTimeRequirement
-#      department: Command
-#      time: 54000 # 15 hours
-    - !type:OverallPlaytimeRequirement
-      time: 504000 #140 hrs # Corvax-RoleTime
-    - !type:AgeRequirement
-      requiredAge: 21
+      time: 4h
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 4h
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
@@ -35,13 +34,6 @@
   wage: 100
   #end-backmen: currency
   special:
-  - !type:AddComponentSpecial
-    components:
-      - type: PsionicBonusChance
-        flatBonus: 0.025
-      - type: NpcFactionMember
-        factions:
-          - CentralCommand
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
@@ -52,7 +44,7 @@
   id: CaptainGear
   equipment:
     shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesCommand
     gloves: ClothingHandsGlovesCaptain
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand

@@ -1,179 +1,183 @@
 <Document>
-  # Controls
+  # Управление
 
-  <Box>You can change your keybinds at any time here:</Box>
+  <Box>Вы можете изменить назначение клавиш в любое время здесь:</Box>
   <Box Orientation="Vertical"><CommandButton Text="ui-options-tab-controls" Command="options 2"/></Box>
 
-  ## Interface
-  At the top left you'll see all the [bold]menu buttons[/bold] with their corresponding hotkeys.
-  Take a look at what they do, especially the emotes menu.
-  Notably, the [color=red]Admin Help[/color] ([italic]ahelp[/italic]) menu button will become [color=red][bold]red[/bold][/color] if an admin is trying to contact you.
+  ## Интерфейс
+  В верхнем левом углу вы увидите все [bold]кнопки меню[/bold] с соответствующими им горячими клавишами.
+  Посмотрите, что они делают, особенно меню эмоций.
+  Важно отметить, что кнопка меню [color=red]Админ Помощь[/color] ([italic]аhelp[/italic]) станет [color=red][bold]красной[/bold][/color], если администратор пытается с вами связаться.
 
-  ### Action bar
-  Below the menu buttons, there's the [bold]action bar[/bold] that shows buttons for generic and equipment-dependent [color=cyan]actions[/color] your character can perform.
-  Hover over them to learn their function.
+  ### Панель действий
+  Под кнопками меню находится [bold]панель действий[/bold], которая показывает кнопки для общих и зависящих от снаряжения [color=cyan]действий[/color], которые может выполнить ваш персонаж.
+  Наведите на них курсор, чтобы узнать их функцию.
 
-  It's also a [bold]hotbar[/bold] — perform those actions by pressing their corresponding [color=yellow][bold]number keys[/bold][/color] on your keyboard.
-  Rearrange them by [bold]dragging[/bold] one icon over another, or remove icons temporarily by dragging them away.
+  Это также [bold]горячая панель[/bold] — выполняйте эти действия, нажимая соответствующие [color=yellow][bold]цифровые клавиши[/bold][/color] на клавиатуре.
+  Переставляйте их, [bold]перетаскивая[/bold] одну иконку на другую, или временно удаляйте иконки, перетаскивая их в сторону.
 
-  ### Status bar
-  Below the chat window on the right, there's the [bold]status bar[/bold] showing your character's statuses.
-  As with the action bar, hover over those icons to see what they mean.
+  ### Панель состояния
+  Под окном чата справа находится [bold]панель состояния[/bold], показывающая статусы вашего персонажа.
+  Как и с панелью действий, наведите курсор на эти иконки, чтобы увидеть, что они означают.
 
-  Some of those icons can also be clicked.
-  For example, if your character ever [color=orangered]catches on fire[/color], a fire icon will appear.
-  You would click [color=yellow][bold][keybind="Use"][/bold][/color] on it to [color=cyan]drop and roll[/color].
-  The same applies to [color=cyan]breaking handcuffs[/color] if you need to escape restraint.
+  Некоторые из этих иконок также можно нажимать.
+  Например, если ваш персонаж когда-либо [color=orangered]загорается[/color], появится иконка огня.
+  Вы можете нажать на неё [color=yellow][bold][keybind="Use"][/bold][/color], чтобы [color=cyan]упасть и покатиться[/color].
+  То же самое относится к [color=cyan]разрыву наручников[/color], если вам нужно вырваться из-под ограничения.
 
-  ### Inventory bar
-  Along the bottom you’ll find the [bold]inventory bar[/bold] that contains all the icons related to your equipment and storage, left to right:
-  - [color=cyan]clothing inventory[/color] (bottom left corner) — opened with [color=yellow][bold][keybind="OpenInventoryMenu"][/bold][/color] — has slots for eyes, head, neck, face, ears, body, external, hands, and shoes,
-  - [bold]PDA[/bold] slot — used to store a usable PDA that holds an ID and a pen,
-  - [bold]belt[/bold] slot — used for toolbelts and jetpacks,
-  - [bold]back[/bold] slot — normally used for satchels, backpacks and duffel bags, but it can also store medium to large weapons, and full-sized air tanks.
-  - [bold]hand[/bold] slots — you can think of them as transfer slots,
-  - [bold]pocket[/bold] slots — useful for storing small items for easy access,
-  - [bold]suit storage[/bold] slot — usable only when wearing a space suit, hardsuit or armor.
-  Meant for air tanks and jetpacks, but can also hold guns.
+  ### Панель инвентаря
+  Внизу вы найдёте [bold]панель инвентаря[/bold], которая содержит все иконки, связанные с вашим снаряжением и хранилищем, слева направо:
+  - [color=cyan]инвентарь одежды[/color] (нижний левый угол) — открывается с помощью [color=yellow][bold][keybind="OpenInventoryMenu"][/bold][/color] — имеет слоты для глаз, головы, шеи, лица, ушей, тела, внешнего слоя, рук и обуви,
+  - слот [bold]КПК[/bold] — используется для хранения используемого КПК, который содержит ID карту и ручку,
+  - слот [bold]пояса[/bold] — используется для поясных сумок и реактивных ранцев,
+  - слот [bold]спины[/bold] — обычно используется для сумок, рюкзаков и вещмешков, но также может хранить оружие среднего и большого размера, а также полноразмерные кислородные баллоны.
+  - слоты [bold]рук[/bold] — вы можете думать о них как о слотах передачи,
+  - слоты [bold]карманов[/bold] — полезны для хранения мелких предметов для лёгкого доступа,
+  - слот [bold]хранилища скафандра[/bold] — доступен только при ношении скафандра, тяжёлого скафандра или брони.
+  Предназначен для кислородных баллонов и реактивных ранцев, но также может хранить оружие.
 
-  [italic]Note: non-humanoid species may have slightly different slots.[/italic]
+  [italic]Примечание: у негуманоидных рас могут быть немного другие слоты.[/italic]
 
-  ## Movement
-  To move your character around, use [color=yellow][bold][keybind="MoveUp"][keybind="MoveLeft"][keybind="MoveDown"][keybind="MoveRight"][/bold][/color].
+  ## Передвижение
+  Чтобы перемещать вашего персонажа, используйте [color=yellow][bold][keybind="MoveUp"][keybind="MoveLeft"][keybind="MoveDown"][keybind="MoveRight"][/bold][/color].
 
-  Carried objects and afflictions influence your movement speed, but you can also hold [color=yellow][bold][keybind="Walk"][/bold][/color] to [color=cyan]walk[/color].
-  This reduces your speed and helps you avoid [color=cyan]slipping[/color] and falling over when walking over slippery hazards like banana peels or spills.
-  \n[italic]Note: walking can be switched to a [bolditalic]toggle[/bolditalic] in the controls menu.[/italic]
+  Переносимые предметы и недуги влияют на скорость вашего передвижения, но вы также можете удерживать [color=yellow][bold][keybind="Walk"][/bold][/color] для [color=cyan]ходьбы[/color].
+  Это снижает вашу скорость и помогает избежать [color=cyan]скольжения[/color] и падения при ходьбе по скользким опасностям, таким как банановая кожура или разливы.
+  \n[italic]Примечание: ходьбу можно переключить на [bolditalic]режим переключения[/bolditalic] в меню управления.[/italic]
 
-  ### Spacewalks
-  If you find yourself in [color=#EB2D3A]zero gravity[/color], you'll still be able to move — although with reduced friction — as long as you're within reach of any structure.
+  ### Выходы в открытый космос
+  Если вы оказались в [color=#EB2D3A]невесомости[/color], вы всё равно сможете двигаться — хотя и с пониженным трением — пока вы в пределах досягаемости какой-либо конструкции.
 
-  If you drift completely off station and into [color=#EB2D3A]space[/color], you'll need to use the laws of motion, such as by [bold]throwing[/bold] objects in the opposite direction.
+  Если вы полностью отдалились от станции и попали в [color=#EB2D3A]космос[/color], вам нужно будет использовать законы движения, например, [bold]бросая[/bold] предметы в противоположном направлении.
 
-  ## Hands
-  Your character’s hands are represented by [bold]hand slots[/bold], which are centered along the bottom of the screen.
-  - One of your hands is always the [color=cyan]active hand[/color].
-  - [color=cyan]Swap[/color] hands with [color=yellow][bold][keybind="SwapHands"][/bold][/color] to control which one is active.
-  - [color=cyan]Take[/color] items into your active, empty hand with [color=yellow][bold][keybind="Use"][/bold][/color].
-  - Use [color=yellow][bold][keybind="Use"][/bold][/color] to [color=cyan]put[/color] a held item from your active hand somewhere else, or to [color=cyan]use it[/color] on something or someone, depending on the context.
-  - Pay attention to your active hand when interacting with the world to prevent accidentally using held items.
+  ## Руки
+  Руки вашего персонажа представлены [bold]слотами рук[/bold], которые расположены по центру внизу экрана.
+  - Одна из ваших рук всегда является [color=cyan]активной рукой[/color].
+  - [color=cyan]Меняйте[/color] руки с помощью [color=yellow][bold][keybind="SwapHands"][/bold][/color], чтобы контролировать, какая активна.
+  - [color=cyan]Берите[/color] предметы в вашу активную пустую руку с помощью [color=yellow][bold][keybind="Use"][/bold][/color].
+  - Используйте [color=yellow][bold][keybind="Use"][/bold][/color], чтобы [color=cyan]положить[/color] удерживаемый предмет из вашей активной руки куда-то ещё, или чтобы [color=cyan]использовать его[/color] на чём-то или ком-то, в зависимости от контекста.
+  - Обращайте внимание на вашу активную руку при взаимодействии с миром, чтобы случайно не использовать удерживаемые предметы.
 
-  [bold]Items can't be transferred by drag and drop.[/bold]
+  [bold]Предметы нельзя передавать путём перетаскивания.[/bold]
 
-  ### Dropping and throwing
-  Use [color=yellow][bold][keybind="Drop"][/bold][/color] to [color=cyan]drop[/color] (or place) an item from your hand within arm's reach.
-  \n[color=cyan]Throw[/color] items to your cursor with [color=yellow][bold][keybind="ThrowItemInHand"][/bold][/color].
+  ### Бросание и метание
+  Используйте [color=yellow][bold][keybind="Drop"][/bold][/color], чтобы [color=cyan]бросить[/color] (или положить) предмет из вашей руки в пределах досягаемости руки.
+  \n[color=cyan]Метайте[/color] предметы к курсору с помощью [color=yellow][bold][keybind="ThrowItemInHand"][/bold][/color].
 
-  ### Pulling and pushing
-  You can pull movable [bold]entities[/bold] — items, objects, and mobs such as players, as long as you have an empty hand.
-  - Use [color=yellow][bold][keybind="TryPullObject"][/bold][/color] to start [color=cyan]pulling[/color].
-  - [color=cyan]Push[/color] pulled entities to your cursor with [color=yellow][bold][keybind="MovePulledObject"][/bold][/color].
-  - To [color=cyan]release[/color], press [color=yellow][bold][keybind="ReleasePulledObject"][/bold][/color] or pull the same entity again.
+  ### Тяга и толчок
+  Вы можете тянуть подвижные [bold]сущности[/bold] — предметы, объекты и мобов, таких как игроки, пока у вас есть пустая рука.
+  - Используйте [color=yellow][bold][keybind="TryPullObject"][/bold][/color], чтобы начать [color=cyan]тянуть[/color].
+  - [color=cyan]Толкайте[/color] тянутые сущности к курсору с помощью [color=yellow][bold][keybind="MovePulledObject"][/bold][/color].
+  - Чтобы [color=cyan]отпустить[/color], нажмите [color=yellow][bold][keybind="ReleasePulledObject"][/bold][/color] или потяните ту же сущность снова.
 
-  You can also use [color=yellow][bold][keybind="Drop"][/bold][/color] to release pulled entities from your active hand.
+  Вы также можете использовать [color=yellow][bold][keybind="Drop"][/bold][/color], чтобы отпустить тянутые сущности из вашей активной руки.
 
-  ## Interactions
-  The game features [bold]six[/bold] types of context-sensitive interactions, accessible through different methods.
+  ## Взаимодействия
+  В игре есть [bold]шесть[/bold] типов контекстно-зависимых взаимодействий, доступных через разные методы.
 
-  ### Standard and alternative
-  Clicking [color=yellow][bold][keybind="Use"][/bold][/color] performs [color=cyan]standard interactions[/color].
-  They heavily depend on the item you're holding and what you click on.
+  ### Стандартные и альтернативные
+  Нажатие [color=yellow][bold][keybind="Use"][/bold][/color] выполняет [color=cyan]стандартные взаимодействия[/color].
+  Они сильно зависят от предмета, который вы держите, и от того, на что вы нажимаете.
 
-  Standard interactions range from clicking [bold]tables[/bold] to put held items onto them, to [bold]using[/bold] objects in the world with empty hands, and most commonly, using held items to interact with mobs and with other items.
+  Стандартные взаимодействия варьируются от нажатия на [bold]столы[/bold], чтобы положить на них удерживаемые предметы, до [bold]использования[/bold] объектов в мире с пустыми руками, и чаще всего — использования удерживаемых предметов для взаимодействия с мобами и другими предметами.
 
-  In some situations, you can directly [color=cyan]swap items[/color] by clicking.
-  For example, while holding a beaker, click on a machine that holds another beaker.
+  В некоторых ситуациях вы можете напрямую [color=cyan]менять предметы[/color], нажимая на машину, удерживая предмет.
+  Например, удерживая мензурку, нажмите на машину, хранящую другую мензурку. Это также работает с кислородными баллонами и баллонами.
 
-  Some items have [color=cyan]alternative interactions[/color] — use [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] to [bold]lock[/bold] lockers, [bold]eject[/bold] subitems such as batteries from other items, etc.
+  Некоторые предметы имеют [color=cyan]альтернативные взаимодействия[/color] — используйте [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] для [bold]блокировки[/bold] шкафчиков, [bold]извлечения[/bold] подсобъектов, таких как батареи, из других предметов, и т.д.
 
-  ### Activation
-  Interact with objects such as containers even when your hands are full by performing [color=cyan]activation interactions[/color] with [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color].
-  This allows you to, for example, [bold]open containers[/bold] without picking them up, [bold]open doors[/bold] without using the item you're holding, and to [bold]cycle guns[/bold].
+  ### Активация
+  Взаимодействуйте с объектами, такими как контейнеры, даже когда ваши руки заняты, выполняя [color=cyan]взаимодействия активации[/color] с помощью [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color].
+  Это позволяет вам, например, [bold]открывать контейнеры[/bold], не поднимая их, [bold]открывать двери[/bold], не используя предмет, который вы держите, и [bold]переключать режимы оружия[/bold].
 
-  Notably, press [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] on a mob to open the [color=cyan]strip menu[/color], allowing you to view their inventory — which lets you try to take it.
+  Важно отметить, нажмите [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] на мобе, чтобы открыть [color=cyan]меню раздевания[/color], позволяющее просмотреть их инвентарь — что даёт вам возможность попытаться снять или украсть предметы у них.
 
-  ### In-hand
-  Many items also have [bold]use-in-hand interactions[/bold], such as opening bottles, [bold]wielding[/bold] two-handed guns and big melee weapons with both hands (clubs, spears, axes, mops, shotguns, etc.), or [bold]cycling[/bold] guns.
+  ### В руке
+  Многие предметы также имеют [color=cyan]взаимодействия использования в руке[/color], такие как [bold]открытие[/bold] бутылок, [bold]взятие[/bold] двуручного оружия и больших рукопашных орудий обеими руками (дубины, копья, топоры, швабры, ружья и т.д.), [bold]переключение режимов[/bold] оружия, или [bold]переключение[/bold] шприцев между введением и забором.
 
-  You may just perform them by clicking on your active hand, but it's worth remembering the hotkeys — [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color] and [color=yellow][bold][keybind="AltActivateItemInHand"][/bold][/color] for [color=cyan]standard[/color] and [color=cyan]alternative[/color] in-hand interactions, respectively.
+  Вы можете выполнять взаимодействия в руке, просто нажимая [color=yellow][bold][keybind="Use"][/bold][/color] или [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] на вашей активной руке, но стоит запомнить горячие клавиши — [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color] и [color=yellow][bold][keybind="AltActivateItemInHand"][/bold][/color] для [color=cyan]стандартных[/color] и [color=cyan]альтернативных[/color] взаимодействий в руке соответственно.
 
-  ### Click and drag
-  To "use" a mob (player or NPC) [italic]on[/italic] a static object, click and drag them onto said object with [color=yellow][bold][keybind="Use"][/bold][/color].
-  \n(Not to be confused with [italic]pulling[/italic].)
+  ### Нажатие и перетаскивание
+  Вы можете "использовать" сущность на другой сущности, перетаскивая одну на другую с помощью [color=yellow][bold][keybind="Use"][/bold][/color]. (Не путать с [italic]тягой[/italic].)
 
-  Use it to:
-  - [color=cyan]Put[/color] a mob on a chair, bed, into a cryogenic chamber, etc.
+  Используйте это для:
+  - [color=cyan]Помещения[/color] или принуждения моба (игрока или NPC) на стул, кровать, в криогенную камеру, утилизатор и т.д.
 
-  - [color=cyan]Climb[/color] yourself onto a table — you can also click [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] on the table.
+  - [color=cyan]Залезания[/color] на стол — вы также можете нажать [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] на стол.
 
-  - Open the [color=cyan]strip menu[/color] by dragging another mob onto your character — which is also doable with [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color], as mentioned earlier.
+  - Открытия [color=cyan]меню раздевания[/color], перетаскивая другого моба на вашего персонажа — что также можно сделать с помощью [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color], как упоминалось ранее.
 
-  ### Pointing
-  Use [color=yellow][bold][keybind="Point"][/bold][/color] to [color=cyan]point[/color] at a location in the world, creating a temporary arrow visible to everyone.
+  - [color=cyan]Выливания[/color] содержимого жидкого контейнера (тележка уборщика, ведро, мензурка) в другой контейнер, слив, машину и т.д. Но сначала помните, что нужно поставить контейнер на землю — вы не можете сделать это из инвентаря.
 
-  ### Conclusion
-  The main interactions are:
-  - [bolditalic]standard[/bolditalic] ([color=yellow][bold][keybind="Use"][/bold][/color]),
-  - [italic]alternative[/italic] ([color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color]),
-  - [bold]activation[/bold] ([color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color]),
-  - [bolditalic]use-in-hand[/bolditalic] ([color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color]),
-  - [italic]alternative use-in-hand[/italic] ([color=yellow][bold][keybind="AltActivateItemInHand"][/bold][/color]),
-  - click and drag (which is unique for placing mobs onto objects).
+  ### Указание
+  Используйте [color=yellow][bold][keybind="Point"][/bold][/color], чтобы [color=cyan]указать[/color] на место в мире, создавая временную стрелку, видимую всем.
 
-  Don't worry about having to memorize them — they're usually intuitive and consistent across entity categories, and you'll find that most entities only use one or two interactions.
+  ### Заключение
+  Основные взаимодействия:
+  - [bolditalic]стандартные[/bolditalic] ([color=yellow][bold][keybind="Use"][/bold][/color]),
+  - [italic]альтернативные[/italic] ([color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color]),
+  - [bold]активация[/bold] ([color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color]),
+  - [bolditalic]использование в руке[/bolditalic] ([color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color]),
+  - [italic]альтернативное использование в руке[/italic] ([color=yellow][bold][keybind="AltActivateItemInHand"][/bold][/color]),
+  - нажатие и перетаскивание.
 
-  [bold]Items are still interactable while stored in containers.[/bold]
+  Не беспокойтесь о необходимости их запоминать — они обычно интуитивны и последовательны во всех категориях сущностей, и вы обнаружите, что большинство сущностей используют только одно или два взаимодействия.
 
-  ## Context menus
-  Click [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] on any interactive entity to open the [color=cyan]context menu[/color], which shows you additional interaction you can currently perform.
-  The context menu can offer interactions such as:
-  - [bold]transferring all contents[/bold] from a container held in your active hand to another container,
-  - [bold]splitting item stacks[/bold] using presets,
-  - choosing more precise [bold]transfer amounts[/bold] for chemicals,
-  - showing [bold]deconstruction steps[/bold] for objects.
+  [bold]Предметы, хранящиеся в контейнерах, всё ещё можно использовать.[/bold]
 
-  If you click [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] on a pile of items, you'll open the [color=cyan]entity menu[/color], listing overlapping entities you can interact with normally.
+  ## Контекстные меню
+  Нажмите [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] на любой интерактивной сущности, чтобы открыть [color=cyan]контекстное меню[/color], которое показывает дополнительные взаимодействия, которые вы можете выполнить в данный момент.
+  Контекстное меню может предлагать взаимодействия, такие как:
+  - [bold]передача всего содержимого[/bold] из контейнера, удерживаемого в вашей активной руке, в другой контейнер,
+  - [bold]разделение стопок предметов[/bold] с использованием предустановок,
+  - выбор более точных [bold]количеств передачи[/bold] для химикатов,
+  - показ [bold]шагов разборки[/bold] для объектов.
 
-  ### Examining
-  If you're ever unsure about any entity, whether it's an object or a mob, [color=cyan]examine[/color] it with [color=yellow][bold][keybind="ExamineEntity"][/bold][/color].
-  You can also examine items listed in the entity menu.
+  Если вы нажмёте [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] на кучу предметов, вы откроете [color=cyan]меню сущностей[/color], перечисляющее перекрывающиеся сущности, с которыми вы можете взаимодействовать обычным способом.
 
-  Besides viewing the entity's description, you'll see some icons in the bottom right of the menu:
-  - a question mark icon that links to the appropriate guidebook section,
-  - a lightning icon to view the item's statistics,
-  - a heart icon to view a mob's health,
-  - and more.
+  ### Осмотр
+  Если вы когда-либо не уверены насчёт какой-либо сущности, будь то объект или моб, [color=cyan]осмотрите[/color] её с помощью [color=yellow][bold][keybind="ExamineEntity"][/bold][/color].
+  Вы также можете осматривать предметы, перечисленные в меню сущностей.
 
-  ## Inventory and clothing
-  All items can be equipped/unequipped by using [color=yellow][bold][keybind="Use"][/bold][/color] on the appropriate slot.
+  Помимо просмотра описания сущности, вы увидите некоторые иконки в правом нижнем углу меню:
+  - иконку вопросительного знака, которая ссылается на соответствующий раздел руководства,
+  - иконку молнии для просмотра статистики предмета,
+  - иконку сердца для просмотра здоровья моба,
+  - и многое другое.
 
-  The easiest way to [color=cyan]wear[/color] (or equip) a piece of clothing is to [color=cyan]use[/color] it in your active hand with [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color].
-  Some items don't support this, so you may need to [color=cyan]manually equip them[/color] them in the appropriate slot.
+  ## Инвентарь и одежда
+  Все предметы можно надевать/снимать, используя [color=yellow][bold][keybind="Use"][/bold][/color] на соответствующем слоте.
 
-  [bold]Some clothes have internal inventories and behave like containers.[/bold]
+  Самый простой способ [color=cyan]надеть[/color] (или экипировать) предмет одежды — это [color=cyan]использовать[/color] его в вашей активной руке с помощью [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color].
+  Некоторые предметы не поддерживают это, поэтому вам может потребоваться [color=cyan]вручную экипировать их[/color] в соответствующий слот.
 
-  ### Item stacks
-  To [color=cyan]halve[/color] a stack of items, use [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color].
+  [bold]Некоторые предметы одежды имеют внутренние инвентари и ведут себя как контейнеры.[/bold]
 
-  ### Back and belt slots
-  If you have a bag or a belt, open their inventories with [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] or by clicking the mini-icons in the [bold]bottom right[/bold] of their icons.
-  You can also use the [color=yellow][bold][keybind="OpenBackpack"][/bold][/color] and [color=yellow][bold][keybind="OpenBelt"][/bold][/color] hotkeys for that.
+  ### Стопки предметов
+  Чтобы [color=cyan]разделить пополам[/color] стопку предметов, используйте [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color].
 
-  Press [color=yellow][bold][keybind="SmartEquipBackpack"][/bold][/color] to [color=cyan]quick-equip[/color] — it quick-stores the item from your active hand into your bag, or if your hand is empty, quick-equips the most recently added item from the bag into your active hand.
-  \n[color=yellow][bold][keybind="SmartEquipBelt"][/bold][/color] does the same for your belt, making tool access faster.
-  \n[italic]Tip: You can also quick-equip single items stored in the back slot.[/italic]
+  ### Слоты спины и пояса
+  Если у вас есть сумка или пояс, откройте их инвентари с помощью [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] или нажав на мини-иконки в [bold]правом нижнем углу[/bold] их иконок.
+  Вы также можете использовать горячие клавиши [color=yellow][bold][keybind="OpenBackpack"][/bold][/color] и [color=yellow][bold][keybind="OpenBelt"][/bold][/color] для этого.
 
-  ### Organizing grid inventories
-  [color=cyan]Rearrange[/color] items by dragging them with [color=yellow][bold][keybind="MoveStoredItem"][/bold][/color].
-  While dragging, [color=cyan]rotate[/color] them with [color=yellow][bold][keybind="RotateStoredItem"][/bold][/color].
+  ### Умная экипировка
+  Вы можете [color=cyan]быстро перемещать[/color] предметы между вашей активной рукой и соответствующим слотом. Если в этом слоте находится контейнер, это действие [color=cyan]быстро сохранит[/color] или [color=cyan]быстро возьмёт[/color] последний предмет из этого контейнера (обозначается золотой звёздочкой на иконке контейнера).
 
-  Click [color=yellow][bold][keybind="SaveItemLocation"][/bold][/color] on an item inside a container to [color=cyan]save[/color] its position, so it always goes back to that position when stored.
-  View saved positions by [color=yellow][bold]hovering[/bold][/color] over items.
+  - [color=yellow][bold][keybind="SmartEquipBackpack"][/bold][/color] умно экипирует слот спины.
+  - [color=yellow][bold][keybind="SmartEquipBelt"][/bold][/color] умно экипирует слот пояса.
+  - [color=yellow][bold][keybind="SmartEquipPocket1"][/bold][/color], [color=yellow][bold][keybind="SmartEquipPocket2"][/bold][/color] и [color=yellow][bold][keybind="SmartEquipSuitStorage"][/bold][/color] умно экипируют левый карман, правый карман и слот хранилища скафандра соответственно.
 
-  ## Camera
-  [color=cyan]Zoom[/color] the camera with [color=yellow][bold][keybind="ZoomIn"][/bold][/color] and [color=yellow][bold][keybind="ZoomOut"][/bold][/color] and reset with [color=yellow][bold][keybind="ResetZoom"][/bold][/color].
-  \n[color=cyan]Rotate[/color] it with [color=yellow][bold][keybind="CameraRotateLeft"][/bold][/color] and [color=yellow][bold][keybind="CameraRotateRight"][/bold][/color] and reset with [color=yellow][bold][keybind="CameraReset"][/bold][/color].
-  \n[italic]Note: maps are generally designed to be played with the default camera rotation.[/italic]
+  ### Организация сетчатых инвентарей
+  [color=cyan]Переставляйте[/color] предметы, перетаскивая их с помощью [color=yellow][bold][keybind="MoveStoredItem"][/bold][/color].
+  При перетаскивании [color=cyan]поворачивайте[/color] их с помощью [color=yellow][bold][keybind="RotateStoredItem"][/bold][/color].
 
-  For more details about controls, you can refer to the [color=cyan]Wiki[/color].
+  Нажмите [color=yellow][bold][keybind="SaveItemLocation"][/bold][/color] на предмет внутри контейнера, чтобы [color=cyan]сохранить[/color] его позицию, чтобы он всегда возвращался на эту позицию при хранении.
+  Просматривайте сохранённые позиции, [color=yellow][bold]наводя курсор[/bold][/color] на предметы.
+
+  ## Камера
+  [color=cyan]Масштабируйте[/color] камеру с помощью [color=yellow][bold][keybind="ZoomIn"][/bold][/color] и [color=yellow][bold][keybind="ZoomOut"][/bold][/color] и сбрасывайте с помощью [color=yellow][bold][keybind="ResetZoom"][/bold][/color].
+  \n[color=cyan]Поворачивайте[/color] её с помощью [color=yellow][bold][keybind="CameraRotateLeft"][/bold][/color] и [color=yellow][bold][keybind="CameraRotateRight"][/bold][/color] и сбрасывайте с помощью [color=yellow][bold][keybind="CameraReset"][/bold][/color].
+  \n[italic]Примечание: карты обычно разработаны для игры с поворотом камеры по умолчанию.[/italic]
+
+  Для получения более подробной информации об управлении вы можете обратиться к [color=cyan]Вики[/color].
 </Document>

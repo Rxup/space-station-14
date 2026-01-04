@@ -1,8 +1,10 @@
 ent-DoorRemoteDefault = пульт от шлюзов
     .desc = Гаджет, который может открывать и закрывать шлюзы дистанционно.
+ent-DoorRemoteCanEletrifyDoors = { ent-DoorRemoteDefault }
+    .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteCommand = пульт от шлюзов командования
     .desc = { ent-DoorRemoteDefault.desc }
-ent-DoorRemoteCustom = custom door remote
+ent-DoorRemoteCustom = пользовательский пульт двери
     .desc = A gadget which can open and bolt doors remotely. This advanced variant does not have built-in access, instead inheriting the ID access of the user.
 ent-DoorRemoteSecurity = пульт от шлюзов брига
     .desc = { ent-DoorRemoteDefault.desc }

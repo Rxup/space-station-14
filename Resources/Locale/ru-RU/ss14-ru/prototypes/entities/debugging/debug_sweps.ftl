@@ -1,3 +1,8 @@
+ent-WeaponHitscanDebug = бэнг хицскан 1 урон
+    .desc = pew pew!
+    .suffix = DEBUG
+ent-WeaponHitscanDebugGib = бэнг хицскан расчленитель
+    .desc = { ent-WeaponHitscanDebug.desc }
 ent-WeaponPistolDebug = банг, смерт
     .desc = смерт
     .suffix = DEBUG

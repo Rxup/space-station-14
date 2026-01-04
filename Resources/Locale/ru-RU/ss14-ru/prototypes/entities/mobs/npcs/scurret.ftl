@@ -1,8 +1,8 @@
-ent-MobBaseScurret = scurret
+ent-MobBaseScurret = скуррет
     .desc = { ent-MobBaseAncestor.desc }
-ent-MobScurret = scurret
-    .desc = Commonly known as Wawa, from the wetlands of Planet Wawa, these critters make up the bulk of Arnolds's Pizza's "loyal workforce".
+ent-MobScurret = скуррет
+    .desc = Обычно известные как Вава, с заболоченных земель Планеты Вава, эти существа составляют основную часть "верной рабочей силы" пиццерии Арнольда.
 ent-MobBaseEmotionalSupportScurret = Emotional Support Scurret
     .desc = { ent-MobBaseScurret.desc }
 ent-MobEmotionalSupportScurret = Emotional Support Scurret
-    .desc = Commonly known as Wawa, from the wetlands of Planet Wawa, these critters make up the bulk of Arnold's Pizza's "loyal workforce". This one is here as a temp.
+    .desc = Обычно известные как Вава, с заболоченных земель Планеты Вава, эти существа составляют основную часть "верной рабочей силы" пиццерии Арнольда. Этот здесь временно.

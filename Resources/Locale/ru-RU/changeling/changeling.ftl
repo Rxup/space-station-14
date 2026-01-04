@@ -1,0 +1,14 @@
+roles-antag-changeling-name = Чендлинг
+roles-antag-changeling-objective = Разумный хищник, принимающий личности своих жертв.
+changeling-devour-attempt-failed-rotting = У этого трупа только гнилая биомасса.
+changeling-devour-attempt-failed-protected = Биомасса этой жертвы защищена броней!
+changeling-devour-begin-windup-self = Наш жуткий рот открывается с потусторонним голодом.
+changeling-devour-begin-windup-others = { CAPITALIZE(POSS-ADJ($user)) } жуткий рот открывается с потусторонним голодом.
+changeling-devour-begin-consume-self = Жуткий рот глубоко вгрызается в свою жертву.
+changeling-devour-begin-consume-others = { CAPITALIZE(POSS-ADJ($user)) } жуткий рот глубоко вгрызается в { POSS-ADJ($user) } жертву.
+changeling-devour-consume-failed-not-dead = Это тело ещё живо! Мы не можем поглотить его живым!
+changeling-devour-consume-complete-self = Наш жуткий рот отступает, биомасса поглощена.
+changeling-devour-consume-complete-others = { CAPITALIZE(POSS-ADJ($user)) } жуткий рот отступает.
+changeling-transform-attempt-self = Наши кости ломаются, мышцы рвутся, одна плоть становится другой.
+changeling-transform-attempt-others = { CAPITALIZE(POSS-ADJ($user)) } кости ломаются, мышцы рвутся, тело превращается в другое.
+changeling-paused-map-name = Карта хранения личностей чендлинга

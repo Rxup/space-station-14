@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothingGasTanks]
   id: ClothingOuterBioGeneral
   name: bio suit
   suffix: Generic
@@ -9,29 +9,19 @@
     sprite: Clothing/OuterClothing/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
-  - type: Tag
-    tags:
-      - FullBodyOuter
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Head
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
-        Caustic: 0.2
+        Caustic: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.35
   - type: GroupExamine
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.4
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -44,9 +34,6 @@
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
-  - type: Tag
-    tags:
-      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -77,7 +64,7 @@
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
 
 - type: entity
-  parent: [ClothingOuterBioGeneral, BaseSecurityContraband]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterBioSecurity
   name: bio suit
   suffix: Security
@@ -87,26 +74,19 @@
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
-  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
-    coverage: # backmen: armour coverage
-    - Head
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
+  - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.70
-        ArmorPiercing: 0.90
-        Heat: 0.80
-        Caustic: 0.2
+        Caustic: 0.8
+        Slash: 0.6
+        Piercing: 0.8
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.4
-
+  - type: GroupExamine
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioVirology

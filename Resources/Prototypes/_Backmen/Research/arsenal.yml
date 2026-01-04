@@ -1,27 +1,4 @@
 - type: technology
-  id: NonlethalAmmunition
-  name: research-technology-nonlethal-ammunition
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: beanbag
-  discipline: Arsenal
-  tier: 1
-  cost: 500
-  recipeUnlocks:
-  - MagazineShotgunBeanbag
-  - BoxShellTranquilizer
-  - BoxBeanbag
-  - BoxShotgunPractice
-  - SprayPainterAmmo
-#  - MagazineBoxLightRiflePractice #Backmen-ammunation
-#  - MagazineBoxMagnumPractice #Backmen-ammunation
-#  - MagazineBoxPistolPractice #Backmen-ammunation
-#  - MagazineBoxRiflePractice #Backmen-ammunation
-#  technologyPrerequisites:
-#  - RiotControl
-  position: -2,-2
-
-- type: technology
   id: LethalAmmunition
   name: research-technology-lethal-ammunition
   icon:
@@ -459,16 +436,3 @@
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
   position: -4,-9
-
-- type: technology
-  id: DualWieldingTechnology
-  name: research-technology-dual-wielding-technology
-  icon:
-    sprite: Clothing/Back/Specific/harmpack.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-  - ClothingBackpackHarmpack
-  position: -5,-9

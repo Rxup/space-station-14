@@ -1,0 +1,177 @@
+# Limbs that spawn when gibbed should get descriptions.
+- type: entity
+  abstract: true
+  parent: [ BasePart ]
+  id: PartVulpkanin
+  name: vulpkanin body part
+  components:
+  # Shitmed Change Start
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 110
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 150
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    # Shitmed Change End
+  - type: Sprite
+    sprite: Mobs/Species/Vulpkanin/parts.rsi
+
+- type: entity
+  parent: [ PartVulpkanin, BaseHead ]
+  id: HeadVulpkanin
+  name: vulpkanin head
+  components:
+  - type: Sprite
+    state: head_m
+
+- type: entity
+  parent: [ PartVulpkanin, BaseLeftArm ]
+  id: LeftArmVulpkanin
+  name: left vulpkanin arm
+  components:
+  - type: Sprite
+    state: l_arm
+
+- type: entity
+  parent: [ PartVulpkanin, BaseRightArm ]
+  id: RightArmVulpkanin
+  name: right vulpkanin arm
+  components:
+  - type: Sprite
+    state: r_arm
+
+- type: entity
+  parent: [ PartVulpkanin, BaseLeftHand ]
+  id: LeftHandVulpkanin
+  name: left vulpkanin hand
+  components:
+  - type: Sprite
+    state: l_hand
+
+- type: entity
+  parent: [ PartVulpkanin, BaseRightHand ]
+  id: RightHandVulpkanin
+  name: right vulpkanin hand
+  components:
+  - type: Sprite
+    state: r_hand
+
+- type: entity
+  parent: [ PartVulpkanin, BaseLeftLeg ]
+  id: LeftLegVulpkanin
+  name: left vulpkanin leg
+  components:
+  - type: Sprite
+    state: l_leg
+
+- type: entity
+  parent: [ PartVulpkanin, BaseRightLeg ]
+  id: RightLegVulpkanin
+  name: right vulpkanin leg
+  components:
+  - type: Sprite
+    state: r_leg
+
+- type: entity
+  parent: [ PartVulpkanin, BaseLeftFoot ]
+  id: LeftFootVulpkanin
+  name: left vulpkanin foot
+  components:
+  - type: Sprite
+    state: l_foot
+
+- type: entity
+  parent: [ PartVulpkanin, BaseRightFoot ]
+  id: RightFootVulpkanin
+  name: right vulpkanin foot
+  components:
+  - type: Sprite
+    state: r_foot
+
+#backmen: surgery
+- type: entity
+  id: ChestVulpkanin
+  name: "vulpkanin chest"
+  parent: [BaseChest, PartVulpkanin]
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: "chest_m"
+  - type: Icon
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: "chest_m"
+
+- type: entity
+  id: GroinVulpkanin
+  name: "vulpkanin groin"
+  parent: [BaseGroin, PartVulpkanin]
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: "groin_m"
+  - type: Icon
+    sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
+    state: "groin_m"
+  - type: BodyPart
+    partType: Groin
+    toolName: "a groin"
+    containerName: "groin_slot"
+  - type: ContainerContainer
+    containers:
+      groin_slot: !type:ContainerSlot {}
+      Wounds: !type:Container {}
+      Bone: !type:Container {}
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 400
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 400
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact

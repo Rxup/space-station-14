@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ComputerId
   id: CCComputerId
   name: Консоль ID карт ЦК

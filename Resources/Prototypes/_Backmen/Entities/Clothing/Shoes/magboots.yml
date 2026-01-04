@@ -44,16 +44,6 @@
         volume: -2
 
 - type: entity
-  parent: [ClothingShoesBootsMagBase]
-  id: ClothingShoesBootsMagERT
-  components:
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepSoldier
-      params:
-        volume: -2
-
-- type: entity
   parent: [ClothingShoesBootsMagBase, BaseToggleClothing, BaseSecurityContraband]
   id: ClothingShoesBootsMagSecurity
   name: security magboots

@@ -1,2 +1,2 @@
-ent-LavalandHierophantClub = hierophant club
+ent-LavalandHierophantClub = дубина иерофанта
     .desc = Get item'ed lol

@@ -12,30 +12,24 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.9
         Slash: 0.9
-        Piercing: 0.5
-        ArmorPiercing: 0.7
-        Heat: 0.55
-        Stun: 0.4 #Backmen-edit
+        Piercing: 0.9
+        Heat: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.15
   - type: GroupExamine
   - type: Tag
     tags:
-    - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+      - Tail
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -67,29 +61,21 @@
   - type: FireProtection
     reduction: 0.65 # doesnt have a full seal so not as good
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
-        Slash: 0.7
-        Heat: 0.5
-        Piercing: 0.8
-        Cold: 0.5
-        Stun: 0.4
+        Slash: 0.9
+        Heat: 0.8
+        Cold: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: GroupExamine
-  - type: Tag
-    tags:
-      - FullBodyOuter
   - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -110,31 +96,25 @@
   - type: FireProtection
     reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
-        Slash: 0.8
-        Heat: 0.4
-        Cold: 0.4
-        Stun: 0.3
+        Slash: 0.9
+        Heat: 0.8
+        Cold: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: GroupExamine
-  - type: Tag
-    tags:
-      - FullBodyOuter
-      - CorgiWearable
-      - WhitelistChameleon
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -145,23 +125,13 @@
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/rad.rsi
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
-        Heat: 0.8
+        Heat: 0.90
         Radiation: 0.01
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/rad.rsi
   - type: GroupExamine
-  - type: Tag
-    tags:
-      - FullBodyOuter
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodRad
     slot: head
@@ -169,9 +139,13 @@
     containers:
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseHighlyIllegalContraband]
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -188,21 +162,12 @@
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
   - type: Armor
-    coverage: # backmen: armour coverage
-    - Chest
-    - Groin
-    - Arm
-    - Hand
-    - Leg
-    - Foot
     modifiers:
       coefficients:
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
-        ArmorPiercing: 0.9
         Heat: 0.8
-        Stun: 0.4 #Backmen-edit
   # phase cloak
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
@@ -242,6 +207,9 @@
         whitelist:
           tags:
             - PowerCell
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: ClothingOuterBase
@@ -253,10 +221,8 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
-  - type: Tag
-    tags:
-      - FullBodyOuter
   - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
 
 - type: entity
   parent: ClothingOuterBase
@@ -268,9 +234,6 @@
     sprite: Clothing/OuterClothing/Suits/shrine-maiden.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/shrine-maiden.rsi
-  - type: Tag
-    tags:
-      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -293,13 +256,11 @@
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
-  - type: Tag
-    tags:
-      - FullBodyOuter
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
 
 - type: entity
   parent: ClothingOuterBase
@@ -327,6 +288,8 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: AddAccentClothing
+    accent: BarkAccent
 
 - type: entity
   parent: ClothingOuterBase
@@ -346,6 +309,9 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: ClothingOuterSuitCarp

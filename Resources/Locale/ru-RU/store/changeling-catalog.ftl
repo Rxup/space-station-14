@@ -1,3 +1,6 @@
+changeling-arm-blade-name = Выдвижное лезвие из руки
+changeling-arm-blade-desc = Преобразуйте свою руку в ужасающее лезвие из плоти. Можно переключать.
+
 # combat
 
 evolutionmenu-combat-armblade-name = Лезвие из руки

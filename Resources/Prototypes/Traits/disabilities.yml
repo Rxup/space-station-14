@@ -12,7 +12,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
+      - StationAiCustomization  # backmen: AI
       - BorgChassis
   components:
     - type: PermanentBlindness
@@ -26,7 +26,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
+    - StationAiCustomization  # backmen: AI
     - BorgChassis
   whitelist:
     components:
@@ -41,14 +41,16 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
+      - StationAiCustomization  # backmen: AI
       - BorgChassis
   description: trait-narcolepsy-desc
   category: Disabilities
   components:
     - type: Narcolepsy
-      timeBetweenIncidents: 300, 600
-      durationOfIncident: 10, 30
+      maxTimeBetweenIncidents: 600
+      minTimeBetweenIncidents: 300
+      maxDurationOfIncident: 30
+      minDurationOfIncident: 10
 
 - type: trait
   id: Unrevivable
@@ -57,7 +59,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
+    - StationAiCustomization  # backmen: AI
     - BorgChassis
   category: Disabilities
   components:
@@ -80,7 +82,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
+    - StationAiCustomization  # backmen: AI
     - BorgChassis
   components:
     - type: Muted
@@ -92,7 +94,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
+      - StationAiCustomization  # backmen: AI
       - BorgChassis
   category: Disabilities
   components:
@@ -103,11 +105,31 @@
       sounds:
         collection: Paracusia
 
-# TODO: rework this. later.
-#- type: trait
-#  id: PainNumbness
-#  name: trait-painnumbness-name
-#  description: trait-painnumbness-desc
-#  category: Disabilities
-#  components:
-#  - type: PainNumbness
+- type: trait
+  id: PainNumbness
+  name: trait-painnumbness-name
+  description: trait-painnumbness-desc
+  category: Disabilities
+  specials:
+  - !type:ApplyStatusEffectSpecial
+    statusEffects:
+    - PainNumbnessTraitStatusEffect
+
+- type: trait
+  id: Hemophilia
+  name: trait-hemophilia-name
+  description: trait-hemophilia-desc
+  category: Disabilities
+  specials:
+  - !type:ApplyStatusEffectSpecial
+    statusEffects:
+    - StatusEffectHemophiliaTrait
+
+- type: trait
+  id: ImpairedMobility
+  name: trait-impaired-mobility-name
+  description: trait-impaired-mobility-desc
+  traitGear: OffsetCane
+  category: Disabilities
+  components:
+    - type: ImpairedMobility

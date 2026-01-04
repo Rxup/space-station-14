@@ -124,9 +124,6 @@ min_account_age = 1440
 [queue]
 enabled=true
 
-[laying]
-crawlundertables=true
-
 [vote]
 restart_required_ratio = 0.6
 timermap = 60

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseFlatpack
   id: SupermatterFlatpack
   name: Supermatter flatpack

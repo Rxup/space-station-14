@@ -4,14 +4,56 @@ using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
+/// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
 [UsedImplicitly]
-public sealed partial class SuppressPain : EntityEffect
+public sealed partial class SuppressPainEntityEffectSystem : EntityEffectSystem<MobStateComponent, SuppressPain>
+{
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly PainSystem _pain = default!;
+
+    protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<SuppressPain> args)
+    {
+        var scale = FixedPoint2.New(args.Scale);
+
+        if (!_consciousness.TryGetNerveSystem(entity, out var nerveSys))
+            return;
+
+        var bodyPart = _body.GetBodyChildrenOfType(entity, BodyPartType.Head).FirstOrNull();
+
+        if (bodyPart == null)
+            return;
+
+        if (!_pain.TryGetPainModifier(nerveSys.Value, bodyPart.Value.Id, args.Effect.ModifierIdentifier, out var modifier))
+        {
+            _pain.TryAddPainModifier(
+                    nerveSys.Value,
+                    bodyPart.Value.Id,
+                    args.Effect.ModifierIdentifier,
+                    FixedPoint2.Clamp(-args.Effect.Amount * scale, -args.Effect.MaximumSuppression, args.Effect.MaximumSuppression),
+                    time: args.Effect.Time);
+        }
+        else
+        {
+            _pain.TryChangePainModifier(
+                    nerveSys.Value,
+                    bodyPart.Value.Id,
+                    args.Effect.ModifierIdentifier,
+                    FixedPoint2.Clamp(modifier.Value.Change - args.Effect.Amount * scale, -args.Effect.MaximumSuppression, args.Effect.MaximumSuppression),
+                    time: args.Effect.Time);
+        }
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class SuppressPain : EntityEffectBase<SuppressPain>
 {
     [DataField(required: true)]
     public FixedPoint2 Amount;
@@ -25,46 +67,6 @@ public sealed partial class SuppressPain : EntityEffect
     [DataField]
     public string ModifierIdentifier = "PainSuppressant";
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-suppress-pain");
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        var scale = FixedPoint2.New(1);
-
-        if (args is EntityEffectReagentArgs reagentArgs)
-        {
-            scale = reagentArgs.Quantity * reagentArgs.Scale;
-        }
-
-        if (!args.EntityManager.System<ConsciousnessSystem>().TryGetNerveSystem(args.TargetEntity, out var nerveSys))
-            return;
-
-        var bodyPart = args.EntityManager.System<SharedBodySystem>()
-            .GetBodyChildrenOfType(args.TargetEntity, BodyPartType.Head)
-            .FirstOrNull();
-
-        if (bodyPart == null)
-            return;
-
-        var painSystem = args.EntityManager.System<PainSystem>();
-        if (!painSystem.TryGetPainModifier(nerveSys.Value, bodyPart.Value.Id, ModifierIdentifier, out var modifier))
-        {
-            painSystem.TryAddPainModifier(
-                    nerveSys.Value,
-                    bodyPart.Value.Id,
-                    ModifierIdentifier,
-                    FixedPoint2.Clamp(-Amount * scale, -MaximumSuppression, MaximumSuppression),
-                    time: Time);
-        }
-        else
-        {
-            painSystem.TryChangePainModifier(
-                    nerveSys.Value,
-                    bodyPart.Value.Id,
-                    ModifierIdentifier,
-                    FixedPoint2.Clamp(modifier.Value.Change - Amount * scale, -MaximumSuppression, MaximumSuppression),
-                    time: Time);
-        }
-    }
 }

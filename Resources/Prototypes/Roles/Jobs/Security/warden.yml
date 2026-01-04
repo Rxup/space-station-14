@@ -4,9 +4,12 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 5h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 108000 #50 hrs # Corvax-RoleTime
+      time: 10h
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"
@@ -21,6 +24,8 @@
   - External
   - Detective
   - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
   #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250
@@ -37,6 +42,7 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
+    pocket1: WeaponPistolMk58
   storage:
     back:
     - Flash

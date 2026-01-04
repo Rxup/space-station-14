@@ -1,2 +1,2 @@
-ent-GlimmerMonitorCartridge = glimmer monitor cartridge
+ent-GlimmerMonitorCartridge = картридж монитора бликов
     .desc = A cartridge that keeps track of glimmer.

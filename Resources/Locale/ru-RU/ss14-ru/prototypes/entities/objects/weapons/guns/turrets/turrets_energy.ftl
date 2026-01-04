@@ -1,4 +1,4 @@
-ent-WeaponEnergyTurretStationBase = sentry turret
+ent-WeaponEnergyTurretStationBase = дозорная турель
     .desc = A high-tech autonomous weapons system designed to keep unauthorized personnel out of sensitive areas.
 ent-WeaponEnergyTurretStation = охранная турель
     .desc = Высокотехнологичная автономная система вооружения, предназначенная для предотвращения проникновений посторонних лиц в важные зоны.

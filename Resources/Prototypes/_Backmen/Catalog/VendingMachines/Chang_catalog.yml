@@ -1,4 +1,4 @@
-﻿- type: listing
+- type: listing
   id: ChangInventory1
   productEntity: FoodCondimentPacketSoy
   cost:

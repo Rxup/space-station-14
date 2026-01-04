@@ -92,43 +92,37 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             var spriteSystem = sysManager.GetEntitySystem<SpriteSystem>();
             var requirementsManager = IoCManager.Resolve<JobRequirementsManager>();
 
-            // TODO: role.Requirements value doesn't work at all as an equality key, this must be fixed
             // Grouping roles
             var groupedRoles = ghostState.GhostRoles.GroupBy(
-                role => (role.Name, role.Description, role.Requirements, role.WhitelistRequired, role.DiscordRequired)); //backmen: whitelist
-
-            //start-backmen: whitelist
-            var cfg = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>();
-            //end-backmen: whitelist
+                role => (
+                    role.Name,
+                    role.Description,
+                    role.Requirements,
+                    //  Check the prototypes for role requirements and bans
+                    requirementsManager.IsAllowed(role.RolePrototypes.Item1, role.RolePrototypes.Item2, null, out var reason),
+                    reason));
 
             // Add a new entry for each role group
             foreach (var group in groupedRoles)
             {
+                var reason = group.Key.reason;
                 var name = group.Key.Name;
                 var description = group.Key.Description;
-                bool hasAccess = true;
-                FormattedMessage? reason;
+                var prototypesAllowed = group.Key.Item4;
+                var passRequirements =
+                    requirementsManager.CheckRoleRequirements(group.Key.Requirements, null, out var reasonByRequirements);
 
-                //start-backmen: whitelist
-                if (group.Key.WhitelistRequired)
+                if (reason == null)
                 {
-                    hasAccess = false;
-                    reason = FormattedMessage.FromMarkupOrThrow(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                    reason = reasonByRequirements;
                 }
-                else if (group.Key.DiscordRequired)
+                else if (reasonByRequirements != null)
                 {
-                    hasAccess = false;
-                    reason = FormattedMessage.FromMarkupOrThrow(Loc.GetString("playtime-deny-reason-discord"));
-                }
-                else
-                //end-backmen: whitelist
-                if (!requirementsManager.CheckRoleRequirements(group.Key.Requirements, null, out reason))
-                {
-                    hasAccess = false;
+                    reason.AddMessage(reasonByRequirements);
                 }
 
                 // Adding a new role
-                _window.AddEntry(name, description, hasAccess, reason, group, spriteSystem);
+                _window.AddEntry(name, description, prototypesAllowed && passRequirements, reason, group, spriteSystem);
             }
 
             // Restore the Collapsible box state if it is saved

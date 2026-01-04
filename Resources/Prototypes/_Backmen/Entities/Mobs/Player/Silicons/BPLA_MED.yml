@@ -34,7 +34,7 @@
   suffix: Backmen, INF
   components:
     - type: PowerCellDraw
-      useRate: 0
+      useCharge: 0
 
 - type: entity
   parent: Defibrillator
@@ -44,7 +44,7 @@
   suffix: Backmen, INF
   components:
     - type: PowerCellDraw
-      useRate: 0
+      useCharge: 0
 
 
 

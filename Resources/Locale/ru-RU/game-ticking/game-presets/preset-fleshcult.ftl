@@ -4,8 +4,8 @@ flesh-cult-round-end-result =
         [one] Был один культист плоти.
        *[other] Было { $cultistsCount } культистов плоти.
     }
-flesh-cult-round-end-cultist-live-amount-none = [color=green]All cultists have been eliminated![/color]
-flesh-cult-round-end-cultist-live-amount-low = [color=green]Almost all cultists have been eliminated.[/color]
+flesh-cult-round-end-cultist-live-amount-none = [color=green]Все культисты были уничтожены![/color]
+flesh-cult-round-end-cultist-live-amount-low = [color=green]Почти все культисты были уничтожены.[/color]
 flesh-cult-round-end-flesh-heart-succes = [color=green]Станция превратилась в царство плоти![/color]
 flesh-cult-round-end-flesh-heart-fail = [color=red]Культ Плоти не смог достичь своей цели![/color]
 flesh-cult-user-was-a-cultist = [color=gray]{ $user }[/color] был культистом плоти.

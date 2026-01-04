@@ -5,14 +5,10 @@
     - type: Metabolizer
       # mm yummy
       maxReagents: 3
-      metabolizerTypes: [Vampiric]
+      metabolizerTypes: [Bloodsucker]
       groups:
         - id: Food
         - id: Drink
-
-- type: metabolizerType
-  id: Vampiric
-  name: vampiric
 
 - type: entity
   id: OrganVampiricStomach
@@ -20,7 +16,7 @@
   components:
     - type: Metabolizer
       maxReagents: 3
-      metabolizerTypes: [Vampiric]
+      metabolizerTypes: [Bloodsucker]
       groups:
         - id: Food
         - id: Drink

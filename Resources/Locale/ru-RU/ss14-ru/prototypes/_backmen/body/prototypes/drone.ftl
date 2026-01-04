@@ -1,4 +1,4 @@
 ent-DroneArm = кость дрона
     .desc = { ent-PartSilicon.desc }
-ent-ChestDrone = nt-800 chest
+ent-ChestDrone = грудь nt-800
     .desc = { ent-BaseItem.desc }

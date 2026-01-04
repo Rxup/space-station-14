@@ -12,6 +12,7 @@ using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
+using Content.Shared.Station.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.Components;

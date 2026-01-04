@@ -10,7 +10,7 @@ using Content.Server.Botany;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Backmen.Chat;
+
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Body.Systems;
@@ -24,6 +24,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Content.Server.Backmen.GibOnCollide;
+using Content.Shared.Chat;
 
 namespace Content.Server.Backmen.Research.Oracle;
 

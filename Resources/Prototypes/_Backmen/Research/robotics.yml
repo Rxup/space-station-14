@@ -60,29 +60,6 @@
   position: 8,-1
 
 - type: technology
-  id: HONKMech
-  name: research-technology-honk-mech
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: honker
-  discipline: Robotics
-  tier: 1
-  cost: 7500
-  recipeUnlocks:
-  - HonkerHarness
-  - HonkerLArm
-  - HonkerRArm
-  - HonkerLLeg
-  - HonkerRLeg
-  - HonkerCentralElectronics
-  - HonkerPeripheralsElectronics
-  - HonkerTargetingElectronics
-  - MechEquipmentHorn
-  technologyPrerequisites:
-  - RoboticsMachines
-  position: 8,0
-
-- type: technology
   id: RipleyAPLUMech
   name: research-technology-ripley-aplu-mech
   icon:
@@ -115,6 +92,8 @@
   cost: 500
   recipeUnlocks:
    - BorgModuleCable
+   - BorgModuleInflatable
+   - BorgModuleArtistry
    - BorgModuleFireExtinguisher
 #   - BorgModuleRadiationDetection
    - BorgModuleTool
@@ -234,22 +213,6 @@
 #  - CyborgModules
 ##  - XenoArcheologyMachines
 #  position: 8,-4
-
-- type: technology # Merge with other T2 medical research if possible!
-  id: MechanizedTreatment
-  name: research-technology-mechanized-treatment
-  icon:
-    sprite: Mobs/Silicon/Chassis/medical.rsi
-    state: borg
-  discipline: Robotics
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedChemical
-  technologyPrerequisites:
-  - CyborgModules
-  - BiochemicalStasis
-  position: 9,-4
 
 - type: technology
   id: MassExcavation

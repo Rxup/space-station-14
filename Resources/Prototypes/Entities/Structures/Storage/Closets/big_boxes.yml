@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseBigBox
   name: cardboard box #it's still just a box
   description: Huh? Just a box...
@@ -55,6 +55,7 @@
       node: basebigbox
       containers:
         - entity_storage
+    - type: GravityAffected
 
 - type: entity
   id: StealthBox

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseObjective
   id: CreateFleshHeartObjective
   categories: [ HideSpawnMenu ]

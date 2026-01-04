@@ -3,7 +3,7 @@ using Content.Server.Hands.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Chat;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
@@ -69,6 +69,9 @@ public sealed class SuicideSystem : EntitySystem
         if (!suicideGhostEvent.Handled || _tagSystem.HasTag(victim, CannotSuicideTag))
             return false;
 
+        // TODO: fix this
+        // This is a handled event, but the result is never used
+        // It looks like TriggerOnMobstateChange is supposed to prevent you from suiciding
         var suicideEvent = new SuicideEvent(victim);
         RaiseLocalEvent(victim, suicideEvent);
 

@@ -1,0 +1,3 @@
+ent-ClothingHeadHatCapHoS = кожаная фуражка главы охраны
+    .desc = Pretty old stuff for these times, bringing back old memories...
+    .suffix = { "" }

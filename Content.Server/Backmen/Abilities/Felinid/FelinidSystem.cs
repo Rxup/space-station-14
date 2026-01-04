@@ -16,8 +16,10 @@ using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Medical;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
@@ -40,6 +42,7 @@ public sealed class FelinidSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChargesSystem _chargesSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
 
     public override void Initialize()
     {
@@ -167,12 +170,11 @@ public sealed class FelinidSystem : EntitySystem
         var hairball = EntityManager.SpawnEntity(component.HairballPrototype, Transform(uid).Coordinates);
         var hairballComp = Comp<HairballComponent>(hairball);
 
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.ChemicalSolution != null)
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
         {
+            var temp = _bloodstream.FlushChemicals((uid, bloodstream), 20);
 
-            var temp = _solutionSystem.SplitSolution(bloodstream.ChemicalSolution.Value, 20);
-
-            if (_solutionSystem.TryGetSolution(hairball, hairballComp.SolutionName, out var hairballSolution))
+            if (temp != null && _solutionSystem.TryGetSolution(hairball, hairballComp.SolutionName, out var hairballSolution))
             {
                 _solutionSystem.TryAddSolution(hairballSolution.Value, temp);
             }

@@ -1,4 +1,4 @@
-﻿- type: startingGear
+- type: startingGear
   id: OperatorGavna
   equipment:
     shoes: ClothingShoesBootsLaceup

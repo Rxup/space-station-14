@@ -39,8 +39,10 @@
     speedModifierThresholds:
       100: 1
   - type: Bloodstream
-    bloodReagent: Oil
-    bloodMaxVolume: 30
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 30
     bloodlossThreshold: 0
   - type: Destructible
     thresholds:
@@ -391,8 +393,8 @@
     bodyType: KinematicController
   - type: PolymorphOnTrigger
     polymorph: GuttermanShooter
-  - type: TriggerWhitelist
-    whitelist:
+  - type: WhitelistTriggerCondition
+    userWhitelist:
       tags:
       - Gutterman
   - type: Fixtures
@@ -683,8 +685,8 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: GuttertankShooter
-  - type: TriggerWhitelist
-    whitelist:
+  - type: WhitelistTriggerCondition
+    userWhitelist:
       tags:
       - Guttertank
 
@@ -776,8 +778,8 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: GuttertankSpeedster
-  - type: TriggerWhitelist
-    whitelist:
+  - type: WhitelistTriggerCondition
+    userWhitelist:
       tags:
       - Guttertank
 

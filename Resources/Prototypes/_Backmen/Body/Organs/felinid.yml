@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganFelinidStomach
   parent: OrganReptilianStomach
   categories: [ HideSpawnMenu ]
@@ -7,4 +7,9 @@
   - type: SolutionContainerManager
     solutions:
       stomach:
-        maxVol: 20.0
+        maxVol: 20
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10

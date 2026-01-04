@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Content.Server._Lavaland.Mobs.Hierophant.Components;
 using Content.Shared._Lavaland.Aggression;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -77,7 +79,7 @@ public sealed class HierophantSystem : EntitySystem
         _hierophantField.DeactivateField((field, fieldComp));
         // After 10 seconds, hierophant teleports back to it's original place
         var position = _xform.GetMapCoordinates(field);
-        _damage.SetAllDamage(ent, damageable, 0);
+        _damage.SetAllDamage((ent, damageable), 0);
         _threshold.SetMobStateThreshold(ent, _baseHierophantHp, MobState.Dead, thresholds);
         Timer.Spawn(TimeSpan.FromSeconds(10), () => _xform.SetMapCoordinates(ent, position));
     }
@@ -158,7 +160,7 @@ public sealed class HierophantSystem : EntitySystem
 
     private void InitBoss(Entity<HierophantBossComponent> ent, AggressiveComponent aggressors)
     {
-        ent.Comp.Aggressive = true;  
+        ent.Comp.Aggressive = true;
         RaiseLocalEvent(ent, new MegafaunaStartupEvent());
     }
 
@@ -440,7 +442,7 @@ public sealed class HierophantSystem : EntitySystem
             scalingMultiplier *= HealthScalingFactor;
 
         Logger.Info($"Setting threshold for {uid} to {_baseHierophantHp * scalingMultiplier}");
-        if (_threshold.TryGetDeadThreshold(uid, out var deadThreshold, thresholds) 
+        if (_threshold.TryGetDeadThreshold(uid, out var deadThreshold, thresholds)
             && deadThreshold < _baseHierophantHp * scalingMultiplier)
             _threshold.SetMobStateThreshold(uid, _baseHierophantHp * scalingMultiplier, MobState.Dead, thresholds);
     }

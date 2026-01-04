@@ -2,20 +2,20 @@
   # Служба безопасности
   Обеспечение безопасности станции и экипажа является задачей номер один для Службы безопасности. Независимо от того, кто это - агенты Синдиката, Ядерные оперативники, инфицированные, или просто буйные сотрудники. Служба безопасности готова поддерживать порядок и контролировать толпу.
 
-They face [textlink="Syndicate Agents" link="Traitors"], [textlink="Nuclear Operatives" link="NuclearOperatives"], [textlink="Zombies" link="Zombies"] and unruly staff.
+Они сталкиваются с [textlink="Агентами Синдиката" link="Traitors"], [textlink="Ядерными Оперативниками" link="NuclearOperatives"], [textlink="Зомби" link="Zombies"] и непокорным персоналом.
 
-## Personnel
-[color=#cb0000]Security[/color]'s staff is made up of Security Cadets, Security Officers, and the Detective. [color=#cb0000]Security[/color] is run by the Warden and Head of Security.
+## Персонал
+Персонал [color=#cb0000]Службы безопасности[/color] состоит из курсантов службы безопасности, офицеров службы безопасности и детектива. [color=#cb0000]Службой безопасности[/color] руководят Смотритель и Глава Службы Безопасности.
 
   <Box>
-    <GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Secoff"/>
-    <GuideEntityEmbed Entity="ToyFigurineDetective" Caption="Detective"/>
-    <GuideEntityEmbed Entity="ToyFigurineWarden" Caption="Warden"/>
-    <GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="HoS"/>
+    <GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Офицер СБ"/>
+    <GuideEntityEmbed Entity="ToyFigurineDetective" Caption="Детектив"/>
+    <GuideEntityEmbed Entity="ToyFigurineWarden" Caption="Смотритель"/>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="ГСБ"/>
   </Box>
 
-## Gear
-First we have non-lethals a step above simply telling someone to cooperate with instructions. Both the stunbaton and disabler are capable of limiting the movement of an assailant, whereas handcuffs can be applied to deny a criminal free movement and access to their hands. Cuffs will also shove the person down if your [color=red]harm mode[/color] is active during uncuff.
+## Снаряжение
+Сначала у нас есть несмертельное оружие, на шаг выше простого указания кому-то сотрудничать с инструкциями. И оглушающая дубинка, и оглушитель способны ограничивать движение нападающего, тогда как наручники можно применить, чтобы лишить преступника свободного передвижения и доступа к своим рукам. Наручники также опрокинут человека, если ваш [color=red]режим вреда[/color] активен при снятии наручников.
   <Box>
     <GuideEntityEmbed Entity="Stunbaton"/>
     <GuideEntityEmbed Entity="Handcuffs"/>
@@ -32,8 +32,8 @@ First we have non-lethals a step above simply telling someone to cooperate with 
     <GuideEntityEmbed Entity="GrenadeFlashBang"/>
   </Box>
 
-## Lethals
-Should the situation dictate, [color=#cb0000]Security[/color] have access to laser rifles, shotguns, handguns and automatic rifles able to put down substantial fire against any who would stand against the station.
+## Смертельное оружие
+Если ситуация этого требует, [color=#cb0000]Служба безопасности[/color] имеет доступ к лазерным винтовкам, ружьям, пистолетам и автоматическим винтовкам, способным вести существенный огонь против любого, кто выступит против станции.
   <Box>
     <GuideEntityEmbed Entity="WeaponLaserCarbine"/>
     <GuideEntityEmbed Entity="WeaponShotgunKammerer"/>

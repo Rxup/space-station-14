@@ -1,2 +1,2 @@
-ent-HeadcrabNest = headcrab nest
+ent-HeadcrabNest = гнездо хедкраба
     .desc = It seems to be moving.

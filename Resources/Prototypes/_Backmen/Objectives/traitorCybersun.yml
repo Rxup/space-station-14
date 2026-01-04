@@ -59,7 +59,7 @@
   id: BaseCMOStealObjectiveCybersan
   components:
   - type: NotJobRequirement
-    job: ChiefMedicalOfficer
+    jobs: [ ChiefMedicalOfficer ]
   - type: StealCondition
     owner: job-name-cmo
 
@@ -87,7 +87,7 @@
   id: BaseRDStealObjectiveCybersan
   components:
   - type: NotJobRequirement
-    job: ResearchDirector
+    jobs: [ResearchDirector]
   - type: StealCondition
     owner: job-name-rd
 
@@ -115,7 +115,7 @@
   id: MagbootsStealObjectiveCybersan
   components:
   - type: NotJobRequirement
-    job: ChiefEngineer
+    jobs: [ChiefEngineer]
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
     owner: job-name-ce
@@ -130,7 +130,7 @@
   - type: Objective
     difficulty: 3.5
   - type: NotJobRequirement
-    job: Captain
+    jobs: [Captain]
 
 - type: entity
   categories: [ HideSpawnMenu ]

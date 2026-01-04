@@ -53,6 +53,7 @@ flavor-base-terrible = ужасающе
 flavor-base-mindful = разумно
 flavor-base-chewy = жевательно
 flavor-base-trashy = мусорно
+flavor-base-motivating = мотивирующе
 
 # Complex flavors. Put a flavor here when you want something that's more
 # specific.
@@ -67,6 +68,7 @@ flavor-complex-mayonnaise = как майонез
 flavor-complex-mustard = как горчица
 
 # Food-specific flavors.
+
 
 ## Food chemicals. In case you get something that has this inside.
 
@@ -132,6 +134,7 @@ flavor-complex-cherry = как вишня
 
 # use it when there multiple types of veggies
 
+
 ## Complex foodstuffs (cooked foods, joke flavors, etc)
 
 flavor-complex-pink = как розовый
@@ -185,8 +188,10 @@ flavor-complex-false-meat = как не совсем не мясо
 flavor-complex-paper = как кашеобразная масса
 flavor-complex-compressed-meat = как спрессованное мясо
 flavor-complex-dog-food = как собачья еда
+flavor-complex-canned-tuna = как консервированный тунец
 
 # Drink-specific flavors.
+
 
 ## Generic alcohol/soda taste. This should be replaced with an actual flavor profile.
 
@@ -267,7 +272,7 @@ flavor-complex-screwdriver = как крепкий апельсиновый со
 flavor-complex-jack-rose = как свидетельство
 flavor-complex-jungle-bird = как будто вы в тропической клетке
 flavor-complex-kalimotxo = как интересная шипастая кола
-flavor-complex-vampiro = фруктово, пикантно, and и остро
+flavor-complex-vampiro = фруктово, пикантно и остро
 flavor-complex-bronx = как немного сладкий, спиртной фрукт
 flavor-complex-monkey-business = как идущий примат
 flavor-complex-vodka-red-bool = как инфаркт
@@ -340,6 +345,7 @@ flavor-complex-bacchus-blessing = как кирпичная стена
 flavor-complex-pilk = как сладкое молоко
 
 # Medicine/chemical-specific flavors.
+
 
 ## Generic flavors.
 

@@ -1,4 +1,4 @@
-ent-DrinkVisualizerTestCut = solution container vis cut-out
+ent-DrinkVisualizerTestCut = визуальный вырез контейнера раствора
     .desc = A stainless steel insulated pitcher. Everyone's best friend in the morning.
-ent-DrinkVisualizerTestNot = solution container vis cut-not
+ent-DrinkVisualizerTestNot = визуальный не-вырез контейнера раствора
     .desc = A stainless steel insulated pitcher. Everyone's best friend in the morning.

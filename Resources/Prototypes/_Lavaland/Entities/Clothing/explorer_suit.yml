@@ -351,7 +351,9 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
-      icon: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi/icon.png
+      icon:
+        sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
+        state: icon
       itemIconStyle: NoItem
       useDelay: 5
     - type: WorldTargetAction

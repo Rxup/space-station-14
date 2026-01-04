@@ -9,15 +9,9 @@
   - type: Item
     size: Normal
     sprite: Objects/Tanks/generic.rsi
-  - type: Tag
-    tags:
-    - GasTank
   - type: Clothing
     quickEquip: false
     sprite: Objects/Tanks/generic.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BACKPACK
     slots:
     - Back
     - suitStorage
@@ -100,15 +94,15 @@
   - type: Item
     size: Small
     sprite: Objects/Tanks/emergency.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency.rsi
   - type: GasTank
     air:
       volume: 0.66
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency.rsi
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-BELT
     slots:
     - Pocket
     - Belt
@@ -131,6 +125,9 @@
     sprite: Objects/Tanks/emergency_red.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_red.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_red.rsi
   - type: Clothing
     sprite: Objects/Tanks/emergency_red.rsi
 
@@ -144,6 +141,9 @@
     sprite: Objects/Tanks/emergency_extended.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_extended.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_extended.rsi
   - type: GasTank
     air:
       volume: 1.5
@@ -161,6 +161,9 @@
     sprite: Objects/Tanks/emergency_extended_red.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_extended_red.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_extended_red.rsi
   - type: Clothing
     sprite: Objects/Tanks/emergency_extended_red.rsi
 
@@ -174,6 +177,9 @@
     sprite: Objects/Tanks/emergency_double.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_double.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_double.rsi
   - type: GasTank
     air:
       volume: 2.5
@@ -196,6 +202,9 @@
     sprite: Objects/Tanks/emergency_double_red.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_double_red.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_double_red.rsi
   - type: Clothing
     sprite: Objects/Tanks/emergency_double_red.rsi
 
@@ -209,6 +218,9 @@
     sprite: Objects/Tanks/emergency_clown.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_clown.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_clown.rsi
   - type: Clothing
     sprite: Objects/Tanks/emergency_clown.rsi
 
@@ -251,11 +263,4 @@
     outputPressure: 101.3
   - type: Clothing
     sprite: Objects/Tanks/plasma.rsi
-    # backmen-start
-    clothingVisuals:
-      suitstorage:
-      - state: equipped-SUITSTORAGE
-    # backmen-end
-    slots:
-    - Belt
-    - suitStorage
+    slots: [ BELT, SUITSTORAGE ]

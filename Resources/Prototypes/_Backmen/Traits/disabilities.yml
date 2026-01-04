@@ -6,7 +6,7 @@
   blacklist:
     components:
     - BSSDrone #backmen: BSSDrone
-    - StationAI # backmen: Station AI
+    - StationAiCore # backmen: Station AI
     - BorgChassis
   components:
     - type: Monolingual

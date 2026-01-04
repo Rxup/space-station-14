@@ -231,7 +231,7 @@ public sealed class GolemSystem : SharedGolemSystem
         }
         else
         {
-            if (_prototypes.TryIndex<DatasetPrototype>(GolemNames, out var names))
+            if (_prototypes.TryIndex<LocalizedDatasetPrototype>(GolemNames, out var names))
             {
                 _metaDataSystem.SetEntityName(uid, _robustRandom.Pick(names.Values));
             }

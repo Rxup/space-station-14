@@ -1,4 +1,5 @@
 using Content.Shared.Inventory;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Robust.Shared.Containers;
@@ -37,6 +38,7 @@ public abstract partial class SharedBodySystem : EntitySystem
     [Dependency] protected readonly SharedContainerSystem Containers = default!;
     [Dependency] protected readonly SharedTransformSystem SharedTransform = default!;
     [Dependency] protected readonly StandingStateSystem Standing = default!;
+    [Dependency] protected readonly DamageableSystem Damageable = default!;
 
     public override void Initialize()
     {

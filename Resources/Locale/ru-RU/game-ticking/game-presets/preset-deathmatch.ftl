@@ -1,5 +1,5 @@
 death-match-title = Смертельная битва
-death-match-description = Убейте всё, что движется!
+death-match-description = Убейте всё, что движется! Обычный ролеплей не требуется. Первый, набравший 31 очко, побеждает!
 death-match-name-player = [bold]{ $name }[/bold] ([italic]{ $username }[/italic])
 death-match-name-npc = [bold]{ $name }[/bold]
 death-match-assist = { $primary }, с помощью { $secondary },

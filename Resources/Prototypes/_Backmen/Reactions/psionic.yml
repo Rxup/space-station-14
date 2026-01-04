@@ -1,4 +1,4 @@
-﻿- type: reaction
+- type: reaction
   id: LotophagoiOil
   reactants:
     SpaceDrugs:
@@ -19,8 +19,6 @@
   reactants:
     Ash:
       amount: 5
-    Water:
-      amount: 5
     Blood:
       amount: 5
     Ectoplasm:
@@ -29,7 +27,7 @@
       amount: 5
       catalyst: true
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: CrystalNormality1
     - !type:ChangeGlimmerReactionEffect
       count: -10

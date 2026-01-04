@@ -12,6 +12,3 @@ ent-GunSafeLaserCarbineUEG = сейф лазерного карабина
     .desc = { ent-GunSafeBaseSecure.desc }
 ent-GunSafePistolGlock = сейф G22
     .desc = { ent-GunSafeBaseSecure.desc }
-ent-LockerSecurityPilotFilled = { ent-LockerSecurityPilot }
-    .suffix = Заполненный
-    .desc = { ent-LockerSecurityPilot.desc }

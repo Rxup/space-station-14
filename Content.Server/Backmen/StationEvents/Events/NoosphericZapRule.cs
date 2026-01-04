@@ -9,6 +9,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusEffectNew;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
@@ -23,6 +24,8 @@ internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleCo
     [Dependency] private readonly PsionicsSystem _psionicsSystem = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
+    public static readonly EntProtoId Stuttering = "StatusEffectStutter";
+
     protected override void Started(EntityUid uid, NoosphericZapRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
@@ -35,7 +38,7 @@ internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleCo
                 continue;
 
             _stunSystem.TryUpdateParalyzeDuration(psion, TimeSpan.FromSeconds(5));
-            _statusEffectsSystem.TryAddStatusEffectDuration(psion, "Stutter", TimeSpan.FromSeconds(10));
+            _statusEffectsSystem.TryAddStatusEffectDuration(psion, Stuttering, TimeSpan.FromSeconds(10));
 
             if (HasComp<PsionicComponent>(psion))
                 _popupSystem.PopupEntity(Loc.GetString("noospheric-zap-seize"), psion, psion, Shared.Popups.PopupType.LargeCaution);

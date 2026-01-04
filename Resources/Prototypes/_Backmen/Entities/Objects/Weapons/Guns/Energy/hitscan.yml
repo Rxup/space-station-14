@@ -22,7 +22,7 @@
           volume: -2
   - type: Item
     size: SmallNormal
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletEnergyGunLaserMk2
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -41,7 +41,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 5750
-    
+
 - type: entity
   name: лазерная пуля
   id: X01Attack
@@ -104,7 +104,7 @@
   - type: Tag
     tags:
     - HideContextMenu
-    
+
 - type: entity
   name: 45MW.TRG
   parent: BaseWeaponBatterySmall
@@ -131,7 +131,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: Item
     size: SmallNormal
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: X01Attack
     fireCost: 200
   - type: BatteryWeaponFireModes

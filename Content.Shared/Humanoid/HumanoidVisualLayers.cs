@@ -17,6 +17,7 @@ namespace Content.Shared.Humanoid
         Head,
         Snout,
         SnoutOverlay, // Backmen | for animated tongue
+        SnoutCover, // things layered over snouts (i.e. noses)
         HeadSide, // side parts (i.e., frills)
         HeadTop,  // top parts (i.e., ears)
         Eyes,

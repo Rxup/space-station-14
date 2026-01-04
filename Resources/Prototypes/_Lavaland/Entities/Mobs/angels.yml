@@ -3,7 +3,7 @@
 - type: entity
   id: MobBaseAngelicHuman
   parent:
-  - DeathByDome
+  #- DeathByDome
   - MobBaseNpc
   categories: [ HideSpawnMenu ]
   components:
@@ -35,8 +35,10 @@
     speedModifierThresholds:
       100: 1
   - type: Bloodstream
-    bloodReagent: Holywater
-    bloodMaxVolume: 30
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Holywater
+        Quantity: 30
     bloodlossThreshold: 0
   - type: Destructible
     thresholds:
@@ -242,7 +244,7 @@
             max: 1
   - type: NPCUseActionOnTarget
     actionId: ActionHolyLightVirtue
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: HolyBeamMini
     fireCost: 50
   - type: Battery

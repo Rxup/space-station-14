@@ -16,7 +16,7 @@
   </Box>
 Самыми важными устройствами вашего отдела являются сервер РнД, на котором хранятся все изученные технологии, и исследовательская консоль, который позволяет вам эти технологии открывать.
 
-Each technology costs [color=#a4885c]Research Points[/color] and unlocks recipes at lathes. Some technologies will also have prerequisites you have to unlock before you can research them.
+Каждая технология стоит [color=#a4885c]очков исследований[/color] и разблокирует рецепты на станках. У некоторых технологий также есть предварительные требования, которые нужно разблокировать, прежде чем их можно будет исследовать.
 
 Информацию о различных технологиях можно посмотреть [textlink="на странице справочника технологий" link="Technologies"].
 
@@ -29,14 +29,14 @@ Each technology costs [color=#a4885c]Research Points[/color] and unlocks recipes
   <GuideEntityEmbed Entity="WeaponXrayCannon" Caption="Арсенал"/>
 </Box>
 
-<GuideEntityEmbed Entity="ComputerResearchAndDevelopment"/> Use your nearest R&D console to take note of which kind of research is locked behind each Discipline tree.
+<GuideEntityEmbed Entity="ComputerResearchAndDevelopment"/> Используйте ближайшую консоль РнД, чтобы отметить, какой вид исследований заблокирован за каждым деревом дисциплин.
 
-## Tiers
-Each Discipline tree has up to 3 tiers of technologies. At the start the only tier that is open and available for you is tier 1.
+## Уровни
+Каждое дерево дисциплин имеет до 3 уровней технологий. В начале единственный уровень, который открыт и доступен для вас, — это уровень 1.
 
-In order to progress further, you have to research up to [color=brown]75%[/color] of the current tier to move to the next one. So in order to unlock T2 researches you need to research 75% of T1.
+Для дальнейшего продвижения вам нужно исследовать до [color=brown]75%[/color] текущего уровня, чтобы перейти к следующему. Так что для разблокировки исследований T2 вам нужно исследовать 75% T1.
 
-Now [color=green]Tier 3[/color] is where it gets interesting. If you research a T3 tech, you [color=brown]lock out[/color] T3 techs from other Discipline trees. That is, unless you can find some other way around it... you should probably ask your [color=purple]Research Director[/color].
+Теперь [color=green]Уровень 3[/color] — это где становится интересно. Если вы исследуете технологию T3, вы [color=brown]блокируете[/color] технологии T3 из других деревьев дисциплин. То есть, если только вы не можете найти какой-то другой способ... вам, вероятно, стоит спросить вашего [color=purple]Научного Руководителя[/color].
 
 ## Фабрикаторы и станки
 <Box>

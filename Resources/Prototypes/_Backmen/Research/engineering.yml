@@ -156,6 +156,7 @@
   - Signaller
   - SprayPainter
   - FlashlightLantern
+  - VoiceSensor
   - TRayScanner
   - UtilityBelt
   - AirTank
@@ -167,6 +168,7 @@
   - Igniter
   - ClothingOuterVestTank
   - Pickaxe
+  - UtilityKnife
   position: -2,1
 
 - type: technology

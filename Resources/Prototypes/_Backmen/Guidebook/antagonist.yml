@@ -1,3 +1,5 @@
+#backmen start
+
 - type: guideEntry
   id: Blob
   name: guide-entry-blob
@@ -12,6 +14,8 @@
   id: superpsi
   name: guide-entry-superpsi
   text: "/ServerInfo/_Backmen/Guidebook/Antagonist/superpsi.xml"
+
+#backmen end
 
 # Headcrab
 

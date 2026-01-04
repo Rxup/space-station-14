@@ -1,2 +1,2 @@
-cmd-ooc-desc = Send Out Of Character chat messages.
-cmd-ooc-help = Usage: ooc <text>
+cmd-ooc-desc = Отправить сообщения вне персонажа.
+cmd-ooc-help = Использование: ooc <текст>

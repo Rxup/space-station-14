@@ -63,7 +63,7 @@
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
-    critThreshold: 85
+    baseCritThreshold: 85
   - type: PseudoItem
   - type: Vocal
     sounds:

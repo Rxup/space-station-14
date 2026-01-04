@@ -1,4 +1,4 @@
-﻿- type: htnCompound
+- type: htnCompound
   id: BehemothFoodCompound
   branches:
   # Picks a nearby food, moves into range, then eats it and waits the idle time.

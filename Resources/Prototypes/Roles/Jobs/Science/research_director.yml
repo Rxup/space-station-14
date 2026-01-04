@@ -4,13 +4,12 @@
   description: job-description-rd
   playTimeTracker: JobResearchDirector
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 54000 #15 hrs # Corvax-RoleTime
-#    - !type:OverallPlaytimeRequirement
-#      time: 144000 #40 hrs
-    - !type:AgeRequirement
-      requiredAge: 21
+  - !type:RoleTimeRequirement
+    role: JobScientist
+    time: 5h
+  - !type:DepartmentTimeRequirement
+    department: Science
+    time: 10h
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -30,13 +29,6 @@
   wage: 100
   #end-backmen: currency
   special:
-  - !type:AddComponentSpecial
-    components:
-      - type: PsionicBonusChance
-        multiplier: 3
-      - type: NpcFactionMember
-        factions:
-          - CentralCommand
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial

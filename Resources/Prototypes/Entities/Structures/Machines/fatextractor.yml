@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: FatExtractor
   parent: BaseMachinePowered
   name: lipid extractor

@@ -1,2 +1,2 @@
-ent-AirlockHatchBasik = airtight hatch
+ent-AirlockHatchBasik = герметичный люк
     .desc = { ent-Airlock.desc }

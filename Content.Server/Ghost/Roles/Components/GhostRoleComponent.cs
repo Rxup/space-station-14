@@ -110,7 +110,7 @@ public sealed partial class GhostRoleComponent : Component
     [DataField("whitelistRequired")]
     public bool WhitelistRequired = false;
     // end-backmen: whitelist
-    
+
     /// <summary>
     /// Job the entity will receive after adding the mind.
     /// </summary>

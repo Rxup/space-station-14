@@ -74,7 +74,7 @@
   id: BaseCMOStealObjectiveDonk
   components:
   - type: NotJobRequirement
-    job: ChiefMedicalOfficer
+    jobs: [ChiefMedicalOfficer]
   - type: StealCondition
     owner: job-name-cmo
 
@@ -105,7 +105,7 @@
     # hos has a gun ce does not, higher difficulty than most
 #    difficulty: 3
 #  - type: NotJobRequirement
-#    job: HeadOfSecurity
+#    jobs: [HeadOfSecurity]
 #  - type: StealCondition
 #    stealGroup: BookSecretDocuments
 #    owner: job-name-hos
@@ -118,7 +118,7 @@
   id: ClipboardStealObjectiveDonk
   components:
   - type: NotJobRequirement
-    job: Quartermaster
+    jobs: [Quartermaster]
   - type: StealCondition
     stealGroup: BoxFolderQmClipboard
     owner: job-name-qm
@@ -131,7 +131,7 @@
   id: CorgiMeatStealObjectiveDonk
   components:
   - type: NotJobRequirement
-    job: HeadOfPersonnel
+    jobs: [HeadOfPersonnel]
   - type: ObjectiveLimit
     limit: 3 # ian only has 2 slices, 3 obj for drama
   - type: StealCondition

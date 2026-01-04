@@ -142,8 +142,8 @@
     range: 7
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-  - type: ActiveTimerTrigger
-    timeRemaining: 0.3
+  - type: TimerTrigger
+    nextTrigger: 0.3
   - type: DeleteOnTrigger
   - type: StaminaDamageOnCollide
     damage: 80

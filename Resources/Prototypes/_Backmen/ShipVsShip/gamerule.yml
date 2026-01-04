@@ -1,4 +1,4 @@
-﻿- type: gamePreset
+- type: gamePreset
   id: ShipVsShip
   alias:
   - svs

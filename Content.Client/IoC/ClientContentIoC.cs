@@ -24,6 +24,7 @@ using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
+using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 
@@ -31,15 +32,15 @@ namespace Content.Client.IoC
 {
     internal static class ClientContentIoC
     {
-        public static void Register()
+        public static void Register(IDependencyCollection collection)
         {
-            var collection = IoCManager.Instance!;
             collection.Register<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager,Backmen.Sponsors.SponsorsManager>(); // Corvax-Sponsors
             collection.Register<Content.Corvax.Interfaces.Client.ISponsorWindowCreator,Backmen.Sponsors.SponsorWindowCreator>(); // Corvax-Sponsors
             collection.Register<Content.Corvax.Interfaces.Client.IClientJoinQueueManager,Backmen.JoinQueue.JoinQueueManager>(); // Corvax-Queue
             collection.Register<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager,Backmen.DiscordAuth.DiscordAuthManager>(); // Corvax-DiscordAuth
             collection.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>(); // Corvax-Sponsors
 
+            SharedContentIoC.Register(collection);
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<GeneratedParallaxCache>();
             collection.Register<IChatManager, ChatManager>();

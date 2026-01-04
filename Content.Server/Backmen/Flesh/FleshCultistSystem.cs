@@ -22,8 +22,11 @@ using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Backmen.Language;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cloning.Events;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Flash.Components;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics.Components;
@@ -39,6 +42,7 @@ using Content.Shared.Popups;
 using Content.Shared.Random;
 using Content.Shared.Store.Components;
 using Content.Shared.Tag;
+using Content.Shared.Temperature.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
@@ -67,7 +71,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
@@ -284,6 +288,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _alerts.ShowAlert(uid, MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
     }
 
+    private static readonly ReagentId BloodId = new("Blood", null);
     private void OnDevourAction(EntityUid uid, FleshCultistComponent component, FleshCultistDevourActionEvent args)
     {
         if (args.Handled)
@@ -293,7 +298,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         if (!TryComp<MobStateComponent>(target, out var targetState))
             return;
-        if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
+        if (!TryComp<BloodstreamComponent>(target, out var bloodstream) || bloodstream.BloodSolution is not {} bloodSolution)
             return;
         var hasAppearance = false;
         {
@@ -325,14 +330,15 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     }
                     else
                     {
-                        if (bloodstream.BloodReagent != "Blood")
+
+                        if (!bloodSolution.Comp.Solution.ContainsPrototype(BloodId.Prototype))
                         {
                             _popupSystem.PopupEntity(
                                 Loc.GetString("flesh-cultist-devout-target-not-have-flesh"),
                                 uid, uid);
                             return;
                         }
-                        if (bloodstream.BloodMaxVolume < 30)
+                        if (bloodSolution.Comp.Solution.MaxVolume < 30)
                         {
                             _popupSystem.PopupEntity(
                                 Loc.GetString("flesh-cultist-devout-target-invalid"),
@@ -340,7 +346,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             return;
                         }
                     }
-                    var saturation = MatchSaturation(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
+
+                    var saturation = MatchSaturation(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
                     if (component.Hunger + saturation >= component.MaxHunger)
                     {
                         _popupSystem.PopupEntity(
@@ -377,7 +384,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (args.Args.Target == null)
             return;
 
-        if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream))
+        if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream) || bloodstream.BloodSolution is not { } bloodSolution)
             return;
 
         var hasAppearance = false;
@@ -458,12 +465,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
             hasAppearance = true;
         }
 
-        var saturation = MatchSaturation(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
-        var evolutionPoint = MatchEvolutionPoint(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
-        var healPoint = MatchHealPoint(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
+        var saturation = MatchSaturation(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
+        var evolutionPoint = MatchEvolutionPoint(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
+        var healPoint = MatchHealPoint(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
         var tempSol = new Solution() { MaxVolume = 5 };
 
-        var bloodstreamSol = bloodstream.BloodSolution ?? bloodstream.ChemicalSolution ?? bloodstream.TemporarySolution;
+        var bloodstreamSol = bloodstream.BloodSolution ?? bloodstream.TemporarySolution;
         if(bloodstreamSol != null)
             tempSol.AddSolution(bloodstreamSol.Value.Comp.Solution, _proto);
 

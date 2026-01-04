@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: MobSiliconBase
   id: BaseMobMalfunctioningRobot
   name: broken robot

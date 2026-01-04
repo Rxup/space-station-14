@@ -18,7 +18,7 @@
         name: comp-gas-canister-slot-name-gas-tank
         priority: 1
         whitelist:
-          tags:
+          components:
           - GasTank
   - type: ContainerContainer # Backmen
     containers:

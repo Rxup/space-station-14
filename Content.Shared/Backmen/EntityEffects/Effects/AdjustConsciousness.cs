@@ -2,13 +2,49 @@ using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
+/// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
+public sealed partial class AdjustConsciousnessEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustConsciousness>
+{
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+
+    protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<AdjustConsciousness> args)
+    {
+        var scale = FixedPoint2.New(args.Scale);
+
+        if (!_consciousness.TryGetNerveSystem(entity, out var nerveSys))
+            return;
+
+        if (args.Effect.AllowCreatingModifiers)
+        {
+            if (!_consciousness.ChangeConsciousnessModifier(entity,
+                    nerveSys.Value.Owner,
+                    args.Effect.Amount * scale,
+                    args.Effect.Identifier,
+                    args.Effect.Time))
+            {
+                _consciousness.AddConsciousnessModifier(entity,
+                    nerveSys.Value.Owner,
+                    args.Effect.Amount * scale,
+                    args.Effect.Identifier,
+                    args.Effect.ModifierType,
+                    args.Effect.Time);
+            }
+        }
+        else
+        {
+            _consciousness.ChangeConsciousnessModifier(entity, nerveSys.Value.Owner, args.Effect.Amount * scale, args.Effect.Identifier, args.Effect.Time);
+        }
+    }
+}
+
 [UsedImplicitly]
-public sealed partial class AdjustConsciousness : EntityEffect
+public sealed partial class AdjustConsciousness : EntityEffectBase<AdjustConsciousness>
 {
     [DataField(required: true)]
     public FixedPoint2 Amount;
@@ -25,43 +61,6 @@ public sealed partial class AdjustConsciousness : EntityEffect
     [DataField]
     public ConsciousnessModType ModifierType = ConsciousnessModType.Generic;
 
-    protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-adjust-consciousness");
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        var scale = FixedPoint2.New(1);
-
-        if (args is EntityEffectReagentArgs reagentArgs)
-        {
-            scale = reagentArgs.Quantity * reagentArgs.Scale;
-        }
-
-        if (!args.EntityManager.System<ConsciousnessSystem>().TryGetNerveSystem(args.TargetEntity, out var nerveSys))
-            return;
-
-        if (AllowCreatingModifiers)
-        {
-            if (!args.EntityManager.System<ConsciousnessSystem>()
-                    .ChangeConsciousnessModifier(args.TargetEntity,
-                        nerveSys.Value.Owner,
-                        Amount * scale,
-                        Identifier,
-                        Time))
-            {
-                args.EntityManager.System<ConsciousnessSystem>()
-                    .AddConsciousnessModifier(args.TargetEntity,
-                        nerveSys.Value.Owner,
-                        Amount * scale,
-                        Identifier,
-                        ModifierType,
-                        Time);
-            }
-        }
-        else
-        {
-            args.EntityManager.System<ConsciousnessSystem>()
-                .ChangeConsciousnessModifier(args.TargetEntity, nerveSys.Value.Owner, Amount * scale, Identifier, Time);
-        }
-    }
 }

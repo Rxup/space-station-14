@@ -7,7 +7,7 @@
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 108000 # 30h # Corvax-RoleTime
+    time: 1h
   discordRequired: true # backmen: antag
 
 - type: antag
@@ -20,10 +20,7 @@
   discordRequired: true # backmen: antag
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 18000 # 5h
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 18000 # 5h
+    time: 1h
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

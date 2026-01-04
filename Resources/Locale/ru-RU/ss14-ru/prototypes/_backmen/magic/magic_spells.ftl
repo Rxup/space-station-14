@@ -1,2 +1,2 @@
-ent-HealingSpell = action-name-spell-healing
+ent-HealingSpell = заклинание исцеления
     .desc = action-description-spell-healing

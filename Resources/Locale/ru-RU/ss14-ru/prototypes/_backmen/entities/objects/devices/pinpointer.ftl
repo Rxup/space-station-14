@@ -1,2 +1,2 @@
-ent-PinpointerNuclearBomb = pinpointer nuclear bomb
+ent-PinpointerNuclearBomb = пинпоинтер ядерной бомбы
     .desc = { ent-PinpointerBase.desc }

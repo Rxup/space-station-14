@@ -1,8 +1,8 @@
-ent-SpawnHeadcrabNest = headcrab nest spawner
+ent-SpawnHeadcrabNest = генератор гнезд хедкраба
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobHeadcrab = headcrab spawner
+ent-SpawnMobHeadcrab = генератор хедкрабов
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobHeadcrabFast = fast headcrab spawner
+ent-SpawnMobHeadcrabFast = генератор быстрых хедкрабов
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobHeadcrabPoison = poison headcrab spawner
+ent-SpawnMobHeadcrabPoison = генератор ядовитых хедкрабов
     .desc = { ent-MarkerBase.desc }

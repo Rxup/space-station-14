@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: DiseaseOutbreak
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]

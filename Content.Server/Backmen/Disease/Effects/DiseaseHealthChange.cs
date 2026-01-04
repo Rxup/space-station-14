@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Backmen.Disease;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
@@ -30,6 +31,6 @@ public sealed partial class DiseaseEffectSystem
         if(args.Handled)
             return;
         args.Handled = true;
-        _damageable.TryChangeDamage(args.DiseasedEntity, args.DiseaseEffect.Damage, true, false);
+        _damageable.ChangeDamage(args.DiseasedEntity.Owner, args.DiseaseEffect.Damage, true, false);
     }
 }

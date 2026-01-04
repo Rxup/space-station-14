@@ -30,7 +30,6 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         base.Initialize();
 
         SubscribeLocalEvent<LayingDownComponent, MoveEvent>(OnMovementInput);
-        SubscribeLocalEvent<LayingDownComponent, AfterAutoHandleStateEvent>(OnChangeDraw);
         SubscribeLocalEvent<StandingStateComponent, AfterAutoHandleStateEvent>(OnChangeStanding);
 
         _cfg.OnValueChanged(CCVars.AutoGetUp, b => _autoGetUp = b, true);
@@ -57,22 +56,6 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         if (sprite.Rotation != Angle.FromDegrees(270) && sprite.Rotation != Angle.FromDegrees(90))
         {
             _sprites.SetRotation((ent, sprite), Angle.FromDegrees(270));
-        }
-    }
-
-    private void OnChangeDraw(Entity<LayingDownComponent> ent, ref AfterAutoHandleStateEvent args)
-    {
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
-            return;
-
-        switch (ent.Comp.DrawDowned)
-        {
-            case true:
-                _sprites.SetDrawDepth((ent, sprite), (int) Shared.DrawDepth.DrawDepth.SmallMobs);
-                break;
-            case false when sprite.DrawDepth == (int) Shared.DrawDepth.DrawDepth.SmallMobs:
-                _sprites.SetDrawDepth((ent, sprite), (int) Shared.DrawDepth.DrawDepth.Mobs);
-                break;
         }
     }
 

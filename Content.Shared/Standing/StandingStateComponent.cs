@@ -19,8 +19,15 @@ public sealed partial class StandingStateComponent : Component
     public bool Standing
     {
         get => CurrentState == StandingState.Standing;
-        set => CurrentState = value ? StandingState.Standing : StandingState.Lying;
+        set => CurrentState = value ? StandingState.Standing
+         : StandingState.Lying;
     }
+
+    /// <summary>
+    /// Friction modifier applied to an entity in the downed state.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DownFrictionMod = 0.4f;
 
     /// <summary>
     /// Time it takes us to stand up

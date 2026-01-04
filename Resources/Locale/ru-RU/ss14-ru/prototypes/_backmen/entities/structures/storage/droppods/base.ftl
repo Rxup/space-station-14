@@ -1,8 +1,8 @@
-ent-MissileBase = supply drop pod
+ent-MissileBase = капсула сброса припасов
     .desc = A standard-issue Nanotrasen storage unit.
-ent-GibZone = gibbing zone
+ent-GibZone = зона расчленения
     .desc = A zone when you step her, you got gibbed. If you see that, you are probably dead.
-ent-SupplyPodBase = supply drop pod
+ent-SupplyPodBase = капсула сброса припасов
     .desc = A standard-issue Nanotrasen storage unit.
 ent-DropPodMarkerBase = { "" }
     .desc = { "" }

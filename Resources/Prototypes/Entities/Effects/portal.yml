@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BasePortal
   abstract: true
   name: bluespace portal

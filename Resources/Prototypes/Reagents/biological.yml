@@ -12,6 +12,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   recognizable: true
+  standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
     Drink:
@@ -19,61 +20,49 @@
       - !type:SatiateThirst
         factor: 1.0
         conditions:
-          - !type:OrganType
-            type: Human
-            shouldHave: false
-      - !type:SatiateHunger
+        - !type:MetabolizerTypeCondition
+          type: [ Human ]
+          inverted: true
+      - !type:AdjustReagent # backmen
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        reagent: Omnizine
+        amount: 0.1
+      - !type:SatiateThirst # backmen
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+      - !type:SatiateHunger # backmen
         factor: 0.5
         conditions:
-          - !type:OrganType
-            type: Vampiric
-      - !type:AdjustReagent
-        conditions:
-          - !type:OrganType
-            type: Vampiric
-        reagent: Water
-        amount: 0.15
-      - !type:AdjustReagent
-        conditions:
-          - !type:OrganType
-            type: Vampiric
-        reagent: Protein
-        amount: 0.15
-      - !type:AdjustReagent
-        conditions:
-          - !type:OrganType
-            type: Vampiric
-        reagent: Omnizine
-        amount: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
     Food:
       effects:
-        - !type:AdjustReagent
-          conditions:
-          - !type:OrganType
-            type: Vampiric
-            shouldHave: false
-          reagent: UncookedAnimalProteins
-          amount: 0.1
-        - !type:AdjustReagent
-          conditions:
-          - !type:OrganType
-            type: Vampiric
-          reagent: Protein
-          amount: 0.5
+      - !type:AdjustReagent
+        reagent: UncookedAnimalProteins
+        amount: 0.1
     Medicine:
       effects:
+      - !type:SuppressPain # backmen
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        amount: 10
+        time: 15
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Vampiric
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
         damage:
           groups:
             Brute: -3
             Burn: -1.25
-            Airloss: -3
   plantMetabolism:
-    - !type:PlantAdjustWater
-      amount: 0.5
+  - !type:PlantAdjustWater
+    amount: 0.5
   footstepSound:
     collection: FootstepBlood
     params:
@@ -91,49 +80,6 @@
   physicalDesc: reagent-physical-desc-slimy
 
 - type: reagent
-  parent: Blood
-  id: SyntheticBlood
-  name: reagent-name-syntheticblood
-  group: Biological
-  desc: reagent-desc-syntheticblood
-  flavor: metallic
-  color: "#800000"
-  physicalDesc: reagent-physical-desc-ferrous
-#  slippery: false
-  metabolisms:
-    Drink:
-      # Quenching!
-      effects:
-        - !type:SatiateThirst
-          factor: 1.5
-        - !type:SatiateHunger
-          factor: 0.5
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-        - !type:AdjustReagent
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-          reagent: Water
-          amount: 0.15
-        - !type:AdjustReagent
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-          reagent: Protein
-          amount: 0.15
-        - !type:AdjustReagent
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-          reagent: Omnizine
-          amount: 0.1
-  plantMetabolism:
-    - !type:PlantAdjustWater
-      amount: 0.25
-
-- type: reagent
   id: Slime
   name: reagent-name-slime
   group: Biological
@@ -141,10 +87,11 @@
   flavor: slimy
   color: "#2cf274"
   recognizable: true
+  standsout: true
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
   tileReactions:
-    - !type:SpillTileReaction
+  - !type:SpillTileReaction
   metabolisms:
     Food:
       # Delicious!
@@ -152,50 +99,14 @@
       - !type:SatiateHunger
         factor: 1
         conditions:
-          - !type:OrganType
-            type: Vampiric
-            shouldHave: false
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6
-
-- type: reagent
-  id: InactiveBlood
-  name: reagent-name-inactiveblood
-  group: Biological
-  desc: reagent-desc-inactiveblood
-  flavor: metallic
-  color: "#800000"
-  physicalDesc: reagent-physical-desc-ferrous
-#  slippery: false
-  metabolisms:
-    Drink:
-      # Quenching!
-      effects:
-        - !type:SatiateThirst
-          factor: 1.5
-        - !type:SatiateHunger
-          factor: 0.5
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-        - !type:HealthChange
-          damage:
-            types:
-              Asphyxiation: 0.6
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-        - !type:AdjustReagent
-          reagent: Water
-          amount: 0.15
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-  plantMetabolism:
-    - !type:PlantAdjustWater
-      amount: 0.5
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+          inverted: true
+      - !type:ModifyBloodLevel
+        amount: 0.5 # drawing 15u removes 5% blood level from a slimeperson, this will add 5% when injecting 15u
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
   footstepSound:
     collection: FootstepSlime # makes sense
     params:
@@ -212,7 +123,7 @@
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.10
   tileReactions:
-    - !type:SpillTileReaction
+  - !type:SpillTileReaction
   metabolisms:
     Food:
       # Sweet!
@@ -268,7 +179,7 @@
         damage:
           types:
             Poison: 4
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.25
 
 - type: reagent
@@ -285,18 +196,19 @@
       effects:
       - !type:SatiateThirst
         factor: 1.5
-    # Dragon doesn't require airloss healing, so omnizine is still best for humans.
+      # Dragon doesn't require airloss healing, so omnizine is still best for humans.
       - !type:ModifyBloodLevel
         amount: 3
+      - !type:EvenHealthChange
+        damage:
+          Burn: -3
+          Brute: -3
+          Toxin: -2
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -5
-            Brute: -5
-            Toxin: -2
           types:
-            Bloodloss: -5
-      - !type:ModifyBleedAmount
+            Bloodloss: -3
+      - !type:ModifyBleed
         amount: -1.5
   # Just in case you REALLY want to water your plants
   plantMetabolism:
@@ -343,14 +255,6 @@
     collection: FootstepBlood
     params:
       volume: 6
-  reactiveEffects:
-    Acidic:
-      methods: [ Touch ]
-      effects:
-      - !type:ChemMiasmaPoolSource
-        conditions:
-        - !type:ReagentThreshold
-          min: 1
 
 - type: reagent
   id: GreyMatter
@@ -371,5 +275,3 @@
         damage:
           types:
             Cellular: 2
-
-

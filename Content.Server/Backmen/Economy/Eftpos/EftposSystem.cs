@@ -38,7 +38,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 
         private void OnInteract(Entity<EftposComponent> ent, ref AfterActivatableUIOpenEvent args)
         {
-            UpdateComponentUserInterface(ent, args.Actor);
+            UpdateComponentUserInterface(ent, args.User);
         }
 
         private void UpdateComponentUserInterface(Entity<EftposComponent> uid, EntityUid? player = null)

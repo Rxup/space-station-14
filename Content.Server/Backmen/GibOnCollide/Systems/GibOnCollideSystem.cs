@@ -5,6 +5,7 @@ using Content.Server.Popups;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;

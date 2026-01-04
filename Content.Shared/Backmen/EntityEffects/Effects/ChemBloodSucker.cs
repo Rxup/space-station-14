@@ -1,20 +1,29 @@
 ﻿using Content.Shared.Backmen.Vampiric;
+using Content.Shared.Database;
 using Content.Shared.EntityEffects;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
-public sealed partial class ChemBloodSucker : EntityEffect
+/// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
+public sealed partial class ChemBloodSuckerEntityEffectSystem : EntityEffectSystem<MobStateComponent, ChemBloodSucker>
 {
-    public override bool ShouldLog => true;
+    [Dependency] private readonly SharedBloodSuckerSystem _bloodSucker = default!;
 
-    protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => Loc.GetString("reagent-effect-guidebook-missing", ("chance", Probability));
-
-    public override void Effect(EntityEffectBaseArgs args)
+    protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemBloodSucker> args)
     {
-        if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale < 1f)
+        if (args.Scale < 1f)
             return;
 
-        args.EntityManager.System<SharedBloodSuckerSystem>().ForceMakeVampire(args.TargetEntity);
+        _bloodSucker.ForceMakeVampire(entity);
     }
+}
+
+public sealed partial class ChemBloodSucker : EntityEffectBase<ChemBloodSucker>
+{
+    public override LogImpact? Impact => LogImpact.Medium;
+
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+        => Loc.GetString("reagent-effect-guidebook-missing", ("chance", Probability));
 }

@@ -1,4 +1,4 @@
-﻿- type: weightedRandom
+- type: weightedRandom
   id: MetempsychoticNonhumanoidPool # Entity prototypes
   weights:
     MobMonkey: 1

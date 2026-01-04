@@ -103,7 +103,11 @@ public static class ClientPackaging
             assemblies, // Corvax-Secrets
             cancel: cancel);
 
-        await WriteClientResources(contentDir, inputPass, cancel); // Corvax-Secrets: Support content resource ignore to ignore server-only prototypes
+        await RobustClientPackaging.WriteClientResources(
+            contentDir,
+            inputPass,
+            SharedPackaging.AdditionalIgnoredResources,
+            cancel);
 
         inputPass.InjectFinished();
     }

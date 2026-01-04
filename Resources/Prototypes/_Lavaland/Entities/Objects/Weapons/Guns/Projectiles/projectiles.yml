@@ -56,7 +56,7 @@
   components:
   - type: SpawnOnTrigger
     proto: HolyLight
-  - type: SoundOnTrigger
+  - type: EmitSoundOnTrigger
     sound: /Audio/Backmen/Bosses/mortarhit.ogg
   - type: Sprite
     noRot: false

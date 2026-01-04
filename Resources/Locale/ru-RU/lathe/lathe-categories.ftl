@@ -2,7 +2,7 @@
 lathe-category-ammo = Боеприпасы
 lathe-category-clothing = Одежда
 lathe-category-circuitry = Электроника
-lathe-category-machines = Machines
+lathe-category-machines = Машины
 lathe-category-lights = Лампы
 lathe-category-tiles = Плитки
 lathe-category-mechs = Мехи
@@ -20,8 +20,16 @@ lathe-category-medical = Медицинское
 lathe-category-research = Исследования
 lathe-category-security = Безопасность
 lathe-category-service = Сервис
+lathe-category-circuit-tile = Схема
+lathe-category-concrete-tile = Бетон
+lathe-category-dark-tile = Тёмный
+lathe-category-faux-tile = Имитация
+lathe-category-maints-tile = Сервисные
 # Cutter
 lathe-category-concrete = Бетон
+lathe-category-steel-tile = Сталь
+lathe-category-white-tile = Белый
+lathe-category-wood-tile = Дерево
 lathe-category-dark = Тёмный
 lathe-category-maints = Сервисные
 lathe-category-steel = Сталь

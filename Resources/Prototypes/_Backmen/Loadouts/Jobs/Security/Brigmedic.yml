@@ -1,4 +1,4 @@
-﻿- type: startingGear
+- type: startingGear
   id: BrigmedicGear
   equipment:
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite

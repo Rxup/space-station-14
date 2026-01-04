@@ -5,3 +5,4 @@ construction-graph-component-second-flash = вторую вспышку
 construction-graph-component-power-cell = батарею
 construction-graph-component-apc-electronics = плату ЛКП
 construction-graph-component-payload-trigger = триггер
+construction-graph-component-borg-brain = ЧМИ или позитронный мозг

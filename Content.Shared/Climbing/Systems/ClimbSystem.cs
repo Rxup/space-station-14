@@ -3,7 +3,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Climbing.Events;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
@@ -571,8 +571,8 @@ public sealed partial class ClimbSystem : VirtualController
         if (TryComp<PhysicsComponent>(args.Climber, out var physics) && physics.Mass <= component.MassLimit)
             return;
 
-        _damageableSystem.TryChangeDamage(args.Climber, component.ClimberDamage, origin: args.Climber, targetPart: TargetBodyPart.FullLegs); // backmen: surgery
-        _damageableSystem.TryChangeDamage(uid, component.TableDamage, origin: args.Climber);
+        _damageableSystem.ChangeDamage(args.Climber, component.ClimberDamage, origin: args.Climber, targetPart: TargetBodyPart.FullLegs); // backmen: surgery
+        _damageableSystem.ChangeDamage(uid, component.TableDamage, origin: args.Climber);
         _stunSystem.TryUpdateParalyzeDuration(args.Climber, TimeSpan.FromSeconds(component.StunTime));
 
         // Not shown to the user, since they already get a 'you climb on the glass table' popup

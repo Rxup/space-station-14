@@ -13,5 +13,6 @@ store-currency-display-stolen-essence = Украденная эссенция
 store-currency-display-stolen-mutation-points = Очки эволюции
 store-currency-display-silicon-memory = Память
 store-currency-display-bluespace = БС
+store-currency-display-dna = DNA
 store-currency-display-wizcoin = Маг₭øин™
 store-currency-display-evolutionpoints = Очки эволюции

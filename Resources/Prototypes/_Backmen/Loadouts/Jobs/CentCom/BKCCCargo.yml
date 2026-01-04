@@ -1,4 +1,4 @@
-﻿- type: startingGear
+- type: startingGear
   id: CCCargo
   equipment:
     id: CCCargoPDA

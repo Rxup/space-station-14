@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OreBox
   name: ore box
   description: A large storage container for holding unprocessed ores.

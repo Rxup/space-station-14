@@ -8,6 +8,7 @@ using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;

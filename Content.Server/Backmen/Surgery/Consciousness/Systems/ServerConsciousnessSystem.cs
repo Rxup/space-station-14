@@ -13,10 +13,12 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -108,7 +110,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                         var damage = new DamageSpecifier();
                         damage.DamageDict.Add(damagePair.Key, damagePair.Value);
 
-                        var beforePart = new BeforeDamageChangedEvent(damage, args.Origin, args.CanBeCancelled);
+                        var beforePart = new BeforeDamageChangedEvent(damage, args.Origin);
                         RaiseLocalEvent(mostDamaged.Value, ref beforePart);
 
                         if (beforePart.Cancelled)
@@ -130,7 +132,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
                         foreach (var bodyPart in bodyParts)
                         {
-                            var beforePart = new BeforeDamageChangedEvent(damagePerPart, args.Origin, args.CanBeCancelled);
+                            var beforePart = new BeforeDamageChangedEvent(damagePerPart, args.Origin);
                             RaiseLocalEvent(bodyPart.Id, ref beforePart);
 
                             if (beforePart.Cancelled)
@@ -166,7 +168,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
                 var chosenTarget = Random.PickAndTake(possibleTargets);
 
-                var beforePart = new BeforeDamageChangedEvent(args.Damage, args.Origin, args.CanBeCancelled);
+                var beforePart = new BeforeDamageChangedEvent(args.Damage, args.Origin);
                 RaiseLocalEvent(chosenTarget.Id, ref beforePart);
 
                 if (!beforePart.Cancelled)

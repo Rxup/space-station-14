@@ -1,8 +1,8 @@
-ent-BloodsuckerGrenade = vampire gas grenade
+ent-BloodsuckerGrenade = газовая граната вампира
     .desc = vampire club... join?
-ent-LandMinePsi = psi mine
+ent-LandMinePsi = пси-мина
     .desc = { ent-BaseLandMine.desc }
-ent-LandMineXeno = Xeno mine
+ent-LandMineXeno = мина ксеносов
     .desc = { ent-BaseLandMine.desc }
-ent-XenoGrenade = xeno virus grenade
+ent-XenoGrenade = граната вируса ксеносов
     .desc = { ent-SmokeGrenade.desc }

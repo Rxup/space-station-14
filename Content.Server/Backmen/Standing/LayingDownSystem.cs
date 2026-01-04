@@ -16,34 +16,11 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     public override void Initialize()
     {
         base.Initialize();
-
-        //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
-        SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStoodEvent);
-        SubscribeLocalEvent<LayingDownComponent, DownedEvent>(OnDownedEvent);
     }
 
     protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
     {
         return _cfg.GetClientCVar(session.Channel, CCVars.AutoGetUp);
-    }
-
-    private void OnDownedEvent(Entity<LayingDownComponent> ent, ref DownedEvent args)
-    {
-        // Raising this event will lower the entity's draw depth to the same as a small mob.
-        if (!CrawlUnderTables)
-            return;
-
-        ent.Comp.DrawDowned = true;
-        Dirty(ent,ent.Comp);
-    }
-
-    private void OnStoodEvent(Entity<LayingDownComponent> ent, ref StoodEvent args)
-    {
-        if (!CrawlUnderTables)
-            return;
-
-        ent.Comp.DrawDowned = false;
-        Dirty(ent,ent.Comp);
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -62,17 +39,4 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         _rotationVisuals.ResetHorizontalAngle((ent, rotationVisualsComp));
     }
-
-/*
-    private void OnCheckAutoGetUp(CheckAutoGetUpEvent ev, EntitySessionEventArgs args)
-    {
-        var uid = GetEntity(ev.User);
-
-        if (!TryComp(uid, out LayingDownComponent? layingDown))
-            return;
-
-        layingDown.AutoGetUp = _cfg.GetClientCVar(args.SenderSession.Channel, CCVars.AutoGetUp);
-        Dirty(uid, layingDown);
-    }
-    */
 }

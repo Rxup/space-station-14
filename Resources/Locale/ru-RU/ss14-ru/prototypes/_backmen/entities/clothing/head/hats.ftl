@@ -1,4 +1,4 @@
-ent-ClothingHeadHatStetson = Stetson
+ent-ClothingHeadHatStetson = Стетсон
     .desc = Feel like a cowboy!
 ent-ClothingHeadHatSoldier = фуражка солдата СССП
     .desc = Гласит приказ "Ни шагу назад"!
@@ -40,5 +40,4 @@ ent-ClothingHeadHatBlueShieldCap = фуражка Синего Щита
     .desc = Фуражка офицера Синего Щита, имеет эмблему Blue Shield Security.
 ent-ClothingHeadHatUshankaBlueShield = ушанка Синего Щита
     .desc = Довольно старая ушанка флота СССП, переделанная под нужды офицеров Синего Щита (Добавлена их эмблема).
-ent-ClothingHeadCapSecurityPilot = фуражка пилота СБ
     .desc = Фуражка пилота службы безопасности... Содержит признаки коммунизма...

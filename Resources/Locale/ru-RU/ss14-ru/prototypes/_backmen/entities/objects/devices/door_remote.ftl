@@ -1,8 +1,8 @@
-ent-DoorRemoteAIBase = ai door remote
+ent-DoorRemoteAIBase = пульт управления дверями ИИ
     .desc = { ent-DoorRemoteDefault.desc }
-ent-DoorRemoteAIOpenClose = ai door remote
+ent-DoorRemoteAIOpenClose = пульт управления дверями ИИ
     .desc = Opens or closes a door.
-ent-DoorRemoteAIToggleBolts = ai door remote
+ent-DoorRemoteAIToggleBolts = пульт управления дверями ИИ
     .desc = Bolts a door.
-ent-DoorRemoteAIToggleEmergencyAccess = ai door remote
+ent-DoorRemoteAIToggleEmergencyAccess = пульт управления дверями ИИ
     .desc = Toggles emergency access on a door.

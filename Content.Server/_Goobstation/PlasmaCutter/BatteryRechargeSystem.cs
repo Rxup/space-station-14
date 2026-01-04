@@ -4,6 +4,8 @@ using Content.Server.Hands.Systems;
 using Content.Server.Materials;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Components;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 
 namespace Content.Server._Goobstation.Plasmacutter
 {
@@ -65,26 +67,27 @@ namespace Content.Server._Goobstation.Plasmacutter
 
             var availableMaterial = _materialStorage.GetMaterialAmount(uid, fuelType);
 
-            if (_materialStorage.TryChangeMaterialAmount(uid, fuelType, -availableMaterial))
+            if (_materialStorage.TryChangeMaterialAmount(uid, fuelType, -availableMaterial) && TryComp<BatteryComponent>(uid, out var batteryComponent))
             {
                 // this is shit. this shit works.
-                var spawnAmount = _batterySystem.GetChargeDifference(uid) - availableMaterial;
+                var spawnAmount = batteryComponent.MaxCharge - batteryComponent.CurrentCharge - availableMaterial;
                 if (spawnAmount < 0)
                 {
                     spawnAmount = Math.Abs(spawnAmount);
                 }
-                else {
+                else
+                {
                     spawnAmount = 0;
                 }
 
-                var ent = _materialStorage.SpawnMultipleFromMaterial(spawnAmount, fuelType, Transform(uid).Coordinates, out var overflow);
+                var ent = _materialStorage.SpawnMultipleFromMaterial((int)spawnAmount, fuelType, Transform(uid).Coordinates, out var overflow);
 
                 foreach (var entUid in ent)
                 {
                     _hands.TryForcePickupAnyHand(playerUid, entUid);
                 }
 
-                _batterySystem.AddCharge(uid, availableMaterial);
+                _batterySystem.ChangeCharge(uid, availableMaterial);
             }
         }
     }

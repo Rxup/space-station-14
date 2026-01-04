@@ -1,4 +1,4 @@
-﻿- type: latheRecipe
+- type: latheRecipe
   id: BorgModuleStorage
   result: BorgModuleStorage
   completetime: 3

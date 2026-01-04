@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye.Blinding.Systems;
@@ -217,7 +218,7 @@ public sealed class CocoonerSystem : EntitySystem
             return;
 
         var damage = args.DamageDelta * component.DamagePassthrough;
-        _damageableSystem.TryChangeDamage(body, damage);
+        _damageableSystem.ChangeDamage(body.Value, damage);
     }
 
 

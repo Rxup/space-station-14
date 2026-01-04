@@ -1,10 +1,13 @@
 ### for technical and/or system messages
 
+
 ## General
 
 shell-command-success = Команда выполнена.
 shell-invalid-command = Неверная команда.
 shell-invalid-command-specific = Неверная команда { $commandName }.
+shell-can-only-run-from-pre-round-lobby = Вы можете выполнить эту команду только когда игра находится в предраундовом лобби.
+shell-can-only-run-while-round-is-active = Вы можете выполнить эту команду только во время активного раунда.
 shell-cannot-run-command-from-server = Вы не можете выполнить эту команду с сервера.
 shell-only-players-can-run-this-command = Только игроки могут выполнять эту команду.
 shell-must-be-attached-to-entity = Для выполнения этой команды вы должны быть прикреплены к сущности.
@@ -44,16 +47,16 @@ shell-invalid-bool = Неверный boolean.
 shell-entity-uid-must-be-number = EntityUid должен быть числом.
 shell-could-not-find-entity = Не удалось найти сущность { $entity }.
 shell-could-not-find-entity-with-uid = Не удалось найти сущность с uid { $uid }.
-shell-entity-with-uid-lacks-component = Сущность с uid { $uid } не имеет компонента { $componentName }.
-shell-entity-target-lacks-component = Целевая сущность не имеет компонента { INDEFINITE($componentName) } { $componentName }
+shell-entity-with-uid-lacks-component = Сущность с uid { $uid } не имеет { INDEFINITE($componentName) } { $componentName } компонента.
+shell-entity-target-lacks-component = Целевая сущность не имеет { INDEFINITE($componentName) } { $componentName } компонента.
 shell-invalid-color-hex = Недопустимый HEX-цвет!
 shell-target-player-does-not-exist = Целевой игрок не существует!
-shell-target-entity-does-not-have-message = Целевая сущность не имеет { $missing }!
+shell-target-entity-does-not-have-message = Целевая сущность не имеет { INDEFINITE($missing) } { $missing }!
 shell-timespan-minutes-must-be-correct = { $span } не является допустимым промежутком времени в минутах.
-shell-argument-must-be-prototype = Аргумент { $index } должен быть ${ prototypeName }!
+shell-argument-must-be-prototype = Аргумент { $index } должен быть { LOC($prototypeName) }!
 shell-argument-number-must-be-between = Аргумент { $index } должен быть числом от { $lower } до { $upper }!
-shell-argument-station-id-invalid = Аргумент { $index } должен быть валидным station id!
-shell-argument-map-id-invalid = Аргумент { $index } должен быть валидным map id!
+shell-argument-station-id-invalid = Аргумент { $index } должен быть валидным идентификатором станции!
+shell-argument-map-id-invalid = Аргумент { $index } должен быть валидным идентификатором карты!
 shell-argument-number-invalid = Аргумент { $index } должен быть валидным числом!
 # Hints
 shell-argument-username-hint = <username>

@@ -317,10 +317,10 @@ namespace Content.IntegrationTests.Tests.Buckle
                 // Unbuckled and laydown
                 Assert.That(buckle.Buckled, Is.True);
 
-                // Now with no item in any hand
+                // Still with items in hand
                 foreach (var hand in hands.Hands.Keys)
                 {
-                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Null);
+                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Not.Null);
                 }
 
                 var comp = entityManager.GetComponentOrNull<StandingStateComponent>(human);

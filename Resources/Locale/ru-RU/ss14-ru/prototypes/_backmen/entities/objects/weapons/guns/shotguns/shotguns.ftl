@@ -4,6 +4,6 @@ ent-WeaponShotgun39NonLethal = XM1014
 ent-WeaponShotgunAA12 = AA-12
     .desc = It's a magazine-fed shotgun designed for close quarters combat. Uses .12 gauge shotgun shells.
     .suffix = Дробовик
-ent-WeaponShotgunGuardian = Guardian-17
+ent-WeaponShotgunGuardian = Страж-17
     .desc = Дробовик Guardian модели U-Type производства "Interdyne", сплав корпуса сделан из передовых материалов, что придает легкость в обращении, .
     .suffix = Дробовик

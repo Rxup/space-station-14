@@ -33,7 +33,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagent: InsectBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 300
   #- type: DamageVisuals I fucking hate those goddamn moths
   #  damageOverlayGroups:
   #    Brute:
@@ -75,7 +78,7 @@
     noRot: true
     drawdepth: Mobs
     layers:
-      - map: [ "enum.HumanoidVisualLayers.Groin" ]
+      - map: [ "enum.HumanoidVisualLayers.Groin" ] # backmen
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
       - map: [ "enum.HumanoidVisualLayers.Snout" ]

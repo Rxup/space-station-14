@@ -13,7 +13,7 @@ names-moth-first-male-dataset-6 = Раннох
 # Acosmeryx socrates
 names-moth-first-male-dataset-7 = Сократ
 # Saturniidae solus
-names-moth-first-male-dataset-8 = Solus
+names-moth-first-male-dataset-8 = Солус
 
 ## Other languages
 
@@ -28,7 +28,7 @@ names-moth-first-male-dataset-12 = Рекс
 # Sanskrit "darkness" or "dust"
 names-moth-first-male-dataset-13 = Раджас
 # Greek "clothes moth"
-names-moth-first-male-dataset-14 = Skoros
+names-moth-first-male-dataset-14 = Скорос
 
 ## Myth and legend
 
@@ -53,7 +53,7 @@ names-moth-first-male-dataset-23 = Мерлин
 # Another Greek figure, similar to Icarus
 names-moth-first-male-dataset-24 = Фаэтон
 # Rendering of Bladud from the Welsh blaidd "wolf" + iudd "lord"
-names-moth-first-male-dataset-25 = Wolford
+names-moth-first-male-dataset-25 = Вулфорд
 
 ## Fun names
 

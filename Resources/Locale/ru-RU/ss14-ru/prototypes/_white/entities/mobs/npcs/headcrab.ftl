@@ -1,8 +1,8 @@
-ent-BaseMobHeadcrab = headcrab
-    .desc = It looks like something parasitic.
+ent-BaseMobHeadcrab = хедкраб
+    .desc = Выглядит как что-то паразитическое.
 ent-MobHeadcrab = { ent-BaseMobHeadcrab }
     .desc = { ent-BaseMobHeadcrab.desc }
-ent-MobHeadcrabFast = fast headcrab
+ent-MobHeadcrabFast = быстрый хедкраб
     .desc = { ent-BaseMobHeadcrab.desc }
-ent-MobHeadcrabPoison = poison headcrab
+ent-MobHeadcrabPoison = ядовитый хедкраб
     .desc = { ent-BaseMobHeadcrab.desc }

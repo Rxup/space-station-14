@@ -5,6 +5,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -98,13 +99,13 @@ public sealed class BlobbernautSystem : SharedBlobbernautSystem
         switch (blobCoreComponent.CurrentChem)
         {
             case BlobChemType.ExplosiveLattice:
-                _explosionSystem.QueueExplosion(args.HitEntities.FirstOrDefault(), blobCoreComponent.BlobExplosive, 4, 1, 2, maxTileBreak: 0);
+                _explosionSystem.QueueExplosion(args.HitEntities.FirstOrDefault(), blobCoreComponent.BlobExplosive, 4, 1, 2, user: uid, maxTileBreak: 0);
                 break;
             case BlobChemType.ElectromagneticWeb:
             {
                 var xform = Transform(args.HitEntities.FirstOrDefault());
                 if (_random.Prob(0.2f))
-                    _empSystem.EmpPulse(_transform.GetMapCoordinates(xform), 3f, 50f, 3f);
+                    _empSystem.EmpPulse(_transform.GetMapCoordinates(xform), 3f, 50f, TimeSpan.FromSeconds(3f), uid);
                 break;
             }
         }
@@ -113,6 +114,6 @@ public sealed class BlobbernautSystem : SharedBlobbernautSystem
     private DamageSpecifier? TryChangeDamage(string msg, EntityUid ent, DamageSpecifier dmg)
     {
         _popup.PopupEntity(Loc.GetString(msg), ent, ent, PopupType.LargeCaution);
-        return _damageableSystem.TryChangeDamage(ent, dmg);
+        return _damageableSystem.ChangeDamage(ent, dmg);
     }
 }

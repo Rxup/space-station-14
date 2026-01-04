@@ -42,26 +42,24 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      140: Dead # Goob - 4 PKA shots, 2 crusher destabilised hits
+      50: Dead
   - type: Butcherable
     spawned:
-    - id: DiamondOre1 # not unprocessed
+    - id: DiamondOre1
       amount: 1
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.65 # Lavaland change // Slightly slower than regular walkspeed, makes it not annoying as fuck to catch
-    baseSprintSpeed: 1.65 # Lavaland change
-  - type: ProjectileBatteryAmmoProvider
+    baseWalkSpeed: 5
+    baseSprintSpeed: 7
+  - type: BatteryAmmoProvider
     proto: WatcherBolt
     fireCost: 50
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 50
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
   - type: Gun
-    projectileSpeed: 10 # Goob - allows you to actually dodge the projectiles
-    fireRate: 0.2 # Goob - accounts for damage and also to be less annoying
+    fireRate: 0.5
     useKey: false
     selectedMode: SemiAuto
     availableModes:
@@ -74,7 +72,6 @@
     interactFailureString: petting-failure-generic
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
-  - type: Fauna # Lavaland Change
 
 - type: entity
   id: MobWatcherLavaland
@@ -89,8 +86,8 @@
       shader: unshaded
       color: red
   - type: PointLight
-    radius: 1.5
-    energy: 0.5
+    radius: 1
+    energy: 3
     color: red
 
 - type: entity
@@ -107,16 +104,9 @@
       shader: unshaded
       color: deepskyblue
   - type: PointLight
-    radius: 1.5
-    energy: 1
+    radius: 1
+    energy: 3
     color: deepskyblue
-  - type: ProjectileBatteryAmmoProvider
-    proto: WatcherBoltIcewing
-    fireCost: 50
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      240: Dead # Goob - 6 PKA shots, 3 crusher destabilised hits
 
 - type: entity
   id: MobWatcherMagmawing
@@ -132,16 +122,12 @@
       shader: unshaded
       color: orangered
   - type: PointLight
-    radius: 1.5
-    energy: 1
+    radius: 1
+    energy: 3
     color: orangered
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: WatcherBoltMagmawing
     fireCost: 50
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      240: Dead # Goob - 6 PKA shots, 3 crusher destabilised hits
 
 - type: entity
   id: MobWatcherPride
@@ -158,7 +144,7 @@
       state: unshaded
       shader: unshaded
   - type: PointLight
-    radius: 1.5
-    energy: 1
+    radius: 1
+    energy: 3
   - type: RgbLightController
     layers: [ 1 ]

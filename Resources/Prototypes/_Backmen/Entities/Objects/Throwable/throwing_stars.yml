@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ThrowingStar
   id: ThrowingStarChangeling
   name: bone shard

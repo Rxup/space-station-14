@@ -1,3 +1,3 @@
-ent-WallRivetedIndestructible = riveted wall
+ent-WallRivetedIndestructible = клепаная стена
     .suffix = indestructible
     .desc = { ent-BaseWall.desc }

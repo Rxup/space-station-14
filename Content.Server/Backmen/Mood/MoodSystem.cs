@@ -14,6 +14,7 @@ using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Overlays;
 using Content.Shared.Popups;
 using Content.Server.Backmen.Traits.Assorted;
+using Content.Server.Body.Systems;
 using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
 using Robust.Shared.Player;
@@ -22,6 +23,7 @@ using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 
@@ -48,6 +50,7 @@ public sealed class MoodSystem : EntitySystem
 
         SubscribeLocalEvent<MoodComponent, ComponentStartup>(OnInit);
         SubscribeLocalEvent<MoodComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<MoodComponent, SuffocationEvent>(OnSuffocation);
         SubscribeLocalEvent<MoodComponent, MoodEffectEvent>(OnMoodEffect);
         SubscribeLocalEvent<MoodComponent, WoundsChangedEvent>(OnWoundsChange);
         SubscribeLocalEvent<MoodComponent, DamageChangedEvent>(OnDamageChange);
@@ -58,6 +61,11 @@ public sealed class MoodSystem : EntitySystem
 
         SubscribeLocalEvent<MoodComponent, MoodCheckAlertEvent>(OnAlertClicked);
         SubscribeLocalEvent<MoodComponent, ExaminedEvent>(OnExamined);
+    }
+
+    private void OnSuffocation(Entity<MoodComponent> ent, ref SuffocationEvent args)
+    {
+        RaiseLocalEvent(ent, new MoodEffectEvent("Suffocating")); // backmen: mood
     }
 
     private void OnExamined(EntityUid uid, MoodComponent component, ExaminedEvent args)

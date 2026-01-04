@@ -1,4 +1,4 @@
-ent-ArmyStorageBox = army box
+ent-ArmyStorageBox = армейский ящик
     .desc = A large storage container for holding army's goods.
 ent-ArmyStorageBoxFillAmmoRifle = { ent-ArmyStorageBox }
     .suffix = Fill, Random Rifle Ammo

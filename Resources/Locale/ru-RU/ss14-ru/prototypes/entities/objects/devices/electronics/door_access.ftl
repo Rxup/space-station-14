@@ -115,3 +115,6 @@ ent-DoorElectronicsSyndicateAgent = { ent-DoorElectronics }
 ent-DoorElectronicsNukeop = { ent-DoorElectronics }
     .suffix = Ядерные Оперативники, Закрыт
     .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsXenoborg = { ent-DoorElectronics }
+    .suffix = Xenoborg, Locked
+    .desc = { ent-DoorElectronics.desc }

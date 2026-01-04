@@ -1,6 +1,5 @@
 # Gondola
 accent-words-gondola-1 = ...
-#Ohio
 # Ohio
 accent-ohio-prefix-1 = ГОООЛ челы,
 accent-ohio-prefix-2 = Чат...

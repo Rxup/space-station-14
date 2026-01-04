@@ -59,7 +59,6 @@
     unique: true
   - type: TargetObjective
     title: objective-condition-kill-head-title
-  - type: PickRandomHead
   - type: KillPersonCondition
     requireDead: true
 
@@ -79,7 +78,7 @@
   id: FireAxeStealSuperPsiObjective
   components:
   - type: NotJobRequirement
-    job: AtmosphericTechnician
+    jobs: [ AtmosphericTechnician ]
   - type: StealCondition
     stealGroup: FireAxe
   - type: Objective
@@ -91,7 +90,7 @@
   id: ClothingHeadsetAltMedicalStealSuperPsiObjective
   components:
   - type: NotJobRequirement
-    job: ChiefMedicalOfficer
+    jobs: [ ChiefMedicalOfficer ]
   - type: StealCondition
     stealGroup: ClothingHeadsetAltMedical
   - type: Objective

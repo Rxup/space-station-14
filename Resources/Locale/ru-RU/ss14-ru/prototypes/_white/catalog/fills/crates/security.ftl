@@ -1,2 +1,2 @@
-ent-CrateSecurityGrenadeBarrier = grenade barrier crate
+ent-CrateSecurityGrenadeBarrier = ящик барьерных гранат
     .desc = Contains four barrier grenades. Requires Security access to open.

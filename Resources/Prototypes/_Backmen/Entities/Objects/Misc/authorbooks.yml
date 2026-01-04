@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BookBase
   id: BookDetectiveP1
   name: Detective Novel

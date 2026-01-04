@@ -1,4 +1,4 @@
-﻿- type: worldgenConfig
+- type: worldgenConfig
   id: Default
   components:
     - type: WorldController

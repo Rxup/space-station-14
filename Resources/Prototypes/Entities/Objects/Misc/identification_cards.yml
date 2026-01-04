@@ -933,8 +933,6 @@
         - state: frame_default # Backmen
           color: "#717171"
         - state: idboxer
-    - type: PresetIdCard
-      job: Boxer
 
 - type: entity
   parent: IDCardStandard
@@ -949,8 +947,6 @@
         - state: frame_default # Backmen
           color: "#58c800"
         - state: idzookeeper
-    - type: PresetIdCard
-      job: Zookeeper
 
 - type: entity
   parent: IDCardStandard
@@ -1094,6 +1090,18 @@
         - state: frame_default # Backmen
           color: "#cb0000"
         - state: idseniorofficer
+
+- type: entity
+  parent: IDCardStandard
+  id: XenoborgIDCard
+  name: xenoborg ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: card_default
+  - type: Access
+    tags:
+    - Xenoborg
 
 - type: entity
   parent: IDCardStandard

@@ -1,8 +1,8 @@
-ent-WeaponProtoKineticShotgun = proto-kinetic shotgun
+ent-WeaponProtoKineticShotgun = протокинетический дробовик
     .desc = Fires a spread of low-damage kinetic bolts.
-ent-WeaponProtoKineticRepeater = proto-kinetic repeater
+ent-WeaponProtoKineticRepeater = протокинетический репитер
     .desc = Fires a barrage of kinetic bolts at a short range.
-ent-WeaponProtoKineticPistol = proto-kinetic pistol
+ent-WeaponProtoKineticPistol = протокинетический пистолет
     .desc = Fires low-damage kinetic bolts, has a higher mod capacity.
 ent-ActionTogglePKALight = Переключить фонарик ПКУ
     .desc = { ent-BaseAction.desc }

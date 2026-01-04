@@ -2,7 +2,8 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Body.Components;
@@ -95,19 +96,17 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
             _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.Args.User);
-
-        if (healed == null && healing.BloodlossModifier != 0)
+        if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
             return;
 
-        var total = healed?.GetTotal() ?? FixedPoint2.Zero;
+        var total = healed.GetTotal();
 
         // Re-verify that we can heal the damage.
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
         {
-            _stacks.Use(args.Used.Value, 1, stackComp);
+            _stacks.ReduceCount((args.Used.Value, stackComp), 1);
 
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+            if (_stacks.GetCount((args.Used.Value, stackComp)) <= 0)
                 dontRepeat = true;
         }
         else
@@ -130,9 +129,17 @@ public sealed class HealingSystem : EntitySystem
 
         // Logic to determine the whether or not to repeat the healing action
         args.Repeat = HasDamage((args.Used.Value, healing), target) && !dontRepeat;
-        if (!args.Repeat && !dontRepeat)
-            _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), target.Owner, args.User);
         args.Handled = true;
+
+        if (!args.Repeat)
+        {
+            _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), target.Owner, args.User);
+            return;
+        }
+
+        // Update our self heal delay so it shortens as we heal more damage.
+        if (args.User == target.Owner)
+            args.Args.Delay = healing.Delay * GetScaledHealingPenalty(target.Owner, healing.SelfHealPenaltyMultiplier);
     }
 
     // backmen edit start
@@ -273,9 +280,10 @@ public sealed class HealingSystem : EntitySystem
         // Re-verify that we can heal the damage.
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
         {
-            _stacks.Use(args.Used.Value, 1, stackComp);
+            if(!_stacks.TryUse((args.Used.Value,stackComp), 1))
+                return;
 
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+            if (_stacks.GetCount((args.Used.Value, stackComp)) <= 0)
                 dontRepeat = true;
         }
         else
@@ -332,7 +340,7 @@ public sealed class HealingSystem : EntitySystem
             // Is ent missing blood that we can restore?
             if (healing.Comp.ModifyBloodLevel > 0
                 && _solutionContainerSystem.ResolveSolution(target.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
-                && bloodSolution.Volume < bloodSolution.MaxVolume)
+                && _bloodstreamSystem.GetBloodLevel((target, bloodstream)) < 1)
             {
                 return true;
             }
@@ -476,7 +484,7 @@ public sealed class HealingSystem : EntitySystem
 
         var delay = isNotSelf
             ? healing.Comp.Delay
-            : healing.Comp.Delay * GetScaledHealingPenalty(healing);
+            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
 
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: healing)
@@ -495,27 +503,27 @@ public sealed class HealingSystem : EntitySystem
     /// <summary>
     /// Scales the self-heal penalty based on the amount of damage taken
     /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="component"></param>
-    /// <returns></returns>
-    public float GetScaledHealingPenalty(Entity<HealingComponent> healing)
+    /// <param name="ent">Entity we're healing</param>
+    /// <param name="mod">Maximum modifier we can have.</param>
+    /// <returns>Modifier we multiply our healing time by</returns>
+    public float GetScaledHealingPenalty(Entity<DamageableComponent?, MobThresholdsComponent?> ent, float mod)
     {
-        var output = healing.Comp.Delay;
-        if (!TryComp<MobThresholdsComponent>(healing, out var mobThreshold) ||
-            !TryComp<DamageableComponent>(healing, out var damageable))
-            return output;
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, false))
+            return mod;
 
-        if (!_mobThresholdSystem.TryGetThresholdForState(healing, MobState.Critical, out var amount, mobThreshold))
+        if (!_mobThresholdSystem.TryGetThresholdForState(ent, MobState.Critical, out var amount, ent.Comp2))
             return 1;
 
-        var percentDamage = (float)(damageable.TotalDamage / amount);
-        if (TryComp<ConsciousnessComponent>(healing, out var consciousness))
+        var percentDamage = (float)(ent.Comp1.TotalDamage / amount);
+
+        if (TryComp<ConsciousnessComponent>(ent, out var consciousness))
         {
             percentDamage = (float)(consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness)); // backmen edit; consciousness
         }
 
         //basically make it scale from 1 to the multiplier.
-        var modifier = percentDamage * (healing.Comp.SelfHealPenaltyMultiplier - 1) + 1;
-        return Math.Max(modifier, 1);
+
+        var output = percentDamage * (mod - 1) + 1;
+        return Math.Max(output, 1);
     }
 }

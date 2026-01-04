@@ -6,22 +6,12 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobWarden
-      time: 72000 #20 hrs # Corvax-RoleTime
+      time: 6h
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:DepartmentTimeRequirement
       department: Security
-      time: 216000 # 60 hrs
-
-#Security Star
-- type: loadoutEffectGroup
-  id: SecurityStarWorthy
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 360000 #100 hrs
+      time: 60h
 
 # Head
 - type: loadout
@@ -38,29 +28,6 @@
   id: SecurityBeret
   equipment:
     head: ClothingHeadHatBeretSecurity
-
-- type: loadout #Backmen
-  id: ClothingHeadHatCapSec
-  equipment:
-    head: ClothingHeadHatCapSec
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear #Backmen
-  id: ClothingHeadHatCapSec
-  equipment:
-    head: ClothingHeadHatCapSec
-
-- type: loadout #Backmen
-  id: ClothingHeadHatPilotkaSec
-  equipment:
-    head: ClothingHeadHatPilotkaSec
-
-- type: startingGear #Backmen
-  id: ClothingHeadHatPilotkaSec
-  equipment:
-    head: ClothingHeadHatPilotkaSec
 
 - type: loadout
   id: TrooperHat
@@ -147,32 +114,6 @@
   equipment:
     outerClothing: ClothingOuterArmorBasicSlim
 
-- type: loadout #Backmen
-  id: ClothingOuterCoatSecurityOvercoat
-  equipment:
-    outerClothing: ClothingOuterCoatSecurityOvercoat
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear #Backmen
-  id: ClothingOuterCoatSecurityOvercoat
-  equipment:
-    outerClothing: ClothingOuterCoatSecurityOvercoat
-
-- type: loadout #Backmen
-  id: ClothingOuterCoatSecurityOfficerOvercoat
-  equipment:
-    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear #Backmen
-  id: ClothingOuterCoatSecurityOfficerOvercoat
-  equipment:
-    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
-
 - type: loadout
   id: SecurityOfficerWintercoat
   equipment:
@@ -208,7 +149,58 @@
   equipment:
     id: SeniorOfficerPDA
 
-# Pocket #Backmen
+
+#backmen start
+
+- type: loadout #Backmen
+  id: ClothingHeadHatCapSec
+  equipment:
+    head: ClothingHeadHatCapSec
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: loadout #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment:
+    head: ClothingHeadHatPilotkaSec
+
+- type: loadoutEffectGroup
+  id: SecurityStarWorthy #Security Star
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 360000 #100 hrs
+
+- type: loadout #Backmen
+  id: ClothingOuterCoatSecurityOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOvercoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingOuterCoatSecurityOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOvercoat
+
+- type: loadout #Backmen
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
+
+
 - type: loadout
   id: WeaponPistolMk58
   dummyEntity: WeaponPistolMk58
@@ -297,12 +289,4 @@
   equipment:
     pocket2: MagazinePistol50AE
 
-# Misc
-- type: loadout
-  id: SecStar
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SecurityStarWorthy
-  storage:
-    back:
-    - Dinkystar
+#backmen end
