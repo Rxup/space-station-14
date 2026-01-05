@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:25
+  time: 01/05/2026 13:55:38
   entityCount: 143
 maps: []
 grids:
@@ -200,30 +200,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockExternal
   entities:
   - uid: 39
@@ -295,6 +278,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 24
@@ -536,27 +521,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -597,27 +562,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1040,6 +985,8 @@ entities:
         20:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 142
     components:
     - type: Transform
@@ -1051,6 +998,8 @@ entities:
         19:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationWallBasic
   entities:
   - uid: 47

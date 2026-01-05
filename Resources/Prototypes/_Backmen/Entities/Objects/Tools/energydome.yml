@@ -130,6 +130,7 @@
       - state: coil
   - type: ExaminableBattery
   - type: Battery
+    netsync: false
     maxCharge: 30000          #<- max supply
     startingCharge: 10000
   - type: PowerNetworkBattery
@@ -146,7 +147,7 @@
         !type:CableDeviceNode
         nodeGroupID: MVPower
   - type: BatterySelfRecharger
-    autoRecharge: false # true only when active
+    nextAutoRecharge: null
     autoRechargeRate: -800   #<- discharge per second while active
   - type: Damageable
     damageContainer: Inorganic

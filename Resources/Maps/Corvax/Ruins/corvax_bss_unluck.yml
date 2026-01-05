@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:13
+  time: 01/05/2026 13:54:55
   entityCount: 326
 maps: []
 grids:
@@ -964,6 +964,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblyCargoGlass
   entities:
   - uid: 2
@@ -1048,12 +1049,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 16.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 15
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 16
@@ -1826,8 +1831,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 155
@@ -1857,8 +1862,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CrateJanitorBiosuit

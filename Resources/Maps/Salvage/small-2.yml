@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:57
+  time: 01/05/2026 13:54:05
   entityCount: 161
 maps: []
 grids:
@@ -110,32 +110,13 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: APCBasic
   entities:
   - uid: 73
@@ -143,6 +124,8 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 55
+    - type: Fixtures
+      fixtures: {}
 - proto: Barricade
   entities:
   - uid: 2
@@ -331,8 +314,8 @@ entities:
       pos: 1.5,2.5
       parent: 55
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
 - proto: ClothingHandsGlovesMercFingerless
   entities:
   - uid: 161
@@ -533,13 +516,6 @@ entities:
     - type: Transform
       pos: -1.562507,-0.27807987
       parent: 55
-- proto: FigureSpawner
-  entities:
-  - uid: 10
-    components:
-    - type: Transform
-      pos: -0.5,-0.5
-      parent: 55
 - proto: GeneratorRTG
   entities:
   - uid: 156
@@ -580,6 +556,13 @@ entities:
     components:
     - type: Transform
       pos: -1.3858043,-0.546875
+      parent: 55
+- proto: MechFigurineSpawner50
+  entities:
+  - uid: 10
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
       parent: 55
 - proto: PowerCellHyperPrinted
   entities:
@@ -634,6 +617,8 @@ entities:
     - type: Transform
       pos: -2.5,1.5
       parent: 55
+    - type: Fixtures
+      fixtures: {}
 - proto: SpawnMobKangarooSalvage
   entities:
   - uid: 56

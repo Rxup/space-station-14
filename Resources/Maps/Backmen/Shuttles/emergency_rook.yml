@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:12
+  time: 01/05/2026 13:54:52
   entityCount: 274
 maps: []
 grids:
@@ -103,30 +103,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 167
@@ -145,6 +128,8 @@ entities:
       - 99
       - 165
       - 269
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 87
@@ -209,6 +194,8 @@ entities:
     - type: Transform
       pos: -1.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 243
@@ -762,6 +749,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClosetWallFireFilledRandom
   entities:
   - uid: 170
@@ -770,6 +759,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingEyesGlassesMeson
   entities:
   - uid: 248
@@ -806,6 +797,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: DrinkBeerBottleFull
   entities:
   - uid: 244
@@ -1299,6 +1292,8 @@ entities:
           - 237
           - 238
           - 239
+    - type: Fixtures
+      fixtures: {}
 - proto: MedicalBed
   entities:
   - uid: 223

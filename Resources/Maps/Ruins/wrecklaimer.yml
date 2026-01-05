@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:55
+  time: 01/05/2026 13:54:02
   entityCount: 725
 maps: []
 grids:
@@ -111,6 +111,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockExternal
   entities:
   - uid: 38
@@ -182,6 +183,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AsteroidRock
   entities:
   - uid: 12
@@ -3428,6 +3431,23 @@ entities:
     - type: Transform
       pos: 17.5,2.5
       parent: 1
+- proto: PlushieSpawner50
+  entities:
+  - uid: 417
+    components:
+    - type: Transform
+      pos: 3.5,14.5
+      parent: 1
+  - uid: 418
+    components:
+    - type: Transform
+      pos: 4.5,8.5
+      parent: 1
+  - uid: 692
+    components:
+    - type: Transform
+      pos: -6.5,-5.5
+      parent: 1
 - proto: PosterContrabandClown
   entities:
   - uid: 526
@@ -3435,6 +3455,8 @@ entities:
     - type: Transform
       pos: 11.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Rack
   entities:
   - uid: 26
@@ -3706,6 +3728,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignEngineering
   entities:
   - uid: 330
@@ -3713,6 +3737,8 @@ entities:
     - type: Transform
       pos: -15.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignEVA
   entities:
   - uid: 670
@@ -3720,6 +3746,8 @@ entities:
     - type: Transform
       pos: 15.5,-9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignExplosives
   entities:
   - uid: 528
@@ -3727,21 +3755,29 @@ entities:
     - type: Transform
       pos: 15.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 537
     components:
     - type: Transform
       pos: 16.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 538
     components:
     - type: Transform
       pos: 23.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 539
     components:
     - type: Transform
       pos: 18.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSalvage
   entities:
   - uid: 229
@@ -3749,6 +3785,8 @@ entities:
     - type: Transform
       pos: -6.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignScience
   entities:
   - uid: 661
@@ -3756,6 +3794,8 @@ entities:
     - type: Transform
       pos: 16.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignTheater
   entities:
   - uid: 520
@@ -3763,6 +3803,8 @@ entities:
     - type: Transform
       pos: 10.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SpawnMobBearSalvage
   entities:
   - uid: 667
@@ -3846,23 +3888,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5223215,-2.3503017
-      parent: 1
-- proto: ToySpawner
-  entities:
-  - uid: 417
-    components:
-    - type: Transform
-      pos: 3.5,14.5
-      parent: 1
-  - uid: 418
-    components:
-    - type: Transform
-      pos: 4.5,8.5
-      parent: 1
-  - uid: 692
-    components:
-    - type: Transform
-      pos: -6.5,-5.5
       parent: 1
 - proto: VendingMachineChapel
   entities:

@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:48
+  time: 01/05/2026 13:53:37
   entityCount: 478
 maps:
 - 1
@@ -178,6 +178,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: RadiationGridResistance
+    - type: ExplosionAirtightGrid
 - proto: AirlockMaintLocked
   entities:
   - uid: 2
@@ -1565,6 +1566,8 @@ entities:
     - type: Transform
       pos: 14.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRadiationMed
   entities:
   - uid: 248
@@ -1572,21 +1575,29 @@ entities:
     - type: Transform
       pos: 19.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 249
     components:
     - type: Transform
       pos: 20.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 250
     components:
     - type: Transform
       pos: 21.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 251
     components:
     - type: Transform
       pos: 20.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecureMedRed
   entities:
   - uid: 252
@@ -1594,16 +1605,22 @@ entities:
     - type: Transform
       pos: 12.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 253
     components:
     - type: Transform
       pos: 12.5,16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 254
     components:
     - type: Transform
       pos: 16.5,16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: TableStone
   entities:
   - uid: 466

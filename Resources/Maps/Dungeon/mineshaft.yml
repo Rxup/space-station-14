@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:47
+  time: 01/05/2026 13:53:34
   entityCount: 1104
 maps:
 - 2
@@ -284,6 +284,7 @@ entities:
             id: bushsnowb3
           decals:
             26: 26,30
+    - type: ExplosionAirtightGrid
 - proto: AirlockMiningLocked
   entities:
   - uid: 5
@@ -3570,6 +3571,8 @@ entities:
     - type: Transform
       pos: 34.5,22.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PoweredLightPostSmall
   entities:
   - uid: 822
@@ -4423,21 +4426,29 @@ entities:
     - type: Transform
       pos: 0.5,10.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 216
     components:
     - type: Transform
       pos: 10.5,6.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 409
     components:
     - type: Transform
       pos: 6.5,18.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 422
     components:
     - type: Transform
       pos: 10.5,22.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignNosmoking
   entities:
   - uid: 573
@@ -4445,6 +4456,8 @@ entities:
     - type: Transform
       pos: 20.5,24.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRadiationMed
   entities:
   - uid: 654
@@ -4453,6 +4466,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 36.5,27.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SilverOre1
   entities:
   - uid: 962

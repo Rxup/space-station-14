@@ -394,7 +394,7 @@ public partial class WoundSystem
     [PublicAPI]
     public virtual bool TryContinueWound(
         EntityUid uid,
-        string id,
+        EntProtoId<WoundComponent> id,
         FixedPoint2 severity,
         [NotNullWhen(true)] out Entity<WoundComponent>? woundContinued,
         WoundableComponent? woundable = null)

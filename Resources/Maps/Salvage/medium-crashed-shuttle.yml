@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:03
   entityCount: 165
 maps: []
 grids:
@@ -254,49 +254,12 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
-          - 0
-          - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Plasma: 6666.982
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -306,6 +269,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockGlassShuttle
   entities:
   - uid: 93
@@ -322,6 +286,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 166
+    - type: Fixtures
+      fixtures: {}
 - proto: AsteroidRock
   entities:
   - uid: 13
@@ -1054,6 +1020,8 @@ entities:
         148:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SpawnMobBearSalvage
   entities:
   - uid: 161

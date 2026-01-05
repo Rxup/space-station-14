@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:58
+  time: 01/05/2026 13:54:07
   entityCount: 374
 maps: []
 grids:
@@ -393,27 +393,7 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -423,6 +403,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockFreezer
   entities:
   - uid: 252
@@ -1310,6 +1291,8 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitFruitBowl
   entities:
   - uid: 351
@@ -1317,6 +1300,8 @@ entities:
     - type: Transform
       pos: -3.5,4.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitJustAWeekAway
   entities:
   - uid: 357
@@ -1324,6 +1309,8 @@ entities:
     - type: Transform
       pos: 7.5,0.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 132
@@ -1469,6 +1456,8 @@ entities:
     - type: Transform
       pos: 10.5,4.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
 - proto: SignPlaque
   entities:
   - uid: 349
@@ -1476,6 +1465,8 @@ entities:
     - type: Transform
       pos: 7.5,9.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSmoking
   entities:
   - uid: 298
@@ -1483,11 +1474,15 @@ entities:
     - type: Transform
       pos: 9.5,4.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
   - uid: 299
     components:
     - type: Transform
       pos: 1.5,-5.5
       parent: 374
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkEmpty
   entities:
   - uid: 27

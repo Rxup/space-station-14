@@ -281,12 +281,9 @@ public abstract partial class SharedGunSystem
 
         using (args.PushGroup(nameof(ChamberMagazineAmmoProviderComponent)))
         {
-            if (component.BoltClosed != null)
+            if (component.BoltClosed is {} boltClosed)
             {
-                if (component.BoltClosed == true)
-                    boltState = Loc.GetString("gun-chamber-bolt-open-state");
-                else
-                    boltState = Loc.GetString("gun-chamber-bolt-closed-state");
+                boltState = Loc.GetString(boltClosed ? "gun-chamber-bolt-closed-state" : "gun-chamber-bolt-open-state");
                 args.PushMarkup(Loc.GetString("gun-chamber-bolt", ("bolt", boltState),
                     ("color", component.BoltClosed.Value ? Color.FromHex("#94e1f2") : Color.FromHex("#f29d94"))));
             }

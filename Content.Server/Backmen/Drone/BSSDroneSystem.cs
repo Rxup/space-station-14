@@ -45,7 +45,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
     [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly PredictedBatterySystem _predictedBattery = default!;
+    [Dependency] private readonly SharedBatterySystem _predictedBattery = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedBatteryDrainerSystem _batteryDrainer = default!;
@@ -138,7 +138,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
         _batteryDrainer.SetBattery(uid, args.EntityUid);
     }
 
-    public bool GetDroneBattery(EntityUid user, [NotNullWhen(true)] out Entity<PredictedBatteryComponent>? ent)
+    public bool GetDroneBattery(EntityUid user, [NotNullWhen(true)] out Entity<BatteryComponent>? ent)
     {
         if (_powerCell.TryGetBatteryFromSlot(user, out ent))
         {

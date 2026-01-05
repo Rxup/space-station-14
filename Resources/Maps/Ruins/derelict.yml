@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:54
+  time: 01/05/2026 13:53:57
   entityCount: 2370
 maps: []
 grids:
@@ -1117,54 +1117,15 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssembly
   entities:
   - uid: 2344
@@ -4429,51 +4390,71 @@ entities:
     - type: Transform
       pos: -15.5,14.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2125
     components:
     - type: Transform
       pos: -8.5,30.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2126
     components:
     - type: Transform
       pos: 2.5,22.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2346
     components:
     - type: Transform
       pos: 29.5,75.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2347
     components:
     - type: Transform
       pos: 27.5,68.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2348
     components:
     - type: Transform
       pos: 32.5,56.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2349
     components:
     - type: Transform
       pos: 28.5,53.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2350
     components:
     - type: Transform
       pos: 22.5,44.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2351
     components:
     - type: Transform
       pos: 15.5,37.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2352
     components:
     - type: Transform
       pos: 5.5,24.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSyndicateRecruitment
   entities:
   - uid: 2365
@@ -4481,6 +4462,8 @@ entities:
     - type: Transform
       pos: 18.5,-6.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PoweredSmallLight
   entities:
   - uid: 223
@@ -4994,6 +4977,8 @@ entities:
     - type: Transform
       pos: -9.5,52.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRadiation
   entities:
   - uid: 2059
@@ -5001,6 +4986,8 @@ entities:
     - type: Transform
       pos: -2.5,50.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecurearea
   entities:
   - uid: 2060
@@ -5008,11 +4995,15 @@ entities:
     - type: Transform
       pos: -6.5,52.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 2061
     components:
     - type: Transform
       pos: -2.5,52.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SmallLight
   entities:
   - uid: 2128
@@ -5354,8 +5345,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 2356
@@ -5387,8 +5378,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 2357
@@ -5420,8 +5411,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 2358
@@ -5453,8 +5444,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: SuitStorageNTSRA

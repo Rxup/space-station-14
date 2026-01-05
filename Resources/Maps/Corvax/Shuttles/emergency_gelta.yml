@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:17
+  time: 01/05/2026 13:55:09
   entityCount: 759
 maps: []
 grids:
@@ -929,30 +929,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 2
@@ -1121,40 +1104,54 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 28
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 29
     components:
     - type: Transform
       pos: -10.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 30
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -10.5,-9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 31
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -14.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 32
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 33
     components:
     - type: Transform
       pos: -4.5,-17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 34
@@ -3291,12 +3288,16 @@ entities:
     - type: Transform
       pos: -8.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 433
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -14.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FireAxeCabinetFilled
   entities:
   - uid: 434
@@ -3305,6 +3306,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -10.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: GeneratorBasic15kW
   entities:
   - uid: 435
@@ -3489,6 +3492,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: MagazinePistol9x17
   entities:
   - uid: 465
@@ -3591,6 +3596,8 @@ entities:
     - type: Transform
       pos: -14.5,-16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantRandom
   entities:
   - uid: 481
@@ -3869,6 +3876,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignBridge
   entities:
   - uid: 529
@@ -3877,12 +3886,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -7.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 530
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignEVA
   entities:
   - uid: 531
@@ -3891,6 +3904,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignMedical
   entities:
   - uid: 532
@@ -3899,6 +3914,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Sink
   entities:
   - uid: 533
@@ -4295,6 +4312,8 @@ entities:
     - type: Transform
       pos: -9.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: VendingMachineYouTool
   entities:
   - uid: 597

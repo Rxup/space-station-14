@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:05
+  time: 01/05/2026 13:54:31
   entityCount: 1294
 maps:
 - 9
@@ -221,49 +221,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -275,6 +237,7 @@ entities:
       shakeTimes: 10
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
   - uid: 1024
     components:
     - type: MetaData
@@ -427,27 +390,7 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -1015,176 +958,262 @@ entities:
     - type: Transform
       pos: 16.5,-0.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1254
     components:
     - type: Transform
       pos: -2.5,4.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1255
     components:
     - type: Transform
       pos: -10.5,1.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1256
     components:
     - type: Transform
       pos: -7.5,2.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1257
     components:
     - type: Transform
       pos: 5.5,6.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1260
     components:
     - type: Transform
       pos: -0.5,-8.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1261
     components:
     - type: Transform
       pos: -5.5,6.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1262
     components:
     - type: Transform
       pos: -7.5,-12.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1263
     components:
     - type: Transform
       pos: -8.5,-4.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1264
     components:
     - type: Transform
       pos: 12.5,6.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1265
     components:
     - type: Transform
       pos: 10.5,2.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1266
     components:
     - type: Transform
       pos: -6.5,-16.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1267
     components:
     - type: Transform
       pos: -0.5,-12.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1268
     components:
     - type: Transform
       pos: 6.5,-5.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1269
     components:
     - type: Transform
       pos: 5.5,-2.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1270
     components:
     - type: Transform
       pos: -10.5,2.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1271
     components:
     - type: Transform
       pos: -10.5,3.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1272
     components:
     - type: Transform
       pos: -10.5,4.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1273
     components:
     - type: Transform
       pos: -10.5,5.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1274
     components:
     - type: Transform
       pos: -7.5,4.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1275
     components:
     - type: Transform
       pos: -7.5,3.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1276
     components:
     - type: Transform
       pos: -7.5,1.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1277
     components:
     - type: Transform
       pos: -8.5,0.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1278
     components:
     - type: Transform
       pos: 5.5,4.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1279
     components:
     - type: Transform
       pos: -7.5,0.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1280
     components:
     - type: Transform
       pos: 3.5,4.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1281
     components:
     - type: Transform
       pos: 15.5,2.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1282
     components:
     - type: Transform
       pos: 9.5,-1.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1283
     components:
     - type: Transform
       pos: 10.5,-9.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1284
     components:
     - type: Transform
       pos: 7.5,-13.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1285
     components:
     - type: Transform
       pos: 2.5,-14.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1286
     components:
     - type: Transform
       pos: -4.5,-14.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1287
     components:
     - type: Transform
       pos: 0.5,-10.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1288
     components:
     - type: Transform
       pos: 1.5,-10.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
   - uid: 1289
     components:
     - type: Transform
       pos: 2.5,-10.5
       parent: 10
+    - type: Fixtures
+      fixtures: {}
+- proto: BaseAPC
+  entities:
+  - uid: 1258
+    components:
+    - type: Transform
+      pos: -0.5,1.5
+      parent: 10
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1259
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 10
+    - type: Fixtures
+      fixtures: {}
 - proto: CableApcExtension
   entities:
   - uid: 374
@@ -4886,31 +4915,12 @@ entities:
     - type: Transform
       pos: 16.5,-0.5
       parent: 10
-- proto: DebugAPC
-  entities:
-  - uid: 1258
-    components:
-    - type: Transform
-      pos: -0.5,1.5
-      parent: 10
-  - uid: 1259
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
-      parent: 10
 - proto: DebugGenerator
   entities:
   - uid: 76
     components:
     - type: Transform
       pos: 16.5,-1.5
-      parent: 10
-- proto: DebugSubstation
-  entities:
-  - uid: 368
-    components:
-    - type: Transform
-      pos: 17.5,-1.5
       parent: 10
 - proto: GravityGenerator
   entities:
@@ -5153,6 +5163,13 @@ entities:
       parent: 10
     - type: Physics
       canCollide: False
+- proto: SubstationBasicEmpty
+  entities:
+  - uid: 368
+    components:
+    - type: Transform
+      pos: 17.5,-1.5
+      parent: 10
 - proto: WallReinforced
   entities:
   - uid: 1

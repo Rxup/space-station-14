@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:09
-  entityCount: 2
+  time: 01/05/2026 13:54:42
+  entityCount: 1
 maps: []
 grids:
 - 1
@@ -53,11 +53,4 @@ entities:
         version: 2
         nodes: []
     - type: ImplicitRoof
-- proto: SummonerBigJohninatorAirDrop
-  entities:
-  - uid: 2
-    components:
-    - type: Transform
-      pos: 0.5,0.5
-      parent: 1
 ...

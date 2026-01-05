@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:25
+  time: 01/05/2026 13:55:37
   entityCount: 542
 maps: []
 grids:
@@ -302,53 +302,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 440
@@ -371,6 +334,8 @@ entities:
       - 129
       - 4
       - 89
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 37
@@ -397,12 +362,16 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 346
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 8
@@ -2545,6 +2514,8 @@ entities:
         133:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 143
     components:
     - type: Transform
@@ -2562,6 +2533,8 @@ entities:
         136:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 144
     components:
     - type: Transform
@@ -2582,6 +2555,8 @@ entities:
         159:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 154
     components:
     - type: Transform
@@ -2602,6 +2577,8 @@ entities:
         164:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 158
     components:
     - type: Transform
@@ -2616,6 +2593,8 @@ entities:
         219:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecureMed
   entities:
   - uid: 522
@@ -2624,24 +2603,32 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 523
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 524
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 525
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 229
@@ -2868,12 +2855,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 505
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: WallShuttle
   entities:
   - uid: 3

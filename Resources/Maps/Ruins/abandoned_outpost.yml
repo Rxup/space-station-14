@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:53
+  time: 01/05/2026 13:53:54
   entityCount: 373
 maps: []
 grids:
@@ -577,6 +577,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblyCargo
   entities:
   - uid: 331
@@ -756,11 +757,15 @@ entities:
     - type: Transform
       pos: 8.5,8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 358
     components:
     - type: Transform
       pos: -5.5,8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ClosetWallFireFilledRandom
   entities:
   - uid: 359
@@ -768,11 +773,15 @@ entities:
     - type: Transform
       pos: -6.5,8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 360
     components:
     - type: Transform
       pos: 9.5,8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ComputerBroken
   entities:
   - uid: 49
@@ -844,6 +853,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,4.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: DisposalMachineFrame
   entities:
   - uid: 371
@@ -858,6 +869,8 @@ entities:
     - type: Transform
       pos: -6.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: FirelockFrame
   entities:
   - uid: 171
@@ -1189,6 +1202,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,4.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: LootSpawnerRandomCrateEngineering
   entities:
   - uid: 58
@@ -1321,31 +1336,43 @@ entities:
     - type: Transform
       pos: -2.5,8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 169
     components:
     - type: Transform
       pos: -3.5,8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 176
     components:
     - type: Transform
       pos: 6.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 182
     components:
     - type: Transform
       pos: 3.5,-6.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 185
     components:
     - type: Transform
       pos: -0.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 189
     components:
     - type: Transform
       pos: 3.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandWehWatches
   entities:
   - uid: 347
@@ -1354,6 +1381,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitScience
   entities:
   - uid: 178
@@ -1361,6 +1390,8 @@ entities:
     - type: Transform
       pos: -3.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantRandom
   entities:
   - uid: 319
@@ -1815,6 +1846,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-6.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignDirectionalMed
   entities:
   - uid: 351
@@ -1822,6 +1855,8 @@ entities:
     - type: Transform
       pos: 3.5,7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignDirectionalSci
   entities:
   - uid: 295
@@ -1829,6 +1864,8 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkWide
   entities:
   - uid: 335
@@ -1882,11 +1919,15 @@ entities:
     - type: Transform
       pos: -3.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 101
     components:
     - type: Transform
       pos: 6.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationBasic
   entities:
   - uid: 228

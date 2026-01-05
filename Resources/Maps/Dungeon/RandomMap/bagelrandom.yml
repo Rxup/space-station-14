@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/08/2025 05:06:43
-  entityCount: 312
+  time: 01/05/2026 13:55:12
+  entityCount: 311
 maps:
 - 1
 grids:
@@ -196,6 +196,8 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: RadiationGridResistance
+    - type: GasTileOverlay
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 33
@@ -291,6 +293,18 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: BackmenVendingMachineChang
+  entities:
+  - uid: 57
+    components:
+    - type: Transform
+      pos: 0.5,6.5
+      parent: 1
+  - uid: 213
+    components:
+    - type: Transform
+      pos: 0.5,15.5
+      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 95
@@ -1704,18 +1718,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,15.5
-      parent: 1
-- proto: VendingMachineChang
-  entities:
-  - uid: 57
-    components:
-    - type: Transform
-      pos: 0.5,6.5
-      parent: 1
-  - uid: 213
-    components:
-    - type: Transform
-      pos: 0.5,15.5
       parent: 1
 - proto: WallmountTelevision
   entities:

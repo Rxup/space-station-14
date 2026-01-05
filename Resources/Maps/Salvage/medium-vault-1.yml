@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:04
   entityCount: 218
 maps: []
 grids:
@@ -237,78 +237,19 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 139.98299
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 197.84607
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockSecurityLocked
   entities:
   - uid: 83
@@ -333,16 +274,22 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
   - uid: 64
     components:
     - type: Transform
       pos: -4.5,5.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
   - uid: 89
     components:
     - type: Transform
       pos: 3.5,1.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
 - proto: BackmenVendingMachineSnack
   entities:
   - uid: 208
@@ -849,33 +796,13 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
+      removedMasks: 20
       air:
         volume: 200
         immutable: False
         temperature: 127.50272
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
       open: True
-      removedMasks: 20
     - type: PlaceableSurface
       isPlaceable: True
 - proto: MachineFrameDestroyed
@@ -928,6 +855,8 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSyndicatePistol
   entities:
   - uid: 169
@@ -935,6 +864,8 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSyndicateRecruitment
   entities:
   - uid: 168
@@ -942,6 +873,8 @@ entities:
     - type: Transform
       pos: 2.5,-1.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantBioluminscent
   entities:
   - uid: 181
@@ -1126,6 +1059,8 @@ entities:
     - type: Transform
       pos: -1.5,-1.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
 - proto: SignElectricalMed
   entities:
   - uid: 174
@@ -1133,6 +1068,8 @@ entities:
     - type: Transform
       pos: -2.5,4.5
       parent: 222
+    - type: Fixtures
+      fixtures: {}
 - proto: SmallLight
   entities:
   - uid: 147

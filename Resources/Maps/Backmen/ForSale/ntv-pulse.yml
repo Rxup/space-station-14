@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:07
+  time: 01/05/2026 13:54:34
   entityCount: 543
 maps: []
 grids:
@@ -382,50 +382,12 @@ entities:
         uniqueMixes:
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -433,6 +395,7 @@ entities:
     - type: GravityShake
       shakeTimes: 10
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 449
@@ -448,6 +411,8 @@ entities:
       - 460
       - 459
       - 455
+    - type: Fixtures
+      fixtures: {}
   - uid: 452
     components:
     - type: Transform
@@ -458,6 +423,8 @@ entities:
       - 261
       - 455
       - 456
+    - type: Fixtures
+      fixtures: {}
   - uid: 453
     components:
     - type: Transform
@@ -471,6 +438,8 @@ entities:
       - 456
       - 459
       - 460
+    - type: Fixtures
+      fixtures: {}
   - uid: 454
     components:
     - type: Transform
@@ -485,6 +454,8 @@ entities:
       - 458
       - 457
       - 318
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 316
@@ -628,12 +599,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 435
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: APCHighCapacity
   entities:
   - uid: 165
@@ -642,6 +617,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AppraisalTool
   entities:
   - uid: 534
@@ -682,6 +659,8 @@ entities:
     - type: Transform
       pos: 3.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Bed
   entities:
   - uid: 400
@@ -1576,26 +1555,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1621,18 +1582,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 421
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 497
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClosetWallFireFilledRandom
   entities:
   - uid: 343
@@ -1641,12 +1608,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 406
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ComfyChair
   entities:
   - uid: 127
@@ -1855,16 +1826,22 @@ entities:
     - type: Transform
       pos: 5.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 493
     components:
     - type: Transform
       pos: -0.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 494
     components:
     - type: Transform
       pos: -3.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FaxMachineBase
   entities:
   - uid: 422
@@ -1954,7 +1931,7 @@ entities:
     - type: Transform
       pos: 4.233193,8.783597
       parent: 1
-- proto: FoodDonutJellySlugcat
+- proto: FoodDonutJellyScurret
   entities:
   - uid: 486
     components:
@@ -2727,6 +2704,8 @@ entities:
     - type: Transform
       pos: 5.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantRandom
   entities:
   - uid: 409
@@ -3088,6 +3067,8 @@ entities:
         466:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignBridge
   entities:
   - uid: 72
@@ -3095,6 +3076,8 @@ entities:
     - type: Transform
       pos: -5.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSalvage
   entities:
   - uid: 546
@@ -3103,6 +3086,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 55

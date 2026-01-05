@@ -21,24 +21,6 @@
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\Systems\" />
-    <Folder Include="Objectives\Interfaces\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Backmen\Species\Shadowkin\Systems\ShadowkinPowerSystem.Darken.cs">
-      <DependentUpon>ShadowkinPowerSystem.cs</DependentUpon>
-    </Compile>
-    <Compile Update="Backmen\Species\Shadowkin\Systems\ShadowkinPowerSystem.DarkSwap.cs">
-      <DependentUpon>ShadowkinPowerSystem.cs</DependentUpon>
-    </Compile>
-    <Compile Update="Backmen\Species\Shadowkin\Systems\ShadowkinPowerSystem.Rest.cs">
-      <DependentUpon>ShadowkinPowerSystem.cs</DependentUpon>
-    </Compile>
-    <Compile Update="Backmen\Species\Shadowkin\Systems\ShadowkinPowerSystem.Teleport.cs">
-      <DependentUpon>ShadowkinPowerSystem.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
 
   <Import Project="..\RobustToolbox\Imports\Lidgren.props" />

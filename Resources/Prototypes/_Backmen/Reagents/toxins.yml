@@ -13,10 +13,8 @@
     Poison:
       effects:
       - !type:ChemBloodSucker
-        conditions:
-        - !type:ReagentCondition
-          reagent: BloodSuckerToxin
-          min: 10
+        scaling: false
+        minScale: 1
 
 # Xeno maid liquid real
 - type: reagent

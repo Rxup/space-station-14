@@ -19,6 +19,7 @@ admin-verb-text-make-initial-infected = Сделать нулевым пацие
 admin-verb-text-make-changeling = Сделать генокрадом
 admin-verb-text-make-zombie = Сделать зомби
 admin-verb-text-make-wizard = Сделать волшебником
+admin-verb-text-make-space-ninja = Make Ninja
 admin-verb-text-make-nuclear-operative = Сделать ядерным оперативником
 admin-verb-text-make-pirate = Сделать пиратом
 admin-verb-make-head-rev = Превратите цель в Лидера Революции.

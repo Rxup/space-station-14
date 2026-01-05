@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:18
+  time: 01/05/2026 13:55:09
   entityCount: 839
 maps:
 - 2
@@ -1094,77 +1094,20 @@ entities:
         uniqueMixes:
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
   - uid: 2
     components:
     - type: MetaData
@@ -1191,6 +1134,8 @@ entities:
       - 410
       - 834
       - 835
+    - type: Fixtures
+      fixtures: {}
   - uid: 661
     components:
     - type: Transform
@@ -1209,6 +1154,8 @@ entities:
       - 827
       - 714
       - 706
+    - type: Fixtures
+      fixtures: {}
   - uid: 818
     components:
     - type: Transform
@@ -1221,6 +1168,8 @@ entities:
       - 836
       - 671
       - 672
+    - type: Fixtures
+      fixtures: {}
   - uid: 819
     components:
     - type: Transform
@@ -1237,6 +1186,8 @@ entities:
       - 670
       - 408
       - 709
+    - type: Fixtures
+      fixtures: {}
   - uid: 820
     components:
     - type: Transform
@@ -1252,6 +1203,8 @@ entities:
       - 445
       - 824
       - 831
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockAtmosphericsLocked
   entities:
   - uid: 3
@@ -1497,16 +1450,22 @@ entities:
     - type: Transform
       pos: 4.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 513
     components:
     - type: Transform
       pos: 8.5,17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 514
     components:
     - type: Transform
       pos: 11.5,31.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 5
@@ -3176,35 +3135,47 @@ entities:
     - type: Transform
       pos: 11.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 69
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 712
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 815
     components:
     - type: Transform
       pos: 1.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 816
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 817
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingEyesGlassesCheapSunglasses
   entities:
   - uid: 414
@@ -3242,6 +3213,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: DrinkJuiceOrangeCartonXL
   entities:
   - uid: 809
@@ -5005,6 +4978,8 @@ entities:
     - type: Transform
       pos: 4.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignNanotrasen2
   entities:
   - uid: 476
@@ -5012,6 +4987,8 @@ entities:
     - type: Transform
       pos: 5.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignNanotrasen3
   entities:
   - uid: 477
@@ -5019,6 +4996,8 @@ entities:
     - type: Transform
       pos: 6.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignNanotrasen4
   entities:
   - uid: 478
@@ -5026,6 +5005,8 @@ entities:
     - type: Transform
       pos: 7.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignNanotrasen5
   entities:
   - uid: 479
@@ -5033,6 +5014,8 @@ entities:
     - type: Transform
       pos: 8.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignPrison
   entities:
   - uid: 156
@@ -5040,6 +5023,8 @@ entities:
     - type: Transform
       pos: 1.5,31.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecurity
   entities:
   - uid: 153
@@ -5047,6 +5032,8 @@ entities:
     - type: Transform
       pos: 3.5,25.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 502

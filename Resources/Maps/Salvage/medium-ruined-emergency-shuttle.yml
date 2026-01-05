@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:04
   entityCount: 141
 maps: []
 grids:
@@ -111,53 +111,14 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockGlass
   entities:
   - uid: 57
@@ -357,26 +318,36 @@ entities:
     - type: Transform
       pos: 4.5,3.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
   - uid: 121
     components:
     - type: Transform
       pos: 4.5,-5.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
   - uid: 122
     components:
     - type: Transform
       pos: -0.5,-4.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
   - uid: 123
     components:
     - type: Transform
       pos: -3.5,-3.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
   - uid: 124
     components:
     - type: Transform
       pos: -3.5,4.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
 - proto: GeneratorBasic
   entities:
   - uid: 44
@@ -718,11 +689,15 @@ entities:
     - type: Transform
       pos: -1.5,4.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
   - uid: 125
     components:
     - type: Transform
       pos: -0.5,-5.5
       parent: 130
+    - type: Fixtures
+      fixtures: {}
 - proto: WallShuttle
   entities:
   - uid: 3

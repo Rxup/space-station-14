@@ -4,12 +4,24 @@
   name: mothership core
   description: A sentient machine that can produce Xenoborgs. Without this the Xenoborgs are doomed.
   components:
+  - type: TTS # Corvax-TTS
+    voice: Borgs
   - type: InputMover # needs this to pilot the mothership
   - type: BlockMovement # They should never be moving!
     blockInteraction: false
     blockUse: false
   - type: Appearance
   - type: WiresVisuals
+  - type: UniversalLanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker #backmen: languages
+    currentLanguage: Binary
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: Damageable
     damageContainer: Inorganic
   - type: Fixtures

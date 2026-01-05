@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:49
+  time: 01/05/2026 13:53:42
   entityCount: 233
 maps: []
 grids:
@@ -123,30 +123,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirTankFilled
   entities:
   - uid: 153
@@ -154,8 +137,8 @@ entities:
     - type: Transform
       parent: 149
     - type: Clothing
-      inSlotFlag: SUITSTORAGE
       inSlot: suitstorage
+      inSlotFlag: SUITSTORAGE
     - type: Physics
       canCollide: False
 - proto: BasaltFive
@@ -533,6 +516,8 @@ entities:
     - type: Transform
       pos: 11.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingHeadHelmetFire
   entities:
   - uid: 150
@@ -542,8 +527,8 @@ entities:
     - type: Physics
       canCollide: False
     - type: Clothing
-      inSlotFlag: HEAD
       inSlot: head
+      inSlotFlag: HEAD
 - proto: ClothingMaskGas
   entities:
   - uid: 155
@@ -551,8 +536,8 @@ entities:
     - type: Transform
       parent: 149
     - type: Clothing
-      inSlotFlag: MASK
       inSlot: mask
+      inSlotFlag: MASK
     - type: Physics
       canCollide: False
 - proto: ClothingOuterSuitFire
@@ -562,8 +547,8 @@ entities:
     - type: Transform
       parent: 149
     - type: Clothing
-      inSlotFlag: OUTERCLOTHING
       inSlot: outerClothing
+      inSlotFlag: OUTERCLOTHING
     - type: Physics
       canCollide: False
 - proto: DrinkHotCoco
@@ -1337,6 +1322,8 @@ entities:
     - type: Transform
       pos: 9.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: TableWood
   entities:
   - uid: 158

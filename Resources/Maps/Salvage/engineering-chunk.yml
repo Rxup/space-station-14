@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:02
   entityCount: 433
 maps: []
 grids:
@@ -783,54 +783,15 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAtmosphericsLocked
   entities:
   - uid: 83
@@ -1752,6 +1713,8 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 452
@@ -2032,24 +1995,32 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 176
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 219
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 257
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandHighEffectEngineering
   entities:
   - uid: 217
@@ -2057,6 +2028,8 @@ entities:
     - type: Transform
       pos: -2.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitSafetyMothHardhat
   entities:
   - uid: 1228
@@ -2064,6 +2037,8 @@ entities:
     - type: Transform
       pos: -0.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitSafetyMothPiping
   entities:
   - uid: 1227
@@ -2071,6 +2046,8 @@ entities:
     - type: Transform
       pos: 2.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PowerCellRecharger
   entities:
   - uid: 448
@@ -2310,6 +2287,8 @@ entities:
     - type: Transform
       pos: -5.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignToolStorage
   entities:
   - uid: 180
@@ -2317,6 +2296,8 @@ entities:
     - type: Transform
       pos: -2.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SmallLight
   entities:
   - uid: 222
@@ -2366,6 +2347,8 @@ entities:
     - type: Transform
       pos: 4.5,-14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationBasic
   entities:
   - uid: 497

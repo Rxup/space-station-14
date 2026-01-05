@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:22
+  time: 01/05/2026 13:55:28
   entityCount: 564
 maps: []
 grids:
@@ -249,26 +249,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -290,7 +272,7 @@ entities:
         -1,-2: 18446744073709549568
         -2,1: 36276122592804092
         -2,-2: 18228593205224407040
-    - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 476
@@ -382,23 +364,31 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 291
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 383
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -11.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 384
     components:
     - type: Transform
       pos: -1.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 196
@@ -1475,26 +1465,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1876,26 +1848,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2155,6 +2109,8 @@ entities:
     - type: Transform
       pos: 11.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SilverDoor
   entities:
   - uid: 285

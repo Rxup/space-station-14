@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:16
+  time: 01/05/2026 13:55:04
   entityCount: 82
 maps: []
 grids:
@@ -151,6 +151,7 @@ entities:
     - type: RadiationGridResistance
     - type: SalvageShuttle
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockShuttleSyndicate
   entities:
   - uid: 33
@@ -170,6 +171,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BodyBagFolded
   entities:
   - uid: 74
@@ -302,6 +305,8 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 40
@@ -447,6 +452,8 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationWallBasic
   entities:
   - uid: 47

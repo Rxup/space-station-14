@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 20:58:28
+  time: 01/05/2026 13:54:14
   entityCount: 491
 maps: []
 grids:
@@ -543,6 +543,7 @@ entities:
     - type: GridPathfinding
     - type: NavMap
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2

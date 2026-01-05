@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:57
+  time: 01/05/2026 13:54:06
   entityCount: 79
 maps: []
 grids:
@@ -102,31 +102,12 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockFreezerLocked
   entities:
   - uid: 13
@@ -417,6 +398,8 @@ entities:
     - type: Transform
       pos: 4.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Paper
   entities:
   - uid: 60

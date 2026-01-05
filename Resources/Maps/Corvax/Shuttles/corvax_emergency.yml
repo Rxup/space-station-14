@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:16
+  time: 01/05/2026 13:55:03
   entityCount: 617
 maps: []
 grids:
@@ -295,95 +295,23 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 22
-          - 82
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 22
+            Nitrogen: 82
         - volume: 2500
           temperature: 293.15
           moles:
-          - 20.785248
-          - 77.47229
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.785248
+            Nitrogen: 77.47229
         - volume: 2500
           temperature: 293.15
           moles:
-          - 20.20326
-          - 75.30306
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.20326
+            Nitrogen: 75.30306
         - volume: 2500
           temperature: 293.14996
           moles:
-          - 19.67328
-          - 73.32768
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 19.67328
+            Nitrogen: 73.32768
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -395,6 +323,7 @@ entities:
       shakeTimes: 10
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -406,6 +335,8 @@ entities:
     - type: DeviceList
       devices:
       - 22
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 3
@@ -421,26 +352,8 @@ entities:
         immutable: False
         temperature: 293.15
         moles:
-        - 393.0592
-        - 1478.6512
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 393.0592
+          Nitrogen: 1478.6512
       releaseValve: True
   - uid: 4
     components:
@@ -455,26 +368,8 @@ entities:
         immutable: False
         temperature: 293.15
         moles:
-        - 393.0592
-        - 1478.6512
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 393.0592
+          Nitrogen: 1478.6512
       releaseValve: True
 - proto: AirlockCommandGlassLocked
   entities:
@@ -596,12 +491,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 24
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 7
@@ -1746,26 +1645,8 @@ entities:
         immutable: False
         temperature: 293.1469
         moles:
-        - 1.7107201
-        - 6.37632
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7107201
+          Nitrogen: 6.37632
   - uid: 258
     components:
     - type: Transform
@@ -1901,21 +1782,29 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 278
     components:
     - type: Transform
       pos: -4.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 279
     components:
     - type: Transform
       pos: -4.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 280
     components:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Firelock
   entities:
   - uid: 281
@@ -3366,18 +3255,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 133
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 145
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ShuttleWindow
   entities:
   - uid: 451
@@ -3605,6 +3500,8 @@ entities:
     - type: Transform
       pos: 2.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecureSmallRed
   entities:
   - uid: 491
@@ -3612,6 +3509,8 @@ entities:
     - type: Transform
       pos: -1.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 492
@@ -4189,11 +4088,15 @@ entities:
     - type: Transform
       pos: -6.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 600
     components:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Welder
   entities:
   - uid: 601

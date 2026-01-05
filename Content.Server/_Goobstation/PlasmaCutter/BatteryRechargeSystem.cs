@@ -6,89 +6,88 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 
-namespace Content.Server._Goobstation.Plasmacutter
+namespace Content.Server._Goobstation.Plasmacutter;
+
+public sealed class BatteryRechargeSystem : EntitySystem
 {
-    public sealed class BatteryRechargeSystem : EntitySystem
+    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
+    [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
+
+    private EntityUid playerUid;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-        [Dependency] private readonly BatterySystem _batterySystem = default!;
-        [Dependency] private readonly HandsSystem _hands = default!;
+        base.Initialize();
 
-        private EntityUid playerUid;
+        SubscribeLocalEvent<MaterialStorageComponent, ContactInteractionEvent>(OnInteract);
+        SubscribeLocalEvent<MaterialStorageComponent, MaterialEntityInsertedEvent>(OnMaterialAmountChanged);
+        SubscribeLocalEvent<BatteryRechargeComponent, ChargeChangedEvent>(OnChargeChanged);
+    }
 
-        public override void Initialize()
-        {
-            base.Initialize();
+    private void OnInteract(EntityUid uid, MaterialStorageComponent component, ContactInteractionEvent args)
+    {
+        playerUid = args.Other;
+    }
 
-            SubscribeLocalEvent<MaterialStorageComponent, ContactInteractionEvent>(OnInteract);
-            SubscribeLocalEvent<MaterialStorageComponent, MaterialEntityInsertedEvent>(OnMaterialAmountChanged);
-            SubscribeLocalEvent<BatteryRechargeComponent, ChargeChangedEvent>(OnChargeChanged);
-        }
-
-        private void OnInteract(EntityUid uid, MaterialStorageComponent component, ContactInteractionEvent args)
-        {
-            playerUid = args.Other;
-        }
-
-        private void OnMaterialAmountChanged(EntityUid uid, MaterialStorageComponent component, MaterialEntityInsertedEvent args)
-        {
-            if (component.MaterialWhiteList != null)
-                foreach (var fuelType in component.MaterialWhiteList)
-                {
-                    FuelAddCharge(uid, fuelType);
-                }
-        }
-
-        private void OnChargeChanged(EntityUid uid, BatteryRechargeComponent component, ChargeChangedEvent args)
-        {
-            ChangeStorageLimit(uid, component.StorageMaxCapacity);
-        }
-
-        private void ChangeStorageLimit(
-            EntityUid uid,
-            int value,
-            BatteryComponent? battery = null)
-        {
-            if (!Resolve(uid, ref battery))
-                return;
-            if (battery.CurrentCharge == battery.MaxCharge)
-                value = 0;
-            _materialStorage.TryChangeStorageLimit(uid, value);
-        }
-
-        private void FuelAddCharge(
-            EntityUid uid,
-            string fuelType,
-            BatteryRechargeComponent? recharge = null)
-        {
-            if (!Resolve(uid, ref recharge, false))
-                return;
-
-            var availableMaterial = _materialStorage.GetMaterialAmount(uid, fuelType);
-
-            if (_materialStorage.TryChangeMaterialAmount(uid, fuelType, -availableMaterial) && TryComp<BatteryComponent>(uid, out var batteryComponent))
+    private void OnMaterialAmountChanged(EntityUid uid, MaterialStorageComponent component, MaterialEntityInsertedEvent args)
+    {
+        if (component.MaterialWhiteList != null)
+            foreach (var fuelType in component.MaterialWhiteList)
             {
-                // this is shit. this shit works.
-                var spawnAmount = batteryComponent.MaxCharge - batteryComponent.CurrentCharge - availableMaterial;
-                if (spawnAmount < 0)
-                {
-                    spawnAmount = Math.Abs(spawnAmount);
-                }
-                else
-                {
-                    spawnAmount = 0;
-                }
-
-                var ent = _materialStorage.SpawnMultipleFromMaterial((int)spawnAmount, fuelType, Transform(uid).Coordinates, out var overflow);
-
-                foreach (var entUid in ent)
-                {
-                    _hands.TryForcePickupAnyHand(playerUid, entUid);
-                }
-
-                _batterySystem.ChangeCharge(uid, availableMaterial);
+                FuelAddCharge(uid, fuelType);
             }
+    }
+
+    private void OnChargeChanged(EntityUid uid, BatteryRechargeComponent component, ChargeChangedEvent args)
+    {
+        ChangeStorageLimit(uid, component.StorageMaxCapacity);
+    }
+
+    private void ChangeStorageLimit(
+        Entity<BatteryComponent?> ent,
+        int value)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        if (_batterySystem.GetCharge(ent) == ent.Comp.MaxCharge)
+            value = 0;
+        _materialStorage.TryChangeStorageLimit(ent, value);
+    }
+
+    private void FuelAddCharge(
+        Entity<BatteryComponent?> ent,
+        string fuelType)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        var availableMaterial = _materialStorage.GetMaterialAmount(ent, fuelType);
+
+        if (_materialStorage.TryChangeMaterialAmount(ent, fuelType, -availableMaterial))
+        {
+            // this is shit. this shit works.
+            var spawnAmount = ent.Comp.MaxCharge - _batterySystem.GetCharge(ent) - availableMaterial;
+            if (spawnAmount < 0)
+            {
+                spawnAmount = Math.Abs(spawnAmount);
+            }
+            else
+            {
+                spawnAmount = 0;
+            }
+
+            var ents = _materialStorage.SpawnMultipleFromMaterial((int)spawnAmount, fuelType, Transform(ent).Coordinates, out var overflow);
+
+            foreach (var entUid in ents)
+            {
+                _hands.TryForcePickupAnyHand(playerUid, entUid);
+            }
+
+            _batterySystem.ChangeCharge(ent, availableMaterial);
         }
     }
 }

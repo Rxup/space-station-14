@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:48
+  time: 01/05/2026 13:53:39
   entityCount: 167
 maps: []
 grids:
@@ -165,30 +165,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockHatchSyndicate
   entities:
   - uid: 14
@@ -216,6 +199,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 12
@@ -936,6 +921,8 @@ entities:
         108:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 134
     components:
     - type: MetaData
@@ -944,6 +931,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.476158,0.26498932
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalButtonDirectional
   entities:
   - uid: 158
@@ -954,6 +943,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 159
     components:
     - type: MetaData
@@ -962,6 +953,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSpace
   entities:
   - uid: 128
@@ -969,6 +962,8 @@ entities:
     - type: Transform
       pos: 9.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationWallBasic
   entities:
   - uid: 165

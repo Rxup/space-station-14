@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:47
+  time: 01/05/2026 13:53:35
   entityCount: 360
 maps:
 - 1
@@ -373,55 +373,16 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: Fixtures
       fixtures: {}
+    - type: ExplosionAirtightGrid
 - proto: APCBasic
   entities:
   - uid: 160
@@ -429,6 +390,8 @@ entities:
     - type: Transform
       pos: 7.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ArachneWeb
   entities:
   - uid: 88
@@ -1778,27 +1741,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1962,27 +1905,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2006,27 +1929,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2076,6 +1979,15 @@ entities:
     components:
     - type: Transform
       pos: 12.5,14.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: PlushieSpawner50
+  entities:
+  - uid: 295
+    components:
+    - type: Transform
+      pos: 13.5,3.5
       parent: 1
 - proto: PottedPlantRandomPlastic
   entities:
@@ -2430,13 +2342,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,14.5
-      parent: 1
-- proto: ToySpawner
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      pos: 13.5,3.5
       parent: 1
 - proto: WallDrywall
   entities:

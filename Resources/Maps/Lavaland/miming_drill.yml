@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:50
+  time: 01/05/2026 13:53:43
   entityCount: 194
 maps: []
 grids:
@@ -120,30 +120,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockExternalGlass
   entities:
   - uid: 146
@@ -166,6 +149,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: CableApcExtension
   entities:
   - uid: 162
@@ -338,8 +323,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CratePermaEscapeDigging
@@ -538,6 +523,8 @@ entities:
     - type: Transform
       pos: 3.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 170

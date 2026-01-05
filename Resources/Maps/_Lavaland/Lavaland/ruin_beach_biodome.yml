@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:21
+  time: 01/05/2026 13:55:25
   entityCount: 644
 maps: []
 grids:
@@ -552,26 +552,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -593,7 +575,7 @@ entities:
         0,3: 4294967295
         1,3: 4294967295
         2,3: 51322687
-    - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockCargo
   entities:
   - uid: 5
@@ -683,6 +665,8 @@ entities:
     - type: Transform
       pos: 8.5,24.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 212
@@ -712,6 +696,8 @@ entities:
     - type: Transform
       pos: 10.5,18.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: BeachBall
   entities:
   - uid: 21
@@ -2791,6 +2777,8 @@ entities:
     - type: Transform
       pos: 12.5,24.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: NitrogenTankFilled
   entities:
   - uid: 396
@@ -2835,6 +2823,8 @@ entities:
     - type: Transform
       pos: 8.5,25.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PoweredDimSmallLight
   entities:
   - uid: 404

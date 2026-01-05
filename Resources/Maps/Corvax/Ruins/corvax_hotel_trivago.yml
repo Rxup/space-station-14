@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:14
+  time: 01/05/2026 13:54:57
   entityCount: 1436
 maps: []
 grids:
@@ -500,6 +500,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblyCargo
   entities:
   - uid: 42
@@ -544,22 +545,30 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,-2.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 775
     components:
     - type: Transform
       pos: -11.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 776
     components:
     - type: Transform
       pos: -11.5,-0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 861
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-12.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: APCConstructed
   entities:
   - uid: 1327
@@ -567,6 +576,8 @@ entities:
     - type: Transform
       pos: -5.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: Ash
   entities:
   - uid: 173
@@ -657,6 +668,8 @@ entities:
     - type: Transform
       pos: -4.5,-13.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: BeachBall
   entities:
   - uid: 887
@@ -2152,6 +2165,8 @@ entities:
       parent: 2
     - type: EntityStorage
       open: True
+    - type: Fixtures
+      fixtures: {}
   - uid: 345
     components:
     - type: Transform
@@ -2164,6 +2179,8 @@ entities:
           occludes: True
           ents:
           - 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingEyesGlassesCheapSunglasses
   entities:
   - uid: 1163
@@ -2722,11 +2739,15 @@ entities:
     - type: Transform
       pos: 6.5,-1.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 1233
     components:
     - type: Transform
       pos: -16.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ExtinguisherCabinetFilledOpen
   entities:
   - uid: 555
@@ -2734,6 +2755,8 @@ entities:
     - type: Transform
       pos: -5.5,9.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ExtinguisherCabinetOpen
   entities:
   - uid: 554
@@ -2741,6 +2764,8 @@ entities:
     - type: Transform
       pos: -3.5,-4.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: FenceWoodHighStraight
   entities:
   - uid: 1255
@@ -3580,6 +3605,8 @@ entities:
     - type: Transform
       pos: -9.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingSadClown
   entities:
   - uid: 1423
@@ -3587,6 +3614,8 @@ entities:
     - type: Transform
       pos: -9.5,-0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingSkeletonCigarette
   entities:
   - uid: 120
@@ -3595,6 +3624,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PaperBin5
   entities:
   - uid: 571
@@ -3690,6 +3721,8 @@ entities:
     - type: Transform
       pos: -2.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandBeachStarYamamoto
   entities:
   - uid: 886
@@ -3697,6 +3730,8 @@ entities:
     - type: Transform
       pos: 7.5,-10.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlant11
   entities:
   - uid: 562
@@ -4334,6 +4369,8 @@ entities:
     - type: Transform
       pos: -3.5,-8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ShelfGlass
   entities:
   - uid: 1432
@@ -4341,6 +4378,8 @@ entities:
     - type: Transform
       pos: 5.5,11.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ShelfKitchen
   entities:
   - uid: 1431
@@ -4348,6 +4387,8 @@ entities:
     - type: Transform
       pos: -6.5,-11.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ShipBattlemap
   entities:
   - uid: 521
@@ -4363,6 +4404,8 @@ entities:
     - type: Transform
       pos: -6.5,-7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignKitchen
   entities:
   - uid: 1430
@@ -4370,6 +4413,8 @@ entities:
     - type: Transform
       pos: -6.5,-13.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignLaundromat
   entities:
   - uid: 260
@@ -4378,6 +4423,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,11.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSomethingOld
   entities:
   - uid: 884
@@ -4385,6 +4432,8 @@ entities:
     - type: Transform
       pos: -2.5,-8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSomethingOld2
   entities:
   - uid: 885
@@ -4392,6 +4441,8 @@ entities:
     - type: Transform
       pos: -2.5,-13.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SilverOre1
   entities:
   - uid: 767
@@ -4628,6 +4679,8 @@ entities:
     - type: Transform
       pos: -1.5,7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: StoolBar
   entities:
   - uid: 808
@@ -4896,6 +4949,8 @@ entities:
     - type: Transform
       pos: 0.5,7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: WallNecropolis
   entities:
   - uid: 10

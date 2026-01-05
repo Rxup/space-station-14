@@ -107,6 +107,11 @@ public abstract partial class SharedMoverController : VirtualController
         Subs.CVar(_configManager, CCVars.OffgridFriction, value => _offGridDamping = value, true);
     }
 
+    protected virtual void OnMoverStartup(Entity<InputMoverComponent> ent, ref ComponentStartup args)
+    {
+        _blocker.UpdateCanMove(ent, ent.Comp);
+    }
+
     public override void Shutdown()
     {
         base.Shutdown();
@@ -477,7 +482,7 @@ public abstract partial class SharedMoverController : VirtualController
         var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
 
         _aroundColliderSet.Clear();
-        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Uncontained);
+        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Approximate | LookupFlags.Uncontained);
         foreach (var otherEntity in _aroundColliderSet)
         {
             if (otherEntity == uid)

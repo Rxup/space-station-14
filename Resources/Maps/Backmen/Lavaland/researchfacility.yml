@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:10
+  time: 01/05/2026 13:54:45
   entityCount: 1303
 maps: []
 grids:
@@ -532,26 +532,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -595,7 +577,7 @@ entities:
         0,-5: 13835058055282163712
         -1,-4: 18446744060774120448
         -2,-4: 16204197749883666432
-    - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockHatchBasik
   entities:
   - uid: 70
@@ -733,40 +715,54 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 769
     components:
     - type: Transform
       pos: -12.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 770
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 771
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 8.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 772
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 14.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 773
     components:
     - type: Transform
       pos: -4.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 774
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,-20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BaseComputer
   entities:
   - uid: 5
@@ -4740,6 +4736,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -24.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkStemless
   entities:
   - uid: 79

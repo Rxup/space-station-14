@@ -1,4 +1,6 @@
 ﻿using Content.Shared.Backmen.Vampiric;
+using Content.Shared.Backmen.Vampiric.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
 using Content.Shared.Mobs.Components;
@@ -13,9 +15,6 @@ public sealed partial class ChemBloodSuckerEntityEffectSystem : EntityEffectSyst
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemBloodSucker> args)
     {
-        if (args.Scale < 1f)
-            return;
-
         _bloodSucker.ForceMakeVampire(entity);
     }
 }

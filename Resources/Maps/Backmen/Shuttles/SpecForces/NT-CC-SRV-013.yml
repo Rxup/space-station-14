@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:25
+  time: 01/05/2026 13:55:36
   entityCount: 473
 maps: []
 grids:
@@ -183,53 +183,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 169
@@ -243,6 +206,8 @@ entities:
       - 372
       - 426
       - 371
+    - type: Fixtures
+      fixtures: {}
   - uid: 318
     components:
     - type: Transform
@@ -253,6 +218,8 @@ entities:
       devices:
       - 374
       - 379
+    - type: Fixtures
+      fixtures: {}
   - uid: 428
     components:
     - type: Transform
@@ -265,6 +232,8 @@ entities:
       - 378
       - 369
       - 370
+    - type: Fixtures
+      fixtures: {}
   - uid: 429
     components:
     - type: Transform
@@ -275,6 +244,8 @@ entities:
       devices:
       - 380
       - 373
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 346
@@ -374,6 +345,8 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 383
@@ -1416,6 +1389,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingBeltUtilityFilled
   entities:
   - uid: 415
@@ -1466,6 +1441,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: DrinkGlass
   entities:
   - uid: 312
@@ -2223,6 +2200,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 375
     components:
     - type: Transform
@@ -2235,26 +2214,10 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
+    - type: Fixtures
+      fixtures: {}
 - proto: MarkerSpecforce
   entities:
   - uid: 160
@@ -2339,6 +2302,8 @@ entities:
     - type: Transform
       pos: 2.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitEarthGov10
   entities:
   - uid: 333
@@ -2346,6 +2311,8 @@ entities:
     - type: Transform
       pos: -4.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitEarthGov12
   entities:
   - uid: 445
@@ -2353,6 +2320,8 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitEarthGov2
   entities:
   - uid: 332
@@ -2360,6 +2329,8 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitEarthGov7
   entities:
   - uid: 446
@@ -2367,6 +2338,8 @@ entities:
     - type: Transform
       pos: 5.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitEarthGov9
   entities:
   - uid: 329
@@ -2374,6 +2347,8 @@ entities:
     - type: Transform
       pos: 5.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 376
@@ -2600,6 +2575,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignDirectionalEng
   entities:
   - uid: 164
@@ -2607,6 +2584,8 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignDirectionalWash
   entities:
   - uid: 166
@@ -2614,6 +2593,8 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SpawnMobCleanBot
   entities:
   - uid: 448

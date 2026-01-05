@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:21
+  time: 01/05/2026 13:55:23
   entityCount: 238
 maps: []
 grids:
@@ -129,54 +129,17 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockShuttle
   entities:
   - uid: 2
@@ -198,6 +161,8 @@ entities:
     - type: Transform
       pos: 2.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 5
@@ -227,6 +192,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BlastDoor
   entities:
   - uid: 8
@@ -467,26 +434,8 @@ entities:
         immutable: False
         temperature: 293.14786
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -604,26 +553,8 @@ entities:
         immutable: False
         temperature: 293.14783
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1227,26 +1158,8 @@ entities:
         immutable: False
         temperature: 293.14798
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1303,6 +1216,8 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Pen
   entities:
   - uid: 232
@@ -1325,6 +1240,8 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantRandom
   entities:
   - uid: 136
@@ -1507,6 +1424,8 @@ entities:
         152:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 161
     components:
     - type: Transform
@@ -1517,6 +1436,8 @@ entities:
         8:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignDoors
   entities:
   - uid: 162
@@ -1524,6 +1445,8 @@ entities:
     - type: Transform
       pos: -0.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkStemlessWater
   entities:
   - uid: 163

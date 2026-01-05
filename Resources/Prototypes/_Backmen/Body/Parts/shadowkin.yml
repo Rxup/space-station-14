@@ -51,133 +51,89 @@
 - type: entity
   id: HeadShadowkin
   name: "Shadowkin head"
-  parent: PartShadowkin
+  parent: [BaseHead, PartShadowkin]
   components:
   - type: Sprite
     state: "head_m"
   - type: Icon
     state: "head_m"
-  - type: BodyPart
-    partType: Head
-    toolName: "a head"
-  - type: Input
-    context: "ghost"
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-  - type: InputMover
-  - type: GhostOnMove
 
 - type: entity
   id: LeftArmShadowkin
   name: "left Shadowkin arm"
-  parent: PartShadowkin
+  parent: [BaseLeftArm, PartShadowkin]
   components:
   - type: Sprite
     state: "l_arm"
   - type: Icon
     state: "l_arm"
-  - type: BodyPart
-    partType: Arm
-    symmetry: Left
-    toolName: "a left arm"
 
 - type: entity
   id: RightArmShadowkin
   name: "right Shadowkin arm"
-  parent: PartShadowkin
+  parent: [BaseRightArm, PartShadowkin]
   components:
   - type: Sprite
     state: "r_arm"
   - type: Icon
     state: "r_arm"
-  - type: BodyPart
-    partType: Arm
-    symmetry: Right
-    toolName: "a right arm"
 
 - type: entity
   id: LeftHandShadowkin
   name: "left Shadowkin hand"
-  parent: PartShadowkin
+  parent: [BaseLeftHand, PartShadowkin]
   components:
   - type: Sprite
     state: "l_hand"
   - type: Icon
     state: "l_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
-    toolName: "a left hand"
 
 - type: entity
   id: RightHandShadowkin
   name: "right Shadowkin hand"
-  parent: PartShadowkin
+  parent: [BaseRightHand, PartShadowkin]
   components:
   - type: Sprite
     state: "r_hand"
   - type: Icon
     state: "r_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right
-    toolName: "a right hand"
 
 - type: entity
   id: LeftLegShadowkin
   name: "left Shadowkin leg"
-  parent: PartShadowkin
+  parent: [BaseLeftLeg, PartShadowkin]
   components:
   - type: Sprite
     state: "l_leg"
   - type: Icon
     state: "l_leg"
-  - type: BodyPart
-    partType: Leg
-    symmetry: Left
-    toolName: "a left leg"
-  - type: MovementBodyPart
 
 - type: entity
   id: RightLegShadowkin
   name: "right Shadowkin leg"
-  parent: PartShadowkin
+  parent: [BaseRightLeg, PartShadowkin]
   components:
   - type: Sprite
     state: "r_leg"
   - type: Icon
     state: "r_leg"
-  - type: BodyPart
-    partType: Leg
-    symmetry: Right
-    toolName: "a right leg"
-  - type: MovementBodyPart
 
 - type: entity
   id: LeftFootShadowkin
   name: "left Shadowkin foot"
-  parent: PartShadowkin
+  parent: [BaseLeftFoot, PartShadowkin]
   components:
   - type: Sprite
     state: "l_foot"
   - type: Icon
     state: "l_foot"
-  - type: BodyPart
-    partType: Foot
-    symmetry: Left
-    toolName: "a left foot"
 
 - type: entity
   id: RightFootShadowkin
   name: "right Shadowkin foot"
-  parent: PartShadowkin
+  parent: [BaseRightFoot, PartShadowkin]
   components:
   - type: Sprite
     state: "r_foot"
   - type: Icon
     state: "r_foot"
-  - type: BodyPart
-    partType: Foot
-    symmetry: Right
-    toolName: "a right foot"

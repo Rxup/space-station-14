@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:08
+  time: 01/05/2026 13:54:38
   entityCount: 355
 maps: []
 grids:
@@ -114,53 +114,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 216
@@ -176,6 +139,8 @@ entities:
       - 329
       - 327
       - 349
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 212
@@ -248,12 +213,16 @@ entities:
     - type: Transform
       pos: 4.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 105
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 312
@@ -1300,6 +1269,8 @@ entities:
         47:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecureMedRed
   entities:
   - uid: 84
@@ -1307,11 +1278,15 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 85
     components:
     - type: Transform
       pos: 3.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationBasic
   entities:
   - uid: 100

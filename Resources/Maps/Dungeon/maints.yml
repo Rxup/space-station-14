@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:47
+  time: 01/05/2026 13:53:34
   entityCount: 552
 maps:
 - 1
@@ -191,6 +191,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: RadiationGridResistance
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 146
@@ -2448,11 +2449,15 @@ entities:
     - type: Transform
       pos: 21.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 240
     components:
     - type: Transform
       pos: 7.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandAmbrosiaVulgaris
   entities:
   - uid: 25
@@ -2460,6 +2465,8 @@ entities:
     - type: Transform
       pos: 2.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandEAT
   entities:
   - uid: 230
@@ -2467,6 +2474,8 @@ entities:
     - type: Transform
       pos: 19.5,25.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Rack
   entities:
   - uid: 96
@@ -2779,6 +2788,8 @@ entities:
     - type: Transform
       pos: 1.5,27.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignElectricalMed
   entities:
   - uid: 149
@@ -2786,6 +2797,8 @@ entities:
     - type: Transform
       pos: 9.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignFlammableMed
   entities:
   - uid: 268
@@ -2793,6 +2806,8 @@ entities:
     - type: Transform
       pos: 13.5,13.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignLaserMed
   entities:
   - uid: 118
@@ -2800,6 +2815,8 @@ entities:
     - type: Transform
       pos: 13.5,27.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRestroom
   entities:
   - uid: 265
@@ -2807,6 +2824,8 @@ entities:
     - type: Transform
       pos: 1.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkWide
   entities:
   - uid: 137

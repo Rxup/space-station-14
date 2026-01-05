@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:48
+  time: 01/05/2026 13:53:37
   entityCount: 2214
 maps:
 - 1653
@@ -2880,6 +2880,7 @@ entities:
     - type: RadiationGridResistance
     - type: SpreaderGrid
     - type: GridPathfinding
+    - type: ExplosionAirtightGrid
 - proto: Airlock
   entities:
   - uid: 1221
@@ -2981,16 +2982,22 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 30.5,9.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 569
     components:
     - type: Transform
       pos: 13.5,43.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 1023
     components:
     - type: Transform
       pos: 28.5,22.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: BackmenVendingMachineCigs
   entities:
   - uid: 928
@@ -7652,11 +7659,15 @@ entities:
     - type: Transform
       pos: 51.5,1.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 1288
     components:
     - type: Transform
       pos: 39.5,1.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: filingCabinetDrawerRandom
   entities:
   - uid: 1279
@@ -10827,12 +10838,16 @@ entities:
     - type: Transform
       pos: 1.5,21.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 893
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,19.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: ModularGrenade
   entities:
   - uid: 1634
@@ -10958,6 +10973,13 @@ entities:
     components:
     - type: Transform
       pos: 6.4745436,18.474607
+      parent: 1653
+- proto: PlushieSpawner50
+  entities:
+  - uid: 1246
+    components:
+    - type: Transform
+      pos: 40.5,0.5
       parent: 1653
 - proto: PortableGeneratorJrPacman
   entities:
@@ -12209,6 +12231,8 @@ entities:
         582:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignElectricalMed
   entities:
   - uid: 585
@@ -12216,11 +12240,15 @@ entities:
     - type: Transform
       pos: 8.5,43.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 1540
     components:
     - type: Transform
       pos: 28.5,9.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignHydro1
   entities:
   - uid: 1059
@@ -12228,11 +12256,15 @@ entities:
     - type: Transform
       pos: 19.5,4.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 1060
     components:
     - type: Transform
       pos: 33.5,4.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRedFour
   entities:
   - uid: 1252
@@ -12240,6 +12272,8 @@ entities:
     - type: Transform
       pos: 48.5,1.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRedOne
   entities:
   - uid: 1249
@@ -12247,6 +12281,8 @@ entities:
     - type: Transform
       pos: 40.5,3.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRedThree
   entities:
   - uid: 1251
@@ -12254,6 +12290,8 @@ entities:
     - type: Transform
       pos: 48.5,3.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRedTwo
   entities:
   - uid: 1250
@@ -12261,6 +12299,8 @@ entities:
     - type: Transform
       pos: 40.5,1.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecureMed
   entities:
   - uid: 1154
@@ -12268,6 +12308,8 @@ entities:
     - type: Transform
       pos: 10.5,13.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SignShock
   entities:
   - uid: 1155
@@ -12275,6 +12317,8 @@ entities:
     - type: Transform
       pos: 12.5,13.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SilverDoor
   entities:
   - uid: 985
@@ -13135,13 +13179,6 @@ entities:
     components:
     - type: Transform
       pos: 44.51329,7.4417505
-      parent: 1653
-- proto: ToySpawner
-  entities:
-  - uid: 1246
-    components:
-    - type: Transform
-      pos: 40.5,0.5
       parent: 1653
 - proto: UraniumReinforcedWindowDirectional
   entities:

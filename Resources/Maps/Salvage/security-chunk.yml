@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:57
+  time: 01/05/2026 13:54:05
   entityCount: 256
 maps: []
 grids:
@@ -215,54 +215,15 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockBrigLocked
   entities:
   - uid: 77
@@ -305,16 +266,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 109
     components:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 218
     components:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Bed
   entities:
   - uid: 92
@@ -351,6 +318,8 @@ entities:
     - type: Transform
       pos: 6.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: CableApcExtension
   entities:
   - uid: 96
@@ -904,27 +873,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
   - uid: 63
     components:
     - type: Transform
@@ -935,27 +884,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
 - proto: ClothingHeadHelmetMerc
   entities:
   - uid: 190
@@ -1085,6 +1014,8 @@ entities:
     - type: Transform
       pos: -1.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitHereForYourSafety
   entities:
   - uid: 258
@@ -1092,6 +1023,8 @@ entities:
     - type: Transform
       pos: -5.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitNanotrasenLogo
   entities:
   - uid: 261
@@ -1099,6 +1032,8 @@ entities:
     - type: Transform
       pos: 2.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitObey
   entities:
   - uid: 257
@@ -1106,6 +1041,8 @@ entities:
     - type: Transform
       pos: 3.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitSecWatch
   entities:
   - uid: 262
@@ -1113,6 +1050,8 @@ entities:
     - type: Transform
       pos: 8.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitThereIsNoGasGiant
   entities:
   - uid: 263
@@ -1120,6 +1059,8 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PowerCellRecharger
   entities:
   - uid: 193

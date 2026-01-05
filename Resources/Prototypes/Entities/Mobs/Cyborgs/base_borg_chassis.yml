@@ -6,6 +6,15 @@
   save: false
   abstract: true
   components:
+  - type: LanguageSpeaker #backmen: languages
+    currentLanguage: Binary
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: Reactive
     groups:
       Acidic: [Touch]
@@ -253,16 +262,6 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Binary
-    - TauCetiBasic
-    understands:
-    - Binary
-    - TauCetiBasic
-  - type: Immersive # Backmen
   - type: Targeting # Backmen
 
 - type: entity

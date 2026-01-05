@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:58
+  time: 01/05/2026 13:54:08
   entityCount: 186
 maps: []
 grids:
@@ -144,26 +144,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -175,6 +157,7 @@ entities:
       shakeTimes: 10
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 172
@@ -216,6 +199,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,6.5
       parent: 173
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 168
@@ -858,6 +843,8 @@ entities:
         3:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 183
     components:
     - type: Transform
@@ -869,6 +856,8 @@ entities:
         56:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 184
     components:
     - type: Transform
@@ -880,6 +869,8 @@ entities:
         1:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 185
     components:
     - type: Transform
@@ -891,6 +882,8 @@ entities:
         54:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 44

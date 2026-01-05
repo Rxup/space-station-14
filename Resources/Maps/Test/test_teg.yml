@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:05
+  time: 01/05/2026 13:54:31
   entityCount: 435
 maps:
 - 1
@@ -234,32 +234,15 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
       id: TEG
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 436
@@ -270,6 +253,8 @@ entities:
     - type: DeviceList
       devices:
       - 437
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockEngineeringGlass
   entities:
   - uid: 128
@@ -289,6 +274,15 @@ entities:
     - type: Transform
       pos: -5.5,1.5
       parent: 2
+- proto: BaseAPC
+  entities:
+  - uid: 38
+    components:
+    - type: Transform
+      pos: -1.5,8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: Bed
   entities:
   - uid: 371
@@ -1313,13 +1307,6 @@ entities:
       - 7
       - 147
       - 29
-- proto: DebugAPC
-  entities:
-  - uid: 38
-    components:
-    - type: Transform
-      pos: -1.5,8.5
-      parent: 2
 - proto: DebugGenerator
   entities:
   - uid: 31
@@ -1329,13 +1316,6 @@ entities:
       parent: 2
     - type: PowerSupplier
       supplyRampTolerance: 500000
-- proto: DebugSubstation
-  entities:
-  - uid: 34
-    components:
-    - type: Transform
-      pos: -0.5,8.5
-      parent: 2
 - proto: DrinkMugOne
   entities:
   - uid: 378
@@ -2454,6 +2434,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
+      parent: 2
+- proto: SubstationBasicEmpty
+  entities:
+  - uid: 34
+    components:
+    - type: Transform
+      pos: -0.5,8.5
       parent: 2
 - proto: SuitStorageCE
   entities:

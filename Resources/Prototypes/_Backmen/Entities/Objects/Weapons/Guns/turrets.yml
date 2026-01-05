@@ -70,7 +70,6 @@
                   min: 3
                   max: 5
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 80
     - type: Gun
       fireRate: 1

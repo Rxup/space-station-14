@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:20
+  time: 01/05/2026 13:55:22
   entityCount: 272
 maps: []
 grids:
@@ -222,49 +222,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -276,6 +238,7 @@ entities:
       shakeTimes: 10
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
   - uid: 264
     components:
     - type: MetaData
@@ -339,6 +302,8 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 8
@@ -760,33 +725,13 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
+      removedMasks: 20
       air:
         volume: 200
         immutable: False
         temperature: 293.14673
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
       open: True
-      removedMasks: 20
     - type: PlaceableSurface
       isPlaceable: True
 - proto: ClothingRandomSpawner
@@ -1387,10 +1332,12 @@ entities:
       - falloffPower: 1.5
         intensity: 50
         type: SingularityDistortion
-      - type: ExplodeOnTrigger
-        keysIn:
+      - keysIn:
         - stageTwo
+        type: ExplodeOnTrigger
       triggerDelay: 500
+      keysIn:
+      - trigger
 - proto: GravityGeneratorMini
   entities:
   - uid: 105
@@ -1532,7 +1479,13 @@ entities:
                                                   [italic]End transmission[/italic]
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -1852,6 +1805,8 @@ entities:
         107:
         - - Pressed
           - Trigger
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 175

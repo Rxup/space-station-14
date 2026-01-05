@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:25
+  time: 01/05/2026 13:55:38
   entityCount: 108
 maps: []
 grids:
@@ -272,30 +272,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 62
@@ -304,6 +287,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 59
@@ -368,6 +353,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 27
@@ -882,6 +869,8 @@ entities:
         103:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationWallBasic
   entities:
   - uid: 26

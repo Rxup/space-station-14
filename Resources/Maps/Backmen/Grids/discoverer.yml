@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:07
+  time: 01/05/2026 13:54:35
   entityCount: 211
 maps: []
 grids:
@@ -150,49 +150,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -201,6 +163,7 @@ entities:
       id: pts
     - type: SalvageShuttle
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 141
@@ -217,6 +180,8 @@ entities:
       - 122
       - 79
       - 80
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 103
@@ -272,6 +237,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 56
@@ -723,6 +690,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FireAlarm
   entities:
   - uid: 142
@@ -734,6 +703,8 @@ entities:
       devices:
       - 79
       - 80
+    - type: Fixtures
+      fixtures: {}
 - proto: FirelockGlass
   entities:
   - uid: 79
@@ -1087,6 +1058,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LockerSalvageSpecialistFilled
   entities:
   - uid: 189
@@ -1121,6 +1094,8 @@ entities:
           - 153
           - 154
           - 152
+    - type: Fixtures
+      fixtures: {}
 - proto: MedkitBruteFilled
   entities:
   - uid: 152
@@ -1361,6 +1336,8 @@ entities:
         187:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalButtonDirectional
   entities:
   - uid: 135
@@ -1377,6 +1354,8 @@ entities:
         17:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationWallBasic
   entities:
   - uid: 85

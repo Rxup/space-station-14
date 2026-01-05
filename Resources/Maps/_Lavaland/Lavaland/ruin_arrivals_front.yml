@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:21
+  time: 01/05/2026 13:55:25
   entityCount: 146
 maps: []
 grids:
@@ -106,53 +106,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblyShuttleGlass
   entities:
   - uid: 3
@@ -173,6 +136,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ChairPilotSeat
   entities:
   - uid: 6
@@ -247,6 +212,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,-2.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ClosetWallFire
   entities:
   - uid: 18
@@ -255,6 +222,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,3.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ComputerBroken
   entities:
   - uid: 19

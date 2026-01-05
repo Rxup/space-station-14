@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 266.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/18/2025 04:40:53
+  time: 01/05/2026 13:55:20
   entityCount: 876
 maps: []
 grids:
@@ -564,37 +564,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 855
@@ -910,25 +889,13 @@ entities:
       pos: -4.5,-4.5
       parent: 1
     - type: EntityStorage
+      removedMasks: 20
       air:
         volume: 200
         immutable: False
         temperature: 293.14673
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
       open: True
-      removedMasks: 20
     - type: Fixtures
       fixtures:
         fix1:
@@ -941,7 +908,7 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
           - BulletImpassable
@@ -2182,6 +2149,28 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-18.5
       parent: 1
+- proto: CaptainDrobe
+  entities:
+  - uid: 410
+    components:
+    - type: Transform
+      pos: 7.5,-0.5
+      parent: 1
+    - type: Storage
+      savedLocations: {}
+      grid: []
+      storageInsertSound: !type:SoundCollectionSpecifier
+        collection: storageRustle
+      storageOpenSound: !type:SoundCollectionSpecifier
+        collection: storageRustle
+      storedItems:
+        411:
+          _rotation: East
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents:
+          - 411
 - proto: CarpetBlue
   entities:
   - uid: 798
@@ -2547,25 +2536,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 410
-    components:
-    - type: Transform
-      pos: 7.5,-0.5
-      parent: 1
-    - type: Storage
-      storedItems:
-        411:
-          position: 0,0
-          _rotation: East
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 411
 - proto: EncryptionKeyFreelance
   entities:
   - uid: 876
@@ -6080,7 +6050,7 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-- proto: WeaponTaser
+- proto: WeaponDominatorNT
   entities:
   - uid: 681
     components:
