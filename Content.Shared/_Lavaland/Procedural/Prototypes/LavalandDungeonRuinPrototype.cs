@@ -9,10 +9,10 @@ namespace Content.Shared._Lavaland.Procedural.Prototypes;
 [Prototype]
 public sealed partial class LavalandDungeonRuinPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public Vector2i Boundary { get; }
+    public Vector2i Boundary { get; private set; }
 
     [DataField(required: true)]
     public EntProtoId SpawnedMarker;

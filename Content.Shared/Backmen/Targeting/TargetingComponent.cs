@@ -1,6 +1,5 @@
 using Content.Shared.Backmen.Surgery.Wounds;
 using Robust.Shared.GameStates;
-using SixLabors.ImageSharp.Formats.Tiff.Constants;
 
 namespace Content.Shared.Backmen.Targeting;
 

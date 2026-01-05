@@ -1,11 +1,10 @@
-
 using Content.Shared.Chat;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Language;
 
-[Prototype("language")]
-public sealed class LanguagePrototype : IPrototype
+[Prototype]
+public sealed partial class LanguagePrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set;  } = default!;

@@ -3,21 +3,21 @@
 namespace Content.Shared.Backmen.Mood;
 
 [Prototype]
-public sealed class MoodEffectPrototype : IPrototype
+public sealed partial class MoodEffectPrototype : IPrototype
 {
     /// <summary>
     ///     The ID of the moodlet to use.
     /// </summary>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     public string Description => Loc.GetString($"mood-effect-{ID}");
 
     /// <summary>
     ///     If they already have an effect with the same category, the new one will replace the old one.
     /// </summary>
-    [DataField, ValidatePrototypeId<MoodCategoryPrototype>]
-    public string? Category;
+    [DataField]
+    public ProtoId<MoodCategoryPrototype>? Category;
 
     /// <summary>
     ///     How much should this moodlet modify an entity's Mood.

@@ -7,13 +7,12 @@ namespace Content.Shared.Backmen.Shipyard.Prototypes;
 
 [NetSerializable, Serializable]
 
-[Prototype("vessel")]
-
+[Prototype]
 public sealed partial class VesselPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     ///     Vessel name.
@@ -31,26 +30,26 @@ public sealed partial class VesselPrototype : IPrototype
     ///     The price of the vessel
     /// </summary>
     [DataField("price", required: true)]
-    public int Price { get; }
+    public int Price { get; private set; }
 
     /// <summary>
     ///     The prototype category of the product. (e.g. Small, Medium, Large, Emergency, Special etc.)
     /// </summary>
     [DataField("category")]
-    public string Category { get; } = string.Empty;
+    public string Category { get; private set; } = string.Empty;
 
     /// <summary>
     ///     The prototype group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
     [DataField("group")]
-    public string Group { get; } = string.Empty;
+    public string Group { get; private set; } = string.Empty;
 
     /// <summary>
     ///     Relative directory path to the given shuttle, i.e. `/Maps/Shuttles/yourshittle.yml`
     /// </summary>
     [DataField("shuttlePath", required: true)]
-    public ResPath ShuttlePath { get; } = default!;
+    public ResPath ShuttlePath { get; private set; } = default!;
 
     [DataField("private")]
-    public bool Private { get; } = false;
+    public bool Private { get; private set; } = false;
 }

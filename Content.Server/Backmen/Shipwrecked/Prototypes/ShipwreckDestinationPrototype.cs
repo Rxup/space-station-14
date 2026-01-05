@@ -9,40 +9,40 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Backmen.Shipwrecked.Prototypes;
 
-[Prototype("shipwreckDestination")]
+[Prototype]
 public sealed partial class ShipwreckDestinationPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [ViewVariables]
     [DataField("biome", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<BiomeTemplatePrototype>))]
-    public readonly string BiomePrototype = default!;
+    public string BiomePrototype { get; private set; } = default!;
 
     [ViewVariables]
     [DataField("lightColor")]
-    public readonly Color? LightColor = null; //= MapLightComponent.DefaultColor;
+    public Color? LightColor { get; private set; } = null; //= MapLightComponent.DefaultColor;
 
     [ViewVariables]
     [DataField("structureDistance")]
-    public readonly int StructureDistance = 80;
+    public int StructureDistance { get; private set; } = 80;
 
     [ViewVariables]
     [DataField("structures", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, DungeonConfigPrototype>))]
-    public readonly Dictionary<string, int> Structures = new();
+    public Dictionary<string, int> Structures { get; private set; } = new();
 
     [ViewVariables]
     [DataField("factions", customTypeSerializer: typeof(PrototypeIdListSerializer<ShipwreckFactionPrototype>))]
-    public readonly List<string> Factions = new();
+    public List<string> Factions { get; private set; } = new();
 
     [ViewVariables]
     [DataField("gravity")]
-    public readonly bool Gravity = true;
+    public bool Gravity { get; private set; } = true;
 
     [ViewVariables]
     [DataField("atmosphere")]
-    public readonly GasMixture? Atmosphere = null;
+    public GasMixture? Atmosphere { get; private set; } = null;
 
     [DataField("components")]
     [AlwaysPushInheritance]
