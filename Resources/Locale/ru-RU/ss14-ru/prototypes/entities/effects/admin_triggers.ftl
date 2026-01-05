@@ -24,3 +24,6 @@ ent-AdminInstantEffectTearGas = { ent-AdminInstantEffectBase }
 ent-AdminInstantEffectGravityWell = { ent-AdminInstantEffectBase }
     .suffix = Гравитационный колодец
     .desc = { ent-AdminInstantEffectBase.desc }
+ent-AdminInstantEffectReverseGravityWell = { ent-AdminInstantEffectBase }
+    .suffix = Обратный гравитационный колодец
+    .desc = { ent-AdminInstantEffectBase.desc }
