@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:52
+  time: 01/05/2026 13:53:50
   entityCount: 2162
 maps:
 - 1927
@@ -1126,31 +1126,14 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: SpreaderGrid
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
   - uid: 1927
     components:
     - type: MetaData
@@ -1172,26 +1155,8 @@ entities:
         immutable: True
         temperature: 160.15
         moles:
-        - 11.82478
-        - 52.10312
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 11.82478
+          Nitrogen: 52.10312
 - proto: AirCanister
   entities:
   - uid: 2
@@ -1518,69 +1483,93 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 58
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-18.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 59
     components:
     - type: Transform
       pos: -5.5,24.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 60
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -15.5,18.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 61
     components:
     - type: Transform
       pos: -24.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 62
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -20.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 63
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,-16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 64
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -28.5,-14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 65
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 66
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 67
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,24.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 68
     components:
     - type: Transform
       pos: 8.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ArrivalsShuttleTimer
   entities:
   - uid: 69
@@ -1589,42 +1578,56 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 70
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -15.5,17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 71
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 72
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -17.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 73
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -15.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 74
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -15.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 75
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -15.5,25.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 76
@@ -6915,31 +6918,43 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1058
     components:
     - type: Transform
       pos: -8.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1059
     components:
     - type: Transform
       pos: -15.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1060
     components:
     - type: Transform
       pos: -12.5,-16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1061
     components:
     - type: Transform
       pos: 10.5,17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1062
     components:
     - type: Transform
       pos: 10.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: filingCabinetRandom
   entities:
   - uid: 1063
@@ -7762,18 +7777,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1216
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1217
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PackPaperRolling
   entities:
   - uid: 1218
@@ -7898,6 +7919,28 @@ entities:
     components:
     - type: Transform
       pos: -13.5,-27.5
+      parent: 1
+- proto: PlushieSpawner50
+  entities:
+  - uid: 1615
+    components:
+    - type: Transform
+      pos: -7.5,-1.5
+      parent: 1
+  - uid: 1616
+    components:
+    - type: Transform
+      pos: -7.5,-7.5
+      parent: 1
+  - uid: 1617
+    components:
+    - type: Transform
+      pos: 8.5,1.5
+      parent: 1
+  - uid: 1618
+    components:
+    - type: Transform
+      pos: 6.5,12.5
       parent: 1
 - proto: PottedPlantRandom
   entities:
@@ -9561,6 +9604,8 @@ entities:
         161:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignDangerMed
   entities:
   - uid: 1509
@@ -9569,17 +9614,23 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1510
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1511
     components:
     - type: Transform
       pos: 1.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignShipDock
   entities:
   - uid: 1512
@@ -9588,12 +9639,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -15.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1513
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -15.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkStemless
   entities:
   - uid: 1514
@@ -9623,7 +9678,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 8000000
-      autoRecharge: True
   - uid: 1518
     components:
     - type: Transform
@@ -9631,7 +9685,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 8000000
-      autoRecharge: True
 - proto: SpaceVillainArcadeFilled
   entities:
   - uid: 1519
@@ -9802,7 +9855,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 2500000
-      autoRecharge: True
   - uid: 1545
     components:
     - type: Transform
@@ -9810,7 +9862,6 @@ entities:
       parent: 1
     - type: BatterySelfRecharger
       autoRechargeRate: 2500000
-      autoRecharge: True
   - uid: 1546
     components:
     - type: Transform
@@ -10207,28 +10258,6 @@ entities:
     components:
     - type: Transform
       pos: 8.523639,26.659098
-      parent: 1
-- proto: ToySpawner
-  entities:
-  - uid: 1615
-    components:
-    - type: Transform
-      pos: -7.5,-1.5
-      parent: 1
-  - uid: 1616
-    components:
-    - type: Transform
-      pos: -7.5,-7.5
-      parent: 1
-  - uid: 1617
-    components:
-    - type: Transform
-      pos: 8.5,1.5
-      parent: 1
-  - uid: 1618
-    components:
-    - type: Transform
-      pos: 6.5,12.5
       parent: 1
 - proto: TwoWayLever
   entities:

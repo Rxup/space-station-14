@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:17
+  time: 01/05/2026 13:55:08
   entityCount: 263
 maps: []
 grids:
@@ -218,49 +218,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -268,6 +230,7 @@ entities:
     - type: ProtectedGrid
       baseIndices: {}
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockBarGlassLocked
   entities:
   - uid: 26
@@ -314,6 +277,8 @@ entities:
     - type: Transform
       pos: -6.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 8
@@ -1181,6 +1146,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SodaDispenser
   entities:
   - uid: 155
@@ -1320,6 +1287,8 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: WallWeaponCapacitorRecharger
   entities:
   - uid: 115

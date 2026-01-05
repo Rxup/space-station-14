@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 267.3.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 11/02/2025 23:05:17
-  entityCount: 2641
+  time: 01/05/2026 13:48:24
+  entityCount: 2639
 maps:
 - 1
 grids:
@@ -1362,6 +1362,7 @@ entities:
     - type: RadiationGridResistance
     - type: SpreaderGrid
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 3
@@ -2093,6 +2094,27 @@ entities:
     components:
     - type: Transform
       pos: -0.5,10.5
+      parent: 2
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 2111
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
+      parent: 2
+- proto: BackmenVendingMachineCoffee
+  entities:
+  - uid: 2113
+    components:
+    - type: Transform
+      pos: -2.5,-10.5
+      parent: 2
+- proto: BackmenVendingMachineSnack
+  entities:
+  - uid: 2125
+    components:
+    - type: Transform
+      pos: 1.5,3.5
       parent: 2
 - proto: BarSignTheLightbulb
   entities:
@@ -6640,20 +6662,6 @@ entities:
     - type: Transform
       pos: 1.6413194,11.748624
       parent: 2
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 907
-    components:
-    - type: Transform
-      pos: 3.506415,3.5395489
-      parent: 2
-- proto: ClothingNeckLGBTPin
-  entities:
-  - uid: 908
-    components:
-    - type: Transform
-      pos: 6.5183535,-8.5258465
-      parent: 2
 - proto: ClothingNeckStethoscope
   entities:
   - uid: 909
@@ -6958,14 +6966,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,10.5
       parent: 2
-- proto: ComputerSalvageExpedition
-  entities:
-  - uid: 950
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,15.5
-      parent: 2
 - proto: ComputerSalvageJobBoard
   entities:
   - uid: 2502
@@ -6993,6 +6993,14 @@ entities:
     components:
     - type: Transform
       pos: 2.5,11.5
+      parent: 2
+- proto: ComputerShuttleMiningLavaland
+  entities:
+  - uid: 950
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,15.5
       parent: 2
 - proto: ComputerSurveillanceCameraMonitor
   entities:
@@ -13604,10 +13612,15 @@ entities:
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: SeedExtractor
   entities:
   - uid: 1836
@@ -15614,26 +15627,12 @@ entities:
     - type: Transform
       pos: 10.5,1.5
       parent: 2
-- proto: VendingMachineCigs
-  entities:
-  - uid: 2111
-    components:
-    - type: Transform
-      pos: -3.5,-4.5
-      parent: 2
 - proto: VendingMachineClothing
   entities:
   - uid: 2112
     components:
     - type: Transform
       pos: 5.5,7.5
-      parent: 2
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 2113
-    components:
-    - type: Transform
-      pos: -2.5,-10.5
       parent: 2
 - proto: VendingMachineCondiments
   entities:
@@ -15724,13 +15723,6 @@ entities:
     components:
     - type: Transform
       pos: 13.5,7.5
-      parent: 2
-- proto: VendingMachineSnack
-  entities:
-  - uid: 2125
-    components:
-    - type: Transform
-      pos: 1.5,3.5
       parent: 2
 - proto: VendingMachineSustenance
   entities:

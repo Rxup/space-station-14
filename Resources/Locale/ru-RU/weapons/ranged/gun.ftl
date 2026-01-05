@@ -4,7 +4,8 @@ gun-selector-verb = Изменить на { $mode }
 gun-selected-mode = Выбран { $mode }
 gun-disabled = Вы не можете использовать оружие!
 gun-clumsy = Оружие взрывается вам в лицо!
-gun-set-fire-mode = Выбран режим { $mode }
+gun-set-fire-mode-examine = Установлен режим [color=yellow]{$mode}[/color].
+gun-set-fire-mode-popup = Изменён на {$mode}
 gun-magazine-whitelist-fail = Это не помещается в оружие!
 gun-magazine-fired-empty = Нет патронов!
 # SelectiveFire
@@ -35,8 +36,8 @@ gun-chamber-bolt-closed = Затвор закрыт
 gun-chamber-bolt-opened = Затвор открыт
 gun-chamber-bolt-close = Закрыть затвор
 gun-chamber-bolt-open = Открыть затвор
-gun-chamber-bolt-closed-state = открыт
-gun-chamber-bolt-open-state = закрыт
+gun-chamber-bolt-closed-state = закрыт
+gun-chamber-bolt-open-state = открыт
 gun-chamber-rack = Передёрнуть затвор
 # MagazineAmmoProvider
 gun-magazine-examine =
@@ -52,6 +53,6 @@ gun-revolver-insert = Заряжен
 gun-revolver-spin = Вращать барабан
 gun-revolver-spun = Барабан вращается
 # GunSpreadModifier
-examine-gun-spread-modifier-reduction = The spread has been reduced by [color=yellow]{ $percentage }%[/color].
-examine-gun-spread-modifier-increase = The spread has been increased by [color=yellow]{ $percentage }%[/color].
+examine-gun-spread-modifier-reduction = Рассеивание уменьшено на [color=yellow]{ $percentage }%[/color].
+examine-gun-spread-modifier-increase = Рассеивание увеличено на [color=yellow]{ $percentage }%[/color].
 gun-speedloader-empty = Спидлоадер пуст

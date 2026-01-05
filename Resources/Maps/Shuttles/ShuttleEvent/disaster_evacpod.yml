@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:19
+  time: 01/05/2026 13:55:18
   entityCount: 34
 maps: []
 grids:
@@ -83,54 +83,17 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockShuttle
   entities:
   - uid: 2
@@ -146,6 +109,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 4
@@ -231,26 +196,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -261,6 +208,8 @@ entities:
           - 6
           - 8
           - 9
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingOuterSuitEmergency
   entities:
   - uid: 7

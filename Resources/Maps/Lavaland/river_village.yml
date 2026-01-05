@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:51
+  time: 01/05/2026 13:53:47
   entityCount: 1484
 maps: []
 grids:
@@ -528,30 +528,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: Airlock
   entities:
   - uid: 1319
@@ -636,52 +619,70 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1051
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 21.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1052
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 21.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1054
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 47.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1055
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 30.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1056
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 30.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1057
     components:
     - type: Transform
       pos: 63.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1058
     components:
     - type: Transform
       pos: 54.5,13.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 1252
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 40.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BasaltFive
   entities:
   - uid: 1459
@@ -6297,6 +6298,8 @@ entities:
     - type: Transform
       pos: 53.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandBountyHunters
   entities:
   - uid: 1445
@@ -6304,6 +6307,8 @@ entities:
     - type: Transform
       pos: 58.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandCC64KAd
   entities:
   - uid: 1442
@@ -6311,6 +6316,8 @@ entities:
     - type: Transform
       pos: 66.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandCommunistState
   entities:
   - uid: 1380
@@ -6318,6 +6325,8 @@ entities:
     - type: Transform
       pos: 19.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandHackingGuide
   entities:
   - uid: 1381
@@ -6325,6 +6334,8 @@ entities:
     - type: Transform
       pos: 6.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandMissingGloves
   entities:
   - uid: 1384
@@ -6332,6 +6343,8 @@ entities:
     - type: Transform
       pos: 11.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandMissingSpacepen
   entities:
   - uid: 1383
@@ -6339,6 +6352,8 @@ entities:
     - type: Transform
       pos: 48.5,13.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRise
   entities:
   - uid: 1446
@@ -6346,6 +6361,8 @@ entities:
     - type: Transform
       pos: 29.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSmoke
   entities:
   - uid: 1449
@@ -6353,6 +6370,8 @@ entities:
     - type: Transform
       pos: 31.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSyndicatePistol
   entities:
   - uid: 1420
@@ -6360,6 +6379,8 @@ entities:
     - type: Transform
       pos: 44.5,17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandWaffleCorp
   entities:
   - uid: 1450
@@ -6367,6 +6388,8 @@ entities:
     - type: Transform
       pos: 46.5,22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegit12Gauge
   entities:
   - uid: 1379
@@ -6374,6 +6397,8 @@ entities:
     - type: Transform
       pos: 21.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitHighClassMartini
   entities:
   - uid: 1360
@@ -6381,6 +6406,8 @@ entities:
     - type: Transform
       pos: 30.5,13.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PotatoSeeds
   entities:
   - uid: 1426
@@ -6599,6 +6626,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 67.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 1036

@@ -3,7 +3,6 @@ using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.Silicons.StationAi;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
-using Serilog;
 
 namespace Content.Client.Backmen.StationAI;
 
@@ -32,7 +31,7 @@ public sealed class AICameraListBoundUserInterface : BoundUserInterface
         if (!aiSystem.TryGetCore(Owner, out var ai) ||
             ai.Comp?.RemoteEntity == null)
         {
-            Logger.ErrorS("AICameraListBoundUserInterface","AI Eye component not found");
+            //Logger.ErrorS("AICameraListBoundUserInterface","AI Eye component not found");
             //Close();
             return;
         }

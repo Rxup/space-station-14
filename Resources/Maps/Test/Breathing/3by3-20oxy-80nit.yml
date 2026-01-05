@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:21
+  time: 01/05/2026 13:55:23
   entityCount: 9
 maps: []
 grids:
@@ -66,26 +66,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 20
-          - 80
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20
+            Nitrogen: 80
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -102,6 +84,7 @@ entities:
     - type: SpreaderGrid
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: WallReinforced
   entities:
   - uid: 1

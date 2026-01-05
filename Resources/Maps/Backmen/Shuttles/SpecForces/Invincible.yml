@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:25
+  time: 01/05/2026 13:55:36
   entityCount: 832
 maps: []
 grids:
@@ -256,30 +256,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockGlassShuttle
   entities:
   - uid: 144
@@ -463,16 +446,22 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 213
     components:
     - type: Transform
       pos: 9.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 214
     components:
     - type: Transform
       pos: 2.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 146
@@ -3320,6 +3309,8 @@ entities:
     - type: Transform
       pos: 11.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: MagazineShotgunMagnum12
   entities:
   - uid: 407
@@ -3453,6 +3444,8 @@ entities:
     - type: Transform
       pos: -0.5,-8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 250
@@ -3738,6 +3731,8 @@ entities:
         50:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 669
     components:
     - type: Transform
@@ -3760,6 +3755,8 @@ entities:
         32:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignCloning
   entities:
   - uid: 63
@@ -3768,6 +3765,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 13.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 477

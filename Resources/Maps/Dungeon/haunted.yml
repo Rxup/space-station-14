@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:46
+  time: 01/05/2026 13:53:32
   entityCount: 494
 maps:
 - 1653
@@ -363,6 +363,7 @@ entities:
     - type: RadiationGridResistance
     - type: SpreaderGrid
     - type: GridPathfinding
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 302
@@ -2023,6 +2024,8 @@ entities:
     - type: Transform
       pos: 43.5,39.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingSkeletonCigarette
   entities:
   - uid: 362
@@ -2030,6 +2033,8 @@ entities:
     - type: Transform
       pos: 32.5,21.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: Pickaxe
   entities:
   - uid: 158
@@ -2296,11 +2301,15 @@ entities:
     - type: Transform
       pos: 4.5,43.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
   - uid: 326
     components:
     - type: Transform
       pos: 20.5,43.5
       parent: 1653
+    - type: Fixtures
+      fixtures: {}
 - proto: SilverOre1
   entities:
   - uid: 198

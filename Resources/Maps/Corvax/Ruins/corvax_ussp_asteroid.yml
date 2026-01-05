@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:15
+  time: 01/05/2026 13:55:02
   entityCount: 2505
 maps:
 - 1
@@ -567,30 +567,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
   - uid: 270
     components:
     - type: MetaData
@@ -11795,7 +11778,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 13.987041,-15.539799
       parent: 2
-- proto: ClothingNeckHeadphones
+- proto: ClothingMultipleHeadphones
   entities:
   - uid: 1594
     components:
@@ -11925,8 +11908,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CratePermaEscapeDigging
@@ -11979,8 +11962,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CrateSurgery
@@ -12012,8 +11995,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CrateTrashCartFilled
@@ -12045,8 +12028,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: DrinkFlaskOld
@@ -12744,21 +12727,29 @@ entities:
     - type: Transform
       pos: 15.5,-8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 1603
     components:
     - type: Transform
       pos: 7.5,-10.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 1604
     components:
     - type: Transform
       pos: 21.5,-5.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 1605
     components:
     - type: Transform
       pos: 13.5,-2.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRebelsUnite
   entities:
   - uid: 147
@@ -12766,6 +12757,8 @@ entities:
     - type: Transform
       pos: 10.5,-14.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRevolt
   entities:
   - uid: 176
@@ -12773,6 +12766,8 @@ entities:
     - type: Transform
       pos: 17.5,-13.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRise
   entities:
   - uid: 1602
@@ -12780,6 +12775,8 @@ entities:
     - type: Transform
       pos: 14.5,-20.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitAnatomyPoster
   entities:
   - uid: 61
@@ -12787,6 +12784,8 @@ entities:
     - type: Transform
       pos: 22.5,-14.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitPeriodicTable
   entities:
   - uid: 2452
@@ -12794,6 +12793,8 @@ entities:
     - type: Transform
       pos: 17.5,-14.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PowerCellRecharger
   entities:
   - uid: 351
@@ -13109,8 +13110,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 158
@@ -13155,8 +13156,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 162

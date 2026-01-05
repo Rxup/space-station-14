@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:03
   entityCount: 121
 maps: []
 grids:
@@ -160,27 +160,7 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -190,6 +170,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockShuttle
   entities:
   - uid: 23
@@ -219,6 +200,8 @@ entities:
     - type: Transform
       pos: -5.5,-1.5
       parent: 50
+    - type: Fixtures
+      fixtures: {}
 - proto: AsteroidRock
   entities:
   - uid: 1
@@ -563,6 +546,8 @@ entities:
     - type: Transform
       pos: -1.5,-1.5
       parent: 50
+    - type: Fixtures
+      fixtures: {}
 - proto: FakeSpaceCash1000
   entities:
   - uid: 115
@@ -634,6 +619,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-0.5
+      parent: 50
+- proto: PlushieSpawner50
+  entities:
+  - uid: 119
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
       parent: 50
 - proto: PowerCellRecharger
   entities:
@@ -802,6 +794,8 @@ entities:
         87:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignShipDock
   entities:
   - uid: 106
@@ -809,6 +803,8 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 50
+    - type: Fixtures
+      fixtures: {}
 - proto: SpaceTickSpawner
   entities:
   - uid: 72
@@ -827,13 +823,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-2.5
-      parent: 50
-- proto: ToySpawner
-  entities:
-  - uid: 119
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
       parent: 50
 - proto: WallmountGeneratorElectronics
   entities:

@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:03
   entityCount: 192
 maps: []
 grids:
@@ -101,26 +101,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -292,6 +274,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarmAssembly
   entities:
   - uid: 198
@@ -300,6 +283,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
       parent: 85
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockEngineeringLocked
   entities:
   - uid: 41
@@ -345,6 +330,8 @@ entities:
       parent: 85
     - type: Battery
       startingCharge: 12000
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 56
@@ -656,26 +643,8 @@ entities:
         immutable: False
         temperature: 5000
         moles:
-        - 533.3585
-        - 0
-        - 0
-        - 533.3585
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 533.3585
+          Plasma: 533.3585
 - proto: FloorDrain
   entities:
   - uid: 48
@@ -791,6 +760,8 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 85
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlant27
   entities:
   - uid: 207
@@ -942,11 +913,15 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 85
+    - type: Fixtures
+      fixtures: {}
   - uid: 137
     components:
     - type: Transform
       pos: 7.5,0.5
       parent: 85
+    - type: Fixtures
+      fixtures: {}
 - proto: SignToxins
   entities:
   - uid: 65
@@ -954,6 +929,8 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 85
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkWide
   entities:
   - uid: 40

@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:22
+  time: 01/05/2026 13:55:26
   entityCount: 533
 maps: []
 grids:
@@ -326,30 +326,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblyExternal
   entities:
   - uid: 531
@@ -522,33 +505,45 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 341
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 342
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -15.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 343
     components:
     - type: Transform
       pos: -16.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 344
     components:
     - type: Transform
       pos: -12.5,16.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 500
     components:
     - type: Transform
       pos: -6.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Autolathe
   entities:
   - uid: 247
@@ -1533,6 +1528,8 @@ entities:
           occludes: True
           ents:
           - 453
+    - type: Fixtures
+      fixtures: {}
   - uid: 454
     components:
     - type: Transform
@@ -1546,6 +1543,8 @@ entities:
           occludes: True
           ents:
           - 455
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingBackpackDuffelSurgeryFilled
   entities:
   - uid: 205
@@ -1782,22 +1781,30 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 440
     components:
     - type: Transform
       pos: -14.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 441
     components:
     - type: Transform
       pos: -6.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 442
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -19.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FoodBowlBigTrash
   entities:
   - uid: 536
@@ -2254,11 +2261,15 @@ entities:
     - type: Transform
       pos: -11.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 540
     components:
     - type: Transform
       pos: -4.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 488
@@ -2643,6 +2654,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -14.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignScience
   entities:
   - uid: 476
@@ -2651,6 +2664,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -14.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 267

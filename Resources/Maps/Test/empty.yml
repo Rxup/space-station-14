@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 266.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/31/2025 14:22:33
+  time: 01/05/2026 13:54:30
   entityCount: 4
 maps:
 - 3
@@ -56,7 +56,7 @@ entities:
   - uid: 3
     components:
     - type: MetaData
-      name: "Empty Debug Map"
+      name: Empty Debug Map
     - type: Transform
     - type: Map
       mapPaused: True

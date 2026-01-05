@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:47
+  time: 01/05/2026 13:53:35
   entityCount: 823
 maps:
 - 1
@@ -1205,78 +1205,19 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 111.618744
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: Fixtures
       fixtures: {}
+    - type: ExplosionAirtightGrid
 - proto: APCBasic
   entities:
   - uid: 653
@@ -1284,6 +1225,8 @@ entities:
     - type: Transform
       pos: 36.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Beaker
   entities:
   - uid: 35
@@ -4136,27 +4079,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -4178,27 +4101,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 93.465614
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -4313,18 +4216,6 @@ entities:
     components:
     - type: Transform
       pos: 17.68426,3.4232135
-      parent: 1
-- proto: FigureSpawner
-  entities:
-  - uid: 491
-    components:
-    - type: Transform
-      pos: 13.5,10.5
-      parent: 1
-  - uid: 631
-    components:
-    - type: Transform
-      pos: 19.5,14.5
       parent: 1
 - proto: filingCabinetDrawer
   entities:
@@ -4476,6 +4367,18 @@ entities:
     - type: Transform
       pos: 7.5,13.5
       parent: 1
+- proto: MechFigurineSpawner50
+  entities:
+  - uid: 491
+    components:
+    - type: Transform
+      pos: 13.5,10.5
+      parent: 1
+  - uid: 631
+    components:
+    - type: Transform
+      pos: 19.5,14.5
+      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 6
@@ -4543,17 +4446,23 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 28.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 121
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,21.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 135
     components:
     - type: Transform
       pos: 12.5,20.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Morgue
   entities:
   - uid: 334
@@ -4706,6 +4615,18 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.993145,2.493473
+      parent: 1
+- proto: PlushieSpawner50
+  entities:
+  - uid: 193
+    components:
+    - type: Transform
+      pos: 27.5,8.5
+      parent: 1
+  - uid: 793
+    components:
+    - type: Transform
+      pos: 17.5,14.5
       parent: 1
 - proto: PottedPlantRandom
   entities:
@@ -5182,12 +5103,16 @@ entities:
     - type: Transform
       pos: 11.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 594
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkWide
   entities:
   - uid: 108
@@ -5404,18 +5329,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 12.5,21.5
       parent: 1
-- proto: ToySpawner
-  entities:
-  - uid: 193
-    components:
-    - type: Transform
-      pos: 27.5,8.5
-      parent: 1
-  - uid: 793
-    components:
-    - type: Transform
-      pos: 17.5,14.5
-      parent: 1
 - proto: VendingMachineWallMedical
   entities:
   - uid: 433
@@ -5423,6 +5336,8 @@ entities:
     - type: Transform
       pos: 20.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
     missingComponents:
     - AccessReader
   - uid: 586
@@ -5430,6 +5345,8 @@ entities:
     - type: Transform
       pos: 12.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
     missingComponents:
     - AccessReader
 - proto: WallDrywall

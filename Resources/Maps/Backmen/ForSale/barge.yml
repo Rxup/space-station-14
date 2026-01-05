@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:06
+  time: 01/05/2026 13:54:33
   entityCount: 670
 maps: []
 grids:
@@ -383,50 +383,12 @@ entities:
         uniqueMixes:
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: RadiationGridResistance
     - type: GasTileOverlay
@@ -434,6 +396,7 @@ entities:
     - type: GravityShake
       shakeTimes: 10
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -450,6 +413,8 @@ entities:
       - 291
       - 344
       - 347
+    - type: Fixtures
+      fixtures: {}
   - uid: 3
     components:
     - type: Transform
@@ -464,6 +429,8 @@ entities:
       - 284
       - 345
       - 292
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 4
@@ -602,6 +569,8 @@ entities:
       access:
       - - Cargo
       - - Engineering
+    - type: Fixtures
+      fixtures: {}
   - uid: 17
     components:
     - type: Transform
@@ -612,6 +581,8 @@ entities:
       access:
       - - Cargo
       - - Engineering
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 18
@@ -2116,6 +2087,8 @@ entities:
       - 286
       - 294
       - 293
+    - type: Fixtures
+      fixtures: {}
 - proto: Firelock
   entities:
   - uid: 284
@@ -3469,6 +3442,8 @@ entities:
         28:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 449
     components:
     - type: Transform
@@ -3485,6 +3460,8 @@ entities:
         30:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 450
     components:
     - type: Transform
@@ -3496,6 +3473,8 @@ entities:
         9:
         - - Pressed
           - DoorBolt
+    - type: Fixtures
+      fixtures: {}
   - uid: 451
     components:
     - type: Transform
@@ -3506,6 +3485,8 @@ entities:
         415:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalButtonDirectional
   entities:
   - uid: 349
@@ -3522,6 +3503,8 @@ entities:
         395:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignCargoDock
   entities:
   - uid: 452
@@ -3529,6 +3512,8 @@ entities:
     - type: Transform
       pos: 5.5,4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignEngineering
   entities:
   - uid: 453
@@ -3536,6 +3521,8 @@ entities:
     - type: Transform
       pos: 1.5,-14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 454

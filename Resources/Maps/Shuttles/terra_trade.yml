@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:04
+  time: 01/05/2026 13:54:26
   entityCount: 153
 maps: []
 grids:
@@ -254,32 +254,15 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ProtectedGrid
       baseIndices: {}
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 6352
@@ -292,6 +275,8 @@ entities:
       devices:
       - 6350
       - 6351
+    - type: Fixtures
+      fixtures: {}
 - proto: APCBasic
   entities:
   - uid: 6305
@@ -299,6 +284,8 @@ entities:
     - type: Transform
       pos: 9.5,6.5
       parent: 5676
+    - type: Fixtures
+      fixtures: {}
 - proto: AppraisalTool
   entities:
   - uid: 6531
@@ -596,6 +583,8 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 5676
+    - type: Fixtures
+      fixtures: {}
 - proto: FenceWoodSmallCorner
   entities:
   - uid: 5692
@@ -773,6 +762,13 @@ entities:
     - type: Transform
       pos: 8.433933,5.1388855
       parent: 5676
+- proto: PlushieSpawner50
+  entities:
+  - uid: 6539
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 5676
 - proto: PowerCellRecharger
   entities:
   - uid: 6534
@@ -912,13 +908,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5,7.5
-      parent: 5676
-- proto: ToySpawner
-  entities:
-  - uid: 6539
-    components:
-    - type: Transform
-      pos: 5.5,5.5
       parent: 5676
 - proto: WallWood
   entities:

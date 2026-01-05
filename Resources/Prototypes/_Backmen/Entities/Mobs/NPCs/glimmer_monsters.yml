@@ -106,7 +106,6 @@
     proto: WispLash
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100
   - type: NPCRetaliation
   - type: FactionException

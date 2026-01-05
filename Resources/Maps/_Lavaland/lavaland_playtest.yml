@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:06
+  time: 01/05/2026 13:54:32
   entityCount: 618
 maps:
 - 1
@@ -182,55 +182,18 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Lavatest
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockCargo
   entities:
   - uid: 336
@@ -328,6 +291,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,1.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 156
@@ -372,6 +337,16 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 2
+- proto: BaseAPC
+  entities:
+  - uid: 201
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,-0.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: Bed
   entities:
   - uid: 388
@@ -1313,27 +1288,12 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 2
-- proto: DebugAPC
-  entities:
-  - uid: 201
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 17.5,-0.5
-      parent: 2
 - proto: DebugGenerator
   entities:
   - uid: 180
     components:
     - type: Transform
       pos: 19.5,-1.5
-      parent: 2
-- proto: DebugSubstation
-  entities:
-  - uid: 179
-    components:
-    - type: Transform
-      pos: 18.5,-1.5
       parent: 2
 - proto: DisposalUnit
   entities:
@@ -2892,6 +2852,8 @@ entities:
         166:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SpaceCash10000
   entities:
   - uid: 579
@@ -2980,6 +2942,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-3.5
+      parent: 2
+- proto: SubstationBasicEmpty
+  entities:
+  - uid: 179
+    components:
+    - type: Transform
+      pos: 18.5,-1.5
       parent: 2
 - proto: SuitStorageSalv
   entities:

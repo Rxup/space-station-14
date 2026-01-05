@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:07
+  time: 01/05/2026 13:54:36
   entityCount: 223
 maps: []
 grids:
@@ -101,26 +101,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: RadiationGridResistance
     - type: GravityShake
@@ -130,6 +112,7 @@ entities:
     - type: ProtectedGrid
       baseIndices: {}
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 135
@@ -144,26 +127,8 @@ entities:
         immutable: False
         temperature: 293.15
         moles:
-        - 39300.06
-        - 147800.66
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 39300.06
+          Nitrogen: 147800.66
       maxReleasePressure: 101.325
       minReleasePressure: 101.325
     - type: Physics
@@ -180,26 +145,8 @@ entities:
         immutable: False
         temperature: 293.15
         moles:
-        - 39300.06
-        - 147800.66
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 39300.06
+          Nitrogen: 147800.66
       maxReleasePressure: 101.325
       minReleasePressure: 101.325
     - type: Physics
@@ -248,6 +195,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,1.5
       parent: 65
+    - type: Fixtures
+      fixtures: {}
 - proto: APCHyperCapacity
   entities:
   - uid: 74
@@ -256,6 +205,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-5.5
       parent: 65
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 125
@@ -615,11 +566,15 @@ entities:
     - type: Transform
       pos: -4.5,-2.5
       parent: 65
+    - type: Fixtures
+      fixtures: {}
   - uid: 223
     components:
     - type: Transform
       pos: 3.5,-2.5
       parent: 65
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingBeltUtilityFilled
   entities:
   - uid: 158
@@ -1130,26 +1085,8 @@ entities:
         immutable: False
         temperature: 293.14755
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1179,26 +1116,8 @@ entities:
         immutable: False
         temperature: 293.14755
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1637,6 +1556,8 @@ entities:
     - type: Transform
       pos: 1.5,0.5
       parent: 65
+    - type: Fixtures
+      fixtures: {}
 - proto: WallShuttle
   entities:
   - uid: 34

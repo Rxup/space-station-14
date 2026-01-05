@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:07
+  time: 01/05/2026 13:54:35
   entityCount: 178
 maps: []
 grids:
@@ -263,50 +263,12 @@ entities:
         uniqueMixes:
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -316,6 +278,7 @@ entities:
     - type: GravityShake
       shakeTimes: 10
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 165
@@ -386,6 +349,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-5.5
       parent: 148
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 65
@@ -695,11 +660,15 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 148
+    - type: Fixtures
+      fixtures: {}
   - uid: 147
     components:
     - type: Transform
       pos: 1.5,-2.5
       parent: 148
+    - type: Fixtures
+      fixtures: {}
 - proto: ComputerIFF
   entities:
   - uid: 139
@@ -1016,6 +985,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 148
+    - type: Fixtures
+      fixtures: {}
 - proto: Paper
   entities:
   - uid: 152

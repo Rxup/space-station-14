@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:02
   entityCount: 145
 maps: []
 grids:
@@ -228,27 +228,7 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -258,6 +238,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockEngineeringLocked
   entities:
   - uid: 56
@@ -286,6 +267,8 @@ entities:
     - type: Transform
       pos: 1.5,0.5
       parent: 20
+    - type: Fixtures
+      fixtures: {}
 - proto: BannerRevolution
   entities:
   - uid: 121
@@ -696,6 +679,8 @@ entities:
     - type: Transform
       pos: -5.5,-0.5
       parent: 20
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRevolt
   entities:
   - uid: 120
@@ -703,6 +688,8 @@ entities:
     - type: Transform
       pos: 2.5,-1.5
       parent: 20
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 17
@@ -800,11 +787,15 @@ entities:
     - type: Transform
       pos: -5.5,4.5
       parent: 20
+    - type: Fixtures
+      fixtures: {}
   - uid: 48
     components:
     - type: Transform
       pos: 3.5,4.5
       parent: 20
+    - type: Fixtures
+      fixtures: {}
 - proto: SmallLight
   entities:
   - uid: 16

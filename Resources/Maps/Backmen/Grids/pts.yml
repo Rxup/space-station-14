@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:07
+  time: 01/05/2026 13:54:36
   entityCount: 351
 maps: []
 grids:
@@ -144,118 +144,28 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.14993
           moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         - volume: 2500
           temperature: 293.14996
           moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         - volume: 2500
           temperature: 293.14993
           moles:
-          - 18.472576
-          - 69.49208
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 18.472576
+            Nitrogen: 69.49208
         - volume: 2500
           temperature: 293.1499
           moles:
-          - 18.472576
-          - 69.49208
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 18.472576
+            Nitrogen: 69.49208
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -263,6 +173,7 @@ entities:
       id: PTS
     - type: SpreaderGrid
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 252
@@ -279,6 +190,8 @@ entities:
       - 222
       - 235
       - 236
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 254
@@ -293,26 +206,8 @@ entities:
         immutable: False
         temperature: 293.15
         moles:
-        - 39300.06
-        - 147800.66
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 39300.06
+          Nitrogen: 147800.66
       maxReleasePressure: 101.325
       minReleasePressure: 101.325
     - type: Physics
@@ -380,6 +275,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-5.5
       parent: 46
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 118
@@ -959,26 +856,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1003,6 +882,8 @@ entities:
           - 281
           - 282
           - 283
+    - type: Fixtures
+      fixtures: {}
   - uid: 147
     components:
     - type: Transform
@@ -1014,26 +895,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1057,6 +920,8 @@ entities:
           - 298
           - 299
           - 300
+    - type: Fixtures
+      fixtures: {}
 - proto: ComputerShuttle
   entities:
   - uid: 137
@@ -1801,6 +1666,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 46
+    - type: Fixtures
+      fixtures: {}
 - proto: LockerSalvageSpecialistFilled
   entities:
   - uid: 304
@@ -1829,26 +1696,8 @@ entities:
         immutable: False
         temperature: 293.14948
         moles:
-        - 1.606311
-        - 6.042789
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.606311
+          Nitrogen: 6.042789
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1873,6 +1722,8 @@ entities:
           - 328
           - 329
           - 330
+    - type: Fixtures
+      fixtures: {}
   - uid: 332
     components:
     - type: Transform
@@ -1887,26 +1738,8 @@ entities:
         immutable: False
         temperature: 293.1495
         moles:
-        - 1.606311
-        - 6.042789
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.606311
+          Nitrogen: 6.042789
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1932,6 +1765,8 @@ entities:
           - 349
           - 350
           - 351
+    - type: Fixtures
+      fixtures: {}
 - proto: MedkitBruteFilled
   entities:
   - uid: 320

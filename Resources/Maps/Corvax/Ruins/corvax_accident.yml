@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:13
+  time: 01/05/2026 13:54:54
   entityCount: 371
 maps: []
 grids:
@@ -190,6 +190,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 327
@@ -198,6 +199,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 28.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AirAlarmAssembly
   entities:
   - uid: 7
@@ -206,11 +209,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 17.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 34
     components:
     - type: Transform
       pos: 25.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockAssemblyEngineering
   entities:
   - uid: 43
@@ -1226,18 +1233,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: 20.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 92
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 24.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 93
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 28.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingOuterHardsuitEVA
   entities:
   - uid: 288
@@ -1288,6 +1301,8 @@ entities:
     - type: Transform
       pos: 23.5,15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ExtinguisherCabinetOpen
   entities:
   - uid: 3
@@ -1296,12 +1311,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 18.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 59
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 28.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Floodlight
   entities:
   - uid: 373

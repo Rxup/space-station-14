@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:20
+  time: 01/05/2026 13:55:22
   entityCount: 538
 maps: []
 grids:
@@ -190,53 +190,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 440
@@ -310,6 +273,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Ashtray
   entities:
   - uid: 530
@@ -1140,26 +1105,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2922,6 +2869,8 @@ entities:
     - type: Transform
       pos: 2.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingEmpty
   entities:
   - uid: 513
@@ -2929,6 +2878,8 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingMonkey
   entities:
   - uid: 536
@@ -2937,6 +2888,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 10.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingSaturn
   entities:
   - uid: 516
@@ -2944,6 +2897,8 @@ entities:
     - type: Transform
       pos: 3.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingSkeletonBoof
   entities:
   - uid: 514
@@ -2951,6 +2906,8 @@ entities:
     - type: Transform
       pos: -3.4999998,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PaintingSkeletonCigarette
   entities:
   - uid: 515
@@ -2958,6 +2915,8 @@ entities:
     - type: Transform
       pos: 3.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Paper
   entities:
   - uid: 242

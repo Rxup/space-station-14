@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:22
+  time: 01/05/2026 13:55:28
   entityCount: 42
 maps: []
 grids:
@@ -72,7 +72,7 @@ entities:
     - type: Roof
       data:
         0,0: 69540876582912
-    - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: Barricade
   entities:
   - uid: 3

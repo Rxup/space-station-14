@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:13
+  time: 01/05/2026 13:54:55
   entityCount: 219
 maps: []
 grids:
@@ -411,6 +411,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockAssemblyMedical
   entities:
   - uid: 2
@@ -471,12 +472,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 10
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: APCElectronics
   entities:
   - uid: 11
@@ -782,8 +787,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 50
@@ -822,8 +827,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: LockerMedicineFilled
@@ -1320,8 +1325,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 115
@@ -1353,8 +1358,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 116
@@ -1386,8 +1391,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: Thruster

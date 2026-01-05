@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:58
+  time: 01/05/2026 13:54:08
   entityCount: 166
 maps: []
 grids:
@@ -123,30 +123,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 142
@@ -191,6 +174,8 @@ entities:
     - type: Transform
       pos: -0.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 57
@@ -451,26 +436,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1023,16 +990,22 @@ entities:
     - type: Transform
       pos: -0.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 43
     components:
     - type: Transform
       pos: 1.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 44
     components:
     - type: Transform
       pos: 1.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Thruster
   entities:
   - uid: 45

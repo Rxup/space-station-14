@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:50
+  time: 01/05/2026 13:53:45
   entityCount: 902
 maps: []
 grids:
@@ -425,30 +425,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 336
@@ -475,6 +458,8 @@ entities:
       - 446
       - 448
       - 359
+    - type: Fixtures
+      fixtures: {}
   - uid: 782
     components:
     - type: Transform
@@ -486,6 +471,8 @@ entities:
       - 589
       - 588
       - 380
+    - type: Fixtures
+      fixtures: {}
   - uid: 783
     components:
     - type: Transform
@@ -497,6 +484,8 @@ entities:
       - 712
       - 792
       - 713
+    - type: Fixtures
+      fixtures: {}
   - uid: 784
     components:
     - type: Transform
@@ -508,6 +497,8 @@ entities:
       - 383
       - 791
       - 379
+    - type: Fixtures
+      fixtures: {}
   - uid: 785
     components:
     - type: Transform
@@ -517,6 +508,8 @@ entities:
       devices:
       - 376
       - 360
+    - type: Fixtures
+      fixtures: {}
   - uid: 786
     components:
     - type: Transform
@@ -526,6 +519,8 @@ entities:
       devices:
       - 377
       - 361
+    - type: Fixtures
+      fixtures: {}
   - uid: 787
     components:
     - type: Transform
@@ -535,6 +530,8 @@ entities:
       devices:
       - 362
       - 378
+    - type: Fixtures
+      fixtures: {}
   - uid: 788
     components:
     - type: Transform
@@ -547,6 +544,8 @@ entities:
       - 387
       - 364
       - 373
+    - type: Fixtures
+      fixtures: {}
   - uid: 801
     components:
     - type: Transform
@@ -561,6 +560,8 @@ entities:
       - 444
       - 371
       - 370
+    - type: Fixtures
+      fixtures: {}
   - uid: 802
     components:
     - type: Transform
@@ -573,6 +574,8 @@ entities:
       - 445
       - 796
       - 368
+    - type: Fixtures
+      fixtures: {}
   - uid: 803
     components:
     - type: Transform
@@ -584,6 +587,8 @@ entities:
       - 799
       - 798
       - 367
+    - type: Fixtures
+      fixtures: {}
   - uid: 804
     components:
     - type: Transform
@@ -595,6 +600,8 @@ entities:
       - 366
       - 797
       - 799
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 724
@@ -849,23 +856,31 @@ entities:
     - type: Transform
       pos: -26.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 338
     components:
     - type: Transform
       pos: -17.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 339
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 800
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BackmenVendingMachineCigs
   entities:
   - uid: 776
@@ -1988,26 +2003,36 @@ entities:
     - type: Transform
       pos: 12.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 810
     components:
     - type: Transform
       pos: -26.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 811
     components:
     - type: Transform
       pos: -16.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 812
     components:
     - type: Transform
       pos: 5.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 813
     components:
     - type: Transform
       pos: 10.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FireAlarm
   entities:
   - uid: 790
@@ -2028,6 +2053,8 @@ entities:
       - 381
       - 380
       - 379
+    - type: Fixtures
+      fixtures: {}
   - uid: 793
     components:
     - type: Transform
@@ -2040,6 +2067,8 @@ entities:
       - 799
       - 371
       - 370
+    - type: Fixtures
+      fixtures: {}
   - uid: 880
     components:
     - type: Transform
@@ -2049,6 +2078,8 @@ entities:
       devices:
       - 371
       - 370
+    - type: Fixtures
+      fixtures: {}
   - uid: 881
     components:
     - type: Transform
@@ -2058,6 +2089,8 @@ entities:
     - type: DeviceList
       devices:
       - 799
+    - type: Fixtures
+      fixtures: {}
 - proto: FirelockGlass
   entities:
   - uid: 310
@@ -4313,18 +4346,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -16.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 879
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 898
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: KitchenMicrowave
   entities:
   - uid: 777
@@ -4395,6 +4434,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -13.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: OreBox
   entities:
   - uid: 354
@@ -4933,6 +4974,8 @@ entities:
         848:
         - - Pressed
           - DoorBolt
+    - type: Fixtures
+      fixtures: {}
   - uid: 843
     components:
     - type: Transform
@@ -4944,6 +4987,8 @@ entities:
         849:
         - - Pressed
           - DoorBolt
+    - type: Fixtures
+      fixtures: {}
   - uid: 844
     components:
     - type: Transform
@@ -4955,6 +5000,8 @@ entities:
         850:
         - - Pressed
           - DoorBolt
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecurearea
   entities:
   - uid: 869
@@ -4962,6 +5009,8 @@ entities:
     - type: Transform
       pos: -1.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignShock
   entities:
   - uid: 870
@@ -4969,6 +5018,8 @@ entities:
     - type: Transform
       pos: -15.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSomethingOld
   entities:
   - uid: 865
@@ -4976,6 +5027,8 @@ entities:
     - type: Transform
       pos: -11.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSomethingOld2
   entities:
   - uid: 866
@@ -4983,6 +5036,8 @@ entities:
     - type: Transform
       pos: 6.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Sink
   entities:
   - uid: 780
@@ -5242,6 +5297,8 @@ entities:
     - type: Transform
       pos: -14.5,-6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: WallReinforced
   entities:
   - uid: 246

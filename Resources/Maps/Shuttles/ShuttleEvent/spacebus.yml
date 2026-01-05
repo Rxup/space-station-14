@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:20
+  time: 01/05/2026 13:55:22
   entityCount: 209
 maps: []
 grids:
@@ -215,76 +215,21 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.14975
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 126
@@ -348,6 +293,8 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 199
@@ -371,8 +318,8 @@ entities:
       pos: -1.5,-1.5
       parent: 1
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: Fixtures
       fixtures:
         fix1:
@@ -1159,6 +1106,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRobustSoftdrinks
   entities:
   - uid: 138
@@ -1167,6 +1116,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSmoke
   entities:
   - uid: 139
@@ -1175,6 +1126,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSpaceUp
   entities:
   - uid: 140
@@ -1183,6 +1136,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitBlessThisSpess
   entities:
   - uid: 135
@@ -1191,6 +1146,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitTheOwl
   entities:
   - uid: 142
@@ -1199,6 +1156,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitWalk
   entities:
   - uid: 141
@@ -1207,6 +1166,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitWorkForAFuture
   entities:
   - uid: 143
@@ -1215,6 +1176,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Poweredlight
   entities:
   - uid: 127
@@ -1372,6 +1335,8 @@ entities:
         87:
         - - Pressed
           - DoorBolt
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 60

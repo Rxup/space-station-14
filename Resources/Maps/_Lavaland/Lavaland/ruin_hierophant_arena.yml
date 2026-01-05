@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:22
+  time: 01/05/2026 13:55:26
   entityCount: 90
 maps: []
 grids:
@@ -71,6 +71,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: LavalandHierophantTelepad
   entities:
   - uid: 90

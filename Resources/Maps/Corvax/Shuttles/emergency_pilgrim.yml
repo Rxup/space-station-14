@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:18
+  time: 01/05/2026 13:55:10
   entityCount: 867
 maps: []
 grids:
@@ -974,54 +974,17 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 829
@@ -1029,6 +992,8 @@ entities:
     - type: Transform
       pos: 3.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 580
@@ -1146,27 +1111,37 @@ entities:
     - type: Transform
       pos: -5.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 645
     components:
     - type: Transform
       pos: 8.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 646
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 710
     components:
     - type: Transform
       pos: -8.5,-12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 798
     components:
     - type: Transform
       pos: -8.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 325
@@ -2922,18 +2897,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 318
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 845
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ClothingNeckStethoscope
   entities:
   - uid: 491
@@ -2975,20 +2956,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-15.5
-      parent: 1
-- proto: DebugSMES
-  entities:
-  - uid: 500
-    components:
-    - type: Transform
-      pos: -0.5,-12.5
-      parent: 1
-- proto: DebugSubstation
-  entities:
-  - uid: 501
-    components:
-    - type: Transform
-      pos: -1.5,-12.5
       parent: 1
 - proto: DebugThruster
   entities:
@@ -4477,6 +4444,8 @@ entities:
     - type: Transform
       pos: 4.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: DrinkBadTouchGlass
   entities:
   - uid: 305
@@ -5666,42 +5635,56 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 862
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 863
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 864
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 865
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 866
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 867
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ShuttleWindow
   entities:
   - uid: 71
@@ -5840,6 +5823,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,18.5
       parent: 1
+- proto: SMESBasicEmpty
+  entities:
+  - uid: 500
+    components:
+    - type: Transform
+      pos: -0.5,-12.5
+      parent: 1
 - proto: SodaDispenser
   entities:
   - uid: 427
@@ -5888,6 +5878,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-5.5
+      parent: 1
+- proto: SubstationBasicEmpty
+  entities:
+  - uid: 501
+    components:
+    - type: Transform
+      pos: -1.5,-12.5
       parent: 1
 - proto: Table
   entities:

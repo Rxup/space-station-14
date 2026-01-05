@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:04
+  time: 01/05/2026 13:54:25
   entityCount: 774
 maps: []
 grids:
@@ -396,49 +396,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -450,6 +412,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockExternalGlassShuttleSyndicateLocked
   entities:
   - uid: 2
@@ -580,21 +543,29 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 22
     components:
     - type: Transform
       pos: -9.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 23
     components:
     - type: Transform
       pos: 4.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 24
     components:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AppraisalTool
   entities:
   - uid: 25
@@ -3202,6 +3173,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRevolver
   entities:
   - uid: 478
@@ -3210,6 +3183,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandRise
   entities:
   - uid: 479
@@ -3218,6 +3193,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSmoke
   entities:
   - uid: 480
@@ -3225,6 +3202,8 @@ entities:
     - type: Transform
       pos: -8.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandSyndicateRecruitment
   entities:
   - uid: 481
@@ -3233,6 +3212,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitUeNo
   entities:
   - uid: 482
@@ -3240,6 +3221,8 @@ entities:
     - type: Transform
       pos: -9.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PowerCellRecharger
   entities:
   - uid: 483
@@ -3655,12 +3638,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 5.5,7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 546
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SinkWide
   entities:
   - uid: 547

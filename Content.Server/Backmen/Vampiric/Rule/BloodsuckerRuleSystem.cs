@@ -5,6 +5,7 @@ using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
+using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;

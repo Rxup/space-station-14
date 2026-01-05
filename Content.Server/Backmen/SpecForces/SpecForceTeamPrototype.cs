@@ -15,7 +15,7 @@ public sealed partial class SpecForceTeamPrototype : IPrototype, IInheritingProt
     /// </summary>
     [ViewVariables]
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<SpecForceTeamPrototype>))]
-    public string[]? Parents { get; }
+    public string[]? Parents { get; private set; }
 
     /// <summary>
     /// Is that SpecForceTeam is abstract.
@@ -23,11 +23,11 @@ public sealed partial class SpecForceTeamPrototype : IPrototype, IInheritingProt
     [ViewVariables]
     [NeverPushInheritance]
     [AbstractDataField]
-    public bool Abstract { get; }
+    public bool Abstract { get; private set; }
 
     [ViewVariables]
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
     /// <summary>
     /// Name of the SpecForceTeam that will be shown at the round end manifest.
     /// </summary>

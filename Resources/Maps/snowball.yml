@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/09/2025 06:22:32
-  entityCount: 18233
+  time: 01/05/2026 13:49:04
+  entityCount: 18232
 maps:
 - 1793
 grids:
@@ -12905,6 +12905,86 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
+- proto: BackmenVendingMachineCigs
+  entities:
+  - uid: 1574
+    components:
+    - type: Transform
+      pos: 75.5,97.5
+      parent: 1
+  - uid: 4661
+    components:
+    - type: Transform
+      pos: 85.5,68.5
+      parent: 1
+  - uid: 7116
+    components:
+    - type: Transform
+      pos: 51.5,60.5
+      parent: 1
+  - uid: 10213
+    components:
+    - type: Transform
+      pos: 77.5,39.5
+      parent: 1
+  - uid: 12874
+    components:
+    - type: Transform
+      pos: 13.5,68.5
+      parent: 1
+  - uid: 14469
+    components:
+    - type: Transform
+      pos: 37.5,53.5
+      parent: 1
+  - uid: 14748
+    components:
+    - type: Transform
+      pos: 35.5,38.5
+      parent: 1
+  - uid: 15119
+    components:
+    - type: Transform
+      pos: 27.5,35.5
+      parent: 1
+  - uid: 16565
+    components:
+    - type: Transform
+      pos: 33.5,95.5
+      parent: 1
+  - uid: 16857
+    components:
+    - type: Transform
+      pos: 27.5,108.5
+      parent: 1
+- proto: BackmenVendingMachineColaRed
+  entities:
+  - uid: 13107
+    components:
+    - type: Transform
+      pos: 4.5,75.5
+      parent: 1
+- proto: BackmenVendingMachineDiscount
+  entities:
+  - uid: 13108
+    components:
+    - type: Transform
+      pos: 5.5,75.5
+      parent: 1
+- proto: BackmenVendingMachineDonut
+  entities:
+  - uid: 14656
+    components:
+    - type: Transform
+      pos: 45.5,38.5
+      parent: 1
+- proto: BackmenVendingMachineHappyHonk
+  entities:
+  - uid: 12331
+    components:
+    - type: Transform
+      pos: 51.5,82.5
+      parent: 1
 - proto: BanjoInstrument
   entities:
   - uid: 14528
@@ -38419,6 +38499,13 @@ entities:
     - type: Transform
       pos: 46.5,46.5
       parent: 1
+- proto: CaptainDrobe
+  entities:
+  - uid: 14954
+    components:
+    - type: Transform
+      pos: 21.5,40.5
+      parent: 1
 - proto: CaptainIDCard
   entities:
   - uid: 15014
@@ -43718,14 +43805,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 23.5,73.5
       parent: 1
-- proto: ComputerSalvageExpedition
-  entities:
-  - uid: 7836
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 90.5,94.5
-      parent: 1
 - proto: ComputerSalvageJobBoard
   entities:
   - uid: 7835
@@ -43747,6 +43826,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 87.5,77.5
+      parent: 1
+- proto: ComputerShuttleMiningLavaland
+  entities:
+  - uid: 7836
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 90.5,94.5
       parent: 1
 - proto: ComputerStationRecords
   entities:
@@ -51103,13 +51190,6 @@ entities:
     components:
     - type: Transform
       pos: 33.5,44.5
-      parent: 1
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 14954
-    components:
-    - type: Transform
-      pos: 21.5,40.5
       parent: 1
 - proto: DresserChiefEngineerFilled
   entities:
@@ -83197,35 +83277,35 @@ entities:
     - type: Transform
       pos: 32.5,28.5
       parent: 1
-- proto: GunSafeLaserCarbine
+- proto: GunSafeLaserCarbineUEG
   entities:
   - uid: 14554
     components:
     - type: Transform
       pos: 32.5,29.5
       parent: 1
-- proto: GunSafePistolMk58
+- proto: GunSafePistolGlock
   entities:
   - uid: 14571
     components:
     - type: Transform
       pos: 38.5,29.5
       parent: 1
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleAR18
   entities:
   - uid: 14569
     components:
     - type: Transform
       pos: 38.5,28.5
       parent: 1
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun
   entities:
   - uid: 14560
     components:
     - type: Transform
       pos: 33.5,28.5
       parent: 1
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 14566
     components:
@@ -92874,10 +92954,15 @@ entities:
       parent: 1
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: SeedExtractor
   entities:
   - uid: 1340
@@ -93052,7 +93137,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: ShotGunCabinetFilled
+- proto: ShotGunCabinetFilledBackmen
   entities:
   - uid: 18082
     components:
@@ -95357,6 +95442,13 @@ entities:
     - type: Transform
       pos: 19.5,44.5
       parent: 1
+- proto: SpawnMobGorillaLargo
+  entities:
+  - uid: 8047
+    components:
+    - type: Transform
+      pos: 84.5,76.5
+      parent: 1
 - proto: SpawnMobHamsterHamlet
   entities:
   - uid: 765
@@ -95425,13 +95517,6 @@ entities:
     components:
     - type: Transform
       pos: 68.5,35.5
-      parent: 1
-- proto: SpawnMobRaccoonMorticia
-  entities:
-  - uid: 8047
-    components:
-    - type: Transform
-      pos: 84.5,76.5
       parent: 1
 - proto: SpawnMobShiva
   entities:
@@ -100519,10 +100604,15 @@ entities:
       parent: 1
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Industrial
+      - Engineering
       - Arsenal
-      - Experimental
-      - CivilianServices
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
 - proto: Vaccinator
   entities:
   - uid: 17643
@@ -100600,71 +100690,12 @@ entities:
     - type: Transform
       pos: 72.5,53.5
       parent: 1
-- proto: VendingMachineCigs
-  entities:
-  - uid: 1574
-    components:
-    - type: Transform
-      pos: 75.5,97.5
-      parent: 1
-  - uid: 4661
-    components:
-    - type: Transform
-      pos: 85.5,68.5
-      parent: 1
-  - uid: 7116
-    components:
-    - type: Transform
-      pos: 51.5,60.5
-      parent: 1
-  - uid: 10213
-    components:
-    - type: Transform
-      pos: 77.5,39.5
-      parent: 1
-  - uid: 12874
-    components:
-    - type: Transform
-      pos: 13.5,68.5
-      parent: 1
-  - uid: 14469
-    components:
-    - type: Transform
-      pos: 37.5,53.5
-      parent: 1
-  - uid: 14748
-    components:
-    - type: Transform
-      pos: 35.5,38.5
-      parent: 1
-  - uid: 15119
-    components:
-    - type: Transform
-      pos: 27.5,35.5
-      parent: 1
-  - uid: 16565
-    components:
-    - type: Transform
-      pos: 33.5,95.5
-      parent: 1
-  - uid: 16857
-    components:
-    - type: Transform
-      pos: 27.5,108.5
-      parent: 1
 - proto: VendingMachineClothing
   entities:
   - uid: 16564
     components:
     - type: Transform
       pos: 39.5,87.5
-      parent: 1
-- proto: VendingMachineColaRed
-  entities:
-  - uid: 13107
-    components:
-    - type: Transform
-      pos: 4.5,75.5
       parent: 1
 - proto: VendingMachineCondiments
   entities:
@@ -100694,20 +100725,6 @@ entities:
     - type: Transform
       pos: 44.5,70.5
       parent: 1
-- proto: VendingMachineDiscount
-  entities:
-  - uid: 13108
-    components:
-    - type: Transform
-      pos: 5.5,75.5
-      parent: 1
-- proto: VendingMachineDonut
-  entities:
-  - uid: 14656
-    components:
-    - type: Transform
-      pos: 45.5,38.5
-      parent: 1
 - proto: VendingMachineEngiDrobe
   entities:
   - uid: 7209
@@ -100733,13 +100750,6 @@ entities:
     components:
     - type: Transform
       pos: 43.5,51.5
-      parent: 1
-- proto: VendingMachineHappyHonk
-  entities:
-  - uid: 12331
-    components:
-    - type: Transform
-      pos: 51.5,82.5
       parent: 1
 - proto: VendingMachineHydrobe
   entities:
@@ -100787,13 +100797,6 @@ entities:
     components:
     - type: Transform
       pos: 61.5,79.5
-      parent: 1
-- proto: VendingMachinePride
-  entities:
-  - uid: 16572
-    components:
-    - type: Transform
-      pos: 40.5,87.5
       parent: 1
 - proto: VendingMachineRestockSmokes
   entities:

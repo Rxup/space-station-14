@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:58
+  time: 01/05/2026 13:54:09
   entityCount: 117
 maps: []
 grids:
@@ -102,26 +102,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -129,6 +111,7 @@ entities:
     - type: IFF
       color: '#D69949FF'
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -139,6 +122,8 @@ entities:
     - type: DeviceList
       devices:
       - 62
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockGlassShuttle
   entities:
   - uid: 3
@@ -158,6 +143,8 @@ entities:
     - type: Transform
       pos: -3.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 6
@@ -648,6 +635,8 @@ entities:
         8:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 86
     components:
     - type: Transform
@@ -659,6 +648,8 @@ entities:
         9:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignShipDock
   entities:
   - uid: 87
@@ -666,6 +657,8 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SubstationWallBasic
   entities:
   - uid: 88

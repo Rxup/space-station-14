@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:04
+  time: 01/05/2026 13:54:28
   entityCount: 792
 maps: []
 grids:
@@ -516,78 +516,23 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
           moles:
-          - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Nitrogen: 6666.982
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockExternalGlass
   entities:
   - uid: 344
@@ -621,12 +566,16 @@ entities:
     - type: Transform
       pos: -1.5,-12.5
       parent: 768
+    - type: Fixtures
+      fixtures: {}
   - uid: 437
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,5.5
       parent: 768
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 339
@@ -2158,23 +2107,6 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 768
-- proto: FigureSpawner
-  entities:
-  - uid: 653
-    components:
-    - type: Transform
-      pos: 3.5,4.5
-      parent: 768
-  - uid: 654
-    components:
-    - type: Transform
-      pos: 4.5,4.5
-      parent: 768
-  - uid: 655
-    components:
-    - type: Transform
-      pos: 4.5,3.5
-      parent: 768
 - proto: FirelockGlass
   entities:
   - uid: 758
@@ -3085,12 +3017,31 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,3.5
       parent: 768
+    - type: Fixtures
+      fixtures: {}
 - proto: JetpackMiniFilled
   entities:
   - uid: 673
     components:
     - type: Transform
       pos: -9.508206,-3.3199291
+      parent: 768
+- proto: MechFigurineSpawner50
+  entities:
+  - uid: 653
+    components:
+    - type: Transform
+      pos: 3.5,4.5
+      parent: 768
+  - uid: 654
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 768
+  - uid: 655
+    components:
+    - type: Transform
+      pos: 4.5,3.5
       parent: 768
 - proto: MedkitAdvancedFilled
   entities:
@@ -3113,6 +3064,8 @@ entities:
     - type: Transform
       pos: 2.5,-8.5
       parent: 768
+    - type: Fixtures
+      fixtures: {}
 - proto: MirrorShield
   entities:
   - uid: 783

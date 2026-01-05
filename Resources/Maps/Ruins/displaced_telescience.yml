@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 260.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 05/18/2025 11:12:07
+  time: 01/05/2026 13:53:57
   entityCount: 487
 maps: []
 grids:
@@ -1758,6 +1758,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
   - uid: 476
     mapInit: true
     paused: true
@@ -1795,6 +1796,8 @@ entities:
       - 229
       - 230
       - 231
+    - type: Fixtures
+      fixtures: {}
   - uid: 3
     components:
     - type: Transform
@@ -1804,6 +1807,8 @@ entities:
     - type: DeviceList
       devices:
       - 308
+    - type: Fixtures
+      fixtures: {}
   - uid: 4
     components:
     - type: Transform
@@ -1818,6 +1823,8 @@ entities:
       - 226
       - 227
       - 10
+    - type: Fixtures
+      fixtures: {}
 - proto: AirlockAssemblyCommand
   entities:
   - uid: 5
@@ -1943,6 +1950,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: APCHighCapacity
   entities:
   - uid: 13
@@ -1951,6 +1960,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BaseChemistryEmptyVial
   entities:
   - uid: 15
@@ -2960,18 +2971,7 @@ entities:
         immutable: False
         temperature: 21.349998
         moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 720
-        - 0
-        - 0
-        - 0
+          Frezon: 720
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3264,6 +3264,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FaxMachineBase
   entities:
   - uid: 223
@@ -3289,6 +3291,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
     missingComponents:
     - Construction
 - proto: FirelockEdge
@@ -3355,6 +3359,20 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
+- proto: FlagNanoTrasen
+  entities:
+  - uid: 309
+    components:
+    - type: Transform
+      rot: 0.13962634015954636 rad
+      pos: 3.5,-9.5
+      parent: 1
+    - type: Physics
+      fixedRotation: False
+    - type: Fixtures
+      fixtures: {}
+    missingComponents:
+    - Rotatable
 - proto: FloorTileItemWhite
   entities:
   - uid: 232
@@ -4122,6 +4140,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.125,-9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LeftArmHuman
   entities:
   - uid: 327
@@ -4182,25 +4202,13 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-- proto: MagazinePistolIncendiary
+- proto: MagazinePistol9x17Incendiary
   entities:
   - uid: 331
     components:
     - type: Transform
       pos: 5.019086,-7.5772476
       parent: 1
-- proto: NTFlag
-  entities:
-  - uid: 309
-    components:
-    - type: Transform
-      rot: 0.13962634015954636 rad
-      pos: 3.5,-9.5
-      parent: 1
-    - type: Physics
-      fixedRotation: False
-    missingComponents:
-    - Rotatable
 - proto: OrganHumanHeart
   entities:
   - uid: 353
@@ -4347,6 +4355,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.482854,-4.201713
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegit50thAnniversaryVintageReprint
   entities:
   - uid: 350
@@ -4356,6 +4366,8 @@ entities:
     - type: Transform
       pos: 2.5,-9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitHelpOthers
   entities:
   - uid: 349
@@ -4364,6 +4376,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.3414617,-9.541878
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitJustAWeekAway
   entities:
   - uid: 354
@@ -4372,6 +4386,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.769932,-9.483023
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitSafetyEyeProtection
   entities:
   - uid: 352
@@ -4380,6 +4396,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.431637,-3.7712698
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitSafetyInternals
   entities:
   - uid: 351
@@ -4388,6 +4406,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5175743,-3.3569915
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitScience
   entities:
   - uid: 348
@@ -4396,6 +4416,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.598712,-4.6862397
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantBioluminscent
   entities:
   - uid: 356
@@ -4745,6 +4767,8 @@ entities:
     - type: Transform
       pos: 1.5,-5.25
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalSwitchDirectional
   entities:
   - uid: 390
@@ -4765,6 +4789,8 @@ entities:
           - On
         - - Off
           - Off
+    - type: Fixtures
+      fixtures: {}
 - proto: SignRadiationMed
   entities:
   - uid: 313
@@ -4773,12 +4799,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 391
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,0.35
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignScience
   entities:
   - uid: 467
@@ -4786,6 +4816,8 @@ entities:
     - type: Transform
       pos: -1.5797484,-9.469645
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSecureSmallRed
   entities:
   - uid: 392
@@ -4793,11 +4825,15 @@ entities:
     - type: Transform
       pos: -1.5,-6.75
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 393
     components:
     - type: Transform
       pos: 6.5,-8.25
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 394

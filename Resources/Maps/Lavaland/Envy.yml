@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:49
+  time: 01/05/2026 13:53:40
   entityCount: 81
 maps: []
 grids:
@@ -113,30 +113,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: Mirror
   entities:
   - uid: 60
@@ -144,41 +127,57 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 61
     components:
     - type: Transform
       pos: -2.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 62
     components:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 63
     components:
     - type: Transform
       pos: -2.5,-5.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 64
     components:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 65
     components:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 66
     components:
     - type: Transform
       pos: 3.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 67
     components:
     - type: Transform
       pos: 3.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: RandomCargoCorpseSpawner
   entities:
   - uid: 59

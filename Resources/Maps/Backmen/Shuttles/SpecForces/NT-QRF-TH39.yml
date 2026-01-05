@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:25
+  time: 01/05/2026 13:55:36
   entityCount: 343
 maps: []
 grids:
@@ -301,76 +301,21 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.14975
           moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -385,6 +330,8 @@ entities:
       - 10
       - 13
       - 14
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 152
@@ -440,6 +387,8 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 15
@@ -1294,12 +1243,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 247
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: EmergencyRollerBedSpawnFolded
   entities:
   - uid: 155
@@ -1923,6 +1876,8 @@ entities:
         220:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 234
     components:
     - type: Transform
@@ -1951,6 +1906,8 @@ entities:
         233:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 150

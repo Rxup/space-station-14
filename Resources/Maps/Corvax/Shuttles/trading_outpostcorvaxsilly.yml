@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:18
+  time: 01/05/2026 13:55:11
   entityCount: 617
 maps:
 - 1
@@ -787,30 +787,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 802
@@ -826,6 +809,8 @@ entities:
       - 400
       - 410
       - 402
+    - type: Fixtures
+      fixtures: {}
   - uid: 803
     components:
     - type: Transform
@@ -839,6 +824,8 @@ entities:
       - 410
       - 400
       - 411
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 387
@@ -909,11 +896,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 944
     components:
     - type: Transform
       pos: 2.5,-14.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: BackmenVendingMachineSovietSoda
   entities:
   - uid: 239
@@ -2383,12 +2374,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 361
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-9.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: FirelockEdge
   entities:
   - uid: 786
@@ -3761,12 +3756,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-8.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 145
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSpace
   entities:
   - uid: 341
@@ -3775,24 +3774,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-1.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 342
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,-1.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 343
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,-7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 344
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-7.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 380

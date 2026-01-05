@@ -10,7 +10,7 @@ public sealed partial class NPCConversationTreePrototype : IPrototype, ISerializ
 {
     [ViewVariables]
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Dialogue contains all the topics to which an NPC can discuss.

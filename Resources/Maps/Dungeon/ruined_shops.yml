@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:47
+  time: 01/05/2026 13:53:36
   entityCount: 384
 maps:
 - 1
@@ -861,55 +861,16 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 147.92499
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: Fixtures
       fixtures: {}
+    - type: ExplosionAirtightGrid
 - proto: AltarConvertOrange
   entities:
   - uid: 2
@@ -924,6 +885,8 @@ entities:
     - type: Transform
       pos: 63.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BoxFolderYellow
   entities:
   - uid: 384
@@ -1476,27 +1439,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -1826,6 +1769,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 17.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Paper
   entities:
   - uid: 75
@@ -1888,6 +1833,23 @@ entities:
     - type: Transform
       pos: 53.299675,6.0980086
       parent: 1
+- proto: PlushieSpawner50
+  entities:
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
+  - uid: 164
+    components:
+    - type: Transform
+      pos: 6.5,2.5
+      parent: 1
+  - uid: 165
+    components:
+    - type: Transform
+      pos: 43.5,3.5
+      parent: 1
 - proto: PosterLegit12Gauge
   entities:
   - uid: 79
@@ -1895,6 +1857,8 @@ entities:
     - type: Transform
       pos: 15.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterLegitFruitBowl
   entities:
   - uid: 321
@@ -1902,6 +1866,8 @@ entities:
     - type: Transform
       pos: 63.5,2.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: PottedPlantRandom
   entities:
   - uid: 80
@@ -2691,23 +2657,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-4.5
-      parent: 1
-- proto: ToySpawner
-  entities:
-  - uid: 163
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 1
-  - uid: 164
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 165
-    components:
-    - type: Transform
-      pos: 43.5,3.5
       parent: 1
 - proto: VendingMachineRestockMedical
   entities:

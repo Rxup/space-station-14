@@ -123,7 +123,7 @@
   parent: MobBaseNpc
   components:
   - type: Physics
-    bodyType: Dynamic
+    bodyType: KinematicController
 
 - type: body
   id: AnimalHuman

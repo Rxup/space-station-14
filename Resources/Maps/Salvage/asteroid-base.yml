@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:56
+  time: 01/05/2026 13:54:02
   entityCount: 362
 maps: []
 grids:
@@ -311,141 +311,32 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.213781
-          - 79.80423
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.213781
+            Nitrogen: 79.80423
         - volume: 2500
           temperature: 293.14996
           moles:
-          - 19.51668
-          - 73.41989
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 19.51668
+            Nitrogen: 73.41989
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
-          - 0
-          - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Plasma: 6666.982
         - volume: 2500
           temperature: 5000
           moles:
-          - 6666.982
-          - 0
-          - 0
-          - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 6666.982
+            Plasma: 6666.982
         - volume: 2500
           temperature: 5000
           moles:
-          - 6480.3066
-          - 0
-          - 0
-          - 6480.3066
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 6480.3066
+            Plasma: 6480.3066
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -455,6 +346,7 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockCommandLocked
   entities:
   - uid: 85
@@ -523,16 +415,22 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,8.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
   - uid: 229
     components:
     - type: Transform
       pos: 10.5,-8.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
   - uid: 230
     components:
     - type: Transform
       pos: -7.5,-6.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
 - proto: AsteroidRock
   entities:
   - uid: 22
@@ -1965,6 +1863,8 @@ entities:
     - type: Transform
       pos: -3.5,-9.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
 - proto: PoweredlightExterior
   entities:
   - uid: 165
@@ -2165,11 +2065,15 @@ entities:
     - type: Transform
       pos: -8.5,-5.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
   - uid: 383
     components:
     - type: Transform
       pos: 7.5,-3.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 49
@@ -2356,6 +2260,8 @@ entities:
     - type: Transform
       pos: 11.5,-8.5
       parent: 407
+    - type: Fixtures
+      fixtures: {}
 - proto: WelderIndustrial
   entities:
   - uid: 331

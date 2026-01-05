@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:47:16
+  time: 01/05/2026 13:55:03
   entityCount: 115
 maps:
 - 1
@@ -235,257 +235,55 @@ entities:
         uniqueMixes:
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 268.94583
           moles:
-          - 20.00614
-          - 75.26119
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.00614
+            Nitrogen: 75.26119
         - volume: 2500
           temperature: 285.08194
           moles:
-          - 21.218632
-          - 79.82248
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.218632
+            Nitrogen: 79.82248
         - volume: 2500
           temperature: 196.33333
           moles:
-          - 14.549919
-          - 54.735413
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 14.549919
+            Nitrogen: 54.735413
         - volume: 2500
           temperature: 147.92499
           moles:
-          - 10.912439
-          - 41.05156
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 10.912439
+            Nitrogen: 41.05156
         - volume: 2500
           temperature: 184.23123
           moles:
-          - 13.64055
-          - 51.31445
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 13.64055
+            Nitrogen: 51.31445
         - volume: 2500
           temperature: 291.44815
           moles:
-          - 21.696999
-          - 81.62205
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.696999
+            Nitrogen: 81.62205
         - volume: 2500
           temperature: 286.34256
           moles:
-          - 21.313358
-          - 80.178825
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.313358
+            Nitrogen: 80.178825
         - volume: 2500
           temperature: 265.9203
           moles:
-          - 19.778797
-          - 74.40595
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 19.778797
+            Nitrogen: 74.40595
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: OccluderTree
     - type: Shuttle
@@ -497,6 +295,7 @@ entities:
       shakeTimes: 10
     - type: GasTileOverlay
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirlockGlassShuttle
   entities:
   - uid: 7
@@ -531,6 +330,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 173
+    - type: Fixtures
+      fixtures: {}
 - proto: CableApcExtension
   entities:
   - uid: 22

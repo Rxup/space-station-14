@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 267.1.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 09/27/2025 19:18:41
+  time: 01/05/2026 13:54:21
   entityCount: 180
 maps: []
 grids:
@@ -94,6 +94,7 @@ entities:
       deviceLists: []
       transmitFrequencyId: ShuttleTimer
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 139
@@ -772,15 +773,11 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 92
     components:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 - proto: ShuttleWindow
   entities:
   - uid: 32
@@ -788,57 +785,41 @@ entities:
     - type: Transform
       pos: 5.5,-4.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 53
     components:
     - type: Transform
       pos: 9.5,-4.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 54
     components:
     - type: Transform
       pos: 12.5,1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 55
     components:
     - type: Transform
       pos: 12.5,-4.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 56
     components:
     - type: Transform
       pos: 14.5,-0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 57
     components:
     - type: Transform
       pos: 14.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 58
     components:
     - type: Transform
       pos: 14.5,-2.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 89
     components:
     - type: Transform
       pos: 5.5,1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 - proto: SMESBasic
   entities:
   - uid: 100
@@ -1085,16 +1066,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 9.5,-0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 74
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-2.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 - proto: WindowDirectional
   entities:
   - uid: 36
@@ -1102,116 +1079,86 @@ entities:
     - type: Transform
       pos: 5.5,-3.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 61
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,-0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 62
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 63
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,-2.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 64
     components:
     - type: Transform
       pos: 12.5,-3.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 65
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 66
     components:
     - type: Transform
       pos: 9.5,-3.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 67
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-3.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 68
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 69
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 70
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 7.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 87
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,0.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 178
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 179
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
   - uid: 180
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-1.5
       parent: 1
-    - type: DeltaPressure
-      gridUid: 1
 ...

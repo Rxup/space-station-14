@@ -30,13 +30,6 @@ namespace Content.Shared.ActionBlocker
             base.Initialize();
 
             _complexInteractionQuery = GetEntityQuery<ComplexInteractionComponent>();
-
-            SubscribeLocalEvent<InputMoverComponent, ComponentStartup>(OnMoverStartup);
-        }
-
-        private void OnMoverStartup(EntityUid uid, InputMoverComponent component, ComponentStartup args)
-        {
-            UpdateCanMove(uid, component);
         }
 
         public bool CanMove(EntityUid uid, InputMoverComponent? component = null)

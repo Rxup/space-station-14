@@ -192,7 +192,7 @@ public sealed class ServerWoundSystem : WoundSystem
     [PublicAPI]
     public override bool TryContinueWound(
         EntityUid uid,
-        string id,
+        EntProtoId<WoundComponent> id,
         FixedPoint2 severity,
         [NotNullWhen(true)] out Entity<WoundComponent>? woundContinued,
         WoundableComponent? woundable = null)

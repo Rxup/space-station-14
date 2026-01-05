@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 262.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 07:46:51
+  time: 01/05/2026 13:53:45
   entityCount: 213
 maps: []
 grids:
@@ -307,30 +307,13 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: ExplosionAirtightGrid
 - proto: Airlock
   entities:
   - uid: 181
@@ -376,6 +359,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: BarricadeBlock
   entities:
   - uid: 193
@@ -811,8 +796,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
 - proto: CrowbarOrange
@@ -1001,6 +986,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LampGold
   entities:
   - uid: 204
@@ -1259,6 +1246,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignShock
   entities:
   - uid: 97
@@ -1267,6 +1256,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SignSmoking
   entities:
   - uid: 91
@@ -1275,6 +1266,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,-7.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: SprayPainter
   entities:
   - uid: 128
