@@ -55,36 +55,15 @@
   position: 1,-2
 
 - type: technology
-  id: RiotControlAdvanced
-  name: research-technology-riot-control-advanced
-  icon:
-    sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
-    state: base
-  discipline: Security
-  tier: 1
-  cost: 8000
-  recipeUnlocks:
-  - Truncheon
-  - TelescopicShield
-  - HoloprojectorSecurity
-  - WeaponDisablerSMG
-  - PortableRecharger
-  technologyPrerequisites:
-  - RiotControl
-  position: 2,-2
-
-- type: technology
   id: WarCrimes
   name: research-technology-war-crimes
   icon:
     sprite: Clothing/Back/Backpacks/electropack.rsi
     state: icon
   discipline: Security
-  tier: 1
+  tier: 2
   cost: 7000
   recipeUnlocks:
   - ClothingBackpackElectropack
   - WeaponParticleDecelerator
-  technologyPrerequisites:
-  - RiotControlAdvanced
   position: 2,-3

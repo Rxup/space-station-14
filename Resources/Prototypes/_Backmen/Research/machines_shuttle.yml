@@ -39,13 +39,12 @@
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
     state: exp-2100g
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 9500
   recipeUnlocks:
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - ShuttleWeaponMachines
-  - ShuttleWeaponAdvanced
   position: 11,-2
 
 - type: technology

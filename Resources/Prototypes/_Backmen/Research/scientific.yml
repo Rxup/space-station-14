@@ -20,7 +20,7 @@
     sprite: Objects/Specific/Research/anomalylocatorwide.rsi
     state: icon
   discipline: Scientific
-  tier: 1
+  tier: 2
   cost: 8000
   recipeUnlocks:
   - AnomalyLocatorWide
@@ -71,7 +71,7 @@
     sprite: Objects/Weapons/Melee/gorilla.rsi
     state: icon
   discipline: Scientific
-  tier: 1
+  tier: 2
   cost: 10000
   recipeUnlocks:
   - WeaponGauntletGorilla
@@ -86,12 +86,13 @@
     sprite: Objects/Devices/swapper.rsi
     state: icon
   discipline: Scientific
-  tier: 1
+  tier: 3
   cost: 12000
   recipeUnlocks:
   - DeviceQuantumSpinInverter
   technologyPrerequisites:
   - GravityManipulation
+#  - BluespaceTheory
   position: 3,3
 
 - type: technology
@@ -111,22 +112,6 @@
   position: 4,4
 
 - type: technology
-  id: QuantumMagneticBoots
-  name: research-technology-quantum-magnetic-boots
-  icon:
-    sprite: Clothing/Shoes/Boots/speedboots.rsi
-    state: icon
-  discipline: Scientific
-  tier: 1
-  cost: 25000
-  recipeUnlocks:
-  - ClothingShoesBootsSpeed
-  technologyPrerequisites:
-  - MagneticBoots
-  - QuantumLeaping
-  position: 5,4
-
-- type: technology
   id: PsionicCountermeasures
   name: research-technology-psionic-countermeasures
   icon:
@@ -143,6 +128,22 @@
   technologyPrerequisites:
   - AnomalousResearch
   position: 5,2
+
+# No bluespace crystals, lol
+#- type: technology
+#  id: BluespaceTheory
+#  name: research-technology-bluespace-theory
+#  icon:
+#    sprite: Backmen/Objects/Materials/materials.rsi
+#    state: bluespace 
+#  discipline: Scientific
+#  tier: 1
+#  cost: 7000
+#  recipeUnlocks:
+#  - MaterialBluespaceCrystal
+#  technologyPrerequisites:
+#  - AnomalousResearchAdvanced
+#  position: 3,5
 
 - type: technology
   id: Teleportation
@@ -168,7 +169,7 @@
     sprite: Clothing/Back/Backpacks/holding.rsi
     state: holding
   discipline: Scientific
-  tier: 1
+  tier: 3
   cost: 28000
   recipeUnlocks:
   - ClothingBackpackHolding
@@ -176,7 +177,7 @@
   - ClothingBackpackDuffelHolding
   - ClothingBackpackMessengerHolding # Backmen
   technologyPrerequisites:
-  - QuantumLeaping
+#  - BluespaceTheory
   - PowercellsBluespace
   - SalvageEquipmentAdvanced
   position: 5,5
@@ -190,9 +191,8 @@
   discipline: Scientific
   tier: 3
   cost: 30000
-  technologyPrerequisites:
-  - QuantumLeaping
-  - Teleportation
   recipeUnlocks:
   - DeviceDesynchronizer
-  position: 3,4
+  technologyPrerequisites:
+  - Teleportation
+  position: 2,2

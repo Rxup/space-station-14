@@ -36,7 +36,25 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  position: -2,-5 # Backmen-EDIT
+  # Backmen-Start
+  - MagazinePacketPistolACPIncendiary
+  - MagazinePacketPistol9x17Incendiary
+  - MagazinePacketRifle762x39Incendiary
+  - MagazinePacketRifle556UEGIncendiary
+  - MagazinePacketRifle762UEGIncendiary
+  - MagazinePacketPistol57x28Incendiary
+  - MagazineRifle762UEGIncendiary
+  - MagazineRifleFamas556UEGIncendiary
+  - MagazineRifle556UEGIncendiary
+  - MagazinePistol45ACPincendiary
+  - MagazinePistol57x28Incendiary
+  - MagazinePistol9x17Incendiary
+  # Backmen-End
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - LethalAmmunition
+  position: -4,-1
+  # Backmen-Edit-End
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -49,7 +67,12 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
-  position: -2,-7 # Backmen-EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - RiotControl
+  - NonlethalAmmunition
+  position: -1,-2
+  # Backmen-Edit-End
 
 - type: technology
   id: NonlethalAmmunition
@@ -67,6 +90,13 @@
   - WeaponDisabler
   - BoxShotgunPractice
   - SprayPainterAmmo
+  # Backmen-Start
+  - MagazineLightRiflePractice
+  - MagazineRiflePractice
+  - MagazinePistolPractice
+  - SpeedLoaderMagnumPractice
+  - MagazinePistolSubMachineGunPractice
+  # Backmen-End
   position: -2,-2 # Backmen-EDIT
 
 - type: technology
@@ -89,7 +119,11 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  position: 12,-5 # Backmen-EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - LethalAmmunition
+  position: -4,-3
+  # Backmen-Edit-End
 
 - type: technology
   id: AdvancedRiotControl
@@ -105,7 +139,11 @@
   - TelescopicShield
   - HoloprojectorSecurity
   - WeaponDisablerSMG
-  position: 12,-4 # Backmen-EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - RiotControl
+  position: 2,-2
+  # Backmen-Edit-End
 
 - type: technology
   id: ExplosiveTechnology
@@ -126,7 +164,7 @@
   - ChemicalPayload
   - CableDetStack1
   - EmptyDetonator
-  position: 12,-3 # Backmen-EDIT
+  position: 0,-1 # Backmen-Edit
 
 - type: technology
   id: SpecialMeans
@@ -167,7 +205,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  position: 12,0 # Backmen-EDIT
+  position: -2,-3 # Backmen-Edit
 
 - type: technology
   id: KineticModifications
@@ -220,7 +258,11 @@
   cost: 10000
   recipeUnlocks:
   - ClothingBackpackHarmpack
-  position: -5,-9 # Backmen-EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - RiotControl
+  position: 1,-1
+  # Backmen-Edit-End
 
 # Tier 3
 
@@ -236,7 +278,11 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
-  position: -5,-10 # Backmen-EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - CombatLaserConcentrated
+  position: 0,-4
+  # Backmen-Edit-End
 
 - type: technology
   id: ThermalWeaponry
@@ -249,7 +295,7 @@
   cost: 15000
   recipeUnlocks:
   - WeaponTemperatureGun
-  position: -5,-11 # Backmen-EDIT
+  position: -3,-4 # Backmen-Edit
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -264,6 +310,8 @@
   - GrenadeEMP
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
+  # Backmen-Edit-Start
   technologyPrerequisites:
-  - BasicShuttleArmament
-  position: -5,-12 # Backmen-EDIT
+  - ShuttleWeapon
+  position: 13,-2
+  # Backmen-Edit-End

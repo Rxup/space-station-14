@@ -34,7 +34,11 @@
   - HamtrPeripheralsElectronics
   - MechEquipmentGrabberSmall
   - VimHarness
-  position: 10, 6 #Backmen EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - RoboticsMachines
+  position: 8,-1
+  # Backmen-Edit-End
 
 - type: technology
   id: AudioVisualCommunication
@@ -54,7 +58,11 @@
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
   - HolopadMachineCircuitboard
-  position: 10, 7 #Backmen EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - EngineeringMachines
+  position: -4,3
+  # Backmen-Edit-End
 
 - type: technology
   id: AdvancedEntertainment
@@ -71,7 +79,11 @@
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
-  position: 10, 8 #Backmen EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+   - Entertainment
+  position: 3,10
+  # Backmen-Edit-End
 
 - type: technology
   id: MeatManipulation
@@ -86,7 +98,17 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
-  position: 10, 9 #Backmen EDIT
+  # Backmen-Start
+  - FreezerElectronics
+  - MicrowaveMachineCircuitboard
+  - ReagentGrinderMachineCircuitboard
+  - ElectricGrillMachineCircuitboard
+  # Backmen-End
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+   - Kitchen
+  position: 5,8
+  # Backmen-Edit-End
 
 # Tier 2
 
@@ -145,7 +167,7 @@
   technologyPrerequisites:
   - CyborgModules
   - BiochemicalStasis
-  position: 9,-4 #Backmen EDIT
+  position: 6,-5 # Backmen-Edit
 
 - type: technology
   id: AdvancedCleaning
@@ -160,7 +182,11 @@
   - AdvMopItem
   - MegaSprayBottle
   - BorgModuleAdvancedCleaning
-  position: 9,-5 #Backmen EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - Cleaning
+  position: 4,7
+  # Backmen-Edit-End
 
 - type: technology
   id: HONKMech
@@ -197,7 +223,7 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-  position: 8,8 #Backmen EDIT
+  position: 5,7 # Backmen-Edit
 
 - type: technology
   id: BluespaceCargoTransport
@@ -210,7 +236,12 @@
   cost: 15000
   recipeUnlocks:
   - CargoTelepadMachineCircuitboard
-  position: 8,9 #Backmen EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - Factorio
+  - SalvageEquipmentAdvanced
+  position: 7,5
+  # Backmen-Edit-End
 
 - type: technology
   id: PushHorn
@@ -241,7 +272,12 @@
   cost: 10000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
-  position: 4,11 #Backmen EDIT
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - MagneticBoots
+  - QuantumLeaping
+  position: 5,4
+  # Backmen-Edit-End
 
 - type: technology
   id: BluespaceChemistry
@@ -255,7 +291,12 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
-  position: 4,12 #Backmen EDIT
+  - BluespacePillCanister # Backmen
+  # Backmen-Edit-Start
+  technologyPrerequisites:
+  - ChemistryMachines
+  position: 2,-7
+  # Backmen-Edit-End
 
 - type: technology
   id: LauncherSyringe

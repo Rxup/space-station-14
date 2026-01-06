@@ -22,7 +22,7 @@
     sprite: Objects/Specific/Mining/ore_bag_holding.rsi
     state: orebag_on
   discipline: Shaft
-  tier: 1
+  tier: 2
   cost: 7500
   recipeUnlocks:
 #   - WeaponPlasmaCutterAdvanced
