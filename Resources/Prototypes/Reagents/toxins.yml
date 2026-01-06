@@ -353,6 +353,14 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 10
+        refresh: false
+        # start-backmen: psionic
+      - !type:ChemRemovePsionic
+        conditions:
+        - !type:ReagentCondition
+          reagent: MindbreakerToxin
+          min: 20
+        # end-backmen: psionic
   # TODO: PROPER hallucinations
 
 - type: reagent

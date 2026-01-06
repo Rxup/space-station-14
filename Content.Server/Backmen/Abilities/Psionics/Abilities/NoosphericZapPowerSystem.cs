@@ -27,7 +27,6 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<NoosphericZapPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<NoosphericZapPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<NoosphericZapPowerActionEvent>(OnPowerUsed);
     }
 
@@ -43,11 +42,6 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.NoosphericZapPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, NoosphericZapPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.NoosphericZapPowerAction);
     }
 
     private void OnPowerUsed(NoosphericZapPowerActionEvent args)

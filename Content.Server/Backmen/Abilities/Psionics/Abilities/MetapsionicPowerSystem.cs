@@ -31,7 +31,6 @@ public sealed class MetapsionicPowerSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<MetapsionicPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<MetapsionicPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MetapsionicPowerComponent, MetapsionicPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<MetapsionicVisibleComponent, ComponentStartup>(OnAddCanSeeAll);
         SubscribeLocalEvent<MetapsionicVisibleComponent, ComponentShutdown>(OnRemoveCanSeeAll);
@@ -85,11 +84,6 @@ public sealed class MetapsionicPowerSystem : EntitySystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MetapsionicPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, MetapsionicPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.MetapsionicPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, MetapsionicPowerComponent component, MetapsionicPowerActionEvent args)

@@ -22,7 +22,6 @@ public sealed class TelegnosisPowerSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<TelegnosisPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<TelegnosisPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<TelegnosisPowerComponent, TelegnosisPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<TelegnosisPowerComponent, MobStateChangedEvent>(OnMobStateChanged);
 
@@ -38,11 +37,6 @@ public sealed class TelegnosisPowerSystem : EntitySystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.TelegnosisPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, TelegnosisPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.TelegnosisPowerAction);
     }
 
     private void OnMobStateChanged(EntityUid uid, TelegnosisPowerComponent component, MobStateChangedEvent args)

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Content.Server.Backmen.Vampiric.Role;
+﻿using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Body.Components;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;

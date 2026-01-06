@@ -45,7 +45,6 @@ public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
         base.Initialize();
         _logger = Logger.GetSawmill("mindswap");
         SubscribeLocalEvent<MindSwapPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<MindSwapPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MindSwapPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<MindSwappedComponent, MindSwapPowerReturnActionEvent>(OnPowerReturned);
         SubscribeLocalEvent<MindSwappedComponent, DispelledEvent>(OnDispelled);
@@ -70,11 +69,6 @@ public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
     #endif
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MindSwapPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, MindSwapPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.MindSwapPowerAction);
     }
 
     private void OnPowerUsed(MindSwapPowerActionEvent args)

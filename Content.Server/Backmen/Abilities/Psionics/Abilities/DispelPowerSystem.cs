@@ -34,7 +34,6 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<DispelPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<DispelPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<DispelPowerActionEvent>(OnPowerUsed);
 
         SubscribeLocalEvent<DispellableComponent, DispelledEvent>(OnDispelled);
@@ -57,11 +56,6 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.DispelPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, DispelPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.DispelPowerAction);
     }
 
     private void OnPowerUsed(DispelPowerActionEvent args)

@@ -23,7 +23,6 @@ public sealed class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<PsychokinesisPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PsychokinesisPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<PsychokinesisPowerComponent, PsychokinesisPowerActionEvent>(OnPowerUsed);
     }
 
@@ -41,10 +40,6 @@ public sealed class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
             psionic.PsionicAbility = component.PsychokinesisPowerAction;
     }
 
-    private void OnShutdown(EntityUid uid, PsychokinesisPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.PsychokinesisPowerAction);
-    }
 
     private void OnPowerUsed(EntityUid uid ,PsychokinesisPowerComponent comp, PsychokinesisPowerActionEvent args)
     {
