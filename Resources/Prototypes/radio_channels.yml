@@ -139,7 +139,7 @@
 - type: radioChannel
   id: Xenoborg
   name: chat-radio-xenoborg
-  keycode: 'x'
+  keycode: 'ч'
   frequency: 2002
   color: "#2288ff"
   # long range since I don't wanna make a special xenoborg telecomm server
@@ -148,7 +148,7 @@
 - type: radioChannel
   id: Mothership
   name: chat-radio-mothership
-  keycode: 'z'
+  keycode: 'я'
   frequency: 2003
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server

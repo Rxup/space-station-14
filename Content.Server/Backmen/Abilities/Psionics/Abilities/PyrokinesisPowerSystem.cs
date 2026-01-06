@@ -25,11 +25,10 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<PyrokinesisPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PyrokinesisPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<PyrokinesisPowerComponent, PyrokinesisPowerActionEvent>(OnPowerUsed);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPyrokinesis = "ActionPyrokinesis";
+    private readonly EntProtoId ActionPyrokinesis = "ActionPyrokinesis";
 
     private void OnInit(EntityUid uid, PyrokinesisPowerComponent component, ComponentInit args)
     {
@@ -43,10 +42,6 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
             psionic.PsionicAbility = component.PyrokinesisPowerAction;
     }
 
-    private void OnShutdown(EntityUid uid, PyrokinesisPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.PyrokinesisPowerAction);
-    }
 
     private void OnPowerUsed(Entity<PyrokinesisPowerComponent> ent, ref PyrokinesisPowerActionEvent args)
     {
@@ -65,7 +60,7 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
         _psionics.LogPowerUsed(args.Performer, "pyrokinesis");
 
         args.Handled = true;
-        
+
         if (TryComp<NoosphericZapPowerComponent>(args.Performer, out var powerComponent))
         {
             var actionEnt = _actions.GetAction(powerComponent.NoosphericZapPowerAction);

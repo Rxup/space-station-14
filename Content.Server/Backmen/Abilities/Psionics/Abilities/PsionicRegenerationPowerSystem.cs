@@ -36,14 +36,13 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PsionicRegenerationPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, PsionicRegenerationPowerActionEvent>(OnPowerUsed);
 
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, DispelledEvent>(OnDispelled);
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, PsionicRegenerationDoAfterEvent>(OnDoAfter);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicRegeneration = "ActionPsionicRegeneration";
+    private readonly EntProtoId ActionPsionicRegeneration = "ActionPsionicRegeneration";
 
     private void OnInit(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentInit args)
     {
@@ -78,11 +77,6 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
         _audioSystem.PlayPvs(component.SoundUse, uid, AudioParams.Default.WithVolume(8f).WithMaxDistance(1.5f).WithRolloffFactor(3.5f));
         _psionics.LogPowerUsed(uid, "psionic regeneration");
         args.Handled = true;
-    }
-
-    private void OnShutdown(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.PsionicRegenerationPowerAction);
     }
 
     private void OnDispelled(EntityUid uid, PsionicRegenerationPowerComponent component, DispelledEvent args)

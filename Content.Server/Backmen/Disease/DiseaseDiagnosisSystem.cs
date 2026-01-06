@@ -346,6 +346,5 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
         _paperSystem.SetContent((printed,EnsureComp<PaperComponent>(printed)), contents.ToMarkup());
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string ResearchDisk5000 = "ResearchDisk5000";
+    private readonly EntProtoId ResearchDisk5000 = "ResearchDisk5000";
 }

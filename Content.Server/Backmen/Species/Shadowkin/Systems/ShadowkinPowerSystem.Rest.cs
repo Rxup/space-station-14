@@ -38,7 +38,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
         args.ModifySpeed(1.5f);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ShadowkinRest = "ShadowkinRest";
+    private readonly EntProtoId ShadowkinRest = "ShadowkinRest";
     private void OnInit(Entity<ShadowkinRestPowerComponent> ent, ref ComponentInit args)
     {
         _actions.AddAction(ent, ref ent.Comp.ShadowkinRestAction, ShadowkinRest);

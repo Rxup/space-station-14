@@ -149,14 +149,13 @@ public sealed partial class GptCommands : EntitySystem
         ev.Handled = true;
     }
 
-    [ValidatePrototypeId<GuideEntryPrototype>]
-    private const string DefaultRuleset = "DefaultRuleset";
+    private readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRuleset";
 
     public GuideEntryPrototype GetCoreRuleEntry(string rule)
     {
         if (!_prototype.TryIndex<GuideEntryPrototype>(rule, out var guideEntryPrototype))
         {
-            guideEntryPrototype = _prototype.Index<GuideEntryPrototype>(DefaultRuleset);
+            guideEntryPrototype = _prototype.Index(DefaultRuleset);
             return guideEntryPrototype;
         }
 

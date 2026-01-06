@@ -29,7 +29,6 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PsionicInvisibilityPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PsionicInvisibilityPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<PsionicInvisibilityPowerComponent, PsionicInvisibilityPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<PsionicInvisibilityPowerOffActionEvent>(OnPowerOff);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentInit>(OnStart);
@@ -48,11 +47,6 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PsionicInvisibilityPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.PsionicInvisibilityPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, PsionicInvisibilityPowerComponent component, PsionicInvisibilityPowerActionEvent args)

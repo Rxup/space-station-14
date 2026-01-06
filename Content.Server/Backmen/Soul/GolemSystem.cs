@@ -115,11 +115,8 @@ public sealed class GolemSystem : SharedGolemSystem
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string AdminObserver = "AdminObserver";
-
-    [ValidatePrototypeId<LocalizedDatasetPrototype>]
-    private const string GolemNames = "NamesGolem";
+    private readonly EntProtoId AdminObserver = "AdminObserver";
+    private readonly ProtoId<LocalizedDatasetPrototype> GolemNames = "NamesGolem";
     private void OnAfterInteract(EntityUid uid, SoulCrystalComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach)
@@ -131,7 +128,7 @@ public sealed class GolemSystem : SharedGolemSystem
         if (_slotsSystem.GetItemOrNull(args.Target.Value, CrystalSlot) != null)
             return;
 
-        if (!(HasComp<HumanoidAppearanceComponent>(args.User) || Prototype(args.User)?.ID == AdminObserver))
+        if (!(HasComp<HumanoidAppearanceComponent>(args.User) || Prototype(args.User)?.ID == AdminObserver.Id))
             return;
 
         if (!_uiSystem.TryOpenUi(args.Target.Value, GolemUiKey.Key, args.User))
@@ -181,8 +178,7 @@ public sealed class GolemSystem : SharedGolemSystem
         args.Handled = EjectSoul((uid, component));
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Ash = "Ash";
+    private readonly EntProtoId Ash = "Ash";
 
     private void OnMobStateChanged(EntityUid uid, GolemComponent component, MobStateChangedEvent args)
     {

@@ -340,14 +340,9 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return results;
     }
 
-    [ValidatePrototypeId<RadioChannelPrototype>]
-    public const string FleshChannel = "Flesh";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    public const string CreateFleshHeartObjective = "CreateFleshHeartObjective";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    public const string FleshCultistSurvivalObjective = "FleshCultistSurvivalObjective";
+    public readonly ProtoId<RadioChannelPrototype> FleshChannel = "Flesh";
+    public readonly EntProtoId CreateFleshHeartObjective = "CreateFleshHeartObjective";
+    public readonly EntProtoId FleshCultistSurvivalObjective = "FleshCultistSurvivalObjective";
 
     private bool BaseMakeCultist(ICommonSession traitor, FleshCultRuleComponent fleshCultRule, EntityUid mindId, MindComponent mind, EntProtoId role)
     {

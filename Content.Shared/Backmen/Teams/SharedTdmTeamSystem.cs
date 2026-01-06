@@ -93,12 +93,9 @@ public abstract class SharedTdmTeamSystem : EntitySystem
     protected abstract void SetTeam(Entity<TdmMemberComponent?> target, StationTeamMarker team);
 
 
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string TeamAFaction = "TeamA";
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string TeamBFaction = "TeamB";
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string TeamNeutralFaction = "Team0";
+    private readonly ProtoId<NpcFactionPrototype> TeamAFaction = "TeamA";
+    private readonly ProtoId<NpcFactionPrototype> TeamBFaction = "TeamB";
+    private readonly ProtoId<NpcFactionPrototype> TeamNeutralFaction = "Team0";
 
     private void OnMapInit(Entity<TdmMemberComponent> ent, ref MapInitEvent args)
     {

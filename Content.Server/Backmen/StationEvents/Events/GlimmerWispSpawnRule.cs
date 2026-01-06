@@ -22,7 +22,7 @@ internal sealed class GlimmerWispRule : StationEventSystem<GlimmerWispRuleCompon
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
-    [ValidatePrototypeId<EntityPrototype>] private static readonly string WispPrototype = "MobGlimmerWisp";
+    private static readonly EntProtoId WispPrototype = "MobGlimmerWisp";
 
     protected override void Started(EntityUid uid, GlimmerWispRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

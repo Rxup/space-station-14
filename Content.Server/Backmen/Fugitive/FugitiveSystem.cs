@@ -58,11 +58,10 @@ namespace Content.Server.Backmen.Fugitive;
 
 public sealed class FugitiveSystem : EntitySystem
 {
-    [ValidatePrototypeId<EntityPrototype>] private const string FugitiveMindRole = "MindRoleFugitive";
-    [ValidatePrototypeId<JobPrototype>] private const string FugitiveRole = "Fugitive";
+    private readonly EntProtoId FugitiveMindRole = "MindRoleFugitive";
+    private readonly EntProtoId EscapeObjective = "EscapeShuttleObjectiveFugitive";
+    private readonly ProtoId<JobPrototype> FugitiveRole = "Fugitive";
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string EscapeObjective = "EscapeShuttleObjectiveFugitive";
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
@@ -439,6 +438,6 @@ public sealed class FugitiveSystem : EntitySystem
         return report;
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string SpawnPointPrototype = "SpawnPointGhostFugitive";
-    [ValidatePrototypeId<EntityPrototype>] private const string SpawnMobPrototype = "MobHumanFugitive";
+    private readonly EntProtoId SpawnPointPrototype = "SpawnPointGhostFugitive";
+    private readonly EntProtoId SpawnMobPrototype = "MobHumanFugitive";
 }

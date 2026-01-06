@@ -23,8 +23,7 @@ public sealed class NightVisionSystem : EntitySystem
         SubscribeLocalEvent<NightVisionComponent, NVInstantActionEvent>(OnActionToggle);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string SwitchNightVisionAction = "SwitchNightVision";
+    private readonly EntProtoId SwitchNightVisionAction = "SwitchNightVision";
 
     private void OnComponentStartup(EntityUid uid, NightVisionComponent component, ComponentStartup args)
     {

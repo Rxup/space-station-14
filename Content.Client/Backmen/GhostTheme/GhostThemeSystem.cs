@@ -28,8 +28,7 @@ public sealed class GhostThemeSystem : EntitySystem
         Apply(uid, ghostThemePrototype);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string MobObserver = "MobObserver";
+    private readonly EntProtoId MobObserver = "MobObserver";
 
     public void Apply(EntityUid uid, GhostThemePrototype ghostThemePrototype)
     {

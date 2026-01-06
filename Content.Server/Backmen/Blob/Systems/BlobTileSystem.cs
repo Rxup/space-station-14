@@ -17,6 +17,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Blob.Systems;
@@ -34,8 +35,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
     private EntityQuery<BlobCoreComponent> _blobCoreQuery;
 
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string BlobFaction = "Blob";
+    private readonly ProtoId<NpcFactionPrototype> BlobFaction = "Blob";
 
     public override void Initialize()
     {

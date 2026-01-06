@@ -89,8 +89,7 @@ public sealed class SpecForcesSystem : EntitySystem
         _shuttleIndex = 0;
     }
 
-    [ValidatePrototypeId<SpecForceTeamPrototype>]
-    private const string Rxbzz = "RXBZZBlobDefault";
+    private readonly ProtoId<SpecForceTeamPrototype> Rxbzz = "RXBZZBlobDefault";
 
     private void OnBlobChange(BlobChangeLevelEvent ev)
     {

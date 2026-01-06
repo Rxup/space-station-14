@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -121,7 +122,8 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
             return;
 
-        if (bloodstream.BloodSolutionName != "Blood" || bloodstream.BloodSolution == null)
+        var bloodReferenceSolution = bloodstream.BloodReferenceSolution;
+        if (bloodReferenceSolution == null || !bloodReferenceSolution.ContainsPrototype("Blood"))
         {
             _popupSystem.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", args.Target)), args.Target, ent.Owner, Shared.Popups.PopupType.Medium);
             return;
@@ -143,7 +145,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("bloodsucker-doafter-start", ("target", args.Target)), args.Target, ent, Shared.Popups.PopupType.Medium);
 
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10),
-            new InnateNewVampierDoAfterEvent(), ent, target: args.Target, used: ent)
+            new InnateNewVampierDoAfterEvent(), eventTarget: ent, target: args.Target, used: ent)
         {
             BreakOnDamage = true,
             NeedHand = true,
@@ -194,7 +196,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         _store.ToggleUi(ent, ent, store);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string VmpShop = "VmpShop";
+    private readonly EntProtoId VmpShop = "VmpShop";
 
     public void InitShop(Entity<BkmVampireComponent> ent)
     {
@@ -211,11 +213,8 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         store.CurrencyWhitelist.Add(ent.Comp.CurrencyPrototype);
     }
 
-    [ValidatePrototypeId<PolymorphPrototype>]
-    private const string BVampieBat = "BVampieBat";
-
-    [ValidatePrototypeId<PolymorphPrototype>]
-    private const string BVampieMouse = "BVampieMouse";
+    private readonly ProtoId<PolymorphPrototype> BVampieBat = "BVampieBat";
+    private readonly ProtoId<PolymorphPrototype> BVampieMouse = "BVampieMouse";
 
     private void OnShopBuyPerk(Entity<BkmVampireComponent> ent, ref VampireStoreEvent args)
     {

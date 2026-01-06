@@ -27,7 +27,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
         _qPsionicInsulation = GetEntityQuery<PsionicInsulationComponent>();
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionMassSleep = "ActionMassSleep";
+    private readonly EntProtoId ActionMassSleep = "ActionMassSleep";
 
     private void OnInit(EntityUid uid, MassSleepPowerComponent component, ComponentInit args)
     {
@@ -50,8 +50,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
         _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
-    [ValidatePrototypeId<DamageContainerPrototype>]
-    private const string Biological = "Biological";
+    private readonly ProtoId<DamageContainerPrototype> Biological = "Biological";
 
     private void OnPowerUsed(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)
     {

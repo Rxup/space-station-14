@@ -84,7 +84,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
-    [ValidatePrototypeId<EntityPrototype>] private const string BloodsuckerMindRole = "MindRoleBloodsucker";
+    private readonly EntProtoId BloodsuckerMindRole = "MindRoleBloodsucker";
 
     public override void Initialize()
     {
@@ -123,11 +123,8 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         EnsureMindVampire(ent);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultVampireRule = "VampiresGameRule";
+    private readonly EntProtoId OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
+    private readonly EntProtoId DefaultVampireRule = "VampiresGameRule";
 
     public void ConvertToVampire(EntityUid uid)
     {
@@ -385,41 +382,43 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [ViewVariables(VVAccess.ReadWrite)]
     public float BasePoints = 1f;
 
-    public bool TrySucc(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodsuckerComp = null, BloodstreamComponent? bloodstream = null)
+    public bool TrySucc(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodsuckerComp = null, BloodstreamComponent? victimBloodstream = null)
     {
         // Is bloodsucker a bloodsucker?
         if (!_bsQuery.Resolve(bloodsucker, ref bloodsuckerComp))
             return false;
 
         // Does victim have a bloodstream?
-        if (!Resolve(victim, ref bloodstream)
-            || bloodstream.BloodSolution is not {} bloodSolution
-            || bloodstream.BloodReferenceSolution is not {} bloodReferenceSolution)
+        if (!Resolve(victim, ref victimBloodstream)
+            || victimBloodstream.BloodSolution is not {} victimBloodSolution
+            || victimBloodstream.BloodReferenceSolution is not {} bloodReferenceSolution)
             return false;
 
 
+        var victimBloodstreamVolume = victimBloodSolution.Comp.Solution.Volume;
 
         // No blood left, yikes.
-        if (bloodReferenceSolution.Volume == 0)
+        if (victimBloodstreamVolume == 0)
+        {
+            _popups.PopupEntity(Loc.GetString("drink-component-try-use-drink-had-enough"), bloodsucker, bloodsucker, Shared.Popups.PopupType.MediumCaution);
             return false;
-
-        var bloodstreamVolume = bloodReferenceSolution.Volume;
+        }
 
         // Does bloodsucker have a stomach?
-        var stomachList = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(bloodsucker).FirstOrNull();
-        if (stomachList == null)
+        var suckerStomachList = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(bloodsucker).FirstOrNull();
+        if (suckerStomachList == null)
             return false;
 
-        if (!_solutionSystem.TryGetSolution(stomachList.Value.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
+        if (!_solutionSystem.TryGetSolution(suckerStomachList.Value.Owner, StomachSystem.DefaultSolutionName, out var suckerStomachSolution))
             return false;
 
         // Are we too full?
-        var unitsToDrain = Math.Min(bloodstreamVolume.Float(),bloodsuckerComp.UnitsToSucc);
+        var unitsToDrain = Math.Min(victimBloodstreamVolume.Float(),bloodsuckerComp.UnitsToSucc);
 
-        var stomachAvailableVolume = stomachSolution.Value.Comp.Solution.AvailableVolume;
+        var suckerStomachAvailableVolume = suckerStomachSolution.Value.Comp.Solution.AvailableVolume;
 
-        if (stomachAvailableVolume < unitsToDrain)
-            unitsToDrain = (float) stomachAvailableVolume;
+        if (suckerStomachAvailableVolume < unitsToDrain)
+            unitsToDrain = (float) suckerStomachAvailableVolume;
 
         if (unitsToDrain <= 2)
         {
@@ -434,11 +433,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
         var doNotify = true;
 
-        if (_mindSystem.TryGetMind(bloodsucker, out var bloodsuckermidId, out _))
+        if (_mindSystem.TryGetMind(bloodsucker, out var bloodSuckerMindId, out _))
         {
-            EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = bloodsuckermidId;
+            EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = bloodSuckerMindId;
 
-            if (_roleSystem.MindHasRole<VampireRoleComponent>(bloodsuckermidId, out var role))
+            if (_roleSystem.MindHasRole<VampireRoleComponent>(bloodSuckerMindId, out var role))
             {
                 var vpm = role.Value.Comp2;
                 vpm.Drink += unitsToDrain;
@@ -470,9 +469,9 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
 
         // Make everything actually ingest.
-        var temp = _solutionSystem.SplitSolution(bloodSolution, unitsToDrain);
+        var temp = _solutionSystem.SplitSolution(victimBloodSolution, unitsToDrain);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
-        if (!_stomachSystem.TryTransferSolution(stomachList.Value.Owner, temp, stomachList.Value))
+        if (!_stomachSystem.TryTransferSolution(suckerStomachList.Value.Owner, temp, suckerStomachList.Value))
         {
             if (_puddle.TrySpillAt(bloodsucker, temp, out var puddle, false))
             {
@@ -496,7 +495,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
         if (bloodsuckerComp.InjectWhenSucc)
         {
-            _solutionSystem.TryAddReagent(bloodSolution, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
+            _solutionSystem.TryAddReagent(victimBloodSolution, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
         }
         _npcFaction.AggroEntity(victim, bloodsucker);
 

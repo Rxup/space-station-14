@@ -16,7 +16,7 @@ namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class AtmosphereSystem
     {
-        [ValidatePrototypeId<EntityPrototype>] private const string _spaceWindProto = "SpaceWindVisual"; // Backmen
+        private readonly EntProtoId _spaceWindProto = "SpaceWindVisual"; // Backmen
         private static readonly ProtoId<SoundCollectionPrototype> DefaultSpaceWindSounds = "SpaceWind";
 
         private const int SpaceWindSoundCooldownCycles = 75;

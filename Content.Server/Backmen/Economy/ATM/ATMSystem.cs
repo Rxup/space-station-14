@@ -70,11 +70,8 @@ public sealed class ATMSystem : SharedATMSystem
         UpdateComponentUserInterface(uid, args.User);
     }
 
-    [ValidatePrototypeId<MaterialPrototype>]
-    private const string Credit = "Credit";
-
-    [ValidatePrototypeId<CurrencyPrototype>]
-    private const string SpaceCash = "SpaceCash";
+    private readonly ProtoId<MaterialPrototype> Credit = "Credit";
+    private readonly ProtoId<CurrencyPrototype> SpaceCash = "SpaceCash";
 
     public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> GetCurrencyValue(EntityUid uid,
         PhysicalCompositionComponent component)

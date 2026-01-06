@@ -40,8 +40,7 @@ public sealed class InnateToolSystem : EntitySystem
 
     //start-backmen: fix
 
-    [ValidatePrototypeId<EntityPrototype>]
-    public const string DefaultHandPrototype = "LeftHandHuman";
+    public readonly EntProtoId DefaultHandPrototype = "LeftHandHuman";
 
 
     private void AddHand(Entity<HandsComponent?> ent, int handCounter)

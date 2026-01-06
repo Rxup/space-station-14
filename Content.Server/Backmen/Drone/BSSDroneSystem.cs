@@ -50,9 +50,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedBatteryDrainerSystem _batteryDrainer = default!;
 
-
-    [ValidatePrototypeId<RadioChannelPrototype>]
-    public const string BinaryChannel = "Binary";
+    public readonly ProtoId<RadioChannelPrototype> BinaryChannel = "Binary";
 
     public override void Initialize()
     {

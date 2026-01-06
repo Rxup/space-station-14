@@ -49,7 +49,7 @@ public sealed class EconomySystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
 
-    [ValidatePrototypeId<EntityPrototype>] private readonly string MindRoleBankMemory = "MindRoleBankMemory";
+    private readonly EntProtoId MindRoleBankMemory = "MindRoleBankMemory";
 
     public override void Initialize()
     {
@@ -331,5 +331,5 @@ public sealed class EconomySystem : EntitySystem
 
     #endregion
 
-    [ValidatePrototypeId<EntityPrototype>] private const string BankNoteCondition = "BankNote";
+    private readonly EntProtoId BankNoteCondition = "BankNote";
 }

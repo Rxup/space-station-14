@@ -27,11 +27,10 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<NoosphericZapPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<NoosphericZapPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<NoosphericZapPowerActionEvent>(OnPowerUsed);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionNoosphericZap = "ActionNoosphericZap";
+    private readonly EntProtoId ActionNoosphericZap = "ActionNoosphericZap";
 
     private void OnInit(EntityUid uid, NoosphericZapPowerComponent component, ComponentInit args)
     {
@@ -43,11 +42,6 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.NoosphericZapPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, NoosphericZapPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.NoosphericZapPowerAction);
     }
 
     private void OnPowerUsed(NoosphericZapPowerActionEvent args)
@@ -63,10 +57,10 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
         _psionics.LogPowerUsed(args.Performer, "noospheric zap");
         args.Handled = true;
 
-        if (TryComp<PyrokinesisPowerComponent>(args.Performer, out var powerComponent)
-            && _actions.GetAction(powerComponent.PyrokinesisPowerAction) is {} action)
+        if (TryComp<NoosphericZapPowerComponent>(args.Performer, out var powerComponent)
+            && _actions.GetAction(powerComponent.NoosphericZapPowerAction) is {} action)
         {
-            _actions.SetCooldown(powerComponent.PyrokinesisPowerAction, action.Comp.UseDelay ?? TimeSpan.FromMinutes(1));
+            _actions.SetCooldown(powerComponent.NoosphericZapPowerAction, action.Comp.UseDelay ?? TimeSpan.FromMinutes(1));
         }
     }
 }

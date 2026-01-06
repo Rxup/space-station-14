@@ -122,7 +122,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         staminaComponent.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(staminaComponent.Cooldown);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ShadowkinDarkSwap = "ShadowkinDarkSwap";
+    private readonly EntProtoId ShadowkinDarkSwap = "ShadowkinDarkSwap";
 
     private void OnInit(Entity<ShadowkinDarkSwapPowerComponent> ent, ref ComponentInit args)
     {

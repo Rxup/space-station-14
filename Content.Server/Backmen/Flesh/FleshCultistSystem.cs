@@ -79,8 +79,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
 
-    [ValidatePrototypeId<LanguagePrototype>]
-    private const string FleshLang = "Flesh";
+    private readonly ProtoId<LanguagePrototype> FleshLang = "Flesh";
 
     public override void Initialize()
     {
@@ -215,9 +214,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         args.Cancel();
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistShop = "FleshCultistShop";
-    [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistDevour = "FleshCultistDevour";
-    [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistAbsorbBloodPool = "FleshCultistAbsorbBloodPool";
+    private readonly EntProtoId FleshCultistShop = "FleshCultistShop";
+    private readonly EntProtoId FleshCultistDevour = "FleshCultistDevour";
+    private readonly EntProtoId FleshCultistAbsorbBloodPool = "FleshCultistAbsorbBloodPool";
 
     private void OnStartup(EntityUid uid, FleshCultistComponent component, MapInitEvent args)
     {
@@ -272,8 +271,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.ToggleUi(uid, uid, store);
     }
 
-    [ValidatePrototypeId<AlertPrototype>]
-    private const string MutationPoint = "MutationPoint";
+    private readonly ProtoId<AlertPrototype> MutationPoint = "MutationPoint";
 
     private void ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
     {

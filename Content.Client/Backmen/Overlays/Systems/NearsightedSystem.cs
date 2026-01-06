@@ -3,6 +3,7 @@ using Robust.Client.Player;
 using Robust.Shared.Network;
 using Content.Shared.Tag;
 using Content.Shared.Backmen.Traits;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Overlays;
 public sealed class NearsightedSystem : EntitySystem
@@ -19,8 +20,7 @@ public sealed class NearsightedSystem : EntitySystem
         _overlay = new Overlays.NearsightedOverlay();
     }
 
-    [ValidatePrototypeId<TagPrototype>]
-    private const string TagName = "GlassesNearsight";
+    private readonly ProtoId<TagPrototype> TagName = "GlassesNearsight";
 
     public override void Update(float frameTime)
     {

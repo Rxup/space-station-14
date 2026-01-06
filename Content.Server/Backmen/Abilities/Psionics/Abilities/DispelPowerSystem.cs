@@ -34,7 +34,6 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<DispelPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<DispelPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<DispelPowerActionEvent>(OnPowerUsed);
 
         SubscribeLocalEvent<DispellableComponent, DispelledEvent>(OnDispelled);
@@ -45,7 +44,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
         SubscribeLocalEvent<RevenantComponent, DispelledEvent>(OnRevenantDispelled);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionDispel = "ActionDispel";
+    private readonly EntProtoId ActionDispel = "ActionDispel";
 
     private void OnInit(EntityUid uid, DispelPowerComponent component, ComponentInit args)
     {
@@ -57,11 +56,6 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.DispelPowerAction;
-    }
-
-    private void OnShutdown(EntityUid uid, DispelPowerComponent component, ComponentShutdown args)
-    {
-        _actions.RemoveAction(uid, component.DispelPowerAction);
     }
 
     private void OnPowerUsed(DispelPowerActionEvent args)
@@ -79,8 +73,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
         }
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Ash = "Ash";
+    private readonly EntProtoId Ash = "Ash";
 
     private void OnDispelled(EntityUid uid, DispellableComponent component, DispelledEvent args)
     {

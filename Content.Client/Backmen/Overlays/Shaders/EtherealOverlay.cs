@@ -15,7 +15,7 @@ public sealed class EtherealOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     private readonly ShaderInstance _shader;
 
-    [ValidatePrototypeId<ShaderPrototype>] private const string Ethereal = "Ethereal";
+    private readonly ProtoId<ShaderPrototype> Ethereal = "Ethereal";
 
     public EtherealOverlay()
     {

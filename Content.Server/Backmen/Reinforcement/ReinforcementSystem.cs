@@ -248,8 +248,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         args.TookRole = true;
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Spawner = "ReinforcementSpawner";
+    private readonly EntProtoId Spawner = "ReinforcementSpawner";
 
     private void OnStartCall(Entity<ReinforcementConsoleComponent> ent, ref CallReinforcementStart args)
     {

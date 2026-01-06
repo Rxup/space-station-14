@@ -22,8 +22,7 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
         _ghostQuery = GetEntityQuery<GhostComponent>();
     }
 
-    [ValidatePrototypeId<SecurityIconPrototype>]
-    private const string AiEnemyStatus = "AiIconEnemyTarget";
+    private readonly ProtoId<SecurityIconPrototype> AiEnemyStatus = "AiIconEnemyTarget";
     private void GetIcon(Entity<AIEnemyNTComponent> target, ref GetStatusIconsEvent args)
     {
         var ent = _player.LocalSession?.AttachedEntity ?? EntityUid.Invalid;

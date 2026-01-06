@@ -233,7 +233,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             Beam(uid, args.Origin.Value, tier);
         }
 
-        [ValidatePrototypeId<EntityPrototype>] private const string MaterialBluespace = "MaterialBluespace1";
+        private readonly EntProtoId MaterialBluespace = "MaterialBluespace1";
         private void OnDestroyed(EntityUid uid, GlimmerReactiveComponent component, DestructionEventArgs args)
         {
             Spawn(MaterialBluespace, Transform(uid).Coordinates);
@@ -264,8 +264,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             }
         }
 
-        [ValidatePrototypeId<StatusEffectPrototype>]
-        private const string Electrocution = "Electrocution";
+        private readonly ProtoId<StatusEffectPrototype> Electrocution = "Electrocution";
 
         private readonly HashSet<Entity<IComponent>> _entitySet = new();
         private readonly List<EntityUid> _entities = new();
@@ -300,12 +299,9 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             }
         }
 
-        [ValidatePrototypeId<EntityPrototype>]
-        private const string SuperchargedLightning = "SuperchargedLightning";
-        [ValidatePrototypeId<EntityPrototype>]
-        private const string HyperchargedLightning = "HyperchargedLightning";
-        [ValidatePrototypeId<EntityPrototype>]
-        private const string ChargedLightning = "ChargedLightning";
+        private readonly EntProtoId SuperchargedLightning = "SuperchargedLightning";
+        private readonly EntProtoId HyperchargedLightning = "HyperchargedLightning";
+        private readonly EntProtoId ChargedLightning = "ChargedLightning";
 
         private void Beam(EntityUid prober, EntityUid target, GlimmerTier tier, bool obeyCd = true)
         {

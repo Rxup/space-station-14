@@ -73,8 +73,8 @@ public sealed class FelinidSystem : EntitySystem
         }
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionHairball = "ActionHairball";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionEatMouse = "ActionEatMouse";
+    private readonly EntProtoId ActionHairball = "ActionHairball";
+    private readonly EntProtoId ActionEatMouse = "ActionEatMouse";
 
     private void OnInit(EntityUid uid, FelinidComponent component, ComponentInit args)
     {

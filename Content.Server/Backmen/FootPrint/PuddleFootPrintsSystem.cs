@@ -8,6 +8,7 @@ using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.FootPrint;
 
@@ -21,8 +22,7 @@ public sealed class PuddleFootPrintsSystem : EntitySystem
     private EntityQuery<FootPrintsComponent> _footPrintsQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionContainerManageQuery;
 
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string WaterId = "Water";
+    private readonly ProtoId<ReagentPrototype> WaterId = "Water";
 
     private bool _footprintEnabled = false;
 

@@ -42,15 +42,14 @@ public sealed class OracleSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
 
-    [ValidatePrototypeId<ReagentPrototype>]
-    public readonly IReadOnlyList<ProtoId<ReagentPrototype>> RewardReagents = new ProtoId<ReagentPrototype>[]
-    {
-        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor"
-    };
+    public readonly IReadOnlyList<ProtoId<ReagentPrototype>> RewardReagents =
+    [
+        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor",
+    ];
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public readonly IReadOnlyList<LocId> DemandMessages = new LocId[]
-    {
+    public readonly IReadOnlyList<LocId> DemandMessages =
+    [
         "oracle-demand-1",
         "oracle-demand-2",
         "oracle-demand-3",
@@ -62,8 +61,8 @@ public sealed class OracleSystem : EntitySystem
         "oracle-demand-9",
         "oracle-demand-10",
         "oracle-demand-11",
-        "oracle-demand-12"
-    };
+        "oracle-demand-12",
+    ];
 
     public readonly IReadOnlyList<string> RejectMessages = new[]
     {
@@ -74,7 +73,6 @@ public sealed class OracleSystem : EntitySystem
         "σάκλας"
     };
 
-    [ValidatePrototypeId<EntityPrototype>]
     public readonly IReadOnlyList<EntProtoId> BlacklistedProtos = new EntProtoId[]
     {
         "MobTomatoKiller",
@@ -125,11 +123,8 @@ public sealed class OracleSystem : EntitySystem
         "MechEquipmentGrabber",
     };
 
-    [ValidatePrototypeId<EntityTablePrototype>]
-    private const string ResearchDisk5000 = "OraculStandartTable";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string CrystalNormality = "CrystalNormality";
+    private readonly ProtoId<EntityTablePrototype> ResearchDisk5000 = "OraculStandartTable";
+    private readonly EntProtoId CrystalNormality = "CrystalNormality";
 
     public override void Update(float frameTime)
     {
