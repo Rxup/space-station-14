@@ -57,10 +57,10 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
         _psionics.LogPowerUsed(args.Performer, "noospheric zap");
         args.Handled = true;
 
-        if (TryComp<PyrokinesisPowerComponent>(args.Performer, out var powerComponent)
-            && _actions.GetAction(powerComponent.PyrokinesisPowerAction) is {} action)
+        if (TryComp<NoosphericZapPowerComponent>(args.Performer, out var powerComponent)
+            && _actions.GetAction(powerComponent.NoosphericZapPowerAction) is {} action)
         {
-            _actions.SetCooldown(powerComponent.PyrokinesisPowerAction, action.Comp.UseDelay ?? TimeSpan.FromMinutes(1));
+            _actions.SetCooldown(powerComponent.NoosphericZapPowerAction, action.Comp.UseDelay ?? TimeSpan.FromMinutes(1));
         }
     }
 }
