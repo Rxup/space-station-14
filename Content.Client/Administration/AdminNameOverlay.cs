@@ -213,7 +213,11 @@ internal sealed class AdminNameOverlay : Overlay
             {
                 color = Color.GreenYellow;
                 color.A = alpha;
-                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, Loc.GetString(playerInfo.StartingJob), uiScale, playerInfo.Connected ? color : colorDisconnected);
+                args.ScreenHandle.DrawString(_font,
+                    screenCoordinates + currentOffset,
+                    playerInfo.StartingJob, // backmen Loc.GetString(playerInfo.StartingJob) пишется уже локализованным в момент создания PlayerInfo, просто оффы добавили логирование отсутствия при повторной локализации
+                    uiScale,
+                    playerInfo.Connected ? color : colorDisconnected);
                 currentOffset += lineoffset;
             }
 
