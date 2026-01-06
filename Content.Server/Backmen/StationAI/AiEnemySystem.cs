@@ -3,6 +3,7 @@ using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI;
 
@@ -32,8 +33,7 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
              EnsureComp<AIEnemyNTComponent>(target).Source = u;
      }
 
-     [ValidatePrototypeId<NpcFactionPrototype>]
-     private const string AiEnemyFaction = "AiEnemy";
+     private readonly ProtoId<NpcFactionPrototype> AiEnemyFaction = "AiEnemy";
 
      private void OnRemove(Entity<AIEnemyNTComponent> ent, ref ComponentShutdown args)
      {

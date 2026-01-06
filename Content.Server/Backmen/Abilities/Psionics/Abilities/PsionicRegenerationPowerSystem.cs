@@ -42,7 +42,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, PsionicRegenerationDoAfterEvent>(OnDoAfter);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicRegeneration = "ActionPsionicRegeneration";
+    private readonly EntProtoId ActionPsionicRegeneration = "ActionPsionicRegeneration";
 
     private void OnInit(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentInit args)
     {

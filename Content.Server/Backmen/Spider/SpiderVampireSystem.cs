@@ -43,7 +43,7 @@ public sealed class SpiderVampireSystem : EntitySystem
 
     #region Добавить скилл
 
-    [ValidatePrototypeId<EntityPrototype>] private const string SpiderVampireEggAction = "ActionSpiderVampireEgg";
+    private readonly EntProtoId SpiderVampireEggAction = "ActionSpiderVampireEgg";
 
     private void OnMapInit(EntityUid uid, SpiderVampireComponent component, MapInitEvent args)
     {

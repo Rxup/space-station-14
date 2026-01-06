@@ -36,8 +36,7 @@ public sealed partial class SponsorWindow : DefaultWindow
 
     private List<GhostThemePrototype>? _ghostThemePrototypes;
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string ObserverPrototypeName = "MobObserver";
+    private readonly EntProtoId ObserverPrototypeName = "MobObserver";
 
     protected override void Opened()
     {

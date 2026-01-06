@@ -30,6 +30,7 @@ using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Surgery.Consciousness.Systems;
@@ -44,8 +45,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private float _cprTraumaChance = 0.1f;
 
-    [ValidatePrototypeId<DamageTypePrototype>]
-    private const string AsphyxiationDamageType = "Asphyxiation";
+    private readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
 
     public override void Initialize()
     {

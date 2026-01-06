@@ -11,6 +11,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -40,8 +41,7 @@ public abstract class SharedPsionicsSystem : EntitySystem
     protected EntityQuery<PotentialPsionicComponent> PotentialPsionicQuery { get; set; }
     protected EntityQuery<PsionicComponent> PsionicQuery { get; set; }
 
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    private const string PsionicsDisabled = "PsionicsDisabled";
+    private readonly ProtoId<StatusEffectPrototype> PsionicsDisabled = "PsionicsDisabled";
 
 
     private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");

@@ -67,9 +67,7 @@ public abstract class SharedSupermatterSystem : EntitySystem
         }
     }
 
-
-    [ValidatePrototypeId<EntityPrototype>]
-    protected const string Ash = "Ash";
+    protected readonly EntProtoId Ash = "Ash";
 
 
     [Dependency] private readonly SharedAudioSystem _audio = default!;

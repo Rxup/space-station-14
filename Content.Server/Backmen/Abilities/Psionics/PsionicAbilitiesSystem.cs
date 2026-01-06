@@ -83,8 +83,7 @@ public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
         AddComp(uid, newComponent);
     }
 
-    [ValidatePrototypeId<WeightedRandomPrototype>]
-    private const string RandomPsionicPowerPool = "RandomPsionicPowerPool";
+    private readonly ProtoId<WeightedRandomPrototype> RandomPsionicPowerPool = "RandomPsionicPowerPool";
 
     public void AddRandomPsionicPower(EntityUid uid)
     {
@@ -92,7 +91,7 @@ public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
             return;
         EnsureComp<PsionicComponent>(uid);
 
-        if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(RandomPsionicPowerPool, out var pool))
+        if (!_prototypeManager.TryIndex(RandomPsionicPowerPool, out var pool))
         {
             Log.Error("Can't index the random psionic power pool!");
             return;

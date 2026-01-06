@@ -200,12 +200,11 @@ public sealed class CentcommSystem : EntitySystem
 
     private static readonly SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks");
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string StationShuttleConsole = "ComputerShuttle";
+    private readonly EntProtoId StationShuttleConsole = "ComputerShuttle";
 
     private void OnShuttleConsoleEmaged(Entity<ShuttleConsoleComponent> ent, ref GotEmaggedEvent args)
     {
-        if (Prototype(ent)?.ID != StationShuttleConsole)
+        if (Prototype(ent)?.ID != StationShuttleConsole.Id)
         {
             return;
         }
@@ -249,11 +248,8 @@ public sealed class CentcommSystem : EntitySystem
         ShuttleIndex = 0;
     }
 
-    [ValidatePrototypeId<WeightedRandomPrototype>]
-    private const string StationCentComMapPool = "DefaultCentcomPool";
-
-    [ValidatePrototypeId<GameMapPrototype>]
-    private const string StationCentComMapDefault = "CentComm";
+    private readonly ProtoId<WeightedRandomPrototype> StationCentComMapPool = "DefaultCentcomPool";
+    private readonly ProtoId<GameMapPrototype> StationCentComMapDefault = "CentComm";
 
 
     public void EnsureCentcom(bool force = false)

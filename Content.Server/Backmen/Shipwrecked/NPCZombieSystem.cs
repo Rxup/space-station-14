@@ -110,7 +110,7 @@ public sealed class NPCZombieSystem : EntitySystem
         });
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ZombieSurpriseDetector = "ZombieSurpriseDetector";
+    private readonly EntProtoId ZombieSurpriseDetector = "ZombieSurpriseDetector";
     private void OnZombieSurpriseInit(EntityUid uid, ZombieSurpriseComponent component, MapInitEvent args)
     {
         if (TerminatingOrDeleted(uid))

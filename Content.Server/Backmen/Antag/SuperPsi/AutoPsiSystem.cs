@@ -67,8 +67,7 @@ public sealed class AutoPsiSystem : EntitySystem
             });
     }
 
-    [ValidatePrototypeId<JobPrototype>]
-    private const string JobPrisoner = "Prisoner";
+    private readonly ProtoId<JobPrototype> JobPrisoner = "Prisoner";
 
     public IEnumerable<(EntityCoordinates Pos, EntityUid? Marker)> GetPrisonersSpawningEntities(EntityUid? stationId)
     {
@@ -170,8 +169,7 @@ public sealed class AutoPsiSystem : EntitySystem
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(spawnLoc.Pos, args.Job, args.HumanoidCharacterProfile, args.Station);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string JobPrisonerSuperPsi = "UristMcNars";
+    private readonly EntProtoId JobPrisonerSuperPsi = "UristMcNars";
     private EntityUid? SpawnSuperPsi(EntityCoordinates coordinates, JobPrototype job, HumanoidCharacterProfile? profile, EntityUid? station)
     {
         var ent = Spawn(JobPrisonerSuperPsi, coordinates);
@@ -268,8 +266,7 @@ public sealed class AutoPsiSystem : EntitySystem
     }
 
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultSuperPsiRule = "SuperPsiRule";
+    private readonly EntProtoId DefaultSuperPsiRule = "SuperPsiRule";
 
     private void OnMindAdded(Entity<AutoPsiComponent> ent, ref MindAddedMessage args)
     {

@@ -125,8 +125,7 @@ public sealed class AICameraSystem : EntitySystem
          _transform.AttachToGridOrMap(core.Comp.RemoteEntity.Value);
      }
 
-     [ValidatePrototypeId<EntityPrototype>]
-     private const string BulletDisabler = "BulletDisabler";
+     private readonly EntProtoId BulletDisabler = "BulletDisabler";
      private void OnShoot(Entity<StationAiHeldComponent> ent, ref AIEyeCampShootActionEvent args)
      {
          if (!_stationAi.TryGetCore(ent.Owner, out var core) || core.Comp?.RemoteEntity == null)

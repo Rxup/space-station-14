@@ -9,6 +9,7 @@ using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Psionics;
 
@@ -41,11 +42,8 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         SetCanSeePsionicInvisiblity(uid, false);
     }
 
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string PsionicInterloper = "PsionicInterloper";
-
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string GlimmerMonster = "GlimmerMonster";
+    private readonly ProtoId<NpcFactionPrototype> PsionicInterloper = "PsionicInterloper";
+    private readonly ProtoId<NpcFactionPrototype> GlimmerMonster = "GlimmerMonster";
 
     private void OnInsulInit(EntityUid uid, PsionicInsulationComponent component, ComponentInit args)
     {
@@ -70,7 +68,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
                 _npcFactonSystem.RemoveFaction(ent, GlimmerMonster);
             }
         }
-        
+
         SetCanSeePsionicInvisiblity(uid, true);
     }
 

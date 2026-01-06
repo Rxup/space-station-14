@@ -72,7 +72,7 @@ public sealed class MetapsionicPowerSystem : EntitySystem
         }
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionMetapsionicPulse = "ActionMetapsionicPulse";
+    private readonly EntProtoId ActionMetapsionicPulse = "ActionMetapsionicPulse";
 
     private void OnInit(EntityUid uid, MetapsionicPowerComponent component, ComponentInit args)
     {

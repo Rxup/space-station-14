@@ -364,7 +364,6 @@ public abstract class SharedAbsorbentSystem : EntitySystem
     }
 
     // BACKMEN EDIT START
-    [ValidatePrototypeId<ReagentPrototype>]
     private static readonly ProtoId<ReagentPrototype> WaterSolutionId = "Water";
     private bool TryFootStepInteract(EntityUid user, Entity<AbsorbentComponent> used, EntityUid target, UseDelayComponent? useDelay, Entity<SolutionComponent> absorberSoln)
     {

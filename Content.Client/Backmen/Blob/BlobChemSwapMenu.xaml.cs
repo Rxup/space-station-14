@@ -46,8 +46,7 @@ public sealed partial class BlobChemSwapMenu : DefaultWindow
         ClearGrid();
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string NormalBlobTile = "NormalBlobTile";
+    private readonly EntProtoId NormalBlobTile = "NormalBlobTile";
 
     private void UpdateGrid()
     {

@@ -28,7 +28,7 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
         SubscribeLocalEvent<PyrokinesisPowerComponent, PyrokinesisPowerActionEvent>(OnPowerUsed);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPyrokinesis = "ActionPyrokinesis";
+    private readonly EntProtoId ActionPyrokinesis = "ActionPyrokinesis";
 
     private void OnInit(EntityUid uid, PyrokinesisPowerComponent component, ComponentInit args)
     {

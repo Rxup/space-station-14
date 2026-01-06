@@ -37,8 +37,7 @@ public sealed class WhitelistSystem  : SharedWhitelistSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete, after: new []{ typeof(TraitSystem) });
     }
 
-    [ValidatePrototypeId<SpeciesPrototype>]
-    private const string SpecieDiona = "Diona";
+    private readonly ProtoId<SpeciesPrototype> SpecieDiona = "Diona";
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent msg)
     {
@@ -53,8 +52,7 @@ public sealed class WhitelistSystem  : SharedWhitelistSystem
         }
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DionaReform = "MobDionaReformed";
+    private readonly EntProtoId DionaReform = "MobDionaReformed";
     public override void ProcessReform(EntityUid child, Entity<ReformComponent> source)
     {
         ActorComponent? actor = null;

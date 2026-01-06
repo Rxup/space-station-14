@@ -84,7 +84,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
-    [ValidatePrototypeId<EntityPrototype>] private const string BloodsuckerMindRole = "MindRoleBloodsucker";
+    private readonly EntProtoId BloodsuckerMindRole = "MindRoleBloodsucker";
 
     public override void Initialize()
     {
@@ -123,11 +123,8 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         EnsureMindVampire(ent);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultVampireRule = "VampiresGameRule";
+    private readonly EntProtoId OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
+    private readonly EntProtoId DefaultVampireRule = "VampiresGameRule";
 
     public void ConvertToVampire(EntityUid uid)
     {

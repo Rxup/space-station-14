@@ -71,28 +71,14 @@ public sealed class BlobFactorySystem : EntitySystem
         }
     }
 
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Phlogiston = "Phlogiston";
-
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string TearGas = "TearGas";
-
-    [ValidatePrototypeId<ReagentPrototype>]
-
-    private const string Lexorin = "Lexorin";
-
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Mold = "Mold";
-
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Bicaridine = "Bicaridine";
-
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Aluminium = "Aluminium";
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Iron = "Iron";
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Uranium = "Uranium";
+    private readonly ProtoId<ReagentPrototype> Phlogiston = "Phlogiston";
+    private readonly ProtoId<ReagentPrototype> TearGas = "TearGas";
+    private readonly ProtoId<ReagentPrototype> Lexorin = "Lexorin";
+    private readonly ProtoId<ReagentPrototype> Mold = "Mold";
+    private readonly ProtoId<ReagentPrototype> Bicaridine = "Bicaridine";
+    private readonly ProtoId<ReagentPrototype> Aluminium = "Aluminium";
+    private readonly ProtoId<ReagentPrototype> Iron = "Iron";
+    private readonly ProtoId<ReagentPrototype> Uranium = "Uranium";
 
     private void FillSmokeGas(Entity<BlobPodComponent> ent, BlobChemType currentChem)
     {

@@ -21,7 +21,7 @@ public sealed class OpticZoomEffectSystem : EntitySystem
         SubscribeLocalEvent<OpticZoomEffectComponent, ComponentStartup>(OnStartup);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionOpticZoom = "ActionOpticZoom";
+    private readonly EntProtoId ActionOpticZoom = "ActionOpticZoom";
 
     private void OnStartup(Entity<OpticZoomEffectComponent> ent, ref ComponentStartup args)
     {

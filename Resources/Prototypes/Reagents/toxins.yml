@@ -351,9 +351,8 @@
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
-        type: Add
+        type: Update
         time: 10
-        refresh: false
         # start-backmen: psionic
       - !type:ChemRemovePsionic
         conditions:

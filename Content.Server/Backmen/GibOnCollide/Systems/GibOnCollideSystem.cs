@@ -11,6 +11,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.GibOnCollide;
 
@@ -27,8 +28,7 @@ public sealed class GibOnCollideSystem : EntitySystem
         SubscribeLocalEvent<GibOnCollideComponent, StartCollideEvent>(OnStartCollide);
     }
 
-    [ValidatePrototypeId<DamageContainerPrototype>]
-    private const string BiologicalDamageContainerPrototype = "Biological";
+    private readonly ProtoId<DamageContainerPrototype> BiologicalDamageContainerPrototype = "Biological";
 
     private void OnStartCollide(EntityUid uid, GibOnCollideComponent component, ref StartCollideEvent args)
     {
@@ -45,7 +45,7 @@ public sealed class GibOnCollideSystem : EntitySystem
                 return;
 
             if (!TryComp<DamageableComponent>(otherUid, out var damageable)
-                || damageable.DamageContainerID?.Id != BiologicalDamageContainerPrototype)
+                || damageable.DamageContainerID?.Id != BiologicalDamageContainerPrototype.Id)
                 return;
         }
 

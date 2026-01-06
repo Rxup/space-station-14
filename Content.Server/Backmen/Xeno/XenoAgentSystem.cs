@@ -2,6 +2,7 @@
 using Content.Server.Backmen.Language.Events;
 using Content.Server.Backmen.Xeno.Components;
 using Content.Shared.Backmen.Language;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Xeno;
 
@@ -16,8 +17,7 @@ public sealed class XenoAgentSystem : EntitySystem
         SubscribeLocalEvent<XenoAgentComponent, DetermineEntityLanguagesEvent>(OnApplyLanguages);
     }
 
-    [ValidatePrototypeId<LanguagePrototype>]
-    private const string XenoLanguage = "Xeno";
+    private readonly ProtoId<LanguagePrototype> XenoLanguage = "Xeno";
 
     private void OnApplyLanguages(Entity<XenoAgentComponent> ent, ref DetermineEntityLanguagesEvent args)
     {

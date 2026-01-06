@@ -669,13 +669,10 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
     [Dependency] private readonly SuitSensorSystem _sensor = default!;
 
-    [ValidatePrototypeId<EntityPrototype>] private const string MindRoleEvilTwin = "MindRoleEvilTwin";
-
-    [ValidatePrototypeId<EntityPrototype>] private const string KillObjective = "KillObjectiveEvilTwin";
-
-    [ValidatePrototypeId<EntityPrototype>] private const string EscapeObjective = "EscapeShuttleObjectiveEvilTwin";
-
-    [ValidatePrototypeId<EntityPrototype>] private const string SpawnPointPrototype = "SpawnPointEvilTwin";
+    private readonly EntProtoId MindRoleEvilTwin = "MindRoleEvilTwin";
+    private readonly EntProtoId KillObjective = "KillObjectiveEvilTwin";
+    private readonly EntProtoId EscapeObjective = "EscapeShuttleObjectiveEvilTwin";
+    private readonly EntProtoId SpawnPointPrototype = "SpawnPointEvilTwin";
 }
 
 public sealed class SpawnEvilTwinEvent : EntityEventArgs

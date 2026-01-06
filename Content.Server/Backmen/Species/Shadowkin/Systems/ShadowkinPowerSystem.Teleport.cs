@@ -44,7 +44,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinTeleportPowerComponent, ShadowkinTeleportEvent>(Teleport);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ShadowkinTeleport = "ShadowkinTeleport";
+    private readonly EntProtoId ShadowkinTeleport = "ShadowkinTeleport";
     private void OnInit(Entity<ShadowkinTeleportPowerComponent> ent, ref ComponentInit args)
     {
         _actions.AddAction(ent, ref ent.Comp.ShadowkinTeleportAction, ShadowkinTeleport);

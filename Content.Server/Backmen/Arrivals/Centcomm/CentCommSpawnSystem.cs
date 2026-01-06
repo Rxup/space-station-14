@@ -101,23 +101,19 @@ public sealed class CentCommSpawnSystem : EntitySystem
         Spawn(protoId, point.Value);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string WorkerProto = "SpawnPointCMBKCCAssistant";
+    private readonly EntProtoId WorkerProto = "SpawnPointCMBKCCAssistant";
 
     private void AddWorker(EntityUid station) => SpawnEntity(station, WorkerProto);
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string OperatorProto = "SpawnPointCMBKCCOperator";
+    private readonly EntProtoId OperatorProto = "SpawnPointCMBKCCOperator";
 
     private void AddOperator(EntityUid station) => SpawnEntity(station, OperatorProto);
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string SecurityProto = "SpawnPointCMBKCCSecOfficer";
+    private readonly EntProtoId SecurityProto = "SpawnPointCMBKCCSecOfficer";
 
     private void AddSecurity(EntityUid station) => SpawnEntity(station, SecurityProto);
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string CargoProto = "SpawnPointCMBKCCCargo";
+    private readonly EntProtoId CargoProto = "SpawnPointCMBKCCCargo";
 
     private void AddCargo(EntityUid station) => SpawnEntity(station, CargoProto);
 

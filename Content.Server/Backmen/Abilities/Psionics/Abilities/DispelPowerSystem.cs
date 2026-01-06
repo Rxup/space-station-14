@@ -44,7 +44,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
         SubscribeLocalEvent<RevenantComponent, DispelledEvent>(OnRevenantDispelled);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionDispel = "ActionDispel";
+    private readonly EntProtoId ActionDispel = "ActionDispel";
 
     private void OnInit(EntityUid uid, DispelPowerComponent component, ComponentInit args)
     {
@@ -73,8 +73,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
         }
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Ash = "Ash";
+    private readonly EntProtoId Ash = "Ash";
 
     private void OnDispelled(EntityUid uid, DispellableComponent component, DispelledEvent args)
     {

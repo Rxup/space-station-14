@@ -26,7 +26,7 @@ public sealed class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
         SubscribeLocalEvent<PsychokinesisPowerComponent, PsychokinesisPowerActionEvent>(OnPowerUsed);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsychokinesis = "ActionPsychokinesis";
+    private readonly EntProtoId ActionPsychokinesis = "ActionPsychokinesis";
 
     private void OnInit(EntityUid uid, PsychokinesisPowerComponent component, ComponentInit args)
     {

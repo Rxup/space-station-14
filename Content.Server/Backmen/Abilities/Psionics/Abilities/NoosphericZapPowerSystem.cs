@@ -30,7 +30,7 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
         SubscribeLocalEvent<NoosphericZapPowerActionEvent>(OnPowerUsed);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionNoosphericZap = "ActionNoosphericZap";
+    private readonly EntProtoId ActionNoosphericZap = "ActionNoosphericZap";
 
     private void OnInit(EntityUid uid, NoosphericZapPowerComponent component, ComponentInit args)
     {

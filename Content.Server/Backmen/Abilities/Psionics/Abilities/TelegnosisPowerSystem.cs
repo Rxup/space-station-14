@@ -29,7 +29,7 @@ public sealed class TelegnosisPowerSystem : EntitySystem
         SubscribeLocalEvent<TelegnosticProjectionComponent, MindRemovedMessage>(OnMindRemoved);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTelegnosis = "ActionTelegnosis";
+    private readonly EntProtoId ActionTelegnosis = "ActionTelegnosis";
 
     private void OnInit(EntityUid uid, TelegnosisPowerComponent component, ComponentInit args)
     {

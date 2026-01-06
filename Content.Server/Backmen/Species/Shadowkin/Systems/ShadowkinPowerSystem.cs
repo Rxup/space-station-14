@@ -2,6 +2,7 @@ using Content.Shared.Alert;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
 using System.Threading.Tasks;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
@@ -52,8 +53,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         return powerType;
     }
 
-    [ValidatePrototypeId<AlertPrototype>]
-    private const string ShadowkinPower = "ShadowkinPower";
+    private readonly ProtoId<AlertPrototype> ShadowkinPower = "ShadowkinPower";
 
     /// <summary>
     ///    Sets the alert level of a shadowkin.

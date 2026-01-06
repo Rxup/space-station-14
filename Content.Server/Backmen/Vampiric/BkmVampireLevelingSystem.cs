@@ -196,7 +196,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         _store.ToggleUi(ent, ent, store);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string VmpShop = "VmpShop";
+    private readonly EntProtoId VmpShop = "VmpShop";
 
     public void InitShop(Entity<BkmVampireComponent> ent)
     {
@@ -213,11 +213,8 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         store.CurrencyWhitelist.Add(ent.Comp.CurrencyPrototype);
     }
 
-    [ValidatePrototypeId<PolymorphPrototype>]
-    private const string BVampieBat = "BVampieBat";
-
-    [ValidatePrototypeId<PolymorphPrototype>]
-    private const string BVampieMouse = "BVampieMouse";
+    private readonly ProtoId<PolymorphPrototype> BVampieBat = "BVampieBat";
+    private readonly ProtoId<PolymorphPrototype> BVampieMouse = "BVampieMouse";
 
     private void OnShopBuyPerk(Entity<BkmVampireComponent> ent, ref VampireStoreEvent args)
     {

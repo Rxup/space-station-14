@@ -10,6 +10,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Psionics;
@@ -117,11 +118,8 @@ public sealed class PsionicsSystem : SharedPsionicsSystem
         _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Emote, true, ignoreActionBlocker: true);
     }
 */
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string FactionGlimmerMonster = "GlimmerMonster";
-
-    [ValidatePrototypeId<NpcFactionPrototype>]
-    private const string FactionPsionic = "PsionicInterloper";
+    private readonly ProtoId<NpcFactionPrototype> FactionGlimmerMonster = "GlimmerMonster";
+    private readonly ProtoId<NpcFactionPrototype> FactionPsionic = "PsionicInterloper";
 
     private void OnInit(EntityUid uid, PsionicComponent component, ComponentInit args)
     {

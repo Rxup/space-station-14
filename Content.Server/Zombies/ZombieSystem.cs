@@ -50,7 +50,7 @@ namespace Content.Server.Zombies
 
         [Dependency] private readonly PainSystem _pain = default!; // Backmen Edit
         [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // Backmen Edit
-        [ValidatePrototypeId<NpcFactionPrototype>] public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
+        public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |

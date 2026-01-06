@@ -80,7 +80,7 @@ public sealed class ArachneSystem : EntitySystem
     }
 
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSpinWeb = "ActionSpinWeb";
+    private readonly EntProtoId ActionSpinWeb = "ActionSpinWeb";
 
     private void OnInit(EntityUid uid, ArachneComponent component, ComponentInit args)
     {
@@ -181,7 +181,7 @@ public sealed class ArachneSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ArachneWeb = "ArachneWeb";
+    private readonly EntProtoId ArachneWeb = "ArachneWeb";
 
     private void OnWebDoAfter(EntityUid uid, ArachneComponent component, ArachneWebDoAfterEvent args)
     {

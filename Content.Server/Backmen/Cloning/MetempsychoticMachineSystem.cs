@@ -33,10 +33,8 @@ public struct CloningSpawnEvent
 
 public sealed class MetempsychoticMachineSystem : EntitySystem
 {
-    [ValidatePrototypeId<WeightedRandomPrototype>]
-    private const string MetempsychoticHumanoidPool = "MetempsychoticHumanoidPool";
-    [ValidatePrototypeId<WeightedRandomPrototype>]
-    private const string MetempsychoticNonHumanoidPool = "MetempsychoticNonhumanoidPool";
+    private readonly ProtoId<WeightedRandomPrototype> MetempsychoticHumanoidPool = "MetempsychoticHumanoidPool";
+    private readonly ProtoId<WeightedRandomPrototype> MetempsychoticNonHumanoidPool = "MetempsychoticNonhumanoidPool";
 
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;

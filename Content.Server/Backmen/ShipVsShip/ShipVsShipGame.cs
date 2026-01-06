@@ -83,15 +83,12 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
         _teamSystem.SetFaction((ent,EnsureComp<TdmMemberComponent>(ent)), team);
     }
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string PlayerStationAi = "PlayerStationAiSAI";
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string StationAiBrain = "StationAiBrain";
-    [ValidatePrototypeId<JobPrototype>]
-    private const string StationAiJob = "SAIShip";
+    private readonly EntProtoId PlayerStationAi = "PlayerStationAiSAI";
+    private readonly EntProtoId StationAiBrain = "StationAiBrain";
+    private readonly ProtoId<JobPrototype> StationAiJob = "SAIShip";
     private EntityUid FixStationAi(EntityUid mob)
     {
-        if(Prototype(mob)?.ID != StationAiBrain)
+        if(Prototype(mob)?.ID != StationAiBrain.Id)
             return mob;
 
         var xform = Transform(mob);

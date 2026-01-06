@@ -34,9 +34,7 @@ public abstract class SharedBlobMobSystem : EntitySystem
         args.Channel = ent.Comp.Channel;
     }
 
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string HealEffect = "EffectHealPlusTripleYellow";
+    private readonly EntProtoId HealEffect = "EffectHealPlusTripleYellow";
 
     private void OnPulse(BlobMobGetPulseEvent ev)
     {
