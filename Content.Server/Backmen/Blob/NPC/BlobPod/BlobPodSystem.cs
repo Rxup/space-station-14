@@ -163,23 +163,30 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
         if (!Resolve(uid, ref component))
             return;
 
-        component.ZombifyTarget = target;
-        _popups.PopupEntity(Loc.GetString("blob-mob-zombify-second-start", ("pod", uid)), target, target,
-            Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(Loc.GetString("blob-mob-zombify-third-start", ("pod", uid), ("target", target)), target,
-            Filter.PvsExcept(target), true, Shared.Popups.PopupType.LargeCaution);
-
-        component.ZombifyStingStream = _audioSystem.PlayPvs(component.ZombifySoundPath, target);
-        component.IsZombifying = true;
-
         var ev = new BlobPodZombifyDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, uid, component.ZombifyDelay, ev, uid, target: target)
         {
             BreakOnMove = true,
             DistanceThreshold = 2f,
-            NeedHand = false
+            NeedHand = false,
+            BreakOnWeightlessMove = false,
         };
 
-        _doAfter.TryStartDoAfter(args);
+        if(!_doAfter.TryStartDoAfter(args))
+            return;
+
+        component.ZombifyTarget = target;
+        _popups.PopupEntity(Loc.GetString("blob-mob-zombify-second-start", ("pod", uid)),
+            target,
+            target,
+            Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(Loc.GetString("blob-mob-zombify-third-start", ("pod", uid), ("target", target)),
+            target,
+            Filter.PvsExcept(target),
+            true,
+            Shared.Popups.PopupType.LargeCaution);
+
+        component.ZombifyStingStream = _audioSystem.PlayPvs(component.ZombifySoundPath, target);
+        component.IsZombifying = true;
     }
 }

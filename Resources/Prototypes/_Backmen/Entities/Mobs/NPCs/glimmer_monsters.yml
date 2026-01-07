@@ -110,6 +110,18 @@
   - type: NPCRetaliation
   - type: FactionException
   - type: HTN
+    planCooldown: 10
+    blackboard:
+      IdleRange: !type:Single
+        10
+      IdleTime: !type:Single
+        2.0
+      MinimumIdleTime: !type:Single
+        1.0
+      AggroVisionRadius: !type:Single
+        30.0
+      RangedRange: !type:Single
+        15.0
     rootTask:
       task: WispCombatCompound
   - type: NpcFactionMember

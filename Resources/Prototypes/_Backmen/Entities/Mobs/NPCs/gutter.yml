@@ -389,10 +389,9 @@
   parent: ProjectilePolyboltFly
   categories: [ HideSpawnMenu ]
   components:
-  - type: Physics
-    bodyType: KinematicController
   - type: PolymorphOnTrigger
     polymorph: GuttermanShooter
+    targetUser: true
   - type: WhitelistTriggerCondition
     userWhitelist:
       tags:
@@ -407,6 +406,15 @@
         - Impassable
         - BulletImpassable
         hard: false
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
 
 - type: polymorph
   id: GuttermanShooter

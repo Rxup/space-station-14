@@ -9,6 +9,7 @@ using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Rejuvenate;
 using Content.Shared.ActionBlocker;
 using Content.Server.Popups;
+using Content.Server.Stunnable;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
@@ -33,12 +34,17 @@ public sealed class GlimmerWispSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly MobStateSystem _mob = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
+
+    private EntityQuery<PsionicComponent> _psiQuery;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GlimmerWispComponent, GetVerbsEvent<InnateVerb>>(AddDrainVerb);
         SubscribeLocalEvent<GlimmerWispComponent, GlimmerWispDrainDoAfterEvent>(OnDrain);
+
+        _psiQuery = GetEntityQuery<PsionicComponent>();
     }
 
     private void AddDrainVerb(EntityUid uid, GlimmerWispComponent component, GetVerbsEvent<InnateVerb> args)
@@ -47,7 +53,7 @@ public sealed class GlimmerWispSystem : EntitySystem
             return;
         if (!args.CanAccess)
             return;
-        if (!HasComp<PsionicComponent>(args.Target))
+        if (!_psiQuery.HasComp(args.Target))
             return;
         if (!_mob.IsCritical(args.Target))
             return;
@@ -152,24 +158,25 @@ public sealed class GlimmerWispSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-
-        _popups.PopupEntity(Loc.GetString("life-drain-second-start", ("drainer", uid)), target, target, Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(Loc.GetString("life-drain-third-start", ("drainer", uid), ("target", target)), target, Filter.PvsExcept(target), true, Shared.Popups.PopupType.LargeCaution);
-
-        component.DrainStingStream = _audioSystem.PlayPvs(component.DrainSoundPath, target);
-        component.IsDraining = true;
-
         var ev = new GlimmerWispDrainDoAfterEvent();
         var args = new DoAfterArgs(EntityManager ,uid, component.DrainDelay, ev, uid, target: target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             DistanceThreshold = 2f,
-            NeedHand = false
+            NeedHand = false,
+            BreakOnWeightlessMove = false
         };
 
         if (!_doAfter.TryStartDoAfter(args, out var id))
             return false;
+
+        _stun.TryKnockdown(target, TimeSpan.FromSeconds(component.DrainDelay +1), true, false, true, true);
+        _popups.PopupEntity(Loc.GetString("life-drain-second-start", ("drainer", uid)), target, target, Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(Loc.GetString("life-drain-third-start", ("drainer", uid), ("target", target)), target, Filter.PvsExcept(target), true, Shared.Popups.PopupType.LargeCaution);
+
+        component.DrainStingStream = _audioSystem.PlayPvs(component.DrainSoundPath, target);
+        component.IsDraining = true;
 
         component.DoAfter = id;
         component.DrainTarget = target;

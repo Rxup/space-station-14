@@ -10,23 +10,32 @@
   - tasks:
     - !type:HTNCompoundTask
       task: DrainPsionicCompound
-#  - tasks:
-#    - !type:HTNCompoundTask
-#      task: IdleCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: WispIdleCompound
 
 - type: htnCompound
   id: WispRangedCombatCompound
   branches:
-    # Move to target and shoot them if ammo
+    - preconditions:
+      - !type:InContainerPrecondition
+        isInContainer: true
+      tasks:
+      - !type:HTNCompoundTask
+        task: EscapeCompound
+    - preconditions:
+      - !type:PulledPrecondition
+        isPulled: true
+      tasks:
+      - !type:HTNPrimitiveTask
+        operator: !type:UnPullOperator
+          shutdownState: TaskFinished
     - preconditions:
         - !type:GunAmmoPrecondition
           minPercent: 0.001
       tasks:
         - !type:HTNCompoundTask
           task: GunCombatCompound
-    - tasks:
-      - !type:HTNCompoundTask
-        task: IdleCompound
 
 # Picks a random location for the NPC to move to and idle.
 - type: htnCompound
