@@ -1296,6 +1296,7 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: RageUriil
+    targetUser: true
   - type: WhitelistTriggerCondition
     userWhitelist:
       tags:
@@ -1310,6 +1311,15 @@
         - Impassable
         - BulletImpassable
         hard: false
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: TimedDespawn
     lifetime: 40
 
