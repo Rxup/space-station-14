@@ -56,6 +56,9 @@
           traumaType: Dismemberment
           amount: -1
           identifier: "PsionicRegenerationEssence"
+        - !type:SuppressPain
+          amount: 10
+          time: 30
 
 - type: reagent
   id: Ectoplasm

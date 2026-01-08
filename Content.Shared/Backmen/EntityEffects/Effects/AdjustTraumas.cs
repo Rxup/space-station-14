@@ -29,12 +29,15 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
     private EntityQuery<WoundableComponent> _woundableQuery;
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<NerveComponent> _nerveQuery;
+    private EntityQuery<BoneComponent> _boneQuery;
+
     public override void Initialize()
     {
         base.Initialize();
         _woundableQuery = GetEntityQuery<WoundableComponent>();
         _organQuery = GetEntityQuery<OrganComponent>();
         _nerveQuery = GetEntityQuery<NerveComponent>();
+        _boneQuery = GetEntityQuery<BoneComponent>();
     }
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<AdjustTraumas> args)
@@ -92,7 +95,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                 case TraumaType.BoneDamage:
                     var comp = _woundableQuery.GetComponent(target);
                     var bone = comp.Bone.ContainedEntities.FirstOrNull();
-                    if (!TryComp(bone, out BoneComponent? boneComp))
+                    if (!_boneQuery.TryComp(bone, out var boneComp))
                         break;
 
                     _trauma.ApplyDamageToBone(bone.Value, changeAmount, boneComp);

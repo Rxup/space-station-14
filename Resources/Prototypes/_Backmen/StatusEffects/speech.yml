@@ -19,7 +19,7 @@
   components:
   - type: LanguageAccent
     language: Flesh
-    chance: 0.2 # 20%
+    chance: 0.2 # 40%
 
 - type: entity
   parent: MobStatusEffectBase
@@ -28,4 +28,4 @@
   components:
   - type: LanguageAccent
     language: OldFastCodes
-    chance: 0.4 # 20%
+    chance: 0.4 # 40%
