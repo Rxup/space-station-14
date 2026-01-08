@@ -19,13 +19,7 @@ public sealed partial class DiseaseGenericStatusEffect : DiseaseEffect
     /// Prevents other components from being with the same key
     /// </summary>
     [DataField("key", required: true)]
-    public string Key = default!;
-
-    /// <summary>
-    /// The component to add
-    /// </summary>
-    [DataField("component")]
-    public string Component = "";
+    public EntProtoId Key = default!;
 
     [DataField("time")]
     public float Time = 1.01f;
@@ -59,16 +53,24 @@ public enum StatusEffectDiseaseType
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly StatusEffectsSystem _effectsSystem = default!;
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
 
     private void DiseaseGenericStatusEffect(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseGenericStatusEffect> args)
     {
         if(args.Handled)
             return;
         args.Handled = true;
-        if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Add && args.DiseaseEffect.Component != "")
+        if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Add)
         {
-            _effectsSystem.TryAddStatusEffect(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time), args.DiseaseEffect.Refresh, args.DiseaseEffect.Component);
+            if (args.DiseaseEffect.Refresh)
+            {
+                _effectsSystem.TryAddStatusEffectDuration(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
+            }
+            else
+            {
+                _effectsSystem.TrySetStatusEffectDuration(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
+            }
+
         }
         else if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Remove)
         {

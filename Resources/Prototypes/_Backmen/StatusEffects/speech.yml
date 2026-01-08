@@ -1,0 +1,31 @@
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectSpeechMonkey
+  name: monkey accent
+  components:
+  - type: MonkeyAccent
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectSpeechXeno
+  name: xeno accent
+  components:
+  - type: XenoAccent
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangFleshAccent
+  name: lang flesh accent
+  components:
+  - type: LanguageAccent
+    language: Flesh
+    chance: 0.2 # 20%
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangOldFastCodesAccent
+  name: lang OldFastCodes accent
+  components:
+  - type: LanguageAccent
+    language: OldFastCodes
+    chance: 0.4 # 20%

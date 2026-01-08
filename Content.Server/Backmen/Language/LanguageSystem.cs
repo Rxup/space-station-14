@@ -1,9 +1,13 @@
 using System.Linq;
 using Content.Server.Backmen.Language.Events;
+using Content.Server.Backmen.Speech.Components;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Systems;
+using Content.Shared.Paper;
+using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using UniversalLanguageSpeakerComponent = Content.Shared.Backmen.Language.Components.UniversalLanguageSpeakerComponent;
 
 namespace Content.Server.Backmen.Language;
@@ -12,18 +16,39 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 {
     private EntityQuery<LanguageSpeakerComponent> _languageSpeakerQuery;
     private EntityQuery<UniversalLanguageSpeakerComponent> _universalLanguageSpeakerQuery;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    private static readonly ProtoId<LanguagePrototype> GlobalHuman = "TauCetiBasic";
 
     public override void Initialize()
     {
         base.Initialize();
         InitializeNet();
 
+        SubscribeLocalEvent<LanguageSpeakerComponent, PaperWriteAttemptEvent>(OnCanUsePaper);
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, MapInitEvent>(OnUniversalInit);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, ComponentShutdown>(OnUniversalShutdown);
+        SubscribeLocalEvent<LanguageAccentComponent, AccentGetEvent>(OnLangAccent);
 
         _languageSpeakerQuery = GetEntityQuery<LanguageSpeakerComponent>();
         _universalLanguageSpeakerQuery = GetEntityQuery<UniversalLanguageSpeakerComponent>();
+    }
+
+    private void OnCanUsePaper(Entity<LanguageSpeakerComponent> ent, ref PaperWriteAttemptEvent args)
+    {
+        if (!CanSpeak(ent.AsNullable(), GlobalHuman))
+        {
+            args.Cancelled = true;
+            args.FailReason = "Вы не можете написать на бумаге из за того что не понимаете TauCetiBasic";
+        }
+    }
+
+    private void OnLangAccent(Entity<LanguageAccentComponent> ent, ref AccentGetEvent args)
+    {
+        if(!_random.Prob(ent.Comp.Chance))
+            return;
+        args.LanguageOverride = ent.Comp.Language;
     }
 
     private void OnUniversalShutdown(EntityUid uid, UniversalLanguageSpeakerComponent component, ComponentShutdown args)

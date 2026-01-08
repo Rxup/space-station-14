@@ -100,12 +100,10 @@
           - !type:ReagentCondition
             reagent: LotophagoiOil
             min: 20
-        - !type:GenericStatusEffect
-          key: Stutter
-          component: ScrambledAccent
-        - !type:GenericStatusEffect
-          key: SlurredSpeech
-          component: TelepathicRepeater
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectScrambled
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectSlurred
         - !type:ChemAddMoodlet
           moodPrototype: LotoTranscendence
           conditions:
@@ -135,4 +133,5 @@
         - !type:ChemRemovePsionic
           conditions:
             - !type:ReagentCondition
+              reagent: SoulbreakerToxin
               min: 5

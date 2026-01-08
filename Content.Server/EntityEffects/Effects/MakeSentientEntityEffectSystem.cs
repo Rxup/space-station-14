@@ -16,7 +16,7 @@ namespace Content.Server.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<MetaDataComponent, MakeSentient>
 {
-// start-bakcmen: language
+// start-backmen: language
     private static readonly ProtoId<LanguagePrototype> GlobalHuman = "TauCetiBasic";
     [Dependency] private readonly LanguageSystem _languageSystem = default!;
 // end-backmen: language

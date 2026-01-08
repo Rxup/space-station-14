@@ -81,14 +81,12 @@
         - 2
     - !type:DiseaseGenericStatusEffect
       probability: 0.5
-      key: Stutter
-      component: OwOAccent
+      key: StatusEffectOwO
       stages:
         - 1
     - !type:DiseaseGenericStatusEffect
       probability: 1
-      key: Stutter
-      component: OwOAccent
+      key: StatusEffectOwO
       stages:
         - 2
   cures:
