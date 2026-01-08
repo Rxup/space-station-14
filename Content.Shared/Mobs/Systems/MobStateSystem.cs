@@ -31,6 +31,15 @@ public partial class MobStateSystem : EntitySystem
 
     #region Public API
 
+    // start-backmen: soft crit
+    public bool IsAliveOrSoftCrit(EntityUid target, MobStateComponent? component = null)
+    {
+        if (!_mobStateQuery.Resolve(target, ref component, false))
+            return false;
+        return component.CurrentState is MobState.Alive or MobState.SoftCritical;
+    }
+    // end-backmen: soft crit
+
     /// <summary>
     ///  Check if a Mob is Alive
     /// </summary>

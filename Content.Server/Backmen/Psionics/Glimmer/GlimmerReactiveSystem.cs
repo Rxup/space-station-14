@@ -264,7 +264,7 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             }
         }
 
-        private readonly ProtoId<StatusEffectPrototype> Electrocution = "Electrocution";
+        private static readonly ProtoId<StatusEffectPrototype> Electrocution = "Electrocution";
 
         private readonly HashSet<Entity<IComponent>> _entitySet = new();
         private readonly List<EntityUid> _entities = new();

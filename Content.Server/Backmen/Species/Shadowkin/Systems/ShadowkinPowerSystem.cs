@@ -53,7 +53,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         return powerType;
     }
 
-    private readonly ProtoId<AlertPrototype> ShadowkinPower = "ShadowkinPower";
+    private static readonly ProtoId<AlertPrototype> ShadowkinPower = "ShadowkinPower";
 
     /// <summary>
     ///    Sets the alert level of a shadowkin.

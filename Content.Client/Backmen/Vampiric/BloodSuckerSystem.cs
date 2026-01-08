@@ -21,7 +21,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         SubscribeLocalEvent<BkmVampireComponent, GetStatusIconsEvent>(OnShowVampireIcon);
     }
 
-    private readonly ProtoId<FactionIconPrototype> VampireFaction = "VampireFaction";
+    private static readonly ProtoId<FactionIconPrototype> VampireFaction = "VampireFaction";
 
     private void OnShowVampireIcon(Entity<BkmVampireComponent> ent, ref GetStatusIconsEvent args)
     {

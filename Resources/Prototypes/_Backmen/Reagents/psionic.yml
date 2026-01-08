@@ -36,6 +36,26 @@
               Caustic: -3
               Poison: -3
               Bloodloss: -3
+        - !type:AdjustTraumas # backmen
+          traumaType: BoneDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: OrganDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: VeinsDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: NerveDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: Dismemberment
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
 
 - type: reagent
   id: Ectoplasm
@@ -66,16 +86,17 @@
     Narcotic:
       metabolismRate: 0.2
       effects:
-        - !type:GenericStatusEffect
-          key: SeeingRainbows
-          component: SeeingRainbows
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectSeeingRainbow
+          conditions:
+          - !type:ReagentThreshold
+            min: 5
           type: Add
-          time: 5
+          time: 20
         - !type:ChemRerollPsionic
           bonusMultiplier: 4
           conditions:
             - !type:ReagentCondition
-              reagent: LotophagoiOil
               min: 20
         - !type:GenericStatusEffect
           key: Stutter
@@ -87,7 +108,6 @@
           moodPrototype: LotoTranscendence
           conditions:
           - !type:ReagentCondition
-            reagent: LotophagoiOil
             min: 6
 
 - type: reagent
@@ -112,5 +132,4 @@
         - !type:ChemRemovePsionic
           conditions:
             - !type:ReagentCondition
-              reagent: SoulbreakerToxin
               min: 5

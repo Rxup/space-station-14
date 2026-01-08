@@ -22,7 +22,7 @@ public sealed class PuddleFootPrintsSystem : EntitySystem
     private EntityQuery<FootPrintsComponent> _footPrintsQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionContainerManageQuery;
 
-    private readonly ProtoId<ReagentPrototype> WaterId = "Water";
+    private static readonly ProtoId<ReagentPrototype> WaterId = "Water";
 
     private bool _footprintEnabled = false;
 

@@ -41,7 +41,7 @@ public abstract class SharedPsionicsSystem : EntitySystem
     protected EntityQuery<PotentialPsionicComponent> PotentialPsionicQuery { get; set; }
     protected EntityQuery<PsionicComponent> PsionicQuery { get; set; }
 
-    private readonly ProtoId<StatusEffectPrototype> PsionicsDisabled = "PsionicsDisabled";
+    private static readonly ProtoId<StatusEffectPrototype> PsionicsDisabled = "PsionicsDisabled";
 
 
     private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");

@@ -28,6 +28,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
+using Content.Server.Backmen.NPC.Queries.Considerations;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 
@@ -333,6 +334,12 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 return _examine.InRangeUnOccluded(owner, targetUid, radius + bufferRange, null) ? 1f : 0f;
             }
+            // start-backmen: soft crit
+            case TargetIsAliveOrSoftCritCon:
+            {
+                return _mobState.IsAliveOrSoftCrit(targetUid) ? 1f : 0f;
+            }
+            // end-backmen: soft crit
             case TargetIsAliveCon:
             {
                 return _mobState.IsAlive(targetUid) ? 1f : 0f;

@@ -213,8 +213,8 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         store.CurrencyWhitelist.Add(ent.Comp.CurrencyPrototype);
     }
 
-    private readonly ProtoId<PolymorphPrototype> BVampieBat = "BVampieBat";
-    private readonly ProtoId<PolymorphPrototype> BVampieMouse = "BVampieMouse";
+    private static readonly ProtoId<PolymorphPrototype> BVampieBat = "BVampieBat";
+    private static readonly ProtoId<PolymorphPrototype> BVampieMouse = "BVampieMouse";
 
     private void OnShopBuyPerk(Entity<BkmVampireComponent> ent, ref VampireStoreEvent args)
     {

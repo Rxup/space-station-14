@@ -33,7 +33,7 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
              EnsureComp<AIEnemyNTComponent>(target).Source = u;
      }
 
-     private readonly ProtoId<NpcFactionPrototype> AiEnemyFaction = "AiEnemy";
+     private static readonly ProtoId<NpcFactionPrototype> AiEnemyFaction = "AiEnemy";
 
      private void OnRemove(Entity<AIEnemyNTComponent> ent, ref ComponentShutdown args)
      {

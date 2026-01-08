@@ -28,7 +28,7 @@ public sealed class GibOnCollideSystem : EntitySystem
         SubscribeLocalEvent<GibOnCollideComponent, StartCollideEvent>(OnStartCollide);
     }
 
-    private readonly ProtoId<DamageContainerPrototype> BiologicalDamageContainerPrototype = "Biological";
+    private static readonly ProtoId<DamageContainerPrototype> BiologicalDamageContainerPrototype = "Biological";
 
     private void OnStartCollide(EntityUid uid, GibOnCollideComponent component, ref StartCollideEvent args)
     {

@@ -60,16 +60,16 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();
 
-    private readonly ProtoId<ChatNotificationPrototype> _turretIsAttackingChatNotificationPrototype = "TurretIsAttacking";
-    private readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
-    private readonly ProtoId<ChatNotificationPrototype> _aiLosingPowerChatNotificationPrototype = "AiLosingPower";
-    private readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
+    private static readonly ProtoId<ChatNotificationPrototype> _turretIsAttackingChatNotificationPrototype = "TurretIsAttacking";
+    private static readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
+    private static readonly ProtoId<ChatNotificationPrototype> _aiLosingPowerChatNotificationPrototype = "AiLosingPower";
+    private static readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
 
-    private readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
+    private static readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
     private readonly EntProtoId _stationAiBrain = "StationAiBrain";
 
-    private readonly ProtoId<AlertPrototype> _batteryAlert = "AiBattery";
-    private readonly ProtoId<AlertPrototype> _damageAlert = "BorgHealth";
+    private static readonly ProtoId<AlertPrototype> _batteryAlert = "AiBattery";
+    private static readonly ProtoId<AlertPrototype> _damageAlert = "BorgHealth";
 
     public override void Initialize()
     {

@@ -17,7 +17,7 @@ public sealed class XenoAgentSystem : EntitySystem
         SubscribeLocalEvent<XenoAgentComponent, DetermineEntityLanguagesEvent>(OnApplyLanguages);
     }
 
-    private readonly ProtoId<LanguagePrototype> XenoLanguage = "Xeno";
+    private static readonly ProtoId<LanguagePrototype> XenoLanguage = "Xeno";
 
     private void OnApplyLanguages(Entity<XenoAgentComponent> ent, ref DetermineEntityLanguagesEvent args)
     {

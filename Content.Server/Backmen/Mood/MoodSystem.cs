@@ -41,7 +41,7 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
 
-    private readonly ProtoId<AlertCategoryPrototype> MoodCategory = "Mood";
+    private static readonly ProtoId<AlertCategoryPrototype> MoodCategory = "Mood";
 
     public override void Initialize()
     {

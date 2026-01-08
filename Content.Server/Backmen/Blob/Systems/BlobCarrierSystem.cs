@@ -41,7 +41,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
     }
 
     private readonly EntProtoId ActionTransformToBlob = "ActionTransformToBlob";
-    private readonly ProtoId<LanguagePrototype> BlobLang = "Blob";
+    private static readonly ProtoId<LanguagePrototype> BlobLang = "Blob";
 
     private void OnApplyLang(Entity<BlobCarrierComponent> ent, ref DetermineEntityLanguagesEvent args)
     {

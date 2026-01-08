@@ -4,11 +4,16 @@ using Content.Server.Radio;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.EntityEffects.Effects;
 using Content.Shared.Backmen.Language;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.EntityEffects;
+using Content.Shared.EntityEffects.Effects.Body;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Network;
@@ -22,6 +27,8 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _effectsSystem = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {
@@ -107,10 +114,48 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
         radio.Channels.Add(ent.Comp.Channel);
     }
 
+    private static readonly EntityEffect[] HealingEffects =
+    [
+        new AdjustTraumas
+        {
+            Amount = -1,
+            ModifierIdentifier = "BlobHeal",
+            TraumaType = TraumaType.BoneDamage
+        },
+        new AdjustTraumas
+        {
+            Amount = -1,
+            ModifierIdentifier = "BlobHeal",
+            TraumaType = TraumaType.VeinsDamage
+        },
+        new AdjustTraumas
+        {
+            Amount = -1,
+            ModifierIdentifier = "BlobHeal",
+            TraumaType = TraumaType.NerveDamage
+        },
+        new AdjustTraumas
+        {
+            Amount = -1,
+            ModifierIdentifier = "BlobHeal",
+            TraumaType = TraumaType.Dismemberment
+        },
+        new EyeDamage()
+    ];
     private void OnPulsed(EntityUid uid, BlobMobComponent component, BlobMobGetPulseEvent args)
     {
         _damageableSystem.ChangeDamage(uid, component.HealthOfPulse, targetPart: TargetBodyPart.All);
+        _effectsSystem.ApplyEffects(uid, HealingEffects); // healing wounds
+
+        if(component.CureBodyInterval <= 0)
+            return;
+
+        // blob restore body part
+        component.CureTick++;
+        if (component.CureTick > component.CureBodyInterval)
+        {
+            component.CureTick = 0;
+            _bodySystem.ForceRestoreBody(uid, false);
+        }
     }
-
-
 }

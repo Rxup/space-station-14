@@ -149,7 +149,7 @@ public sealed partial class GptCommands : EntitySystem
         ev.Handled = true;
     }
 
-    private readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRuleset";
+    private static readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRuleset";
 
     public GuideEntryPrototype GetCoreRuleEntry(string rule)
     {

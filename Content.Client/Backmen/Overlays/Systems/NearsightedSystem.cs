@@ -20,7 +20,7 @@ public sealed class NearsightedSystem : EntitySystem
         _overlay = new Overlays.NearsightedOverlay();
     }
 
-    private readonly ProtoId<TagPrototype> TagName = "GlassesNearsight";
+    private static readonly ProtoId<TagPrototype> TagName = "GlassesNearsight";
 
     public override void Update(float frameTime)
     {

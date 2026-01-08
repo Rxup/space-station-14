@@ -123,7 +123,7 @@ public sealed class OracleSystem : EntitySystem
         "MechEquipmentGrabber",
     };
 
-    private readonly ProtoId<EntityTablePrototype> ResearchDisk5000 = "OraculStandartTable";
+    private static readonly ProtoId<EntityTablePrototype> ResearchDisk5000 = "OraculStandartTable";
     private readonly EntProtoId CrystalNormality = "CrystalNormality";
 
     public override void Update(float frameTime)

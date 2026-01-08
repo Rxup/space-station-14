@@ -8,6 +8,7 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
+using Content.Shared.EntityEffects;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
@@ -35,7 +36,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
     private EntityQuery<BlobCoreComponent> _blobCoreQuery;
 
-    private readonly ProtoId<NpcFactionPrototype> BlobFaction = "Blob";
+    private static readonly ProtoId<NpcFactionPrototype> BlobFaction = "Blob";
 
     public override void Initialize()
     {
