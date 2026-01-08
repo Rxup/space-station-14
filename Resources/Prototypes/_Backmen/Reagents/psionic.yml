@@ -90,14 +90,16 @@
           effectProto: StatusEffectSeeingRainbow
           conditions:
           - !type:ReagentCondition
+            reagent: LotophagoiOil
             min: 5
           type: Add
-          time: 20
+          time: 5
         - !type:ChemRerollPsionic
           bonusMultiplier: 4
           conditions:
-            - !type:ReagentCondition
-              min: 20
+          - !type:ReagentCondition
+            reagent: LotophagoiOil
+            min: 20
         - !type:GenericStatusEffect
           key: Stutter
           component: ScrambledAccent
@@ -108,6 +110,7 @@
           moodPrototype: LotoTranscendence
           conditions:
           - !type:ReagentCondition
+            reagent: LotophagoiOil
             min: 6
 
 - type: reagent

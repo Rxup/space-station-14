@@ -299,6 +299,7 @@
       - !type:AdjustPainFeels # backmen
         conditions:
         - !type:ReagentCondition
+          reagent: Dexalin
           min: 20
         amount: 0.04
       - !type:HealthChange
@@ -336,6 +337,7 @@
       - !type:AdjustPainFeels # backmen
         conditions:
         - !type:ReagentCondition
+          reagent: DexalinPlus
           min: 25 # whoops overdose
         amount: 0.1
         randomise: false
