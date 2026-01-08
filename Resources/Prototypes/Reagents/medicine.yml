@@ -202,7 +202,7 @@
             Toxin: -4
         - !type:AdjustTraumas # backmen
           conditions:
-          - !type:Temperature
+          - !type:TemperatureCondition
             # this is a little arbitrary but they gotta be pretty cold
             max: 213.0
           traumaType: BoneDamage
@@ -212,7 +212,7 @@
           targetOrgans: false
         - !type:AdjustTraumas # backmen
           conditions:
-          - !type:Temperature
+          - !type:TemperatureCondition
             # this is a little arbitrary but they gotta be pretty cold
             max: 213.0
           traumaType: OrganDamage

@@ -89,7 +89,7 @@
         - !type:ModifyStatusEffect
           effectProto: StatusEffectSeeingRainbow
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 5
           type: Add
           time: 20

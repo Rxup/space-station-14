@@ -1,3 +1,4 @@
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Backmen.Language.Components.Translators;
@@ -7,21 +8,21 @@ public abstract partial class BaseTranslatorComponent : Component
     /// <summary>
     ///   The list of additional languages this translator allows the wielder to speak.
     /// </summary>
-    [DataField("spoken", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
-    public List<string> SpokenLanguages = new();
+    [DataField("spoken")]
+    public List<ProtoId<LanguagePrototype>> SpokenLanguages = new();
 
     /// <summary>
     ///   The list of additional languages this translator allows the wielder to understand.
     /// </summary>
-    [DataField("understood", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
-    public List<string> UnderstoodLanguages = new();
+    [DataField("understood")]
+    public List<ProtoId<LanguagePrototype>> UnderstoodLanguages = new();
 
     /// <summary>
     ///   The languages the wielding MUST know in order for this translator to have effect.
     ///   The field [RequiresAllLanguages] indicates whether all of them are required, or just one.
     /// </summary>
-    [DataField("requires", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
-    public List<string> RequiredLanguages = new();
+    [DataField("requires")]
+    public List<ProtoId<LanguagePrototype>> RequiredLanguages = new();
 
     /// <summary>
     ///   If true, the wielder must understand all languages in [RequiredLanguages] to speak [SpokenLanguages],
