@@ -248,8 +248,8 @@ public sealed class CentcommSystem : EntitySystem
         ShuttleIndex = 0;
     }
 
-    private readonly ProtoId<WeightedRandomPrototype> StationCentComMapPool = "DefaultCentcomPool";
-    private readonly ProtoId<GameMapPrototype> StationCentComMapDefault = "CentComm";
+    private static readonly ProtoId<WeightedRandomPrototype> StationCentComMapPool = "DefaultCentcomPool";
+    private static readonly ProtoId<GameMapPrototype> StationCentComMapDefault = "CentComm";
 
 
     public void EnsureCentcom(bool force = false)

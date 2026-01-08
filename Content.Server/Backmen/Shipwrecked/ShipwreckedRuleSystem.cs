@@ -639,7 +639,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private readonly ProtoId<GameMapPrototype> DefaultShuttle = "ShwrAdventurer";
+    private static readonly ProtoId<GameMapPrototype> DefaultShuttle = "ShwrAdventurer";
     private bool AttachMap(EntityUid gridId, ShipwreckedRuleComponent component, bool force = false)
     {
         var mapId = component.SpaceMapId ?? _gameTicker.DefaultMap;
@@ -940,9 +940,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         */
     }
 
-    private readonly ProtoId<ExplosionPrototype> CraterExplosion = "DemolitionCharge";
-    private readonly ProtoId<ContentTileDefinition> SandTile = "FloorAsteroidSand";
-    private readonly ProtoId<ContentTileDefinition> CraterTile = "FloorAsteroidSandDug";
+    private static readonly ProtoId<ExplosionPrototype> CraterExplosion = "DemolitionCharge";
+    private static readonly ProtoId<ContentTileDefinition> SandTile = "FloorAsteroidSand";
+    private static readonly ProtoId<ContentTileDefinition> CraterTile = "FloorAsteroidSandDug";
 
     public void MakeCrater(MapGridComponent grid, EntityCoordinates coordinates)
     {
@@ -1885,8 +1885,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
 # region Hecate Dynamic Responses
 
-    private readonly ProtoId<TagPrototype> TagEngineeringAirlock = "EngineeringAirlock";
-    private readonly ProtoId<TagPrototype> TagSecureSafe = "SecureSafe";
+    private static readonly ProtoId<TagPrototype> TagEngineeringAirlock = "EngineeringAirlock";
+    private static readonly ProtoId<TagPrototype> TagSecureSafe = "SecureSafe";
 
     private void OnInitHecate(EntityUid uid, ShipwreckedNPCHecateComponent component, MapInitEvent args)
     {

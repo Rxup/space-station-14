@@ -32,6 +32,7 @@ public sealed class TransformSpeechEvent : EntityEventArgs
 {
     public EntityUid Sender;
     public string Message;
+    public LanguagePrototype? Language; // backmen
 
     public TransformSpeechEvent(EntityUid sender, string message)
     {

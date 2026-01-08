@@ -50,7 +50,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
         _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
-    private readonly ProtoId<DamageContainerPrototype> Biological = "Biological";
+    private static readonly ProtoId<DamageContainerPrototype> Biological = "Biological";
 
     private void OnPowerUsed(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)
     {

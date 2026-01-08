@@ -177,14 +177,12 @@
   # monkey accent chance when speaking
   - !type:DiseaseGenericStatusEffect
     probability: 0.2
-    key: Stutter
-    component: MonkeyAccent
+    key: StatusEffectSpeechMonkey
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
     probability: 0.5
-    key: Stutter
-    component: MonkeyAccent
+    key: StatusEffectSpeechMonkey
     stages:
     - 2
   # asphyxiation damage, probably from all the screeching
@@ -232,13 +230,17 @@
   effects:
   - !type:DiseaseGenericStatusEffect
     probability: 0.015
-    key: ForcedSleep
-    component: ForcedSleeping
+    key: StatusEffectForcedSleeping
     time: 3
     type: Add
   - !type:DiseaseSnough
     probability: 0.025
     emote: Yawn
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.5
+    key: StatusEffectLangOldFastCodesAccent
+    time: 3
+    type: Add
   cures:
   - !type:DiseaseReagentCure
     reagent:
@@ -253,6 +255,11 @@
   id: BleedersBite
   name: disease-proto-bleeders
   effects:
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.5
+    key: StatusEffectLangFleshAccent
+    time: 3
+    type: Add
   - !type:DiseaseAdjustReagent
     reagent:
       ReagentId: TranexamicAcid
@@ -309,8 +316,7 @@
   - 450
   effects:
   - !type:DiseaseGenericStatusEffect
-    key: Stutter
-    component: OwOAccent
+    key: StatusEffectOwO
   - !type:DiseaseAdjustReagent ## 20 / 0.05 / 60 is around 25 minutes before overdose (0.2u metabolize each tick)
     probability: 0.25
     reagent:
@@ -343,8 +349,7 @@
   cureResist: 0.1
   effects:
   - !type:DiseaseGenericStatusEffect
-    key: Stutter
-    component: ScrambledAccent
+    key: StatusEffectScrambled
   - !type:DiseaseSnough
     probability: 0.01
     emote: Sneeze

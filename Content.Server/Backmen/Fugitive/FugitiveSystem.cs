@@ -60,7 +60,7 @@ public sealed class FugitiveSystem : EntitySystem
 {
     private readonly EntProtoId FugitiveMindRole = "MindRoleFugitive";
     private readonly EntProtoId EscapeObjective = "EscapeShuttleObjectiveFugitive";
-    private readonly ProtoId<JobPrototype> FugitiveRole = "Fugitive";
+    private static readonly ProtoId<JobPrototype> FugitiveRole = "Fugitive";
 
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;

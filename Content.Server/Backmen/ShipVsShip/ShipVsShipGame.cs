@@ -85,7 +85,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 
     private readonly EntProtoId PlayerStationAi = "PlayerStationAiSAI";
     private readonly EntProtoId StationAiBrain = "StationAiBrain";
-    private readonly ProtoId<JobPrototype> StationAiJob = "SAIShip";
+    private static readonly ProtoId<JobPrototype> StationAiJob = "SAIShip";
     private EntityUid FixStationAi(EntityUid mob)
     {
         if(Prototype(mob)?.ID != StationAiBrain.Id)

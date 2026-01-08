@@ -139,3 +139,98 @@
     range: 5
     sound:
       path: /Audio/Nyanotrasen/Mobs/GlimmerWisp/wisp_ambience.ogg
+
+- type: htnCompound
+  id: WispCombatCompound
+  branches:
+  - tasks:
+    - !type:HTNCompoundTask
+      task: WispRangedCombatCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: DrainPsionicCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: WispIdleCompound
+
+- type: htnCompound
+  id: WispRangedCombatCompound
+  branches:
+  - preconditions:
+    - !type:InContainerPrecondition
+      isInContainer: true
+    tasks:
+    - !type:HTNCompoundTask
+      task: EscapeCompound
+  - preconditions:
+    - !type:PulledPrecondition
+      isPulled: true
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UnPullOperator
+        shutdownState: TaskFinished
+  - preconditions:
+    - !type:GunAmmoPrecondition
+      minPercent: 0.001
+    tasks:
+    - !type:HTNCompoundTask
+      task: WispGunCombatCompound
+
+- type: htnCompound
+  id: WispGunCombatCompound
+  branches:
+  # Pick target, then move into range and shoot them.
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyGunWispTargets
+
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        shutdownState: PlanFinished
+        pathfindInPlanning: true
+        removeKeyOnFinish: false
+        targetKey: TargetCoordinates
+        pathfindKey: TargetPathfind
+        stopOnLineOfSight: true
+        rangeKey: MeleeRange
+
+    - !type:HTNPrimitiveTask
+      operator: !type:JukeOperator
+        jukeType: AdjacentTile
+
+    - !type:HTNPrimitiveTask
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      operator: !type:GunOperator
+        targetKey: Target
+      services:
+      - !type:UtilityService
+        id: RangedService
+        proto: NearbyGunTargets
+        key: Target
+
+- type: utilityQuery
+  id: NearbyGunWispTargets
+  query:
+  - !type:NearbyHostilesQuery
+  considerations:
+  - !type:TargetIsAliveOrSoftCritCon
+    curve: !type:BoolCurve
+  - !type:TargetIsCritCon
+    curve: !type:InverseBoolCurve
+  - !type:TargetIsStunnedCon
+    curve: !type:InverseBoolCurve
+  - !type:TurretTargetingCon
+    curve: !type:BoolCurve
+  - !type:TargetDistanceCon
+    curve: !type:PresetCurve
+      preset: TargetDistance
+  - !type:TargetHealthCon
+    curve: !type:PresetCurve
+      preset: TargetHealth
+  - !type:TargetAccessibleCon
+    curve: !type:BoolCurve
+  - !type:TargetInLOSOrCurrentCon
+    curve: !type:BoolCurve

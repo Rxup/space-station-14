@@ -26,8 +26,7 @@
   effects:
   - !type:DiseaseGenericStatusEffect
     probability: 0.03
-    key: ForcedSleep
-    component: ForcedSleeping
+    key: StatusEffectForcedSleeping
     time: 6
     type: Add
   - !type:DiseaseSnough
@@ -107,14 +106,12 @@
   # accent chance when speaking
   - !type:DiseaseGenericStatusEffect
     probability: 0.1
-    key: Stutter
-    component: XenoAccent
+    key: StatusEffectSpeechXeno
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
     probability: 0.4
-    key: Stutter
-    component: XenoAccent
+    key: StatusEffectSpeechXeno
     stages:
     - 2
   # cellular damage, from being eaten on the inside
@@ -184,14 +181,12 @@
   # accent chance when speaking
   - !type:DiseaseGenericStatusEffect
     probability: 0.1
-    key: Stutter
-    component: XenoAccent
+    key: StatusEffectSpeechXeno
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
     probability: 0.4
-    key: Stutter
-    component: XenoAccent
+    key: StatusEffectSpeechXeno
     stages:
     - 2
   # cellular damage, from being eaten on the inside

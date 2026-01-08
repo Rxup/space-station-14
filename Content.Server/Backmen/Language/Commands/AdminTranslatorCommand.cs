@@ -104,7 +104,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     }
 
     [CommandImplementation("lsspoken")]
-    public IEnumerable<string> ListSpoken([PipedArgument] EntityUid input)
+    public IEnumerable<ProtoId<LanguagePrototype>> ListSpoken([PipedArgument] EntityUid input)
     {
         if (!TryGetTranslatorComp(input, out var translator))
             return [];
@@ -112,7 +112,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     }
 
     [CommandImplementation("lsunderstood")]
-    public IEnumerable<string> ListUnderstood([PipedArgument] EntityUid input)
+    public IEnumerable<ProtoId<LanguagePrototype>> ListUnderstood([PipedArgument] EntityUid input)
     {
         if (!TryGetTranslatorComp(input, out var translator))
             return [];
@@ -120,7 +120,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
     }
 
     [CommandImplementation("lsrequired")]
-    public IEnumerable<string> ListRequired([PipedArgument] EntityUid input)
+    public IEnumerable<ProtoId<LanguagePrototype>> ListRequired([PipedArgument] EntityUid input)
     {
         if (!TryGetTranslatorComp(input, out var translator))
             return [];

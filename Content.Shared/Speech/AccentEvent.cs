@@ -1,4 +1,7 @@
-﻿namespace Content.Shared.Speech;
+﻿using Content.Shared.Backmen.Language;
+using Robust.Shared.Prototypes;
+
+namespace Content.Shared.Speech;
 
 public sealed class AccentGetEvent : EntityEventArgs
 {
@@ -12,6 +15,8 @@ public sealed class AccentGetEvent : EntityEventArgs
     ///     Modify this to apply the accent.
     /// </summary>
     public string Message { get; set; }
+
+    public ProtoId<LanguagePrototype>? LanguageOverride { get; set; } // backmen
 
     public AccentGetEvent(EntityUid entity, string message)
     {

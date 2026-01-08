@@ -36,6 +36,29 @@
               Caustic: -3
               Poison: -3
               Bloodloss: -3
+        - !type:AdjustTraumas # backmen
+          traumaType: BoneDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: OrganDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: VeinsDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: NerveDamage
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:AdjustTraumas # backmen
+          traumaType: Dismemberment
+          amount: -1
+          identifier: "PsionicRegenerationEssence"
+        - !type:SuppressPain
+          amount: 10
+          time: 30
 
 - type: reagent
   id: Ectoplasm
@@ -66,23 +89,24 @@
     Narcotic:
       metabolismRate: 0.2
       effects:
-        - !type:GenericStatusEffect
-          key: SeeingRainbows
-          component: SeeingRainbows
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectSeeingRainbow
+          conditions:
+          - !type:ReagentCondition
+            reagent: LotophagoiOil
+            min: 5
           type: Add
           time: 5
         - !type:ChemRerollPsionic
           bonusMultiplier: 4
           conditions:
-            - !type:ReagentCondition
-              reagent: LotophagoiOil
-              min: 20
-        - !type:GenericStatusEffect
-          key: Stutter
-          component: ScrambledAccent
-        - !type:GenericStatusEffect
-          key: SlurredSpeech
-          component: TelepathicRepeater
+          - !type:ReagentCondition
+            reagent: LotophagoiOil
+            min: 20
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectScrambled
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectSlurred
         - !type:ChemAddMoodlet
           moodPrototype: LotoTranscendence
           conditions:

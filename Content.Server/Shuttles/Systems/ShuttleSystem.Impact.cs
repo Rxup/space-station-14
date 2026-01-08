@@ -51,7 +51,7 @@ public sealed partial class ShuttleSystem
     private readonly TimeSpan _adminLogSpacing = TimeSpan.FromSeconds(3);
 
     private readonly SoundCollectionSpecifier _shuttleImpactSound = new("ShuttleImpactSound");
-    private readonly ProtoId<ContentTileDefinition> _platingId = "Plating";
+    private static readonly ProtoId<ContentTileDefinition> _platingId = "Plating";
     private readonly EntProtoId _sparkEffect = "EffectSparks";
 
     private EntityQuery<DamageableComponent> _dmgQuery;

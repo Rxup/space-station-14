@@ -116,7 +116,7 @@ public sealed class GolemSystem : SharedGolemSystem
     }
 
     private readonly EntProtoId AdminObserver = "AdminObserver";
-    private readonly ProtoId<LocalizedDatasetPrototype> GolemNames = "NamesGolem";
+    private static readonly ProtoId<LocalizedDatasetPrototype> GolemNames = "NamesGolem";
     private void OnAfterInteract(EntityUid uid, SoulCrystalComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach)

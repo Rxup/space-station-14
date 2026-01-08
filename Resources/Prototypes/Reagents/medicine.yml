@@ -196,10 +196,35 @@
             max: 213.0
           damage:
           # todo scale with temp like SS13
-            Airloss: -3
-            Brute: -2
-            Burn: -2
-            Toxin: -2
+            Airloss: -6
+            Brute: -4
+            Burn: -6
+            Toxin: -4
+        - !type:AdjustTraumas # backmen
+          conditions:
+          - !type:TemperatureCondition
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
+          traumaType: BoneDamage
+          amount: -2
+          identifier: "Cryoxadone"
+          targetBodyParts: true
+          targetOrgans: false
+        - !type:AdjustTraumas # backmen
+          conditions:
+          - !type:TemperatureCondition
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
+          traumaType: OrganDamage
+          amount: -1
+          identifier: "Cryoxadone"
+          targetBodyParts: false
+          targetComponents: # treats all organs besides brains and eyes
+          - type: Lung
+          - type: Ears
+          - type: Liver
+          - type: Heart
+          - type: Stomach
 
 - type: reagent
   id: Doxarubixadone
@@ -265,6 +290,18 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:SuppressPain # backmen
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        amount: 4
+        time: 8
+      - !type:AdjustPainFeels # backmen
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dexalin
+          min: 20
+        amount: 0.04
       - !type:HealthChange
         damage:
           types:
@@ -291,6 +328,19 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:SuppressPain # backmen
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        amount: 5
+        time: 30
+      - !type:AdjustPainFeels # backmen
+        conditions:
+        - !type:ReagentCondition
+          reagent: DexalinPlus
+          min: 25 # whoops overdose
+        amount: 0.1
+        randomise: false
       - !type:HealthChange
         damage:
           types:
@@ -449,6 +499,13 @@
     Medicine:
       metabolismRate: 0.1 # Smaller doses stabilize critical people for longer. Gives it a specific usecase as to not be entirely outclassed by dex+
       effects:
+      - !type:AdjustTraumas # backmen
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Inaprovaline"
+        targetBodyParts: false
+        targetComponents:
+        - type: Lung
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -719,6 +776,9 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:AdjustPainFeels # backmen
+        amount: -0.03
+        randomise: false
       - !type:HealthChange
         damage:
           types:
@@ -851,6 +911,9 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:SuppressPain # backmen
+        amount: 3
+        time: 4
       - !type:EvenHealthChange
         damage:
           Burn: -2
@@ -928,6 +991,13 @@
     Medicine:
       effects:
       - !type:EyeDamage
+      - !type:AdjustTraumas # backmen
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Oculine"
+        targetBodyParts: false
+        targetComponents:
+        - type: Eyes
 
 - type: reagent
   id: Cognizine
@@ -940,6 +1010,13 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:AdjustTraumas # backmen
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Cognizine"
+        targetBodyParts: false
+        targetComponents:
+        - type: Brain
       - !type:MakeSentient
         conditions:
         - !type:ReagentCondition

@@ -64,8 +64,8 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
-    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+    private static readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
+    private static readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
 
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -95,7 +95,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
-    private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
+    private static readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
 
     private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
     private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";

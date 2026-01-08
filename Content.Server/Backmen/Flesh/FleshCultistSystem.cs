@@ -79,7 +79,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
 
-    private readonly ProtoId<LanguagePrototype> FleshLang = "Flesh";
+    private static readonly ProtoId<LanguagePrototype> FleshLang = "Flesh";
 
     public override void Initialize()
     {
@@ -271,7 +271,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.ToggleUi(uid, uid, store);
     }
 
-    private readonly ProtoId<AlertPrototype> MutationPoint = "MutationPoint";
+    private static readonly ProtoId<AlertPrototype> MutationPoint = "MutationPoint";
 
     private void ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
     {

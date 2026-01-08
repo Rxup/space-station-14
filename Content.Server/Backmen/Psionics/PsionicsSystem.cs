@@ -118,8 +118,8 @@ public sealed class PsionicsSystem : SharedPsionicsSystem
         _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Emote, true, ignoreActionBlocker: true);
     }
 */
-    private readonly ProtoId<NpcFactionPrototype> FactionGlimmerMonster = "GlimmerMonster";
-    private readonly ProtoId<NpcFactionPrototype> FactionPsionic = "PsionicInterloper";
+    private static readonly ProtoId<NpcFactionPrototype> FactionGlimmerMonster = "GlimmerMonster";
+    private static readonly ProtoId<NpcFactionPrototype> FactionPsionic = "PsionicInterloper";
 
     private void OnInit(EntityUid uid, PsionicComponent component, ComponentInit args)
     {

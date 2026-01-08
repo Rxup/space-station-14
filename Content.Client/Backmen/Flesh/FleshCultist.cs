@@ -18,7 +18,7 @@ public sealed class FleshCultistSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistComponent, GetStatusIconsEvent>(OnShowCultIcon);
     }
 
-    private readonly ProtoId<FactionIconPrototype> FleshcultistFaction = "FleshcultistFaction";
+    private static readonly ProtoId<FactionIconPrototype> FleshcultistFaction = "FleshcultistFaction";
 
     private void OnShowCultIcon(Entity<FleshCultistComponent> ent, ref GetStatusIconsEvent args)
     {

@@ -424,7 +424,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // The original message
-        var message = TransformSpeech(source, originalMessage, language);
+        var message = TransformSpeech(source, originalMessage, ref language);
 
         if (message.Length == 0)
             return;
@@ -497,7 +497,7 @@ private void SendEntityWhisper(
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, FormattedMessage.RemoveMarkupOrThrow(originalMessage), language);
+        var message = TransformSpeech(source, FormattedMessage.RemoveMarkupOrThrow(originalMessage), ref language);
         if (message.Length == 0)
             return;
 
@@ -884,13 +884,21 @@ private void SendEntityWhisper(
         return newMessage;
     }
 
-    public string TransformSpeech(EntityUid sender, string message, LanguagePrototype language)
+    public string TransformSpeech(EntityUid sender, string message, ref LanguagePrototype language) // backmen
     {
+        var ev = new TransformSpeechEvent(sender, message);
+        RaiseLocalEvent(ev);
+
+        // start-backmen: language
+        if (ev.Language is { } replaceLanguage)
+        {
+            language = replaceLanguage;
+        }
+
         if (!language.SpeechOverride.RequireSpeech)
             return message; // Do not apply speech accents if there's no speech involved.
 
-        var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(ev);
+        // end-backmen: language
 
         return ev.Message;
     }

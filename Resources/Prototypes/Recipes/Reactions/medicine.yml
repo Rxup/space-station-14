@@ -320,8 +320,10 @@
       amount: 1
     Dylovene:
       amount: 1
+    Ectoplasm: # backmen
+      amount: 1
   products:
-    MindbreakerToxin: 3
+    MindbreakerToxin: 4
 
 - type: reaction
   id: SpaceDrugs

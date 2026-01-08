@@ -2,8 +2,9 @@ using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Vocalization.Components;
 using Content.Shared.ActionBlocker;
-
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chat;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -20,6 +21,7 @@ public sealed partial class VocalizationSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // backmen
 
     public override void Initialize()
     {
@@ -65,13 +67,13 @@ public sealed partial class VocalizationSystem : EntitySystem
         if (tryVocalizeEvent.Message is not { } message)
             return;
 
-        Speak(entity, message);
+        Speak(entity, message, tryVocalizeEvent.Language); // backmen
     }
 
     /// <summary>
     /// Actually say something.
     /// </summary>
-    private void Speak(Entity<VocalizerComponent> entity, string message)
+    private void Speak(Entity<VocalizerComponent> entity, string message, ProtoId<LanguagePrototype>? language = null) // backmen
     {
         // raise a VocalizeEvent
         // this can be handled by other systems to speak using a method other than local chat
@@ -87,8 +89,10 @@ public sealed partial class VocalizationSystem : EntitySystem
         if (!_actionBlocker.CanSpeak(entity))
             return;
 
+        _prototypeManager.TryIndex(language, out var languagePrototype); // backmen
+
         // send the message
-        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, entity.Comp.HideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal);
+        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, entity.Comp.HideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, languageOverride: languagePrototype); // backmen
     }
 
     public override void Update(float frameTime)
@@ -127,7 +131,7 @@ public sealed partial class VocalizationSystem : EntitySystem
 /// <param name="Message">Message to send, this is null when the event is just fired and should be set by a system</param>
 /// <param name="Handled">Whether the message was handled by a system</param>
 [ByRefEvent]
-public record struct TryVocalizeEvent(string? Message = null, bool Handled = false, bool Cancelled = false);
+public record struct TryVocalizeEvent(string? Message = null, bool Handled = false, bool Cancelled = false, ProtoId<LanguagePrototype>? Language = null);
 
 /// <summary>
 /// Fired when the entity wants to vocalize and has a message. Allows for interception by other systems if the

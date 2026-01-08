@@ -67,7 +67,7 @@ public sealed class AutoPsiSystem : EntitySystem
             });
     }
 
-    private readonly ProtoId<JobPrototype> JobPrisoner = "Prisoner";
+    private static readonly ProtoId<JobPrototype> JobPrisoner = "Prisoner";
 
     public IEnumerable<(EntityCoordinates Pos, EntityUid? Marker)> GetPrisonersSpawningEntities(EntityUid? stationId)
     {

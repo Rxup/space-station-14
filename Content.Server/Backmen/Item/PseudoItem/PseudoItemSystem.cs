@@ -19,6 +19,7 @@ using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Throwing;
+using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -31,8 +32,8 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
     [Dependency] private readonly ItemSystem _itemSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+    [Dependency] private readonly ContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {
@@ -46,6 +47,7 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         SubscribeLocalEvent<PseudoItemComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<PseudoItemComponent, ExaminedEvent>(OnExamine);
     }
+
 
     private void OnExamine(Entity<PseudoItemComponent> ent, ref ExaminedEvent args)
     {
@@ -76,13 +78,23 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         ClearState((uid,component));
     }
 
-    private void ClearState(Entity<PseudoItemComponent> uid)
+    private void ClearState(Entity<PseudoItemComponent> ent)
     {
-        uid.Comp.Active = false;
-        Dirty(uid, uid.Comp);
-        RemComp<ItemComponent>(uid);
-        RemComp<CanEscapeInventoryComponent>(uid);
-        _transformSystem.AttachToGridOrMap(uid);
+        if (!ent.Comp.Active)
+            return;
+
+        var parentUid = _transformSystem.GetParentUid(ent);
+
+        if (TryComp<StorageComponent>(parentUid, out var storage))
+        {
+            _containerSystem.Remove(ent.Owner, storage.Container);
+        }
+
+        ent.Comp.Active = false;
+        Dirty(ent);
+
+        RemCompDeferred<ItemComponent>(ent.Owner);
+        RemCompDeferred<CanEscapeInventoryComponent>(ent.Owner);
     }
 
     private void OnEscape(Entity<PseudoItemComponent> uid, ref EscapeInventoryEvent args)

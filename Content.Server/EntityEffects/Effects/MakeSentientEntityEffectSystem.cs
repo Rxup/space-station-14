@@ -1,8 +1,11 @@
-﻿using Content.Server.Ghost.Roles.Components;
+﻿using Content.Server.Backmen.Language;
+using Content.Server.Ghost.Roles.Components;
 using Content.Server.Speech.Components;
+using Content.Shared.Backmen.Language;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Mind.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.EntityEffects.Effects;
 
@@ -13,6 +16,11 @@ namespace Content.Server.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<MetaDataComponent, MakeSentient>
 {
+// start-backmen: language
+    private static readonly ProtoId<LanguagePrototype> GlobalHuman = "TauCetiBasic";
+    [Dependency] private readonly LanguageSystem _languageSystem = default!;
+// end-backmen: language
+
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<MakeSentient> args)
     {
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
@@ -23,6 +31,11 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
             RemComp<ReplacementAccentComponent>(entity);
             // TODO: Make MonkeyAccent a replacement accent and remove MonkeyAccent code-smell.
             RemComp<MonkeyAccentComponent>(entity);
+
+            // start-bakcmen: language
+            _languageSystem.AddLanguage(entity.Owner, GlobalHuman, true, true);
+            _languageSystem.SetLanguage(entity.Owner, GlobalHuman);
+            // end-backmen: language
         }
 
         // Stops from adding a ghost role to things like people who already have a mind

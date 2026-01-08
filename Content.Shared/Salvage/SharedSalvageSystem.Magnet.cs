@@ -29,7 +29,7 @@ public abstract partial class SharedSalvageSystem
         "SwissCheeseAsteroid"
     };
 
-    private readonly ProtoId<WeightedRandomPrototype> _asteroidOreWeights = "AsteroidOre";
+    private static readonly ProtoId<WeightedRandomPrototype> _asteroidOreWeights = "AsteroidOre";
 
     private readonly MinMax _asteroidOreCount = new(5, 7);
 

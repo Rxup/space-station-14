@@ -42,8 +42,8 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         SetCanSeePsionicInvisiblity(uid, false);
     }
 
-    private readonly ProtoId<NpcFactionPrototype> PsionicInterloper = "PsionicInterloper";
-    private readonly ProtoId<NpcFactionPrototype> GlimmerMonster = "GlimmerMonster";
+    private static readonly ProtoId<NpcFactionPrototype> PsionicInterloper = "PsionicInterloper";
+    private static readonly ProtoId<NpcFactionPrototype> GlimmerMonster = "GlimmerMonster";
 
     private void OnInsulInit(EntityUid uid, PsionicInsulationComponent component, ComponentInit args)
     {

@@ -46,8 +46,8 @@ public sealed class RCDSystem : EntitySystem
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
-    private readonly ProtoId<RCDPrototype> _deconstructTileProto = "DeconstructTile";
-    private readonly ProtoId<RCDPrototype> _deconstructLatticeProto = "DeconstructLattice";
+    private static readonly ProtoId<RCDPrototype> _deconstructTileProto = "DeconstructTile";
+    private static readonly ProtoId<RCDPrototype> _deconstructLatticeProto = "DeconstructLattice";
     private static readonly ProtoId<TagPrototype> CatwalkTag = "Catwalk";
 
     private HashSet<EntityUid> _intersectingEntities = new();

@@ -20,4 +20,9 @@ public sealed partial class BlobMobComponent : Component
             { "Shock", -4 },
         }
     };
+
+    public int CureTick = 0;
+
+    [DataField]
+    public int CureBodyInterval { get; private set; } = 10;
 }

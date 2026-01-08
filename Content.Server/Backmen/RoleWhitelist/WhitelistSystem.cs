@@ -37,7 +37,7 @@ public sealed class WhitelistSystem  : SharedWhitelistSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete, after: new []{ typeof(TraitSystem) });
     }
 
-    private readonly ProtoId<SpeciesPrototype> SpecieDiona = "Diona";
+    private static readonly ProtoId<SpeciesPrototype> SpecieDiona = "Diona";
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent msg)
     {

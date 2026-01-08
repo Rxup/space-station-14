@@ -83,7 +83,7 @@ public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
         AddComp(uid, newComponent);
     }
 
-    private readonly ProtoId<WeightedRandomPrototype> RandomPsionicPowerPool = "RandomPsionicPowerPool";
+    private static readonly ProtoId<WeightedRandomPrototype> RandomPsionicPowerPool = "RandomPsionicPowerPool";
 
     public void AddRandomPsionicPower(EntityUid uid)
     {

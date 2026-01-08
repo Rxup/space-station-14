@@ -13,6 +13,7 @@ using Content.Shared.Popups;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Examine;
 using Robust.Server.Audio;
 using static Content.Shared.Examine.ExamineSystemShared;
@@ -90,6 +91,8 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
         args.Handled = true;
     }
 
+    private static readonly ProtoId<ReagentPrototype> PsionicRegenerationEssence = "PsionicRegenerationEssence";
+
     private void OnDoAfter(EntityUid uid, PsionicRegenerationPowerComponent component, PsionicRegenerationDoAfterEvent args)
     {
         component.DoAfter = null;
@@ -104,7 +107,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
         var percentageComplete = Math.Min(1f, (_gameTiming.CurTime - args.StartedAt).TotalSeconds / component.UseDelay);
 
         var solution = new Solution();
-        solution.AddReagent("PsionicRegenerationEssence", FixedPoint2.New(component.EssenceAmount * percentageComplete));
+        solution.AddReagent(PsionicRegenerationEssence, FixedPoint2.New(component.EssenceAmount * percentageComplete));
         _bloodstreamSystem.TryAddToBloodstream((uid, stream), solution);
     }
 }

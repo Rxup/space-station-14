@@ -45,7 +45,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
 
     private float _cprTraumaChance = 0.1f;
 
-    private readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
 
     public override void Initialize()
     {
