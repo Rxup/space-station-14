@@ -78,19 +78,23 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         ClearState((uid,component));
     }
 
-    private void ClearState(Entity<PseudoItemComponent> uid)
+    private void ClearState(Entity<PseudoItemComponent> ent)
     {
-        var transform = Transform(uid);
-        if (!TryComp<StorageComponent>(transform.ParentUid, out var storage))
+        if (!ent.Comp.Active)
             return;
 
-        if (!_containerSystem.Remove(uid.Owner, storage.Container))
-            return;
+        var parentUid = _transformSystem.GetParentUid(ent);
 
-        uid.Comp.Active = false;
-        Dirty(uid, uid.Comp);
-        RemComp<ItemComponent>(uid);
-        RemComp<CanEscapeInventoryComponent>(uid);
+        if (TryComp<StorageComponent>(parentUid, out var storage))
+        {
+            _containerSystem.Remove(ent.Owner, storage.Container);
+        }
+
+        ent.Comp.Active = false;
+        Dirty(ent);
+
+        RemCompDeferred<ItemComponent>(ent.Owner);
+        RemCompDeferred<CanEscapeInventoryComponent>(ent.Owner);
     }
 
     private void OnEscape(Entity<PseudoItemComponent> uid, ref EscapeInventoryEvent args)
