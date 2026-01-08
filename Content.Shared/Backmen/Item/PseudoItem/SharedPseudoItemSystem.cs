@@ -96,7 +96,7 @@ public abstract class SharedPseudoItemSystem : EntitySystem
         if (args.User == args.Target)
             return;
 
-        if (!_handsSystem.TryGetActiveItem((uid, args.Hands), out var item))
+        if (!_handsSystem.TryGetActiveItem(uid, out var item))
             return;
 
         if (!StorageQuery.HasComponent(item))

@@ -709,7 +709,8 @@ public abstract class SharedRoleSystem : EntitySystem
     /// </summary>
     public string GetRoleSubtypeLabel(LocId roleType, LocId? subtype)
     {
-        return string.IsNullOrEmpty(subtype) ? Loc.GetString(roleType) : Loc.GetString(subtype);
+
+        return string.IsNullOrEmpty(subtype) ? (Loc.TryGetString(roleType, out var val) ? val : roleType) : Loc.GetString(subtype);
     }
 }
 

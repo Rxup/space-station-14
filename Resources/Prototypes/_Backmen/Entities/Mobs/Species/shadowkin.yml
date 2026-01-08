@@ -17,6 +17,7 @@
     understands:
     - TauCetiBasic
     - Shadokin
+  - type: ShadowkinAccent #backmen
   - type: HumanoidAppearance
     eyeColor: '#ffffff'
     species: Shadowkin
