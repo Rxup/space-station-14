@@ -1,4 +1,3 @@
-using Content.Goobstation.Common.Effects;
 using Content.Server._Goobstation.Wizard.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.NodeContainer.EntitySystems;
@@ -6,6 +5,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Weapons.Melee;
+using Content.Shared.Backmen.Effects;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;

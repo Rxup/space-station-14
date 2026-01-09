@@ -1,4 +1,3 @@
-using Content.Goobstation.Common.Effects;
 using Content.Server.Communications;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.Objectives.Components;
@@ -16,6 +15,7 @@ using Content.Shared.PowerCell;
 using Content.Shared.Popups;
 using Content.Shared.Rounding;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Backmen.Effects;
 
 namespace Content.Server.Ninja.Systems;
 

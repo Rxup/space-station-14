@@ -120,4 +120,11 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<bool> EnableFootPrints =
         CVarDef.Create("footprint.enabled", true, CVar.SERVERONLY);
+
+    #region Xenobiology
+
+    public static readonly CVarDef<float> BreedingInterval =
+        CVarDef.Create("xenobiology.breeding.interval", 1f, CVar.REPLICATED | CVar.SERVER);
+
+    #endregion
 }

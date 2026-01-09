@@ -1,5 +1,5 @@
 using Content.Goobstation.Common.BlockTeleport;
-using Content.Goobstation.Common.Effects;
+using Content.Shared.Backmen.Effects;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;

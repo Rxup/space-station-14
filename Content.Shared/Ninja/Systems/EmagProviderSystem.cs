@@ -1,5 +1,5 @@
-using Content.Goobstation.Common.Effects;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Backmen.Effects;
 using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;

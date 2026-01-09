@@ -1,6 +1,6 @@
-using Content.Goobstation.Common.Effects;
 using Content.Server.Ninja.Events;
 using Content.Server.Power.Components;
+using Content.Shared.Backmen.Effects;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Ninja.Components;
