@@ -1,4 +1,3 @@
-using Content.Goobstation.Common.BlockTeleport;
 using Content.Shared.Backmen.Effects;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
