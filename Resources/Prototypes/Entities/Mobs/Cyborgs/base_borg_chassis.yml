@@ -6,6 +6,10 @@
   save: false
   abstract: true
   components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        ArmorPiercing: 0.10
   - type: LanguageSpeaker #backmen: languages
     currentLanguage: Binary
   - type: LanguageKnowledge #backmen: languages
