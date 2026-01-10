@@ -48,6 +48,8 @@
       blackboard:
         NavBlob: !type:Bool
           true
+        NavSmash: !type:Bool
+          true
     - type: BlobMob
     - type: BlobSpeak
     - type: LanguageSpeaker
