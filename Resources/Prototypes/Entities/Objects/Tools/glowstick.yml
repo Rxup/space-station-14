@@ -1,5 +1,6 @@
 - type: entity
   abstract: true
+  save: false # backmen
   parent: BaseItem
   id: GlowstickBase
   name: glowstick

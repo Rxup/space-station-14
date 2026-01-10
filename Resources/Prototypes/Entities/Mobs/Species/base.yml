@@ -231,7 +231,6 @@
     - TauCetiBasic
     understands:
     - TauCetiBasic
-  - type: Immersive # backmen: immersive
   - type: Targeting # backmen: surgery
   - type: SurgeryTarget # backmen: surgery
 

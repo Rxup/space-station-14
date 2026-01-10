@@ -97,7 +97,9 @@ entity-effect-guidebook-health-change =
                     [deals] deal
                     *[both] modify health by
                  }
-    } { $changes }
+    } { $changes } { $targetPart ->
+       *[other]  on {$targetPart}
+    }
 
 entity-effect-guidebook-even-health-change =
     { $chance ->
@@ -111,7 +113,9 @@ entity-effect-guidebook-even-health-change =
             [deals] evenly deal
             *[both] evenly modify health by
         }
-    } { $changes }
+    } { $changes } { $targetPart ->
+       *[other]  on {$targetPart}
+    }
 
 entity-effect-guidebook-status-effect-old =
     { $type ->

@@ -3,6 +3,9 @@
   parent: Clothing
   id: ClothingShoesBase
   components:
+  - type: Armor  # backmen: armor coverage
+    coverage:
+    - Foot
   - type: SlotBlock # Backmen
     slots: [socks]
   # backmen edit start

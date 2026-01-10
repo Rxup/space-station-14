@@ -82,13 +82,6 @@ public sealed partial class CCVars
     public static readonly CVarDef<int> GhostRespawnMaxPlayers =
         CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
 
-    /*
-     * Immersion
-     */
-
-    public static readonly CVarDef<bool> ImmersiveEnabled =
-        CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
-
     /// <summary>
     /// Default volume setting of the boombox audio
     /// </summary>

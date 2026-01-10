@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage.Components;
+﻿using Content.Shared.Backmen.Targeting;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -20,7 +21,7 @@ public sealed partial class EvenHealthChangeEntityEffectSystem : EntityEffectSys
     {
         foreach (var (group, amount) in args.Effect.Damage)
         {
-            _damageable.HealEvenly(entity.AsNullable(), amount * args.Scale, group);
+            _damageable.HealEvenly(entity.AsNullable(), amount * args.Scale, group, targetPart: args.Effect.TargetPart);
         }
     }
 }
@@ -39,6 +40,9 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
     /// </summary>
     [DataField]
     public bool IgnoreResistances = true;
+
+    [DataField]
+    public TargetBodyPart TargetPart = TargetBodyPart.All; // backmen
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
@@ -80,9 +84,15 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
         }
 
         var healsordeals = heals ? deals ? "both" : "heals" : deals ? "deals" : "none";
+
+        // start-backmen
+        var targetPartText = SharedTargetingSystem.FormatTargetBodyPartForGuidebook(TargetPart);
+
         return Loc.GetString("entity-effect-guidebook-even-health-change",
             ("chance", Probability),
             ("changes", ContentLocalizationManager.FormatList(damages)),
-            ("healsordeals", healsordeals));
+            ("healsordeals", healsordeals),
+            ("targetPart", targetPartText ?? "All"));
+        // end-backmen
     }
 }

@@ -112,14 +112,24 @@
   - type: HTN
     planCooldown: 10
     blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
       IdleRange: !type:Single
         10
       IdleTime: !type:Single
         2.0
       MinimumIdleTime: !type:Single
         1.0
+      VisionRadius: !type:Single
+        16
       AggroVisionRadius: !type:Single
-        30.0
+        20
       RangedRange: !type:Single
         15.0
     rootTask:
@@ -149,9 +159,9 @@
   - tasks:
     - !type:HTNCompoundTask
       task: DrainPsionicCompound
-  - tasks:
-    - !type:HTNCompoundTask
-      task: WispIdleCompound
+  #- tasks:
+  #  - !type:HTNCompoundTask
+  #    task: IdleCompound
 
 - type: htnCompound
   id: WispRangedCombatCompound
@@ -192,7 +202,7 @@
         removeKeyOnFinish: false
         targetKey: TargetCoordinates
         pathfindKey: TargetPathfind
-        stopOnLineOfSight: true
+        stopOnLineOfSight: false
         rangeKey: MeleeRange
 
     - !type:HTNPrimitiveTask
@@ -208,7 +218,7 @@
       services:
       - !type:UtilityService
         id: RangedService
-        proto: NearbyGunTargets
+        proto: NearbyGunWispTargets
         key: Target
 
 - type: utilityQuery
@@ -230,7 +240,23 @@
   - !type:TargetHealthCon
     curve: !type:PresetCurve
       preset: TargetHealth
-  - !type:TargetAccessibleCon
-    curve: !type:BoolCurve
   - !type:TargetInLOSOrCurrentCon
     curve: !type:BoolCurve
+
+- type: htnCompound
+  id: DrainPsionicCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:PickDrainTargetOperator
+        targetKey: TargetCoordinates
+        drainKey: DrainTarget
+        rangeKey: RangedRange
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        shutdownState: TaskFinished
+        targetKey: TargetCoordinates
+        pathfindInPlanning: false
+    - !type:HTNPrimitiveTask
+      operator: !type:DrainOperator
+        drainKey: DrainTarget

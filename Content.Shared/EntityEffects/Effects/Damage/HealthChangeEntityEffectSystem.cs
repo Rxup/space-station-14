@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage;
+﻿using Content.Shared.Backmen.Targeting;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -26,8 +27,12 @@ public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<
         _damageable.TryChangeDamage(
                 entity.AsNullable(),
                 damageSpec,
+                out _,
                 args.Effect.IgnoreResistances,
-                interruptsDoAfters: false);
+                interruptsDoAfters: false,
+                ignoreGlobalModifiers: false,
+                partMultiplier: 1.00f,
+                targetPart: args.Effect.TargetPart); // backmen
     }
 }
 
@@ -42,6 +47,9 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
 
     [DataField]
     public bool IgnoreResistances = true;
+
+    [DataField]
+    public TargetBodyPart TargetPart = TargetBodyPart.All; // backmen
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         {
@@ -85,9 +93,14 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
 
             var healsordeals = heals ? (deals ? "both" : "heals") : (deals ? "deals" : "none");
 
+            // start-backmen
+            var targetPartText = SharedTargetingSystem.FormatTargetBodyPartForGuidebook(TargetPart);
+
             return Loc.GetString("entity-effect-guidebook-health-change",
                 ("chance", Probability),
                 ("changes", ContentLocalizationManager.FormatList(damages)),
-                ("healsordeals", healsordeals));
-        }
+                ("healsordeals", healsordeals),
+                ("targetPart", targetPartText ?? "All"));
+            // end-backmen
+    }
 }

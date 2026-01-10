@@ -156,6 +156,8 @@ public sealed partial class DamageableSystem
         if (before.Cancelled)
             return damageDone;
 
+        damage *= partMultiplier; // backmen
+
         // Apply resistances
         if (!ignoreResistances)
         {
@@ -178,7 +180,6 @@ public sealed partial class DamageableSystem
         if (!ignoreGlobalModifiers)
         {
             damage = ApplyUniversalAllModifiers(damage);
-            damage *= partMultiplier; // backmen
         }
 
         // backmen edit start
@@ -224,11 +225,15 @@ public sealed partial class DamageableSystem
     /// <param name="amount">how much to heal. value has to be negative to heal</param>
     /// <param name="group">from which group to heal. if null, heal from all groups</param>
     /// <param name="origin">who did the healing</param>
+    /// <param name="partMultiplier"></param>
+    /// <param name="targetPart"></param>
     public DamageSpecifier HealEvenly(
         Entity<DamageableComponent?> ent,
         FixedPoint2 amount,
         ProtoId<DamageGroupPrototype>? group = null,
-        EntityUid? origin = null)
+        EntityUid? origin = null,
+        float partMultiplier = 1.00f, // backmen
+        TargetBodyPart? targetPart = null) // backmen
     {
         var damageChange = new DamageSpecifier();
 
@@ -237,7 +242,7 @@ public sealed partial class DamageableSystem
 
         // Get our total damage, or heal if we're below a certain amount.
         if (!TryGetDamageGreaterThan((ent, ent.Comp), -amount, out var damage, group))
-            return ChangeDamage(ent, -damage, true, false, origin);
+            return ChangeDamage(ent, -damage, true, false, origin, partMultiplier: partMultiplier, targetPart: targetPart);  // backmen
 
         // make sure damageChange has the same damage types as damage
         damageChange.DamageDict.EnsureCapacity(damage.DamageDict.Count);
@@ -283,7 +288,7 @@ public sealed partial class DamageableSystem
             }
         }
 
-        return ChangeDamage(ent, damageChange, true, false, origin);
+        return ChangeDamage(ent, damageChange, true, false, origin, partMultiplier: partMultiplier, targetPart: targetPart); // backmen
     }
 
     /// <summary>
@@ -299,7 +304,9 @@ public sealed partial class DamageableSystem
         Entity<DamageableComponent?> ent,
         FixedPoint2 amount,
         ProtoId<DamageGroupPrototype>? group = null,
-        EntityUid? origin = null)
+        EntityUid? origin = null,
+        float partMultiplier = 1.00f, // backmen
+        TargetBodyPart? targetPart = null) // backmen
     {
         var damageChange = new DamageSpecifier();
 
@@ -308,7 +315,7 @@ public sealed partial class DamageableSystem
 
         // Get our total damage, or heal if we're below a certain amount.
         if (!TryGetDamageGreaterThan((ent, ent.Comp), -amount, out var damage, group))
-            return ChangeDamage(ent, -damage, true, false, origin);
+            return ChangeDamage(ent, -damage, true, false, origin, ignoreGlobalModifiers: false, partMultiplier: partMultiplier, targetPart: targetPart); // backmen
 
         // make sure damageChange has the same damage types as damageEntity
         damageChange.DamageDict.EnsureCapacity(damage.DamageDict.Count);
@@ -320,7 +327,7 @@ public sealed partial class DamageableSystem
             damageChange.DamageDict.Add(type, value / total * amount);
         }
 
-        return ChangeDamage(ent, damageChange, true, false, origin);
+        return ChangeDamage(ent, damageChange, true, false, origin, ignoreGlobalModifiers: false, partMultiplier: partMultiplier, targetPart: targetPart); // backmen
     }
 
     /// <summary>

@@ -12,6 +12,7 @@
     - id: CargoShuttleConsoleCircuitboard
     - id: SalvageMagnetMachineCircuitboard
     - id: SalvageJobBoardComputerCircuitboard
+    - id: LavalandShuttleConsoleCircuitboard
     # backmen edit end
     - id: CigPackGreen
       prob: 0.50
@@ -237,6 +238,8 @@
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackMetempsychoticMachine # backmen edit
     - id: MedicalBiofabMachineBoard # backmen edit
+    - id: DiagnoserMachineCircuitboard # backmen edit
+    - id: VaccinatorMachineCircuitboard # backmen edit
     - id: MedTekCartridge
 
 # Hardsuit table, used for suit storage as well

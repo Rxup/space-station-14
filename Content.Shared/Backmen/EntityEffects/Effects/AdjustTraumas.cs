@@ -305,5 +305,23 @@ public sealed partial class AdjustTraumas : EntityEffectBase<AdjustTraumas>
     [DataField]
     public bool MustHaveAllComponents;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    {
+        var traumaTypeName = TraumaType switch
+        {
+            TraumaType.BoneDamage => "trauma-type-bone-damage",
+            TraumaType.OrganDamage => "trauma-type-organ-damage",
+            TraumaType.VeinsDamage => "trauma-type-veins-damage",
+            TraumaType.NerveDamage => "trauma-type-nerve-damage",
+            TraumaType.Dismemberment => "trauma-type-dismemberment",
+            _ => "trauma-type-unknown"
+        };
+
+        return Loc.GetString(
+            "entity-effect-guidebook-adjust-traumas",
+            ("chance", Probability),
+            ("deltasign", MathF.Sign(Amount.Float())),
+            ("amount", MathF.Abs(Amount.Float())),
+            ("traumaType", Loc.GetString(traumaTypeName)));
+    }
 }

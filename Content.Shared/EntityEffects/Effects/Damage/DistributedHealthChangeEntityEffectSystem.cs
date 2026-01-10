@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage.Components;
+﻿using Content.Shared.Backmen.Targeting;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -21,7 +22,13 @@ public sealed partial class DistributedHealthChangeEntityEffectSystem : EntityEf
     {
         foreach (var (group, amount) in args.Effect.Damage)
         {
-            _damageable.HealDistributed(entity.AsNullable(), amount * args.Scale, group);
+            _damageable.HealDistributed(
+                entity.AsNullable(),
+                amount * args.Scale,
+                group,
+                origin: null,
+                partMultiplier: 1.00f,
+                targetPart: args.Effect.TargetPart); // backmen
         }
     }
 }
@@ -40,6 +47,9 @@ public sealed partial class DistributedHealthChange : EntityEffectBase<Distribut
     /// </summary>
     [DataField]
     public bool IgnoreResistances = true;
+
+    [DataField]
+    public TargetBodyPart TargetPart = TargetBodyPart.All; // backmen
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
@@ -83,9 +93,14 @@ public sealed partial class DistributedHealthChange : EntityEffectBase<Distribut
         // We use health change since in practice it's not even and distributed is a mouthful.
         // Also because healing groups not using even or distributed healing should be kill.
         var healsordeals = heals ? deals ? "both" : "heals" : deals ? "deals" : "none";
+
+        // start-backmen
+        var targetPartText = SharedTargetingSystem.FormatTargetBodyPartForGuidebook(TargetPart);
+
         return Loc.GetString("entity-effect-guidebook-health-change",
             ("chance", Probability),
             ("changes", ContentLocalizationManager.FormatList(damages)),
-            ("healsordeals", healsordeals));
+            ("healsordeals", healsordeals),
+            ("targetPart", targetPartText  ?? "All")); // end-backmen
     }
 }

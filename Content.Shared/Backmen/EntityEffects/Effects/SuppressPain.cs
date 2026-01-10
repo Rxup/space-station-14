@@ -68,5 +68,10 @@ public sealed partial class SuppressPain : EntityEffectBase<SuppressPain>
     public string ModifierIdentifier = "PainSuppressant";
 
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("reagent-effect-guidebook-suppress-pain");
+        => Loc.GetString(
+            "entity-effect-guidebook-suppress-pain",
+            ("chance", Probability),
+            ("amount", Amount.Float()),
+            ("time", Time.TotalSeconds),
+            ("maximumSuppression", MaximumSuppression.Float()));
 }

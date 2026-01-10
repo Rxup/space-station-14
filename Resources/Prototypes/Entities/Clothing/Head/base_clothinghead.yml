@@ -178,6 +178,8 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+    coverage: # backmen: armor coverage
+    - Head
   - type: GroupExamine
   - type: IngestionBlocker
   - type: Tag

@@ -87,23 +87,6 @@ public sealed partial class DamageableSystem : EntitySystem
         RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin));
     }
 
-    public sealed class DamageModifyEvent : EntityEventArgs, IInventoryRelayEvent
-    {
-        public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-        public readonly DamageSpecifier OriginalDamage;
-        public DamageSpecifier Damage;
-        public EntityUid? Origin;
-        public readonly TargetBodyPart? TargetPart;
-
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, TargetBodyPart? targetPart = null)
-        {
-            OriginalDamage = damage;
-            Damage = damage;
-            Origin = origin;
-            TargetPart = targetPart;
-        }
-    }
-
     public void SetDamageModifierSetId(EntityUid uid, string? damageModifierSetId, DamageableComponent? comp = null)
     {
         if (!_damageableQuery.Resolve(uid, ref comp))

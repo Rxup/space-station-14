@@ -49,13 +49,19 @@ public abstract class SharedArmorSystem : EntitySystem
 
     private void OnDamageModify(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
     {
+        var (partType, _) = _body.ConvertTargetBodyPart(args.Args.TargetPart);
+
+        // Check if this armor protects the targeted body part
+        if (!component.ArmorCoverage.Contains(partType))
+        {
+            return;
+        }
+
+        // If this is a mask and it's toggled (pulled down), it doesn't protect
         if (TryComp<MaskComponent>(uid, out var mask) && mask.IsToggled)
             return;
 
-        var (partType, _) = _body.ConvertTargetBodyPart(args.Args.TargetPart);
-        
-        if (component.ArmorCoverage.Contains(partType))
-            args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
+        args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
     }
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,

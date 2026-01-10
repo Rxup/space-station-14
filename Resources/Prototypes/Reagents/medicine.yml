@@ -150,6 +150,13 @@
       - !type:EvenHealthChange
         damage:
           Brute: -1.5
+      - !type:AdjustTraumas  # backmen: лечение костных травм (ушибы, переломы)
+        # backmen: Bicaridine — классический brute-хилер, логично дать ему лечение BoneDamage
+        traumaType: BoneDamage
+        amount: -1
+        identifier: "Bicaridine"
+        targetBodyParts: true
+        targetOrgans: false
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -689,6 +696,13 @@
             Brute: -3.5
           types:
             Asphyxiation: -2.5
+      - !type:AdjustTraumas  # backmen: очень сильный brute-хил → добавляем лечение костей
+        # backmen: Один из самых мощных brute-лекарей, логично усилить его роль в травмах
+        traumaType: BoneDamage
+        amount: -1.5
+        identifier: "PolypyryliumOligomers"
+        targetBodyParts: true
+        targetOrgans: false
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -877,10 +891,27 @@
           groups:
             Brute: -1
           types:
-            Poison: -0.5 ##Should be about what it was when it healed the toxin group
+            Poison: -0.5
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
+      - !type:AdjustTraumas  # backmen: универсальный ранний мед → слабое лечение всех видов травм
+        # backmen: Tricordrazine — "трикорд" лечит понемногу всё, поэтому слабое Bone и Organ
+        traumaType: BoneDamage
+        amount: -0.6
+        identifier: "Tricordrazine"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas  # backmen
+        traumaType: OrganDamage
+        amount: -0.5
+        identifier: "Tricordrazine"
+        targetBodyParts: false
+        targetComponents:
+        - type: Lung
+        - type: Liver
+        - type: Heart
+        - type: Stomach
 
 - type: reagent
   id: Lipozine
@@ -920,6 +951,26 @@
           Toxin: -2
           Airloss: -2
           Brute: -2
+      - !type:AdjustTraumas  # backmen: омнизин лечит буквально всё → сильное лечение травм
+        # backmen: Самый универсальный и редкий мед, должен быть одним из лучших в лечении Bone/Organ
+        traumaType: BoneDamage
+        amount: -1.8
+        identifier: "Omnizine"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas  # backmen
+        traumaType: OrganDamage
+        amount: -1.2
+        identifier: "Omnizine"
+        targetBodyParts: false
+        targetComponents:
+        - type: Lung
+        - type: Ears
+        - type: Liver
+        - type: Heart
+        - type: Stomach
+        - type: Brain
+        - type: Eyes
 
 - type: reagent
   id: Ultravasculine
@@ -1206,7 +1257,14 @@
       - !type:HealthChange
         damage:
           types:
-            Blunt: -2.25 # 9 per u
+            Blunt: -2.25   # 9 per u
+      - !type:AdjustTraumas  # backmen: основной реагент от тупого урона → должен лечить ушибы
+        # backmen: Название и специализация на Blunt-уроне идеально подходят для BoneDamage
+        traumaType: BoneDamage
+        amount: -1.2
+        identifier: "Bruizine"
+        targetBodyParts: true
+        targetOrgans: false
       - !type:SatiateHunger
         factor: -1
       - !type:HealthChange
@@ -1216,7 +1274,7 @@
           min: 10.5
         damage:
           types:
-            Poison: 2.5 # 10 per u
+            Poison: 2.5   # 10 per u
 
 - type: reagent
   id: Holywater

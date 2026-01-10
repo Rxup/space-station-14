@@ -131,7 +131,6 @@
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
-  - type: Telescope # backmen: immersive
   - type: SpeedModifiedOnWield
     walkModifier: 0.25
     sprintModifier: 0.25

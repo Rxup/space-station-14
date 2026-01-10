@@ -171,7 +171,7 @@ public sealed partial class DamageableSystem
             damage.DamageDict.Add(typeId, damageValue);
         }
 
-        ChangeDamage(ent.Owner, damage, interruptsDoAfters: false, origin: args.Origin);
+        ChangeDamage(ent.Owner, damage, interruptsDoAfters: false, origin: args.Origin, targetPart: TargetBodyPart.All);
     }
 
     private void OnRejuvenate(Entity<DamageableComponent> ent, ref RejuvenateEvent args)
