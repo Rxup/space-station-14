@@ -6,6 +6,10 @@
   save: false
   abstract: true
   components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        ArmorPiercing: 0.10
   - type: LanguageSpeaker #backmen: languages
     currentLanguage: Binary
   - type: LanguageKnowledge #backmen: languages
@@ -54,8 +58,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+      300: Critical
+      600: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -185,7 +189,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 275
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -194,7 +198,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 500
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -457,8 +461,8 @@
   - type: MobThresholds
     thresholds: # slightly tankier than a normal borg
       0: Alive
-      125: Critical
-      375: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+      400: Critical
+      800: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
   - type: EmagSiliconLaw # should xenoborgs be emagable?
     stunTime: 5
   - type: SiliconLawProvider
@@ -511,7 +515,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 90
+        damage: 375
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -520,7 +524,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 375
+        damage: 700
       behaviors:
       - !type:PlaySoundBehavior
         sound:
