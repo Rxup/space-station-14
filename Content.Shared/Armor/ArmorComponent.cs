@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Part;
@@ -14,7 +15,7 @@ namespace Content.Shared.Armor;
 /// Used for clothing that reduces damage when worn.
 /// </summary>
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedArmorSystem), typeof(TraumaSystem))]
-public sealed partial class ArmorComponent : Component
+public sealed partial class ArmorComponent : Robust.Shared.GameObjects.Component
 {
     /// <summary>
     /// The damage reduction
@@ -49,7 +50,7 @@ public sealed partial class ArmorComponent : Component
     public bool ArmourModifiersHidden = false;
 
     // thankfully all the armor in the game is symmetrical.
-    [DataField("coverage")]
+    [DataField("coverage"), AlwaysPushInheritance]
     public List<BodyPartType> ArmorCoverage = new();
 
     [DataField]

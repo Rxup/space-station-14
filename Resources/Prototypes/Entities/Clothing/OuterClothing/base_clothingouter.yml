@@ -3,6 +3,10 @@
   parent: Clothing
   id: ClothingOuterBase
   components:
+  - type: Armor # backmen: armor coverage
+    coverage:
+    - Chest
+    - Groin
   - type: Clothing
     slots:
     - outerClothing
@@ -128,6 +132,13 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+    coverage: # backmen: armor coverage
+    - Chest
+    - Groin
+    - Arm
+    - Hand
+    - Leg
+    - Foot
   - type: ToggleableClothing
     slot: head
   - type: ContainerContainer

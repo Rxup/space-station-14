@@ -492,6 +492,14 @@
   name: chief engineer's hardsuit helmet
   description: Special hardsuit helmet, made for the chief engineer of the station.
   components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.90
+        Radiation: 0
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
     layers:

@@ -54,7 +54,6 @@ public abstract class SharedArmorSystem : EntitySystem
         // Check if this armor protects the targeted body part
         if (!component.ArmorCoverage.Contains(partType))
         {
-            Log.Debug($"{ToPrettyString(uid)} not cover {args.Args.TargetPart}");
             return;
         }
 
@@ -63,7 +62,6 @@ public abstract class SharedArmorSystem : EntitySystem
             return;
 
         args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers);
-        Log.Debug($"{ToPrettyString(uid)} do reduce damage on {args.Args.TargetPart}");
     }
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
