@@ -294,4 +294,3 @@
     delay: 2.8
   - type: UseDelayOnShoot
   - type: GunRequiresWield
-  - type: Telescope # Ataraxia
