@@ -226,10 +226,6 @@
   query:
   - !type:NearbyHostilesQuery
   considerations:
-  - !type:TargetHasComponentCon
-    component: Psionic
-    curve: !type:BoolCurve
-    weight: 100.0  # Абсолютный приорите
   - !type:TargetIsAliveOrSoftCritCon
     curve: !type:BoolCurve
   - !type:TargetIsCritCon

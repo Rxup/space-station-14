@@ -98,8 +98,7 @@ entity-effect-guidebook-health-change =
                     *[both] modify health by
                  }
     } { $changes } { $targetPart ->
-        [""] 
-        *[other] on {$targetPart}
+       *[other]  on {$targetPart}
     }
 
 entity-effect-guidebook-even-health-change =
@@ -115,8 +114,7 @@ entity-effect-guidebook-even-health-change =
             *[both] evenly modify health by
         }
     } { $changes } { $targetPart ->
-        [""] 
-        *[other] on {$targetPart}
+       *[other]  on {$targetPart}
     }
 
 entity-effect-guidebook-status-effect-old =
