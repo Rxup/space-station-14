@@ -110,7 +110,6 @@
   - type: Wieldable
   - type: UseDelay
     delay: 2.5
-  - type: Telescope # backmen: immersive
 
 - type: entity
   name: pulse rifle
