@@ -87,13 +87,15 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
     private void OnEnd(EntityUid uid, PsionicInvisibilityUsedComponent component, ComponentShutdown args)
     {
-        if (Terminating(uid))
+        if (TerminatingOrDeleted(uid))
             return;
 
-        RemComp<PsionicallyInvisibleComponent>(uid);
+        RemCompDeferred<PsionicallyInvisibleComponent>(uid);
+
         if(!component.Pacify)
             RemComp<PacifiedComponent>(uid);
-        RemComp<StealthComponent>(uid);
+
+        RemCompDeferred<StealthComponent>(uid);
         _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
 
         if (TryComp<PsionicInvisibilityPowerComponent>(uid, out var invisibilityPowerComponent))
@@ -110,7 +112,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         if (!args.DamageIncreased)
             return;
 
-        ToggleInvisibility(uid);
+        RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
     }
 
     private void OnWoundDamage(EntityUid uid, PsionicInvisibilityUsedComponent component, WoundsChangedEvent args)
@@ -118,7 +120,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         if (!args.DamageIncreased)
             return;
 
-        ToggleInvisibility(uid);
+        RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
     }
 
     public void ToggleInvisibility(EntityUid uid)
@@ -129,7 +131,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         }
         else
         {
-            RemComp<PsionicInvisibilityUsedComponent>(uid);
+            RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
         }
     }
 }
