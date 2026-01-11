@@ -415,6 +415,14 @@
       ejectSound: null
       insertSound: null
   - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - GlimmerMonitorCartridge # backmen: psionic
+      - BankCartridge # backmen
     cartridgeSlot:
       ejectSound: null
       insertSound: null
@@ -842,6 +850,13 @@
     state: pda-rd
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - GlimmerMonitorCartridge # backmen: psionic
+      - BankCartridge # backmen
 
 - type: entity
   parent: BasePDA
