@@ -192,7 +192,7 @@ public sealed partial class DamageableSystem
         if (specialHandlerEvent.Handled)
         {
             if(!specialHandlerEvent.Damage.Empty)
-                OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin);
+                OnEntityDamageChanged((ent, ent.Comp), specialHandlerEvent.Damage, interruptsDoAfters, origin);
             return specialHandlerEvent.Damage;
         }
         // backmen edit end
