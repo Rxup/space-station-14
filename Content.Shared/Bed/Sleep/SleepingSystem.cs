@@ -60,7 +60,6 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, SleepActionEvent>(OnSleepAction);
 
         SubscribeLocalEvent<SleepingComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<SleepingComponent, WoundsDeltaChanged>(OnWoundsChanged); // backmen edit
         SubscribeLocalEvent<SleepingComponent, EntityZombifiedEvent>(OnZombified);
         SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<SleepingComponent, ComponentInit>(OnCompInit);
@@ -260,20 +259,6 @@ public sealed partial class SleepingSystem : EntitySystem
         if (args.DamageDelta.GetTotal() >= ent.Comp.WakeThreshold)
             TryWaking((ent, ent.Comp));
     }
-
-    // backmen edit start
-    /// <summary>
-    /// Wake up on taking an instance of damage at least the value of WakeThreshold.
-    /// </summary>
-    private void OnWoundsChanged(Entity<SleepingComponent> ent, ref WoundsDeltaChanged args)
-    {
-        if (!args.DamageIncreased)
-            return;
-
-        if (args.TotalDelta >= ent.Comp.WakeThreshold)
-            TryWaking((ent, ent.Comp));
-    }
-    // backmen edit end
 
     /// <summary>
     /// Wake up on being zombified.

@@ -86,7 +86,6 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<ExtinguishOnInteractComponent, ActivateInWorldEvent>(OnExtinguishActivateInWorld);
 
             SubscribeLocalEvent<IgniteOnHeatDamageComponent, DamageChangedEvent>(OnDamageChanged);
-            SubscribeLocalEvent<IgniteOnHeatDamageComponent, WoundsDeltaChanged>(OnWoundsChanged);
         }
 
         private void OnExtinguishEvent(Entity<FlammableComponent> ent, ref ExtinguishEvent args)
@@ -377,25 +376,6 @@ namespace Content.Server.Atmos.EntitySystems
             }
 
 
-        }
-
-        private void OnWoundsChanged(EntityUid uid, IgniteOnHeatDamageComponent component, WoundsDeltaChanged args)
-        {
-            if (!TryComp<FlammableComponent>(uid, out var flammable))
-                return;
-
-            foreach (var woundEnt in args.WoundsDelta)
-            {
-                if (woundEnt.Key.Comp.DamageType != "Heat")
-                    continue;
-
-                if (woundEnt.Value <= component.Threshold)
-                    continue;
-
-                flammable.FireStacks += component.FireStacks;
-                Ignite(uid, uid, flammable);
-                break;
-            }
         }
 
         public void Resist(EntityUid uid,

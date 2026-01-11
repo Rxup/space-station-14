@@ -17,6 +17,9 @@
       - !type:ModifyStatusEffect
         effectProto: StatusEffectWoozy
         time: 20.0
+      - !type:ModifyStatusEffect # backmen
+        effectProto: StatusEffectPsionicallyInsulated
+        type: Update
 
 - type: reagent
   id: Dylovene

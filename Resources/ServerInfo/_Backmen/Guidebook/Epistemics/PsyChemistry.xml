@@ -4,5 +4,7 @@
 <GuideReagentEmbed Reagent="SpaceDrugs"/>
 <GuideReagentEmbed Reagent="LotophagoiOil"/>
 <GuideReagentEmbed Reagent="PsionicRegenerationEssence"/>
+<GuideReagentEmbed Reagent="Ash"/>
+<GuideReagentEmbed Reagent="Cryptobiolin"/>
 
 </Document>

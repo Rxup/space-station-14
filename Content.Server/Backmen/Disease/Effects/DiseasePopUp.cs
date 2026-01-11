@@ -15,7 +15,7 @@ namespace Content.Server.Backmen.Disease.Effects;
 public sealed partial class DiseasePopUp : DiseaseEffect
 {
     [DataField("message")]
-    public string Message = "disease-sick-generic";
+    public LocId Message = "disease-sick-generic";
 
     [DataField("type")]
     public PopupRecipients Type = PopupRecipients.Local;

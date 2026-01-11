@@ -190,7 +190,11 @@ public sealed partial class DamageableSystem
         RaiseLocalEvent(ent, ref specialHandlerEvent);
 
         if (specialHandlerEvent.Handled)
+        {
+            if(!specialHandlerEvent.Damage.Empty)
+                OnEntityDamageChanged((ent, ent.Comp), specialHandlerEvent.Damage, interruptsDoAfters, origin);
             return specialHandlerEvent.Damage;
+        }
         // backmen edit end
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);

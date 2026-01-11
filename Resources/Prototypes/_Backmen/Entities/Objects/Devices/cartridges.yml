@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: BasePDACartridge
   id: BankCartridge
   name: bank cartridge
   description: A program for managing bank account
@@ -21,7 +21,7 @@
     - type: BankCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: BasePDACartridge
   id: GlimmerMonitorCartridge
   name: glimmer monitor cartridge
   description: A cartridge that keeps track of glimmer.

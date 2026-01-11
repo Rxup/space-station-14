@@ -16,8 +16,8 @@ public sealed partial class DiseaseSnough : DiseaseEffect
     /// <summary>
     /// Emote to play when snoughing
     /// </summary>
-    [DataField("emote", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EmotePrototype>))]
-    public string EmoteId = String.Empty;
+    [DataField("emote", required: true)]
+    public ProtoId<EmotePrototype> EmoteId = default!;
 
     /// <summary>
     /// Whether to spread the disease through the air
