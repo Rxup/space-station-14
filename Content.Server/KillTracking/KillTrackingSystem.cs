@@ -19,7 +19,6 @@ public sealed class KillTrackingSystem : EntitySystem
     {
         // Add damage to LifetimeDamage before MobStateChangedEvent gets raised
         SubscribeLocalEvent<KillTrackerComponent, DamageChangedEvent>(OnDamageChanged, before: [ typeof(MobThresholdSystem) ]);
-        SubscribeLocalEvent<KillTrackerComponent, WoundsDeltaChanged>(OnWoundsChanged, before: [ typeof(MobThresholdSystem) ]); // backmen edit
         SubscribeLocalEvent<KillTrackerComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
@@ -42,25 +41,6 @@ public sealed class KillTrackingSystem : EntitySystem
         var damage = component.LifetimeDamage.GetValueOrDefault(source);
         component.LifetimeDamage[source] = damage + args.DamageDelta.GetTotal();
     }
-
-    // backmen edit start
-    private void OnWoundsChanged(EntityUid uid, KillTrackerComponent component, WoundsDeltaChanged args)
-    {
-        if (!args.DamageIncreased)
-        {
-            foreach (var key in component.LifetimeDamage.Keys)
-            {
-                component.LifetimeDamage[key] -= args.TotalDelta;
-            }
-
-            return;
-        }
-
-        var source = GetKillSource(args.Origin);
-        var damage = component.LifetimeDamage.GetValueOrDefault(source);
-        component.LifetimeDamage[source] = damage + args.TotalDelta;
-    }
-    // backmen edit end
 
     private void OnMobStateChanged(EntityUid uid, KillTrackerComponent component, MobStateChangedEvent args)
     {

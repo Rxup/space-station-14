@@ -33,7 +33,6 @@ public sealed class DamageForceSaySystem : EntitySystem
         // so that we don't accidentally raise one for damage before one for mobstate
         // (this won't double raise, because of the cooldown)
         SubscribeLocalEvent<DamageForceSayComponent, DamageChangedEvent>(OnDamageChanged, after: new []{ typeof(MobThresholdSystem)} );
-        SubscribeLocalEvent<DamageForceSayComponent, WoundsDeltaChanged>(OnWoundsChanged, after: new []{ typeof(MobThresholdSystem)} ); // Backmen edit
         SubscribeLocalEvent<DamageForceSayComponent, SleepStateChangedEvent>(OnSleep);
     }
 
@@ -121,31 +120,6 @@ public sealed class DamageForceSaySystem : EntitySystem
 
         TryForceSay(uid, component);
     }
-
-    // Backmen edit start
-    private void OnWoundsChanged(EntityUid uid, DamageForceSayComponent component, WoundsDeltaChanged args)
-    {
-        if (args.TotalDelta < component.DamageThreshold)
-            return;
-
-        if (component.ValidDamageGroups != null)
-        {
-            var totalApplicableDamage = FixedPoint2.Zero;
-            foreach (var (group, value) in args.WoundsDelta)
-            {
-                if (group.Comp.DamageGroup != null && !component.ValidDamageGroups.Contains(group.Comp.DamageGroup.ID))
-                    continue;
-
-                totalApplicableDamage += value;
-            }
-
-            if (totalApplicableDamage < component.DamageThreshold)
-                return;
-        }
-
-        TryForceSay(uid, component);
-    }
-    // Backmen edit end
 
     private void OnMobStateChanged(EntityUid uid, DamageForceSayComponent component, MobStateChangedEvent args)
     {
