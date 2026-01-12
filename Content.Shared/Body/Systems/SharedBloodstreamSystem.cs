@@ -4,6 +4,7 @@ using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
@@ -53,7 +54,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
     private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
     private EntityQuery<BleedInflicterComponent> _bleedsQuery;
-    private EntityQuery<WoundableComponent> _woundableQuery;
     // backmen edit end
 
     public override void Initialize()
@@ -74,7 +74,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         // backmen edit start
         _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
         _bleedsQuery = GetEntityQuery<BleedInflicterComponent>();
-        _woundableQuery = GetEntityQuery<WoundableComponent>();
         // backmen edit end
     }
 
@@ -214,7 +213,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             return;
 
         var missingBlood = 1 - (bloodAmount - lethalBloodlossPoint) / denominator;
-        missingBlood = Math.Clamp(missingBlood, 0f, 1f);
+        missingBlood = FixedPoint2.Clamp(missingBlood, 0f, 1f);
         var consciousnessDamage = -consciousness.Cap * missingBlood;
 
         if (!_consciousness.SetConsciousnessModifier(
