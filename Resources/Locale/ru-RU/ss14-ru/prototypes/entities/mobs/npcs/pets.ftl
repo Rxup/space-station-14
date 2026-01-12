@@ -54,5 +54,5 @@ ent-MobCrabAtmos = Тропико
     .desc = Благородный и непоколебимый защитник Атмосии. Viva!
 ent-MobCatEsperon = Есперон
     .desc = Космический кот??! Найдено в секторе "Бекман"
-ent-MobPollyParrot = Polly the parrot
-    .desc = An expert in quantum cracker theory
+ent-MobPollyParrot = Попугай Полли
+    .desc = Эксперт по квантовой теории крекеров

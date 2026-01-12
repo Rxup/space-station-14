@@ -138,7 +138,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                 msg = args.LanguageObfuscatedChatMsg;
             // end-backmen: language
 
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel); // backmen
             _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
         }
     }

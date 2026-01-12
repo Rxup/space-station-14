@@ -40,6 +40,15 @@
   components:
   - type: SpriteFade
   - type: Clickable
+  - type: LanguageSpeaker
+    currentLanguage: RootSpeak
+  - type: TTS # Corvax-TTS
+    voice: Aidar
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - RootSpeak
+    understands:
+    - RootSpeak
   - type: Sprite
     noRot: true
     sprite: Objects/Decoration/Flora/flora_trees.rsi
