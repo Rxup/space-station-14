@@ -52,8 +52,8 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
 
-    private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
-    private EntityQuery<BleedInflicterComponent> _bleedsQuery;
+    protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
+    protected EntityQuery<BleedInflicterComponent> BleedsQuery;
     // backmen edit end
 
     public override void Initialize()
@@ -72,8 +72,8 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, MetabolismExclusionEvent>(OnMetabolismExclusion);
 
         // backmen edit start
-        _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
-        _bleedsQuery = GetEntityQuery<BleedInflicterComponent>();
+        ConsciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
+        BleedsQuery = GetEntityQuery<BleedInflicterComponent>();
         // backmen edit end
     }
 
@@ -138,7 +138,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent>();
         while (bleedsQuery.MoveNext(out var ent, out var bleeds))
         {
-            var canBleed = CanWoundBleed(ent, bleeds) && bleeds.BleedingAmount > 0;
+            var canBleed = CanWoundBleed((ent, bleeds)) && bleeds.BleedingAmount > 0;
             if (bleeds.IsBleeding != canBleed)
             {
                 bleeds.IsBleeding = canBleed;
@@ -149,13 +149,14 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                 continue;
 
             var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
-            var currentTime = bleeds.ScalingFinishesAt - _timing.CurTime;
+            var remainingTime = bleeds.ScalingFinishesAt - _timing.CurTime;
 
-            if (totalTime <= currentTime || bleeds.Scaling >= bleeds.ScalingLimit)
+            // Skip if scaling is complete, already at limit, or totalTime is zero/invalid
+            if (totalTime <= TimeSpan.Zero || remainingTime <= TimeSpan.Zero || bleeds.Scaling >= bleeds.ScalingLimit)
                 continue;
 
             var newBleeds = FixedPoint2.Clamp(
-                bleeds.ScalingLimit * ((totalTime - currentTime) / totalTime),
+                bleeds.ScalingLimit * (remainingTime / totalTime),
                 0,
                 bleeds.ScalingLimit);
 
@@ -171,7 +172,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     /// </summary>
     private void UpdateConsciousnessBleeding(Entity<BloodstreamComponent> entity)
     {
-        if (!_consciousnessQuery.TryComp(entity.Owner, out var consciousness))
+        if (!ConsciousnessQuery.TryComp(entity.Owner, out var consciousness))
             return;
 
         if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys, consciousness))
@@ -723,24 +724,25 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         return bloodData;
     }
 
+
     // backmen edit start
+
     /// <summary>
     /// Self-explanatory
     /// </summary>
-    /// <param name="uid">Wound entity</param>
-    /// <param name="comp">Bleeds Inflicter Component </param>
+    /// <param name="ent">Wound entity</param>
     /// <returns>Returns whether if the wound can bleed</returns>
-    public bool CanWoundBleed(EntityUid uid, BleedInflicterComponent? comp = null)
+    public bool CanWoundBleed(Entity<BleedInflicterComponent?> ent)
     {
-        if (!_bleedsQuery.Resolve(uid, ref comp, logMissing: false))
+        if (!BleedsQuery.Resolve(ent, ref ent.Comp, logMissing: false))
             return false;
 
-        if (comp.BleedingModifiers.Count == 0)
+        if (ent.Comp.BleedingModifiers.Count == 0)
             return true; // No modifiers. return true
 
         var lastCanBleed = true;
         var lastPriority = 0;
-        foreach (var (_, pair) in comp.BleedingModifiers)
+        foreach (var (_, pair) in ent.Comp.BleedingModifiers)
         {
             if (pair.Priority <= lastPriority)
                 continue;
@@ -751,5 +753,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
         return lastCanBleed;
     }
+
     // backmen edit end
 }

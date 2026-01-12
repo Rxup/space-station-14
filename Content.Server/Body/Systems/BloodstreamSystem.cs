@@ -32,13 +32,6 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     // backmen edit start
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
-    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -47,9 +40,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     private float _bleedingSeverityTrade;
     private float _bleedsScalingTime;
 
-    private EntityQuery<BleedInflicterComponent> _bleedsQuery;
     private EntityQuery<WoundableComponent> _woundableQuery;
-    private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
     // backmen edit end
 
     public override void Initialize()
@@ -66,9 +57,9 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         Subs.CVar(_cfg, CCVars.BleedingSeverityTrade, value => _bleedingSeverityTrade = value, true);
         Subs.CVar(_cfg, CCVars.BleedsScalingTime, value => _bleedsScalingTime = value, true);
 
-        _bleedsQuery = GetEntityQuery<BleedInflicterComponent>();
+        BleedsQuery = GetEntityQuery<BleedInflicterComponent>();
         _woundableQuery = GetEntityQuery<WoundableComponent>();
-        _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
+        ConsciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
         // backmen edit end
     }
 
@@ -160,7 +151,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         }
         else
         {
-            if (!CanWoundBleed(uid, component)
+            if (!CanWoundBleed((uid, component))
                 && component.BleedingAmount < component.BleedingAmountRaw * component.ScalingLimit / 2)
             {
                 component.BleedingAmountRaw = 0;
@@ -215,34 +206,6 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     }
 
     /// <summary>
-    /// Self-explanatory
-    /// </summary>
-    /// <param name="uid">Wound entity</param>
-    /// <param name="comp">Bleeds Inflicter Component </param>
-    /// <returns>Returns whether if the wound can bleed</returns>
-    public bool CanWoundBleed(EntityUid uid, BleedInflicterComponent? comp = null)
-    {
-        if (!_bleedsQuery.Resolve(uid, ref comp))
-            return false;
-
-        if (comp.BleedingModifiers.Count == 0)
-            return true; // No modifiers. return true
-
-        var lastCanBleed = true;
-        var lastPriority = 0;
-        foreach (var (_, pair) in comp.BleedingModifiers)
-        {
-            if (pair.Priority <= lastPriority)
-                continue;
-
-            lastPriority = pair.Priority;
-            lastCanBleed = pair.CanBleed;
-        }
-
-        return lastCanBleed;
-    }
-
-    /// <summary>
     /// Add a bleed-ability modifier on woundable
     /// </summary>
     /// <param name="woundable">Entity uid of the woundable to apply the modifiers</param>
@@ -293,7 +256,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         bool canBleed,
         BleedInflicterComponent? comp = null)
     {
-        if (!_bleedsQuery.Resolve(uid, ref comp))
+        if (!BleedsQuery.Resolve(uid, ref comp))
             return false;
 
         if (!comp.BleedingModifiers.TryAdd(identifier, (priority, canBleed)))
@@ -345,7 +308,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         string identifier,
         BleedInflicterComponent? comp = null)
     {
-        if (!_bleedsQuery.Resolve(uid, ref comp))
+        if (!BleedsQuery.Resolve(uid, ref comp))
             return false;
 
         if (!comp.BleedingModifiers.Remove(identifier))
@@ -372,7 +335,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         int? priority,
         BleedInflicterComponent? bleeds = null)
     {
-        if (!_bleedsQuery.Resolve(wound, ref bleeds))
+        if (!BleedsQuery.Resolve(wound, ref bleeds))
             return false;
 
         if (!bleeds.BleedingModifiers.TryGetValue(identifier, out var pair))
@@ -399,7 +362,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         bool? canBleed,
         BleedInflicterComponent? bleeds = null)
     {
-        if (!_bleedsQuery.Resolve(wound, ref bleeds))
+        if (!BleedsQuery.Resolve(wound, ref bleeds))
             return false;
 
         if (!bleeds.BleedingModifiers.TryGetValue(identifier, out var pair))
