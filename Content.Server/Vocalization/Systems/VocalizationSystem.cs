@@ -139,5 +139,6 @@ public record struct TryVocalizeEvent(string? Message = null, bool Handled = fal
 /// </summary>
 /// <param name="Message">Message to send</param>
 /// <param name="Handled">Whether the message was handled by a system</param>
+/// <param name="LanguageOverride"></param>
 [ByRefEvent]
-public record struct VocalizeEvent(string Message, bool Handled = false);
+public record struct VocalizeEvent(string Message, bool Handled = false, ProtoId<LanguagePrototype>? LanguageOverride = null); //backmen

@@ -51,7 +51,7 @@
 - type: language
   id: SpaceMob
   speech:
-    fontId: Tolkiencyr
+    #fontId: Tolkiencyr
     color: "#FFA07A"
   obfuscation:
     !type:SyllableObfuscation

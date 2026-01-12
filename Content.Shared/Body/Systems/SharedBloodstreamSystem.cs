@@ -1,4 +1,11 @@
+using System.Linq;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Chemistry.Components;
@@ -40,6 +47,15 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
+    // backmen edit start
+    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
+
+    protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
+    protected EntityQuery<BleedInflicterComponent> BleedsQuery;
+    // backmen edit end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -54,6 +70,11 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, MetabolismExclusionEvent>(OnMetabolismExclusion);
+
+        // backmen edit start
+        ConsciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
+        BleedsQuery = GetEntityQuery<BleedInflicterComponent>();
+        // backmen edit end
     }
 
     public override void Update(float frameTime)
@@ -106,8 +127,112 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             {
                 TickBleed((uid, bloodstream));
             }
+
+            // backmen edit start
+            UpdateConsciousnessBleeding((uid, bloodstream));
+            // backmen edit end
+        }
+
+        // backmen edit start
+        // Update bleeding scaling for all BleedInflicterComponents
+        var bleedsQuery = EntityQueryEnumerator<BleedInflicterComponent>();
+        while (bleedsQuery.MoveNext(out var ent, out var bleeds))
+        {
+            var canBleed = CanWoundBleed((ent, bleeds)) && bleeds.BleedingAmount > 0;
+            if (bleeds.IsBleeding != canBleed)
+            {
+                bleeds.IsBleeding = canBleed;
+                Dirty(ent, bleeds);
+            }
+
+            if (!bleeds.IsBleeding)
+                continue;
+
+            var totalTime = bleeds.ScalingFinishesAt - bleeds.ScalingStartsAt;
+            var remainingTime = bleeds.ScalingFinishesAt - _timing.CurTime;
+
+            // Skip if scaling is complete, already at limit, or totalTime is zero/invalid
+            if (totalTime <= TimeSpan.Zero || remainingTime <= TimeSpan.Zero || bleeds.Scaling >= bleeds.ScalingLimit)
+                continue;
+
+            var newBleeds = FixedPoint2.Clamp(
+                bleeds.ScalingLimit * (remainingTime / totalTime),
+                0,
+                bleeds.ScalingLimit);
+
+            bleeds.Scaling = newBleeds;
+            Dirty(ent, bleeds);
+        }
+        // backmen edit end
+    }
+
+    // backmen edit start
+    /// <summary>
+    /// Updates bleeding based on wounds and applies consciousness damage from bloodloss.
+    /// </summary>
+    private void UpdateConsciousnessBleeding(Entity<BloodstreamComponent> entity)
+    {
+        if (!ConsciousnessQuery.TryComp(entity.Owner, out var consciousness))
+            return;
+
+        if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys, consciousness))
+            return;
+
+        // Calculate total bleeding from all wounds on body parts
+        var total = FixedPoint2.Zero;
+        foreach (var (bodyPart, _) in _body.GetBodyChildren(entity.Owner))
+        {
+            total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
+                    .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
+        }
+
+        // I am very sorry, my dear shitcoders. but for now, while bloodstream is still in the state it is;
+        // I cannot properly override bleeding for woundable based entities. I am very sorry.
+        // This is this, and that is that.
+        entity.Comp.BleedAmount = (float)total / 5f;
+        entity.Comp.BleedAmount = Math.Clamp(entity.Comp.BleedAmount, 0, entity.Comp.MaxBleedAmount);
+        DirtyField(entity, entity.Comp, nameof(BloodstreamComponent.BleedAmount));
+
+        if (entity.Comp.BleedAmount == 0)
+            _alertsSystem.ClearAlert(entity.Owner, entity.Comp.BleedingAlert);
+        else
+        {
+            var severity = (short)Math.Clamp(Math.Round(entity.Comp.BleedAmount, MidpointRounding.ToZero), 0, 10);
+            _alertsSystem.ShowAlert(entity.Owner, entity.Comp.BleedingAlert, severity);
+        }
+
+        // Calculate consciousness damage based on bloodloss
+        if (!SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
+            return;
+
+        var bloodMaxVolume = entity.Comp.BloodReferenceSolution.Volume;
+        var lethalBloodlossPoint = bloodMaxVolume * entity.Comp.LethalBloodlossThreshold;
+        var bloodAmount = bloodSolution.Volume;
+
+        var denominator = bloodMaxVolume - lethalBloodlossPoint;
+        if (denominator <= 0)
+            return;
+
+        var missingBlood = 1 - (bloodAmount - lethalBloodlossPoint) / denominator;
+        missingBlood = FixedPoint2.Clamp(missingBlood, 0f, 1f);
+        var consciousnessDamage = -consciousness.Cap * missingBlood;
+
+        if (!_consciousness.SetConsciousnessModifier(
+                entity.Owner,
+                nerveSys.Value.Owner,
+                consciousnessDamage,
+                identifier: "Bloodloss",
+                type: ConsciousnessModType.Pain))
+        {
+            _consciousness.AddConsciousnessModifier(
+                entity.Owner,
+                nerveSys.Value.Owner,
+                consciousnessDamage,
+                identifier: "Bloodloss",
+                type: ConsciousnessModType.Pain);
         }
     }
+    // backmen edit end
 
     private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
     {
@@ -598,4 +723,36 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         bloodData.Add(dnaData);
         return bloodData;
     }
+
+
+    // backmen edit start
+
+    /// <summary>
+    /// Self-explanatory
+    /// </summary>
+    /// <param name="ent">Wound entity</param>
+    /// <returns>Returns whether if the wound can bleed</returns>
+    public bool CanWoundBleed(Entity<BleedInflicterComponent?> ent)
+    {
+        if (!BleedsQuery.Resolve(ent, ref ent.Comp, logMissing: false))
+            return false;
+
+        if (ent.Comp.BleedingModifiers.Count == 0)
+            return true; // No modifiers. return true
+
+        var lastCanBleed = true;
+        var lastPriority = 0;
+        foreach (var (_, pair) in ent.Comp.BleedingModifiers)
+        {
+            if (pair.Priority <= lastPriority)
+                continue;
+
+            lastPriority = pair.Priority;
+            lastCanBleed = pair.CanBleed;
+        }
+
+        return lastCanBleed;
+    }
+
+    // backmen edit end
 }

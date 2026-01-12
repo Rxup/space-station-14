@@ -94,6 +94,7 @@ public sealed partial class ParrotMemorySystem : SharedParrotMemorySystem
         var memory = _random.Pick(entity.Comp.SpeechMemories);
 
         args.Message = memory.Message;
+        args.Language = memory.Language; // backmen
         args.Handled = true;
     }
 

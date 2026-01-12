@@ -1,6 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Vocalization.Components;
-
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chat;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
@@ -36,7 +36,7 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
             return;
 
         // set to handled if we succeed in speaking on the radio
-        args.Handled = TrySpeakRadio(entity.Owner, args.Message);
+        args.Handled = TrySpeakRadio(entity.Owner, args.Message, args.LanguageOverride); // backmen
     }
 
     /// <summary>
@@ -73,7 +73,8 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
     /// </summary>
     /// <param name="entity">Entity to try and make speak on the radio</param>
     /// <param name="message">Message to speak</param>
-    private bool TrySpeakRadio(Entity<RadioVocalizerComponent?> entity, string message)
+    /// <param name="languageOverride"></param>
+    private bool TrySpeakRadio(Entity<RadioVocalizerComponent?> entity, string message, ProtoId<LanguagePrototype>? languageOverride = null) // backmen
     {
         if (!Resolve(entity, ref entity.Comp))
             return false;
@@ -86,13 +87,16 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
 
         var channelPrefix = _proto.Index<RadioChannelPrototype>(channel).KeyCode;
 
+        _proto.TryIndex(languageOverride, out var languagePrototype); // backmen
+
         // send a whisper using the radio channel prefix and whatever relevant radio channel character
         // along with the message. This is analogous to how radio messages are sent by players
         _chat.TrySendInGameICMessage(
             entity,
             $"{SharedChatSystem.RadioChannelPrefix}{channelPrefix} {message}",
             InGameICChatType.Whisper,
-            ChatTransmitRange.Normal);
+            ChatTransmitRange.Normal,
+            languageOverride: languagePrototype); // backmen
 
         return true;
     }
