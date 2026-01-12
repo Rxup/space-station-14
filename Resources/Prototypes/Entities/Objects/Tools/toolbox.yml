@@ -188,6 +188,7 @@
   - type: EmitSoundOnLand
     sound: *SoundRubberHammer
   - type: Storage
+    maxItemSize: Large
     storageOpenSound: &SoundHorn
       collection: BikeHorn
       params:
