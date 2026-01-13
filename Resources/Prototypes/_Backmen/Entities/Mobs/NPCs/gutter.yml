@@ -334,50 +334,6 @@
     chance: 1
     intervalSeconds: 5
 
-- type: entity
-  id: MobGuttermanWisp
-  parent: BaseAngelWisp
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
-    layers:
-      - state: NoId
-  - type: MovementSpeedModifier
-    baseSprintSpeed: 1
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
-    blackboard:
-      VisionRadius: !type:Single
-        16
-      AggroVisionRadius: !type:Single
-        20
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
-  - type: NpcFactionMember
-    factions:
-      - MalfunctioningRobot
-  - type: BasicEntityAmmoProvider
-    proto: GuttermanShooter
-    capacity: 1
-    count: 1
-  - type: Gun
-    fireRate: 1
-    projectileSpeed: 0
-    soundGunshot:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-      params:
-        volume: -100
-  - type: TimedDespawn
-    lifetime: 1
-
 - type: Tag
   id: Gutterman
 
