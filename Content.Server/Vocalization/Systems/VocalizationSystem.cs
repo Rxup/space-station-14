@@ -78,6 +78,7 @@ public sealed partial class VocalizationSystem : EntitySystem
         // raise a VocalizeEvent
         // this can be handled by other systems to speak using a method other than local chat
         var vocalizeEvent = new VocalizeEvent(message);
+        vocalizeEvent.LanguageOverride = language;
         RaiseLocalEvent(entity.Owner, ref vocalizeEvent);
 
         // if the event is handled, don't try speaking

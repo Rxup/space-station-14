@@ -1,4 +1,5 @@
-﻿using Content.Shared.Bed.Sleep;
+﻿using Content.Shared.Backmen.Standing;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
@@ -24,6 +25,8 @@ namespace Content.Shared.Mobs.Systems;
 
 public partial class MobStateSystem
 {
+    [Dependency] private readonly SharedLayingDownSystem _layingDownSystem = default!;
+
     //General purpose event subscriptions. If you can avoid it register these events inside their own systems
     private void SubscribeEvents()
     {
@@ -87,11 +90,20 @@ public partial class MobStateSystem
                 break;
             case MobState.SoftCritical:
             case MobState.Critical:
+                if (TryComp<LayingDownComponent>(target, out var li)) // backmen
+                {
+                    _layingDownSystem.TryProcessAutoGetUp((target,li)); // backmen
+                    return; // backmen
+                }
                 _standing.Stand(target);
                 break;
             case MobState.Dead:
                 RemComp<CollisionWakeComponent>(target);
-                _standing.Stand(target);
+                if (TryComp<LayingDownComponent>(target, out var li2)) // backmen
+                {
+                    _layingDownSystem.TryProcessAutoGetUp((target,li2)); // backmen
+                    return; // backmen
+                }
                 break;
             case MobState.Invalid:
                 //unused
@@ -113,7 +125,14 @@ public partial class MobStateSystem
         {
             case MobState.Alive:
             {
-                _standing.Stand(target);
+                if (TryComp<LayingDownComponent>(target, out var li)) // backmen
+                {
+                    _layingDownSystem.TryProcessAutoGetUp((target,li)); // backmen
+                }
+                else // backmen
+                {
+                    _standing.Stand(target);
+                }
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
             }
@@ -190,6 +209,7 @@ public partial class MobStateSystem
         {
             case MobState.Dead:
             case MobState.Critical:
+            case MobState.SoftCritical:
                 args.Cancel();
                 break;
         }

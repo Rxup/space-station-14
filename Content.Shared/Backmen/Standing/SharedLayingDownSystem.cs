@@ -16,6 +16,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Shared.NPC;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
@@ -113,8 +114,13 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         if (args.NewMobState == MobState.Alive)
         {
+            if (HasComp<ActiveNPCComponent>(ent))
+            {
+                TryStandUp(ent, ent, standingStateComponent);
+                return;
+            }
             AutoGetUp(ent);
-            TryStandUp(ent, ent, standingStateComponent);
+            //TryStandUp(ent, ent, standingStateComponent);
         }
     }
 
@@ -131,27 +137,33 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        TryProcessAutoGetUp(ent);
+        TryProcessAutoGetUp(ent.AsNullable());
     }
 
     protected abstract bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session);
 
-    public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
+    public bool TryProcessAutoGetUp(Entity<LayingDownComponent?> ent)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+        {
+            return false;
+        }
         if (_buckle.IsBuckled(ent))
-            return;
+            return false;
 
         if (_pulling.IsPulled(ent))
-            return;
+            return false;
 
         if (!IsSafeToStandUp(ent, out _))
-            return;
+            return false;
 
         var autoUp = !_playerManager.TryGetSessionByEntity(ent, out var player) ||
-                     GetAutoGetUp(ent, session: player);
+                     GetAutoGetUp((ent,ent.Comp), session: player);
 
         if (autoUp && !_container.IsEntityInContainer(ent))
-            TryStandUp(ent, ent);
+            return TryStandUp(ent, ent);
+
+        return false;
     }
 
     public override void Shutdown()
@@ -249,6 +261,11 @@ public abstract class SharedLayingDownSystem : EntitySystem
     private const int NotSafeToStandUp = (int)CollisionGroup.MidImpassable | (int)CollisionGroup.BlobImpassable;
     public bool IsSafeToStandUp(EntityUid entity, [NotNullWhen(false)] out EntityUid? obj)
     {
+        if(HasComp<ActiveNPCComponent>(entity))
+        {
+            obj = null;
+            return true;
+        }
         var xform = Transform(entity);
         if (
             !TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(entity, out var physEnt) ||

@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Standing;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
@@ -119,7 +120,15 @@ public abstract partial class SharedStunSystem
         entity.Comp.FrictionModifier = 1f;
         entity.Comp.SpeedModifier = 1f;
 
-        _standingState.Stand(entity);
+        if (TryComp<LayingDownComponent>(entity, out var l))
+        {
+            _layingDown.TryProcessAutoGetUp((entity, l));
+        }
+        else
+        {
+            _standingState.Stand(entity);
+        }
+
         Alerts.ClearAlert(entity.Owner, KnockdownAlert);
     }
 
