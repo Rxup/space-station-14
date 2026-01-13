@@ -328,93 +328,14 @@
   - type: Polymorphable
     innatePolymorphs:
     - GuttermanShooter
-  - type: Timer
-  - type: TimedSpawner
+  - type: TimedPolymorph
     prototypes:
-      - MobGuttermanWisp
+      - GuttermanShooter
     chance: 1
     intervalSeconds: 5
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-
-- type: entity
-  id: MobGuttermanWisp
-  parent: BaseAngelWisp
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
-    layers:
-      - state: NoId
-  - type: MovementSpeedModifier
-    baseSprintSpeed: 1
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
-    blackboard:
-      VisionRadius: !type:Single
-        16
-      AggroVisionRadius: !type:Single
-        20
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
-  - type: NpcFactionMember
-    factions:
-      - MalfunctioningRobot
-  - type: BasicEntityAmmoProvider
-    proto: GuttermanShooter
-    capacity: 1
-    count: 1
-  - type: Gun
-    fireRate: 1
-    projectileSpeed: 0
-    soundGunshot:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-      params:
-        volume: -100
-  - type: TimedDespawn
-    lifetime: 1
 
 - type: Tag
   id: Gutterman
-
-- type: entity
-  id: GuttermanShooter
-  parent: ProjectilePolyboltFly
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: PolymorphOnTrigger
-    polymorph: GuttermanShooter
-    targetUser: true
-  - type: WhitelistTriggerCondition
-    userWhitelist:
-      tags:
-      - Gutterman
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.85,-0.85,0.85,0.85"
-        mask:
-        - Impassable
-        - BulletImpassable
-        hard: false
-      fly-by: &flybyfixture
-        shape: !type:PhysShapeCircle
-          radius: 1.5
-        layer:
-        - Impassable
-        - MidImpassable
-        - HighImpassable
-        - LowImpassable
-        hard: False
 
 - type: polymorph
   id: GuttermanShooter
@@ -425,6 +346,7 @@
     revertOnDeath: true
     revertOnCrit: true
     duration: 5
+    polymorphPopup: null
 
 - type: entity
   parent: MobGuttermanShooter
@@ -661,42 +583,17 @@
   - type: Polymorphable
     innatePolymorphs:
     - GuttertankShooter
-  - type: Timer
-  - type: TimedSpawner
+  - type: TimedPolymorph
     prototypes:
-      - MobGuttertankWisp
-      - MobGuttertankWispSpeedster
+      - GuttertankShooter
+      - GuttertankSpeedster
     chance: 1
     intervalSeconds: 3
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
 
 #guttertank-shooter
 
-- type: entity
-  id: MobGuttertankWisp
-  parent: MobGuttermanWisp
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: GuttertankShooter
-    capacity: 1
-    count: 1
-
 - type: Tag
   id: Guttertank
-
-- type: entity
-  id: GuttertankShooter
-  parent: GuttermanShooter
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: PolymorphOnTrigger
-    polymorph: GuttertankShooter
-  - type: WhitelistTriggerCondition
-    userWhitelist:
-      tags:
-      - Guttertank
 
 - type: polymorph
   id: GuttertankShooter
@@ -707,6 +604,7 @@
     revertOnDeath: true
     revertOnCrit: true
     duration: 2
+    polymorphPopup: null
 
 - type: entity
   parent: MobGuttertankBase
@@ -769,28 +667,6 @@
 
 #guttertank-speedster
 
-- type: entity
-  id: MobGuttertankWispSpeedster
-  parent: MobGuttermanWisp
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: BasicEntityAmmoProvider
-    proto: GuttertankSpeedster
-    capacity: 1
-    count: 1
-
-- type: entity
-  id: GuttertankSpeedster
-  parent: GuttermanShooter
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: PolymorphOnTrigger
-    polymorph: GuttertankSpeedster
-  - type: WhitelistTriggerCondition
-    userWhitelist:
-      tags:
-      - Guttertank
-
 - type: polymorph
   id: GuttertankSpeedster
   configuration:
@@ -800,6 +676,7 @@
     revertOnDeath: true
     revertOnCrit: true
     duration: 3
+    polymorphPopup: null
 
 - type: entity
   parent: MobGuttertankBase
