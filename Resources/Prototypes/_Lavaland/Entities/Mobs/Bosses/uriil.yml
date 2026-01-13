@@ -1264,12 +1264,9 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        offset: 0
-        spawn:
-          RageActivator:
-            min: 1
-            max: 1
+      - !type:PolymorphBehavior
+        prototypes:
+        - RageUriil
 
 - type: entity
   id: RageTriggerActivator
@@ -1288,40 +1285,6 @@
 
 - type: Tag
   id: ArchangelUriil
-
-- type: entity
-  id: RageActivator
-  parent: ProjectilePolyboltFly
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: PolymorphOnTrigger
-    polymorph: RageUriil
-    targetUser: true
-  - type: WhitelistTriggerCondition
-    userWhitelist:
-      tags:
-      - ArchangelUriil
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.85,-0.85,0.85,0.85"
-        mask:
-        - Impassable
-        - BulletImpassable
-        hard: false
-      fly-by: &flybyfixture
-        shape: !type:PhysShapeCircle
-          radius: 1.5
-        layer:
-        - Impassable
-        - MidImpassable
-        - HighImpassable
-        - LowImpassable
-        hard: False
-  - type: TimedDespawn
-    lifetime: 40
 
 - type: polymorph
   id: RageUriil

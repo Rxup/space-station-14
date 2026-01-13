@@ -85,13 +85,11 @@
       - Burst
     soundGunshot: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: Timer
-  - type: TimedSpawner
+  - type: TimedPolymorph
     prototypes:
-      - ProjectilePolyboltFly
+      - SwoopFly
     chance: 0.7
     intervalSeconds: 10
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
   - type: Polymorphable
     innatePolymorphs:
     - SwoopFly
@@ -103,50 +101,6 @@
 
 - type: Tag
   id: BigJohninator
-
-- type: entity
-  id: ProjectilePolyboltFly
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Physics
-    bodyType: KinematicController
-    canCollide: true
-  - type: InteractionOutline
-  - type: TimedDespawn
-    lifetime: 0.5
-  - type: TriggerOnCollide
-    fixtureID: projectile
-    # Projectile.DeleteOnCollide is true, but allow this to hit multiple entities if they're
-    # stacked up (they will all trigger a collide), so this isn't frustrating to use
-    maxTriggers: 1
-  - type: PolymorphOnTrigger
-    polymorph: SwoopFly
-    targetUser: true
-  - type: WhitelistTriggerCondition
-    userWhitelist:
-      tags:
-      - BigJohninator
-  - type: Projectile
-    damage: {}
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-5.5,-5.5,5.5,5.5"
-        mask:
-        - Impassable
-        - BulletImpassable
-        hard: false
-      fly-by: &flybyfixture
-        shape: !type:PhysShapeCircle
-          radius: 1.5
-        layer:
-        - Impassable
-        - MidImpassable
-        - HighImpassable
-        - LowImpassable
-        hard: False
 
 - type: accent
   id: BigJohn
@@ -240,6 +194,7 @@
     revertOnDeath: true
     revertOnCrit: true
     duration: 4
+    polymorphPopup: null
 
 - type: entity
   id: MobJohninatorSwoop
