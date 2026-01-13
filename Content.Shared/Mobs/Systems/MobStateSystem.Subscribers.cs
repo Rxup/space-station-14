@@ -128,7 +128,6 @@ public partial class MobStateSystem
                 if (TryComp<LayingDownComponent>(target, out var li)) // backmen
                 {
                     _layingDownSystem.TryProcessAutoGetUp((target,li)); // backmen
-                    return; // backmen
                 }
                 else // backmen
                 {
