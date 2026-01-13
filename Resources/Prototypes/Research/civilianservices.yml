@@ -6,7 +6,7 @@
   icon:
     sprite: Structures/Machines/seed_extractor.rsi
     state: seedextractor
-  discipline: CivilianServices
+  discipline: Service # Backmen
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -21,7 +21,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: hamtr
-  discipline: CivilianServices
+  discipline: Robotics # Backmen
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -46,7 +46,7 @@
   icon:
     sprite: Structures/Wallmounts/camera.rsi
     state: cameracase
-  discipline: CivilianServices
+  discipline: Engineering # Backmen
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -70,7 +70,7 @@
   icon:
     sprite: Structures/Machines/computers.rsi
     state: television
-  discipline: CivilianServices
+  discipline: Service # Backmen
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -91,7 +91,7 @@
   icon:
     sprite: Structures/Machines/fat_sucker.rsi
     state: display
-  discipline: CivilianServices
+  discipline: Service # Backmen
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -175,7 +175,7 @@
   icon:
     sprite: Objects/Specific/Janitorial/advmop.rsi
     state: advmop
-  discipline: CivilianServices
+  discipline: Service # Backmen
   tier: 2
   cost: 10000
   recipeUnlocks:
@@ -217,7 +217,7 @@
   icon:
     sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
     state: icon
-  discipline: CivilianServices
+  discipline: Service # Backmen
   tier: 2
   cost: 10000
   recipeUnlocks:
@@ -231,7 +231,7 @@
   icon:
     sprite: Structures/cargo_telepad.rsi
     state: display
-  discipline: CivilianServices
+  discipline: Cargo # Backmen
   tier: 2
   cost: 15000
   recipeUnlocks:
@@ -267,7 +267,7 @@
   icon:
     sprite: Clothing/Shoes/Boots/speedboots.rsi
     state: icon
-  discipline: CivilianServices
+  discipline: Scientific # Backmen
   tier: 3
   cost: 10000
   recipeUnlocks:
@@ -285,7 +285,7 @@
   icon:
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     state: beakerbluespace
-  discipline: CivilianServices
+  discipline: Medical # Backmen
   tier: 3
   cost: 10000
   recipeUnlocks:
