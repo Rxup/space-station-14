@@ -28,4 +28,7 @@ public sealed partial class TimedPolymorphComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextFire = TimeSpan.Zero;
+
+    [DataField]
+    public bool InCombatOnly = true;
 }
