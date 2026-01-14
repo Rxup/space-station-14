@@ -246,9 +246,12 @@ public sealed class DefibrillatorSystem : EntitySystem
                     if (TryComp<BloodstreamComponent>(target, out var bloodstream))
                     {
                         var bloodLevel = (FixedPoint2) _bloodstream.GetBloodLevel((target, bloodstream));
-                        // If blood level is above the lethal threshold (67%), remove the Bloodloss modifier
+                        // GetBloodLevel returns [0, MaxVolumeModifier], while LethalBloodlossThreshold is a fraction [0, 1]
+                        // So we need to normalize bloodLevel or scale the threshold
+                        var thresholdValue = bloodstream.LethalBloodlossThreshold * bloodstream.MaxVolumeModifier;
+                        // If blood level is above the lethal threshold (67% of max), remove the Bloodloss modifier
                         // This ensures that if blood was restored, the modifier doesn't prevent revival
-                        if (bloodLevel >= bloodstream.LethalBloodlossThreshold)
+                        if (bloodLevel >= thresholdValue)
                         {
                             _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Bloodloss", consciousness);
                         }
