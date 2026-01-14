@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Atmos.Rotting;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
@@ -9,8 +10,13 @@ using Content.Server.Revenant.Components;
 
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.PowerCell;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Chat;
@@ -56,6 +62,9 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // backmen edit:
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!; // backmen edit: for blood level check
+    [Dependency] private readonly SharedBodySystem _body = default!; // backmen edit: for checking body parts
+    [Dependency] private readonly WoundSystem _wound = default!; // backmen edit: for checking wounds
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -230,6 +239,42 @@ public sealed class DefibrillatorSystem : EntitySystem
                 {
                     _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Suffocation", consciousness);
                     _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold", consciousness);
+
+                    // Remove Bloodloss modifier if blood is restored
+                    // When a character is dead, UpdateConsciousnessBleeding might not update the modifier properly,
+                    // so we manually remove it if blood level is above the lethal threshold
+                    if (TryComp<BloodstreamComponent>(target, out var bloodstream))
+                    {
+                        var bloodLevel = (FixedPoint2) _bloodstream.GetBloodLevel((target, bloodstream));
+                        // If blood level is above the lethal threshold (67%), remove the Bloodloss modifier
+                        // This ensures that if blood was restored, the modifier doesn't prevent revival
+                        if (bloodLevel >= bloodstream.LethalBloodlossThreshold)
+                        {
+                            _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Bloodloss", consciousness);
+                        }
+                    }
+
+                    // Remove WoundPain modifier only if there are no wounds causing pain
+                    // Check all body parts for wounds with PainInflicterComponent
+                    var hasPainfulWounds = false;
+                    if (TryComp<BodyComponent>(target, out var body))
+                    {
+                        foreach (var (bodyPartId, _) in _body.GetBodyChildren(target, body))
+                        {
+                            if (_wound.GetWoundableWoundsWithComp<PainInflicterComponent>(bodyPartId).Any())
+                            {
+                                hasPainfulWounds = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Only remove WoundPain modifier if there are no wounds causing pain
+                    // This ensures we don't remove it if the character still has painful wounds
+                    if (!hasPainfulWounds)
+                    {
+                        _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "WoundPain", consciousness);
+                    }
 
                     if (_consciousness.CheckConscious(target, consciousness, mob))
                     {
