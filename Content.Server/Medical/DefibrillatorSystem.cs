@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Atmos.Rotting;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
@@ -15,6 +16,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.PowerCell;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Chat;
@@ -243,10 +245,10 @@ public sealed class DefibrillatorSystem : EntitySystem
                     // so we manually remove it if blood level is above the lethal threshold
                     if (TryComp<BloodstreamComponent>(target, out var bloodstream))
                     {
-                        var bloodLevel = _bloodstream.GetBloodLevel((target, bloodstream));
+                        var bloodLevel = (FixedPoint2) _bloodstream.GetBloodLevel((target, bloodstream));
                         // If blood level is above the lethal threshold (67%), remove the Bloodloss modifier
                         // This ensures that if blood was restored, the modifier doesn't prevent revival
-                        if (bloodLevel >= bloodstream.LethalBloodlossThreshold.Float())
+                        if (bloodLevel >= bloodstream.LethalBloodlossThreshold)
                         {
                             _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Bloodloss", consciousness);
                         }
