@@ -128,7 +128,7 @@
 
   ## БЗ
   <Box>
-    <GuideEntityEmbed Entity="BZCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTBZCanister" Caption=""/>
   </Box>
   Для синтеза требуется **плазма** и **азот** в пропорции **4:1**.
   Необходимая температура: от **373К** до **15 кК**.
@@ -139,7 +139,7 @@
 
   ## Плюоксиум
   <Box>
-    <GuideEntityEmbed Entity="PluoxiumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTPluoxiumCanister" Caption=""/>
   </Box>
   Для синтеза требуется **кислород** и **тритий** в пропорции **80:20**.
   Необходимая температура: от **1 кК** до **10 кК**.
@@ -150,7 +150,7 @@
 
   ## Водород (Н2)
   <Box>
-    <GuideEntityEmbed Entity="HydrogenCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTHydrogenCanister" Caption=""/>
   </Box>
   Для синтеза требуется **плазма** и **тритий** в пропорции **5:1**.
   Необходимая температура: от **380К** до **2500К**.
@@ -161,7 +161,7 @@
 
   ## Нитриум
   <Box>
-    <GuideEntityEmbed Entity="NitriumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTNitriumCanister" Caption=""/>
   </Box>
   Для синтеза требуется **азот** и **тритий** в пропорции **10:1**.
   Необходимая температура: от **200К** до **250К**.
@@ -173,7 +173,7 @@
 
   ## Хилиум
   <Box>
-    <GuideEntityEmbed Entity="HealiumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTHealiumCanister" Caption=""/>
   </Box>
   Для синтеза требуется **фрезон** и **БЗ** в равных пропорциях. Необходимая температура: от **25К** до **300К**.
   Давление может быть любым.
@@ -183,7 +183,7 @@
 
   ## Гипер-ноблий
   <Box>
-    <GuideEntityEmbed Entity="HyperNobliumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTHyperNobliumCanister" Caption=""/>
   </Box>
   Для синтеза требуется **азот** и **тритий** в пропорции **10:5**.
   Необходимая температура: от **2,7 К** до **15 К**. Давление может быть любым.
@@ -195,7 +195,7 @@
 
   ## Прото-нитрат
   <Box>
-    <GuideEntityEmbed Entity="ProtoNitrateCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTProtoNitrateCanister" Caption=""/>
   </Box>
   Для синтеза требуется **плюоксиум** и **водород** в одинаковых пропорциях.
   Необходимая температура: от **5 кК** до **10 кК**.
@@ -206,7 +206,7 @@
 
   ## Заукер
   <Box>
-    <GuideEntityEmbed Entity="ZaukerCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTZaukerCanister" Caption=""/>
   </Box>
   Для синтеза требуется **нитриум** и **гипер-ноблий** в равных пропорциях.
   Необходимая температура: от **50 кК** до **75 кК**.
@@ -218,7 +218,7 @@
 
   ## Галон
   <Box>
-    <GuideEntityEmbed Entity="HalonCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTHalonCanister" Caption=""/>
   </Box>
   Рецепта для синтеза нет.
   Галон выглядит как сине-серый пар.
@@ -227,7 +227,7 @@
 
   ## Гелий
   <Box>
-    <GuideEntityEmbed Entity="HeliumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTHeliumCanister" Caption=""/>
   </Box>
   Рецепта для синтеза нет.
   Гелий является бесцветным газом.
@@ -235,7 +235,7 @@
 
   ## Анти-ноблиум
   <Box>
-    <GuideEntityEmbed Entity="AntiNobliumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="ADTAntiNobliumCanister" Caption=""/>
   </Box>
   Рецепта для синтеза нет.
   Выглядит как чёрный рой мошек.
