@@ -16,6 +16,41 @@ uplink-psi-grenade-bundle-name = набор пси гранат
 uplink-psi-grenade-bundle-desc = Набор содержит вещмешок с 20-тью пси гранатами которые мешают жертвам говорить.
 uplink-anti-psi-grenade-bundle-name = набор анти-психических гранат
 uplink-anti-psi-grenade-bundle-desc = Полный вещмешок ани-психических гранат.
+
+# ADT-Gas Grenades Uplink Localization Start
+uplink-bz-grenade-bundle-name = набор гранат с БЗ
+uplink-bz-grenade-bundle-desc = Набор содержит 5 гранат с газом БЗ. Вызывают сон и отравление.
+
+uplink-pluoxium-grenade-bundle-name = набор гранат с плюоксиумом
+uplink-pluoxium-grenade-bundle-desc = Набор содержит 5 гранат с газом плюоксиум. Предотвращают дыхание без урона.
+
+uplink-hydrogen-grenade-bundle-name = набор гранат с водородом
+uplink-hydrogen-grenade-bundle-desc = Набор содержит 5 гранат с газом водород. Легковоспламеняющиеся!
+
+uplink-nitrium-grenade-bundle-name = набор гранат с нитриумом
+uplink-nitrium-grenade-bundle-desc = Набор содержит 5 гранат с газом нитриум. Лечат раны и отравление, но наносят урон дыханию.
+
+uplink-healium-grenade-bundle-name = набор гранат с хилиумом
+uplink-healium-grenade-bundle-desc = Набор содержит 5 гранат с газом хилиум. Лечат раны и усыпляют.
+
+uplink-hyper-noblium-grenade-bundle-name = набор гранат с гипер-ноблием
+uplink-hyper-noblium-grenade-bundle-desc = Набор содержит 5 гранат с газом гипер-ноблий. Останавливают газовые реакции и охлаждают.
+
+uplink-proto-nitrate-grenade-bundle-name = набор гранат с прото-нитратом
+uplink-proto-nitrate-grenade-bundle-desc = Набор содержит 5 гранат с газом прото-нитрат.
+
+uplink-zauker-grenade-bundle-name = набор гранат с заукером
+uplink-zauker-grenade-bundle-desc = Набор содержит 5 гранат с газом заукер. КРАЙНЕ ЯДОВИТЫ!
+
+uplink-halon-grenade-bundle-name = набор гранат с галоном
+uplink-halon-grenade-bundle-desc = Набор содержит 5 гранат с газом галон. Поглощают тепло и кислород, предотвращают пожары.
+
+uplink-helium-grenade-bundle-name = набор гранат с гелием
+uplink-helium-grenade-bundle-desc = Набор содержит 5 гранат с газом гелий. Инертный газ с минимальными эффектами.
+
+uplink-anti-noblium-grenade-bundle-name = набор гранат с анти-ноблием
+uplink-anti-noblium-grenade-bundle-desc = Набор содержит 5 гранат с газом анти-ноблий. КРАЙНЕ ОПАСНЫ!
+# ADT-Gas Grenades Uplink Localization End
 uplink-ClothingHandsGlovesColorYellowUnsulated-name = изолированные перчатки
 uplink-ClothingHandsGlovesColorYellowUnsulated-desc = Позволяет взаимодействать с психическими зарядами в ноосфере
 uplink-BedsheetInvisibilityCloak-name = рваная простыня

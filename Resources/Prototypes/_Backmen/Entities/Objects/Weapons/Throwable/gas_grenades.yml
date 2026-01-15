@@ -1,0 +1,364 @@
+# ADT-Gas Grenades Start
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: BZGrenade
+  name: BZ grenade
+  description: A grenade that releases BZ gas. Causes sleep and poison damage when inhaled.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        BZ: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: PluoxiumGrenade
+  name: pluoxium grenade
+  description: A grenade that releases pluoxium gas. Prevents breathing but doesn't cause damage.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Pluoxium: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: HydrogenGrenade
+  name: hydrogen grenade
+  description: A grenade that releases hydrogen gas. Highly flammable!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Hydrogen: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: NitriumGrenade
+  name: nitrium grenade
+  description: A grenade that releases nitrium gas. Heals physical wounds and poison damage, but causes breath damage.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Nitrium: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: HealiumGrenade
+  name: healium grenade
+  description: A grenade that releases healium gas. Heals wounds and puts people to sleep.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Healium: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: HyperNobliumGrenade
+  name: hyper-noblium grenade
+  description: A grenade that releases hyper-noblium gas. Stops all gas reactions and cools the area.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        HyperNoblium: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: ProtoNitrateGrenade
+  name: proto-nitrate grenade
+  description: A grenade that releases proto-nitrate gas.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        ProtoNitrate: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: ZaukerGrenade
+  name: zauker grenade
+  description: A grenade that releases zauker gas. EXTREMELY POISONOUS!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Zauker: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: HalonGrenade
+  name: halon grenade
+  description: A grenade that releases halon gas. Absorbs heat and oxygen, preventing fires.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Halon: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: HeliumGrenade
+  name: helium grenade
+  description: A grenade that releases helium gas. Inert gas with minimal effects.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        Helium: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, VolatileGrenadeBase, GrenadeBase ]
+  id: AntiNobliumGrenade
+  name: anti-noblium grenade
+  description: A grenade that releases anti-noblium gas. EXTREMELY DANGEROUS!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+        AntiNoblium: 500
+      temperature: 293.15
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }
+# ADT-Gas Grenades End

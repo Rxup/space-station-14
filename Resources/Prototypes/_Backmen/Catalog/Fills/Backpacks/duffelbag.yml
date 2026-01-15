@@ -40,6 +40,151 @@
         - id: AntiPsiGrenade
           amount: 20
 
+# ADT-Gas Grenades Bundles Start
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateBZGrenadeBundle
+  name: syndicate BZ grenade bundle
+  description: "Contains 5 BZ gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: BZGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicatePluoxiumGrenadeBundle
+  name: syndicate pluoxium grenade bundle
+  description: "Contains 5 pluoxium gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: PluoxiumGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateHydrogenGrenadeBundle
+  name: syndicate hydrogen grenade bundle
+  description: "Contains 5 hydrogen gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: HydrogenGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateNitriumGrenadeBundle
+  name: syndicate nitrium grenade bundle
+  description: "Contains 5 nitrium gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: NitriumGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateHealiumGrenadeBundle
+  name: syndicate healium grenade bundle
+  description: "Contains 5 healium gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: HealiumGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateHyperNobliumGrenadeBundle
+  name: syndicate hyper-noblium grenade bundle
+  description: "Contains 5 hyper-noblium gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: HyperNobliumGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateProtoNitrateGrenadeBundle
+  name: syndicate proto-nitrate grenade bundle
+  description: "Contains 5 proto-nitrate gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: ProtoNitrateGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateZaukerGrenadeBundle
+  name: syndicate zauker grenade bundle
+  description: "Contains 5 zauker gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: ZaukerGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateHalonGrenadeBundle
+  name: syndicate halon grenade bundle
+  description: "Contains 5 halon gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: HalonGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateHeliumGrenadeBundle
+  name: syndicate helium grenade bundle
+  description: "Contains 5 helium gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: HeliumGrenade
+          amount: 5
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateAntiNobliumGrenadeBundle
+  name: syndicate anti-noblium grenade bundle
+  description: "Contains 5 anti-noblium gas grenades."
+  components:
+    - type: Contraband
+      severity: HighlyIllegal
+    - type: StorageFill
+      contents:
+        - id: AntiNobliumGrenade
+          amount: 5
+# ADT-Gas Grenades Bundles End
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelWizard
