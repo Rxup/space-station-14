@@ -46,6 +46,19 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    #ADT-Gas-Start
+    - BZ
+    - Pluoxium
+    - Hydrogen
+    - Nitrium
+    - Healium
+    - HyperNoblium
+    - ProtoNitrate
+    - Zauker
+    - Halon
+    - Helium
+    - AntiNoblium
+    #ADT-Gas-End
 
 - type: entity
   parent: AirAlarmVox

@@ -289,6 +289,44 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
                 (energy + absorbedGas.Temperature * dynamicHeatModifier - Atmospherics.T0C) *
                 sMcomponent.OxygenReleaseEfficiencyModifier, 0f));
 
+        //ADT-Gas-Start: Additional gas production based on conditions
+        // Tritium production at high temperatures with plasma present
+        if (gasStorage[Gas.Plasma] > 0.1f && absorbedGas.Temperature > 500f)
+        {
+            var tritiumProduction = Math.Max(
+                energy * gasStorage[Gas.Plasma] * 0.0001f * dynamicHeatModifier,
+                0f);
+            absorbedGas.AdjustMoles(Gas.Tritium, tritiumProduction);
+        }
+
+        // Water vapor production at very high temperatures
+        if (absorbedGas.Temperature > 600f && gasStorage[Gas.Oxygen] > 0.2f)
+        {
+            var waterVaporProduction = Math.Max(
+                (absorbedGas.Temperature - 600f) * 0.00005f * gasStorage[Gas.Oxygen],
+                0f);
+            absorbedGas.AdjustMoles(Gas.WaterVapor, waterVaporProduction);
+        }
+
+        // Carbon dioxide as a byproduct of reactions
+        if (gasStorage[Gas.Oxygen] > 0.1f && energy > 1000f)
+        {
+            var co2Production = Math.Max(
+                energy * 0.00001f * gasStorage[Gas.Oxygen],
+                0f);
+            absorbedGas.AdjustMoles(Gas.CarbonDioxide, co2Production);
+        }
+
+        // Hydrogen production when plasma and tritium are present at high temperatures
+        if (gasStorage[Gas.Plasma] > 0.05f && gasStorage[Gas.Tritium] > 0.05f && absorbedGas.Temperature > 800f)
+        {
+            var hydrogenProduction = Math.Max(
+                energy * Math.Min(gasStorage[Gas.Plasma], gasStorage[Gas.Tritium]) * 0.00008f,
+                0f);
+            absorbedGas.AdjustMoles(Gas.Hydrogen, hydrogenProduction);
+        }
+        //ADT-Gas-End
+
         _atmosphere.Merge(mixture, absorbedGas);
 
         var powerReduction = (float) Math.Pow(sMcomponent.Power / 500, 3);

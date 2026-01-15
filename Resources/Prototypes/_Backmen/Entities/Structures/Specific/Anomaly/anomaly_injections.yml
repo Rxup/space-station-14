@@ -1,0 +1,96 @@
+# ADT-Gas Anomalies Start
+- type: entity
+  parent: AnomalyInjectionBase
+  id: AnomalyInjectionToxic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#e69edd"
+  - type: TempAffectingAnomaly
+    tempChangePerSecond: 5
+    hotspotExposeTemperature: 300
+  - type: GasProducerAnomaly
+    releasedGas: 9 # BZ
+    releaseOnMaxSeverity: true
+    spawnRadius: 3
+    tileCount: 4
+    tempChange: 100
+  - type: DamageOnInteract
+    damage:
+      types:
+        Poison: 5
+    popupText: anomaly-component-contact-damage
+
+- type: entity
+  parent: AnomalyInjectionBase
+  id: AnomalyInjectionHealing
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#d97e7e"
+  - type: GasProducerAnomaly
+    releasedGas: 13 # Healium
+    releaseOnMaxSeverity: true
+    spawnRadius: 2
+    tileCount: 3
+    tempChange: -50
+
+- type: entity
+  parent: AnomalyInjectionBase
+  id: AnomalyInjectionStasis
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#33cccc"
+  - type: TempAffectingAnomaly
+    tempChangePerSecond: -15
+    hotspotExposeTemperature: -800
+  - type: GasProducerAnomaly
+    releasedGas: 14 # HyperNoblium
+    releaseOnMaxSeverity: true
+    spawnRadius: 4
+    tileCount: 6
+    tempChange: -200
+
+- type: entity
+  parent: AnomalyInjectionBase
+  id: AnomalyInjectionPoison
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#1c1a1a"
+  - type: TempAffectingAnomaly
+    tempChangePerSecond: 20
+    hotspotExposeTemperature: 1000
+  - type: GasProducerAnomaly
+    releasedGas: 16 # Zauker
+    releaseOnMaxSeverity: true
+    spawnRadius: 3
+    tileCount: 5
+    tempChange: 500
+  - type: DamageOnInteract
+    damage:
+      types:
+        Poison: 10
+    popupText: anomaly-component-contact-damage
+
+- type: entity
+  parent: AnomalyInjectionBase
+  id: AnomalyInjectionVoid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#525151"
+    energy: 1.5
+  - type: GasProducerAnomaly
+    releasedGas: 19 # AntiNoblium
+    releaseOnMaxSeverity: true
+    spawnRadius: 2
+    tileCount: 3
+    tempChange: 0
+  - type: DamageOnInteract
+    damage:
+      types:
+        Cellular: 8
+    popupText: anomaly-component-contact-damage
+# ADT-Gas Anomalies End

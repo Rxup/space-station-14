@@ -1,0 +1,26 @@
+# ADT-Gas Anomaly Spawners Start
+# Override RandomAnomalyInjectorSpawner to add new gas anomaly traps
+- type: entity
+  id: RandomAnomalyInjectorSpawner
+  parent: RandomAnomalyInjectorSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - AnomalyTrapPyroclastic
+    - AnomalyTrapElectricity
+    - AnomalyTrapShadow
+    - AnomalyTrapIce
+    - AnomalyTrapFlora
+    - AnomalyTrapBluespace
+    - AnomalyTrapFlesh
+    - AnomalyTrapGravity
+    - AnomalyTrapTech
+    - AnomalyTrapRock
+    - AnomalyTrapSanta
+    - AnomalyTrapToxic
+    - AnomalyTrapHealing
+    - AnomalyTrapStasis
+    - AnomalyTrapPoison
+    - AnomalyTrapVoid
+    chance: 1
+# ADT-Gas Anomaly Spawners End

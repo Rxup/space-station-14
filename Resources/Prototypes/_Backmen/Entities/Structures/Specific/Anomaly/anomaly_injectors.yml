@@ -1,0 +1,146 @@
+# ADT-Gas Anomaly Traps Start
+- type: entity
+  parent: BaseAnomalyInjector
+  id: AnomalyTrapToxic
+  suffix: Toxic
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom1-pulse
+      color: "#e69edd"
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: InnerBodyAnomalyInjector
+    injectionComponents:
+      - type: Anomaly
+        deleteEntity: false
+        maxPointsPerSecond: 100
+        corePrototype: AnomalyCorePyroclastic
+        coreInertPrototype: AnomalyCorePyroclasticInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyPyroSupercritical
+      - type: InnerBodyAnomaly
+        injectionProto: AnomalyInjectionToxic
+        startMessage: inner-anomaly-start-message-pyro
+        fallbackSprite:
+          sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+          state: fire
+
+- type: entity
+  parent: BaseAnomalyInjector
+  id: AnomalyTrapHealing
+  suffix: Healing
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom1-pulse
+      color: "#d97e7e"
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: InnerBodyAnomalyInjector
+    injectionComponents:
+      - type: Anomaly
+        deleteEntity: false
+        maxPointsPerSecond: 100
+        corePrototype: AnomalyCorePyroclastic
+        coreInertPrototype: AnomalyCorePyroclasticInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyPyroSupercritical
+      - type: InnerBodyAnomaly
+        injectionProto: AnomalyInjectionHealing
+        startMessage: inner-anomaly-start-message-pyro
+        fallbackSprite:
+          sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+          state: fire
+
+- type: entity
+  parent: BaseAnomalyInjector
+  id: AnomalyTrapStasis
+  suffix: Stasis
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom1-pulse
+      color: "#33cccc"
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: InnerBodyAnomalyInjector
+    injectionComponents:
+      - type: Anomaly
+        deleteEntity: false
+        maxPointsPerSecond: 100
+        corePrototype: AnomalyCoreIce
+        coreInertPrototype: AnomalyCoreIceInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyIceSupercritical
+      - type: InnerBodyAnomaly
+        injectionProto: AnomalyInjectionStasis
+        startMessage: inner-anomaly-start-message-ice
+        fallbackSprite:
+          sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+          state: ice
+
+- type: entity
+  parent: BaseAnomalyInjector
+  id: AnomalyTrapPoison
+  suffix: Poison
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom1-pulse
+      color: "#1c1a1a"
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: InnerBodyAnomalyInjector
+    injectionComponents:
+      - type: Anomaly
+        deleteEntity: false
+        maxPointsPerSecond: 100
+        corePrototype: AnomalyCorePyroclastic
+        coreInertPrototype: AnomalyCorePyroclasticInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyPyroSupercritical
+      - type: InnerBodyAnomaly
+        injectionProto: AnomalyInjectionPoison
+        startMessage: inner-anomaly-start-message-pyro
+        fallbackSprite:
+          sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+          state: fire
+
+- type: entity
+  parent: BaseAnomalyInjector
+  id: AnomalyTrapVoid
+  suffix: Void
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom1-pulse
+      color: "#525151"
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: InnerBodyAnomalyInjector
+    injectionComponents:
+      - type: Anomaly
+        deleteEntity: false
+        maxPointsPerSecond: 100
+        corePrototype: AnomalyCoreShadow
+        coreInertPrototype: AnomalyCoreShadowInert
+        supercriticalSoundAtAnimationStart:
+          collection: AnomalyShadowSupercritical
+      - type: InnerBodyAnomaly
+        injectionProto: AnomalyInjectionVoid
+        startMessage: inner-anomaly-start-message-shadow
+        fallbackSprite:
+          sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+          state: shadow
+# ADT-Gas Anomaly Traps End
