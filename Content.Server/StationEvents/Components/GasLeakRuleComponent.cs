@@ -16,8 +16,16 @@ public sealed partial class GasLeakRuleComponent : Component
         Gas.WaterVapor, // the fog
         //ADT-Gas-Start
         Gas.BZ,
+        Gas.Pluoxium,
         Gas.Hydrogen,
-        Gas.Halon
+        Gas.Nitrium,
+        Gas.Healium,
+        Gas.HyperNoblium,
+        Gas.ProtoNitrate,
+        Gas.Zauker,
+        Gas.Halon,
+        Gas.Helium,
+        Gas.AntiNoblium
         //ADT-Gas-End
     };
 

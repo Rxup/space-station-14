@@ -141,6 +141,168 @@
   categories:
   - UplinkPsionic
 
+# ADT-Gas Grenades Uplink Listings Start
+- type: listing
+  id: UplinkBZGrenadeBundle
+  name: uplink-bz-grenade-bundle-name
+  description: uplink-bz-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateBZGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+
+- type: listing
+  id: UplinkPluoxiumGrenadeBundle
+  name: uplink-pluoxium-grenade-bundle-name
+  description: uplink-pluoxium-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicatePluoxiumGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHydrogenGrenadeBundle
+  name: uplink-hydrogen-grenade-bundle-name
+  description: uplink-hydrogen-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateHydrogenGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkNitriumGrenadeBundle
+  name: uplink-nitrium-grenade-bundle-name
+  description: uplink-nitrium-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateNitriumGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHealiumGrenadeBundle
+  name: uplink-healium-grenade-bundle-name
+  description: uplink-healium-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateHealiumGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHyperNobliumGrenadeBundle
+  name: uplink-hyper-noblium-grenade-bundle-name
+  description: uplink-hyper-noblium-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateHyperNobliumGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkProtoNitrateGrenadeBundle
+  name: uplink-proto-nitrate-grenade-bundle-name
+  description: uplink-proto-nitrate-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateProtoNitrateGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkZaukerGrenadeBundle
+  name: uplink-zauker-grenade-bundle-name
+  description: uplink-zauker-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateZaukerGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHalonGrenadeBundle
+  name: uplink-halon-grenade-bundle-name
+  description: uplink-halon-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateHalonGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHeliumGrenadeBundle
+  name: uplink-helium-grenade-bundle-name
+  description: uplink-helium-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateHeliumGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkAntiNobliumGrenadeBundle
+  name: uplink-anti-noblium-grenade-bundle-name
+  description: uplink-anti-noblium-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAntiNobliumGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+# ADT-Gas Grenades Uplink Listings End
+
 - type: listing
   id: UplinkClothingHandsGlovesColorYellowUnsulated
   name: uplink-ClothingHandsGlovesColorYellowUnsulated-name

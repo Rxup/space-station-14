@@ -52,7 +52,20 @@ public sealed partial class BkmSupermatterComponent : Component
         {Gas.Tritium, 0f},
         {Gas.WaterVapor, 0f},
         {Gas.Frezon, 0f},
-        {Gas.Ammonia, 0f}
+        {Gas.Ammonia, 0f},
+        //ADT-Gas-Start
+        {Gas.BZ, 0f},
+        {Gas.Pluoxium, 0f},
+        {Gas.Hydrogen, 0f},
+        {Gas.Nitrium, 0f},
+        {Gas.Healium, 0f},
+        {Gas.HyperNoblium, 0f},
+        {Gas.ProtoNitrate, 0f},
+        {Gas.Zauker, 0f},
+        {Gas.Halon, 0f},
+        {Gas.Helium, 0f},
+        {Gas.AntiNoblium, 0f}
+        //ADT-Gas-End
     };
 
     /// <summary>
@@ -68,7 +81,20 @@ public sealed partial class BkmSupermatterComponent : Component
         [Gas.Tritium] = (TransmitModifier: 30f, HeatPenalty: 10f, PowerMixRatio: 1f),
         [Gas.WaterVapor] = (TransmitModifier: 2f, HeatPenalty: 12f, PowerMixRatio: 1f),
         [Gas.Frezon] = (TransmitModifier: 3f, HeatPenalty: -9f, PowerMixRatio: -1f),
-        [Gas.Ammonia] = (TransmitModifier: 1.5f, HeatPenalty: 1.5f, PowerMixRatio: 1.5f)
+        [Gas.Ammonia] = (TransmitModifier: 1.5f, HeatPenalty: 1.5f, PowerMixRatio: 1.5f),
+        //ADT-Gas-Start
+        [Gas.BZ] = (TransmitModifier: 2f, HeatPenalty: 3f, PowerMixRatio: 0.8f), // Токсичный газ, умеренное влияние
+        [Gas.Pluoxium] = (TransmitModifier: 0.5f, HeatPenalty: -2f, PowerMixRatio: 0.5f), // Охлаждающий эффект, низкая мощность
+        [Gas.Hydrogen] = (TransmitModifier: 5f, HeatPenalty: 8f, PowerMixRatio: 1.2f), // Горючий, высокий нагрев
+        [Gas.Nitrium] = (TransmitModifier: 1.5f, HeatPenalty: 2f, PowerMixRatio: 1.1f), // Лечебный, умеренное влияние
+        [Gas.Healium] = (TransmitModifier: 1f, HeatPenalty: -1f, PowerMixRatio: 0.9f), // Лечебный, охлаждающий
+        [Gas.HyperNoblium] = (TransmitModifier: 0f, HeatPenalty: -15f, PowerMixRatio: -2f), // Останавливает реакции, сильное охлаждение
+        [Gas.ProtoNitrate] = (TransmitModifier: 3f, HeatPenalty: 5f, PowerMixRatio: 1.3f), // Умеренный нагрев, хорошая передача
+        [Gas.Zauker] = (TransmitModifier: 1f, HeatPenalty: 20f, PowerMixRatio: 0.5f), // Крайне ядовитый, очень высокий нагрев
+        [Gas.Halon] = (TransmitModifier: 0.5f, HeatPenalty: -5f, PowerMixRatio: -0.5f), // Поглощает тепло и кислород
+        [Gas.Helium] = (TransmitModifier: 0f, HeatPenalty: -1f, PowerMixRatio: -0.5f), // Инертный, слабое охлаждение
+        [Gas.AntiNoblium] = (TransmitModifier: 0f, HeatPenalty: 25f, PowerMixRatio: -3f) // Экстремально опасный, очень высокий нагрев
+        //ADT-Gas-End
     };
 
     public EntProtoId[] LightningPrototypes =

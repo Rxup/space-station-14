@@ -284,6 +284,9 @@ public sealed class DefibrillatorSystem : EntitySystem
                         _consciousness.ForceConscious(target, component.ForceConsciousnessDuration, consciousness);
                         dead = false;
                     }
+                    _consciousness.ForcePassOut(target, TimeSpan.FromSeconds(10));
+                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold", consciousness);
+                    _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Suffocation", consciousness);
                 }
                 else // backmen edit end
                 {

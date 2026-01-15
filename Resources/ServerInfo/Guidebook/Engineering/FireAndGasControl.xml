@@ -1,7 +1,7 @@
 ﻿<Document>
-  # Fire and Gas Control
-  Unfortunately, [textlink="fires" link="Fires"], [textlink="spacing" link="Spacing"], and other [textlink="atmospheric upsets" link="AtmosphericUpsets"] are a common occurrence on the station.
-  These upsets can quickly spread throughout the station and make the atmosphere uninhabitable for the crew.
+  # Контроль огня и газа
+  К сожалению, [textlink="пожары" link="Fires"], [textlink="разгерметизация" link="Spacing"] и другие [textlink="атмосферные нарушения" link="AtmosphericUpsets"] являются обычным явлением на станции.
+  Эти нарушения могут быстро распространиться по всей станции и сделать атмосферу непригодной для жизни экипажа.
 
   <Box>
     <GuideEntityEmbed Entity="Firelock"/>
@@ -10,33 +10,33 @@
     <GuideEntityEmbed Entity="FireAlarm"/>
   </Box>
 
-  To combat this, stations have a variety of devices to help prevent these upsets from spreading.
+  Для борьбы с этим на станциях есть различные устройства, помогающие предотвратить распространение этих нарушений.
 
-  ## Firelocks
-  Firelocks are a simple and effective way to prevent fires from spreading throughout the station.
+  ## Противопожарные двери
+  Противопожарные двери — это простой и эффективный способ предотвратить распространение пожаров по всей станции.
 
-  Based on conditions sensed by the firelock, or through instruction from a connected [textlink="air" link="AirAlarms"] or fire alarm, they can close off sections of the station to prevent the spread of dangerous conditions.
+  На основе условий, обнаруженных противопожарной дверью, или через инструкции от подключённой [textlink="сигнализации воздуха" link="AirAlarms"] или пожарной сигнализации, они могут закрыть секции станции, чтобы предотвратить распространение опасных условий.
 
-  ## Station Sectioning
-  Firelocks are intentionally placed in key areas to divide the station into sections. Open spaces like hallways or promenades are divided into smaller sections. This prevents the spread of dangerous conditions to the entire station through connected rooms, hallways, and other open spaces.
+  ## Разделение станции на секции
+  Противопожарные двери намеренно размещены в ключевых областях, чтобы разделить станцию на секции. Открытые пространства, такие как коридоры или променады, разделены на меньшие секции. Это предотвращает распространение опасных условий на всю станцию через соединённые комнаты, коридоры и другие открытые пространства.
 
-  ## Basic Operation
-  When not connected to an [textlink="air alarm" link="AirAlarms"] or fire alarm, firelocks will function based on the conditions they sense. Firelocks will drop (close) if:
-  - The temperature between the two sides of the firelock is different by [color=orange][protodata="Firelock" comp="Firelock" member="TemperatureThreshold"/] K[/color] or more.
-  - The pressure between the two sides of the firelock is different by [color=orange][protodata="Firelock" comp="Firelock" member="PressureThreshold"/] kPa[/color] or more.
+  ## Базовая работа
+  Когда не подключены к [textlink="сигнализации воздуха" link="AirAlarms"] или пожарной сигнализации, противопожарные двери будут функционировать на основе условий, которые они обнаруживают. Противопожарные двери опустятся (закроются), если:
+  - Температура между двумя сторонами противопожарной двери отличается на [color=orange][protodata="Firelock" comp="Firelock" member="TemperatureThreshold"/] К[/color] или более.
+  - Давление между двумя сторонами противопожарной двери отличается на [color=orange][protodata="Firelock" comp="Firelock" member="PressureThreshold"/] кПа[/color] или более.
 
-  If these conditions continue, the firelock will enter lockout mode. Firelocks in lockout mode will have [color=red]red[/color] lights and cannot be pried open by hand. They can only be opened by people with Engineering access or by using a crowbar.
+  Если эти условия продолжаются, противопожарная дверь войдёт в режим блокировки. Противопожарные двери в режиме блокировки будут иметь [color=red]красные[/color] индикаторы и не могут быть взломаны вручную. Их можно открыть только людьми с доступом Инженерного отдела или используя лом.
 
-  Firelocks in lockout mode cannot be opened by using Engineering access if they are unpowered. Only a crowbar can open an unpowered firelock in lockout mode.
+  Противопожарные двери в режиме блокировки не могут быть открыты с помощью доступа Инженерного отдела, если они не имеют питания. Только лом может открыть противопожарную дверь без питания в режиме блокировки.
 
-  If the conditions between the two sides of the firelock return to within acceptable differences, the firelock will disable lockout mode, and can be opened by anyone.
-  Note that this only means that the conditions are the same on both sides of the firelock, not that they are safe.
+  Если условия между двумя сторонами противопожарной двери вернутся к приемлемым различиям, противопожарная дверь отключит режим блокировки и может быть открыта кем угодно.
+  Обратите внимание, что это означает только то, что условия одинаковы с обеих сторон противопожарной двери, а не то, что они безопасны.
 
-  A common example of this is a firelock that has released due to both sides being exposed to space.
+  Распространённым примером этого является противопожарная дверь, которая открылась из-за того, что обе стороны подверглись воздействию космоса.
 
-  ## Connecting to Air and Fire Alarms
-  Firelocks can be connected to [textlink="air alarms" link="AirAlarms"] and fire alarms to receive instructions on when to drop.
-  Firelocks use the [textlink="List system" link="Networking"], and you can connect these devices using a multitool or network configurator.
+  ## Подключение к сигнализациям воздуха и пожарным сигнализациям
+  Противопожарные двери могут быть подключены к [textlink="сигнализациям воздуха" link="AirAlarms"] и пожарным сигнализациям для получения инструкций о том, когда опускаться.
+  Противопожарные двери используют [textlink="систему списков" link="Networking"], и вы можете подключить эти устройства, используя мультитул или конфигуратор сети.
 
   <Box>
     <GuideEntityEmbed Entity="Firelock" Caption=""/>
@@ -46,32 +46,32 @@
     <GuideEntityEmbed Entity="AirAlarm" Caption=""/>
   </Box>
 
-  Each firelock has its own unique address. The process for connecting air vents, scrubbers, and sensors to air alarms is very similar.
+  Каждая противопожарная дверь имеет свой уникальный адрес. Процесс подключения воздушных вентилей, скрубберов и датчиков к сигнализациям воздуха очень похож.
 
-  ## Operation Under Air Alarms
-  When connected to an air alarm, firelocks will also drop under the command of the connected [textlink="air alarm" link="AirAlarms"].
+  ## Работа под сигнализациями воздуха
+  Когда подключены к сигнализации воздуха, противопожарные двери также будут опускаться по команде подключённой [textlink="сигнализации воздуха" link="AirAlarms"].
 
-  Firelocks will drop if the air alarm reaches a [color=red]Danger[/color] alert state. Firelocks will remain dropped until the air alarm returns to a [color=green]Green[/color] alert state.
+  Противопожарные двери опустятся, если сигнализация воздуха достигнет состояния тревоги [color=red]Опасность[/color]. Противопожарные двери останутся опущенными, пока сигнализация воздуха не вернётся к состоянию тревоги [color=green]Зелёный[/color].
 
-  Firelocks that are in lockout mode will not raise even if the air alarm returns to a [color=green]Green[/color] alert state. Even if the pressure difference is resolved, the firelock will remain dropped until the air alarm re-sends a green alert state.
+  Противопожарные двери, которые находятся в режиме блокировки, не поднимутся, даже если сигнализация воздуха вернётся к состоянию тревоги [color=green]Зелёный[/color]. Даже если разница в давлении решена, противопожарная дверь останется опущенной, пока сигнализация воздуха не отправит состояние тревоги зелёный снова.
 
-  ## Operation Under Fire Alarms
-  When connected to a fire alarm, firelocks will drop if the fire alarm is triggered. Firelocks will remain dropped until the fire alarm is reset.
+  ## Работа под пожарными сигнализациями
+  Когда подключены к пожарной сигнализации, противопожарные двери опустятся, если пожарная сигнализация сработала. Противопожарные двери останутся опущенными, пока пожарная сигнализация не будет сброшена.
 
-  ## Fire Alarms
-  Fire alarms are devices that can be used to centrally control all connected firelocks.
+  ## Пожарные сигнализации
+  Пожарные сигнализации — это устройства, которые могут использоваться для централизованного управления всеми подключёнными противопожарными дверями.
 
   <Box>
     <GuideEntityEmbed Entity="FireAlarm"/>
   </Box>
 
-  Devices with sensors can be [textlink="linked" link="Networking"] to fire alarms, which will trigger the fire alarm if the sensor enters the [color=red]Danger[/color] temperature threshold as defined by its sensors.
+  Устройства с датчиками могут быть [textlink="подключены" link="Networking"] к пожарным сигнализациям, что вызовет пожарную сигнализацию, если датчик войдёт в порог температуры [color=red]Опасность[/color], определённый его датчиками.
 
-  When the fire alarm is triggered, all connected firelocks will be overridden with a [color=red]Danger[/color] alert state and will drop.
+  Когда пожарная сигнализация сработала, все подключённые противопожарные двери будут переопределены состоянием тревоги [color=red]Опасность[/color] и опустятся.
 
-  The alarm will automatically clear itself when the sensor returns to a [color=green]Normal[/color] temperature threshold.
+  Сигнализация автоматически очистится, когда датчик вернётся к порогу температуры [color=green]Нормально[/color].
 
-  You can trigger and reset a fire alarm manually by interacting with it.
+  Вы можете вручную активировать и сбросить пожарную сигнализацию, взаимодействуя с ней.
 
-  This can be used to quickly drop firelocks in a room manually, or to raise them after an upset has been resolved.
+  Это может использоваться для быстрого опускания противопожарных дверей в комнате вручную или для их поднятия после того, как нарушение было устранено.
 </Document>
