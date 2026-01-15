@@ -20,4 +20,12 @@ health-analyzer-window-scan-mode-text = Режим сканирования:
 health-analyzer-window-scan-mode-active = АКТИВЕН
 health-analyzer-window-scan-mode-inactive = НЕАКТИВЕН
 health-analyzer-window-malnutrition = Тяжёлое недоедание
+
+health-analyzer-window-pain-causes-text = Причины боли:
+health-analyzer-window-pain-cause-wound-pain = Боль от ран
+health-analyzer-window-pain-cause-suffocation = Удушье
+health-analyzer-window-pain-cause-bloodloss = Кровопотеря
+health-analyzer-window-pain-cause-death-threshold = Порог смерти
+health-analyzer-window-pain-cause-suicide = Самоубийство
+
 health-analyzer-popup-scan-target = { CAPITALIZE($user) } пытается просканировать вас!

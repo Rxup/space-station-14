@@ -208,6 +208,16 @@
                 </GridContainer>
             </BoxContainer>
 
+            <PanelContainer Name="PainCausesDivider"
+                            Visible="False"
+                            StyleClasses="LowDivider"/>
+
+            <BoxContainer Name="PainCausesContainer"
+                          Visible="False"
+                          Margin="0 5 0 5"
+                          Orientation="Vertical">
+            </BoxContainer>
+
             <PanelContainer Name="AlertsDivider"
                             Visible="False"
                             StyleClasses="LowDivider"/>

@@ -786,4 +786,46 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     }
 
     #endregion
+
+    #region Pain Helpers
+
+    /// <summary>
+    /// Gets the pain causes from the entity's consciousness modifiers of type Pain.
+    /// </summary>
+    /// <param name="target">Target entity</param>
+    /// <param name="consciousness">Consciousness component</param>
+    /// <returns>Dictionary with pain causes (identifier -> value), or null if not available</returns>
+    [PublicAPI]
+    public Dictionary<string, float>? GetPainCauses(EntityUid target, ConsciousnessComponent? consciousness = null)
+    {
+        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+            return null;
+
+        var painCauses = new Dictionary<string, float>();
+
+        // Get all modifiers of type Pain
+        foreach (var ((modifierOwner, identifier), modifier) in consciousness.Modifiers)
+        {
+            if (modifier.Type != ConsciousnessModType.Pain)
+                continue;
+
+            // Only include negative modifiers (they reduce consciousness, which is what we want to show as pain)
+            if (modifier.Change < 0)
+            {
+                var painValue = (float)FixedPoint2.Abs(modifier.Change);
+                if (painCauses.TryGetValue(identifier, out var existingValue))
+                {
+                    painCauses[identifier] = existingValue + painValue;
+                }
+                else
+                {
+                    painCauses[identifier] = painValue;
+                }
+            }
+        }
+
+        return painCauses.Count > 0 ? painCauses : null;
+    }
+
+    #endregion
 }

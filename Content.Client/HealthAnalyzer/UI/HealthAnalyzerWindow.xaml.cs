@@ -275,6 +275,38 @@ namespace Content.Client.HealthAnalyzer.UI
                 DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
             }
 
+            // Pain Causes
+            var showPainCauses = msg.PainCauses != null && msg.PainCauses.Count > 0;
+
+            PainCausesDivider.Visible = showPainCauses;
+            PainCausesContainer.Visible = showPainCauses;
+
+            if (showPainCauses)
+            {
+                PainCausesContainer.RemoveAllChildren();
+
+                var painTitle = new Label
+                {
+                    Text = Loc.GetString("health-analyzer-window-pain-causes-text"),
+                    Margin = new Thickness(0, 0, 0, 5),
+                };
+                PainCausesContainer.AddChild(painTitle);
+
+                var painCausesSorted = msg.PainCauses!
+                    .OrderByDescending(p => p.Value)
+                    .ToDictionary(x => x.Key, x => x.Value);
+
+                foreach (var (identifier, value) in painCausesSorted)
+                {
+                    var painCauseLabel = new Label
+                    {
+                        Text = $"{GetPainCauseName(identifier)}: {value:F1}",
+                        Margin = new Thickness(10, 2, 0, 2),
+                    };
+                    PainCausesContainer.AddChild(painCauseLabel);
+                }
+            }
+
             // Alerts
 
             var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
@@ -342,6 +374,21 @@ namespace Content.Client.HealthAnalyzer.UI
                 _ => Loc.GetString("health-analyzer-window-entity-unknown-text"),
             };
         }
+
+        // Start-backmen: pain
+        private static string GetPainCauseName(string identifier)
+        {
+            return identifier switch
+            {
+                "WoundPain" => Loc.GetString("health-analyzer-window-pain-cause-wound-pain"),
+                "Suffocation" => Loc.GetString("health-analyzer-window-pain-cause-suffocation"),
+                "Bloodloss" => Loc.GetString("health-analyzer-window-pain-cause-bloodloss"),
+                "DeathThreshold" => Loc.GetString("health-analyzer-window-pain-cause-death-threshold"),
+                "Suicide" => Loc.GetString("health-analyzer-window-pain-cause-suicide"),
+                _ => identifier, // Fallback to identifier if no localization found
+            };
+        }
+        // End-backmen: pain
 
         private void DrawDiagnosticGroups(
             Dictionary<string, FixedPoint2> groups,

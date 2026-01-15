@@ -31,6 +31,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Server.Body.Systems;
+using Content.Server.Backmen.Surgery.Consciousness.Systems;
 
 namespace Content.Server.Medical;
 
@@ -48,6 +49,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly ServerConsciousnessSystem _consciousnessSystem = default!; // backmen: pain
 
     public override void Initialize()
     {
@@ -272,6 +274,10 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             body = _woundSystem.GetWoundableStatesOnBody(target);
         // End-backmen: surgery
 
+        // Start-backmen: pain
+        var painCauses = _consciousnessSystem.GetPainCauses(target);
+        // End-backmen: pain
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
@@ -280,7 +286,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bleeding,
             unrevivable,
             body, // backmen: surgery
-            part != null ? GetNetEntity(part) : null // backmen: surgery
+            part != null ? GetNetEntity(part) : null, // backmen: surgery
+            painCauses // backmen: pain
         ));
     }
 }
