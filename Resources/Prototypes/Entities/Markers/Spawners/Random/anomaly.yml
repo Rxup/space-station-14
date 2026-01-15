@@ -73,4 +73,9 @@
     - AnomalyTrapTech
     - AnomalyTrapRock
     - AnomalyTrapSanta
+    - AnomalyTrapToxic # backmen
+    - AnomalyTrapHealing # backmen
+    - AnomalyTrapStasis # backmen
+    - AnomalyTrapPoison # backmen
+    - AnomalyTrapVoid # backmen
     chance: 1

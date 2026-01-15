@@ -1,0 +1,100 @@
+# ADT-Gas Artifact Effects Start
+- type: entity
+  id: XenoArtifactEffectCreationGasBZ
+  parent: BaseXenoArtifactEffect
+  description: Expels BZ
+  components:
+  - type: XAECreateGas
+    gases:
+      BZ: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasPluoxium
+  parent: BaseXenoArtifactEffect
+  description: Expels pluoxium
+  components:
+  - type: XAECreateGas
+    gases:
+      Pluoxium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHydrogen
+  parent: BaseXenoArtifactEffect
+  description: Expels hydrogen
+  components:
+  - type: XAECreateGas
+    gases:
+      Hydrogen: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasNitrium
+  parent: BaseXenoArtifactEffect
+  description: Expels nitrium
+  components:
+  - type: XAECreateGas
+    gases:
+      Nitrium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHealium
+  parent: BaseXenoArtifactEffect
+  description: Expels healium
+  components:
+  - type: XAECreateGas
+    gases:
+      Healium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHyperNoblium
+  parent: BaseXenoArtifactEffect
+  description: Expels hyper-noblium
+  components:
+  - type: XAECreateGas
+    gases:
+      HyperNoblium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasProtoNitrate
+  parent: BaseXenoArtifactEffect
+  description: Expels proto-nitrate
+  components:
+  - type: XAECreateGas
+    gases:
+      ProtoNitrate: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasZauker
+  parent: BaseXenoArtifactEffect
+  description: Expels zauker
+  components:
+  - type: XAECreateGas
+    gases:
+      Zauker: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHalon
+  parent: BaseXenoArtifactEffect
+  description: Expels halon
+  components:
+  - type: XAECreateGas
+    gases:
+      Halon: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHelium
+  parent: BaseXenoArtifactEffect
+  description: Expels helium
+  components:
+  - type: XAECreateGas
+    gases:
+      Helium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasAntiNoblium
+  parent: BaseXenoArtifactEffect
+  description: Expels anti-noblium
+  components:
+  - type: XAECreateGas
+    gases:
+      AntiNoblium: 300
+# ADT-Gas Artifact Effects End

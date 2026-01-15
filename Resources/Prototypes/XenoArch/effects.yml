@@ -127,6 +127,30 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
+    #ADT-Gas-Start
+    - id: XenoArtifactEffectCreationGasBZ
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasPluoxium
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasHydrogen
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasNitrium
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasHealium
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasHyperNoblium
+      weight: 2.0
+    - id: XenoArtifactEffectCreationGasProtoNitrate
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasZauker
+      weight: 2.0
+    - id: XenoArtifactEffectCreationGasHalon
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasHelium
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasAntiNoblium
+      weight: 1.0
+    #ADT-Gas-End
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
