@@ -36,7 +36,7 @@
 
   Усиленное четвертьразмерное стекло может выдержать ΔP до [color=orange][protodata="WindowReinforcedDirectional" comp="DeltaPressure" member="MinPressureDelta"/] кПа[/color] перед началом трещин.
 
-  ## Плазменное/Урановое стекло
+  ## Плазменное/урановое стекло
   <Box>
     <GuideEntityEmbed Entity="PlasmaWindow" Caption=""/>
     <GuideEntityEmbed Entity="PlasmaWindowDirectional" Caption=""/>

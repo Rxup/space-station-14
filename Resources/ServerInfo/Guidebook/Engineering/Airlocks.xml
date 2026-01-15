@@ -36,7 +36,7 @@
     <GuideEntityEmbed Entity="PlayerStationAiEmpty" Caption=""/>
   </Box>
   <Box>
-    [color=#999999][italic]Станция ИИ, которая имеет дистанционное управление всеми шлюзами[italic][/color]
+    [color=#999999][italic]Станция ИИ, которая имеет дистанционное управление всеми шлюзами[/italic][/color]
   </Box>
 
   <Box>
@@ -48,7 +48,7 @@
     <GuideEntityEmbed Entity="DoorRemoteResearch" Caption=""/>
   </Box>
   <Box>
-    [color=#999999][italic]Драгоценные пульты дистанционного управления дверями. С неограниченной силой...[italic][/color]
+    [color=#999999][italic]Драгоценные пульты дистанционного управления дверями. С неограниченной силой...[/italic][/color]
   </Box>
 
 
