@@ -60,7 +60,9 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             null,
             null,
             null,
-            null
+            null,
+            null, // backmen: pain
+            null // backmen: pain
         ));
     }
 

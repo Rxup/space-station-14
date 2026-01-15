@@ -23,4 +23,11 @@ health-analyzer-window-scan-mode-text = Scan Mode:
 health-analyzer-window-scan-mode-active = Active
 health-analyzer-window-scan-mode-inactive = Inactive
 
+health-analyzer-window-pain-causes-text = Pain Causes:
+health-analyzer-window-pain-cause-wound-pain = Wound Pain
+health-analyzer-window-pain-cause-suffocation = Suffocation
+health-analyzer-window-pain-cause-bloodloss = Bloodloss
+health-analyzer-window-pain-cause-death-threshold = Death Threshold
+health-analyzer-window-pain-cause-suicide = Suicide
+
 health-analyzer-popup-scan-target = {CAPITALIZE(THE($user))} is trying to scan you!
