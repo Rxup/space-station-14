@@ -21,9 +21,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        BZ: 500
+        BZ: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -54,9 +54,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Pluoxium: 500
+        Pluoxium: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -87,9 +87,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Hydrogen: 500
+        Hydrogen: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -120,9 +120,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Nitrium: 500
+        Nitrium: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -153,9 +153,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Healium: 500
+        Healium: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -186,9 +186,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        HyperNoblium: 500
+        HyperNoblium: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -219,9 +219,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        ProtoNitrate: 500
+        ProtoNitrate: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -252,9 +252,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Zauker: 500
+        Zauker: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -285,9 +285,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Halon: 500
+        Halon: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -318,9 +318,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        Helium: 500
+        Helium: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
@@ -351,9 +351,9 @@
     - timer
     removeFraction: 0.25
     air:
-      volume: 1000
+      volume: 5000
       moles:
-        AntiNoblium: 500
+        AntiNoblium: 5000
       temperature: 293.15
   - type: GenericVisualizer
     visuals:
