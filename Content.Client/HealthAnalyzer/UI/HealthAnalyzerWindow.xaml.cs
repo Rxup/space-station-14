@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Message;
 using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
@@ -293,7 +294,9 @@ namespace Content.Client.HealthAnalyzer.UI
             // Alerts
 
             var hasDisease = _entityManager.HasComponent<DiseasedComponent>(_target.Value); // backmen
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease; // backmen
+            var hasTrauma = _trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage); // backmen
+            var hasBoneDmg = _trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage); // backmenm
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneDmg; // backmen
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -331,13 +334,13 @@ namespace Content.Client.HealthAnalyzer.UI
                     Margin = new Thickness(0, 4),
                     MaxWidth = 300,
                 };
-                diseaseLabel.SetMessage(Loc.GetString("health-analyzer-window-entity-diseased-text"), defaultColor: Color.Orange);
+                diseaseLabel.SetMarkup(Loc.GetString("health-analyzer-window-entity-diseased-text"));
                 AlertsContainer.AddChild(diseaseLabel);
             }
             // End-backmen: disease
 
             // Backmen: traumas
-            if (_trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage))
+            if (hasTrauma)
             {
                 var organTraumaLabel = new RichTextLabel
                 {
@@ -348,7 +351,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 AlertsContainer.AddChild(organTraumaLabel);
             }
 
-            if (_trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage))
+            if (hasBoneDmg)
             {
                 var boneTraumaLabel = new RichTextLabel
                 {
