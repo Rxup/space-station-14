@@ -485,6 +485,9 @@ public sealed class MobThresholdSystem : EntitySystem
 
     private void OnDamaged(EntityUid target, MobThresholdsComponent thresholds, DamageChangedEvent args)
     {
+        if(HasComp<ConsciousnessComponent>(target)) // backmen
+            return;
+
         if (!TryComp<MobStateComponent>(target, out var mobState))
             return;
         CheckThresholds(target, mobState, thresholds, args.Damageable, args.Origin);

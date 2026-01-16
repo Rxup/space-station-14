@@ -276,6 +276,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
         // Start-backmen: pain
         var painCauses = _consciousnessSystem.GetPainCauses(target);
+        var totalPain = _consciousnessSystem.GetTotalPain(target);
         // End-backmen: pain
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
@@ -287,7 +288,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             unrevivable,
             body, // backmen: surgery
             part != null ? GetNetEntity(part) : null, // backmen: surgery
-            painCauses // backmen: pain
+            painCauses, // backmen: pain
+            totalPain // backmen: pain
         ));
     }
 }

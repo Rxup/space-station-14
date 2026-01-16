@@ -279,14 +279,14 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Start-backmen: pain
             // Pain Causes
-            var showPainCauses = msg.PainCauses != null && msg.PainCauses.Count > 0;
+            var showPainCauses = (msg.PainCauses != null && msg.PainCauses.Count > 0) || msg.TotalPain.HasValue;
 
             PainCausesDivider.Visible = showPainCauses;
             PainCausesDisplay.Visible = showPainCauses;
 
             if (showPainCauses)
             {
-                PainCausesDisplay.UpdatePainCauses(msg.PainCauses);
+                PainCausesDisplay.UpdatePainCauses(msg.PainCauses, msg.TotalPain, _target);
             }
             // End-backmen: pain
 

@@ -25,10 +25,21 @@ health-analyzer-window-scan-mode-active = Active
 health-analyzer-window-scan-mode-inactive = Inactive
 
 health-analyzer-window-pain-causes-text = Pain Causes:
-health-analyzer-window-pain-cause-wound-pain = Wound Pain
-health-analyzer-window-pain-cause-suffocation = Suffocation
-health-analyzer-window-pain-cause-bloodloss = Bloodloss
-health-analyzer-window-pain-cause-death-threshold = Death Threshold
-health-analyzer-window-pain-cause-suicide = Suicide
+health-analyzer-window-tab-nerve-system-pain = Nerve System
+health-analyzer-window-tab-body-pain-causes = Body Pain Causes
+health-analyzer-window-nerve-system-pain-text = Nerve System Pain:
+health-analyzer-window-total-pain-from-causes-text = Total Pain From Causes:
+health-analyzer-window-pain-status-none = [color=green]None[/color]
+health-analyzer-window-pain-status-low = [color=yellow]Low[/color]
+health-analyzer-window-pain-status-moderate = [color=orange]Moderate[/color]
+health-analyzer-window-pain-status-critical = [color=red]Critical[/color]
+health-analyzer-window-pain-status-fatal = [color=darkred]Fatal[/color]
+health-analyzer-window-pain-cause-wound-pain = Physical Trauma (Wounds)
+health-analyzer-window-pain-cause-suffocation = Oxygen Deprivation
+health-analyzer-window-pain-cause-bloodloss = Blood Loss
+health-analyzer-window-pain-cause-death-threshold = Near Death State
+health-analyzer-window-pain-cause-suicide = Self-Inflicted Harm
+
+health-analyzer-window-pain-help-button = Help
 
 health-analyzer-popup-scan-target = {CAPITALIZE(THE($user))} is trying to scan you!

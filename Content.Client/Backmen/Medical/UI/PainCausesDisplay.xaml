@@ -3,5 +3,13 @@
     xmlns:backmen="clr-namespace:Content.Client.Backmen.Medical.UI">
     <BoxContainer Name="RootContainer"
                   Orientation="Vertical">
+        <TabContainer Name="PainTabs">
+            <BoxContainer Name="NerveSystemTab"
+                          Orientation="Vertical">
+            </BoxContainer>
+            <BoxContainer Name="BodyPainCausesTab"
+                          Orientation="Vertical">
+            </BoxContainer>
+        </TabContainer>
     </BoxContainer>
 </backmen:PainCausesDisplay>

@@ -9,6 +9,7 @@ using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds;
@@ -42,6 +43,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly PainSystem _pain = default!; // backmen
 
     private float _cprTraumaChance = 0.1f;
 
@@ -51,7 +53,8 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessInit);
+        SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
+        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
@@ -526,14 +529,17 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         CheckRequiredParts((args.OldBody, consciousness));
     }
 
-    private void OnConsciousnessInit(Entity<ConsciousnessComponent> uid, ref MapInitEvent args)
+    private void OnConsciousnessInit(Entity<ConsciousnessComponent> uid, ref ComponentInit args)
     {
         if (uid.Comp.RawConsciousness <= 0)
         {
             uid.Comp.RawConsciousness = uid.Comp.Cap;
             Dirty(uid);
         }
+    }
 
+    private void OnConsciousnessMapInit(Entity<ConsciousnessComponent> uid, ref MapInitEvent args)
+    {
         CheckConscious(uid.AsNullable());
     }
 
@@ -776,20 +782,60 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     #region Pain Helpers
 
     /// <summary>
-    /// Gets the pain causes from the entity's consciousness modifiers of type Pain.
+    /// Gets the total pain level from the entity's nerve system, if available.
+    /// </summary>
+    /// <param name="target">Target entity with consciousness component</param>
+    /// <returns>Total pain level as float, or null if not available</returns>
+    [PublicAPI]
+    public float? GetTotalPain(Entity<ConsciousnessComponent?> target)
+    {
+        if (!TryGetNerveSystem(target, out var nerveSys))
+            return null;
+
+        return (float)nerveSys.Value.Comp.Pain;
+    }
+
+    /// <summary>
+    /// Gets the pain causes from the entity's nerve system modifiers and consciousness modifiers.
     /// </summary>
     /// <param name="target">Target entity</param>
-    /// <param name="consciousness">Consciousness component</param>
     /// <returns>Dictionary with pain causes (identifier -> value), or null if not available</returns>
     [PublicAPI]
     public Dictionary<string, float>? GetPainCauses(Entity<ConsciousnessComponent?> target)
     {
+        // Start-backmen: get pain causes from both NerveSystemComponent and ConsciousnessComponent
         if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return null;
 
         var painCauses = new Dictionary<string, float>();
 
-        // Get all modifiers of type Pain
+        // Get pain modifiers from nerve system (physical pain from wounds)
+        if (TryGetNerveSystem(target, out var nerveSys))
+        {
+            foreach (var ((nerveUid, identifier), modifier) in nerveSys.Value.Comp.Modifiers)
+            {
+                // Apply modifiers to get actual pain value (with multipliers)
+                var actualPain = _pain.ApplyModifiersToPain(
+                    nerveUid,
+                    modifier.Change,
+                    nerveSys.Value.Comp,
+                    modifier.PainType);
+
+                if (actualPain > 0)
+                {
+                    if (painCauses.TryGetValue(identifier, out var existingValue))
+                    {
+                        painCauses[identifier] = existingValue + (float)actualPain;
+                    }
+                    else
+                    {
+                        painCauses[identifier] = (float)actualPain;
+                    }
+                }
+            }
+        }
+
+        // Get pain modifiers from consciousness component (other pain causes like Suffocation, Bloodloss, etc.)
         foreach (var ((modifierOwner, identifier), modifier) in target.Comp.Modifiers)
         {
             if (modifier.Type != ConsciousnessModType.Pain)
@@ -811,6 +857,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         return painCauses.Count > 0 ? painCauses : null;
+        // End-backmen: get pain causes from both NerveSystemComponent and ConsciousnessComponent
     }
 
     #endregion
