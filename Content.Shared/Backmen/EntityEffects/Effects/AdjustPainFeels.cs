@@ -23,7 +23,7 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
     {
         var scale = FixedPoint2.New(args.Scale);
 
-        if (!_consciousness.TryGetNerveSystem(entity, out var nerveSys))
+        if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys))
             return;
 
         foreach (var bodyPart in _body.GetBodyChildren(entity))

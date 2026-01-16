@@ -99,18 +99,18 @@ public sealed class SharedSuicideSystem : EntitySystem
     /// </summary>
     public void KillConsciousness(Entity<ConsciousnessComponent> target)
     {
-        _consciousness.ClearForceEffects(target, target);
+        _consciousness.ClearForceEffects(target.AsNullable());
         foreach (var modifier in target.Comp.Modifiers)
         {
-            _consciousness.RemoveConsciousnessModifier(target, modifier.Key.Item1, modifier.Key.Item2);
+            _consciousness.RemoveConsciousnessModifier(target.AsNullable(), modifier.Key.Item1, modifier.Key.Item2);
         }
 
         foreach (var multiplier in target.Comp.Multipliers)
         {
-            _consciousness.RemoveConsciousnessMultiplier(target, multiplier.Key.Item1, multiplier.Key.Item2, target);
+            _consciousness.RemoveConsciousnessMultiplier(target.AsNullable(), multiplier.Key.Item1, multiplier.Key.Item2);
         }
 
-        _consciousness.AddConsciousnessModifier(target, target, -target.Comp.Cap, "Suicide", ConsciousnessModType.Pain, consciousness: target);
-        _consciousness.AddConsciousnessMultiplier(target, target, 0f, "Suicide", ConsciousnessModType.Pain, consciousness: target);
+        _consciousness.AddConsciousnessModifier(target.AsNullable(), target, -target.Comp.Cap, "Suicide", ConsciousnessModType.Pain);
+        _consciousness.AddConsciousnessMultiplier(target.AsNullable(), target, 0f, "Suicide", ConsciousnessModType.Pain);
     }
 }

@@ -175,7 +175,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         if (!ConsciousnessQuery.TryComp(entity.Owner, out var consciousness))
             return;
 
-        if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys, consciousness))
+        if (!_consciousness.TryGetNerveSystem((entity,consciousness), out var nerveSys))
             return;
 
         // Calculate total bleeding from all wounds on body parts

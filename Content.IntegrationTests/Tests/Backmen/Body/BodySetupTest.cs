@@ -193,7 +193,7 @@ public sealed class BodySetupTest
                     Assert.That(entMan.HasComponent<OrganComponent>(dummyNerveSys), $"Failed species to pass the test: {speciesPrototype.ID}");
                     Assert.That(entMan.HasComponent<ConsciousnessRequiredComponent>(dummyNerveSys), $"Failed species to pass the test: {speciesPrototype.ID}");
 
-                    Assert.That(consciousnessSystem.CheckConscious(dummy, consciousness), $"Failed species to pass the test: {speciesPrototype.ID}");
+                    Assert.That(consciousnessSystem.CheckConscious((dummy, consciousness)), $"Failed species to pass the test: {speciesPrototype.ID}");
                 });
             }
         });

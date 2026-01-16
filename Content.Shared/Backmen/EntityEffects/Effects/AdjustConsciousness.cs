@@ -17,18 +17,18 @@ public sealed partial class AdjustConsciousnessEntityEffectSystem : EntityEffect
     {
         var scale = FixedPoint2.New(args.Scale);
 
-        if (!_consciousness.TryGetNerveSystem(entity, out var nerveSys))
+        if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys))
             return;
 
         if (args.Effect.AllowCreatingModifiers)
         {
-            if (!_consciousness.ChangeConsciousnessModifier(entity,
+            if (!_consciousness.ChangeConsciousnessModifier(entity.Owner,
                     nerveSys.Value.Owner,
                     args.Effect.Amount * scale,
                     args.Effect.Identifier,
                     args.Effect.Time))
             {
-                _consciousness.AddConsciousnessModifier(entity,
+                _consciousness.AddConsciousnessModifier(entity.Owner,
                     nerveSys.Value.Owner,
                     args.Effect.Amount * scale,
                     args.Effect.Identifier,
@@ -38,7 +38,7 @@ public sealed partial class AdjustConsciousnessEntityEffectSystem : EntityEffect
         }
         else
         {
-            _consciousness.ChangeConsciousnessModifier(entity, nerveSys.Value.Owner, args.Effect.Amount * scale, args.Effect.Identifier, args.Effect.Time);
+            _consciousness.ChangeConsciousnessModifier(entity.Owner, nerveSys.Value.Owner, args.Effect.Amount * scale, args.Effect.Identifier, args.Effect.Time);
         }
     }
 }

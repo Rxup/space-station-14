@@ -1,0 +1,7 @@
+<backmen:PainCausesDisplay
+    xmlns="https://spacestation14.io"
+    xmlns:backmen="clr-namespace:Content.Client.Backmen.Medical.UI">
+    <BoxContainer Name="RootContainer"
+                  Orientation="Vertical">
+    </BoxContainer>
+</backmen:PainCausesDisplay>

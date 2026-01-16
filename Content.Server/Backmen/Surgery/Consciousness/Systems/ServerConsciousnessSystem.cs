@@ -51,7 +51,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
+        SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessInit);
 
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
@@ -187,19 +187,19 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (args.NewMobState != MobState.Dead)
             return;
 
-        AddConsciousnessModifier(uid, uid, -component.Cap, "DeathThreshold", ConsciousnessModType.Pain, consciousness: component);
+        AddConsciousnessModifier(consciousness.AsNullable(), uid, -component.Cap, "DeathThreshold", ConsciousnessModType.Pain);
         // To prevent people from suddenly resurrecting while being dead. whoops
 
         foreach (var multiplier in
                  component.Multipliers.Where(multiplier => multiplier.Value.Type != ConsciousnessModType.Pain))
         {
-            RemoveConsciousnessMultiplier(uid, multiplier.Key.Item1, multiplier.Key.Item2, component);
+            RemoveConsciousnessMultiplier(consciousness.AsNullable(), multiplier.Key.Item1, multiplier.Key.Item2);
         }
 
         foreach (var multiplier in
                  component.Modifiers.Where(multiplier => multiplier.Value.Type != ConsciousnessModType.Pain))
         {
-            RemoveConsciousnessModifier(uid, multiplier.Key.Item1, multiplier.Key.Item2, component);
+            RemoveConsciousnessModifier(consciousness.AsNullable(), multiplier.Key.Item1, multiplier.Key.Item2);
         }
     }
 
@@ -212,7 +212,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
 
         if (!TryGetConsciousnessModifier(
-                consciousness,
+                consciousness.AsNullable(),
                 consciousness.Comp.NerveSystem.Value,
                 out _,
                 "Suffocation"))
@@ -263,7 +263,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (!CanPerformCpr(consciousness, args.User))
             return;
 
-        if (!TryGetNerveSystem(consciousness, out var nerveSys))
+        if (!TryGetNerveSystem(consciousness.AsNullable(), out var nerveSys))
             return;
         var modifier = consciousness.Comp.Modifiers[(nerveSys.Value.Owner, "Suffocation")];
 
@@ -365,7 +365,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         ChangeConsciousnessModifier(
-            consciousness,
+            consciousness.AsNullable(),
             nerveSys.Value,
             consciousness.Comp.CprSuffocationHealAmount,
             "Suffocation");
@@ -373,7 +373,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         if (consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
         {
             // No fuck you
-            RemoveConsciousnessModifier(consciousness, nerveSys.Value, "Suffocation", consciousness.Comp);
+            RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, "Suffocation");
         }
 
         _popup.PopupEntity(
@@ -418,7 +418,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                     .Select(multiplier => multiplier.Key)
                     .ToArray())
         {
-            RemoveConsciousnessMultiplier(uid, key.Item1, key.Item2, component);
+            RemoveConsciousnessMultiplier(uid, key.Item1, key.Item2);
         }
 
         foreach (var key in component.Modifiers
@@ -426,16 +426,16 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                      .Select(modifier => modifier.Key)
                      .ToArray())
         {
-            RemoveConsciousnessModifier(uid, key.Item1, key.Item2, component);
+            RemoveConsciousnessModifier(uid, key.Item1, key.Item2);
         }
 
-        CheckRequiredParts(uid, component);
-        ForceConscious(uid, TimeSpan.FromSeconds(5f), component);
+        CheckRequiredParts(consciousness);
+        ForceConscious(consciousness.AsNullable(), TimeSpan.FromSeconds(5f));
     }
 
     private void OnHandleUnhandledDamage(Entity<ConsciousnessComponent> consciousness, ref HandleUnhandledWoundsEvent args)
     {
-        if (!TryGetNerveSystem(consciousness, out var nerveSys))
+        if (!TryGetNerveSystem(consciousness.AsNullable(), out var nerveSys))
             return;
 
         foreach (var damagePiece in args.UnhandledDamage.ToArray())
@@ -444,25 +444,23 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                 continue;
 
             if (!ChangeConsciousnessModifier(
-                    consciousness,
+                    consciousness.AsNullable(),
                     nerveSys.Value,
                     -damagePiece.Value,
-                    "Suffocation",
-                    consciousness: consciousness))
+                    "Suffocation"))
             {
                 AddConsciousnessModifier(
-                    consciousness,
+                    consciousness.AsNullable(),
                     nerveSys.Value,
                     -damagePiece.Value,
                     "Suffocation",
-                    ConsciousnessModType.Pain,
-                    consciousness: consciousness);
+                    ConsciousnessModType.Pain);
             }
 
             if (consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
             {
                 // No fuck you
-                RemoveConsciousnessModifier(consciousness, nerveSys.Value, "Suffocation", consciousness.Comp);
+                RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, "Suffocation");
             }
 
             args.UnhandledDamage.Remove(damagePiece.Key);
@@ -475,7 +473,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             return;
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
-        CheckRequiredParts(args.Part.Comp.Body.Value, consciousness);
+        CheckRequiredParts((args.Part.Comp.Body.Value, consciousness));
     }
 
     private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
@@ -493,7 +491,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
-        CheckRequiredParts(args.Part.Comp.Body.Value, consciousness);
+        CheckRequiredParts((args.Part.Comp.Body.Value, consciousness));
     }
 
     private void OnOrganAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganAddedToBodyEvent args)
@@ -510,7 +508,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
             consciousness.NerveSystem = (uid, nerveSys);
         }
 
-        CheckRequiredParts(args.Body, consciousness);
+        CheckRequiredParts((args.Body, consciousness));
     }
 
     private void OnOrganRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganRemovedFromBodyEvent args)
@@ -525,18 +523,18 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
-        CheckRequiredParts(args.OldBody, consciousness);
+        CheckRequiredParts((args.OldBody, consciousness));
     }
 
-    private void OnConsciousnessInit(EntityUid uid, ConsciousnessComponent consciousness, ComponentInit args)
+    private void OnConsciousnessInit(Entity<ConsciousnessComponent> uid, ref MapInitEvent args)
     {
-        if (consciousness.RawConsciousness <= 0)
+        if (uid.Comp.RawConsciousness <= 0)
         {
-            consciousness.RawConsciousness = consciousness.Cap;
-            Dirty(uid, consciousness);
+            uid.Comp.RawConsciousness = uid.Comp.Cap;
+            Dirty(uid);
         }
 
-        CheckConscious(uid, consciousness);
+        CheckConscious(uid.AsNullable());
     }
 
     public override void Update(float frameTime)
@@ -559,7 +557,7 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                          .Select(m => m.Key)
                          .ToArray())
             {
-                RemoveConsciousnessModifier(ent, modifier.Item1, modifier.Item2, consciousness);
+                RemoveConsciousnessModifier((ent,consciousness), modifier.Item1, modifier.Item2);
             }
 
             foreach (var multiplier in
@@ -568,19 +566,19 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                          .Select(m => m.Key)
                          .ToArray())
             {
-                RemoveConsciousnessMultiplier(ent, multiplier.Item1, multiplier.Item2, consciousness);
+                RemoveConsciousnessMultiplier((ent,consciousness), multiplier.Item1, multiplier.Item2);
             }
 
             if (consciousness.PassedOutTime < Timing.CurTime && consciousness.PassedOut)
             {
                 consciousness.PassedOut = false;
-                CheckConscious(ent, consciousness);
+                CheckConscious((ent, consciousness));
             }
 
             if (consciousness.ForceConsciousnessTime < Timing.CurTime && consciousness.ForceConscious)
             {
                 consciousness.ForceConscious = false;
-                CheckConscious(ent, consciousness);
+                CheckConscious((ent, consciousness));
             }
         }
     }
@@ -588,69 +586,63 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     #region Helpers
 
     [PublicAPI]
-    public override bool CheckConscious(
-        EntityUid target,
-        ConsciousnessComponent? consciousness = null,
-        MobStateComponent? mobState = null)
+    public override bool CheckConscious(Entity<ConsciousnessComponent?, MobStateComponent?> target)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false)
-            || !MobStateQuery.Resolve(target, ref mobState, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp1, false)
+            || !MobStateQuery.Resolve(target, ref target.Comp2, false))
             return false;
 
         var shouldBeConscious =
-            consciousness.Consciousness > consciousness.Threshold || consciousness is { ForceUnconscious: false, ForceConscious: true };
+            target.Comp1.Consciousness > target.Comp1.Threshold || target.Comp1 is { ForceUnconscious: false, ForceConscious: true };
 
-        var ev = new ConsciousUpdateEvent(consciousness, shouldBeConscious);
+        var ev = new ConsciousUpdateEvent(target.Comp1, shouldBeConscious);
         RaiseLocalEvent(target, ref ev);
 
-        SetConscious(target, shouldBeConscious, consciousness);
-        UpdateMobState(target, consciousness, mobState);
+        SetConscious(target, shouldBeConscious);
+        UpdateMobState(target);
 
         return shouldBeConscious;
     }
 
     [PublicAPI]
     public override void ForcePassOut(
-        EntityUid target,
-        TimeSpan time,
-        ConsciousnessComponent? consciousness = null)
+        Entity<ConsciousnessComponent?> target,
+        TimeSpan time)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return;
 
-        consciousness.PassedOutTime = Timing.CurTime + time;
-        consciousness.PassedOut = true;
+        target.Comp.PassedOutTime = Timing.CurTime + time;
+        target.Comp.PassedOut = true;
 
-        CheckConscious(target, consciousness);
+        CheckConscious(target);
     }
 
     [PublicAPI]
     public override void ForceConscious(
-        EntityUid target,
-        TimeSpan time,
-        ConsciousnessComponent? consciousness = null)
+        Entity<ConsciousnessComponent?> target,
+        TimeSpan time)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return;
 
-        consciousness.ForceConsciousnessTime = Timing.CurTime + time;
-        consciousness.ForceConscious = true;
+        target.Comp.ForceConsciousnessTime = Timing.CurTime + time;
+        target.Comp.ForceConscious = true;
 
-        CheckConscious(target, consciousness);
+        CheckConscious(target);
     }
 
     [PublicAPI]
     public override void ClearForceEffects(
-        EntityUid target,
-        ConsciousnessComponent? consciousness = null)
+        Entity<ConsciousnessComponent?> target)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return;
 
-        consciousness.ForceConscious = false;
-        consciousness.PassedOut = false;
+        target.Comp.ForceConscious = false;
+        target.Comp.PassedOut = false;
 
-        CheckConscious(target, consciousness);
+        CheckConscious(target);
     }
 
     #endregion
@@ -658,129 +650,123 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     #region Modifiers and Multipliers
 
     [PublicAPI]
-    public override bool AddConsciousnessModifier(EntityUid target,
+    public override bool AddConsciousnessModifier(Entity<ConsciousnessComponent?> target,
         EntityUid modifierOwner,
         FixedPoint2 modifier,
         string identifier = "Unspecified",
         ConsciousnessModType type = ConsciousnessModType.Generic,
-        TimeSpan? time = null,
-        ConsciousnessComponent? consciousness = null)
+        TimeSpan? time = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!consciousness.Modifiers.TryAdd((modifierOwner, identifier),
+        if (!target.Comp.Modifiers.TryAdd((modifierOwner, identifier),
                 new ConsciousnessModifier(modifier, time.HasValue ? Timing.CurTime + time :  time, type)))
             return false;
 
-        UpdateConsciousnessModifiers(target, consciousness);
-        Dirty(target, consciousness);
+        UpdateConsciousnessModifiers(target);
+        Dirty(target);
 
         return true;
     }
 
     [PublicAPI]
-    public override bool RemoveConsciousnessModifier(EntityUid target,
+    public override bool RemoveConsciousnessModifier(Entity<ConsciousnessComponent?> target,
         EntityUid modifierOwner,
-        string identifier,
-        ConsciousnessComponent? consciousness = null)
+        string identifier)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!consciousness.Modifiers.Remove((modifierOwner, identifier)))
+        if (!target.Comp.Modifiers.Remove((modifierOwner, identifier)))
             return false;
 
-        UpdateConsciousnessModifiers(target, consciousness);
-        Dirty(target, consciousness);
+        UpdateConsciousnessModifiers(target);
+        Dirty(target);
 
         return true;
     }
 
     [PublicAPI]
-    public override bool SetConsciousnessModifier(EntityUid target,
+    public override bool SetConsciousnessModifier(Entity<ConsciousnessComponent?> target,
         EntityUid modifierOwner,
         FixedPoint2 modifierChange,
         string identifier = "Unspecified",
         ConsciousnessModType type = ConsciousnessModType.Generic,
-        TimeSpan? time = null,
-        ConsciousnessComponent? consciousness = null)
+        TimeSpan? time = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return false;
 
         var newModifier = new ConsciousnessModifier(Change: modifierChange, Time: time.HasValue ? Timing.CurTime + time : time, Type: type);
-        consciousness.Modifiers[(modifierOwner, identifier)] = newModifier;
+        target.Comp.Modifiers[(modifierOwner, identifier)] = newModifier;
 
-        UpdateConsciousnessModifiers(target, consciousness);
-        Dirty(target, consciousness);
+        UpdateConsciousnessModifiers(target);
+        Dirty(target);
 
         return true;
     }
 
     [PublicAPI]
-    public override bool ChangeConsciousnessModifier(EntityUid target,
+    public override bool ChangeConsciousnessModifier(Entity<ConsciousnessComponent?> target,
         EntityUid modifierOwner,
         FixedPoint2 modifierChange,
         string identifier,
-        TimeSpan? time = null,
-        ConsciousnessComponent? consciousness = null)
+        TimeSpan? time = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false) ||
-            !consciousness.Modifiers.TryGetValue((modifierOwner, identifier), out var oldModifier))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false) ||
+            !target.Comp.Modifiers.TryGetValue((modifierOwner, identifier), out var oldModifier))
             return false;
 
         var newModifier =
             oldModifier with {Change = oldModifier.Change + modifierChange, Time = time.HasValue ? Timing.CurTime + time :  time};
 
-        consciousness.Modifiers[(modifierOwner, identifier)] = newModifier;
+        target.Comp.Modifiers[(modifierOwner, identifier)] = newModifier;
 
-        UpdateConsciousnessModifiers(target, consciousness);
-        Dirty(target, consciousness);
+        UpdateConsciousnessModifiers(target);
+        Dirty(target);
 
         return true;
     }
 
     [PublicAPI]
-    public override bool AddConsciousnessMultiplier(EntityUid target,
+    public override bool AddConsciousnessMultiplier(Entity<ConsciousnessComponent?> target,
         EntityUid multiplierOwner,
         FixedPoint2 multiplier,
         string identifier = "Unspecified",
         ConsciousnessModType type = ConsciousnessModType.Generic,
-        TimeSpan? time = null,
-        ConsciousnessComponent? consciousness = null)
+        TimeSpan? time = null)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!consciousness.Multipliers.TryAdd((multiplierOwner, identifier),
+        if (!target.Comp.Multipliers.TryAdd((multiplierOwner, identifier),
                 new ConsciousnessMultiplier(multiplier, time.HasValue ? Timing.CurTime + time :  time, type)))
             return false;
 
-        UpdateConsciousnessMultipliers(target, consciousness);
-        UpdateConsciousnessModifiers(target, consciousness);
+        UpdateConsciousnessMultipliers(target);
+        UpdateConsciousnessModifiers(target);
 
-        Dirty(target, consciousness);
+        Dirty(target);
 
         return true;
     }
 
     [PublicAPI]
-    public override bool RemoveConsciousnessMultiplier(EntityUid target,
+    public override bool RemoveConsciousnessMultiplier(Entity<ConsciousnessComponent?> target,
         EntityUid multiplierOwner,
-        string identifier,
-        ConsciousnessComponent? consciousness = null)
+        string identifier)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!consciousness.Multipliers.Remove((multiplierOwner, identifier)))
+        if (!target.Comp.Multipliers.Remove((multiplierOwner, identifier)))
             return false;
 
-        UpdateConsciousnessMultipliers(target, consciousness);
-        UpdateConsciousnessModifiers(target, consciousness);
+        UpdateConsciousnessMultipliers(target);
+        UpdateConsciousnessModifiers(target);
 
-        Dirty(target, consciousness);
+        Dirty(target);
 
         return true;
     }
@@ -796,15 +782,15 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
     /// <param name="consciousness">Consciousness component</param>
     /// <returns>Dictionary with pain causes (identifier -> value), or null if not available</returns>
     [PublicAPI]
-    public Dictionary<string, float>? GetPainCauses(EntityUid target, ConsciousnessComponent? consciousness = null)
+    public Dictionary<string, float>? GetPainCauses(Entity<ConsciousnessComponent?> target)
     {
-        if (!ConsciousnessQuery.Resolve(target, ref consciousness, false))
+        if (!ConsciousnessQuery.Resolve(target, ref target.Comp, false))
             return null;
 
         var painCauses = new Dictionary<string, float>();
 
         // Get all modifiers of type Pain
-        foreach (var ((modifierOwner, identifier), modifier) in consciousness.Modifiers)
+        foreach (var ((modifierOwner, identifier), modifier) in target.Comp.Modifiers)
         {
             if (modifier.Type != ConsciousnessModType.Pain)
                 continue;
