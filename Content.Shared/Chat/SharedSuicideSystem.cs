@@ -5,7 +5,6 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
-using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
@@ -100,15 +99,20 @@ public sealed class SharedSuicideSystem : EntitySystem
     public void KillConsciousness(Entity<ConsciousnessComponent> target)
     {
         _consciousness.ClearForceEffects(target.AsNullable());
-        foreach (var modifier in target.Comp.Modifiers)
+
+        // Start-backmen: create copies of keys to avoid InvalidOperationException when modifying collection during iteration
+        var modifierKeys = target.Comp.Modifiers.Keys.ToList();
+        foreach (var (k1,k2) in modifierKeys)
         {
-            _consciousness.RemoveConsciousnessModifier(target.AsNullable(), modifier.Key.Item1, modifier.Key.Item2);
+            _consciousness.RemoveConsciousnessModifier(target.AsNullable(), k1, k2);
         }
 
-        foreach (var multiplier in target.Comp.Multipliers)
+        var multiplierKeys = target.Comp.Multipliers.Keys.ToList();
+        foreach (var (k1,k2) in multiplierKeys)
         {
-            _consciousness.RemoveConsciousnessMultiplier(target.AsNullable(), multiplier.Key.Item1, multiplier.Key.Item2);
+            _consciousness.RemoveConsciousnessMultiplier(target.AsNullable(), k1, k2);
         }
+        // End-backmen: create copies of keys to avoid InvalidOperationException
 
         _consciousness.AddConsciousnessModifier(target.AsNullable(), target, -target.Comp.Cap, "Suicide", ConsciousnessModType.Pain);
         _consciousness.AddConsciousnessMultiplier(target.AsNullable(), target, 0f, "Suicide", ConsciousnessModType.Pain);
