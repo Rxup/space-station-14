@@ -23,7 +23,7 @@ public sealed partial class SuppressPainEntityEffectSystem : EntityEffectSystem<
     {
         var scale = FixedPoint2.New(args.Scale);
 
-        if (!_consciousness.TryGetNerveSystem(entity, out var nerveSys))
+        if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys))
             return;
 
         var bodyPart = _body.GetBodyChildrenOfType(entity, BodyPartType.Head).FirstOrNull();

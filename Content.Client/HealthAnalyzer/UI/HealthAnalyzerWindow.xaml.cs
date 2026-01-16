@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Message;
 using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
@@ -9,6 +10,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Backmen.Disease; // backmen
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -26,6 +28,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -275,41 +278,25 @@ namespace Content.Client.HealthAnalyzer.UI
                 DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
             }
 
+            // Start-backmen: pain
             // Pain Causes
-            var showPainCauses = msg.PainCauses != null && msg.PainCauses.Count > 0;
+            var showPainCauses = (msg.PainCauses != null && msg.PainCauses.Count > 0) || msg.TotalPain.HasValue;
 
             PainCausesDivider.Visible = showPainCauses;
-            PainCausesContainer.Visible = showPainCauses;
+            PainCausesDisplay.Visible = showPainCauses;
 
             if (showPainCauses)
             {
-                PainCausesContainer.RemoveAllChildren();
-
-                var painTitle = new Label
-                {
-                    Text = Loc.GetString("health-analyzer-window-pain-causes-text"),
-                    Margin = new Thickness(0, 0, 0, 5),
-                };
-                PainCausesContainer.AddChild(painTitle);
-
-                var painCausesSorted = msg.PainCauses!
-                    .OrderByDescending(p => p.Value)
-                    .ToDictionary(x => x.Key, x => x.Value);
-
-                foreach (var (identifier, value) in painCausesSorted)
-                {
-                    var painCauseLabel = new Label
-                    {
-                        Text = $"{GetPainCauseName(identifier)}: {value:F1}",
-                        Margin = new Thickness(10, 2, 0, 2),
-                    };
-                    PainCausesContainer.AddChild(painCauseLabel);
-                }
+                PainCausesDisplay.UpdatePainCauses(msg.PainCauses, msg.TotalPain, _target);
             }
+            // End-backmen: pain
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
+            var hasDisease = _entityManager.HasComponent<DiseasedComponent>(_target.Value); // backmen
+            var hasTrauma = _trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage); // backmen
+            var hasBoneDmg = _trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage); // backmenm
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneDmg; // backmen
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -339,8 +326,21 @@ namespace Content.Client.HealthAnalyzer.UI
                 AlertsContainer.AddChild(bleedingLabel);
             }
 
+            // Start-backmen: disease
+            if (hasDisease)
+            {
+                var diseaseLabel = new RichTextLabel
+                {
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300,
+                };
+                diseaseLabel.SetMarkup(Loc.GetString("health-analyzer-window-entity-diseased-text"));
+                AlertsContainer.AddChild(diseaseLabel);
+            }
+            // End-backmen: disease
+
             // Backmen: traumas
-            if (_trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage))
+            if (hasTrauma)
             {
                 var organTraumaLabel = new RichTextLabel
                 {
@@ -351,7 +351,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 AlertsContainer.AddChild(organTraumaLabel);
             }
 
-            if (_trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage))
+            if (hasBoneDmg)
             {
                 var boneTraumaLabel = new RichTextLabel
                 {
@@ -375,20 +375,6 @@ namespace Content.Client.HealthAnalyzer.UI
             };
         }
 
-        // Start-backmen: pain
-        private static string GetPainCauseName(string identifier)
-        {
-            return identifier switch
-            {
-                "WoundPain" => Loc.GetString("health-analyzer-window-pain-cause-wound-pain"),
-                "Suffocation" => Loc.GetString("health-analyzer-window-pain-cause-suffocation"),
-                "Bloodloss" => Loc.GetString("health-analyzer-window-pain-cause-bloodloss"),
-                "DeathThreshold" => Loc.GetString("health-analyzer-window-pain-cause-death-threshold"),
-                "Suicide" => Loc.GetString("health-analyzer-window-pain-cause-suicide"),
-                _ => identifier, // Fallback to identifier if no localization found
-            };
-        }
-        // End-backmen: pain
 
         private void DrawDiagnosticGroups(
             Dictionary<string, FixedPoint2> groups,

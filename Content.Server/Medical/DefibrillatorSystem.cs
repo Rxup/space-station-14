@@ -237,8 +237,9 @@ public sealed class DefibrillatorSystem : EntitySystem
                 if (TryComp<ConsciousnessComponent>(target, out var consciousness)
                     && _consciousness.TryGetNerveSystem(target, out var nerveSys))
                 {
-                    _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Suffocation", consciousness);
-                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold", consciousness);
+                    Entity<ConsciousnessComponent?> entConsciousness = (target, consciousness);
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Suffocation");
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
 
                     // Remove Bloodloss modifier if blood is restored
                     // When a character is dead, UpdateConsciousnessBleeding might not update the modifier properly,
@@ -253,7 +254,7 @@ public sealed class DefibrillatorSystem : EntitySystem
                         // This ensures that if blood was restored, the modifier doesn't prevent revival
                         if (bloodLevel >= thresholdValue)
                         {
-                            _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Bloodloss", consciousness);
+                            _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Bloodloss");
                         }
                     }
 
@@ -276,17 +277,17 @@ public sealed class DefibrillatorSystem : EntitySystem
                     // This ensures we don't remove it if the character still has painful wounds
                     if (!hasPainfulWounds)
                     {
-                        _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "WoundPain", consciousness);
+                        _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "WoundPain");
                     }
 
-                    if (_consciousness.CheckConscious(target, consciousness, mob))
+                    if (_consciousness.CheckConscious((target, consciousness, mob)))
                     {
-                        _consciousness.ForceConscious(target, component.ForceConsciousnessDuration, consciousness);
+                        _consciousness.ForceConscious(entConsciousness, component.ForceConsciousnessDuration);
                         dead = false;
                     }
-                    _consciousness.ForcePassOut(target, TimeSpan.FromSeconds(10));
-                    _consciousness.RemoveConsciousnessModifier(target, target, "DeathThreshold", consciousness);
-                    _consciousness.RemoveConsciousnessModifier(target, nerveSys.Value, "Suffocation", consciousness);
+                    _consciousness.ForcePassOut(entConsciousness, TimeSpan.FromSeconds(10));
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Suffocation");
                 }
                 else // backmen edit end
                 {
