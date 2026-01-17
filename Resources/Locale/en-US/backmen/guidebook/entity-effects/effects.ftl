@@ -10,6 +10,17 @@ entity-effect-guidebook-adjust-traumas =
             }
     } {NATURALFIXED($amount, 2)} of {$traumaType} trauma
 
+entity-effect-guidebook-adjust-traumas-target-body-parts = body parts
+entity-effect-guidebook-adjust-traumas-target-organs = organs
+
+entity-effect-guidebook-adjust-traumas-targets = on targets: { $targets }
+
+entity-effect-guidebook-adjust-traumas-target-components =
+    with components { $components } { $mustHaveAll ->
+        [true] (all required)
+       *[false] (any of them)
+    }
+
 entity-effect-guidebook-suppress-pain =
     { $chance ->
         [1] Suppresses
