@@ -74,7 +74,7 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     ///     Rate at which the organ regenerates integrity over time (per frame).
     ///     Positive values heal the organ by reducing damage modifiers.
     /// </summary>
-    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), AlwaysPushInheritance]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 OrganRegenerationRate = 0;
     // backmen edit end
 
