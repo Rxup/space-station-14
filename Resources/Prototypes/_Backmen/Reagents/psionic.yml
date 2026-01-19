@@ -59,6 +59,7 @@
         - !type:SuppressPain
           amount: 10
           time: 30
+        - !type:EyeDamage
 
 - type: reagent
   id: Ectoplasm

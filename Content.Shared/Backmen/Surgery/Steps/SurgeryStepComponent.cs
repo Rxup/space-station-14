@@ -4,10 +4,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Backmen.Surgery.Steps;
 
 [RegisterComponent, NetworkedComponent]
-[Prototype("SurgerySteps")]
+//[Prototype("SurgerySteps")]
 public sealed partial class SurgeryStepComponent : Component
 {
-
     [DataField]
     [AlwaysPushInheritance] // organs
     public ComponentRegistry? Tool;

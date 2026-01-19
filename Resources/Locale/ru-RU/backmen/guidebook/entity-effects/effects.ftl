@@ -12,6 +12,17 @@ entity-effect-guidebook-adjust-traumas =
             }
     } { NATURALFIXED($amount, 2) } травмы типа { $traumaType }
 
+entity-effect-guidebook-adjust-traumas-target-body-parts = частей тела
+entity-effect-guidebook-adjust-traumas-target-organs = органов
+
+entity-effect-guidebook-adjust-traumas-targets = на цели: { $targets }
+
+entity-effect-guidebook-adjust-traumas-target-components =
+    с компонентами { $components } { $mustHaveAll ->
+        [true] (все должны быть)
+       *[false] (любой из них)
+    }
+
 entity-effect-guidebook-suppress-pain =
     { $chance ->
         [1] Подавляет

@@ -48,6 +48,7 @@
     slotId: Brain
     intCap: 28
     integrity: 28
+    organRegenerationRate: 0.02
     integrityThresholds:
       Normal: 28
       Damaged: 16

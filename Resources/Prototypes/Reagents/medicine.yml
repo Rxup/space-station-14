@@ -230,11 +230,11 @@
           identifier: "Cryoxadone"
           targetBodyParts: false
           targetComponents: # treats all organs besides brains and eyes
-          - type: Lung
-          - type: Ears
-          - type: Liver
-          - type: Heart
-          - type: Stomach
+          - Lung
+          - Ears
+          - Liver
+          - Heart
+          - Stomach
 
 - type: reagent
   id: Doxarubixadone
@@ -515,7 +515,7 @@
         identifier: "Inaprovaline"
         targetBodyParts: false
         targetComponents:
-        - type: Lung
+        - Lung
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -911,10 +911,10 @@
         identifier: "Tricordrazine"
         targetBodyParts: false
         targetComponents:
-        - type: Lung
-        - type: Liver
-        - type: Heart
-        - type: Stomach
+        - Lung
+        - Liver
+        - Heart
+        - Stomach
 
 - type: reagent
   id: Lipozine
@@ -967,13 +967,13 @@
         identifier: "Omnizine"
         targetBodyParts: false
         targetComponents:
-        - type: Lung
-        - type: Ears
-        - type: Liver
-        - type: Heart
-        - type: Stomach
-        - type: Brain
-        - type: Eyes
+        - Lung
+        - Ears
+        - Liver
+        - Heart
+        - Stomach
+        - Brain
+        - Eyes
 
 - type: reagent
   id: Ultravasculine
@@ -1051,7 +1051,7 @@
         identifier: "Oculine"
         targetBodyParts: false
         targetComponents:
-        - type: Eyes
+        - Eyes
 
 - type: reagent
   id: Cognizine
@@ -1070,7 +1070,8 @@
         identifier: "Cognizine"
         targetBodyParts: false
         targetComponents:
-        - type: Brain
+        - Brain
+      - !type:SuppressPain
       - !type:MakeSentient
         conditions:
         - !type:ReagentCondition

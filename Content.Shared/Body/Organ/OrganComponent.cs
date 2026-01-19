@@ -69,6 +69,13 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent
     [DataField]
     // TODO: Not "required" for now, and can break some shit BECAUSE I AM NOT reworking the entirety of ShitSurgerySystem to work properly without breaking the linter
     public Dictionary<OrganSeverity, FixedPoint2> IntegrityThresholds = new();
+
+    /// <summary>
+    ///     Rate at which the organ regenerates integrity over time (per frame).
+    ///     Positive values heal the organ by reducing damage modifiers.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 OrganRegenerationRate = 0;
     // backmen edit end
 
     /// <summary>

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas;
@@ -13,6 +14,9 @@ using Content.Shared.Mobs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.EntityEffects.Effects;
@@ -219,28 +223,41 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
         }
         else
         {
-            foreach (var modifier in organ.Comp.IntegrityModifiers)
+            // Create a copy of the collection to avoid modifying it during iteration
+            var modifiers = organ.Comp.IntegrityModifiers.ToList();
+            var remainingHeal = -changeAmount; // Convert to positive value for easier comparison
+
+            foreach (var modifier in modifiers)
             {
                 // Healing modifier are not getting removed
                 if (modifier.Value < 0)
                     continue;
 
-                if (modifier.Value > -changeAmount)
+                // modifier.Value is damage (positive), remainingHeal is healing amount (positive)
+                if (modifier.Value <= remainingHeal)
                 {
+                    // Full modifier can be removed
+                    remainingHeal -= modifier.Value;
+                    _trauma.TryRemoveOrganDamageModifier(organ.Owner,
+                        modifier.Key.Item2,
+                        modifier.Key.Item1,
+                        organ.Comp);
+                    
+                    if (remainingHeal <= 0)
+                        break;
+                }
+                else
+                {
+                    // Partial modifier reduction: reduce by remainingHeal amount
+                    // Since changeAmount is negative, we pass -remainingHeal
                     _trauma.TryChangeOrganDamageModifier(
                         organ.Owner,
-                        changeAmount,
+                        -remainingHeal,
                         modifier.Key.Item2,
                         modifier.Key.Item1,
                         organ.Comp);
                     break;
                 }
-
-                changeAmount += modifier.Value;
-                _trauma.TryRemoveOrganDamageModifier(organ.Owner,
-                    modifier.Key.Item2,
-                    modifier.Key.Item1,
-                    organ.Comp);
             }
         }
     }
@@ -250,21 +267,18 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
         if (effect.TargetComponents == null)
             return true;
 
+        effect.TargetComponentsLoaded ??= StringsToRegs(effect.TargetComponents);
+
         if (effect.MustHaveAllComponents)
         {
-            var passedComps =
-                (from component in effect.TargetComponents
-                    let compToPass = component.Value.GetType()
-                    where EntityManager.HasComponent(target, compToPass)
-                    select component.Value.Component).ToList();
+            var passedComps = effect.TargetComponentsLoaded.Count(x => EntityManager.HasComponent(target, x));
 
-            if (passedComps.Count == effect.TargetComponents.Count)
+            if (passedComps == effect.TargetComponents.Length)
                 return true;
         }
         else
         {
-            foreach (var component in effect.TargetComponents
-                         .Select(component => component.Value.GetType()))
+            foreach (var component in effect.TargetComponentsLoaded)
             {
                 try
                 {
@@ -273,14 +287,32 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                         return true;
                     }
                 }
-                catch (KeyNotFoundException)
+                catch (KeyNotFoundException err)
                 {
+                    Log.Error($"Ошибка компонент не найден! {component.Name}");
                     continue;
                 }
             }
         }
 
         return false;
+    }
+
+    private List<ComponentRegistration> StringsToRegs(string[]? input)
+    {
+        if (input == null || input.Length == 0)
+            return [];
+
+        var list = new List<ComponentRegistration>(input.Length);
+        foreach (var name in input)
+        {
+            if (Factory.TryGetRegistration(name, out var registration))
+                list.Add(registration);
+            else if (Factory.GetComponentAvailability(name) != ComponentAvailability.Ignore)
+                Log.Error($"{nameof(StringsToRegs)} failed: Unknown component name {name} passed to AdjustTraumasEntityEffectSystem!");
+        }
+
+        return list;
     }
 }
 
@@ -299,8 +331,11 @@ public sealed partial class AdjustTraumas : EntityEffectBase<AdjustTraumas>
     [DataField] public bool TargetBodyParts = true;
     [DataField] public bool TargetOrgans = true;
 
-    [DataField]
-    public ComponentRegistry? TargetComponents;
+    [DataField(customTypeSerializer: typeof(CustomArraySerializer<string, ComponentNameSerializer>))]
+    public string[]? TargetComponents;
+
+    [NonSerialized]
+    public List<ComponentRegistration>? TargetComponentsLoaded;
 
     [DataField]
     public bool MustHaveAllComponents;
@@ -317,11 +352,43 @@ public sealed partial class AdjustTraumas : EntityEffectBase<AdjustTraumas>
             _ => "trauma-type-unknown"
         };
 
-        return Loc.GetString(
+        var targetPaths = "";
+        if (TargetComponents != null && TargetComponents.Length > 0)
+        {
+            var componentNames = string.Join(", ", TargetComponents);
+            targetPaths = Loc.GetString(
+                "entity-effect-guidebook-adjust-traumas-target-components",
+                ("components", componentNames),
+                ("mustHaveAll", MustHaveAllComponents));
+        }
+
+        var targetInfo = "";
+        var targetParts = new List<string>();
+        if (TargetBodyParts)
+            targetParts.Add(Loc.GetString("entity-effect-guidebook-adjust-traumas-target-body-parts"));
+        if (TargetOrgans)
+            targetParts.Add(Loc.GetString("entity-effect-guidebook-adjust-traumas-target-organs"));
+        
+        if (targetParts.Count > 0)
+        {
+            targetInfo = Loc.GetString(
+                "entity-effect-guidebook-adjust-traumas-targets",
+                ("targets", string.Join(", ", targetParts)));
+        }
+
+        var mainText = Loc.GetString(
             "entity-effect-guidebook-adjust-traumas",
             ("chance", Probability),
             ("deltasign", MathF.Sign(Amount.Float())),
             ("amount", MathF.Abs(Amount.Float())),
             ("traumaType", Loc.GetString(traumaTypeName)));
+
+        var result = mainText;
+        if (!string.IsNullOrEmpty(targetInfo))
+            result += " " + targetInfo;
+        if (!string.IsNullOrEmpty(targetPaths))
+            result += " " + targetPaths;
+
+        return result;
     }
 }
