@@ -1072,7 +1072,6 @@
         targetComponents:
         - Brain
       - !type:SuppressPain
-        targetPart: Brins
       - !type:MakeSentient
         conditions:
         - !type:ReagentCondition
