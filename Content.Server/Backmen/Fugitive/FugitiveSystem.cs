@@ -84,7 +84,6 @@ public sealed class FugitiveSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<FugitiveComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<FugitiveComponent, MapInitEvent>(OnFugitiveMapInit);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
@@ -263,11 +262,6 @@ public sealed class FugitiveSystem : EntitySystem
 
         var tile = Spawn("FloorTileItemSteel", Transform(uid).Coordinates);
         _randomHelper.RandomOffset(uid, 0.3f);
-    }
-
-    private void OnSpawned(Entity<FugitiveComponent> uid, ref GhostRoleSpawnerUsedEvent _)
-    {
-        DoSpawnEffects(uid.AsNullable());
     }
 
     private void OnMindAdded(Entity<FugitiveComponent> uid, ref MindAddedMessage args)
