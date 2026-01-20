@@ -1,6 +1,7 @@
 using Content.Shared.Backmen.Eye.NightVision.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Actions;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -30,13 +31,18 @@ public sealed class PNVSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, PNVComponent component, GotEquippedEvent args)
     {
-        if (args.Slot is not ("eyes" or "mask" or "head"))
+        if (!TryComp<ClothingComponent>(uid, out var clothing))
+            return;
+
+        if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
         if (HasComp<NightVisionComponent>(args.Equipee))
             return;
 
         var nvcomp = EnsureComp<NightVisionComponent>(args.Equipee);
+
+        nvcomp.IsGranted = true;
 
         _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
         if(component.ActionContainer == null)
@@ -53,10 +59,16 @@ public sealed class PNVSystem : EntitySystem
 
     private void OnUnequipped(EntityUid uid, PNVComponent component, GotUnequippedEvent args)
     {
-        if (args.Slot is not ("eyes" or "mask" or "head"))
+        if (!TryComp<ClothingComponent>(uid, out var clothing))
+            return;
+
+        if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
         if (!TryComp<NightVisionComponent>(args.Equipee, out var nvcomp))
+            return;
+
+        if(!nvcomp.IsGranted)
             return;
 
         _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);

@@ -52,8 +52,6 @@
     visMask:
       - Normal
       - Ghost
-      - PsionicInvisibility
-      - DarkSwapInvisibility
   - type: Input
     context: "ghost"
   - type: Examiner
@@ -63,6 +61,7 @@
   - type: ShowElectrocutionHUD
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
+    receiveAllChannels: true
     channels:
     - Common
     - CentCom

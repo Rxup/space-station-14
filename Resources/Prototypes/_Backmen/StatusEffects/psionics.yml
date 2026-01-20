@@ -4,3 +4,10 @@
   name: psionically insulated
   components:
   - type: PsionicInsulation
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPsionicDisabled
+  name: psionic disabled
+  components:
+  - type: PsionicsDisabled

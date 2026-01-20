@@ -41,8 +41,8 @@ public sealed class MetapsionicPowerSystem : EntitySystem
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
 
-        if(HasComp<PotentialPsionicComponent>(ent) && !HasComp<PsionicallyInvisibleComponent>(ent))
-            _invisibilitySystem.SetCanSeePsionicInvisiblity(ent, false, eye);
+        // Visibility mask will be recalculated automatically by GetVisMaskEvent handler
+        _eye.RefreshVisibilityMask(ent.Owner);
 
         var vm = (VisibilityFlags)eye.VisibilityMask;
         if (vm.HasFlag(VisibilityFlags.DarkSwapInvisibility) && !HasComp<ShadowkinDarkSwappedComponent>(ent))
@@ -59,7 +59,9 @@ public sealed class MetapsionicPowerSystem : EntitySystem
     {
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
-        _invisibilitySystem.SetCanSeePsionicInvisiblity(ent, true);
+        
+        // Visibility mask will be recalculated automatically by GetVisMaskEvent handler
+        _eye.RefreshVisibilityMask(ent.Owner);
 
         var vm = (VisibilityFlags)eye.VisibilityMask;
         if (!vm.HasFlag(VisibilityFlags.DarkSwapInvisibility))
