@@ -45,6 +45,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly MagicSystem _magic = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
     [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private readonly SharedEyeSystem _sharedEye = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     private EntityQuery<PsionicsDisabledComponent> _activePsionicsDisabled;
@@ -66,8 +67,17 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, WoundsChangedEvent>(OnWoundedInInvis);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DispelledEvent>(OnDispelled);
 
+        // Visibility mask event
+        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, GetVisMaskEvent>(OnGetVisMask);
+
         _activePsionicsDisabled = GetEntityQuery<PsionicsDisabledComponent>();
         _activeStamina = GetEntityQuery<StaminaComponent>();
+    }
+
+    private void OnGetVisMask(Entity<ShadowkinDarkSwappedComponent> ent, ref GetVisMaskEvent args)
+    {
+        // Entities with ShadowkinDarkSwappedComponent can see DarkSwapped entities
+        args.VisibilityMask |= (int)VisibilityFlags.DarkSwapInvisibility;
     }
 
     private void OnDispelled(Entity<ShadowkinDarkSwappedComponent> ent, ref DispelledEvent args)
@@ -247,6 +257,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         if (args != null)
             args.Handled = true;
+
+        // Visibility mask will be set automatically by OnGetVisMask event handler
+        _sharedEye.RefreshVisibilityMask(performer);
     }
 
 
@@ -300,9 +313,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         if (set) // Invisible
         {
-            // Allow the entity to see DarkSwapped entities
-            if (TryComp(uid, out EyeComponent? eye))
-                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
+            // Visibility mask will be set automatically by OnGetVisMask event handler
+            _sharedEye.RefreshVisibilityMask(uid);
 
             // Make other entities unable to see the entity unless also DarkSwapped
             _visibility.AddLayer(ent, (int) VisibilityFlags.DarkSwapInvisibility, false);
@@ -315,9 +327,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         }
         else // Visible
         {
-            // Remove the ability to see DarkSwapped entities
-            if (TryComp(uid, out EyeComponent? eye))
-                _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int) VisibilityFlags.DarkSwapInvisibility, eye);
+            // Visibility mask will be recalculated automatically by OnGetVisMask event handler
+            _sharedEye.RefreshVisibilityMask(uid);
+
             // Make other entities able to see the entity again
             _visibility.RemoveLayer(ent, (int) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.AddLayer(ent, (int) VisibilityFlags.Normal, false);

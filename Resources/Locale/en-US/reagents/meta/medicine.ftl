@@ -98,6 +98,9 @@ reagent-desc-ethylredoxrazine = Neutralises the effects of alcohol in the blood 
 reagent-name-cognizine = cognizine
 reagent-desc-cognizine = A mysterious chemical which is able to make any non-sentient creature sentient.
 
+reagent-name-desiccant = desiccant
+reagent-desc-desiccant = A powdery medicine that treats the Wet Hands disease by absorbing excess moisture from the hands.
+
 reagent-name-ethyloxyephedrine = ethyloxyephedrine
 reagent-desc-ethyloxyephedrine = A mildly unstable medicine derived from desoxyephedrine, primarily used to combat narcolepsy.
 

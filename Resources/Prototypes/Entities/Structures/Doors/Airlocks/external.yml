@@ -22,7 +22,7 @@
     group: null
 
 - type: entity
-  parent: AirlockExternal
+  parent: [AirlockExternal, BaseDeltaPressureGlass]
   id: AirlockExternalGlass
   suffix: Glass, External
   components:

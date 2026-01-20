@@ -115,6 +115,8 @@ namespace Content.Server.Ghost
             if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
             {
                 args.VisibilityMask |= (int)VisibilityFlags.Ghost;
+                args.VisibilityMask |= (int)VisibilityFlags.DarkSwapInvisibility;
+                args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
             }
         }
 

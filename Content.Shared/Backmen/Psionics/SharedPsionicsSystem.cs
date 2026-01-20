@@ -6,7 +6,7 @@ using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Database;
 using Content.Shared.Electrocution;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
@@ -41,7 +41,7 @@ public abstract class SharedPsionicsSystem : EntitySystem
     protected EntityQuery<PotentialPsionicComponent> PotentialPsionicQuery { get; set; }
     protected EntityQuery<PsionicComponent> PsionicQuery { get; set; }
 
-    private static readonly ProtoId<StatusEffectPrototype> PsionicsDisabled = "PsionicsDisabled";
+    private static readonly EntProtoId PsionicsDisabled = "StatusEffectPsionicDisabled";
 
 
     private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");
@@ -114,7 +114,7 @@ public abstract class SharedPsionicsSystem : EntitySystem
                 _audio.PlayPvs(Lightburn,entity);
                 args.ModifiersList.Add(component.Modifiers);
                 if (_random.Prob(component.DisableChance))
-                    _statusEffects.TryAddStatusEffect<PsionicsDisabledComponent>(entity, PsionicsDisabled, TimeSpan.FromSeconds(10), true);
+                    _statusEffects.TryAddStatusEffectDuration(entity, PsionicsDisabled, TimeSpan.FromSeconds(10));
             }
 
             if (UndoMindSwap(entity))

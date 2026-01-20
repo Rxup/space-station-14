@@ -1,6 +1,6 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
@@ -9,6 +9,8 @@ public sealed class PsionicItemsSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psiAbilities = default!;
+    [Dependency] private readonly SharedEyeSystem _sharedEyeSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -30,6 +32,9 @@ public sealed class PsionicItemsSystem : EntitySystem
         insul.Passthrough = component.Passthrough;
         component.IsActive = true;
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
+
+        // Visibility mask will be set automatically by OnGetVisMask event handler
+        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnTinfoilUnequipped(EntityUid uid, TinfoilHatComponent component, GotUnequippedEvent args)
@@ -37,11 +42,12 @@ public sealed class PsionicItemsSystem : EntitySystem
         if (!component.IsActive)
             return;
 
-        if (!_statusEffects.HasStatusEffect(uid, "PsionicallyInsulated"))
+        if (!_statusEffects.HasStatusEffect(args.Equipee, "StatusEffectPsionicallyInsulated"))
             RemComp<PsionicInsulationComponent>(args.Equipee);
 
         component.IsActive = false;
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
+        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnGranterEquipped(EntityUid uid, ClothingGrantPsionicPowerComponent component, GotEquippedEvent args)
@@ -56,7 +62,6 @@ public sealed class PsionicItemsSystem : EntitySystem
         var componentType = _componentFactory.GetRegistration(component.Power).Type;
         if (HasComp(args.Equipee, componentType))
             return;
-
 
         var newComponent = (Component) _componentFactory.GetComponent(componentType);
         AddComp(args.Equipee, newComponent);

@@ -19,8 +19,11 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Paper;
+using Content.Shared.UserInterface;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Configuration;
@@ -63,8 +66,60 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         // Handling stuff from other systems
         SubscribeLocalEvent<DiseaseCarrierComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<DiseaseCarrierComponent, ReagentMetabolised>(OnReagentMetabolised);
+        SubscribeLocalEvent<DiseaseCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v => _enabled = v, true);
+    }
+
+    private static readonly ProtoId<DiseasePrototype> WetHands = "WetHands";
+
+    private void OnMobStateChanged(Entity<DiseaseCarrierComponent> entity, ref MobStateChangedEvent args)
+    {
+        // Check if entity entered critical state (Critical or SoftCritical)
+        if (args.OldMobState == args.NewMobState)
+            return;
+
+        if (args.NewMobState != MobState.Critical && args.NewMobState != MobState.SoftCritical)
+            return;
+
+        // Only trigger when entering crit from alive state
+        if (args.OldMobState != MobState.Alive)
+            return;
+
+        // Check if already has the disease
+        foreach (var disease in entity.Comp.Diseases)
+        {
+            if (disease.ID == WetHands)
+                return;
+        }
+
+        // 1% chance to get Wet Hands disease when entering critical state
+        if (!_random.Prob(0.01f))
+            return;
+
+        TryAddDisease(entity.Owner, WetHands, entity.Comp);
+    }
+
+    private static readonly ProtoId<DiseasePrototype> MemeticAmirmir = "MemeticAmirmir";
+
+    public override void OnPaperRead(EntityUid ent)
+    {
+        // Check if user has DiseaseCarrierComponent
+        if (!TryComp<DiseaseCarrierComponent>(ent, out var carrier))
+            return;
+
+        // Check if already has the disease
+        foreach (var disease in carrier.Diseases)
+        {
+            if (disease.ID == MemeticAmirmir)
+                return;
+        }
+
+        // 25% chance to get Memetic Amirmir disease when reading paper/book
+        if (!_random.Prob(0.25f))
+            return;
+
+        TryAddDisease(ent, MemeticAmirmir, carrier);
     }
 
     private bool _enabled = true;

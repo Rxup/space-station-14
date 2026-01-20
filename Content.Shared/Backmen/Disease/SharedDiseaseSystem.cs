@@ -15,4 +15,9 @@ public abstract class SharedDiseaseSystem : EntitySystem
     {
         // server-only handling
     }
+
+    public virtual void OnPaperRead(EntityUid ent)
+    {
+        // server-only handling
+    }
 }
