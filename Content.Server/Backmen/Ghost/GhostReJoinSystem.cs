@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server.Backmen.Fugitive;
 using Content.Server.Chat.Managers;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -23,6 +24,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Ghost;
@@ -45,6 +47,7 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly SharedJobSystem _jobs = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -206,6 +209,11 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
         SendChatMsg(player,
             Loc.GetString("ghost-respawn-window-rules-footer")
         );
+
+        if (_random.Prob(0.6f))
+        {
+            EnsureComp<FugitiveComponent>(ev.Mob);
+        }
     }
 
     private List<EntityUid> GetSpawnableStations()

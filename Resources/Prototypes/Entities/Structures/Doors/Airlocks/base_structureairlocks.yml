@@ -196,7 +196,7 @@
 
 - type: entity
   id: AirlockGlass
-  parent: Airlock
+  parent: [Airlock, BaseDeltaPressureGlass]
   name: glass airlock
   components:
   - type: MeleeSound

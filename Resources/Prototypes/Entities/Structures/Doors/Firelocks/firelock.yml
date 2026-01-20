@@ -168,7 +168,7 @@
 
 - type: entity
   id: FirelockGlass
-  parent: Firelock
+  parent: [Firelock, BaseDeltaPressureReinforcedGlass]
   name: glass firelock
   components:
     - type: StationAiWhitelist

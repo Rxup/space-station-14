@@ -86,7 +86,9 @@ public sealed class FugitiveSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<FugitiveComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
+        SubscribeLocalEvent<FugitiveComponent, MapInitEvent>(OnFugitiveMapInit);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
+        SubscribeLocalEvent<FugitiveCountdownComponent, MapInitEvent>(OnFugitiveCountdownMapInit);
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning,
             before: new[]
             {
@@ -94,6 +96,17 @@ public sealed class FugitiveSystem : EntitySystem
                 typeof(SpawnPointSystem),
                 typeof(ArrivalsSystem)
             });
+    }
+
+    private void OnFugitiveMapInit(Entity<FugitiveComponent> ent, ref MapInitEvent args)
+    {
+        EnsureComp<FugitiveCountdownComponent>(ent);
+        InitFugitive(ent);
+    }
+
+    private void OnFugitiveCountdownMapInit(Entity<FugitiveCountdownComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.AnnounceTime = _timing.CurTime + ent.Comp.AnnounceCD;
     }
 
     public void HandlePlayerSpawning(PlayerSpawningEvent args)
@@ -195,17 +208,19 @@ public sealed class FugitiveSystem : EntitySystem
                 continue;
             }
 
+            cd.AnnounceTime = null;
+
             _chat.DispatchGlobalAnnouncement(Loc.GetString("station-event-fugitive-hunt-announcement"),
                 sender: Loc.GetString("fugitive-announcement-GALPOL"),
                 colorOverride: Color.Yellow);
 
-            var q2 = EntityQueryEnumerator<CommunicationsConsoleComponent>();
-            while (q2.MoveNext(out var consoleOwner, out var console))
+            var q2 = EntityQueryEnumerator<CommunicationsConsoleComponent, TransformComponent>();
+            while (q2.MoveNext(out var consoleOwner, out _, out var transform))
             {
                 if (HasComp<GhostComponent>(consoleOwner))
                     continue;
 
-                var paperEnt = Spawn("Paper", Transform(consoleOwner).Coordinates);
+                var paperEnt = Spawn("Paper", transform.Coordinates);
 
                 _metaDataSystem.SetEntityName(paperEnt, Loc.GetString("fugi-report-ent-name", ("name", owner)));
 
@@ -228,15 +243,12 @@ public sealed class FugitiveSystem : EntitySystem
         }
     }
 
-    private void DoSpawnEffects(EntityUid uid, FugitiveComponent? component = null)
+    private void DoSpawnEffects(Entity<FugitiveComponent?> uid)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
         {
             return;
         }
-
-        if (TryComp<FugitiveCountdownComponent>(uid, out var cd))
-            cd.AnnounceTime = _timing.CurTime + cd.AnnounceCD;
 
         _popupSystem.PopupEntity(Loc.GetString("fugitive-spawn", ("name", uid)),
             uid,
@@ -247,26 +259,31 @@ public sealed class FugitiveSystem : EntitySystem
             Shared.Popups.PopupType.LargeCaution);
 
         _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2));
-        _audioSystem.PlayPvs(component.SpawnSoundPath, uid, AudioParams.Default.WithVolume(-6f));
+        _audioSystem.PlayPvs(uid.Comp.SpawnSoundPath, uid, AudioParams.Default.WithVolume(-6f));
 
         var tile = Spawn("FloorTileItemSteel", Transform(uid).Coordinates);
         _randomHelper.RandomOffset(uid, 0.3f);
     }
 
-    private void OnSpawned(EntityUid uid, FugitiveComponent component, GhostRoleSpawnerUsedEvent _)
+    private void OnSpawned(Entity<FugitiveComponent> uid, ref GhostRoleSpawnerUsedEvent _)
     {
-        DoSpawnEffects(uid, component);
+        DoSpawnEffects(uid.AsNullable());
     }
 
-    private void OnMindAdded(EntityUid uid, FugitiveComponent component, MindAddedMessage args)
+    private void OnMindAdded(Entity<FugitiveComponent> uid, ref MindAddedMessage args)
+    {
+        InitFugitive(uid);
+    }
+
+    private void InitFugitive(Entity<FugitiveComponent> uid)
     {
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        if (component.FirstMindAdded)
+        if (uid.Comp.FirstMindAdded)
             return;
 
-        component.FirstMindAdded = true;
+        uid.Comp.FirstMindAdded = true;
 
         _roleSystem.MindAddRole(mindId, FugitiveMindRole, mind, true);
 
@@ -285,10 +302,7 @@ public sealed class FugitiveSystem : EntitySystem
         // workaround seperate shitcode moment
         _movementSpeed.RefreshMovementSpeedModifiers(uid);
 
-        if (component.ForcedHuman)
-        {
-            DoSpawnEffects(uid, component);
-        }
+        DoSpawnEffects(uid.AsNullable());
     }
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
