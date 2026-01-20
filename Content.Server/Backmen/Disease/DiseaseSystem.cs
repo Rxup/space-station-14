@@ -93,8 +93,8 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
                 return;
         }
 
-        // 10% chance to get Wet Hands disease when entering critical state
-        if (!_random.Prob(0.1f))
+        // 1% chance to get Wet Hands disease when entering critical state
+        if (!_random.Prob(0.01f))
             return;
 
         TryAddDisease(entity.Owner, WetHands, entity.Comp);
