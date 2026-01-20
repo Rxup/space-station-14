@@ -1,0 +1,78 @@
+- type: disease
+  id: WetHands
+  name: disease-proto-wet-hands
+  infectious: false
+  cureResist: 0.1
+  stages:
+   - 0
+   - 60
+   - 180
+  effects:
+    # Stage 1: Items drop from hands
+    - !type:DiseaseDropItems
+      probability: 0.15
+      dropChance: 0.2
+      stages:
+        - 0
+    - !type:DiseasePopUp
+      probability: 0.05
+      message: disease-wet-hands-drop
+      visualType: Small
+      stages:
+        - 0
+    # Stage 2: Apply lube to items + drop items
+    - !type:DiseaseApplyLube
+      probability: 1.0
+      lubeChance: 0.4
+      slips: 3
+      slipStrength: 2.0
+      stages:
+        - 1
+    - !type:DiseaseDropItems
+      probability: 0.15
+      dropChance: 0.25
+      stages:
+        - 1
+    - !type:DiseasePopUp
+      probability: 0.05
+      message: disease-wet-hands-lube
+      visualType: Medium
+      stages:
+        - 1
+    # Stage 3: Lung damage + all previous effects
+    - !type:DiseaseHealthChange
+      probability: 0.3
+      damage:
+        types:
+          Asphyxiation: 1
+      stages:
+        - 2
+    - !type:DiseaseApplyLube
+      probability: 1.0
+      lubeChance: 0.5
+      slips: 4
+      slipStrength: 2.5
+      stages:
+        - 2
+    - !type:DiseaseDropItems
+      probability: 0.15
+      dropChance: 0.3
+      stages:
+        - 2
+    - !type:DiseasePopUp
+      probability: 0.05
+      message: disease-wet-hands-severe
+      visualType: MediumCaution
+      stages:
+        - 2
+  cures:
+    - !type:DiseaseJustWaitCure
+      maxLength: 600
+    - !type:DiseaseReagentCure
+      reagent:
+        ReagentId: DryHands
+      min: 15
+      stages:
+        - 0
+        - 1
+        - 2

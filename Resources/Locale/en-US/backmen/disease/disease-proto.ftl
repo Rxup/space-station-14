@@ -20,3 +20,6 @@ disease-proto-tongue-twister = Tongue Twister
 disease-proto-xeno = XenoVirus
 disease-proto-xeno-slerm = Slerm Alpha-virus
 disease-proto-xenodrone = XenoVirus
+
+# Wet Hands
+disease-proto-wet-hands = Wet Hands

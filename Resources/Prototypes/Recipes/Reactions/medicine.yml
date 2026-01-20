@@ -701,3 +701,22 @@
       amount: 1
   products:
     Hemorrhinol: 2
+
+- type: reaction
+  id: DryHands
+  impact: Medium
+  minTemp: 350
+  reactants:
+    TableSalt:
+      amount: 2
+    Silicon:
+      amount: 1
+    Carbon:
+      amount: 1
+    Ethanol:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    DryHands: 4

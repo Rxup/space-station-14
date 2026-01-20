@@ -1,0 +1,19 @@
+- type: reagent
+  id: DryHands
+  name: reagent-name-desiccant
+  group: Medicine
+  desc: reagent-desc-desiccant
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: medicine
+  color: "#d4d4aa"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:RemoveDiseaseLubeHandsEntityEffect
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Toxin: -1

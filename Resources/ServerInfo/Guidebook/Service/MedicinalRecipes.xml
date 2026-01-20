@@ -6,4 +6,8 @@ These preparations have interesting medical effects, or are just straight-up med
 
 <GuideMicrowaveGroupEmbed Group="Medicinal"/>
 
+## Chemical Reactions
+
+<GuideReagentEmbed Reagent="DryHands"/>
+
 </Document>
