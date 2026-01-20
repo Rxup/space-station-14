@@ -42,7 +42,7 @@ public sealed class PsionicItemsSystem : EntitySystem
         if (!component.IsActive)
             return;
 
-        if (!_statusEffects.HasStatusEffect(uid, "StatusEffectPsionicallyInsulated"))
+        if (!_statusEffects.HasStatusEffect(args.Equipee, "StatusEffectPsionicallyInsulated"))
             RemComp<PsionicInsulationComponent>(args.Equipee);
 
         component.IsActive = false;

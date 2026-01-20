@@ -67,7 +67,6 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseCarrierComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<DiseaseCarrierComponent, ReagentMetabolised>(OnReagentMetabolised);
         SubscribeLocalEvent<DiseaseCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<DiseaseCarrierComponent, PaperWriteEvent>(OnPaperRead);
 
         _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v => _enabled = v, true);
     }
@@ -94,8 +93,8 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
                 return;
         }
 
-        // 30% chance to get Wet Hands disease when entering critical state
-        if (!_random.Prob(0.3f))
+        // 10% chance to get Wet Hands disease when entering critical state
+        if (!_random.Prob(0.1f))
             return;
 
         TryAddDisease(entity.Owner, WetHands, entity.Comp);
@@ -103,10 +102,10 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
 
     private static readonly ProtoId<DiseasePrototype> MemeticAmirmir = "MemeticAmirmir";
 
-    private void OnPaperRead(Entity<DiseaseCarrierComponent> paper, ref PaperWriteEvent args)
+    public override void OnPaperRead(EntityUid ent)
     {
         // Check if user has DiseaseCarrierComponent
-        if (!TryComp<DiseaseCarrierComponent>(args.User, out var carrier))
+        if (!TryComp<DiseaseCarrierComponent>(ent, out var carrier))
             return;
 
         // Check if already has the disease
@@ -117,10 +116,10 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         }
 
         // 25% chance to get Memetic Amirmir disease when reading paper/book
-        if (!_random.Prob(0.40f))
+        if (!_random.Prob(0.25f))
             return;
 
-        TryAddDisease(args.User, MemeticAmirmir, carrier);
+        TryAddDisease(ent, MemeticAmirmir, carrier);
     }
 
     private bool _enabled = true;
