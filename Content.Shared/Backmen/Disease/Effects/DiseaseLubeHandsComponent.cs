@@ -25,5 +25,5 @@ public sealed partial class DiseaseLubeHandsComponent : Component
     /// Slip strength
     /// </summary>
     [DataField]
-    public float SlipStrength = 2.0f;
+    public int SlipStrength = 2;
 }

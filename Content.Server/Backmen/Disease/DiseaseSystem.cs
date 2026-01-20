@@ -67,10 +67,12 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseCarrierComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<DiseaseCarrierComponent, ReagentMetabolised>(OnReagentMetabolised);
         SubscribeLocalEvent<DiseaseCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<PaperComponent, BeforeActivatableUIOpenEvent>(OnPaperRead);
+        SubscribeLocalEvent<DiseaseCarrierComponent, PaperWriteEvent>(OnPaperRead);
 
         _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v => _enabled = v, true);
     }
+
+    private static readonly ProtoId<DiseasePrototype> WetHands = "WetHands";
 
     private void OnMobStateChanged(Entity<DiseaseCarrierComponent> entity, ref MobStateChangedEvent args)
     {
@@ -88,7 +90,7 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         // Check if already has the disease
         foreach (var disease in entity.Comp.Diseases)
         {
-            if (disease.ID == "WetHands")
+            if (disease.ID == WetHands)
                 return;
         }
 
@@ -96,18 +98,13 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         if (!_random.Prob(0.3f))
             return;
 
-        if (!_prototypeManager.TryIndex<DiseasePrototype>("WetHands", out var wetHandsDisease))
-            return;
-
-        TryAddDisease(entity.Owner, wetHandsDisease, entity.Comp);
+        TryAddDisease(entity.Owner, WetHands, entity.Comp);
     }
 
-    private void OnPaperRead(Entity<PaperComponent> paper, ref BeforeActivatableUIOpenEvent args)
-    {
-        // Only trigger when reading (not writing)
-        if (paper.Comp.Mode != PaperAction.Read)
-            return;
+    private static readonly ProtoId<DiseasePrototype> MemeticAmirmir = "MemeticAmirmir";
 
+    private void OnPaperRead(Entity<DiseaseCarrierComponent> paper, ref PaperWriteEvent args)
+    {
         // Check if user has DiseaseCarrierComponent
         if (!TryComp<DiseaseCarrierComponent>(args.User, out var carrier))
             return;
@@ -115,18 +112,15 @@ public sealed class DiseaseSystem : SharedDiseaseSystem
         // Check if already has the disease
         foreach (var disease in carrier.Diseases)
         {
-            if (disease.ID == "MemeticAmirmir")
+            if (disease.ID == MemeticAmirmir)
                 return;
         }
 
         // 25% chance to get Memetic Amirmir disease when reading paper/book
-        if (!_random.Prob(0.25f))
+        if (!_random.Prob(0.40f))
             return;
 
-        if (!_prototypeManager.TryIndex<DiseasePrototype>("MemeticAmirmir", out var amirmirDisease))
-            return;
-
-        TryAddDisease(args.User, amirmirDisease, carrier);
+        TryAddDisease(args.User, MemeticAmirmir, carrier);
     }
 
     private bool _enabled = true;

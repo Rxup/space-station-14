@@ -33,7 +33,7 @@ public sealed partial class DiseaseApplyLube : DiseaseEffect
     /// Slip strength
     /// </summary>
     [DataField("slipStrength")]
-    public float SlipStrength = 2.0f;
+    public int SlipStrength = 2;
 
     public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
     {

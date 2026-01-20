@@ -1,4 +1,5 @@
 using Content.Shared.Backmen.Disease;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -27,7 +28,6 @@ public sealed partial class DiseaseDropItems : DiseaseEffect
 public sealed partial class DiseaseEffectSystem
 {
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
 
     private void DiseaseDropItems(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseDropItems> args)
     {
@@ -41,19 +41,21 @@ public sealed partial class DiseaseEffectSystem
         if (!TryComp<HandsComponent>(args.DiseasedEntity, out var hands))
             return;
 
+        Entity<HandsComponent?> handsEntity = (args.DiseasedEntity, hands);
+
         // Try to drop from active hand first, then any hand
-        if (hands.ActiveHandId != null && _handsSystem.TryGetHeldItem(args.DiseasedEntity, hands.ActiveHandId, out var activeItem))
+        if (hands.ActiveHandId != null && _handsSystem.TryGetHeldItem(handsEntity, hands.ActiveHandId, out _))
         {
-            _handsSystem.TryDrop(args.DiseasedEntity, hands.ActiveHandId, checkActionBlocker: false);
+            _handsSystem.TryDrop(handsEntity, hands.ActiveHandId, checkActionBlocker: false);
             return;
         }
 
         // Drop from any hand
         foreach (var handId in hands.Hands.Keys)
         {
-            if (_handsSystem.TryGetHeldItem(args.DiseasedEntity, handId, out _))
+            if (_handsSystem.TryGetHeldItem(handsEntity, handId, out _))
             {
-                _handsSystem.TryDrop(args.DiseasedEntity, handId, checkActionBlocker: false);
+                _handsSystem.TryDrop(handsEntity, handId, checkActionBlocker: false);
                 break;
             }
         }

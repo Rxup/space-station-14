@@ -47,7 +47,6 @@ public sealed partial class DiseaseEffectSystem
 {
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private void DiseasePolymorph(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseasePolymorph> args)
     {

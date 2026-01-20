@@ -25,7 +25,7 @@
       probability: 1.0
       lubeChance: 0.4
       slips: 3
-      slipStrength: 2.0
+      slipStrength: 2
       stages:
         - 1
     - !type:DiseaseDropItems
@@ -51,7 +51,7 @@
       probability: 1.0
       lubeChance: 0.5
       slips: 4
-      slipStrength: 2.5
+      slipStrength: 3
       stages:
         - 2
     - !type:DiseaseDropItems
