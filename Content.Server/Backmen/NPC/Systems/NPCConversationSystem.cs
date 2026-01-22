@@ -1,8 +1,18 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Text;
+using System.Text.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Server.Backmen.NPC.Components;
 using Content.Server.Backmen.NPC.Events;
+using Content.Server.Backmen.Administration.Bwoink.Gpt.Models;
+using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -12,13 +22,14 @@ using Content.Server.Chat.Systems;
 using Content.Server.Chat.TypingIndicator;
 using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.NPC.Systems;
-using Content.Server.Speech;
 using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Interaction;
 using Content.Shared.Speech;
 using Robust.Server.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Configuration;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.NPC.Systems;
 
@@ -33,8 +44,49 @@ public sealed class NPCConversationSystem : EntitySystem
     [Dependency] private readonly RotateToFaceSystem _rotateToFaceSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly TypingIndicatorSystem _typingIndicatorSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private ISawmill _sawmill = default!;
+
+    // GPT Integration
+    private Dictionary<EntityUid, NPCGptHistory> _npcGptHistory = new();
+    private List<object> _gptFunctions = new();
+    private static readonly SocketsHttpHandler _gptSocketsHttpHandler = new()
+    {
+        SslOptions = new SslClientAuthenticationOptions
+        {
+            RemoteCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                // Разрешаем, если ошибок нет
+                if (sslPolicyErrors == SslPolicyErrors.None)
+                    return true;
+
+                // Разрешаем только если единственная ошибка - UntrustedRoot
+                if (sslPolicyErrors == SslPolicyErrors.RemoteCertificateChainErrors && chain?.ChainStatus is {} chainStatus)
+                {
+                    // Проверяем все статусы в цепочке
+                    foreach (var status in chainStatus)
+                    {
+                        // Если есть ошибка, отличная от UntrustedRoot - блокируем
+                        if (status.Status != X509ChainStatusFlags.UntrustedRoot)
+                            return false;
+                    }
+                    return true; // Только UntrustedRoot - пропускаем
+                }
+                return false; // Другие ошибки (недействительное имя, просроченный и т.д.)
+            }
+        }
+    };
+    private readonly HttpClient _gptHttpClient = new(_gptSocketsHttpHandler, false)
+    {
+        Timeout = TimeSpan.FromMinutes(3),
+    };
+    private string _gptApiUrl = "";
+    private string _gptApiToken = "";
+    private string _gptApiModel = "";
+    private string _gptApiGigaToken = "";
+    private DateTimeOffset _gigaTocExpire = DateTimeOffset.Now;
+    private bool _gptEnabled = false;
 
     // TODO: attention attenuation. distance, facing, visible
     // TODO: attending to multiple people, multiple streams of conversation
@@ -52,6 +104,7 @@ public sealed class NPCConversationSystem : EntitySystem
         _sawmill = Logger.GetSawmill("npc.conversation");
 
         SubscribeLocalEvent<NPCConversationComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<NPCConversationComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<NPCConversationComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<NPCConversationComponent, ListenAttemptEvent>(OnListenAttempt);
         SubscribeLocalEvent<NPCConversationComponent, ListenEvent>(OnListen);
@@ -60,6 +113,80 @@ public sealed class NPCConversationSystem : EntitySystem
         SubscribeLocalEvent<NPCConversationComponent, NPCConversationHelpEvent>(OnHelp);
 
         SubscribeLocalEvent<NPCConversationComponent, NPCConversationToldNameEvent>(OnToldName);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+
+        SubscribeLocalEvent<EventGptFunctionCallNPC>(OnGptFunctionCall);
+
+        // Initialize GPT
+        InitializeGpt();
+        InitializeGptFunctions();
+    }
+
+    private void InitializeGptFunctions()
+    {
+        // Функция для открытия/закрытия дверей
+        AddFunction(new
+        {
+            name = "GetAvailableTopics",
+            description = "Получить список всех доступных диалоговых опций (тем для разговора) для этого конкретного NPC. Используй эту функцию чтобы узнать, какие темы можно обсудить с игроком. В ответе будет информация о заблокированных диалогах и событиях, которые могут сработать при выборе диалога.",
+            parameters = new
+            {
+                @type = "object",
+                properties = new { },
+                required = new string[] { }
+            }
+        });
+    }
+
+    /// <summary>
+    /// Добавить функцию для GPT API.
+    /// </summary>
+    public void AddFunction(object functionModel)
+    {
+        _gptFunctions.Add(functionModel);
+    }
+
+    private void InitializeGpt()
+    {
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptEnabled, GptEnabledCVarChanged, true);
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptApiUrl, GptUrlCVarChanged, true);
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptApiToken, GptTokenCVarChanged, true);
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptModel, GptModelCVarChanged, true);
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.GptApiGigaToken, GptGigaTokenCVarChanged, true);
+    }
+
+    private void GptEnabledCVarChanged(bool obj)
+    {
+        _gptEnabled = obj;
+        if (!obj)
+        {
+            _npcGptHistory.Clear();
+        }
+    }
+
+    private void GptUrlCVarChanged(string obj)
+    {
+        _gptApiUrl = obj;
+    }
+
+    private void GptTokenCVarChanged(string obj)
+    {
+        _gptApiToken = obj;
+        if (_gptHttpClient != null)
+        {
+            _gptHttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _gptApiToken);
+        }
+    }
+
+    private void GptModelCVarChanged(string obj)
+    {
+        _gptApiModel = obj;
+    }
+
+    private void GptGigaTokenCVarChanged(string obj)
+    {
+        _gptApiGigaToken = obj;
     }
 
 #region API
@@ -67,40 +194,40 @@ public sealed class NPCConversationSystem : EntitySystem
     /// <summary>
     /// Toggle the ability of an NPC to listen for topics.
     /// </summary>
-    public void EnableConversation(EntityUid uid, bool enable = true, NPCConversationComponent? component = null)
+    public void EnableConversation(Entity<NPCConversationComponent?> uid, bool enable = true)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return;
 
-        component.Enabled = enable;
+        uid.Comp.Enabled = enable;
     }
 
     /// <summary>
     /// Toggle the NPC's willingness to make idle comments.
     /// </summary>
-    public void EnableIdleChat(EntityUid uid, bool enable = true, NPCConversationComponent? component = null)
+    public void EnableIdleChat(Entity<NPCConversationComponent?> uid, bool enable = true)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return;
 
-        component.IdleEnabled = enable;
+        uid.Comp.IdleEnabled = enable;
     }
 
     /// <summary>
     /// Return locked status of a dialogue topic.
     /// </summary>
-    public bool IsDialogueLocked(EntityUid uid, string option, NPCConversationComponent? component = null)
+    public bool IsDialogueLocked(Entity<NPCConversationComponent?> uid, string option)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return true;
 
-        if (!component.ConversationTree.PromptToTopic.TryGetValue(option, out var topic))
+        if (!uid.Comp.ConversationTree.PromptToTopic.TryGetValue(option, out var topic))
         {
             _sawmill.Warning($"Tried to check locked status of missing dialogue option `{option}` on {ToPrettyString(uid)}");
             return true;
         }
 
-        if (component.UnlockedTopics.Contains(topic))
+        if (uid.Comp.UnlockedTopics.Contains(topic))
             return false;
 
         return topic.Locked;
@@ -109,25 +236,27 @@ public sealed class NPCConversationSystem : EntitySystem
     /// <summary>
     /// Unlock dialogue options normally locked in an NPC's conversation tree.
     /// </summary>
-    public void UnlockDialogue(EntityUid uid, string option, NPCConversationComponent? component = null)
+    public void UnlockDialogue(Entity<NPCConversationComponent?> uid, string option)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return;
 
-        if (component.ConversationTree.PromptToTopic.TryGetValue(option, out var topic))
-            component.UnlockedTopics.Add(topic);
+        if (uid.Comp.ConversationTree.PromptToTopic.TryGetValue(option, out var topic))
+            uid.Comp.UnlockedTopics.Add(topic);
         else
             _sawmill.Warning($"Tried to unlock missing dialogue option `{option}` on {ToPrettyString(uid)}");
     }
 
     /// <inheritdoc cref="UnlockDialogue(EntityUid, string, NPCConversationComponent?)"/>
-    public void UnlockDialogue(EntityUid uid, HashSet<string> options, NPCConversationComponent? component = null)
+    public void UnlockDialogue(Entity<NPCConversationComponent?> uid, HashSet<string> options)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return;
 
         foreach (var option in options)
-            UnlockDialogue(uid, option, component);
+        {
+            UnlockDialogue(uid, option);
+        }
     }
 
     /// <summary>
@@ -136,74 +265,74 @@ public sealed class NPCConversationSystem : EntitySystem
     /// <remarks>
     /// This can be used as opposed to the typical <see cref="ChatSystem.TrySendInGameICMessage"/> method.
     /// </remarks>
-    public void QueueResponse(EntityUid uid, NPCResponse response, NPCConversationComponent? component = null)
+    public void QueueResponse(Entity<NPCConversationComponent?> uid, NPCResponse response)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return;
 
         if (response.Is is {} ev)
         {
             // This is a dynamic response which will call QueueResponse with static responses of its own.
-            ev.TalkingTo = component.AttendingTo;
+            ev.TalkingTo = uid.Comp.AttendingTo;
             RaiseLocalEvent(uid, (object) ev);
             return;
         }
 
-        if (component.ResponseQueue.Count == 0)
+        if (uid.Comp.ResponseQueue.Count == 0)
         {
-            DelayResponse(uid, component, response);
+            DelayResponse(uid!, response);
             _typingIndicatorSystem.SetTypingIndicatorState(uid, TypingIndicatorState.Typing);
         }
 
-        component.ResponseQueue.Push(response);
+        uid.Comp.ResponseQueue.Push(response);
     }
 
     /// <summary>
     /// Make an NPC stop paying attention to someone.
     /// </summary>
-    public void LoseAttention(EntityUid uid, NPCConversationComponent? component = null)
+    public void LoseAttention(Entity<NPCConversationComponent?> uid)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref uid.Comp))
             return;
 
-        component.AttendingTo = null;
-        component.ListeningEvent = null;
-        _rotateToFaceSystem.TryFaceAngle(uid, component.OriginalFacing);
+        uid.Comp.AttendingTo = null;
+        uid.Comp.ListeningEvent = null;
+        _rotateToFaceSystem.TryFaceAngle(uid, uid.Comp.OriginalFacing);
     }
 
 #endregion
 
-    private void DelayResponse(EntityUid uid, NPCConversationComponent component, NPCResponse response)
+    private void DelayResponse(Entity<NPCConversationComponent> uid, NPCResponse response)
     {
         if (response.Text == null)
             return;
 
-        component.NextResponse = _gameTiming.CurTime +
-            component.DelayBeforeResponse +
-            component.TypingDelay.TotalSeconds * TimeSpan.FromSeconds(response.Text.Length) *
-            _random.NextDouble(0.9, 1.1);
+        uid.Comp.NextResponse = _gameTiming.CurTime +
+                                uid.Comp.DelayBeforeResponse +
+                                uid.Comp.TypingDelay.TotalSeconds * TimeSpan.FromSeconds(response.Text.Length) *
+                                _random.NextDouble(0.9, 1.1);
     }
 
-    private IEnumerable<NPCTopic> GetAvailableTopics(EntityUid uid, NPCConversationComponent component)
+    private IEnumerable<NPCTopic> GetAvailableTopics(Entity<NPCConversationComponent> uid)
     {
         HashSet<NPCTopic> availableTopics = new();
 
-        foreach (var topic in component.ConversationTree.Dialogue)
+        foreach (var topic in uid.Comp.ConversationTree.Dialogue)
         {
-            if (!topic.Locked || component.UnlockedTopics.Contains(topic))
+            if (!topic.Locked || uid.Comp.UnlockedTopics.Contains(topic))
                 availableTopics.Add(topic);
         }
 
         return availableTopics;
     }
 
-    private IEnumerable<NPCTopic> GetVisibleTopics(EntityUid uid, NPCConversationComponent component)
+    private IEnumerable<NPCTopic> GetVisibleTopics(Entity<NPCConversationComponent> uid)
     {
         HashSet<NPCTopic> visibleTopics = new();
 
-        foreach (var topic in component.ConversationTree.Dialogue)
+        foreach (var topic in uid.Comp.ConversationTree.Dialogue)
         {
-            if (!topic.Hidden && (!topic.Locked || component.UnlockedTopics.Contains(topic)))
+            if (!topic.Hidden && (!topic.Locked || uid.Comp.UnlockedTopics.Contains(topic)))
                 visibleTopics.Add(topic);
         }
 
@@ -219,7 +348,9 @@ public sealed class NPCConversationSystem : EntitySystem
         component.NextIdleChat = _gameTiming.CurTime + component.IdleChatDelay;
 
         for (var i = 0; i < component.ConversationTree.Idle.Length; ++i)
+        {
             component.IdleChatOrder.Add(i);
+        }
 
         _random.Shuffle(component.IdleChatOrder);
     }
@@ -231,24 +362,35 @@ public sealed class NPCConversationSystem : EntitySystem
         component.NextIdleChat += args.PausedTime;
     }
 
-    private bool TryGetIdleChatLine(EntityUid uid, NPCConversationComponent component, [NotNullWhen(true)] out NPCResponse? line)
+    private void OnComponentRemove(EntityUid uid, NPCConversationComponent component, ComponentRemove args)
+    {
+        // Clean up GPT history when component is removed
+        _npcGptHistory.Remove(uid);
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _npcGptHistory.Clear();
+    }
+
+    private bool TryGetIdleChatLine(Entity<NPCConversationComponent> uid, [NotNullWhen(true)] out NPCResponse? line)
     {
         line = null;
 
-        if (component.IdleChatOrder.Count() == 0)
+        if (!uid.Comp.IdleChatOrder.Any())
             return false;
 
-        if (++component.IdleChatIndex == component.IdleChatOrder.Count())
+        if (++uid.Comp.IdleChatIndex == uid.Comp.IdleChatOrder.Count())
         {
             // Exhausted all lines in the pre-shuffled order.
             // Reset the index and shuffle again.
-            component.IdleChatIndex = 0;
-            _random.Shuffle(component.IdleChatOrder);
+            uid.Comp.IdleChatIndex = 0;
+            _random.Shuffle(uid.Comp.IdleChatOrder);
         }
 
-        var index = component.IdleChatOrder[component.IdleChatIndex];
+        var index = uid.Comp.IdleChatOrder[uid.Comp.IdleChatIndex];
 
-        line = component.ConversationTree.Idle[index];
+        line = uid.Comp.ConversationTree.Idle[index];
 
         return true;
     }
@@ -260,25 +402,26 @@ public sealed class NPCConversationSystem : EntitySystem
         var query = EntityQueryEnumerator<NPCConversationComponent>();
         while (query.MoveNext(out var uid, out var component))
         {
+            Entity<NPCConversationComponent> ent = (uid, component);
             var curTime = _gameTiming.CurTime;
 
             if (curTime >= component.NextResponse && component.ResponseQueue.Count > 0)
             {
                 // Make a response.
-                Respond(uid, component, component.ResponseQueue.Pop());
+                Respond(ent, component.ResponseQueue.Pop());
             }
 
             if (curTime >= component.NextAttentionLoss && component.AttendingTo != null)
             {
                 // Forget who we were talking to.
-                LoseAttention(uid, component);
+                LoseAttention(uid);
             }
 
             if (component.IdleEnabled &&
                 curTime >= component.NextIdleChat &&
-                TryGetIdleChatLine(uid, component, out var line))
+                TryGetIdleChatLine(ent, out var line))
             {
-                Respond(uid, component, line);
+                Respond(ent, line);
             }
         }
     }
@@ -297,35 +440,35 @@ public sealed class NPCConversationSystem : EntitySystem
         }
     }
 
-    private void PayAttentionTo(EntityUid uid, NPCConversationComponent component, EntityUid speaker)
+    private void PayAttentionTo(Entity<NPCConversationComponent> uid, EntityUid speaker)
     {
-        component.AttendingTo = speaker;
-        component.NextAttentionLoss = _gameTiming.CurTime + component.AttentionSpan;
-        component.OriginalFacing = _transformSystem.GetWorldRotation(uid);
+        uid.Comp.AttendingTo = speaker;
+        uid.Comp.NextAttentionLoss = _gameTiming.CurTime + uid.Comp.AttentionSpan;
+        uid.Comp.OriginalFacing = _transformSystem.GetWorldRotation(uid);
     }
 
-    private void Respond(EntityUid uid, NPCConversationComponent component, NPCResponse response)
+    private void Respond(Entity<NPCConversationComponent> uid, NPCResponse response)
     {
-        if (component.ResponseQueue.Count == 0)
+        if (uid.Comp.ResponseQueue.Count == 0)
             _typingIndicatorSystem.SetTypingIndicatorState(uid, TypingIndicatorState.None);
         else
-            DelayResponse(uid, component, component.ResponseQueue.Peek());
+            DelayResponse(uid, uid.Comp.ResponseQueue.Peek());
 
-        if (component.AttendingTo != null)
+        if (uid.Comp.AttendingTo != null)
         {
             // TODO: This line is a mouthful. Maybe write a public API that supports EntityCoordinates later?
-            var speakerCoords = Transform(component.AttendingTo.Value).Coordinates.ToMap(EntityManager, _transformSystem).Position;
+            var speakerCoords = Transform(uid.Comp.AttendingTo.Value).Coordinates.ToMap(EntityManager, _transformSystem).Position;
             _rotateToFaceSystem.TryFaceCoordinates(uid, speakerCoords);
         }
 
         if (response.Event is {} ev)
         {
-            ev.TalkingTo = component.AttendingTo;
+            ev.TalkingTo = uid.Comp.AttendingTo;
             RaiseLocalEvent(uid, (object) ev);
         }
 
         if (response.ListenEvent != null)
-            component.ListeningEvent = response.ListenEvent;
+            uid.Comp.ListeningEvent = response.ListenEvent;
 
         if (response.Text != null)
             _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(response.Text), InGameICChatType.Speak, false);
@@ -339,8 +482,8 @@ public sealed class NPCConversationSystem : EntitySystem
                     .WithRolloffFactor(0.5f));
 
         // Refresh our attention.
-        component.NextAttentionLoss = _gameTiming.CurTime + component.AttentionSpan;
-        component.NextIdleChat = component.NextAttentionLoss + component.IdleChatDelay;
+        uid.Comp.NextAttentionLoss = _gameTiming.CurTime + uid.Comp.AttentionSpan;
+        uid.Comp.NextIdleChat = uid.Comp.NextAttentionLoss + uid.Comp.IdleChatDelay;
     }
 
     private List<string> ParseMessageIntoWords(string message)
@@ -350,11 +493,11 @@ public sealed class NPCConversationSystem : EntitySystem
             .ToList();
     }
 
-    private bool FindResponse(EntityUid uid, NPCConversationComponent component, List<string> words, [NotNullWhen(true)] out NPCResponse? response)
+    private bool FindResponse(Entity<NPCConversationComponent> uid, List<string> words, [NotNullWhen(true)] out NPCResponse? response)
     {
         response = null;
 
-        var availableTopics = GetAvailableTopics(uid, component);
+        var availableTopics = GetAvailableTopics(uid).ToArray();
 
         // Some topics are more interesting than others.
         var greatestWeight = 0f;
@@ -362,7 +505,7 @@ public sealed class NPCConversationSystem : EntitySystem
 
         foreach (var word in words)
         {
-            if (component.ConversationTree.PromptToTopic.TryGetValue(word, out var topic) &&
+            if (uid.Comp.ConversationTree.PromptToTopic.TryGetValue(word, out var topic) &&
                 availableTopics.Contains(topic) &&
                 topic.Weight > greatestWeight)
             {
@@ -380,7 +523,7 @@ public sealed class NPCConversationSystem : EntitySystem
         return false;
     }
 
-    private bool JudgeQuestionLikelihood(EntityUid uid, NPCConversationComponent component, List<string> words, string message)
+    private bool JudgeQuestionLikelihood(Entity<NPCConversationComponent> uid, List<string> words, string message)
     {
         if (message.Length > 0 && message[^1] == '?')
             // A question mark is an absolute mark of a question.
@@ -398,7 +541,7 @@ public sealed class NPCConversationSystem : EntitySystem
 
     private void OnBye(EntityUid uid, NPCConversationComponent component, NPCConversationByeEvent args)
     {
-        LoseAttention(uid, component);
+        LoseAttention((uid, component));
     }
 
     private void OnHelp(EntityUid uid, NPCConversationComponent component, NPCConversationHelpEvent args)
@@ -409,7 +552,7 @@ public sealed class NPCConversationSystem : EntitySystem
             return;
         }
 
-        var availableTopics = GetVisibleTopics(uid, component);
+        var availableTopics = GetVisibleTopics((uid, component));
         var availablePrompts = availableTopics.Select(topic => topic.Prompts.FirstOrDefault()).ToArray();
 
         string availablePromptsText;
@@ -430,7 +573,7 @@ public sealed class NPCConversationSystem : EntitySystem
         // Unlikely we'll be able to do audio that isn't hard-coded,
         // so best to keep it general.
         var response = new NPCResponse(availablePromptsText, args.Audio);
-        QueueResponse(uid, response, component);
+        QueueResponse((uid, component), response);
     }
 
     private void OnToldName(EntityUid uid, NPCConversationComponent component, NPCConversationListenEvent args)
@@ -459,13 +602,13 @@ public sealed class NPCConversationSystem : EntitySystem
                 ("name", cleanedName)),
                 response.Audio);
 
-        QueueResponse(uid, formattedResponse, component);
+        QueueResponse((uid, component), formattedResponse);
         args.Handled = true;
     }
 
-    private void OnListen(EntityUid uid, NPCConversationComponent component, ListenEvent args)
+    private void OnListen(Entity<NPCConversationComponent> uid, ref ListenEvent args)
     {
-        if (component.AttendingTo != null && component.AttendingTo != args.Source)
+        if (uid.Comp.AttendingTo != null && uid.Comp.AttendingTo != args.Source)
             // Ignore someone speaking to us if we're already paying attention to someone else.
             return;
 
@@ -473,41 +616,55 @@ public sealed class NPCConversationSystem : EntitySystem
         if (words.Count == 0)
             return;
 
-        if (component.AttendingTo == args.Source)
+        if (uid.Comp.AttendingTo == args.Source)
         {
             // The person we're talking to said something to us.
 
-            if (component.ListeningEvent is {} ev)
+            if (uid.Comp.ListeningEvent is {} ev)
             {
                 // We were waiting on this person to say something, and they've said something.
                 ev.Handled = false;
-                ev.Speaker = component.AttendingTo;
+                ev.Speaker = uid.Comp.AttendingTo;
                 ev.Message = args.Message;
                 ev.Words = words;
                 RaiseLocalEvent(uid, (object) ev);
 
                 if (ev.Handled)
-                    component.ListeningEvent = null;
+                    uid.Comp.ListeningEvent = null;
 
                 return;
             }
 
             // We're already paying attention to this person,
             // so try to figure out if they said something we can talk about.
-            if (FindResponse(uid, component, words, out var response))
+            if (FindResponse(uid, words, out var response))
             {
                 // A response was found so go ahead with it.
-                QueueResponse(uid, response,  component);
+                QueueResponse(uid.AsNullable(), response);
             }
-            else if(JudgeQuestionLikelihood(uid, component, words, args.Message))
+            else if(JudgeQuestionLikelihood(uid, words, args.Message))
             {
                 // The message didn't match any of the prompts, but it seemed like a question.
-                var unknownResponse = _random.Pick(component.ConversationTree.Unknown);
-                QueueResponse(uid, unknownResponse,  component);
+                // Try GPT if enabled, otherwise use unknown response
+                if (uid.Comp.UseGpt && _gptEnabled)
+                {
+                    _ = TryGptResponse(uid, args.Message, args.Source);
+                }
+                else
+                {
+                    var unknownResponse = _random.Pick(uid.Comp.ConversationTree.Unknown);
+                    QueueResponse(uid.AsNullable(), unknownResponse);
+                }
+            }
+            else if (uid.Comp.UseGpt && _gptEnabled)
+            {
+                // If GPT is enabled and no response found, try GPT anyway
+                _ = TryGptResponse(uid, args.Message, args.Source);
             }
 
             // If the message didn't seem like a question,
             // and it didn't raise any of our topics,
+            // and GPT is not enabled or failed,
             // then politely ignore who we're talking with.
             //
             // It's better than spamming them with "I don't understand."
@@ -534,24 +691,372 @@ public sealed class NPCConversationSystem : EntitySystem
 
         if (payAttention)
         {
-            PayAttentionTo(uid, component, args.Source);
+            PayAttentionTo(uid, args.Source);
 
-            if (!FindResponse(uid, component, words, out var response))
+            if (!FindResponse(uid, words, out var response))
             {
-                if(JudgeQuestionLikelihood(uid, component, words, args.Message) &&
+                if(JudgeQuestionLikelihood(uid, words, args.Message) &&
                     // This subcondition exists to block our name being interpreted as a question in its own right.
                     words.Count > 1)
                 {
-                    response = _random.Pick(component.ConversationTree.Unknown);
+                    // Try GPT if enabled, otherwise use unknown response
+                    if (uid.Comp.UseGpt && _gptEnabled)
+                    {
+                        _ = TryGptResponse(uid, args.Message, args.Source);
+                        return; // GPT will handle the response
+                    }
+                    response = _random.Pick(uid.Comp.ConversationTree.Unknown);
                 }
                 else
                 {
-                    response = _random.Pick(component.ConversationTree.Attention);
+                    response = _random.Pick(uid.Comp.ConversationTree.Attention);
                 }
             }
 
-            QueueResponse(uid, response, component);
+            QueueResponse(uid.AsNullable(), response);
         }
     }
+
+#region GPT Integration
+
+    /// <summary>
+    /// History of GPT messages for an NPC.
+    /// </summary>
+    public sealed class NPCGptHistory
+    {
+        public List<GptMessage> Messages { get; } = new();
+        public readonly ReaderWriterLockSlim Lock = new();
+
+        public NPCGptHistory(string systemPrompt)
+        {
+            Lock.EnterWriteLock();
+            try
+            {
+                if (!string.IsNullOrEmpty(systemPrompt))
+                {
+                    Messages.Add(new GptMessageChat(GptUserDirection.system, systemPrompt));
+                }
+            }
+            finally
+            {
+                Lock.ExitWriteLock();
+            }
+        }
+
+        public void Add(GptMessage msg)
+        {
+            Messages.Add(msg);
+
+            if (Messages.Count > 100)
+            {
+                Messages.RemoveRange(0, Messages.Count - 100);
+            }
+        }
+
+        public bool IsCanAnswer()
+        {
+            return Messages.Count > 0 && Messages.Last().Role == GptUserDirection.user;
+        }
+
+        public object[] GetMessagesForApi()
+        {
+            return Messages.Select(x => x.ToApi()).ToArray();
+        }
+    }
+
+    private NPCGptHistory GetOrCreateGptHistory(Entity<NPCConversationComponent> uid)
+    {
+        if (!_npcGptHistory.TryGetValue(uid, out var history))
+        {
+            var systemPrompt = uid.Comp.GptSystemPrompt ??
+                $"Ты NPC в игре Space Station 14. Твое имя: {Name(uid)}. " +
+                $"Отвечай кратко и в соответствии с ролью персонажа.";
+            history = new NPCGptHistory(systemPrompt);
+            _npcGptHistory[uid] = history;
+        }
+        return history;
+    }
+
+    #region GigaChat
+
+    private async Task UpdateGigaToken()
+    {
+        if(string.IsNullOrEmpty(_gptApiGigaToken))
+            return;
+        if(_gigaTocExpire > DateTimeOffset.Now)
+            return;
+
+        using var client = new HttpClient(_gptSocketsHttpHandler, false);
+        using var request = new HttpRequestMessage(HttpMethod.Post, "https://ngw.devices.sberbank.ru:9443/api/v2/oauth");
+        request.Headers.Add("Accept", "application/json");
+        request.Headers.Add("RqUID", Guid.NewGuid().ToString());
+        request.Headers.Add("Authorization", "Basic "+_gptApiGigaToken);
+        var collection = new List<KeyValuePair<string, string>>();
+        collection.Add(new("scope", "GIGACHAT_API_PERS"));
+        var content = new FormUrlEncodedContent(collection);
+        request.Content = content;
+        using var response = await client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        var respBody = await response.Content.ReadAsStringAsync();
+        var info = JsonSerializer.Deserialize<GigaTocResponse>(respBody);
+        if (info == null)
+        {
+            _sawmill.Debug($"GigaChat token response: {response}");
+            _sawmill.Debug($"GigaChat token body: {respBody}");
+            return;
+        }
+
+        _gigaTocExpire = DateTimeOffset.FromUnixTimeMilliseconds(info.expires_at);
+        GptTokenCVarChanged(info.access_token);
+    }
+
+    #endregion
+
+    private async Task<(GptResponseApi? responseApi, string? err)> SendGptApiRequest(NPCGptHistory history, EntityUid uid)
+    {
+        if (!_gptEnabled || string.IsNullOrEmpty(_gptApiUrl) || string.IsNullOrEmpty(_gptApiToken) || string.IsNullOrEmpty(_gptApiModel))
+        {
+            return (null, "GPT не настроен или отключен");
+        }
+
+        // Обновляем токен GigaChat если нужно
+        await UpdateGigaToken();
+
+        history.Lock.EnterReadLock();
+        try
+        {
+            var payload = new GptApiPacket(_gptApiModel, history.GetMessagesForApi(), _gptFunctions, 0.8f);
+            var postData = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+            postData.Headers.Add("X-Session-ID", uid.ToString());
+
+            if (!string.IsNullOrEmpty(_gptApiToken))
+            {
+                _gptHttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _gptApiToken);
+            }
+
+            var request = await _gptHttpClient.PostAsync($"{_gptApiUrl + (_gptApiUrl.EndsWith("/") ? "" : "/")}chat/completions", postData);
+            var response = await request.Content.ReadAsStringAsync();
+
+            if (!request.IsSuccessStatusCode)
+            {
+                _sawmill.Warning($"GPT API ошибка для {ToPrettyString(uid)}: {request.StatusCode} - {response}");
+                return (null, $"Ошибка GPT API: {request.StatusCode}");
+            }
+
+            var info = JsonSerializer.Deserialize<GptResponseApi>(response);
+            return (info, null);
+        }
+        finally
+        {
+            history.Lock.ExitReadLock();
+        }
+    }
+
+    private async Task ProcessGptResponse(Entity<NPCConversationComponent> uid, NPCGptHistory history, GptResponseApi info)
+    {
+        foreach (var gptMsg in info.choices)
+        {
+            switch (gptMsg.finish_reason)
+            {
+                case "function_call":
+                    await ProcessFunctionCall(uid, history, gptMsg);
+                    break;
+                case "stop":
+                case "length":
+                case "blacklist":
+                    if (gptMsg.message.content != null)
+                    {
+                        history.Lock.EnterWriteLock();
+                        try
+                        {
+                            history.Add(new GptMessageChat(GptUserDirection.assistant, gptMsg.message.content));
+                        }
+                        finally
+                        {
+                            history.Lock.ExitWriteLock();
+                        }
+
+                        var response = new NPCResponse(gptMsg.message.content, null);
+                        QueueResponse(uid.AsNullable(), response);
+                        uid.Comp.GptProcessing = false;
+                    }
+                    break;
+                default:
+                    _sawmill.Warning($"GPT вернул неподдерживаемый finish_reason: {gptMsg.finish_reason} для {ToPrettyString(uid)}");
+                    uid.Comp.GptProcessing = false;
+                    break;
+            }
+        }
+    }
+
+    private async Task ProcessFunctionCall(Entity<NPCConversationComponent> uid, NPCGptHistory history, GptResponseApiChoice msg)
+    {
+        DebugTools.AssertNotNull(msg.message.function_call);
+
+        var fnName = msg.message.function_call!.name;
+        _sawmill.Debug($"NPC {ToPrettyString(uid)} FunctionCall {fnName} with {msg.message.function_call.arguments}");
+
+        history.Lock.EnterWriteLock();
+        try
+        {
+            history.Add(new GptMessageCallFunction(msg.message));
+        }
+        finally
+        {
+            history.Lock.ExitWriteLock();
+        }
+
+        var ev = new EventGptFunctionCallNPC(uid, history, msg);
+        RaiseLocalEvent(ev);
+
+        if (ev is { Handled: false, HandlerTask: null })
+        {
+            history.Lock.EnterWriteLock();
+            try
+            {
+                history.Add(new GptMessageFunction(fnName));
+            }
+            finally
+            {
+                history.Lock.ExitWriteLock();
+            }
+        }
+        else if (ev.HandlerTask != null)
+        {
+            try
+            {
+                await ev.HandlerTask;
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error($"Ошибка при выполнении функции {fnName} для {ToPrettyString(uid)}: {e}");
+                history.Lock.EnterWriteLock();
+                try
+                {
+                    history.Add(new GptMessageFunction(fnName));
+                }
+                finally
+                {
+                    history.Lock.ExitWriteLock();
+                }
+            }
+            if (!ev.Handled)
+            {
+                history.Lock.EnterWriteLock();
+                try
+                {
+                    history.Add(new GptMessageFunction(fnName));
+                }
+                finally
+                {
+                    history.Lock.ExitWriteLock();
+                }
+            }
+        }
+
+        // Продолжаем обработку после вызова функции
+        var (responseApi, err) = await SendGptApiRequest(history, uid);
+        if (err != null || responseApi == null)
+        {
+            _sawmill.Warning($"Не удалось получить ответ от GPT после функции для {ToPrettyString(uid)}: {err}");
+            uid.Comp.GptProcessing = false;
+            return;
+        }
+
+        await ProcessGptResponse(uid, history, responseApi);
+    }
+
+    private async Task TryGptResponse(Entity<NPCConversationComponent> uid, string message, EntityUid speaker)
+    {
+        if (!uid.Comp.UseGpt || uid.Comp.GptProcessing || !_gptEnabled)
+            return;
+
+        uid.Comp.GptProcessing = true;
+        try
+        {
+            var history = GetOrCreateGptHistory(uid);
+
+            history.Lock.EnterWriteLock();
+            try
+            {
+                var speakerName = MetaData(speaker).EntityName;
+                history.Add(new GptMessageChat(GptUserDirection.user, $"{speakerName}: {message}"));
+            }
+            finally
+            {
+                history.Lock.ExitWriteLock();
+            }
+
+            var (responseApi, err) = await SendGptApiRequest(history, uid);
+
+            if (err != null || responseApi == null)
+            {
+                _sawmill.Warning($"Не удалось получить ответ от GPT для {ToPrettyString(uid)}: {err}");
+                uid.Comp.GptProcessing = false;
+                return;
+            }
+
+            await ProcessGptResponse(uid, history, responseApi);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Исключение при обработке GPT запроса для {ToPrettyString(uid)}: {ex}");
+            uid.Comp.GptProcessing = false;
+        }
+    }
+
+    private void OnGptFunctionCall(EventGptFunctionCallNPC ev)
+    {
+        if (ev.Handled)
+            return;
+
+        var fnName = ev.Msg.message.function_call?.name;
+        switch (fnName)
+        {
+            case "GetAvailableTopics":
+                ev.History.Lock.EnterWriteLock();
+                try
+                {
+                    ev.History.Add(new GptMessageFunction("GetAvailableTopics", new { result = GetAvailableTopics(ev.NpcUid).ToArray() }));
+                }
+                finally
+                {
+                    ev.History.Lock.ExitWriteLock();
+                }
+                ev.Handled = true;
+                break;
+        }
+    }
+
+    public override void Shutdown()
+    {
+        _cfg.UnsubValueChanged(Shared.Backmen.CCVar.CCVars.GptEnabled, GptEnabledCVarChanged);
+        _cfg.UnsubValueChanged(Shared.Backmen.CCVar.CCVars.GptApiUrl, GptUrlCVarChanged);
+        _cfg.UnsubValueChanged(Shared.Backmen.CCVar.CCVars.GptApiToken, GptTokenCVarChanged);
+        _cfg.UnsubValueChanged(Shared.Backmen.CCVar.CCVars.GptModel, GptModelCVarChanged);
+        _cfg.UnsubValueChanged(Shared.Backmen.CCVar.CCVars.GptApiGigaToken, GptGigaTokenCVarChanged);
+
+        base.Shutdown();
+    }
+
+#endregion
 }
 
+/// <summary>
+/// Событие для обработки вызова функции GPT для NPC.
+/// </summary>
+public sealed class EventGptFunctionCallNPC : HandledEntityEventArgs
+{
+    public Task? HandlerTask { get; set; }
+    public Entity<NPCConversationComponent> NpcUid { get; }
+    public NPCConversationSystem.NPCGptHistory History { get; }
+    public GptResponseApiChoice Msg { get; }
+
+    public EventGptFunctionCallNPC(Entity<NPCConversationComponent> npcUid, NPCConversationSystem.NPCGptHistory history, GptResponseApiChoice msg)
+    {
+        NpcUid = npcUid;
+        History = history;
+        Msg = msg;
+    }
+}

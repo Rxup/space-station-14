@@ -28,6 +28,7 @@
   - type: ActiveListener
   - type: TypingIndicator
   - type: NPCConversation
+    useGpt: true
     tree: SophiaTree
   - type: PotentialPsionic #this makes her easier to access for glimmer events, dw about it
   - type: Psionic

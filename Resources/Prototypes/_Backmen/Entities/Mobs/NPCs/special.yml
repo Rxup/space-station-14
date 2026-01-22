@@ -34,6 +34,7 @@
   components:
     - type: ShipwreckedNPCHecate
     - type: NPCConversation
+      useGpt: true
       tree: ShipwreckedPsychopompHecate
     - type: TTS
       voice: TrainingRobot
@@ -146,13 +147,9 @@
       locked: true
       responses:
         - text: shipwrecked-hecate-response-generator
-          #audio: !type:SoundPathSpecifier
-          #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_generator.ogg
           event: !type:ShipwreckedHecateAskGeneratorUnlockEvent
             accessGranted:
               text: shipwrecked-hecate-response-generator-access
-              #audio: !type:SoundPathSpecifier
-              #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_generator_access.ogg
     - prompts: [rescue, спас, спаси]
       locked: true
       responses:
