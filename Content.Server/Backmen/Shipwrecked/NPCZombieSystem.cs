@@ -4,7 +4,10 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid.Systems;
 using Content.Server.RandomMetadata;
 using Content.Server.Zombies;
+using Content.Shared.Backmen.Language.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
+using Content.Shared.Standing;
 using Content.Shared.Trigger;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
@@ -22,6 +25,7 @@ public sealed class NpcZombieMakeEvent : EntityEventArgs
 public sealed class NPCZombieSystem : EntitySystem
 {
     [Dependency] private readonly ZombieSystem _zombieSystem = default!;
+    [Dependency] private readonly StandingStateSystem _stateSystem = default!;
 
     public override void Initialize()
     {
@@ -38,9 +42,12 @@ public sealed class NPCZombieSystem : EntitySystem
         if (TerminatingOrDeleted(ev.Target))
             return;
 
+        _stateSystem.Stand(ev.Target);
         _zombieSystem.ZombifyEntity(ev.Target);
+        EnsureComp<UniversalLanguageSpeakerComponent>(ev.Target);
         RemComp<GhostTakeoverAvailableComponent>(ev.Target);
         RemComp<GhostRoleComponent>(ev.Target);
+        RemComp<ConsciousnessComponent>(ev.Target);
 
         var z = EnsureComp<ZombieComponent>(ev.Target);
         z.BaseZombieInfectionChance = 0.0001f;
@@ -110,7 +117,7 @@ public sealed class NPCZombieSystem : EntitySystem
         });
     }
 
-    private readonly EntProtoId ZombieSurpriseDetector = "ZombieSurpriseDetector";
+    private static readonly EntProtoId ZombieSurpriseDetector = "ZombieSurpriseDetector";
     private void OnZombieSurpriseInit(EntityUid uid, ZombieSurpriseComponent component, MapInitEvent args)
     {
         if (TerminatingOrDeleted(uid))

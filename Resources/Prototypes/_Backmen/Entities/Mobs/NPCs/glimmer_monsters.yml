@@ -159,9 +159,9 @@
   - tasks:
     - !type:HTNCompoundTask
       task: DrainPsionicCompound
-  #- tasks:
-  #  - !type:HTNCompoundTask
-  #    task: IdleCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound
 
 - type: htnCompound
   id: WispRangedCombatCompound
@@ -179,10 +179,7 @@
     - !type:HTNPrimitiveTask
       operator: !type:UnPullOperator
         shutdownState: TaskFinished
-  - preconditions:
-    - !type:GunAmmoPrecondition
-      minPercent: 0.001
-    tasks:
+  - tasks:
     - !type:HTNCompoundTask
       task: WispGunCombatCompound
 
@@ -202,7 +199,7 @@
         removeKeyOnFinish: false
         targetKey: TargetCoordinates
         pathfindKey: TargetPathfind
-        stopOnLineOfSight: false
+        stopOnLineOfSight: false # 2
         rangeKey: MeleeRange
 
     - !type:HTNPrimitiveTask
@@ -230,18 +227,6 @@
     curve: !type:BoolCurve
   - !type:TargetIsCritCon
     curve: !type:InverseBoolCurve
-  - !type:TargetIsStunnedCon
-    curve: !type:InverseBoolCurve
-  - !type:TurretTargetingCon
-    curve: !type:BoolCurve
-  - !type:TargetDistanceCon
-    curve: !type:PresetCurve
-      preset: TargetDistance
-  - !type:TargetHealthCon
-    curve: !type:PresetCurve
-      preset: TargetHealth
-  - !type:TargetInLOSOrCurrentCon
-    curve: !type:BoolCurve
 
 - type: htnCompound
   id: DrainPsionicCompound

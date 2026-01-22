@@ -36,6 +36,14 @@
         - !type:HTNCompoundTask
           task: EscapeCompound
 
+    - preconditions:
+      - !type:LaydownPrecondition
+        isDown: true
+      tasks:
+      - !type:HTNPrimitiveTask
+        operator: !type:StandOperator
+          shutdownState: TaskFinished
+
     # Pickup weapon if we don't have one.
     - preconditions:
         - !type:ActiveHandComponentPrecondition

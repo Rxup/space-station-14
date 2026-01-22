@@ -18,6 +18,7 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands.Components;
@@ -73,6 +74,7 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!; // backmen
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -256,7 +258,7 @@ public sealed partial class ZombieSystem
         // Backmen Edit start
         if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
         {
-            _consciousness.ForceConscious(target, TimeSpan.FromSeconds(12f));
+            _consciousness.ForceConscious(target, TimeSpan.FromMinutes(1));
             _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
 
             _pain.TryAddPainMultiplier(
@@ -271,6 +273,7 @@ public sealed partial class ZombieSystem
                 PainType.TraumaticPain,
                 nerveSys.Value);
         }
+        _bodySystem.ForceRestoreBody(target, true);
         // Backmen Edit end
 
         _faction.ClearFactions(target, dirty: false);
