@@ -46,8 +46,6 @@ public sealed class NPCConversationSystem : EntitySystem
     [Dependency] private readonly TypingIndicatorSystem _typingIndicatorSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    private ISawmill _sawmill = default!;
-
     // GPT Integration
     private Dictionary<EntityUid, NPCGptHistory> _npcGptHistory = new();
     private List<object> _gptFunctions = new();
@@ -101,11 +99,8 @@ public sealed class NPCConversationSystem : EntitySystem
     {
         base.Initialize();
 
-        _sawmill = Logger.GetSawmill("npc.conversation");
-
         SubscribeLocalEvent<NPCConversationComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<NPCConversationComponent, ComponentRemove>(OnComponentRemove);
-        SubscribeLocalEvent<NPCConversationComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<NPCConversationComponent, ListenAttemptEvent>(OnListenAttempt);
         SubscribeLocalEvent<NPCConversationComponent, ListenEvent>(OnListen);
 
@@ -223,7 +218,7 @@ public sealed class NPCConversationSystem : EntitySystem
 
         if (!uid.Comp.ConversationTree.PromptToTopic.TryGetValue(option, out var topic))
         {
-            _sawmill.Warning($"Tried to check locked status of missing dialogue option `{option}` on {ToPrettyString(uid)}");
+            Log.Warning($"Tried to check locked status of missing dialogue option `{option}` on {ToPrettyString(uid)}");
             return true;
         }
 
@@ -244,7 +239,7 @@ public sealed class NPCConversationSystem : EntitySystem
         if (uid.Comp.ConversationTree.PromptToTopic.TryGetValue(option, out var topic))
             uid.Comp.UnlockedTopics.Add(topic);
         else
-            _sawmill.Warning($"Tried to unlock missing dialogue option `{option}` on {ToPrettyString(uid)}");
+            Log.Warning($"Tried to unlock missing dialogue option `{option}` on {ToPrettyString(uid)}");
     }
 
     /// <inheritdoc cref="UnlockDialogue(EntityUid, string, NPCConversationComponent?)"/>
@@ -353,13 +348,6 @@ public sealed class NPCConversationSystem : EntitySystem
         }
 
         _random.Shuffle(component.IdleChatOrder);
-    }
-
-    private void OnUnpaused(EntityUid uid, NPCConversationComponent component, ref EntityUnpausedEvent args)
-    {
-        component.NextResponse += args.PausedTime;
-        component.NextAttentionLoss += args.PausedTime;
-        component.NextIdleChat += args.PausedTime;
     }
 
     private void OnComponentRemove(EntityUid uid, NPCConversationComponent component, ComponentRemove args)
@@ -548,7 +536,7 @@ public sealed class NPCConversationSystem : EntitySystem
     {
         if (args.Text == null)
         {
-            _sawmill.Error($"{ToPrettyString(uid)} heard a Help prompt but has no text for it.");
+            Log.Error($"{ToPrettyString(uid)} heard a Help prompt but has no text for it.");
             return;
         }
 
@@ -584,7 +572,7 @@ public sealed class NPCConversationSystem : EntitySystem
         var response = _random.Pick(responses);
         if (response.Text == null)
         {
-            _sawmill.Error($"{ToPrettyString(uid)} was told a name but had no text response.");
+            Log.Error($"{ToPrettyString(uid)} was told a name but had no text response.");
             return;
         }
 
@@ -802,8 +790,8 @@ public sealed class NPCConversationSystem : EntitySystem
         var info = JsonSerializer.Deserialize<GigaTocResponse>(respBody);
         if (info == null)
         {
-            _sawmill.Debug($"GigaChat token response: {response}");
-            _sawmill.Debug($"GigaChat token body: {respBody}");
+            Log.Debug($"GigaChat token response: {response}");
+            Log.Debug($"GigaChat token body: {respBody}");
             return;
         }
 
@@ -840,7 +828,7 @@ public sealed class NPCConversationSystem : EntitySystem
 
             if (!request.IsSuccessStatusCode)
             {
-                _sawmill.Warning($"GPT API ошибка для {ToPrettyString(uid)}: {request.StatusCode} - {response}");
+                Log.Warning($"GPT API ошибка для {ToPrettyString(uid)}: {request.StatusCode} - {response}");
                 return (null, $"Ошибка GPT API: {request.StatusCode}");
             }
 
@@ -883,7 +871,7 @@ public sealed class NPCConversationSystem : EntitySystem
                     }
                     break;
                 default:
-                    _sawmill.Warning($"GPT вернул неподдерживаемый finish_reason: {gptMsg.finish_reason} для {ToPrettyString(uid)}");
+                    Log.Warning($"GPT вернул неподдерживаемый finish_reason: {gptMsg.finish_reason} для {ToPrettyString(uid)}");
                     uid.Comp.GptProcessing = false;
                     break;
             }
@@ -895,7 +883,7 @@ public sealed class NPCConversationSystem : EntitySystem
         DebugTools.AssertNotNull(msg.message.function_call);
 
         var fnName = msg.message.function_call!.name;
-        _sawmill.Debug($"NPC {ToPrettyString(uid)} FunctionCall {fnName} with {msg.message.function_call.arguments}");
+        Log.Debug($"NPC {ToPrettyString(uid)} FunctionCall {fnName} with {msg.message.function_call.arguments}");
 
         history.Lock.EnterWriteLock();
         try
@@ -930,7 +918,7 @@ public sealed class NPCConversationSystem : EntitySystem
             }
             catch (Exception e)
             {
-                _sawmill.Error($"Ошибка при выполнении функции {fnName} для {ToPrettyString(uid)}: {e}");
+                Log.Error($"Ошибка при выполнении функции {fnName} для {ToPrettyString(uid)}: {e}");
                 history.Lock.EnterWriteLock();
                 try
                 {
@@ -959,7 +947,7 @@ public sealed class NPCConversationSystem : EntitySystem
         var (responseApi, err) = await SendGptApiRequest(history, uid);
         if (err != null || responseApi == null)
         {
-            _sawmill.Warning($"Не удалось получить ответ от GPT после функции для {ToPrettyString(uid)}: {err}");
+            Log.Warning($"Не удалось получить ответ от GPT после функции для {ToPrettyString(uid)}: {err}");
             uid.Comp.GptProcessing = false;
             return;
         }
@@ -992,7 +980,7 @@ public sealed class NPCConversationSystem : EntitySystem
 
             if (err != null || responseApi == null)
             {
-                _sawmill.Warning($"Не удалось получить ответ от GPT для {ToPrettyString(uid)}: {err}");
+                Log.Warning($"Не удалось получить ответ от GPT для {ToPrettyString(uid)}: {err}");
                 uid.Comp.GptProcessing = false;
                 return;
             }
@@ -1001,7 +989,7 @@ public sealed class NPCConversationSystem : EntitySystem
         }
         catch (Exception ex)
         {
-            _sawmill.Error($"Исключение при обработке GPT запроса для {ToPrettyString(uid)}: {ex}");
+            Log.Error($"Исключение при обработке GPT запроса для {ToPrettyString(uid)}: {ex}");
             uid.Comp.GptProcessing = false;
         }
     }

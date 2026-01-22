@@ -95,6 +95,7 @@ public sealed partial class NPCConversationComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("nextAttentionLoss", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextAttentionLoss;
 
     /// <summary>
@@ -146,6 +147,7 @@ public sealed partial class NPCConversationComponent : Component
     /// </remarks>
     [ViewVariables]
     [DataField("nextIdleChat", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextIdleChat;
 
 #endregion
