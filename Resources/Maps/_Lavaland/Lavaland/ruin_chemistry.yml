@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 270.1.0
+  engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/05/2026 13:55:25
+  time: 01/22/2026 15:47:58
   entityCount: 210
 maps: []
 grids:
@@ -229,10 +229,11 @@ entities:
     - type: Roof
       data:
         0,0: 17361641481122611200
-        0,1: 8421616
+        0,1: 9259400833882161392
         1,0: 2242545357978337280
         1,1: 1085086035219776287
         1,2: 3855
+        0,2: 32896
     - type: ExplosionAirtightGrid
 - proto: AirlockHatchBasik
   entities:

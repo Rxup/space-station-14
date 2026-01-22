@@ -426,9 +426,17 @@ namespace Content.Server.Atmos.EntitySystems
             _timer -= UpdateTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
+            var q = new Queue<(EntityUid, FlammableComponent)>();
             var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var flammable, out _))
             {
+                q.Enqueue((uid, flammable));
+            }
+
+            while (q.TryDequeue(out var d))
+            {
+                var (uid, flammable) = d;
+
                 // Slowly dry ourselves off if wet.
                 if (flammable.FireStacks < 0)
                 {

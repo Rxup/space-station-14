@@ -12,6 +12,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Prototypes;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Gravity;
@@ -157,6 +158,17 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
                 return false;
         }
 
+        {
+            var moles = new float[Atmospherics.AdjustedNumberOfGases];
+            moles[(int)Gas.Oxygen] = 21.824779f;
+            moles[(int)Gas.Nitrogen] = 82.10312f;
+
+            var mixture = new GasMixture(moles, Atmospherics.T20C);
+            _atmos.SetMapAtmosphere(preloader.Value, false, mixture);
+        }
+
+
+
         // Basic setup.
         var lavalandMap = _map.CreateMap(out var lavalandMapId, runMapInit: false);
         var mapComp = EnsureComp<LavalandMapComponent>(lavalandMap);
@@ -199,11 +211,15 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
             _shuttle.AddIFFFlag(grid, flag);
         }
 
+        QueueDel(preloader.Value);
+
         // Start!!1!!!
         _map.InitializeMap(lavalandMapId);
 
         // also preload the planet itself
         _biome.Preload(lavalandMap, Comp<BiomeComponent>(lavalandMap), loadBox);
+
+        //_atmos.RebuildGridTiles((lavalandMap, gridAtmos, Comp<GasTileOverlayComponent>(lavalandMap), Comp<MapGridComponent>(lavalandMap), Transform(lavalandMap)));
 
         // Finally add destination
         var dest = AddComp<FTLDestinationComponent>(lavalandMap);
@@ -239,8 +255,7 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
         air.CopyTo(moles, 0);
 
-        var atmos = EnsureComp<MapAtmosphereComponent>(lavalandMap);
-        _atmos.SetMapGasMixture(lavalandMap, new GasMixture(moles, prototype.Temperature), atmos);
+        _atmos.SetMapAtmosphere(lavalandMap, false, new GasMixture(moles, prototype.Temperature));
 
         // Restricted Range
         var restricted = new RestrictedRangeComponent
