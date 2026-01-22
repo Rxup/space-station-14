@@ -3,6 +3,8 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.Mobs;
+using Content.Shared.NPC.Systems;
+using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -11,6 +13,8 @@ namespace Content.Shared._Lavaland.Aggression;
 public abstract class SharedAggressorsSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    private EntityQuery<ActorComponent> _actorQuery;
 
     // TODO: make cooldowns for all individual aggressors that fall out of vision range
 
@@ -24,11 +28,12 @@ public abstract class SharedAggressorsSystem : EntitySystem
         SubscribeLocalEvent<AggressiveComponent, DestructionEventArgs>(OnDestroyed);
 
         SubscribeLocalEvent<AggressorComponent, MobStateChangedEvent>(OnMobStateChange);
+        _actorQuery = GetEntityQuery<ActorComponent>();
     }
 
     private void OnBeforeDamageChanged(Entity<AggressiveComponent> ent, ref BeforeDamageChangedEvent args)
     {
-        if (args.Origin == null)
+        if (args.Origin == null && !_actorQuery.HasComp(ent))
             args.Cancelled = true;
     }
 
@@ -36,7 +41,7 @@ public abstract class SharedAggressorsSystem : EntitySystem
     {
         var aggro = args.Origin;
 
-        if (aggro == null || !HasComp<ActorComponent>(aggro))
+        if (aggro == null || !_actorQuery.HasComp(aggro))
             return;
 
         AddAggressor(ent, aggro.Value);
@@ -45,7 +50,7 @@ public abstract class SharedAggressorsSystem : EntitySystem
     private void OnMobStateChange(Entity<AggressorComponent> ent, ref MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
-            CleanAggressions(ent);
+            CleanAggressions(ent.AsNullable());
     }
 
     private void OnDeleted(Entity<AggressiveComponent> ent, ref EntityTerminatingEvent args)
@@ -60,30 +65,39 @@ public abstract class SharedAggressorsSystem : EntitySystem
 
     #region api
 
-    public HashSet<EntityUid>? GetAggressors(EntityUid uid)
+    [PublicAPI]
+    public HashSet<EntityUid>? GetAggressors(Entity<AggressiveComponent?> ent)
     {
-        TryComp<AggressiveComponent>(uid, out var aggro);
-        return aggro?.Aggressors ?? null;
+        if (!Resolve(ent, ref ent.Comp))
+            return null;
+
+        return ent.Comp.Aggressors;
     }
 
+    [PublicAPI]
     public void RemoveAggressor(Entity<AggressiveComponent> ent, EntityUid aggressor)
     {
+        _npcFaction.DeAggroEntity(ent.Owner, aggressor);
         ent.Comp.Aggressors.Remove(aggressor);
         RaiseLocalEvent(ent, new AggressorRemovedEvent(GetNetEntity(aggressor)));
     }
 
+    [PublicAPI]
     public void RemoveAllAggressors(Entity<AggressiveComponent> ent)
     {
         var aggressors = ent.Comp.Aggressors;
         ent.Comp.Aggressors.Clear();
         foreach (var aggressor in aggressors)
         {
+            _npcFaction.DeAggroEntity(ent.Owner, aggressor);
             RaiseLocalEvent(ent, new AggressorRemovedEvent(GetNetEntity(aggressor)));
         }
     }
 
+    [PublicAPI]
     public void AddAggressor(Entity<AggressiveComponent> ent, EntityUid aggressor)
     {
+        _npcFaction.AggroEntity(ent.Owner, aggressor);
         ent.Comp.Aggressors.Add(aggressor);
 
         var aggcomp = EnsureComp<AggressorComponent>(aggressor);
@@ -99,25 +113,26 @@ public abstract class SharedAggressorsSystem : EntitySystem
         var msg = new BossMusicStartupEvent(boss.SoundId);
         foreach (var aggress in aggresive.Aggressors)
         {
-            if (!TryComp<ActorComponent>(aggress, out var actor))
+            if (!_actorQuery.TryComp(aggress, out var actor))
                 continue;
 
             RaiseNetworkEvent(msg, actor.PlayerSession.Channel);
         }
     }
 
-    public void CleanAggressions(EntityUid aggressor)
+    [PublicAPI]
+    public void CleanAggressions(Entity<AggressorComponent?> aggressor)
     {
-        if (!TryComp<AggressorComponent>(aggressor, out var aggcomp))
+        if (!Resolve(aggressor, ref aggressor.Comp))
             return;
 
-        foreach (var aggrod in aggcomp.Aggressives)
+        foreach (var aggrod in aggressor.Comp.Aggressives)
         {
             if (TryComp<AggressiveComponent>(aggrod, out var aggressors))
                 RemoveAggressor((aggrod, aggressors), aggressor);
         }
 
-        RemComp(aggressor, aggcomp);
+        RemComp<AggressorComponent>(aggressor);
     }
 
     #endregion

@@ -6,6 +6,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Backmen.NPC.Components;
 
+[AutoGenerateComponentPause]
 [RegisterComponent]
 [Access(typeof(NPCConversationSystem))]
 public sealed partial class NPCConversationComponent : Component
@@ -74,6 +75,7 @@ public sealed partial class NPCConversationComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("nextResponse", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextResponse;
 
     /// <summary>
@@ -93,6 +95,7 @@ public sealed partial class NPCConversationComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("nextAttentionLoss", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextAttentionLoss;
 
     /// <summary>
@@ -144,7 +147,32 @@ public sealed partial class NPCConversationComponent : Component
     /// </remarks>
     [ViewVariables]
     [DataField("nextIdleChat", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextIdleChat;
+
+#endregion
+
+#region GPT Integration
+
+    /// <summary>
+    /// Whether or not the NPC should use GPT API for responses when no matching topic is found.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("useGpt")]
+    public bool UseGpt = false;
+
+    /// <summary>
+    /// System prompt for GPT to define NPC's personality and behavior.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("gptSystemPrompt")]
+    public string? GptSystemPrompt;
+
+    /// <summary>
+    /// Whether GPT is currently processing a request.
+    /// </summary>
+    [ViewVariables]
+    public bool GptProcessing = false;
 
 #endregion
 

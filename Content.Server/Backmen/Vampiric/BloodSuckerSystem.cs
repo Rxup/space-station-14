@@ -73,7 +73,6 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly BkmVampireLevelingSystem _leveling = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly NPCRetaliationSystem _retaliationSystem = default!;
     [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
