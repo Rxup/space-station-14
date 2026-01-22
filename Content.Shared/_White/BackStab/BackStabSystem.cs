@@ -100,6 +100,6 @@ public sealed class BackStabSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("backstab-message"), target, user, PopupType.LargeCaution);
 
         if (playSound)
-            _audio.PlayPredicted(BackstabSound, user ,target);
+            _audio.PlayPredicted(BackstabSound,target, user);
     }
 }
