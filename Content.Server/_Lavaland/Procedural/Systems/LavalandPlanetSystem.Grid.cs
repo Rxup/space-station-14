@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Numerics;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Prototypes;
+using Content.Shared.Maps;
 using Robust.Server.Physics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -13,6 +15,7 @@ namespace Content.Server._Lavaland.Procedural.Systems;
 public sealed partial class LavalandPlanetSystem
 {
         [Dependency] private readonly GridFixtureSystem _gridFixture = default!;
+        [Dependency] private readonly ITileDefinitionManager _tileDef = default!;
 
     private bool LoadGridRuin(
         LavalandGridRuinPrototype ruin,
@@ -107,6 +110,54 @@ public sealed partial class LavalandPlanetSystem
         _metaData.SetEntityName(spawned.Value, Loc.GetString(ruin.Name));
         _transform.SetParent(spawned.Value, spawnedXForm, lavaland);
         _transform.SetCoordinates(spawned.Value, new EntityCoordinates(lavaland, spawnedXForm.Coordinates.Position.Rounded()));
+
+        // Merge fixtures from lavaland grid to spawned ruin grid
+        if (HasComp<MapGridComponent>(lavaland.Owner))
+        {
+            var sourceGridUid = lavaland.Owner;
+
+            if (TryComp<MapGridComponent>(spawned.Value, out var spawnedGrid) &&
+                TryComp<MapGridComponent>(sourceGridUid, out var sourceGrid) &&
+                sourceGridUid != spawned.Value)
+            {
+                try
+                {
+                    // Get the position of source grid (lavaland) in local coordinates of target grid (spawned)
+                    var sourceWorldPos = _transform.GetWorldPosition(sourceGridUid);
+                    var localPos = _map.WorldToLocal(spawned.Value, spawnedGrid, sourceWorldPos);
+                    var offset = (Vector2i)localPos;
+
+                    // Get the rotation of the target grid
+                    var rotation = Transform(spawned.Value).LocalRotation;
+
+                    // Replace empty tiles in spawned grid with tiles from the same position in lavaland grid
+                    foreach (var tile in _map.GetAllTiles(spawned.Value, spawnedGrid, false))
+                    {
+                        if (tile.Tile == Tile.Empty)
+                        {
+                            // Get world position of this tile
+                            var tileWorldPos = _map.GridTileToWorldPos(spawned.Value, spawnedGrid, tile.GridIndices);
+
+                            // Convert to local coordinates in lavaland grid
+                            var lavalandTileIndices = _map.WorldToTile(sourceGridUid, sourceGrid, tileWorldPos);
+
+                            // Get tile from lavaland grid at this position
+                            if (_map.TryGetTileRef(sourceGridUid, sourceGrid, lavalandTileIndices, out var lavalandTile) &&
+                                !lavalandTile.Tile.IsEmpty)
+                            {
+                                _map.SetTile(spawned.Value, spawnedGrid, tile.GridIndices, lavalandTile.Tile);
+                            }
+                        }
+                    }
+
+                    _gridFixture.Merge(sourceGridUid, spawned.Value, offset, rotation);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Failed to merge fixtures for ruin {ruin.ID}: {ex}");
+                }
+            }
+        }
 
         // yaaaaaaaaaaaaaaaay
         usedSpace.Add(ruinBox);
