@@ -29,6 +29,17 @@
   - type: DeleteOnTrigger
 
 - type: entity
+  name: psi mine
+  parent: LandMinePsi
+  id: LandMinePsiArmed
+  suffix: armed
+  components:
+  - type: ItemToggle
+    activated: true
+    onActivate: false
+  - type: Armable
+
+- type: entity
   name: Xeno mine
   parent: BaseLandMine
   id: LandMineXeno
