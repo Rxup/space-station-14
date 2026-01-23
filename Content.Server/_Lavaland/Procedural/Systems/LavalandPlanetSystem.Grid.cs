@@ -1,14 +1,23 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Numerics;
 using Content.Server._Lavaland.Procedural.Components;
+using Content.Server.Atmos;
+using Content.Server.Atmos.Components;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Light.Components;
 using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Prototypes;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Maps;
 using Robust.Server.Physics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Lavaland.Procedural.Systems;
 
@@ -16,6 +25,7 @@ public sealed partial class LavalandPlanetSystem
 {
         [Dependency] private readonly GridFixtureSystem _gridFixture = default!;
         [Dependency] private readonly ITileDefinitionManager _tileDef = default!;
+        [Dependency] private readonly SharedRoofSystem _roofSystem = default!;
 
     private bool LoadGridRuin(
         LavalandGridRuinPrototype ruin,
@@ -130,27 +140,41 @@ public sealed partial class LavalandPlanetSystem
                     // Get the rotation of the target grid
                     var rotation = Transform(spawned.Value).LocalRotation;
 
-                    // Replace empty tiles in spawned grid with tiles from the same position in lavaland grid
-                    foreach (var tile in _map.GetAllTiles(spawned.Value, spawnedGrid, false))
+                    var tilesToRoof = new HashSet<Vector2i>();
+                    Entity<MapGridComponent, RoofComponent> spawnedRoof = (spawned.Value, spawnedGrid, EnsureComp<RoofComponent>(spawned.Value));
+                    Entity<MapGridComponent?, RoofComponent?> roofMap = (sourceGridUid, sourceGrid, EnsureComp<RoofComponent>(sourceGridUid));
+
+                    var matrix = Matrix3Helpers.CreateTransform(offset, rotation);
+
                     {
-                        if (tile.Tile == Tile.Empty)
+                        var enumerator = _map.GetAllTilesEnumerator(spawned.Value, spawnedGrid);
+                        while (enumerator.MoveNext(out var tileRef))
                         {
-                            // Get world position of this tile
-                            var tileWorldPos = _map.GridTileToWorldPos(spawned.Value, spawnedGrid, tile.GridIndices);
+                            var offsetTile = Vector2.Transform(new Vector2(tileRef.Value.GridIndices.X, tileRef.Value.GridIndices.Y) + sourceGrid.TileSizeHalfVector, matrix)
+                                .Floored();
+                            if (_roofSystem.IsRooved(spawnedRoof, tileRef.Value.GridIndices))
+                            {
+                                _roofSystem.SetRoof(roofMap, offsetTile, true);
+                                tilesToRoof.Add(offsetTile);
+                            }
 
-                            // Convert to local coordinates in lavaland grid
-                            var lavalandTileIndices = _map.WorldToTile(sourceGridUid, sourceGrid, tileWorldPos);
+                            if(tileRef.Value.Tile != Tile.Empty)
+                                continue;
 
-                            // Get tile from lavaland grid at this position
-                            if (_map.TryGetTileRef(sourceGridUid, sourceGrid, lavalandTileIndices, out var lavalandTile) &&
+                            if (_map.TryGetTileRef(sourceGridUid, sourceGrid, offsetTile, out var lavalandTile) &&
                                 !lavalandTile.Tile.IsEmpty)
                             {
-                                _map.SetTile(spawned.Value, spawnedGrid, tile.GridIndices, lavalandTile.Tile);
+                                _map.SetTile(spawned.Value, spawnedGrid, offsetTile, lavalandTile.Tile);
                             }
                         }
                     }
 
-                    _gridFixture.Merge(sourceGridUid, spawned.Value, offset, rotation);
+                    _gridFixture.Merge(sourceGridUid, spawned.Value, matrix);
+                    
+                    foreach (var vector2I in tilesToRoof)
+                    {
+                        _roofSystem.SetRoof(roofMap, vector2I, true);
+                    }
                 }
                 catch (Exception ex)
                 {

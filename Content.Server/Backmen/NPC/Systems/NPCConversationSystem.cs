@@ -803,7 +803,7 @@ public sealed class NPCConversationSystem : EntitySystem
 
     private async Task<(GptResponseApi? responseApi, string? err)> SendGptApiRequest(NPCGptHistory history, EntityUid uid)
     {
-        if (!_gptEnabled || string.IsNullOrEmpty(_gptApiUrl) || string.IsNullOrEmpty(_gptApiToken) || string.IsNullOrEmpty(_gptApiModel))
+        if (!_gptEnabled || string.IsNullOrEmpty(_gptApiUrl) || string.IsNullOrEmpty(_gptApiModel))
         {
             return (null, "GPT не настроен или отключен");
         }

@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 270.1.0
+  engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/05/2026 13:55:31
+  time: 01/22/2026 16:05:11
   entityCount: 565
 maps: []
 grids:
@@ -3616,7 +3616,7 @@ entities:
       pos: 10.5,15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -41936.418
+      secondsUntilStateChange: -41964.586
       state: Opening
   - uid: 508
     components:

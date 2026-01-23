@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 270.1.0
+  engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/05/2026 13:54:47
+  time: 01/22/2026 16:22:22
   entityCount: 171
 maps: []
 grids:
@@ -123,10 +123,10 @@ entities:
     - type: RadiationGridResistance
     - type: Roof
       data:
-        -1,0: 552448594160
-        -1,-1: 11583469899732746240
-        0,0: 64678215551
-        0,-1: 8102028708582719488
+        -1,0: 9259612768512831728
+        -1,-1: 16204198715190181888
+        0,0: 1085120253746167679
+        0,-1: 9187131305196719872
     - type: ExplosionAirtightGrid
 - proto: ADTHyperNobliumCanisterBroken
   entities:

@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Content.Server._Lavaland.Procedural.Components;
+using Content.Server.Light.EntitySystems;
 using Content.Server.Temperature.Systems;
 using Content.Server.Weather;
 using Content.Shared._Lavaland.Procedural.Components;
@@ -9,9 +10,12 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
+using Content.Shared.Light.Components;
 using Content.Shared.Popups;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -25,6 +29,10 @@ public sealed class LavalandWeatherSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly RoofSystem _roof = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     private const double LavalandWeatherJobTime = 0.005;
     private readonly JobQueue _lavalandWeatherJobQueue = new(LavalandWeatherJobTime);
@@ -51,6 +59,16 @@ public sealed class LavalandWeatherSystem : EntitySystem
         // Do the damage to all poor people on lava that are not on outpost/big ruins
         if (xform.GridUid != lavaland.Owner)
             return;
+
+
+        if (
+            _mapSystem.TryGetTileRef(lavaland.Owner, Comp<MapGridComponent>(lavaland.Owner), xform.Coordinates, out var tile) &&
+            _roof.IsRooved(
+                (lavaland.Owner, Comp<MapGridComponent>(lavaland.Owner), Comp<RoofComponent>(lavaland.Owner)),
+                tile.GridIndices))
+        {
+            return;
+        }
 
         var proto = _proto.Index(lavaland.Comp.CurrentWeather);
         _temperature.ChangeHeat(entity, proto.TemperatureChange, ignoreHeatResistance: true);
