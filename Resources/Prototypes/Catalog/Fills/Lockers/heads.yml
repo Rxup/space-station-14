@@ -357,7 +357,6 @@
     - id: CargoRequestSecurityComputerCircuitboard
     # backmen edit end
     - id: WeaponDisabler
-    - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
     # Corvax-Start

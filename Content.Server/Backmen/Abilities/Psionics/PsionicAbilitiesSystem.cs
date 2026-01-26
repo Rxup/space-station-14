@@ -10,7 +10,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Server.Player;
@@ -129,7 +129,7 @@ public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
             _actionsSystem.RemoveAction(uid, psionic.PsionicAbility);
 
         if(!noEffect)
-            _statusEffectsSystem.TryAddStatusEffect(uid, "Stutter", TimeSpan.FromMinutes(5), false, "StutteringAccent");
+            _statusEffectsSystem.TryAddStatusEffectDuration(uid, "StatusEffectStutter", TimeSpan.FromMinutes(5));
 
         RemCompDeferred<PsionicComponent>(uid);
     }

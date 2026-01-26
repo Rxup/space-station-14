@@ -11,3 +11,11 @@
   name: psionic disabled
   components:
   - type: PsionicsDisabled
+
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPsionicAllSee
+  name: psionic all see
+  components:
+  - type: MetapsionicVisible

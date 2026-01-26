@@ -164,13 +164,13 @@ public sealed partial class LavalandPlanetSystem
                             if (_map.TryGetTileRef(sourceGridUid, sourceGrid, offsetTile, out var lavalandTile) &&
                                 !lavalandTile.Tile.IsEmpty)
                             {
-                                _map.SetTile(spawned.Value, spawnedGrid, offsetTile, lavalandTile.Tile);
+                                _map.SetTile(spawned.Value, spawnedGrid, tileRef.Value.GridIndices, lavalandTile.Tile);
                             }
                         }
                     }
 
                     _gridFixture.Merge(sourceGridUid, spawned.Value, matrix);
-                    
+
                     foreach (var vector2I in tilesToRoof)
                     {
                         _roofSystem.SetRoof(roofMap, vector2I, true);

@@ -14,7 +14,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
+    [Dependency] private readonly StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
     private EntityQuery<PsionicInsulationComponent> _qPsionicInsulation;
 
     public override void Initialize()
@@ -68,7 +68,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
             if (!TryComp<DamageableComponent>(entity, out var damageable) || damageable.DamageContainerID != Biological)
                 continue;
 
-            var result = _sleepingSystem.TrySleeping((entity.Owner,entity.Comp));
+            var result = _effectsSystem.TryUpdateStatusEffectDuration(entity, "StatusEffectForcedSleeping", TimeSpan.FromSeconds(10));
             if (!handle && result)
                 handle = true;
         }
