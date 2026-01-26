@@ -68,7 +68,7 @@ public sealed class MetapsionicPowerSystem : EntitySystem
             psionic.PsionicAbility = component.MetapsionicPowerAction;
     }
 
-    private static readonly EntProtoId MetapsionicVisibleStatus = "MetapsionicVisible";
+    private static readonly EntProtoId MetapsionicVisibleStatus = "StatusEffectPsionicAllSee";
 
     private void OnPowerUsed(EntityUid uid, MetapsionicPowerComponent component, MetapsionicPowerActionEvent args)
     {
