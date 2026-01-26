@@ -76,6 +76,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void OnGetVisMask(Entity<ShadowkinDarkSwappedComponent> ent, ref GetVisMaskEvent args)
     {
+        if (ent.Comp.LifeStage > ComponentLifeStage.Running)
+            return;
+
         // Entities with ShadowkinDarkSwappedComponent can see DarkSwapped entities
         args.VisibilityMask |= (int)VisibilityFlags.DarkSwapInvisibility;
     }

@@ -29,6 +29,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
 
         // Visibility mask event
         SubscribeLocalEvent<GetVisMaskEvent>(OnGetVisMask);
+        SubscribeLocalEvent<PsionicallyInvisibleComponent, GetVisMaskEvent>(OnGetVisMask2);
 
         // Layer
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
@@ -37,6 +38,14 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         // PVS Stuff
         SubscribeLocalEvent<PsionicallyInvisibleComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
+    }
+
+    private void OnGetVisMask2(Entity<PsionicallyInvisibleComponent> ent, ref GetVisMaskEvent args)
+    {
+        if (ent.Comp.LifeStage > ComponentLifeStage.Running)
+            return;
+
+        args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
     }
 
     private void OnGetVisMask(ref GetVisMaskEvent args)
@@ -48,7 +57,8 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         }
 
         // Entities with PsionicInsulationComponent can see psionic invisibility
-        if (HasComp<PsionicInsulationComponent>(args.Entity))
+        if (TryComp<PsionicInsulationComponent>(args.Entity, out var insulationComponent)
+            && insulationComponent.LifeStage <= ComponentLifeStage.Running)
         {
             args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
             return;
