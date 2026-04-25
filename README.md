@@ -7,6 +7,8 @@
 
 Backmen - это форк [Space Wizards](https://github.com/space-wizards/space-station-14), ориентирующийся на развитии ролевого взаимодействия и интересных игровых механик, в том числе из Space Station 13, включая в это свои собственные идеи.
 
+[Сайт сборки](https://backmen.ru/ss14)
+
 Space Station 14 - это ремейк SS13, который работает на собственном движке [Robust Toolbox](https://github.com/space-wizards/Robust-Toolbox), написанном на C#.
 
 ## Ссылки
