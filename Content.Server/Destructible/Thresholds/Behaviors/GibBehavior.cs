@@ -20,7 +20,11 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
             if (system.EntityManager.TryGetComponent(owner, out BodyComponent? body))
             {
                 system.BodySystem.GibBody(owner, _recursive, body, gib: GibType, contents: GibContents);
+                return;
             }
+
+            // Fallback for entities without body containers.
+            system.Gibbing.Gib(owner, _recursive);
         }
     }
 }

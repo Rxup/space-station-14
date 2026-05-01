@@ -3,11 +3,8 @@ using Content.Shared.CombatMode;
 using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
-using Robust.Shared.Audio; // Ataraxia
-using Robust.Shared.Audio.Systems; // Ataraxia
-using Robust.Shared.GameObjects; // Ataraxia
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
@@ -18,7 +15,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!; // backmen: combatmode
+    [Dependency] private   readonly SharedNPCSystem _npc = default!;
 
     public override void Initialize()
     {
@@ -83,7 +80,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);
 
         // Change mouse rotator comps if flag is set
-        if (!component.ToggleMouseRotator || IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
+        if (!component.ToggleMouseRotator || _npc.IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
 
         SetMouseRotatorComponents(entity, value);
@@ -109,9 +106,6 @@ public abstract class SharedCombatModeSystem : EntitySystem
             RemComp<NoRotateOnMoveComponent>(uid);
         }
     }
-
-    // todo: When we stop making fucking garbage abstract shared components, remove this shit too.
-    protected abstract bool IsNpc(EntityUid uid);
 }
 
 public sealed partial class ToggleCombatActionEvent : InstantActionEvent

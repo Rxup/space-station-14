@@ -2,6 +2,8 @@ using Content.Server.Chat.Systems;
 using Content.Server.Construction;
 using Content.Server.Destructible;
 using Content.Server.Ghost;
+using Content.Server.Ghost.Roles;
+using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Server.Power.Components;
 using Content.Server.Roles;
@@ -47,6 +49,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
+    [Dependency] private readonly ToggleableGhostRoleSystem _ghostrole = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DestructibleSystem _destructible = default!;
     [Dependency] private readonly SharedBatterySystem _battery = default!;
@@ -60,10 +63,11 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();
 
-    private static readonly ProtoId<ChatNotificationPrototype> _turretIsAttackingChatNotificationPrototype = "TurretIsAttacking";
-    private static readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
-    private static readonly ProtoId<ChatNotificationPrototype> _aiLosingPowerChatNotificationPrototype = "AiLosingPower";
-    private static readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
+    private readonly ProtoId<ChatNotificationPrototype> _turretIsAttackingChatNotificationPrototype = "TurretIsAttacking";
+    private readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
+    private readonly ProtoId<ChatNotificationPrototype> _aiLosingPowerChatNotificationPrototype = "AiLosingPower";
+    private readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
+    private readonly ProtoId<ChatNotificationPrototype> _aiTakingDamageChatNotificationPrototype = "AiTakingDamage";
 
     private static readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
     private readonly EntProtoId _stationAiBrain = "StationAiBrain";
@@ -97,14 +101,30 @@ public sealed class StationAiSystem : SharedStationAiSystem
         }
 
         var brain = container.ContainedEntities[0];
+        var hasMind = _mind.TryGetMind(brain, out var mindId, out var mind);
 
-        if (_mind.TryGetMind(brain, out var mindId, out var mind))
+        if (hasMind || HasComp<GhostRoleComponent>(brain))
         {
-            // Found an existing mind to transfer into the AI core
             var aiBrain = Spawn(_stationAiBrain, Transform(ent.Owner).Coordinates);
-            _roles.MindAddJobRole(mindId, mind, false, _stationAiJob);
-            _mind.TransferTo(mindId, aiBrain);
 
+            if (hasMind)
+            {
+                // Found an existing mind to transfer into the AI core
+                _roles.MindAddJobRole(mindId, mind, false, _stationAiJob);
+                _mind.TransferTo(mindId, aiBrain);
+            }
+            else
+            {
+                // If the brain had a ghost role attached, activate the station AI ghost role
+                _ghostrole.ActivateGhostRole(aiBrain);
+
+                // Set the new AI brain to the 'rebooting' state
+                if (TryComp<StationAiCustomizationComponent>(aiBrain, out var customization))
+                    SetStationAiState((aiBrain, customization), StationAiState.Rebooting);
+
+            }
+
+            // Delete the new AI brain if it cannot be inserted into the core
             if (!TryComp<StationAiHolderComponent>(ent, out var targetHolder) ||
                 !_slots.TryInsert(ent, targetHolder.Slot, aiBrain, null))
             {
@@ -216,7 +236,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
     private void OnDamageChanged(Entity<StationAiCoreComponent> entity, ref DamageChangedEvent args)
     {
-        UpdateCoreIntegrityAlert(entity);
+        UpdateCoreIntegrityAlert(entity, args.DamageIncreased);
         UpdateDamagedAccent(entity);
     }
 
@@ -233,7 +253,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             accent.OverrideChargeLevel = _battery.GetChargeLevel((ent.Owner, battery));
 
         if (TryComp<DamageableComponent>(ent, out var damageable))
-            accent.OverrideTotalDamage = damageable.TotalDamage;
+            accent.OverrideTotalDamage = _damageable.GetTotalDamage((ent, damageable));
 
         if (TryComp<DestructibleComponent>(ent, out var destructible))
             accent.DamageAtMaxCorruption = _destructible.DestroyedAt(ent, destructible);
@@ -266,7 +286,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         }
     }
 
-    private void UpdateCoreIntegrityAlert(Entity<StationAiCoreComponent> ent)
+    private void UpdateCoreIntegrityAlert(Entity<StationAiCoreComponent> ent, bool damageIncreased = false)
     {
         if (!TryComp<DamageableComponent>(ent, out var damageable))
             return;
@@ -280,10 +300,16 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!_proto.TryIndex(_damageAlert, out var proto))
             return;
 
-        var damagePercent = damageable.TotalDamage / _destructible.DestroyedAt(ent, destructible);
+        var damagePercent = _damageable.GetTotalDamage((ent, damageable)) / _destructible.DestroyedAt(ent, destructible);
         var damageLevel = Math.Round(damagePercent.Float() * proto.MaxSeverity);
 
         _alerts.ShowAlert(held.Value, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity));
+
+        if (damageIncreased)
+        {
+            var ev = new ChatNotificationEvent(_aiTakingDamageChatNotificationPrototype, ent);
+            RaiseLocalEvent(held.Value, ref ev);
+        }
     }
 
     private void OnDoAfterAttempt(Entity<StationAiCoreComponent> ent, ref DoAfterAttemptEvent<IntellicardDoAfterEvent> args)

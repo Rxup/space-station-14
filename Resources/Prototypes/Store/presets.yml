@@ -18,10 +18,13 @@
     - UplinkPointless
     - UplinkBundles
     - UplinkPsionic
+    - UplinkObjective
     currencyWhitelist:
     - Telecrystal
     balance:
       Telecrystal: 0
+    expectedFaction:
+    - Syndicate
 
 - type: entity
   id: StorePresetSpellbook
@@ -37,6 +40,8 @@
     - SpellbookEvents       #Summon Weapons, Summon Ghosts
     currencyWhitelist:
     - WizCoin
+    expectedFaction:
+    - Wizard
 
 - type: entity
   id: StorePresetChangeling
@@ -48,3 +53,10 @@
     - ChangelingAbilities
     currencyWhitelist:
     - ChangelingDNA
+
+- type: entity
+  parent: StorePresetUplink
+  id: StorePresetRemoteUplink
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RingerAccessUplink

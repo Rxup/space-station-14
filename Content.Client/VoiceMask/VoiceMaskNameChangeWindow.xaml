@@ -18,5 +18,7 @@
             <OptionButton Name="VoiceSelector" /> <!-- Populated in LoadVerbs -->
         </BoxContainer>
         <!-- Corvax-TTS-End -->
+        <Button Name="ToggleAccentButton" Text="{Loc 'voice-mask-name-change-accent-toggle'}" HorizontalExpand="True" ToggleMode="True" Margin="5"/>
+        <Button Name="ToggleButton" Text="{Loc 'voice-mask-name-change-toggle'}" HorizontalExpand="True" ToggleMode="True" Margin="5"/>
     </BoxContainer>
 </controls:FancyWindow>

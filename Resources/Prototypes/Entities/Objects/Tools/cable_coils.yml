@@ -33,13 +33,17 @@
     guides:
     - VoltageNetworks
     - Power
-  # backmen start
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/_Shitmed/Medical/Surgery/saw.ogg # TODO: SOUND
-  - type: Stitches
-    speed: 0.4
-  # backmen end
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: CableHVStack

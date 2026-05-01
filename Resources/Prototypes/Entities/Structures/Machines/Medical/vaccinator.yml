@@ -17,9 +17,6 @@
   - type: DiseaseMachine
     machineOutput: Vaccine
   - type: Appearance
-  - type: DiseaseMachineVisuals
-    idleState: icon
-    runningState: running
   - type: Machine
     board: VaccinatorMachineCircuitboard
   - type: ContainerContainer

@@ -13,13 +13,11 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Chat;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Content.Shared.PowerCell;
 using Content.Shared.Traits.Assorted;
-using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -30,34 +28,19 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Timing;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.Timing;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Medical;
 
-/// <summary>
-/// This handles interactions and logic relating to <see cref="DefibrillatorComponent"/>
-/// </summary>
-public sealed class DefibrillatorSystem : EntitySystem
+public sealed class DefibrillatorSystem : SharedDefibrillatorSystem
 {
-    [Dependency] private readonly ChatSystem _chatManager = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
+    [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly RottingSystem _rotting = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // backmen edit:
@@ -66,11 +49,16 @@ public sealed class DefibrillatorSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!; // backmen edit: for checking body parts
     [Dependency] private readonly WoundSystem _wound = default!; // backmen edit: for checking wounds
 
-    /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<DefibrillatorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<DefibrillatorComponent, DefibrillatorZapDoAfterEvent>(OnDoAfter);
+    }
+
+    protected override void OpenReturnToBodyEui(Entity<MindComponent> mind, ICommonSession session)
+    {
+        _eui.OpenEui(new ReturnToBodyEui(mind, _mind, _player), session);
     }
 
     private void OnAfterInteract(EntityUid uid, DefibrillatorComponent component, AfterInteractEvent args)
@@ -310,7 +298,7 @@ public sealed class DefibrillatorSystem : EntitySystem
                 // notify them they're being revived.
                 if (mind.CurrentEntity != target)
                 {
-                    _euiManager.OpenEui(new ReturnToBodyEui(mind, _mind, _player), session);
+                    _eui.OpenEui(new ReturnToBodyEui(mind, _mind, _player), session);
                 }
 
                 // start-backmen: revenant

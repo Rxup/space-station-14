@@ -99,6 +99,17 @@
   name: store-category-psionic
   priority: 12
 
+- type: storeCategory
+  id: UplinkObjective
+  name: store-category-objective
+  priority: 11
+
+#nukie delivery
+
+- type: storeCategory
+  id: NukieDelivery
+  name: store-category-nukie-delivery
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities
@@ -108,7 +119,7 @@
 - type: storeCategory
   id: FleshCultistAbilities
   name: store-category-abilities
-  
+
 #pai
 - type: storeCategory
   id: PAIAbilities

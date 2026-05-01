@@ -12,6 +12,7 @@
     - PsiScheduler #backmen: psi
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -98,6 +99,7 @@
     - StandardStationEventScheduler # backmen: game rules rework
 #    - SpaceTrafficControlEventScheduler
 #    - SpaceTrafficControlFriendlyEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - LavalandStormScheduler # Lavaland Change
 
@@ -127,7 +129,6 @@
   showInVote: false #4boring4vote
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
   - WageScheduler #backmen: currency
   - LavalandStormScheduler # Lavaland Change

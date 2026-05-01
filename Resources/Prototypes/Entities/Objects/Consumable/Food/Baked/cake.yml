@@ -1116,13 +1116,6 @@
   - type: Examiner
   - type: DoAfter
   - type: CombatMode
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Animals/cat_hiss.ogg
-    hidden: true
-    damage:
-      groups:
-        Brute: 1
   - type: LanguageSpeaker
     currentLanguage: Cat
   - type: LanguageKnowledge #backmen: languages
@@ -1131,6 +1124,13 @@
     understands:
     - Cat
     - TauCetiBasic
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/cat_hiss.ogg
+    hidden: true
+    damage:
+      types:
+        Blunt: 1
 
 # Suppermatter
 # I can't figure out where to put this. It kind of acts like a cake I guess?

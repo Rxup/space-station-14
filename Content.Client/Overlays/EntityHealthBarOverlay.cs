@@ -4,6 +4,7 @@ using Content.Client.UserInterface.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -32,6 +33,7 @@ public sealed class EntityHealthBarOverlay : Overlay
     private readonly StatusIconSystem _statusIconSystem;
     private readonly SpriteSystem _spriteSystem;
     private readonly ProgressColorSystem _progressColor;
+    private readonly DamageableSystem _damageable;
 
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
@@ -48,6 +50,7 @@ public sealed class EntityHealthBarOverlay : Overlay
         _statusIconSystem = _entManager.System<StatusIconSystem>();
         _spriteSystem = _entManager.System<SpriteSystem>();
         _progressColor = _entManager.System<ProgressColorSystem>();
+        _damageable = _entManager.System<DamageableSystem>();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -131,7 +134,8 @@ public sealed class EntityHealthBarOverlay : Overlay
     /// </summary>
     private (float ratio, bool inCrit)? CalcProgress(EntityUid uid, MobStateComponent component, DamageableComponent dmg, MobThresholdsComponent thresholds)
     {
-        // backmen edit start
+        var totalDamage = _damageable.GetTotalDamage((uid, dmg));
+
         if (_entManager.TryGetComponent<ConsciousnessComponent>(uid, out var consciousness))
         {
             if (_mobStateSystem.IsAlive(uid, component))
@@ -149,34 +153,31 @@ public sealed class EntityHealthBarOverlay : Overlay
             }
 
         }
-        else // backmen edit end
+
+        // Typical management
+        if (_mobStateSystem.IsAlive(uid, component))
         {
-            // Typical management
-            if (_mobStateSystem.IsAlive(uid, component))
+            if (dmg.HealthBarThreshold != null && totalDamage < dmg.HealthBarThreshold)
+                return null;
+
+            if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds) &&
+                !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out threshold, thresholds))
+                return (1, false);
+
+            var ratio = 1 - ((FixedPoint2)(totalDamage / threshold)).Float();
+            return (ratio, false);
+        }
+
+        if (_mobStateSystem.IsCritical(uid, component))
+        {
+            if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
+                !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
             {
-                if (dmg.HealthBarThreshold != null && dmg.TotalDamage < dmg.HealthBarThreshold)
-                    return null;
-
-                if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds) &&
-                    !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out threshold, thresholds))
-                    return (1, false);
-
-                var ratio = 1 - ((FixedPoint2)(dmg.TotalDamage / threshold)).Float();
-                return (ratio, false);
+                return (1, true);
             }
 
-            if (_mobStateSystem.IsCritical(uid, component))
-            {
-                if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
-                    !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
-                {
-                    return (1, true);
-                }
-
-                var ratio = 1 - ((dmg.TotalDamage - critThreshold) / (deadThreshold - critThreshold)).Value.Float();
-
-                return (ratio, true);
-            }
+            var ratio = 1 - ((totalDamage - critThreshold) / (deadThreshold - critThreshold)).Value.Float();
+            return (ratio, true);
         }
 
         return (0, true);

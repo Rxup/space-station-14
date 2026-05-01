@@ -5,10 +5,24 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.MedicalScanner;
 
 /// <summary>
-///     On interacting with an entity retrieves the entity UID for use with getting the current damage of the mob.
+/// On interacting with an entity retrieves the entity UID for use with getting the current damage of the mob.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
+{
+    public HealthAnalyzerUiState State;
+
+    public HealthAnalyzerScannedUserMessage(HealthAnalyzerUiState state)
+    {
+        State = state;
+    }
+}
+
+/// <summary>
+/// Contains the current state of a health analyzer control. Used for the health analyzer and cryo pod.
+/// </summary>
+[Serializable, NetSerializable]
+public struct HealthAnalyzerUiState
 {
     public readonly NetEntity? TargetEntity;
     public float Temperature;
@@ -21,7 +35,19 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public Dictionary<string, float>? PainCauses; // backmen: pain
     public float? TotalPain; // backmen: pain
 
-    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null)
+    public HealthAnalyzerUiState() {}
+
+    public HealthAnalyzerUiState(
+        NetEntity? targetEntity,
+        float temperature,
+        float bloodLevel,
+        bool? scanMode,
+        bool? bleeding,
+        bool? unrevivable,
+        Dictionary<TargetBodyPart, WoundableSeverity>? body = null,
+        NetEntity? part = null,
+        Dictionary<string, float>? painCauses = null,
+        float? totalPain = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -43,4 +69,3 @@ public sealed class HealthAnalyzerPartMessage(NetEntity? owner, TargetBodyPart? 
     public readonly TargetBodyPart? BodyPart = bodyPart;
 
 }
-

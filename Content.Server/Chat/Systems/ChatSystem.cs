@@ -887,7 +887,7 @@ private void SendEntityWhisper(
     public string TransformSpeech(EntityUid sender, string message, ref LanguagePrototype language) // backmen
     {
         var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(ev);
+        RaiseLocalEvent(sender, ev, true);
 
         // start-backmen: language
         if (ev.Language is { } replaceLanguage)

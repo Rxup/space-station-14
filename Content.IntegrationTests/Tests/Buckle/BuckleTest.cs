@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Server.Body.Systems;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Buckle;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Backmen.Standing;
@@ -16,7 +16,7 @@ namespace Content.IntegrationTests.Tests.Buckle
     [TestFixture]
     [TestOf(typeof(BuckleComponent))]
     [TestOf(typeof(StrapComponent))]
-    public sealed partial class BuckleTest
+    public sealed partial class BuckleTest : GameTest
     {
         private const string BuckleDummyId = "BuckleDummy";
         private const string StrapDummyId = "StrapDummy";
@@ -55,7 +55,7 @@ namespace Content.IntegrationTests.Tests.Buckle
         [Test]
         public async Task BuckleUnbuckleCooldownRangeTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var testMap = await pair.CreateTestMap();
@@ -233,14 +233,12 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(strap.BuckledEntities, Is.Empty);
                 });
             });
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task BuckledDyingDropItemsTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var testMap = await pair.CreateTestMap();
@@ -249,7 +247,6 @@ namespace Content.IntegrationTests.Tests.Buckle
             EntityUid human = default;
             BuckleComponent buckle = null;
             HandsComponent hands = null;
-            BodyComponent body = null;
 
             await server.WaitIdleAsync();
 
@@ -269,7 +266,6 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(entityManager.TryGetComponent(human, out buckle));
                     Assert.That(entityManager.HasComponent<StrapComponent>(chair));
                     Assert.That(entityManager.TryGetComponent(human, out hands));
-                    Assert.That(entityManager.TryGetComponent(human, out body));
                 });
 
                 // Buckle
@@ -336,14 +332,12 @@ namespace Content.IntegrationTests.Tests.Buckle
                 Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Lying));
             });
             // end-backmen: Laying System
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task ForceUnbuckleBuckleTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var testMap = await pair.CreateTestMap();
@@ -411,7 +405,6 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(buckle.Buckled);
                 });
             });
-            await pair.CleanReturnAsync();
         }
     }
 }

@@ -4,8 +4,8 @@
   description: job-description-deathsquad
   playTimeTracker: JobDeathSquad
   setPreference: false
-#  startingGear: DeathSquadGear #Backmen-ERTRoles
-  icon: "JobIconNanotrasen"
+  startingGear: DeathSquadGear
+  icon: "JobIconDeathSquad"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

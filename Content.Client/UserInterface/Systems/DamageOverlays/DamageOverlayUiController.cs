@@ -3,6 +3,7 @@ using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -27,6 +28,7 @@ public sealed class DamageOverlayUiController : UIController
     [UISystemDependency] private readonly ClientConsciousnessSystem _consciousness = default!;
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [UISystemDependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [UISystemDependency] private readonly DamageableSystem _damageable = default!;
     private Overlays.DamageOverlay _overlay = default!;
 
     public override void Initialize()
@@ -105,17 +107,18 @@ public sealed class DamageOverlayUiController : UIController
                 return; //this entity cannot die or crit!!
 
             var critThreshold = foundThreshold.Value;
+            var damagePerGroup = _damageable.GetDamagePerGroup((entity, damageable));
             switch (mobState.CurrentState)
             {
                 case MobState.Alive:
                 if (!_statusEffects.TryEffectsWithComp<PainNumbnessStatusEffectComponent>(entity, out _))
                 {
-                    if (damageable.DamagePerGroup.TryGetValue("Brute", out var bruteDamage))
+                    if (damagePerGroup.TryGetValue("Brute", out var bruteDamage))
                     {
                         _overlay.PainLevel = FixedPoint2.Min(1f, bruteDamage / critThreshold).Float();
                     }
 
-                    if (damageable.DamagePerGroup.TryGetValue("Airloss", out var oxyDamage))
+                    if (damagePerGroup.TryGetValue("Airloss", out var oxyDamage))
                     {
                         _overlay.OxygenLevel = FixedPoint2.Min(1f, oxyDamage / critThreshold).Float();
                     }
@@ -129,10 +132,11 @@ public sealed class DamageOverlayUiController : UIController
                     _overlay.DeadLevel = 0;
                 }
                 break;
+                case MobState.SoftCrit:
                 case MobState.Critical:
                 {
                     if (!_mobThresholdSystem.TryGetDeadPercentage(entity,
-                            FixedPoint2.Max(0.0, damageable.TotalDamage), out var critLevel))
+                            FixedPoint2.Max(0.0, _damageable.GetTotalDamage((entity, damageable))), out var critLevel))
                         return;
                     _overlay.CritLevel = critLevel.Value.Float();
 
@@ -183,6 +187,7 @@ public sealed class DamageOverlayUiController : UIController
 
                     break;
                 }
+                case MobState.SoftCrit:
                 case MobState.Critical:
                 {
                     _overlay.CritLevel = FixedPoint2.Min(1f,

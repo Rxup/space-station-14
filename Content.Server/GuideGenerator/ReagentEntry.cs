@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.Json.Serialization;
+using Content.Server.Body.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Server.Corvax.GuideGenerator;
@@ -53,9 +54,8 @@ public sealed class ReagentEntry
         TextColor = (0.2126f * r + 0.7152f * g + 0.0722f * b > 0.5
             ? Color.Black
             : Color.White).ToHex();
-
-        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new Corvax.GuideGenerator.ReagentEffectsEntry(x.Value));
         // Corvax-Wiki-End
+        Metabolisms = proto.Metabolisms?.Metabolisms.ToDictionary(x => x.Key.Id, x => x.Value);
     }
 }
 

@@ -1,17 +1,4 @@
 - type: entity
-  save: false
-  parent: BaseMobSkeletonPerson
-  id: MobSkeletonPerson
-  components:
-  - type: InteractionPopup
-    successChance: 1
-    interactSuccessString: hugging-success-generic
-    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-    messagePerceivedByOthers: hugging-success-generic-others
-  - type: FootPrints
-  - type: PotentialPsionic
-
-- type: entity
   name: skeleton pirate
   parent: MobSkeletonPerson
   id: MobSkeletonPirate
@@ -28,6 +15,8 @@
   - type: Loadout
     prototypes: [PirateGear]
   - type: RandomHumanoidAppearance
+  - type: FootPrints
+  - type: PotentialPsionic
 
 
 - type: entity

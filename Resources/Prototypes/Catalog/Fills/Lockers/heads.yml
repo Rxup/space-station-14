@@ -21,6 +21,8 @@
     - id: AstroNavCartridge
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: ClothingHandsKnuckleDustersQM
+    - id: PlushieLizardJobQuartermaster
+      prob: 0.02
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -56,10 +58,12 @@
     - id: ClothingHeadCage # backmen edit
     - id: HandheldReinforcementCentCom # backmen edit
     - id: ClothingEyesGlassesCommand
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
+    - id: OrganSkeletonPersonHead # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
         max: 15
+    - id: PlushieLizardJobCaptain
+      prob: 0.02
 
 # No laser table + Laser table
 - type: entityTable
@@ -144,6 +148,8 @@
     - id: ClothingOuterCoatHOP # Corvax-Resprite
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: ClothingEyesHudCommand
+    - id: PlushieLizardJobHeadofpersonnel
+      prob: 0.02
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -178,6 +184,8 @@
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: SupermatterFlatpack # backmen edit
     - id: MetalFoamGrenade
+    - id: PlushieLizardJobChiefengineer
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -221,18 +229,19 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: BoxEncryptionKeyMedical
-    - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingEyesHudMedical
-    - id: ClothingHandsGlovesNitrile
-    - id: ClothingHeadsetAltMedical
-    - id: ClothingMaskSterile
-    - id: DoorRemoteMedical
+    - id: ClothingBeltMedicalFilled
     - id: HandheldCrewMonitor
     - id: Hypospray
-    - id: BoxCMOCircuitboards
-    - id: MedkitFilled
+    - id: MedTekCartridge
+    # Standard command gear
     - id: RubberStampCMO
+    - id: ClothingHeadsetAltMedical
+    - id: DoorRemoteMedical
+    - id: BoxEncryptionKeyMedical
+    - id: BoxCMOCircuitboards
+    - id: PlushieLizardJobChiefmedicalofficer
+      prob: 0.02
     - id: AntiPsychicKnife # backmen edit
     - id: ClothingHeadCage # backmen edit
     - id: PrinterDocFlatpack # Corvax-Printer
@@ -240,7 +249,6 @@
     - id: MedicalBiofabMachineBoard # backmen edit
     - id: DiagnoserMachineCircuitboard # backmen edit
     - id: VaccinatorMachineCircuitboard # backmen edit
-    - id: MedTekCartridge
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -290,6 +298,8 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
+    - id: PlushieLizardJobResearchdirector
+      prob: 0.02
     - id: AntiPsychicKnife # backmen edit
     - id: ClothingHeadCage # backmen edit
     - id: PrinterDocFlatpack # Corvax-Printer
@@ -359,6 +369,8 @@
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
+    - id: PlushieLizardJobHeadofsecurity
+      prob: 0.02
     # Corvax-Start
     - id: ClothingHeadHatCapHoS
       prob: 0.5

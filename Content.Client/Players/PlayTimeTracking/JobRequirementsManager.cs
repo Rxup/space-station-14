@@ -29,8 +29,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordManager = default!; // backmen: discord
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
-    private readonly List<string> _jobBans = new();
-    private readonly List<string> _antagBans = new();
+    private readonly List<ProtoId<JobPrototype>> _jobBans = new();
+    private readonly List<ProtoId<AntagPrototype>> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     public ImmutableList<string> RoleBans => _antagBans.ToImmutableList(); // backmen: antag

@@ -26,3 +26,7 @@
       amount: 2
     - id: KreydPlush #backmen
       prob: 0.1
+    - id: PlushieLizardJobResearchassistant
+      prob: 0.02
+    - id: PlushieLizardJobScientist
+      prob: 0.02

@@ -20,11 +20,11 @@ public partial class MobStateSystem : EntitySystem
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
-    private EntityQuery<MobStateComponent> _mobStateQuery;
+    [Dependency] private readonly EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
     public override void Initialize()
     {
-        _mobStateQuery = GetEntityQuery<MobStateComponent>();
+        _sawmill = _logManager.GetSawmill("MobState");
         base.Initialize();
         SubscribeEvents();
     }

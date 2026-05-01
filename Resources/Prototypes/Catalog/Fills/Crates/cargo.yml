@@ -9,6 +9,33 @@
       entity_storage: !type:AllSelector
         children:
         - id: ClothingOuterHardsuitLuxury
+        - id: ClothingMaskBreath
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateCargoParcelWrap
+  name: parcel wrap crate
+  description: All your parcel wrapping needs in one crate, containing three rolls of parcel wrap.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: ParcelWrap
+        amount: 3
+
+- type: entity
+  parent: CratePrivateSecure
+  id: CrateCargoGambling
+  name: the grand lottery $$$
+  description: A box containing treasure beyond your greatest imaginations!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLuxury
 
 # backmen edit start: better grand lottery
 - type: entityTable

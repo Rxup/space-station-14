@@ -56,6 +56,8 @@
     - id: ClothingHeadHatBeretWarden
     - id: ClothingHeadHatCapWardenAlt # Corvax-SecFashion
     # backmen edit end
+    - id: PlushieLizardJobWarden
+      prob: 0.02
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -103,6 +105,10 @@
       prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
+    - id: PlushieLizardJobSecuritycadet
+      prob: 0.02
+    - id: PlushieLizardJobSecurityofficer
+      prob: 0.02
 
 # backmen edit start: переработанный локер Brigmedic
 - type: entity
@@ -186,6 +192,8 @@
     - id: HoloprojectorSecurity
     - id: BoxEvidenceMarkers
     - id: HandLabeler
+    - id: PlushieLizardJobDetective
+      prob: 0.02
 
 - type: entity
   id: ClosetBombFilled

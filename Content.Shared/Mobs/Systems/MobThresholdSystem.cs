@@ -5,6 +5,7 @@ using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
@@ -23,6 +24,7 @@ public sealed class MobThresholdSystem : EntitySystem
 {
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     // backmen edit start
     [Dependency] private readonly SharedBodySystem _body = default!;
@@ -277,11 +279,11 @@ public sealed class MobThresholdSystem : EntitySystem
             return false;
 
         // backmen ediT!!!!!
-        var entDamage = oldDamage.Damage;
+        var entDamage = _damageable.GetTotalDamage((target1, oldDamage));
         if (TryComp<BodyComponent>(target1, out var body) && HasComp<ConsciousnessComponent>(target1))
         {
             var damageDict = new Dictionary<string, FixedPoint2>();
-            foreach (var bodyPart in _body.GetBodyChildren(target1, body))
+            foreach (var bodyPart in _body.Geet(target1, body))
             {
                 if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
                     continue;
@@ -313,7 +315,6 @@ public sealed class MobThresholdSystem : EntitySystem
             ent2DeadThreshold = 0;
 
         damage = (entDamage / ent1DeadThreshold.Value) * ent2DeadThreshold.Value;
-
         return true;
     }
 
@@ -387,7 +388,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         foreach (var (threshold, mobState) in thresholdsComponent.Thresholds.Reverse())
         {
-            if (damageableComponent.TotalDamage < threshold)
+            if (_damageable.GetTotalDamage((target, damageableComponent)) < threshold)
                 continue;
 
             TriggerThreshold(target, mobState, mobStateComponent, thresholdsComponent, origin);
@@ -445,7 +446,7 @@ public sealed class MobThresholdSystem : EntitySystem
             var totalDamage = FixedPoint2.Zero;
             if (damageable != null && !HasComp<ConsciousnessComponent>(target))
             {
-                totalDamage = damageable.TotalDamage;
+                totalDamage = _damageable.GetTotalDamage((target, damageable));
             }
             else if (TryComp<ConsciousnessComponent>(target, out var consciousness))
             {

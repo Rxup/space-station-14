@@ -4,20 +4,19 @@
   Нанотразен нанимает разнообразные разумные виды.
 
   <Box>
-  <GuideEntityEmbed Entity="MobArachnid" Caption="Арахнид"/>
-  <GuideEntityEmbed Entity="MobDiona" Caption="Диона"/>
-  <GuideEntityEmbed Entity="MobDwarf" Caption="Дворф"/>
-  <GuideEntityEmbed Entity="MobHuman" Caption="Человек"/>
+  <GuideEntityEmbed Entity="AppearanceArachnid" Caption="Арахнид"/>
+  <GuideEntityEmbed Entity="AppearanceDiona" Caption="Диона"/>
+  <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Дворф"/>
+  <GuideEntityEmbed Entity="AppearanceHuman" Caption="Человек"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobMoth" Caption="Ниан"/>
-  <GuideEntityEmbed Entity="MobReptilian" Caption="Ящер"/>
-  <GuideEntityEmbed Entity="MobVulpkanin" Caption="Вульпканин"/>
-  <GuideEntityEmbed Entity="MobSlimePerson" Caption="Слаймолюд"/>
-  <GuideEntityEmbed Entity="MobVox" Caption="Вокс"/>
+  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Ниан"/>
+  <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Ящер"/>
+  <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Слаймолюд"/>
+  <GuideEntityEmbed Entity="AppearanceVox" Caption="Вокс"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
+    <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Вульпканин"/>
   </Box>
 
 </Document>

@@ -1,8 +1,7 @@
 - type: marking
   id: LizardFrillsAquatic
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_aquatic
@@ -10,8 +9,7 @@
 - type: marking
   id: LizardFrillsShort
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_short
@@ -19,8 +17,7 @@
 - type: marking
   id: LizardFrillsSimple
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_simple
@@ -28,8 +25,7 @@
 - type: marking
   id: LizardFrillsDivinity
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_divinity
@@ -37,8 +33,7 @@
 - type: marking
   id: LizardFrillsBig
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_big
@@ -46,8 +41,7 @@
 - type: marking
   id: LizardFrillsAxolotl
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_axolotl
@@ -55,8 +49,7 @@
 - type: marking
   id: LizardFrillsHood
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_hood_primary
@@ -66,8 +59,7 @@
 - type: marking
   id: LizardFrillsNeckfull
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: frills_neckfull
@@ -75,8 +67,7 @@
 - type: marking
   id: LizardHornsAngler
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_angler
@@ -84,8 +75,7 @@
 - type: marking
   id: LizardHornsCurled
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_curled_l
@@ -95,8 +85,7 @@
 - type: marking
   id: LizardHornsRam
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_ram_l
@@ -106,8 +95,7 @@
 - type: marking
   id: LizardHornsShort
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_short_l
@@ -117,8 +105,7 @@
 - type: marking
   id: LizardHornsSimple
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_simple_l
@@ -128,8 +115,7 @@
 - type: marking
   id: LizardHornsDouble
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_double_l
@@ -139,8 +125,7 @@
 - type: marking
   id: LizardTailSmooth
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_smooth_primary
@@ -150,8 +135,7 @@
 - type: marking
   id: LizardTailLarge
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_large
@@ -159,8 +143,7 @@
 - type: marking
   id: LizardTailSpikes
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_spikes
@@ -168,8 +151,7 @@
 - type: marking
   id: LizardTailLTiger
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_ltiger
@@ -177,8 +159,7 @@
 - type: marking
   id: LizardTailDTiger
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_dtiger
@@ -186,8 +167,7 @@
 - type: marking
   id: LizardTailAquatic
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_aquatic
@@ -195,9 +175,8 @@
 - type: marking
   id: LizardSnoutRound
   bodyPart: Snout
-  markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: snout_round
@@ -205,9 +184,8 @@
 - type: marking
   id: LizardSnoutSharp
   bodyPart: Snout
-  markingCategory: Snout
   forcedColoring: true
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: snout_sharp
@@ -215,8 +193,7 @@
 - type: marking
   id: LizardSnoutSplotch
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: snout_splotch_primary
@@ -226,8 +203,7 @@
 - type: marking
   id: LizardSnoutVisageRound
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: visage_round
@@ -235,8 +211,7 @@
 - type: marking
   id: LizardSnoutVisageSharp
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: visage_sharp
@@ -244,8 +219,7 @@
 - type: marking
   id: LizardChestTiger
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian, Shadowkin] # Ataraxia
+  groupWhitelist: [Reptilian, Shadowkin]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_tiger
@@ -253,8 +227,7 @@
 - type: marking
   id: LizardHeadTiger
   bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: head_tiger
@@ -262,8 +235,7 @@
 - type: marking
   id: LizardLArmTiger
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: l_arm_tiger
@@ -271,8 +243,7 @@
 - type: marking
   id: LizardLLegTiger
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: l_leg_tiger
@@ -280,8 +251,7 @@
 - type: marking
   id: LizardRArmTiger
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: r_arm_tiger
@@ -289,8 +259,7 @@
 - type: marking
   id: LizardRLegTiger
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: r_leg_tiger
@@ -298,8 +267,7 @@
 - type: marking
   id: LizardHornsArgali
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_argali_l
@@ -309,8 +277,7 @@
 - type: marking
   id: LizardHornsAyrshire
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_ayrshire_l
@@ -320,8 +287,7 @@
 - type: marking
   id: LizardHornsMyrsore
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_myrsore_l
@@ -331,8 +297,7 @@
 - type: marking
   id: LizardHornsBighorn
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Backmen/Mobs/Customization/reptilian_parts.rsi # Ataraxia
     state: horns_bighorn_l
@@ -342,8 +307,7 @@
 - type: marking
   id: LizardHornsDemonic
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_demonic
@@ -351,8 +315,7 @@
 - type: marking
   id: LizardHornsKoboldEars
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_kobold_ears
@@ -360,8 +323,7 @@
 - type: marking
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Reptilian, Kobold] # backmen: species
+  groupWhitelist: [Reptilian, Kobold]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_floppy_kobold_ears
@@ -369,8 +331,7 @@
 - type: marking
   id: LizardChestUnderbelly
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_underbelly
@@ -378,8 +339,7 @@
 - type: marking
   id: LizardChestBackspikes
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_backspikes
@@ -387,8 +347,7 @@
 - type: marking
   id: LizardChestFin
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_fin
@@ -397,8 +356,7 @@
 - type: marking
   id: LizardTailSmoothAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_smooth_wagging_primary
@@ -408,8 +366,7 @@
 - type: marking
   id: LizardTailLargeAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_large_wagging
@@ -417,8 +374,7 @@
 - type: marking
   id: LizardTailSpikesAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_spikes_wagging
@@ -426,8 +382,7 @@
 - type: marking
   id: LizardTailLTigerAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_ltiger_wagging
@@ -435,8 +390,7 @@
 - type: marking
   id: LizardTailDTigerAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_dtiger_wagging
@@ -444,8 +398,7 @@
 - type: marking
   id: LizardTailAquaticAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
+  groupWhitelist: []
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_aquatic_wagging

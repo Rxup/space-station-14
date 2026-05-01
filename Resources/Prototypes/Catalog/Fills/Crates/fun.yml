@@ -405,22 +405,20 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: SnapPopBox
         - id: CrazyGlue
-          amount: 2
-        - id: PlasticBanana
-        - id: WhoopieCushion
-        - id: ToyHammer
-        - id: MrChips
-        - id: MrDips
-        - id: RevolverCapGun
-        - id: BalloonNT
-        - id: ClothingShoesClownLarge
-        - id: ClothingHeadHatMagician
-        - id: BeachBall
-        - id: RubberPig
-        - id: ClothingShoesSkates
-        - id: RubberChicken
+        - id: CrazyLube
+        - !type:NestedSelector
+          tableId: AllToyWeaponsTable
+          rolls: 2
+        - !type:NestedSelector
+          tableId: AllToySoundMakerTable
+          rolls: 2
+        - !type:NestedSelector
+          tableId: AllMiscToysTable
+          rolls: 2
+        - !type:NestedSelector # Extras rolls for extra variety
+          tableId: AllToysTable
+          rolls: 2
 
 - type: entity
   parent: CrateGenericSteel

@@ -130,7 +130,10 @@
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  - FauxTileAstroAsteroidSandBorderless
   - FauxTileDesertAstroSand
+  - FauxTileAstroIronsand
+  - FauxTileAstroIronsandBorderless
   technologyPrerequisites:
   - Entertainment
   position: 2,9  #Backmen EDIT
@@ -164,10 +167,13 @@
   cost: 5000
   recipeUnlocks:
   - BorgModuleAdvancedChemical
+  - BorgModuleAdvancedTopical
+  - AdvancedJetInjector
   technologyPrerequisites:
   - CyborgModules
   - BiochemicalStasis
   position: 6,-5 # Backmen-Edit
+
 
 - type: technology
   id: AdvancedCleaning

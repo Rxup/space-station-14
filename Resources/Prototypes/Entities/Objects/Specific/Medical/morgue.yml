@@ -154,6 +154,8 @@
               Quantity: 10
             - ReagentId: Ectoplasm
               Quantity: 5
+            - ReagentId: Arcryox
+              Quantity: 25
     - type: GuideHelp
       guides:
       - MinorAntagonists
