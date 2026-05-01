@@ -93,6 +93,7 @@
   id: MobHuman
   name: Urist McHands
   components:
+  - type: FootPrints
   - type: Butcherable
     spawned:
     - id: FoodMeatHuman

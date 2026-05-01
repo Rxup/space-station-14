@@ -49,6 +49,7 @@ using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -81,6 +82,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
     private readonly EntProtoId BloodsuckerMindRole = "MindRoleBloodsucker";
@@ -140,11 +142,12 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         {
             foreach (var organ in _bodySystem.GetBodyPartOrganComponents<StomachComponent>(bodyPart.Id, bodyPart.Component))
             {
-                _bodySystem.RemoveOrgan(organ.Owner, organ.Organ);
-
                 var stomach = Spawn(OrganVampiricHumanoidStomach);
-                _bodySystem.InsertOrgan(bodyPart.Id, stomach, "stomach", bodyPart.Component);
-
+                if (_containers.TryGetContainingContainer(organ.Owner, out var organContainer))
+                {
+                    _containers.Remove(organ.Owner, organContainer);
+                    _containers.Insert(stomach, organContainer);
+                }
                 QueueDel(organ.Owner);
             }
         }

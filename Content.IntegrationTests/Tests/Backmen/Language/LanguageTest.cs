@@ -76,8 +76,6 @@ public sealed class LanguageTest
                 entMan.DeleteEntity(ent);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -99,7 +97,6 @@ public sealed class LanguageTest
                     $"Font {languagePrototype.SpeechOverride.FontId} does not exist");
             }
         });
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -121,7 +118,6 @@ public sealed class LanguageTest
                     $"LocId language-{languagePrototype.ID}-description does not exist");
             }
         });
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -159,6 +155,5 @@ public sealed class LanguageTest
             Assert.That(lang.UnderstoodLanguages.Contains("Blob"), Is.False, $"Language {human} is understood blob not in blob zombie");
             Assert.That(lang.SpokenLanguages.Contains("Blob"), Is.False);
         });
-        await pair.CleanReturnAsync();
     }
 }

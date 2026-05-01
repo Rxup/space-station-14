@@ -6,14 +6,15 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Gibbing.Events;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
@@ -48,8 +49,6 @@ public partial class WoundSystem
 
         SubscribeLocalEvent<WoundComponent, EntGotInsertedIntoContainerMessage>(OnWoundInserted);
         SubscribeLocalEvent<WoundComponent, EntGotRemovedFromContainerMessage>(OnWoundRemoved);
-
-        SubscribeLocalEvent<WoundableComponent, AttemptEntityContentsGibEvent>(OnWoundableContentsGibAttempt);
 
         SubscribeLocalEvent<WoundComponent, WoundSeverityChangedEvent>(OnWoundSeverityChanged);
         SubscribeLocalEvent<WoundableComponent, WoundableSeverityChangedEvent>(OnWoundableSeverityChanged);
@@ -198,17 +197,6 @@ public partial class WoundSystem
         }
     }
 
-    private void OnWoundableContentsGibAttempt(Entity<WoundableComponent> entity, ref AttemptEntityContentsGibEvent args)
-    {
-        if (args.ExcludedContainers == null)
-        {
-            args.ExcludedContainers = new List<string> { WoundContainerId, BoneContainerId };
-        }
-        else
-        {
-            args.ExcludedContainers.AddRange(new List<string> { WoundContainerId, BoneContainerId });
-        }
-    }
 /*
     private void CheckDodge(Entity<WoundableComponent> entity, ref BeforeDamageChangedEvent args)
     {
@@ -822,11 +810,11 @@ public partial class WoundSystem
         if (!Resolve(body, ref comp))
             yield break;
 
-        var rootPart = comp.RootContainer.ContainedEntity;
+        var rootPart = Body.GetRootPartOrNull(body, comp);
         if (!rootPart.HasValue)
             yield break;
 
-        foreach (var woundable in GetAllWoundableChildren(rootPart.Value))
+        foreach (var woundable in GetAllWoundableChildren(rootPart.Value.Entity))
         {
             foreach (var value in GetWoundableWounds(woundable, woundable))
             {

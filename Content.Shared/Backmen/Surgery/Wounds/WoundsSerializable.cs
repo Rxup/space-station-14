@@ -1,5 +1,7 @@
 ﻿using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Surgery.Wounds;
@@ -95,7 +97,7 @@ public record struct WoundsDeltaChanged(
 /// If you actually implemented the handling of a specific damage type, remove the damage type from the dict and you are fine to go!
 /// </summary>
 [ByRefEvent]
-public record struct HandleUnhandledWoundsEvent(Dictionary<string, FixedPoint2> UnhandledDamage);
+public record struct HandleUnhandledWoundsEvent(Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> UnhandledDamage);
 
 [ByRefEvent]
 public record struct WoundAddedEvent(WoundComponent Component, WoundableComponent Woundable, WoundableComponent RootWoundable);

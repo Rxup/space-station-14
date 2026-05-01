@@ -36,7 +36,5 @@ public sealed class TechnologyPrototypePositionTests
             var msg = string.Join("\n", fails) + "\n" + "Проверь позиции технологий, данная позиция занята другой технологией!";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Weather;
 using Robust.Shared.Prototypes;
@@ -17,7 +18,7 @@ public sealed partial class LavalandWeatherPrototype : IPrototype
     public float Variety = 20;
 
     [DataField]
-    public ProtoId<WeatherPrototype> WeatherType;
+    public EntProtoId<WeatherStatusEffectComponent> WeatherType;
 
     [DataField]
     public LocId PopupStartMessage = "lavaland-weather-start-message";
@@ -33,5 +34,5 @@ public sealed partial class LavalandWeatherPrototype : IPrototype
     public float TemperatureChange = 30000f;
 
     [DataField]
-    public DamageSpecifier Damage = new() {DamageDict = new Dictionary<string, FixedPoint2>() {{ "Heat", 4 }}};
+    public DamageSpecifier Damage = new() {DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>() {{ "Heat", 4 }}};
 }

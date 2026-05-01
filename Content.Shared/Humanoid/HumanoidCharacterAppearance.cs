@@ -149,17 +149,7 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
 
                 markingManager.EnsureValidColors(actualMarkings);
                 markingManager.EnsureValidGroupAndSex(actualMarkings, organData.Value.Group, sex);
-                for (var i = actualMarkings.Count - 1; i >= 0; i--)
-                {
-                    if (!proto.TryIndex<MarkingPrototype>(actualMarkings[i].MarkingId, out var markingProto))
-                    {
-                        actualMarkings.RemoveAt(i);
-                        continue;
-                    }
-
-                    if (markingProto.SponsorOnly && !sponsorPrototypes.Contains(actualMarkings[i].MarkingId))
-                        actualMarkings.RemoveAt(i);
-                }
+                markingManager.EnsureValidSponsors(actualMarkings, sponsorPrototypes); // backmen
                 markingManager.EnsureValidLayers(actualMarkings, organData.Value.Layers);
                 markingManager.EnsureValidLimits(actualMarkings, organData.Value.Group, organData.Value.Layers, skinColor, eyeColor);
 

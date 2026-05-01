@@ -33,7 +33,7 @@ public sealed class HeartSystem : EntitySystem
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.Body))
             return;
 
-        if (_bodySystem.TryGetBodyOrganEntityComps<BrainComponent>(args.Body, out var _))
+        if (_bodySystem.TryGetOrgansWithComponent<BrainComponent>(args.Body, out var _))
             RemComp<DelayedDeathComponent>(args.Body);
     }
     // Shitmed-End

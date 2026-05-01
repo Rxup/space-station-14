@@ -19,7 +19,7 @@ public sealed class ClothingGrantingSystem : EntitySystem
 
     private void OnCompEquip(EntityUid uid, ClothingGrantComponent component, GotEquippedEvent args)
     {
-        if (!TryComp<ClothingComponent>(uid, out var clothing))
+        if (!TryComp<ClothingComponent>(uid, out var clothing) || component.IsActive)
             return;
 
         if (!clothing.Slots.HasFlag(args.SlotFlags))
@@ -31,30 +31,30 @@ public sealed class ClothingGrantingSystem : EntitySystem
             return;
         }
 
+        component.IsActive = true;
+
         foreach (var (name, data) in component.Components)
         {
             var newComp = (Component) _componentFactory.GetComponent(name);
 
-            if (HasComp(args.Equipee, newComp.GetType()))
+            if (HasComp(args.EquipTarget, newComp.GetType()))
                 continue;
 
             var temp = (object) newComp;
             _serializationManager.CopyTo(data.Component, ref temp);
-            EntityManager.AddComponent(args.Equipee, (Component)temp!);
-
-            component.IsActive = true;
+            EntityManager.AddComponent(args.EquipTarget, (Component)temp!);
         }
     }
 
     private void OnCompUnequip(EntityUid uid, ClothingGrantComponent component, GotUnequippedEvent args)
     {
-        if (!component.IsActive) return;
+        if (!component.IsActive)
+            return;
 
         foreach (var (name, data) in component.Components)
         {
             var newComp = (Component) _componentFactory.GetComponent(name);
-
-            RemComp(args.Equipee, newComp.GetType());
+            RemComp(args.EquipTarget, newComp.GetType());
         }
 
         component.IsActive = false;

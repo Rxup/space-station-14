@@ -429,7 +429,8 @@ public abstract partial class SharedSurgerySystem
         {
             if (HasComp(tool, firstOrgan.Component.GetType())
                 && TryComp<OrganComponent>(tool, out var insertedOrgan)
-                && _body.InsertOrgan(args.Part, tool, insertedOrgan.SlotId, partComp, insertedOrgan))
+                && _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(insertedOrgan.SlotId), out var organContainer)
+                && _containers.Insert(tool, organContainer))
             {
                 EnsureComp<OrganReattachedComponent>(tool);
                 if (_body.TrySetOrganUsed(tool, true, insertedOrgan)
@@ -507,8 +508,11 @@ public abstract partial class SharedSurgerySystem
             _body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs);
             if (organs != null && organs.Count > 0)
             {
-                _body.RemoveOrgan(organs[0].Id, organs[0].Organ);
-                _hands.TryPickupAnyHand(args.User, organs[0].Id);
+                if (_containers.TryGetContainingContainer(organs[0].Id, out var organContainer))
+                {
+                    _containers.Remove(organs[0].Id, organContainer);
+                    _hands.TryPickupAnyHand(args.User, organs[0].Id);
+                }
             }
         }
     }

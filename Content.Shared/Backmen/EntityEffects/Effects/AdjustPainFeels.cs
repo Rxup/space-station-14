@@ -1,5 +1,6 @@
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
@@ -15,7 +16,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustPainFeels>
 {
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly PainSystem _pain = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -26,9 +27,14 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
         if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys))
             return;
 
-        foreach (var bodyPart in _body.GetBodyChildren(entity))
+        if (!TryComp<BodyComponent>(entity, out var body))
         {
-            if (!_pain.TryGetPainFeelsModifier(bodyPart.Id, nerveSys.Value, args.Effect.ModifierIdentifier, out var modifier))
+            return;
+        }
+
+        foreach (var bodyPart in body.Organs?.ContainedEntities ?? [])
+        {
+            if (!_pain.TryGetPainFeelsModifier(bodyPart, nerveSys.Value, args.Effect.ModifierIdentifier, out var modifier))
             {
                 var add = args.Effect.Amount;
                 if (args.Effect.RandomiseAmount && _random.Prob(0.3f))
@@ -37,7 +43,7 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
                 _pain.TryAddPainFeelsModifier(
                         nerveSys.Value,
                         args.Effect.ModifierIdentifier,
-                        bodyPart.Id,
+                        bodyPart,
                         add);
             }
             else
@@ -49,7 +55,7 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
                 _pain.TryChangePainFeelsModifier(
                         nerveSys.Value,
                         args.Effect.ModifierIdentifier,
-                        bodyPart.Id,
+                        bodyPart,
                         add * scale);
             }
         }

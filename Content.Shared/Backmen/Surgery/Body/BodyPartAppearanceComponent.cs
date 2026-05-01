@@ -24,7 +24,7 @@ public sealed partial class BodyPartAppearanceComponent : Component
     /// <summary>
     ///     ID of this custom base layer. Must be a <see cref="HumanoidSpeciesSpriteLayer"/>.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<HumanoidSpeciesSpriteLayer>)), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string? ID { get; set; }
 
     /// <summary>

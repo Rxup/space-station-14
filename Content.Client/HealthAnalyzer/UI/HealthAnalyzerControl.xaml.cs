@@ -1,6 +1,14 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Message;
 using Content.Shared.Atmos;
+using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -32,6 +40,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     private readonly IPrototypeManager _prototypes;
     private readonly IResourceCache _cache;
     private readonly DamageableSystem _damageable;
+    private readonly TraumaSystem _trauma; // backmen
+    private readonly WoundSystem _wound; // backmen
 
     public HealthAnalyzerControl()
     {
@@ -43,10 +53,16 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         _prototypes = dependencies.Resolve<IPrototypeManager>();
         _cache = dependencies.Resolve<IResourceCache>();
         _damageable = _entityManager.System<DamageableSystem>();
+        _trauma = _entityManager.System<TraumaSystem>();
+        _wound = _entityManager.System<WoundSystem>();
     }
 
     public void Populate(HealthAnalyzerUiState state)
     {
+        // start-backmen
+        var isPart = _entityManager.TryGetEntity(state.Part, out var part);
+        // end-backmen
+
         var target = _entityManager.GetEntity(state.TargetEntity);
 
         if (target == null
@@ -57,6 +73,11 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         }
 
         NoPatientDataText.Visible = false;
+
+        // start-backmen
+        ReturnButton.Visible = isPart;
+        PartNameLabel.Visible = isPart;
+        // end-backmen
 
         // Scan Mode
 
@@ -70,7 +91,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Patient Information
 
-        SpriteView.SetEntity(target.Value);
+        SpriteView.SetEntity(DollViewDisplay.SetupIcon(state.Body) ?? target.Value);
         SpriteView.Visible = state.ScanMode.HasValue && state.ScanMode.Value;
         NoDataTex.Visible = !SpriteView.Visible;
 
@@ -110,6 +131,12 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         var showAlerts = state.Unrevivable == true || state.Bleeding == true;
 
+        var hasDisease = _entityManager.HasComponent<DiseasedComponent>(target.Value); // backmen
+        var hasTrauma = _trauma.HasBodyTrauma(target.Value, TraumaType.OrganDamage); // backmen
+        var hasBoneDmg = _trauma.HasBodyTrauma(target.Value, TraumaType.BoneDamage); // backmenm
+        showAlerts = showAlerts || hasDisease || hasTrauma || hasBoneDmg; // backmen
+
+
         AlertsDivider.Visible = showAlerts;
         AlertsContainer.Visible = showAlerts;
 
@@ -132,6 +159,43 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 MaxWidth = 300
             });
 
+        // Start-backmen: disease
+        if (hasDisease)
+        {
+            var diseaseLabel = new RichTextLabel
+            {
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300,
+            };
+            diseaseLabel.SetMarkup(Loc.GetString("health-analyzer-window-entity-diseased-text"));
+            AlertsContainer.AddChild(diseaseLabel);
+        }
+        // End-backmen: disease
+
+        // Backmen: traumas
+        if (hasTrauma)
+        {
+            var organTraumaLabel = new RichTextLabel
+            {
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300,
+            };
+            organTraumaLabel.SetMessage(Loc.GetString("health-analyzer-window-organ-damage-present"), defaultColor: Color.Red);
+            AlertsContainer.AddChild(organTraumaLabel);
+        }
+
+        if (hasBoneDmg)
+        {
+            var boneTraumaLabel = new RichTextLabel
+            {
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300,
+            };
+            boneTraumaLabel.SetMessage(Loc.GetString("health-analyzer-window-bone-damage-present"), defaultColor: Color.Red);
+            AlertsContainer.AddChild(boneTraumaLabel);
+        }
+
+
         // Damage Groups
 
         var damageSortedGroups =
@@ -142,6 +206,101 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         var damagePerType = _damageable.GetAllDamage(target.Value).DamageDict;
 
         DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+
+        // start-backmen
+
+        if (!isPart
+            && _entityManager.TryGetComponent<BodyComponent>(target.Value, out var body)
+            && _entityManager.HasComponent<ConsciousnessComponent>(target.Value))
+        {
+            var damageGroups = new Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>();
+            var damageTypes = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>();
+            foreach (var wound in _wound.GetBodyWounds(target.Value, body))
+            {
+                if (wound.Comp.IsScar)
+                    continue;
+
+                if (wound.Comp.DamageGroup == null)
+                    continue;
+
+                if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundSeverityPoint))
+                {
+                    damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundSeverityPoint;
+                }
+
+                if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
+                {
+                    damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
+                }
+            }
+
+            damageSortedGroups =
+                damageGroups.OrderByDescending(damage => damage.Value)
+                    .ToDictionary(x => x.Key, x => x.Value);
+
+            var damageSortedTypes =
+                damageTypes.OrderByDescending(damage => damage.Value)
+                    .ToDictionary(x => x.Key, x => x.Value);
+
+            DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
+
+            DamageLabel.Text = damageGroups.Values.Sum().ToString();
+        }
+
+        if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
+        {
+            var wounds = _wound.GetWoundableWounds(part.Value, woundable).ToList();
+            DamageLabel.Text =
+                wounds
+                    .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundSeverityPoint)
+                    .ToString();
+
+            var damageGroups = new Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>();
+            var damageTypes = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>();
+            foreach (var wound in wounds)
+            {
+                if (wound.Comp.IsScar)
+                    continue;
+
+                var woundGroup = wound.Comp.DamageGroup;
+                if (woundGroup == null)
+                    continue;
+
+                if (!damageGroups.TryAdd(woundGroup.ID, wound.Comp.WoundSeverityPoint))
+                {
+                    damageGroups[woundGroup.ID] += wound.Comp.WoundSeverityPoint;
+                }
+
+                if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
+                {
+                    damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
+                }
+            }
+
+            damageSortedGroups =
+                damageGroups.OrderByDescending(damage => damage.Value)
+                    .ToDictionary(x => x.Key, x => x.Value);
+
+            var damageSortedTypes =
+                damageTypes.OrderByDescending(damage => damage.Value)
+                    .ToDictionary(x => x.Key, x => x.Value);
+
+            DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
+        }
+
+        // Start-backmen: pain
+        // Pain Causes
+        var showPainCauses = (state.PainCauses != null && state.PainCauses.Count > 0) || state.TotalPain.HasValue;
+
+        PainCausesDivider.Visible = showPainCauses;
+        PainCausesDisplay.Visible = showPainCauses;
+
+        if (showPainCauses)
+        {
+            PainCausesDisplay.UpdatePainCauses(state.PainCauses, state.TotalPain, target);
+        }
+
+        // end-backmen
     }
 
     private static string GetStatus(MobState mobState)
@@ -149,6 +308,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         return mobState switch
         {
             MobState.Alive => Loc.GetString("health-analyzer-window-entity-alive-text"),
+            MobState.SoftCritical => Loc.GetString("health-analyzer-window-entity-in-pain-text"), // Backmen: soft crit
             MobState.Critical => Loc.GetString("health-analyzer-window-entity-critical-text"),
             MobState.Dead => Loc.GetString("health-analyzer-window-entity-dead-text"),
             _ => Loc.GetString("health-analyzer-window-entity-unknown-text"),

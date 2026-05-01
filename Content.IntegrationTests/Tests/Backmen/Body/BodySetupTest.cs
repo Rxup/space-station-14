@@ -84,8 +84,6 @@ public sealed class BodySetupTest
                 server.EntMan.DeleteEntity(dummy);
             });
         }
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -121,8 +119,6 @@ public sealed class BodySetupTest
             });
 
         }
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -155,8 +151,6 @@ public sealed class BodySetupTest
             });
 
         }
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -197,8 +191,6 @@ public sealed class BodySetupTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -255,8 +247,6 @@ public sealed class BodySetupTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -300,7 +290,5 @@ public sealed class BodySetupTest
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

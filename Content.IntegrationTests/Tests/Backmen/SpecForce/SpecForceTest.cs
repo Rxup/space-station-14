@@ -65,7 +65,5 @@ public sealed class SpecForceTest
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

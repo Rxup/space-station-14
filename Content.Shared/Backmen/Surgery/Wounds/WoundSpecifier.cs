@@ -38,15 +38,6 @@ public sealed partial class WoundSpecifier : IEquatable<WoundSpecifier>
         WoundDict = new(specifier.WoundDict);
     }
 
-    public WoundSpecifier(DamageSpecifier damageSpecifier, IPrototypeManager manager)
-    {
-        foreach (var damagePair in
-                 damageSpecifier.DamageDict.Where(damagePair => manager.TryIndex<EntityPrototype>(damagePair.Key, out _)))
-        {
-            WoundDict.Add(damagePair.Key, damagePair.Value);
-        }
-    }
-
     /// <summary>
     ///     Constructor that takes a single damage type prototype and a damage value.
     /// </summary>

@@ -537,7 +537,8 @@ public abstract partial class WoundSystem : EntitySystem
             if (organ.Component.OrganSeverity == OrganSeverity.Normal)
             {
                 // TODO: SFX for organs getting not destroyed, but thrown out
-                Body.RemoveOrgan(organ.Id, organ.Component);
+                if (Containers.TryGetContainingContainer(organ.Id, out var organContainer))
+                    Containers.Remove(organ.Id, organContainer);
                 Throwing.TryThrow(organ.Id, Random.NextAngle().ToWorldVec() * 7f, Random.Next(8, 24));
             }
             else

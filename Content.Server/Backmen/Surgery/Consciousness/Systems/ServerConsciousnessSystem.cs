@@ -156,7 +156,10 @@ public sealed class ServerConsciousnessSystem : ConsciousnessSystem
                     target = Body.GetRandomBodyPart(uid, args.Origin.Value, attackerComp: targeting);
 
                 var (partType, symmetry) = Body.ConvertTargetBodyPart(target);
-                var possibleTargets = Body.GetBodyChildrenOfType(uid, partType, symmetry: symmetry).ToList();
+                var possibleTargets = Body.GetBodyChildren(uid)
+                    .Where(part => part.Component.PartType == partType &&
+                                   (symmetry is null || part.Component.Symmetry == symmetry))
+                    .ToList();
 
                 if (possibleTargets.Count == 0)
                     possibleTargets = Body.GetBodyChildren(uid).ToList();

@@ -28,13 +28,13 @@ public sealed class PsionicItemsSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        var insul = EnsureComp<PsionicInsulationComponent>(args.Equipee);
+        var insul = EnsureComp<PsionicInsulationComponent>(args.EquipTarget);
         insul.Passthrough = component.Passthrough;
         component.IsActive = true;
-        _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
+        _psiAbilities.SetPsionicsThroughEligibility(args.EquipTarget);
 
         // Visibility mask will be set automatically by OnGetVisMask event handler
-        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        _sharedEyeSystem.RefreshVisibilityMask(args.EquipTarget);
     }
 
     private void OnTinfoilUnequipped(EntityUid uid, TinfoilHatComponent component, GotUnequippedEvent args)
@@ -42,12 +42,12 @@ public sealed class PsionicItemsSystem : EntitySystem
         if (!component.IsActive)
             return;
 
-        if (!_statusEffects.HasStatusEffect(args.Equipee, "StatusEffectPsionicallyInsulated"))
-            RemComp<PsionicInsulationComponent>(args.Equipee);
+        if (!_statusEffects.HasStatusEffect(args.EquipTarget, "StatusEffectPsionicallyInsulated"))
+            RemComp<PsionicInsulationComponent>(args.EquipTarget);
 
         component.IsActive = false;
-        _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
-        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        _psiAbilities.SetPsionicsThroughEligibility(args.EquipTarget);
+        _sharedEyeSystem.RefreshVisibilityMask(args.EquipTarget);
     }
 
     private void OnGranterEquipped(EntityUid uid, ClothingGrantPsionicPowerComponent component, GotEquippedEvent args)
@@ -60,11 +60,11 @@ public sealed class PsionicItemsSystem : EntitySystem
             return;
         // does the user already has this power?
         var componentType = _componentFactory.GetRegistration(component.Power).Type;
-        if (HasComp(args.Equipee, componentType))
+        if (HasComp(args.EquipTarget, componentType))
             return;
 
         var newComponent = (Component) _componentFactory.GetComponent(componentType);
-        AddComp(args.Equipee, newComponent);
+        AddComp(args.EquipTarget, newComponent);
 
         component.IsActive = true;
     }
@@ -76,9 +76,9 @@ public sealed class PsionicItemsSystem : EntitySystem
 
         component.IsActive = false;
         var componentType = _componentFactory.GetRegistration(component.Power).Type;
-        if (EntityManager.HasComponent(args.Equipee, componentType))
+        if (EntityManager.HasComponent(args.EquipTarget, componentType))
         {
-            EntityManager.RemoveComponent(args.Equipee, componentType);
+            EntityManager.RemoveComponent(args.EquipTarget, componentType);
         }
     }
 }

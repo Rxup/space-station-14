@@ -27,7 +27,7 @@ public sealed class MobThresholdSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
     // backmen edit start
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
 
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
@@ -279,16 +279,16 @@ public sealed class MobThresholdSystem : EntitySystem
             return false;
 
         // backmen ediT!!!!!
-        var entDamage = _damageable.GetTotalDamage((target1, oldDamage));
+        var entDamage = _damageable.GetAllDamage((target1, oldDamage));
         if (TryComp<BodyComponent>(target1, out var body) && HasComp<ConsciousnessComponent>(target1))
         {
             var damageDict = new Dictionary<string, FixedPoint2>();
-            foreach (var bodyPart in _body.Geet(target1, body))
+            foreach (var bodyPart in body.Organs?.ContainedEntities ?? [])
             {
-                if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
+                if (!TryComp<WoundableComponent>(bodyPart, out var woundable))
                     continue;
 
-                foreach (var woundEnt in _wound.GetWoundableWounds(bodyPart.Id, woundable))
+                foreach (var woundEnt in _wound.GetWoundableWounds(bodyPart, woundable))
                 {
                     if (!damageDict.TryAdd(woundEnt.Comp.DamageType, woundEnt.Comp.WoundSeverityPoint))
                     {

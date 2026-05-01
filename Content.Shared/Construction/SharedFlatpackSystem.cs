@@ -96,7 +96,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
         }
 
         // start-backmen: protection system
-        var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, coords);
+        var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, xform.Coordinates);
         if (xform.GridUid is { } gridUid)
         {
             RaiseLocalEvent(gridUid, ref ev, true);

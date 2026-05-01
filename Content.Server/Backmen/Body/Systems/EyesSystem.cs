@@ -3,6 +3,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Components;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Body;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.Containers;
@@ -34,7 +35,7 @@ namespace Content.Server.Backmen.Body.Systems
             var hasOtherEyes = false;
 
             if (TryComp<BodyComponent>(body, out var bodyComp))
-                if (_bodySystem.TryGetBodyOrganEntityComps<EyesComponent>((body, bodyComp), out var eyes)
+                if (_bodySystem.TryGetOrgansWithComponent<EyesComponent>((body, bodyComp), out var eyes)
                     && eyes.Count > 1)
                     hasOtherEyes = true;
 

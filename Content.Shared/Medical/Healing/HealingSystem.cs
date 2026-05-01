@@ -23,6 +23,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 
@@ -38,7 +39,7 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly SharedStackSystem _stacks = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
@@ -154,16 +155,19 @@ public sealed class HealingSystem : EntitySystem
         var targetedWoundable = EntityUid.Invalid;
         if (TryComp<TargetingComponent>(args.User, out var targeting))
         {
-            var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-            var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(ent, partType, comp, symmetry).ToList().FirstOrDefault();
-
-            foreach (var damage in
-                     healing.Damage.DamageDict.Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Id, damage.Key)))
+            var s = _bodySystem.ConvertTargetBodyPart(targeting.Target);
+            if (s is { })
             {
-                stuffToHeal.Add(damage.Key, damage.Value);
-            }
+                var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(ent, s.Value.partType, comp, s.Value.symmetry).ToList().FirstOrDefault();
 
-            targetedWoundable = targetedBodyPart.Id;
+                foreach (var damage in
+                         healing.Damage.DamageDict.Where(damage => _wounds.HasDamageOfType(targetedBodyPart, damage.Key)))
+                {
+                    stuffToHeal.Add(damage.Key, damage.Value);
+                }
+
+                targetedWoundable = targetedBodyPart;
+            }
         }
 
         if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp))
@@ -363,8 +367,11 @@ public sealed class HealingSystem : EntitySystem
         if (!TryComp<TargetingComponent>(user, out var targeting))
             return false;
 
-        var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-        var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(target, partType, target, symmetry).ToList().FirstOrNull();
+        var s = _bodySystem.ConvertTargetBodyPart(targeting.Target);
+        if(s is not {})
+            return false;
+
+        var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(target, s.Value.partType, target, s.Value.symmetry).ToList().FirstOrNull();
 
         if (targetedBodyPart == null)
         {
@@ -374,14 +381,14 @@ public sealed class HealingSystem : EntitySystem
         }
 
         var totalBleeds =
-            _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedBodyPart.Value.Id)
+            _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedBodyPart.Value)
                 .Select(woundEnt => woundEnt.Comp2)
                 .Where(bleeds => bleeds.IsBleeding)
                 .Aggregate(FixedPoint2.Zero, (current, bleeds) => current + bleeds.BleedingAmountRaw);
 
         var stuffToHeal =
             healing.Comp.Damage.DamageDict
-                .Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Value.Id, damage.Key))
+                .Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Value, damage.Key))
                 .ToDictionary(damage => damage.Key, damage => damage.Value);
 
         if (totalBleeds < healing.Comp.UnableToHealBleedsThreshold)

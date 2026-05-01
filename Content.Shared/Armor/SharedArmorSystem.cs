@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
@@ -18,7 +19,7 @@ namespace Content.Shared.Armor;
 public abstract class SharedArmorSystem : EntitySystem
 {
     [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
 
     /// <inheritdoc />
     public override void Initialize()

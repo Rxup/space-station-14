@@ -2,6 +2,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Body;
 using Content.Shared.Camera;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
@@ -14,7 +15,7 @@ public sealed class BlindableSystem : EntitySystem
 {
     [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
     [Dependency] private readonly EyeClosingSystem _eyelids = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!; // backmen edit
     public override void Initialize()
     {
@@ -88,12 +89,12 @@ public sealed class BlindableSystem : EntitySystem
         // backmen edit start
         // If the entity has eye organs, then we also damage those.
         if (!TryComp(blindable, out BodyComponent? body)
-            || !_body.TryGetBodyOrganEntityComps<EyesComponent>((blindable, body), out var eyes))
+            || !_body.TryGetOrgansWithComponent<EyesComponent>((blindable, body), out var eyes))
             return;
 
         foreach (var eye in eyes)
             // for now
-            _trauma.TryAddOrganDamageModifier(eye.Owner, amount, blindable.Owner, "BlindableDamage", eye.Comp2);
+            _trauma.TryAddOrganDamageModifier(eye.Owner, amount, blindable.Owner, "BlindableDamage");
         // backmen edit end
     }
 

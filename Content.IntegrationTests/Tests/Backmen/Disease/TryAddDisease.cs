@@ -79,7 +79,5 @@ public sealed class DiseaseTest
                 }
             });
         }
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -324,10 +324,21 @@ public sealed partial class HumanoidProfileEditor
             selector.Setup(items, title, 250, description, guides: antag.Guides);
             selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
+            var unlocked = true;
+
+            // start-backmen: antag lock
             if (!_requirements.IsAllowed(
                     antag,
                     (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
                     out var reason))
+            {
+                unlocked = false;
+            }
+
+            BkmCheckReq(antag,ref unlocked, ref reason);
+            // end-backmen: antag lock
+
+            if (!unlocked)
             {
                 selector.LockRequirements(reason);
                 Profile = Profile?.WithAntagPreference(antag.ID, false);

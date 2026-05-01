@@ -9,7 +9,7 @@ using Content.Shared.Backmen.Surgery.Body.Events;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
-
+/*
 public partial class SharedBodySystem
 {
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
@@ -203,3 +203,4 @@ public partial class SharedBodySystem
 
     protected abstract void RemoveBodyMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance);
 }
+*/

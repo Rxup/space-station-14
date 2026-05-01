@@ -11,10 +11,11 @@ public sealed partial class SurgeryPartRemovedConditionComponent : Component
     /// </summary>
     [DataField(required: true)]
     public string Connection = string.Empty;
-
+/*
     [DataField]
     public BodyPartType Part;
 
     [DataField]
     public BodyPartSymmetry? Symmetry;
+    */
 }

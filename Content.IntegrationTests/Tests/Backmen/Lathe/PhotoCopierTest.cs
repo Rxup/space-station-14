@@ -43,7 +43,5 @@ public sealed class PhotoCopierTest
             var msg = string.Join("\n", fails) + "\n" + "Ошибка в форме документа";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

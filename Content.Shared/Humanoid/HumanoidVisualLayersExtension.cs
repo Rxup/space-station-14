@@ -88,7 +88,7 @@ namespace Content.Shared.Humanoid
                     yield break;
             }
         }
-
+/*
         public static HumanoidVisualLayers? ToHumanoidLayers(this BodyPartComponent part)
         {
             switch (part.PartType)
@@ -156,6 +156,6 @@ namespace Content.Shared.Humanoid
             }
 
             return null;
-        }
+        }*/
     }
 }

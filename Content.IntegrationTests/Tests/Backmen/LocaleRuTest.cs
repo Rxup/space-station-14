@@ -72,7 +72,5 @@ public sealed partial class LocaleRu
             var msg = string.Join("\n", fails) + "\n" + "Проверь имена entity!";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

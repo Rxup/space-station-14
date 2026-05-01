@@ -37,16 +37,16 @@ public sealed class PNVSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (HasComp<NightVisionComponent>(args.Equipee))
+        if (HasComp<NightVisionComponent>(args.EquipTarget))
             return;
 
-        var nvcomp = EnsureComp<NightVisionComponent>(args.Equipee);
+        var nvcomp = EnsureComp<NightVisionComponent>(args.EquipTarget);
 
         nvcomp.IsGranted = true;
 
-        _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
+        _nightvisionableSystem.UpdateIsNightVision(args.EquipTarget, nvcomp);
         if(component.ActionContainer == null)
-            _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
+            _actionsSystem.AddAction(args.EquipTarget, ref component.ActionContainer, component.ActionProto);
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1)); // GCD?
 
         if (nvcomp.PlaySoundOn)
@@ -65,16 +65,16 @@ public sealed class PNVSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (!TryComp<NightVisionComponent>(args.Equipee, out var nvcomp))
+        if (!TryComp<NightVisionComponent>(args.EquipTarget, out var nvcomp))
             return;
 
         if(!nvcomp.IsGranted)
             return;
 
-        _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
-        _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);
+        _nightvisionableSystem.UpdateIsNightVision(args.EquipTarget, nvcomp);
+        _actionsSystem.RemoveAction(args.EquipTarget, component.ActionContainer);
         component.ActionContainer = null;
 
-        RemCompDeferred<NightVisionComponent>(args.Equipee);
+        RemCompDeferred<NightVisionComponent>(args.EquipTarget);
     }
 }

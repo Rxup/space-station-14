@@ -277,7 +277,8 @@ public sealed class FleshHeartSystem : EntitySystem
                 {
                     foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                     {
-                        _body.RemoveOrgan(organ.Id, organ.Component);
+                        if (_containerSystem.TryGetContainingContainer(organ.Id, out var organContainer))
+                            _containerSystem.Remove(organ.Id, organContainer);
                     }
                 }
                 else

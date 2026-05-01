@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.EntityEffects;
@@ -25,7 +26,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustTraumas>
 {
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
     [Dependency] private readonly PainSystem _pain = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -55,9 +56,9 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
         if (effect.TargetBodyParts)
         {
             foreach (var uid in from bodyPart in _body.GetBodyChildren(entity)
-                     where _woundableQuery.HasComponent(bodyPart.Id)
-                     where CheckForTargetedComponents(bodyPart.Id, effect)
-                     select bodyPart.Id)
+                     where _woundableQuery.HasComponent(bodyPart)
+                     where CheckForTargetedComponents(bodyPart, effect)
+                     select bodyPart)
             {
                 possibleTraumaTargets.Add(uid);
             }
@@ -66,8 +67,8 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
         if (effect.TargetOrgans)
         {
             foreach (var uid in from organ in _body.GetBodyOrgans(entity)
-                     where CheckForTargetedComponents(organ.Id, effect)
-                     select organ.Id)
+                     where CheckForTargetedComponents(organ, effect)
+                     select organ)
             {
                 possibleTraumaTargets.Add(uid);
             }
@@ -166,7 +167,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                         var available = changeAmount;
                         foreach (var bodyPart in _body.GetBodyChildren(body))
                         {
-                            if (!_nerveQuery.TryComp(bodyPart.Id, out var nerve))
+                            if (!_nerveQuery.TryComp(bodyPart, out var nerve))
                                 continue;
 
                             foreach (var painFeelsMod in nerve.PainFeelingModifiers)
@@ -242,7 +243,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                         modifier.Key.Item2,
                         modifier.Key.Item1,
                         organ.Comp);
-                    
+
                     if (remainingHeal <= 0)
                         break;
                 }
@@ -368,7 +369,7 @@ public sealed partial class AdjustTraumas : EntityEffectBase<AdjustTraumas>
             targetParts.Add(Loc.GetString("entity-effect-guidebook-adjust-traumas-target-body-parts"));
         if (TargetOrgans)
             targetParts.Add(Loc.GetString("entity-effect-guidebook-adjust-traumas-target-organs"));
-        
+
         if (targetParts.Count > 0)
         {
             targetInfo = Loc.GetString(

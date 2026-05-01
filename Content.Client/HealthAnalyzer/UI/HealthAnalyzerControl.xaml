@@ -1,10 +1,18 @@
 <BoxContainer
     xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client.Backmen.Medical.UI"
     VerticalExpand="True"
     Orientation="Vertical">
     <Label
         Name="NoPatientDataText"
         Text="{Loc health-analyzer-window-no-patient-data-text}" />
+
+    <!-- start backmen -->
+    <Button Name="ReturnButton"
+            Text="{Loc 'health-analyzer-window-return-button-text'}"
+            Margin="0 0 0 10"
+            HorizontalExpand="False"/>
+    <!-- end backmen -->
 
     <BoxContainer
         Name="PatientDataContainer"
@@ -16,10 +24,19 @@
             <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top">
                 <RichTextLabel Name="NameLabel" SetWidth="150" />
                 <Label Name="SpeciesLabel" VerticalAlignment="Top" StyleClasses="LabelSubText" />
+                <!-- start backmen -->
+                <Label Name="PartNameLabel"
+                       VerticalAlignment="Bottom"
+                       StyleClasses="LabelSubText"/>
+                <!-- end backmen -->
             </BoxContainer>
             <Label Margin="0 0 5 0" HorizontalExpand="True" HorizontalAlignment="Right" VerticalExpand="True"
                    VerticalAlignment="Top" Name="ScanModeLabel"
                    Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
+
+            <!-- start backmen -->
+            <ui:DollViewDisplay Name="DollViewDisplay" />
+            <!-- end backmen -->
         </BoxContainer>
 
         <PanelContainer StyleClasses="LowDivider" />
@@ -50,4 +67,15 @@
         Orientation="Vertical">
     </BoxContainer>
 
+    <!-- start backmen -->
+
+    <PanelContainer Name="PainCausesDivider"
+                    Visible="False"
+                    StyleClasses="LowDivider"/>
+
+    <ui:PainCausesDisplay Name="PainCausesDisplay"
+                               Visible="False"
+                               Margin="0 5 0 5"/>
+
+    <!-- end backmen -->
 </BoxContainer>

@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
@@ -18,7 +19,7 @@ public abstract class SharedGodmodeSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Shitmed Change
+    [Dependency] private readonly BodySystem _bodySystem = default!; // Shitmed Change
 
     public override void Initialize()
     {
@@ -83,8 +84,8 @@ public abstract class SharedGodmodeSystem : EntitySystem
 
         RemComp<GodmodeComponent>(uid);
 
-        foreach (var (id, _) in _bodySystem.GetBodyChildren(uid)) // Shitmed Change
-            DisableGodmode(id);
+        //foreach (var (id, _) in _bodySystem.GetBodyChildren(uid)) // Shitmed Change
+        //    DisableGodmode(id);
     }
 
     /// <summary>

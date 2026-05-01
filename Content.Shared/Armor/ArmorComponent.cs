@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Content.Shared.Backmen.Body;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Part;

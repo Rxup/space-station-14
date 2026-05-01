@@ -50,7 +50,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
     // backmen edit start
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
@@ -173,6 +173,9 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     /// </summary>
     private void UpdateConsciousnessBleeding(Entity<BloodstreamComponent> entity)
     {
+        if(!TryComp<BodyComponent>(entity.Owner, out var body))
+            return;
+
         if (!ConsciousnessQuery.TryComp(entity.Owner, out var consciousness))
             return;
 
@@ -181,7 +184,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
         // Calculate total bleeding from all wounds on body parts
         var total = FixedPoint2.Zero;
-        foreach (var (bodyPart, _) in _body.GetBodyChildren(entity.Owner))
+        foreach (var bodyPart in body.Organs?.ContainedEntities ?? [])
         {
             total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
                     .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);

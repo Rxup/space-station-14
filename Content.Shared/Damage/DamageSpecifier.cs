@@ -116,16 +116,6 @@ namespace Content.Shared.Damage
             }
         }
 
-        // backmen edit start
-        public DamageSpecifier(WoundSpecifier woundSpecifier)
-        {
-            foreach (var woundPair in woundSpecifier.WoundDict)
-            {
-                DamageDict.Add(woundPair.Key, woundPair.Value);
-            }
-        }
-        // backmen edit end
-
         #endregion constructors
 
         /// <summary>

@@ -12,7 +12,7 @@ public enum TargetBodyPart : ushort
 {
     Head = 1,
     Chest = 1 << 1,
-    Groin = 1 << 2,
+    //Groin = 1 << 2,
     LeftArm = 1 << 3,
     LeftHand = 1 << 4,
     RightArm = 1 << 5,
@@ -35,8 +35,8 @@ public enum TargetBodyPart : ushort
     FullArms = Arms | Hands,
     FullLegs = Feet | Legs,
 
-    BodyMiddle = Chest | Groin | FullArms,
-    FullLegsGroin = FullLegs | Groin,
+    BodyMiddle = Chest | FullArms,
+    FullLegsGroin = FullLegs,
 
-    All = Head | Chest | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
+    All = Head | Chest | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
 }

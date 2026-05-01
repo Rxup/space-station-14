@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -79,9 +80,12 @@ public sealed partial class HumanoidCharacterProfileV1
     [DataField]
     public PreferenceUnavailableMode PreferenceUnavailable;
 
+    [DataField]
+    public ProtoId<TTSVoicePrototype> Voice;
+
     public HumanoidCharacterProfile ToV2()
     {
-        return new(Name, FlavorText, Species, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, TraitPreferences, Loadouts);
+        return new(Name, FlavorText, Species, Voice, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, TraitPreferences, Loadouts);
     }
 }
 

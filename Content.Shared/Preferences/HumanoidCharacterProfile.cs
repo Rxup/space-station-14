@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.CCVar;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
@@ -34,6 +35,17 @@ namespace Content.Shared.Preferences
         public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
         private static readonly Regex RestrictedNameRegex = new("[^А-Яа-яёЁ0-9' -]"); // Corvax-Localization
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
+
+        // Corvax-TTS-Start
+        public const string DefaultVoice = "Aidar";
+
+        public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
+        {
+            { Sex.Male, "Aidar" },
+            { Sex.Female, "Kseniya" },
+            { Sex.Unsexed, "Baya" },
+        };
+        // Corvax-TTS-End
 
         /// <summary>
         /// Job preferences for initial spawn.
@@ -82,7 +94,7 @@ namespace Content.Shared.Preferences
         public ProtoId<SpeciesPrototype> Species { get; set; } = DefaultSpecies;
 
         [DataField]
-        public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice; // backmen: tts
+        public string Voice { get; set; } = HumanoidCharacterProfile.DefaultVoice; // backmen: tts
 
         [DataField]
         public int Age { get; set; } = 18;
@@ -514,7 +526,7 @@ namespace Content.Shared.Preferences
             // Corvax-Sponsors-Start: Reset to human if player not sponsor
             if (speciesPrototype.SponsorOnly && !sponsorPrototypes.Contains(Species.Id))
             {
-                Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
+                Species = HumanoidCharacterProfile.DefaultSpecies;
                 speciesPrototype = prototypeManager.Index(Species);
             }
             // Corvax-Sponsors-End
@@ -659,7 +671,7 @@ namespace Content.Shared.Preferences
             // Corvax-TTS-Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
             if (voice is null || !CanHaveVoice(voice, Sex))
-                Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+                Voice = HumanoidCharacterProfile.DefaultSexVoice[sex];
             // Corvax-TTS-End
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
@@ -862,7 +874,7 @@ namespace Content.Shared.Preferences
             }
 
             var collection = IoCManager.Instance;
-            profile.EnsureValid(session, collection!);
+            profile.EnsureValid(session, collection!, collection!.Resolve<ISharedSponsorsManager>().GetClientPrototypes().ToArray());
             return profile;
         }
     }

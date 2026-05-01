@@ -63,7 +63,5 @@ public sealed class LatheRecipyCostTest
                       "\n\nAdjust lathe recipe prices or material costs.";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

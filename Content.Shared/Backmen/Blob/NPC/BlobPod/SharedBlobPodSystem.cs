@@ -19,9 +19,7 @@ namespace Content.Shared.Backmen.Blob.NPC.BlobPod;
 public abstract class SharedBlobPodSystem : EntitySystem
 {
     [Dependency] private readonly MobStateSystem _mobs = default!;
-
-
-    private EntityQuery<HumanoidAppearanceComponent> _query;
+    [Dependency] private readonly EntityQuery<HumanoidProfileComponent> _query = default!;
 
     public override void Initialize()
     {
@@ -31,8 +29,6 @@ public abstract class SharedBlobPodSystem : EntitySystem
         SubscribeLocalEvent<BlobPodComponent, BeingUnequippedAttemptEvent>(OnUnequipAttempt);
         SubscribeLocalEvent<BlobPodComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<BlobPodComponent, DragDropTargetEvent>(OnBlobPodDragDrop);
-
-        _query = GetEntityQuery<HumanoidAppearanceComponent>();
     }
 
     private void OnBlobPodDragDrop(Entity<BlobPodComponent> ent, ref DragDropTargetEvent args)
@@ -66,7 +62,7 @@ public abstract class SharedBlobPodSystem : EntitySystem
 
     private void OnUnequipAttempt(Entity<BlobPodComponent> ent, ref BeingUnequippedAttemptEvent args)
     {
-        if (args.Unequipee == args.UnEquipTarget)
+        if (args.User == args.UnEquipTarget)
         {
             args.Cancel();
             return;

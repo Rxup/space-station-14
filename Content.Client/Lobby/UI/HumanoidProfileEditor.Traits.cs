@@ -111,6 +111,16 @@ public sealed partial class HumanoidProfileEditor
                 if (selector == null)
                     continue;
 
+                //backmen-start: sponsor traits
+                if (selector.Trait.SponsorOnly && !_clientSponsorsManager.GetClientPrototypes().Contains(selector.Trait.ID))
+                {
+                    selector.Checkbox.Label.FontColorOverride = Color.Gray;
+                    selector.Checkbox.Disabled = true;
+                    selector.Checkbox.Pressed = false;
+                    selector.Checkbox.Label.Text += $" ({Loc.GetString("sponsor-only")})";
+                }
+                //backmen-end: sponsor traits
+
                 if (category is { MaxTraitPoints: >= 0 } &&
                     selector.Cost + selectionCount > category.MaxTraitPoints)
                 {

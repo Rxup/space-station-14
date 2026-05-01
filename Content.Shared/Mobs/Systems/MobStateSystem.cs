@@ -22,9 +22,10 @@ public partial class MobStateSystem : EntitySystem
 
     [Dependency] private readonly EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
+    protected override string SawmillName => "MobState";
+
     public override void Initialize()
     {
-        _sawmill = _logManager.GetSawmill("MobState");
         base.Initialize();
         SubscribeEvents();
     }

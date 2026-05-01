@@ -428,7 +428,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     {
                         foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                         {
-                            _body.RemoveOrgan(organ.Id, organ.Component);
+                            if (_container.TryGetContainingContainer(organ.Id, out var organContainer))
+                                _container.Remove(organ.Id, organContainer);
                         }
                     }
                     else

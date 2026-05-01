@@ -171,6 +171,29 @@ public sealed class MarkingManager
     }
 
     /// <summary>
+    /// Ensures that the <see cref="markingSets"/>
+    /// </summary>
+    public void EnsureValidSponsors(Dictionary<HumanoidVisualLayers, List<Marking>> markingSets, string[] sponsorPrototypes)
+    {
+        foreach (var markings in markingSets.Values)
+        {
+            for (var i = markings.Count - 1; i >= 0; i--)
+            {
+                if (!TryGetMarking(markings[i], out var marking))
+                {
+                    markings.RemoveAt(i);
+                    continue;
+                }
+
+                if (marking.SponsorOnly && !sponsorPrototypes.Contains(marking.ID))
+                {
+                    markings.RemoveAt(i);
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Ensures that the <see cref="markingSets"/> only belong to the <see cref="layers"/>
     /// </summary>
     public void EnsureValidLayers(Dictionary<HumanoidVisualLayers, List<Marking>> markingSets, HashSet<HumanoidVisualLayers> layers)

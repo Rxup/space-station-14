@@ -140,53 +140,43 @@ public sealed class TourniquetSystem : EntitySystem
 
         var (partType, symmetry) = _body.ConvertTargetBodyPart(targeting.Target);
 
-        var targetPart = _body.GetBodyChildrenOfType(ent, partType, symmetry: symmetry).FirstOrNull();
+        var targetPart = _body.GetBodyChildren(ent, comp)
+            .FirstOrNull(part => part.Component.PartType == partType &&
+                                 (symmetry is null || part.Component.Symmetry == symmetry));
         if (targetPart == null)
         {
-            var tourniquetable = EntityUid.Invalid;
-            foreach (var bodyPart in _body.GetBodyChildren(ent, comp))
-            {
-                if (!bodyPart.Component.Children
-                        .Any(bodyPartSlot =>
-                            bodyPartSlot.Value.Type == partType && bodyPartSlot.Value.Symmetry == symmetry))
-                    continue;
-
-                tourniquetable = bodyPart.Id;
-                break;
-            }
-
-            if (tourniquetable == EntityUid.Invalid)
-            {
-                _popup.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
-                return;
-            }
-
-            var tourniquetableWounds = new List<Entity<WoundComponent, TourniquetableComponent>>();
-            foreach (var woundEnt in _wound.GetWoundableWounds(tourniquetable))
-            {
-                if (!TryComp<TourniquetableComponent>(woundEnt, out var tourniquetableComp))
-                    continue;
-
-                if (tourniquetableComp.SeveredSymmetry == symmetry && tourniquetableComp.SeveredPartType == partType)
-                    tourniquetableWounds.Add((woundEnt.Owner, woundEnt.Comp, tourniquetableComp));
-            }
-
-            if (tourniquetableWounds.Count <= 0 || !_container.Insert(args.Used.Value, container))
+            if (!_container.Insert(args.Used.Value, container))
             {
                 _popup.PopupEntity(Loc.GetString("cant-tourniquet"), ent, PopupType.Medium);
                 return;
             }
 
-            foreach (var woundEnt in tourniquetableWounds)
+            // Fallback: allow severed-part wound treatment by applying to matching wound entities on the body.
+            var applied = false;
+            foreach (var bodyPart in _body.GetBodyChildren(ent, comp))
             {
-                if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleedInflicter))
-                    continue;
+                foreach (var woundEnt in _wound.GetWoundableWounds(bodyPart.Id))
+                {
+                    if (!TryComp<TourniquetableComponent>(woundEnt, out var tourniquetableComp) ||
+                        !TryComp<BleedInflicterComponent>(woundEnt, out var bleedInflicter))
+                        continue;
 
-                _bloodstream.TryAddBleedModifier(woundEnt, "TourniquetPresent", 100, false, bleedInflicter);
-                woundEnt.Comp2.CurrentTourniquetEntity = args.Used;
+                    if (tourniquetableComp.SeveredSymmetry != symmetry || tourniquetableComp.SeveredPartType != partType)
+                        continue;
+
+                    _bloodstream.TryAddBleedModifier(woundEnt, "TourniquetPresent", 100, false, bleedInflicter);
+                    tourniquetableComp.CurrentTourniquetEntity = args.Used;
+                    tourniquet.BodyPartTourniqueted = bodyPart.Id;
+                    applied = true;
+                }
             }
 
-            tourniquet.BodyPartTourniqueted = tourniquetable;
+            if (!applied)
+            {
+                _container.Remove(args.Used.Value, container);
+                _popup.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
+                return;
+            }
         }
         else
         {
