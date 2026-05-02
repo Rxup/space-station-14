@@ -31,6 +31,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -51,12 +52,13 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
         [Dependency] private readonly AudioSystem _audio = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
 
         private EntityQuery<InventoryComponent> _inventoryQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
         // This should probably be moved to the component, requires a rewrite, all fires tick at the same time
-        private const float UpdateTime = 1f;
+        private static readonly TimeSpan UpdateTime = TimeSpan.FromSeconds(1);
 
         private float _timer;
 
@@ -384,21 +386,13 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
-            if (!flammable.OnFire || !_actionBlockerSystem.CanInteract(uid, null) || flammable.Resisting)
+            if (!flammable.OnFire || flammable.Resisting || !_actionBlockerSystem.CanInteract(uid, null))
                 return;
 
-            flammable.Resisting = true;
+            flammable.ResistCompleteTime = _timing.CurTime + flammable.ResistTime;
 
             _popup.PopupEntity(Loc.GetString("flammable-component-resist-message"), uid, uid);
-            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2f));
-
-            // TODO FLAMMABLE: Make this not use TimerComponent...
-            uid.SpawnTimer(2000, () =>
-            {
-                flammable.Resisting = false;
-                flammable.FireStacks -= 1f;
-                UpdateAppearance(uid, flammable);
-            });
+            _stunSystem.TryUpdateParalyzeDuration(uid, flammable.ResistTime);
         }
 
         public override void Update(float frameTime)
@@ -418,24 +412,28 @@ namespace Content.Server.Atmos.EntitySystems
             }
             _fireEvents.Clear();
 
-            _timer += frameTime;
-
-            if (_timer < UpdateTime)
-                return;
-
-            _timer -= UpdateTime;
+            var curTime = _timing.CurTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
             var q = new Queue<(EntityUid, FlammableComponent)>();
             var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var flammable, out _))
             {
+                if (curTime < flammable.NextUpdate)
+                    continue;
+
+                flammable.NextUpdate += UpdateTime;
+
                 q.Enqueue((uid, flammable));
             }
 
             while (q.TryDequeue(out var d))
             {
                 var (uid, flammable) = d;
+
+                // Check if we finished resisting.
+                if (curTime > flammable.ResistCompleteTime)
+                    flammable.ResistCompleteTime = null;
 
                 // Slowly dry ourselves off if wet.
                 if (flammable.FireStacks < 0)

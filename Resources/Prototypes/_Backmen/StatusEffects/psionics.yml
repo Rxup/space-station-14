@@ -19,3 +19,11 @@
   name: psionic all see
   components:
   - type: MetapsionicVisible
+
+
+- type: entity
+  parent: [StatusEffectSeeingRainbow, StatusEffectSeeingRainbow, StatusEffectSlurred]
+  id: StatusEffectLotophagoiOil
+  name: LotophagoiOilEffect
+  components:
+  - type: TelepathicRepeater
