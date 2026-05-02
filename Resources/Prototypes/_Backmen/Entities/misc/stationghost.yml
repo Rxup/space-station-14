@@ -19,7 +19,7 @@
   - type: EffectVisuals
   - type: TimedDespawn
     lifetime: 15
-    
+
 - type: entity
   name: holo bee Timed Spawner
   id: timetSoawnerEffectHoloBee
@@ -34,7 +34,6 @@
         - state: timed
           sprite: Markers/cross.rsi
         - state: base
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - effectStationGhostHoloBee

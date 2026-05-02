@@ -70,7 +70,6 @@
     radius: 1.5
     energy: 3
     color: "#4faffb"
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobGiantSpiderVampireAngry

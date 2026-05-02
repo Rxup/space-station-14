@@ -25,7 +25,6 @@ public static partial class PoolManager
         (CCVars.ArrivalsShuttles.Name,        "false"),
         (CCVars.EmergencyShuttleEnabled.Name, "false"),
         (CCVars.ProcgenPreload.Name,          "false"),
-        (CCVars.WorldgenEnabled.Name,         "false"),
         (CCVars.GatewayGeneratorEnabled.Name, "false"),
         (CCVars.GameDummyTicker.Name, "true"),
         (CCVars.GameLobbyEnabled.Name, "false"),
@@ -35,11 +34,5 @@ public static partial class PoolManager
         (CCVars.InteractionRateLimitCount.Name, "9999999"),
         (CCVars.InteractionRateLimitPeriod.Name, "0.1"),
         (CCVars.MovementMobPushing.Name, "false"),
-
-        // Backmen CCvars
-        (Shared.Backmen.CCVar.CCVars.PainEnabled.Name, "false"),
-        (Shared.Backmen.CCVar.CCVars.GameBarotraumaEnabled.Name, "false"),
-        (CCVars.NPCPathfinding.Name, "false"), //backmen: fix test memory
-        (CCVars.LavalandEnabled.Name, "false"), //backmen: fix test memory
     };
 }

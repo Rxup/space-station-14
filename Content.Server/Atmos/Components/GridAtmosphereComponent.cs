@@ -4,6 +4,7 @@ using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Serialization;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos.Components;
+using Content.Shared.NodeContainer.NodeGroups;
 
 namespace Content.Server.Atmos.Components
 {

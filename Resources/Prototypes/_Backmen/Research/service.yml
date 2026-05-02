@@ -189,8 +189,8 @@
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
   discipline: Service
-  tier: 2
-  cost: 15000
+  tier: 3
+  cost: 5000000
   recipeUnlocks:
   - AdvancedGalaticCommonTranslatorImplanter
   - BubblishTranslatorImplanter

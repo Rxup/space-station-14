@@ -22,7 +22,7 @@ public sealed partial class AtmosphereSystem
         if (!TryComp<MapGridComponent>(grid, out var mapGridComponent))
             return;
 
-        var enumerator = mapGridComponent.GetAllTilesEnumerator(false);
+        var enumerator = _mapSystem.GetAllTilesEnumerator(grid, mapGridComponent, false);
 
         while (enumerator.MoveNext(out var tileRef))
         {
@@ -90,7 +90,7 @@ public sealed partial class AtmosphereSystem
         if (!TryComp<MapGridComponent>(grid, out var mapGridComponent))
             return;
 
-        var enumerator = mapGridComponent.GetAllTilesEnumerator(false);
+        var enumerator = _mapSystem.GetAllTilesEnumerator(grid, mapGridComponent, false);
 
         // Lattice tiles eat air for breakfast. They are space.
         var latticeId = _tileDefinitionManager["Lattice"].TileId;

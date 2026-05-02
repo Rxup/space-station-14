@@ -22,7 +22,7 @@
 
 
 - type: entity
-  parent: [StatusEffectSeeingRainbow, StatusEffectSeeingRainbow, StatusEffectSlurred]
+  parent: [StatusEffectSeeingRainbow, StatusEffectScrambled, StatusEffectSlurred]
   id: StatusEffectLotophagoiOil
   name: LotophagoiOilEffect
   components:
