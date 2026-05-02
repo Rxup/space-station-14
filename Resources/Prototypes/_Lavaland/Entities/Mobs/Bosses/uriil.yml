@@ -276,7 +276,6 @@
       path: /Audio/Backmen/Bosses/ultramortar.ogg
       params:
         volume: -7
-  - type: Timer
   - type: TimedSpawner
     prototypes:
       - HolyLight
@@ -857,7 +856,6 @@
       - DomeDisabler
     chance: 1
     intervalSeconds: 40
-  - type: Timer
 
 - type: accent
   id: Uriil
@@ -1154,7 +1152,6 @@
       - HolyLightSpawner
     rareChance: 0.5
     offset: 2
-  - type: Timer
   - type: TimedDespawn
     lifetime: 3
 
@@ -1172,7 +1169,6 @@
     intervalSeconds: 2
     minimumEntitiesSpawned: 3
     maximumEntitiesSpawned: 3
-  - type: Timer
   - type: TimedDespawn
     lifetime: 3
 
@@ -1190,7 +1186,6 @@
     intervalSeconds: 2
     minimumEntitiesSpawned: 25
     maximumEntitiesSpawned: 25
-  - type: Timer
   - type: TimedDespawn
     lifetime: 3
 
@@ -1229,7 +1224,6 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:ExplodeBehavior
-  - type: Timer
   - type: TimedDespawn
     lifetime: 10
 
@@ -1531,7 +1525,6 @@
       - LiveWeaponSquadSpawn
     chance: 1
     offset: 0
-  - type: Timer
   - type: TimedDespawn
     lifetime: 3
 
@@ -1547,7 +1540,6 @@
     intervalSeconds: 1
     minimumEntitiesSpawned: 3
     maximumEntitiesSpawned: 4
-  - type: Timer
   - type: TimedDespawn
     lifetime: 1.2
 

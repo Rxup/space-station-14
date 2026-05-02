@@ -944,7 +944,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     private static readonly ProtoId<ContentTileDefinition> SandTile = "FloorAsteroidSand";
     private static readonly ProtoId<ContentTileDefinition> CraterTile = "FloorAsteroidSandDug";
 
-    public void MakeCrater(MapGridComponent grid, EntityCoordinates coordinates)
+    public void MakeCrater(Entity<MapGridComponent> grid, EntityCoordinates coordinates)
     {
         // Clear the area with a bomb.
         _explosionSystem.QueueExplosion(
@@ -962,7 +962,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             addLog: false);
 
         // Put down a nice crater.
-        var center = grid.GetTileRef(coordinates);
+
+        var center = _mapSystem.GetTileRef(grid, coordinates);
         var sand = (ContentTileDefinition) _tileDefinitionManager[SandTile];
         var crater = (ContentTileDefinition) _tileDefinitionManager[CraterTile];
 
@@ -972,7 +973,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         {
             for (var x = -1; x <= 1; ++x)
             {
-                _tileSystem.ReplaceTile(grid.GetTileRef(center.GridIndices + new Vector2i(x, y)), sand);
+                _tileSystem.ReplaceTile(_mapSystem.GetTileRef(grid,center.GridIndices + new Vector2i(x, y)), sand);
             }
         }
 
@@ -1050,7 +1051,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             // We do this before moving the pieces,
             // so they don't get affected by the explosion.
-            MakeCrater(component.PlanetGrid, spot);
+            MakeCrater((component.PlanetMap.Value,component.PlanetGrid), spot);
 
             component.VitalPieces.Add(uid, (spot, structure));
         }
@@ -1095,7 +1096,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 TryGetRandomStructureSpot(component, out var spot, out var structure);
                 Log.Info($"Heaven generator! {ToPrettyString(uid)} will go to {spot}");
 
-                MakeCrater(component.PlanetGrid, spot);
+                MakeCrater((component.PlanetMap.Value,component.PlanetGrid), spot);
                 component.VitalPieces.Add(uid, (spot, structure));
             }
         }
@@ -1144,7 +1145,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         foreach (var entry in spawns)
         {
             var spawnTile = room.Tiles.ElementAt(_random.Next(room.Tiles.Count));
-            var spawnPosition = component.PlanetGrid.GridTileToLocal(spawnTile);
+            var spawnPosition = _mapSystem.GridTileToLocal(component.PlanetMap!.Value, component.PlanetGrid, spawnTile);
 
             var uid = EntityManager.CreateEntityUninitialized(entry, spawnPosition);
             RemComp<GhostTakeoverAvailableComponent>(uid);

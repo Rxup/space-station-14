@@ -34,7 +34,7 @@
   components:
     - type: ShipwreckedNPCHecate
     - type: NPCConversation
-      useGpt: true
+      useGpt: false
       tree: ShipwreckedPsychopompHecate
     - type: TTS
       voice: TrainingRobot

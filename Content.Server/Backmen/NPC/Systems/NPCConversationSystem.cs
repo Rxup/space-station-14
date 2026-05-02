@@ -358,7 +358,10 @@ public sealed class NPCConversationSystem : EntitySystem
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
     {
+        var n = _npcGptHistory.Count;
         _npcGptHistory.Clear();
+        if (n > 0)
+            Log.Debug($"Round restart: cleared NPC GPT histories (was {n} entries)");
     }
 
     private bool TryGetIdleChatLine(Entity<NPCConversationComponent> uid, [NotNullWhen(true)] out NPCResponse? line)
@@ -761,8 +764,18 @@ public sealed class NPCConversationSystem : EntitySystem
                 $"Отвечай кратко и в соответствии с ролью персонажа.";
             history = new NPCGptHistory(systemPrompt);
             _npcGptHistory[uid] = history;
+            Log.Debug($"New GPT history for {ToPrettyString(uid)}");
         }
         return history;
+    }
+
+    /// <summary>
+    /// Удаляет накопленный контекст GPT; следующий запрос начнётся с чистой истории (только system).
+    /// </summary>
+    private void ClearNpcGptHistory(EntityUid npcUid)
+    {
+        if (_npcGptHistory.Remove(npcUid))
+            Log.Debug($"GPT history cleared for {ToPrettyString(npcUid)}");
     }
 
     #region GigaChat
@@ -832,6 +845,10 @@ public sealed class NPCConversationSystem : EntitySystem
                 return (null, $"Ошибка GPT API: {request.StatusCode}");
             }
 
+            var msgCount = history.Messages.Count;
+            Log.Debug(
+                $"GPT API OK for {ToPrettyString(uid)}: messagesInContext={msgCount}, model={_gptApiModel}");
+
             var info = JsonSerializer.Deserialize<GptResponseApi>(response);
             return (info, null);
         }
@@ -868,6 +885,9 @@ public sealed class NPCConversationSystem : EntitySystem
                         var response = new NPCResponse(gptMsg.message.content, null);
                         QueueResponse(uid.AsNullable(), response);
                         uid.Comp.GptProcessing = false;
+                        Log.Info(
+                            $"NPC GPT reply queued for {ToPrettyString(uid)}: finish={gptMsg.finish_reason}, len={gptMsg.message.content.Length}");
+                        ClearNpcGptHistory(uid);
                     }
                     break;
                 default:
@@ -957,12 +977,31 @@ public sealed class NPCConversationSystem : EntitySystem
 
     private async Task TryGptResponse(Entity<NPCConversationComponent> uid, string message, EntityUid speaker)
     {
-        if (!uid.Comp.UseGpt || uid.Comp.GptProcessing || !_gptEnabled)
+        if (!uid.Comp.UseGpt)
+        {
+            Log.Debug($"Skip GPT for {ToPrettyString(uid)}: UseGpt=false");
             return;
+        }
+
+        if (!_gptEnabled)
+        {
+            Log.Debug($"Skip GPT for {ToPrettyString(uid)}: GPT disabled (cvar)");
+            return;
+        }
+
+        if (uid.Comp.GptProcessing)
+        {
+            Log.Debug($"Skip GPT for {ToPrettyString(uid)}: already processing a request");
+            return;
+        }
 
         uid.Comp.GptProcessing = true;
         try
         {
+            var preview = message.Length <= 240 ? message : message[..240] + "...";
+            Log.Info(
+                $"NPC GPT request: npc={ToPrettyString(uid)}, speaker={ToPrettyString(speaker)}, message=\"{preview}\"");
+
             var history = GetOrCreateGptHistory(uid);
 
             history.Lock.EnterWriteLock();

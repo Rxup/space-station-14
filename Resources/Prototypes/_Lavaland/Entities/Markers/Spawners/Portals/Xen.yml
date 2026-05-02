@@ -58,7 +58,6 @@
     radius: 3
     energy: 1
     netsync: false
-  - type: Timer
   - type: TimedSpawner
     prototypes:
       - MobVortigaunt

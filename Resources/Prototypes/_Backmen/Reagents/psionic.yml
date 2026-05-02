@@ -91,7 +91,7 @@
       metabolismRate: 0.2
       effects:
         - !type:ModifyStatusEffect
-          effectProto: StatusEffectSeeingRainbow
+          effectProto: StatusEffectLotophagoiOil
           conditions:
           - !type:ReagentCondition
             reagent: LotophagoiOil
@@ -104,10 +104,6 @@
           - !type:ReagentCondition
             reagent: LotophagoiOil
             min: 20
-        - !type:ModifyStatusEffect
-          effectProto: StatusEffectScrambled
-        - !type:ModifyStatusEffect
-          effectProto: StatusEffectSlurred
         - !type:ChemAddMoodlet
           moodPrototype: LotoTranscendence
           conditions:

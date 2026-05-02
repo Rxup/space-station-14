@@ -32,11 +32,9 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
 
         light.LastGhostBlink = time;
 
-        ToggleBlinkingLight(uid, light, true);
-        uid.SpawnTimer(light.GhostBlinkingTime, () =>
-        {
-            ToggleBlinkingLight(uid, light, false);
-        });
+        var blinkingComp = EnsureComp<BlinkingPoweredLightComponent>(uid);
+        blinkingComp.StopBlinkingTime = time + light.GhostBlinkingTime;
+        Dirty(uid, blinkingComp);
 
         args.Handled = true;
     }

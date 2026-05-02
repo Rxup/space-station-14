@@ -318,7 +318,6 @@
       layers:
       - state: missilepod
       - state: missilepod_door
-    - type: Timer
     - type: SpawnOnDespawn
       prototype: ExplosionInstant
     - type: TimedDespawn
@@ -389,7 +388,6 @@
     prototypes:
     - MissileDropRandomSpawnerArea
     intervalSeconds: 1
-  - type: Timer
   - type: TimedDespawn
     lifetime: 10
 

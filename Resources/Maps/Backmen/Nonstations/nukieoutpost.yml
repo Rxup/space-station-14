@@ -15632,7 +15632,6 @@ entities:
     - type: Transform
       pos: 13.5,-61.5
       parent: 104
-    - type: Timer
   - uid: 2235
     components:
     - type: Transform

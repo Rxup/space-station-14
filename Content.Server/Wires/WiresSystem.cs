@@ -11,6 +11,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power;
+using Content.Shared.Rejuvenate;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Wires;
@@ -56,7 +57,9 @@ public sealed class WiresSystem : SharedWiresSystem
         SubscribeLocalEvent<WiresComponent, PowerChangedEvent>(OnWiresPowered);
         SubscribeLocalEvent<WiresComponent, WireDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<WiresPanelSecurityComponent, WiresPanelSecurityEvent>(SetWiresPanelSecurity);
+        SubscribeLocalEvent<WiresComponent, RejuvenateEvent>(OnRejuvenate);
     }
+
 
     private void SetOrCreateWireLayout(EntityUid uid, WiresComponent? wires = null)
     {
@@ -482,6 +485,21 @@ public sealed class WiresSystem : SharedWiresSystem
         }
 
         UpdateUserInterface(uid);
+    }
+
+    private void OnRejuvenate(Entity<WiresComponent> ent, ref RejuvenateEvent args)
+    {
+        foreach (var wire in ent.Comp.WiresList)
+        {
+            // Rejuvenate has no user so we mend as the entity having the wire.
+            if (wire.Action == null || wire.Action.Mend(ent, wire))
+            {
+                wire.IsCut = false;
+            }
+        }
+
+        // If we don't update the interface wires will be desynced on client.
+        UpdateUserInterface(ent.Owner, ent.Comp);
     }
     #endregion
 

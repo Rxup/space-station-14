@@ -84,7 +84,6 @@
     availableModes:
       - Burst
     soundGunshot: /Audio/Weapons/Guns64/Rifles/ak47.ogg
-  - type: Timer
   - type: TimedPolymorph
     prototypes:
       - SwoopFly
@@ -227,7 +226,6 @@
     delay: 3.9
   - type: SpawnOnTrigger
     proto: ShockWaveBigJohn
-  - type: Timer
   - type: TimedSpawner
     prototypes:
       - ActivatedGrenadeBigJohn
