@@ -15,6 +15,8 @@ using Robust.Shared.Random;
 using System.Linq;
 
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.Item;
+using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Server.Backmen.Chat;
 
@@ -29,6 +31,8 @@ public sealed class NyanoChatSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly EntityQuery<StatusEffectComponent> _statusQuery = default;
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -51,11 +55,20 @@ public sealed class NyanoChatSystem : EntitySystem
             _chatManager.ChatMessageToMany(ChatChannel.Telepathic, obfuscated, ev.MessageWrap, ev.Source, ev.HideChat, false, GetDreamers(clients), Color.PaleVioletRed);
         }
 
-        var q = EntityQueryEnumerator<TelepathicRepeaterComponent>();
+        var once = new HashSet<EntityUid>();
 
-        while (q.MoveNext(out var uid, out _))
+        var q = EntityQueryEnumerator<TelepathicRepeaterComponent>();
+        while (q.MoveNext(out var appliedTo, out _))
         {
-            _chatSystem.TrySendInGameICMessage(uid, ev.Message, InGameICChatType.Speak, false, true);
+            if (!once.Add(appliedTo))
+                continue;
+
+            if (_statusQuery.TryComp(appliedTo, out var statusEffectComponent) && statusEffectComponent.AppliedTo is {})
+            {
+                appliedTo = statusEffectComponent.AppliedTo.Value;
+            }
+
+            _chatSystem.TrySendInGameICMessage(appliedTo, ev.Message, InGameICChatType.Speak, false, true);
         }
     }
 
@@ -76,7 +89,11 @@ public sealed class NyanoChatSystem : EntitySystem
     private List<INetChannel> GetDreamers(IEnumerable<INetChannel> removeList)
     {
         var filtered = Filter.Empty()
-            .AddWhereAttachedEntity(entity => HasComp<SleepingComponent>(entity) || HasComp<SeeingRainbowsStatusEffectComponent>(entity) && !HasComp<PsionicsDisabledComponent>(entity) && !HasComp<PsionicInsulationComponent>(entity))
+            .AddWhereAttachedEntity(entity =>
+                HasComp<SleepingComponent>(entity) ||
+                HasComp<SeeingRainbowsStatusEffectComponent>(entity) &&
+                (!HasComp<PsionicsDisabledComponent>(entity) && !_statusEffects.HasEffectComp<PsionicsDisabledComponent>(entity)) &&
+                (!HasComp<PsionicInsulationComponent>(entity) && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity)))
             .Recipients
             .Select(p => p.Channel);
 
@@ -93,8 +110,8 @@ public sealed class NyanoChatSystem : EntitySystem
     private bool IsEligibleForTelepathy(EntityUid entity)
     {
         return HasComp<PsionicComponent>(entity)
-               && !HasComp<PsionicsDisabledComponent>(entity)
-               && !HasComp<PsionicInsulationComponent>(entity)
+               && (!HasComp<PsionicsDisabledComponent>(entity) && !_statusEffects.HasEffectComp<PsionicsDisabledComponent>(entity))
+               && (!HasComp<PsionicInsulationComponent>(entity) && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity))
                && (!TryComp<MobStateComponent>(entity, out var mobstate) || mobstate.CurrentState == MobState.Alive);
     }
 

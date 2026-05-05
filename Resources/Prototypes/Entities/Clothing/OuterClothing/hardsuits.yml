@@ -505,16 +505,16 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.3
-        Slash: 0.3
-        Piercing: 0.3
-        Heat: 0.3
-        Radiation: 0.6
-        Caustic: 0.6
-        Stun: 0.1
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.65
+        Caustic: 0.65
+        Stun: 0.3
   - type: ClothingSpeedModifier
-    walkModifier: 0.9       #Backmen edit
-    sprintModifier: 0.9     #Backmen edit
+    walkModifier: 0.8       #Backmen edit
+    sprintModifier: 0.8     #Backmen edit
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap

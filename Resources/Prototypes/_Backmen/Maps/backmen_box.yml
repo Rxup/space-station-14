@@ -2,7 +2,7 @@
   id: BackmenBox
   mapName: 'Federation Box'
   mapPath: /Maps/Backmen/backmen_box.yml
-  minPlayers: 25 # Corvax
+  minPlayers: 1
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation

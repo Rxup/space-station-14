@@ -48,6 +48,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly SharedEyeSystem _sharedEye = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
     private EntityQuery<PsionicsDisabledComponent> _activePsionicsDisabled;
     private EntityQuery<StaminaComponent> _activeStamina;
 
@@ -153,10 +154,10 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         var currentTime = _timing.CurTime;
 
-        var q = EntityQueryEnumerator<StaminaComponent, ShadowkinDarkSwappedComponent, StatusEffectsComponent>();
-        while (q.MoveNext(out var uid, out var stamina, out var comp, out var statusEffectsComponent))
+        var q = EntityQueryEnumerator<StaminaComponent, ShadowkinDarkSwappedComponent>();
+        while (q.MoveNext(out var uid, out var stamina, out var comp))
         {
-            if (stamina.Critical || _activePsionicsDisabled.HasComponent(uid))
+            if (stamina.Critical || _activePsionicsDisabled.HasComponent(uid) || _statusEffects.HasEffectComp<PsionicsDisabledComponent>(uid))
             {
                 RemCompDeferred<ShadowkinDarkSwappedComponent>(uid);
                 _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(5));

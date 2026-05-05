@@ -240,7 +240,7 @@
     probability: 0.5
     key: StatusEffectLangOldFastCodesAccent
     time: 3
-    type: Add
+    type: Update
   cures:
   - !type:DiseaseReagentCure
     reagent:

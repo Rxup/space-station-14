@@ -24,6 +24,6 @@
 - type: entity
   parent: [StatusEffectSeeingRainbow, StatusEffectScrambled, StatusEffectSlurred]
   id: StatusEffectLotophagoiOil
-  name: LotophagoiOilEffect
+  name: psionic rainbow repeater
   components:
   - type: TelepathicRepeater

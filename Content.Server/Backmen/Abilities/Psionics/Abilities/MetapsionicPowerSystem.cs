@@ -5,6 +5,7 @@ using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Eye;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
@@ -28,9 +29,24 @@ public sealed class MetapsionicPowerSystem : EntitySystem
         SubscribeLocalEvent<MetapsionicPowerComponent, MetapsionicPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<MetapsionicVisibleComponent, ComponentStartup>(OnAddCanSeeAll);
         SubscribeLocalEvent<MetapsionicVisibleComponent, ComponentShutdown>(OnRemoveCanSeeAll);
+
         SubscribeLocalEvent<MetapsionicVisibleComponent, GetVisMaskEvent>(OnGetVisMask);
+        SubscribeLocalEvent<MetapsionicVisibleComponent, StatusEffectAppliedEvent>(OnApplied);
+        SubscribeLocalEvent<MetapsionicVisibleComponent, StatusEffectRemovedEvent>(OnRemoved);
 
         _insulationQuery = GetEntityQuery<PsionicInsulationComponent>();
+    }
+
+    private void OnRemoved(Entity<MetapsionicVisibleComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        RemComp<MetapsionicVisibleComponent>(args.Target);
+        _eye.RefreshVisibilityMask(args.Target);
+    }
+
+    private void OnApplied(Entity<MetapsionicVisibleComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        EnsureComp<MetapsionicVisibleComponent>(args.Target);
+        _eye.RefreshVisibilityMask(args.Target);
     }
 
     private void OnGetVisMask(Entity<MetapsionicVisibleComponent> ent, ref GetVisMaskEvent args)

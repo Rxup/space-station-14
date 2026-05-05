@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Systems;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using UniversalLanguageSpeakerComponent = Content.Shared.Backmen.Language.Components.UniversalLanguageSpeakerComponent;
@@ -30,6 +31,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, MapInitEvent>(OnUniversalInit);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, ComponentShutdown>(OnUniversalShutdown);
         SubscribeLocalEvent<LanguageAccentComponent, AccentGetEvent>(OnLangAccent);
+        SubscribeLocalEvent<LanguageAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnLangAccentRelayed);
 
         _languageSpeakerQuery = GetEntityQuery<LanguageSpeakerComponent>();
         _universalLanguageSpeakerQuery = GetEntityQuery<UniversalLanguageSpeakerComponent>();
@@ -49,6 +51,13 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if(!_random.Prob(ent.Comp.Chance))
             return;
         args.LanguageOverride = ent.Comp.Language;
+    }
+
+    private void OnLangAccentRelayed(Entity<LanguageAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
+    {
+        if(!_random.Prob(ent.Comp.Chance))
+            return;
+        args.Args.LanguageOverride = ent.Comp.Language;
     }
 
     private void OnUniversalShutdown(EntityUid uid, UniversalLanguageSpeakerComponent component, ComponentShutdown args)
