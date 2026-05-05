@@ -2,6 +2,7 @@
 using Content.Server.Corvax.Speech.Components;
 using Content.Server.Speech;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 
 namespace Content.Server.Corvax.Speech.EntitySystems;
@@ -9,43 +10,47 @@ namespace Content.Server.Corvax.Speech.EntitySystems;
 public sealed class GrowlingAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    private static readonly Regex LowerRRegex = new(@"r+", RegexOptions.Compiled);
+    private static readonly Regex UpperRRegex = new(@"R+", RegexOptions.Compiled);
+    private static readonly Regex LowerRuRRegex = new(@"р+", RegexOptions.Compiled);
+    private static readonly Regex UpperRuRRegex = new(@"Р+", RegexOptions.Compiled);
+
+    private static readonly List<string> LowerRReplacements = ["rr", "rrr"];
+    private static readonly List<string> UpperRReplacements = ["RR", "RRR"];
+    private static readonly List<string> LowerRuRReplacements = ["рр", "ррр"];
+    private static readonly List<string> UpperRuRReplacements = ["РР", "РРР"];
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GrowlingAccentComponent, AccentGetEvent>(OnAccent);
+        SubscribeLocalEvent<GrowlingAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
     }
 
-    private void OnAccent(EntityUid uid, GrowlingAccentComponent component, AccentGetEvent args)
+    private void OnAccentRelayed(Entity<GrowlingAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
     {
-        var message = args.Message;
+        args.Args.Message = Accentuate(args.Args.Message);
+    }
 
+    private void OnAccent(Entity<GrowlingAccentComponent> ent, ref AccentGetEvent args)
+    {
+        args.Message = Accentuate(args.Message);
+    }
+
+    public string Accentuate(string message)
+    {
         // r => rrr
-        message = Regex.Replace(
-            message,
-            "r+",
-            _random.Pick(new List<string> { "rr", "rrr" })
-        );
+        message = LowerRRegex.Replace(message, _ => _random.Pick(LowerRReplacements));
+
         // R => RRR
-        message = Regex.Replace(
-            message,
-            "R+",
-            _random.Pick(new List<string> { "RR", "RRR" })
-        );
+        message = UpperRRegex.Replace(message, _ => _random.Pick(UpperRReplacements));
 
         // р => ррр
-        message = Regex.Replace(
-            message,
-            "р+",
-            _random.Pick(new List<string> { "рр", "ррр" })
-        );
-        // Р => РРР
-        message = Regex.Replace(
-            message,
-            "Р+",
-            _random.Pick(new List<string> { "РР", "РРР" })
-        );
+        message = LowerRuRRegex.Replace(message, _ => _random.Pick(LowerRuRReplacements));
 
-        args.Message = message;
+        // Р => РРР
+        message = UpperRuRRegex.Replace(message, _ => _random.Pick(UpperRuRReplacements));
+
+        return message;
     }
 }

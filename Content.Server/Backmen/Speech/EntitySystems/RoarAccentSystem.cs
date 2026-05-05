@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using Content.Server.Backmen.Speech.Components;
 using Content.Server.Speech;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
@@ -20,12 +21,21 @@ public sealed class RoarAccentSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<RoarAccentComponent, AccentGetEvent>(OnAccent);
+        SubscribeLocalEvent<RoarAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
     }
 
-    private void OnAccent(EntityUid uid, RoarAccentComponent component, AccentGetEvent args)
+    private void OnAccentRelayed(Entity<RoarAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
     {
-        var message = args.Message;
+        args.Args.Message = Accentuate(args.Args.Message);
+    }
 
+    private void OnAccent(Entity<RoarAccentComponent> ent, ref AccentGetEvent args)
+    {
+        args.Message = Accentuate(args.Message);
+    }
+
+    public string Accentuate(string message)
+    {
         // roarrr
         message = R1.Replace(message, "rrr");
         // roarRR
@@ -34,6 +44,7 @@ public sealed class RoarAccentSystem : EntitySystem
         // р => ррр
         message = R3.Replace(message, _=>_random.Pick(R3R));
         // ADT-Localization-End
-        args.Message = message;
+
+        return message;
     }
 }

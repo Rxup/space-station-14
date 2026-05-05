@@ -14,6 +14,20 @@
 
 - type: entity
   parent: MobStatusEffectBase
+  id: StatusEffectSpeechOhio
+  name: ohio accent
+  components:
+  - type: OhioAccent
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangRatvarian
+  name: ratvarian language
+  components:
+  - type: RatvarianLanguage
+
+- type: entity
+  parent: MobStatusEffectBase
   id: StatusEffectLangFleshAccent
   name: lang flesh accent
   components:

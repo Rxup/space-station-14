@@ -1,5 +1,6 @@
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 
 namespace Content.Server.Speech.EntitySystems
 {
@@ -8,6 +9,7 @@ namespace Content.Server.Speech.EntitySystems
         public override void Initialize()
         {
             SubscribeLocalEvent<BackwardsAccentComponent, AccentGetEvent>(OnAccent);
+            SubscribeLocalEvent<BackwardsAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
         }
 
         public string Accentuate(string message)
@@ -17,7 +19,12 @@ namespace Content.Server.Speech.EntitySystems
             return new string(arr);
         }
 
-        private void OnAccent(EntityUid uid, BackwardsAccentComponent component, AccentGetEvent args)
+        private void OnAccentRelayed(Entity<BackwardsAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
+        {
+            args.Args.Message = Accentuate(args.Args.Message);
+        }
+
+        private void OnAccent(Entity<BackwardsAccentComponent> ent, ref AccentGetEvent args)
         {
             args.Message = Accentuate(args.Message);
         }
