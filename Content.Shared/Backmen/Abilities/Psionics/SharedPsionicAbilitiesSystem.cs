@@ -210,7 +210,7 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         if (_statusEffects.HasEffectComp<PsionicInsulationComponent>(uid))
             return false;
 
-        return TryComp<MobStateComponent>(uid, out var mobstate) && mobstate.CurrentState != MobState.Alive;
+        return TryComp<MobStateComponent>(uid, out var mobstate) && mobstate.CurrentState == MobState.Alive;
     }
 
     public void LogPowerUsed(EntityUid uid, string power, int minGlimmer = 8, int maxGlimmer = 12)

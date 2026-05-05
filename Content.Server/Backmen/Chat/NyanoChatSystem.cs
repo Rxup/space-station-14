@@ -66,6 +66,9 @@ public sealed class NyanoChatSystem : EntitySystem
             if (_statusQuery.TryComp(appliedTo, out var statusEffectComponent) && statusEffectComponent.AppliedTo is {})
             {
                 appliedTo = statusEffectComponent.AppliedTo.Value;
+
+                if (!once.Add(appliedTo))
+                    continue;
             }
 
             _chatSystem.TrySendInGameICMessage(appliedTo, ev.Message, InGameICChatType.Speak, false, true);
@@ -90,8 +93,8 @@ public sealed class NyanoChatSystem : EntitySystem
     {
         var filtered = Filter.Empty()
             .AddWhereAttachedEntity(entity =>
-                HasComp<SleepingComponent>(entity) ||
-                HasComp<SeeingRainbowsStatusEffectComponent>(entity) &&
+                 (HasComp<SleepingComponent>(entity) ||
+                                 HasComp<SeeingRainbowsStatusEffectComponent>(entity)) &&
                 (!HasComp<PsionicsDisabledComponent>(entity) && !_statusEffects.HasEffectComp<PsionicsDisabledComponent>(entity)) &&
                 (!HasComp<PsionicInsulationComponent>(entity) && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity)))
             .Recipients
