@@ -5,7 +5,7 @@
   maxRandomOffset: 0
   randomRotation: false
   # Corvax-start
-  minPlayers: 20
+  minPlayers: 10
   maxPlayers: 50
   # Corvax-end
   stations:

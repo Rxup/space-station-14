@@ -96,7 +96,7 @@
           - !type:ReagentCondition
             reagent: LotophagoiOil
             min: 5
-          type: Add
+          type: Update
           time: 5
         - !type:ChemRerollPsionic
           bonusMultiplier: 4

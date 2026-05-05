@@ -37,6 +37,7 @@ public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
     #if !DEBUG
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     #endif
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     private ISawmill _logger = default!;
 
@@ -89,7 +90,10 @@ public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
 
     private void OnPowerReturned(EntityUid uid, MindSwappedComponent component, MindSwapPowerReturnActionEvent args)
     {
-        if (HasComp<PsionicInsulationComponent>(component.OriginalEntity) || HasComp<PsionicInsulationComponent>(uid))
+        if (HasComp<PsionicInsulationComponent>(component.OriginalEntity) || HasComp<PsionicInsulationComponent>(uid) ||
+            _statusEffects.HasEffectComp<PsionicInsulationComponent>(component.OriginalEntity) ||
+            _statusEffects.HasEffectComp<PsionicInsulationComponent>(uid)
+            )
             return;
 
         if (HasComp<MobStateComponent>(uid) && !_mobStateSystem.IsAlive(uid))

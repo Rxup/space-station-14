@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -26,6 +27,7 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     private EntityQuery<PsionicallyInvisibleComponent> _psionicallyInvisibleQuery;
     private EntityQuery<PsionicInsulationComponent> _psionicInsulationQuery;
@@ -34,8 +36,14 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<PsionicsDisabledComponent, StatusEffectAppliedEvent>(OnApplied);
+        SubscribeLocalEvent<PsionicsDisabledComponent, StatusEffectRemovedEvent>(OnRemoved);
+
         SubscribeLocalEvent<PsionicsDisabledComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicsDisabledComponent, ComponentShutdown>(OnShutdown);
+
+
         SubscribeLocalEvent<PsionicComponent, PsionicPowerUsedEvent>(OnPowerUsed);
         SubscribeLocalEvent<PsionicComponent, MobStateChangedEvent>(OnMobStateChanged);
 
@@ -46,16 +54,26 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         _psionicInsulationQuery = GetEntityQuery<PsionicInsulationComponent>();
     }
 
+    private void OnRemoved(Entity<PsionicsDisabledComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        SetPsionicsThroughEligibility(args.Target);
+    }
+
+    private void OnApplied(Entity<PsionicsDisabledComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        SetPsionicsThroughEligibility(args.Target);
+    }
+
     private void OnTryUsePower(Entity<PsiActionComponent> ent, ref ActionAttemptEvent args)
     {
-        if (_psionicallyInvisibleQuery.HasComp(args.User))
+        if (_psionicallyInvisibleQuery.HasComp(args.User) || _statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(args.User))
         {
             _popups.PopupCursor(Loc.GetString("cant-use-in-invisible"), PopupType.SmallCaution);
             args.Cancelled = true;
             return;
         }
 
-        if (_psionicInsulationQuery.HasComp(args.User))
+        if (_psionicInsulationQuery.HasComp(args.User) || _statusEffects.HasEffectComp<PsionicInsulationComponent>(args.User))
         {
             _popups.PopupCursor(Loc.GetString("cant-use-in-insulation"), PopupType.SmallCaution);
             args.Cancelled = true;
@@ -93,14 +111,19 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 
     public bool CanUsePsionicAbilities(EntityUid performer, EntityUid target, bool popup = true)
     {
-        if (_psionicallyInvisibleQuery.HasComp(performer))
+        if (_psionicallyInvisibleQuery.HasComp(performer) || _statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(performer))
         {
             if(popup)
                 _popups.PopupCursor(Loc.GetString("cant-use-in-invisible"), performer, PopupType.SmallCaution);
             return false;
         }
 
-        if (_psionicInsulationQuery.HasComp(target) || _psionicInsulationQuery.HasComp(performer))
+        if (
+            _psionicInsulationQuery.HasComp(target) ||
+            _psionicInsulationQuery.HasComp(performer) ||
+            _statusEffects.HasEffectComp<PsionicInsulationComponent>(target) ||
+            _statusEffects.HasEffectComp<PsionicInsulationComponent>(performer)
+            )
         {
             if(popup)
                 _popups.PopupCursor(Loc.GetString("cant-use-in-insulation"), performer, PopupType.SmallCaution);
@@ -181,8 +204,13 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
 
     private bool IsEligibleForPsionics(EntityUid uid)
     {
-        return !_psionicInsulationQuery.HasComp(uid)
-               && (!TryComp<MobStateComponent>(uid, out var mobstate) || mobstate.CurrentState == MobState.Alive);
+        if(_psionicInsulationQuery.HasComp(uid))
+            return false;
+
+        if (_statusEffects.HasEffectComp<PsionicInsulationComponent>(uid))
+            return false;
+
+        return TryComp<MobStateComponent>(uid, out var mobstate) && mobstate.CurrentState == MobState.Alive;
     }
 
     public void LogPowerUsed(EntityUid uid, string power, int minGlimmer = 8, int maxGlimmer = 12)

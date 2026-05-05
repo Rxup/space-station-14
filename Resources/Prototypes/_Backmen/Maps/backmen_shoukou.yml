@@ -3,7 +3,7 @@
   mapName: 'Shōkō'
   mapPath: /Maps/Backmen/backmen_shoukou.yml
   minPlayers: 0
-  maxPlayers: 50
+  maxPlayers: 35
   stations:
     Shoukou:
       stationProto: StandardNanotrasenStation
