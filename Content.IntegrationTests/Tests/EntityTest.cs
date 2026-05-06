@@ -240,12 +240,14 @@ namespace Content.IntegrationTests.Tests
 
             var excluded = new[]
             {
-                "MapGrid",
-                "StationEvent",
-                "TimedDespawn",
+                //Backmen
+                "FugitiveCountdown", // Fugitive.
+                "ShipyardConsole", // Shipyard Console
+                "Eftpos", // attach to bank account on mapinit
+                "HierophantFieldGenerator", // Lavaland Change
 
-                // makes an announcement on mapInit.
-                "AnnounceOnSpawn",
+                "AnnounceOnSpawn", // makes an announcement on mapInit.
+                "AirDrop", // spawn DropPodMarkerSimple on mapinit
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
@@ -387,6 +389,7 @@ namespace Content.IntegrationTests.Tests
                 "Actor", // We aren't testing actor components, those need their player session set.
                 "BiomeSelection", // Whaddya know, requires config.
                 "ActivatableUI", // Requires enum key
+                "BlobFloorPlanBuilder", // Implodes if unconfigured.
             };
 
             var pair = Pair;

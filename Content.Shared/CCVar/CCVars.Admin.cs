@@ -195,4 +195,11 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> AdminAllowMultiServerPlay =
         CVarDef.Create("admin.allow_multi_server_play", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// If enabled, admins continue accruing job/department playtime trackers while playing.
+    /// If disabled, admins only accrue admin and overall trackers.
+    /// </summary>
+    public static readonly CVarDef<bool> GameAdminJobTracking =
+        CVarDef.Create("game.admin_job_tracking", true, CVar.SERVERONLY);
 }
