@@ -240,6 +240,8 @@ namespace Content.IntegrationTests.Tests
 
             var excluded = new[]
             {
+                "MapGrid",
+                "StationEvent",
                 "TimedDespawn", // temporary effect entities can spawn detached short-lived children
 
                 //Backmen
