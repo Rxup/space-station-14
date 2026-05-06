@@ -42,4 +42,4 @@
   components:
   - type: LanguageAccent
     language: OldFastCodes
-    chance: 0.4 # 40%
+    chance: 0.2 # 20%

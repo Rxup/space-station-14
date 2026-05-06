@@ -10,26 +10,25 @@ using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage.Systems;
-using Robust.Shared.Prototypes;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class PsionicInvisibilityPowerSystem : EntitySystem
+public sealed class PsionicInvisibilityPowerSystem : StatusEffectGrantedPowerSystem<PsionicInvisibilityPowerComponent, PsionicInvisibilityPowerActionEvent>
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PsionicInvisibilityPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PsionicInvisibilityPowerComponent, PsionicInvisibilityPowerActionEvent>(OnPowerUsed);
+        InitializeStatusEffectGrantedPower();
         SubscribeLocalEvent<PsionicInvisibilityPowerOffActionEvent>(OnPowerOff);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentInit>(OnStart);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentShutdown>(OnEnd);
@@ -37,7 +36,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, WoundsChangedEvent>(OnWoundDamage);
     }
 
-    private void OnInit(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, PsionicInvisibilityPowerComponent component)
     {
         _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, component.ActionPsionicInvisibility);
 
@@ -49,19 +48,25 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
             psionic.PsionicAbility = component.PsionicInvisibilityPowerAction;
     }
 
-    private void OnPowerUsed(EntityUid uid, PsionicInvisibilityPowerComponent component, PsionicInvisibilityPowerActionEvent args)
+    protected override void RemovePowerActions(EntityUid uid, PsionicInvisibilityPowerComponent component)
     {
-        if(args.Handled)
+        _actions.RemoveAction(uid, component.PsionicInvisibilityPowerAction);
+        _actions.RemoveAction(uid, component.PsionicInvisibilityPowerActionOff);
+    }
+
+    protected override void HandlePowerUse(EntityUid uid, PsionicInvisibilityPowerComponent component, PsionicInvisibilityPowerActionEvent args)
+    {
+        if (args.Handled)
             return;
 
-        if (HasComp<PsionicInvisibilityUsedComponent>(uid))
+        if (HasComp<PsionicInvisibilityUsedComponent>(args.Performer))
             return;
 
         ToggleInvisibility(args.Performer);
 
-        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerActionOff, component.ActionPsionicInvisibilityOff);
+        _actions.AddAction(args.Performer, ref component.PsionicInvisibilityPowerActionOff, component.ActionPsionicInvisibilityOff);
 
-        _psionics.LogPowerUsed(uid, "psionic invisibility");
+        _psionics.LogPowerUsed(args.Performer, "psionic invisibility");
         args.Handled = true;
     }
 
@@ -98,11 +103,8 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         RemCompDeferred<StealthComponent>(uid);
         _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
 
-        if (TryComp<PsionicInvisibilityPowerComponent>(uid, out var invisibilityPowerComponent))
-        {
-            _actions.RemoveAction(uid, invisibilityPowerComponent.PsionicInvisibilityPowerActionOff);
-        }
-
+        TryGetInvisibilityPowerComponent(uid, out var invisibilityPowerComponent);
+        TryRemoveAttachedAction(uid, invisibilityPowerComponent?.PsionicInvisibilityPowerActionOff);
         _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(invisibilityPowerComponent?.StunSecond ?? 8));
         DirtyEntity(uid);
     }
@@ -133,5 +135,38 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         {
             RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
         }
+    }
+
+    private bool TryGetInvisibilityPowerComponent(EntityUid uid, out PsionicInvisibilityPowerComponent? powerComponent)
+    {
+        powerComponent = null;
+        if (TryComp(uid, out PsionicInvisibilityPowerComponent? baseComponent))
+        {
+            powerComponent = baseComponent;
+            return true;
+        }
+
+        if (!StatusEffects.TryEffectsWithComp<PsionicInvisibilityPowerComponent>(uid, out var effects))
+            return false;
+
+        foreach (var effect in effects)
+        {
+            powerComponent = effect.Comp1;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void TryRemoveAttachedAction(EntityUid uid, EntityUid? actionUid)
+    {
+        if (actionUid == null)
+            return;
+
+        var action = _actions.GetAction(actionUid);
+        if (action?.Comp.AttachedEntity != uid)
+            return;
+
+        _actions.RemoveAction(uid, actionUid);
     }
 }

@@ -9,6 +9,8 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Damage.Systems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
@@ -17,9 +19,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class DispelPowerSystem : SharedDispelPowerSystem
+public sealed class DispelPowerSystem : StatusEffectGrantedPowerSystem<DispelPowerComponent, DispelPowerActionEvent>
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GuardianSystem _guardianSystem = default!;
@@ -33,8 +35,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<DispelPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<DispelPowerActionEvent>(OnPowerUsed);
+        InitializeStatusEffectGrantedPower();
 
         SubscribeLocalEvent<DispellableComponent, DispelledEvent>(OnDispelled);
         SubscribeLocalEvent<DamageOnDispelComponent, DispelledEvent>(OnDmgDispelled);
@@ -46,7 +47,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
 
     private readonly EntProtoId ActionDispel = "ActionDispel";
 
-    private void OnInit(EntityUid uid, DispelPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, DispelPowerComponent component)
     {
         _actions.AddAction(uid, ref component.DispelPowerAction, ActionDispel);
 
@@ -58,9 +59,14 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
             psionic.PsionicAbility = component.DispelPowerAction;
     }
 
-    private void OnPowerUsed(DispelPowerActionEvent args)
+    protected override void RemovePowerActions(EntityUid uid, DispelPowerComponent component)
     {
-        if(args.Handled)
+        _actions.RemoveAction(uid, component.DispelPowerAction);
+    }
+
+    protected override void HandlePowerUse(EntityUid uid, DispelPowerComponent component, DispelPowerActionEvent args)
+    {
+        if (args.Handled)
             return;
 
         var ev = new DispelledEvent();

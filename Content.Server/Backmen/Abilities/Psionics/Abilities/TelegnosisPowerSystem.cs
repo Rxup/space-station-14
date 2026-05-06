@@ -5,12 +5,14 @@ using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class TelegnosisPowerSystem : EntitySystem
+public sealed class TelegnosisPowerSystem : StatusEffectGrantedPowerSystem<TelegnosisPowerComponent, TelegnosisPowerActionEvent>
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -21,8 +23,7 @@ public sealed class TelegnosisPowerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<TelegnosisPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<TelegnosisPowerComponent, TelegnosisPowerActionEvent>(OnPowerUsed);
+        InitializeStatusEffectGrantedPower();
         SubscribeLocalEvent<TelegnosisPowerComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<TelegnosticProjectionComponent, TelegnosisPowerReturnActionEvent>(OnPowerReturnUsed);
@@ -31,12 +32,17 @@ public sealed class TelegnosisPowerSystem : EntitySystem
 
     private readonly EntProtoId ActionTelegnosis = "ActionTelegnosis";
 
-    private void OnInit(EntityUid uid, TelegnosisPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, TelegnosisPowerComponent component)
     {
         _actions.AddAction(uid, ref component.TelegnosisPowerAction, ActionTelegnosis);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.TelegnosisPowerAction;
+    }
+
+    protected override void RemovePowerActions(EntityUid uid, TelegnosisPowerComponent component)
+    {
+        _actions.RemoveAction(uid, component.TelegnosisPowerAction);
     }
 
     private void OnMobStateChanged(EntityUid uid, TelegnosisPowerComponent component, MobStateChangedEvent args)
@@ -68,8 +74,11 @@ public sealed class TelegnosisPowerSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnPowerUsed(EntityUid uid, TelegnosisPowerComponent component, TelegnosisPowerActionEvent args)
+    protected override void HandlePowerUse(EntityUid uid, TelegnosisPowerComponent component, TelegnosisPowerActionEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!_mindSystem.TryGetMind(args.Performer, out var mindId, out var mind))
             return;
 
@@ -81,7 +90,7 @@ public sealed class TelegnosisPowerSystem : EntitySystem
 
         component.TelegnosisProjection = projection;
 
-        _psionics.LogPowerUsed(uid, "telegnosis");
+        _psionics.LogPowerUsed(args.Performer, "telegnosis");
         args.Handled = true;
     }
     private void OnMindRemoved(EntityUid uid, TelegnosticProjectionComponent component, MindRemovedMessage args)

@@ -8,31 +8,33 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
+public sealed class NoosphericZapPowerSystem
+    : StatusEffectGrantedPowerSystem<NoosphericZapPowerComponent, NoosphericZapPowerActionEvent>
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private readonly Content.Shared.StatusEffect.StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly BeamSystem _beam = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<NoosphericZapPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<NoosphericZapPowerActionEvent>(OnPowerUsed);
+        InitializeStatusEffectGrantedPower();
     }
 
     private readonly EntProtoId ActionNoosphericZap = "ActionNoosphericZap";
 
-    private void OnInit(EntityUid uid, NoosphericZapPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, NoosphericZapPowerComponent component)
     {
         _actions.AddAction(uid, ref component.NoosphericZapPowerAction, ActionNoosphericZap);
 
@@ -44,9 +46,14 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
             psionic.PsionicAbility = component.NoosphericZapPowerAction;
     }
 
-    private void OnPowerUsed(NoosphericZapPowerActionEvent args)
+    protected override void RemovePowerActions(EntityUid uid, NoosphericZapPowerComponent component)
     {
-        if(args.Handled)
+        _actions.RemoveAction(uid, component.NoosphericZapPowerAction);
+    }
+
+    protected override void HandlePowerUse(EntityUid uid, NoosphericZapPowerComponent component, NoosphericZapPowerActionEvent args)
+    {
+        if (args.Handled)
             return;
 
         _beam.TryCreateBeam(args.Performer, args.Target, "LightningNoospheric");

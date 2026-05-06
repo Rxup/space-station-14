@@ -109,7 +109,7 @@
       passthrough: true
       destroyOnFry: false
     - type: ClothingGrantPsionicPower
-      power: MetapsionicPower
+      statusEffect: StatusEffectGrantMetapsionicPower
     - type: GuideHelp
       guides:
         - Psionics

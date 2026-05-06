@@ -11,7 +11,7 @@
       sprite: Clothing/Eyes/Glasses/glasses.rsi
     - type: VisionCorrection
     - type: ClothingGrantPsionicPower
-      power: TelegnosisPower
+      statusEffect: StatusEffectGrantTelegnosisPower
     - type: Psionic
 
 - type: entity
@@ -26,7 +26,7 @@
     - type: Clothing
       sprite: Clothing/Neck/Bedsheets/black.rsi
     - type: ClothingGrantPsionicPower
-      power: PsionicInvisibilityPower
+      statusEffect: StatusEffectGrantPsionicInvisibilityPower
     - type: Psionic
 
 - type: entity
@@ -45,7 +45,7 @@
       fiberColor: fibers-brown
     - type: FingerprintMask
     - type: ClothingGrantPsionicPower
-      power: DispelPower
+      statusEffect: StatusEffectGrantDispelPower
     - type: Psionic
 
 - type: entity
@@ -65,5 +65,5 @@
       fiberColor: fibers-yellow
     - type: FingerprintMask
     - type: ClothingGrantPsionicPower
-      power: NoosphericZapPower
+      statusEffect: StatusEffectGrantNoosphericZapPower
     - type: Psionic
